@@ -1,9 +1,9 @@
-import Layout from "../../components/layout";
-import { getAllDocIds, getDocData } from "../../lib/docs";
-import Head from "next/head";
-import Date from "../../components/date";
-import utilStyles from "../../styles/utils.module.css";
-import { GetStaticProps, GetStaticPaths } from "next";
+import Layout from '../../components/layout';
+import { getAllDocIds, getDocData } from '../../lib/docs';
+import Head from 'next/head';
+import Date from '../../components/date';
+import utilStyles from '../../styles/utils.module.css';
+import { GetStaticProps, GetStaticPaths } from 'next';
 
 export default function Doc({
   docData,
