@@ -1,14 +1,14 @@
 import Layout from "../../components/layout";
-import { getAllPostIds, getPostData } from "../../lib/posts";
+import { getAllDocIds, getDocData } from "../../lib/docs";
 import Head from "next/head";
 import Date from "../../components/date";
 import utilStyles from "../../styles/utils.module.css";
 import { GetStaticProps, GetStaticPaths } from "next";
 
-export default function Post({
-  postData,
+export default function Doc({
+  docData,
 }: {
-  postData: {
+  docData: {
     title: string;
     date: string;
     contentHtml: string;
@@ -17,21 +17,21 @@ export default function Post({
   return (
     <Layout>
       <Head>
-        <title>{postData.title}</title>
+        <title>{docData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <h1 className={utilStyles.headingXl}>{docData.title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
+          <Date dateString={docData.date} />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />
       </article>
     </Layout>
   );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds();
+  const paths = getAllDocIds();
   return {
     paths,
     fallback: false,
@@ -39,10 +39,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const postData = await getPostData(params.id as string);
+  const docData = await getDocData(params.id as string);
   return {
     props: {
-      postData,
+      docData,
     },
   };
 };
