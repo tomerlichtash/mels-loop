@@ -1,5 +1,6 @@
 import Layout from '../../components/layout';
-import { getAllDocIds, getDocData } from '../../lib/docs';
+import { getAllDocIds, getDocData } from '../../lib/content-drivers/docs';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Date from '../../components/date';
 import utilStyles from '../../styles/utils.module.css';
@@ -14,6 +15,7 @@ export default function Doc({
     contentHtml: string;
   };
 }) {
+  const { locale } = useRouter();
   return (
     <Layout>
       <Head>
@@ -22,7 +24,7 @@ export default function Doc({
       <article>
         <h1 className={utilStyles.headingXl}>{docData.title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={docData.date} />
+          <Date dateString={docData.date} locale={locale} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />
       </article>
@@ -30,16 +32,16 @@ export default function Doc({
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllDocIds();
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  const paths = getAllDocIds(locales);
   return {
     paths,
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const docData = await getDocData(params.id as string);
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  const docData = await getDocData(params.id as string, locale);
   return {
     props: {
       docData,

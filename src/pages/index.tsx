@@ -1,10 +1,11 @@
-import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
-import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
-import Link from "next/link";
-import Date from "../components/date";
-import { GetStaticProps } from "next";
+import Head from 'next/head';
+import Layout, { siteTitle } from '../components/layout';
+import utilStyles from '../styles/utils.module.css';
+import { useRouter } from 'next/router';
+import { getSortedPostsData } from '../lib/posts';
+import Link from 'next/link';
+import Date from '../components/date';
+import { GetStaticProps } from 'next';
 
 export default function Home({
   allPostsData,
@@ -15,6 +16,8 @@ export default function Home({
     id: string;
   }[];
 }) {
+  const { locale } = useRouter();
+
   return (
     <Layout home>
       <Head>
@@ -30,7 +33,7 @@ export default function Home({
               </Link>
               <br />
               <small className={utilStyles.lightText}>
-                <Date dateString={date} />
+                <Date dateString={date} locale={locale} />
               </small>
             </li>
           ))}
@@ -40,8 +43,8 @@ export default function Home({
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const allPostsData = getSortedPostsData(locale);
   return {
     props: {
       allPostsData,

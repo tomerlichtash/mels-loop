@@ -1,9 +1,10 @@
-import Layout from "../../components/layout";
-import { getAllTermIds, getTermData } from "../../lib/glossary";
-import Head from "next/head";
-import Date from "../../components/date";
-import utilStyles from "../../styles/utils.module.css";
-import { GetStaticProps, GetStaticPaths } from "next";
+import Layout from '../../components/layout';
+import { getAllTermIds, getTermData } from '../../lib/glossary';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
+import Date from '../../components/date';
+import utilStyles from '../../styles/utils.module.css';
+import { GetStaticProps, GetStaticPaths } from 'next';
 
 export default function Term({
   termData,
@@ -14,6 +15,7 @@ export default function Term({
     contentHtml: string;
   };
 }) {
+  const { locale } = useRouter();
   return (
     <Layout>
       <Head>
@@ -22,7 +24,7 @@ export default function Term({
       <article>
         <h1 className={utilStyles.headingXl}>{termData.title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={termData.date} />
+          <Date dateString={termData.date} locale={locale} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: termData.contentHtml }} />
       </article>
@@ -30,16 +32,16 @@ export default function Term({
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllTermIds();
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  const paths = getAllTermIds(locales);
   return {
     paths,
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const termData = await getTermData(params.id as string);
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  const termData = await getTermData(params.id as string, locale);
   return {
     props: {
       termData,
