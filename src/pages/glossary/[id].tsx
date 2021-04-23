@@ -1,5 +1,5 @@
 import Layout from '../../components/layout';
-import { getAllTermIds, getTermData } from '../../lib/glossary';
+import { getAllTermIds, getTermData } from '../../lib/content-drivers/glossary';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Date from '../../components/date';

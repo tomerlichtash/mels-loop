@@ -1,5 +1,5 @@
 import Layout from '../../components/layout';
-import { getAllPostIds, getPostData } from '../../lib/posts';
+import { getAllPostIds, getPostData } from '../../lib/content-drivers/posts';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Date from '../../components/date';
