@@ -3,10 +3,11 @@ import Image from 'next/image';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import Nav from './nav';
 import Footer from './footer';
 
-const name = 'Your Name';
-export const siteTitle = 'Next.js Sample Website';
+const name = `Mel's Loop`;
+export const siteTitle = `Mel's Loop`;
 
 export default function Layout({
   children,
@@ -67,6 +68,9 @@ export default function Layout({
           </>
         )}
       </header>
+
+      <Nav />
+
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>

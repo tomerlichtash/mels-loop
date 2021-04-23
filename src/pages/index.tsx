@@ -6,6 +6,7 @@ import { getSortedPostsData } from '../lib/content-drivers/posts';
 import Link from 'next/link';
 import Date from '../components/date';
 import { GetStaticProps } from 'next';
+import useTranslation from 'next-translate/useTranslation';
 
 export default function Home({
   allPostsData,
@@ -16,6 +17,7 @@ export default function Home({
     id: string;
   }[];
 }) {
+  const { t } = useTranslation();
   const { locale } = useRouter();
 
   return (
@@ -24,6 +26,7 @@ export default function Home({
         <title>{siteTitle}</title>
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h1>{t('common:greeting')}</h1>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (

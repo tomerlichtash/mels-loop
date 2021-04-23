@@ -5,12 +5,13 @@ import utilStyles from '../styles/utils.module.css';
 
 export const Footer = (): JSX.Element => {
   const router = useRouter();
+  const { locales } = router;
   return (
     <footer className={utilStyles.footer}>
-      <p>© 2020</p>
+      <p>&copy; 2020</p>
 
       <ul>
-        {router.locales.map((locale) => (
+        {locales.map((locale) => (
           <li key={locale}>
             <Link href={router.asPath} locale={locale}>
               <a>{locale}</a>
