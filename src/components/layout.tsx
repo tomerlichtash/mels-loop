@@ -6,8 +6,8 @@ import Link from 'next/link';
 import Nav from './nav';
 import Footer from './footer';
 
-const name = `Mel's Loop`;
-export const siteTitle = `Mel's Loop`;
+const name = `NextJS Boilerplate`;
+export const siteTitle = `TS, i18n and more`;
 
 export default function Layout({
   children,
