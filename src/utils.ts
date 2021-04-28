@@ -8,4 +8,5 @@ export const isDefaultLocale = (locale: string) => locale === defaultLocale;
 export const getLocale = (locale: string) =>
   isDefaultLocale(locale) ? enUS : he;
 
-export const getLocaleFormat = (locale: string) => dateFormats[locale];
+export const getLocaleFormat = (locale: string) =>
+  dateFormats[locale] as Record<string, string>;

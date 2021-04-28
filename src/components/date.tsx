@@ -8,6 +8,9 @@ export const Date = ({
   dateString: string;
   locale: string;
 }): JSX.Element => {
+  if (!dateString) {
+    return null;
+  }
   const date = parseISO(dateString);
   return (
     <time dateTime={dateString}>

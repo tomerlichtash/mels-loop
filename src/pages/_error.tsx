@@ -1,4 +1,6 @@
-function Error({ statusCode }) {
+import HttpStatusCode from '../http-status-codes';
+
+function Error({ statusCode }: { statusCode: HttpStatusCode }) {
   return (
     <p>
       {statusCode
@@ -8,7 +10,13 @@ function Error({ statusCode }) {
   );
 }
 
-Error.getServerSideProps = ({ res, err }) => {
+Error.getServerSideProps = ({
+  res,
+  err,
+}: {
+  res: { statusCode: HttpStatusCode };
+  err: { statusCode: HttpStatusCode };
+}) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
   return { statusCode };
 };

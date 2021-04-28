@@ -6,14 +6,13 @@ import html from 'remark-html';
 
 const { defaultLocale } = require('../../i18n.json');
 
-const getIndexFileName = (locale: string) =>
+const getIndexFileName = (locale: string): string =>
   defaultLocale === locale ? 'index.md' : `index.${locale}.md`;
 
 export function initContentDir(contentId: string) {
   return path.join(process.cwd(), `content/${contentId}`);
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function getSortedContentData(contentDir: string, locale: string) {
   // Get file names under /posts
   const contentIds = fs.readdirSync(contentDir);
@@ -57,7 +56,7 @@ export function getAllContentIds(contentDir: string, locales: string[]) {
 
   for (let id of contentIds) {
     for (let locale of locales) {
-      let fullpath = path.join(contentDir, id, getIndexFileName(locale));
+      const fullpath = path.join(contentDir, id, getIndexFileName(locale));
       if (!fs.existsSync(fullpath)) {
         continue;
       }

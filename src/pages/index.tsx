@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Date from '../components/date';
 import { GetStaticProps } from 'next';
 import useTranslation from 'next-translate/useTranslation';
+import homeStyles from '../styles/home.module.scss';
 
 export default function Home({
   allPostsData,
@@ -25,7 +26,8 @@ export default function Home({
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+      <section className={homeStyles.main}>
+        {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}> */}
         <h1>{t('common:greeting')}</h1>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>

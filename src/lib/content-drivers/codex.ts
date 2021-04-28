@@ -7,16 +7,16 @@ import {
 
 import { CONTENT_TYPES } from '../../consts';
 
-const postsDirectory = initContentDir(CONTENT_TYPES.POSTS);
+const codexDirectory = initContentDir(CONTENT_TYPES.CODEX);
 
 export function getSortedPostsData(locale: string) {
-  return getSortedContentData(postsDirectory, locale);
+  return getSortedContentData(codexDirectory, locale);
 }
 
 export function getAllPostIds(locales: string[]) {
-  return getAllContentIds(postsDirectory, locales);
+  return getAllContentIds(codexDirectory, locales);
 }
 
 export async function getPostData(id: string, locale: string) {
-  return getContentData(postsDirectory, id, locale);
+  return getContentData(codexDirectory, id, locale);
 }

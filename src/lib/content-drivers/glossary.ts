@@ -9,7 +9,6 @@ import { CONTENT_TYPES } from '../../consts';
 
 const postsDirectory = initContentDir(CONTENT_TYPES.GLOSSARY);
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function getSortedTermsData(locale: string) {
   return getSortedContentData(postsDirectory, locale);
 }
