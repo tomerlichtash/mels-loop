@@ -3,7 +3,7 @@ import { getAllPostIds, getPostData } from '../../lib/content-drivers/posts';
 // import { useRouter } from 'next/router';
 import Head from 'next/head';
 // import Date from '../../components/date';
-import classes from '../../styles/codex.module.css';
+import classes from '../../styles/codex.module.scss';
 // import utilStyles from '../../styles/utils.module.css';
 import { GetStaticProps, GetStaticPaths } from 'next';
 
