@@ -81,32 +81,78 @@ In December 1964 Royal-McBee was purchased by Litton, and in 1965 Litton removed
 
 ## . מחשב דיגיטלי מהדור הראשון, יצא לשוק בנובמבר 1955 במחיר קמעונאי של 47 אלף דולר. ה-30-PLG שווק כמחשב זול, נייד, פשוט לתכנות, בעל זיכרון גדול ואמינות ביצועים המיועד לאפליקציות של מחקר, הנדסה, תעשייה וצבא. כ-500 מחשבי ה-30-LGP יוצרו ונמכרו ברחבי העולם. שם המחשב נגזר מראשי התיבות של היצרניות Precision General Librascope. על אף ממדיו נחשב ה-30-LGP מחשב קטן, ונהוג לייחס לו את התואר המחשב השולחני הראשון, ולמעשה היה בגודל של שולחן ממוצע (גובה: 84 ס"מ, רוחב: 1.20 מ', עומק: 66 ס"מ). גלגלים מאסיביים קובעו בתחתית השלדה כדי לתמוך בכובד משקלו (כ-360 ק"ג) ולאפשר הסעתו אל שולחן העבודה ובחזרה – לכן נחשב גם נייד. מתחת לשלדת המתכת הבוהקת בחום וברונזה, בצריכת חשמל בהספק גבוה של 1500 וואט, פעלו 113 שפופרות, 1450 דיודות, 34 כרטיסים וזיכרון תוף בנפח 4096 מילים (מילה = 32 ביט) בעל שלושה אוגרים-מונים. אמצעי הקלט/פלט במחשב היה הפלקסורייטר – מכונת כתיבה מכנית לקריאה ולניקוב סרט רץ ולהדפסת פלט אלפנוּמרי. מנגנון קירור עצמי הורכב סמוך לרצפת השלדה, ובחזית המחשב הורכב משקף תנודות (אוֹסְצִילוֹסְקוֹפּ) לניטור פעילות המחשב, ולצידו ממשק מתגים מואר לתפעול 16 הפקודות הכלולות בו.
 
-. מחשב מבוסס טרנזיסטורים ובעל זיכרון תוף. הושק ב-1960 על ידי ג'נרל פרסישן ורויאל-מק׳בי במחיר קמעונאי של 87.5 אלף דולר. זהו מחשב דומה ל-30-LGP, אך חזק יותר ומהיר יותר, המסוגל לכ-230 אלף חישובים בדקה ולחיבור של עד 60 התקנים חיצוניים. במחשב 500 טרנזיסטורים, 4500 דיודות וזיכרון תוף בנפח 8008 מילים (מילה = 32 ביט).
-. לִבּוֹת זִכְרוֹן טַבְּעוֹת מַגְנֵטִי (Magnetic Core Memory): רכיב שכיח במימוש זיכרון גישה אקראית בשנים 1975-1955. יחידת הזיכרון הבסיסית מומשה על ידי טבעת הניתנת למִגְנוּט.
-. מְהַדֵּר (Compiler): תוכנית מחשב המתרגמת משפת מחשב אחת לשפת מחשב אחרת. המהדר הקלאסי מקבל כקלט תוכנית הכתובה בשפה עילית ומתרגם אותה לתוכנית בשפת מכונה. פעולת המהדר מכונה הִדּוּר (Compilation).
-. במקור: marvel. בשנים 1959-1958 מופיעות המילים marvel electronic בשלושה תיאורי טכנולוגיה חדשנית בביטאון עובדי ליברסקופ, ה"ליברזט".
-. לפני הזנת התוכנה למחשב, בוצעה כתיבתה בכתב יד, בדרך כלל בטופס ייעודי.
-. ב-17-14 בנובמבר 1955 כיכב ה-30-LGP בתערוכת האוטומציה השנייה במזח הצי בשיקגו. בדוכן החברה היו נציגי מחלקת המכירות והמחלקה המסחרית ואיתם הארכיטקט המקורי של ה-30-LGP, סטנלי פרנקל. כך מדווח ה"ליברזט", ביטאון עובדי ליברסקופ, בדצמבר 1955.
-. "מבקרים רבים נהנו במיוחד ממראהו של ה-30-LGP. כמה מבקרים הביעו חיבה ל"לוּק" החדש... וכמה אמרו כי זוהי דוגמה ומופת לאריזה תעשייתית" (שם)
+# . מחשב מבוסס טרנזיסטורים ובעל זיכרון תוף. הושק ב-1960 על ידי ג'נרל פרסישן ורויאל-מק׳בי במחיר קמעונאי של 87.5 אלף דולר. זהו מחשב דומה ל-30-LGP, אך חזק יותר ומהיר יותר, המסוגל לכ-230 אלף חישובים בדקה ולחיבור של עד 60 התקנים חיצוניים. במחשב 500 טרנזיסטורים, 4500 דיודות וזיכרון תוף בנפח 8008 מילים (מילה = 32 ביט).
+// todo
+
+# . לִבּוֹת זִכְרוֹן טַבְּעוֹת מַגְנֵטִי (Magnetic Core Memory): רכיב שכיח במימוש זיכרון גישה אקראית בשנים 1975-1955. יחידת הזיכרון הבסיסית מומשה על ידי טבעת הניתנת למִגְנוּט.
+Magnetic-core memory was the predominant form of random-access computer memory for 20 years between about 1955 and 1975. Such memory is often just called core memory, or, informally, core. 
+
+# . מְהַדֵּר (Compiler): תוכנית מחשב המתרגמת משפת מחשב אחת לשפת מחשב אחרת. המהדר הקלאסי מקבל כקלט תוכנית הכתובה בשפה עילית ומתרגם אותה לתוכנית בשפת מכונה. פעולת המהדר מכונה הִדּוּר (Compilation).
+In computing, a compiler is a computer program that translates computer code written in one programming language (the source language) into another language (the target language). The name "compiler" is primarily used for programs that translate source code from a high-level programming language to a lower level language (e.g., assembly language, object code, or machine code) to create an executable program.[1][2]:p1 
+
+# . במקור: marvel. בשנים 1959-1958 מופיעות המילים marvel electronic בשלושה תיאורי טכנולוגיה חדשנית בביטאון עובדי ליברסקופ, ה"ליברזט".
+Between 1958-1959 The Librazette used the word "marvel" at least three times to describe new technology.
+
+## . לפני הזנת התוכנה למחשב, בוצעה כתיבתה בכתב יד, בדרך כלל בטופס ייעודי.
+Prior to the submission of a piece of software into the machine, it was written by hand.
+
+## . ב-17-14 בנובמבר 1955 כיכב ה-30-LGP בתערוכת האוטומציה השנייה במזח הצי בשיקגו. בדוכן החברה היו נציגי מחלקת המכירות והמחלקה המסחרית ואיתם הארכיטקט המקורי של ה-30-LGP, סטנלי פרנקל. כך מדווח ה"ליברזט", ביטאון עובדי ליברסקופ, בדצמבר 1955.
+
+In November 14th-17th 1955 the LGP-30 was presented in the Chicago Automation Show, that was conducted at the Navy Pier in Chicago. The company's representatives in the show were from the company's sales department, along with Stanely Frankel, the computer's architect.
+
+# . "מבקרים רבים נהנו במיוחד ממראהו של ה-30-LGP. כמה מבקרים הביעו חיבה ל"לוּק" החדש... וכמה אמרו כי זוהי דוגמה ומופת לאריזה תעשייתית" (שם)
+'Many of the viewers were especially pleased by the appearance of the LGP-30. They commented favorably on the computer's "new look," referring to the departure from the rack mounting common to most other computers.' (ibis)
+
 . "עבור 12 אלף המבקרים הפך במהרה הדוכן של ליברסקופ, בו הוצג המחשב, לספוט הכי לוהט במזח" (שם)
-. "מישהו שמע נציג של אחת היצרניות מדרום קליפורניה חצי מתלוצץ: ׳בכנות, אני מודאג!׳" (שם)
-. תוכנת הבלאק ג׳ק של מל היתה תוכנה שיווקית להדגמת יכולותיו של ה-30-LGP והפכה לתוכנת הדגל של החברה. לאחר שיכתוב התוכנה ל-4000-RPC כתב מל מבוא קצר, בו הוא מתאר את אופן פעולתה: האינטראקציה בין השחקן (מפעיל המחשב) לתוכנה נעשית באמצעות מכונת הכתיבה. הפלט (שאלות הדילר, רשימת הקלפים וכו׳) מודפס, והקלט (בחירות השחקן) מוזן באמצעות המקלדת במכונה. ראשית הודפסה השאלה: "?How much do you bet"; השחקן הקליד את הסכום ואחריו כוכבית (המשמשת כסימן העצירה): למשל – הפקודה 150\* תהמר על 150 דולר. הפלקסורייטר ידפיס "Shuffling" והמחשב יערבב את החפיסה. כדי להמשיך יש לעצור את פעולת הערבוב (באמצעות הרמת מתג 1). אז, התוכנה מדפיסה את המילה "Cut" וחותכת את החפיסה עד שהשחקן עוצר את הפעולה (באמצעות הורדת מתג 1). לאחר מכן התוכנה מחלקת את הקלפים והמשחק נמשך. על כל שאלות התוכנה להיענות באמצעות מקלדת מכונת הכתיבה; התוכנה ידעה לעבד תשובה חיובית בכמה שפות (yes, ok, si, ja, oui). לפני הפעלת התוכנה היה על השחקן לבצע שתי פעולות: ראשית, הוא נדרש להכין דף משחק ייעודי עבור פלט המשחק ולהזין אותו למכונת הכתיבה. טבלה מייצגת את תוכני המשחק: במרחק 15 רווחים עמודת שאלות ותשובות, במרחק 12 רווחים עמודת קלפים, 12 רווחים נוספים – עמודה לקלפים של הדילר, ו-12 רווחים משם עמודת ניקוד לכל משחק. שנית, על המפעיל היה לאתחל את התוכנה בעשרה צעדים: יש למקם את הסרט בקורא, לבחור קלט קורא, להוריד מתג ONE OPERATION, להוריד מתג EXECUTE LOWER, להוריד מתג SET INPUT, להוריד מתג START READ בפלקסורייטר, להרים מתג EXECUTE LOWER, להוריד מתג SET INPUT, להרים מתג ONE OPERATION ולהוריד מתג START READ בפלקסורייטר.
-. פּוֹרְט (Port): תרגום תוכנה לשפה אחרת או למחשב מסוג שונה, תוך שמירה על יכולותיה.
-. מִיעוּן כְּתוֹבוֹת (Addressing Scheme): השיטה שבה מספר בינארי, או אוסף מספרים כאלה, מייצג מיקום בזיכרון המחשב.
+# . "מישהו שמע נציג של אחת היצרניות מדרום קליפורניה חצי מתלוצץ: ׳בכנות, אני מודאג!׳" (שם)
+'A representative of one of the leading Southern California computer manufacturers was head to remark half-humourously, "Frankly, I'm worried!"'
+
+# . תוכנת הבלאק ג׳ק של מל היתה תוכנה שיווקית להדגמת יכולותיו של ה-30-LGP והפכה לתוכנת הדגל של החברה. לאחר שיכתוב התוכנה ל-4000-RPC כתב מל מבוא קצר, בו הוא מתאר את אופן פעולתה: האינטראקציה בין השחקן (מפעיל המחשב) לתוכנה נעשית באמצעות מכונת הכתיבה. הפלט (שאלות הדילר, רשימת הקלפים וכו׳) מודפס, והקלט (בחירות השחקן) מוזן באמצעות המקלדת במכונה. ראשית הודפסה השאלה: "?How much do you bet"; השחקן הקליד את הסכום ואחריו כוכבית (המשמשת כסימן העצירה): למשל – הפקודה 150\* תהמר על 150 דולר. הפלקסורייטר ידפיס "Shuffling" והמחשב יערבב את החפיסה. כדי להמשיך יש לעצור את פעולת הערבוב (באמצעות הרמת מתג 1). אז, התוכנה מדפיסה את המילה "Cut" וחותכת את החפיסה עד שהשחקן עוצר את הפעולה (באמצעות הורדת מתג 1). לאחר מכן התוכנה מחלקת את הקלפים והמשחק נמשך. על כל שאלות התוכנה להיענות באמצעות מקלדת מכונת הכתיבה; התוכנה ידעה לעבד תשובה חיובית בכמה שפות (yes, ok, si, ja, oui). לפני הפעלת התוכנה היה על השחקן לבצע שתי פעולות: ראשית, הוא נדרש להכין דף משחק ייעודי עבור פלט המשחק ולהזין אותו למכונת הכתיבה. טבלה מייצגת את תוכני המשחק: במרחק 15 רווחים עמודת שאלות ותשובות, במרחק 12 רווחים עמודת קלפים, 12 רווחים נוספים – עמודה לקלפים של הדילר, ו-12 רווחים משם עמודת ניקוד לכל משחק. שנית, על המפעיל היה לאתחל את התוכנה בעשרה צעדים: יש למקם את הסרט בקורא, לבחור קלט קורא, להוריד מתג ONE OPERATION, להוריד מתג EXECUTE LOWER, להוריד מתג SET INPUT, להוריד מתג START READ בפלקסורייטר, להרים מתג EXECUTE LOWER, להוריד מתג SET INPUT, להרים מתג ONE OPERATION ולהוריד מתג START READ בפלקסורייטר.
+// todo
+# . פּוֹרְט (Port): תרגום תוכנה לשפה אחרת או למחשב מסוג שונה, תוך שמירה על יכולותיה.
+In software engineering, porting is the process of adapting software for the purpose of achieving some form of execution in a computing environment that is different from the one that a given program (meant for such execution) was originally designed for (e.g., different CPU, operating system, or third party library). The term is also used when software/hardware is changed to make them usable in different environments. (Wikipedia)
+
+# . מִיעוּן כְּתוֹבוֹת (Addressing Scheme): השיטה שבה מספר בינארי, או אוסף מספרים כאלה, מייצג מיקום בזיכרון המחשב.
+// todo
+
 . מיעון כתובת בזיכרון התוף של ה-4000-RPC נקבע על-ידי האופרנד בהוראה הנוכחית. בדרך כלל, תוכנה נטענת לזיכרון על פי סדר ההוראות שלה: ההוראה הראשונה נטענת לכתובת 0, ההוראה השנייה לכתובת 1, הבאה לכתובת 2, וכך הלאה. האוגר-מונה (שהחזיק את הכתובת של ההוראה הנוכחית) הגדיל את המונה שלו ב-1 בכל פעם שההוראה הנוכחית רצה. כדי להצביע על מיקום ההוראה הבאה (אלא אם כן קיבל הוראת דילוג) שינה האוגר את המספר למספר אליו צריך לדלג.
 . קוֹד-פְּעֻלָּה (Operation Code): סדרת הוראות בשפת מכונה המפרטות כיצד יש לבצע פעולה מסוימת.
 . אוֹפֵּרַנְדּ (Operand): הנתון עליו מתבצעת פעולת האופרטור. לדוגמה, בפעולה האריתמטית 2 + 1 המספרים 1 ו-2 הם אופרנדים, ופעולת החיבור היא האופרטור.
 . פְּקֻדָּת TO GO: פקודת דילוג בסיסית בשפות תכנות. משמעות הפקודה למחשב: עבור לפקודה הנמצאת במקום אחר בתוכנית.
-. פַּסְקָל (Pascal): שפת תכנות עילית שפותחה ב-1970 ונחשבת לבעלת מבנה פשוט ואלגנטי. קרויה על שמו של המתמטיקאי והפילוסוף בלז פסקל, שב-1645 הציג את ה"פסקליין" – מכונת חישוב מכנית שחיברה וחיסרה שני מספרים ישירות.
-. קוֹד אוֹפְּטִימָלִי (Code Optimal): קוד הנכתב בצורה היעילה ביותר הניתנת למימוש.
-. אָסֶמְבְּלֵר (Assembler): ר' הערה 12: שפת סף.
-. עיצוב מעלה-מטה (Top-Down Design): אסטרטגיה בפיתוח תוכנה המנסחת מודל הסוקר מערכת בקווים כלליים מבלי להיכנס לפרטים של שום חלק ממנה. לאחר מכן מנוסח כל חלק במערכת לפרטיו, ואז כל פרט חדש עשוי להיות מנוסח שוב תוך שמגדירים אותו לפרטים נוספים עד שכל המפרט מפורט דיו כדי לתקף את המודל.
-. לוּלְאַת הַשְׁהָיָה (Time-Delay Loop): קוד שמטרתו להשהות במכוון את ריצת התוכנה, בדרך כלל בשל תלות בגורם חיצוני אשר נדרש לזמן עודף לביצוע משימה.
-. מכונת כתיבה מכנית (טלפרינטר) של חברת פרידן, המשמשת לקריאה ולניקוב של סרט רץ ולהדפסת פלט אלפנוּמרי, בעלת אפשרות חיבור למחשב. שימשה כרכיב הקלט/פלט ב-30-LGP.
-. קלידי הפלקסורייטר נעו במהירות של 10 אותיות לשנייה (cps10).
-. מל מימש לולאה על-ידי ניצול המבנה המכני של המחשב (כלומר לא באמצעות קוד) וארגון החלקים הפועלים לפי ראות עיניו, לא בהכרח לפי היגיון העיצוב המקורי.
-. אוֹפְּטִימוּם (Optimum): שיא חיובי במשך זמן הגישה לזיכרון.
-. פֵּסִימוּם (Pessimum): שיא שלילי במשך זמן הגישה לזיכרון.
+# . פַּסְקָל (Pascal): שפת תכנות עילית שפותחה ב-1970 ונחשבת לבעלת מבנה פשוט ואלגנטי. קרויה על שמו של המתמטיקאי והפילוסוף בלז פסקל, שב-1645 הציג את ה"פסקליין" – מכונת חישוב מכנית שחיברה וחיסרה שני מספרים ישירות.
+Pascal is an imperative and procedural programming language, designed by Niklaus Wirth as a small, efficient language intended to encourage good programming practices using structured programming and data structuring. It is named in honour of the French mathematician, philosopher and physicist Blaise Pascal. (Wikipedia)
+
+# . קוֹד אוֹפְּטִימָלִי (Code Optimal): קוד הנכתב בצורה היעילה ביותר הניתנת למימוש.
+Code that's written in the most efficiant implementation that is possible in within a given machine.
+
+# . אָסֶמְבְּלֵר (Assembler): ר' הערה 12: שפת סף.
+// todo
+
+# . עיצוב מעלה-מטה (Top-Down Design): אסטרטגיה בפיתוח תוכנה המנסחת מודל הסוקר מערכת בקווים כלליים מבלי להיכנס לפרטים של שום חלק ממנה. לאחר מכן מנוסח כל חלק במערכת לפרטיו, ואז כל פרט חדש עשוי להיות מנוסח שוב תוך שמגדירים אותו לפרטים נוספים עד שכל המפרט מפורט דיו כדי לתקף את המודל.
+Top-down and bottom-up are both strategies of information processing and knowledge ordering, used in a variety of fields including software, humanistic and scientific theories (see systemics), and management and organization. In practice, they can be seen as a style of thinking, teaching, or leadership.
+
+A top-down approach (also known as stepwise design and stepwise refinement and in some cases used as a synonym of decomposition) is essentially the breaking down of a system to gain insight into its compositional sub-systems in a reverse engineering fashion. In a top-down approach an overview of the system is formulated, specifying, but not detailing, any first-level subsystems. Each subsystem is then refined in yet greater detail, sometimes in many additional subsystem levels, until the entire specification is reduced to base elements. A top-down model is often specified with the assistance of "black boxes", which makes it easier to manipulate. However, black boxes may fail to clarify elementary mechanisms or be detailed enough to realistically validate the model. Top down approach starts with the big picture. It breaks down from there into smaller segments. (Wikipedia)
+
+## . לוּלְאַת הַשְׁהָיָה (Time-Delay Loop): קוד שמטרתו להשהות במכוון את ריצת התוכנה, בדרך כלל בשל תלות בגורם חיצוני אשר נדרש לזמן עודף לביצוע משימה.
+// todo
+
+# . מכונת כתיבה מכנית (טלפרינטר) של חברת פרידן, המשמשת לקריאה ולניקוב של סרט רץ ולהדפסת פלט אלפנוּמרי, בעלת אפשרות חיבור למחשב. שימשה כרכיב הקלט/פלט ב-30-LGP.
+The Friden Flexowriter was a teleprinter, a heavy-duty electric typewriter capable of being driven not only by a human typing, but also automatically by several methods, including direct attachment to a computer and by use of paper tape.
+
+Elements of the design date to the 1920s, and variants of the machine were produced until the early 1970s; the machines found a variety of uses during the evolution of office equipment in the 20th century, including being among the first electric typewriters, computer input and output devices, forerunners of modern word processing, and also having roles in the machine tool and printing industries. (Wikipedia)
+
+# . קלידי הפלקסורייטר נעו במהירות של 10 אותיות לשנייה (cps10).
+The Flexowriter's typing speed was 10cps (10 charachters per seconds)
+
+# . מל מימש לולאה על-ידי ניצול המבנה המכני של המחשב (כלומר לא באמצעות קוד) וארגון החלקים הפועלים לפי ראות עיניו, לא בהכרח לפי היגיון העיצוב המקורי.
+// todo
+
+# . אוֹפְּטִימוּם (Optimum): שיא חיובי במשך זמן הגישה לזיכרון.
+Positive peak in memory access time.
+
+# . פֵּסִימוּם (Pessimum): שיא שלילי במשך זמן הגישה לזיכרון.
+Negative peak in memory access time.
+
 . המבוא לתוכנת הבלאק ג'ק ננעל בפסקה שכותרתה "הערה", ובה מסביר מל, לא בלי גאווה, כי "אחרי שהתוכנה ניטענה לזיכרון, השליטה עוברת לכתובת 00000. מאחר שתוכנת הבלאק ג׳ק מתחילה בכתובת התחילית (00000) קל מאוד להעביר אותה לשם. (להוריד מתגים SET INPUT ,EXECUTE LOWER ,START)".
 . לוּלָאָה (Loop): טכניקת תכנות המשמשת לבקרת זרימה ומבצעת רוטינה מספר רב של פעמים. תוכנית מחשב בנויה כך שהיא מטפלת בפריט מידע אחד או במצב אחד בכל פעם. כדי לחזור על התהליך עם פריט המידע הבא או המצב הבא, הוראה בתוכנית מסתעפת אחורנית וחוזרת ופונה להוראה הראשונה בסדרה. טכניקה זו רבת עוצמה מכיוון שהיא מאפשרת לחזור על פעולות פעמים רבות בהקשרים שונים.
 . תְּנַאי עֲצִירָה (Terminating Condition): הגדרת נסיבות מסוימות בהן על אלגוריתם רקורסיבי לחדול מפעולתו הרקורסיבית (אשר על מנת לפתור בעיה מסוימת, מפעיל עצמו על מקרים פשוטים יותר של הבעיה). בדרך כלל יכלול האלגוריתם תנאי עצירה, שיביא להפסקת הרקורסיה, שאם לא כן תהיה זו לולאה אינסופית רקורסיבית. בטקסט המקורי כתובה המילה test, שהיא תיאור של תנאי עצירה במילון המונחים של ה-30-LGP וה-4000-RPC המקביל לזה של תנאי עצירה כפי שהוא מתואר בהנדסת תוכנה כיום.
