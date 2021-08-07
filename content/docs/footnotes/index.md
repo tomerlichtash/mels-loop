@@ -85,7 +85,7 @@ In December 1964 Royal-McBee was purchased by Litton, and in 1965 Litton removed
 // todo
 
 # 18. מחשב מבוסס טרנזיסטורים ובעל זיכרון תוף. הושק ב-1960 על ידי ג'נרל פרסישן ורויאל-מק׳בי במחיר קמעונאי של 87.5 אלף דולר. זהו מחשב דומה ל-30-LGP, אך חזק יותר ומהיר יותר, המסוגל לכ-230 אלף חישובים בדקה ולחיבור של עד 60 התקנים חיצוניים. במחשב 500 טרנזיסטורים, 4500 דיודות וזיכרון תוף בנפח 8008 מילים (מילה = 32 ביט).
-// todo
+Transistor based computer with drum memory. Released by General Percision and Royal McBee in 1960 for $87,500. It resembles the LGP-30, though it is faster, and capable of computing 230,000 operations per minute, and can be connected with up to 60 external devices. The RPC-4000 was built with 500 transistors, 4500 diodes, and a drum memory in size of 8008 words (words = 32 bit).
 
 # 19. לִבּוֹת זִכְרוֹן טַבְּעוֹת מַגְנֵטִי (Magnetic Core Memory): רכיב שכיח במימוש זיכרון גישה אקראית בשנים 1975-1955. יחידת הזיכרון הבסיסית מומשה על ידי טבעת הניתנת למִגְנוּט.
 Magnetic-core memory was the predominant form of random-access computer memory for 20 years between about 1955 and 1975. Such memory is often just called core memory, or, informally, core. 
@@ -158,7 +158,7 @@ Pascal is an imperative and procedural programming language, designed by Niklaus
 Code that's written in the most efficiant implementation that is possible in within a given machine.
 
 ## 36. אָסֶמְבְּלֵר (Assembler): ר' הערה 12: שפת סף.
-// todo
+See annotation no. 12 - Assembler.
 
 ## 37. עיצוב מעלה-מטה (Top-Down Design): אסטרטגיה בפיתוח תוכנה המנסחת מודל הסוקר מערכת בקווים כלליים מבלי להיכנס לפרטים של שום חלק ממנה. לאחר מכן מנוסח כל חלק במערכת לפרטיו, ואז כל פרט חדש עשוי להיות מנוסח שוב תוך שמגדירים אותו לפרטים נוספים עד שכל המפרט מפורט דיו כדי לתקף את המודל.
 Top-down and bottom-up are both strategies of information processing and knowledge ordering, used in a variety of fields including software, humanistic and scientific theories (see systemics), and management and organization. In practice, they can be seen as a style of thinking, teaching, or leadership.
