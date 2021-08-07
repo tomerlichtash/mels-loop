@@ -111,7 +111,30 @@ In November 14th-17th 1955 the LGP-30 was presented in the Chicago Automation Sh
 'A representative of one of the leading Southern California computer manufacturers was head to remark half-humourously, "Frankly, I'm worried!"'
 
 # 27. תוכנת הבלאק ג׳ק של מל היתה תוכנה שיווקית להדגמת יכולותיו של ה-30-LGP והפכה לתוכנת הדגל של החברה. לאחר שיכתוב התוכנה ל-4000-RPC כתב מל מבוא קצר, בו הוא מתאר את אופן פעולתה: האינטראקציה בין השחקן (מפעיל המחשב) לתוכנה נעשית באמצעות מכונת הכתיבה. הפלט (שאלות הדילר, רשימת הקלפים וכו׳) מודפס, והקלט (בחירות השחקן) מוזן באמצעות המקלדת במכונה. ראשית הודפסה השאלה: "?How much do you bet"; השחקן הקליד את הסכום ואחריו כוכבית (המשמשת כסימן העצירה): למשל – הפקודה 150\* תהמר על 150 דולר. הפלקסורייטר ידפיס "Shuffling" והמחשב יערבב את החפיסה. כדי להמשיך יש לעצור את פעולת הערבוב (באמצעות הרמת מתג 1). אז, התוכנה מדפיסה את המילה "Cut" וחותכת את החפיסה עד שהשחקן עוצר את הפעולה (באמצעות הורדת מתג 1). לאחר מכן התוכנה מחלקת את הקלפים והמשחק נמשך. על כל שאלות התוכנה להיענות באמצעות מקלדת מכונת הכתיבה; התוכנה ידעה לעבד תשובה חיובית בכמה שפות (yes, ok, si, ja, oui). לפני הפעלת התוכנה היה על השחקן לבצע שתי פעולות: ראשית, הוא נדרש להכין דף משחק ייעודי עבור פלט המשחק ולהזין אותו למכונת הכתיבה. טבלה מייצגת את תוכני המשחק: במרחק 15 רווחים עמודת שאלות ותשובות, במרחק 12 רווחים עמודת קלפים, 12 רווחים נוספים – עמודה לקלפים של הדילר, ו-12 רווחים משם עמודת ניקוד לכל משחק. שנית, על המפעיל היה לאתחל את התוכנה בעשרה צעדים: יש למקם את הסרט בקורא, לבחור קלט קורא, להוריד מתג ONE OPERATION, להוריד מתג EXECUTE LOWER, להוריד מתג SET INPUT, להוריד מתג START READ בפלקסורייטר, להרים מתג EXECUTE LOWER, להוריד מתג SET INPUT, להרים מתג ONE OPERATION ולהוריד מתג START READ בפלקסורייטר.
-// todo
+
+Mel's Blackjack Program was used as a demo for marketing purposes to showcase the capabilities of the LGP-30, and as such became the flagship program of the company for this purpose. After porting it to the RPC-4000, Mel added a write-up in which he explained how to operate the program: The interaction between the player ("the machine operator") to the computer was via the Flexorwriter. The output (dealer's prompt questions, card list etc.) was printed out, and the input was typed on the typewriter machine. First, the computer prompted the question "How much do you bet?"; the player typed the amount, and afterwords added an astriek (*) which was used a stop command. "e.g., 150* bets $1.50." (see source in the write up itself). Once the amount is submitted, the Flexowriter will print out "Shuffling" and the computer will siumulate the shuffling of the deck. In order to continue with the game, the shuffling simulation had to be manually stopped (by raising SENSE SWITCH 1). Then, the program printed "Cut" and simulated a cut of the deck. Again, this had to be stopped manually in order to complete the cut (by lowering SENSE SWITCH 1). Then, the program would deal the cards, and the game continued. All questions from the program must be answered on the typewriter keyboard, and must be followed by depressing the stop code (*) key. Permissible affirmative answers are: yes*, ok*, si*, ja*, oui*. Permissible negative	answers are: no*, non*, nein*, nope*, * (only the stop code). Another thing to keep in mind, is that prior to the usage, the player had to setup the machine properly in order to see get a fitting User Interface for the machine's output. As Mel mentions in his write-up:
+
+    "Before playing Blackjack, set 4 typewriter tab stops to provide for 4 columns of printing. The following is the suggested column lengths (left to right) and their content."
+
+      1. 15 spaces. This column will contain alphabetic questions and the player's responses.
+      2. 12 spaces. This column will contain the player's cards and their numeric total or an alphabetic comment.
+      3. 12 spaces. This column will contain the dealer's (computer's) cards and their numeric total or an alphabetic comment.
+      4. 12 spaces. This column will contain the score at the end of each hand.
+
+Secondly, the machine operator had to load the tape to the machine in 10 simple steps:
+
+      1. Place tape in Reader
+      2. Select Reader input
+      3. Depress ONE OPERATION
+      4. Depress EXECUTE LOWER
+      5. Depress SET INPUT
+      6. Depress START READ on the Reader
+      7. Raise EXECUTE LOWER
+      8. Depress SET INPUT
+      9. Raise ONE OPERATION
+      10. Depress START READ on the Reader.
+
+For more information, check out Mel's original write-up: [W1-01.0_Blackjack_Game.pdf]
 
 # 28. פּוֹרְט (Port): תרגום תוכנה לשפה אחרת או למחשב מסוג שונה, תוך שמירה על יכולותיה.
 In software engineering, porting is the process of adapting software for the purpose of achieving some form of execution in a computing environment that is different from the one that a given program (meant for such execution) was originally designed for (e.g., different CPU, operating system, or third party library). The term is also used when software/hardware is changed to make them usable in different environments. (Wikipedia)
