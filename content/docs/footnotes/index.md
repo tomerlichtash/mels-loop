@@ -82,6 +82,7 @@ The Typewriter Company 'Royal' was founded in 1904 and for 5 decades it develope
 In December 1964 Royal-McBee was purchased by Litton, and in 1965 Litton removed the the named McBee. In March 1967 Volkswagen annouced its intention to purchase 55% of Litton's shares through Triumph-Adler, a company owned by Litton, within these shares - the holding of Typewriter Royal. Until 1982 the earnings from sales of Royal and Triumph-Adler piled up to about $600M. In 1983, about a year after this storm of business merges, when Ed Nather publishes the Story of Mel, he looks at what used to be Royal-McBee - and sees a ghost. The on-going incarnation of this ghost continued in 1986, when the italian company Olivettei purchased the holdings in Royal. 20 years later, in September 2004, Royal returned to be an American company. Today it's opearing under the name Royal Consumer Information Products Inc. The company manufactures, markets and sells cash registers, paper shredders, electronic logging devices and accessories for photocopiers.
 
 ## 17. מחשב דיגיטלי מהדור הראשון, יצא לשוק בנובמבר 1955 במחיר קמעונאי של 47 אלף דולר. ה-30-PLG שווק כמחשב זול, נייד, פשוט לתכנות, בעל זיכרון גדול ואמינות ביצועים המיועד לאפליקציות של מחקר, הנדסה, תעשייה וצבא. כ-500 מחשבי ה-30-LGP יוצרו ונמכרו ברחבי העולם. שם המחשב נגזר מראשי התיבות של היצרניות Precision General Librascope. על אף ממדיו נחשב ה-30-LGP מחשב קטן, ונהוג לייחס לו את התואר המחשב השולחני הראשון, ולמעשה היה בגודל של שולחן ממוצע (גובה: 84 ס"מ, רוחב: 1.20 מ', עומק: 66 ס"מ). גלגלים מאסיביים קובעו בתחתית השלדה כדי לתמוך בכובד משקלו (כ-360 ק"ג) ולאפשר הסעתו אל שולחן העבודה ובחזרה – לכן נחשב גם נייד. מתחת לשלדת המתכת הבוהקת בחום וברונזה, בצריכת חשמל בהספק גבוה של 1500 וואט, פעלו 113 שפופרות, 1450 דיודות, 34 כרטיסים וזיכרון תוף בנפח 4096 מילים (מילה = 32 ביט) בעל שלושה אוגרים-מונים. אמצעי הקלט/פלט במחשב היה הפלקסורייטר – מכונת כתיבה מכנית לקריאה ולניקוב סרט רץ ולהדפסת פלט אלפנוּמרי. מנגנון קירור עצמי הורכב סמוך לרצפת השלדה, ובחזית המחשב הורכב משקף תנודות (אוֹסְצִילוֹסְקוֹפּ) לניטור פעילות המחשב, ולצידו ממשק מתגים מואר לתפעול 16 הפקודות הכלולות בו.
+// todo
 
 # 18. מחשב מבוסס טרנזיסטורים ובעל זיכרון תוף. הושק ב-1960 על ידי ג'נרל פרסישן ורויאל-מק׳בי במחיר קמעונאי של 87.5 אלף דולר. זהו מחשב דומה ל-30-LGP, אך חזק יותר ומהיר יותר, המסוגל לכ-230 אלף חישובים בדקה ולחיבור של עד 60 התקנים חיצוניים. במחשב 500 טרנזיסטורים, 4500 דיודות וזיכרון תוף בנפח 8008 מילים (מילה = 32 ביט).
 // todo
@@ -140,7 +141,7 @@ For more information, check out Mel's original write-up: [W1-01.0_Blackjack_Game
 In software engineering, porting is the process of adapting software for the purpose of achieving some form of execution in a computing environment that is different from the one that a given program (meant for such execution) was originally designed for (e.g., different CPU, operating system, or third party library). The term is also used when software/hardware is changed to make them usable in different environments. (Wikipedia)
 
 # 29. מִיעוּן כְּתוֹבוֹת (Addressing Scheme): השיטה שבה מספר בינארי, או אוסף מספרים כאלה, מייצג מיקום בזיכרון המחשב.
-// todo
+The method by which a binary number, or a collection of such numbers, represent a specific location in the computer's memory.
 
 ## 30. מיעון כתובת בזיכרון התוף של ה-4000-RPC נקבע על-ידי האופרנד בהוראה הנוכחית. בדרך כלל, תוכנה נטענת לזיכרון על פי סדר ההוראות שלה: ההוראה הראשונה נטענת לכתובת 0, ההוראה השנייה לכתובת 1, הבאה לכתובת 2, וכך הלאה. האוגר-מונה (שהחזיק את הכתובת של ההוראה הנוכחית) הגדיל את המונה שלו ב-1 בכל פעם שההוראה הנוכחית רצה. כדי להצביע על מיקום ההוראה הבאה (אלא אם כן קיבל הוראת דילוג) שינה האוגר את המספר למספר אליו צריך לדלג.
 
@@ -165,6 +166,7 @@ Top-down and bottom-up are both strategies of information processing and knowled
 A top-down approach (also known as stepwise design and stepwise refinement and in some cases used as a synonym of decomposition) is essentially the breaking down of a system to gain insight into its compositional sub-systems in a reverse engineering fashion. In a top-down approach an overview of the system is formulated, specifying, but not detailing, any first-level subsystems. Each subsystem is then refined in yet greater detail, sometimes in many additional subsystem levels, until the entire specification is reduced to base elements. A top-down model is often specified with the assistance of "black boxes", which makes it easier to manipulate. However, black boxes may fail to clarify elementary mechanisms or be detailed enough to realistically validate the model. Top down approach starts with the big picture. It breaks down from there into smaller segments. (Wikipedia)
 
 ## 38. לוּלְאַת הַשְׁהָיָה (Time-Delay Loop): קוד שמטרתו להשהות במכוון את ריצת התוכנה, בדרך כלל בשל תלות בגורם חיצוני אשר נדרש לזמן עודף לביצוע משימה.
+A piece of code or an electronical unit which is meant to delibartely create a delay in the run-time of a program, generally due to an external dependency which adds time to the duration of the task execution.
 
 ## 39. מכונת כתיבה מכנית (טלפרינטר) של חברת פרידן, המשמשת לקריאה ולניקוב של סרט רץ ולהדפסת פלט אלפנוּמרי, בעלת אפשרות חיבור למחשב. שימשה כרכיב הקלט/פלט ב-30-LGP.
 The Friden Flexowriter was a teleprinter, a heavy-duty electric typewriter capable of being driven not only by a human typing, but also automatically by several methods, including direct attachment to a computer and by use of paper tape.
@@ -175,7 +177,7 @@ Elements of the design date to the 1920s, and variants of the machine were produ
 The Flexowriter's typing speed was 10cps (10 charachters per seconds)
 
 # 41. מל מימש לולאה על-ידי ניצול המבנה המכני של המחשב (כלומר לא באמצעות קוד) וארגון החלקים הפועלים לפי ראות עיניו, לא בהכרח לפי היגיון העיצוב המקורי.
-// todo
+Mel implemented a loop by using the _mechanichal_ structure of the machine, rather by implementing it with code. Thus, he designed it by a re-arranging the moving parts of the problem in a new logic, which doesn't necessarily reflect the original design.
 
 # 42. אוֹפְּטִימוּם (Optimum): שיא חיובי במשך זמן הגישה לזיכרון.
 Positive peak in memory access time.
@@ -184,14 +186,22 @@ Positive peak in memory access time.
 Negative peak in memory access time.
 
 ## 44. המבוא לתוכנת הבלאק ג'ק ננעל בפסקה שכותרתה "הערה", ובה מסביר מל, לא בלי גאווה, כי "אחרי שהתוכנה ניטענה לזיכרון, השליטה עוברת לכתובת 00000. מאחר שתוכנת הבלאק ג׳ק מתחילה בכתובת התחילית (00000) קל מאוד להעביר אותה לשם. (להוריד מתגים SET INPUT ,EXECUTE LOWER ,START)".
+Mel's write-up ends with a note: After the program tape has been stored in memory, control is transferred to 00000. Since the Blackjack Program begins at location 000000 it is very easy to transfer to it. (Depress SET INPUT, EXECUTE LOWER, and START.)
 
 ## 45. לוּלָאָה (Loop): טכניקת תכנות המשמשת לבקרת זרימה ומבצעת רוטינה מספר רב של פעמים. תוכנית מחשב בנויה כך שהיא מטפלת בפריט מידע אחד או במצב אחד בכל פעם. כדי לחזור על התהליך עם פריט המידע הבא או המצב הבא, הוראה בתוכנית מסתעפת אחורנית וחוזרת ופונה להוראה הראשונה בסדרה. טכניקה זו רבת עוצמה מכיוון שהיא מאפשרת לחזור על פעולות פעמים רבות בהקשרים שונים.
+A loop is a sequence of statements which is specified once but which may be carried out several times in succession. The code "inside" the loop (the body of the loop, shown below as xxx) is obeyed a specified number of times, or once for each of a collection of items, or until some condition is met, or indefinitely. (Source: https://en.wikipedia.org/wiki/Control_flow#Loops)
 
 ## 46. תְּנַאי עֲצִירָה (Terminating Condition): הגדרת נסיבות מסוימות בהן על אלגוריתם רקורסיבי לחדול מפעולתו הרקורסיבית (אשר על מנת לפתור בעיה מסוימת, מפעיל עצמו על מקרים פשוטים יותר של הבעיה). בדרך כלל יכלול האלגוריתם תנאי עצירה, שיביא להפסקת הרקורסיה, שאם לא כן תהיה זו לולאה אינסופית רקורסיבית. בטקסט המקורי כתובה המילה test, שהיא תיאור של תנאי עצירה במילון המונחים של ה-30-LGP וה-4000-RPC המקביל לזה של תנאי עצירה כפי שהוא מתואר בהנדסת תוכנה כיום.
+The definition of the circuimstances by which a recusrive algorithm should from its recursive operation. Usually, an alogirthm will contain a terminating condition to prevent a case of an Infinite Recursive Loop.
+
+[Alternative:] The terminating condition of a loop is the opposite of the test condition that allows the loop to continue looping. The terminating condition is the condition that stops the looping. (Source: http://teaching.idallen.com/cst8110/97s/LoopTermConditions.html)
 
 ## 47. לוּלָאָה אֵינְסוֹפִית (Infinite Loop): לולאה ללא תנאי עצירה או שתנאי העצירה שבה אינו מתקיים לעולם. לרוב עשויה להיווצר עקב באג, אך היא עשויה להיות גם כלי תכנותי. לולאה כזו שימושית כאשר היציאה מן הלולאה מבוצעת באמצעות דילוג החוצה מן הלולאה – באמצעות פקודות כגון break, exit או goto או הוראת דילוג.
+In computer programming, an infinite loop (or endless loop) is a sequence of instructions that, as written, will continue endlessly, unless an external intervention occurs ("pull the plug"). It may be intentional. (Source: https://en.wikipedia.org/wiki/Infinite_loop)
 
 ## 48. אוֹגֵר (Register): מושג בארכיטקטורת מחשב, המתאר תא אחסון נתונים, בצורת אוסף סיביות, המשמש כאופרנד ישיר לפעולות המעבד. ברוב המעבדים המודרניים האוגרים בנויים פיזית על גבי המעבד. אוגרים כבר היו קיימים במחשבים קודם לכן. ב-4000-RPC של מל היה אוֹגֵר-מוֹנֶה (Index Register), שתכליתו להחזיק מונים, מספרים המצביעים על לולאות ופקודות בזיכרון.
+<!-- @dfl please validate this comment -->
+A term in computer science to describe a memory cell which is used as a direct operand to the computer's operations. In modern processors, registers are physically built onto the processing unit. Registers were used in computers in early stages of computing; the RPC-4000, for instance, had an Index Register indexes which pointed to loops and operation codes in the memory.
 
 ## 49. בפעולה זו האוגר מקבל קלט בעל ערך מספרי ומחזיר פלט של הערך המקורי ועוד אחד. במקרה הזה, מל השתמש באוגר כללי במכונה ולא באוגר-מונה.
 
@@ -200,6 +210,7 @@ Negative peak in memory access time.
 ## 51. בִּיט (Bit): יחידת הנתונים הקטנה ביותר שבה משתמש המחשב. ביט יכול להכיל ערך 0 או 1 בלבד. הסיבה לשימוש בשיטה הבינארית היא פשטות המימוש האלקטרוני והלוגי של שיטה זו – נדרש טיפול בשני מצבים בלבד (למשל: יש זרם = 1, אין זרם = 0).
 
 ## 52. ביט נחשב "דלוק" כאשר ערכו 1 ו"כבוי" כאשר ערכו 0.
+A Bit is considered ON when its value is 1, and OFF when its value is 0.
 
 ## 53. A fixed number of bits were allocated to the address of the data. Hence, the largest address that the computer could access was limited to the capacity of those bits.
 
