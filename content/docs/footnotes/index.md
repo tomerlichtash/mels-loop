@@ -1,6 +1,6 @@
 <!-- Hebrew stubs for translation process only, will be removed -->
 
-## 1. Real Programmers Don't Use PASCAL. Ed Post, Tektronix, 1982. טענתו: עדיף לכתוב בשפה הקרובה לשפת מכונה ולא בשפה עילית ("אם אי אפשר לכתוב את זה בפוֹרְטְרַן, כתבו זאת באָסֶּמְבְּלֶר. אם אי אפשר לכתוב את זה באָסֶמְבְּלֵר – לא שווה לכתוב את זה בכלל"). יש לשער כי המאמר פורסם ב-USENET, וכי הסיפור על מל פורסם כתגובה אליו. על פי שגיאה רווחת מיוחס פרסום המאמר לכתב העת Datamation, בו פורסם המאמר כמכתב למערכת, כחודשיים לאחר פרסום הסיפור ברשת. כותרת המאמר היא פרודיה על ספר מאותה שנה (Real Men Don't Eat Quiche. Bruce Feirstein, Pocket Books.), ממנו שואל כותב המאמר גם את הטון המצ'ואיסטי.
+## 1. Real Programmers Don't Use PASCAL. Ed Post, Tektronix, 1982. טענתו: עדיף לכתוב בשפה הקרובה לשפת מכונה ולא בשפה עילית ("אם אי אפשר לכתוב את זה בפוֹרְטְרַן, כתבו זאת באָסֶּמְבְּלֶר. אם אי אפשר לכתוב את זה באָסֶמְבְּלֵר – לא שווה לכתוב את זה בכלל"). יש לשער כי המאמר פורסם ב-USENET, וכי הסיפור על מל פורסם כתגובה אליו. על פי שגיאה רווחת מיוחס פרסום המאמר לכתב העת Datamation, בו פורסם המאמר כמכתב למערכת, כחודשיים לאחר פרסום הסיפור ברשת. כותרת המאמר היא פרודיה על ספר מאותה שנה (Real Men Don't Eat Quiche. Bruce Feirstein, Pocket Books.), ממנו שואל כותב המאמר גם את הטון המצ'ואיסטי.
 
 1. Real Programmers Don't Use PASCAL. Ed Post, Tektronix, 1982. Its main argument is that it's better to write in a low-level programming language rather that in a high-level programming language ("if you can't code in Fortran, code it in assembly. If you can't code in assembly, it's not worth coding at all").
 
@@ -18,7 +18,7 @@ Source: https://homepages.inf.ed.ac.uk/rni/papers/realprg.html
 
 Slang, a sub-culture in Hacker cutlrue. For the "Real Programmer" the challenge lies within the complexitiy of a problem, not in the final product, the process, or the relationship with their co-workers.
 
-## 3. פוֹרְטְרַן (FORTRAN): שפת תכנות פרוצדורלית, מהראשונות שפותחו, והראשונה עבורה נכתב מְהַדֵּר. נכתבה בעיקר לשימושים מדעיים; נמצאת כיום בשימוש נרחב.
+## 3. פוֹרְטְרַן (FORTRAN): שפת תכנות פרוצדורלית, מהראשונות שפותחו, והראשונה עבורה נכתב מְהַדֵּר. נכתבה בעיקר לשימושים מדעיים; נמצאת כיום בשימוש נרחב.
 
 Fortran - A general-purpose, compiled imperative programming language that is especially suited to numeric computation and scientific computing. Commonly used today.
 
@@ -40,12 +40,12 @@ The Story of Mel takes place circa 1959-1960 in Librascope offices in Glendale, 
 
 About 100 kinds of first generation computers, built around 1942-1963.
 
-## 8. זִכְרוֹן תֹּף (Drum Memory): מתקן מגנטי לאחסון מידע אשר היה בשימוש נרחב בתעשיית המחשבים משנות ה-50 ועד שנות ה-60.
+## 8. זִכְרוֹן תֹּף (Drum Memory): מתקן מגנטי לאחסון מידע אשר היה בשימוש נרחב בתעשיית המחשבים משנות ה-50 ועד שנות ה-60.
 
 Drum Memory - refers to drum memories which are magnetic data storage devices much like the familiar hard disks of today but shaped like cylinders instead of platters. In the 50's and 60's the state of the art in magnetic encoding of data didn't allow for very dense storage on the magnetic surface of the medium. So, in order to increase the surface area of the storage medium, to increase the speed at which the magnetic material passed by the read head of the device, and to keep the speed at which the heads encountered the magnetic medium constant, these devices were shaped like cylinders with the magnetic coating on the outside surface of the cylinder and the cylinder rotating along its long axis at very high speeds. Consider the early phonographs which were wax cylinders versus the now-becoming-obsolete vinyl record. The considerations are analogous to the drum versus disk question.
 https://www.cs.utah.edu/~elb/folklore/mel-annotated/node2.html#SECTION00020000000000000000
 
-## 9. שְׁפוֹפֶרֶת רִיק (Vaccum Tube): רכיב אלקטרוני מתחילת המאה ה-20 המבוסס על שפופרת קתודית. המצאת הטרנזיסטור ב-1948 דחקה את השפופרות משימוש והן הפכו במהרה לרכיב נדיר. כיום השפופרות שכיחות במערכות שמע ובמגברי גיטרה.
+## 9. שְׁפוֹפֶרֶת רִיק (Vaccum Tube): רכיב אלקטרוני מתחילת המאה ה-20 המבוסס על שפופרת קתודית. המצאת הטרנזיסטור ב-1948 דחקה את השפופרות משימוש והן הפכו במהרה לרכיב נדיר. כיום השפופרות שכיחות במערכות שמע ובמגברי גיטרה.
 
 Vacuum tubes are electronic devices used to amplify electronic signals and to act as electronically controlled switches. Digital computers are constructed at their most basic fundamental building blocks as electronically controlled switches. The very first electronic computers used relays for these switches (in the 1940's). Vacuum tubes were used for the switches from the late 40's to the late 50's. The first commercial computer to use transistors for the switching elements was the IBM 1401 in 1959 starting the end of the tube era. Individual transistors gave way to integrated circuits in which hundreds, and eventually millions, of transistors were fabricated on a single silicon substrate, or chip. Integrated circuits have been used from the mid-60's to the present.
 https://www.cs.utah.edu/~elb/folklore/mel-annotated/node2.html#SECTION00020000000000000000
@@ -61,9 +61,9 @@ For instance, an instruction that is used to perform addition to the content in 
 Rational FORTRAN (RATFOR) is a dialect of FORTRAN that provides a richer set of control-flow possibilities. RATFOR is not a new language, rather it is a translator that translates Rational FORTRAN into FORTRAN. It allows the programmer to use features not found in the normal FORTAN language, and then translates those features into standard FORTAN automatically.
 https://www.cs.utah.edu/~elb/folklore/mel-annotated/node2.html#SECTION00020000000000000000
 
-## 12. שְׂפַת סַף (Assembly Language): שפת התכנות הבסיסית ביותר והקרובה ביותר לשפת מכונה. בשפת הסף קיימת התאמה בין ההוראות שכותב המתכנת לבין ההוראות המופקות מהן בשפת מכונה. תכנות בשפת סף, הנחשב לקשה יותר מבשפות התכנות העיליות, היה שכיח עד תחילת שנות ה-70. המְהַדֵּר של שפת הסף נקרא אָסֶמְבְּלֵר (Assembler).
+## 12. שְׂפַת סַף (Assembly Language): שפת התכנות הבסיסית ביותר והקרובה ביותר לשפת מכונה. בשפת הסף קיימת התאמה בין ההוראות שכותב המתכנת לבין ההוראות המופקות מהן בשפת מכונה. תכנות בשפת סף, הנחשב לקשה יותר מבשפות התכנות העיליות, היה שכיח עד תחילת שנות ה-70. המְהַדֵּר של שפת הסף נקרא אָסֶמְבְּלֵר (Assembler).
 
-## 13. בְּסִיס הֶקְסָדֵּצִימָלִי (Hexadecimal): ספירה על בסיס הקסדצימלי היא ספירה על בסיס 16. משמשת בעיקר בתחום המחשבים, בזכות התאמתה לייצוג תוכנו של זיכרון המחשב. בבסיס זה יש 16 ספרות: 0 עד 9 (הזהות לספרות אלה בבסיס עשרוני), ואת 6 הספרות הבאות מסמנים באותיות מ-A (המייצגת 10 בבסיס עשרוני), עד F (המייצגת 15 בבסיס עשרוני).
+## 13. בְּסִיס הֶקְסָדֵּצִימָלִי (Hexadecimal): ספירה על בסיס הקסדצימלי היא ספירה על בסיס 16. משמשת בעיקר בתחום המחשבים, בזכות התאמתה לייצוג תוכנו של זיכרון המחשב. בבסיס זה יש 16 ספרות: 0 עד 9 (הזהות לספרות אלה בבסיס עשרוני), ואת 6 הספרות הבאות מסמנים באותיות מ-A (המייצגת 10 בבסיס עשרוני), עד F (המייצגת 15 בבסיס עשרוני).
 
 In mathematics and computing, the hexadecimal (also base 16 or hex) numeral system is a positional numeral system that represents numbers using a radix (base) of 16. Unlike the common way of representing numbers using 10 symbols, hexadecimal uses 16 distinct symbols, most often the symbols "0"–"9" to represent values 0 to 9, and "A"–"F" (or alternatively "a"–"f") to represent values 10 to 15.
 https://en.wikipedia.org/wiki/Hexadecimal
@@ -87,11 +87,11 @@ In December 1964 Royal-McBee was purchased by Litton, and in 1965 Litton removed
 # 18. מחשב מבוסס טרנזיסטורים ובעל זיכרון תוף. הושק ב-1960 על ידי ג'נרל פרסישן ורויאל-מק׳בי במחיר קמעונאי של 87.5 אלף דולר. זהו מחשב דומה ל-30-LGP, אך חזק יותר ומהיר יותר, המסוגל לכ-230 אלף חישובים בדקה ולחיבור של עד 60 התקנים חיצוניים. במחשב 500 טרנזיסטורים, 4500 דיודות וזיכרון תוף בנפח 8008 מילים (מילה = 32 ביט).
 Transistor based computer with drum memory. Released by General Percision and Royal McBee in 1960 for $87,500. It resembles the LGP-30, though it is faster, and capable of computing 230,000 operations per minute, and can be connected with up to 60 external devices. The RPC-4000 was built with 500 transistors, 4500 diodes, and a drum memory in size of 8008 words (words = 32 bit).
 
-# 19. לִבּוֹת זִכְרוֹן טַבְּעוֹת מַגְנֵטִי (Magnetic Core Memory): רכיב שכיח במימוש זיכרון גישה אקראית בשנים 1975-1955. יחידת הזיכרון הבסיסית מומשה על ידי טבעת הניתנת למִגְנוּט.
-Magnetic-core memory was the predominant form of random-access computer memory for 20 years between about 1955 and 1975. Such memory is often just called core memory, or, informally, core. 
+# 19. לִבּוֹת זִכְרוֹן טַבְּעוֹת מַגְנֵטִי (Magnetic Core Memory): רכיב שכיח במימוש זיכרון גישה אקראית בשנים 1975-1955. יחידת הזיכרון הבסיסית מומשה על ידי טבעת הניתנת למִגְנוּט.
+Magnetic-core memory was the predominant form of random-access computer memory for 20 years between about 1955 and 1975. Such memory is often just called core memory, or, informally, core.
 
-# 20. מְהַדֵּר (Compiler): תוכנית מחשב המתרגמת משפת מחשב אחת לשפת מחשב אחרת. המהדר הקלאסי מקבל כקלט תוכנית הכתובה בשפה עילית ומתרגם אותה לתוכנית בשפת מכונה. פעולת המהדר מכונה הִדּוּר (Compilation).
-In computing, a compiler is a computer program that translates computer code written in one programming language (the source language) into another language (the target language). The name "compiler" is primarily used for programs that translate source code from a high-level programming language to a lower level language (e.g., assembly language, object code, or machine code) to create an executable program.[1][2]:p1 
+# 20. מְהַדֵּר (Compiler): תוכנית מחשב המתרגמת משפת מחשב אחת לשפת מחשב אחרת. המהדר הקלאסי מקבל כקלט תוכנית הכתובה בשפה עילית ומתרגם אותה לתוכנית בשפת מכונה. פעולת המהדר מכונה הִדּוּר (Compilation).
+In computing, a compiler is a computer program that translates computer code written in one programming language (the source language) into another language (the target language). The name "compiler" is primarily used for programs that translate source code from a high-level programming language to a lower level language (e.g., assembly language, object code, or machine code) to create an executable program.[1][2]:p1
 
 # 21. במקור: marvel. בשנים 1959-1958 מופיעות המילים marvel electronic בשלושה תיאורי טכנולוגיה חדשנית בביטאון עובדי ליברסקופ, ה"ליברזט".
 Between 1958-1959 The Librazette used the word "marvel" at least three times to describe new technology.
@@ -113,7 +113,7 @@ In November 14th-17th 1955 the LGP-30 was presented in the Chicago Automation Sh
 
 # 27. תוכנת הבלאק ג׳ק של מל היתה תוכנה שיווקית להדגמת יכולותיו של ה-30-LGP והפכה לתוכנת הדגל של החברה. לאחר שיכתוב התוכנה ל-4000-RPC כתב מל מבוא קצר, בו הוא מתאר את אופן פעולתה: האינטראקציה בין השחקן (מפעיל המחשב) לתוכנה נעשית באמצעות מכונת הכתיבה. הפלט (שאלות הדילר, רשימת הקלפים וכו׳) מודפס, והקלט (בחירות השחקן) מוזן באמצעות המקלדת במכונה. ראשית הודפסה השאלה: "?How much do you bet"; השחקן הקליד את הסכום ואחריו כוכבית (המשמשת כסימן העצירה): למשל – הפקודה 150\* תהמר על 150 דולר. הפלקסורייטר ידפיס "Shuffling" והמחשב יערבב את החפיסה. כדי להמשיך יש לעצור את פעולת הערבוב (באמצעות הרמת מתג 1). אז, התוכנה מדפיסה את המילה "Cut" וחותכת את החפיסה עד שהשחקן עוצר את הפעולה (באמצעות הורדת מתג 1). לאחר מכן התוכנה מחלקת את הקלפים והמשחק נמשך. על כל שאלות התוכנה להיענות באמצעות מקלדת מכונת הכתיבה; התוכנה ידעה לעבד תשובה חיובית בכמה שפות (yes, ok, si, ja, oui). לפני הפעלת התוכנה היה על השחקן לבצע שתי פעולות: ראשית, הוא נדרש להכין דף משחק ייעודי עבור פלט המשחק ולהזין אותו למכונת הכתיבה. טבלה מייצגת את תוכני המשחק: במרחק 15 רווחים עמודת שאלות ותשובות, במרחק 12 רווחים עמודת קלפים, 12 רווחים נוספים – עמודה לקלפים של הדילר, ו-12 רווחים משם עמודת ניקוד לכל משחק. שנית, על המפעיל היה לאתחל את התוכנה בעשרה צעדים: יש למקם את הסרט בקורא, לבחור קלט קורא, להוריד מתג ONE OPERATION, להוריד מתג EXECUTE LOWER, להוריד מתג SET INPUT, להוריד מתג START READ בפלקסורייטר, להרים מתג EXECUTE LOWER, להוריד מתג SET INPUT, להרים מתג ONE OPERATION ולהוריד מתג START READ בפלקסורייטר.
 
-Mel's Blackjack Program was used as a demo for marketing purposes to showcase the capabilities of the LGP-30, and as such became the flagship program of the company for this purpose. After porting it to the RPC-4000, Mel added a write-up in which he explained how to operate the program: The interaction between the player ("the machine operator") to the computer was via the Flexorwriter. The output (dealer's prompt questions, card list etc.) was printed out, and the input was typed on the typewriter machine. First, the computer prompted the question "How much do you bet?"; the player typed the amount, and afterwords added an astriek (*) which was used a stop command. "e.g., 150* bets $1.50." (see source in the write up itself). Once the amount is submitted, the Flexowriter will print out "Shuffling" and the computer will siumulate the shuffling of the deck. In order to continue with the game, the shuffling simulation had to be manually stopped (by raising SENSE SWITCH 1). Then, the program printed "Cut" and simulated a cut of the deck. Again, this had to be stopped manually in order to complete the cut (by lowering SENSE SWITCH 1). Then, the program would deal the cards, and the game continued. All questions from the program must be answered on the typewriter keyboard, and must be followed by depressing the stop code (*) key. Permissible affirmative answers are: yes*, ok*, si*, ja*, oui*. Permissible negative	answers are: no*, non*, nein*, nope*, * (only the stop code). Another thing to keep in mind, is that prior to the usage, the player had to setup the machine properly in order to see get a fitting User Interface for the machine's output. As Mel mentions in his write-up:
+Mel's Blackjack Program was used as a demo for marketing purposes to showcase the capabilities of the LGP-30, and as such became the flagship program of the company for this purpose. After porting it to the RPC-4000, Mel added a write-up in which he explained how to operate the program: The interaction between the player ("the machine operator") to the computer was via the Flexorwriter. The output (dealer's prompt questions, card list etc.) was printed out, and the input was typed on the typewriter machine. First, the computer prompted the question "How much do you bet?"; the player typed the amount, and afterwords added an astriek (*) which was used a stop command. "e.g., 150* bets $1.50." (see source in the write up itself). Once the amount is submitted, the Flexowriter will print out "Shuffling" and the computer will siumulate the shuffling of the deck. In order to continue with the game, the shuffling simulation had to be manually stopped (by raising SENSE SWITCH 1). Then, the program printed "Cut" and simulated a cut of the deck. Again, this had to be stopped manually in order to complete the cut (by lowering SENSE SWITCH 1). Then, the program would deal the cards, and the game continued. All questions from the program must be answered on the typewriter keyboard, and must be followed by depressing the stop code (*) key. Permissible affirmative answers are: yes*, ok*, si*, ja*, oui*. Permissible negative    answers are: no*, non*, nein*, nope*, * (only the stop code). Another thing to keep in mind, is that prior to the usage, the player had to setup the machine properly in order to see get a fitting User Interface for the machine's output. As Mel mentions in his write-up:
 
     "Before playing Blackjack, set 4 typewriter tab stops to provide for 4 columns of printing. The following is the suggested column lengths (left to right) and their content."
 
@@ -140,24 +140,24 @@ For more information, check out Mel's original write-up: [W1-01.0_Blackjack_Game
 # 28. פּוֹרְט (Port): תרגום תוכנה לשפה אחרת או למחשב מסוג שונה, תוך שמירה על יכולותיה.
 In software engineering, porting is the process of adapting software for the purpose of achieving some form of execution in a computing environment that is different from the one that a given program (meant for such execution) was originally designed for (e.g., different CPU, operating system, or third party library). The term is also used when software/hardware is changed to make them usable in different environments. (Wikipedia)
 
-# 29. מִיעוּן כְּתוֹבוֹת (Addressing Scheme): השיטה שבה מספר בינארי, או אוסף מספרים כאלה, מייצג מיקום בזיכרון המחשב.
+# 29. מִיעוּן כְּתוֹבוֹת (Addressing Scheme): השיטה שבה מספר בינארי, או אוסף מספרים כאלה, מייצג מיקום בזיכרון המחשב.
 The method by which a binary number, or a collection of such numbers, represent a specific location in the computer's memory.
 
 ## 30. מיעון כתובת בזיכרון התוף של ה-4000-RPC נקבע על-ידי האופרנד בהוראה הנוכחית. בדרך כלל, תוכנה נטענת לזיכרון על פי סדר ההוראות שלה: ההוראה הראשונה נטענת לכתובת 0, ההוראה השנייה לכתובת 1, הבאה לכתובת 2, וכך הלאה. האוגר-מונה (שהחזיק את הכתובת של ההוראה הנוכחית) הגדיל את המונה שלו ב-1 בכל פעם שההוראה הנוכחית רצה. כדי להצביע על מיקום ההוראה הבאה (אלא אם כן קיבל הוראת דילוג) שינה האוגר את המספר למספר אליו צריך לדלג.
 
-## 31. קוֹד-פְּעֻלָּה (Operation Code): סדרת הוראות בשפת מכונה המפרטות כיצד יש לבצע פעולה מסוימת.
+## 31. קוֹד-פְּעֻלָּה (Operation Code): סדרת הוראות בשפת מכונה המפרטות כיצד יש לבצע פעולה מסוימת.
 
-## 32 . אוֹפֵּרַנְדּ (Operand): הנתון עליו מתבצעת פעולת האופרטור. לדוגמה, בפעולה האריתמטית 2 + 1 המספרים 1 ו-2 הם אופרנדים, ופעולת החיבור היא האופרטור.
+## 32 . אוֹפֵּרַנְדּ (Operand): הנתון עליו מתבצעת פעולת האופרטור. לדוגמה, בפעולה האריתמטית 2 + 1 המספרים 1 ו-2 הם אופרנדים, ופעולת החיבור היא האופרטור.
 
-## 33. פְּקֻדָּת TO GO: פקודת דילוג בסיסית בשפות תכנות. משמעות הפקודה למחשב: עבור לפקודה הנמצאת במקום אחר בתוכנית.
+## 33. פְּקֻדָּת TO GO: פקודת דילוג בסיסית בשפות תכנות. משמעות הפקודה למחשב: עבור לפקודה הנמצאת במקום אחר בתוכנית.
 
-# 34. פַּסְקָל (Pascal): שפת תכנות עילית שפותחה ב-1970 ונחשבת לבעלת מבנה פשוט ואלגנטי. קרויה על שמו של המתמטיקאי והפילוסוף בלז פסקל, שב-1645 הציג את ה"פסקליין" – מכונת חישוב מכנית שחיברה וחיסרה שני מספרים ישירות.
+# 34. פַּסְקָל (Pascal): שפת תכנות עילית שפותחה ב-1970 ונחשבת לבעלת מבנה פשוט ואלגנטי. קרויה על שמו של המתמטיקאי והפילוסוף בלז פסקל, שב-1645 הציג את ה"פסקליין" – מכונת חישוב מכנית שחיברה וחיסרה שני מספרים ישירות.
 Pascal is an imperative and procedural programming language, designed by Niklaus Wirth as a small, efficient language intended to encourage good programming practices using structured programming and data structuring. It is named in honour of the French mathematician, philosopher and physicist Blaise Pascal. (Wikipedia)
 
-## 35. קוֹד אוֹפְּטִימָלִי (Code Optimal): קוד הנכתב בצורה היעילה ביותר הניתנת למימוש.
+## 35. קוֹד אוֹפְּטִימָלִי (Code Optimal): קוד הנכתב בצורה היעילה ביותר הניתנת למימוש.
 Code that's written in the most efficiant implementation that is possible in within a given machine.
 
-## 36. אָסֶמְבְּלֵר (Assembler): ר' הערה 12: שפת סף.
+## 36. אָסֶמְבְּלֵר (Assembler): ר' הערה 12: שפת סף.
 See annotation no. 12 - Assembler.
 
 ## 37. עיצוב מעלה-מטה (Top-Down Design): אסטרטגיה בפיתוח תוכנה המנסחת מודל הסוקר מערכת בקווים כלליים מבלי להיכנס לפרטים של שום חלק ממנה. לאחר מכן מנוסח כל חלק במערכת לפרטיו, ואז כל פרט חדש עשוי להיות מנוסח שוב תוך שמגדירים אותו לפרטים נוספים עד שכל המפרט מפורט דיו כדי לתקף את המודל.
@@ -165,7 +165,7 @@ Top-down and bottom-up are both strategies of information processing and knowled
 
 A top-down approach (also known as stepwise design and stepwise refinement and in some cases used as a synonym of decomposition) is essentially the breaking down of a system to gain insight into its compositional sub-systems in a reverse engineering fashion. In a top-down approach an overview of the system is formulated, specifying, but not detailing, any first-level subsystems. Each subsystem is then refined in yet greater detail, sometimes in many additional subsystem levels, until the entire specification is reduced to base elements. A top-down model is often specified with the assistance of "black boxes", which makes it easier to manipulate. However, black boxes may fail to clarify elementary mechanisms or be detailed enough to realistically validate the model. Top down approach starts with the big picture. It breaks down from there into smaller segments. (Wikipedia)
 
-## 38. לוּלְאַת הַשְׁהָיָה (Time-Delay Loop): קוד שמטרתו להשהות במכוון את ריצת התוכנה, בדרך כלל בשל תלות בגורם חיצוני אשר נדרש לזמן עודף לביצוע משימה.
+## 38. לוּלְאַת הַשְׁהָיָה (Time-Delay Loop): קוד שמטרתו להשהות במכוון את ריצת התוכנה, בדרך כלל בשל תלות בגורם חיצוני אשר נדרש לזמן עודף לביצוע משימה.
 A piece of code or an electronical unit which is meant to delibartely create a delay in the run-time of a program, generally due to an external dependency which adds time to the duration of the task execution.
 
 ## 39. מכונת כתיבה מכנית (טלפרינטר) של חברת פרידן, המשמשת לקריאה ולניקוב של סרט רץ ולהדפסת פלט אלפנוּמרי, בעלת אפשרות חיבור למחשב. שימשה כרכיב הקלט/פלט ב-30-LGP.
@@ -179,51 +179,66 @@ The Flexowriter's typing speed was 10cps (10 charachters per seconds)
 # 41. מל מימש לולאה על-ידי ניצול המבנה המכני של המחשב (כלומר לא באמצעות קוד) וארגון החלקים הפועלים לפי ראות עיניו, לא בהכרח לפי היגיון העיצוב המקורי.
 Mel implemented a loop by using the _mechanichal_ structure of the machine, rather by implementing it with code. Thus, he designed it by a re-arranging the moving parts of the problem in a new logic, which doesn't necessarily reflect the original design.
 
-# 42. אוֹפְּטִימוּם (Optimum): שיא חיובי במשך זמן הגישה לזיכרון.
+# 42. אוֹפְּטִימוּם (Optimum): שיא חיובי במשך זמן הגישה לזיכרון.
 Positive peak in memory access time.
 
-# 43. פֵּסִימוּם (Pessimum): שיא שלילי במשך זמן הגישה לזיכרון.
+# 43. פֵּסִימוּם (Pessimum): שיא שלילי במשך זמן הגישה לזיכרון.
 Negative peak in memory access time.
 
 ## 44. המבוא לתוכנת הבלאק ג'ק ננעל בפסקה שכותרתה "הערה", ובה מסביר מל, לא בלי גאווה, כי "אחרי שהתוכנה ניטענה לזיכרון, השליטה עוברת לכתובת 00000. מאחר שתוכנת הבלאק ג׳ק מתחילה בכתובת התחילית (00000) קל מאוד להעביר אותה לשם. (להוריד מתגים SET INPUT ,EXECUTE LOWER ,START)".
 Mel's write-up ends with a note: After the program tape has been stored in memory, control is transferred to 00000. Since the Blackjack Program begins at location 000000 it is very easy to transfer to it. (Depress SET INPUT, EXECUTE LOWER, and START.)
 
-## 45. לוּלָאָה (Loop): טכניקת תכנות המשמשת לבקרת זרימה ומבצעת רוטינה מספר רב של פעמים. תוכנית מחשב בנויה כך שהיא מטפלת בפריט מידע אחד או במצב אחד בכל פעם. כדי לחזור על התהליך עם פריט המידע הבא או המצב הבא, הוראה בתוכנית מסתעפת אחורנית וחוזרת ופונה להוראה הראשונה בסדרה. טכניקה זו רבת עוצמה מכיוון שהיא מאפשרת לחזור על פעולות פעמים רבות בהקשרים שונים.
+## 45. לוּלָאָה (Loop): טכניקת תכנות שבה אוסף הוראות מבוצע שוב ושוב, עד שתנאי מסויים מתקיים (או חדל מלהתקיים). דוגמאות נפוצות: חיפוש והחלפת מחרוזת תווים בתוך טקסט עד המופע האחרון, נסיונות חוזרים ונשנים לשלוח דואר אלקטרוני, עד שהפעולה מצליחה או שחלף פרק זמן מסויים.
+
+
+## 45. A loop is a programming technique which allows a sequence of instructions to be performed repeatedly, until some condition prevails (or ceases to hold true). A Common example is searching for and replacing a string in a block of text, until the last occurrence is processed.
+
 A loop is a sequence of statements which is specified once but which may be carried out several times in succession. The code "inside" the loop (the body of the loop, shown below as xxx) is obeyed a specified number of times, or once for each of a collection of items, or until some condition is met, or indefinitely. (Source: https://en.wikipedia.org/wiki/Control_flow#Loops)
 
-## 46. תְּנַאי עֲצִירָה (Terminating Condition): הגדרת נסיבות מסוימות בהן על אלגוריתם רקורסיבי לחדול מפעולתו הרקורסיבית (אשר על מנת לפתור בעיה מסוימת, מפעיל עצמו על מקרים פשוטים יותר של הבעיה). בדרך כלל יכלול האלגוריתם תנאי עצירה, שיביא להפסקת הרקורסיה, שאם לא כן תהיה זו לולאה אינסופית רקורסיבית. בטקסט המקורי כתובה המילה test, שהיא תיאור של תנאי עצירה במילון המונחים של ה-30-LGP וה-4000-RPC המקביל לזה של תנאי עצירה כפי שהוא מתואר בהנדסת תוכנה כיום.
+## 46. תְּנַאי עֲצִירָה (Terminating Condition): הגדרת נסיבות מסוימות בהן על אלגוריתם רקורסיבי לחדול מפעולתו הרקורסיבית (אשר על מנת לפתור בעיה מסוימת, מפעיל עצמו על מקרים פשוטים יותר של הבעיה). בדרך כלל יכלול האלגוריתם תנאי עצירה, שיביא להפסקת הרקורסיה, שאם לא כן תהיה זו לולאה אינסופית רקורסיבית. בטקסט המקורי כתובה המילה test, שהיא תיאור של תנאי עצירה במילון המונחים של ה-30-LGP וה-4000-RPC המקביל לזה של תנאי עצירה כפי שהוא מתואר בהנדסת תוכנה כיום.
 The definition of the circuimstances by which a recusrive algorithm should from its recursive operation. Usually, an alogirthm will contain a terminating condition to prevent a case of an Infinite Recursive Loop.
 
 [Alternative:] The terminating condition of a loop is the opposite of the test condition that allows the loop to continue looping. The terminating condition is the condition that stops the looping. (Source: http://teaching.idallen.com/cst8110/97s/LoopTermConditions.html)
 
-## 47. לוּלָאָה אֵינְסוֹפִית (Infinite Loop): לולאה ללא תנאי עצירה או שתנאי העצירה שבה אינו מתקיים לעולם. לרוב עשויה להיווצר עקב באג, אך היא עשויה להיות גם כלי תכנותי. לולאה כזו שימושית כאשר היציאה מן הלולאה מבוצעת באמצעות דילוג החוצה מן הלולאה – באמצעות פקודות כגון break, exit או goto או הוראת דילוג.
+## 47. לוּלָאָה אֵינְסוֹפִית (Infinite Loop): לולאה ללא תנאי עצירה או שתנאי העצירה שבה אינו מתקיים לעולם. לרוב נוצרת בגלל שגיאה בקוד,  אך עשויה לשמש גם כלי תכנותי. לולאה כזו שימושית כאשר היציאה מן הלולאה מבוצעת באמצעות דילוג החוצה מן הלולאה – באמצעות פקודות כגון break, exit או goto או הוראת דילוג.
 In computer programming, an infinite loop (or endless loop) is a sequence of instructions that, as written, will continue endlessly, unless an external intervention occurs ("pull the plug"). It may be intentional. (Source: https://en.wikipedia.org/wiki/Infinite_loop)
 
-## 48. אוֹגֵר (Register): מושג בארכיטקטורת מחשב, המתאר תא אחסון נתונים, בצורת אוסף סיביות, המשמש כאופרנד ישיר לפעולות המעבד. ברוב המעבדים המודרניים האוגרים בנויים פיזית על גבי המעבד. אוגרים כבר היו קיימים במחשבים קודם לכן. ב-4000-RPC של מל היה אוֹגֵר-מוֹנֶה (Index Register), שתכליתו להחזיק מונים, מספרים המצביעים על לולאות ופקודות בזיכרון.
-<!-- @dfl please validate this comment -->
-A term in computer science to describe a memory cell which is used as a direct operand to the computer's operations. In modern processors, registers are physically built onto the processing unit. Registers were used in computers in early stages of computing; the RPC-4000, for instance, had an Index Register indexes which pointed to loops and operation codes in the memory.
+## 48. אוֹגֵר (Register): תא זכרון אשר בנוי בתוך מעבד המחשב (CPU) או סמוך אליו. רוב פעולות המעבד מתבצעות על נתונים אשר הועתקו לתוך אוגרים.
+A register is a memory cell built inside or in close proximity to the CPU. Most of the processor’s operations are performed on data which has been copied into registers.
 
-## 49. בפעולה זו האוגר מקבל קלט בעל ערך מספרי ומחזיר פלט של הערך המקורי ועוד אחד. במקרה הזה, מל השתמש באוגר כללי במכונה ולא באוגר-מונה.
+ 
+## 49. בפעולה זו, המעבד מגדיל את המספר השמור באוגר-מונה ומוסיף את התוצאה לכתובת האופרנד. זו דרך מהירה לבצע פעולה זהה על סדרת נתונים אשר שמורים באזור רציף בזכרון - הפעולה לא משתנה וכתובת האופרנד לא משתנה, אבל הגדלת הערך באוגר-מונה גורמת למעבד להתקדם לאורך הסידרה.
+49. This operation increases by one the value stored in the index register. The result is then added to the operand’s address. This mechanism supports the common case where the same instruction(s) should be applied to a series of data. Essentially, the code simply needs to increment the index-register and the repeat.
 
 ## 50. בכל פעולה כזו נוצרת כתובת חדשה. מל השתמש בקונוונציה של האוגר-מונה ומימש אותה בעצמו, כשבחר היכן לשמור את ההוראה. מל עשה זאת על מנת לשפר את הביצועים של התוכנה. במקום להגדיל באחד את האוגר-מונה בכל פעם, הוא הגדיל באחד את כתובת ההוראה עצמה, שמר את ההוראה החדשה והריץ אותה. הזמן שלקח לשנות את ההוראה ולשמור אותה בחזרה הספיק בדיוק כדי לאפשר לתוף להסתובב למיקום החדש ולהריץ את ההוראה הבאה, וחסך את זמן הריצה העודף של שעון הסיבוב שנועד לטפל באוגר-מונה.
 
-## 51. בִּיט (Bit): יחידת הנתונים הקטנה ביותר שבה משתמש המחשב. ביט יכול להכיל ערך 0 או 1 בלבד. הסיבה לשימוש בשיטה הבינארית היא פשטות המימוש האלקטרוני והלוגי של שיטה זו – נדרש טיפול בשני מצבים בלבד (למשל: יש זרם = 1, אין זרם = 0).
+## 51. בִּיט (Bit): יחידת הנתונים הקטנה ביותר שבה משתמש המחשב. ביט יכול להכיל ערך 0 או 1 בלבד. הסיבה לשימוש בשיטה הבינארית היא פשטות המימוש האלקטרוני והלוגי של שיטה זו – נדרש טיפול בשני מצבים בלבד (למשל: יש זרם = 1, אין זרם = 0).
 
 ## 52. ביט נחשב "דלוק" כאשר ערכו 1 ו"כבוי" כאשר ערכו 0.
 A Bit is considered ON when its value is 1, and OFF when its value is 0.
 
-## 53. A fixed number of bits were allocated to the address of the data. Hence, the largest address that the computer could access was limited to the capacity of those bits.
+## 53. ההוראות במחשב ה-RPC-4000 כללו בדיוק 13 ביטים שהכילו את כתובת המידע בזיכרון. מכאן, שהכתובת הגבוהה ביותר אליה ניתן היה לפנות, הייתה המספר הגדול ביותר שניתן לייצג ב-13 ביטים (מנגנון ההיסט לא רלוונטי בעניין הזה).
 
-## 54. ביט אשר נדלק כאשר נעשית פעולת חיבור בין שני חלקים שהחלק השמאלי בביט כבוי ובתוצאה החלק השמאלי ביותר בביט דולק (למשל: 1000 = 0100 + 0100), או כאשר נעשית פעולת חיבור בין שני מספרים שביט הסימן שלהם דולק ובין תוצאה לתוצאה שהביט השמאלי שלה כבוי (למשל: 0000 = 1000 + 1000) אחרת, הביט נשאר כבוי.
 
-<!-- 54, 55 may be replaced/removed -->
+## 53. The RPC-4000 allocated 13 bits to the operand address. Thus, the highest addressable location was a number that could fit in 13 bits (neglecting the effect of the index register)..
 
-## 55. ביט אשר נדלק כאשר נעשית פעולת חיבור הגורמת לחלק השמאלי ביותר בביט להתאפס (למשל: 0000 = 1111 + 0001).
+## 54. כאשר מייצגים מספר בבסיס מסויים, כל ספרה יכולה להכיל, לכל היותר, את הבסיס פחות אחד. במספר בבסיס 10, הספרה הגדולה ביותר היא 9 - עשר פחות אחד. במספר בינארי, בבסיס 2, הערכים האפשריים הם 0 ו-1. כאשר מנסים להגדיל את הסיפרה מעבר לגבול הזה (למשל, בפעולת חיבור), התוצאה משפיעה על הסיפרה שלשמאלה (לדוגמא, הוספת 3 למספר העשרוני 19 תגרום תניב 22 - ה-9 הפך ל-2 והוספנו 1 לסיפרה הבאה). לעתים עלינו להוסיף ספרה חדשה, כמו במקרה של 999 + 1 = 1000. כאשר המספרים תחומים למספר קבוע של ספרות, כמו במחשב דיגיטלי, הנסיון להגדיל את הסיפרה השמאלית ביותר מעבר לגבול שלה נקרא "גלישה". לדוגמא, במספר בינארי בן 4 ביטים, הוספת 1 ל-0111 תניב 1000, אבל הוספת 1 ל-1111 תגרום לגלישה, שכן המספר הבא הוא 1000 שלא "נכנס" ב-3 ביטים.
 
-## 56. הוֹרָאַת דִּלּוּג (Jump Instruction): דילוג מהכתובת בזיכרון בה נמצא המחשב לכתובת המצורפת בהוראת הדילוג. כתובת זו אינה בהכרח סמוכה לכתובת הנוכחית שבה נמצא המחשב, או לכתובת האחרונה שנקראה.
+## 54. When a number is represented in a certain base, each of its digits may represent, at the most, one less than the value of hte base. For example, the largest digit in decimals is 9  (10 minus 1). In binary numbers, the possible values are 0 and 1. When you try to increase a digit (e.g., in number addition) beyond its limit, the result affects the adjacent higher-order digit. For example, adding 3 to the decimal number 19 yields 22 - the 9 has become 2 and we’ve added 1 to the next digit. When this is done to the leftmost (highest) digit, then we add a digit on the left (e.g. 999 + 1 = 1000). However, a digital computer usually assigns a fixed number of bits to a number, so adding a digit beyond this capacity is not possible. This situation is called “numeric overflow”.
 
-## 56. Jump Instruction: Forces the processor to execute the next instruction from the address attached to the jump instruction. This address can refer to any valid location in memory.
+## 55.  כפי שמפורט בהערה 48, ההוראות ב-RPC-4000 היו בנויות מארבעה חלקים: קוד הפעולה (למשל, 18 ייצג פעולת חיבור), כתובת האופרנד (הנתון שעליו יש להפעיל את הפעולה), כתובת ההוראה הבאה וביט האינדקס שציין האם צריך להוסיף לכתובת את ההיסט שבאוגר-מונה. על פי התיאור של ניית'ר, הסדר היה כתובת אופרנד->ביט האינדקס->קוד הפעולה->כתובת ההוראה הבאה. במבנה הזה, הגדלה של כתובת האופרנד מעבר לקיבולת המספר תגרום לגלישה שתשנה את קוד הפעולה, אם ביט האינדקס דלוק - בדיוק המצב שמתאר הסיפור. מחקירה שערכנו עולה שהתיאור הזה לא מדויק. הסבר מפורט תוכלו למצוא במאמרים הנלווים.
+
+## 55. As detailed in footnote 48, the RPC-4000 instructions were composed of 4 parts: The operation code (opcode), the address of the operand (the data which the opcode manipulates or tests), the address of the next instruction and the index bit, which indicates whether or not the number in the index register should be added to the operand address. Nather’s description implies that the bits were laid out as follows (lower to higher): Operand address =>index bit => opcode => next address. Based on this order, increasing the operand address beyond its capacity would affect the index bit and, if the latter is already on, would overflow into the opcode. However, our research shows that that this description doesn’t match the actual layout of the RPC-4000 hardware.
+
+## 56. הוֹרָאַת דִּלּוּג (Jump Instruction): דילוג מהכתובת בזיכרון בה נמצא המחשב לכתובת המצורפת בהוראת הדילוג. כתובת זו אינה בהכרח סמוכה לכתובת הנוכחית שבה נמצא המחשב, או לכתובת האחרונה שנקראה. כפי שמפורט בהערה 55, ייתכן שזכרונו של ניית'ר לא שימר את החלק הזה נאמנה. הסבר מפורט תוכלו למצוא במאמרים הנלווים.
+
+## 56. Jump Instruction: Forces the processor to execute the next instruction from some address in memory, not necessarily adjacent to the current instruction’s address.. As indicated in footnote 55, Nather’s memory may have failed him on this aspect of the hack. More details can be found in related articles on this site.
 
 ## 57. הכתובת התחילית בזיכרון התוף של ה-4000-RPC היא 00000.
 
 ## 57. The lowest address on the RPC-4000 memory drum is 0
+
+
+
+
+
