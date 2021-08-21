@@ -1,5 +1,6 @@
 ---
 title: "BLACKJACK GAME By Mel Kaye of Librascope Inc. RPC 4000 Program W1-01.0"
+author: Mel Kaye
 # date: "2020-01-02"
 ---
 This program is designed to simulate a game of Blackjack between one player (the machine operator) and a dealer a dealer (the computer). This write-up is intended to provide the player with the information necessary to play the game.
@@ -21,7 +22,7 @@ All questions from the program must be answered on the typewriter keyboard, and 
 If the player's first two cards total 11, the program prints "Press?"
 An affirmative	answer will cause the program to deal the player one card only, and to double the amount of bet for this hand. Any non-affirmative answer to Press causes the program to proceed normally and ask wether the player wants a card.
 
-PLAYING CONVENTIONS
+## PLAYING CONVENTIONS
 1. Player's Blackjack pays double.
 2. Program pays double for player's 5 cards without exceeding 21. Triple is paid for 7 cards.
 3. Equal totals are considered a standoff. The score remains unchanged.
@@ -34,7 +35,7 @@ PLAYING CONVENTIONS
 7. Blackjack by either dealer or player will cause the hand to end and the new score to be printed in column 4.
 8. If SENSE SWITCH 32 is depressed, there is a better than normal chance of an ace being dealt as the player's first card.
 
-LOADING THE PROGRAM TAPE
+## LOADING THE PROGRAM TAPE
 1. Place tape in Reader
 2. Select Reader input
 3. Depress ONE OPERATION
