@@ -25,25 +25,16 @@ author: מל קיי
 
 ## הנחיות למשחק
 1. בלאק ג׳ק של השחקנ/ית מכפיל את סכום הזכיה.
-
+2. התוכנה תכפיל את החזר ההימור לשחקן עבור 5 קלפים שערכם אינו גדול מ-21. הסכום ישולש עבור 7 קלפים.
+3. סכומים שווים ייחשבו לתיקו. התוצאה נותרת ללא שינוי.
 4. עירבוב מתבצע בתום כל סיבוב כאשר אחד מהתנאים הבאים מתקיים:
    א. 39 קלפים או יותר כבר חולקו.
    ב. שלושה אסים או יותר כבר חולקו.
    ג. מתג 4 הורד.
-
-
-PLAYING CONVENTIONS
-1. Player's Blackjack pays double.
-2. Program pays double for player's 5 cards without exceeding 21. Triple is paid for 7 cards.
-3. Equal totals are considered a standoff. The score remains unchanged.
-4. Shuffling occurs at the end of a hand after any of the following occur:
-	a. Thirty-nine or more cards have been dealt.
-	b. Three or more aces have been dealt.
-	c. SENSE SWITCH 4 is depressed.
-5. The program will stop after each complete hand unless SENSE SWITCH 16 is depressed.
-6. The amount of bet will be changed at the end of a hand if SENSE SWITCH 8 is depressed. Any three digit number may be entered.
-7. Blackjack by either dealer or player will cause the hand to end and the new score to be printed in column 4.
-8. If SENSE SWITCH 32 is depressed, there is a better than normal chance of an ace being dealt as the player's first card.
+5. התוכנה תעצור בתום כל סבב אלא אם מתג 16 נלחץ.
+6. סכום ההימור ישתנה בסוף כל סבב אם מתג 8 נלחץ. כל מספר תלת ספרי קביל.
+7. בלאק ג׳ק של השחקנ/ית או של המחשב יביא לסיום הסבב והתוצאה החדשה תודפס בטור מס׳ 4.
+8. אם מתג 32 לחוץ, יש סיכוי גדול מהרגיל שהקלף הראשון שיחולק לשחקן יהיה אס.
 
 ## טעינת התוכנה בסרט רץ
 1. יש למקם את הסרט בקורא הסרטים
@@ -53,9 +44,9 @@ PLAYING CONVENTIONS
 5. להוריד מתג ״קביעת קלט״
 6. להוריד מתג ״תחילת קריאה״ על קורא הסרטים
 7. להעלות מתג ״הרצה תחתונה״
-11. Depress SET INPUT (hmm? isn't it already dpressed? -TL)
-12. להעלות מתג ״פעולה ראשונה״
-13. Depress START READ on the Reader (hmm? isn't it already dpressed? -TL)
+8. Depress SET INPUT (hmm? isn't it already dpressed? -TL)
+9. להעלות מתג ״פעולה ראשונה״
+10. Depress START READ on the Reader (hmm? isn't it already dpressed? -TL)
 
 ## הערה
 לאחר שסרט התוכנה נשמר בזכרון, השליטה עוברת למיקום 00000. מאחר ותוכנת הבלאק ג׳ק מתחילה במיקום 00000 מאוד קל להעביר אותה. (הורדת מתג ״קבע קלט״, ״הרצה תחתונה״, ו״התחלה״)
