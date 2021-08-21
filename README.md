@@ -4,3 +4,8 @@ A Comprehensive Companion to The Story of Mel
 * NextJS
 * Stylable (WIP)
 
+**Resources**
+Librascope Memories
+
+Wikipedia:
+https://en.wikipedia.org/wiki/The_Story_of_Mel
