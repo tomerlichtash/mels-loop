@@ -10,7 +10,7 @@ The title of this article is a parody on a name of a book that was published tha
 
 4. Electronic hand calculators first appeared in 1971, with the influential HP-35 pocket calculator arriving soon afterwards in 1972. This signalled the end of the slide-rule era in engineering. (Source: https://www.cs.utah.edu/~elb/folklore/mel-annotated/node2.html#SECTION00020000000000000000)
 
-5. The term `user-friendly'' is used in quotations here in, I believe, a couple of different meanings. One is that software that is called `user-friendly'' very often isn't. Oftentimes the extra window dressing put onto a piece of software to make it user-friendly serves mostly to make it harder to use. The other meaning is a reference to the `real programmer'' ethic. One on-line collection of real-programmer-isms says something to the effect of `Software is hard to write, it should be hard to use.'' To programmers of this ethic, adding extra code simply to make the program easier to use is wasted effort. People who value the contribution of the code should have to spend the effort to learn how to use it. (Source: https://www.cs.utah.edu/~elb/folklore/mel-annotated/node2.html#SECTION00020000000000000000)
+5. The term 'user-friendly' is used in quotations here in, I believe, a couple of different meanings. One is that software that is called 'user-friendly' very often isn't. Oftentimes the extra window dressing put onto a piece of software to make it user-friendly serves mostly to make it harder to use. The other meaning is a reference to the 'real programmer' ethic. One on-line collection of real-programmer-isms says something to the effect of `Software is hard to write, it should be hard to use.'' To programmers of this ethic, adding extra code simply to make the program easier to use is wasted effort. People who value the contribution of the code should have to spend the effort to learn how to use it. (Source: https://www.cs.utah.edu/~elb/folklore/mel-annotated/node2.html#SECTION00020000000000000000)
 
 6. The Story of Mel takes place circa 1959-1960 in Librascope offices in Glendale, California, USA.
 
@@ -25,7 +25,7 @@ For instance, an instruction that is used to perform addition to the content in 
 
 11. Rational FORTRAN (RATFOR) is a dialect of FORTRAN that provides a richer set of control-flow possibilities. RATFOR is not a new language, rather it is a translator that translates Rational FORTRAN into FORTRAN. It allows the programmer to use features not found in the normal FORTAN language, and then translates those features into standard FORTAN automatically. (Source: https://www.cs.utah.edu/~elb/folklore/mel-annotated/node2.html#SECTION00020000000000000000)
 
-12. TODO
+12. Assembly Language - In computer programming, assembly language (or assembler language) is any low-level programming language in which there is a very strong correspondence between the instructions in the language and the architecture's machine code instructions. Because assembly depends on the machine code instructions, every assembly language is designed for exactly one specific computer architecture. Assembly language may also be called symbolic machine code. (Source: Wikiepdia - https://en.wikipedia.org/wiki/Assembly_language)
 
 13. In mathematics and computing, the hexadecimal (also base 16 or hex) numeral system is a positional numeral system that represents numbers using a radix (base) of 16. Unlike the common way of representing numbers using 10 symbols, hexadecimal uses 16 distinct symbols, most often the symbols "0"–"9" to represent values 0 to 9, and "A"–"F" (or alternatively "a"–"f") to represent values 10 to 15. (Source: https://en.wikipedia.org/wiki/Hexadecimal)
 
@@ -36,7 +36,7 @@ When the RPC-4000 was launched Mel had re-wrote (or 'ported') the Blackjack prog
 
 16. In December 1964 Royal-McBee was purchased by Litton, and in 1965 Litton removed the the named McBee. In March 1967 Volkswagen annouced its intention to purchase 55% of Litton's shares through Triumph-Adler, a company owned by Litton, within these shares - the holding of Typewriter Royal. Until 1982 the earnings from sales of Royal and Triumph-Adler piled up to about $600M. In 1983, about a year after this storm of business merges, when Ed Nather publishes the Story of Mel, he looks at what used to be Royal-McBee - and sees a ghost. The on-going incarnation of this ghost continued in 1986, when the italian company Olivettei purchased the holdings in Royal. 20 years later, in September 2004, Royal returned to be an American company. Today it's opearing under the name Royal Consumer Information Products Inc. The company manufactures, markets and sells cash registers, paper shredders, electronic logging devices and accessories for photocopiers.
 
-17. TODO
+17. A first generation digital computer that was released to the market on November 1955 in a retail price of $47,000. The LGP-30 was branded as a cheap and mobile computer, easy to program with large memory and reliable performence, aimed at applications for research, engineering, industry and military. About 500 computer was manufactured and sold around the globe. The computer’s name is an acronym of its manufacturers - Librascope General Percision. Despite its proportions, the LGP-30 was considered to be a small computer, and is often referenced as the first Desktop Computer, as its size was that of an average desk (Height: 34cm, Width: 120cm, Depth: 66cm). With heavy duty wheels installed on its bottom to, allow moving it around the room, it was also considered to be a mobile computer. Under the brownish-bronze hood, with the power of 1500 watts, the LGP-30 had 113 vacuum tubes, 1450 diodes, 34 slot cards, a memory drum with the capacity of 4096 words (word = 32 bit) and 3 index registers. The Input/Ouput device of the computer was the Flexowriter - an electro-mechanical typewriter with a paper-tape reader and puncher, and alphanumeric output capabilities. The computer also included a self-cooling mechanism installed on its chassis, and an oscilloscope installed on its front to monitor its activity, next to an interface of switches to control its 16 included commands.
 
 18. Transistor based computer with drum memory. Released by General Percision and Royal McBee in 1960 for $87,500. It resembles the LGP-30, though it is faster, and capable of computing 230,000 operations per minute, and can be connected with up to 60 external devices. The RPC-4000 was built with 500 transistors, 4500 diodes, and a drum memory in size of 8008 words (words = 32 bit).
 
@@ -48,13 +48,13 @@ When the RPC-4000 was launched Mel had re-wrote (or 'ported') the Blackjack prog
 
 22. Prior to the submission of a piece of software into the machine, it was written by hand.
 
-23. In November 14th-17th 1955 the LGP-30 was presented in the Chicago Automation Show, that was conducted at the Navy Pier in Chicago. The company's representatives in the show were from the company's sales department, along with Stanely Frankel, the computer's architect.
+23. In November 14th-17th 1955 the LGP-30 was presented in the Chicago Automation Show, that was conducted at the Navy Pier in Chicago. The company's representatives in the show were from the company's sales department, along with Stanely Frankel, the computer's architect. (Source: "LGP-30 Wins Wide Acclaim At Chicago Automation Show", Librazette, December 1955, p.6)
 
-24. "Many of the viewers were especially pleased by the appearance of the LGP-30. They commented favorably on the computer's 'new look', referring to the departure from the rack mounting common to most other computers." (ibis)
+24. "Many of the viewers were especially pleased by the appearance of the LGP-30. They commented favorably on the computer's 'new look', referring to the departure from the rack mounting common to most other computers." (Source: "LGP-30 Wins Wide Acclaim At Chicago Automation Show", Librazette, December 1955, p.6)
 
-25. TODO
+25. "The Librascope booth in which the  computer  was dis-played  soon  became one  of  the  most popular spots on  the pier for the twelve thousand visitors" (Source: "LGP-30 Wins Wide Acclaim At Chicago Automation Show", Librazette, December 1955, p.6)
 
-26. "A representative of one of the leading Southern California computer manufacturers was head to remark half-humourously, 'Frankly, I'm worried!'"
+26. "A representative of one of the leading Southern California computer manufacturers was head to remark half-humourously, 'Frankly, I'm worried!'" (Source: "LGP-30 Wins Wide Acclaim At Chicago Automation Show", Librazette, December 1955, p.6)
 
 27. Mel's Blackjack Program was used as a demo for marketing purposes to showcase the capabilities of the LGP-30, and as such became the flagship program of the company for this purpose. After porting it to the RPC-4000, Mel added a write-up in which he explained how to operate the program: The interaction between the player ("the machine operator") to the computer was via the Flexorwriter. The output (dealer's prompt questions, card list etc.) was printed out, and the input was typed on the typewriter machine. First, the computer prompted the question "How much do you bet?"; the player typed the amount, and afterwords added an astriek (*) which was used a stop command. "e.g., 150* bets $1.50." (see source in the write up itself). Once the amount is submitted, the Flexowriter will print out "Shuffling" and the computer will siumulate the shuffling of the deck. In order to continue with the game, the shuffling simulation had to be manually stopped (by raising SENSE SWITCH 1). Then, the program printed "Cut" and simulated a cut of the deck. Again, this had to be stopped manually in order to complete the cut (by lowering SENSE SWITCH 1). Then, the program would deal the cards, and the game continued. All questions from the program must be answered on the typewriter keyboard, and must be followed by depressing the stop code (*) key. Permissible affirmative answers are: yes*, ok*, si*, ja*, oui*. Permissible negative    answers are: no*, non*, nein*, nope*, * (only the stop code). Another thing to keep in mind, is that prior to the usage, the player had to setup the machine properly in order to see get a fitting User Interface for the machine's output. As Mel mentions in his write-up:
 
@@ -86,11 +86,11 @@ For more information, check out Mel's original write-up: [docs/write-up/index.md
 
 30. TODO
 
-31. TODO
+31. Operation Code - Also abbreviated to "opcode", is the portion of a machine language instruction that specifies the operation to be performed. Beside the opcode itself, most instructions also specify the data they will process, in the form of operands. (Source: Wikipedia - https://en.wikipedia.org/wiki/Opcode)
 
-32. TODO
+32. Operand - In mathematics an operand is the object of a mathematical operation, i.e., it is the object or quantity that is operated on. (Source: Wikipedia - https://en.wikipedia.org/wiki/Operand)
 
-33. TODO
+33. GO TO - is a statement found in many computer programming languages. It performs a one-way transfer of control to another line of code. The jumped-to locations are usually identified using labels, though some languages use line numbers. At the machine code level, a goto is a form of branch or jump statement. Many languages support the goto statement, and many do not. (Source: Wikipedia - https://en.wikipedia.org/wiki/Goto)
 
 34. Pascal is an imperative and procedural programming language, designed by Niklaus Wirth as a small, efficient language intended to encourage good programming practices using structured programming and data structuring. It is named in honour of the French mathematician, philosopher and physicist Blaise Pascal. (Wikipedia)
 
@@ -131,7 +131,7 @@ A loop is a sequence of statements which is specified once but which may be carr
 
 50. TODO
 
-51. TODO
+51. Bit - The most basic unit of information in computing and digital communications. The name is a contraction of "binary digit". The bit represents a logical state with one of two possible values. These values are most commonly represented as either "1" or "0", but other representations such as true/false, yes/no, +/−, or on/off are commonly used. (Source: Wikiepdia - https://en.wikipedia.org/wiki/Bit)
 
 52. A Bit is considered ON when its value is 1, and OFF when its value is 0.
 
