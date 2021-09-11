@@ -25,7 +25,7 @@ For instance, an instruction that is used to perform addition to the content in 
 
 11. Rational FORTRAN (RATFOR) is a dialect of FORTRAN that provides a richer set of control-flow possibilities. RATFOR is not a new language, rather it is a translator that translates Rational FORTRAN into FORTRAN. It allows the programmer to use features not found in the normal FORTAN language, and then translates those features into standard FORTAN automatically. (Source: https://www.cs.utah.edu/~elb/folklore/mel-annotated/node2.html#SECTION00020000000000000000)
 
-12. TODO
+12. Assembly Language - In computer programming, assembly language (or assembler language) is any low-level programming language in which there is a very strong correspondence between the instructions in the language and the architecture's machine code instructions. Because assembly depends on the machine code instructions, every assembly language is designed for exactly one specific computer architecture. Assembly language may also be called symbolic machine code. (Source: Wikiepdia - https://en.wikipedia.org/wiki/Assembly_language)
 
 13. In mathematics and computing, the hexadecimal (also base 16 or hex) numeral system is a positional numeral system that represents numbers using a radix (base) of 16. Unlike the common way of representing numbers using 10 symbols, hexadecimal uses 16 distinct symbols, most often the symbols "0"–"9" to represent values 0 to 9, and "A"–"F" (or alternatively "a"–"f") to represent values 10 to 15. (Source: https://en.wikipedia.org/wiki/Hexadecimal)
 
@@ -86,11 +86,11 @@ For more information, check out Mel's original write-up: [docs/write-up/index.md
 
 30. TODO
 
-31. TODO
+31. Operation Code - Also abbreviated to "opcode", is the portion of a machine language instruction that specifies the operation to be performed. Beside the opcode itself, most instructions also specify the data they will process, in the form of operands. (Source: Wikipedia - https://en.wikipedia.org/wiki/Opcode)
 
-32. TODO
+32. Operand - In mathematics an operand is the object of a mathematical operation, i.e., it is the object or quantity that is operated on. (Source: Wikipedia - https://en.wikipedia.org/wiki/Operand)
 
-33. TODO
+33. GO TO - is a statement found in many computer programming languages. It performs a one-way transfer of control to another line of code. The jumped-to locations are usually identified using labels, though some languages use line numbers. At the machine code level, a goto is a form of branch or jump statement. Many languages support the goto statement, and many do not. (Source: Wikipedia - https://en.wikipedia.org/wiki/Goto)
 
 34. Pascal is an imperative and procedural programming language, designed by Niklaus Wirth as a small, efficient language intended to encourage good programming practices using structured programming and data structuring. It is named in honour of the French mathematician, philosopher and physicist Blaise Pascal. (Wikipedia)
 
@@ -131,7 +131,7 @@ A loop is a sequence of statements which is specified once but which may be carr
 
 50. TODO
 
-51. TODO
+51. Bit - The most basic unit of information in computing and digital communications. The name is a contraction of "binary digit". The bit represents a logical state with one of two possible values. These values are most commonly represented as either "1" or "0", but other representations such as true/false, yes/no, +/−, or on/off are commonly used. (Source: Wikiepdia - https://en.wikipedia.org/wiki/Bit)
 
 52. A Bit is considered ON when its value is 1, and OFF when its value is 0.
 
