@@ -1,12 +1,9 @@
-1. Real Programmers Don't Use PASCAL. Ed Post, Tektronix, 1982. Its main argument is that it's better to write in a low-level programming language rather that in a high-level programming language ("if you can't code in Fortran, code it in assembly. If you can't code in assembly, it's not worth coding at all").
-It's safe to assume that this article was also published in Usenet, and the The Story of Mel was posted as a reply to it. A common false belief is that The Story of Mel was written _after_ this article was published in Datamation magazine, as a letter to the editorial, only it was published in Datamation about 2 months _after_ The Story of Mel was published in Usenet.
-The title of this article is a parody on a name of a book that was published that year (Real Men Don't Eat Quiche. Bruce Feirstein, Pocket Books), from which the the article's author embraces the machoistic tone to his writing.
-<!-- alternate version TODO: edit -->
-1. Real Programmers Don't Use PASCAL. Ed Post, Tektronix, 1982. The article's author argues that it'd be better to write any sort of code in a low level languageg (" If you can't do it in FORTRAN, do it in assembly language. If you can't do it in assembly language, it isn't worth doing."). The title of the article references a machoistic parody that was published that year by the name "Real Men Don't Eat Quiche. Bruce Feirstein, Pocket Books, 1983". A common belief is that The Story of Mel was published in response to the publication of this article in Datamation, however - it is now clear that the Story of Mel was published nearly two monthes prior to the publication of "Real Programmers Don't Use PASCAL" in Datamation, and that The Story of Mel, that was published over Usenet, was probably triggered by an early e-publication of the mentioned article, probably over Usenet. (Source: https://homepages.inf.ed.ac.uk/rni/papers/realprg.html)
+1. Real Programmers Don't Use PASCAL. Ed Post, Tektronix, 1982. Its main argument is that modern programming constructs are superfluous and used only by weak developers (“quiche eaters”). "If you can't code in Fortran, code it in assembly. If you can't code in assembly, it's not worth coding at all", asserts the article, referring to the “pure” version of Fortran, before it was polluted by fashionable ideas like structured programming. Some discussions attribute the article’s debut to the Datamation journal, but the timeline suggests otherwise. The story of Mel, written as a humoristic rebuttal to this article, appeared in May 1983, 2 months before the relevant Datamation issue. Therefore, it’s very likely that Ed Post’s piece first appeared on USENET. The title is a parody on a book called Real Men Don’t Eat Quiche (Bruce Feirstein, Pocket Books), which also inspired the macho tone of the text.
 
-2. Slang, a sub-culture in Hacker cutlrue. For the "Real Programmer" the challenge lies within the complexitiy of a problem, not in the final product, the process, or the relationship with their co-workers.
 
-3. Fortran - A general-purpose, compiled imperative programming language that is especially suited to numeric computation and scientific computing. Commonly used today.
+2. Slang, a subculture in Hacker culture. For the "Real Programmer" the challenge lies in the complexity of a problem, the elegance of the solution and its efficiency. The product and its users are secondary, if considered at all.
+
+3. Fortran - The first  (1954) commercial high-level language and the first to boast a commercial-grade compiler. Still used in the fields of numeric and scientific computation.
 
 4. Electronic hand calculators first appeared in 1971, with the influential HP-35 pocket calculator arriving soon afterwards in 1972. This signalled the end of the slide-rule era in engineering. (Source: https://www.cs.utah.edu/~elb/folklore/mel-annotated/node2.html#SECTION00020000000000000000)
 
@@ -84,7 +81,7 @@ For more information, check out Mel's original write-up: [docs/write-up/index.md
 
 29. The method by which a binary number, or a collection of such numbers, represent a specific location in the computer's memory.
 
-30. TODO
+30. This sentence refers to the method that determines the memory address of the next instruction to execute. Normally, digital computers load instructions from consecutive memory locations, unless instructed to jump to a different address. The RPC-4000 had an optional addressing mode in which every instruction included the address of the next instruction to execute.
 
 31. Operation Code - Also abbreviated to "opcode", is the portion of a machine language instruction that specifies the operation to be performed. Beside the opcode itself, most instructions also specify the data they will process, in the form of operands. (Source: Wikipedia - https://en.wikipedia.org/wiki/Opcode)
 
@@ -129,7 +126,7 @@ A loop is a sequence of statements which is specified once but which may be carr
  
 49. This operation increases by one the value stored in the index register. The result is then added to the operand’s address. This mechanism supports the common case where the same instruction(s) should be applied to a series of data. Essentially, the code simply needs to increment the index-register and the repeat.
 
-50. TODO
+50. Mel did not use the index-register mechanism. He implemented similar functionality in order to improve his code’s performance. Rather than increment the index-register, Mel change the operand address component of the instruction, wrote the result back to memory and executed it. This process took just enough time for the memory drum to revolve so that the new operand was ready for reading.
 
 51. Bit - The most basic unit of information in computing and digital communications. The name is a contraction of "binary digit". The bit represents a logical state with one of two possible values. These values are most commonly represented as either "1" or "0", but other representations such as true/false, yes/no, +/−, or on/off are commonly used. (Source: Wikiepdia - https://en.wikipedia.org/wiki/Bit)
 
