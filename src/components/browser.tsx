@@ -8,13 +8,12 @@ export const Browser = ({
 }: {
 	content:any;
 }): JSX.Element => {
-
+	console.log(content);
 	return (
 		<div>
+			<h1>All content</h1>
 			{
-				content.map(rec => {
-					<div>{Object.keys(rec)}</div>
-				})
+				content.map(rec => <div>{rec.id}</div>)
 			}
 		</div>
 	);

@@ -20,7 +20,3 @@ export function getAllPostIds(locales: string[]) {
 export async function getPostData(id: string, locale: string) {
 	return getContentData(codexDirectory, id, locale);
 }
-
-export async function getCodexData(id: string, locale: string) {
-	return getContentData(codexDirectory, id, locale);
-}

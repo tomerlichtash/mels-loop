@@ -24,8 +24,7 @@ export function getSortedContentData(contentDir: string, locale: string) {
 			const fullPath = path.join(contentDir, id, filename);
 
 			if (!fs.existsSync(fullPath)) {
-				console.error(`missing content in ${fullPath}`);
-				return null;
+				return;
 			}
 
 			const fileContents = fs.readFileSync(fullPath, 'utf8');
