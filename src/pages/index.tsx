@@ -11,13 +11,18 @@ import useTranslation from 'next-translate/useTranslation';
 import homeStyles from '../styles/home.module.scss';
 import Browser from '../components/browser';
 
+
 export default function Home({
   allPostsData,
+  allCodexData
 }: {
   allPostsData: {
     date: string;
     title: string;
     id: string;
+  }[]; 
+  allCodexData: {
+	id: string
   }[];
 }) {
   const { t } = useTranslation();
@@ -28,7 +33,7 @@ export default function Home({
       <Head>
         <title>{siteTitle}</title>
       </Head>
-	  <Browser content={getBrowserContent({locale: 'en'})}/>
+	  <Browser content={allCodexData} />
       <section className={homeStyles.main}>
         {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}> */}
         <h1>{t('common:greeting')}</h1>
@@ -51,19 +56,14 @@ export default function Home({
   );
 }
 
-export const getBrowserContent = ({ locale }) => {
-	const content = getSortedCodexData(locale) as Array<any>;
-	return {
-		content,
-	};
-};
-
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const allPostsData = getSortedPostsData(locale);
+  const allCodexData = getSortedCodexData(locale);
   return {
     props: {
       allPostsData,
+	  allCodexData
     },
   };
 };
