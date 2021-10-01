@@ -3,11 +3,13 @@ import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { useRouter } from 'next/router';
 import { getSortedPostsData } from '../lib/content-drivers/posts';
+import { getSortedCodexData } from '../lib/content-drivers/codex';
 import Link from 'next/link';
 import Date from '../components/date';
 import { GetStaticProps } from 'next';
 import useTranslation from 'next-translate/useTranslation';
 import homeStyles from '../styles/home.module.scss';
+import Browser from '../components/browser';
 
 export default function Home({
   allPostsData,
@@ -26,6 +28,7 @@ export default function Home({
       <Head>
         <title>{siteTitle}</title>
       </Head>
+	  <Browser content={getBrowserContent({locale: 'en'})}/>
       <section className={homeStyles.main}>
         {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}> */}
         <h1>{t('common:greeting')}</h1>
@@ -47,6 +50,14 @@ export default function Home({
     </Layout>
   );
 }
+
+export const getBrowserContent = ({ locale }) => {
+	const content = getSortedCodexData(locale) as Array<any>;
+	return {
+		content,
+	};
+};
+
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const allPostsData = getSortedPostsData(locale);
