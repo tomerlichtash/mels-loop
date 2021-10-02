@@ -1,4 +1,3 @@
-
 // TODO
 // 1. Use driver method to fetch codex
 // 2. map codex entries to display full text
@@ -6,9 +5,8 @@
 export const Browser = ({
 	content
 }: {
-	content:any;
+	content: any;
 }): JSX.Element => {
-	console.log(content);
 	return (
 		<div>
 			<h1>All content</h1>
