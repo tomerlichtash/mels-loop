@@ -13,57 +13,57 @@ import Browser from '../components/browser';
 
 
 export default function Home({
-  allPostsData,
-  allCodexData
+	allPostsData,
+	allCodexData
 }: {
-  allPostsData: {
-    date: string;
-    title: string;
-    id: string;
-  }[]; 
-  allCodexData: {
-	id: string
-  }[];
+	allPostsData: {
+		date: string;
+		title: string;
+		id: string;
+	}[];
+	allCodexData: {
+		id: string
+	}[];
 }) {
-  const { t } = useTranslation();
-  const { locale } = useRouter();
+	const { t } = useTranslation();
+	const { locale } = useRouter();
 
-  return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-	  <Browser content={allCodexData} />
-      <section className={homeStyles.main}>
-        {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}> */}
-        <h1>{t('common:greeting')}</h1>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} locale={locale} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </Layout>
-  );
+	return (
+		<Layout home>
+			<Head>
+				<title>{siteTitle}</title>
+			</Head>
+			<Browser content={allCodexData} />
+			<section className={homeStyles.main}>
+				{/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}> */}
+				<h1>{t('common:greeting')}</h1>
+				<h2 className={utilStyles.headingLg}>Blog</h2>
+				<ul className={utilStyles.list}>
+					{allPostsData.map(({ id, date, title }) => (
+						<li className={utilStyles.listItem} key={id}>
+							<Link href={`/posts/${id}`}>
+								<a>{title}</a>
+							</Link>
+							<br />
+							<small className={utilStyles.lightText}>
+								<Date dateString={date} locale={locale} />
+							</small>
+						</li>
+					))}
+				</ul>
+			</section>
+		</Layout>
+	);
 }
 
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const allPostsData = getSortedPostsData(locale);
-  const allCodexData = getSortedCodexData(locale);
-  return {
-    props: {
-      allPostsData,
-	  allCodexData
-    },
-  };
+	const allPostsData = getSortedPostsData(locale);
+	const allCodexData = getSortedCodexData(locale);
+	return {
+		props: {
+			allPostsData,
+			allCodexData
+		},
+	};
 };
