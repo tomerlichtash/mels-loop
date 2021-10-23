@@ -5,17 +5,16 @@
 export const Browser = ({
 	content
 }: {
-	content: {
-		id: string;
-	}[];
+	content: unknown[];
 }): JSX.Element => {
-	return <div>
+	return (
+		<div>
 			<h1>All content</h1>
 			{
-				content.map((rec, index) => <div key={index}>{rec.id}</div>)
+				content.map((rec, index) => <div key={index}>{(rec as any).title}</div>)
 			}
 		</div>
-	;
+	);
 };
 
 
