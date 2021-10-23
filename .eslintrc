@@ -4,7 +4,7 @@
     "es2020": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "extends": ["plugin:@next/next/recommended", "plugin:react/recommended", "prettier"],
   "plugins": [],
   "settings": {
     "react": {
