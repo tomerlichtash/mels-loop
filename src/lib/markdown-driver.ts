@@ -7,88 +7,89 @@ import html from 'remark-html';
 const { defaultLocale } = require('../../i18n.json');
 
 const getIndexFileName = (locale: string): string =>
-  defaultLocale === locale ? 'index.md' : `index.${locale}.md`;
+	defaultLocale === locale ? 'index.md' : `index.${locale}.md`;
 
 export function initContentDir(contentId: string) {
-  return path.join(process.cwd(), `content/${contentId}`);
+	return path.join(process.cwd(), `content/${contentId}`);
 }
 
 export function getSortedContentData(contentDir: string, locale: string) {
-  // Get file names under /posts
-  const contentIds = fs.readdirSync(contentDir);
+	// Get file names under /posts
+	const contentIds = fs.readdirSync(contentDir);
 
-  const allContentData = contentIds
-    .map((id) => {
-      // Read markdown file as string
-      const filename = getIndexFileName(locale);
-      const fullPath = path.join(contentDir, id, filename);
+	const allContentData = contentIds
+		.map((id) => {
+			// Read markdown file as string
+			const filename = getIndexFileName(locale);
+			const fullPath = path.join(contentDir, id, filename);
 
-      if (!fs.existsSync(fullPath)) {
-        return;
-      }
+			if (!fs.existsSync(fullPath)) {
+				return;
+			}
 
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
+			const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-      // Use gray-matter to parse the post metadata section
-      const matterResult = matter(fileContents);
+			// Use gray-matter to parse the post metadata section
+			const matterResult = matter(fileContents);
 
-      // Combine the data with the id
-      return {
-        id,
-        ...(matterResult.data as { date: string; title: string }),
-      };
-    })
-    .filter((item) => item);
-  // Sort posts by date
-  return allContentData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+			// Combine the data with the id
+			return {
+				id,
+				...(matterResult.data as { date: string; title: string }),
+			};
+		})
+		// filter out empty items
+		.filter((item) => item);
+	// Sort posts by date
+	return allContentData.sort((a, b) => {
+		if (a.date < b.date) {
+			return 1;
+		} else {
+			return -1;
+		}
+	});
 }
 
 export function getAllContentIds(contentDir: string, locales: string[]) {
-  let paths: { params: { id: string }; locale: string }[] = [];
+	let paths: { params: { id: string }; locale: string }[] = [];
 
-  const contentIds = fs.readdirSync(contentDir);
+	const contentIds = fs.readdirSync(contentDir);
 
-  for (let id of contentIds) {
-    for (let locale of locales) {
-      const fullpath = path.join(contentDir, id, getIndexFileName(locale));
-      if (!fs.existsSync(fullpath)) {
-        continue;
-      }
+	for (let id of contentIds) {
+		for (let locale of locales) {
+			const fullpath = path.join(contentDir, id, getIndexFileName(locale));
+			if (!fs.existsSync(fullpath)) {
+				continue;
+			}
 
-      paths.push({ params: { id }, locale });
-    }
-  }
+			paths.push({ params: { id }, locale });
+		}
+	}
 
-  return paths;
+	return paths;
 }
 
 export async function getContentData(
-  contentDir: string,
-  id: string,
-  locale: string,
+	contentDir: string,
+	id: string,
+	locale: string,
 ) {
-  const fullPath = path.join(contentDir, id, getIndexFileName(locale));
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+	const fullPath = path.join(contentDir, id, getIndexFileName(locale));
+	const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-  // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents);
+	// Use gray-matter to parse the post metadata section
+	const matterResult = matter(fileContents);
 
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
-  const contentHtml = processedContent.toString();
+	// Use remark to convert markdown into HTML string
+	const processedContent = await remark()
+		.use(html)
+		.process(matterResult.content);
+	const contentHtml = processedContent.toString();
 
-  // Combine the data with the id and contentHtml
-  return {
-    id,
-    contentHtml,
-    ...(matterResult.data as { date: string; title: string }),
-  };
+	// Combine the data with the id and contentHtml
+	return {
+		id,
+		contentHtml,
+		...(matterResult.data as { date: string; title: string }),
+	};
 }
