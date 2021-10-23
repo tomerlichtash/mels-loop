@@ -16,26 +16,21 @@ export function initContentDir(contentId: string) {
 export function getSortedContentData(contentDir: string, locale: string) {
 	// Get file names under /posts
 	const contentIds = fs.readdirSync(contentDir);
-	console.log(`getting softed content in ${contentDir} for locale ${locale}, found ${contentIds.length} dir entries`)
 
 	const allContentData = contentIds
 		.map((id) => {
-			console.log(`Processing content id ${id}`)
 			// Read markdown file as string
 			const filename = getIndexFileName(locale);
 			const fullPath = path.join(contentDir, id, filename);
 
 			if (!fs.existsSync(fullPath)) {
-				console.log(`Ha: ${fullPath} not found`)
 				return;
 			}
 
 			const fileContents = fs.readFileSync(fullPath, 'utf8');
-			console.log(`Parsing ${fullPath}`)
 
 			// Use gray-matter to parse the post metadata section
 			const matterResult = matter(fileContents);
-			console.log(`Found ${String(Object.keys(matterResult))}`)
 
 			// Combine the data with the id
 			return {
