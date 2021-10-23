@@ -16,21 +16,41 @@ export function initContentDir(contentId: string) {
 export function getSortedContentData(contentDir: string, locale: string) {
 	// Get file names under /posts
 	const contentIds = fs.readdirSync(contentDir);
+<<<<<<< HEAD
 
 	const allContentData = contentIds
 		.map((id) => {
+=======
+	console.log(`getting softed content in ${contentDir} for locale ${locale}, found ${contentIds.length} dir entries`)
+
+	const allContentData = contentIds
+		.map((id) => {
+			console.log(`Processing content id ${id}`)
+>>>>>>> feat-home-naive-content
 			// Read markdown file as string
 			const filename = getIndexFileName(locale);
 			const fullPath = path.join(contentDir, id, filename);
 
 			if (!fs.existsSync(fullPath)) {
+<<<<<<< HEAD
+=======
+				console.log(`Ha: ${fullPath} not found`)
+>>>>>>> feat-home-naive-content
 				return;
 			}
 
 			const fileContents = fs.readFileSync(fullPath, 'utf8');
+<<<<<<< HEAD
 
 			// Use gray-matter to parse the post metadata section
 			const matterResult = matter(fileContents);
+=======
+			console.log(`Parsing ${fullPath}`)
+
+			// Use gray-matter to parse the post metadata section
+			const matterResult = matter(fileContents);
+			console.log(`Found ${String(Object.keys(matterResult))}`)
+>>>>>>> feat-home-naive-content
 
 			// Combine the data with the id
 			return {

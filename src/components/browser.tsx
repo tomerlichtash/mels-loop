@@ -5,13 +5,13 @@
 export const Browser = ({
 	content
 }: {
-	content: any;
+	content: unknown[];
 }): JSX.Element => {
 	return (
 		<div>
 			<h1>All content</h1>
 			{
-				content.map(rec => <div>{rec.id}</div>)
+				content.map((rec, index) => <div key={index}>{(rec as any).title}</div>)
 			}
 		</div>
 	);

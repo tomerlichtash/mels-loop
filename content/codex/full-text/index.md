@@ -1,5 +1,7 @@
-This was posted to Usenet by its author, Ed Nather (<nather@astro.as.utexas.edu>), on May 21, 1983.
-
+---
+title: The story of Tomer
+moto: This was posted to Usenet by its author, Ed Nather (<nather@astro.as.utexas.edu>), on May 21, 1983.
+---
 A recent article devoted to the macho side of programming
 made the bald and unvarnished statement:
 
