@@ -20,6 +20,7 @@ export default function Home({
 		date: string;
 		title: string;
 		id: string;
+		content: string;
 	}[];
 	allCodexData: {
 		id: string
@@ -39,7 +40,7 @@ export default function Home({
 				<h1>{t('common:greeting')}</h1>
 				<h2 className={utilStyles.headingLg}>Blog</h2>
 				<ul className={utilStyles.list}>
-					{allPostsData.map(({ id, date, title }) => (
+					{allPostsData.map(({ id, date, title, content }) => (
 						<li className={utilStyles.listItem} key={id}>
 							<Link href={`/posts/${id}`}>
 								<a>{title}</a>
@@ -48,6 +49,7 @@ export default function Home({
 							<small className={utilStyles.lightText}>
 								<Date dateString={date} locale={locale} />
 							</small>
+							<p>{ content }</p>
 						</li>
 					))}
 				</ul>
@@ -56,8 +58,9 @@ export default function Home({
 	);
 }
 
-
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	debugger
+	console.log(`Getting static props for ${locale}`);
 	const allPostsData = getSortedPostsData(locale);
 	const allCodexData = getSortedCodexData(locale);
 	return {
