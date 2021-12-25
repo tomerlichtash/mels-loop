@@ -20,7 +20,7 @@ export default function Home({
 					<p>פורסם בידי מחברו, אד ניית׳ר &lt;nather@astro.as.utexas.edu&gt;, ברשת Usenet, ב-21 במאי 1983.</p>
 				</section>
 				<section className={homeStyles.verse}>
-					<p className={homeStyles.paragraph}>מאמר מן הזמן האחרון על צד מצ'ואיסטי בתכנות</p>
+					<p className={homeStyles.paragraph}>מאמר מן הזמן האחרון על צד <em>מצ'ואיסטי</em> בתכנות</p>
 					<p className={homeStyles.paragraph}>יצא בהכרזה נועזת וחסרת בסיס:</p>
 					<blockquote className={homeStyles.blockquote}>מתכנתים אמיתיים כותבים בפוֹרְטְרַן.</blockquote>
 				</section>
@@ -52,7 +52,7 @@ export default function Home({
 				<section className={homeStyles.verse}>
 					<p className={homeStyles.paragraph}>את מל פגשתי כשעבדתי בחברת המחשבים רוֹיאל-מֶק'בִּי,</p>
 					<p className={homeStyles.paragraph}>כיום ישות רפאים עסקית המייצרת מכונת כתיבה.</p>
-					<p className={homeStyles.paragraph}>החברה ייצרה אז את ה-30-PLG,</p>
+					<p className={homeStyles.paragraph}>החברה ייצרה אז את ה-LGP-30,</p>
 					<p className={homeStyles.paragraph}>מחשב קטן וזול (בסטנדרטים של היום)</p>
 					<p className={homeStyles.paragraph}>בעל זיכרון תוף,</p>
 					<p className={homeStyles.paragraph}>ובדיוק החלה בייצור</p>
@@ -106,7 +106,7 @@ export default function Home({
 				<section className={homeStyles.verse}>
 					<p className={homeStyles.paragraph}>בהשאלה לימינו,</p>
 					<p className={homeStyles.paragraph}>כל פעולה הסתיימה בפקודה TO GO!</p>
-					<p className={homeStyles.paragraph}>פַּטְמוּ בַּזֶּה את מיקטרתו של פסקל ועשנו.</p>
+					<p className={homeStyles.paragraph}>פַּטְמוּ <em>בַּזֶּה</em> את מיקטרתו של פסקל ועשנו.</p>
 				</section>
 
 				<section className={homeStyles.verse}>
@@ -157,7 +157,7 @@ export default function Home({
 					<p className={homeStyles.paragraph}>אפילו כשהפְלֵקסוֹרַייטֵר העיקש</p>
 					<p className={homeStyles.paragraph}>הזדקק להשהיה קלה בפלט האותיות כדי לעבוד כראוי.</p>
 					<p className={homeStyles.paragraph}>הוא פשוט מיקם הוראות על התוף</p>
-					<p className={homeStyles.paragraph}>כך שהבאה בתור היתה בדיוק מאחורי הראש הקורא</p>
+					<p className={homeStyles.paragraph}>כך שהבאה בתור היתה <em>בדיוק מאחורי</em> הראש הקורא</p>
 					<p className={homeStyles.paragraph}>כשהגיע תורה;</p>
 					<p className={homeStyles.paragraph}>נדרש התוף לסיבוב שלם</p>
 					<p className={homeStyles.paragraph}>כדי להגיע אליה.</p>
@@ -245,7 +245,7 @@ export default function Home({
 				<section className={homeStyles.verse}>
 					<p className={homeStyles.paragraph}>ההלם הכי גדול שלי, כנראה, היה בגילוי</p>
 					<p className={homeStyles.paragraph}>לולאה תמימה ללא תנאי עצירה.</p>
-					<p className={homeStyles.paragraph}>שום תנאי. כלום.</p>
+					<p className={homeStyles.paragraph}>שום תנאי. <em>כלום</em>.</p>
 					<p className={homeStyles.paragraph}>על פי ההיגיון הבריא זוהי לולאה אינסופית</p>
 					<p className={homeStyles.paragraph}>בה התוכנה תרוץ במעגל, לעד, ללא הרף.</p>
 					<p className={homeStyles.paragraph}>התוכנה הזו, לעומת זאת, חלפה בתוכה</p>
@@ -337,7 +337,7 @@ export default function Home({
 				</section>
 
 				<section className={homeStyles.verse}>
-					<p className={homeStyles.paragraph}>A recent article devoted to the macho side of programming</p>
+					<p className={homeStyles.paragraph}>A recent article devoted to the <em>macho</em> side of programming</p>
 					<p className={homeStyles.paragraph}>made the bald and unvarnished statement:</p>
 					<blockquote className={homeStyles.blockquote}>Real Programmers write in FORTRAN.</blockquote>
 				</section>
@@ -350,7 +350,7 @@ export default function Home({
 					<p className={homeStyles.paragraph}>when the term "software" sounded funny</p>
 					<p className={homeStyles.paragraph}>and Real Computers were made out of drums and vacuum tubes,</p>
 					<p className={homeStyles.paragraph}>Real Programmers wrote in machine code.</p>
-					<p className={homeStyles.paragraph}>Not FORTRAN.  Not RATFOR.  Not, even, assembly language.</p>
+					<p className={homeStyles.paragraph}>Not FORTRAN. Not RATFOR. Not, even, assembly language.</p>
 					<p className={homeStyles.paragraph}>Machine Code.</p>
 					<p className={homeStyles.paragraph}>Raw, unadorned, inscrutable hexadecimal numbers.</p>
 					<p className={homeStyles.paragraph}>Directly.</p>
@@ -410,7 +410,7 @@ export default function Home({
 				<section className={homeStyles.verse}>
 					<p className={homeStyles.paragraph}>Mel's job was to re-write</p>
 					<p className={homeStyles.paragraph}>the blackjack program for the RPC-4000.</p>
-					<p className={homeStyles.paragraph}>(Port?  What does that mean?)</p>
+					<p className={homeStyles.paragraph}>(Port? What does that mean?)</p>
 					<p className={homeStyles.paragraph}>The new computer had a one-plus-one</p>
 					<p className={homeStyles.paragraph}>addressing scheme,</p>
 					<p className={homeStyles.paragraph}>in which each machine instruction,</p>
@@ -423,7 +423,7 @@ export default function Home({
 				<section className={homeStyles.verse}>
 					<p className={homeStyles.paragraph}>In modern parlance,</p>
 					<p className={homeStyles.paragraph}>every single instruction was followed by a GO TO!</p>
-					<p className={homeStyles.paragraph}>Put that in Pascal's pipe and smoke it.</p>
+					<p className={homeStyles.paragraph}>Put <em>that</em> in Pascal's pipe and smoke it.</p>
 				</section>
 
 				<section className={homeStyles.verse}>
@@ -474,7 +474,7 @@ export default function Home({
 					<p className={homeStyles.paragraph}>even when the balky Flexowriter</p>
 					<p className={homeStyles.paragraph}>required a delay between output characters to work right.</p>
 					<p className={homeStyles.paragraph}>He just located instructions on the drum</p>
-					<p className={homeStyles.paragraph}>so each successive one was just past the read head</p>
+					<p className={homeStyles.paragraph}>so each successive one was just <em>past</em> the read head</p>
 					<p className={homeStyles.paragraph}>when it was needed;</p>
 					<p className={homeStyles.paragraph}>the drum had to execute another complete revolution</p>
 					<p className={homeStyles.paragraph}>to find the next instruction.</p>
@@ -547,7 +547,7 @@ export default function Home({
 				<section className={homeStyles.verse}>
 					<p className={homeStyles.paragraph}>Perhaps my greatest shock came</p>
 					<p className={homeStyles.paragraph}>when I found an innocent loop that had no test in it.</p>
-					<p className={homeStyles.paragraph}>No test.  None.</p>
+					<p className={homeStyles.paragraph}>No test. <em>None</em>.</p>
 					<p className={homeStyles.paragraph}>Common sense said it had to be a closed loop,</p>
 					<p className={homeStyles.paragraph}>where the program would circle, forever, endlessly.</p>
 					<p className={homeStyles.paragraph}>Program control passed right through it, however,</p>
