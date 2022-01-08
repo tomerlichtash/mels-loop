@@ -41,6 +41,7 @@ export function getSortedContentData(contentDir: string, locale: string) {
 			return {
 				id,
 				...(matterResult.data as { date: string; title: string }),
+				content: matterResult.content
 			};
 		})
 		// filter out empty items
