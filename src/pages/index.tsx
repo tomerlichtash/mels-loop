@@ -1,14 +1,12 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
-import { useRouter } from 'next/router';
-import { GetStaticProps } from 'next';
+// import { useRouter } from 'next/router';
+// import { GetStaticProps } from 'next';
 import homeStyles from '../styles/home.module.scss';
 
 
-export default function Home({
-}: {
-}) {
-	const { locale } = useRouter();
+export default function Home() {
+	// const { locale } = useRouter();
 
 	return (
 		<Layout home>
@@ -636,13 +634,13 @@ export default function Home({
 	);
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	// const allPostsData = getSortedPostsData(locale);
-	// const allCodexData = getSortedCodexData(locale);
-	return {
-		props: {
-			// allPostsData,
-			// allCodexData
-		},
-	};
-};
+// export const getStaticProps: GetStaticProps = async ({ locale }) => {
+// 	const allPostsData = getSortedPostsData(locale);
+// 	const allCodexData = getSortedCodexData(locale);
+// 	return {
+// 		props: {
+// 			allPostsData,
+// 			allCodexData
+// 		},
+// 	};
+// };

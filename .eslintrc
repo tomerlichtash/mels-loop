@@ -33,7 +33,8 @@
         "@typescript-eslint/require-await": "off",
         "@typescript-eslint/no-unsafe-member-access": "off",
         "@typescript-eslint/no-unsafe-call": "off",
-        "prefer-const": "off"
+        "prefer-const": "off",
+        "react/no-unescaped-entities": "off"
       }
     }
   ]
