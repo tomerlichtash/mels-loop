@@ -21,9 +21,10 @@
 			"type": "node-terminal",
 			"request": "launch",
 			"command": "next dev",
-			"env": {"NODE_OPTIONS": "--inspect" }
-		  },
-	  
+			"env": {
+				"NODE_OPTIONS": "--inspect"
+			}
+		},
 		{
 			"type": "node",
 			"request": "attach",
@@ -32,6 +33,18 @@
 				"<node_internals>/**"
 			],
 			"port": 9229
+		},
+		{
+			"name": "Next.js full stack",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "next dev",
+			"console": "integratedTerminal",
+			"serverReadyAction": {
+				"pattern": "started server on .+, url: (https?://.+)",
+				"uriFormat": "%s",
+				"action": "debugWithChrome"
+			}
 		}
 	]
 }
