@@ -8,6 +8,7 @@ export const dateFormats = {
 export enum CONTENT_TYPES {
   CODEX = 'codex',
   POSTS = 'posts',
+  TESTS = 'tests',
   DOCS = 'docs',
   GLOSSARY = 'glossary',
 }
