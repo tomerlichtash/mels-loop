@@ -5,7 +5,7 @@ import remark from 'remark';
 import html from 'remark-html';
 
 import * as mdParser from "simple-markdown"
-import { IParsedNode, IParsedPageData } from '../interfaces/models';
+import { IMLParsedNode, IParsedPageData } from '../interfaces/models';
 import { contentUtils } from './content-utils';
 
 const { defaultLocale } = require('../../i18n.json');
@@ -148,7 +148,7 @@ class ParsedPageData implements IParsedPageData {
 	public date: Date = null;
 	public title: string = "";
 	public content: string = "";
-	public parsed: IParsedNode[] = []
+	public parsed: IMLParsedNode[] = []
 	public error?: string = "";
 
 }

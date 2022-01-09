@@ -1,5 +1,10 @@
 import * as mdParser from "simple-markdown"
-import { IParsedNode } from "../interfaces/models";
+import { IMLParsedNode } from "../interfaces/models";
+
+/**
+ * A single node in a parsed markdown AST
+ */
+ export type ParsedNode = mdParser.SingleASTNode;
 
 /**
  * Functions for processing parsed markdown nodes and maybe more
@@ -9,18 +14,17 @@ export interface IContentUtils {
 	 * Convert a markdown parse tree to a MK parse tree, in which text runs are separated into lines
 	 * @param arg0 
 	 */
-	processParseTree(nodes: mdParser.SingleASTNode[]): IParsedNode[];
+	processParseTree(nodes: ParsedNode[]): IMLParsedNode[];
 }
 
 type KeyIndexer = () => string;
 type LineIndexer = () => number;
 
-type ParsedNode = mdParser.SingleASTNode;
 type ParsedNodesRun = {type: string, nodes: ParsedNode[]};
 
 class ContentUtils implements IContentUtils {
 
-	public processParseTree(nodes: mdParser.SingleASTNode[]): IParsedNode[] {
+	public processParseTree(nodes: mdParser.SingleASTNode[]): IMLParsedNode[] {
 		const liner = this.createLineIndexer();
 		return nodes.map(node => this.processOneASTNode(node, this.createKeyIndexer(), liner))
 	}
@@ -66,7 +70,7 @@ class ContentUtils implements IContentUtils {
 		return () => index++
 	}
 
-	private processOneASTNode(node: ParsedNode, indexer: KeyIndexer, liner: LineIndexer): IParsedNode {
+	private processOneASTNode(node: ParsedNode, indexer: KeyIndexer, liner: LineIndexer): IMLParsedNode {
 		if (Array.isArray(node.items || node.content)) {
 			return this.processContainer(node, indexer, liner);
 		}
@@ -80,12 +84,12 @@ class ContentUtils implements IContentUtils {
 		}
 	}
 
-	private processContainer(node: ParsedNode, indexer: KeyIndexer, liner: LineIndexer): IParsedNode {
-		const ret: IParsedNode = {
+	private processContainer(node: ParsedNode, indexer: KeyIndexer, liner: LineIndexer): IMLParsedNode {
+		const ret: IMLParsedNode = {
 			type: node.type,
 			line: -1,
 			key: indexer(),
-			children: [] as Array<IParsedNode>
+			children: [] as Array<IMLParsedNode>
 		}
 		if (node.type === "list") {
 			return this.processListNode(node, indexer, liner);
@@ -104,8 +108,8 @@ class ContentUtils implements IContentUtils {
 		return ret
 	}
 
-	private processListNode(node: ParsedNode, indexer: KeyIndexer, liner: LineIndexer): IParsedNode {
-		const ret: IParsedNode = {
+	private processListNode(node: ParsedNode, indexer: KeyIndexer, liner: LineIndexer): IMLParsedNode {
+		const ret: IMLParsedNode = {
 			type: node.type,
 			ordered: node.ordered,
 			key: indexer(),
@@ -127,7 +131,14 @@ class ContentUtils implements IContentUtils {
 		return ret;
 	}
 
-	private processTextRuns(nodes: ParsedNode[], indexer: KeyIndexer, liner: LineIndexer): IParsedNode[] {
+	/**
+	 * Creates a list of line objects from an array of 'text' AST nodes
+	 * @param nodes 
+	 * @param indexer 
+	 * @param liner 
+	 * @returns 
+	 */
+	private processTextRuns(nodes: ParsedNode[], indexer: KeyIndexer, liner: LineIndexer): IMLParsedNode[] {
 		return nodes
 		.map(node => node.content) // collect all text fields
 		.join('') // to string

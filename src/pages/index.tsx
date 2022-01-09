@@ -5,7 +5,7 @@ import { GetStaticProps } from 'next';
 import homeStyles from '../styles/home.module.scss';
 //import { getSortedPostsData } from '../lib/content-drivers/posts';
 import { getSortedCodexData } from '../lib/content-drivers/codex';
-import { IContentComponentData, IParsedNode, IParsedPageData } from '../interfaces/models';
+import { IContentComponentData, IMLParsedNode, IParsedPageData } from '../interfaces/models';
 import ContentCompoent from '../components/content/contentComponent';
 //import { useState } from 'react';
 
@@ -23,7 +23,7 @@ export default function Home(data: IContentComponentData) {
 		pageIndex = 0;
 	}
 	const page = pageData[pageIndex] || {} as IParsedPageData;
-	const elements: IParsedNode[] = page.parsed || [];
+	const elements: IMLParsedNode[] = page.parsed || [];
 	return (
 		<Layout home>
 			<Head>

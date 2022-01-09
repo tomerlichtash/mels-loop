@@ -1,5 +1,5 @@
 import Link from "./link";
-import { IContentComponentInitData, IParsedNode } from "../../interfaces/models";
+import { IContentComponentInitData, IMLParsedNode } from "../../interfaces/models";
 import List from "./list";
 import ListItem from "./listItem";
 import Paragraph from "./paragraph";
@@ -7,7 +7,7 @@ import Section from "./section";
 
 export const ContentCompoent = (props: { data: IContentComponentInitData }): JSX.Element => {
 	const data = props.data;
-	const node: IParsedNode = data.data;
+	const node: IMLParsedNode = data.data;
 	switch (node.type) {
 		case "paragraph":
 			return <Section key={node.key} data={data} />

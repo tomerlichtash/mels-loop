@@ -3,11 +3,11 @@ import * as mdParser from "simple-markdown"
 /**
  * A markdown node parsed and processed by ML
  */
-export interface IParsedNode extends mdParser.SingleASTNode {
+export interface IMLParsedNode extends mdParser.SingleASTNode {
 	key: string;
 	line: number;
 	text?: string;
-	children?: IParsedNode[] 
+	children?: IMLParsedNode[] 
 }
 
 /**
@@ -33,7 +33,7 @@ export interface IParsedPageData {
 	/**
 	 * The parsed MD
 	 */
-	readonly parsed:IParsedNode[]
+	readonly parsed:IMLParsedNode[]
 	/**
 	 * If present, ignore the data
 	 */
@@ -53,6 +53,6 @@ export interface IContentComponentData {
  * The data structure passed to a content component
  */
 export interface IContentComponentInitData {
-	data: IParsedNode;
+	data: IMLParsedNode;
 	locale: string;
 }
