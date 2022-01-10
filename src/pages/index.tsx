@@ -15,7 +15,7 @@ export default function Home(data: IContentComponentData) {
 	// const { locale } = useRouter();
 	//const [sortedContent, setSortedContent] = useState<IParsedPageData[]>(getSortedCodexData("he"))
 	const { content, locale } = data;
-	const pageData: IParsedPageData[] = JSON.parse(data.content)
+	const pageData: IParsedPageData[] = JSON.parse(content)
 
 	// find full content page
 	let pageIndex = pageData.findIndex(pdata => FULL_PAGE_RE.test(pdata.id));

@@ -1,3 +1,5 @@
+import homeStyles from '../../styles/home.module.scss';
+
 import Link from "./link";
 import { IContentComponentInitData, IMLParsedNode } from "../../interfaces/models";
 import List from "./list";
@@ -20,7 +22,7 @@ export const ContentCompoent = (props: { data: IContentComponentInitData }): JSX
 		case "link":
 			return <Link key={node.key} data={data} />
 		default:
-			return <div key={node.key}>Type {data.data.type} not found</div>
+			return <div className={homeStyles.error} key={node.key}>Type {data.data.type} not found</div>
 	}
 }
 

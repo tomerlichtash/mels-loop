@@ -24,7 +24,7 @@ type ParsedNodesRun = {type: string, nodes: ParsedNode[]};
 
 class ContentUtils implements IContentUtils {
 
-	public processParseTree(nodes: mdParser.SingleASTNode[]): IMLParsedNode[] {
+	public processParseTree(nodes: ParsedNode[]): IMLParsedNode[] {
 		const liner = this.createLineIndexer();
 		return nodes.map(node => this.processOneASTNode(node, this.createKeyIndexer(), liner))
 	}
@@ -79,7 +79,7 @@ class ContentUtils implements IContentUtils {
 				type: node.type,
 				key: indexer(),
 				line: liner(),
-				content: node.content
+				text: node.content
 			}
 		}
 	}
@@ -101,7 +101,8 @@ class ContentUtils implements IContentUtils {
 					ret.children.push(...(this.processTextRuns(run.nodes, indexer, liner)));
 					break;
 				default:
-					ret.children.push(...(run.nodes.map(node => this.processOneASTNode(node, indexer, liner))))
+					ret.children.push(...(run.nodes.map(node => this.processOneASTNode(node, indexer, liner))));
+					break;
 			}
 		})
 
@@ -142,7 +143,7 @@ class ContentUtils implements IContentUtils {
 		return nodes
 		.map(node => node.content) // collect all text fields
 		.join('') // to string
-		.replace('\r', '') // remove windows CR
+		.replace(/\r/g, '') // remove windows CR
 		.split('\n') // split to lines
 		.map(line => ({
 			key: indexer(),
