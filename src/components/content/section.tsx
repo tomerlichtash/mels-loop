@@ -1,6 +1,5 @@
 import homeStyles from '../../styles/home.module.scss';
 import ContentCompoent from './contentComponent';
-import * as mdParser from "simple-markdown"
 import { IContentComponentInitData, IMLParsedNode, IParsedPageData } from '../../interfaces/models';
 
 export const Section = (props: { data: IContentComponentInitData}): JSX.Element => {

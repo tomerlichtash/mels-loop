@@ -1,10 +1,4 @@
-import * as mdParser from "simple-markdown"
-import { IMLParsedNode } from "../interfaces/models";
-
-/**
- * A single node in a parsed markdown AST
- */
- export type ParsedNode = mdParser.SingleASTNode;
+import { IMLParsedNode, ParsedNode } from "../interfaces/models";
 
 /**
  * Functions for processing parsed markdown nodes and maybe more

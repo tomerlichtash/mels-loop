@@ -1,6 +1,11 @@
 import * as mdParser from "simple-markdown"
 
 /**
+ * A single node in a parsed markdown AST
+ */
+export type ParsedNode = mdParser.SingleASTNode;
+
+/**
  * A markdown node parsed and processed by ML
  */
 export interface IMLParsedNode extends mdParser.SingleASTNode {
