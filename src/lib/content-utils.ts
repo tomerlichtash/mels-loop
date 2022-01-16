@@ -11,7 +11,7 @@ export interface IContentUtils {
 	processParseTree(nodes: ParsedNode[]): IMLParsedNode[];
 }
 
-const TypeMap: {[key: string]: MLParsedNodeType} = {
+const TypeMap: { [key: string]: MLParsedNodeType } = {
 	paragraph: "paragraph",
 	line: "line",
 	link: "link",
@@ -56,12 +56,12 @@ class ContentUtils implements IContentUtils {
 
 
 	private isInline(nodeOrType: ParsedNode | string): boolean {
-		const type: string = typeof nodeOrType === "string"? nodeOrType : nodeOrType.type;
+		const type: string = typeof nodeOrType === "string" ? nodeOrType : nodeOrType.type;
 		return type in inlineTypes;
 	}
 
 	private isIgnored(nodeOrType: ParsedNode | string): boolean {
-		const type: string = typeof nodeOrType === "string"? nodeOrType : nodeOrType.type;
+		const type: string = typeof nodeOrType === "string" ? nodeOrType : nodeOrType.type;
 		return type in ignoredTypes;
 	}
 
@@ -71,7 +71,7 @@ class ContentUtils implements IContentUtils {
 			return null;
 		}
 		if (Array.isArray(node.items || node.content)) {
-			return this.processContainer(this.processTextChildren(node), indexer);
+			return this.parsedNodeToMLNode(this.processTextChildren(node), indexer);
 		}
 		else {
 			return {
@@ -84,12 +84,17 @@ class ContentUtils implements IContentUtils {
 	}
 
 
-	private processContainer(node: ParsedNode, indexer: NodeIndexer): IMLParsedNode {
+	private parsedNodeToMLNode(node: ParsedNode, indexer: NodeIndexer): IMLParsedNode {
 		if (this.isIgnored(node)) {
 			return null;
 		}
 		if (node.type === "text") {
-			return this.parsedNodeToMLNode(node, indexer)
+			return {
+				type: "text",
+				key: indexer.nextKey(),
+				line: indexer.currentLine(),
+				text: node.content
+			}
 		}
 
 		if (node.type === "list") {
@@ -107,7 +112,6 @@ class ContentUtils implements IContentUtils {
 		}
 		const children = (node.items || node.content || node) as Array<ParsedNode>;
 		if (!Array.isArray(children)) {
-			(ret as any).line = indexer.nextLine();
 			return ret;
 		}
 		let currentLine: IMLParsedNode = null;
@@ -143,21 +147,6 @@ class ContentUtils implements IContentUtils {
 		return ret
 	}
 
-	private parsedNodeToMLNode(node: ParsedNode, indexer: NodeIndexer): IMLParsedNode {
-		if (node.type === "text") {
-			return {
-				type: "text",
-				key: indexer.nextKey(),
-				line: indexer.currentLine(),
-				text: node.content
-			}
-
-		}
-		return this.processContainer(node, indexer);
-	}
-
-
-
 	private processListNode(node: ParsedNode, indexer: NodeIndexer): IMLParsedNode {
 		const ret: IMLParsedNode = {
 			type: nodeTypeToMLType(node.type),
@@ -172,7 +161,7 @@ class ContentUtils implements IContentUtils {
 		}
 		items.forEach((child: ParsedNode) => {
 			if (Array.isArray(child)) {
-				const processed = this.processContainer({
+				const processed = this.parsedNodeToMLNode({
 					items: child,
 					type: "list-item"
 				}, indexer);
@@ -194,7 +183,7 @@ class ContentUtils implements IContentUtils {
 		}
 		const texts: string[] = []
 		const newChildren: ParsedNode[] = [];
-		
+
 		for (let i = 0, len = children.length; i < len; ++i) {
 			const child: ParsedNode = children[i];
 			if (child.type === "text") {
@@ -225,7 +214,7 @@ class ContentUtils implements IContentUtils {
 			return node.content;
 		}
 		if (Array.isArray(node)) {
-			return node;1
+			return node; 1
 		}
 		return null;
 	}
@@ -239,29 +228,29 @@ class ContentUtils implements IContentUtils {
 	 */
 	private processTextRuns(strings: Array<string>): IMLParsedNode[] {
 		return strings
-		.join('') // to string
-		.replace(/\r/g, '') // remove windows CR
-		.split('\n') // split to lines
-		.filter(Boolean)
-		.reduce((acc, line, index): ParsedNode[] => {
-			if (index > 0) {
+			.join('') // to string
+			.replace(/\r/g, '') // remove windows CR
+			.split('\n') // split to lines
+			.filter(Boolean)
+			.reduce((acc, line, index): ParsedNode[] => {
+				if (index > 0) {
+					acc.push({
+						type: "newline",
+					})
+				}
 				acc.push({
-					type: "newline",
-				})
-			}
-			acc.push({
-				content: line,
-				type: "text"
-			});
-			return acc;
-		}, [])
+					content: line,
+					type: "text"
+				});
+				return acc;
+			}, [])
 	}
 }
 
 class NodeIndexer {
 	private keyIndex = 0;
 	private lineIndex = 0;
-	 public nextKey(): string {
+	public nextKey(): string {
 		return `ast-${this.keyIndex++}`
 	}
 
