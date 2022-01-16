@@ -2,7 +2,6 @@ import homeStyles from '../../styles/home.module.scss';
 
 import Link from "./link";
 import { IContentComponentInitData, IMLParsedNode } from "../../interfaces/models";
-import List from "./list";
 import Heading from "./heading";
 import ListItem from "./listItem";
 import Paragraph from "./paragraph";
@@ -21,9 +20,11 @@ export const ContentComponent = (props: { data: IContentComponentInitData }): JS
 			return <Section key={node.key} data={data} />
 		case "line":
 			return <Paragraph key={node.key} data={data} />
+		case "del":
+		case "ins":
 		case "strong":
 		case "em":
-			return <ContentIterator data={(
+			return <ContentIterator key={node.key} data={(
 				{
 					...data,
 					tag: node.type
@@ -31,7 +32,11 @@ export const ContentComponent = (props: { data: IContentComponentInitData }): JS
 		case "text":
 			return <span key={node.key}>{node.text}</span>
 		case "list":
-			return <List key={node.key} data={data} ordered={Boolean(node.ordered)} />
+			return <ContentIterator key={node.key} data={(
+				{
+					...data,
+					tag: node.ordered? "ol" : "ul"
+				})} />
 		case "list-item":
 			return <ListItem key={node.key} data={data} />
 		case "link":

@@ -32,7 +32,11 @@ const inlineTypes = {
 	"link": 1,
 	"em": 1,
 	"strong": 1,
-	"image": 1
+	"image": 1,
+	ins: 1,
+	del: 1,
+	sup: 1,
+	sub: 1
 }
 
 const ignoredTypes = {

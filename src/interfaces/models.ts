@@ -7,16 +7,18 @@ export type ParsedNode = mdParser.SingleASTNode;
 
 interface INodeTypeMap {
 	paragraph: string
-	line: string
-	link: string
-	image: string
-	text: string
-	strong: string
-	em: string
-	list: string
-	"list-item": string
-	codeBlock: string
-	unknown: string
+	line: string;
+	link: string;
+	image: string;
+	text: string;
+	strong: string;
+	em: string;
+	list: string;
+	ins: string;
+	del: string;
+	"list-item": string;
+	codeBlock: string;
+	unknown: string;
 };
 
 
