@@ -8,7 +8,6 @@ import Paragraph from "./paragraph";
 import Section from "./section";
 import ContentIterator from './contentIterator';
 
-
 export const ContentComponent = (props: { data: IContentComponentInitData }): JSX.Element => {
 	const data = props.data;
 	const node: IMLParsedNode = data.data;
@@ -57,4 +56,3 @@ export const ContentComponent = (props: { data: IContentComponentInitData }): JS
 }
 
 export default ContentComponent;
-

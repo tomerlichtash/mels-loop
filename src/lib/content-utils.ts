@@ -187,7 +187,7 @@ class ContentUtils implements IContentUtils {
 		for (let i = 0, len = children.length; i < len; ++i) {
 			const child: ParsedNode = children[i];
 			if (child.type === "text") {
-				texts.push(child.content);
+				texts.push(child.content as string);
 			}
 			else {
 				if (texts.length) {

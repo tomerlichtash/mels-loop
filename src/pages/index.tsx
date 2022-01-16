@@ -30,7 +30,7 @@ export default function Home(data: IContentComponentData) {
 				<title>{siteTitle}</title>
 			</Head>
 
-			<article className={homeStyles.ltr}>
+			{/* <article className={homeStyles.ltr}>
 				<section className={homeStyles.intro}>
 					<p>This was posted to Usenet by its author, Ed Nather (&lt;nather@astro.as.utexas.edu&gt;, on May 21, 1983.</p>
 				</section>
@@ -330,7 +330,7 @@ export default function Home(data: IContentComponentData) {
 					<p className={homeStyles.paragraph}>I didn't feel comfortable</p>
 					<p className={homeStyles.paragraph}>hacking up the code of a Real Programmer.</p>
 				</section>
-			</article>
+			</article> */}
 			<article className={homeStyles.rtl}>
 				{
 					elements.map((node, index) => {
@@ -343,7 +343,6 @@ export default function Home(data: IContentComponentData) {
 					})
 				}		
 			</article>
-
 		</Layout>
 	);
 }

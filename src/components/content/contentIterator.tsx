@@ -1,4 +1,3 @@
-import homeStyles from '../../styles/home.module.scss';
 import ContentComponent from './contentComponent';
 import { IContentComponentInitData, IMLParsedNode } from '../../interfaces/models';
 

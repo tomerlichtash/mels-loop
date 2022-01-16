@@ -51,13 +51,13 @@ export function getSortedContentData(contentDir: string, locale: string): IParse
 				return new ParsedPageData({
 					id,
 					title: matterData.title || "",
-					date: parseDate(matterData.date),
+					date: parseDate(matterData.date as string),
 					content,
 					parsed: tree
 				});
 			}
 			catch(e) {
-				console.error(`Error processing ${fullPath}\n${e}`);
+				console.error(`Error processing ${fullPath}\n${JSON.stringify(e)}`);
 				return new ParsedPageData({ error: String(e) })
 			}
 		})
@@ -144,10 +144,10 @@ class ParsedPageData implements IParsedPageData {
 	public toString() {
 		return JSON.stringify(this);
 	}
-	public id: string = "";
+	public id = "";
 	public date: Date = null;
-	public title: string = "";
-	public content: string = "";
+	public title = "";
+	public content = "";
 	public parsed: IMLParsedNode[] = []
 	public error?: string = "";
 
