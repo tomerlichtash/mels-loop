@@ -6,7 +6,7 @@ import homeStyles from '../styles/home.module.scss';
 //import { getSortedPostsData } from '../lib/content-drivers/posts';
 import { getSortedCodexData } from '../lib/content-drivers/codex';
 import { IContentComponentData, IMLParsedNode, IParsedPageData } from '../interfaces/models';
-import ContentCompoent from '../components/content/contentComponent';
+import ContentComponent from '../components/content/contentComponent';
 //import { useState } from 'react';
 
 const FULL_PAGE_RE = /full.*text/i
@@ -333,8 +333,8 @@ export default function Home(data: IContentComponentData) {
 			</article>
 			<article className={homeStyles.rtl}>
 				{
-					elements.map(node => {
-						return <ContentCompoent data={(
+					elements.map((node, index) => {
+						return <ContentComponent key={`top-${index}`} data={(
 							{
 								data: node,
 								locale

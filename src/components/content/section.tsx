@@ -1,6 +1,6 @@
 import homeStyles from '../../styles/home.module.scss';
-import ContentCompoent from './contentComponent';
-import { IContentComponentInitData, IMLParsedNode, IParsedPageData } from '../../interfaces/models';
+import ContentComponent from './contentComponent';
+import { IContentComponentInitData, IMLParsedNode } from '../../interfaces/models';
 
 export const Section = (props: { data: IContentComponentInitData}): JSX.Element => {
 	const p = props.data.data;
@@ -10,7 +10,7 @@ export const Section = (props: { data: IContentComponentInitData}): JSX.Element 
 		<section className={homeStyles.verse} key={p.key}>
 			{
 				elements.map(node => {
-					return <ContentCompoent key={node.key} data={(
+					return <ContentComponent key={node.key} data={(
 						{
 							data: node,
 							locale: props.data.locale

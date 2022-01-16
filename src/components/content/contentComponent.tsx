@@ -3,12 +3,14 @@ import homeStyles from '../../styles/home.module.scss';
 import Link from "./link";
 import { IContentComponentInitData, IMLParsedNode } from "../../interfaces/models";
 import List from "./list";
+import Heading from "./heading";
 import ListItem from "./listItem";
 import Paragraph from "./paragraph";
 import Section from "./section";
+import ContentIterator from './contentIterator';
 
 
-export const ContentCompoent = (props: { data: IContentComponentInitData }): JSX.Element => {
+export const ContentComponent = (props: { data: IContentComponentInitData }): JSX.Element => {
 	const data = props.data;
 	const node: IMLParsedNode = data.data;
 	if (!node.key) {
@@ -17,8 +19,17 @@ export const ContentCompoent = (props: { data: IContentComponentInitData }): JSX
 	switch (node.type) {
 		case "paragraph":
 			return <Section key={node.key} data={data} />
-		case "text":
+		case "line":
 			return <Paragraph key={node.key} data={data} />
+		case "strong":
+		case "em":
+			return <ContentIterator data={(
+				{
+					...data,
+					tag: node.type
+				})} />
+		case "text":
+			return <span key={node.key}>{node.text}</span>
 		case "list":
 			return <List key={node.key} data={data} ordered={Boolean(node.ordered)} />
 		case "list-item":
@@ -26,11 +37,19 @@ export const ContentCompoent = (props: { data: IContentComponentInitData }): JSX
 		case "link":
 			return <Link key={node.key} data={data} />
 		case "codeBlock":
-			return <code key={node.key}>{node.text}</code>
+			return <ContentIterator key={node.key} data={(
+				{
+					...data,
+					tag: "code"
+				}
+			)} />
 		default:
+			if (/heading/i.test(node.type)) {
+				return <Heading data={data} key={node.key} />
+			}
 			return <div className={homeStyles.error} key={node.key}>Type {data.data.type} not found</div>
 	}
 }
 
-export default ContentCompoent;
+export default ContentComponent;
 

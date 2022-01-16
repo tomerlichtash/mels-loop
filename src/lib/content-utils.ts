@@ -1,4 +1,4 @@
-import { IMLParsedNode, ParsedNode } from "../interfaces/models";
+import { IMLParsedNode, MLParsedNodeType, ParsedNode } from "../interfaces/models";
 
 /**
  * Functions for processing parsed markdown nodes and maybe more
@@ -11,103 +11,154 @@ export interface IContentUtils {
 	processParseTree(nodes: ParsedNode[]): IMLParsedNode[];
 }
 
-type KeyIndexer = () => string;
-type LineIndexer = () => number;
+const TypeMap: {[key: string]: MLParsedNodeType} = {
+	paragraph: "paragraph",
+	line: "line",
+	link: "link",
+	image: "image",
+	text: "text",
+	strong: "strong",
+	em: "em",
+	emph: "em",
+	list: "list",
+	"list-item": "list-item",
+	codeBlock: "codeBlock",
+	unknown: "unknown"
+};
 
-type ParsedNodesRun = {type: string, nodes: ParsedNode[]};
+
+const inlineTypes = {
+	"text": 1,
+	"link": 1,
+	"em": 1,
+	"strong": 1,
+	"image": 1
+}
+
+const ignoredTypes = {
+	"newline": true
+}
+
+function nodeTypeToMLType(nodeName: string): MLParsedNodeType {
+	return TypeMap[nodeName] || (nodeName as MLParsedNodeType)
+}
 
 class ContentUtils implements IContentUtils {
 
 	public processParseTree(nodes: ParsedNode[]): IMLParsedNode[] {
-		const liner = this.createLineIndexer();
-		return nodes.map(node => this.processOneASTNode(node, this.createKeyIndexer(), liner))
+		const indexer = new NodeIndexer();
+		return nodes.map(node => this.processOneASTNode(node, indexer)).filter(Boolean);
 	}
 
-	/**
-	 * partition an array of parsed nodes into runs of identical types
-	 * @param nodes 
-	 * @returns 
-	 */
-	private collectNodeRuns(nodes: ParsedNode[]): ParsedNodesRun[] {
-		if (!Array.isArray(nodes)) {
-			return [];
+
+	private isInline(nodeOrType: ParsedNode | string): boolean {
+		const type: string = typeof nodeOrType === "string"? nodeOrType : nodeOrType.type;
+		return type in inlineTypes;
+	}
+
+	private isIgnored(nodeOrType: ParsedNode | string): boolean {
+		const type: string = typeof nodeOrType === "string"? nodeOrType : nodeOrType.type;
+		return type in ignoredTypes;
+	}
+
+
+	private processOneASTNode(node: ParsedNode, indexer: NodeIndexer): IMLParsedNode {
+		if (this.isIgnored(node)) {
+			return null;
 		}
-		const ret: Array<ParsedNodesRun>= [];
-		let last: ParsedNodesRun = null;
-		nodes.forEach(node => {
-			if (!last || node.type !== last.type) {
-				last = { type: node.type, nodes: [node]}
-				ret.push(last);
-			}
-			else {
-				last.nodes.push(node);
-			}
-		})
-		return ret;
-	}
-
-	/**
-	 * Creates an indexer function for unique indices in the scope of a container item
-	 * @returns 
-	 */
-	private createKeyIndexer(): KeyIndexer {
-		let index = 0;
-		return () => `ast-${index++}`
-	}
-
-	/**
-	 * Creates a line numbering function for consecutive line numbers in the scope of a parsed page
-	 * @returns 
-	 */
-	 private createLineIndexer(): LineIndexer {
-		let index = 0;
-		return () => index++
-	}
-
-	private processOneASTNode(node: ParsedNode, indexer: KeyIndexer, liner: LineIndexer): IMLParsedNode {
 		if (Array.isArray(node.items || node.content)) {
-			return this.processContainer(node, indexer, liner);
+			return this.processContainer(this.processTextChildren(node), indexer);
 		}
 		else {
 			return {
-				type: node.type,
-				key: indexer(),
-				line: liner(),
-				text: node.content
+				type: nodeTypeToMLType(node.type),
+				key: indexer.nextKey(),
+				line: indexer.nextLine(),
+				text: String(node.content)
 			}
 		}
 	}
 
-	private processContainer(node: ParsedNode, indexer: KeyIndexer, liner: LineIndexer): IMLParsedNode {
-		const ret: IMLParsedNode = {
-			type: node.type,
-			line: -1,
-			key: indexer(),
-			children: [] as Array<IMLParsedNode>
-		}
-		if (node.type === "list") {
-			return this.processListNode(node, indexer, liner);
-		}
-		const runs = this.collectNodeRuns(node.items || node.content);
-		runs.forEach(run => {
-			switch (run.type) {
-				case "text":
-					ret.children.push(...(this.processTextRuns(run.nodes, indexer, liner)));
-					break;
-				default:
-					ret.children.push(...(run.nodes.map(node => this.processOneASTNode(node, indexer, liner))));
-					break;
-			}
-		})
 
+	private processContainer(node: ParsedNode, indexer: NodeIndexer): IMLParsedNode {
+		if (this.isIgnored(node)) {
+			return null;
+		}
+		if (node.type === "text") {
+			return this.parsedNodeToMLNode(node, indexer)
+		}
+
+		if (node.type === "list") {
+			return this.processListNode(node, indexer);
+		}
+
+		const ret: IMLParsedNode = {
+			type: nodeTypeToMLType(node.type),
+			line: indexer.currentLine(),
+			key: indexer.nextKey(),
+			children: [] as Array<IMLParsedNode>,
+			ordered: node.ordered,
+			target: node.target,
+			level: node.level
+		}
+		const children = (node.items || node.content || node) as Array<ParsedNode>;
+		if (!Array.isArray(children)) {
+			(ret as any).line = indexer.nextLine();
+			return ret;
+		}
+		let currentLine: IMLParsedNode = null;
+		const isInlineContainer = this.isInline(node);
+
+		for (let i = 0, len = children.length; i < len; ++i) {
+			const child = children[i];
+			const type = child.type;
+			if (this.isInline(type)) {
+				if (isInlineContainer) {
+					ret.children.push(this.parsedNodeToMLNode(child, indexer));
+					continue;
+				}
+				if (!currentLine) {
+					currentLine = {
+						key: indexer.nextKey(),
+						line: indexer.nextLine(),
+						children: [],
+						type: "line"
+					};
+					ret.children.push(currentLine);
+				}
+				currentLine.children.push(this.parsedNodeToMLNode(child, indexer));
+			}
+			else {
+				currentLine = null;
+				if (!this.isIgnored(type)) {
+					ret.children.push(this.parsedNodeToMLNode(child, indexer));
+				}
+			}
+
+		}
 		return ret
 	}
 
-	private processListNode(node: ParsedNode, indexer: KeyIndexer, liner: LineIndexer): IMLParsedNode {
+	private parsedNodeToMLNode(node: ParsedNode, indexer: NodeIndexer): IMLParsedNode {
+		if (node.type === "text") {
+			return {
+				type: "text",
+				key: indexer.nextKey(),
+				line: indexer.currentLine(),
+				text: node.content
+			}
+
+		}
+		return this.processContainer(node, indexer);
+	}
+
+
+
+	private processListNode(node: ParsedNode, indexer: NodeIndexer): IMLParsedNode {
 		const ret: IMLParsedNode = {
-			type: node.type,
+			type: nodeTypeToMLType(node.type),
 			ordered: node.ordered,
-			key: indexer(),
+			key: indexer.nextKey(),
 			line: -1,
 			children: []
 		}
@@ -117,34 +168,105 @@ class ContentUtils implements IContentUtils {
 		}
 		items.forEach((child: ParsedNode) => {
 			if (Array.isArray(child)) {
-				ret.children.push(this.processContainer({
-						items: child,
-						type: "list-item"
-					}, indexer, liner))
+				const processed = this.processContainer({
+					items: child,
+					type: "list-item"
+				}, indexer);
+				if (processed) {
+					ret.children.push(processed);
+				}
 			}
 		});
 		return ret;
 	}
 
+	private processTextChildren(node: ParsedNode): ParsedNode {
+		if (!node) {
+			return node;
+		}
+		const children = this.findArrayPart(node);
+		if (!children) {
+			return node;
+		}
+		const texts: string[] = []
+		const newChildren: ParsedNode[] = [];
+		
+		for (let i = 0, len = children.length; i < len; ++i) {
+			const child: ParsedNode = children[i];
+			if (child.type === "text") {
+				texts.push(child.content);
+			}
+			else {
+				if (texts.length) {
+					newChildren.push(...(this.processTextRuns(texts)))
+					texts.length = 0;
+				}
+				newChildren.push(this.processTextChildren(child));
+			}
+		}
+		if (texts.length) {
+			newChildren.push(...(this.processTextRuns(texts)))
+		}
+		children.length = 0;
+		children.push(...newChildren);
+
+		return node;
+	}
+
+	private findArrayPart(node: ParsedNode): Array<ParsedNode> {
+		if (Array.isArray(node.items)) {
+			return node.items;
+		}
+		if (Array.isArray(node.content)) {
+			return node.content;
+		}
+		if (Array.isArray(node)) {
+			return node;1
+		}
+		return null;
+	}
+
 	/**
-	 * Creates a list of line objects from an array of 'text' AST nodes
-	 * @param nodes 
+	 * Merges the input strings, splits by newline and creates matching "text" nodes
+	 * @param strings 
 	 * @param indexer 
 	 * @param liner 
 	 * @returns 
 	 */
-	private processTextRuns(nodes: ParsedNode[], indexer: KeyIndexer, liner: LineIndexer): IMLParsedNode[] {
-		return nodes
-		.map(node => node.content) // collect all text fields
+	private processTextRuns(strings: Array<string>): IMLParsedNode[] {
+		return strings
 		.join('') // to string
 		.replace(/\r/g, '') // remove windows CR
 		.split('\n') // split to lines
-		.map(line => ({
-			key: indexer(),
-			line: liner(),
-			text: line,
-			type: "text"
-		}))
+		.filter(Boolean)
+		.reduce((acc, line, index): ParsedNode[] => {
+			if (index > 0) {
+				acc.push({
+					type: "newline",
+				})
+			}
+			acc.push({
+				content: line,
+				type: "text"
+			});
+			return acc;
+		}, [])
+	}
+}
+
+class NodeIndexer {
+	private keyIndex = 0;
+	private lineIndex = 0;
+	 public nextKey(): string {
+		return `ast-${this.keyIndex++}`
+	}
+
+	public nextLine(): number {
+		return this.lineIndex++
+	}
+
+	public currentLine(): number {
+		return this.lineIndex;
 	}
 }
 

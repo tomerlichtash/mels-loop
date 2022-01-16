@@ -1,21 +1,15 @@
-import ContentCompoent from './contentComponent';
-import { IContentComponentInitData, IMLParsedNode } from '../../interfaces/models';
+import { IContentComponentInitData } from '../../interfaces/models';
+import ContentIterator from './contentIterator';
 
 export const ListItem = (props: { data: IContentComponentInitData }): JSX.Element => {
-	const p = props.data.data;
-	const elements: IMLParsedNode[] = Array.isArray(p.children) ?  p.children : []
 	return (
-			<li> {
-				elements.map(node => {
-					return <ContentCompoent key={node.key} data={(
-						{
-							data: node,
-							locale: props.data.locale
-						}
-					)}/>
+		<li>
+			<ContentIterator data={(
+				{
+					...props.data
 				})
-			}
-			</li>
+			} />
+		</li>
 	);
 };
 
