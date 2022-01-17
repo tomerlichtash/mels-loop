@@ -21,6 +21,6 @@ describe('hello world', () => {
     } as IContentComponentInitData;
     const wrapper = render(<ContentComponent data={compData}/>);
 
-    expect(wrapper.container.querySelector('span').textContent).toContain(`sample line`);
+    expect(wrapper.container.querySelector('span').textContent).toEqual(`sample line`);
   });
 });
