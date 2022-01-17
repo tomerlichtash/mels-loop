@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 // import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next';
-import homeStyles from '../styles/home.module.scss';
+// import homeStyles from '../styles/home.module.scss';
 //import { getSortedPostsData } from '../lib/content-drivers/posts';
 import { getSortedCodexData } from '../lib/content-drivers/codex';
 import { IContentComponentData, IMLParsedNode, IParsedPageData } from '../interfaces/models';
@@ -331,7 +331,7 @@ export default function Home(data: IContentComponentData) {
 					<p className={homeStyles.paragraph}>hacking up the code of a Real Programmer.</p>
 				</section>
 			</article> */}
-			<article className={homeStyles.rtl}>
+			<article className={'rtl'}>
 				{
 					elements.map((node, index) => {
 						return <ContentComponent key={`top-${index}`} data={(

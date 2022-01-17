@@ -1,4 +1,4 @@
-import homeStyles from '../../styles/home.module.scss';
+// import homeStyles from '../../styles/home.module.scss';
 
 import Link from "./link";
 import { IContentComponentInitData, IMLParsedNode } from "../../interfaces/models";
@@ -8,6 +8,7 @@ import Paragraph from "./paragraph";
 import Section from "./section";
 import ContentIterator from './contentIterator';
 
+export const ContentComponent = (props: { data: IContentComponentInitData }): JSX.Element => {
 	const data = props.data;
 	const node: IMLParsedNode = data.data;
 	if (!node.key) {
@@ -50,7 +51,7 @@ import ContentIterator from './contentIterator';
 			if (/heading/i.test(node.type)) {
 				return <Heading data={data} key={node.key} />
 			}
-			return <div className={homeStyles.error} key={node.key}>Type {data.data.type} not found</div>
+			return <div className={'error'} key={node.key}>Type {data.data.type} not found</div>
 	}
 }
 

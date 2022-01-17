@@ -3,7 +3,7 @@ import { getAllPostIds, getPostData } from '../../lib/content-drivers/posts';
 // import { useRouter } from 'next/router';
 import Head from 'next/head';
 // import Date from '../../components/date';
-import classes from '../../styles/codex.module.scss';
+// import classes from '../../styles/codex.module.scss';
 // import utilStyles from '../../styles/utils.module.css';
 import { GetStaticProps, GetStaticPaths } from 'next';
 
@@ -22,7 +22,7 @@ export default function Post({
       <Head>
         <title>{postData.title}</title>
       </Head>
-      <article className={classes.article}>
+      <article className={'article'}>
         {/* <h1 className={utilStyles.headingXl}>{postData.title}</h1> */}
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>

@@ -1,4 +1,3 @@
-import { configure } from "enzyme";
-import ReactAdapter from "@wojtekmaj/enzyme-adapter-react-17";
+import dotenv from 'dotenv'
 
-configure({ adapter: new ReactAdapter() });
+dotenv.config({ path: './.env.test' })
