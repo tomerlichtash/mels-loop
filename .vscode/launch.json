@@ -20,7 +20,7 @@
 			"name": "Next.js: debug server-side",
 			"type": "node-terminal",
 			"request": "launch",
-			"command": "next dev",
+			"command": "yarn dev",
 			"env": {
 				"NODE_OPTIONS": "--inspect"
 			}
@@ -38,13 +38,26 @@
 			"name": "Next.js full stack",
 			"type": "node-terminal",
 			"request": "launch",
-			"command": "next dev",
+			"command": "yarn dev",
 			"console": "integratedTerminal",
 			"serverReadyAction": {
 				"pattern": "started server on .+, url: (https?://.+)",
 				"uriFormat": "%s",
 				"action": "debugWithChrome"
 			}
+		},
+		{
+			"name": "Debug Jest Tests",
+			"type": "node",
+			"request": "launch",
+			"runtimeArgs": [
+			  "--inspect",
+			  "${workspaceRoot}/node_modules/.bin/jest",
+			  "--runInBand"
+			],
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"port": 9229
 		}
 	]
 }

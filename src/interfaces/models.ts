@@ -19,9 +19,7 @@ interface INodeTypeMap {
 	"list-item": string;
 	codeBlock: string;
 	unknown: string;
-};
-
-
+}
 
 export type MLParsedNodeType = keyof(INodeTypeMap)
 
