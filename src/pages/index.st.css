@@ -1,11 +1,28 @@
 @namespace "Index";
 
 .root {
-    -st-states: locale(string);
+    font-size: 16px;
+    font-family: "Arial", sans-serif;
+    border: 2px solid red;
 }
 
-/* .root:locale('en-US') {
+.article {
+    -st-states: locale(enum(en-US, he-IL));
 }
 
-.root:locale('he-IL') {
-} */
+.article:locale(en-US) {
+    direction: rtl;
+}
+
+.article:locale(he-IL) {
+    direction: ltr;
+}
+
+.verse {
+    margin-bottom: 2rem;
+    line-height: 1.6rem;
+}
+
+.paragraph {
+    margin: 0;
+}

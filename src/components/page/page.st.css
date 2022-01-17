@@ -6,7 +6,7 @@
 }
 
 .root {
-  background: value(PageBgColor);
+  padding: 2rem;
 }
 
 /* 
@@ -15,7 +15,6 @@
 */
 @media (min-width: 1281px) {
   .root {
-    border: 2px solid red;
   }
 }
 

@@ -1,0 +1,5 @@
+@namespace "Date";
+
+.root {
+    -st-states: locale(string);
+}
