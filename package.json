@@ -8,6 +8,7 @@
     "start": "next start",
     "eslint": "eslint . -f codeframe",
     "test": "jest",
+    "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
