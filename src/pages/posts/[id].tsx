@@ -3,7 +3,6 @@ import { getAllPostIds, getPostData } from '../../lib/content-drivers/posts';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Date from '../../components/date';
-import utilStyles from '../../styles/utils.module.css';
 import { GetStaticProps, GetStaticPaths } from 'next';
 
 export default function Post({
@@ -22,8 +21,8 @@ export default function Post({
         <title>{postData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={utilStyles.lightText}>
+        <h1>{postData.title}</h1>
+        <div>
           <Date dateString={postData.date} locale={locale} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />

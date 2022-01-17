@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';
 
-const { defaultLocale } = require('../../i18n.json');
+const { defaultLocale } = require('../../locale.json');
 
 const getIndexFileName = (locale: string): string =>
 	defaultLocale === locale ? 'index.md' : `index.${locale}.md`;

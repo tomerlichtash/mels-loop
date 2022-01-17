@@ -1,22 +1,27 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
-import utilStyles from '../styles/utils.module.css';
-import useTranslation from 'next-translate/useTranslation';
-// import { useRouter } from 'next/router';
-// import { getSortedPostsData } from '../lib/content-drivers/posts';
-// import Link from 'next/link';
-// import Date from '../components/date';
-// import { GetStaticProps } from 'next';
+import Layout from '../components/layout/layout';
+import { useRouter } from "next/router";
+import { aboutLocale } from "../locales/about";
+
+export type ILocale = 'en-US' | 'he-IL';
+
+export interface IContext {
+  locales: ILocale[];
+  locale: ILocale;
+  defaultLocale: ILocale;
+}
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { locale } = useRouter();
+
   return (
-    <Layout home>
+    <Layout>
       <Head>
-        <title>{siteTitle} - About</title>
+        {/* <title>{siteTitle}</title> */}
       </Head>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h1>{t('about:title')}</h1>
+      <section>
+        <h1>About</h1>
+        <h2>{aboutLocale[locale].title}</h2>
         About this site
       </section>
     </Layout>
@@ -29,5 +34,11 @@ export default function Home() {
 //     props: {
 //       allPostsData,
 //     },
+//   };
+// };
+
+// export const getStaticProps = async (context: IContext) => {
+//   return {
+//     props: { context },
 //   };
 // };

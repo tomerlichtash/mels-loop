@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { classes } from './nav.st.css'
 
 // const links = [
 //   { href: 'https://github.com/vercel/next.js', label: 'GitHub' },
@@ -7,7 +8,7 @@ import Link from 'next/link';
 
 export const Nav = (): JSX.Element => {
   return (
-    <nav>
+    <nav className={classes.root}>
       <ul className="flex items-center justify-between p-8">
         <li>
           <Link href="/">

@@ -1,0 +1,25 @@
+@namespace "Header";
+
+:import {
+  -st-from: '../../theme/common.st.css';
+  -st-named: HeaderBgColor, siteTitleFontSize;
+}
+
+.root {
+  background: value(HeaderBgColor);
+  text-align: center;
+}
+
+.siteTitle {
+  font-size: value(siteTitleFontSize);
+  text-transform: uppercase;
+  font-family: "NunitoBlack";
+}
+
+/* @font-face {
+  font-family: "NunitoBlack";
+  src: url("../../theme/assets/fonts/Nunito/static/Nunito-Black.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+} */

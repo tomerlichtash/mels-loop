@@ -79,7 +79,7 @@ export default function Layout({
           </Link>
         </div>
       )}
-      <Footer />
+      <Footer isHome={home}/>
     </div>
   );
 }

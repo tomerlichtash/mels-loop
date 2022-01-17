@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/**/*.ts",
     "**/**/*.tsx"
-  ],
+, "src/components/layout.tsx.bak"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,0 +1,10 @@
+@namespace "Footer";
+
+:import {
+  -st-from: '../../theme/common.st.css';
+  -st-named: FooterBgColor;
+}
+
+.root {
+  background: value(FooterBgColor);
+}

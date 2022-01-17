@@ -1,0 +1,11 @@
+@namespace "Index";
+
+.root {
+    -st-states: locale(string);
+}
+
+/* .root:locale('en-US') {
+}
+
+.root:locale('he-IL') {
+} */

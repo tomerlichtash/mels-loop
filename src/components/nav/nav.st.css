@@ -1,0 +1,10 @@
+@namespace "Nav";
+
+:import {
+  -st-from: '../../theme/common.st.css';
+  -st-named: NavBgColor;
+}
+
+.root {
+  background: value(NavBgColor);
+}

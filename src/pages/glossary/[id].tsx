@@ -3,7 +3,6 @@ import { getAllTermIds, getTermData } from '../../lib/content-drivers/glossary';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Date from '../../components/date';
-import utilStyles from '../../styles/utils.module.css';
 import { GetStaticProps, GetStaticPaths } from 'next';
 
 export default function Term({
@@ -22,8 +21,8 @@ export default function Term({
         <title>{termData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{termData.title}</h1>
-        <div className={utilStyles.lightText}>
+        <h1>{termData.title}</h1>
+        <div>
           <Date dateString={termData.date} locale={locale} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: termData.contentHtml }} />
