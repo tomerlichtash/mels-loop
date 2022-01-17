@@ -1,12 +1,12 @@
 @namespace "Page";
 
 :import {
-  -st-from: '../../theme/common.st.css';
-  -st-named: PageBgColor;
+	-st-from: "../../theme/common.st.css";
+	-st-named: PageBgColor;
 }
 
 .root {
-  padding: 2rem;
+	padding: 2rem;
 }
 
 /* 
@@ -14,8 +14,9 @@
   ##Screen = 1281px to higher resolution desktops
 */
 @media (min-width: 1281px) {
-  .root {
-  }
+	.root {
+		border: 2px solid red;
+	}
 }
 
 /* 
@@ -23,9 +24,9 @@
   ##Screen = B/w 1025px to 1280px
 */
 @media (min-width: 1025px) and (max-width: 1280px) {
-  .root {
-    border: 2px solid green;
-  }
+	.root {
+		border: 2px solid green;
+	}
 }
 
 /* 
@@ -33,9 +34,9 @@
   ##Screen = B/w 768px to 1024px
 */
 @media (min-width: 768px) and (max-width: 1024px) {
-  .root {
-    border: 2px solid blue;
-  }
+	.root {
+		border: 2px solid blue;
+	}
 }
 
 /* 
@@ -43,9 +44,9 @@
   ##Screen = B/w 768px to 1024px
 */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  .root {
-    border: 2px solid purple;
-  }
+	.root {
+		border: 2px solid purple;
+	}
 }
 
 /* 
@@ -53,9 +54,9 @@
   ##Screen = B/w 481px to 767px
 */
 @media (min-width: 481px) and (max-width: 767px) {
-  .root {
-    border: 2px solid aqua;
-  }
+	.root {
+		border: 2px solid aqua;
+	}
 }
 
 /* 
@@ -63,7 +64,7 @@
   ##Screen = B/w 320px to 479px
 */
 @media (min-width: 320px) and (max-width: 480px) {
-  .root {
-    border: 2px solid fuchsia;
-  }
+	.root {
+		border: 2px solid fuchsia;
+	}
 }
