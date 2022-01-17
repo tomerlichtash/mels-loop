@@ -1,5 +1,5 @@
 // import homeStyles from '../../styles/home.module.scss';
-
+import React from 'react';
 import Link from "./link";
 import { IContentComponentInitData, IMLParsedNode } from "../../interfaces/models";
 import Heading from "./heading";

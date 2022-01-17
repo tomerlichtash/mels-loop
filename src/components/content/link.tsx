@@ -1,5 +1,6 @@
 import { IContentComponentInitData } from '../../interfaces/models';
 import ContentIterator from './contentIterator';
+import React from 'react';
 
 export const Link = (props: { data: IContentComponentInitData }): JSX.Element => {
 	const p = props.data.data;

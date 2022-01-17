@@ -1,5 +1,6 @@
 import { IContentComponentInitData } from '../../interfaces/models';
 import ContentIterator from './contentIterator';
+import React from 'react';
 
 export const Heading = (props: { data: IContentComponentInitData}): JSX.Element => {
 	const data = props.data,

@@ -1,6 +1,7 @@
 // import homeStyles from '../../styles/home.module.scss';
 import ContentComponent from './contentComponent';
 import { IContentComponentInitData, IMLParsedNode } from '../../interfaces/models';
+import React from 'react';
 
 export const Section = (props: { data: IContentComponentInitData}): JSX.Element => {
 	const p = props.data.data;
