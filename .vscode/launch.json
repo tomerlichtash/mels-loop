@@ -8,13 +8,9 @@
 			"type": "pwa-node",
 			"request": "launch",
 			"name": "Launch Program",
-			"skipFiles": [
-				"<node_internals>/**"
-			],
+			"skipFiles": ["<node_internals>/**"],
 			"program": "${file}",
-			"outFiles": [
-				"${workspaceFolder}/**/*.js"
-			]
+			"outFiles": ["${workspaceFolder}/**/*.js"]
 		},
 		{
 			"name": "Next.js: debug server-side",
@@ -29,9 +25,7 @@
 			"type": "node",
 			"request": "attach",
 			"name": "Attach to Next",
-			"skipFiles": [
-				"<node_internals>/**"
-			],
+			"skipFiles": ["<node_internals>/**"],
 			"port": 9229
 		},
 		{
@@ -51,9 +45,9 @@
 			"type": "node",
 			"request": "launch",
 			"runtimeArgs": [
-			  "--inspect-brk",
-			  "${workspaceRoot}/node_modules/.bin/jest",
-			  "--runInBand"
+				"--inspect-brk",
+				"${workspaceRoot}/node_modules/.bin/jest",
+				"--runInBand"
 			],
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "neverOpen",

@@ -1,4 +1,4 @@
-import * as mdParser from "simple-markdown"
+import * as mdParser from "simple-markdown";
 
 /**
  * A single node in a parsed markdown AST
@@ -6,7 +6,7 @@ import * as mdParser from "simple-markdown"
 export type ParsedNode = mdParser.SingleASTNode;
 
 interface INodeTypeMap {
-	paragraph: string
+	paragraph: string;
 	line: string;
 	link: string;
 	image: string;
@@ -21,7 +21,7 @@ interface INodeTypeMap {
 	unknown: string;
 }
 
-export type MLParsedNodeType = keyof(INodeTypeMap)
+export type MLParsedNodeType = keyof INodeTypeMap;
 
 /**
  * A markdown node parsed and processed by ML
@@ -30,7 +30,7 @@ export interface IMLParsedNode {
 	readonly type: MLParsedNodeType;
 	readonly key: string;
 	readonly line: number;
-	readonly children?: IMLParsedNode[]
+	readonly children?: IMLParsedNode[];
 	readonly text?: string;
 	/**
 	 * Un/Ordered list
@@ -69,7 +69,7 @@ export interface IParsedPageData {
 	/**
 	 * The parsed MD
 	 */
-	readonly parsed: IMLParsedNode[]
+	readonly parsed: IMLParsedNode[];
 	/**
 	 * If present, ignore the data
 	 */
@@ -94,4 +94,3 @@ export interface IContentComponentInitData {
 	tag?: string;
 	style?: string;
 }
-
