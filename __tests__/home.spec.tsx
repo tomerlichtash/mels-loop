@@ -1,8 +1,9 @@
 import React from 'react';
-import ContentComponent from "../src/components/content/contentComponent";
-import {IContentComponentInitData, MLParsedNodeType} from '../src/interfaces/models'
-import {render, screen} from '@testing-library/react'
-describe('hello world', () => {
+import ContentComponent from '../src/components/content/contentComponent';
+import { IContentComponentInitData } from '../src/interfaces/models';
+import { render } from '@testing-library/react';
+
+describe('ContentComponent', () => {
   it('should render sample line', () => {
     const compData = {
       data: {
@@ -19,6 +20,7 @@ describe('hello world', () => {
       },
       locale: 'en-US'
     } as IContentComponentInitData;
+
     const wrapper = render(<ContentComponent data={compData}/>);
 
     expect(wrapper.container.querySelector('span').textContent).toEqual(`sample line`);
