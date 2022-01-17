@@ -7,7 +7,7 @@ import Nav from './nav';
 import Footer from './footer';
 
 const name = `Mel's Loop`;
-export const siteTitle = `TS, i18n and more`;
+export const siteTitle = `Mel's Loop`;
 
 export default function Layout({
   children,
