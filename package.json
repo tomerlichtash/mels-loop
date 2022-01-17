@@ -6,7 +6,9 @@
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "eslint": "eslint . -f codeframe"
+    "eslint": "eslint . -f codeframe",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "date-fns": "^2.28.0",
