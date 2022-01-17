@@ -1,28 +1,28 @@
 @namespace "Index";
 
 .root {
-    font-size: 16px;
-    font-family: "Arial", sans-serif;
-    border: 2px solid red;
+	font-size: 16px;
+	font-family: "Arial", sans-serif;
+	border: 2px solid red;
 }
 
 .article {
-    -st-states: locale(enum(en-US, he-IL));
+	-st-states: locale(enum(en, he));
 }
 
-.article:locale(en-US) {
-    direction: rtl;
+.article:locale(en) {
+	direction: rtl;
 }
 
-.article:locale(he-IL) {
-    direction: ltr;
+.article:locale(he) {
+	direction: ltr;
 }
 
 .verse {
-    margin-bottom: 2rem;
-    line-height: 1.6rem;
+	margin-bottom: 2rem;
+	line-height: 1.6rem;
 }
 
 .paragraph {
-    margin: 0;
+	margin: 0;
 }

@@ -1,4 +1,4 @@
-import { format, parseISO } from "date-fns";
+// import { format, parseISO } from "date-fns";
 import { getLocale, getLocaleFormat } from "../../utils";
 import { style, classes } from "./date.st.css";
 
@@ -12,12 +12,13 @@ export const Date = ({
 	if (!dateString) {
 		return null;
 	}
-	const date = parseISO(dateString);
+	// const date = parseISO(dateString);
 	return (
 		<time dateTime={dateString} className={style(classes.root, { locale })}>
-			{format(date, getLocaleFormat(locale), {
+			timestamp
+			{/* {format(date, getLocaleFormat(locale), {
 				locale: getLocale(locale),
-			})}
+			})} */}
 		</time>
 	);
 };

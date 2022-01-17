@@ -22,9 +22,7 @@ export default function Doc({
 			</Head>
 			<article>
 				<h1>{docData.title}</h1>
-				<div>
-					<Date dateString={docData.date} locale={locale} />
-				</div>
+				<div>{/* <Date dateString={docData.date} locale={locale} /> */}</div>
 				<div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />
 			</article>
 		</Layout>
