@@ -1,12 +1,15 @@
-import { IContentComponentInitData } from '../../interfaces/models';
-import ContentIterator from './contentIterator';
+import { IContentComponentInitData } from "../../interfaces/models";
+import ContentIterator from "./contentIterator";
+import React from "react";
 
-export const Link = (props: { data: IContentComponentInitData }): JSX.Element => {
+export const Link = (props: {
+	data: IContentComponentInitData;
+}): JSX.Element => {
 	const p = props.data.data;
 	return (
-			<a href={p.target} target="_blank" rel="noreferrer"> 
-				<ContentIterator data={props.data} />
-			</a>
+		<a href={p.target} target="_blank" rel="noreferrer">
+			<ContentIterator data={props.data} />
+		</a>
 	);
 };
 
