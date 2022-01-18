@@ -1,0 +1,17 @@
+@namespace "ContentBrowser";
+
+.root {
+}
+
+.moto {
+    font-style: italic;
+    font-size: 12px;
+    margin: 2rem 0;
+}
+
+.credits {
+    border-top: 2px solid #000;
+    font-size: 12px;
+    padding-top: 2rem;
+    margin: 2rem 0;
+}

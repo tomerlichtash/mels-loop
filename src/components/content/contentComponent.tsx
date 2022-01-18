@@ -1,12 +1,11 @@
-// import homeStyles from '../../styles/home.module.scss';
 import React from "react";
-import Link from "./link";
+import Link from "./link/link";
 import {
 	IContentComponentInitData,
 	IMLParsedNode,
 } from "../../interfaces/models";
 import Heading from "./heading";
-import ListItem from "./listItem";
+import ListItem from "./list-item";
 import Paragraph from "./paragraph";
 import Section from "./section";
 import ContentIterator from "./contentIterator";
