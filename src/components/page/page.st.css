@@ -15,7 +15,7 @@
 */
 @media (min-width: 1281px) {
 	.root {
-		border: 2px solid red;
+		/* border: 2px solid red; */
 	}
 }
 
@@ -25,7 +25,7 @@
 */
 @media (min-width: 1025px) and (max-width: 1280px) {
 	.root {
-		border: 2px solid green;
+		/* border: 2px solid green; */
 	}
 }
 
@@ -35,7 +35,7 @@
 */
 @media (min-width: 768px) and (max-width: 1024px) {
 	.root {
-		border: 2px solid blue;
+		/* border: 2px solid blue; */
 	}
 }
 
@@ -45,7 +45,7 @@
 */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 	.root {
-		border: 2px solid purple;
+		/* border: 2px solid purple; */
 	}
 }
 
@@ -55,7 +55,7 @@
 */
 @media (min-width: 481px) and (max-width: 767px) {
 	.root {
-		border: 2px solid aqua;
+		/* border: 2px solid aqua; */
 	}
 }
 
@@ -65,6 +65,6 @@
 */
 @media (min-width: 320px) and (max-width: 480px) {
 	.root {
-		border: 2px solid fuchsia;
+		/* border: 2px solid fuchsia; */
 	}
 }

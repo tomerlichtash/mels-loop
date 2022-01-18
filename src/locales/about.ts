@@ -17,7 +17,7 @@ export const aboutLocale = {
 			},
 		],
 	},
-	"he-IL": {
+	he: {
 		title: "Vos nouvelles",
 		content: [
 			{

@@ -1,6 +1,4 @@
 import Link from "next/link";
-// import { useRouter } from 'next/router';
-export type ILocale = "en-US" | "he-IL";
 import { classes } from "./header.st.css";
 
 export const Header = ({

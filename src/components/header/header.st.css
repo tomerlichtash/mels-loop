@@ -1,19 +1,19 @@
 @namespace "Header";
 
 :import {
-  -st-from: '../../theme/common.st.css';
-  -st-named: HeaderBgColor, siteTitleFontSize;
+	-st-from: "../../theme/common.st.css";
+	-st-named: HeaderBgColor, siteTitleFontSize;
 }
 
 .root {
-  background: value(HeaderBgColor);
-  text-align: center;
+	/* background: value(HeaderBgColor); */
+	text-align: center;
 }
 
 .siteTitle {
-  font-size: value(siteTitleFontSize);
-  text-transform: uppercase;
-  font-family: "NunitoBlack";
+	font-size: value(siteTitleFontSize);
+	text-transform: uppercase;
+	font-family: "NunitoBlack";
 }
 
 /* @font-face {

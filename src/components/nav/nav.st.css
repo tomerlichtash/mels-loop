@@ -1,10 +1,21 @@
 @namespace "Nav";
 
 :import {
-  -st-from: '../../theme/common.st.css';
-  -st-named: NavBgColor;
+	-st-from: "../../theme/common.st.css";
+	-st-named: NavBgColor;
+}
+
+:import {
+	-st-from: "../../theme/mixins.st.css";
+	-st-named: NavButton;
 }
 
 .root {
-  background: value(NavBgColor);
+}
+
+.list {
+}
+
+.button {
+	-st-mixin: NavButton;
 }

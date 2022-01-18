@@ -10,7 +10,7 @@ import { contentUtils } from "./content-utils";
 const { defaultLocale } = require("../../i18n.json");
 
 const getIndexFileName = (locale: string): string =>
-	defaultLocale === locale ? "index.md" : `index.${locale.split("-")[0]}.md`;
+	defaultLocale === locale ? "index.md" : `index.${locale}.md`;
 
 export function initContentDir(contentId: string) {
 	return path.join(process.cwd(), `content/${contentId}`);
@@ -22,11 +22,13 @@ export function getSortedContentData(
 ): IParsedPageData[] {
 	// Get file names under /posts
 	const contentIds = fs.readdirSync(contentDir);
-	// console.log(`getting softed content in ${contentDir} for locale ${locale}, found ${contentIds.length} dir entries`);
+	console.log(
+		`getting softed content in ${contentDir} for locale ${locale}, found ${contentIds.length} dir entries`
+	);
 
 	const allContentData: IParsedPageData[] = contentIds
 		.map((id) => {
-			// console.log(`Processing content id ${id}`);
+			console.log(`Processing content id ${id}`);
 			// Read markdown file as string
 			const filename = getIndexFileName(locale);
 			const fullPath = path.join(contentDir, id, filename);
@@ -41,7 +43,7 @@ export function getSortedContentData(
 
 			try {
 				const fileContents = fs.readFileSync(fullPath, "utf8");
-				// console.log(`Parsing ${fullPath}`);
+				console.log(`Parsing ${fullPath}`);
 
 				// Use gray-matter to parse the post metadata section
 				const { data: matterData, content } = matter(fileContents);

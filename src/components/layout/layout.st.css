@@ -1,25 +1,39 @@
 @namespace "Layout";
 
 :import {
-  -st-from: '../../theme/common.st.css';
-  -st-named: LayoutBgColor;
+	-st-from: "../../theme/common.st.css";
+	-st-named: LayoutBgColor;
+}
+
+:global(html) {
+	margin: 0;
+	height: 100%;
 }
 
 :global(body) {
-  margin: 0;
-  height: 100%;
+	margin: 0;
+	height: 100%;
 }
 
 :global(h1) {
-  margin: 0;
+	margin: 0;
 }
 
 :global(ul) {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 .root {
-  background: value(LayoutBgColor);
+	background: value(LayoutBgColor);
+	-st-states: locale(enum(en, he));
+}
+
+.root:locale(en) {
+	direction: ltr;
+}
+
+.root:locale(he) {
+	direction: rtl;
 }

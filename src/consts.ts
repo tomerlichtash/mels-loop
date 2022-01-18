@@ -1,4 +1,4 @@
-export const defaultLocale = "en";
+export const defaultLocale = "en-US";
 
 export const dateFormats = {
 	en: "LLLL d, yyyy",

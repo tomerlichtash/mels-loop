@@ -1,0 +1,12 @@
+@namespace "LocaleSelector";
+
+.root {
+}
+
+.optionContainer {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.optionLabel {
+}

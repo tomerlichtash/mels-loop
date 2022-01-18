@@ -1,9 +1,8 @@
 import Head from "next/head";
 import Layout from "../components/layout";
-// import { useRouter } from 'next/router';
 import { GetStaticProps } from "next";
-// import homeStyles from '../styles/home.module.scss';
 //import { getSortedPostsData } from '../lib/content-drivers/posts';
+import { useRouter } from "next/router";
 import { getSortedCodexData } from "../lib/content-drivers/codex";
 import {
 	IContentComponentData,
@@ -11,14 +10,14 @@ import {
 	IParsedPageData,
 } from "../interfaces/models";
 import ContentComponent from "../components/content/contentComponent";
-// import { style, classes } from "./index.st.css";
+import { style, classes } from "./index.st.css";
 
 const FULL_PAGE_RE = /full.*text/i;
 
 export default function Home(data: IContentComponentData) {
-	// const { locale } = useRouter();
+	const { locale } = useRouter();
 	//const [sortedContent, setSortedContent] = useState<IParsedPageData[]>(getSortedCodexData("he"))
-	const { content, locale } = data;
+	const { content } = data;
 	const pageData: IParsedPageData[] = JSON.parse(content);
 
 	// find full content page
@@ -35,7 +34,7 @@ export default function Home(data: IContentComponentData) {
 				<title>Site Title</title>
 			</Head>
 
-			<article className={"rtl"}>
+			<article className={style(classes.root)}>
 				{elements.map((node, index) => {
 					return (
 						<ContentComponent

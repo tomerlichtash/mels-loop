@@ -1,5 +1,5 @@
 // import { format, parseISO } from "date-fns";
-import { getLocale, getLocaleFormat } from "../../utils";
+// import { getLocale, getLocaleFormat } from "../../utils";
 import { style, classes } from "./date.st.css";
 
 export const Date = ({
