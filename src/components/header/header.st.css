@@ -8,6 +8,12 @@
 .root {
 	/* background: value(HeaderBgColor); */
 	text-align: center;
+	padding: 2rem 0;
+}
+
+.topBar {
+	text-align: right;
+	padding: 0 1rem;
 }
 
 .siteTitle {

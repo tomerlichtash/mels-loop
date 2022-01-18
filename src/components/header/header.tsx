@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { classes } from "./header.st.css";
+import LocaleSelector from "../locale-selector";
 
 export const Header = ({
 	isHome,
@@ -13,6 +14,9 @@ export const Header = ({
 	// const locs = locales as ILocale[];
 	return (
 		<header className={classes.root}>
+			<div className={classes.topBar}>
+				<LocaleSelector />
+			</div>
 			{isHome ? (
 				<h1 className={classes.siteTitle}>{name}</h1>
 			) : (

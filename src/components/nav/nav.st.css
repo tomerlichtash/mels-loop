@@ -11,11 +11,24 @@
 }
 
 .root {
+	display: block;
+	overflow: hidden;
+}
+
+.menu {
+	width: 800px;
+	margin: 0 auto;
 }
 
 .list {
+	margin: 0;
 }
 
 .button {
 	-st-mixin: NavButton;
+	-st-states: current(boolean);
+}
+
+.button:current(true) {
+	background-color: #ffa;
 }

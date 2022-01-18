@@ -1,21 +1,36 @@
 import Link from "next/link";
-import { classes } from "./nav.st.css";
-import LocaleSelector from "../locale-selector";
+import { style, classes } from "./nav.st.css";
+import { useRouter } from "next/router";
 
 export const Nav = (): JSX.Element => {
+	const router = useRouter();
+	const { pathname } = router;
 	return (
 		<nav className={classes.root}>
-			<ul className={classes.list}>
-				<li>
-					<Link href="/">
-						<a className={classes.button}>Home</a>
-					</Link>
-					<Link href="/about">
-						<a className={classes.button}>About</a>
-					</Link>
-				</li>
-			</ul>
-			<LocaleSelector />
+			<div className={classes.menu}>
+				<ul className={classes.list}>
+					<li>
+						<Link href="/">
+							<a
+								className={style(classes.button, {
+									current: pathname === "/",
+								})}
+							>
+								Home
+							</a>
+						</Link>
+						<Link href="/about">
+							<a
+								className={style(classes.button, {
+									current: pathname === "/about",
+								})}
+							>
+								About
+							</a>
+						</Link>
+					</li>
+				</ul>
+			</div>
 		</nav>
 	);
 };
