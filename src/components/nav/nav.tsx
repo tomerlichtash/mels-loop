@@ -2,9 +2,12 @@ import Link from "next/link";
 import { style, classes } from "./nav.st.css";
 import { useRouter } from "next/router";
 
+import { SiteLocale } from "../../locales/pages";
+
 export const Nav = (): JSX.Element => {
 	const router = useRouter();
-	const { pathname } = router;
+	const { locale, pathname } = router;
+	const { pages } = SiteLocale;
 	return (
 		<nav className={classes.root}>
 			<div className={classes.menu}>
@@ -16,7 +19,7 @@ export const Nav = (): JSX.Element => {
 									current: pathname === "/",
 								})}
 							>
-								Home
+								{pages["/"][locale]}
 							</a>
 						</Link>
 						<Link href="/about">
@@ -25,7 +28,7 @@ export const Nav = (): JSX.Element => {
 									current: pathname === "/about",
 								})}
 							>
-								About
+								{pages["about"][locale]}
 							</a>
 						</Link>
 					</li>

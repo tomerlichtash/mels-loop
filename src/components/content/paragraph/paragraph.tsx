@@ -1,7 +1,6 @@
-// import homeStyles from '../../styles/home.module.scss';
+import React from "react";
 import { IContentComponentInitData } from "../../../interfaces/models";
 import ContentComponent from "../contentComponent";
-import React from "react";
 import { classes } from "./paragraph.st.css";
 
 export const Paragraph = (props: {

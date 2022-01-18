@@ -13,6 +13,7 @@
 .root {
 	display: block;
 	overflow: hidden;
+	user-select: none;
 }
 
 .menu {

@@ -1,10 +1,9 @@
-// import homeStyles from '../../styles/home.module.scss';
+import React from "react";
 import ContentComponent from "../contentComponent";
 import {
 	IContentComponentInitData,
 	IMLParsedNode,
 } from "../../../interfaces/models";
-import React from "react";
 import { classes } from "./section.st.css";
 
 export const Section = (props: {
@@ -14,7 +13,7 @@ export const Section = (props: {
 	const elements: IMLParsedNode[] = Array.isArray(p.children) ? p.children : [];
 
 	return (
-		<section className={classes.root} key={p.key}>
+		<div className={classes.root} key={p.key}>
 			{elements.map((node) => {
 				return (
 					<ContentComponent
@@ -26,7 +25,7 @@ export const Section = (props: {
 					/>
 				);
 			})}
-		</section>
+		</div>
 	);
 };
 

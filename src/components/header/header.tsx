@@ -17,13 +17,17 @@ export const Header = ({
 			<div className={classes.topBar}>
 				<LocaleSelector />
 			</div>
-			{isHome ? (
-				<h1 className={classes.siteTitle}>{name}</h1>
-			) : (
-				<h1 className={classes.siteTitle}>
-					<Link href="/">{name}</Link>
-				</h1>
-			)}
+			<div className={classes.title}>
+				{isHome ? (
+					<h1 className={classes.siteTitle}>{name}</h1>
+				) : (
+					<h1 className={classes.siteTitle}>
+						<Link href="/">
+							<a>{name}</a>
+						</Link>
+					</h1>
+				)}
+			</div>
 		</header>
 	);
 };

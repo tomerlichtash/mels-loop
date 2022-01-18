@@ -2,24 +2,34 @@
 
 :import {
 	-st-from: "../../theme/common.st.css";
-	-st-named: HeaderBgColor, siteTitleFontSize;
+	-st-named: HeaderBgColor, siteTitleFontSize, siteHeaderHeight;
 }
 
 .root {
 	/* background: value(HeaderBgColor); */
 	text-align: center;
-	padding: 2rem 0;
+	/* padding: 2rem 0; */
+	/* height: value(siteHeaderHeight); */
+  /* line-height: value(siteHeaderHeight); */
+	background: #fa9ad8;
 }
 
 .topBar {
 	text-align: right;
 	padding: 0 1rem;
+  background: red;
+  background: blue;
+}
+
+.title {
+  background: green;
 }
 
 .siteTitle {
-	font-size: value(siteTitleFontSize);
+	/* font-size: value(siteTitleFontSize); */
 	text-transform: uppercase;
-	font-family: "NunitoBlack";
+	/* font-family: "NunitoBlack"; */
+	font-family: sans-serif;
 }
 
 /* @font-face {

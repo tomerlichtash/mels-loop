@@ -1,4 +1,3 @@
-// import homeStyles from '../../styles/home.module.scss';
 import React from "react";
 import Link from "./link/link";
 import {
