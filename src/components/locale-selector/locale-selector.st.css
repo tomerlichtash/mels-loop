@@ -1,6 +1,10 @@
 @namespace "LocaleSelector";
 
 .root {
+	border: none;
+	outline: 0;
+	background: none;
+	cursor: pointer;
 }
 
 .optionContainer {
@@ -9,4 +13,5 @@
 }
 
 .optionLabel {
+	cursor: pointer;
 }

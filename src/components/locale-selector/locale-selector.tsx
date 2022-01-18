@@ -19,7 +19,7 @@ export const LocaleSelector = (): JSX.Element => {
 		});
 	};
 	return (
-		<select onChange={onSelectChange}>
+		<select onChange={onSelectChange} className={classes.root}>
 			{router.locales.map((language) => (
 				<option value={language} selected={currentLocale === language}>
 					{LocaleLabels[language]}
