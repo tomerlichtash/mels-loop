@@ -1,0 +1,35 @@
+@namespace "Nav";
+
+:import {
+	-st-from: "../../theme/common.st.css";
+	-st-named: NavBgColor;
+}
+
+:import {
+	-st-from: "../../theme/mixins.st.css";
+	-st-named: NavButton;
+}
+
+.root {
+	display: block;
+	overflow: hidden;
+	user-select: none;
+}
+
+.menu {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.list {
+	margin: 0;
+}
+
+.button {
+	-st-mixin: NavButton;
+	-st-states: current(boolean);
+}
+
+.button:current(true) {
+	background-color: #ffa;
+}

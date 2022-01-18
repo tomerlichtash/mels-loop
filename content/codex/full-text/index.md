@@ -1,7 +1,9 @@
 ---
-title: The story of Tomer
-moto: This was posted to Usenet by its author, Ed Nather (<nather@astro.as.utexas.edu>), on May 21, 1983.
+title: "The Story of Mel"
+moto: "This was posted to Usenet by its author, Ed Nather (<nather@astro.as.utexas.edu>), on May 21, 1983."
+author: "Ed Nather"
 ---
+
 A recent article devoted to the macho side of programming
 made the bald and unvarnished statement:
 
@@ -14,7 +16,7 @@ but back in the Good Old Days,
 when the term “software” sounded funny
 and Real Computers were made out of drums and vacuum tubes,
 Real Programmers wrote in machine code.
-Not FORTRAN.  Not RATFOR.  Not, even, assembly language.
+Not FORTRAN. Not RATFOR. Not, even, assembly language.
 Machine Code.
 Raw, unadorned, inscrutable hexadecimal numbers.
 Directly.
@@ -62,7 +64,7 @@ was a question we never discussed.
 
 Mel's job was to re-write
 the blackjack program for the RPC-4000.
-(Port?  What does that mean?)
+(Port? What does that mean?)
 The new computer had a one-plus-one
 addressing scheme,
 in which each machine instruction,
@@ -177,7 +179,7 @@ Mel was, I think, an unsung genius.
 
 Perhaps my greatest shock came
 when I found an innocent loop that had no test in it.
-No test.  None.
+No test. None.
 Common sense said it had to be a closed loop,
 where the program would circle, forever, endlessly.
 Program control passed right through it, however,

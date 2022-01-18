@@ -1,0 +1,48 @@
+@namespace "Header";
+
+:import {
+	-st-from: "../../theme/common.st.css";
+	-st-named: HeaderBgColor, siteTitleFontSize, siteHeaderHeight;
+}
+
+.root {
+	/* background: value(HeaderBgColor); */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	text-align: center;
+	/* padding: 2rem 0; */
+	/* height: value(siteHeaderHeight); */
+  /* line-height: value(siteHeaderHeight); */
+	/* background: #fa9ad8; */
+}
+
+.topBar {
+  position: absolute;
+	text-align: right;
+	padding: 1rem;
+  right: 0;
+}
+
+.title {
+  line-height: 100px;
+}
+
+.siteTitle {
+	/* font-size: value(siteTitleFontSize); */
+	text-transform: uppercase;
+	/* font-family: "NunitoBlack"; */
+	font-family: sans-serif;
+}
+
+/* @font-face {
+  font-family: "NunitoBlack";
+  src: url("../../theme/assets/fonts/Nunito/static/Nunito-Black.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+} */
