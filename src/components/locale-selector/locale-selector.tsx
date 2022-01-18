@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { classes } from "./locale-selector.st.css";
 
@@ -13,7 +12,7 @@ export const LocaleSelector = (): JSX.Element => {
 	const currentLocale = router.locale;
 	const onSelectChange = (e) => {
 		const locale = e.target.value;
-		router.push(router.asPath, router.asPath, {
+		return router.push(router.asPath, router.asPath, {
 			locale,
 			scroll: false,
 		});
@@ -21,7 +20,11 @@ export const LocaleSelector = (): JSX.Element => {
 	return (
 		<select onChange={onSelectChange} className={classes.root}>
 			{router.locales.map((language) => (
-				<option value={language} selected={currentLocale === language}>
+				<option
+					value={language}
+					selected={currentLocale === language}
+					key={`locale-${language}`}
+				>
 					{LocaleLabels[language]}
 				</option>
 			))}

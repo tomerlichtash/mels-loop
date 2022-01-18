@@ -22,13 +22,13 @@ export function getSortedContentData(
 ): IParsedPageData[] {
 	// Get file names under /posts
 	const contentIds = fs.readdirSync(contentDir);
-	console.log(
-		`getting softed content in ${contentDir} for locale ${locale}, found ${contentIds.length} dir entries`
-	);
+	// console.log(
+	// 	`getting softed content in ${contentDir} for locale ${locale}, found ${contentIds.length} dir entries`
+	// );
 
 	const allContentData: IParsedPageData[] = contentIds
 		.map((id) => {
-			console.log(`Processing content id ${id}`);
+			// console.log(`Processing content id ${id}`);
 			// Read markdown file as string
 			const filename = getIndexFileName(locale);
 			const fullPath = path.join(contentDir, id, filename);
@@ -43,7 +43,7 @@ export function getSortedContentData(
 
 			try {
 				const fileContents = fs.readFileSync(fullPath, "utf8");
-				console.log(`Parsing ${fullPath}`);
+				// console.log(`Parsing ${fullPath}`);
 
 				// Use gray-matter to parse the post metadata section
 				const { data: matterData, content } = matter(fileContents);
@@ -56,6 +56,8 @@ export function getSortedContentData(
 					id,
 					title: matterData.title || "",
 					date: parseDate(matterData.date as string),
+					moto: matterData.moto || "",
+					credits: matterData.credits || "",
 					content,
 					parsed: tree,
 				});
@@ -147,6 +149,9 @@ class ParsedPageData implements IParsedPageData {
 	public id = "";
 	public date: Date = null;
 	public title = "";
+	public moto = "";
+	public author = "";
+	public credits = "";
 	public content = "";
 	public parsed: IMLParsedNode[] = [];
 	public error?: string = "";

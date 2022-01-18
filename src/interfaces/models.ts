@@ -63,6 +63,18 @@ export interface IParsedPageData {
 	 */
 	readonly title: string;
 	/**
+	 * Moto metadata, if present in the MD
+	 */
+	readonly moto: string;
+	/**
+	 * Credits metadata, if present in the MD
+	 */
+	readonly credits: string;
+	/**
+	 * Author metadata, if present in the MD
+	 */
+	readonly author: string;
+	/**
 	 * Full text of the MD
 	 */
 	readonly content: string;

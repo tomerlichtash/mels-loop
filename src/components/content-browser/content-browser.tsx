@@ -15,6 +15,7 @@ export const ContentBrowser = (props: {
 }): JSX.Element => {
 	const { content } = props.data;
 	const { locale } = props;
+
 	const pageData: IParsedPageData[] = JSON.parse(content);
 
 	// find full content page
@@ -22,11 +23,13 @@ export const ContentBrowser = (props: {
 	if (pageIndex < 0) {
 		pageIndex = 0;
 	}
+
 	const page = pageData[pageIndex] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
-
 	return (
 		<div className={classes.root}>
+			<h2>{pageData[0].title}</h2>
+			<p className={classes.moto}>{pageData[0].moto}</p>
 			{elements.map((node, index) => {
 				return (
 					<ContentComponent
@@ -38,6 +41,7 @@ export const ContentBrowser = (props: {
 					/>
 				);
 			})}
+			<p className={classes.credits}>{pageData[0].credits}</p>
 		</div>
 	);
 };
