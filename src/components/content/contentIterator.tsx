@@ -1,9 +1,9 @@
+import React from "react";
 import ContentComponent from "./contentComponent";
 import {
 	IContentComponentInitData,
 	IMLParsedNode,
 } from "../../interfaces/models";
-import React from "react";
 
 export const ContentIterator = (props: {
 	data: IContentComponentInitData;

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { SiteLocale } from "../../locales/pages";
 import { style, classes } from "./nav-button.st.css";
 
 export const NavButton = ({

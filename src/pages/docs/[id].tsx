@@ -1,8 +1,6 @@
 import Layout from "../../components/layout";
 import { getAllDocIds, getDocData } from "../../lib/content-drivers/docs";
 import Head from "next/head";
-// import { useRouter } from "next/router";
-// import Date from "../../components/date";
 import { GetStaticProps, GetStaticPaths } from "next";
 
 export default function Doc({

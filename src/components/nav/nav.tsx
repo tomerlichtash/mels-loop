@@ -13,7 +13,7 @@ export const Nav = (): JSX.Element => {
 			<div className={classes.menu}>
 				<ul className={classes.list}>
 					{Object.values(SITE_PAGES).map((page) => (
-						<li className={classes.listItem}>
+						<li className={classes.listItem} key={`oage-${page}`}>
 							<NavButton
 								label={pages[page][locale]}
 								pageName={String(page)}

@@ -1,6 +1,6 @@
+import React from "react";
 import { IContentComponentInitData } from "../../../interfaces/models";
 import ContentIterator from "../contentIterator";
-import React from "react";
 import { classes } from "./link.st.css";
 
 export const Link = (props: {

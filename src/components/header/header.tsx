@@ -9,9 +9,6 @@ export const Header = ({
 	isHome: boolean;
 	name: string;
 }): JSX.Element => {
-	// const router = useRouter();
-	// const { locales } = router;
-	// const locs = locales as ILocale[];
 	return (
 		<header className={classes.root}>
 			<div className={classes.topBar}>

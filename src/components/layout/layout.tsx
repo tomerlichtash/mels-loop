@@ -1,5 +1,4 @@
 import Head from "next/head";
-// import Link from 'next/link';
 import Nav from "../nav";
 import Header from "../header";
 import Footer from "../footer";
