@@ -8,5 +8,9 @@ export const SiteLocale = {
 			en: "About",
 			he: "אודות",
 		},
+		story: {
+			en: "The Story",
+			he: "הסיפור",
+		},
 	},
 };

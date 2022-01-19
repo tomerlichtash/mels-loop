@@ -20,6 +20,12 @@
 		"@/pages/*": ["pages/*"],
 		"@/styles/*": ["styles/*"]
 	},
-	"include": ["next-env.d.ts", "**/**/*.ts", "**/**/*.tsx", "types.d.ts"],
+	"include": [
+		"next-env.d.ts",
+		"**/**/*.ts",
+		"**/**/*.tsx",
+		"globals.d.ts",
+		"types.d.ts.bak"
+	],
 	"exclude": ["node_modules"]
 }

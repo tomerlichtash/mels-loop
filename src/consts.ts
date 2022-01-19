@@ -12,3 +12,9 @@ export enum CONTENT_TYPES {
 	DOCS = "docs",
 	GLOSSARY = "glossary",
 }
+
+export enum SITE_PAGES {
+	HOME = "/",
+	ABOUT = "about",
+	STORY = "story",
+}

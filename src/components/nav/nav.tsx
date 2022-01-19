@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { style, classes } from "./nav.st.css";
 import { useRouter } from "next/router";
-
+import NavButton from "./nav-button";
+import { SITE_PAGES } from "../../consts";
 import { SiteLocale } from "../../locales/pages";
+import { classes } from "./nav.st.css";
 
 export const Nav = (): JSX.Element => {
 	const router = useRouter();
@@ -12,26 +12,16 @@ export const Nav = (): JSX.Element => {
 		<nav className={classes.root}>
 			<div className={classes.menu}>
 				<ul className={classes.list}>
-					<li>
-						<Link href="/">
-							<a
-								className={style(classes.button, {
-									current: pathname === "/",
-								})}
-							>
-								{pages["/"][locale]}
-							</a>
-						</Link>
-						<Link href="/about">
-							<a
-								className={style(classes.button, {
-									current: pathname === "/about",
-								})}
-							>
-								{pages["about"][locale]}
-							</a>
-						</Link>
-					</li>
+					{Object.values(SITE_PAGES).map((page) => (
+						<li className={classes.listItem}>
+							<NavButton
+								label={pages[page][locale]}
+								pageName={String(page)}
+								isCurrent={pathname === page}
+								className={classes.button}
+							/>
+						</li>
+					))}
 				</ul>
 			</div>
 		</nav>

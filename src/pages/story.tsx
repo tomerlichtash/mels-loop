@@ -7,28 +7,26 @@ import { IContentComponentData } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
 import { style, classes } from "./index.st.css";
 
-export default function Home(data: IContentComponentData) {
+export default function Story(data: IContentComponentData) {
 	const { locale } = useRouter();
 	return (
 		<Layout>
 			<Head>
-				<title>Home</title>
+				<title>Story</title>
 			</Head>
 			<article className={style(classes.root)}>
-				<div>the story</div>
-				<div>glossary</div>
-				<div>photos</div>
+				<ContentBrowser data={data} locale={locale} />
 			</article>
 		</Layout>
 	);
 }
 
-// export const getStaticProps: GetStaticProps = async ({ locale }) => {
-// 	const data = getSortedCodexData(locale);
-// 	return {
-// 		props: {
-// 			content: JSON.stringify(data),
-// 			locale,
-// 		},
-// 	};
-// };
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	const data = getSortedCodexData(locale);
+	return {
+		props: {
+			content: JSON.stringify(data),
+			locale,
+		},
+	};
+};
