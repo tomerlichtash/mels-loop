@@ -13,8 +13,22 @@ export enum CONTENT_TYPES {
 	GLOSSARY = "glossary",
 }
 
-export enum SITE_PAGES {
-	HOME = "/",
-	ABOUT = "about",
-	STORY = "story",
-}
+export const SITE_PAGES = {
+	HOME: {
+		pathname: "/",
+		pageId: "home",
+	},
+	ABOUT: {
+		pathname: "/about",
+		pageId: "about",
+	},
+	STORY: {
+		pathname: "/story",
+		pageId: "story",
+	},
+};
+
+export const LOCALE_LABELS = {
+	en: "English",
+	he: "עברית",
+};

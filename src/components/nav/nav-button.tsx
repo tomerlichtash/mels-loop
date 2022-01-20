@@ -13,7 +13,7 @@ export const NavButton = ({
 	className?: string;
 }): JSX.Element => {
 	return (
-		<Link href={`/${pageName}`}>
+		<Link href={`${pageName}`}>
 			<a
 				className={style(
 					classes.root,

@@ -1,6 +1,6 @@
-export const SiteLocale = {
+export const SITE_LOCALE = {
 	pages: {
-		"/": {
+		home: {
 			en: "Home",
 			he: "שער",
 		},
