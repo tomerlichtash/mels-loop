@@ -5,6 +5,7 @@
 	outline: 0;
 	background: none;
 	cursor: pointer;
+	user-select: none;
 }
 
 .optionContainer {

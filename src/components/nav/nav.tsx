@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import NavButton from "./nav-button";
 import { SITE_PAGES } from "../../consts";
 import { SITE_LOCALE } from "../../locales/pages";
-import { classes } from "./nav.st.css";
+import { style, classes } from "./nav.st.css";
 
 const getPageId = (key: string) => SITE_PAGES[key].pageId;
 const getPagePath = (key: string) => SITE_PAGES[key].pathname;
@@ -19,7 +19,12 @@ export const Nav = (): JSX.Element => {
 			<div className={classes.menu}>
 				<ul className={classes.list}>
 					{Object.keys(SITE_PAGES).map((pageKey) => (
-						<li className={classes.listItem} key={`page-${getPageId(pageKey)}`}>
+						<li
+							className={style(classes.listItem, {
+								isCurrent: pathname === getPagePath(pageKey),
+							})}
+							key={`page-${getPageId(pageKey)}`}
+						>
 							<NavButton
 								label={getPageLabel(pageKey, locale)}
 								pageName={getPagePath(pageKey)}
