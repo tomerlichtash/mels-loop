@@ -4,9 +4,9 @@ import { SITE_PAGES } from "../../consts";
 import { SITE_LOCALE } from "../../locales/pages";
 import { style, classes } from "./nav.st.css";
 
-const getPageId = (key: string) => SITE_PAGES[key].pageId;
-const getPagePath = (key: string) => SITE_PAGES[key].pathname;
-const getPageLabel = (key: string, locale: string) => {
+const getPageId = (key: string): string => SITE_PAGES[key].pageId;
+const getPagePath = (key: string): string => SITE_PAGES[key].pathname;
+const getPageLabel = (key: string, locale: string): string => {
 	const { pages } = SITE_LOCALE;
 	return pages[SITE_PAGES[key].pageId][locale];
 };
