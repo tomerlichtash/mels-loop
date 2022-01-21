@@ -2,7 +2,7 @@
 
 :import {
 	-st-from: "../../theme/common.st.css";
-	-st-named: HeaderBgColor, siteTitleFontSize, siteHeaderHeight;
+	-st-named: HeaderBgColor, siteTitleFontSize, siteHeaderHeight, PageWidth;
 }
 
 :import {
@@ -11,18 +11,12 @@
 }
 
 .root {
-	/* background: value(HeaderBgColor); */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   background: #d0d0d0;
-  /* background: #fff; */
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); */
-	/* padding: 2rem 0; */
-	/* height: value(siteHeaderHeight); */
-  /* line-height: value(siteHeaderHeight); */
-	/* background: #fa9ad8; */
+  text-align: center;
 }
 
 .container {
@@ -32,6 +26,8 @@
   /* line-height: value(siteHeaderHeight); */
   /* width: 1200px; */
   /* margin: 0 auto; */
+  width: value(PageWidth);
+  margin: 0 auto;
 }
 
 .title {

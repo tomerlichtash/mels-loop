@@ -2,7 +2,7 @@
 
 :import {
 	-st-from: "../../theme/common.st.css";
-	-st-named: siteHeaderHeight, shadow1;
+	-st-named: siteHeaderHeight, shadow1, PageWidth;
 }
 :import {
 	-st-from: "../../theme/mixins.st.css";
@@ -11,10 +11,11 @@
 
 .root {
 	/* display: block; */
-	/* background: red; */
 	user-select: none;
-	/* width: 1200px; */
+	margin: 0 auto;
+	width: value(PageWidth);
 	position: relative;
+	overflow: hidden;
 }
 
 .menu {

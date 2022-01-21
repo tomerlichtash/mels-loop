@@ -11,6 +11,7 @@
 	text-decoration: none;
 	padding: 0.25rem 1rem;
 	color: #000;
+	position: relative;
 }
 
 .root:current(true) {
