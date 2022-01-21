@@ -6,7 +6,7 @@
 }
 
 :global(*):focus {
-	box-shadow: value(shadow1);
+	/* box-shadow: value(shadow1); */
 	outline: none;
 	/* outline: 2px solid magenta; */
 }
@@ -14,6 +14,7 @@
 :global(html) {
 	margin: 0;
 	height: 100%;
+	font-family: "Arial", sans-serif;
 }
 
 :global(body) {
@@ -33,7 +34,7 @@
 }
 
 .root {
-	background: value(LayoutBgColor);
+	/* background: value(LayoutBgColor); */
 	padding-top: 2rem;
 	-st-states: locale(enum(en, he));
 }

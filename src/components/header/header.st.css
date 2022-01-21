@@ -16,9 +16,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: cyan;
+  background: #d0d0d0;
   /* background: #fff; */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); */
 	/* padding: 2rem 0; */
 	/* height: value(siteHeaderHeight); */
   /* line-height: value(siteHeaderHeight); */
@@ -26,18 +26,18 @@
 }
 
 .container {
-  display: flex;
-  align-content: space-around;
-  height: value(siteHeaderHeight);
-  line-height: value(siteHeaderHeight);
+  /* display: flex; */
+  /* align-content: space-around; */
+  /* height: value(siteHeaderHeight); */
+  /* line-height: value(siteHeaderHeight); */
   /* width: 1200px; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .title {
   /* line-height: 100px; */
   flex: 1;
-  background: red;
+  /* background: red; */
 }
 
 .headerNav {
@@ -57,14 +57,14 @@
 .localeSelector {
   /* position: absolute;
   right: 0; */
-  background: cyan;
+  /* background: cyan; */
 }
 
 .siteTitle {
 	/* font-size: value(siteTitleFontSize); */
 	text-transform: uppercase;
 	/* font-family: "NunitoBlack"; */
-	font-family: sans-serif;
+	/* font-family: sans-serif; */
 }
 
 

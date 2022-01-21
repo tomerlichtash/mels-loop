@@ -3,7 +3,7 @@ import Header from "../header";
 import Footer from "../footer";
 import Page from "../page";
 import { t } from "../../locales/translate";
-import { sitePagesOptions } from "../../consts";
+import { SITE_PAGES } from "../../config/pages";
 import { useRouter } from "next/router";
 import { style, classes } from "./layout.st.css";
 
@@ -31,7 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 					siteTitle={siteTitle}
 					siteSubtitle={siteSubtitle}
 					isHome={isHome}
-					sitePages={sitePagesOptions}
+					sitePages={SITE_PAGES}
 				/>
 				<Page nodes={children} />
 				<Footer />

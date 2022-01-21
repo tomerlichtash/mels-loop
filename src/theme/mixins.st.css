@@ -1,9 +1,7 @@
 @namespace "Mixins";
 
 .NavButton {
-	padding: 0.5rem 1rem;
-	height: 24px;
-	line-height: 24px;
+	/* padding: 0 1rem; */
 	cursor: pointer;
 }
 

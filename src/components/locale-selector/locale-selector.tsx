@@ -18,19 +18,22 @@ export const LocaleSelector = ({
 			scroll: false,
 		});
 	};
+
 	return (
 		<div className={style(classes.root, className)}>
+			{/* <div className={style(classes.select)}> */}
 			<DropDown
+				className={style(classes.select)}
 				options={[
 					{
 						id: "en",
-						label: "LOCALE_LABEL_EN_US",
+						label: "LOCALE_LABEL_EN",
 						isCurrent: currentLocale === "en",
 						callback: onSelectChange,
 					},
 					{
 						id: "he",
-						label: "LOCALE_LABEL_HE_IL",
+						label: "LOCALE_LABEL_HE",
 						isCurrent: currentLocale === "he",
 						callback: onSelectChange,
 					},
@@ -38,6 +41,10 @@ export const LocaleSelector = ({
 				openLabel={"LOCALE_SELECTOR_TITLE"}
 				closeLabel={"LOCALE_SELECTOR_CLOSE"}
 			/>
+			{/* </div> */}
+			<div className={classes.current}>
+				[{t(`LOCALE_LABEL_${currentLocale.toUpperCase()}`, currentLocale)}]
+			</div>
 		</div>
 	);
 };

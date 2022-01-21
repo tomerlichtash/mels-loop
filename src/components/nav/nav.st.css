@@ -11,7 +11,7 @@
 
 .root {
 	/* display: block; */
-	background: red;
+	/* background: red; */
 	user-select: none;
 	/* width: 1200px; */
 	position: relative;
@@ -20,7 +20,7 @@
 .menu {
 	/* width: 800px; */
 	margin: 0 auto;
-	box-shadow: value(shadow1);
+	/* box-shadow: value(shadow1); */
 }
 
 .list {

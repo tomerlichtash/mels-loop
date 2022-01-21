@@ -10,6 +10,15 @@
 }
 
 :vars {
+    width1: 1200px;
+
+    radius1: 4px;
+
+    shadow1: 0 0 10px rgba(0, 0, 0, 0.5);
+    shadow2: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+:vars {
     /* Layout */
     LayoutBgColor: value(color1);
     /* Header */
@@ -26,5 +35,7 @@
     siteTitleFontSize: 4rem;
     siteHeaderHeight: 60px;
 
-    shadow1: 0 0 10px rgba(0, 0, 0, 0.5);
+    PageWidth: value(width1);
+    PageShadow: value(shadow2);
+    PageRadius: value(radius1);
 }

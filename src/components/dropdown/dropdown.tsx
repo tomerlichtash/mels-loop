@@ -22,7 +22,7 @@ export const DropDown = ({
 	return (
 		<div
 			className={style(classes.root, className)}
-			// onMouseLeave={() => toggleOptionList(false)}
+			onMouseLeave={() => toggleOptionList(false)}
 		>
 			<div className={classes.optionListTrigger}>
 				{!optionListVisible ? (

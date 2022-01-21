@@ -1,11 +1,11 @@
 import React from "react";
 import ContentComponent from "../content/contentComponent";
-import { classes } from "./content-browser.st.css";
 import {
 	IMLParsedNode,
 	IParsedPageData,
 	IContentComponentData,
 } from "../../interfaces/models";
+import { classes } from "./content-browser.st.css";
 
 const FULL_PAGE_RE = /full.*text/i;
 
@@ -35,7 +35,7 @@ export const ContentBrowser = (props: {
 	const credits = pageData[0].credits;
 	return (
 		<div className={classes.root}>
-			{showTitle && <h2>{title}</h2>}
+			{showTitle && <h2 className={classes.title}>{title}</h2>}
 			{showMoto && moto && <p className={classes.moto}>{pageData[0].moto}</p>}
 
 			{elements.map((node, index) => {
