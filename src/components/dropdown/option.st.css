@@ -1,0 +1,20 @@
+@namespace "Option";
+
+:import {
+	-st-from: "../../theme/mixins.st.css";
+	-st-named: NavButton;
+}
+
+.root {
+	-st-mixin: NavButton;
+	text-decoration: none;
+}
+
+.optionContent {
+	-st-mixin: NavButton;
+	-st-states: current(boolean);
+}
+
+.optionContent:current(true) {
+	font-weight: bold;
+}

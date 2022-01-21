@@ -1,34 +1,51 @@
+import React from "react";
 import { useRouter } from "next/router";
-import { classes } from "./locale-selector.st.css";
+import DropDown from "../dropdown";
+import { t } from "../../locales/translate";
+import { style, classes } from "./locale-selector.st.css";
 
-// todo: move to types enum
-const LocaleLabels = {
-	en: "English",
-	he: "עברית",
-};
-
-export const LocaleSelector = (): JSX.Element => {
+export const LocaleSelector = ({
+	className,
+}: {
+	className?: string;
+}): JSX.Element => {
 	const router = useRouter();
 	const currentLocale = router.locale;
-	const onSelectChange = (e) => {
-		const locale = e.target.value;
+
+	const onSelectChange = (locale: string) => {
 		return router.push(router.asPath, router.asPath, {
 			locale,
 			scroll: false,
 		});
 	};
+
 	return (
-		<select onChange={onSelectChange} className={classes.root}>
-			{router.locales.map((language) => (
-				<option
-					value={language}
-					selected={currentLocale === language}
-					key={`locale-${language}`}
-				>
-					{LocaleLabels[language]}
-				</option>
-			))}
-		</select>
+		<div className={style(classes.root, className)}>
+			{/* <div className={style(classes.select)}> */}
+			<DropDown
+				className={style(classes.select)}
+				options={[
+					{
+						id: "en",
+						label: "LOCALE_LABEL_EN",
+						isCurrent: currentLocale === "en",
+						callback: onSelectChange,
+					},
+					{
+						id: "he",
+						label: "LOCALE_LABEL_HE",
+						isCurrent: currentLocale === "he",
+						callback: onSelectChange,
+					},
+				]}
+				openLabel={"LOCALE_SELECTOR_TITLE"}
+				closeLabel={"LOCALE_SELECTOR_CLOSE"}
+			/>
+			{/* </div> */}
+			<div className={classes.current}>
+				[{t(`LOCALE_LABEL_${currentLocale.toUpperCase()}`, currentLocale)}]
+			</div>
+		</div>
 	);
 };
 

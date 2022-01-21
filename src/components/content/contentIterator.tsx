@@ -1,9 +1,10 @@
+import React from "react";
 import ContentComponent from "./contentComponent";
 import {
 	IContentComponentInitData,
 	IMLParsedNode,
 } from "../../interfaces/models";
-import React from "react";
+import { style, classes } from "./content-iterator.st.css";
 
 export const ContentIterator = (props: {
 	data: IContentComponentInitData;
@@ -13,9 +14,11 @@ export const ContentIterator = (props: {
 	const elements: IMLParsedNode[] = Array.isArray(p.children) && p.children;
 	if (!elements) {
 		if (p.text) {
-			return <span>{p.text}</span>;
+			return (
+				<span className={style(classes.root, { type: "text" })}>{p.text}</span>
+			);
 		}
-		return <span className="unknown"></span>;
+		return <span className={style(classes.root, { type: "unknown" })}></span>;
 	}
 	const Tag = data.tag as keyof JSX.IntrinsicElements;
 	if (Tag) {
