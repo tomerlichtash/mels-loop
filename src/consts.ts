@@ -26,20 +26,27 @@ export const HEADER_LOCALE = {
 		he: "לולאת מל",
 	},
 };
-export const SITE_PAGES = {
-	HOME: {
-		pathname: "/",
-		pageId: "home",
-	},
-	ABOUT: {
-		pathname: "/about",
-		pageId: "about",
-	},
-	STORY: {
-		pathname: "/story",
-		pageId: "story",
-	},
-};
+
+export const sitePagesOptions = [
+	{ label: "Home", id: "home", targetPathname: "/" },
+	{ label: "About", id: "about", targetPathname: "/about" },
+	{ label: "Story", id: "story", targetPathname: "/story" },
+];
+
+// export const SITE_PAGES = {
+// 	HOME: {
+// 		pathname: "/",
+// 		pageId: "home",
+// 	},
+// 	ABOUT: {
+// 		pathname: "/about",
+// 		pageId: "about",
+// 	},
+// 	STORY: {
+// 		pathname: "/story",
+// 		pageId: "story",
+// 	},
+// };
 
 export const LOCALE_LABELS = {
 	en: "English",

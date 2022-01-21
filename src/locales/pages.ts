@@ -1,5 +1,5 @@
 export const SITE_LOCALE = {
-	pages: {
+	PAGES: {
 		home: {
 			en: "Home",
 			he: "שער",

@@ -24,5 +24,7 @@
 
 :vars {
     siteTitleFontSize: 4rem;
-    siteHeaderHeight: 100px;
+    siteHeaderHeight: 40px;
+
+    shadow1: 0 0 10px rgba(0, 0, 0, 0.5);
 }

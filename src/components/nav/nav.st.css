@@ -1,6 +1,10 @@
 @namespace "Nav";
 
 :import {
+	-st-from: "../../theme/common.st.css";
+	-st-named: siteHeaderHeight, shadow1;
+}
+:import {
 	-st-from: "../../theme/mixins.st.css";
 	-st-named: NavButton;
 }
@@ -8,11 +12,14 @@
 .root {
 	display: block;
 	user-select: none;
+	width: 1200px;
+	position: relative;
 }
 
 .menu {
 	width: 800px;
 	margin: 0 auto;
+	box-shadow: value(shadow1);
 }
 
 .list {
@@ -20,24 +27,40 @@
 	display: flex;
 }
 
+.triggerButton {
+	width: 100px;
+	height: value(siteHeaderHeight);
+	background: cyan;
+	border: none;
+	cursor: pointer;
+}
+.dropDownOpen {
+	-st-mixin: triggerButton;
+}
+.dropDownClose {
+	-st-mixin: triggerButton;
+}
+
 .mobileNav {
 	-st-states: visible(boolean);
-	position: relative;
+	position: absolute;
+	left: 0;
+	width: 250px;
 }
 .mobileNav:visible {
 	position: absolute;
 }
 .mobileNavTrigger {
 	width: 30px;
-	height: 30px;
+	height: value(siteHeaderHeight);
+	position: absolute;
+	left: 0;
 }
 
-.mobileNavClose {
-	width: 30px;
-	height: 30px;
-	background: red;
-}
 .mobileNavMenu {
+	background: #fff;
+	top: value(siteHeaderHeight);
+	position: relative;
 	/* background: cyan; */
 }
 
@@ -51,7 +74,7 @@
 }
 
 .listItem:isCurrent(true) {
-	border-bottom: 2px solid blue;
+	/* border-bottom: 2px solid blue; */
 }
 
 .button {

@@ -2,11 +2,13 @@
 
 :import {
 	-st-from: "../../theme/common.st.css";
-	-st-named: LayoutBgColor;
+	-st-named: LayoutBgColor, shadow1;
 }
 
 :global(*):focus {
-	outline: 2px solid magenta;
+	box-shadow: value(shadow1);
+	outline: none;
+	/* outline: 2px solid magenta; */
 }
 
 :global(html) {
