@@ -10,6 +10,7 @@ export const EN_US = {
 	LOCALE_LABEL_HE: "עברית",
 	MOBILE_MENU_OPEN_LABEL: "Menu",
 	MOBILE_MENU_CLOSE_LABEL: "Close",
+	ERROR_404_FILE_NOT_FOUND: "404",
 };
 
 export const HE_IL = {
@@ -24,4 +25,5 @@ export const HE_IL = {
 	LOCALE_LABEL_HE: "עברית",
 	MOBILE_MENU_OPEN_LABEL: "תפריט",
 	MOBILE_MENU_CLOSE_LABEL: "סגירה",
+	ERROR_404_FILE_NOT_FOUND: "404",
 };

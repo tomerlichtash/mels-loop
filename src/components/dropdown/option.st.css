@@ -8,7 +8,6 @@
 .root {
 	-st-mixin: NavButton;
 	text-decoration: none;
-	font-family: Arial, sans-serif;
 }
 
 .optionContent {

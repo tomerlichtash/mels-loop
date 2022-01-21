@@ -10,7 +10,7 @@ import { style, classes } from "./layout.st.css";
 export default function Layout({ children }: { children: React.ReactNode }) {
 	const { locale, pathname } = useRouter();
 	const isHome = pathname === "/";
-	const siteTitle = t("SITE_NAME", locale);
+	const siteTitle = `t("SITE_NAME", locale);`;
 	const siteSubtitle = t("SITE_SUBTITLE", locale);
 	return (
 		<>

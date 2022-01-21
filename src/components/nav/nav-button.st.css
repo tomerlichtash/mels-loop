@@ -9,7 +9,6 @@
 	-st-mixin: NavButton;
 	-st-states: current(boolean);
 	text-decoration: none;
-	font-family: Arial, sans-serif;
 }
 
 .root:current(true) {

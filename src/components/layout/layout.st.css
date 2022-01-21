@@ -14,13 +14,13 @@
 :global(html) {
 	margin: 0;
 	height: 100%;
-	font-family: "Arial", sans-serif;
 }
 
 :global(body) {
 	margin: 0;
 	height: 100%;
 	margin-top: 100px;
+	font-family: "NunitoVar";
 }
 
 :global(h1) {
@@ -45,4 +45,20 @@
 
 .root:locale(he) {
 	direction: rtl;
+}
+
+@font-face {
+  font-family: "NunitoBlack";
+  src: url("../../theme/assets/fonts/Nunito/static/Nunito-Black.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NunitoVar";
+  src: url("../../theme/assets/fonts/Nunito/Nunito-VariableFont_wght.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
 }

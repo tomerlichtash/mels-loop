@@ -6,12 +6,9 @@ import {
 } from "../../interfaces/models";
 import { style, classes } from "./content-iterator.st.css";
 
-export const ContentIterator = (
-	props: {
-		data: IContentComponentInitData;
-	},
-	className?: string
-): JSX.Element => {
+export const ContentIterator = (props: {
+	data: IContentComponentInitData;
+}): JSX.Element => {
 	const data = props.data,
 		p = data.data;
 	const elements: IMLParsedNode[] = Array.isArray(p.children) && p.children;

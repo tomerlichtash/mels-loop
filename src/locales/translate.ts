@@ -5,6 +5,6 @@ const LOCALE_MAP = {
 	he: HE_IL,
 };
 
-export const t = (key: string, locale: string) => {
+export const t = (key: string, locale: string): string => {
 	return LOCALE_MAP[locale][key] || `%${key}%`;
 };

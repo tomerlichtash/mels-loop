@@ -63,15 +63,4 @@
 .siteTitle {
 	/* font-size: value(siteTitleFontSize); */
 	text-transform: uppercase;
-	/* font-family: "NunitoBlack"; */
-	/* font-family: sans-serif; */
 }
-
-
-/* @font-face {
-  font-family: "NunitoBlack";
-  src: url("../../theme/assets/fonts/Nunito/static/Nunito-Black.ttf");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-} */

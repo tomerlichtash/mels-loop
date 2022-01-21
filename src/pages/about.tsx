@@ -10,10 +10,9 @@ export default function About() {
 	return (
 		<Layout>
 			<Head>
-				<title>{`${t("SITE_NAME", locale)} - ${t(
-					"ABOUT_NAV_LABEL",
-					locale
-				)}`}</title>
+				<title>
+					{t("SITE_NAME", locale)} - ${t("ABOUT_NAV_LABEL", locale)}
+				</title>
 			</Head>
 			<section className={classes.root}>
 				<h1>About</h1>

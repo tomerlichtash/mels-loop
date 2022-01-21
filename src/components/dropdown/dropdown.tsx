@@ -46,6 +46,7 @@ export const DropDown = ({
 					<ul className={classes.optionList}>
 						{options.map((option) => (
 							<Option
+								key={option.id}
 								closeDropDown={() => toggleOptionList(false)}
 								{...option}
 							/>

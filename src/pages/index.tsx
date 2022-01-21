@@ -10,7 +10,7 @@ export default function Home() {
 		<Layout>
 			<Head>
 				<title>
-					{`${t("SITE_NAME", locale)} - ${t("HOME_NAV_LABEL", locale)}`}
+					${t("SITE_NAME", locale)} - ${t("HOME_NAV_LABEL", locale)}
 				</title>
 			</Head>
 			<article className={style(classes.root)}>
