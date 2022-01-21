@@ -2,29 +2,21 @@ import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
 import Page from "../page";
-import { HEADER_LOCALE } from "../../consts";
+import { t } from "../../locales/translate";
+import { sitePagesOptions } from "../../consts";
 import { useRouter } from "next/router";
 import { style, classes } from "./layout.st.css";
 
-const name = `Mel's Loop`;
-export const siteTitle = `A Comprehensive Guide to The Story of Mel`;
-
-export default function Layout({
-	children,
-	isHome,
-}: {
-	children: React.ReactNode;
-	isHome?: boolean;
-}) {
-	const { locale } = useRouter();
+export default function Layout({ children }: { children: React.ReactNode }) {
+	const { locale, pathname } = useRouter();
+	const isHome = pathname === "/";
+	const siteTitle = t("SITE_NAME", locale);
+	const siteSubtitle = t("SITE_SUBTITLE", locale);
 	return (
 		<>
 			<Head>
 				<link rel="icon" href="/favicon.ico" />
-				<meta
-					name="description"
-					content="Learn how to build a personal website using Next.js"
-				/>
+				<meta name="description" content={siteSubtitle} />
 				<meta
 					property="og:image"
 					content={`https://og-image.vercel.app/${encodeURI(
@@ -34,11 +26,15 @@ export default function Layout({
 				<meta name="og:title" content={siteTitle} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-
 			<div className={style(classes.root, { locale: locale })}>
-				<Header isHome={!!isHome} name={HEADER_LOCALE.SITE_NAME[locale]} />
+				<Header
+					siteTitle={siteTitle}
+					siteSubtitle={siteSubtitle}
+					isHome={isHome}
+					sitePages={sitePagesOptions}
+				/>
 				<Page nodes={children} />
-				<Footer isHome={!!isHome} />
+				<Footer />
 			</div>
 		</>
 	);

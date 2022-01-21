@@ -13,25 +13,29 @@ export enum CONTENT_TYPES {
 	GLOSSARY = "glossary",
 }
 
-export const LOCALE_SELECTOR_LOCALE = {
-	TITLE: {
-		en: "Choose Language",
-		he: "בחירת שפה",
-	},
-};
-
-export const HEADER_LOCALE = {
-	SITE_NAME: {
-		en: "Mel's Loop",
-		he: "לולאת מל",
-	},
-};
-
 export const sitePagesOptions = [
-	{ label: "Home", id: "home", targetPathname: "/" },
-	{ label: "About", id: "about", targetPathname: "/about" },
-	{ label: "Story", id: "story", targetPathname: "/story" },
+	{ label: "HOME_NAV_LABEL", id: "home", targetPathname: "/" },
+	{ label: "ABOUT_NAV_LABEL", id: "about", targetPathname: "/about" },
+	{ label: "STORY_NAV_LABEL", id: "story", targetPathname: "/story" },
 ];
+
+// export const LOCALE_SELECTOR_LOCALE = {
+// 	TITLE: {
+// 		en: "Choose Language",
+// 		he: "בחירת שפה",
+// 	},
+// };
+
+// export const HEADER_LOCALE = {
+// 	SITE_NAME: {
+// 		en: "Mel's Loop",
+// 		he: "לולאת מל",
+// 	},
+// 	SITE_SUBTITLE: {
+// 		en: "A Comprehensive Guide to The Story of Mel",
+// 		he: "המדריך המלא לסיפור על מל",
+// 	},
+// };
 
 // export const SITE_PAGES = {
 // 	HOME: {
@@ -48,7 +52,7 @@ export const sitePagesOptions = [
 // 	},
 // };
 
-export const LOCALE_LABELS = {
-	en: "English",
-	he: "עברית",
-};
+// export const LOCALE_LABELS = {
+// 	en: "English",
+// 	he: "עברית",
+// };

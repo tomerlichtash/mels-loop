@@ -10,14 +10,15 @@
 }
 
 .root {
-	display: block;
+	/* display: block; */
+	background: red;
 	user-select: none;
-	width: 1200px;
+	/* width: 1200px; */
 	position: relative;
 }
 
 .menu {
-	width: 800px;
+	/* width: 800px; */
 	margin: 0 auto;
 	box-shadow: value(shadow1);
 }
@@ -27,33 +28,18 @@
 	display: flex;
 }
 
-.triggerButton {
-	width: 100px;
-	height: value(siteHeaderHeight);
-	background: cyan;
-	border: none;
-	cursor: pointer;
-}
-.dropDownOpen {
-	-st-mixin: triggerButton;
-}
-.dropDownClose {
-	-st-mixin: triggerButton;
-}
-
 .mobileNav {
 	-st-states: visible(boolean);
-	position: absolute;
-	left: 0;
-	width: 250px;
+	/* position: absolute; */
+	/* width: 250px; */
 }
 .mobileNav:visible {
-	position: absolute;
+	/* position: absolute; */
 }
 .mobileNavTrigger {
 	width: 30px;
 	height: value(siteHeaderHeight);
-	position: absolute;
+	/* position: absolute; */
 	left: 0;
 }
 
@@ -61,7 +47,6 @@
 	background: #fff;
 	top: value(siteHeaderHeight);
 	position: relative;
-	/* background: cyan; */
 }
 
 .listItem {

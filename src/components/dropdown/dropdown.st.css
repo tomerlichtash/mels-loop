@@ -1,8 +1,22 @@
 @namespace "DropDown";
 
+:import {
+	-st-from: "../../theme/mixins.st.css";
+	-st-named: NavButton;
+}
+
 .root {
 }
 
-.optionListTrigger {}
-.optionListOpen {}
-.optionListClose {}
+.optionListTrigger {
+}
+
+.optionListOpen {
+	-st-extends: NavButton;
+}
+.optionListClose {
+	-st-extends: NavButton;
+}
+
+.optionListContainer {}
+.optionList {}

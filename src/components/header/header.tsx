@@ -1,37 +1,53 @@
 import Link from "next/link";
 import LocaleSelector from "../locale-selector";
 import Nav from "../nav";
-import { SITE_PAGES } from "../../consts";
-import { SITE_LOCALE } from "../../locales/pages";
+import { IOption } from "../../interfaces/models";
 import { classes } from "./header.st.css";
 
 export const Header = ({
+	siteTitle,
+	siteSubtitle,
 	isHome,
-	name,
+	sitePages,
 }: {
 	isHome: boolean;
-	name: string;
+	siteTitle: string;
+	siteSubtitle: string;
+	sitePages: IOption[];
 }): JSX.Element => {
 	return (
 		<header className={classes.root}>
+			<LocaleSelector className={classes.localeSelector} />
 			<div className={classes.container}>
 				<div className={classes.title}>
 					{isHome ? (
-						<h1 className={classes.siteTitle} title={name} aria-label={name}>
-							{name}
-						</h1>
+						<div className={classes.titleContainer}>
+							<h1
+								className={classes.siteTitle}
+								title={`${siteTitle} - ${siteSubtitle}`}
+								aria-label={`${siteTitle} - ${siteSubtitle}`}
+							>
+								{siteTitle}
+							</h1>
+							<span className={classes.siteSubtitle}>{siteSubtitle}</span>
+						</div>
 					) : (
-						<h1 className={classes.siteTitle}>
-							<Link href="/">
-								<a title={name} aria-label={name}>
-									{name}
-								</a>
-							</Link>
-						</h1>
+						<div className={classes.titleContainer}>
+							<h1 className={classes.siteTitle}>
+								<Link href="/">
+									<a
+										title={`${siteTitle} - ${siteSubtitle}`}
+										aria-label={`${siteTitle} - ${siteSubtitle}`}
+									>
+										{siteTitle}
+									</a>
+								</Link>
+							</h1>
+							<span className={classes.siteSubtitle}>{siteSubtitle}</span>
+						</div>
 					)}
 				</div>
-				<Nav className={classes.headerNav} />
-				<LocaleSelector className={classes.localeSelector} />
+				<Nav sitePages={sitePages} className={classes.headerNav} />
 			</div>
 		</header>
 	);

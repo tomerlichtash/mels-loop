@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Option, IOption } from "./option";
+import { useRouter } from "next/router";
+import { Option } from "./option";
+import { IOption } from "../../interfaces/models";
+import { t } from "../../locales/translate";
 import { style, classes } from "./dropdown.st.css";
 
 export const DropDown = ({
@@ -13,41 +16,39 @@ export const DropDown = ({
 	options: IOption[];
 	className?: string;
 }): JSX.Element => {
+	const router = useRouter();
+	const { locale } = router;
 	const [optionListVisible, toggleOptionList] = useState(false);
 	return (
 		<div
 			className={style(classes.root, className)}
-			onMouseLeave={() => toggleOptionList(false)}
+			// onMouseLeave={() => toggleOptionList(false)}
 		>
 			<div className={classes.optionListTrigger}>
 				{!optionListVisible ? (
-					<button
+					<div
 						className={classes.optionListOpen}
 						onClick={() => toggleOptionList(true)}
 					>
-						{openLabel}
-					</button>
+						{t(openLabel, locale)}
+					</div>
 				) : (
-					<button
-						className={classes.optionListHide}
+					<div
+						className={classes.optionListClose}
 						onClick={() => toggleOptionList(false)}
 					>
-						{closeLabel}
-					</button>
+						{t(closeLabel, locale)}
+					</div>
 				)}
 			</div>
 			{optionListVisible && (
-				<div className={classes.container}>
-					<ul className={classes.list}>
+				<div className={classes.optionListContainer}>
+					<ul className={classes.optionList}>
 						{options.map((option) => (
-							<li
-								className={style(classes.option, {
-									current: option.isCurrent,
-								})}
-								key={`option-${option.id}`}
-							>
-								<Option {...option} />
-							</li>
+							<Option
+								closeDropDown={() => toggleOptionList(false)}
+								{...option}
+							/>
 						))}
 					</ul>
 				</div>
