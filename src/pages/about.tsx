@@ -1,14 +1,20 @@
 import Head from "next/head";
 import Layout from "../components/layout/layout";
-// import { useRouter } from "next/router";
-// import { aboutLocale } from "../locales/about";
+import { useRouter } from "next/router";
+import { t } from "../locales/translate";
+import { classes } from "./about.st.css";
 
-export default function Home() {
-	// const { locale } = useRouter();
+export default function About() {
+	const router = useRouter();
+	const { locale } = router;
 	return (
 		<Layout>
-			<Head>{/* <title>{siteTitle}</title> */}</Head>
-			<section>
+			<Head>
+				<title>
+					{t("SITE_NAME", locale)} - ${t("ABOUT_NAV_LABEL", locale)}
+				</title>
+			</Head>
+			<section className={classes.root}>
 				<h1>About</h1>
 				{/* <h2>{aboutLocale[locale].title}</h2> */}
 				About this site
@@ -16,18 +22,3 @@ export default function Home() {
 		</Layout>
 	);
 }
-
-// export const getStaticProps: GetStaticProps = async ({ locale }) => {
-//   const allPostsData = getSortedPostsData(locale);
-//   return {
-//     props: {
-//       allPostsData,
-//     },
-//   };
-// };
-
-// export const getStaticProps = async (context: IContext) => {
-//   return {
-//     props: { context },
-//   };
-// };

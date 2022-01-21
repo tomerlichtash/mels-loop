@@ -1,12 +1,11 @@
 @namespace "Mixins";
 
 .NavButton {
-	padding: 0.5rem 1rem;
-	height: 30px;
-	line-height: 30px;
+	/* padding: 0 1rem; */
 	cursor: pointer;
 }
 
 .NavButton:hover {
-	background-color: #fa4;
+	background-color: #808080;
+	color: #fff;
 }

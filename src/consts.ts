@@ -1,5 +1,3 @@
-export const defaultLocale = "en-US";
-
 export const dateFormats = {
 	en: "LLLL d, yyyy",
 	he: "dd/MM/yy",

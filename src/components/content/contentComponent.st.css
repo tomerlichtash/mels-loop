@@ -1,0 +1,5 @@
+@namespace "ContentComponent";
+
+.root {
+	-st-states: type(string);
+}

@@ -1,4 +1,3 @@
-// import Link from 'next/link';
 export type ILocale = "en" | "he";
 import { classes } from "./page.st.css";
 

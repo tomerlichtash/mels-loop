@@ -1,20 +1,23 @@
 import React from "react";
 import ContentComponent from "../content/contentComponent";
-import { classes } from "./content-browser.st.css";
 import {
 	IMLParsedNode,
 	IParsedPageData,
 	IContentComponentData,
 } from "../../interfaces/models";
+import { classes } from "./content-browser.st.css";
 
 const FULL_PAGE_RE = /full.*text/i;
 
 export const ContentBrowser = (props: {
 	data: IContentComponentData;
 	locale: string;
+	showTitle: boolean;
+	showMoto: boolean;
+	showCredits: boolean;
 }): JSX.Element => {
 	const { content } = props.data;
-	const { locale } = props;
+	const { locale, showTitle, showMoto, showCredits } = props;
 
 	const pageData: IParsedPageData[] = JSON.parse(content);
 
@@ -26,10 +29,15 @@ export const ContentBrowser = (props: {
 
 	const page = pageData[pageIndex] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
+
+	const title = pageData[0].title;
+	const moto = pageData[0].moto;
+	const credits = pageData[0].credits;
 	return (
 		<div className={classes.root}>
-			<h2>{pageData[0].title}</h2>
-			<p className={classes.moto}>{pageData[0].moto}</p>
+			{showTitle && <h2 className={classes.title}>{title}</h2>}
+			{showMoto && moto && <p className={classes.moto}>{pageData[0].moto}</p>}
+
 			{elements.map((node, index) => {
 				return (
 					<ContentComponent
@@ -41,7 +49,8 @@ export const ContentBrowser = (props: {
 					/>
 				);
 			})}
-			<p className={classes.credits}>{pageData[0].credits}</p>
+
+			{showCredits && credits && <p className={classes.credits}>{credits}</p>}
 		</div>
 	);
 };

@@ -1,17 +1,20 @@
 @namespace "LocaleSelector";
 
+:import {
+	-st-from: "../dropdown/dropdown.st.css";
+	-st-default: DropDown;
+}
+
 .root {
 	border: none;
-	outline: 0;
 	background: none;
 	cursor: pointer;
+	user-select: none;
+	display: flex;
 }
 
-.optionContainer {
-	display: inline-block;
-	vertical-align: top;
+.select {
+	-st-extends: DropDown;
 }
 
-.optionLabel {
-	cursor: pointer;
-}
+.current {}

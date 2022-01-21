@@ -16,6 +16,9 @@ export function initContentDir(contentId: string) {
 	return path.join(process.cwd(), `content/${contentId}`);
 }
 
+const consoleMsg = (msg: string, color: number) =>
+	`\x1b[${color}m${msg}\x1b[0m`;
+
 export function getSortedContentData(
 	contentDir: string,
 	locale: string
@@ -23,18 +26,25 @@ export function getSortedContentData(
 	// Get file names under /posts
 	const contentIds = fs.readdirSync(contentDir);
 	console.log(
-		`getting softed content in ${contentDir} for locale ${locale}, found ${contentIds.length} dir entries`
+		`\n${consoleMsg(
+			"collect",
+			41
+		)} - Sorted content in "${contentDir}" for locale "${locale}" (${
+			contentIds.length
+		} dir entries)`
 	);
 
 	const allContentData: IParsedPageData[] = contentIds
 		.map((id) => {
-			console.log(`Processing content id ${id}`);
+			console.log(
+				`${consoleMsg("process", 44)} - Processing content ID "${id}"`
+			);
 			// Read markdown file as string
 			const filename = getIndexFileName(locale);
 			const fullPath = path.join(contentDir, id, filename);
 
 			if (!fs.existsSync(fullPath)) {
-				console.warn(`${fullPath} not found`);
+				console.warn(`${consoleMsg("Path not found", 45)} - "${fullPath}"`);
 				// return error without disclosing OS path
 				return new ParsedPageData({
 					error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
@@ -43,7 +53,7 @@ export function getSortedContentData(
 
 			try {
 				const fileContents = fs.readFileSync(fullPath, "utf8");
-				console.log(`Parsing ${fullPath}`);
+				console.log(`${consoleMsg("parse", 45)} - Parsed "${fullPath}"`);
 
 				// Use gray-matter to parse the post metadata section
 				const { data: matterData, content } = matter(fileContents);
