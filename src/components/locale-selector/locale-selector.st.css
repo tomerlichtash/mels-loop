@@ -2,17 +2,13 @@
 
 .root {
 	border: none;
-	outline: 0;
 	background: none;
 	cursor: pointer;
 	user-select: none;
 }
 
 .optionContainer {
-	display: inline-block;
-	vertical-align: top;
 }
 
 .optionLabel {
-	cursor: pointer;
 }

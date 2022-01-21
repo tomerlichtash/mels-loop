@@ -15,7 +15,13 @@ export default function Story(data: IContentComponentData) {
 				<title>Story</title>
 			</Head>
 			<article className={style(classes.root)}>
-				<ContentBrowser data={data} locale={locale} />
+				<ContentBrowser
+					data={data}
+					locale={locale}
+					showTitle
+					showMoto
+					showCredits
+				/>
 			</article>
 		</Layout>
 	);

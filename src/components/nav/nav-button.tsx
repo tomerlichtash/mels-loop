@@ -15,6 +15,8 @@ export const NavButton = ({
 	return (
 		<Link href={`${pageName}`}>
 			<a
+				title={label}
+				aria-label={label}
 				className={style(
 					classes.root,
 					{

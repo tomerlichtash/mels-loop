@@ -1,8 +1,8 @@
 import Head from "next/head";
-import Nav from "../nav";
 import Header from "../header";
 import Footer from "../footer";
 import Page from "../page";
+import { HEADER_LOCALE } from "../../consts";
 import { useRouter } from "next/router";
 import { style, classes } from "./layout.st.css";
 
@@ -36,8 +36,7 @@ export default function Layout({
 			</Head>
 
 			<div className={style(classes.root, { locale: locale })}>
-				<Header isHome={!!isHome} name={name} />
-				<Nav />
+				<Header isHome={!!isHome} name={HEADER_LOCALE.SITE_NAME[locale]} />
 				<Page nodes={children} />
 				<Footer isHome={!!isHome} />
 			</div>

@@ -13,6 +13,19 @@ export enum CONTENT_TYPES {
 	GLOSSARY = "glossary",
 }
 
+export const LOCALE_SELECTOR_LOCALE = {
+	TITLE: {
+		en: "Choose Language",
+		he: "בחירת שפה",
+	},
+};
+
+export const HEADER_LOCALE = {
+	SITE_NAME: {
+		en: "Mel's Loop",
+		he: "לולאת מל",
+	},
+};
 export const SITE_PAGES = {
 	HOME: {
 		pathname: "/",

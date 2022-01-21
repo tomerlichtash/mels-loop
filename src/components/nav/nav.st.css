@@ -7,7 +7,6 @@
 
 .root {
 	display: block;
-	overflow: hidden;
 	user-select: none;
 }
 
@@ -19,6 +18,27 @@
 .list {
 	margin: 0;
 	display: flex;
+}
+
+.mobileNav {
+	-st-states: visible(boolean);
+	position: relative;
+}
+.mobileNav:visible {
+	position: absolute;
+}
+.mobileNavTrigger {
+	width: 30px;
+	height: 30px;
+}
+
+.mobileNavClose {
+	width: 30px;
+	height: 30px;
+	background: red;
+}
+.mobileNavMenu {
+	/* background: cyan; */
 }
 
 .listItem {

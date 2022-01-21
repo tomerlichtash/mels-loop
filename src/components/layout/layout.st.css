@@ -5,6 +5,10 @@
 	-st-named: LayoutBgColor;
 }
 
+:global(*):focus {
+	outline: 2px solid magenta;
+}
+
 :global(html) {
 	margin: 0;
 	height: 100%;
