@@ -1,0 +1,62 @@
+@namespace "Header";
+
+:import {
+	-st-from: "../../theme/common.st.css";
+	-st-named: HeaderBgColor, siteTitleFontSize, siteHeaderHeight, PageWidth;
+}
+
+:import {
+	-st-from: "../nav/nav.st.css";
+	-st-default: NavBar;
+}
+
+.root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #d0d0d0;
+  text-align: center;
+}
+
+.container {
+  /* display: flex; */
+  /* align-content: space-around; */
+  /* height: value(siteHeaderHeight); */
+  /* line-height: value(siteHeaderHeight); */
+  /* width: 1200px; */
+  /* margin: 0 auto; */
+  width: value(PageWidth);
+  margin: 0 auto;
+}
+
+.title {
+  /* line-height: 100px; */
+  flex: 1;
+  /* background: red; */
+}
+
+.headerNav {
+	-st-extends: NavBar;
+  flex: 1;
+  display: flex;
+}
+
+.headerNav::menu {
+  flex: 1;
+}
+
+.headerNav::mobileNav {
+  flex: 1;
+}
+
+.localeSelector {
+  /* position: absolute;
+  right: 0; */
+  /* background: cyan; */
+}
+
+.siteTitle {
+	/* font-size: value(siteTitleFontSize); */
+	text-transform: uppercase;
+}

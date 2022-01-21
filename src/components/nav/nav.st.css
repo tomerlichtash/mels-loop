@@ -1,0 +1,63 @@
+@namespace "Nav";
+
+:import {
+	-st-from: "../../theme/common.st.css";
+	-st-named: siteHeaderHeight, shadow1, PageWidth;
+}
+:import {
+	-st-from: "../../theme/mixins.st.css";
+	-st-named: NavButton;
+}
+
+.root {
+	/* display: block; */
+	user-select: none;
+	margin: 0 auto;
+	width: value(PageWidth);
+	position: relative;
+	overflow: hidden;
+}
+
+.menu {
+	/* width: 800px; */
+	margin: 0 auto;
+	/* box-shadow: value(shadow1); */
+}
+
+.list {
+	margin: 0;
+	display: flex;
+}
+
+.mobileNav {
+	-st-states: visible(boolean);
+	/* position: absolute; */
+	/* width: 250px; */
+}
+.mobileNav:visible {
+	/* position: absolute; */
+}
+.mobileNavTrigger {
+	width: 30px;
+	height: value(siteHeaderHeight);
+	/* position: absolute; */
+	left: 0;
+}
+
+.mobileNavMenu {
+	background: #fff;
+	top: value(siteHeaderHeight);
+	position: relative;
+}
+
+.listItem {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	display: flex;
+}
+
+.button {
+	flex: 1;
+	text-align: center;
+}

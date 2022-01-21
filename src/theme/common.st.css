@@ -1,0 +1,41 @@
+@namespace "BaseTheme";
+
+:vars {
+    color0: #fff;
+    color1: #f0f0f0;
+    color2: #fa90fa;
+    color3: #4f8;
+    color4: #89f;
+    color5: #239;
+}
+
+:vars {
+    width1: 1200px;
+
+    radius1: 4px;
+
+    shadow1: 0 0 10px rgba(0, 0, 0, 0.5);
+    shadow2: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+:vars {
+    /* Layout */
+    LayoutBgColor: value(color1);
+    /* Header */
+    HeaderBgColor: value(color2);
+    /* Footer */
+    FooterBgColor: value(color3);
+    /* Nav */
+    NavBgColor: value(color4);
+    /* Page */
+    PageBgColor: value(color5);
+}
+
+:vars {
+    siteTitleFontSize: 4rem;
+    siteHeaderHeight: 60px;
+
+    PageWidth: value(width1);
+    PageShadow: value(shadow2);
+    PageRadius: value(radius1);
+}

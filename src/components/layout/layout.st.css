@@ -1,0 +1,65 @@
+@namespace "Layout";
+
+:import {
+	-st-from: "../../theme/common.st.css";
+	-st-named: LayoutBgColor, shadow1;
+}
+
+:global(*):focus {
+	/* box-shadow: value(shadow1); */
+	outline: none;
+	/* outline: 2px solid magenta; */
+}
+
+:global(html) {
+	margin: 0;
+	height: 100%;
+}
+
+:global(body) {
+	margin: 0;
+	height: 100%;
+	margin-top: 100px;
+}
+
+:global(h1) {
+	margin: 0;
+}
+
+:global(ul) {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.root {
+	/* background: value(LayoutBgColor); */
+	padding-top: 2rem;
+	-st-states: locale(enum(en, he));
+}
+
+.root:locale(en) {
+	direction: ltr;
+	font-family: "NunitoVar";
+}
+
+.root:locale(he) {
+	direction: rtl;
+	font-family: "Heebo";
+}
+
+@font-face {
+  font-family: "NunitoVar";
+  src: url("../../theme/assets/fonts/Nunito/Nunito-VariableFont_wght.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Heebo";
+  src: url("../../theme/assets/fonts/Heebo/Heebo-VariableFont_wght.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
