@@ -14,7 +14,7 @@ export default function Story(data: IContentComponentData) {
 		<Layout>
 			<Head>
 				<title>
-					${t("SITE_NAME", locale)} - ${t("STORY_NAV_LABEL", locale)}
+					{t("SITE_NAME", locale)} - {t("STORY_NAV_LABEL", locale)}
 				</title>
 			</Head>
 			<article className={style(classes.root)}>
