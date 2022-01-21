@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { getSortedCodexData } from "../lib/content-drivers/codex";
 import { IContentComponentData } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
+import { t } from "../locales/translate";
 import { style, classes } from "./index.st.css";
 
 export default function Story(data: IContentComponentData) {
@@ -12,7 +13,9 @@ export default function Story(data: IContentComponentData) {
 	return (
 		<Layout>
 			<Head>
-				<title>Story</title>
+				<title>
+					{`${t("SITE_NAME", locale)} - ${t("STORY_NAV_LABEL", locale)}`}
+				</title>
 			</Head>
 			<article className={style(classes.root)}>
 				<ContentBrowser
