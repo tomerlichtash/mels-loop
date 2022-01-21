@@ -54,12 +54,6 @@
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	display: flex;
-	-st-states: isCurrent(boolean);
-	/* border-bottom: 2px solid transparent; */
-}
-
-.listItem:isCurrent(true) {
-	/* border-bottom: 2px solid blue; */
 }
 
 .button {

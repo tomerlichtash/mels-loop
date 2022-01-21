@@ -9,8 +9,14 @@
 	-st-mixin: NavButton;
 	-st-states: current(boolean);
 	text-decoration: none;
+	padding: 0.25rem 1rem;
+	color: #000;
 }
 
 .root:current(true) {
-	/* background-color: #ffa; */
+	background: #fff;
+}
+
+.root:current:hover {
+	color: #000;
 }
