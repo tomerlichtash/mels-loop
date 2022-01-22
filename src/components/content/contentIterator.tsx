@@ -28,7 +28,7 @@ export const ContentIterator = (props: {
 	}
 	if (Tag) {
 		return (
-			<Tag className={data.style || ""} key={p.key}>
+			<Tag className={classes[Tag]} key={p.key}>
 				{elements.map((node) => {
 					return (
 						<ContentComponent
