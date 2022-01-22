@@ -1,3 +1,3 @@
 # Mel's Loop
-A Comprehensive Companion to The Story of Mel
+A Comprehensive Companion to _The Story of Mel_
 

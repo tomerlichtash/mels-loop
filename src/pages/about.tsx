@@ -1,24 +1,39 @@
 import Head from "next/head";
 import Layout from "../components/layout/layout";
+import ContentBrowser from "../components/content-browser";
+import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { t } from "../locales/translate";
-import { classes } from "./about.st.css";
+import { getSortedDocsData } from "../lib/content-drivers/about";
+import { style, classes } from "./about.st.css";
 
-export default function About() {
+export default function About(data) {
 	const router = useRouter();
 	const { locale } = router;
 	return (
 		<Layout>
 			<Head>
 				<title>
-					{t("SITE_NAME", locale)} - ${t("ABOUT_NAV_LABEL", locale)}
+					{t("SITE_NAME", locale)} - {t("ABOUT_NAV_LABEL", locale)}
 				</title>
 			</Head>
-			<section className={classes.root}>
-				<h1>About</h1>
-				{/* <h2>{aboutLocale[locale].title}</h2> */}
-				About this site
-			</section>
+			<article className={style(classes.root)}>
+				<ContentBrowser
+					data={data}
+					locale={locale}
+					showTitle
+				/>
+			</article>
 		</Layout>
 	);
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	const data = getSortedDocsData(locale);
+	return {
+		props: {
+			content: JSON.stringify(data),
+			locale,
+		},
+	};
+};

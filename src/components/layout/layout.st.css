@@ -34,21 +34,21 @@
 
 .root {
 	/* background: value(LayoutBgColor); */
-	padding-top: 2rem;
+	/* padding-top: 2rem; */
 	-st-states: locale(enum(en, he));
 }
 
 .root:locale(en) {
 	direction: ltr;
-	font-family: "NunitoVar";
+	font-family: "Nunito", sans-serif;
 }
 
 .root:locale(he) {
 	direction: rtl;
-	font-family: "Heebo";
+	font-family: "Heebo", sans-serif;
 }
 
-@font-face {
+/* @font-face {
   font-family: "NunitoVar";
   src: url("../../theme/assets/fonts/Nunito/Nunito-VariableFont_wght.ttf");
   font-style: normal;
@@ -62,4 +62,4 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-}
+} */
