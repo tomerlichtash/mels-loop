@@ -4,7 +4,7 @@ moto: "This was posted to Usenet by its author, Ed Nather <nather@astro.as.utexa
 ---
 
 A recent article devoted to the macho side of programming
-made the bald and unvarnished statement:
+made the bold and unvarnished statement:
 
     Real Programmers write in FORTRAN.
 

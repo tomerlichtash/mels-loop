@@ -1,16 +1,16 @@
 @namespace "Index";
 
 .root {
-	font-size: 16px;
-	padding: 4rem;
+	/* font-size: 16px; */
+	/* padding: 4rem; */
 }
 
 .article {
 }
 
 .verse {
-	margin-bottom: 2rem;
-	line-height: 1.6rem;
+	/* margin-bottom: 2rem; */
+	/* line-height: 1.6rem; */
 }
 
 .paragraph {

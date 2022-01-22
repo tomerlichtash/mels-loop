@@ -7,6 +7,7 @@ const {
 
 const nextConfig = {
 	reactStrictMode: true,
+	optimizeFonts: true,
 	future: {
 		webpack5: true,
 	},
