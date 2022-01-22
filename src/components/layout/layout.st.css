@@ -34,7 +34,7 @@
 
 .root {
 	/* background: value(LayoutBgColor); */
-	padding-top: 2rem;
+	/* padding-top: 2rem; */
 	-st-states: locale(enum(en, he));
 }
 

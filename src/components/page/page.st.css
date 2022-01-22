@@ -8,8 +8,10 @@
 .root {
 	/* background: #fff; */
 	/* min-height: calc(100vh - 350px); */
-	margin: 2rem auto 0;
-	border-radius: value(PageRadius);
+	margin: 0 auto;
+	padding: 2rem;
+	/* margin: 2rem auto 0; */
+	/* border-radius: value(PageRadius); */
 	/* box-shadow: value(PageShadow); */
 	width: value(PageWidth);
 }
