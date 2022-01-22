@@ -9,10 +9,10 @@ class MyDocument extends Document {
 					<link
 						rel="preconnect"
 						href="https://fonts.gstatic.com"
-						crossorigin
+						// crossorigin
 					></link>
 					<link
-						href="https://fonts.googleapis.com/css2?family=Heebo:wght@100&family=Nunito:wght@300&display=swap"
+						href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;700&family=Nunito:wght@300;500;700&display=swap"
 						rel="stylesheet"
 					></link>
 				</Head>
