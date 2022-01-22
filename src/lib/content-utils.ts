@@ -52,6 +52,9 @@ function nodeTypeToMLType(nodeName: string): MLParsedNodeType {
 
 class ContentUtils implements IContentUtils {
 	public processParseTree(nodes: ParsedNode[]): IMLParsedNode[] {
+		if (!nodes || !nodes.length) {
+			return []
+		}
 		const indexer = new NodeIndexer();
 		return nodes
 			.map((node) => this.processOneASTNode(node, indexer))

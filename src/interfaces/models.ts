@@ -88,6 +88,17 @@ export interface IParsedPageData {
 	readonly error?: string;
 }
 
+export interface ILocaleMap { 
+	readonly params: { id: string }; locale: string 
+}
+
+export type PageSortField = Omit<keyof IParsedPageData, "parsed"|"error">
+export interface IFolderContent {
+	readonly pages: IParsedPageData[];
+	readonly ids: ILocaleMap[]
+	sortOn(field: PageSortField): IParsedPageData[]
+}
+
 /**
  * The data passed to a next component from the static props. The content is serialized to circumvent
  * next's approach to serializing

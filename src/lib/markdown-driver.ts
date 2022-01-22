@@ -4,13 +4,25 @@ import matter from "gray-matter";
 import remark from "remark";
 import html from "remark-html";
 import * as mdParser from "simple-markdown";
-import { IMLParsedNode, IParsedPageData } from "../interfaces/models";
+import { IFolderContent, ILocaleMap, IMLParsedNode, IParsedPageData, PageSortField } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
 
 const { defaultLocale } = require("../../i18n.json");
 
 const getIndexFileName = (locale: string): string =>
 	defaultLocale === locale ? "index.md" : `index.${locale}.md`;
+
+let rootDir: string;
+
+export function setRootDir(root: string): void {
+	rootDir = path.join(root, "content/");
+}
+
+export function getRootDir(): string {
+	return rootDir;
+}
+
+setRootDir(process.cwd());
 
 export function initContentDir(contentId: string) {
 	return path.join(process.cwd(), `content/${contentId}`);
@@ -20,21 +32,23 @@ const consoleMsg = (msg: string, color: number) =>
 	`\x1b[${color}m${msg}\x1b[0m`;
 
 export function getSortedContentData(
-	contentDir: string,
+	relativePath: string,
 	locale: string
-): IParsedPageData[] {
+): IFolderContent {
+	const contentDir = path.join(getRootDir(), relativePath);
 	// Get file names under /posts
 	const contentIds = fs.readdirSync(contentDir);
 	console.log(
 		`\n${consoleMsg(
 			"collect",
 			41
-		)} - Sorted content in "${contentDir}" for locale "${locale}" (${
-			contentIds.length
+		)} - Sorted content in "${contentDir}" for locale "${locale}" (${contentIds.length
 		} dir entries)`
 	);
 
-	const allContentData: IParsedPageData[] = contentIds
+	const ret = new FolderContent();
+
+	ret.pages = contentIds
 		.map((id) => {
 			console.log(
 				`${consoleMsg("process", 44)} - Processing content ID "${id}"`
@@ -50,7 +64,7 @@ export function getSortedContentData(
 					error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
 				});
 			}
-
+			ret.ids.push({ params: { id }, locale });
 			try {
 				const fileContents = fs.readFileSync(fullPath, "utf8");
 				console.log(`${consoleMsg("parse", 45)} - Parsed "${fullPath}"`);
@@ -78,14 +92,9 @@ export function getSortedContentData(
 		})
 		// filter out empty items
 		.filter(Boolean);
+
+		return ret;
 	// Sort posts by date
-	return allContentData.sort((a, b) => {
-		if (a.date < b.date) {
-			return 1;
-		} else {
-			return -1;
-		}
-	});
 }
 
 export function getAllContentIds(contentDir: string, locales: string[]) {
@@ -165,4 +174,24 @@ class ParsedPageData implements IParsedPageData {
 	public content = "";
 	public parsed: IMLParsedNode[] = [];
 	public error?: string = "";
+}
+
+class FolderContent implements IFolderContent {
+	public pages: IParsedPageData[] = [];
+
+	public ids: ILocaleMap[] = [];
+	sortOn(field: PageSortField): IParsedPageData[] {
+		if (!this.pages) {
+			return [];
+		}
+		const key = String(field);
+		return this.pages.slice().sort((a, b) => {
+			if (a[key] < b[key]) {
+				return 1;
+			} else {
+				return -1;
+			}
+		});
+	}
+	
 }
