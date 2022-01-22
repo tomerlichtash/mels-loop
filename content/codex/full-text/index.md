@@ -5,7 +5,7 @@ author: "Ed Nather"
 ---
 
 A recent article devoted to the macho side of programming
-made the bald and unvarnished statement:
+made the bold and unvarnished statement:
 
     Real Programmers write in FORTRAN.
 
