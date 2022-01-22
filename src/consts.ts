@@ -4,6 +4,7 @@ export const dateFormats = {
 };
 
 export enum CONTENT_TYPES {
+	ABOUT = "about",
 	CODEX = "codex",
 	POSTS = "posts",
 	TESTS = "tests",

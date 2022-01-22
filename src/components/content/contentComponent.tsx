@@ -36,6 +36,8 @@ export const ContentComponent = (props: {
 					}}
 				/>
 			);
+		case "blockquote":
+			return <blockquote key={node.key}>{node.text}</blockquote>;
 		case "text":
 			return <span key={node.key}>{node.text}</span>;
 		case "list":

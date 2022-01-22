@@ -12,9 +12,9 @@ const FULL_PAGE_RE = /full.*text/i;
 export const ContentBrowser = (props: {
 	data: IContentComponentData;
 	locale: string;
-	showTitle: boolean;
-	showMoto: boolean;
-	showCredits: boolean;
+	showTitle?: boolean;
+	showMoto?: boolean;
+	showCredits?: boolean;
 }): JSX.Element => {
 	const { content } = props.data;
 	const { locale, showTitle, showMoto, showCredits } = props;

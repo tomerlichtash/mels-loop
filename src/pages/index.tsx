@@ -1,3 +1,5 @@
+// import { GetStaticProps } from "next";
+// import { getSortedDocsData } from "../lib/content-drivers/docs";
 import Head from "next/head";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
@@ -21,3 +23,13 @@ export default function Home() {
 		</Layout>
 	);
 }
+
+// export const getStaticProps: GetStaticProps = async ({ locale }) => {
+// 	const data = getSortedDocsData(locale);
+// 	return {
+// 		props: {
+// 			content: JSON.stringify(data),
+// 			locale,
+// 		},
+// 	};
+// };
