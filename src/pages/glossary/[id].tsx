@@ -1,38 +1,22 @@
-import Layout from "../../components/layout";
-import { getAllTermIds, getTermData } from "../../lib/content-drivers/glossary";
-import { useRouter } from "next/router";
-import Head from "next/head";
-import Date from "../../components/date";
 import { GetStaticProps, GetStaticPaths } from "next";
+import { loadContentFolder } from "../../lib/markdown-driver";
+import { IContentComponentData, ILocaleMap } from "../../interfaces/models";
+import { CONTENT_TYPES } from "../../consts";
+import GenericPage from "../../components/content/genericPage";
 
-export default function Term({
-	termData,
-}: {
-	termData: {
-		title: string;
-		date: string;
-		contentHtml: string;
-	};
-}) {
-	const { locale } = useRouter();
+export default function Glossary(data: IContentComponentData) {
 	return (
-		<Layout>
-			<Head>
-				<title>{termData.title}</title>
-			</Head>
-			<article>
-				<h1>{termData.title}</h1>
-				<div>
-					<Date dateString={termData.date} locale={locale} />
-				</div>
-				<div dangerouslySetInnerHTML={{ __html: termData.contentHtml }} />
-			</article>
-		</Layout>
+		<GenericPage data={data} />
 	);
 }
 
+
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-	const paths = getAllTermIds(locales);
+	const paths: ILocaleMap[] = [];
+	(locales || []).forEach((locale: string) => {
+		const folderData = loadContentFolder({locale, relativePath: CONTENT_TYPES.GLOSSARY, type: "children"});
+		paths.push.apply(paths, folderData.ids);
+	})
 	return {
 		paths,
 		fallback: false,
@@ -40,10 +24,10 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-	const termData = await getTermData(params.id as string, locale);
+	const docData = loadContentFolder({relativePath: `${CONTENT_TYPES.GLOSSARY}/${params.id}`, locale, type: "folder" });
 	return {
 		props: {
-			termData,
+			content: JSON.stringify(docData.pages),
 		},
 	};
 };

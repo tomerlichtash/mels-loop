@@ -4,8 +4,9 @@ import ContentBrowser from "../components/content-browser";
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { t } from "../locales/translate";
-import { getSortedDocsData } from "../lib/content-drivers/about";
 import { style, classes } from "./about.st.css";
+import { loadContentFolder } from "../lib/markdown-driver";
+import { CONTENT_TYPES } from "../consts";
 
 export default function About(data) {
 	const router = useRouter();
@@ -29,10 +30,10 @@ export default function About(data) {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const data = getSortedDocsData(locale);
+	const data = loadContentFolder({relativePath: CONTENT_TYPES.DOCS, locale, type: "children" });
 	return {
 		props: {
-			content: JSON.stringify(data),
+			content: JSON.stringify(data.sortOn("date")),
 			locale,
 		},
 	};

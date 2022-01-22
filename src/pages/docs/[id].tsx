@@ -1,33 +1,21 @@
-import Layout from "../../components/layout";
-import { getAllDocIds, getDocData } from "../../lib/content-drivers/docs";
-import Head from "next/head";
 import { GetStaticProps, GetStaticPaths } from "next";
+import { IContentComponentData, ILocaleMap } from "../../interfaces/models";
+import GenericPage from "../../components/content/genericPage";
+import { loadContentFolder } from "../../lib/markdown-driver";
+import { CONTENT_TYPES } from "../../consts";
 
-export default function Doc({
-	docData,
-}: {
-	docData: {
-		title: string;
-		date: string;
-		contentHtml: string;
-	};
-}) {
+export default function Doc(data: IContentComponentData) {
 	return (
-		<Layout>
-			<Head>
-				<title>{docData.title}</title>
-			</Head>
-			<article>
-				<h1>{docData.title}</h1>
-				<div>{/* <Date dateString={docData.date} locale={locale} /> */}</div>
-				<div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />
-			</article>
-		</Layout>
+		<GenericPage data={data} />
 	);
 }
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-	const paths = getAllDocIds(locales);
+	const paths: ILocaleMap[] = [];
+	(locales || []).forEach((locale: string) => {
+		const folderData = loadContentFolder({locale, relativePath: CONTENT_TYPES.DOCS, type: "children"});
+		paths.push.apply(paths, folderData.ids);
+	})
 	return {
 		paths,
 		fallback: false,
@@ -35,10 +23,10 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-	const docData = await getDocData(params.id as string, locale);
+	const docData = loadContentFolder({relativePath: `${CONTENT_TYPES.DOCS}/${params.id}`, locale, type: "folder" });
 	return {
 		props: {
-			docData,
+			content: JSON.stringify(docData.pages),
 		},
 	};
 };

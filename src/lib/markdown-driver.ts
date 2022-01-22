@@ -24,47 +24,70 @@ export function getRootDir(): string {
 
 setRootDir(process.cwd());
 
-export function initContentDir(contentId: string) {
-	return path.join(process.cwd(), `content/${contentId}`);
-}
-
 const consoleMsg = (msg: string, color: number) =>
 	`\x1b[${color}m${msg}\x1b[0m`;
 
-export function getSortedContentData(
-	relativePath: string,
-	locale: string
-): IFolderContent {
-	const contentDir = path.join(getRootDir(), relativePath);
+export interface ILoadContentOptions {
+	/**
+	 * The content path, relative to the content folder
+	 */
+	readonly relativePath: string;
+	/**
+	 * If true, iterate over children folders
+	 */
+	readonly type: "children" | "folder";
+	readonly locale: string;
+	readonly loadContent?: boolean;
+}
+
+export function loadContentFolder(options: ILoadContentOptions): IFolderContent {
+	const contentDir = path.join(getRootDir(), options.relativePath);
 	// Get file names under /posts
-	const contentIds = fs.readdirSync(contentDir);
+	const contentNames = fs.readdirSync(contentDir);
 	console.log(
 		`\n${consoleMsg(
 			"collect",
 			41
-		)} - Sorted content in "${contentDir}" for locale "${locale}" (${contentIds.length
+		)} - Sorted content in "${contentDir}" for locale "${options.locale}" (${contentNames.length
 		} dir entries)`
 	);
 
 	const ret = new FolderContent();
 
-	ret.pages = contentIds
-		.map((id) => {
+	contentNames
+		.forEach((name) => {
 			console.log(
-				`${consoleMsg("process", 44)} - Processing content ID "${id}"`
+				`${consoleMsg("process", 44)} - Processing content ID "${name}"`
 			);
-			// Read markdown file as string
-			const filename = getIndexFileName(locale);
-			const fullPath = path.join(contentDir, id, filename);
-
-			if (!fs.existsSync(fullPath)) {
-				console.warn(`${consoleMsg("Path not found", 45)} - "${fullPath}"`);
-				// return error without disclosing OS path
-				return new ParsedPageData({
-					error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
-				});
+			const filename = getIndexFileName(options.locale);
+			let fullPath: string;
+			if (options.type === "folder") {
+				if (filename !== name) {
+					return;
+				}
+				fullPath = path.join(contentDir, name);
 			}
-			ret.ids.push({ params: { id }, locale });
+			else { // read children
+				// Read markdown file as string
+				const childPath = path.join(contentDir, name);
+				const stat = fs.lstatSync(childPath);
+				if (!stat.isDirectory()) {
+					return;
+				}
+
+				fullPath = path.join(contentDir, name, filename);
+				if (!fs.existsSync(fullPath)) {
+					console.warn(`${consoleMsg("Path not found", 45)} - "${fullPath}"`);
+					// return error without disclosing OS path
+					return ret.pages.push(new ParsedPageData({
+						error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
+					}));
+				}
+				ret.ids.push({ params: { id: name }, locale: options.locale });
+			}
+			if (options.loadContent === false) {
+				return;
+			}
 			try {
 				const fileContents = fs.readFileSync(fullPath, "utf8");
 				console.log(`${consoleMsg("parse", 45)} - Parsed "${fullPath}"`);
@@ -76,70 +99,61 @@ export function getSortedContentData(
 				const tree = contentUtils.processParseTree(mdParse(content));
 
 				// Combine the data with the id
-				return new ParsedPageData({
-					id,
+				ret.pages.push(new ParsedPageData({
+					id: name,
 					title: matterData.title || "",
 					date: parseDate(matterData.date as string),
 					moto: matterData.moto || "",
 					credits: matterData.credits || "",
 					content,
 					parsed: tree,
-				});
+				}));
 			} catch (e) {
-				console.error(`Error processing ${fullPath}\n${JSON.stringify(e)}`);
-				return new ParsedPageData({ error: String(e) });
+				console.error(`Error processing ${fullPath}\n`, e);
+				ret.pages.push(new ParsedPageData({ error: String(e) }));
 			}
 		})
-		// filter out empty items
-		.filter(Boolean);
+	// filter out empty items
 
-		return ret;
+	return ret;
 	// Sort posts by date
 }
 
-export function getAllContentIds(contentDir: string, locales: string[]) {
-	let paths: { params: { id: string }; locale: string }[] = [];
+//export async function getContentData(
+//	contentDir: string,
+//	id: string,
+//	locale: string
+//) {
+//	const fullPath = path.join(getRootDir(), contentDir, id, getIndexFileName(locale));
+//	try {
+//		const fileContents = fs.readFileSync(fullPath, "utf8");
 
-	const contentIds = fs.readdirSync(contentDir);
+//		// Use gray-matter to parse the post metadata section
+//		const matterResult = matter(fileContents);
 
-	for (let id of contentIds) {
-		for (let locale of locales) {
-			const fullpath = path.join(contentDir, id, getIndexFileName(locale));
-			if (!fs.existsSync(fullpath)) {
-				continue;
-			}
+//		// Use remark to convert markdown into HTML string
+//		const processedContent = await remark()
+//			.use(html)
+//			.process(matterResult.content);
+//		const contentHtml = processedContent.toString();
 
-			paths.push({ params: { id }, locale });
-		}
-	}
-
-	return paths;
-}
-
-export async function getContentData(
-	contentDir: string,
-	id: string,
-	locale: string
-) {
-	const fullPath = path.join(contentDir, id, getIndexFileName(locale));
-	const fileContents = fs.readFileSync(fullPath, "utf8");
-
-	// Use gray-matter to parse the post metadata section
-	const matterResult = matter(fileContents);
-
-	// Use remark to convert markdown into HTML string
-	const processedContent = await remark()
-		.use(html)
-		.process(matterResult.content);
-	const contentHtml = processedContent.toString();
-
-	// Combine the data with the id and contentHtml
-	return {
-		id,
-		contentHtml,
-		...(matterResult.data as { date: string; title: string }),
-	};
-}
+//		// Combine the data with the id and contentHtml
+//		return {
+//			id,
+//			contentHtml,
+//			...(matterResult.data as { date: string; title: string }),
+//		};
+//	}
+//	catch (e) {
+//		console.error("getContentData", e);
+//		return {
+//			id: null,
+//			contentHtml: null,
+//			date: "",
+//			title: ""
+//		}
+//	}
+//}
 
 function parseDate(dateString: string | null | undefined): Date {
 	if (dateString) {
@@ -180,6 +194,7 @@ class FolderContent implements IFolderContent {
 	public pages: IParsedPageData[] = [];
 
 	public ids: ILocaleMap[] = [];
+	public paths: string[]
 	sortOn(field: PageSortField): IParsedPageData[] {
 		if (!this.pages) {
 			return [];
@@ -193,5 +208,5 @@ class FolderContent implements IFolderContent {
 			}
 		});
 	}
-	
+
 }
