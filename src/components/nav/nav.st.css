@@ -20,17 +20,19 @@
 
 .menu {
 	/* width: 800px; */
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	/* box-shadow: value(shadow1); */
+	/* border: 2px solid red; */
 }
 
 .list {
 	margin: 0;
-	display: flex;
+	display: inline-flex;
 }
 
 .mobileNav {
 	-st-states: visible(boolean);
+	display: none;
 	/* position: absolute; */
 	/* width: 250px; */
 }
@@ -55,6 +57,7 @@
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	display: flex;
+	align-content: space-around;
 }
 
 .button {
