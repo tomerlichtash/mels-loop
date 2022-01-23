@@ -11,6 +11,7 @@ export interface LocaleSelectorProps extends ComponentProps {
 
 export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 	const { locale, compKeys, className, onSelectChange, translate } = props;
+	const currentLocaleLabel = `LOCALE_LABEL_${locale.toUpperCase()};`
 	return (
 		<div className={style(classes.root, className)}>
 			<DropDown
@@ -33,7 +34,7 @@ export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 				translate={translate}
 			/>
 			<div className={classes.current}>
-				[{translate(`LOCALE_LABEL_${locale.toUpperCase()}`)}]
+				[{translate(currentLocaleLabel)}]
 			</div>
 		</div>
 	);
