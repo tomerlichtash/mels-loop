@@ -11,7 +11,7 @@ export interface HeaderProps extends ComponentProps {
 }
 
 export const Header = (props: HeaderProps): JSX.Element => {
-	const { pathname, isHome, sitePages, compKeys, children, translate } = props;
+	const { pathname, isHome, sitePages, compKeys, translate } = props;
 	const { siteTitle, siteSubtitle } = compKeys;
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
