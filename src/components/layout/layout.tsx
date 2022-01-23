@@ -69,7 +69,6 @@ export default function Layout(props: LayoutProps) {
 				<Page nodes={props.children} />
 				<Footer
 					translate={translate}
-					// locale={locale}
 					compKeys={FOOTER_LOCALE}
 				/>
 			</div>

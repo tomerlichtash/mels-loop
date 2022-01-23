@@ -5,7 +5,6 @@ import { ComponentProps } from "../../interfaces/models";
 import { classes } from "./header.st.css";
 
 export interface HeaderProps extends ComponentProps {
-	// locale: string;
 	pathname: string;
 	isHome: boolean;
 	sitePages: SitePage[];
@@ -50,7 +49,6 @@ export const Header = (props: HeaderProps): JSX.Element => {
 				<Nav
 					sitePages={sitePages}
 					className={classes.headerNav}
-					// locale={locale}
 					translate={translate}
 					pathname={pathname}
 				/>
