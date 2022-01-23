@@ -10,7 +10,7 @@ export interface LocaleSelectorProps extends ComponentProps {
 }
 
 export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
-	const { locale, onSelectChange, translate, compKeys, className } = props;
+	const { locale, compKeys, className, onSelectChange, translate } = props;
 	return (
 		<div className={style(classes.root, className)}>
 			<DropDown
@@ -18,14 +18,12 @@ export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 				options={[
 					{
 						id: "en",
-						locale: "en",
 						label: compKeys.en,
 						isCurrent: locale === "en",
 						callback: onSelectChange,
 					},
 					{
 						id: "he",
-						locale: "he",
 						label: compKeys.he,
 						isCurrent: locale === "he",
 						callback: onSelectChange,

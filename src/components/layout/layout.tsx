@@ -21,21 +21,20 @@ export interface LayoutProps extends ComponentProps {
 }
 
 export default function Layout(props: LayoutProps) {
+	const { translate } = props;
+
 	const router = useRouter();
 	const { locale, pathname } = router;
 
-	const onSelectChange = (locale: string) => {
-		return router.push(router.asPath, router.asPath, {
-			locale,
-			scroll: false,
-		});
-	};
-
-	const { translate } = props;
+	const onSelectChange = (locale: string) => router.push(router.asPath, router.asPath, {
+		locale,
+		scroll: false,
+	});
 
 	const isHome = pathname === "/";
 	const siteTitle = translate(LAYOUT_LOCALE.siteTitle);
 	const siteSubtitle = translate(LAYOUT_LOCALE.siteSubtitle);
+
 	return (
 		<>
 			<Head>
@@ -50,21 +49,21 @@ export default function Layout(props: LayoutProps) {
 				<meta name="og:title" content={siteTitle} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div className={style(classes.root, { locale: locale })}>
+			<div className={style(classes.root, { locale })}>
 				<Header
 					locale={locale}
-					compKeys={HEADER_LOCALE}
 					pathname={pathname}
 					isHome={isHome}
 					sitePages={SITE_PAGES}
 					translate={translate}
+					compKeys={HEADER_LOCALE}
 				/>
 				<LocaleSelector
 					className={classes.localeSelector}
 					locale={locale}
-					compKeys={LOCALE_SELECTOR_LOCALE}
 					onSelectChange={onSelectChange}
 					translate={translate}
+					compKeys={LOCALE_SELECTOR_LOCALE}
 				/>
 				<Page nodes={props.children} />
 				<Footer
