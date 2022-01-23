@@ -1,18 +1,26 @@
 // import { GetStaticProps } from "next";
 // import { getSortedDocsData } from "../lib/content-drivers/docs";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import Layout from "../components/layout";
-import { useRouter } from "next/router";
-import { t } from "../locales/translate";
+import { LAYOUT_LOCALE } from "../locales/components";
 import { style, classes } from "./index.st.css";
 
-export default function Home() {
-	const { locale } = useRouter();
+export interface HomeProps {
+	locale: string;
+	translate: (key: string) => string;
+}
+
+export default function Home(props: HomeProps) {
+	const { translate, locale } = props;
+	const { siteTitle, siteSubtitle } = LAYOUT_LOCALE;
+	const title = translate(siteTitle);
+	const subtitle = translate(siteSubtitle);
 	return (
-		<Layout>
+		<Layout locale={locale} translate={translate}>
 			<Head>
 				<title>
-					{t("SITE_NAME", locale)} - {t("HOME_NAV_LABEL", locale)}
+					{title} - ${subtitle}
 				</title>
 			</Head>
 			<article className={style(classes.root)}>
@@ -23,6 +31,14 @@ export default function Home() {
 		</Layout>
 	);
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	return {
+		props: {
+			locale,
+		},
+	};
+};
 
 // export const getStaticProps: GetStaticProps = async ({ locale }) => {
 // 	const data = getSortedDocsData(locale);

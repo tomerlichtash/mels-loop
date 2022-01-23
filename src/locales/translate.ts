@@ -6,11 +6,13 @@ const langs = {
 	he: HE_IL,
 };
 
-export const t = (key: string, id: string): string => {
-	if (!langs[id]) {
-		return `%MISSING_LOCALE_${id}_%${key}%`;
-	} else if (!langs[id][key]) {
-		return `%MISSING_KEY_${key}%`;
-	}
-	return langs[id][key] || `%${key}%`;
-};
+export const translate =
+	(id: string) =>
+	(key: string): string => {
+		if (!langs[id]) {
+			return `%MISSING_LOCALE_${id}_%${key}%`;
+		} else if (!langs[id][key]) {
+			return `%MISSING_KEY_${key}%`;
+		}
+		return langs[id][key] || `%${key}%`;
+	};

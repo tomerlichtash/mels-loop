@@ -1,21 +1,19 @@
 import React from "react";
 import NavButton from "./nav-button";
 import DropDown from "../dropdown";
-import { t } from "../../locales/translate";
 import { style, classes } from "./nav.st.css";
-import { SitePage } from "../../interfaces/models";
-import { ILocaleRef } from "../../locales/types";
-import { NAV_LOCALE } from "../../locales/components";
+import { ComponentProps, SitePage } from "../../interfaces/models";
+import { NAV_MENU_DROPDOWN_LOCALE } from "../../locales/components";
 import { IOption } from "../dropdown/option";
-export interface NavProps {
+export interface NavProps extends ComponentProps {
 	sitePages: SitePage[];
-	locale: ILocaleRef;
 	pathname: string;
+	translate: (key: string) => string;
 	className?: string;
 }
 
 export const Nav = (props: NavProps): JSX.Element => {
-	const { sitePages, locale, pathname, className } = props;
+	const { sitePages, locale, translate, pathname, className } = props;
 	return (
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
@@ -28,7 +26,7 @@ export const Nav = (props: NavProps): JSX.Element => {
 							key={`page-${option.id}`}
 						>
 							<NavButton
-								label={t(option.label, locale)}
+								label={translate(option.label)}
 								pageName={option.targetPathname}
 								isCurrent={pathname === option.targetPathname}
 								className={classes.button}
@@ -47,8 +45,8 @@ export const Nav = (props: NavProps): JSX.Element => {
 						};
 					}) as IOption[]
 				}
-				openLabel={NAV_LOCALE.openLabel}
-				closeLabel={NAV_LOCALE.closeLabel}
+				compKeys={NAV_MENU_DROPDOWN_LOCALE}
+				translate={translate}
 				className={classes.mobileNav}
 			/>
 		</nav>

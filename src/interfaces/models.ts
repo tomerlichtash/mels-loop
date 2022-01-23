@@ -93,9 +93,8 @@ export interface IParsedPageData {
  * The data passed to a next component from the static props. The content is serialized to circumvent
  * next's approach to serializing
  */
-export interface IContentComponentData {
+export interface IContentComponentData extends ComponentProps {
 	content: string;
-	locale: string;
 }
 
 /**
@@ -109,7 +108,9 @@ export interface IContentComponentInitData {
 }
 
 export interface ComponentProps {
+	compKeys?: Record<string, string>;
 	locale?: string;
+	translate?: (key: string) => string;
 }
 
 export interface SitePage {

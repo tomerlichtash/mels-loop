@@ -1,55 +1,41 @@
 import React from "react";
-import { useRouter } from "next/router";
 import DropDown from "../dropdown";
-import { t } from "../../locales/translate";
 import { style, classes } from "./locale-selector.st.css";
-import { ILocaleRef } from "../../locales/types";
+import { ComponentProps } from "../../interfaces/models";
+import { LOCALE_SELECTOR_LOCALE } from "../../locales/components";
 
-export interface LocaleSelectorProps {
-	locale: ILocaleRef;
+export interface LocaleSelectorProps extends ComponentProps {
+	onSelectChange: (locale: string) => void;
 	className?: string;
 }
 
 export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
-	const { locale, className } = props;
-
-	const router = useRouter();
-	const currentLocale = router.locale;
-	const onSelectChange = (locale: string) => {
-		return router.push(router.asPath, router.asPath, {
-			locale,
-			scroll: false,
-		});
-	};
-
+	const { locale, onSelectChange, translate, compKeys, className } = props;
 	return (
 		<div className={style(classes.root, className)}>
-			{/* <div className={style(classes.select)}> */}
 			<DropDown
 				className={style(classes.select)}
 				options={[
 					{
 						id: "en",
 						locale: "en",
-						label: "LOCALE_LABEL_EN",
-						isCurrent: currentLocale === "en",
+						label: compKeys.en,
+						isCurrent: locale === "en",
 						callback: onSelectChange,
 					},
 					{
 						id: "he",
 						locale: "he",
-						label: "LOCALE_LABEL_HE",
-						isCurrent: currentLocale === "he",
+						label: compKeys.he,
+						isCurrent: locale === "he",
 						callback: onSelectChange,
 					},
 				]}
-				openLabel={"LOCALE_SELECTOR_TITLE"}
-				closeLabel={"LOCALE_SELECTOR_CLOSE"}
-				locale={locale}
+				compKeys={LOCALE_SELECTOR_LOCALE}
+				translate={translate}
 			/>
-			{/* </div> */}
 			<div className={classes.current}>
-				[{t(`LOCALE_LABEL_${currentLocale.toUpperCase()}`, currentLocale)}]
+				[{translate(`LOCALE_LABEL_${locale.toUpperCase()}`)}]
 			</div>
 		</div>
 	);

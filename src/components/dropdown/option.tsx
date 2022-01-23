@@ -1,12 +1,10 @@
 import Link from "next/link";
-import { t } from "../../locales/translate";
-import { ILocaleRef } from "../../locales/types";
+import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./option.st.css";
 
-export interface IOption {
+export interface IOption extends ComponentProps {
 	id: string;
 	label: string;
-	locale: ILocaleRef;
 	targetPathname?: string;
 	isCurrent?: boolean;
 	callback?: (id: string) => void;
@@ -14,16 +12,17 @@ export interface IOption {
 	className?: string;
 }
 
-export const Option = ({
-	id,
-	label,
-	locale,
-	targetPathname,
-	isCurrent,
-	callback,
-	closeDropDown,
-	className,
-}: IOption): JSX.Element => {
+export const Option = (props: IOption): JSX.Element => {
+	const {
+		id,
+		targetPathname,
+		label,
+		isCurrent,
+		className,
+		translate,
+		callback,
+		closeDropDown,
+	} = props;
 	return (
 		<li className={classes.root}>
 			{callback && (
@@ -42,7 +41,7 @@ export const Option = ({
 						className
 					)}
 				>
-					{t(label, locale)}
+					{translate(label)}
 				</span>
 			)}
 			{targetPathname && (
@@ -58,7 +57,7 @@ export const Option = ({
 							className
 						)}
 					>
-						{t(label, locale)}
+						{translate(label)}
 					</a>
 				</Link>
 			)}

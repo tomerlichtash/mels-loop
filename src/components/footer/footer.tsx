@@ -1,14 +1,15 @@
-import { t } from "../../locales/translate";
-import { FOOTER_LOCALE } from "../../locales/components";
-import { ILocaleRef } from "../../locales/types";
+import { ComponentProps } from "../../interfaces/models";
 import { classes } from "./footer.st.css";
 
-export const Footer = ({ locale }: { locale: ILocaleRef }): JSX.Element => {
+export const Footer = (props: ComponentProps): JSX.Element => {
+	const { translate, compKeys } = props;
+	const licenseYears = `2021-${new Date().getFullYear()}`;
 	return (
 		<footer className={classes.root}>
 			<div className={classes.license}>
-				2021-{`${new Date().getFullYear()}`} (${FOOTER_LOCALE.license}){" "}
-				{t(FOOTER_LOCALE.siteName, locale)}
+				<time>{licenseYears}</time>
+				<span>({translate(compKeys.siteLicense)})</span>
+				<span>{translate(compKeys.siteTitle)}</span>
 			</div>
 		</footer>
 	);

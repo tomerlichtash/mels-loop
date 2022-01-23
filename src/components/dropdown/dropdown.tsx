@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import { Option } from "./option";
-import { ILocaleRef } from "../../locales/types";
 import { IOption } from "./option";
-import { t } from "../../locales/translate";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./dropdown.st.css";
 
 export interface DropDownProps extends ComponentProps {
-	openLabel: string;
-	closeLabel: string;
 	options: IOption[];
 	className?: string;
 }
 
 export const DropDown = (props: DropDownProps): JSX.Element => {
-	const { locale, openLabel, closeLabel, options, className } = props;
+	const { locale, compKeys, options, translate, className } = props;
+	const { openLabel, closeLabel } = compKeys;
 	const [optionListVisible, toggleOptionList] = useState(false);
 	return (
 		<div
@@ -27,14 +24,14 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 						className={classes.optionListOpen}
 						onClick={() => toggleOptionList(true)}
 					>
-						{t(openLabel, locale as ILocaleRef)}
+						{translate(openLabel)}
 					</div>
 				) : (
 					<div
 						className={classes.optionListClose}
 						onClick={() => toggleOptionList(false)}
 					>
-						{t(closeLabel, locale as ILocaleRef)}
+						{translate(closeLabel)}
 					</div>
 				)}
 			</div>
@@ -46,6 +43,7 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 								key={option.id}
 								locale={locale}
 								closeDropDown={() => toggleOptionList(false)}
+								translate={translate}
 								{...option}
 							/>
 						))}

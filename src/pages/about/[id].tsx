@@ -2,24 +2,29 @@ import Layout from "../../components/layout";
 import { getAllDocIds, getDocData } from "../../lib/content-drivers/about";
 import Head from "next/head";
 import { GetStaticProps, GetStaticPaths } from "next";
+import { ComponentProps } from "../../interfaces/models";
 
-export default function About({
-	docData,
-}: {
+export interface DocProps extends ComponentProps {
+	locale: string;
 	docData: {
 		title: string;
 		date: string;
 		contentHtml: string;
 	};
-}) {
+}
+
+export default function About(props: DocProps) {
+	const { locale, docData, translate } = props;
+	const { title, contentHtml } = docData;
 	return (
-		<Layout>
+		<Layout locale={locale} translate={translate}>
 			<Head>
-				<title>{docData.title}</title>
+				<title>{title}</title>
 			</Head>
 			<article>
-				<h1>#### {docData.title}</h1>
-				<div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />
+				<h1>{title}</h1>
+				<div>{/* <Date dateString={docData.date} locale={locale} /> */}</div>
+				<div dangerouslySetInnerHTML={{ __html: contentHtml }} />
 			</article>
 		</Layout>
 	);
@@ -38,6 +43,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	return {
 		props: {
 			docData,
+			locale,
 		},
 	};
 };

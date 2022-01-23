@@ -1,31 +1,34 @@
 import Layout from "../../components/layout";
 import { getAllTermIds, getTermData } from "../../lib/content-drivers/glossary";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import Date from "../../components/date";
+import { ComponentProps } from "../../interfaces/models";
 import { GetStaticProps, GetStaticPaths } from "next";
 
-export default function Term({
-	termData,
-}: {
-	termData: {
-		title: string;
-		date: string;
-		contentHtml: string;
-	};
-}) {
-	const { locale } = useRouter();
+export interface TermProps extends ComponentProps {
+	title: string;
+	date: string;
+	contentHtml: string;
+}
+
+export interface GlossaryProps extends ComponentProps {
+	termData: TermProps;
+}
+
+export default function Term(props: GlossaryProps) {
+	const { translate, locale, termData } = props;
+	const { title, date, contentHtml } = termData;
 	return (
-		<Layout>
+		<Layout locale={locale} translate={translate}>
 			<Head>
-				<title>{termData.title}</title>
+				<title>{title}</title>
 			</Head>
 			<article>
-				<h1>{termData.title}</h1>
+				<h1>{title}</h1>
 				<div>
-					<Date dateString={termData.date} locale={locale} />
+					<Date dateString={date} locale={locale} />
 				</div>
-				<div dangerouslySetInnerHTML={{ __html: termData.contentHtml }} />
+				<div dangerouslySetInnerHTML={{ __html: contentHtml }} />
 			</article>
 		</Layout>
 	);
@@ -44,6 +47,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	return {
 		props: {
 			termData,
+			locale,
 		},
 	};
 };

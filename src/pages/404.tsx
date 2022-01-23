@@ -1,17 +1,18 @@
 import Head from "next/head";
 import Layout from "../components/layout";
-import { useRouter } from "next/router";
-import { t } from "../locales/translate";
+import { GetStaticProps } from "next";
+import { ComponentProps } from "../interfaces/models";
 import { classes } from "./404.st.css";
 
-export default function Custom404() {
-	const { locale } = useRouter();
+export default function Custom404(props: ComponentProps) {
+	// const { locale } = useRouter();
+	const { translate, locale } = props;
 	return (
-		<Layout>
+		<Layout locale={locale} translate={translate}>
 			<Head>
 				<title>
-					${t("ERROR_FILE_NOT_FOUND", locale)} - $
-					{t("ERROR_404_FILE_NOT_FOUND", locale)}
+					{translate("ERROR_FILE_NOT_FOUND")} - $
+					{translate("ERROR_404_FILE_NOT_FOUND")}
 				</title>
 			</Head>
 			<div className={classes.root}>
@@ -20,3 +21,11 @@ export default function Custom404() {
 		</Layout>
 	);
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	return {
+		props: {
+			locale,
+		},
+	};
+};

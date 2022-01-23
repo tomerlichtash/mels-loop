@@ -1,6 +1,6 @@
 export type ILocaleId = "EN_US" | "HE_IL";
 
-export type ILocaleRef = "en" | "he";
+// export type ILocaleRef = "en" | "he";
 
 export enum ILocaleKeys {
 	LOCALE_LABEL_EN = "LOCALE_LABEL_EN",
@@ -13,7 +13,7 @@ export enum ILanguageKeys {
 	STORY_NAV_LABEL = "STORY_NAV_LABEL",
 	PREFACE_NAV_LABEL = "PREFACE_NAV_LABEL",
 	RESOURCES_NAV_LABEL = "RESOURCES_NAV_LABEL",
-	SITE_NAME = "SITE_NAME",
+	SITE_TITLE = "SITE_TITLE",
 	SITE_SUBTITLE = "SITE_SUBTITLE",
 	LOCALE_SELECTOR_TITLE = "LOCALE_SELECTOR_TITLE",
 	LOCALE_SELECTOR_CLOSE = "LOCALE_SELECTOR_CLOSE",
