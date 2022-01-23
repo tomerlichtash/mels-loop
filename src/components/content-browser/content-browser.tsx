@@ -4,13 +4,14 @@ import {
 	IMLParsedNode,
 	IParsedPageData,
 	IContentComponentData,
+	ComponentProps,
 
 } from "../../interfaces/models";
 import { classes } from "./content-browser.st.css";
 
 const FULL_PAGE_RE = /full.*text/i;
 
-export interface ContentBrowserProps extends IContentComponentData {
+export interface ContentBrowserProps extends ComponentProps {
 	data: IContentComponentData;
 	showTitle?: boolean;
 	showMoto?: boolean;
