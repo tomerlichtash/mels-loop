@@ -1,11 +1,9 @@
 import React from "react";
-import { IContentComponentInitData } from "../../../interfaces/models";
+import { ContentComponentProps } from "../../../interfaces/models";
 import ContentIterator from "../contentIterator";
 import { classes } from "./heading.st.css";
 
-export const Heading = (props: {
-	data: IContentComponentInitData;
-}): JSX.Element => {
+export const Heading = (props: ContentComponentProps): JSX.Element => {
 	const data = props.data,
 		p = data.data,
 		level = p.level || 1;

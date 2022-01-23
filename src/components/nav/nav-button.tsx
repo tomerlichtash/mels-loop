@@ -1,17 +1,16 @@
 import Link from "next/link";
+import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./nav-button.st.css";
 
-export const NavButton = ({
-	label,
-	pageName,
-	isCurrent,
-	className,
-}: {
+export interface NavButtonProps extends ComponentProps {
 	label: string;
 	pageName: string;
 	isCurrent: boolean;
 	className?: string;
-}): JSX.Element => {
+}
+
+export const NavButton = (props: NavButtonProps): JSX.Element => {
+	const { pageName, label, isCurrent, className } = props;
 	return (
 		<Link href={`${pageName}`}>
 			<a

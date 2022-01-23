@@ -1,14 +1,14 @@
 // import { format, parseISO } from "date-fns";
 // import { getLocale, getLocaleFormat } from "../../utils";
+import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./date.st.css";
 
-export const Date = ({
-	dateString,
-	locale,
-}: {
+export interface DateProps extends ComponentProps{
 	dateString: string;
-	locale: string;
-}): JSX.Element => {
+}
+
+export const Date = (props: DateProps): JSX.Element => {
+	const { dateString, locale } = props;
 	if (!dateString) {
 		return null;
 	}

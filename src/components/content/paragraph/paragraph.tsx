@@ -1,11 +1,9 @@
 import React from "react";
-import { IContentComponentInitData } from "../../../interfaces/models";
+import { ContentComponentProps } from "../../../interfaces/models";
 import ContentComponent from "../contentComponent";
 import { classes } from "./paragraph.st.css";
 
-export const Paragraph = (props: {
-	data: IContentComponentInitData;
-}): JSX.Element => {
+export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 	const p = props.data.data;
 
 	return (
