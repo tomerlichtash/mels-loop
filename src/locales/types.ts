@@ -1,0 +1,29 @@
+export type ILocaleId = "EN_US" | "HE_IL";
+
+export type ILocaleShortId = "en" | "he";
+
+export enum ILocaleKeys {
+	LOCALE_LABEL_EN = "LOCALE_LABEL_EN",
+	LOCALE_LABEL_HE = "LOCALE_LABEL_HE",
+}
+
+export enum ILanguageKeys {
+	HOME_NAV_LABEL = "HOME_NAV_LABEL",
+	ABOUT_NAV_LABEL = "ABOUT_NAV_LABEL",
+	STORY_NAV_LABEL = "STORY_NAV_LABEL",
+	PREFACE_NAV_LABEL = "PREFACE_NAV_LABEL",
+	RESOURCES_NAV_LABEL = "RESOURCES_NAV_LABEL",
+	SITE_NAME = "SITE_NAME",
+	SITE_SUBTITLE = "SITE_SUBTITLE",
+	LOCALE_SELECTOR_TITLE = "LOCALE_SELECTOR_TITLE",
+	LOCALE_SELECTOR_CLOSE = "LOCALE_SELECTOR_CLOSE",
+	MOBILE_MENU_OPEN_LABEL = "MOBILE_MENU_OPEN_LABEL",
+	MOBILE_MENU_CLOSE_LABEL = "MOBILE_MENU_CLOSE_LABEL",
+	ERROR_404_FILE_NOT_FOUND = "ERROR_404_FILE_NOT_FOUND",
+}
+
+export type ILanguage = Record<ILanguageKeys, string>;
+
+export type ILocaleLabels = Record<ILocaleKeys, string>;
+
+export type IAvailableLocales = Record<ILocaleId, ILanguage & ILocaleLabels>;
