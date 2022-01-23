@@ -4,15 +4,15 @@ import ContentIterator from "../contentIterator";
 import { classes } from "./heading.st.css";
 
 export const Heading = (props: ContentComponentProps): JSX.Element => {
-	const data = props.data,
-		p = data.data,
-		level = p.level || 1;
+	const data = props.data;
+	const p = data.data;
+	const level = p.level || 1;
 
 	const Title = `h${level}` as keyof JSX.IntrinsicElements;
 
 	return (
 		<Title className={classes.root} key={p.key}>
-			{<ContentIterator data={data} />}
+			<ContentIterator data={data} />
 		</Title>
 	);
 };
