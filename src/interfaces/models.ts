@@ -118,3 +118,7 @@ export interface SitePage {
 	id: string;
 	targetPathname: string;
 }
+
+export interface ContentComponentProps extends ComponentProps {
+	data: IContentComponentInitData;
+}

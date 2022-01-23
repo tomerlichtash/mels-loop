@@ -1,18 +1,13 @@
 import React from "react";
 import Link from "./link/link";
-import {
-	IContentComponentInitData,
-	IMLParsedNode,
-} from "../../interfaces/models";
+import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
 import Heading from "./heading";
 import ListItem from "./list-item";
 import Paragraph from "./paragraph";
 import Section from "./section";
 import ContentIterator from "./contentIterator";
 
-export const ContentComponent = (props: {
-	data: IContentComponentInitData;
-}): JSX.Element => {
+export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 	const data = props.data;
 	const node: IMLParsedNode = data.data;
 	if (!node.key) {

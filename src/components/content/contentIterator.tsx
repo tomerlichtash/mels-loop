@@ -1,14 +1,9 @@
 import React from "react";
 import ContentComponent from "./contentComponent";
-import {
-	IContentComponentInitData,
-	IMLParsedNode,
-} from "../../interfaces/models";
+import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
 import { style, classes } from "./content-iterator.st.css";
 
-export const ContentIterator = (props: {
-	data: IContentComponentInitData;
-}): JSX.Element => {
+export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 	const data = props.data,
 		p = data.data;
 	const elements: IMLParsedNode[] = Array.isArray(p.children) && p.children;

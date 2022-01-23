@@ -4,18 +4,20 @@ import {
 	IMLParsedNode,
 	IParsedPageData,
 	IContentComponentData,
+
 } from "../../interfaces/models";
 import { classes } from "./content-browser.st.css";
 
 const FULL_PAGE_RE = /full.*text/i;
 
-export const ContentBrowser = (props: {
+export interface ContentBrowserProps extends IContentComponentData {
 	data: IContentComponentData;
-	locale: string;
 	showTitle?: boolean;
 	showMoto?: boolean;
 	showCredits?: boolean;
-}): JSX.Element => {
+}
+
+export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 	const { content } = props.data;
 	const { locale, showTitle, showMoto, showCredits } = props;
 
