@@ -1,20 +1,21 @@
 import React from "react";
-import { useRouter } from "next/router";
 import NavButton from "./nav-button";
 import DropDown from "../dropdown";
-import { IOption } from "../../interfaces/models";
+import { IOption } from "../dropdown/option";
 import { t } from "../../locales/translate";
 import { style, classes } from "./nav.st.css";
+import { ILocaleRef } from "../../locales/types";
+import { NAV_LOCALE } from "../../locales/components";
 
-export const Nav = ({
-	sitePages,
-	className,
-}: {
+export interface NavProps {
 	sitePages: IOption[];
+	locale: ILocaleRef;
+	pathname: string;
 	className?: string;
-}): JSX.Element => {
-	const router = useRouter();
-	const { locale, pathname } = router;
+}
+
+export const Nav = (props: NavProps): JSX.Element => {
+	const { sitePages, locale, pathname, className } = props;
 	return (
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
@@ -38,8 +39,8 @@ export const Nav = ({
 			</div>
 			<DropDown
 				options={sitePages}
-				openLabel="MOBILE_MENU_OPEN_LABEL"
-				closeLabel="MOBILE_MENU_CLOSE_LABEL"
+				openLabel={NAV_LOCALE.openLabel}
+				closeLabel={NAV_LOCALE.closeLabel}
 				className={classes.mobileNav}
 			/>
 		</nav>

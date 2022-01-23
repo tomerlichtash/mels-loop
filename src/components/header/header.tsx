@@ -1,23 +1,25 @@
 import Link from "next/link";
 import LocaleSelector from "../locale-selector";
 import Nav from "../nav";
-import { IOption } from "../../interfaces/models";
+import { IOption } from "../dropdown/option";
 import { classes } from "./header.st.css";
+import { ILocaleRef } from "../../locales/types";
 
-export const Header = ({
-	siteTitle,
-	siteSubtitle,
-	isHome,
-	sitePages,
-}: {
+export interface HeaderProps {
+	locale: ILocaleRef;
+	pathname: string;
 	isHome: boolean;
 	siteTitle: string;
 	siteSubtitle: string;
 	sitePages: IOption[];
-}): JSX.Element => {
+}
+
+export const Header = (props: HeaderProps): JSX.Element => {
+	const { locale, pathname, siteTitle, siteSubtitle, isHome, sitePages } =
+		props;
 	return (
 		<header className={classes.root}>
-			<LocaleSelector className={classes.localeSelector} />
+			<LocaleSelector className={classes.localeSelector} locale={locale} />
 			<div className={classes.container}>
 				<div className={classes.title}>
 					{isHome ? (
@@ -47,7 +49,12 @@ export const Header = ({
 						</div>
 					)}
 				</div>
-				<Nav sitePages={sitePages} className={classes.headerNav} />
+				<Nav
+					sitePages={sitePages}
+					className={classes.headerNav}
+					locale={locale}
+					pathname={pathname}
+				/>
 			</div>
 		</header>
 	);

@@ -18,6 +18,7 @@ export const EN_US: ILanguage = {
 	MOBILE_MENU_OPEN_LABEL: "Menu",
 	MOBILE_MENU_CLOSE_LABEL: "Close",
 	ERROR_404_FILE_NOT_FOUND: "Page not found",
+	FOOTER_LICENSE: "cc-by",
 };
 
 export const HE_IL: ILanguage = {
@@ -33,10 +34,5 @@ export const HE_IL: ILanguage = {
 	MOBILE_MENU_OPEN_LABEL: "תפריט",
 	MOBILE_MENU_CLOSE_LABEL: "סגירה",
 	ERROR_404_FILE_NOT_FOUND: "404",
-};
-
-export default {
-	LOCALE_LABELS,
-	EN_US,
-	HE_IL,
+	FOOTER_LICENSE: "cc-by",
 };

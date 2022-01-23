@@ -3,15 +3,18 @@ import { useRouter } from "next/router";
 import DropDown from "../dropdown";
 import { t } from "../../locales/translate";
 import { style, classes } from "./locale-selector.st.css";
+import { ILocaleRef } from "../../locales/types";
 
-export const LocaleSelector = ({
-	className,
-}: {
+export interface LocaleSelectorProps {
+	locale: ILocaleRef;
 	className?: string;
-}): JSX.Element => {
+}
+
+export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
+	const { locale, className } = props;
+
 	const router = useRouter();
 	const currentLocale = router.locale;
-
 	const onSelectChange = (locale: string) => {
 		return router.push(router.asPath, router.asPath, {
 			locale,
@@ -27,12 +30,14 @@ export const LocaleSelector = ({
 				options={[
 					{
 						id: "en",
+						locale: "en",
 						label: "LOCALE_LABEL_EN",
 						isCurrent: currentLocale === "en",
 						callback: onSelectChange,
 					},
 					{
 						id: "he",
+						locale: "he",
 						label: "LOCALE_LABEL_HE",
 						isCurrent: currentLocale === "he",
 						callback: onSelectChange,
@@ -40,6 +45,7 @@ export const LocaleSelector = ({
 				]}
 				openLabel={"LOCALE_SELECTOR_TITLE"}
 				closeLabel={"LOCALE_SELECTOR_CLOSE"}
+				locale={locale}
 			/>
 			{/* </div> */}
 			<div className={classes.current}>

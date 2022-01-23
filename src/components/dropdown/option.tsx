@@ -1,20 +1,29 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { IOption } from "../../interfaces/models";
 import { t } from "../../locales/translate";
+import { ILocaleRef } from "../../locales/types";
 import { style, classes } from "./option.st.css";
+
+export interface IOption {
+	id: string;
+	label: string;
+	locale: ILocaleRef;
+	targetPathname?: string;
+	isCurrent?: boolean;
+	callback?: (id: string) => void;
+	closeDropDown?: () => void;
+	className?: string;
+}
 
 export const Option = ({
 	id,
 	label,
+	locale,
 	targetPathname,
 	isCurrent,
 	callback,
 	closeDropDown,
 	className,
 }: IOption): JSX.Element => {
-	const router = useRouter();
-	const { locale } = router;
 	return (
 		<li className={classes.root}>
 			{callback && (
@@ -33,7 +42,7 @@ export const Option = ({
 						className
 					)}
 				>
-					{t(label, locale)}
+					{t(label, locale as ILocaleRef)}
 				</span>
 			)}
 			{targetPathname && (
@@ -49,7 +58,7 @@ export const Option = ({
 							className
 						)}
 					>
-						{t(label, locale)}
+						{t(label, locale as ILocaleRef)}
 					</a>
 				</Link>
 			)}

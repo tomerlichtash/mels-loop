@@ -1,6 +1,6 @@
 export type ILocaleId = "EN_US" | "HE_IL";
 
-export type ILocaleShortId = "en" | "he";
+export type ILocaleRef = "en" | "he";
 
 export enum ILocaleKeys {
 	LOCALE_LABEL_EN = "LOCALE_LABEL_EN",
@@ -20,6 +20,7 @@ export enum ILanguageKeys {
 	MOBILE_MENU_OPEN_LABEL = "MOBILE_MENU_OPEN_LABEL",
 	MOBILE_MENU_CLOSE_LABEL = "MOBILE_MENU_CLOSE_LABEL",
 	ERROR_404_FILE_NOT_FOUND = "ERROR_404_FILE_NOT_FOUND",
+	FOOTER_LICENSE = "FOOTER_LICENSE",
 }
 
 export type ILanguage = Record<ILanguageKeys, string>;

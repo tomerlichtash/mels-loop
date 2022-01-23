@@ -1,6 +1,4 @@
 import { Locale } from "./index";
-import { ILanguage, ILocaleShortId } from "./types";
-
 const { HE_IL, EN_US } = Locale;
 
 const langs = {
@@ -8,6 +6,11 @@ const langs = {
 	he: HE_IL,
 };
 
-export const t = (key: keyof ILanguage, locId: ILocaleShortId): string => {
-	return langs[locId][key] || `%${key}%`;
+export const t = (key: string, id: string): string => {
+	if (!langs[id]) {
+		return `%MISSING_LOCALE_${id}_%${key}%`;
+	} else if (!langs[id][key]) {
+		return `%MISSING_KEY_${key}%`;
+	}
+	return langs[id][key] || `%${key}%`;
 };

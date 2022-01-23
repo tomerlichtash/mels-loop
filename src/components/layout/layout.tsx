@@ -5,9 +5,14 @@ import Page from "../page";
 import { t } from "../../locales/translate";
 import { SITE_PAGES } from "../../config/pages";
 import { useRouter } from "next/router";
+import { ILocaleRef } from "../../locales/types";
 import { style, classes } from "./layout.st.css";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export interface LayoutProps {
+	children: React.ReactNode;
+}
+
+export default function Layout(props: LayoutProps) {
 	const { locale, pathname } = useRouter();
 	const isHome = pathname === "/";
 	const siteTitle = t("SITE_NAME", locale);
@@ -28,13 +33,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			</Head>
 			<div className={style(classes.root, { locale: locale })}>
 				<Header
+					locale={locale as ILocaleRef}
+					pathname={pathname}
 					siteTitle={siteTitle}
 					siteSubtitle={siteSubtitle}
 					isHome={isHome}
 					sitePages={SITE_PAGES}
 				/>
-				<Page nodes={children} />
-				<Footer />
+				<Page nodes={props.children} />
+				<Footer locale={locale as ILocaleRef} />
 			</div>
 		</>
 	);

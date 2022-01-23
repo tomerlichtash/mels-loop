@@ -108,12 +108,6 @@ export interface IContentComponentInitData {
 	style?: string;
 }
 
-export interface IOption {
-	id: string;
-	label: string;
-	targetPathname?: string;
-	isCurrent?: boolean;
-	callback?: (id: string) => void;
-	closeDropDown?: () => void;
-	className?: string;
+export interface ComponentProps {
+	locale?: string;
 }
