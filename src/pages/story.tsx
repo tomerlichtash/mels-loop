@@ -3,18 +3,18 @@ import Layout from "../components/layout";
 import { GetStaticProps } from "next";
 import { getSortedCodexData } from "../lib/content-drivers/codex";
 import { IContentComponentData } from "../interfaces/models";
-import { LAYOUT_LOCALE } from "../locales/components";
+import { STORY_PAGE_LOCALE } from "../locales/components";
 import ContentBrowser from "../components/content-browser";
 import { classes } from "./index.st.css";
 
 export default function Story(data: IContentComponentData) {
 	const { translate, locale } = data;
-	const { siteTitle, siteSubtitle } = LAYOUT_LOCALE;
+	const { siteTitle, pageName } = STORY_PAGE_LOCALE;
 	return (
-		<Layout locale={locale} translate={translate}>
+		<Layout {...{locale, translate}}>
 			<Head>
 				<title>
-					{translate(siteTitle)} - {translate(siteSubtitle)}
+					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
 			<article className={classes.root}>

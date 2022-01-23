@@ -19,7 +19,7 @@ export default function About(props: DocProps) {
 	const { locale, docData, translate } = props;
 	const { title, contentHtml } = docData;
 	return (
-		<Layout locale={locale} translate={translate}>
+		<Layout {...{locale, translate}}>
 			<Head>
 				<title>{title}</title>
 			</Head>

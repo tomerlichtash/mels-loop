@@ -3,7 +3,7 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Layout from "../components/layout";
-import { LAYOUT_LOCALE } from "../locales/components";
+import { HOME_PAGE_LOCALE } from "../locales/components";
 import { style, classes } from "./index.st.css";
 
 export interface HomeProps {
@@ -13,14 +13,12 @@ export interface HomeProps {
 
 export default function Home(props: HomeProps) {
 	const { translate, locale } = props;
-	const { siteTitle, siteSubtitle } = LAYOUT_LOCALE;
-	const title = translate(siteTitle);
-	const subtitle = translate(siteSubtitle);
+	const { siteTitle, pageName } = HOME_PAGE_LOCALE;
 	return (
-		<Layout locale={locale} translate={translate}>
+		<Layout {...{locale, translate}}>
 			<Head>
 				<title>
-					{title} - ${subtitle}
+					{translate(siteTitle)} - ${translate(pageName)}
 				</title>
 			</Head>
 			<article className={style(classes.root)}>

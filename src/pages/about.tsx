@@ -4,7 +4,7 @@ import ContentBrowser from "../components/content-browser";
 import { GetStaticProps } from "next";
 import { getSortedDocsData } from "../lib/content-drivers/about";
 import { style, classes } from "./about.st.css";
-import { LAYOUT_LOCALE } from "../locales/components";
+import { ABOUT_PAGE_LOCALE } from "../locales/components";
 import { ComponentProps, IContentComponentData } from "../interfaces/models";
 
 export interface AboutProps extends ComponentProps {
@@ -13,14 +13,15 @@ export interface AboutProps extends ComponentProps {
 
 export default function About(props: IContentComponentData) {
 	const { translate, locale } = props;
-	const { siteTitle, siteSubtitle } = LAYOUT_LOCALE;
+	const { siteTitle, pageName } = ABOUT_PAGE_LOCALE;
 	const title = translate(siteTitle);
-	const subtitle = translate(siteSubtitle);
+	// const subtitle = translate(siteSubtitle);
+	const pageTitle = translate(pageName)
 	return (
-		<Layout locale={locale} translate={translate}>
+		<Layout {...{locale, translate}}>
 			<Head>
 				<title>
-					{title} - {subtitle}
+					{title} - {pageTitle}
 				</title>
 			</Head>
 			<article className={style(classes.root)}>

@@ -13,7 +13,7 @@ export default function Term(props: GlossaryProps) {
 	const { translate, locale, termData } = props;
 	const { title, date, contentHtml } = termData;
 	return (
-		<Layout locale={locale} translate={translate}>
+		<Layout {...{locale, translate}}>
 			<Head>
 				<title>{title}</title>
 			</Head>
