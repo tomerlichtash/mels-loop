@@ -98,6 +98,13 @@ export interface IContentComponentData extends ComponentProps {
 }
 
 /**
+ * TODO: add comment
+ */
+export interface ContentComponentProps extends ComponentProps {
+	data: IContentComponentInitData;
+}
+
+/**
  * The data structure passed to a content component
  */
 export interface IContentComponentInitData {
@@ -107,18 +114,26 @@ export interface IContentComponentInitData {
 	style?: string;
 }
 
+/**
+ * Base component props
+ */
 export interface ComponentProps {
 	compKeys?: Record<string, string>;
 	locale?: string;
 	translate?: (key: string) => string;
 }
 
+/**
+ * Site page navigation props
+ */
 export interface SitePage {
 	label: string;
 	id: string;
 	targetPathname: string;
 }
 
-export interface ContentComponentProps extends ComponentProps {
-	data: IContentComponentInitData;
+export interface ITermProps extends ComponentProps {
+	title: string;
+	date: string;
+	contentHtml: string;
 }

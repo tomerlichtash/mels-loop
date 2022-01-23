@@ -2,17 +2,11 @@ import Layout from "../../components/layout";
 import { getAllTermIds, getTermData } from "../../lib/content-drivers/glossary";
 import Head from "next/head";
 import Date from "../../components/date";
-import { ComponentProps } from "../../interfaces/models";
+import { ComponentProps, ITermProps } from "../../interfaces/models";
 import { GetStaticProps, GetStaticPaths } from "next";
 
-export interface TermProps extends ComponentProps {
-	title: string;
-	date: string;
-	contentHtml: string;
-}
-
 export interface GlossaryProps extends ComponentProps {
-	termData: TermProps;
+	termData: ITermProps;
 }
 
 export default function Term(props: GlossaryProps) {

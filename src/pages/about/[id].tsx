@@ -4,13 +4,15 @@ import Head from "next/head";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { ComponentProps } from "../../interfaces/models";
 
+export interface IDocDataProps {
+	title: string;
+	date: string;
+	contentHtml: string;
+}
+
 export interface DocProps extends ComponentProps {
 	locale: string;
-	docData: {
-		title: string;
-		date: string;
-		contentHtml: string;
-	};
+	docData: IDocDataProps;
 }
 
 export default function About(props: DocProps) {

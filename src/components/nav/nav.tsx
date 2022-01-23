@@ -5,6 +5,7 @@ import { style, classes } from "./nav.st.css";
 import { ComponentProps, SitePage } from "../../interfaces/models";
 import { NAV_MENU_DROPDOWN_LOCALE } from "../../locales/components";
 import { IOption } from "../dropdown/option";
+
 export interface NavProps extends ComponentProps {
 	sitePages: SitePage[];
 	pathname: string;

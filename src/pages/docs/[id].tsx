@@ -2,14 +2,10 @@ import Layout from "../../components/layout";
 import { getAllDocIds, getDocData } from "../../lib/content-drivers/docs";
 import Head from "next/head";
 import { GetStaticProps, GetStaticPaths } from "next";
-import { ComponentProps } from "../../interfaces/models";
+import { ComponentProps, ITermProps } from "../../interfaces/models";
 
 export interface DocProps extends ComponentProps {
-	docData: {
-		title: string;
-		date: string;
-		contentHtml: string;
-	};
+	docData: ITermProps;
 }
 
 export default function Doc(props: DocProps) {
