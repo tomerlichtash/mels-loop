@@ -42,7 +42,7 @@ export const Option = ({
 						className
 					)}
 				>
-					{t(label, locale as ILocaleRef)}
+					{t(label, locale)}
 				</span>
 			)}
 			{targetPathname && (
@@ -58,7 +58,7 @@ export const Option = ({
 							className
 						)}
 					>
-						{t(label, locale as ILocaleRef)}
+						{t(label, locale)}
 					</a>
 				</Link>
 			)}

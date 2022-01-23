@@ -1,7 +1,7 @@
 import Link from "next/link";
 import LocaleSelector from "../locale-selector";
 import Nav from "../nav";
-import { IOption } from "../dropdown/option";
+import { SitePage } from "../../interfaces/models";
 import { classes } from "./header.st.css";
 import { ILocaleRef } from "../../locales/types";
 
@@ -11,7 +11,7 @@ export interface HeaderProps {
 	isHome: boolean;
 	siteTitle: string;
 	siteSubtitle: string;
-	sitePages: IOption[];
+	sitePages: SitePage[];
 }
 
 export const Header = (props: HeaderProps): JSX.Element => {

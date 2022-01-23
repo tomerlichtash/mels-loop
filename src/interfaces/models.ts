@@ -111,3 +111,9 @@ export interface IContentComponentInitData {
 export interface ComponentProps {
 	locale?: string;
 }
+
+export interface SitePage {
+	label: string;
+	id: string;
+	targetPathname: string;
+}
