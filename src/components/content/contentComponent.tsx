@@ -34,7 +34,7 @@ export const ContentComponent = (props: {
 					key={node.key}
 					data={{
 						...data,
-						tag: node.type.toLocaleLowerCase(),
+						tag: node.type,
 					}}
 				/>
 			);
