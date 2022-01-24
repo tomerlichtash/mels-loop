@@ -5,8 +5,8 @@ import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { t } from "../locales/translate";
 import { style, classes } from "./about.st.css";
-import { loadContentFolder } from "../lib/markdown-driver";
 import { CONTENT_TYPES } from "../consts";
+import { mlNextUtils } from "../lib/next-utils";
 
 export default function About(data) {
 	const router = useRouter();
@@ -29,12 +29,6 @@ export default function About(data) {
 	);
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const data = loadContentFolder({relativePath: CONTENT_TYPES.DOCS, locale, type: "children" });
-	return {
-		props: {
-			content: JSON.stringify(data.sortOn("date")),
-			locale,
-		},
-	};
+export const getStaticProps: GetStaticProps = async (ctx) => {
+	return mlNextUtils.getFolderStaticProps(CONTENT_TYPES.ABOUT, ctx, "folder");
 };

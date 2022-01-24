@@ -3,7 +3,6 @@ import Link from "./link/link";
 import {
 	IContentComponentInitData,
 	IMLParsedNode,
-	MLParsedNodeType,
 } from "../../interfaces/models";
 import Heading from "./heading";
 import ListItem from "./list-item";

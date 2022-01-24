@@ -1,8 +1,6 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import remark from "remark";
-import html from "remark-html";
 import * as mdParser from "simple-markdown";
 import { IFolderContent, ILocaleMap, IMLParsedNode, IParsedPageData, PageSortField } from "../interfaces/models";
 import { contentUtils } from "./content-utils";

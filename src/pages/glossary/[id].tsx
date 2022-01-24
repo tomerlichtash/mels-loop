@@ -1,8 +1,8 @@
-import { GetStaticProps, GetStaticPaths } from "next";
-import { loadContentFolder } from "../../lib/markdown-driver";
-import { IContentComponentData, ILocaleMap } from "../../interfaces/models";
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
+import { IContentComponentData } from "../../interfaces/models";
 import { CONTENT_TYPES } from "../../consts";
 import GenericPage from "../../components/content/genericPage";
+import { mlNextUtils } from "../../lib/next-utils";
 
 export default function Glossary(data: IContentComponentData) {
 	return (
@@ -10,24 +10,12 @@ export default function Glossary(data: IContentComponentData) {
 	);
 }
 
-
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-	const paths: ILocaleMap[] = [];
-	(locales || []).forEach((locale: string) => {
-		const folderData = loadContentFolder({locale, relativePath: CONTENT_TYPES.GLOSSARY, type: "children"});
-		paths.push.apply(paths, folderData.ids);
-	})
-	return {
-		paths,
-		fallback: false,
-	};
+export const getStaticPaths: GetStaticPaths = async (ctx) => {
+	return mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.GLOSSARY, ctx);
 };
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-	const docData = loadContentFolder({relativePath: `${CONTENT_TYPES.GLOSSARY}/${params.id}`, locale, type: "folder" });
-	return {
-		props: {
-			content: JSON.stringify(docData.pages),
-		},
-	};
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
+	return mlNextUtils.getFolderStaticProps( `${CONTENT_TYPES.GLOSSARY}/${ctx.params.id as string}`, ctx, "folder");
 };
+
+

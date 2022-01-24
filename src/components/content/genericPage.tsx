@@ -19,11 +19,13 @@ export default function GenericPage(props: { data: IContentComponentData }) {
 			</Head>
 			<article>
 				<h1>#### {page?.title}</h1>
-				<ContentIterator data={{
+				{node ? (<ContentIterator data={{
 						data: node,
 						locale: props.data.locale
-					}} />
-				{/*<div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />*/}
+					}} />)
+				: (
+					<div>(No page content)</div>
+				)}
 			</article>
 		</Layout>
 	);
