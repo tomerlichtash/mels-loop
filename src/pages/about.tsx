@@ -4,8 +4,9 @@ import ContentBrowser from "../components/content-browser";
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { t } from "../locales/translate";
-import { getSortedDocsData } from "../lib/content-drivers/about";
 import { style, classes } from "./about.st.css";
+import { CONTENT_TYPES } from "../consts";
+import { mlNextUtils } from "../lib/next-utils";
 
 export default function About(data) {
 	const router = useRouter();
@@ -28,12 +29,6 @@ export default function About(data) {
 	);
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const data = getSortedDocsData(locale);
-	return {
-		props: {
-			content: JSON.stringify(data),
-			locale,
-		},
-	};
+export const getStaticProps: GetStaticProps = async (ctx) => {
+	return mlNextUtils.getFolderStaticProps(CONTENT_TYPES.ABOUT, ctx, "folder");
 };

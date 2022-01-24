@@ -11,16 +11,25 @@ export const ContentIterator = (props: {
 }): JSX.Element => {
 	const data = props.data,
 		p = data.data;
+	if (!p) {
+		console.warn("Content Iterator: no input node");
+		return <div className="content-iterator-no-data"></div>
+	}
 	const elements: IMLParsedNode[] = Array.isArray(p.children) && p.children;
+	const Tag = data.tag as keyof JSX.IntrinsicElements;
 	if (!elements) {
 		if (p.text) {
+			if (Tag) {
+				return (
+					<Tag className={data.style || ""} key={p.key}>{p.text}</Tag>
+				)
+			}
 			return (
 				<span className={style(classes.root, { type: "text" })}>{p.text}</span>
 			);
 		}
 		return <span className={style(classes.root, { type: "unknown" })}></span>;
 	}
-	const Tag = data.tag as keyof JSX.IntrinsicElements;
 	if (Tag) {
 		return (
 			<Tag className={classes[Tag]} key={p.key}>
