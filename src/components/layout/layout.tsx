@@ -26,10 +26,11 @@ export default function Layout(props: LayoutProps) {
 	const router = useRouter();
 	const { locale, pathname } = router;
 
-	const onSelectChange = (locale: string) => router.push(router.asPath, router.asPath, {
-		locale,
-		scroll: false,
-	});
+	const onSelectChange = (locale: string) =>
+		router.push(router.asPath, router.asPath, {
+			locale,
+			scroll: false,
+		});
 
 	const { siteTitle, siteSubtitle } = SITE_META;
 	const isHome = pathname === "/";
@@ -67,10 +68,7 @@ export default function Layout(props: LayoutProps) {
 					compKeys={LOCALE_SELECTOR_LOCALE}
 				/>
 				<Page nodes={props.children} />
-				<Footer
-					translate={translate}
-					compKeys={FOOTER_LOCALE}
-				/>
+				<Footer translate={translate} compKeys={FOOTER_LOCALE} />
 			</div>
 		</>
 	);
