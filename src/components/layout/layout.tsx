@@ -81,8 +81,8 @@ export default function Layout(props: LayoutProps) {
 				<Page className={classes.page} nodes={props.children} />
 				<Footer
 					className={classes.footer}
-					translate={translate}
 					compKeys={FOOTER_LOCALE}
+					translate={translate}
 				/>
 			</div>
 		</>
