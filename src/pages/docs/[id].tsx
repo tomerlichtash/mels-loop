@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import { IContentComponentData } from "../../interfaces/models";
-import GenericPage from "../../components/content/genericPage";
+import GenericPage from "../../components/content/generic-page";
 import { CONTENT_TYPES } from "../../consts";
 import { mlNextUtils } from "../../lib/next-utils";
 

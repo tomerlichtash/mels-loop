@@ -7,7 +7,7 @@ import {
 } from "../../interfaces/models";
 import Layout from "../layout";
 import Head from "next/head";
-import ContentIterator from "./contentIterator";
+import ContentIterator from "./content-iterator";
 
 export interface GenericPageProps extends ComponentProps {
 	data: IContentComponentData;

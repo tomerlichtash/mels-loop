@@ -1,5 +1,5 @@
 import React from "react";
-import ContentComponent from "../contentComponent";
+import ContentComponent from "../content-component";
 import {
 	IMLParsedNode,
 	ContentComponentProps,

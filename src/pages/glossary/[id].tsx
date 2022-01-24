@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import { IContentComponentData } from "../../interfaces/models";
 import { CONTENT_TYPES } from "../../consts";
-import GenericPage from "../../components/content/genericPage";
+import GenericPage from "../../components/content/generic-page";
 import { mlNextUtils } from "../../lib/next-utils";
 
 export default function Doc(props: IContentComponentData) {

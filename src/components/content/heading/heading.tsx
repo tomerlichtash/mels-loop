@@ -1,6 +1,6 @@
 import React from "react";
 import { ContentComponentProps } from "../../../interfaces/models";
-import ContentIterator from "../contentIterator";
+import ContentIterator from "../content-iterator";
 import { classes } from "./heading.st.css";
 
 export const Heading = (props: ContentComponentProps): JSX.Element => {

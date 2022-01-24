@@ -5,7 +5,7 @@ import Heading from "./heading";
 import ListItem from "./list-item";
 import Paragraph from "./paragraph";
 import Section from "./section";
-import ContentIterator from "./contentIterator";
+import ContentIterator from "./content-iterator";
 
 export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 	const data = props.data;
