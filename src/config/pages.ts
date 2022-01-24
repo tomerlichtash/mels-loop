@@ -8,29 +8,28 @@ import {
 
 export const SITE_PAGES = [
 	{
-		label: HOME_PAGE_LOCALE.pageName,
 		id: "home",
+		label: HOME_PAGE_LOCALE.pageName,
 		targetPathname: "/",
 	},
 	{
-		label: PREFACE_PAGE_LOCALE.pageName,
 		id: "preface",
+		label: PREFACE_PAGE_LOCALE.pageName,
 		targetPathname: "/docs/preface",
 	},
 	{
-		label: STORY_PAGE_LOCALE.pageName,
 		id: "story",
+		label: STORY_PAGE_LOCALE.pageName,
 		targetPathname: "/story",
 	},
 	{
-		label: ABOUT_PAGE_LOCALE.pageName,
 		id: "about",
+		label: ABOUT_PAGE_LOCALE.pageName,
 		targetPathname: "/about",
-		compKeys: ABOUT_PAGE_LOCALE,
 	},
 	{
-		label: RESOURCES_PAGE_LOCALE.pageName,
 		id: "resources",
+		label: RESOURCES_PAGE_LOCALE.pageName,
 		targetPathname: "/docs/resources",
 	},
 ];
