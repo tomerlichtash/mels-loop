@@ -22,6 +22,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 		case "ins":
 		case "strong":
 		case "em":
+		case "code":
 			return (
 				<ContentIterator
 					key={node.key}
@@ -31,7 +32,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 					}}
 				/>
 			);
-		case "blockQuote":
+		case "blockquote":
 			return (
 				<ContentIterator
 					key={node.key}
@@ -57,16 +58,6 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 			return <ListItem key={node.key} data={data} />;
 		case "link":
 			return <Link key={node.key} data={data} />;
-		case "codeBlock":
-			return (
-				<ContentIterator
-					key={node.key}
-					data={{
-						...data,
-						tag: "code",
-					}}
-				/>
-			);
 		default:
 			if (/heading/i.test(node.type)) {
 				return <Heading data={data} key={node.key} />;

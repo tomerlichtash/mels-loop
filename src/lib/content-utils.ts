@@ -26,7 +26,7 @@ const TypeMap: { [key: string]: MLParsedNodeType } = {
 	emph: "em",
 	list: "list",
 	"list-item": "list-item",
-	codeBlock: "codeBlock",
+	codeBlock: "code",
 	unknown: "unknown",
 };
 
@@ -47,11 +47,14 @@ const ignoredTypes = {
 };
 
 function nodeTypeToMLType(nodeName: string): MLParsedNodeType {
-	return TypeMap[nodeName] || (nodeName as MLParsedNodeType);
+	return (TypeMap[nodeName] || nodeName).toLowerCase() as MLParsedNodeType;
 }
 
 class ContentUtils implements IContentUtils {
 	public processParseTree(nodes: ParsedNode[]): IMLParsedNode[] {
+		if (!nodes || !nodes.length) {
+			return [];
+		}
 		const indexer = new NodeIndexer();
 		return nodes
 			.map((node) => this.processOneASTNode(node, indexer))

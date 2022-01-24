@@ -1,11 +1,12 @@
 import Head from "next/head";
 import Layout from "../components/layout";
 import { GetStaticProps } from "next";
-import { getSortedCodexData } from "../lib/content-drivers/codex";
 import { IContentComponentData } from "../interfaces/models";
 import { STORY_PAGE_LOCALE } from "../locales/components";
 import ContentBrowser from "../components/content-browser";
 import { classes } from "./index.st.css";
+import { CONTENT_TYPES } from "../consts";
+import { mlNextUtils } from "../lib/next-utils";
 
 export default function Story(data: IContentComponentData) {
 	const { translate, locale } = data;
@@ -30,12 +31,6 @@ export default function Story(data: IContentComponentData) {
 	);
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const data = getSortedCodexData(locale);
-	return {
-		props: {
-			content: JSON.stringify(data),
-			locale,
-		},
-	};
+export const getStaticProps: GetStaticProps = async (ctx) => {
+	return mlNextUtils.getFolderStaticProps(CONTENT_TYPES.CODEX, ctx, "children");
 };

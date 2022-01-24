@@ -17,8 +17,8 @@ interface INodeTypeMap {
 	ins: string;
 	del: string;
 	"list-item": string;
-	codeBlock: string;
-	blockQuote: string;
+	code: string;
+	blockquote: string;
 	unknown: string;
 }
 
@@ -87,6 +87,18 @@ export interface IParsedPageData {
 	 * If present, ignore the data
 	 */
 	readonly error?: string;
+}
+
+export interface ILocaleMap {
+	readonly params: { id: string };
+	locale: string;
+}
+
+export type PageSortField = Omit<keyof IParsedPageData, "parsed" | "error">;
+export interface IFolderContent {
+	readonly pages: IParsedPageData[];
+	readonly ids: ILocaleMap[];
+	sortOn(field: PageSortField): IParsedPageData[];
 }
 
 /**

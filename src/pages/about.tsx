@@ -2,10 +2,11 @@ import Head from "next/head";
 import Layout from "../components/layout/layout";
 import ContentBrowser from "../components/content-browser";
 import { GetStaticProps } from "next";
-import { getSortedDocsData } from "../lib/content-drivers/about";
-import { style, classes } from "./about.st.css";
+import { CONTENT_TYPES } from "../consts";
+import { mlNextUtils } from "../lib/next-utils";
 import { ABOUT_PAGE_LOCALE } from "../locales/components";
 import { ComponentProps, IContentComponentData } from "../interfaces/models";
+import { style, classes } from "./about.st.css";
 
 export interface AboutProps extends ComponentProps {
 	content: IContentComponentData;
@@ -31,12 +32,6 @@ export default function About(props: IContentComponentData) {
 	);
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	const data = getSortedDocsData(locale);
-	return {
-		props: {
-			content: JSON.stringify(data),
-			locale,
-		},
-	};
+export const getStaticProps: GetStaticProps = async (ctx) => {
+	return mlNextUtils.getFolderStaticProps(CONTENT_TYPES.ABOUT, ctx, "folder");
 };

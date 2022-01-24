@@ -1,132 +1,129 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import remark from "remark";
-import html from "remark-html";
 import * as mdParser from "simple-markdown";
-import { IMLParsedNode, IParsedPageData } from "../interfaces/models";
+import {
+	IFolderContent,
+	ILocaleMap,
+	IMLParsedNode,
+	IParsedPageData,
+	PageSortField,
+} from "../interfaces/models";
 import { contentUtils } from "./content-utils";
 
 const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 
-export function initContentDir(contentId: string) {
-	return path.join(process.cwd(), `content/${contentId}`);
+let rootDir: string;
+
+export function setRootDir(root: string): void {
+	rootDir = path.join(root, "content/");
 }
+
+export function getRootDir(): string {
+	return rootDir;
+}
+
+setRootDir(process.cwd());
 
 const consoleMsg = (msg: string, color: number) =>
 	`\x1b[${color}m${msg}\x1b[0m`;
 
-export function getSortedContentData(
-	contentDir: string,
-	locale: string
-): IParsedPageData[] {
+export interface ILoadContentOptions {
+	/**
+	 * The content path, relative to the content folder
+	 */
+	readonly relativePath: string;
+	/**
+	 * If true, iterate over children folders
+	 */
+	readonly type: "children" | "folder";
+	readonly locale: string;
+	readonly loadContent?: boolean;
+}
+
+export function loadContentFolder(
+	options: ILoadContentOptions
+): IFolderContent {
+	const contentDir = path.join(getRootDir(), options.relativePath);
 	// Get file names under /posts
-	const contentIds = fs.readdirSync(contentDir);
+	const contentNames = fs.readdirSync(contentDir);
 	console.log(
 		`\n${consoleMsg(
 			"collect",
 			41
-		)} - Sorted content in "${contentDir}" for locale "${locale}" (${
-			contentIds.length
+		)} - Sorted content in "${contentDir}" for locale "${options.locale}" (${
+			contentNames.length
 		} dir entries)`
 	);
 
-	const allContentData: IParsedPageData[] = contentIds
-		.map((id) => {
-			console.log(
-				`${consoleMsg("process", 44)} - Processing content ID "${id}"`
-			);
-			// Read markdown file as string
-			const filename = getIndexFileName(locale);
-			const fullPath = path.join(contentDir, id, filename);
+	const ret = new FolderContent();
 
+	contentNames.forEach((name) => {
+		console.log(
+			`${consoleMsg("process", 44)} - Processing content ID "${name}"`
+		);
+		const filename = getIndexFileName(options.locale);
+		let fullPath: string;
+		if (options.type === "folder") {
+			if (filename !== name) {
+				return;
+			}
+			fullPath = path.join(contentDir, name);
+		} else {
+			// read children
+			// Read markdown file as string
+			const childPath = path.join(contentDir, name);
+			const stat = fs.lstatSync(childPath);
+			if (!stat.isDirectory()) {
+				return;
+			}
+
+			fullPath = path.join(contentDir, name, filename);
 			if (!fs.existsSync(fullPath)) {
 				console.warn(`${consoleMsg("Path not found", 45)} - "${fullPath}"`);
 				// return error without disclosing OS path
-				return new ParsedPageData({
-					error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
-				});
+				return ret.pages.push(
+					new ParsedPageData({
+						error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
+					})
+				);
 			}
+			ret.ids.push({ params: { id: name }, locale: options.locale });
+		}
+		if (options.loadContent === false) {
+			return;
+		}
+		try {
+			const fileContents = fs.readFileSync(fullPath, "utf8");
+			console.log(`${consoleMsg("parse", 45)} - Parsed "${fullPath}"`);
 
-			try {
-				const fileContents = fs.readFileSync(fullPath, "utf8");
-				console.log(`${consoleMsg("parse", 45)} - Parsed "${fullPath}"`);
+			// Use gray-matter to parse the post metadata section
+			const { data: matterData, content } = matter(fileContents);
+			const mdParse = mdParser.defaultBlockParse;
+			// parse markdown and process
+			const tree = contentUtils.processParseTree(mdParse(content));
 
-				// Use gray-matter to parse the post metadata section
-				const { data: matterData, content } = matter(fileContents);
-				const mdParse = mdParser.defaultBlockParse;
-				// parse markdown and process
-				const tree = contentUtils.processParseTree(mdParse(content));
-
-				// Combine the data with the id
-				return new ParsedPageData({
-					id,
+			// Combine the data with the id
+			ret.pages.push(
+				new ParsedPageData({
+					id: name,
 					title: matterData.title || "",
 					date: parseDate(matterData.date as string),
 					moto: matterData.moto || "",
 					credits: matterData.credits || "",
 					content,
 					parsed: tree,
-				});
-			} catch (e) {
-				console.error(`Error processing ${fullPath}\n${JSON.stringify(e)}`);
-				return new ParsedPageData({ error: String(e) });
-			}
-		})
-		// filter out empty items
-		.filter(Boolean);
-	// Sort posts by date
-	return allContentData.sort((a, b) => {
-		if (a.date < b.date) {
-			return 1;
-		} else {
-			return -1;
+				})
+			);
+		} catch (e) {
+			console.error(`Error processing ${fullPath}\n`, e);
+			ret.pages.push(new ParsedPageData({ error: String(e) }));
 		}
 	});
-}
+	// filter out empty items
 
-export function getAllContentIds(contentDir: string, locales: string[]) {
-	let paths: { params: { id: string }; locale: string }[] = [];
-
-	const contentIds = fs.readdirSync(contentDir);
-
-	for (let id of contentIds) {
-		for (let locale of locales) {
-			const fullpath = path.join(contentDir, id, getIndexFileName(locale));
-			if (!fs.existsSync(fullpath)) {
-				continue;
-			}
-
-			paths.push({ params: { id }, locale });
-		}
-	}
-
-	return paths;
-}
-
-export async function getContentData(
-	contentDir: string,
-	id: string,
-	locale: string
-) {
-	const fullPath = path.join(contentDir, id, getIndexFileName(locale));
-	const fileContents = fs.readFileSync(fullPath, "utf8");
-
-	// Use gray-matter to parse the post metadata section
-	const matterResult = matter(fileContents);
-
-	// Use remark to convert markdown into HTML string
-	const processedContent = await remark()
-		.use(html)
-		.process(matterResult.content);
-	const contentHtml = processedContent.toString();
-
-	// Combine the data with the id and contentHtml
-	return {
-		id,
-		contentHtml,
-		...(matterResult.data as { date: string; title: string }),
-	};
+	return ret;
+	// Sort posts by date
 }
 
 function parseDate(dateString: string | null | undefined): Date {
@@ -162,4 +159,18 @@ class ParsedPageData implements IParsedPageData {
 	public content = "";
 	public parsed: IMLParsedNode[] = [];
 	public error?: string = "";
+}
+
+class FolderContent implements IFolderContent {
+	public pages: IParsedPageData[] = [];
+
+	public ids: ILocaleMap[] = [];
+	public paths: string[];
+	sortOn(field: PageSortField): IParsedPageData[] {
+		if (!this.pages) {
+			return [];
+		}
+		const key = String(field);
+		return this.pages.slice().sort((a, b) => (a[key] < b[key] ? 1 : -1));
+	}
 }
