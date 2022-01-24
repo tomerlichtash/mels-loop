@@ -56,6 +56,7 @@ class MLNextUtils implements IMLNextUtils {
 		return {
 			props: {
 				content: JSON.stringify(docData.pages),
+				locale: context.locale
 			},
 		};
 	}
