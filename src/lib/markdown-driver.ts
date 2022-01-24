@@ -117,42 +117,6 @@ export function loadContentFolder(options: ILoadContentOptions): IFolderContent 
 	// Sort posts by date
 }
 
-//export async function getContentData(
-//	contentDir: string,
-//	id: string,
-//	locale: string
-//) {
-//	const fullPath = path.join(getRootDir(), contentDir, id, getIndexFileName(locale));
-//	try {
-//		const fileContents = fs.readFileSync(fullPath, "utf8");
-
-//		// Use gray-matter to parse the post metadata section
-//		const matterResult = matter(fileContents);
-
-//		// Use remark to convert markdown into HTML string
-//		const processedContent = await remark()
-//			.use(html)
-//			.process(matterResult.content);
-//		const contentHtml = processedContent.toString();
-
-//		// Combine the data with the id and contentHtml
-//		return {
-//			id,
-//			contentHtml,
-//			...(matterResult.data as { date: string; title: string }),
-//		};
-//	}
-//	catch (e) {
-//		console.error("getContentData", e);
-//		return {
-//			id: null,
-//			contentHtml: null,
-//			date: "",
-//			title: ""
-//		}
-//	}
-//}
-
 function parseDate(dateString: string | null | undefined): Date {
 	if (dateString) {
 		try {
@@ -198,13 +162,7 @@ class FolderContent implements IFolderContent {
 			return [];
 		}
 		const key = String(field);
-		return this.pages.slice().sort((a, b) => {
-			if (a[key] < b[key]) {
-				return 1;
-			} else {
-				return -1;
-			}
-		});
+		return this.pages.slice().sort((a, b) => (a[key] < b[key])? 1: -1);
 	}
 
 }
