@@ -7,10 +7,20 @@ export const Paragraph = (props: {
 	data: IContentComponentInitData;
 }): JSX.Element => {
 	const p = props.data.data;
-
+	const children = p.children || []
+	if (children.length === 0) {
+		return (<p></p>)
+	}
+	if (children.length === 1 && children[0].type === "text") {
+		return (
+			<p key={p.key} className={classes.root} data-line-index={p.line}>
+				{p.children[0].text}
+			</p>
+			)
+	}
 	return (
 		<p key={p.key} className={classes.root} data-line-index={p.line}>
-			{(p.children || []).map((node) => {
+			{children.map((node) => {
 				return (
 					<ContentComponent
 						key={node.key}
