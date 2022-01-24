@@ -4,8 +4,8 @@ import { CONTENT_TYPES } from "../../consts";
 import GenericPage from "../../components/content/genericPage";
 import { mlNextUtils } from "../../lib/next-utils";
 
-export default function About(data: IContentComponentData) {
-	return <GenericPage data={data} />;
+export default function Doc(props: IContentComponentData) {
+	return <GenericPage translate={props.translate} data={props} />;
 }
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
