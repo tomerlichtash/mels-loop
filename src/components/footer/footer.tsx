@@ -8,9 +8,9 @@ export const Footer = (props: ComponentProps): JSX.Element => {
 	return (
 		<footer className={classes.root}>
 			<div className={classes.license}>
-				<time>{licenseYears}</time>
-				<span>({translate(siteLicense)})</span>
-				<span>{translate(siteTitle)}</span>
+				<time className={classes.year}>{licenseYears}</time>
+				<span className={classes.license}>({translate(siteLicense)})</span>
+				<span className={classes.title}>{translate(siteTitle)}</span>
 			</div>
 		</footer>
 	);
