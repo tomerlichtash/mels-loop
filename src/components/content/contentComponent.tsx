@@ -3,6 +3,7 @@ import Link from "./link/link";
 import {
 	IContentComponentInitData,
 	IMLParsedNode,
+	MLParsedNodeType,
 } from "../../interfaces/models";
 import Heading from "./heading";
 import ListItem from "./list-item";
@@ -27,23 +28,17 @@ export const ContentComponent = (props: {
 		case "ins":
 		case "strong":
 		case "em":
-			return (
+		case "blockquote":
+		case "code":
+				return (
 				<ContentIterator
 					key={node.key}
 					data={{
 						...data,
-						tag: node.type,
+						tag: node.type.toLocaleLowerCase(),
 					}}
 				/>
 			);
-		case "blockQuote":
-			return <ContentIterator
-			key={node.key}
-			data={{
-				...data,
-				tag: "blockquote"
-			}}
-		/>
 		case "text":
 			return <span key={node.key}>{node.text}</span>;
 		case "list":
@@ -60,16 +55,6 @@ export const ContentComponent = (props: {
 			return <ListItem key={node.key} data={data} />;
 		case "link":
 			return <Link key={node.key} data={data} />;
-		case "codeBlock":
-			return (
-				<ContentIterator
-					key={node.key}
-					data={{
-						...data,
-						tag: "code",
-					}}
-				/>
-			);
 		default:
 			if (/heading/i.test(node.type)) {
 				return <Heading data={data} key={node.key} />;

@@ -26,7 +26,7 @@ const TypeMap: { [key: string]: MLParsedNodeType } = {
 	emph: "em",
 	list: "list",
 	"list-item": "list-item",
-	codeBlock: "codeBlock",
+	codeBlock: "code",
 	unknown: "unknown",
 };
 
@@ -39,7 +39,7 @@ const inlineTypes = {
 	ins: 1,
 	del: 1,
 	sup: 1,
-	sub: 1,
+	sub: 1
 };
 
 const ignoredTypes = {
@@ -47,7 +47,7 @@ const ignoredTypes = {
 };
 
 function nodeTypeToMLType(nodeName: string): MLParsedNodeType {
-	return TypeMap[nodeName] || (nodeName as MLParsedNodeType);
+	return (TypeMap[nodeName] || nodeName).toLowerCase() as MLParsedNodeType;
 }
 
 class ContentUtils implements IContentUtils {

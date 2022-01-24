@@ -17,8 +17,8 @@ interface INodeTypeMap {
 	ins: string;
 	del: string;
 	"list-item": string;
-	codeBlock: string;
-	blockQuote: string;
+	code: string;
+	blockquote: string;
 	unknown: string;
 }
 

@@ -15,7 +15,7 @@ TODO: Contribute
 
 ## Discussions:
 
-[ycombinator discussion]: https://news.ycombinator.com/item?id=20489273
+[YCombinator discussion]: (https://news.ycombinator.com/item?id=20489273)
 
 ## Guides and References:
 
