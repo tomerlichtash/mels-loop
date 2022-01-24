@@ -13,6 +13,7 @@ import {
 } from "../../locales/components";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./layout.st.css";
+import { localeLabelPrefix } from "../../locales/locales";
 
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
@@ -37,6 +38,21 @@ export default function Layout(props: LayoutProps) {
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
 
+	const localeSelectorOptions = [
+		{
+			id: "en",
+			label: `${localeLabelPrefix}_EN`,
+			isCurrent: locale === "en",
+			callback: onSelectChange,
+		},
+		{
+			id: "he",
+			label: `${localeLabelPrefix}_HE`,
+			isCurrent: locale === "he",
+			callback: onSelectChange,
+		},
+	];
+
 	return (
 		<>
 			<Head>
@@ -53,22 +69,26 @@ export default function Layout(props: LayoutProps) {
 			</Head>
 			<div className={style(classes.root, { locale })}>
 				<Header
-					locale={locale}
+					className={classes.header}
 					pathname={pathname}
 					isHome={isHome}
 					sitePages={SITE_PAGES}
-					translate={translate}
 					compKeys={HEADER_LOCALE}
+					translate={translate}
 				/>
 				<LocaleSelector
 					className={classes.localeSelector}
-					locale={locale}
-					onSelectChange={onSelectChange}
-					translate={translate}
+					currentLocaleLabel={`LOCALE_LABEL_${locale.toUpperCase()}`}
+					options={localeSelectorOptions}
 					compKeys={LOCALE_SELECTOR_LOCALE}
+					translate={translate}
 				/>
-				<Page nodes={props.children} />
-				<Footer translate={translate} compKeys={FOOTER_LOCALE} />
+				<Page className={classes.page} nodes={props.children} />
+				<Footer
+					className={classes.footer}
+					translate={translate}
+					compKeys={FOOTER_LOCALE}
+				/>
 			</div>
 		</>
 	);

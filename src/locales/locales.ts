@@ -1,11 +1,13 @@
-import { ILanguage, ILocaleLabels } from "./types";
+import { Language, LocaleLabels } from "./types";
 
-export const LOCALE_LABELS: ILocaleLabels = {
+export const localeLabelPrefix = "LOCALE_LABEL";
+
+export const LOCALE_LABELS: LocaleLabels = {
 	LOCALE_LABEL_EN: "English",
 	LOCALE_LABEL_HE: "עברית",
 };
 
-export const EN_US: ILanguage = {
+export const EN_US: Language = {
 	HOME_NAV_LABEL: "Home",
 	ABOUT_NAV_LABEL: "About",
 	STORY_NAV_LABEL: "The Story",
@@ -21,7 +23,7 @@ export const EN_US: ILanguage = {
 	FOOTER_LICENSE: "cc-by",
 };
 
-export const HE_IL: ILanguage = {
+export const HE_IL: Language = {
 	HOME_NAV_LABEL: "שער",
 	ABOUT_NAV_LABEL: "אודות",
 	STORY_NAV_LABEL: "הסיפור",

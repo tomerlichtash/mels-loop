@@ -12,7 +12,7 @@ export interface AboutProps extends ComponentProps {
 }
 
 export default function About(props: IContentComponentData) {
-	const { translate, locale } = props;
+	const { translate, locale, className } = props;
 	const { siteTitle, pageName } = ABOUT_PAGE_LOCALE;
 	const title = translate(siteTitle);
 	// const subtitle = translate(siteSubtitle);
@@ -24,7 +24,7 @@ export default function About(props: IContentComponentData) {
 					{title} - {pageTitle}
 				</title>
 			</Head>
-			<article className={style(classes.root)}>
+			<article className={style(classes.root, className)}>
 				<ContentBrowser data={props} locale={locale} showTitle />
 			</article>
 		</Layout>

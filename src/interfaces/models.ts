@@ -121,6 +121,7 @@ export interface ComponentProps {
 	compKeys?: Record<string, string>;
 	locale?: string;
 	translate?: (key: string) => string;
+	className?: string;
 }
 
 /**

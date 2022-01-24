@@ -6,7 +6,6 @@ import { style, classes } from "./dropdown.st.css";
 
 export interface DropDownProps extends ComponentProps {
 	options: IOption[];
-	className?: string;
 }
 
 export const DropDown = (props: DropDownProps): JSX.Element => {

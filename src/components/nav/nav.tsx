@@ -10,7 +10,6 @@ export interface NavProps extends ComponentProps {
 	sitePages: SitePage[];
 	pathname: string;
 	translate: (key: string) => string;
-	className?: string;
 }
 
 export const Nav = (props: NavProps): JSX.Element => {

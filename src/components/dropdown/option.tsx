@@ -9,7 +9,6 @@ export interface IOption extends ComponentProps {
 	isCurrent?: boolean;
 	callback?: (id: string) => void;
 	closeDropDown?: () => void;
-	className?: string;
 }
 
 export const Option = (props: IOption): JSX.Element => {

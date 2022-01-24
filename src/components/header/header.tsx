@@ -2,7 +2,7 @@ import Link from "next/link";
 import Nav from "../nav";
 import { SitePage } from "../../interfaces/models";
 import { ComponentProps } from "../../interfaces/models";
-import { classes } from "./header.st.css";
+import { style, classes } from "./header.st.css";
 
 export interface HeaderProps extends ComponentProps {
 	pathname: string;
@@ -11,12 +11,12 @@ export interface HeaderProps extends ComponentProps {
 }
 
 export const Header = (props: HeaderProps): JSX.Element => {
-	const { pathname, isHome, sitePages, compKeys, translate } = props;
+	const { pathname, isHome, sitePages, compKeys, translate, className } = props;
 	const { siteTitle, siteSubtitle } = compKeys;
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
 	return (
-		<header className={classes.root}>
+		<header className={style(classes.root, className)}>
 			<div className={classes.container}>
 				<div className={classes.title}>
 					{isHome ? (

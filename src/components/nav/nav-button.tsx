@@ -6,7 +6,6 @@ export interface NavButtonProps extends ComponentProps {
 	label: string;
 	pageName: string;
 	isCurrent: boolean;
-	className?: string;
 }
 
 export const NavButton = (props: NavButtonProps): JSX.Element => {

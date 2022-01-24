@@ -1,12 +1,12 @@
 import { ComponentProps } from "../../interfaces/models";
-import { classes } from "./footer.st.css";
+import { style, classes } from "./footer.st.css";
 
 export const Footer = (props: ComponentProps): JSX.Element => {
-	const { translate, compKeys } = props;
+	const { translate, compKeys, className } = props;
 	const licenseYears = `2021-${new Date().getFullYear()}`;
 	const { siteTitle, siteLicense } = compKeys;
 	return (
-		<footer className={classes.root}>
+		<footer className={style(classes.root, className)}>
 			<div className={classes.license}>
 				<time className={classes.year}>{licenseYears}</time>
 				<span className={classes.license}>({translate(siteLicense)})</span>
