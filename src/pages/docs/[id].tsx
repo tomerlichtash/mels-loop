@@ -5,7 +5,6 @@ import { CONTENT_TYPES } from "../../consts";
 import { mlNextUtils } from "../../lib/next-utils";
 
 export default function Doc(props: IContentComponentData) {
-	debugger;
 	return <GenericPage translate={props.translate} data={props} />;
 }
 
