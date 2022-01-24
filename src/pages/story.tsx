@@ -11,7 +11,7 @@ export default function Story(data: IContentComponentData) {
 	const { translate, locale } = data;
 	const { siteTitle, pageName } = STORY_PAGE_LOCALE;
 	return (
-		<Layout {...{locale, translate}}>
+		<Layout {...{ locale, translate }}>
 			<Head>
 				<title>
 					{translate(siteTitle)} - {translate(pageName)}

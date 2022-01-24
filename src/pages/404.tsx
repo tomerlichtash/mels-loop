@@ -9,11 +9,10 @@ export default function Custom404(props: ComponentProps) {
 	const { translate, locale } = props;
 	const { siteTitle, pageName } = ERROR_404_PAGE_LOCALE;
 	return (
-		<Layout {...{locale, translate}}>
+		<Layout {...{ locale, translate }}>
 			<Head>
 				<title>
-					{translate(siteTitle)} - $
-					{translate(pageName)}
+					{translate(siteTitle)} - ${translate(pageName)}
 				</title>
 			</Head>
 			<div className={classes.root}>

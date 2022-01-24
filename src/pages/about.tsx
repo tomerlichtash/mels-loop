@@ -16,9 +16,9 @@ export default function About(props: IContentComponentData) {
 	const { siteTitle, pageName } = ABOUT_PAGE_LOCALE;
 	const title = translate(siteTitle);
 	// const subtitle = translate(siteSubtitle);
-	const pageTitle = translate(pageName)
+	const pageTitle = translate(pageName);
 	return (
-		<Layout {...{locale, translate}}>
+		<Layout {...{ locale, translate }}>
 			<Head>
 				<title>
 					{title} - {pageTitle}
