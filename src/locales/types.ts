@@ -34,8 +34,6 @@ export interface IComponentKeyProps {
 	pageName: "pageName";
 	openLabel: "openLabel";
 	closeLabel: "closeLabel";
-	en: "en";
-	he: "he";
 }
 
 export type ComponentKeyMap = Partial<
