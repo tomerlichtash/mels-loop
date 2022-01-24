@@ -1,4 +1,5 @@
 import * as mdParser from "simple-markdown";
+import { ComponentKeyMap } from "../locales/types";
 
 /**
  * A single node in a parsed markdown AST
@@ -95,6 +96,7 @@ export interface ILocaleMap {
 }
 
 export type PageSortField = Omit<keyof IParsedPageData, "parsed" | "error">;
+
 export interface IFolderContent {
 	readonly pages: IParsedPageData[];
 	readonly ids: ILocaleMap[];
@@ -105,15 +107,8 @@ export interface IFolderContent {
  * The data passed to a next component from the static props. The content is serialized to circumvent
  * next's approach to serializing
  */
-export interface IContentComponentData extends ComponentProps {
+export interface IContentComponentData {
 	content: string;
-}
-
-/**
- * TODO: add comment
- */
-export interface ContentComponentProps extends ComponentProps {
-	data: IContentComponentInitData;
 }
 
 /**
@@ -121,9 +116,12 @@ export interface ContentComponentProps extends ComponentProps {
  */
 export interface IContentComponentInitData {
 	data: IMLParsedNode;
-	locale: string;
 	tag?: string;
 	style?: string;
+}
+
+export interface ContentComponentProps {
+	data: IContentComponentInitData;
 }
 
 /**
@@ -131,7 +129,6 @@ export interface IContentComponentInitData {
  */
 export interface ComponentProps {
 	compKeys?: Record<string, string>;
-	locale?: string;
 	translate?: (key: string) => string;
 	className?: string;
 }
@@ -143,10 +140,14 @@ export interface SitePage {
 	label: string;
 	id: string;
 	targetPathname: string;
+	menuNav: boolean;
+	pathname: string;
+	locale: Record<string, string>;
 }
 
-export interface ITermProps extends ComponentProps {
-	title: string;
-	date: string;
-	contentHtml: string;
+export interface IPageProps {
+	compLocale: ComponentKeyMap;
+	className?: string;
+	content?: string;
+	translate: (key: string) => string;
 }

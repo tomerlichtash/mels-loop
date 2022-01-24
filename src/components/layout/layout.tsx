@@ -18,7 +18,7 @@ import { style, classes } from "./layout.st.css";
 
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
-	locale: string;
+	// locale: string;
 	translate: (key: string) => string;
 }
 

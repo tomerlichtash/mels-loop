@@ -1,18 +1,17 @@
 import Head from "next/head";
 import Layout from "../components/layout";
 import { GetStaticProps } from "next";
-import { IContentComponentData } from "../interfaces/models";
-import { STORY_PAGE_LOCALE } from "../locales/components";
+import { IPageProps } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
 import { classes } from "./index.st.css";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 
-export default function Story(data: IContentComponentData) {
-	const { translate, locale } = data;
-	const { siteTitle, pageName } = STORY_PAGE_LOCALE;
+export default function Story(props: IPageProps) {
+	const { translate, compLocale, className } = props;
+	const { siteTitle, pageName } = compLocale;
 	return (
-		<Layout {...{ locale, translate }}>
+		<Layout {...{ translate }}>
 			<Head>
 				<title>
 					{translate(siteTitle)} - {translate(pageName)}
@@ -20,8 +19,7 @@ export default function Story(data: IContentComponentData) {
 			</Head>
 			<article className={classes.root}>
 				<ContentBrowser
-					data={data}
-					locale={locale}
+					content={props.content}
 					showTitle
 					showMoto
 					showCredits

@@ -51,11 +51,16 @@ export interface IMLNextUtils {
 	getFolderStaticPaths: MLGetStaticPaths;
 }
 
+export enum PathStaticPropType {
+	FOLDER = "folder",
+	CHILDREN = "children",
+}
+
 class MLNextUtils implements IMLNextUtils {
 	getFolderStaticProps(
 		folderPath: string,
 		context: GetStaticPropsContext,
-		type: "folder" | "children"
+		type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN
 	): GetStaticPropsResult<{ [key: string]: any }> {
 		const docData = loadContentFolder({
 			relativePath: folderPath,
@@ -65,7 +70,7 @@ class MLNextUtils implements IMLNextUtils {
 		return {
 			props: {
 				content: JSON.stringify(docData.pages),
-				locale: context.locale,
+				// locale: context.locale,
 			},
 		};
 	}

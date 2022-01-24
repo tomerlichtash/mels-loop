@@ -3,6 +3,7 @@ import { style, classes } from "./date.st.css";
 
 export interface DateProps extends ComponentProps {
 	dateString: string;
+	locale: string;
 }
 
 export const Date = (props: DateProps): JSX.Element => {

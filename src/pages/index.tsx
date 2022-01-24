@@ -1,19 +1,19 @@
-import { GetStaticProps } from "next";
+// import { GetStaticProps } from "next";
 import Head from "next/head";
 import Layout from "../components/layout";
-import { HOME_PAGE_LOCALE } from "../locales/components";
+import { IPageProps } from "../interfaces/models";
 import { style, classes } from "./index.st.css";
 
-export interface HomeProps {
-	locale: string;
+export interface HomeProps extends IPageProps {
+	// locale: string;
 	translate: (key: string) => string;
 }
 
 export default function Home(props: HomeProps) {
-	const { translate, locale } = props;
-	const { siteTitle, pageName } = HOME_PAGE_LOCALE;
+	const { translate, compLocale } = props;
+	const { siteTitle, pageName } = compLocale;
 	return (
-		<Layout {...{ locale, translate }}>
+		<Layout {...{ translate }}>
 			<Head>
 				<title>
 					{translate(siteTitle)} - ${translate(pageName)}
@@ -28,10 +28,10 @@ export default function Home(props: HomeProps) {
 	);
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	return {
-		props: {
-			locale,
-		},
-	};
-};
+// export const getStaticProps: GetStaticProps = async ({ locale }) => {
+// 	return {
+// 		props: {
+// 			locale,
+// 		},
+// 	};
+// };

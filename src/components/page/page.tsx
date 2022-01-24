@@ -1,4 +1,3 @@
-export type ILocale = "en" | "he";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./page.st.css";
 

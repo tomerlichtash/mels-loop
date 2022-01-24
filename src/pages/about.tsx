@@ -4,29 +4,22 @@ import ContentBrowser from "../components/content-browser";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
-import { ABOUT_PAGE_LOCALE } from "../locales/components";
-import { ComponentProps, IContentComponentData } from "../interfaces/models";
+import { IContentComponentData, IPageProps } from "../interfaces/models";
 import { style, classes } from "./about.st.css";
 
-export interface AboutProps extends ComponentProps {
-	content: IContentComponentData;
-}
-
-export default function About(props: IContentComponentData) {
-	const { translate, locale, className } = props;
-	const { siteTitle, pageName } = ABOUT_PAGE_LOCALE;
-	const title = translate(siteTitle);
-	// const subtitle = translate(siteSubtitle);
-	const pageTitle = translate(pageName);
+export default function About(props: IPageProps) {
+	const { translate, compLocale, className } = props;
+	const { siteTitle, pageName } = compLocale;
+	debugger;
 	return (
-		<Layout {...{ locale, translate }}>
+		<Layout {...{ translate }}>
 			<Head>
 				<title>
-					{title} - {pageTitle}
+					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
 			<article className={style(classes.root, className)}>
-				<ContentBrowser data={props} locale={locale} showTitle />
+				<ContentBrowser content={props.content} showTitle />
 			</article>
 		</Layout>
 	);

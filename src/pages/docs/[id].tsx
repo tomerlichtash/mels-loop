@@ -1,10 +1,10 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
-import { IContentComponentData } from "../../interfaces/models";
+import { IPageProps } from "../../interfaces/models";
 import GenericPage from "../../components/content/generic-page";
 import { CONTENT_TYPES } from "../../consts";
 import { mlNextUtils } from "../../lib/next-utils";
 
-export default function Doc(props: IContentComponentData) {
+export default function Doc(props: IPageProps) {
 	return <GenericPage translate={props.translate} data={props} />;
 }
 

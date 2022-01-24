@@ -1,10 +1,10 @@
 import React from "react";
 import NavButton from "./nav-button";
 import DropDown from "../dropdown";
-import { style, classes } from "./nav.st.css";
 import { ComponentProps, SitePage } from "../../interfaces/models";
 import { NAV_MENU_DROPDOWN_LOCALE } from "../../locales/components";
 import { IOption } from "../dropdown/option";
+import { style, classes } from "./nav.st.css";
 
 export interface NavProps extends ComponentProps {
 	sitePages: SitePage[];
@@ -13,7 +13,7 @@ export interface NavProps extends ComponentProps {
 }
 
 export const Nav = (props: NavProps): JSX.Element => {
-	const { sitePages, locale, translate, pathname, className } = props;
+	const { sitePages, translate, pathname, className } = props;
 	return (
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
@@ -40,7 +40,6 @@ export const Nav = (props: NavProps): JSX.Element => {
 					sitePages.map((p) => {
 						return {
 							label: p.label,
-							locale: locale,
 							targetPathname: p.targetPathname,
 						};
 					}) as IOption[]

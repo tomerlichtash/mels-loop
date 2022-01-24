@@ -10,16 +10,15 @@ import { classes } from "./content-browser.st.css";
 
 const FULL_PAGE_RE = /full.*text/i;
 
-export interface ContentBrowserProps extends ComponentProps {
-	data: IContentComponentData;
+export interface ContentBrowserProps {
+	content: string;
 	showTitle?: boolean;
 	showMoto?: boolean;
 	showCredits?: boolean;
 }
 
 export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
-	const { content } = props.data;
-	const { locale, showTitle, showMoto, showCredits } = props;
+	const { showTitle, showMoto, showCredits, content } = props;
 
 	const pageData: IParsedPageData[] = JSON.parse(content);
 
@@ -35,6 +34,7 @@ export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 	const title = pageData[0].title;
 	const moto = pageData[0].moto;
 	const credits = pageData[0].credits;
+
 	return (
 		<div className={classes.root}>
 			{showTitle && <h2 className={classes.title}>{title}</h2>}
@@ -46,7 +46,6 @@ export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 						key={`top-${index}`}
 						data={{
 							data: node,
-							locale,
 						}}
 					/>
 				);

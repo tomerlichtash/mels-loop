@@ -40,6 +40,13 @@ export const RESOURCES_PAGE_LOCALE: ComponentKeyMap = Object.assign(
 	SITE_META
 );
 
+export const GLOSSARY_PAGE_LOCALE: ComponentKeyMap = Object.assign(
+	{
+		pageName: "GLOSSARY_NAV_LABEL",
+	},
+	SITE_META
+);
+
 export const ERROR_404_PAGE_LOCALE: ComponentKeyMap = Object.assign(
 	{
 		pageName: "ERROR_404_FILE_NOT_FOUND",
