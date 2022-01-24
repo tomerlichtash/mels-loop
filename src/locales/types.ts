@@ -1,7 +1,5 @@
 export type ILocaleId = "EN_US" | "HE_IL";
 
-// export type ILocaleRef = "en" | "he";
-
 export enum ILocaleKeys {
 	LOCALE_LABEL_EN = "LOCALE_LABEL_EN",
 	LOCALE_LABEL_HE = "LOCALE_LABEL_HE",
