@@ -7,10 +7,7 @@ import * as mdParser from "simple-markdown";
 import { IMLParsedNode, IParsedPageData } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
 
-const { defaultLocale } = require("../../i18n.json");
-
-const getIndexFileName = (locale: string): string =>
-	defaultLocale === locale ? "index.md" : `index.${locale}.md`;
+const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 
 export function initContentDir(contentId: string) {
 	return path.join(process.cwd(), `content/${contentId}`);
