@@ -37,5 +37,5 @@ export interface IComponentKeyProps {
 }
 
 export type ComponentKeyMap = Partial<
-	Record<keyof IComponentKeyProps | keyof ILocaleKeys, keyof ILanguageKeys>
+	Record<keyof IComponentKeyProps, keyof ILanguageKeys>
 >;
