@@ -5,7 +5,6 @@ import {
 	IParsedPageData,
 	IContentComponentData,
 	ComponentProps,
-
 } from "../../interfaces/models";
 import { classes } from "./content-browser.st.css";
 

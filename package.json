@@ -9,7 +9,8 @@
 		"eslint": "eslint . -f codeframe",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"test:coverage": "jest --coverage"
+		"test:coverage": "jest --coverage",
+		"prettier:check": "prettier --config .prettierrc --check src/**/*"
 	},
 	"dependencies": {
 		"gray-matter": "^4.0.3",
@@ -46,6 +47,7 @@
 		"eslint-plugin-react-hooks": "^4.3.0",
 		"identity-obj-proxy": "^3.0.0",
 		"jest": "^27.4.7",
+		"prettier": "^2.5.1",
 		"react-test-renderer": "^17.0.2",
 		"simple-markdown": "^0.7.3",
 		"ts-jest": "^27.1.3",

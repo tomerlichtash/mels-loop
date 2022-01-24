@@ -2,7 +2,7 @@ export type ILocale = "en" | "he";
 import { classes } from "./page.st.css";
 
 export interface PageProps {
-	nodes: React.ReactNode	
+	nodes: React.ReactNode;
 }
 
 export const Page = (props: PageProps): JSX.Element => {

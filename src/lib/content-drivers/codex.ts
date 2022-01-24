@@ -3,9 +3,9 @@ import {
 	getSortedContentData,
 	getAllContentIds,
 	getContentData,
-} from '../markdown-driver';
+} from "../markdown-driver";
 
-import { CONTENT_TYPES } from '../../consts';
+import { CONTENT_TYPES } from "../../consts";
 
 const codexDirectory = initContentDir(CONTENT_TYPES.CODEX);
 

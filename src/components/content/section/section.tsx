@@ -1,6 +1,9 @@
 import React from "react";
 import ContentComponent from "../contentComponent";
-import { IMLParsedNode, ContentComponentProps } from "../../../interfaces/models";
+import {
+	IMLParsedNode,
+	ContentComponentProps,
+} from "../../../interfaces/models";
 import { classes } from "./section.st.css";
 
 export const Section = (props: ContentComponentProps): JSX.Element => {

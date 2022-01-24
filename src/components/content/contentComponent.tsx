@@ -32,13 +32,15 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 				/>
 			);
 		case "blockQuote":
-			return <ContentIterator
-			key={node.key}
-			data={{
-				...data,
-				tag: "blockquote"
-			}}
-		/>
+			return (
+				<ContentIterator
+					key={node.key}
+					data={{
+						...data,
+						tag: "blockquote",
+					}}
+				/>
+			);
 		case "text":
 			return <span key={node.key}>{node.text}</span>;
 		case "list":
