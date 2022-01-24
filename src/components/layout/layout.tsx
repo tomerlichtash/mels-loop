@@ -12,8 +12,9 @@ import {
 	LOCALE_SELECTOR_LOCALE,
 } from "../../locales/components";
 import { ComponentProps } from "../../interfaces/models";
-import { style, classes } from "./layout.st.css";
 import { localeLabelPrefix } from "../../locales/locales";
+import { IOption } from "../dropdown/option";
+import { style, classes } from "./layout.st.css";
 
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
@@ -25,7 +26,7 @@ export default function Layout(props: LayoutProps) {
 	const { translate } = props;
 
 	const router = useRouter();
-	const { locale, pathname } = router;
+	const { locale, locales, pathname } = router;
 
 	const onSelectChange = (locale: string) =>
 		router.push(router.asPath, router.asPath, {
@@ -38,20 +39,14 @@ export default function Layout(props: LayoutProps) {
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
 
-	const localeSelectorOptions = [
-		{
-			id: "en",
-			label: `${localeLabelPrefix}_EN`,
-			isCurrent: locale === "en",
+	const localeSelectorOptions: IOption[] = locales.map((lang) => {
+		return {
+			id: lang,
+			label: `${localeLabelPrefix}_${lang.toUpperCase()}`,
+			isCurrent: locale === lang,
 			callback: onSelectChange,
-		},
-		{
-			id: "he",
-			label: `${localeLabelPrefix}_HE`,
-			isCurrent: locale === "he",
-			callback: onSelectChange,
-		},
-	];
+		};
+	});
 
 	return (
 		<>
