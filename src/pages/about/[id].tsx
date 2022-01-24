@@ -1,43 +1,19 @@
-import Layout from "../../components/layout";
-import { getAllDocIds, getDocData } from "../../lib/content-drivers/about";
-import Head from "next/head";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
+import { IContentComponentData } from "../../interfaces/models";
+import { CONTENT_TYPES } from "../../consts";
+import GenericPage from "../../components/content/genericPage";
+import { mlNextUtils } from "../../lib/next-utils";
 
-export default function About({
-	docData,
-}: {
-	docData: {
-		title: string;
-		date: string;
-		contentHtml: string;
-	};
-}) {
+export default function About(data: IContentComponentData) {
 	return (
-		<Layout>
-			<Head>
-				<title>{docData.title}</title>
-			</Head>
-			<article>
-				<h1>#### {docData.title}</h1>
-				<div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />
-			</article>
-		</Layout>
+		<GenericPage data={data} />
 	);
 }
 
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-	const paths = getAllDocIds(locales);
-	return {
-		paths,
-		fallback: false,
-	};
+export const getStaticPaths: GetStaticPaths = async (ctx) => {
+	return mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.DOCS, ctx);
 };
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-	const docData = await getDocData(params.id as string, locale);
-	return {
-		props: {
-			docData,
-		},
-	};
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
+	return mlNextUtils.getFolderStaticProps( `${CONTENT_TYPES.DOCS}/${ctx.params.id as string}`, ctx, "folder");
 };
