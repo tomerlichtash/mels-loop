@@ -24,7 +24,7 @@ type MLGetStaticProps<
 > = (
 	folderRelativePath: string,
 	context: GetStaticPropsContext<Q, D>,
-	type: "folder" | "children"
+	type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN
 ) => Promise<GetStaticPropsResult<P>> | GetStaticPropsResult<P>;
 
 /**
@@ -70,6 +70,7 @@ class MLNextUtils implements IMLNextUtils {
 		return {
 			props: {
 				content: JSON.stringify(docData.pages),
+				gogo: "lala",
 				// locale: context.locale,
 			},
 		};
@@ -84,7 +85,7 @@ class MLNextUtils implements IMLNextUtils {
 			const folderData = loadContentFolder({
 				locale,
 				relativePath: folderPath,
-				type: "children",
+				type: PathStaticPropType.CHILDREN,
 			});
 			paths.push(...folderData.ids);
 		});

@@ -5,10 +5,10 @@ import { IPageProps } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
 import { classes } from "./index.st.css";
 import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
+import { mlNextUtils, PathStaticPropType } from "../lib/next-utils";
 
 export default function Story(props: IPageProps) {
-	const { translate, compLocale, className } = props;
+	const { translate, compLocale } = props;
 	const { siteTitle, pageName } = compLocale;
 	return (
 		<Layout {...{ translate }}>
@@ -29,6 +29,10 @@ export default function Story(props: IPageProps) {
 	);
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-	return mlNextUtils.getFolderStaticProps(CONTENT_TYPES.CODEX, ctx, "children");
+export const getStaticProps: GetStaticProps = async (context) => {
+	return mlNextUtils.getFolderStaticProps(
+		CONTENT_TYPES.CODEX,
+		context,
+		PathStaticPropType.CHILDREN
+	);
 };

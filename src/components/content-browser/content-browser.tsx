@@ -1,11 +1,6 @@
 import React from "react";
 import ContentComponent from "../content/content-component";
-import {
-	IMLParsedNode,
-	IParsedPageData,
-	IContentComponentData,
-	ComponentProps,
-} from "../../interfaces/models";
+import { IMLParsedNode, IParsedPageData } from "../../interfaces/models";
 import { classes } from "./content-browser.st.css";
 
 const FULL_PAGE_RE = /full.*text/i;

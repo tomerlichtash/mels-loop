@@ -2,22 +2,22 @@ import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import { IPageProps } from "../../interfaces/models";
 import { CONTENT_TYPES } from "../../consts";
 import GenericPage from "../../components/content/generic-page";
-import { mlNextUtils } from "../../lib/next-utils";
+import { mlNextUtils, PathStaticPropType } from "../../lib/next-utils";
 
 export default function Doc(props: IPageProps) {
-	return <GenericPage translate={props.translate} data={props} />;
+	return <GenericPage data={props} />;
 }
 
-export const getStaticPaths: GetStaticPaths = async (ctx) => {
-	return mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.GLOSSARY, ctx);
+export const getStaticPaths: GetStaticPaths = async (context) => {
+	return mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.GLOSSARY, context);
 };
 
 export const getStaticProps: GetStaticProps = async (
-	ctx: GetStaticPropsContext
+	context: GetStaticPropsContext
 ) => {
 	return mlNextUtils.getFolderStaticProps(
-		`${CONTENT_TYPES.GLOSSARY}/${ctx.params.id as string}`,
-		ctx,
-		"folder"
+		`${CONTENT_TYPES.GLOSSARY}/${context.params.id as string}`,
+		context,
+		PathStaticPropType.FOLDER
 	);
 };

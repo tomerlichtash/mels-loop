@@ -23,6 +23,28 @@ interface INodeTypeMap {
 	unknown: string;
 }
 
+export enum NODE_TYPES {
+	PARAGRAPH = "paragraph",
+	LINE = "line",
+	DEL = "del",
+	INS = "ins",
+	STRONG = "strong",
+	EM = "em",
+	CODE = "code",
+	BLOCKQUOTE = "blockquote",
+	TEXT = "text",
+	LIST = "list",
+	LIST_ITEM = "list-item",
+	LINK = "link",
+	IMAGE = "image",
+	UNKNOWN = "unknown",
+}
+
+export enum NODE_LIST_TYPES {
+	ORDERED = "ol",
+	UNORDERED = "ul",
+}
+
 export type MLParsedNodeType = keyof INodeTypeMap;
 
 /**
@@ -108,7 +130,13 @@ export interface IFolderContent {
  * next's approach to serializing
  */
 export interface IContentComponentData {
+	data: IGenericPageProps;
+}
+
+export interface IGenericPageProps {
 	content: string;
+	translate: (k: string) => string;
+	compLocale: Record<string, string>;
 }
 
 /**
@@ -148,6 +176,7 @@ export interface SitePage {
 export interface IPageProps {
 	compLocale: ComponentKeyMap;
 	className?: string;
-	content?: string;
+	content: string;
+	data?: any;
 	translate: (key: string) => string;
 }

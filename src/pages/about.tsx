@@ -3,14 +3,13 @@ import Layout from "../components/layout/layout";
 import ContentBrowser from "../components/content-browser";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
-import { IContentComponentData, IPageProps } from "../interfaces/models";
+import { mlNextUtils, PathStaticPropType } from "../lib/next-utils";
+import { IPageProps } from "../interfaces/models";
 import { style, classes } from "./about.st.css";
 
 export default function About(props: IPageProps) {
 	const { translate, compLocale, className } = props;
 	const { siteTitle, pageName } = compLocale;
-	debugger;
 	return (
 		<Layout {...{ translate }}>
 			<Head>
@@ -25,6 +24,10 @@ export default function About(props: IPageProps) {
 	);
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-	return mlNextUtils.getFolderStaticProps(CONTENT_TYPES.ABOUT, ctx, "folder");
+export const getStaticProps: GetStaticProps = async (context) => {
+	return mlNextUtils.getFolderStaticProps(
+		CONTENT_TYPES.ABOUT,
+		context,
+		PathStaticPropType.FOLDER
+	);
 };

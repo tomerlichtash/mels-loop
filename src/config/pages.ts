@@ -57,4 +57,12 @@ export const SITE_PAGES: SitePage[] = [
 		targetPathname: "/docs/resources",
 		pathname: "/glossary/[id]",
 	},
+	{
+		id: "error",
+		menuNav: false,
+		locale: GLOSSARY_PAGE_LOCALE,
+		label: GLOSSARY_PAGE_LOCALE.pageName,
+		targetPathname: "NONE",
+		pathname: "/_error",
+	},
 ];

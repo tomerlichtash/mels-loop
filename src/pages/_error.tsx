@@ -1,15 +1,14 @@
 import Head from "next/head";
 import Layout from "../components/layout";
 import { GetStaticProps } from "next";
-import { ComponentProps } from "../interfaces/models";
-import { ERROR_404_PAGE_LOCALE } from "../locales/components";
-import { classes } from "./404.st.css";
+import { IPageProps } from "../interfaces/models";
+import { classes } from "./_error.st.css";
 
-export default function Custom404(props: ComponentProps) {
-	const { translate, locale } = props;
-	const { siteTitle, pageName } = ERROR_404_PAGE_LOCALE;
+export default function CustomError(props: IPageProps) {
+	const { translate, compLocale } = props;
+	const { siteTitle, pageName } = compLocale;
 	return (
-		<Layout {...{ locale, translate }}>
+		<Layout {...{ translate }}>
 			<Head>
 				<title>
 					{translate(siteTitle)} - ${translate(pageName)}

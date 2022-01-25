@@ -9,7 +9,7 @@ export interface DropDownProps extends ComponentProps {
 }
 
 export const DropDown = (props: DropDownProps): JSX.Element => {
-	const { locale, compKeys, options, translate, className } = props;
+	const { compKeys, options, translate, className } = props;
 	const { openLabel, closeLabel } = compKeys;
 	const [optionListVisible, toggleOptionList] = useState(false);
 
@@ -46,7 +46,6 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 						{options.map((option) => (
 							<Option
 								key={option.id}
-								locale={locale}
 								closeDropDown={() => toggleOptionList(false)}
 								translate={translate}
 								{...option}

@@ -5,7 +5,7 @@ import { mlNextUtils, PathStaticPropType } from "../../lib/next-utils";
 import GenericPage from "../../components/content/generic-page";
 
 export default function Doc(props: IPageProps) {
-	return <GenericPage translate={props.translate} data={props} />;
+	return <GenericPage data={props} />;
 }
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps = async (
 	context: GetStaticPropsContext
 ) => {
 	return mlNextUtils.getFolderStaticProps(
-		`${CONTENT_TYPES.DOCS}/${context.params.id}`,
+		`${CONTENT_TYPES.DOCS}/${context.params.id as string}`,
 		context,
 		PathStaticPropType.FOLDER
 	);

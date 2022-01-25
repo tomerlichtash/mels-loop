@@ -1,21 +1,15 @@
-// import { GetStaticProps } from "next";
 import {
 	IContentComponentData,
 	IMLParsedNode,
-	IPageProps,
 	IParsedPageData,
 } from "../../interfaces/models";
 import Layout from "../layout";
 import Head from "next/head";
 import ContentIterator from "./content-iterator";
 
-export interface GenericPageProps extends IPageProps {
-	data: IContentComponentData;
-}
-
-export default function GenericPage(props: GenericPageProps) {
-	const { translate } = props;
-	const pages = JSON.parse(props.data.content) as IParsedPageData[];
+export default function GenericPage(props: IContentComponentData) {
+	const { translate, content } = props.data;
+	const pages = JSON.parse(content) as IParsedPageData[];
 	const page = pages && pages[0];
 	const node: IMLParsedNode = page && {
 		children: page.parsed,
@@ -44,11 +38,3 @@ export default function GenericPage(props: GenericPageProps) {
 		</Layout>
 	);
 }
-
-// export const getStaticProps: GetStaticProps = async ({ locale }) => {
-// 	return {
-// 		props: {
-// 			locale,
-// 		},
-// 	};
-// };

@@ -10,6 +10,7 @@ import {
 	PageSortField,
 } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
+import { PathStaticPropType } from "./next-utils";
 
 const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 
@@ -36,7 +37,7 @@ export interface ILoadContentOptions {
 	/**
 	 * If true, iterate over children folders
 	 */
-	readonly type: "children" | "folder";
+	readonly type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN;
 	readonly locale: string;
 	readonly loadContent?: boolean;
 }
@@ -64,7 +65,7 @@ export function loadContentFolder(
 		);
 		const filename = getIndexFileName(options.locale);
 		let fullPath: string;
-		if (options.type === "folder") {
+		if (options.type === PathStaticPropType.FOLDER) {
 			if (filename !== name) {
 				return;
 			}
