@@ -1,22 +1,20 @@
 import React from "react";
-import { IContentComponentInitData } from "../../../interfaces/models";
-import ContentComponent from "../contentComponent";
+import { ContentComponentProps } from "../../../interfaces/models";
+import ContentComponent from "../content-component";
 import { classes } from "./paragraph.st.css";
 
-export const Paragraph = (props: {
-	data: IContentComponentInitData;
-}): JSX.Element => {
+export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 	const p = props.data.data;
-	const children = p.children || []
+	const children = p.children || [];
 	if (children.length === 0) {
-		return (<p></p>)
+		return <p></p>;
 	}
 	if (children.length === 1 && children[0].type === "text") {
 		return (
 			<p key={p.key} className={classes.root} data-line-index={p.line}>
 				{p.children[0].text}
 			</p>
-			)
+		);
 	}
 	return (
 		<p key={p.key} className={classes.root} data-line-index={p.line}>
@@ -26,7 +24,6 @@ export const Paragraph = (props: {
 						key={node.key}
 						data={{
 							data: node,
-							locale: props.data.locale,
 						}}
 					/>
 				);

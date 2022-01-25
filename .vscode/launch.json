@@ -53,17 +53,5 @@
 			"internalConsoleOptions": "neverOpen",
 			"port": 9229
 		},
-		{
-			"name": "Next.js full stack",
-			"type": "node-terminal",
-			"request": "launch",
-			"command": "next dev",
-			"console": "integratedTerminal",
-			"serverReadyAction": {
-				"pattern": "started server on .+, url: (https?://.+)",
-				"uriFormat": "%s",
-				"action": "debugWithChrome"
-			}
-		}
 	]
 }

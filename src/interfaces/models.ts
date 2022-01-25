@@ -1,4 +1,5 @@
 import * as mdParser from "simple-markdown";
+import { ComponentKeyMap } from "../locales/types";
 
 /**
  * A single node in a parsed markdown AST
@@ -20,6 +21,28 @@ interface INodeTypeMap {
 	code: string;
 	blockquote: string;
 	unknown: string;
+}
+
+export enum NODE_TYPES {
+	PARAGRAPH = "paragraph",
+	LINE = "line",
+	DEL = "del",
+	INS = "ins",
+	STRONG = "strong",
+	EM = "em",
+	CODE = "code",
+	BLOCKQUOTE = "blockquote",
+	TEXT = "text",
+	LIST = "list",
+	LIST_ITEM = "list-item",
+	LINK = "link",
+	IMAGE = "image",
+	UNKNOWN = "unknown",
+}
+
+export enum NODE_LIST_TYPES {
+	ORDERED = "ol",
+	UNORDERED = "ul",
 }
 
 export type MLParsedNodeType = keyof INodeTypeMap;
@@ -89,15 +112,17 @@ export interface IParsedPageData {
 	readonly error?: string;
 }
 
-export interface ILocaleMap { 
-	readonly params: { id: string }; locale: string 
+export interface ILocaleMap {
+	readonly params: { id: string };
+	locale: string;
 }
 
-export type PageSortField = Omit<keyof IParsedPageData, "parsed"|"error">
+export type PageSortField = Omit<keyof IParsedPageData, "parsed" | "error">;
+
 export interface IFolderContent {
 	readonly pages: IParsedPageData[];
-	readonly ids: ILocaleMap[]
-	sortOn(field: PageSortField): IParsedPageData[]
+	readonly ids: ILocaleMap[];
+	sortOn(field: PageSortField): IParsedPageData[];
 }
 
 /**
@@ -105,8 +130,13 @@ export interface IFolderContent {
  * next's approach to serializing
  */
 export interface IContentComponentData {
+	data: IGenericPageProps;
+}
+
+export interface IGenericPageProps {
 	content: string;
-	locale: string;
+	translate: (k: string) => string;
+	compLocale: Record<string, string>;
 }
 
 /**
@@ -114,17 +144,39 @@ export interface IContentComponentData {
  */
 export interface IContentComponentInitData {
 	data: IMLParsedNode;
-	locale: string;
 	tag?: string;
 	style?: string;
 }
 
-export interface IOption {
-	id: string;
-	label: string;
-	targetPathname?: string;
-	isCurrent?: boolean;
-	callback?: (id: string) => void;
-	closeDropDown?: () => void;
+export interface ContentComponentProps {
+	data: IContentComponentInitData;
+}
+
+/**
+ * Base component props
+ */
+export interface ComponentProps {
+	compKeys?: Record<string, string>;
+	translate?: (key: string) => string;
 	className?: string;
+}
+
+/**
+ * Site page navigation props
+ */
+export interface SitePage {
+	label: string;
+	id: string;
+	targetPathname: string;
+	menuNav: boolean;
+	pathname: string;
+	locale: Record<string, string>;
+}
+
+export interface IPageProps {
+	compLocale: ComponentKeyMap;
+	className?: string;
+	content: string;
+	data?: any;
+	translate: (key: string) => string;
 }

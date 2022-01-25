@@ -1,46 +1,45 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import { Option } from "./option";
-import { IOption } from "../../interfaces/models";
-import { t } from "../../locales/translate";
+import { IOption } from "./option";
+import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./dropdown.st.css";
 
-export const DropDown = ({
-	openLabel,
-	closeLabel,
-	options,
-	className,
-}: {
-	openLabel: string;
-	closeLabel: string;
+export interface DropDownProps extends ComponentProps {
 	options: IOption[];
-	className?: string;
-}): JSX.Element => {
-	const router = useRouter();
-	const { locale } = router;
+}
+
+export const DropDown = (props: DropDownProps): JSX.Element => {
+	const { compKeys, options, translate, className } = props;
+	const { openLabel, closeLabel } = compKeys;
 	const [optionListVisible, toggleOptionList] = useState(false);
+
+	const openTrigger = (
+		<div
+			className={classes.optionListOpen}
+			onClick={() => toggleOptionList(true)}
+		>
+			{translate(openLabel)}
+		</div>
+	);
+
+	const closeTrigger = (
+		<div
+			className={classes.optionListClose}
+			onClick={() => toggleOptionList(false)}
+		>
+			{translate(closeLabel)}
+		</div>
+	);
+
 	return (
 		<div
 			className={style(classes.root, className)}
 			onMouseLeave={() => toggleOptionList(false)}
 		>
 			<div className={classes.optionListTrigger}>
-				{!optionListVisible ? (
-					<div
-						className={classes.optionListOpen}
-						onClick={() => toggleOptionList(true)}
-					>
-						{t(openLabel, locale)}
-					</div>
-				) : (
-					<div
-						className={classes.optionListClose}
-						onClick={() => toggleOptionList(false)}
-					>
-						{t(closeLabel, locale)}
-					</div>
-				)}
+				{optionListVisible ? closeTrigger : openTrigger}
 			</div>
+
 			{optionListVisible && (
 				<div className={classes.optionListContainer}>
 					<ul className={classes.optionList}>
@@ -48,6 +47,7 @@ export const DropDown = ({
 							<Option
 								key={option.id}
 								closeDropDown={() => toggleOptionList(false)}
+								translate={translate}
 								{...option}
 							/>
 						))}
