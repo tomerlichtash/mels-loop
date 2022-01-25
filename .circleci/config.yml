@@ -30,9 +30,9 @@ jobs:
       - run: |
           curl -o- -L https://yarnpkg.com/install.sh | bash
           echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
-      # - run:
-      #       name: Compute version number
-      #       command: echo "0.0.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" | tee version.txt
+      - run:
+          name: Compute version number
+          command: echo "0.0.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" | tee version.txt
       # - restore_cache:
       #       keys:
       #           - yarn-deps-{{ checksum "yarn.lock" }}
@@ -46,10 +46,10 @@ jobs:
       #       key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
       # - store_artifacts:
       #       path: yarn.lock
-      # - persist_to_workspace:
-      #       root: .
-      #       paths:
-      #           - .
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
       - run:
           name: "Jest Tests"
           command: "yarn test"
