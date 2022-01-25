@@ -23,7 +23,7 @@ export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 		pageIndex = 0;
 	}
 
-	const page = pageData[pageIndex] || ({} as IParsedPageData);
+	const page = pageData[0] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
 
 	const title = pageData[0].title;
