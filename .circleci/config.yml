@@ -51,6 +51,9 @@ jobs:
           paths:
             - .
       - run:
+          name: "Yarn Install"
+          command: "yarn install"
+      - run:
           name: "Jest Tests"
           command: "yarn test"
 
