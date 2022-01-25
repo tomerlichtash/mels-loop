@@ -5,14 +5,8 @@ import {
 	NODE_TYPES,
 	NODE_LIST_TYPES,
 } from "../../interfaces/models";
-import {
-	Link,
-	Heading,
-	ListItem,
-	Paragraph,
-	Section,
-	ContentIterator,
-} from "./content-blocks";
+import { Link, Heading, ListItem, Paragraph, Section } from "./content-blocks";
+import { ContentIterator } from "./content-iterator";
 import { classes } from "./content-component.st.css";
 
 export const ContentComponent = (props: ContentComponentProps): JSX.Element => {

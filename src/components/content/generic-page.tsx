@@ -6,7 +6,7 @@ import {
 } from "../../interfaces/models";
 import Layout from "../layout";
 import Head from "next/head";
-import { ContentIterator } from "./index";
+import { ContentIterator } from "./content-iterator";
 
 export default function GenericPage(props: IContentComponentData) {
 	const { translate, content } = props.data;
