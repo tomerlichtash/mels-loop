@@ -3,7 +3,7 @@ import ContentComponent from "../content/content-component";
 import { IMLParsedNode, IParsedPageData } from "../../interfaces/models";
 import { classes } from "./content-browser.st.css";
 
-const FULL_PAGE_RE = /full.*text/i;
+// const FULL_PAGE_RE = /full.*text/i;
 
 export interface ContentBrowserProps {
 	content: string;
