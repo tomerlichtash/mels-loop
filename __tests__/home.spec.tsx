@@ -18,7 +18,6 @@ describe("ContentComponent", () => {
 					},
 				],
 			},
-			locale: "en",
 		} as IContentComponentInitData;
 
 		const wrapper = render(<ContentComponent data={compData} />);

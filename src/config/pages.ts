@@ -65,4 +65,12 @@ export const SITE_PAGES: SitePage[] = [
 		targetPathname: "NONE",
 		pathname: "/_error",
 	},
+	{
+		id: "404",
+		menuNav: false,
+		locale: GLOSSARY_PAGE_LOCALE,
+		label: GLOSSARY_PAGE_LOCALE.pageName,
+		targetPathname: "NONE",
+		pathname: "/404",
+	},
 ];

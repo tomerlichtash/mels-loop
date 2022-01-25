@@ -18,21 +18,24 @@ export const Nav = (props: NavProps): JSX.Element => {
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
 				<ul className={classes.list}>
-					{sitePages.map((option) => (
-						<li
-							className={style(classes.listItem, {
-								isCurrent: pathname === option.targetPathname,
-							})}
-							key={`page-${option.id}`}
-						>
-							<NavButton
-								label={translate(option.label)}
-								pageName={option.targetPathname}
-								isCurrent={pathname === option.targetPathname}
-								className={classes.button}
-							/>
-						</li>
-					))}
+					{sitePages.map(
+						(option) =>
+							option.menuNav && (
+								<li
+									className={style(classes.listItem, {
+										isCurrent: pathname === option.targetPathname,
+									})}
+									key={`page-${option.id}`}
+								>
+									<NavButton
+										label={translate(option.label)}
+										pageName={option.targetPathname}
+										isCurrent={pathname === option.targetPathname}
+										className={classes.button}
+									/>
+								</li>
+							)
+					)}
 				</ul>
 			</div>
 			<DropDown
