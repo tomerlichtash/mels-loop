@@ -18,10 +18,10 @@ export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 	const pageData: IParsedPageData[] = JSON.parse(content);
 
 	// find full content page
-	let pageIndex = pageData.findIndex((pdata) => FULL_PAGE_RE.test(pdata.id));
-	if (pageIndex < 0) {
-		pageIndex = 0;
-	}
+	// let pageIndex = pageData.findIndex((pdata) => FULL_PAGE_RE.test(pdata.id));
+	// if (pageIndex < 0) {
+	// 	pageIndex = 0;
+	// }
 
 	const page = pageData[0] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
