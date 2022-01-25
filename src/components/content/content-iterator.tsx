@@ -1,28 +1,28 @@
 import React from "react";
-import ContentComponent from "./contentComponent";
-import {
-	IContentComponentInitData,
-	IMLParsedNode,
-} from "../../interfaces/models";
+import ContentComponent from "./content-component";
+import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
 import { style, classes } from "./content-iterator.st.css";
 
-export const ContentIterator = (props: {
-	data: IContentComponentInitData;
-}): JSX.Element => {
-	const data = props.data,
-		p = data.data;
+export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
+	const data = props.data;
+	const p = data.data;
+
 	if (!p) {
 		console.warn("Content Iterator: no input node");
-		return <div className="content-iterator-no-data"></div>
+		return <div className="content-iterator-no-data"></div>;
 	}
+
 	const elements: IMLParsedNode[] = Array.isArray(p.children) && p.children;
 	const Tag = data.tag as keyof JSX.IntrinsicElements;
+
 	if (!elements) {
 		if (p.text) {
 			if (Tag) {
 				return (
-					<Tag className={data.style || ""} key={p.key}>{p.text}</Tag>
-				)
+					<Tag className={data.style || ""} key={p.key}>
+						{p.text}
+					</Tag>
+				);
 			}
 			return (
 				<span className={style(classes.root, { type: "text" })}>{p.text}</span>
@@ -30,6 +30,7 @@ export const ContentIterator = (props: {
 		}
 		return <span className={style(classes.root, { type: "unknown" })}></span>;
 	}
+
 	if (Tag) {
 		return (
 			<Tag className={classes[Tag]} key={p.key}>
@@ -39,7 +40,6 @@ export const ContentIterator = (props: {
 							key={node.key}
 							data={{
 								data: node,
-								locale: props.data.locale,
 							}}
 						/>
 					);
@@ -55,7 +55,6 @@ export const ContentIterator = (props: {
 							key={node.key}
 							data={{
 								data: node,
-								locale: props.data.locale,
 							}}
 						/>
 					);

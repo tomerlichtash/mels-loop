@@ -6,7 +6,7 @@ moto: "This was posted to Usenet by its author, Ed Nather <nather@astro.as.utexa
 A recent article devoted to the macho side of programming
 made the bold and unvarnished statement:
 
-    Real Programmers write in FORTRAN.
+> Real Programmers write in FORTRAN.
 
 Maybe they do now,
 in this decadent era of

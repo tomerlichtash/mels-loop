@@ -39,7 +39,7 @@ const inlineTypes = {
 	ins: 1,
 	del: 1,
 	sup: 1,
-	sub: 1
+	sub: 1,
 };
 
 const ignoredTypes = {
@@ -53,7 +53,7 @@ function nodeTypeToMLType(nodeName: string): MLParsedNodeType {
 class ContentUtils implements IContentUtils {
 	public processParseTree(nodes: ParsedNode[]): IMLParsedNode[] {
 		if (!nodes || !nodes.length) {
-			return []
+			return [];
 		}
 		const indexer = new NodeIndexer();
 		return nodes

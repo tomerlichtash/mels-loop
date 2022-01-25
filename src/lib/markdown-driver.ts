@@ -2,13 +2,17 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import * as mdParser from "simple-markdown";
-import { IFolderContent, ILocaleMap, IMLParsedNode, IParsedPageData, PageSortField } from "../interfaces/models";
+import {
+	IFolderContent,
+	ILocaleMap,
+	IMLParsedNode,
+	IParsedPageData,
+	PageSortField,
+} from "../interfaces/models";
 import { contentUtils } from "./content-utils";
+import { PathStaticPropType } from "./next-utils";
 
-const { defaultLocale } = require("../../i18n.json");
-
-const getIndexFileName = (locale: string): string =>
-	defaultLocale === locale ? "index.md" : `index.${locale}.md`;
+const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 
 let rootDir: string;
 
@@ -33,12 +37,14 @@ export interface ILoadContentOptions {
 	/**
 	 * If true, iterate over children folders
 	 */
-	readonly type: "children" | "folder";
+	readonly type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN;
 	readonly locale: string;
 	readonly loadContent?: boolean;
 }
 
-export function loadContentFolder(options: ILoadContentOptions): IFolderContent {
+export function loadContentFolder(
+	options: ILoadContentOptions
+): IFolderContent {
 	const contentDir = path.join(getRootDir(), options.relativePath);
 	// Get file names under /posts
 	const contentNames = fs.readdirSync(contentDir);
@@ -46,58 +52,61 @@ export function loadContentFolder(options: ILoadContentOptions): IFolderContent 
 		`\n${consoleMsg(
 			"collect",
 			41
-		)} - Sorted content in "${contentDir}" for locale "${options.locale}" (${contentNames.length
+		)} - Sorted content in "${contentDir}" for locale "${options.locale}" (${
+			contentNames.length
 		} dir entries)`
 	);
 
 	const ret = new FolderContent();
 
-	contentNames
-		.forEach((name) => {
-			console.log(
-				`${consoleMsg("process", 44)} - Processing content ID "${name}"`
-			);
-			const filename = getIndexFileName(options.locale);
-			let fullPath: string;
-			if (options.type === "folder") {
-				if (filename !== name) {
-					return;
-				}
-				fullPath = path.join(contentDir, name);
-			}
-			else { // read children
-				// Read markdown file as string
-				const childPath = path.join(contentDir, name);
-				const stat = fs.lstatSync(childPath);
-				if (!stat.isDirectory()) {
-					return;
-				}
-
-				fullPath = path.join(contentDir, name, filename);
-				if (!fs.existsSync(fullPath)) {
-					console.warn(`${consoleMsg("Path not found", 45)} - "${fullPath}"`);
-					// return error without disclosing OS path
-					return ret.pages.push(new ParsedPageData({
-						error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
-					}));
-				}
-				ret.ids.push({ params: { id: name }, locale: options.locale });
-			}
-			if (options.loadContent === false) {
+	contentNames.forEach((name) => {
+		console.log(
+			`${consoleMsg("process", 44)} - Processing content ID "${name}"`
+		);
+		const filename = getIndexFileName(options.locale);
+		let fullPath: string;
+		if (options.type === PathStaticPropType.FOLDER) {
+			if (filename !== name) {
 				return;
 			}
-			try {
-				const fileContents = fs.readFileSync(fullPath, "utf8");
-				console.log(`${consoleMsg("parse", 45)} - Parsed "${fullPath}"`);
+			fullPath = path.join(contentDir, name);
+		} else {
+			// read children
+			// Read markdown file as string
+			const childPath = path.join(contentDir, name);
+			const stat = fs.lstatSync(childPath);
+			if (!stat.isDirectory()) {
+				return;
+			}
 
-				// Use gray-matter to parse the post metadata section
-				const { data: matterData, content } = matter(fileContents);
-				const mdParse = mdParser.defaultBlockParse;
-				// parse markdown and process
-				const tree = contentUtils.processParseTree(mdParse(content));
+			fullPath = path.join(contentDir, name, filename);
+			if (!fs.existsSync(fullPath)) {
+				console.warn(`${consoleMsg("Path not found", 45)} - "${fullPath}"`);
+				// return error without disclosing OS path
+				return ret.pages.push(
+					new ParsedPageData({
+						error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
+					})
+				);
+			}
+			ret.ids.push({ params: { id: name }, locale: options.locale });
+		}
+		if (options.loadContent === false) {
+			return;
+		}
+		try {
+			const fileContents = fs.readFileSync(fullPath, "utf8");
+			console.log(`${consoleMsg("parse", 45)} - Parsed "${fullPath}"`);
 
-				// Combine the data with the id
-				ret.pages.push(new ParsedPageData({
+			// Use gray-matter to parse the post metadata section
+			const { data: matterData, content } = matter(fileContents);
+			const mdParse = mdParser.defaultBlockParse;
+			// parse markdown and process
+			const tree = contentUtils.processParseTree(mdParse(content));
+
+			// Combine the data with the id
+			ret.pages.push(
+				new ParsedPageData({
 					id: name,
 					title: matterData.title || "",
 					date: parseDate(matterData.date as string),
@@ -105,12 +114,13 @@ export function loadContentFolder(options: ILoadContentOptions): IFolderContent 
 					credits: matterData.credits || "",
 					content,
 					parsed: tree,
-				}));
-			} catch (e) {
-				console.error(`Error processing ${fullPath}\n`, e);
-				ret.pages.push(new ParsedPageData({ error: String(e) }));
-			}
-		})
+				})
+			);
+		} catch (e) {
+			console.error(`Error processing ${fullPath}\n`, e);
+			ret.pages.push(new ParsedPageData({ error: String(e) }));
+		}
+	});
 	// filter out empty items
 
 	return ret;
@@ -156,13 +166,12 @@ class FolderContent implements IFolderContent {
 	public pages: IParsedPageData[] = [];
 
 	public ids: ILocaleMap[] = [];
-	public paths: string[]
+	public paths: string[];
 	sortOn(field: PageSortField): IParsedPageData[] {
 		if (!this.pages) {
 			return [];
 		}
 		const key = String(field);
-		return this.pages.slice().sort((a, b) => (a[key] < b[key])? 1: -1);
+		return this.pages.slice().sort((a, b) => (a[key] < b[key] ? 1 : -1));
 	}
-
 }

@@ -6,8 +6,8 @@ TODO: Contribute
 
 ## Online resources
 
-1. [YCombinator discussion] claiming that the hack was pefromed on the LGP-30 emulator
-1. A detailed attempt by David Nugent to [reconstruct] the hack, based on real rpc-4000 data
+- [YCombinator discussion] claiming that the hack was pefromed on the LGP-30 emulator
+- A detailed attempt by David Nugent to [reconstruct] the hack, based on real rpc-4000 data
 
 ## Story Sources:
 
@@ -15,7 +15,7 @@ TODO: Contribute
 
 ## Discussions:
 
-[YCombinator discussion]:(https://news.ycombinator.com/item?id=20489273)
+[YCombinator discussion](https://news.ycombinator.com/item?id=20489273)
 
 ## Guides and References:
 
