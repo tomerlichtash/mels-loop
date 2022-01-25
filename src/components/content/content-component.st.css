@@ -3,3 +3,5 @@
 .root {
 	-st-states: type(string);
 }
+
+.error {}

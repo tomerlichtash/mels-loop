@@ -1,5 +1,5 @@
 import React from "react";
-import ContentComponent from "./content-component";
+import { ContentComponent } from "./index";
 import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
 import { style, classes } from "./content-iterator.st.css";
 
