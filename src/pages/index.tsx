@@ -1,15 +1,9 @@
-// import { GetStaticProps } from "next";
 import Head from "next/head";
 import Layout from "../components/layout";
 import { IPageProps } from "../interfaces/models";
 import { style, classes } from "./index.st.css";
 
-export interface HomeProps extends IPageProps {
-	// locale: string;
-	translate: (key: string) => string;
-}
-
-export default function Home(props: HomeProps) {
+export default function Home(props: IPageProps) {
 	const { translate, compLocale } = props;
 	const { siteTitle, pageName } = compLocale;
 	return (
@@ -27,11 +21,3 @@ export default function Home(props: HomeProps) {
 		</Layout>
 	);
 }
-
-// export const getStaticProps: GetStaticProps = async ({ locale }) => {
-// 	return {
-// 		props: {
-// 			locale,
-// 		},
-// 	};
-// };

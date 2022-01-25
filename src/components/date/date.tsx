@@ -11,7 +11,6 @@ export const Date = (props: DateProps): JSX.Element => {
 	if (!dateString) {
 		return null;
 	}
-	// const date = parseISO(dateString);
 	return (
 		<time dateTime={dateString} className={style(classes.root, { locale })}>
 			timestamp

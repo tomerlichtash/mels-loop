@@ -9,7 +9,10 @@ import { ParsedUrlQuery } from "querystring";
 import { ILocaleMap } from "../interfaces/models";
 import { loadContentFolder } from "./markdown-driver";
 
-////////////// Extended Next.js types //////////////////
+/**************************************************
+ * Extended Next.js types
+ **************************************************/
+
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
  * Will load either the index in the folder, or all the indices in the child folders,

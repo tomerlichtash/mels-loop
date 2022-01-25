@@ -28,7 +28,6 @@ export default function GenericPage(props: IContentComponentData) {
 					<ContentIterator
 						data={{
 							data: node,
-							// locale: props.data.locale,
 						}}
 					/>
 				) : (

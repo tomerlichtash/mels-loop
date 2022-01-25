@@ -40,7 +40,6 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 							key={node.key}
 							data={{
 								data: node,
-								// locale: props.data.locale,
 							}}
 						/>
 					);
@@ -56,7 +55,6 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 							key={node.key}
 							data={{
 								data: node,
-								// locale: props.data.locale,
 							}}
 						/>
 					);
