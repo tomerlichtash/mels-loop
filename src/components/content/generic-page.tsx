@@ -10,7 +10,6 @@ import { classes } from "./generic-page.st.css";
 
 export default function GenericPage(props: IContentComponentData) {
 	const { translate, content } = props.data;
-	debugger;
 	const pages = JSON.parse(content) as IParsedPageData[];
 	const page = pages && pages[0];
 	const node: IMLParsedNode = page && {
