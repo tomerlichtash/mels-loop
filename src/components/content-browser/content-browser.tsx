@@ -26,9 +26,7 @@ export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 	const page = pageData[0] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
 
-	const title = pageData[0].title;
-	const moto = pageData[0].moto;
-	const credits = pageData[0].credits;
+	const { title, moto, credits } = pageData[0];
 
 	return (
 		<div className={classes.root}>
