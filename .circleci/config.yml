@@ -1,30 +1,9 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  # say-hello:
-  #   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-  #   # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-  #   docker:
-  #     - image: cimg/node:14.17
-  #   # Add steps to the job
-  #   # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: "Say hello"
-  #         command: "echo Hello, World!"
-
   build:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       - image: cimg/node:14.17
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
       - run: |
@@ -33,10 +12,10 @@ jobs:
       - run:
           name: Compute version number
           command: echo "0.0.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" | tee version.txt
-      - restore_cache:
-          keys:
-            - yarn-deps-{{ checksum "yarn.lock" }}
-            - yarn-deps
+      # - restore_cache:
+      #     keys:
+      #       - yarn-deps-{{ checksum "yarn.lock" }}
+      #       - yarn-deps
       - run:
           name: yarn install
           command: yarn install
@@ -46,65 +25,28 @@ jobs:
           key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
       - store_artifacts:
           path: yarn.lock
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #       - .
-      # - run:
-      #     name: "Install Dependencies"
-      #     command: "yarn install"
       - run:
           name: "Build"
           command: "yarn build"
-      # - run:
-      #     name: "Run Tests"
-      #     command: "yarn test"
   test:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       - image: cimg/node:14.17
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      # - run: |
-      #     curl -o- -L https://yarnpkg.com/install.sh | bash
-      #     echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
-      # - run:
-      #     name: Compute version number
-      #     command: echo "0.0.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" | tee version.txt
       - restore_cache:
           keys:
             - yarn-deps-{{ checksum "yarn.lock" }}
             - yarn-deps
-      # - run:
-      #     name: yarn install
-      #     command: yarn install
-      # - save_cache:
-      #     paths:
-      #       - node_modules
-      #     key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
       - store_artifacts:
           path: yarn.lock
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #       - .
-      # - run:
-      #     name: "Install Dependencies"
-      #     command: "yarn install"
-      # - run:
-      #     name: "Build"
-      #     command: "yarn build"
       - run:
           name: "Run Tests"
           command: "yarn test"
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  royal-mcbee:
+  rpc-4000:
     jobs:
       - build
+  lgp-30:
+    jobs:
       - test
