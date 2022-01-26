@@ -31,8 +31,7 @@ jobs:
       - run:
           name: "Run Tests"
           command: "yarn test"
-
-workflows:
-  infra:
-    jobs:
-      - build
+# workflows:
+#   infra:
+#     jobs:
+#       - build
