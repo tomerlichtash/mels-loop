@@ -4,4 +4,7 @@
 	-st-states: type(string);
 }
 
-.error {}
+.error {
+	background: red;
+	color: #fff;
+}
