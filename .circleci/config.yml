@@ -49,7 +49,7 @@ jobs:
       # - persist_to_workspace:
       #     root: .
       #     paths:
-            - .
+      #       - .
       # - run:
       #     name: "Install Dependencies"
       #     command: "yarn install"
