@@ -17,8 +17,7 @@
 	},
 	"paths": {
 		"@/components/*": ["components/*"],
-		"@/pages/*": ["pages/*"],
-		"@/styles/*": ["styles/*"]
+		"@/pages/*": ["pages/*"]
 	},
 	"include": [
 		"next-env.d.ts",

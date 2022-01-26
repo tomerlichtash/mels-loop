@@ -2,7 +2,7 @@
 	"name": "mels-loop-nextjs",
 	"private": true,
 	"engines": {
-			"node": ">=14"
+		"node": ">=14"
 	},
 	"scripts": {
 		"dev": "next dev",
@@ -13,7 +13,7 @@
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage",
-		"prettier:check": "prettier --config .prettierrc --check src/**/*"
+		"prettier:check": "prettier --config .prettierrc --check **/*"
 	},
 	"dependencies": {
 		"gray-matter": "^4.0.3",
