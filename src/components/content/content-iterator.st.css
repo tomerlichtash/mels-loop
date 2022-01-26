@@ -4,9 +4,4 @@
 	-st-states: type(string);
 }
 
-.error {
-	background: red;
-	color: #fff;
-}
-
-.blockquote {}
+.noData {}

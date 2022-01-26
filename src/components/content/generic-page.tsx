@@ -1,3 +1,4 @@
+import React from "react";
 import {
 	IContentComponentData,
 	IMLParsedNode,
@@ -6,6 +7,7 @@ import {
 import Layout from "../layout";
 import Head from "next/head";
 import ContentIterator from "./content-iterator";
+import { classes } from "./generic-page.st.css";
 
 export default function GenericPage(props: IContentComponentData) {
 	const { translate, content } = props.data;
@@ -22,16 +24,12 @@ export default function GenericPage(props: IContentComponentData) {
 			<Head>
 				<title>{page?.title}</title>
 			</Head>
-			<article>
-				<h1>{page?.title}</h1>
+			<article className={classes.root}>
+				<h1 className={classes.title}>{page?.title}</h1>
 				{node ? (
-					<ContentIterator
-						data={{
-							data: node,
-						}}
-					/>
+					<ContentIterator data={{ data: node }} />
 				) : (
-					<div>(No page content)</div>
+					<div className={classes.noContent}>(No page content)</div>
 				)}
 			</article>
 		</Layout>

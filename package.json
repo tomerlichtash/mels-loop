@@ -1,6 +1,9 @@
 {
 	"name": "mels-loop-nextjs",
 	"private": true,
+	"engines": {
+			"node": ">=14"
+	},
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",

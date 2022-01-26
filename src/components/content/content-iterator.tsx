@@ -1,5 +1,5 @@
 import React from "react";
-import ContentComponent from "./content-component";
+import { ContentComponent } from "./index";
 import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
 import { style, classes } from "./content-iterator.st.css";
 
@@ -9,7 +9,7 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 
 	if (!p) {
 		console.warn("Content Iterator: no input node");
-		return <div className="content-iterator-no-data"></div>;
+		return <div className={classes.noData}></div>;
 	}
 
 	const elements: IMLParsedNode[] = Array.isArray(p.children) && p.children;
