@@ -1,53 +1,57 @@
 import Link from "next/link";
-import LocaleSelector from "../locale-selector";
 import Nav from "../nav";
-import { IOption } from "../../interfaces/models";
-import { classes } from "./header.st.css";
+import { SitePage } from "../../interfaces/models";
+import { ComponentProps } from "../../interfaces/models";
+import { style, classes } from "./header.st.css";
 
-export const Header = ({
-	siteTitle,
-	siteSubtitle,
-	isHome,
-	sitePages,
-}: {
+export interface HeaderProps extends ComponentProps {
+	pathname: string;
 	isHome: boolean;
-	siteTitle: string;
-	siteSubtitle: string;
-	sitePages: IOption[];
-}): JSX.Element => {
+	sitePages: SitePage[];
+}
+
+export const Header = (props: HeaderProps): JSX.Element => {
+	const { pathname, isHome, sitePages, compKeys, translate, className } = props;
+	const { siteTitle, siteSubtitle } = compKeys;
+	const title = translate(siteTitle);
+	const subtitle = translate(siteSubtitle);
 	return (
-		<header className={classes.root}>
-			<LocaleSelector className={classes.localeSelector} />
+		<header className={style(classes.root, className)}>
 			<div className={classes.container}>
 				<div className={classes.title}>
 					{isHome ? (
 						<div className={classes.titleContainer}>
 							<h1
 								className={classes.siteTitle}
-								title={`${siteTitle} - ${siteSubtitle}`}
-								aria-label={`${siteTitle} - ${siteSubtitle}`}
+								title={`${title} - ${subtitle}`}
+								aria-label={`${title} - ${subtitle}`}
 							>
-								{siteTitle}
+								{title}
 							</h1>
-							<span className={classes.siteSubtitle}>{siteSubtitle}</span>
+							<span className={classes.siteSubtitle}>{subtitle}</span>
 						</div>
 					) : (
 						<div className={classes.titleContainer}>
 							<h1 className={classes.siteTitle}>
 								<Link href="/">
 									<a
-										title={`${siteTitle} - ${siteSubtitle}`}
-										aria-label={`${siteTitle} - ${siteSubtitle}`}
+										title={`${title} - ${subtitle}`}
+										aria-label={`${title} - ${subtitle}`}
 									>
-										{siteTitle}
+										{title}
 									</a>
 								</Link>
 							</h1>
-							<span className={classes.siteSubtitle}>{siteSubtitle}</span>
+							<span className={classes.siteSubtitle}>{subtitle}</span>
 						</div>
 					)}
 				</div>
-				<Nav sitePages={sitePages} className={classes.headerNav} />
+				<Nav
+					sitePages={sitePages}
+					className={classes.headerNav}
+					translate={translate}
+					pathname={pathname}
+				/>
 			</div>
 		</header>
 	);

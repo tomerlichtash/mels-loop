@@ -1,11 +1,9 @@
 import React from "react";
-import { IContentComponentInitData } from "../../../interfaces/models";
-import ContentIterator from "../contentIterator";
+import { ContentComponentProps } from "../../../interfaces/models";
+import ContentIterator from "../content-iterator";
 import { classes } from "./link.st.css";
 
-export const Link = (props: {
-	data: IContentComponentInitData;
-}): JSX.Element => {
+export const Link = (props: ContentComponentProps): JSX.Element => {
 	const p = props.data.data;
 	return (
 		<a

@@ -1,16 +1,16 @@
 import Head from "next/head";
 import Layout from "../components/layout";
-import { useRouter } from "next/router";
-import { t } from "../locales/translate";
+import { IPageProps } from "../interfaces/models";
 import { style, classes } from "./index.st.css";
 
-export default function Home() {
-	const { locale } = useRouter();
+export default function Home(props: IPageProps) {
+	const { translate, compLocale } = props;
+	const { siteTitle, pageName } = compLocale;
 	return (
-		<Layout>
+		<Layout {...{ translate }}>
 			<Head>
 				<title>
-					{t("SITE_NAME", locale)} - {t("HOME_NAV_LABEL", locale)}
+					{translate(siteTitle)} - ${translate(pageName)}
 				</title>
 			</Head>
 			<article className={style(classes.root)}>
@@ -21,4 +21,3 @@ export default function Home() {
 		</Layout>
 	);
 }
-

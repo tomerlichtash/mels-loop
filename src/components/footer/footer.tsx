@@ -1,14 +1,16 @@
-import { useRouter } from "next/router";
-import { t } from "../../locales/translate";
-import { classes } from "./footer.st.css";
+import { ComponentProps } from "../../interfaces/models";
+import { style, classes } from "./footer.st.css";
 
-export const Footer = (): JSX.Element => {
-	const router = useRouter();
-	const { locale } = router;
+export const Footer = (props: ComponentProps): JSX.Element => {
+	const { translate, compKeys, className } = props;
+	const licenseYears = `2021-${new Date().getFullYear()}`;
+	const { siteTitle, siteLicense } = compKeys;
 	return (
-		<footer className={classes.root}>
+		<footer className={style(classes.root, className)}>
 			<div className={classes.license}>
-				2021-{`${new Date().getFullYear()}`} (cc-by) {t("SITE_NAME", locale)}
+				<time className={classes.year}>{licenseYears}</time>
+				<span className={classes.license}>({translate(siteLicense)})</span>
+				<span className={classes.title}>{translate(siteTitle)}</span>
 			</div>
 		</footer>
 	);

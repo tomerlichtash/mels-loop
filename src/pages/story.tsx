@@ -1,27 +1,25 @@
 import Head from "next/head";
 import Layout from "../components/layout";
 import { GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { IContentComponentData } from "../interfaces/models";
+import { IPageProps } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
-import { t } from "../locales/translate";
-import { style, classes } from "./index.st.css";
+import { classes } from "./index.st.css";
 import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
+import { mlNextUtils, PathStaticPropType } from "../lib/next-utils";
 
-export default function Story(data: IContentComponentData) {
-	const { locale } = useRouter();
+export default function Story(props: IPageProps) {
+	const { translate, compLocale } = props;
+	const { siteTitle, pageName } = compLocale;
 	return (
-		<Layout>
+		<Layout {...{ translate }}>
 			<Head>
 				<title>
-					{t("SITE_NAME", locale)} - {t("STORY_NAV_LABEL", locale)}
+					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
-			<article className={style(classes.root)}>
+			<article className={classes.root}>
 				<ContentBrowser
-					data={data}
-					locale={locale}
+					content={props.content}
 					showTitle
 					showMoto
 					showCredits
@@ -31,6 +29,10 @@ export default function Story(data: IContentComponentData) {
 	);
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-	return mlNextUtils.getFolderStaticProps(CONTENT_TYPES.CODEX,ctx, "children");
+export const getStaticProps: GetStaticProps = async (context) => {
+	return mlNextUtils.getFolderStaticProps(
+		CONTENT_TYPES.CODEX,
+		context,
+		PathStaticPropType.FOLDER
+	);
 };

@@ -2,33 +2,32 @@ import Head from "next/head";
 import Layout from "../components/layout/layout";
 import ContentBrowser from "../components/content-browser";
 import { GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { t } from "../locales/translate";
-import { style, classes } from "./about.st.css";
 import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
+import { mlNextUtils, PathStaticPropType } from "../lib/next-utils";
+import { IPageProps } from "../interfaces/models";
+import { style, classes } from "./about.st.css";
 
-export default function About(data) {
-	const router = useRouter();
-	const { locale } = router;
+export default function About(props: IPageProps) {
+	const { translate, compLocale, className } = props;
+	const { siteTitle, pageName } = compLocale;
 	return (
-		<Layout>
+		<Layout {...{ translate }}>
 			<Head>
 				<title>
-					{t("SITE_NAME", locale)} - {t("ABOUT_NAV_LABEL", locale)}
+					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
-			<article className={style(classes.root)}>
-				<ContentBrowser
-					data={data}
-					locale={locale}
-					showTitle
-				/>
+			<article className={style(classes.root, className)}>
+				<ContentBrowser content={props.content} showTitle />
 			</article>
 		</Layout>
 	);
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-	return mlNextUtils.getFolderStaticProps(CONTENT_TYPES.ABOUT, ctx, "folder");
+export const getStaticProps: GetStaticProps = async (context) => {
+	return mlNextUtils.getFolderStaticProps(
+		CONTENT_TYPES.ABOUT,
+		context,
+		PathStaticPropType.FOLDER
+	);
 };

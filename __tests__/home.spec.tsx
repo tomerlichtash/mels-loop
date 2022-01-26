@@ -1,5 +1,5 @@
 import React from "react";
-import ContentComponent from "../src/components/content/contentComponent";
+import ContentComponent from "../src/components/content/content-component";
 import { IContentComponentInitData } from "../src/interfaces/models";
 import { render } from "@testing-library/react";
 
@@ -18,7 +18,6 @@ describe("ContentComponent", () => {
 					},
 				],
 			},
-			locale: "en",
 		} as IContentComponentInitData;
 
 		const wrapper = render(<ContentComponent data={compData} />);

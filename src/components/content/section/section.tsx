@@ -1,14 +1,12 @@
 import React from "react";
-import ContentComponent from "../contentComponent";
+import ContentComponent from "../content-component";
 import {
-	IContentComponentInitData,
 	IMLParsedNode,
+	ContentComponentProps,
 } from "../../../interfaces/models";
 import { classes } from "./section.st.css";
 
-export const Section = (props: {
-	data: IContentComponentInitData;
-}): JSX.Element => {
+export const Section = (props: ContentComponentProps): JSX.Element => {
 	const p = props.data.data;
 	const elements: IMLParsedNode[] = Array.isArray(p.children) ? p.children : [];
 
@@ -20,7 +18,6 @@ export const Section = (props: {
 						key={node.key}
 						data={{
 							data: node,
-							locale: props.data.locale,
 						}}
 					/>
 				);

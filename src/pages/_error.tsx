@@ -4,7 +4,7 @@ import { GetStaticProps } from "next";
 import { IPageProps } from "../interfaces/models";
 import { classes } from "./_error.st.css";
 
-export default function Error404(props: IPageProps) {
+export default function CustomError(props: IPageProps) {
 	const { translate, compLocale } = props;
 	const { siteTitle, pageName } = compLocale;
 	return (
@@ -15,7 +15,7 @@ export default function Error404(props: IPageProps) {
 				</title>
 			</Head>
 			<div className={classes.root}>
-				<h1>404 - Page Not Found</h1>
+				<h1>Error</h1>
 			</div>
 		</Layout>
 	);
