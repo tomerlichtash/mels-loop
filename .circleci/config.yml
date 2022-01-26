@@ -44,7 +44,7 @@ jobs:
           command: "yarn test"
 
 workflows:
-  rpc-4000:
+  "Validate Build":
     jobs:
       - build
   lgp-30:
