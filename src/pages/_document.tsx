@@ -1,4 +1,3 @@
-import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
@@ -18,11 +17,6 @@ class MyDocument extends Document {
 					></link>
 				</Head>
 				<body>
-					<CloudinaryContext cloudName="dcajl1s6a">
-						<Image className={"dada"} publicId={"cld-sample" as string}>
-							<Transformation width="570" crop="scale" />
-						</Image>
-					</CloudinaryContext>
 					<Main />
 					<NextScript />
 				</body>
