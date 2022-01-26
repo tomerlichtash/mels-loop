@@ -1,5 +1,5 @@
 import React from "react";
-import ContentComponent from "../src/components/content/content-component";
+import { ContentComponent } from "../src/components/content";
 import { IContentComponentInitData } from "../src/interfaces/models";
 import { render } from "@testing-library/react";
 
