@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Layout from "../components/layout";
 import { IPageProps } from "../interfaces/models";
+import IconComp from "../assets/svg/source_icons_computer.svg";
 import { style, classes } from "./index.st.css";
 
 export default function Home(props: IPageProps) {
@@ -14,6 +15,7 @@ export default function Home(props: IPageProps) {
 				</title>
 			</Head>
 			<article className={style(classes.root)}>
+				<IconComp />
 				<div>the story</div>
 				<div>glossary</div>
 				<div>photos</div>
