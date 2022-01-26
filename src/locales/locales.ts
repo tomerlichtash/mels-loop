@@ -22,6 +22,7 @@ export const EN_US: Language = {
 	MOBILE_MENU_CLOSE_LABEL: "Close",
 	ERROR_404_FILE_NOT_FOUND: "Page not found",
 	FOOTER_LICENSE: "cc-by",
+	NO_PAGE_CONTENT: "No page content",
 };
 
 export const HE_IL: Language = {
@@ -39,4 +40,5 @@ export const HE_IL: Language = {
 	MOBILE_MENU_CLOSE_LABEL: "סגירה",
 	ERROR_404_FILE_NOT_FOUND: "404",
 	FOOTER_LICENSE: "cc-by",
+	NO_PAGE_CONTENT: "No page content",
 };

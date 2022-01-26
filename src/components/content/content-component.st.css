@@ -3,3 +3,8 @@
 .root {
 	-st-states: type(string);
 }
+
+.error {
+	background: red;
+	color: #fff;
+}
