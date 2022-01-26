@@ -1,6 +1,6 @@
 import React from "react";
-import { ContentComponentProps } from "../../../interfaces/models";
-import ContentIterator from "../content-iterator";
+import { ContentComponentProps } from "../../../../interfaces/models";
+import { ContentIterator } from "../../content-iterator";
 import { classes } from "./link.st.css";
 
 export const Link = (props: ContentComponentProps): JSX.Element => {
