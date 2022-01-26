@@ -3,7 +3,7 @@ import ContentComponent from "../content/content-component";
 import { IMLParsedNode, IParsedPageData } from "../../interfaces/models";
 import { classes } from "./content-browser.st.css";
 
-const FULL_PAGE_RE = /full.*text/i;
+// const FULL_PAGE_RE = /full.*text/i;
 
 export interface ContentBrowserProps {
 	content: string;
@@ -18,17 +18,15 @@ export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 	const pageData: IParsedPageData[] = JSON.parse(content);
 
 	// find full content page
-	let pageIndex = pageData.findIndex((pdata) => FULL_PAGE_RE.test(pdata.id));
-	if (pageIndex < 0) {
-		pageIndex = 0;
-	}
+	// let pageIndex = pageData.findIndex((pdata) => FULL_PAGE_RE.test(pdata.id));
+	// if (pageIndex < 0) {
+	// 	pageIndex = 0;
+	// }
 
 	const page = pageData[0] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
 
-	const title = pageData[0].title;
-	const moto = pageData[0].moto;
-	const credits = pageData[0].credits;
+	const { title, moto, credits } = pageData[0];
 
 	return (
 		<div className={classes.root}>
