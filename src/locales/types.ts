@@ -20,6 +20,7 @@ export interface ILanguageKeys {
 	MOBILE_MENU_CLOSE_LABEL: "MOBILE_MENU_CLOSE_LABEL";
 	ERROR_404_FILE_NOT_FOUND: "ERROR_404_FILE_NOT_FOUND";
 	FOOTER_LICENSE: "FOOTER_LICENSE";
+	NO_PAGE_CONTENT: "NO_PAGE_CONTENT";
 }
 
 export type Language = Record<keyof ILanguageKeys, string>;
