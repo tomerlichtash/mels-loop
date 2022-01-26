@@ -32,7 +32,33 @@ jobs:
           name: "Run Tests"
           command: "yarn test"
 
+  test:
+    docker:
+      - image: cimg/node:14.17
+    steps:
+      - checkout
+      - run: |
+          curl -o- -L https://yarnpkg.com/install.sh | bash
+          echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
+      - restore_cache:
+          keys:
+            - yarn-deps-{{ checksum "yarn.lock" }}
+            - yarn-deps
+      # - run:
+      #     name: yarn install
+      #     command: yarn install
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
+      # - store_artifacts:
+      #     path: yarn.lock
+      - run:
+          name: "Run Tests"
+          command: "yarn test"
+
 workflows:
   infra:
     jobs:
       - build
+      - test
