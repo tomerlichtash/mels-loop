@@ -44,15 +44,15 @@ jobs:
           keys:
             - yarn-deps-{{ checksum "yarn.lock" }}
             - yarn-deps
-      # - run:
-      #     name: yarn install
-      #     command: yarn install
-      # - save_cache:
-      #     paths:
-      #       - node_modules
-      #     key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
-      # - store_artifacts:
-      #     path: yarn.lock
+      - run:
+          name: yarn install
+          command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
+      - store_artifacts:
+          path: yarn.lock
       - run:
           name: "Run Tests"
           command: "yarn test"
