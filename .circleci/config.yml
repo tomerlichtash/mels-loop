@@ -85,8 +85,8 @@ jobs:
       #     paths:
       #       - node_modules
       #     key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
-      # - store_artifacts:
-      #     path: yarn.lock
+      - store_artifacts:
+          path: yarn.lock
       - persist_to_workspace:
           root: .
           paths:
