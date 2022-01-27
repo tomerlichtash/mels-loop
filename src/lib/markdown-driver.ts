@@ -12,18 +12,20 @@ import {
 import { contentUtils } from "./content-utils";
 import { PathStaticPropType } from "./next-utils";
 import { Logger } from "tslog";
+import chalk from "chalk";
 
 const log: Logger = new Logger({
-	// name: "logger",
-	// instanceName: "MarkdownDriver",
+	displayLogLevel: true,
 	displayDateTime: false,
-	displayLogLevel: false,
-	// displayRequestId: false,
-	// displayFunctionName: false,
-	displayInstanceName: false,
+	displayRequestId: false,
+	displayInstanceName: true,
+	displayFunctionName: false,
 	displayFilePath: "hidden",
+	name: "logger",
+	instanceName: "MarkdownDriver",
+	// printLogMessageInNewLine: true,
+	// displayFunctionName: false,
 	// dateTimePattern: "hour:minute:second",
-	prettyInspectHighlightStyles: { date: "green" },
 	// displayTypes: true,
 	// printLogMessageInNewLine: true,
 	// colorizePrettyLogs: true,
@@ -67,12 +69,16 @@ export function loadContentFolder(
 	// Get file names under /posts
 	const contentNames = fs.readdirSync(contentDir);
 	const ret = new FolderContent();
-	log.debug(
-		`collect - sorted content in "${contentDir}" for locale "${options.locale}"`
+
+	log.info(
+		`${chalk.blueBright(
+			"collect"
+		)} - sorted content in "${contentDir}" for locale "${options.locale}"`
 	);
 
 	contentNames.forEach((name) => {
-		log.debug(`process - content ID "${name}"`);
+		log.info(`${chalk.magentaBright("process")} - content ID "${name}"`);
+
 		const filename = getIndexFileName(options.locale);
 		let fullPath: string;
 
@@ -110,7 +116,7 @@ export function loadContentFolder(
 
 		try {
 			const fileContents = fs.readFileSync(fullPath, "utf8");
-			log.debug(`parse - parsed "${fullPath}"`);
+			log.info(`${chalk.greenBright("parse")} - parsed "${fullPath}"`);
 
 			// Use gray-matter to parse the post metadata section
 			const { data: matterData, content } = matter(fileContents);
