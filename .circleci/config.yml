@@ -32,6 +32,37 @@ jobs:
           name: "Run Tests"
           command: "yarn test"
 
+  "clean-code":
+    docker:
+      - image: cimg/node:14.17
+    steps:
+      - checkout
+      - run: |
+          curl -o- -L https://yarnpkg.com/install.sh | bash
+          echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
+      - run:
+          name: Compute version number
+          command: echo "0.0.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" | tee version.txt
+      - restore_cache:
+          keys:
+            - yarn-deps-{{ checksum "yarn.lock" }}
+            - yarn-deps
+      - run:
+          name: yarn install
+          command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
+      - store_artifacts:
+          path: yarn.lock
+      - run:
+          name: "ESLint"
+          command: "yarn eslint"
+      - run:
+          name: "Prettier"
+          command: "yarn prettier:check"
+
   test:
     docker:
       - image: cimg/node:14.17
@@ -54,5 +85,6 @@ jobs:
 workflows:
   infra:
     jobs:
-      - build
-      - test
+      - "build"
+      - "clean-code"
+      - "test"

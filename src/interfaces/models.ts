@@ -175,8 +175,7 @@ export interface SitePage {
 
 export interface IPageProps {
 	compLocale: ComponentKeyMap;
-	className?: string;
-	content: string;
-	data?: any;
 	translate: (key: string) => string;
+	content: string;
+	className?: string;
 }
