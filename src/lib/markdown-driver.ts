@@ -15,19 +15,18 @@ import { Logger } from "tslog";
 import chalk from "chalk";
 
 const log: Logger = new Logger({
+	name: "logger",
+	instanceName: "MarkdownDriver",
 	displayLogLevel: true,
 	displayDateTime: false,
 	displayRequestId: false,
 	displayInstanceName: true,
 	displayFunctionName: false,
 	displayFilePath: "hidden",
-	name: "logger",
-	instanceName: "MarkdownDriver",
 	// printLogMessageInNewLine: true,
 	// displayFunctionName: false,
 	// dateTimePattern: "hour:minute:second",
 	// displayTypes: true,
-	// printLogMessageInNewLine: true,
 	// colorizePrettyLogs: true,
 	// exposeErrorCodeFrame: true,
 	// exposeStack: true,
