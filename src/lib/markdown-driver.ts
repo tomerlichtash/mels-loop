@@ -15,16 +15,15 @@ import { Logger } from "tslog";
 import chalk from "chalk";
 
 const log: Logger = new Logger({
-	name: "logger",
-	instanceName: "MarkdownDriver",
-	displayLogLevel: true,
+	// name: "logger",
+	// instanceName: "MarkdownDriver",
+	displayLogLevel: false,
 	displayDateTime: false,
 	displayRequestId: false,
-	displayInstanceName: true,
+	displayInstanceName: false,
 	displayFunctionName: false,
 	displayFilePath: "hidden",
 	// printLogMessageInNewLine: true,
-	// displayFunctionName: false,
 	// dateTimePattern: "hour:minute:second",
 	// displayTypes: true,
 	// colorizePrettyLogs: true,
@@ -76,7 +75,7 @@ export function loadContentFolder(
 	);
 
 	contentNames.forEach((name) => {
-		log.info(`${chalk.magentaBright("process")} - content ID "${name}"`);
+		log.info(`${chalk.magenta("process")} - content ID "${name}"`);
 
 		const filename = getIndexFileName(options.locale);
 		let fullPath: string;
@@ -115,7 +114,7 @@ export function loadContentFolder(
 
 		try {
 			const fileContents = fs.readFileSync(fullPath, "utf8");
-			log.info(`${chalk.greenBright("parse")} - parsed "${fullPath}"`);
+			log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
 
 			// Use gray-matter to parse the post metadata section
 			const { data: matterData, content } = matter(fileContents);
