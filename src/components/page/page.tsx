@@ -1,3 +1,4 @@
+import React from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./page.st.css";
 

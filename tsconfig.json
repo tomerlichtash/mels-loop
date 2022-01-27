@@ -16,16 +16,9 @@
 		"incremental": true
 	},
 	"paths": {
-		"@/components/*": ["components/*"],
-		"@/pages/*": ["pages/*"],
-		"@/styles/*": ["styles/*"]
+		"@/components/*": ["src/components/*"],
+		"@/pages/*": ["src/pages/*"]
 	},
-	"include": [
-		"next-env.d.ts",
-		"**/**/*.ts",
-		"**/**/*.tsx",
-		"globals.d.ts",
-		"types.d.ts.bak"
-	],
+	"include": ["next-env.d.ts", "**/**/*.ts", "**/**/*.tsx", "globals.d.ts"],
 	"exclude": ["node_modules"]
 }

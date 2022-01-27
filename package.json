@@ -13,7 +13,7 @@
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage",
-		"prettier:check": "prettier --config .prettierrc --check src/**/*"
+		"prettier:check": "prettier --config .prettierrc --check **/*"
 	},
 	"dependencies": {
 		"cloudinary-react": "^1.7.1",
