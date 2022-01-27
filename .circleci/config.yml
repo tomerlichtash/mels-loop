@@ -26,9 +26,6 @@ jobs:
       - store_artifacts:
           path: yarn.lock
       - run:
-          name: "ESLint"
-          command: "yarn eslint"
-      - run:
           name: "Build"
           command: "yarn build"
       - run:
