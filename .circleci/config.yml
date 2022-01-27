@@ -32,7 +32,7 @@ jobs:
           name: "Run Tests"
           command: "yarn test"
 
-  codeStyle:
+  "clean-code":
     docker:
       - image: cimg/node:14.17
     steps:
@@ -85,5 +85,6 @@ jobs:
 workflows:
   infra:
     jobs:
-      - build
-      - test
+      - "build"
+      - "clean-code"
+      - "test"
