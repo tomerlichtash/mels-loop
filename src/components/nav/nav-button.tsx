@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./nav-button.st.css";
