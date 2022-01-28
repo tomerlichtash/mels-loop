@@ -5,4 +5,4 @@ import Paragraph from "./paragraph";
 import Section from "./section";
 import Figure from "./figure";
 
-export { Link, Heading, ListItem, Paragraph, Section };
+export { Link, Heading, ListItem, Paragraph, Section, Figure as FigureComp };

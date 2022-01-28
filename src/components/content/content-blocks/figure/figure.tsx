@@ -1,9 +1,9 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
-import { ContentComponent } from "../../index";
+// import { ContentComponent } from "../../index";
 import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 import { cloudName } from "../../../../config/cloudinary/config";
-import { classes } from "./image.st.css";
+import { classes } from "./figure.st.css";
 
 export const Figure = (props: ContentComponentProps): JSX.Element => {
 	const node = props.data.data;
@@ -34,17 +34,18 @@ export const Figure = (props: ContentComponentProps): JSX.Element => {
 
 	return (
 		<CloudinaryContext cloudName={cloudName}>
-		<Image publicId={publicId} title={title} arial-label={title}>
-			{width && height && (
-				<Transformation width={width} height={height} crop="scale" />
-			)}
-			{width && !height && <Transformation width={width} crop="scale" />}
-			{!width && height && (
-				<Transformation height={height} crop="scale" />
-			)}
-			{!width && !height && <Transformation crop="scale" />}
-		</Image>
-	</CloudinaryContext>
+			<figure className={classes.root}>
+				<Image publicId={publicId} title={title} arial-label={title}>
+					{width && height && (
+						<Transformation width={width} height={height} crop="scale" />
+					)}
+					{width && !height && <Transformation width={width} crop="scale" />}
+					{!width && height && <Transformation height={height} crop="scale" />}
+					{!width && !height && <Transformation crop="scale" />}
+				</Image>
+			</figure>
+		</CloudinaryContext>
+	);
 };
 
 export default Figure;

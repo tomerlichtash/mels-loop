@@ -9,7 +9,6 @@ import { classes } from "./section.st.css";
 export const Section = (props: ContentComponentProps): JSX.Element => {
 	const p = props.data.data;
 	const elements: IMLParsedNode[] = Array.isArray(p.children) ? p.children : [];
-
 	return (
 		<div className={classes.root} key={p.key}>
 			{elements.map((node) => {
