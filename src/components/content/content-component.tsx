@@ -11,7 +11,7 @@ import {
 	ListItem,
 	Paragraph,
 	Section,
-	FigureComp,
+	Figure,
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import { classes } from "./content-component.st.css";
@@ -62,7 +62,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 		case NODE_TYPES.LINK:
 			return <Link key={key} data={data} />;
 		case NODE_TYPES.IMAGE:
-			return <FigureComp key={key} data={data} />;
+			return <Figure key={key} data={data} />;
 		default:
 			if (/heading/i.test(type)) {
 				return <Heading key={key} data={data} />;
