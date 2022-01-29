@@ -4,8 +4,8 @@ import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
 import { style, classes } from "./content-iterator.st.css";
 
 export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
-	const data = props.data;
-	const p = data.data;
+	const data = props.componentData;
+	const p = data.node;
 
 	if (!p) {
 		console.warn("Content Iterator: no input node");
@@ -38,8 +38,8 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 					return (
 						<ContentComponent
 							key={node.key}
-							data={{
-								data: node,
+							componentData={{
+								node: node,
 							}}
 						/>
 					);
@@ -53,8 +53,8 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 					return (
 						<ContentComponent
 							key={node.key}
-							data={{
-								data: node,
+							componentData={{
+								node: node,
 							}}
 						/>
 					);

@@ -57,7 +57,7 @@ export function loadContentFolder(
 		} dir entries)`
 	);
 
-	const ret = new FolderContent();
+	const folderContentData = new FolderContent();
 
 	contentNames.forEach((name) => {
 		console.log(
@@ -83,13 +83,13 @@ export function loadContentFolder(
 			if (!fs.existsSync(fullPath)) {
 				console.warn(`${consoleMsg("Path not found", 45)} - "${fullPath}"`);
 				// return error without disclosing OS path
-				return ret.pages.push(
+				return folderContentData.pages.push(
 					new ParsedPageData({
 						error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
 					})
 				);
 			}
-			ret.ids.push({ params: { id: name }, locale: options.locale });
+			folderContentData.ids.push({ params: { id: name }, locale: options.locale });
 		}
 		if (options.loadContent === false) {
 			return;
@@ -105,7 +105,7 @@ export function loadContentFolder(
 			const tree = contentUtils.processParseTree(mdParse(content));
 
 			// Combine the data with the id
-			ret.pages.push(
+			folderContentData.pages.push(
 				new ParsedPageData({
 					id: name,
 					title: matterData.title || "",
@@ -118,12 +118,12 @@ export function loadContentFolder(
 			);
 		} catch (e) {
 			console.error(`Error processing ${fullPath}\n`, e);
-			ret.pages.push(new ParsedPageData({ error: String(e) }));
+			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
 		}
 	});
 	// filter out empty items
 
-	return ret;
+	return folderContentData;
 	// Sort posts by date
 }
 
