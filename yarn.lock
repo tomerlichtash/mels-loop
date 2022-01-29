@@ -1515,6 +1515,11 @@ chalk@^4.0.0, chalk@^4.1.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+chalk@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.0.0.tgz#bd96c6bb8e02b96e08c0c3ee2a9d90e050c7b832"
+  integrity sha512-/duVOqst+luxCQRKEo4bNxinsOQtMP80ZYm7mMqzuh5PociNL0PvmHFvREJ9ueYL2TxlHjBcmLCdmocx9Vg+IQ==
+
 char-regex@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/char-regex/-/char-regex-1.0.2.tgz"
@@ -4206,7 +4211,7 @@ source-map-resolve@^0.6.0:
     atob "^2.1.2"
     decode-uri-component "^0.2.0"
 
-source-map-support@^0.5.6:
+source-map-support@^0.5.21, source-map-support@^0.5.6:
   version "0.5.21"
   resolved "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.21.tgz"
   integrity sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==
@@ -4515,6 +4520,13 @@ tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tslog@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/tslog/-/tslog-3.3.1.tgz#cf5b236772c05c59e183dc1d088e4dbf5bcd8f85"
+  integrity sha512-An3uyXX95uU/X7v5H6G9OKW6ip/gVOpvsERGJ/nR4Or5TP5GwoI9nUjhNWEc8mJOWC7uhPMg2UzkrVDUtadELg==
+  dependencies:
+    source-map-support "^0.5.21"
 
 tsutils@^3.21.0:
   version "3.21.0"
