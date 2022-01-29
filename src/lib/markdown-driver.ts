@@ -66,7 +66,7 @@ export function loadContentFolder(
 
 	// Get file names under /posts
 	const contentNames = fs.readdirSync(contentDir);
-	const ret = new FolderContent();
+	const folderContentData = new FolderContent();
 
 	log.info(
 		`${chalk.blueBright(
@@ -76,7 +76,6 @@ export function loadContentFolder(
 
 	contentNames.forEach((name) => {
 		log.info(`${chalk.magenta("process")} - content ID "${name}"`);
-	const folderContentData = new FolderContent();
 
 		const filename = getIndexFileName(options.locale);
 		let fullPath: string;
