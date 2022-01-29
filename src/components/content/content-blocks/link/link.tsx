@@ -4,7 +4,7 @@ import { ContentIterator } from "../../content-iterator";
 import { classes } from "./link.st.css";
 
 export const Link = (props: ContentComponentProps): JSX.Element => {
-	const p = props.data.data;
+	const p = props.componentData.node;
 	return (
 		<a
 			className={classes.root}
@@ -12,7 +12,7 @@ export const Link = (props: ContentComponentProps): JSX.Element => {
 			target="_blank"
 			rel="noreferrer"
 		>
-			<ContentIterator data={props.data} />
+			<ContentIterator componentData={props.componentData} />
 		</a>
 	);
 };
