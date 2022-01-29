@@ -59,9 +59,6 @@ jobs:
       - run:
           name: "ESLint"
           command: "yarn eslint"
-      - run:
-          name: "Prettier"
-          command: "yarn prettier:check"
 
   test:
     docker:
