@@ -80,7 +80,7 @@ class ContentUtils implements IContentUtils {
 	}
 
 	public stripComments(source: string): string {
-		return (source || "").replace(/<!--[-\s].* [-\s]-->/g, "")
+		return (source || "").replace(/<!---?\s.*\s-?-->/g, "")
 	}
 
 	public processParseTree(nodes: ParsedNode[]): IMLParsedNode[] {
