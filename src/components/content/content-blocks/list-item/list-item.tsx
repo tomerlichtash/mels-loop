@@ -7,8 +7,8 @@ export const ListItem = (props: ContentComponentProps): JSX.Element => {
 	return (
 		<li className={classes.root}>
 			<ContentIterator
-				data={{
-					...props.data,
+				componentData={{
+					...props.componentData,
 				}}
 			/>
 		</li>

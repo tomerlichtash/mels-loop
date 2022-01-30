@@ -6,7 +6,7 @@ import { render } from "@testing-library/react";
 describe("ContentComponent", () => {
 	it("should render sample line", () => {
 		const compData = {
-			data: {
+			node: {
 				type: "paragraph",
 				key: "key",
 				children: [
@@ -20,7 +20,7 @@ describe("ContentComponent", () => {
 			},
 		} as IContentComponentInitData;
 
-		const wrapper = render(<ContentComponent data={compData} />);
+		const wrapper = render(<ContentComponent componentData={compData} />);
 
 		expect(wrapper.container.querySelector("span").textContent).toEqual(
 			`sample line`

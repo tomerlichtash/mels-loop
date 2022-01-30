@@ -11,6 +11,26 @@ import {
 } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
 import { PathStaticPropType } from "./next-utils";
+import { Logger } from "tslog";
+import chalk from "chalk";
+
+const log: Logger = new Logger({
+	// name: "logger",
+	// instanceName: "MarkdownDriver",
+	displayLogLevel: false,
+	displayDateTime: false,
+	displayRequestId: false,
+	displayInstanceName: false,
+	displayFunctionName: false,
+	displayFilePath: "hidden",
+	// printLogMessageInNewLine: true,
+	// dateTimePattern: "hour:minute:second",
+	// displayTypes: true,
+	// colorizePrettyLogs: true,
+	// exposeErrorCodeFrame: true,
+	// exposeStack: true,
+	// setCallerAsLoggerName: true,
+});
 
 const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 
@@ -25,9 +45,6 @@ export function getRootDir(): string {
 }
 
 setRootDir(process.cwd());
-
-const consoleMsg = (msg: string, color: number) =>
-	`\x1b[${color}m${msg}\x1b[0m`;
 
 export interface ILoadContentOptions {
 	/**
@@ -46,25 +63,23 @@ export function loadContentFolder(
 	options: ILoadContentOptions
 ): IFolderContent {
 	const contentDir = path.join(getRootDir(), options.relativePath);
+
 	// Get file names under /posts
 	const contentNames = fs.readdirSync(contentDir);
-	console.log(
-		`\n${consoleMsg(
-			"collect",
-			41
-		)} - Sorted content in "${contentDir}" for locale "${options.locale}" (${
-			contentNames.length
-		} dir entries)`
+	const folderContentData = new FolderContent();
+
+	log.info(
+		`${chalk.blueBright(
+			"collect"
+		)} - sorted content in "${contentDir}" for locale "${options.locale}"`
 	);
 
-	const ret = new FolderContent();
-
 	contentNames.forEach((name) => {
-		console.log(
-			`${consoleMsg("process", 44)} - Processing content ID "${name}"`
-		);
+		log.info(`${chalk.magenta("process")} - content ID "${name}"`);
+
 		const filename = getIndexFileName(options.locale);
 		let fullPath: string;
+
 		if (options.type === PathStaticPropType.FOLDER) {
 			if (filename !== name) {
 				return;
@@ -80,32 +95,36 @@ export function loadContentFolder(
 			}
 
 			fullPath = path.join(contentDir, name, filename);
+
 			if (!fs.existsSync(fullPath)) {
-				console.warn(`${consoleMsg("Path not found", 45)} - "${fullPath}"`);
+				log.warn(`error - Path not found: "${fullPath}"`);
 				// return error without disclosing OS path
-				return ret.pages.push(
+				return folderContentData.pages.push(
 					new ParsedPageData({
 						error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
 					})
 				);
 			}
-			ret.ids.push({ params: { id: name }, locale: options.locale });
+			folderContentData.ids.push({ params: { id: name }, locale: options.locale });
 		}
+
 		if (options.loadContent === false) {
 			return;
 		}
+
 		try {
 			const fileContents = fs.readFileSync(fullPath, "utf8");
-			console.log(`${consoleMsg("parse", 45)} - Parsed "${fullPath}"`);
+			log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
 
 			// Use gray-matter to parse the post metadata section
 			const { data: matterData, content } = matter(fileContents);
 			const mdParse = mdParser.defaultBlockParse;
+
 			// parse markdown and process
 			const tree = contentUtils.processParseTree(mdParse(content));
 
 			// Combine the data with the id
-			ret.pages.push(
+			folderContentData.pages.push(
 				new ParsedPageData({
 					id: name,
 					title: matterData.title || "",
@@ -117,13 +136,13 @@ export function loadContentFolder(
 				})
 			);
 		} catch (e) {
-			console.error(`Error processing ${fullPath}\n`, e);
-			ret.pages.push(new ParsedPageData({ error: String(e) }));
+			log.error(`Error processing ${fullPath}`, e);
+			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
 		}
 	});
 	// filter out empty items
 
-	return ret;
+	return folderContentData;
 	// Sort posts by date
 }
 
@@ -133,7 +152,7 @@ function parseDate(dateString: string | null | undefined): Date {
 			const t = Date.parse(dateString);
 			return new Date(t);
 		} catch (e) {
-			console.error(`Error parsing date ${dateString}`);
+			log.error(`Error parsing date ${dateString}`);
 		}
 	}
 	return new Date();
@@ -164,9 +183,9 @@ class ParsedPageData implements IParsedPageData {
 
 class FolderContent implements IFolderContent {
 	public pages: IParsedPageData[] = [];
-
 	public ids: ILocaleMap[] = [];
 	public paths: string[];
+
 	sortOn(field: PageSortField): IParsedPageData[] {
 		if (!this.pages) {
 			return [];
