@@ -121,7 +121,7 @@ export function loadContentFolder(
 			const mdParse = mdParser.defaultBlockParse;
 
 			// parse markdown and process
-			const tree = contentUtils.processParseTree(mdParse(content));
+			const tree = contentUtils.processParseTree(mdParse(contentUtils.stripComments(content)));
 
 			// Combine the data with the id
 			folderContentData.pages.push(

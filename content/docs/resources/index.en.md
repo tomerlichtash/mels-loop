@@ -2,6 +2,7 @@
 title: "Resources"
 ---
 
+
 TODO: Contribute
 
 ## Online resources
@@ -15,7 +16,7 @@ TODO: Contribute
 
 ## Discussions:
 
-[YCombinator discussion]: https://news.ycombinator.com/item?id=20489273
+[YCombinator discussion]
 
 ## Guides and References:
 
@@ -48,7 +49,7 @@ TODO: Contribute
 
 [RPC-4000 Manuals, Code Samples and Other Documents Archive](http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/)
 
-Wikipedia:
+Wikipedia: <!--- Inline comment --->
 
 - [The Story of Mel](https://en.wikipedia.org/wiki/The_Story_of_Mel)
 - [Royal McBee](https://en.wikipedia.org/wiki/Royal_Typewriter_Company#Computers)
@@ -60,3 +61,8 @@ Wikipedia:
 [Less Is More in the Fifties: Encounters between Logical Minimalism and Computer Design during the 1950s](https://hal.univ-lille.fr/hal-01345592v3/document)
 
 [Awesome Computer History](https://github.com/watson/awesome-computer-history)
+
+<!--- Global resources --->
+
+[YCombinator discussion]:https://news.ycombinator.com/item?id=20489273
+
