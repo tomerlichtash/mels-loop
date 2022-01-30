@@ -4,7 +4,7 @@ author: "Tomer Lichtash"
 date: "2021"
 ---
 
-![](samples/people/jazz?{"title":"some%20title"})
+![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1643544201/mels-loop/mel-kaye/mel-kaye-yearbook-photo_xgoxpv.jpg)
 
 If this is your first encounter with _The Story of Mel_, odds are you will not understand it. There are numerous barriers along the way: Most of the technologies and programming languages featured in the story have either gone extinct, or were relegated to esoteric niches in the software universe; a general understanding of digital computing hardware is required, but this is no longer part of the curriculum of CS students; Familiarity with early computing history can help, but that period is mostly undocumented. Thus, reading _The Story of Mel_ is likely to be an uncomfortable experience, but even so, one can hardly miss the sense of elation out of which the words were born. It is clearly the result of a noble encounter between man, machine and language. The cathartic experience hinges on rather complex technical understanding, but it is clearly the "desired outcome" of reading a story.
 
