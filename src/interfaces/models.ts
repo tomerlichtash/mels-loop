@@ -20,6 +20,7 @@ interface INodeTypeMap {
 	"list-item": string;
 	code: string;
 	blockquote: string;
+	heading: string;
 	unknown: string;
 }
 
@@ -130,7 +131,7 @@ export interface IFolderContent {
  * next's approach to serializing
  */
 export interface IContentComponentData {
-	data: IGenericPageProps;
+	pageProps: IGenericPageProps;
 }
 
 export interface IGenericPageProps {
@@ -143,13 +144,13 @@ export interface IGenericPageProps {
  * The data structure passed to a content component
  */
 export interface IContentComponentInitData {
-	data: IMLParsedNode;
+	node: IMLParsedNode;
 	tag?: string;
 	style?: string;
 }
 
 export interface ContentComponentProps {
-	data: IContentComponentInitData;
+	componentData: IContentComponentInitData;
 }
 
 /**

@@ -10,7 +10,7 @@ import ContentIterator from "./content-iterator";
 import { classes } from "./generic-page.st.css";
 
 export default function GenericPage(props: IContentComponentData) {
-	const { translate, content } = props.data;
+	const { translate, content } = props.pageProps;
 	const pages = JSON.parse(content) as IParsedPageData[];
 	const page = pages && pages[0];
 	const node: IMLParsedNode = page && {
@@ -27,7 +27,7 @@ export default function GenericPage(props: IContentComponentData) {
 			<article className={classes.root}>
 				<h1 className={classes.title}>{page?.title}</h1>
 				{node ? (
-					<ContentIterator data={{ data: node }} />
+					<ContentIterator componentData={{ node: node }} />
 				) : (
 					<div className={classes.noContent}>(No page content)</div>
 				)}

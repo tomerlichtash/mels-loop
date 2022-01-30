@@ -4,7 +4,7 @@ import { ContentComponent } from "../../index";
 import { classes } from "./paragraph.st.css";
 
 export const Paragraph = (props: ContentComponentProps): JSX.Element => {
-	const p = props.data.data;
+	const p = props.componentData.node;
 	const children = p.children || [];
 	if (children.length === 0) {
 		return <p></p>;
@@ -22,8 +22,8 @@ export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 				return (
 					<ContentComponent
 						key={node.key}
-						data={{
-							data: node,
+						componentData={{
+							node: node,
 						}}
 					/>
 				);

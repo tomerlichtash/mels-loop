@@ -17,8 +17,8 @@ import { ContentIterator } from "./content-iterator";
 import { classes } from "./content-component.st.css";
 
 export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
-	const data = props.data;
-	const node: IMLParsedNode = data.data;
+	const data = props.componentData;
+	const node: IMLParsedNode = data.node;
 	const { key, type } = node;
 
 	if (!key) {
@@ -27,20 +27,22 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 
 	switch (type) {
 		case NODE_TYPES.PARAGRAPH:
-			return <Section key={key} data={data} />;
+			return <Section key={key} componentData={data} />;
 		case NODE_TYPES.LINE:
-			return <Paragraph key={key} data={data} />;
+			return <Paragraph key={key} componentData={data} />;
 		case NODE_TYPES.DEL:
 		case NODE_TYPES.INS:
 		case NODE_TYPES.STRONG:
 		case NODE_TYPES.EM:
 		case NODE_TYPES.CODE:
-			return <ContentIterator key={key} data={{ tag: type, ...data }} />;
+			return (
+				<ContentIterator key={key} componentData={{ tag: type, ...data }} />
+			);
 		case NODE_TYPES.BLOCKQUOTE:
 			return (
 				<ContentIterator
 					key={key}
-					data={{ tag: NODE_TYPES.BLOCKQUOTE, ...data }}
+					componentData={{ tag: NODE_TYPES.BLOCKQUOTE, ...data }}
 				/>
 			);
 		case NODE_TYPES.TEXT:
@@ -51,25 +53,25 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 			return (
 				<ContentIterator
 					key={key}
-					data={{
+					componentData={{
 						tag: ordered ? NODE_LIST_TYPES.ORDERED : NODE_LIST_TYPES.UNORDERED,
 						...data,
 					}}
 				/>
 			);
 		case NODE_TYPES.LIST_ITEM:
-			return <ListItem key={key} data={data} />;
+			return <ListItem key={key} componentData={data} />;
 		case NODE_TYPES.LINK:
-			return <Link key={key} data={data} />;
+			return <Link key={key} componentData={data} />;
 		case NODE_TYPES.IMAGE:
-			return <Figure key={key} data={data} />;
+			return <Figure key={key} componentData={data} />;
 		default:
 			if (/heading/i.test(type)) {
-				return <Heading key={key} data={data} />;
+				return <Heading key={key} componentData={data} />;
 			}
 			return (
 				<div className={classes.error} key={key}>
-					<pre className={classes.error}>Type {data.data.type} not found</pre>
+					<pre className={classes.error}>Type {data.node.type} not found</pre>
 				</div>
 			);
 	}

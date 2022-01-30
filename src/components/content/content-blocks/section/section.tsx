@@ -7,7 +7,7 @@ import {
 import { classes } from "./section.st.css";
 
 export const Section = (props: ContentComponentProps): JSX.Element => {
-	const p = props.data.data;
+	const p = props.componentData.node;
 	const elements: IMLParsedNode[] = Array.isArray(p.children) ? p.children : [];
 	return (
 		<div className={classes.root} key={p.key}>
@@ -15,8 +15,8 @@ export const Section = (props: ContentComponentProps): JSX.Element => {
 				return (
 					<ContentComponent
 						key={node.key}
-						data={{
-							data: node,
+						componentData={{
+							node: node,
 						}}
 					/>
 				);
