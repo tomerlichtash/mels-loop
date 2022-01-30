@@ -13,6 +13,8 @@ export interface IContentUtils {
 	 * @param arg0
 	 */
 	processParseTree(nodes: ParsedNode[]): IMLParsedNode[];
+
+	stripComments(source: string): string;
 }
 
 type ParsedNodeProcessor = (node: ParsedNode, context: MLParseContext) => IMLParsedNode;
@@ -75,6 +77,10 @@ class ContentUtils implements IContentUtils {
 			"list": this.processListNode.bind(this),
 			"def": this.processLinkDefinition.bind(this)
 		}
+	}
+
+	public stripComments(source: string): string {
+		return (source || "").replace(/<!---?\s.*\s-?-->/g, "")
 	}
 
 	public processParseTree(nodes: ParsedNode[]): IMLParsedNode[] {
@@ -312,6 +318,7 @@ class ContentUtils implements IContentUtils {
 	 * @param context 
 	 */
 	private promoteParagraphContent(node: IMLParsedNode, context: MLParseContext): void {
+		void context; // prevent warning, maintain general function signature
 		const children = node.children;
 		const newChildren: IMLParsedNode[] = this.collectInlines(node);
 		children.length = 0;
