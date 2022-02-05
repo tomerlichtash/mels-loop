@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Layout from "../components/layout";
-import { GetStaticProps } from "next";
 import { IPageProps } from "../interfaces/models";
 import { classes } from "./_error.st.css";
 
@@ -20,11 +19,3 @@ export default function CustomError(props: IPageProps) {
 		</Layout>
 	);
 }
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	return {
-		props: {
-			locale,
-		},
-	};
-};

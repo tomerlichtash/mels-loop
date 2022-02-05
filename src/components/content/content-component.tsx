@@ -5,7 +5,14 @@ import {
 	NODE_TYPES,
 	NODE_LIST_TYPES,
 } from "../../interfaces/models";
-import { Link, Heading, ListItem, Paragraph, Section } from "./content-blocks";
+import {
+	Link,
+	Heading,
+	ListItem,
+	Paragraph,
+	Section,
+	Figure,
+} from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import { classes } from "./content-component.st.css";
 
@@ -28,7 +35,9 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 		case NODE_TYPES.STRONG:
 		case NODE_TYPES.EM:
 		case NODE_TYPES.CODE:
-			return <ContentIterator key={key} componentData={{ tag: type, ...data }} />;
+			return (
+				<ContentIterator key={key} componentData={{ tag: type, ...data }} />
+			);
 		case NODE_TYPES.BLOCKQUOTE:
 			return (
 				<ContentIterator
@@ -54,6 +63,8 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 			return <ListItem key={key} componentData={data} />;
 		case NODE_TYPES.LINK:
 			return <Link key={key} componentData={data} />;
+		case NODE_TYPES.IMAGE:
+			return <Figure key={key} componentData={data} />;
 		default:
 			if (/heading/i.test(type)) {
 				return <Heading key={key} componentData={data} />;
