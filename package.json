@@ -13,9 +13,10 @@
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage",
-		"prettier:check": "prettier --config .prettierrc --check **/*"
+		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src"
 	},
 	"dependencies": {
+		"cloudinary-react": "^1.7.1",
 		"gray-matter": "^4.0.3",
 		"next": "12.0.8",
 		"react": "17.0.2",
@@ -26,6 +27,7 @@
 		"@stylable/cli": "^4.10.2",
 		"@stylable/core": "^4.10.2",
 		"@stylable/webpack-plugin": "^4.10.2",
+		"@svgr/webpack": "^6.2.0",
 		"@testing-library/jest-dom": "^5.16.1",
 		"@testing-library/react": "^12.1.2",
 		"@testing-library/user-event": "13.5.0",
