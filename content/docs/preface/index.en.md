@@ -4,6 +4,8 @@ author: "Tomer Lichtash"
 date: "2021"
 ---
 
+![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1643544201/mels-loop/mel-kaye/mel-kaye-yearbook-photo_xgoxpv.jpg)
+
 If this is your first encounter with _The Story of Mel_, odds are you will not understand it. There are numerous barriers along the way: Most of the technologies and programming languages featured in the story have either gone extinct, or were relegated to esoteric niches in the software universe; a general understanding of digital computing hardware is required, but this is no longer part of the curriculum of CS students; Familiarity with early computing history can help, but that period is mostly undocumented. Thus, reading _The Story of Mel_ is likely to be an uncomfortable experience, but even so, one can hardly miss the sense of elation out of which the words were born. It is clearly the result of a noble encounter between man, machine and language. The cathartic experience hinges on rather complex technical understanding, but it is clearly the "desired outcome" of reading a story.
 
 Therefore, when faced with the gap between the undeniable charm of this tale and your ability to understand the details that make it up, please remember: it is neither a story nor a poem, but rather an ancient post, an early net relic, conceived to impart some basic computing sense to the generation of reckless coders that sprung up in the early 80's. Since then, the story has been preserved across various network archives, hidden in broad daylight, visible to few and coherent to even fewer, until its present status as a computing myth.
