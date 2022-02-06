@@ -33,6 +33,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	return mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.CODEX,
 		context,
-		PathStaticPropType.FOLDER
+		PathStaticPropType.FOLDER,
+		"verse"
 	);
 };

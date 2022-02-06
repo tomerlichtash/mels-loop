@@ -1,6 +1,7 @@
 import {
 	IMLParsedNode,
 	MLParsedNodeType,
+	MLParseMode,
 	ParsedNode,
 } from "../interfaces/models";
 
@@ -12,7 +13,7 @@ export interface IContentUtils {
 	 * Convert a markdown parse tree to a MK parse tree, in which text runs are separated into lines
 	 * @param arg0
 	 */
-	processParseTree(nodes: ParsedNode[]): IMLParsedNode[];
+	processParseTree(nodes: ParsedNode[], mode?: MLParseMode): IMLParsedNode[];
 
 	stripComments(source: string): string;
 }
@@ -21,7 +22,6 @@ type ParsedNodeProcessor = (node: ParsedNode, context: MLParseContext) => IMLPar
 
 const TypeMap: { [key: string]: MLParsedNodeType } = {
 	paragraph: "paragraph",
-	line: "line",
 	link: "link",
 	image: "image",
 	text: "text",
@@ -61,9 +61,20 @@ const NO_PARAGRAPH_TYPES = {
 	"blockquote": 1
 }
 
-function nodeTypeToMLType(nodeName: string): MLParsedNodeType {
+/**
+ * Node types that should be promoted to a figure if their only content is an image
+ */
+const FIGURE_CONTAINER_TYPES = {
+	"paragraph": 1,
+	"section": 1
+}
+
+function nodeTypeToMLType(nodeName: string, context: MLParseContext): MLParsedNodeType {
 	if (!nodeName) {
 		return "unknown";
+	}
+	if (context.mode === "verse" && nodeName === "paragraph") {
+		return "section";
 	}
 	return (TypeMap[nodeName] || nodeName).toLowerCase() as MLParsedNodeType;
 }
@@ -83,16 +94,18 @@ class ContentUtils implements IContentUtils {
 		return (source || "").replace(/<!---?\s.*\s-?-->/g, "")
 	}
 
-	public processParseTree(nodes: ParsedNode[]): IMLParsedNode[] {
+	public processParseTree(nodes: ParsedNode[], mode: MLParseMode): IMLParsedNode[] {
 		if (!nodes || !nodes.length) {
 			return [];
 		}
-		const parseContext = new MLParseContext();
+		const parseContext = new MLParseContext(mode);
+
 		const result = nodes
 			.map((node) => this.processOneASTNode(node, parseContext))
 			.filter(Boolean);
 		this.updateLinks(result, parseContext);
 		this.promoteInlines(result, parseContext);
+		this.promoteFigures(result, parseContext);
 		return result;
 	}
 
@@ -122,14 +135,14 @@ class ContentUtils implements IContentUtils {
 			return null;
 		}
 		if (Array.isArray(node.items || node.content)) {
-			return this.parsedNodeToMLNode(this.processTextChildren(node), context);
+			return this.parsedNodeToMLNode(this.processTextChildren(node, context), context);
 		} else {
 			const processor = this.nodeProcessorMap[node.type];
 			if (processor) {
 				return processor(node, context);
 			}
 			return {
-				type: nodeTypeToMLType(node.type),
+				type: nodeTypeToMLType(node.type, context),
 				key: context.indexer.nextKey(),
 				line: context.indexer.nextLine(),
 				text: String(node.content),
@@ -157,9 +170,9 @@ class ContentUtils implements IContentUtils {
 		if (processor) {
 			return processor(node, context);
 		}
-
+		const verseMode = context.mode === "verse";
 		const resultNode: IMLParsedNode = {
-			type: nodeTypeToMLType(node.type),
+			type: nodeTypeToMLType(node.type, context),
 			line: context.indexer.currentLine(),
 			key: context.indexer.nextKey(),
 			children: [] as Array<IMLParsedNode>,
@@ -171,7 +184,7 @@ class ContentUtils implements IContentUtils {
 		if (!Array.isArray(children)) {
 			return resultNode;
 		}
-		let currentLine: IMLParsedNode = null;
+		let currentLine: IMLParsedNode = verseMode? null : resultNode;
 		const isInlineContainer = this.isInline(node) || this.isTextContainer(node);
 
 		for (let i = 0, len = children.length; i < len; ++i) {
@@ -187,13 +200,15 @@ class ContentUtils implements IContentUtils {
 						key: context.indexer.nextKey(),
 						line: context.indexer.nextLine(),
 						children: [],
-						type: "line",
+						type: "paragraph",
 					};
 					resultNode.children.push(currentLine);
 				}
 				currentLine.children.push(this.parsedNodeToMLNode(child, context));
 			} else {
-				currentLine = null;
+				if (currentLine != resultNode) {
+					currentLine = null;
+				}
 				if (!this.isIgnored(type)) {
 					resultNode.children.push(this.parsedNodeToMLNode(child, context));
 				}
@@ -207,7 +222,7 @@ class ContentUtils implements IContentUtils {
 		context: MLParseContext
 	): IMLParsedNode {
 		const resultNode: IMLParsedNode = {
-			type: nodeTypeToMLType(node.type),
+			type: nodeTypeToMLType(node.type, context),
 			ordered: node.ordered,
 			key: context.indexer.nextKey(),
 			line: -1,
@@ -253,7 +268,7 @@ class ContentUtils implements IContentUtils {
 		return null;
 	}
 
-	private processTextChildren(node: ParsedNode): ParsedNode {
+	private processTextChildren(node: ParsedNode, context: MLParseContext): ParsedNode {
 		if (!node) {
 			return node;
 		}
@@ -261,6 +276,10 @@ class ContentUtils implements IContentUtils {
 		if (!children) {
 			return node;
 		}
+		const processText = context.mode === "verse" ? 
+			(texts: string[]) => this.breakTextToLines(texts) :
+			(texts: string[]) => this.mergeTextElements(texts);
+
 		const texts: string[] = [];
 		const newChildren: ParsedNode[] = [];
 
@@ -270,14 +289,14 @@ class ContentUtils implements IContentUtils {
 				texts.push(child.content as string);
 			} else {
 				if (texts.length) {
-					newChildren.push(...this.processTextRuns(texts));
+					newChildren.push(...processText(texts));
 					texts.length = 0;
 				}
-				newChildren.push(this.processTextChildren(child));
+				newChildren.push(this.processTextChildren(child, context));
 			}
 		}
 		if (texts.length) {
-			newChildren.push(...this.processTextRuns(texts));
+			newChildren.push(...processText(texts));
 		}
 		children.length = 0;
 		children.push(...newChildren);
@@ -285,9 +304,33 @@ class ContentUtils implements IContentUtils {
 		return node;
 	}
 
+	private promoteFigures(nodes: IMLParsedNode[], context: MLParseContext): void {
+		nodes.forEach(node => this.promoteFiguresInNode(node, context));
+	}
+
+	private promoteFiguresInNode(node: IMLParsedNode, context: MLParseContext): void {
+		const children = node.children;
+		if (!Array.isArray(children) || children.length < 1) {
+			return;
+		}
+		if (node.type in FIGURE_CONTAINER_TYPES) {
+			if (children.length === 1 && children[0].type === "image") {
+				Object.assign(node, children[0], { type: "figure" });
+				return;
+			}
+		}
+		for (const child of children) {
+			if (!this.isInline(child.type)) {
+				this.promoteFiguresInNode(child, context);
+			}
+		}
+	}
+
+
 	/**
 	 * For each node, find elements that should directly contain inlines but actually have nested text containers. Promote
 	 * the inline elements to the top level of such elements
+	 * @example <blockquote><p><strong>text</strong>more</p></blockquote> => <blockquote><strong>text</strong>more</blockquote>
 	 * @param nodes 
 	 * @param context 
 	 */
@@ -430,6 +473,18 @@ class ContentUtils implements IContentUtils {
 		return null;
 	}
 
+
+	private mergeTextElements(strings: Array<string>): ParsedNode[] {
+		const text = strings
+			.join("") // to string
+			.replace(/\r/g, "") // remove windows CR
+			.replace(/\n/g, " ") // remove windows CR
+		return [{
+				content: text,
+				type: "text"
+		}];
+	}
+
 	/**
 	 * Merges the input strings, splits by newline and creates matching "text" nodes
 	 * @param strings
@@ -437,7 +492,7 @@ class ContentUtils implements IContentUtils {
 	 * @param liner
 	 * @returns
 	 */
-	private processTextRuns(strings: Array<string>): IMLParsedNode[] {
+	private breakTextToLines(strings: Array<string>): ParsedNode[] {
 		return strings
 			.join("") // to string
 			.replace(/\r/g, "") // remove windows CR
@@ -476,6 +531,9 @@ class NodeIndexer {
 }
 
 class MLParseContext {
+	constructor(public readonly mode: MLParseMode) {
+
+	}
 	public readonly linkDefs: { [key: string]: IMLParsedNode } = {};
 	public readonly indexer: NodeIndexer = new NodeIndexer();
 }

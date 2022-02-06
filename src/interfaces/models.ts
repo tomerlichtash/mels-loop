@@ -7,10 +7,11 @@ import { ComponentKeyMap } from "../locales/types";
 export type ParsedNode = mdParser.SingleASTNode;
 
 interface INodeTypeMap {
+	section: string;
 	paragraph: string;
-	line: string;
 	link: string;
 	image: string;
+	figure: string;
 	text: string;
 	strong: string;
 	em: string;
@@ -25,8 +26,8 @@ interface INodeTypeMap {
 }
 
 export enum NODE_TYPES {
+	SECTION = "section",
 	PARAGRAPH = "paragraph",
-	LINE = "line",
 	DEL = "del",
 	INS = "ins",
 	STRONG = "strong",
@@ -38,6 +39,7 @@ export enum NODE_TYPES {
 	LIST_ITEM = "list-item",
 	LINK = "link",
 	IMAGE = "image",
+	FIGURE = "figure",
 	UNKNOWN = "unknown",
 }
 
@@ -47,6 +49,8 @@ export enum NODE_LIST_TYPES {
 }
 
 export type MLParsedNodeType = keyof INodeTypeMap;
+
+export type MLParseMode = "verse" | "normal";
 
 /**
  * A markdown node parsed and processed by ML

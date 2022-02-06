@@ -15,6 +15,7 @@ import {
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import { classes } from "./content-component.st.css";
+import Image from "./content-blocks/image";
 
 export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 	const data = props.componentData;
@@ -26,9 +27,9 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 	}
 
 	switch (type) {
-		case NODE_TYPES.PARAGRAPH:
+		case NODE_TYPES.SECTION:
 			return <Section key={key} componentData={data} />;
-		case NODE_TYPES.LINE:
+		case NODE_TYPES.PARAGRAPH:
 			return <Paragraph key={key} componentData={data} />;
 		case NODE_TYPES.DEL:
 		case NODE_TYPES.INS:
@@ -64,6 +65,8 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 		case NODE_TYPES.LINK:
 			return <Link key={key} componentData={data} />;
 		case NODE_TYPES.IMAGE:
+				return <Image key={key} componentData={data} />;
+		case NODE_TYPES.FIGURE:
 			return <Figure key={key} componentData={data} />;
 		default:
 			if (/heading/i.test(type)) {

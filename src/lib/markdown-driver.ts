@@ -7,6 +7,7 @@ import {
 	ILocaleMap,
 	IMLParsedNode,
 	IParsedPageData,
+	MLParseMode,
 	PageSortField,
 } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
@@ -57,6 +58,7 @@ export interface ILoadContentOptions {
 	readonly type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN;
 	readonly locale: string;
 	readonly loadContent?: boolean;
+	readonly mode: MLParseMode;
 }
 
 export function loadContentFolder(
@@ -121,7 +123,9 @@ export function loadContentFolder(
 			const mdParse = mdParser.defaultBlockParse;
 
 			// parse markdown and process
-			const tree = contentUtils.processParseTree(mdParse(contentUtils.stripComments(content)));
+			const tree = contentUtils.processParseTree(
+				mdParse(contentUtils.stripComments(content)),
+				options.mode);
 
 			// Combine the data with the id
 			folderContentData.pages.push(
