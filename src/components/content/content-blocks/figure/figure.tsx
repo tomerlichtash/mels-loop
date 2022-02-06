@@ -1,6 +1,6 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
-//import Image from "next/image";
+// import Image from "next/image";
 // import { ContentComponent } from "../../index";
 // import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 // import { cloudName } from "../../../../config/cloudinary/config";
