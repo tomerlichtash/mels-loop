@@ -92,7 +92,7 @@ class MLNextUtils implements IMLNextUtils {
 				relativePath: folderPath,
 				type: PathStaticPropType.CHILDREN,
 				loadContent: false,
-				mode: "normal"
+				mode: MLParseMode.NORMAL
 			});
 			paths.push(...folderData.ids);
 		});

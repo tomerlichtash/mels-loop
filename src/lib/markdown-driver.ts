@@ -9,6 +9,7 @@ import {
 	IParsedPageData,
 	MLParseMode,
 	PageSortField,
+	ParsedNode,
 } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
 import { PathStaticPropType } from "./next-utils";
@@ -124,7 +125,7 @@ export function loadContentFolder(
 
 			// parse markdown and process
 			const tree = contentUtils.processParseTree(
-				mdParse(contentUtils.stripComments(content)),
+				mdParse(contentUtils.stripComments(content)) as ParsedNode[],
 				options.mode);
 
 			// Combine the data with the id

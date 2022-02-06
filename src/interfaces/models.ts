@@ -1,31 +1,33 @@
-import * as mdParser from "simple-markdown";
 import { ComponentKeyMap } from "../locales/types";
 
 /**
  * A single node in a parsed markdown AST
  */
-export type ParsedNode = mdParser.SingleASTNode;
+export type ParsedNode = {
+    type: ASTNODE_TYPES;
+    [prop: string]: any;
+};
 
-interface INodeTypeMap {
-	section: string;
-	paragraph: string;
-	link: string;
-	image: string;
-	figure: string;
-	text: string;
-	strong: string;
-	em: string;
-	list: string;
-	ins: string;
-	del: string;
-	"list-item": string;
-	code: string;
-	blockquote: string;
-	heading: string;
-	unknown: string;
+export enum ASTNODE_TYPES {
+	NEWLINE = "newline",
+	PARAGRAPH = "paragraph",
+	LINK = "link",
+	IMAGE = "image",
+	TEXT = "text",
+	STRONG = "strong",
+	EM = "em",
+	LIST = "list",
+	INS = "ins",
+	DEL = "del",
+	LIST_ITEM = "list-item",
+	CODE = "code",
+	BLOCK_QUOTE = "blockQuote",
+	HEADING = "heading",
+	SUB = "sub",
+	SUP = "sup"
 }
 
-export enum NODE_TYPES {
+export enum MLNODE_TYPES {
 	SECTION = "section",
 	PARAGRAPH = "paragraph",
 	DEL = "del",
@@ -41,6 +43,8 @@ export enum NODE_TYPES {
 	IMAGE = "image",
 	FIGURE = "figure",
 	UNKNOWN = "unknown",
+	SUB = "sub",
+	SUP = "sup"
 }
 
 export enum NODE_LIST_TYPES {
@@ -48,15 +52,16 @@ export enum NODE_LIST_TYPES {
 	UNORDERED = "ul",
 }
 
-export type MLParsedNodeType = keyof INodeTypeMap;
-
-export type MLParseMode = "verse" | "normal";
+export enum MLParseMode {
+	VERSE = "verse",
+	NORMAL ="normal"
+}
 
 /**
  * A markdown node parsed and processed by ML
  */
 export interface IMLParsedNode {
-	readonly type: MLParsedNodeType;
+	readonly type: MLNODE_TYPES;
 	readonly key: string;
 	readonly line: number;
 	readonly children?: IMLParsedNode[];

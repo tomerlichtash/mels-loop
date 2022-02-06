@@ -3,9 +3,9 @@ import { ContentComponentProps } from "../../../../interfaces/models";
 // import { ContentComponent } from "../../index";
 // import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 // import { cloudName } from "../../../../config/cloudinary/config";
-import { classes } from "./image.st.css";
+import { classes } from "./custom-image.st.css";
 
-export const Image = (props: ContentComponentProps): JSX.Element => {
+export const CustomImage = (props: ContentComponentProps): JSX.Element => {
 	const node = props.componentData.node;
 	const { target } = node;
 
@@ -16,4 +16,4 @@ export const Image = (props: ContentComponentProps): JSX.Element => {
 	);
 };
 
-export default Image;
+export default CustomImage;

@@ -36,6 +36,9 @@ const nextConfig = {
 		locales: ["en", "he"],
 		defaultLocale: "en",
 	},
+	images: {
+		domains: ["www.sport5.co.il", "res.cloudinary.com"]
+	}
 };
 
 module.exports = nextConfig;

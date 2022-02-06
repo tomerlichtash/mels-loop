@@ -1,6 +1,6 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
-import Image from "next/image";
+//import Image from "next/image";
 // import { ContentComponent } from "../../index";
 // import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 // import { cloudName } from "../../../../config/cloudinary/config";
@@ -36,7 +36,7 @@ export const Figure = (props: ContentComponentProps): JSX.Element => {
 	return (
 		// <CloudinaryContext cloudName={cloudName}>
 		<figure className={classes.root}>
-			<img src={target} />
+			<img src={target}  />
 			{/* <Image publicId={publicId} title={title} arial-label={title}>
 				{width && height && (
 					<Transformation width={width} height={height} crop="scale" />

@@ -2,7 +2,7 @@ import React from "react";
 import {
 	ContentComponentProps,
 	IMLParsedNode,
-	NODE_TYPES,
+	MLNODE_TYPES,
 	NODE_LIST_TYPES,
 } from "../../interfaces/models";
 import {
@@ -15,7 +15,7 @@ import {
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import { classes } from "./content-component.st.css";
-import Image from "./content-blocks/image";
+import CustomImage from "./content-blocks/custom-image";
 
 export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 	const data = props.componentData;
@@ -27,29 +27,29 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 	}
 
 	switch (type) {
-		case NODE_TYPES.SECTION:
+		case MLNODE_TYPES.SECTION:
 			return <Section key={key} componentData={data} />;
-		case NODE_TYPES.PARAGRAPH:
+		case MLNODE_TYPES.PARAGRAPH:
 			return <Paragraph key={key} componentData={data} />;
-		case NODE_TYPES.DEL:
-		case NODE_TYPES.INS:
-		case NODE_TYPES.STRONG:
-		case NODE_TYPES.EM:
-		case NODE_TYPES.CODE:
+		case MLNODE_TYPES.DEL:
+		case MLNODE_TYPES.INS:
+		case MLNODE_TYPES.STRONG:
+		case MLNODE_TYPES.EM:
+		case MLNODE_TYPES.CODE:
 			return (
 				<ContentIterator key={key} componentData={{ tag: type, ...data }} />
 			);
-		case NODE_TYPES.BLOCKQUOTE:
+		case MLNODE_TYPES.BLOCKQUOTE:
 			return (
 				<ContentIterator
 					key={key}
-					componentData={{ tag: NODE_TYPES.BLOCKQUOTE, ...data }}
+					componentData={{ tag: MLNODE_TYPES.BLOCKQUOTE, ...data }}
 				/>
 			);
-		case NODE_TYPES.TEXT:
+		case MLNODE_TYPES.TEXT:
 			const { text } = node;
 			return <span key={key}>{text}</span>;
-		case NODE_TYPES.LIST:
+		case MLNODE_TYPES.LIST:
 			const { ordered } = node;
 			return (
 				<ContentIterator
@@ -60,13 +60,13 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 					}}
 				/>
 			);
-		case NODE_TYPES.LIST_ITEM:
+		case MLNODE_TYPES.LIST_ITEM:
 			return <ListItem key={key} componentData={data} />;
-		case NODE_TYPES.LINK:
+		case MLNODE_TYPES.LINK:
 			return <Link key={key} componentData={data} />;
-		case NODE_TYPES.IMAGE:
-				return <Image key={key} componentData={data} />;
-		case NODE_TYPES.FIGURE:
+		case MLNODE_TYPES.IMAGE:
+				return <CustomImage key={key} componentData={data} />;
+		case MLNODE_TYPES.FIGURE:
 			return <Figure key={key} componentData={data} />;
 		default:
 			if (/heading/i.test(type)) {
