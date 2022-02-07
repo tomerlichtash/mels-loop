@@ -6,7 +6,7 @@ import {
 	PreviewData,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { ILocaleMap } from "../interfaces/models";
+import { ILocaleMap, MLParseMode } from "../interfaces/models";
 import { loadContentFolder } from "./markdown-driver";
 
 /**************************************************
@@ -27,7 +27,8 @@ type MLGetStaticProps<
 > = (
 	folderRelativePath: string,
 	context: GetStaticPropsContext<Q, D>,
-	type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN
+	type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN,
+	mode?: MLParseMode
 ) => Promise<GetStaticPropsResult<P>> | GetStaticPropsResult<P>;
 
 /**
@@ -63,12 +64,15 @@ class MLNextUtils implements IMLNextUtils {
 	getFolderStaticProps(
 		folderPath: string,
 		context: GetStaticPropsContext,
-		type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN
+		type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN,
+		mode: MLParseMode
 	): GetStaticPropsResult<{ [key: string]: any }> {
 		const docData = loadContentFolder({
 			relativePath: folderPath,
 			locale: context.locale,
+			loadContent: true,
 			type,
+			mode
 		});
 		return {
 			props: {
@@ -87,6 +91,8 @@ class MLNextUtils implements IMLNextUtils {
 				locale,
 				relativePath: folderPath,
 				type: PathStaticPropType.CHILDREN,
+				loadContent: false,
+				mode: MLParseMode.NORMAL
 			});
 			paths.push(...folderData.ids);
 		});
