@@ -3,6 +3,7 @@ import {
 	IContentComponentData,
 	IMLParsedNode,
 	IParsedPageData,
+	MLNODE_TYPES,
 } from "../../interfaces/models";
 import Layout from "../layout";
 import Head from "next/head";
@@ -17,7 +18,7 @@ export default function GenericPage(props: IContentComponentData) {
 		children: page.parsed,
 		key: page.id,
 		line: -1,
-		type: "unknown",
+		type: MLNODE_TYPES.UNKNOWN,
 	};
 	return (
 		<Layout {...{ translate }}>

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Layout from "../components/layout";
 import { GetStaticProps } from "next";
-import { IPageProps } from "../interfaces/models";
+import { IPageProps, MLParseMode } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
 import { classes } from "./index.st.css";
 import { CONTENT_TYPES } from "../consts";
@@ -33,6 +33,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	return mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.CODEX,
 		context,
-		PathStaticPropType.FOLDER
+		PathStaticPropType.FOLDER,
+		MLParseMode.VERSE
 	);
 };
