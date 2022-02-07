@@ -37,7 +37,7 @@ const nextConfig = {
 		defaultLocale: "en",
 	},
 	images: {
-		domains: ["www.sport5.co.il", "res.cloudinary.com"]
+		domains: ["res.cloudinary.com"]
 	}
 };
 
