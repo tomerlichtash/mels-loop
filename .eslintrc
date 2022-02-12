@@ -41,7 +41,8 @@
 				"@typescript-eslint/no-unsafe-return": "off",
 				"prefer-const": "off",
 				"react/no-unescaped-entities": "off",
-				"no-case-declarations": "off"
+				"no-case-declarations": "off",
+				"@next/next/no-img-element": "off"
 			}
 		}
 	]
