@@ -1,5 +1,6 @@
 ---
 term: "LOOP"
+source: https://en.wikipedia.org/wiki/Control_flow#Loops
 ---
 
 A loop is a programming technique which allows a sequence of instructions to be performed repeatedly, until some condition prevails (or ceases to hold true). A Common example is searching for and replacing a string in a block of text, until the last occurrence is processed.

@@ -1,5 +1,6 @@
 ---
 term: "TERMINATING_CONDITION"
+source: http://teaching.idallen.com/cst8110/97s/LoopTermConditions.html
 ---
 
 The definition of the circuimstances by which a recusrive algorithm should from its recursive operation. Usually, an alogirthm will contain a terminating condition to prevent a case of an Infinite Recursive Loop.
