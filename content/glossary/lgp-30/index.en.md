@@ -1,11 +1,5 @@
 ---
-title: "LGP-30"
-date: "2020-01-01"
+term: "LGP-30"
 ---
 
-Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.
-
-- **Static Generation** is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then _reused_ on each request.
-- **Server-side Rendering** is the pre-rendering method that generates the HTML on **each request**.
-
-Importantly, Next.js lets you **choose** which pre-rendering form to use for each page. You can create a "hybrid" Next.js app by using Static Generation for most pages and using Server-side Rendering for others.
+A first generation digital computer that was released to the market on November 1955 in a retail price of $47,000. The LGP-30 was branded as a cheap and mobile computer, easy to program with large memory and reliable performence, aimed at applications for research, engineering, industry and military. About 500 computer was manufactured and sold around the globe. The computer’s name is an acronym of its manufacturers - Librascope General Percision. Despite its proportions, the LGP-30 was considered to be a small computer, and is often referenced as the first Desktop Computer, as its size was that of an average desk (Height: 34cm, Width: 120cm, Depth: 66cm). With heavy duty wheels installed on its bottom to, allow moving it around the room, it was also considered to be a mobile computer. Under the brownish-bronze hood, with the power of 1500 watts, the LGP-30 had 113 vacuum tubes, 1450 diodes, 34 slot cards, a memory drum with the capacity of 4096 words (word = 32 bit) and 3 index registers. The Input/Ouput device of the computer was the Flexowriter - an electro-mechanical typewriter with a paper-tape reader and puncher, and alphanumeric output capabilities. The computer also included a self-cooling mechanism installed on its chassis, and an oscilloscope installed on its front to monitor its activity, next to an interface of switches to control its 16 included commands.
