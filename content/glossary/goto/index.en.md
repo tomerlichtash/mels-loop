@@ -1,5 +1,5 @@
 ---
-term: "GOTO"
+glossary_key: "GOTO"
 source: https://en.wikipedia.org/wiki/Goto
 ---
 

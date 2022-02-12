@@ -1,5 +1,5 @@
 ---
-term: "MACHINE_CODE"
+glossary_key: "MACHINE_CODE"
 source: https://en.wikipedia.org/wiki/Machine_code
 ---
 

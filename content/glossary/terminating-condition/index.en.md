@@ -1,5 +1,5 @@
 ---
-term: "TERMINATING_CONDITION"
+glossary_key: "TERMINATING_CONDITION"
 source: http://teaching.idallen.com/cst8110/97s/LoopTermConditions.html
 ---
 

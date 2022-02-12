@@ -1,5 +1,5 @@
 ---
-term: "OPERAND"
+glossary_key: "OPERAND"
 source: https://en.wikipedia.org/wiki/Operand
 ---
 
