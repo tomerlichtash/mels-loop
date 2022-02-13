@@ -1,5 +1,6 @@
 ---
 glossary_key: "INFINITE_LOOP"
+glossary_term: "Infinite Loop"
 source: https://en.wikipedia.org/wiki/Infinite_loop
 ---
 

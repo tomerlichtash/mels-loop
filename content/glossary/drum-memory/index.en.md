@@ -1,5 +1,6 @@
 ---
 glossary_key: "DRUM_MEMORY"
+glossary_term: "Drum Memory"
 source: https://www.cs.utah.edu/~elb/folklore/mel-annotated/node2.html#SECTION00020000000000000000
 ---
 
