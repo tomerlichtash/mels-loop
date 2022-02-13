@@ -1,5 +1,4 @@
 ---
-title: "Glossary"
+title: "Mel's loop glossary"
 ---
 
-TBA

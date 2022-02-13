@@ -6,13 +6,14 @@ import {
 	IFolderContent,
 	ILocaleMap,
 	IMLParsedNode,
+	IPageMetaData,
 	IParsedPageData,
-	MLParseMode,
+	MLParseModes,
 	PageSortField,
 	ParsedNode,
 } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
-import { PathStaticPropType } from "./next-utils";
+import { LoadFolderModes } from "./next-utils";
 import { Logger } from "tslog";
 import chalk from "chalk";
 
@@ -48,6 +49,10 @@ export function getRootDir(): string {
 
 setRootDir(process.cwd());
 
+export enum LoadContentModes {
+	NONE = "none", METADATA = "metadata", FULL = "full"
+}
+
 export interface ILoadContentOptions {
 	/**
 	 * The content path, relative to the content folder
@@ -56,10 +61,10 @@ export interface ILoadContentOptions {
 	/**
 	 * If true, iterate over children folders
 	 */
-	readonly type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN;
+	readonly loadMode: LoadFolderModes;
 	readonly locale: string;
-	readonly loadContent?: boolean;
-	readonly mode: MLParseMode;
+	readonly contentMode: LoadContentModes;
+	readonly parseMode: MLParseModes;
 }
 
 export function loadContentFolder(
@@ -83,7 +88,7 @@ export function loadContentFolder(
 		const filename = getIndexFileName(options.locale);
 		let fullPath: string;
 
-		if (options.type === PathStaticPropType.FOLDER) {
+		if (options.loadMode === LoadFolderModes.FOLDER) {
 			if (filename !== name) {
 				return;
 			}
@@ -111,7 +116,7 @@ export function loadContentFolder(
 			folderContentData.ids.push({ params: { id: name }, locale: options.locale });
 		}
 
-		if (options.loadContent === false) {
+		if (options.contentMode === LoadContentModes.NONE) {
 			return;
 		}
 
@@ -121,25 +126,23 @@ export function loadContentFolder(
 
 			// Use gray-matter to parse the post metadata section
 			const { data: matterData, content } = matter(fileContents);
-			const mdParse = mdParser.defaultBlockParse;
+			const metaData = new PageMetaData(matterData);
+			const parsedPageData = new ParsedPageData({
+				metaData,
+				id: name,
+				path: `${options.relativePath}/$name}` // don't use path.join, it's os specific
+			})
+			folderContentData.pages.push(parsedPageData);
+			if (options.contentMode === LoadContentModes.FULL) {
+				// parse markdown and process
+				const mdParse = mdParser.defaultBlockParse;
+				const tree = contentUtils.processParseTree(
+					mdParse(contentUtils.stripComments(content)) as ParsedNode[],
+					options.parseMode);
 
-			// parse markdown and process
-			const tree = contentUtils.processParseTree(
-				mdParse(contentUtils.stripComments(content)) as ParsedNode[],
-				options.mode);
-
-			// Combine the data with the id
-			folderContentData.pages.push(
-				new ParsedPageData({
-					id: name,
-					title: matterData.title || "",
-					date: parseDate(matterData.date as string),
-					moto: matterData.moto || "",
-					credits: matterData.credits || "",
-					content,
-					parsed: tree,
-				})
-			);
+				// Combine the data with the id
+				parsedPageData.parsed = tree
+			}
 		} catch (e) {
 			log.error(`Error processing ${fullPath}`, e);
 			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
@@ -164,26 +167,45 @@ function parseDate(dateString: string | null | undefined): Date {
 }
 
 class ParsedPageData implements IParsedPageData {
-	constructor(data: Partial<IParsedPageData> | string | null) {
-		if (typeof data === "string") {
-			Object.assign(this, JSON.parse(data));
-		} else if (data) {
-			Object.assign(this, data);
-		}
+
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+	constructor(data: any) {
+		Object.keys(this).forEach(key => {
+			if (data[key] !== undefined) {
+				this[key] = data[key];
+			}
+		})
 	}
 
-	public toString() {
-		return JSON.stringify(this);
-	}
+	public metaData: IPageMetaData = null;
 	public id = "";
+	public path = "";
+	//public content = "";
+	public parsed: IMLParsedNode[] = [];
+	public error?: string = "";
+
+}
+
+class PageMetaData implements IPageMetaData {
+	constructor(data: Partial<IParsedPageData> | string) {
+		const realData = typeof data === "string" ? JSON.parse(data) : data;
+		Object.keys(this).forEach(key => {
+			if (realData[key] !== undefined) {
+				this[key] = realData[key];
+			}
+		})
+		if (this.date && typeof this.date === "string") {
+			this.date = parseDate(this.date);
+		}
+	}
+	public glossary_key = "";
+	public glossary_term = "";
 	public date: Date = null;
 	public title = "";
 	public moto = "";
 	public author = "";
 	public credits = "";
-	public content = "";
-	public parsed: IMLParsedNode[] = [];
-	public error?: string = "";
+
 }
 
 class FolderContent implements IFolderContent {

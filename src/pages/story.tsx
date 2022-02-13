@@ -1,11 +1,12 @@
 import Head from "next/head";
 import Layout from "../components/layout";
 import { GetStaticProps } from "next";
-import { IPageProps, MLParseMode } from "../interfaces/models";
+import { IPageProps, MLParseModes } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
 import { classes } from "./index.st.css";
 import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils, PathStaticPropType } from "../lib/next-utils";
+import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
+import { LoadContentModes } from "../lib/markdown-driver";
 
 export default function Story(props: IPageProps) {
 	const { translate, compLocale } = props;
@@ -33,7 +34,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	return mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.CODEX,
 		context,
-		PathStaticPropType.FOLDER,
-		MLParseMode.VERSE
+		LoadFolderModes.FOLDER,
+		LoadContentModes.FULL,
+		MLParseModes.VERSE
 	);
 };
