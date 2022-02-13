@@ -1,5 +1,6 @@
 ---
 glossary_key: "FRIDEN_FLEXOWRITER"
+glossary_term: "Friden Flexowriter"
 ---
 
 The Friden Flexowriter was a teleprinter, a heavy-duty electric typewriter capable of being driven not only by a human typing, but also automatically by several methods, including direct attachment to a computer and by use of paper tape.

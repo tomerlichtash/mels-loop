@@ -1,5 +1,6 @@
 ---
 glossary_key: "TOP_DOWN_DESIGN"
+glossary_term: "Top-Down Design"
 ---
 
 Top-down and bottom-up are both strategies of information processing and knowledge ordering, used in a variety of fields including software, humanistic and scientific theories (see systemics), and management and organization. In practice, they can be seen as a style of thinking, teaching, or leadership.
