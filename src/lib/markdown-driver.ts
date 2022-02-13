@@ -130,7 +130,7 @@ export function loadContentFolder(
 			const parsedPageData = new ParsedPageData({
 				metaData,
 				id: name,
-				path: `${options.relativePath}/$name}` // don't use path.join, it's os specific
+				path: `${options.relativePath}/${name}` // don't use path.join, it's os specific
 			})
 			folderContentData.pages.push(parsedPageData);
 			if (options.contentMode === LoadContentModes.FULL) {
