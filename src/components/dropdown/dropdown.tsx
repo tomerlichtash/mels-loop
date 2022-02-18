@@ -6,12 +6,15 @@ import { style, classes } from "./dropdown.st.css";
 
 export interface DropDownProps extends ComponentProps {
 	options: IOption[];
+	closeLabel: string;
+	openLabel: string;
 }
 
 export const DropDown = (props: DropDownProps): JSX.Element => {
 	const { compKeys, options, translate, className } = props;
-	const { openLabel, closeLabel } = compKeys;
-	const [optionListVisible, toggleOptionList] = useState(false);
+	// const { openLabel, closeLabel } = compKeys;
+	const { openLabel, closeLabel } = props;
+	const [optionListVisible, toggleOptionList] = useState(true);
 
 	const openTrigger = (
 		<div
@@ -46,6 +49,9 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 						{options.map((option) => (
 							<Option
 								key={option.id}
+								className={style(classes.optionFromDropDown, {
+									current: option.isCurrent,
+								})}
 								closeDropDown={() => toggleOptionList(false)}
 								translate={translate}
 								{...option}

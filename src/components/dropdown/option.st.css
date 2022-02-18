@@ -6,15 +6,10 @@
 }
 
 .root {
-	-st-mixin: NavButton;
+	/* -st-mixin: NavButton; */
 	text-decoration: none;
+	-st-states: current;
 }
 
 .optionContent {
-	-st-mixin: NavButton;
-	-st-states: current(boolean);
-}
-
-.optionContent:current(true) {
-	font-weight: bold;
 }

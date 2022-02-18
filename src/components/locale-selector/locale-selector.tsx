@@ -13,13 +13,17 @@ export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 	const { compKeys, options, currentLocaleLabel, translate, className } = props;
 	return (
 		<div className={style(classes.root, className)}>
-			<DropDown
-				className={style(classes.select)}
-				options={options}
-				compKeys={compKeys}
-				translate={translate}
-			/>
-			<div className={classes.current}>[{translate(currentLocaleLabel)}]</div>
+			<div className={classes.dropDownContainer}>
+				<DropDown
+					className={style(classes.localeDropDown)}
+					options={options}
+					compKeys={compKeys}
+					translate={translate}
+					openLabel={options.find((d) => d.isCurrent).label}
+					closeLabel={"LOCALE_SELECTOR_CLOSE"}
+				/>
+			</div>
+			{/* <div className={classes.current}>[{translate(currentLocaleLabel)}]</div> */}
 		</div>
 	);
 };

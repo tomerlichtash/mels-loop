@@ -6,15 +6,27 @@
 }
 
 .root {
-	border: none;
 	background: none;
 	cursor: pointer;
-	user-select: none;
 	display: flex;
 }
 
-.select {
+.localeDropDown {
 	-st-extends: DropDown;
+	/* user-select: none; */
+	display: block;
+	width: 150px;
 }
 
-.current {}
+.localeDropDown::optionFromDropDown
+.dropDownContainer {
+	/* border: 2px solid red; */
+}
+
+/* .localeDropDown::option::optionContent {
+	font-weight: bold;
+} */
+
+.current {
+	/* border: 2px solid red; */
+}

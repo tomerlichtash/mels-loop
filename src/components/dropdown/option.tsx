@@ -10,6 +10,7 @@ export interface IOption extends ComponentProps {
 	isCurrent?: boolean;
 	callback?: (id: string) => void;
 	closeDropDown?: () => void;
+	className?: string;
 }
 
 export const Option = (props: IOption): JSX.Element => {
@@ -18,13 +19,13 @@ export const Option = (props: IOption): JSX.Element => {
 		targetPathname,
 		label,
 		isCurrent,
-		className,
 		translate,
 		callback,
 		closeDropDown,
+		className,
 	} = props;
 	return (
-		<li className={classes.root}>
+		<li className={style(classes.root, className)}>
 			{callback && (
 				<span
 					title={label}
@@ -33,13 +34,7 @@ export const Option = (props: IOption): JSX.Element => {
 						closeDropDown();
 						return callback(id);
 					}}
-					className={style(
-						classes.optionContent,
-						{
-							current: isCurrent,
-						},
-						className
-					)}
+					className={style(classes.optionContent, { current: isCurrent })}
 				>
 					{translate(label)}
 				</span>
@@ -49,13 +44,7 @@ export const Option = (props: IOption): JSX.Element => {
 					<a
 						title={label}
 						aria-label={label}
-						className={style(
-							classes.optionContent,
-							{
-								current: isCurrent,
-							},
-							className
-						)}
+						className={style(classes.optionContent, { current: isCurrent })}
 					>
 						{translate(label)}
 					</a>

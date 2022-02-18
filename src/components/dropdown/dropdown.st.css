@@ -5,6 +5,11 @@
 	-st-named: NavButton;
 }
 
+:import {
+	-st-from: "../dropdown/option.st.css";
+	-st-default: Option;
+}
+
 .root {
 }
 
@@ -20,3 +25,20 @@
 
 .optionListContainer {}
 .optionList {}
+
+.optionFromDropDown {
+	-st-states: current(boolean);;
+	-st-extends: Option;
+	-st-mixin: NavButton;
+}
+
+.optionFromDropDown::optionContent {
+	display: block;
+}
+
+
+.optionFromDropDown:current::after {
+	content: 'XXX';
+	position: absolute;
+}
+

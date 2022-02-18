@@ -50,12 +50,6 @@
   flex: 1;
 }
 
-.localeSelector {
-  /* position: absolute;
-  right: 0; */
-  /* background: cyan; */
-}
-
 .siteTitle {
 	/* font-size: value(siteTitleFontSize); */
 	text-transform: uppercase;
