@@ -1,11 +1,18 @@
 import { ComponentKeyMap } from "../locales/types";
 
 /**
+ * Workaround for any
+ */
+export interface IPlainObject {
+	[key: string | number] : string | number | boolean | object | null
+}
+
+/**
  * A single node in a parsed markdown AST
  */
 export type ParsedNode = {
-    type: ASTNODE_TYPES;
-    [prop: string]: any;
+	type: ASTNODE_TYPES;
+	[prop: string]: any;
 };
 
 export enum ASTNODE_TYPES {
@@ -52,9 +59,9 @@ export enum NODE_LIST_TYPES {
 	UNORDERED = "ul",
 }
 
-export enum MLParseMode {
+export enum MLParseModes {
 	VERSE = "verse",
-	NORMAL ="normal"
+	NORMAL = "normal"
 }
 
 /**
@@ -80,14 +87,7 @@ export interface IMLParsedNode {
 	readonly level?: number | string;
 }
 
-/**
- * Full results of a parsed page
- */
-export interface IParsedPageData {
-	/**
-	 * Usually the file name
-	 */
-	readonly id: string;
+export interface IPageMetaData {
 	/**
 	 * Date metadata, if present in the MD
 	 */
@@ -108,10 +108,37 @@ export interface IParsedPageData {
 	 * Author metadata, if present in the MD
 	 */
 	readonly author: string;
+
 	/**
-	 * Full text of the MD
+	 * Key of term in glossary
 	 */
-	readonly content: string;
+	readonly glossary_key: string;
+	/**
+	 * Display name of glossary item
+	 */
+	readonly glossary_term: string;
+
+
+}
+
+/**
+ * Full results of a parsed page
+ */
+export interface IParsedPageData {
+	/**
+	 * Usually the file name
+	 */
+	readonly id: string;
+
+	/**
+	 * The relative path of this page
+	 */
+	readonly path: string;
+
+	/**
+	 * The page's metadata properties, from the front matter block
+	 */
+	metaData: IPageMetaData;
 	/**
 	 * The parsed MD
 	 */
@@ -185,7 +212,9 @@ export interface SitePage {
 
 export interface IPageProps {
 	compLocale: ComponentKeyMap;
+	locale: string;
 	translate: (key: string) => string;
 	content: string;
 	className?: string;
+	metaData?: string;
 }
