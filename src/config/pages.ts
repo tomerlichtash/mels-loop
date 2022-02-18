@@ -6,6 +6,8 @@ import {
 	RESOURCES_PAGE_LOCALE,
 	STORY_PAGE_LOCALE,
 	GLOSSARY_PAGE_LOCALE,
+	ERROR_404_PAGE_LOCALE,
+	ERROR_GENERAL_LOCALE,
 } from "../locales/components";
 
 export const SITE_PAGES: SitePage[] = [
@@ -55,12 +57,12 @@ export const SITE_PAGES: SitePage[] = [
 		locale: GLOSSARY_PAGE_LOCALE,
 		label: GLOSSARY_PAGE_LOCALE.pageName,
 		targetPathname: "/docs/resources",
-		pathname: "/glossary/[id]",
+		pathname: "/glossary",
 	},
 	{
 		id: "error",
 		menuNav: false,
-		locale: GLOSSARY_PAGE_LOCALE,
+		locale: ERROR_GENERAL_LOCALE,
 		label: GLOSSARY_PAGE_LOCALE.pageName,
 		targetPathname: "NONE",
 		pathname: "/_error",
@@ -68,7 +70,7 @@ export const SITE_PAGES: SitePage[] = [
 	{
 		id: "404",
 		menuNav: false,
-		locale: GLOSSARY_PAGE_LOCALE,
+		locale: ERROR_404_PAGE_LOCALE,
 		label: GLOSSARY_PAGE_LOCALE.pageName,
 		targetPathname: "NONE",
 		pathname: "/404",

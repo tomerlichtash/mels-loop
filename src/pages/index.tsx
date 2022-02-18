@@ -5,6 +5,7 @@ import IconComp from "./../assets/svg/source_icons_computer.svg";
 import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 import { cloudName } from "../config/cloudinary/config";
 import { style, classes } from "./index.st.css";
+import Link from "next/link";
 
 export default function Home(props: IPageProps) {
 	const { translate, compLocale } = props;
@@ -24,7 +25,7 @@ export default function Home(props: IPageProps) {
 					</Image>
 				</CloudinaryContext>
 				<div>the story</div>
-				<div>glossary</div>
+				<div><Link href="/glossary">glossary</Link></div>
 				<div>photos</div>
 			</article>
 		</Layout>

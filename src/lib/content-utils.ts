@@ -2,7 +2,7 @@ import {
 	ASTNODE_TYPES,
 	IMLParsedNode,
 	MLNODE_TYPES,
-	MLParseMode,
+	MLParseModes,
 	ParsedNode,
 } from "../interfaces/models";
 
@@ -14,7 +14,7 @@ export interface IContentUtils {
 	 * Convert a markdown parse tree to a MK parse tree, in which text runs are separated into lines
 	 * @param arg0
 	 */
-	processParseTree(nodes: ParsedNode[], mode?: MLParseMode): IMLParsedNode[];
+	processParseTree(nodes: ParsedNode[], mode?: MLParseModes): IMLParsedNode[];
 
 	stripComments(source: string): string;
 }
@@ -75,7 +75,7 @@ function nodeTypeToMLType(nodeName: ASTNODE_TYPES, context: MLParseContext): MLN
 	if (!nodeName) {
 		return MLNODE_TYPES.UNKNOWN;
 	}
-	if (context.mode === MLParseMode.VERSE && nodeName === ASTNODE_TYPES.PARAGRAPH) {
+	if (context.mode === MLParseModes.VERSE && nodeName === ASTNODE_TYPES.PARAGRAPH) {
 		return MLNODE_TYPES.SECTION;
 	}
 	return (AST2MLTypeMap[nodeName] || nodeName).toLowerCase() as MLNODE_TYPES;
@@ -96,7 +96,7 @@ class ContentUtils implements IContentUtils {
 		return (source || "").replace(/<!---?\s.*\s-?-->/g, "")
 	}
 
-	public processParseTree(nodes: ParsedNode[], mode: MLParseMode): IMLParsedNode[] {
+	public processParseTree(nodes: ParsedNode[], mode: MLParseModes): IMLParsedNode[] {
 		if (!nodes || !nodes.length) {
 			return [];
 		}
@@ -172,7 +172,7 @@ class ContentUtils implements IContentUtils {
 		if (processor) {
 			return processor(node, context);
 		}
-		const verseMode = context.mode === MLParseMode.VERSE;
+		const verseMode = context.mode === MLParseModes.VERSE;
 		const resultNode: IMLParsedNode = {
 			type: nodeTypeToMLType(node.type, context),
 			line: context.indexer.currentLine(),
@@ -278,7 +278,7 @@ class ContentUtils implements IContentUtils {
 		if (!children) {
 			return node;
 		}
-		const processText = context.mode === MLParseMode.VERSE ? 
+		const processText = context.mode === MLParseModes.VERSE ? 
 			(texts: string[]) => this.breakTextToLines(texts) :
 			(texts: string[]) => this.mergeTextElements(texts);
 
@@ -533,7 +533,7 @@ class NodeIndexer {
 }
 
 class MLParseContext {
-	constructor(public readonly mode: MLParseMode) {
+	constructor(public readonly mode: MLParseModes) {
 
 	}
 	public readonly linkDefs: { [key: string]: IMLParsedNode } = {};

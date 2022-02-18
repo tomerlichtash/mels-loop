@@ -2,36 +2,31 @@ import React from "react";
 import ContentComponent from "../content/content-component";
 import { IMLParsedNode, IParsedPageData } from "../../interfaces/models";
 import { classes } from "./content-browser.st.css";
+import { usePageData } from "../usePageData";
 
 // const FULL_PAGE_RE = /full.*text/i;
 
 export interface ContentBrowserProps {
-	content: string;
+	content: string | IParsedPageData[];
 	showTitle?: boolean;
 	showMoto?: boolean;
 	showCredits?: boolean;
 }
 
 export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
-	const { showTitle, showMoto, showCredits, content } = props;
+	const { showTitle, showMoto, showCredits } = props;
 
-	const pageData: IParsedPageData[] = JSON.parse(content);
-
-	// find full content page
-	// let pageIndex = pageData.findIndex((pdata) => FULL_PAGE_RE.test(pdata.id));
-	// if (pageIndex < 0) {
-	// 	pageIndex = 0;
-	// }
+	const { pageData } = usePageData(props);
 
 	const page = pageData[0] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
 
-	const { title, moto, credits } = pageData[0];
+	const { metaData } = pageData[0];
 
 	return (
 		<div className={classes.root}>
-			{showTitle && <h2 className={classes.title}>{title}</h2>}
-			{showMoto && moto && <p className={classes.moto}>{pageData[0].moto}</p>}
+			{showTitle && <h2 className={classes.title}>{metaData.title || "Page Title"}</h2>}
+			{showMoto && metaData.moto && <p className={classes.moto}>{metaData.moto}</p>}
 
 			{elements.map((node, index) => {
 				return (
@@ -44,7 +39,7 @@ export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 				);
 			})}
 
-			{showCredits && credits && <p className={classes.credits}>{credits}</p>}
+			{showCredits && metaData.credits && <p className={classes.credits}>{metaData.credits}</p>}
 		</div>
 	);
 };

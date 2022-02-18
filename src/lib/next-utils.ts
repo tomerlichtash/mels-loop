@@ -6,13 +6,16 @@ import {
 	PreviewData,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { ILocaleMap, MLParseMode } from "../interfaces/models";
-import { loadContentFolder } from "./markdown-driver";
+import { ILocaleMap, MLParseModes } from "../interfaces/models";
+import { loadContentFolder, LoadContentModes } from "./markdown-driver";
 
 /**************************************************
  * Extended Next.js types
  **************************************************/
-
+interface FolderStaticProps { 
+	content: string;
+	locale: string 
+}
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
  * Will load either the index in the folder, or all the indices in the child folders,
@@ -20,33 +23,36 @@ import { loadContentFolder } from "./markdown-driver";
  * @param type `"folder"`: scan the index in the folder, `"children"`: scan indices in child folders
  */
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-type MLGetStaticProps<
-	P extends { [key: string]: any } = { [key: string]: any },
-	Q extends ParsedUrlQuery = ParsedUrlQuery,
-	D extends PreviewData = PreviewData
-> = (
+type MLGetStaticProps = (
 	folderRelativePath: string,
-	context: GetStaticPropsContext<Q, D>,
-	type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN,
-	mode?: MLParseMode
-) => Promise<GetStaticPropsResult<P>> | GetStaticPropsResult<P>;
+	context: GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
+	loadMode: LoadFolderModes,
+	contentMode?: LoadContentModes,
+	parseMode?: MLParseModes
+
+) => GetStaticPropsResult<FolderStaticProps>;
 
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
  */
-type MLGetStaticPaths<P extends ParsedUrlQuery = ParsedUrlQuery> = (
+type MLGetStaticPaths = (
 	folderRelativePath: string,
 	context: GetStaticPathsContext
-) => Promise<GetStaticPathsResult<P>> | GetStaticPathsResult<P>;
+) => Promise<GetStaticPathsResult<ParsedUrlQuery>> | GetStaticPathsResult<ParsedUrlQuery>;
 
-export interface IMLNextUtils {
+/**
+ * SERVER SIDE Streamlined generation of content, suitable as props for ML component props
+ */
+ export interface IMLNextUtils {
 	/**
 	 * Same as Next's GetStaticProps, parameterized by a content folder relative path
 	 * Will load either the index in the folder, or all the indices in the child folders,
 	 * depending on the type parameter
 	 * @param folderRelativePath The folder path relative to the content folder
 	 * @param ctx The original context passed to the static getStaticProps function
-	 * @param type `"folder"`: scan the index in the folder, `"children"`: scan indices in child folders
+	 * @param loadMode `"folder"`: scan the index in the folder, `"children"`: scan indices in child folders
+	 * @param contentMode none, metadata or full (default)
+	 * @param parseMode verse or normal (default)
 	 */
 	getFolderStaticProps: MLGetStaticProps;
 	/**
@@ -55,44 +61,47 @@ export interface IMLNextUtils {
 	getFolderStaticPaths: MLGetStaticPaths;
 }
 
-export enum PathStaticPropType {
+export enum LoadFolderModes {
 	FOLDER = "folder",
 	CHILDREN = "children",
 }
 
 class MLNextUtils implements IMLNextUtils {
-	getFolderStaticProps(
+
+	public getFolderStaticProps(
 		folderPath: string,
 		context: GetStaticPropsContext,
-		type: PathStaticPropType.FOLDER | PathStaticPropType.CHILDREN,
-		mode: MLParseMode
-	): GetStaticPropsResult<{ [key: string]: any }> {
+		loadMode: LoadFolderModes,
+		contentMode: LoadContentModes = LoadContentModes.FULL,
+		parseMode: MLParseModes = MLParseModes.NORMAL,
+	): GetStaticPropsResult<FolderStaticProps> {
 		const docData = loadContentFolder({
 			relativePath: folderPath,
 			locale: context.locale,
-			loadContent: true,
-			type,
-			mode
+			contentMode,
+			loadMode,
+			parseMode
 		});
 		return {
 			props: {
 				content: JSON.stringify(docData.pages),
+				locale: context.locale
 			},
 		};
 	}
 
-	getFolderStaticPaths(
+	public getFolderStaticPaths(
 		folderPath: string,
-		context: GetStaticPathsContext
+		context: GetStaticPathsContext,
 	): GetStaticPathsResult<ParsedUrlQuery> {
 		const paths: ILocaleMap[] = [];
 		(context.locales || []).forEach((locale: string) => {
 			const folderData = loadContentFolder({
 				locale,
 				relativePath: folderPath,
-				type: PathStaticPropType.CHILDREN,
-				loadContent: false,
-				mode: MLParseMode.NORMAL
+				loadMode: LoadFolderModes.CHILDREN,
+				contentMode: LoadContentModes.NONE,
+				parseMode: MLParseModes.NORMAL
 			});
 			paths.push(...folderData.ids);
 		});
