@@ -8,7 +8,7 @@
 .root {
 	/* -st-mixin: NavButton; */
 	text-decoration: none;
-	-st-states: current;
+	-st-states: current, id;
 }
 
 .optionContent {

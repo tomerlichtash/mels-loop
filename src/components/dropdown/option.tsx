@@ -34,7 +34,7 @@ export const Option = (props: IOption): JSX.Element => {
 						closeDropDown();
 						return callback(id);
 					}}
-					className={style(classes.optionContent, { current: isCurrent })}
+					className={style(classes.optionContent, { current: isCurrent, id })}
 				>
 					{translate(label)}
 				</span>

@@ -30,6 +30,8 @@
 	-st-states: current(boolean);;
 	-st-extends: Option;
 	-st-mixin: NavButton;
+	position: relative;
+	padding: 0 1rem;
 }
 
 .optionFromDropDown::optionContent {
@@ -38,7 +40,9 @@
 
 
 .optionFromDropDown:current::after {
-	content: 'XXX';
+	content: 'V';
 	position: absolute;
+	top: 0;
+	left: 0px;
 }
 

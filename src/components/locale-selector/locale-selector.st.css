@@ -18,15 +18,17 @@
 	width: 150px;
 }
 
-.localeDropDown::optionFromDropDown
-.dropDownContainer {
-	/* border: 2px solid red; */
+.localeDropDown::optionFromDropDown:id(en) {
+	border: 2px solid red;
 }
+
+/* .localeDropDown::optionFromDropDown */
+/* .dropDownContainer {
+} */
 
 /* .localeDropDown::option::optionContent {
 	font-weight: bold;
 } */
 
 .current {
-	/* border: 2px solid red; */
 }
