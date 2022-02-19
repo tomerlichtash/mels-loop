@@ -499,9 +499,8 @@ class ContentUtils implements IContentUtils {
 			.join("") // to string
 			.replace(/\r/g, "") // remove windows CR
 			.split("\n") // split to lines
-			.filter(Boolean)
 			.reduce((acc, line, index): ParsedNode[] => {
-				if (index > 0) {
+				if (index > 0) { // insert newlines between each two text lines, so not on the first time
 					acc.push({
 						type: ASTNODE_TYPES.NEWLINE,
 					});
