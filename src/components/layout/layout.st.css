@@ -71,18 +71,10 @@
 .header {}
 .footer {}
 .page {}
+
 .localeSelector {
 	-st-extends: LocaleSelector;
 	position: fixed;
 	top: 1rem;
 	left: 1rem;
 }
-/* 
-.localeSelector::current {
-	color: red;
-}
-
-.localeSelector::select {
-	background: red;
-	display: block;
-} */

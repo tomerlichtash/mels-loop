@@ -20,12 +20,6 @@
 }
 
 .container {
-  /* display: flex; */
-  /* align-content: space-around; */
-  /* height: value(siteHeaderHeight); */
-  /* line-height: value(siteHeaderHeight); */
-  /* width: 1200px; */
-  /* margin: 0 auto; */
   width: value(PageWidth);
   margin: 0 auto;
 }
@@ -51,6 +45,5 @@
 }
 
 .siteTitle {
-	/* font-size: value(siteTitleFontSize); */
 	text-transform: uppercase;
 }

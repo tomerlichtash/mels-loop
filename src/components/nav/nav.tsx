@@ -2,7 +2,6 @@ import React from "react";
 import NavButton from "./nav-button";
 import DropDown from "../dropdown";
 import { ComponentProps, SitePage } from "../../interfaces/models";
-// import { NAV_MENU_DROPDOWN_LOCALE } from "../../locales/components";
 import { IOption } from "../dropdown/option";
 import { style, classes } from "./nav.st.css";
 

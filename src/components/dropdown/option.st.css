@@ -1,12 +1,6 @@
 @namespace "Option";
 
-:import {
-	-st-from: "../../theme/mixins.st.css";
-	-st-named: NavButton;
-}
-
 .root {
-	/* -st-mixin: NavButton; */
 	text-decoration: none;
 }
 

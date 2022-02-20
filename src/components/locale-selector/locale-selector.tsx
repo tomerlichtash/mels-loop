@@ -5,7 +5,6 @@ import { ComponentProps } from "../../interfaces/models";
 import { IOption } from "../dropdown/option";
 
 export interface LocaleSelectorProps extends ComponentProps {
-	// currentLocaleLabel: string;
 	options: IOption[];
 }
 
