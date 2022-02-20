@@ -16,6 +16,7 @@ export interface ILanguageKeys {
 	SITE_SUBTITLE: "SITE_SUBTITLE";
 	LOCALE_SELECTOR_TITLE: "LOCALE_SELECTOR_TITLE";
 	LOCALE_SELECTOR_CLOSE: "LOCALE_SELECTOR_CLOSE";
+	LOCALE_SELECTOR_LANGUAGE_LABEL: "LOCALE_SELECTOR_LANGUAGE_LABEL";
 	MOBILE_MENU_OPEN_LABEL: "MOBILE_MENU_OPEN_LABEL";
 	MOBILE_MENU_CLOSE_LABEL: "MOBILE_MENU_CLOSE_LABEL";
 	ERROR_404_FILE_NOT_FOUND: "ERROR_404_FILE_NOT_FOUND";
@@ -35,8 +36,7 @@ export interface IComponentKeyProps {
 	siteSubtitle: "siteSubtitle";
 	siteLicense: "siteLicense";
 	pageName: "pageName";
-	openLabel: "openLabel";
-	closeLabel: "closeLabel";
+	languageLabel: "languageLabel";
 }
 
 export type ComponentKeyMap = Partial<
