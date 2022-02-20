@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Option } from "./option";
 import { IOption } from "./option";
 import { ComponentProps } from "../../interfaces/models";
@@ -8,18 +8,20 @@ export interface DropDownProps extends ComponentProps {
 	options: IOption[];
 	closeLabel: string;
 	openLabel: string;
+	optionListVisible: boolean;
+	triggerCallback: (state: boolean) => void;
 }
 
 export const DropDown = (props: DropDownProps): JSX.Element => {
-	const { options, translate, className } = props;
+	const { options, translate, triggerCallback, optionListVisible, className } =
+		props;
 	const { openLabel, closeLabel } = props;
-	const [optionListVisible, toggleOptionList] = useState(false);
 
 	const dropDownTrigger = (label: string) => {
 		return (
 			<div
 				className={classes.optionListOpen}
-				onClick={() => toggleOptionList(!optionListVisible)}
+				onClick={() => triggerCallback(!optionListVisible)}
 			>
 				{label}
 			</div>
@@ -29,7 +31,7 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 	return (
 		<div
 			className={style(classes.root, className)}
-			onMouseLeave={() => toggleOptionList(false)}
+			onMouseLeave={() => triggerCallback(false)}
 		>
 			<div className={style(classes.optionListTrigger, { optionListVisible })}>
 				{dropDownTrigger(optionListVisible ? closeLabel : openLabel)}
@@ -45,7 +47,7 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 									current: option.isCurrent,
 									id: option.id,
 								})}
-								closeDropDown={() => toggleOptionList(false)}
+								closeDropDown={() => triggerCallback(false)}
 								translate={translate}
 								{...option}
 							/>
