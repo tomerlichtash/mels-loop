@@ -16,19 +16,21 @@
 	/* user-select: none; */
 	display: block;
 	width: 150px;
-}
-
-.localeDropDown::optionFromDropDown:id(en) {
 	border: 2px solid red;
 }
 
-/* .localeDropDown::optionFromDropDown */
-/* .dropDownContainer {
-} */
+.localeDropDown::optionFromDropDown {
+	position: relative;
+	padding: 0 1rem;
+}
+.localeDropDown::optionFromDropDown:current:id(en) {
+	color: red;
+}
+.localeDropDown::optionFromDropDown:id(he):current {
+	color: blue;
+}
 
-/* .localeDropDown::option::optionContent {
-	font-weight: bold;
-} */
+.dropDownContainer {}
 
 .current {
 }

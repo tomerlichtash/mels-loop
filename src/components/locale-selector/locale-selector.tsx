@@ -5,12 +5,12 @@ import { ComponentProps } from "../../interfaces/models";
 import { IOption } from "../dropdown/option";
 
 export interface LocaleSelectorProps extends ComponentProps {
-	currentLocaleLabel: string;
+	// currentLocaleLabel: string;
 	options: IOption[];
 }
 
 export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
-	const { compKeys, options, currentLocaleLabel, translate, className } = props;
+	const { compKeys, options, translate, className } = props;
 	return (
 		<div className={style(classes.root, className)}>
 			<div className={classes.dropDownContainer}>
@@ -23,7 +23,6 @@ export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 					closeLabel={"LOCALE_SELECTOR_CLOSE"}
 				/>
 			</div>
-			{/* <div className={classes.current}>[{translate(currentLocaleLabel)}]</div> */}
 		</div>
 	);
 };

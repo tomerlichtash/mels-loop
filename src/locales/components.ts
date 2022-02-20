@@ -61,10 +61,10 @@ export const ERROR_GENERAL_LOCALE: ComponentKeyMap = Object.assign(
 	SITE_META
 );
 
-export const NAV_MENU_DROPDOWN_LOCALE: ComponentKeyMap = {
-	openLabel: "MOBILE_MENU_OPEN_LABEL",
-	closeLabel: "MOBILE_MENU_CLOSE_LABEL",
-};
+// export const NAV_MENU_DROPDOWN_LOCALE: ComponentKeyMap = {
+// 	openLabel: "MOBILE_MENU_OPEN_LABEL",
+// 	closeLabel: "MOBILE_MENU_CLOSE_LABEL",
+// };
 
 export const HEADER_LOCALE: ComponentKeyMap = {
 	siteTitle: "SITE_TITLE",

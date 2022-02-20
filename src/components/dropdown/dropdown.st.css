@@ -17,29 +17,27 @@
 }
 
 .optionListOpen {
-	-st-extends: NavButton;
+	/* -st-extends: NavButton; */
 }
 .optionListClose {
-	-st-extends: NavButton;
+	/* -st-extends: NavButton; */
 }
 
-.optionListContainer {}
+.optionListContainer {
+	background: #fff;
+}
 .optionList {}
 
 .optionFromDropDown {
-	-st-states: current(boolean);;
 	-st-extends: Option;
-	-st-mixin: NavButton;
-	position: relative;
-	padding: 0 1rem;
+	/* -st-mixin: NavButton; */
 }
 
 .optionFromDropDown::optionContent {
 	display: block;
 }
 
-
-.optionFromDropDown:current::after {
+.optionFromDropDown:current:id(en)::after {
 	content: 'V';
 	position: absolute;
 	top: 0;

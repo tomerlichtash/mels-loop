@@ -2,7 +2,7 @@ import React from "react";
 import NavButton from "./nav-button";
 import DropDown from "../dropdown";
 import { ComponentProps, SitePage } from "../../interfaces/models";
-import { NAV_MENU_DROPDOWN_LOCALE } from "../../locales/components";
+// import { NAV_MENU_DROPDOWN_LOCALE } from "../../locales/components";
 import { IOption } from "../dropdown/option";
 import { style, classes } from "./nav.st.css";
 
@@ -47,9 +47,11 @@ export const Nav = (props: NavProps): JSX.Element => {
 						};
 					}) as IOption[]
 				}
-				compKeys={NAV_MENU_DROPDOWN_LOCALE}
+				// compKeys={NAV_MENU_DROPDOWN_LOCALE}
 				translate={translate}
 				className={classes.mobileNav}
+				openLabel={"someOpenLabel"}
+				closeLabel={"someCloseLabel"}
 			/>
 		</nav>
 	);

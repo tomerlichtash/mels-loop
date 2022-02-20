@@ -25,7 +25,7 @@ export const Option = (props: IOption): JSX.Element => {
 		className,
 	} = props;
 	return (
-		<li className={style(classes.root, className)}>
+		<li className={style(classes.root, { current: isCurrent, id }, className)}>
 			{callback && (
 				<span
 					title={label}
@@ -34,7 +34,7 @@ export const Option = (props: IOption): JSX.Element => {
 						closeDropDown();
 						return callback(id);
 					}}
-					className={style(classes.optionContent, { current: isCurrent, id })}
+					className={style(classes.optionContent)}
 				>
 					{translate(label)}
 				</span>
@@ -44,7 +44,7 @@ export const Option = (props: IOption): JSX.Element => {
 					<a
 						title={label}
 						aria-label={label}
-						className={style(classes.optionContent, { current: isCurrent })}
+						className={style(classes.optionContent)}
 					>
 						{translate(label)}
 					</a>
