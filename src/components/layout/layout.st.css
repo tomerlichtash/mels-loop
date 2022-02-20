@@ -5,6 +5,10 @@
 	-st-named: LayoutBgColor, shadow1;
 }
 
+:import {
+	-st-from: "../locale-selector/locale-selector.st.css";
+	-st-default: LocaleSelector;
+}
 :global(*):focus {
 	/* box-shadow: value(shadow1); */
 	outline: none;
@@ -67,4 +71,10 @@
 .header {}
 .footer {}
 .page {}
-.localeSelector {}
+
+.localeSelector {
+	-st-extends: LocaleSelector;
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+}

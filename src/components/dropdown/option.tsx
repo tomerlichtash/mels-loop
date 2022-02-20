@@ -10,6 +10,7 @@ export interface IOption extends ComponentProps {
 	isCurrent?: boolean;
 	callback?: (id: string) => void;
 	closeDropDown?: () => void;
+	className?: string;
 }
 
 export const Option = (props: IOption): JSX.Element => {
@@ -18,46 +19,55 @@ export const Option = (props: IOption): JSX.Element => {
 		targetPathname,
 		label,
 		isCurrent,
-		className,
 		translate,
 		callback,
 		closeDropDown,
+		className,
 	} = props;
+	const optionLabel = translate(label);
+	if (isCurrent) {
+		return (
+			<li
+				className={style(classes.root, className)}
+				onClick={() => {
+					closeDropDown();
+				}}
+			>
+				<span
+					title={optionLabel}
+					aria-label={optionLabel}
+					className={classes.optionContent}
+				>
+					{optionLabel}
+				</span>
+			</li>
+		);
+	}
 	return (
-		<li className={classes.root}>
+		<li
+			className={style(classes.root, className)}
+			onClick={() => {
+				closeDropDown();
+				return callback(id);
+			}}
+		>
 			{callback && (
 				<span
-					title={label}
-					aria-label={label}
-					onClick={() => {
-						closeDropDown();
-						return callback(id);
-					}}
-					className={style(
-						classes.optionContent,
-						{
-							current: isCurrent,
-						},
-						className
-					)}
+					title={optionLabel}
+					aria-label={optionLabel}
+					className={classes.optionContent}
 				>
-					{translate(label)}
+					{optionLabel}
 				</span>
 			)}
 			{targetPathname && (
 				<Link href={`${targetPathname}`}>
 					<a
-						title={label}
-						aria-label={label}
-						className={style(
-							classes.optionContent,
-							{
-								current: isCurrent,
-							},
-							className
-						)}
+						title={optionLabel}
+						aria-label={optionLabel}
+						className={style(classes.optionContent)}
 					>
-						{translate(label)}
+						{optionLabel}
 					</a>
 				</Link>
 			)}
