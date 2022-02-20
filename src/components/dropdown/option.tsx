@@ -24,29 +24,50 @@ export const Option = (props: IOption): JSX.Element => {
 		closeDropDown,
 		className,
 	} = props;
+	const optionLabel = translate(label);
+	if (isCurrent) {
+		return (
+			<li
+				className={style(classes.root, className)}
+				onClick={() => {
+					closeDropDown();
+				}}
+			>
+				<span
+					title={optionLabel}
+					aria-label={optionLabel}
+					className={classes.optionContent}
+				>
+					{optionLabel}
+				</span>
+			</li>
+		);
+	}
 	return (
-		<li className={style(classes.root, { current: isCurrent, id }, className)}>
+		<li
+			className={style(classes.root, className)}
+			onClick={() => {
+				closeDropDown();
+				return callback(id);
+			}}
+		>
 			{callback && (
 				<span
-					title={label}
-					aria-label={label}
-					onClick={() => {
-						closeDropDown();
-						return callback(id);
-					}}
-					className={style(classes.optionContent)}
+					title={optionLabel}
+					aria-label={optionLabel}
+					className={classes.optionContent}
 				>
-					{translate(label)}
+					{optionLabel}
 				</span>
 			)}
 			{targetPathname && (
 				<Link href={`${targetPathname}`}>
 					<a
-						title={label}
-						aria-label={label}
+						title={optionLabel}
+						aria-label={optionLabel}
 						className={style(classes.optionContent)}
 					>
-						{translate(label)}
+						{optionLabel}
 					</a>
 				</Link>
 			)}

@@ -14,6 +14,7 @@
 }
 
 .optionListTrigger {
+	-st-states: optionListVisible(boolean);
 }
 
 .optionListOpen {
@@ -26,21 +27,10 @@
 .optionListContainer {
 	background: #fff;
 }
-.optionList {}
+
+.optionList {
+}
 
 .optionFromDropDown {
-	-st-extends: Option;
-	/* -st-mixin: NavButton; */
+	-st-states: current(boolean), id(string);
 }
-
-.optionFromDropDown::optionContent {
-	display: block;
-}
-
-.optionFromDropDown:current:id(en)::after {
-	content: 'V';
-	position: absolute;
-	top: 0;
-	left: 0px;
-}
-

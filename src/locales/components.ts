@@ -77,6 +77,5 @@ export const FOOTER_LOCALE: ComponentKeyMap = {
 };
 
 export const LOCALE_SELECTOR_LOCALE: ComponentKeyMap = {
-	openLabel: "LOCALE_SELECTOR_TITLE",
-	closeLabel: "LOCALE_SELECTOR_CLOSE",
+	languageLabel: "LOCALE_SELECTOR_LANGUAGE_LABEL",
 };

@@ -11,10 +11,9 @@ export interface DropDownProps extends ComponentProps {
 }
 
 export const DropDown = (props: DropDownProps): JSX.Element => {
-	const { compKeys, options, translate, className } = props;
-	// const { openLabel, closeLabel } = compKeys;
+	const { options, translate, className } = props;
 	const { openLabel, closeLabel } = props;
-	const [optionListVisible, toggleOptionList] = useState(true);
+	const [optionListVisible, toggleOptionList] = useState(false);
 
 	const dropDownTrigger = (label: string) => {
 		return (
@@ -22,7 +21,7 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 				className={classes.optionListOpen}
 				onClick={() => toggleOptionList(!optionListVisible)}
 			>
-				{translate(label)}
+				{label}
 			</div>
 		);
 	};
@@ -32,9 +31,8 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 			className={style(classes.root, className)}
 			onMouseLeave={() => toggleOptionList(false)}
 		>
-			<div className={classes.optionListTrigger}>
+			<div className={style(classes.optionListTrigger, { optionListVisible })}>
 				{dropDownTrigger(optionListVisible ? closeLabel : openLabel)}
-				{/* {optionListVisible ? closeTrigger : openTrigger} */}
 			</div>
 
 			{optionListVisible && (
@@ -45,6 +43,7 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 								key={option.id}
 								className={style(classes.optionFromDropDown, {
 									current: option.isCurrent,
+									id: option.id,
 								})}
 								closeDropDown={() => toggleOptionList(false)}
 								translate={translate}

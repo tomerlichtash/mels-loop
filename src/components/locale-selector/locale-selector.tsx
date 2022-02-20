@@ -11,6 +11,7 @@ export interface LocaleSelectorProps extends ComponentProps {
 
 export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 	const { compKeys, options, translate, className } = props;
+	const currentLang = options.find((d) => d.isCurrent).label;
 	return (
 		<div className={style(classes.root, className)}>
 			<div className={classes.dropDownContainer}>
@@ -19,8 +20,10 @@ export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 					options={options}
 					compKeys={compKeys}
 					translate={translate}
-					openLabel={options.find((d) => d.isCurrent).label}
-					closeLabel={"LOCALE_SELECTOR_CLOSE"}
+					openLabel={`${translate(
+						"LOCALE_SELECTOR_LANGUAGE_LABEL"
+					)}: ${translate(currentLang)}`}
+					closeLabel={`${translate("LOCALE_SELECTOR_CLOSE")}`}
 				/>
 			</div>
 		</div>

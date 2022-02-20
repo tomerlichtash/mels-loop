@@ -73,7 +73,6 @@ export default function Layout(props: LayoutProps) {
 				/>
 				<LocaleSelector
 					className={classes.localeSelector}
-					currentLocaleLabel={`LOCALE_LABEL_${locale.toUpperCase()}`}
 					options={localeSelectorOptions}
 					compKeys={LOCALE_SELECTOR_LOCALE}
 					translate={translate}
