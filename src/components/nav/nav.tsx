@@ -48,6 +48,8 @@ export const Nav = (props: NavProps): JSX.Element => {
 					}) as IOption[]
 				}
 				// compKeys={NAV_MENU_DROPDOWN_LOCALE}
+				triggerCallback={() => false}
+				optionListVisible={false}
 				translate={translate}
 				className={classes.mobileNav}
 				openLabel={"someOpenLabel"}
