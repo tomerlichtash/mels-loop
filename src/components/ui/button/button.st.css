@@ -1,0 +1,5 @@
+@namespace "Button";
+
+.root {
+	-st-states: selected(boolean);
+}

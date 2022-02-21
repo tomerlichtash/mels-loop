@@ -9,12 +9,19 @@ export interface DropDownProps extends ComponentProps {
 	closeLabel: string;
 	openLabel: string;
 	optionListVisible: boolean;
+	onSelectChange: (id: string) => void;
 	triggerCallback: (state: boolean) => void;
 }
 
 export const DropDown = (props: DropDownProps): JSX.Element => {
-	const { options, translate, triggerCallback, optionListVisible, className } =
-		props;
+	const {
+		options,
+		onSelectChange,
+		translate,
+		triggerCallback,
+		optionListVisible,
+		className,
+	} = props;
 	const { openLabel, closeLabel } = props;
 
 	const dropDownTrigger = (label: string) => {
@@ -48,8 +55,13 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 									id: option.id,
 								})}
 								closeDropDown={() => triggerCallback(false)}
-								translate={translate}
-								{...option}
+								onSelectChange={onSelectChange}
+								label={translate(option.label)}
+								isCurrent={option.isCurrent}
+								id={option.id}
+								targetPathname={option.targetPathname}
+								// translate={translate}
+								// {...option}
 							/>
 						))}
 					</ul>

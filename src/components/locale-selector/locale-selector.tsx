@@ -6,11 +6,12 @@ import { IOption } from "../dropdown/option";
 
 export interface LocaleSelectorProps extends ComponentProps {
 	options: IOption[];
+	onSelectChange: (locale: string) => void;
 }
 
 export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 	const [optionListVisible, toggleOptionList] = useState(false);
-	const { compKeys, options, translate, className } = props;
+	const { compKeys, options, onSelectChange, translate, className } = props;
 	const currentLang = options.find((d) => d.isCurrent).label;
 	return (
 		<div className={style(classes.root, className)}>
@@ -20,6 +21,7 @@ export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 					options={options}
 					compKeys={compKeys}
 					triggerCallback={toggleOptionList}
+					onSelectChange={onSelectChange}
 					optionListVisible={optionListVisible}
 					translate={translate}
 					openLabel={`${translate(

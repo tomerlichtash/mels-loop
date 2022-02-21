@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./option.st.css";
 
@@ -9,6 +9,7 @@ export interface IOption extends ComponentProps {
 	targetPathname?: string;
 	isCurrent?: boolean;
 	callback?: (id: string) => void;
+	onSelectChange: (id: string) => void;
 	closeDropDown?: () => void;
 	className?: string;
 }
@@ -19,58 +20,49 @@ export const Option = (props: IOption): JSX.Element => {
 		targetPathname,
 		label,
 		isCurrent,
-		translate,
 		callback,
+		onSelectChange,
 		closeDropDown,
 		className,
 	} = props;
-	const optionLabel = translate(label);
+
 	if (isCurrent) {
 		return (
-			<li
-				className={style(classes.root, className)}
-				onClick={() => {
-					closeDropDown();
-				}}
-			>
-				<span
-					title={optionLabel}
-					aria-label={optionLabel}
+			<li className={style(classes.root, className)}>
+				<Button
+					label={label}
 					className={classes.optionContent}
-				>
-					{optionLabel}
-				</span>
+					callback={closeDropDown}
+				/>
 			</li>
 		);
 	}
-	return (
-		<li
-			className={style(classes.root, className)}
-			onClick={() => {
-				closeDropDown();
-				return callback(id);
-			}}
-		>
-			{callback && (
-				<span
-					title={optionLabel}
-					aria-label={optionLabel}
+
+	if (targetPathname && !onSelectChange && !callback) {
+		return (
+			<li className={style(classes.root, className)}>
+				<Button
+					label={label}
+					id={id}
+					callback={() => closeDropDown()}
+					link={targetPathname}
 					className={classes.optionContent}
-				>
-					{optionLabel}
-				</span>
-			)}
-			{targetPathname && (
-				<Link href={`${targetPathname}`}>
-					<a
-						title={optionLabel}
-						aria-label={optionLabel}
-						className={style(classes.optionContent)}
-					>
-						{optionLabel}
-					</a>
-				</Link>
-			)}
+				/>
+			</li>
+		);
+	}
+
+	return (
+		<li className={style(classes.root, className)}>
+			<Button
+				label={label}
+				id={id}
+				callback={() => {
+					closeDropDown();
+					return onSelectChange(id);
+				}}
+				className={classes.optionContent}
+			/>
 		</li>
 	);
 };

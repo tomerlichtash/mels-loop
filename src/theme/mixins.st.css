@@ -1,8 +1,17 @@
 @namespace "Mixins";
 
+:import {
+	-st-from: "../components/ui/button/button.st.css";
+	-st-default: Button;
+}
+
 .NavButton {
-	/* padding: 0 1rem; */
+	-st-extends: Button;
 	cursor: pointer;
+}
+
+.NavButton:selected {
+	color: red;
 }
 
 .NavButton:hover {

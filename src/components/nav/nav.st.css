@@ -4,6 +4,12 @@
 	-st-from: "../../theme/common.st.css";
 	-st-named: siteHeaderHeight, shadow1, PageWidth;
 }
+
+:import {
+	-st-from: "../ui/button/button.st.css";
+	-st-default: Button;
+}
+
 :import {
 	-st-from: "../../theme/mixins.st.css";
 	-st-named: NavButton;
@@ -61,6 +67,9 @@
 }
 
 .button {
-	flex: 1;
-	text-align: center;
+	-st-extends: Button;
+	-st-mixin: NavButton;
+	/* flex: 1;
+	text-align: center; */
 }
+
