@@ -4,6 +4,7 @@ import Nav from "../nav";
 import { SitePage } from "../../interfaces/models";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./header.st.css";
+import { Button } from "../ui";
 
 export interface HeaderProps extends ComponentProps {
 	pathname: string;
@@ -34,14 +35,19 @@ export const Header = (props: HeaderProps): JSX.Element => {
 					) : (
 						<div className={classes.titleContainer}>
 							<h1 className={classes.siteTitle}>
-								<Link href="/">
+								<Button
+									label={title}
+									title={`${title} - ${subtitle}`}
+									link={"/"}
+								/>
+								{/* <Link href="/">
 									<a
 										title={`${title} - ${subtitle}`}
 										aria-label={`${title} - ${subtitle}`}
 									>
 										{title}
 									</a>
-								</Link>
+								</Link> */}
 							</h1>
 							<span className={classes.siteSubtitle}>{subtitle}</span>
 						</div>

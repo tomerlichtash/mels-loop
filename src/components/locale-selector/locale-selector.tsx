@@ -27,7 +27,7 @@ export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 					openLabel={`${translate(
 						"LOCALE_SELECTOR_LANGUAGE_LABEL"
 					)}: ${translate(currentLang)}`}
-					closeLabel={`${translate("LOCALE_SELECTOR_CLOSE")}`}
+					closeLabel={`x ${translate("LOCALE_SELECTOR_CLOSE")}`}
 				/>
 			</div>
 		</div>

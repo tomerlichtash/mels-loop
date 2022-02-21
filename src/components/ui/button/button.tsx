@@ -5,6 +5,7 @@ import { style, classes } from "./button.st.css";
 
 export interface ButtonProps extends ComponentProps {
 	label?: string;
+	title?: string;
 	icon?: string;
 	link?: string;
 	id?: string;
@@ -14,14 +15,14 @@ export interface ButtonProps extends ComponentProps {
 }
 
 export const Button = (props: ButtonProps): JSX.Element => {
-	const { id, label, link, selected, callback, className } = props;
+	const { id, label, title, link, selected, callback, className } = props;
 
 	if (link) {
 		return (
 			<Link href={`${link}`}>
 				<a
-					title={label}
-					aria-label={label}
+					title={title || label}
+					aria-label={title || label}
 					className={style(classes.root, { selected }, className)}
 				>
 					{label}
@@ -32,8 +33,8 @@ export const Button = (props: ButtonProps): JSX.Element => {
 
 	return (
 		<span
-			title={label}
-			aria-label={label}
+			title={title || label}
+			aria-label={title || label}
 			onClick={() => callback(id)}
 			className={style(classes.root, { selected }, className)}
 		>
