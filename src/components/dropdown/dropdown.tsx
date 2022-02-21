@@ -3,14 +3,15 @@ import { Option } from "./option";
 import { IOption } from "./option";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./dropdown.st.css";
+import { Button } from "../ui";
 
 export interface DropDownProps extends ComponentProps {
 	options: IOption[];
 	closeLabel: string;
 	openLabel: string;
-	optionListVisible: boolean;
-	onSelectChange: (id: string) => void;
-	triggerCallback: (state: boolean) => void;
+	optionListVisible?: boolean;
+	onSelectChange?: (id: string) => void;
+	triggerCallback?: (state: boolean) => void;
 }
 
 export const DropDown = (props: DropDownProps): JSX.Element => {
@@ -24,24 +25,17 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 	} = props;
 	const { openLabel, closeLabel } = props;
 
-	const dropDownTrigger = (label: string) => {
-		return (
-			<div
-				className={classes.optionListOpen}
-				onClick={() => triggerCallback(!optionListVisible)}
-			>
-				{label}
-			</div>
-		);
-	};
-
 	return (
 		<div
 			className={style(classes.root, className)}
 			onMouseLeave={() => triggerCallback(false)}
 		>
 			<div className={style(classes.optionListTrigger, { optionListVisible })}>
-				{dropDownTrigger(optionListVisible ? closeLabel : openLabel)}
+				<Button
+					className={classes.optionListOpen}
+					callback={() => triggerCallback(!optionListVisible)}
+					label={optionListVisible ? closeLabel : openLabel}
+				/>
 			</div>
 
 			{optionListVisible && (

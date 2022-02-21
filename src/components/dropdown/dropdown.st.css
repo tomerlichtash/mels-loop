@@ -31,5 +31,7 @@
 }
 
 .optionFromDropDown {
+	-st-extends: Option;
 	-st-states: current(boolean), id(string);
 }
+

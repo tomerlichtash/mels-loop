@@ -29,7 +29,6 @@ export default function Layout(props: LayoutProps) {
 	const { locale, locales, pathname } = router;
 
 	const onSelectChange = (locale: string) => {
-		debugger;
 		router.push(router.asPath, router.asPath, {
 			locale,
 			scroll: false,
@@ -46,7 +45,7 @@ export default function Layout(props: LayoutProps) {
 			id: lang,
 			label: `${localeLabelPrefix}_${lang.toUpperCase()}`,
 			isCurrent: locale === lang,
-			callback: onSelectChange,
+			onSelectChange,
 		};
 	});
 

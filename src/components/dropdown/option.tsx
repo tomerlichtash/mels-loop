@@ -8,7 +8,6 @@ export interface IOption extends ComponentProps {
 	label: string;
 	targetPathname?: string;
 	isCurrent?: boolean;
-	callback?: (id: string) => void;
 	onSelectChange: (id: string) => void;
 	closeDropDown?: () => void;
 	className?: string;
@@ -20,7 +19,6 @@ export const Option = (props: IOption): JSX.Element => {
 		targetPathname,
 		label,
 		isCurrent,
-		callback,
 		onSelectChange,
 		closeDropDown,
 		className,
@@ -38,7 +36,7 @@ export const Option = (props: IOption): JSX.Element => {
 		);
 	}
 
-	if (targetPathname && !onSelectChange && !callback) {
+	if (targetPathname && !onSelectChange) {
 		return (
 			<li className={style(classes.root, className)}>
 				<Button

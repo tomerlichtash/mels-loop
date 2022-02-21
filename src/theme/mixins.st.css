@@ -8,6 +8,8 @@
 .NavButton {
 	-st-extends: Button;
 	cursor: pointer;
+	padding: 10px;
+	text-decoration: none;
 }
 
 .NavButton:selected {
