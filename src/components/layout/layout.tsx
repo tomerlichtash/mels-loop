@@ -16,7 +16,9 @@ import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { style, classes } from "./layout.st.css";
+import { SomeSvg } from "../svg";
 
+// import IconComp from "../../assets/svg/source_icons_computer.svg";
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
 	translate: (key: string) => string;
@@ -29,7 +31,7 @@ export default function Layout(props: LayoutProps) {
 	const { locale, locales, pathname } = router;
 
 	const onSelectChange = (locale: string) => {
-		router.push(router.asPath, router.asPath, {
+		return router.push(router.asPath, router.asPath, {
 			locale,
 			scroll: false,
 		});
@@ -45,6 +47,7 @@ export default function Layout(props: LayoutProps) {
 			id: lang,
 			label: `${localeLabelPrefix}_${lang.toUpperCase()}`,
 			isCurrent: locale === lang,
+			icon: SomeSvg,
 			onSelectChange,
 		};
 	});

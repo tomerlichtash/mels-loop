@@ -14,13 +14,7 @@
 }
 
 .optionListTrigger {
-	-st-states: optionListVisible(boolean);
-}
-
-.optionListOpen {
-}
-
-.optionListClose {
+	-st-states: id(string), optionListVisible(boolean);
 }
 
 .optionListContainer {
@@ -30,7 +24,7 @@
 .optionList {
 }
 
-.optionFromDropDown {
+.option {
 	-st-extends: Option;
 	-st-states: current(boolean), id(string);
 }

@@ -20,14 +20,14 @@ export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 					className={style(classes.localeDropDown)}
 					options={options}
 					compKeys={compKeys}
+					optionListVisible={optionListVisible}
 					triggerCallback={toggleOptionList}
 					onSelectChange={onSelectChange}
-					optionListVisible={optionListVisible}
 					translate={translate}
 					openLabel={`${translate(
 						"LOCALE_SELECTOR_LANGUAGE_LABEL"
 					)}: ${translate(currentLang)}`}
-					closeLabel={`x ${translate("LOCALE_SELECTOR_CLOSE")}`}
+					closeLabel={`${translate("LOCALE_SELECTOR_CLOSE")}`}
 				/>
 			</div>
 		</div>

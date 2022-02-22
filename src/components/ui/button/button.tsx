@@ -11,11 +11,12 @@ export interface ButtonProps extends ComponentProps {
 	id?: string;
 	selected?: boolean;
 	callback?: (id: string) => void;
-	className?: string;
 }
 
 export const Button = (props: ButtonProps): JSX.Element => {
-	const { id, label, title, link, selected, callback, className } = props;
+	const { id, label, icon, title, link, selected, callback, className } = props;
+
+	console.log(icon);
 
 	if (link) {
 		return (
@@ -25,7 +26,8 @@ export const Button = (props: ButtonProps): JSX.Element => {
 					aria-label={title || label}
 					className={style(classes.root, { selected }, className)}
 				>
-					{label}
+					<span className={classes.icon}>{icon}</span>
+					<span className={classes.label}>{label}</span>
 				</a>
 			</Link>
 		);
@@ -38,7 +40,8 @@ export const Button = (props: ButtonProps): JSX.Element => {
 			onClick={() => callback(id)}
 			className={style(classes.root, { selected }, className)}
 		>
-			{label}
+			<span className={classes.icon}>{icon}</span>
+			<span className={classes.label}>{label}</span>
 		</span>
 	);
 };

@@ -1,8 +1,15 @@
 @namespace "Option";
 
-.root {
-	text-decoration: none;
+:import {
+	-st-from: "../ui/button/button.st.css";
+	-st-default: Button;
 }
 
-.optionContent {
+.root {
+	text-decoration: none;
+	-st-states: id(string);
+}
+
+.optionButton {
+	-st-extends: Button;
 }

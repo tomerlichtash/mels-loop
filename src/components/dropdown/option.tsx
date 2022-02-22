@@ -2,15 +2,16 @@ import React from "react";
 import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./option.st.css";
+import IconComp from "../../assets/svg/source_icons_computer.svg";
 
 export interface IOption extends ComponentProps {
 	id: string;
 	label: string;
+	icon?: string;
 	targetPathname?: string;
 	isCurrent?: boolean;
 	onSelectChange: (id: string) => void;
 	closeDropDown?: () => void;
-	className?: string;
 }
 
 export const Option = (props: IOption): JSX.Element => {
@@ -19,6 +20,7 @@ export const Option = (props: IOption): JSX.Element => {
 		targetPathname,
 		label,
 		isCurrent,
+		icon,
 		onSelectChange,
 		closeDropDown,
 		className,
@@ -26,10 +28,11 @@ export const Option = (props: IOption): JSX.Element => {
 
 	if (isCurrent) {
 		return (
-			<li className={style(classes.root, className)}>
+			<li className={style(classes.root, { id }, className)}>
 				<Button
 					label={label}
-					className={classes.optionContent}
+					icon={icon}
+					className={classes.optionButton}
 					callback={closeDropDown}
 				/>
 			</li>
@@ -38,28 +41,30 @@ export const Option = (props: IOption): JSX.Element => {
 
 	if (targetPathname && !onSelectChange) {
 		return (
-			<li className={style(classes.root, className)}>
+			<li className={style(classes.root, { id }, className)}>
 				<Button
 					label={label}
 					id={id}
+					icon={icon}
 					callback={() => closeDropDown()}
 					link={targetPathname}
-					className={classes.optionContent}
+					className={classes.button}
 				/>
 			</li>
 		);
 	}
 
 	return (
-		<li className={style(classes.root, className)}>
+		<li className={style(classes.root, { id }, className)}>
 			<Button
 				label={label}
 				id={id}
+				icon={IconComp}
 				callback={() => {
 					closeDropDown();
 					return onSelectChange(id);
 				}}
-				className={classes.optionContent}
+				className={classes.optionButton}
 			/>
 		</li>
 	);

@@ -17,49 +17,47 @@ export interface DropDownProps extends ComponentProps {
 export const DropDown = (props: DropDownProps): JSX.Element => {
 	const {
 		options,
+		openLabel,
+		closeLabel,
+		optionListVisible,
 		onSelectChange,
 		translate,
 		triggerCallback,
-		optionListVisible,
 		className,
 	} = props;
-	const { openLabel, closeLabel } = props;
 
 	return (
 		<div
 			className={style(classes.root, className)}
 			onMouseLeave={() => triggerCallback(false)}
 		>
-			<div className={style(classes.optionListTrigger, { optionListVisible })}>
-				<Button
-					className={classes.optionListOpen}
-					callback={() => triggerCallback(!optionListVisible)}
-					label={optionListVisible ? closeLabel : openLabel}
-				/>
-			</div>
-
+			<Button
+				className={style(classes.optionListTrigger, { optionListVisible })}
+				callback={() => triggerCallback(!optionListVisible)}
+				label={optionListVisible ? closeLabel : openLabel}
+			/>
 			{optionListVisible && (
-				<div className={classes.optionListContainer}>
-					<ul className={classes.optionList}>
-						{options.map((option) => (
+				<ul className={classes.optionList}>
+					{options.map((option) => {
+						const { id, icon, label, isCurrent, targetPathname } = option;
+						return (
 							<Option
-								key={option.id}
-								className={style(classes.optionFromDropDown, {
-									current: option.isCurrent,
-									id: option.id,
+								key={id}
+								className={style(classes.option, {
+									current: isCurrent,
+									id,
 								})}
 								closeDropDown={() => triggerCallback(false)}
 								onSelectChange={onSelectChange}
-								label={translate(option.label)}
-								isCurrent={option.isCurrent}
-								id={option.id}
-								targetPathname={option.targetPathname}
-								// translate={translate}
-								// {...option}
+								label={translate(label)}
+								isCurrent={isCurrent}
+								icon={icon}
+								id={id}
+								targetPathname={targetPathname}
 							/>
-						))}
-					</ul>
-				</div>
+						);
+					})}
+				</ul>
 			)}
 		</div>
 	);

@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import Nav from "../nav";
 import { SitePage } from "../../interfaces/models";
 import { ComponentProps } from "../../interfaces/models";
@@ -17,6 +16,7 @@ export const Header = (props: HeaderProps): JSX.Element => {
 	const { siteTitle, siteSubtitle } = compKeys;
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
+	const fullTitle = `${title} - ${subtitle}`;
 	return (
 		<header className={style(classes.root, className)}>
 			<div className={classes.container}>
@@ -25,8 +25,8 @@ export const Header = (props: HeaderProps): JSX.Element => {
 						<div className={classes.titleContainer}>
 							<h1
 								className={classes.siteTitle}
-								title={`${title} - ${subtitle}`}
-								aria-label={`${title} - ${subtitle}`}
+								title={fullTitle}
+								aria-label={fullTitle}
 							>
 								{title}
 							</h1>
@@ -35,19 +35,7 @@ export const Header = (props: HeaderProps): JSX.Element => {
 					) : (
 						<div className={classes.titleContainer}>
 							<h1 className={classes.siteTitle}>
-								<Button
-									label={title}
-									title={`${title} - ${subtitle}`}
-									link={"/"}
-								/>
-								{/* <Link href="/">
-									<a
-										title={`${title} - ${subtitle}`}
-										aria-label={`${title} - ${subtitle}`}
-									>
-										{title}
-									</a>
-								</Link> */}
+								<Button label={title} title={fullTitle} link={"/"} />
 							</h1>
 							<span className={classes.siteSubtitle}>{subtitle}</span>
 						</div>
