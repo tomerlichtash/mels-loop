@@ -16,8 +16,8 @@
 	user-select: none;
 	display: block;
 	width: 200px;
-	border: 1px solid red;
-	background: green;
+	/* border: 1px solid red; */
+	background: #fff;
 }
 
 .localeDropDown::optionList {
@@ -119,6 +119,22 @@
 	/* background: url(../../assets/svg/source_icons_computer.svg); */
 	/* background-size: contain; */
 }
+
 .localeDropDown::option:id(he)::optionButton::icon {
 	color: blue;
+}
+
+
+.localeDropDown::option::optionButton::labelContainer{
+	padding: 0 10px;
+}
+
+.localeDropDown::option::optionButton::iconContainer {
+	/* padding: 0 10px; */
+}
+
+.localeDropDown::option::optionButton::icon {
+	/* top: 2px; */
+	width: 15px;
+	height: 15px;
 }

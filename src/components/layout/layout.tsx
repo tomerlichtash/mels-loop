@@ -15,10 +15,9 @@ import {
 import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
+import { LOCALE_FLAGS } from "../svg";
 import { style, classes } from "./layout.st.css";
-import { SomeSvg } from "../svg";
 
-// import IconComp from "../../assets/svg/source_icons_computer.svg";
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
 	translate: (key: string) => string;
@@ -47,7 +46,7 @@ export default function Layout(props: LayoutProps) {
 			id: lang,
 			label: `${localeLabelPrefix}_${lang.toUpperCase()}`,
 			isCurrent: locale === lang,
-			icon: SomeSvg,
+			icon: LOCALE_FLAGS[lang],
 			onSelectChange,
 		};
 	});

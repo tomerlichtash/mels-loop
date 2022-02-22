@@ -10,7 +10,7 @@ export interface LocaleSelectorProps extends ComponentProps {
 }
 
 export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
-	const [optionListVisible, toggleOptionList] = useState(true);
+	const [optionListVisible, toggleOptionList] = useState(false);
 	const { compKeys, options, onSelectChange, translate, className } = props;
 	const currentLang = options.find((d) => d.isCurrent).label;
 	return (

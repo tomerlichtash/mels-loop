@@ -16,8 +16,6 @@ export interface ButtonProps extends ComponentProps {
 export const Button = (props: ButtonProps): JSX.Element => {
 	const { id, label, icon, title, link, selected, callback, className } = props;
 
-	console.log(icon);
-
 	if (link) {
 		return (
 			<Link href={`${link}`}>
@@ -27,7 +25,7 @@ export const Button = (props: ButtonProps): JSX.Element => {
 					className={style(classes.root, { selected }, className)}
 				>
 					<span className={classes.content}>
-						<span className={classes.icon}>{icon}</span>
+						{icon && <span className={classes.icon}>{icon}</span>}
 						<span className={classes.label}>{label}</span>
 					</span>
 				</a>
@@ -43,8 +41,14 @@ export const Button = (props: ButtonProps): JSX.Element => {
 			className={style(classes.root, { selected }, className)}
 		>
 			<span className={classes.content}>
-				<span className={classes.icon}>{icon}</span>
-				<span className={classes.label}>{label}</span>
+				{icon && (
+					<div className={classes.iconContainer}>
+						<span className={classes.icon}>{icon}</span>
+					</div>
+				)}
+				<div className={classes.labelContainer}>
+					<span className={classes.label}>{label}</span>
+				</div>
 			</span>
 		</span>
 	);
