@@ -4,6 +4,10 @@
 	-st-states: selected(boolean);
 }
 
+.content {
+	display: inline-flex;
+}
+
 .label {}
 
 .icon {}

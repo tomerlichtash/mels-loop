@@ -26,8 +26,10 @@ export const Button = (props: ButtonProps): JSX.Element => {
 					aria-label={title || label}
 					className={style(classes.root, { selected }, className)}
 				>
-					<span className={classes.icon}>{icon}</span>
-					<span className={classes.label}>{label}</span>
+					<span className={classes.content}>
+						<span className={classes.icon}>{icon}</span>
+						<span className={classes.label}>{label}</span>
+					</span>
 				</a>
 			</Link>
 		);
@@ -40,8 +42,10 @@ export const Button = (props: ButtonProps): JSX.Element => {
 			onClick={() => callback(id)}
 			className={style(classes.root, { selected }, className)}
 		>
-			<span className={classes.icon}>{icon}</span>
-			<span className={classes.label}>{label}</span>
+			<span className={classes.content}>
+				<span className={classes.icon}>{icon}</span>
+				<span className={classes.label}>{label}</span>
+			</span>
 		</span>
 	);
 };

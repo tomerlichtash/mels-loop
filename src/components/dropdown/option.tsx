@@ -59,7 +59,7 @@ export const Option = (props: IOption): JSX.Element => {
 			<Button
 				label={label}
 				id={id}
-				icon={IconComp}
+				icon={icon}
 				callback={() => {
 					closeDropDown();
 					return onSelectChange(id);

@@ -116,7 +116,7 @@
 	width: 24px;
 	height: 24px;
 	display: block;
-	background: url(../../assets/svg/source_icons_computer.svg);
+	/* background: url(../../assets/svg/source_icons_computer.svg); */
 	/* background-size: contain; */
 }
 .localeDropDown::option:id(he)::optionButton::icon {
