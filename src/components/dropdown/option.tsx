@@ -34,7 +34,7 @@ export const Option = (props: IOption): JSX.Element => {
 					icon={icon}
 					className={classes.optionButton}
 					callback={closeDropDown}
-				/>
+				/>{" "}
 			</li>
 		);
 	}
@@ -46,7 +46,7 @@ export const Option = (props: IOption): JSX.Element => {
 					label={label}
 					id={id}
 					icon={icon}
-					callback={() => closeDropDown()}
+					callback={closeDropDown}
 					link={targetPathname}
 					className={classes.button}
 				/>
