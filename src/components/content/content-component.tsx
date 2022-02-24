@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
 	ContentComponentProps,
 	IMLParsedNode,
 	MLNODE_TYPES,
 	NODE_LIST_TYPES,
+	PageContentAttributes,
 } from "../../interfaces/models";
 import {
 	Link,
@@ -16,11 +17,14 @@ import {
 import { ContentIterator } from "./content-iterator";
 import { classes } from "./content-component.st.css";
 import CustomImage from "./content-blocks/custom-image";
+import { ReactPageContext } from "../page/page-context";
+import PopoverLink from "./content-blocks/popover-link";
 
 export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 	const data = props.componentData;
 	const node: IMLParsedNode = data.node;
 	const { key, type } = node;
+	const pageContext = useContext(ReactPageContext);
 
 	if (!key) {
 		console.warn("missing key on", node);
@@ -63,7 +67,9 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 		case MLNODE_TYPES.LIST_ITEM:
 			return <ListItem key={key} componentData={data} />;
 		case MLNODE_TYPES.LINK:
-			return <Link key={key} componentData={data} />;
+			return pageContext.hasAttribute(PageContentAttributes.Story) ?
+				<PopoverLink key={key} componentData={data} />
+				: <Link key={key} componentData={data} />;
 		case MLNODE_TYPES.IMAGE:
 				return <CustomImage key={key} componentData={data} />;
 		case MLNODE_TYPES.FIGURE:
