@@ -15,6 +15,7 @@ import {
 import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
+import { LOCALE_FLAGS } from "../svg";
 import { style, classes } from "./layout.st.css";
 
 export interface LayoutProps extends ComponentProps {
@@ -28,11 +29,12 @@ export default function Layout(props: LayoutProps) {
 	const router = useRouter();
 	const { locale, locales, pathname } = router;
 
-	const onSelectChange = (locale: string) =>
-		router.push(router.asPath, router.asPath, {
+	const onSelectChange = (locale: string) => {
+		return router.push(router.asPath, router.asPath, {
 			locale,
 			scroll: false,
 		});
+	};
 
 	const { siteTitle, siteSubtitle } = SITE_META;
 	const isHome = pathname === "/";
@@ -44,7 +46,8 @@ export default function Layout(props: LayoutProps) {
 			id: lang,
 			label: `${localeLabelPrefix}_${lang.toUpperCase()}`,
 			isCurrent: locale === lang,
-			callback: onSelectChange,
+			icon: LOCALE_FLAGS[lang],
+			onSelectChange,
 		};
 	});
 
@@ -75,6 +78,7 @@ export default function Layout(props: LayoutProps) {
 					className={classes.localeSelector}
 					options={localeSelectorOptions}
 					compKeys={LOCALE_SELECTOR_LOCALE}
+					onSelectChange={onSelectChange}
 					translate={translate}
 				/>
 				<Page className={classes.page} nodes={props.children} />
