@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Option } from "./option";
 import { IOption } from "./option";
 import { ComponentProps } from "../../interfaces/models";
@@ -6,38 +6,35 @@ import { style, classes } from "./dropdown.st.css";
 
 export interface DropDownProps extends ComponentProps {
 	options: IOption[];
+	closeLabel: string;
+	openLabel: string;
+	optionListVisible: boolean;
+	triggerCallback: (state: boolean) => void;
 }
 
 export const DropDown = (props: DropDownProps): JSX.Element => {
-	const { compKeys, options, translate, className } = props;
-	const { openLabel, closeLabel } = compKeys;
-	const [optionListVisible, toggleOptionList] = useState(false);
+	const { options, translate, triggerCallback, optionListVisible, className } =
+		props;
+	const { openLabel, closeLabel } = props;
 
-	const openTrigger = (
-		<div
-			className={classes.optionListOpen}
-			onClick={() => toggleOptionList(true)}
-		>
-			{translate(openLabel)}
-		</div>
-	);
-
-	const closeTrigger = (
-		<div
-			className={classes.optionListClose}
-			onClick={() => toggleOptionList(false)}
-		>
-			{translate(closeLabel)}
-		</div>
-	);
+	const dropDownTrigger = (label: string) => {
+		return (
+			<div
+				className={classes.optionListOpen}
+				onClick={() => triggerCallback(!optionListVisible)}
+			>
+				{label}
+			</div>
+		);
+	};
 
 	return (
 		<div
 			className={style(classes.root, className)}
-			onMouseLeave={() => toggleOptionList(false)}
+			onMouseLeave={() => triggerCallback(false)}
 		>
-			<div className={classes.optionListTrigger}>
-				{optionListVisible ? closeTrigger : openTrigger}
+			<div className={style(classes.optionListTrigger, { optionListVisible })}>
+				{dropDownTrigger(optionListVisible ? closeLabel : openLabel)}
 			</div>
 
 			{optionListVisible && (
@@ -46,7 +43,11 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 						{options.map((option) => (
 							<Option
 								key={option.id}
-								closeDropDown={() => toggleOptionList(false)}
+								className={style(classes.optionFromDropDown, {
+									current: option.isCurrent,
+									id: option.id,
+								})}
+								closeDropDown={() => triggerCallback(false)}
 								translate={translate}
 								{...option}
 							/>
