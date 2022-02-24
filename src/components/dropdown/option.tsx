@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./option.st.css";
-import IconComp from "../../assets/svg/source_icons_computer.svg";
 
 export interface IOption extends ComponentProps {
 	id: string;

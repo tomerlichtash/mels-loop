@@ -7,12 +7,12 @@ export const IL = (
 	>
 		<defs>
 			<clipPath id="il-a">
-				<path fill-opacity=".7" d="M-87.6 0H595v512H-87.6z" />
+				<path fillOpacity=".7" d="M-87.6 0H595v512H-87.6z" />
 			</clipPath>
 		</defs>
 		<g
-			fill-rule="evenodd"
-			clip-path="url(#il-a)"
+			fillRule="evenodd"
+			clipPath="url(#il-a)"
 			transform="translate(82.1) scale(.94)"
 		>
 			<path fill="#fff" d="M619.4 512H-112V0h731.4z" />
@@ -37,8 +37,8 @@ export const US = (
 		viewBox="0 0 640 480"
 		width="15px"
 	>
-		<g fill-rule="evenodd">
-			<g stroke-width="1pt">
+		<g fillRule="evenodd">
+			<g strokeWidth="1pt">
 				<path
 					fill="#bd3d44"
 					d="M0 0h972.8v39.4H0zm0 78.8h972.8v39.4H0zm0 78.7h972.8V197H0zm0 78.8h972.8v39.4H0zm0 78.8h972.8v39.4H0zm0 78.7h972.8v39.4H0zm0 78.8h972.8V512H0z"
