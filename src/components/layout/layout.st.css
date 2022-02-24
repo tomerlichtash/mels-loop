@@ -5,14 +5,8 @@
 	-st-named: LayoutBgColor, shadow1;
 }
 
-:import {
-	-st-from: "../locale-selector/locale-selector.st.css";
-	-st-default: LocaleSelector;
-}
 :global(*):focus {
-	/* box-shadow: value(shadow1); */
 	outline: none;
-	/* outline: 2px solid magenta; */
 }
 
 :global(html) {
@@ -37,8 +31,6 @@
 }
 
 .root {
-	/* background: value(LayoutBgColor); */
-	/* padding-top: 2rem; */
 	-st-states: locale(enum(en, he));
 }
 
@@ -52,28 +44,13 @@
 	font-family: "Heebo", sans-serif;
 }
 
-/* @font-face {
-  font-family: "NunitoVar";
-  src: url("../../theme/assets/fonts/Nunito/Nunito-VariableFont_wght.ttf");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Heebo";
-  src: url("../../theme/assets/fonts/Heebo/Heebo-VariableFont_wght.ttf");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-} */
-
 .header {}
+
 .footer {}
+
 .page {}
 
 .localeSelector {
-	-st-extends: LocaleSelector;
 	position: fixed;
 	top: 1rem;
 	left: 1rem;
