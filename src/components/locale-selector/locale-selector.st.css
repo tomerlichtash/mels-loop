@@ -6,10 +6,11 @@
 }
 
 .root {
-	/* background: none; */
 	cursor: pointer;
 	display: flex;
 }
+
+.dropDownContainer {}
 
 .localeDropDown {
 	-st-extends: DropDown;
@@ -19,6 +20,9 @@
 	background: #fff;
 }
 
+.localeDropDown:hover::optionListTrigger {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
 .localeDropDown::optionList {
 	padding: 8px;
 	border: 2px solid #8a9;
@@ -26,26 +30,16 @@
 	border-top: none;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
-	
 }
+
 .localeDropDown::optionListTrigger {
-	/* padding: 8px 18px; */
+	padding: 8px 18px;
 	height: 32px;
 	line-height: 32px;
-	/* padding: 0 18px; */
-
 	display: block;
-	border-radius: 4px;
-	/* border: 2px solid #8a9; */
-	/* background: #fff; */
+	border: 2px solid #8a9;
 }
 
-/* .localeDropDown::optionListTrigger:optionListVisible::before {
-	font-size: 14px;
-	position: absolute;
-	top: 0;
-	content: 'x';
-} */
 .localeDropDown::optionListTrigger:id(en):optionListVisible::before {
 	left: 6px;
 }
@@ -53,22 +47,8 @@
 	right: 6px;
 }
 
-/* .localeDropDown::optionListTrigger:not(:optionListVisible)::before {
-	font-size: 14px;
-	position: absolute;
-	top: 0;
-	content: '+';
-} */
-.localeDropDown::optionListTrigger:id(en):not(:optionListVisible)::before {
-	/* left: 6px; */
-}
-.localeDropDown::optionListTrigger:id(he):not(:optionListVisible)::before {
-	/* right: 6px; */
-}
-
-.localeDropDown::optionListTrigger:hover {
+ .localeDropDown::optionListTrigger:hover {
 	background-color: #f0f0f0;
-	/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); */
 }
 
 .localeDropDown::optionListTrigger:optionListVisible {
@@ -79,29 +59,16 @@
 .localeDropDown::option::optionButton {
 	position: relative;
 	display: block;
-
-	/* border-radius: 4px; */
-	/* height: 32px; */
-	/* line-height: 32px; */
-	/* padding: 0 18px; */
-
 	padding: 0.5rem 0;
-	/* background: yellow; */
 }
 
 .localeDropDown::option::optionButton::labelContainer {
-	/* background: blue; */
 	display: block;
 }
 
 .localeDropDown::option::optionButton::iconContainer {
-	/* background: blue; */
 	display: block;
 	margin: 0 0.5rem;
-}
-
-.localeDropDown::option::optionButton::label {
-	/* background: red; */
 }
 
 .localeDropDown::option::optionButton:hover {
@@ -119,7 +86,6 @@
 	font-size: 10px;
 	line-height: 20px;
 	position: absolute;
-	/* top: 2px; */
 }
 .localeDropDown::option:current:id(en)::optionButton::after {
 	right: 1rem;
@@ -128,28 +94,6 @@
 	left: 1rem;
 }
 
-.dropDownContainer {}
-
-.current {}
-
 .localeDropDown::option::optionButton::icon {
-	/* width: 24px;
-	height: 24px; */
 	display: block;
-	/* width: 15px;
-	height: 15px; */
 }
-
-.localeDropDown::option:id(he)::optionButton::icon {
-	/* color: blue; */
-}
-
-
-.localeDropDown::option::optionButton::labelContainer{
-	/* padding: 0 10px; */
-}
-
-.localeDropDown::option::optionButton::iconContainer {
-	/* padding: 0 10px; */
-}
-
