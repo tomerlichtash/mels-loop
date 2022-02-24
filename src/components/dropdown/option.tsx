@@ -1,16 +1,16 @@
 import React from "react";
-import Link from "next/link";
+import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./option.st.css";
 
 export interface IOption extends ComponentProps {
 	id: string;
 	label: string;
+	icon?: string;
 	targetPathname?: string;
 	isCurrent?: boolean;
-	callback?: (id: string) => void;
+	onSelectChange: (id: string) => void;
 	closeDropDown?: () => void;
-	className?: string;
 }
 
 export const Option = (props: IOption): JSX.Element => {
@@ -19,58 +19,52 @@ export const Option = (props: IOption): JSX.Element => {
 		targetPathname,
 		label,
 		isCurrent,
-		translate,
-		callback,
+		icon,
+		onSelectChange,
 		closeDropDown,
 		className,
 	} = props;
-	const optionLabel = translate(label);
+
 	if (isCurrent) {
 		return (
-			<li
-				className={style(classes.root, className)}
-				onClick={() => {
-					closeDropDown();
-				}}
-			>
-				<span
-					title={optionLabel}
-					aria-label={optionLabel}
-					className={classes.optionContent}
-				>
-					{optionLabel}
-				</span>
+			<li className={style(classes.root, { id }, className)}>
+				<Button
+					label={label}
+					icon={icon}
+					className={classes.optionButton}
+					callback={closeDropDown}
+				/>{" "}
 			</li>
 		);
 	}
+
+	if (targetPathname && !onSelectChange) {
+		return (
+			<li className={style(classes.root, { id }, className)}>
+				<Button
+					label={label}
+					id={id}
+					icon={icon}
+					callback={closeDropDown}
+					link={targetPathname}
+					className={classes.button}
+				/>
+			</li>
+		);
+	}
+
 	return (
-		<li
-			className={style(classes.root, className)}
-			onClick={() => {
-				closeDropDown();
-				return callback(id);
-			}}
-		>
-			{callback && (
-				<span
-					title={optionLabel}
-					aria-label={optionLabel}
-					className={classes.optionContent}
-				>
-					{optionLabel}
-				</span>
-			)}
-			{targetPathname && (
-				<Link href={`${targetPathname}`}>
-					<a
-						title={optionLabel}
-						aria-label={optionLabel}
-						className={style(classes.optionContent)}
-					>
-						{optionLabel}
-					</a>
-				</Link>
-			)}
+		<li className={style(classes.root, { id }, className)}>
+			<Button
+				label={label}
+				id={id}
+				icon={icon}
+				callback={() => {
+					closeDropDown();
+					return onSelectChange(id);
+				}}
+				className={classes.optionButton}
+			/>
 		</li>
 	);
 };

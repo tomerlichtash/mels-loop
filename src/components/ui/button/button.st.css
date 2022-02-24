@@ -1,0 +1,25 @@
+@namespace "Button";
+
+.root {
+	-st-states: selected(boolean);
+}
+
+.content {
+	display: inline-flex;
+}
+
+.labelContainer {
+}
+
+.iconContainer {
+	overflow: hidden;
+	width: 100%;
+	text-align: center;
+}
+
+.label {}
+
+.icon {
+	position: relative;
+	display: inline-block;
+}
