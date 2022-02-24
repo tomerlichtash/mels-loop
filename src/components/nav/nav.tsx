@@ -1,5 +1,5 @@
 import React from "react";
-import NavButton from "./nav-button";
+import { Button } from "../ui";
 import DropDown from "../dropdown";
 import { ComponentProps, SitePage } from "../../interfaces/models";
 import { IOption } from "../dropdown/option";
@@ -17,36 +17,34 @@ export const Nav = (props: NavProps): JSX.Element => {
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
 				<ul className={classes.list}>
-					{sitePages.map(
-						(option) =>
+					{sitePages.map((option) => {
+						const isCurrent = pathname === option.targetPathname;
+						const { label, id, targetPathname } = option;
+						return (
 							option.menuNav && (
 								<li
-									className={style(classes.listItem, {
-										isCurrent: pathname === option.targetPathname,
-									})}
-									key={`page-${option.id}`}
+									className={style(classes.listItem, { isCurrent })}
+									key={`page-${id}`}
 								>
-									<NavButton
-										label={translate(option.label)}
-										pageName={option.targetPathname}
-										isCurrent={pathname === option.targetPathname}
+									<Button
+										label={translate(label)}
+										link={targetPathname}
+										selected={isCurrent}
 										className={classes.button}
 									/>
 								</li>
 							)
-					)}
+						);
+					})}
 				</ul>
 			</div>
 			<DropDown
 				options={
-					sitePages.map((p) => {
-						return {
-							label: p.label,
-							targetPathname: p.targetPathname,
-						};
+					sitePages.map((page) => {
+						const { label, targetPathname } = page;
+						return { label, targetPathname };
 					}) as IOption[]
 				}
-				// compKeys={NAV_MENU_DROPDOWN_LOCALE}
 				triggerCallback={() => false}
 				optionListVisible={false}
 				translate={translate}
