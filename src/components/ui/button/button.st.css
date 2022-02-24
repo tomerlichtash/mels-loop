@@ -14,17 +14,12 @@
 .iconContainer {
 	overflow: hidden;
 	width: 100%;
-	/* padding: 0 10px; */
 	text-align: center;
 }
 
 .label {}
 
 .icon {
-	/* top: 2px; */
 	position: relative;
 	display: inline-block;
-	/* width: 100%; */
-	/* width: 20px; */
-	/* height: 20px; */
 }

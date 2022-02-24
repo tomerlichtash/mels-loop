@@ -16,7 +16,6 @@
 }
 
 .root {
-	/* display: block; */
 	user-select: none;
 	margin: 0 auto;
 	width: value(PageWidth);
@@ -25,10 +24,6 @@
 }
 
 .menu {
-	/* width: 800px; */
-	/* margin: 0 auto; */
-	/* box-shadow: value(shadow1); */
-	/* border: 2px solid red; */
 }
 
 .list {
@@ -39,16 +34,12 @@
 .mobileNav {
 	-st-states: visible(boolean);
 	display: none;
-	/* position: absolute; */
-	/* width: 250px; */
 }
 .mobileNav:visible {
-	/* position: absolute; */
 }
 .mobileNavTrigger {
 	width: 30px;
 	height: value(siteHeaderHeight);
-	/* position: absolute; */
 	left: 0;
 }
 
@@ -69,7 +60,4 @@
 .button {
 	-st-extends: Button;
 	-st-mixin: NavButton;
-	/* flex: 1;
-	text-align: center; */
 }
-
