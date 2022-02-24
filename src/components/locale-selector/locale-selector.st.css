@@ -6,7 +6,7 @@
 }
 
 .root {
-	background: none;
+	/* background: none; */
 	cursor: pointer;
 	display: flex;
 }
