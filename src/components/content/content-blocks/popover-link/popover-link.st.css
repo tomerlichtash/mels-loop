@@ -1,10 +1,6 @@
 @namespace "PopoverLink";
 
-.root {
-}
-
-.root:hover {
-}
+.root {}
 
 .triggerInner {}
 
@@ -27,6 +23,7 @@
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	padding: 2rem;
 	border-radius: 4px;
+	width: 250px;
 }
 
 .arrow {
@@ -35,4 +32,6 @@
 	height: 8px;
 }
 
-.closeButton {}
+.closeButton {
+	cursor: pointer;
+}

@@ -7,7 +7,7 @@ import { classes } from "./popover-link.st.css";
 export const PopoverLink = (props: ContentComponentProps): JSX.Element => {
 	// const p = props.componentData.node;
 	return (
-		<div className={classes.root}>
+		<span className={classes.root}>
 			<Popover.Root>
 				<Popover.Trigger className={classes.trigger} asChild>
 					<span className={classes.triggerInner}>
@@ -21,7 +21,7 @@ export const PopoverLink = (props: ContentComponentProps): JSX.Element => {
 					<Popover.Arrow className={classes.arrow} />
 				</Popover.Content>
 			</Popover.Root>
-		</div>
+		</span>
 	);
 };
 
