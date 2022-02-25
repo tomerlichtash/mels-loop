@@ -1,0 +1,8 @@
+@namespace "PopoverLink";
+
+.root {
+	color: green;
+}
+.root:hover {
+	color: orange;
+}
