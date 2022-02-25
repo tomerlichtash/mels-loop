@@ -3,10 +3,10 @@ import { ContentComponentProps } from "../../../../interfaces/models";
 import { ContentIterator } from "../../content-iterator";
 import * as Popover from "@radix-ui/react-popover";
 import { classes } from "./popover-link.st.css";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
 
 export const PopoverLink = (props: ContentComponentProps): JSX.Element => {
 	const p = props.componentData.node;
+	debugger;
 	return (
 		<Popover.Root>
 			<Popover.Trigger className={classes.popOverTrigger} asChild>
