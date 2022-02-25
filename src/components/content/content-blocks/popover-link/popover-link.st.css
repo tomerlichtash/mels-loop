@@ -6,31 +6,33 @@
 .root:hover {
 }
 
-.popOverTriggerChild {}
+.triggerInner {}
 
-.popOverTrigger {
+.trigger {
 	color: green;
 	background: none;
 	border: none;
 	padding: 0;
 }
 
-.popOverTrigger:hover {
+.trigger:hover {
 	color: orange;
 	cursor: pointer;
 	background: none;
 	border: none;
 }
 
-.popOverContent {
+.content {
 	background-color: rgba(255, 255, 255, 1);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	padding: 2rem;
 	border-radius: 4px;
 }
 
-.popOverArrow {
+.arrow {
 	/* fill: #fff; */
 	width: 12px;
 	height: 8px;
 }
+
+.closeButton {}
