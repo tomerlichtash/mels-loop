@@ -20,27 +20,6 @@ export default function Home(props: IPageProps) {
 				</title>
 			</Head>
 			<article className={style(classes.root)}>
-				fdksjfk sdkf dsjkf dsjkf sdjkf dsjkf jdsk
-				<Popover.Root>
-					<Popover.Trigger className={classes.popOverTrigger}>
-						dada
-					</Popover.Trigger>
-					<Popover.Content side="top" align="center">
-						<div className={classes.popOverContent}>
-							<h1>title</h1>
-							<p>
-								some text some text some text some text some text some text{" "}
-							</p>
-							<Popover.Close>Close</Popover.Close>
-						</div>
-						<Popover.Arrow />
-					</Popover.Content>
-				</Popover.Root>
-				fdsjfksdjf sjkf dsjkf sjdkf jsdkf jdsk
-				{/* <PopOver>
-						<PopOver.Trigger>some text to pop</PopOver.Trigger>
-						<PopOver.Popup>some text to pop</PopOver.Popup>
-					</PopOver> */}
 				<IconComp />
 				<CloudinaryContext cloudName={cloudName}>
 					<Image publicId={"cld-sample" as string}>
