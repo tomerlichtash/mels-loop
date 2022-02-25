@@ -5,9 +5,7 @@ import IconComp from "./../assets/svg/source_icons_computer.svg";
 import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 import { cloudName } from "../config/cloudinary/config";
 import Link from "next/link";
-// import PopOver from "../components/popover";
 import { style, classes } from "./index.st.css";
-import * as Popover from "@radix-ui/react-popover";
 
 export default function Home(props: IPageProps) {
 	const { translate, compLocale } = props;
