@@ -6,7 +6,6 @@ import { classes } from "./popover-link.st.css";
 
 export const PopoverLink = (props: ContentComponentProps): JSX.Element => {
 	const p = props.componentData.node;
-	debugger;
 	return (
 		<Popover.Root>
 			<Popover.Trigger className={classes.popOverTrigger} asChild>
