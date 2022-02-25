@@ -16,6 +16,7 @@
 		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src"
 	},
 	"dependencies": {
+		"@radix-ui/react-popover": "^0.1.5",
 		"cloudinary-react": "^1.7.1",
 		"gray-matter": "^4.0.3",
 		"next": "12.1.0",
