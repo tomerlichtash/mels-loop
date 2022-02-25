@@ -218,3 +218,11 @@ export interface IPageProps {
 	className?: string;
 	metaData?: string;
 }
+
+/**
+ * Page content properties, affecting the way that various elements
+ * should be rendered.
+ */
+export enum PageContentAttributes {
+	Story, Plain
+}
