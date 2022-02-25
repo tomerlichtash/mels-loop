@@ -6,6 +6,8 @@
 .root:hover {
 }
 
+.popOverTriggerChild {}
+
 .popOverTrigger {
 	color: green;
 	background: none;

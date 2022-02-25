@@ -9,7 +9,7 @@ export const PopoverLink = (props: ContentComponentProps): JSX.Element => {
 	return (
 		<Popover.Root>
 			<Popover.Trigger className={classes.popOverTrigger} asChild>
-				<span>
+				<span className={classes.popOverTriggerChild}>
 					<ContentIterator componentData={props.componentData} />
 				</span>
 			</Popover.Trigger>
