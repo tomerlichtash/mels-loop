@@ -25,8 +25,14 @@ export default function Home(props: IPageProps) {
 					</Image>
 				</CloudinaryContext>
 				<div>the story</div>
-				<div><Link href="/glossary">glossary</Link></div>
-				<div>photos</div>
+				<div>
+					<Link href="/glossary">glossary</Link>
+				</div>
+				<div>
+					<h2>Bios</h2>
+					<div>about ed nather</div>
+					<div>about mel kaye</div>
+				</div>
 			</article>
 		</Layout>
 	);
