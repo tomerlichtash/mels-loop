@@ -1,1 +1,5 @@
+---
+id: real-programmers
+---
+
 Real Programmers Don't Use PASCAL. Ed Post, Tektronix, 1982. Its main argument is that modern programming constructs are superfluous and used only by weak developers (“quiche eaters”). "If you can't code in Fortran, code it in assembly. If you can't code in assembly, it's not worth coding at all", asserts the article, referring to the “pure” version of Fortran, before it was polluted by fashionable ideas like structured programming. Some discussions attribute the article’s debut to the Datamation journal, but the timeline suggests otherwise. _The Story of Mel_, written as a humoristic rebuttal to this article, appeared in May 1983, 2 months before the relevant Datamation issue. Therefore, it’s very likely that Ed Post’s piece first appeared on USENET. The title is a parody on a book called Real Men Don’t Eat Quiche (Bruce Feirstein, Pocket Books), which also inspired the macho tone of the text.

@@ -1,4 +1,5 @@
 ---
+id: librazette-chicago-automation-show
 source: "LGP-30 Wins Wide Acclaim At Chicago Automation Show", Librazette, December 1955, p.6
 ---
 
