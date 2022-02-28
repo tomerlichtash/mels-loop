@@ -50,7 +50,9 @@ export function getRootDir(): string {
 setRootDir(process.cwd());
 
 export enum LoadContentModes {
-	NONE = "none", METADATA = "metadata", FULL = "full"
+	NONE = "none",
+	METADATA = "metadata",
+	FULL = "full",
 }
 
 export interface ILoadContentOptions {
@@ -113,7 +115,10 @@ export function loadContentFolder(
 					})
 				);
 			}
-			folderContentData.ids.push({ params: { id: name }, locale: options.locale });
+			folderContentData.ids.push({
+				params: { id: name },
+				locale: options.locale,
+			});
 		}
 
 		if (options.contentMode === LoadContentModes.NONE) {
@@ -130,18 +135,19 @@ export function loadContentFolder(
 			const parsedPageData = new ParsedPageData({
 				metaData,
 				id: name,
-				path: `${options.relativePath}/${name}` // don't use path.join, it's os specific
-			})
+				path: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
+			});
 			folderContentData.pages.push(parsedPageData);
 			if (options.contentMode === LoadContentModes.FULL) {
 				// parse markdown and process
 				const mdParse = mdParser.defaultBlockParse;
 				const tree = contentUtils.processParseTree(
 					mdParse(contentUtils.stripComments(content)) as ParsedNode[],
-					options.parseMode);
+					options.parseMode
+				);
 
 				// Combine the data with the id
-				parsedPageData.parsed = tree
+				parsedPageData.parsed = tree;
 			}
 		} catch (e) {
 			log.error(`Error processing ${fullPath}`, e);
@@ -167,14 +173,13 @@ function parseDate(dateString: string | null | undefined): Date {
 }
 
 class ParsedPageData implements IParsedPageData {
-
-/* eslint-disable  @typescript-eslint/no-explicit-any */
+	/* eslint-disable  @typescript-eslint/no-explicit-any */
 	constructor(data: any) {
-		Object.keys(this).forEach(key => {
+		Object.keys(this).forEach((key) => {
 			if (data[key] !== undefined) {
 				this[key] = data[key];
 			}
-		})
+		});
 	}
 
 	public metaData: IPageMetaData = null;
@@ -183,17 +188,16 @@ class ParsedPageData implements IParsedPageData {
 	//public content = "";
 	public parsed: IMLParsedNode[] = [];
 	public error?: string = "";
-
 }
 
 class PageMetaData implements IPageMetaData {
 	constructor(data: Partial<IParsedPageData> | string) {
 		const realData = typeof data === "string" ? JSON.parse(data) : data;
-		Object.keys(this).forEach(key => {
+		Object.keys(this).forEach((key) => {
 			if (realData[key] !== undefined) {
 				this[key] = realData[key];
 			}
-		})
+		});
 		if (this.date && typeof this.date === "string") {
 			this.date = parseDate(this.date);
 		}
@@ -205,7 +209,6 @@ class PageMetaData implements IPageMetaData {
 	public moto = "";
 	public author = "";
 	public credits = "";
-
 }
 
 class FolderContent implements IFolderContent {

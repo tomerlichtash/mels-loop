@@ -33,6 +33,14 @@ export const PREFACE_PAGE_LOCALE: ComponentKeyMap = Object.assign(
 	SITE_META
 );
 
+export const BLOG_PAGE_LOCALE: ComponentKeyMap = Object.assign(
+	{
+		pageName: "BLOG_NAV_LABEL",
+		postsList: "BLOG_POSTS_LIST",
+	},
+	SITE_META
+);
+
 export const RESOURCES_PAGE_LOCALE: ComponentKeyMap = Object.assign(
 	{
 		pageName: "RESOURCES_NAV_LABEL",

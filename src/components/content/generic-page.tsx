@@ -14,7 +14,7 @@ export default function GenericPage(props: IContentComponentData) {
 	const { translate } = props.pageProps;
 	const { pageData } = usePageData(props.pageProps);
 	const page = pageData && pageData[0];
-	const metaData = page?.metaData
+	const metaData = page?.metaData;
 	const node: IMLParsedNode = page && {
 		children: page.parsed,
 		key: page.id,

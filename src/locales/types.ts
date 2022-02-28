@@ -10,6 +10,8 @@ export interface ILanguageKeys {
 	ABOUT_NAV_LABEL: "ABOUT_NAV_LABEL";
 	STORY_NAV_LABEL: "STORY_NAV_LABEL";
 	PREFACE_NAV_LABEL: "PREFACE_NAV_LABEL";
+	BLOG_NAV_LABEL: "BLOG_NAV_LABEL";
+	BLOG_POSTS_LIST: "BLOG_POSTS_LIST";
 	RESOURCES_NAV_LABEL: "RESOURCES_NAV_LABEL";
 	GLOSSARY_NAV_LABEL: "GLOSSARY_NAV_LABEL";
 	SITE_TITLE: "SITE_TITLE";
@@ -37,6 +39,7 @@ export interface IComponentKeyProps {
 	siteLicense: "siteLicense";
 	pageName: "pageName";
 	languageLabel: "languageLabel";
+	postsList: "postsList";
 }
 
 export type ComponentKeyMap = Partial<

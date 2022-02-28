@@ -1,4 +1,4 @@
-@namespace "Date";
+@namespace "TimeFormat";
 
 .root {
     -st-states: locale(string);

@@ -1,6 +1,7 @@
 ---
-title: Post 2 title
-author: Tomer Lichtash
+title: כותרת פוסט 2
+author: תומר ליכטש
+date: 23/5/2021
 ---
 
 מה פה קורה פה

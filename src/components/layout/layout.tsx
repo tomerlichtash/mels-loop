@@ -23,12 +23,13 @@ import { PageContext, ReactPageContext } from "../page/page-context";
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
 	translate: (key: string) => string;
-	context?: IPageContext
+	context?: IPageContext;
 }
 
 export default function Layout(props: LayoutProps) {
 	const { translate } = props;
-	const pageContext: IPageContext = props.context || new PageContext(PageContentAttributes.Plain);
+	const pageContext: IPageContext =
+		props.context || new PageContext(PageContentAttributes.Plain);
 
 	const router = useRouter();
 	const { locale, locales, pathname } = router;
