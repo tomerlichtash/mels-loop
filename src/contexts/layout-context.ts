@@ -5,7 +5,7 @@ export class LayoutContext {
 	public readonly locale: string;
 	public readonly compLocale: Record<string, string>;
 	translate(s: string): string {
-		return `%{s}%`;
+		return `%${s}%`;
 	}
 }
 
