@@ -45,7 +45,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 				<Paragraph
 					key={key}
 					componentData={data}
-					className={style(classes.paragraph, className)}
+					className={classes.paragraph}
 				/>
 			);
 		case MLNODE_TYPES.DEL:

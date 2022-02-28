@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
@@ -16,20 +16,22 @@ import { ComponentProps, PageContentAttributes } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { LOCALE_FLAGS } from "../svg";
-import { style, classes } from "./layout.st.css";
 import { IPageContext } from "../../interfaces/page-context";
 import { PageContext, ReactPageContext } from "../page/page-context";
+import { ReactLayoutContext } from "../../contexts/layout-context";
+import { style, classes } from "./layout.st.css";
 
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
-	translate: (key: string) => string;
 	context?: IPageContext;
 }
 
 export default function Layout(props: LayoutProps) {
-	const { translate } = props;
 	const pageContext: IPageContext =
 		props.context || new PageContext(PageContentAttributes.Plain);
+
+	const layoutContext = useContext(ReactLayoutContext);
+	const { translate } = layoutContext;
 
 	const router = useRouter();
 	const { locale, locales, pathname } = router;
@@ -77,23 +79,17 @@ export default function Layout(props: LayoutProps) {
 					isHome={isHome}
 					sitePages={SITE_PAGES}
 					compKeys={HEADER_LOCALE}
-					translate={translate}
 				/>
 				<LocaleSelector
 					className={classes.localeSelector}
 					options={localeSelectorOptions}
 					compKeys={LOCALE_SELECTOR_LOCALE}
 					onSelectChange={onSelectChange}
-					translate={translate}
 				/>
 				<ReactPageContext.Provider value={pageContext}>
 					<Page className={classes.page} nodes={props.children} />
 				</ReactPageContext.Provider>
-				<Footer
-					className={classes.footer}
-					compKeys={FOOTER_LOCALE}
-					translate={translate}
-				/>
+				<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 			</div>
 		</>
 	);

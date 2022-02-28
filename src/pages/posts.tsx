@@ -1,5 +1,7 @@
+import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
+import { v4 as uuidv4 } from "uuid";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
@@ -8,15 +10,16 @@ import { LoadContentModes } from "../lib/markdown-driver";
 import { usePageData } from "../components/usePageData";
 import { Button, TimeFormat } from "../components/ui";
 import { ContentComponent } from "../components/content";
-import { v4 as uuidv4 } from "uuid";
+import { ReactLayoutContext } from "../contexts/layout-context";
 import { classes } from "./posts.st.css";
 
 export default function Blog(props: IPageProps) {
-	const { translate, compLocale, locale } = props;
+	const layoutContext = useContext(ReactLayoutContext);
+	const { translate, compLocale, locale } = layoutContext;
 	const { siteTitle, pageName, postsList } = compLocale;
 	const { pageData } = usePageData(props);
 	return (
-		<Layout {...{ translate }}>
+		<Layout>
 			<Head>
 				<title>
 					{translate(siteTitle)} - {translate(pageName)}
@@ -51,7 +54,7 @@ export default function Blog(props: IPageProps) {
 										<ContentComponent
 											key={uuidv4()}
 											className={classes.postContent}
-											componentData={{ node: node }}
+											componentData={{ node }}
 										/>
 									);
 								})}

@@ -22,7 +22,7 @@ export default function GenericPage(props: IContentComponentData) {
 		type: MLNODE_TYPES.UNKNOWN,
 	};
 	return (
-		<Layout {...{ translate }}>
+		<Layout>
 			<Head>
 				<title>{metaData?.title}</title>
 			</Head>

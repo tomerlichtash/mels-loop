@@ -1,3 +1,4 @@
+import React from "react";
 import { ComponentProps } from "../../../interfaces/models";
 import { format } from "date-fns";
 import { style, classes } from "./time-format.st.css";

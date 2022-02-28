@@ -15,7 +15,6 @@ export class PageContext implements IPageContext {
 	hasAttribute(attr: PageContentAttributes): boolean {
 		return this.pageAttrinutes.includes(attr);
 	}
-	dada: () => "dada!";
 }
 
 const ctx = createContext<IPageContext>(

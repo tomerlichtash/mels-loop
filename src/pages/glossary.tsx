@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
 import ContentBrowser from "../components/content-browser";
@@ -9,15 +10,19 @@ import { style, classes } from "./about.st.css";
 import { LoadContentModes } from "../lib/markdown-driver";
 import { usePageData } from "../components/usePageData";
 import Link from "next/link";
+import { ReactLayoutContext } from "../contexts/layout-context";
 
 export default function Glossary(props: IPageProps) {
-	const { translate, compLocale, className } = props;
+	const layoutContext = useContext(ReactLayoutContext);
+	const { translate, compLocale } = layoutContext;
+	const { className } = props;
+
 	const { siteTitle, pageName } = compLocale;
 
 	const { pageData, metaData } = usePageData(props);
 	// If the props changed, due to locale change, reparse the content
 	return (
-		<Layout {...{ translate }}>
+		<Layout>
 			<Head>
 				<title>
 					{translate(siteTitle)} - {translate(pageName)}

@@ -14,22 +14,14 @@ export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 
 	if (children.length === 1 && children[0].type === "text") {
 		return (
-			<p
-				key={p.key}
-				className={style(classes.root, className)}
-				data-line-index={p.line}
-			>
+			<p key={p.key} className={classes.root} data-line-index={p.line}>
 				{p.children[0].text}
 			</p>
 		);
 	}
 
 	return (
-		<p
-			key={p.key}
-			className={style(classes.root, className)}
-			data-line-index={p.line}
-		>
+		<p key={p.key} className={classes.root} data-line-index={p.line}>
 			{children.map((node) => {
 				return (
 					<ContentComponent

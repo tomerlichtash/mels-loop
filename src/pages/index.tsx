@@ -1,17 +1,20 @@
+import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
 import { IPageProps } from "../interfaces/models";
 import IconComp from "./../assets/svg/source_icons_computer.svg";
 import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 import { cloudName } from "../config/cloudinary/config";
-import { style, classes } from "./index.st.css";
 import Link from "next/link";
+import { ReactLayoutContext } from "../contexts/layout-context";
+import { style, classes } from "./index.st.css";
 
 export default function Home(props: IPageProps) {
-	const { translate, compLocale } = props;
+	const layoutContext = useContext(ReactLayoutContext);
+	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
 	return (
-		<Layout {...{ translate }}>
+		<Layout>
 			<Head>
 				<title>
 					{translate(siteTitle)} - ${translate(pageName)}
@@ -25,7 +28,9 @@ export default function Home(props: IPageProps) {
 					</Image>
 				</CloudinaryContext>
 				<div>the story</div>
-				<div><Link href="/glossary">glossary</Link></div>
+				<div>
+					<Link href="/glossary">glossary</Link>
+				</div>
 				<div>photos</div>
 			</article>
 		</Layout>

@@ -21,7 +21,6 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 		closeLabel,
 		optionListVisible,
 		onSelectChange,
-		translate,
 		triggerCallback,
 		className,
 	} = props;
@@ -49,7 +48,7 @@ export const DropDown = (props: DropDownProps): JSX.Element => {
 								})}
 								closeDropDown={() => triggerCallback(false)}
 								onSelectChange={onSelectChange}
-								label={translate(label)}
+								label={label}
 								isCurrent={isCurrent}
 								icon={icon}
 								id={id}
