@@ -17,7 +17,7 @@ export default function Home(props: IPageProps) {
 		<Layout>
 			<Head>
 				<title>
-					{translate(siteTitle)} - ${translate(pageName)}
+					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
 			<article className={style(classes.root)}>
