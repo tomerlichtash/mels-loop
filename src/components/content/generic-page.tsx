@@ -7,11 +7,10 @@ import {
 import Layout from "../layout";
 import Head from "next/head";
 import ContentIterator from "./content-iterator";
-import { classes } from "./generic-page.st.css";
 import { usePageData } from "../usePageData";
+import { classes } from "./generic-page.st.css";
 
 export default function GenericPage(props: IContentComponentData) {
-	const { translate } = props.pageProps;
 	const { pageData } = usePageData(props.pageProps);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;

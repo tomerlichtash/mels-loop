@@ -12,7 +12,7 @@ export interface HeaderProps extends ComponentProps {
 	sitePages: SitePage[];
 }
 
-export const Header = (props: HeaderProps, context): JSX.Element => {
+export const Header = (props: HeaderProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate } = layoutContext;
 	const { pathname, isHome, sitePages, compKeys, className } = props;
@@ -20,7 +20,6 @@ export const Header = (props: HeaderProps, context): JSX.Element => {
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
 	const fullTitle = `${title} - ${subtitle}`;
-	debugger;
 	return (
 		<header className={style(classes.root, className)}>
 			<div className={classes.container}>

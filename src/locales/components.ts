@@ -5,7 +5,7 @@ export const SITE_META: ComponentKeyMap = {
 	siteSubtitle: "SITE_SUBTITLE",
 };
 
-const CompKeys: Record<string, ComponentKeyMap> = {
+const PageKeys: Record<string, ComponentKeyMap> = {
 	HOME_PAGE: {
 		pageName: "HOME_NAV_LABEL",
 	},
@@ -34,12 +34,11 @@ const CompKeys: Record<string, ComponentKeyMap> = {
 	ERROR_GENERAL: {
 		pageName: "ERROR_GENERAL",
 	},
-	HEADER: {
-		siteTitle: "SITE_TITLE",
-		siteSubtitle: "SITE_SUBTITLE",
-	},
+};
+
+const CompKeys: Record<string, ComponentKeyMap> = {
+	HEADER: {},
 	FOOTER: {
-		siteTitle: "SITE_TITLE",
 		siteLicense: "FOOTER_LICENSE",
 	},
 	LOCALE_SELECTOR: {
@@ -50,15 +49,18 @@ const CompKeys: Record<string, ComponentKeyMap> = {
 const withMeta = (keys: Record<string, string>) =>
 	Object.assign(keys, SITE_META);
 
-export const HOME_PAGE_LOCALE = withMeta(CompKeys.HOME_PAGE);
-export const ABOUT_PAGE_LOCALE = withMeta(CompKeys.ABOUT_PAGE);
-export const STORY_PAGE_LOCALE = withMeta(CompKeys.STORY_PAGE);
-export const BLOG_PAGE_LOCALE = withMeta(CompKeys.BLOG_PAGE);
-export const PREFACE_PAGE_LOCALE = withMeta(CompKeys.PREFACE_PAGE);
-export const RESOURCES_PAGE_LOCALE = withMeta(CompKeys.RESOURCES_PAGE);
-export const GLOSSARY_PAGE_LOCALE = withMeta(CompKeys.GLOSSARY_PAGE);
-export const ERROR_404_PAGE_LOCALE = withMeta(CompKeys.ERROR_404_PAGE);
-export const ERROR_GENERAL_LOCALE = withMeta(CompKeys.ERROR_GENERAL);
-export const HEADER_LOCALE = CompKeys.HEADER;
-export const FOOTER_LOCALE = CompKeys.FOOTER;
+// Pages
+export const HOME_PAGE_LOCALE = withMeta(PageKeys.HOME_PAGE);
+export const ABOUT_PAGE_LOCALE = withMeta(PageKeys.ABOUT_PAGE);
+export const STORY_PAGE_LOCALE = withMeta(PageKeys.STORY_PAGE);
+export const BLOG_PAGE_LOCALE = withMeta(PageKeys.BLOG_PAGE);
+export const PREFACE_PAGE_LOCALE = withMeta(PageKeys.PREFACE_PAGE);
+export const RESOURCES_PAGE_LOCALE = withMeta(PageKeys.RESOURCES_PAGE);
+export const GLOSSARY_PAGE_LOCALE = withMeta(PageKeys.GLOSSARY_PAGE);
+export const ERROR_404_PAGE_LOCALE = withMeta(PageKeys.ERROR_404_PAGE);
+export const ERROR_GENERAL_LOCALE = withMeta(PageKeys.ERROR_GENERAL);
+
+// Components
+export const HEADER_LOCALE = withMeta(CompKeys.HEADER);
+export const FOOTER_LOCALE = withMeta(CompKeys.FOOTER);
 export const LOCALE_SELECTOR_LOCALE = CompKeys.LOCALE_SELECTOR;

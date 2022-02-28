@@ -3,7 +3,7 @@ import { translate } from "../locales/translate";
 import { SITE_PAGES } from "../config/pages";
 import { useRouter } from "next/router";
 import { ERROR_404_PAGE_LOCALE } from "../locales/components";
-import { LayoutContext, ReactLayoutContext } from "../contexts/layout-context";
+import { ReactLayoutContext } from "../contexts/layout-context";
 import { ILayoutContext } from "../interfaces/layout-context";
 
 function App({ Component, pageProps }: AppProps) {

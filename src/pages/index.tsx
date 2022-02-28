@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
-import { IPageProps } from "../interfaces/models";
+import Link from "next/link";
 import IconComp from "./../assets/svg/source_icons_computer.svg";
 import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 import { cloudName } from "../config/cloudinary/config";
-import Link from "next/link";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { style, classes } from "./index.st.css";
 
-export default function Home(props: IPageProps) {
+export default function Home() {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;

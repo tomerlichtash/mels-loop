@@ -1,7 +1,7 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
 import { ContentComponent } from "../../index";
-import { style, classes } from "./paragraph.st.css";
+import { classes } from "./paragraph.st.css";
 
 export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 	const p = props.componentData.node;
