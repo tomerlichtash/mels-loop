@@ -10,6 +10,7 @@ import { usePageData } from "../components/usePageData";
 import Link from "next/link";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { style, classes } from "./about.st.css";
+import { Button } from "../components/ui";
 
 export default function Docs(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
@@ -29,13 +30,10 @@ export default function Docs(props: IPageProps) {
 				{metaData.length && (
 					<ul>
 						{metaData.map((page, index) => {
-							const term = page.metaData;
-							const key = `term-${index}`;
+							const key = `doc-${index}`;
 							return (
-								<li key={key}>
-									<Link href={page.path} data-term-key={term.glossary_key}>
-										{page.metaData.title}
-									</Link>
+								<li className={classes.item} key={key}>
+									<Button label={page.metaData.title} link={page.path} />
 								</li>
 							);
 						})}
