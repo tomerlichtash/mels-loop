@@ -6,6 +6,7 @@ import { style, classes } from "./content-iterator.st.css";
 export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 	const data = props.componentData;
 	const p = data.node;
+	const { className } = props;
 
 	if (!p) {
 		console.warn("Content Iterator: no input node");
@@ -19,25 +20,33 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 		if (p.text) {
 			if (Tag) {
 				return (
-					<Tag className={data.style || ""} key={p.key}>
+					<Tag className={className} key={p.key}>
 						{p.text}
 					</Tag>
 				);
 			}
+
 			return (
-				<span className={style(classes.root, { type: "text" })}>{p.text}</span>
+				<span className={style(classes.root, { type: "text" }, className)}>
+					{p.text}
+				</span>
 			);
 		}
-		return <span className={style(classes.root, { type: "unknown" })}></span>;
+		return (
+			<span
+				className={style(classes.root, { type: "unknown" }, className)}
+			></span>
+		);
 	}
 
 	if (Tag) {
 		return (
-			<Tag className={classes[Tag]} key={p.key}>
+			<Tag className={style(classes[Tag], className)} key={p.key}>
 				{elements.map((node) => {
 					return (
 						<ContentComponent
 							key={node.key}
+							className={className}
 							componentData={{
 								node: node,
 							}}

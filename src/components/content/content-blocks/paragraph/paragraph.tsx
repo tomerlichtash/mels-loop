@@ -6,9 +6,12 @@ import { classes } from "./paragraph.st.css";
 export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 	const p = props.componentData.node;
 	const children = p.children || [];
+	const { className } = props;
+
 	if (children.length === 0) {
-		return <p></p>;
+		return <p className={classes.empty}></p>;
 	}
+
 	if (children.length === 1 && children[0].type === "text") {
 		return (
 			<p key={p.key} className={classes.root} data-line-index={p.line}>
@@ -16,15 +19,15 @@ export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 			</p>
 		);
 	}
+
 	return (
 		<p key={p.key} className={classes.root} data-line-index={p.line}>
 			{children.map((node) => {
 				return (
 					<ContentComponent
 						key={node.key}
-						componentData={{
-							node: node,
-						}}
+						className={className}
+						componentData={{ node: node }}
 					/>
 				);
 			})}

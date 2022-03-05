@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Nav from "../nav";
 import { SitePage } from "../../interfaces/models";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./header.st.css";
 import { Button } from "../ui";
+import { ReactLayoutContext } from "../../contexts/layout-context";
 
 export interface HeaderProps extends ComponentProps {
 	pathname: string;
@@ -12,7 +13,9 @@ export interface HeaderProps extends ComponentProps {
 }
 
 export const Header = (props: HeaderProps): JSX.Element => {
-	const { pathname, isHome, sitePages, compKeys, translate, className } = props;
+	const layoutContext = useContext(ReactLayoutContext);
+	const { translate } = layoutContext;
+	const { pathname, isHome, sitePages, compKeys, className } = props;
 	const { siteTitle, siteSubtitle } = compKeys;
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
@@ -34,8 +37,13 @@ export const Header = (props: HeaderProps): JSX.Element => {
 						</div>
 					) : (
 						<div className={classes.titleContainer}>
-							<h1 className={classes.siteTitle}>
-								<Button label={title} title={fullTitle} link={"/"} />
+							<h1 className={classes.siteTitleHeading}>
+								<Button
+									label={title}
+									title={fullTitle}
+									link={"/"}
+									className={classes.siteTitle}
+								/>
 							</h1>
 							<span className={classes.siteSubtitle}>{subtitle}</span>
 						</div>
@@ -44,7 +52,6 @@ export const Header = (props: HeaderProps): JSX.Element => {
 				<Nav
 					sitePages={sitePages}
 					className={classes.headerNav}
-					translate={translate}
 					pathname={pathname}
 				/>
 			</div>

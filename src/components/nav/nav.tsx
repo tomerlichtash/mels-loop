@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "../ui";
-import DropDown from "../dropdown";
 import { ComponentProps, SitePage } from "../../interfaces/models";
-import { IOption } from "../dropdown/option";
+// import DropDown from "../dropdown";
+// import { IOption } from "../dropdown/option";
+import { ReactLayoutContext } from "../../contexts/layout-context";
 import { style, classes } from "./nav.st.css";
 
 export interface NavProps extends ComponentProps {
 	sitePages: SitePage[];
 	pathname: string;
-	translate: (key: string) => string;
 }
 
 export const Nav = (props: NavProps): JSX.Element => {
-	const { sitePages, translate, pathname, className } = props;
+	const layoutContext = useContext(ReactLayoutContext);
+	const { translate } = layoutContext;
+	const { sitePages, pathname, className } = props;
 	return (
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
@@ -38,7 +40,7 @@ export const Nav = (props: NavProps): JSX.Element => {
 					})}
 				</ul>
 			</div>
-			<DropDown
+			{/* <DropDown
 				options={
 					sitePages.map((page) => {
 						const { label, targetPathname } = page;
@@ -47,11 +49,10 @@ export const Nav = (props: NavProps): JSX.Element => {
 				}
 				triggerCallback={() => false}
 				optionListVisible={false}
-				translate={translate}
 				className={classes.mobileNav}
 				openLabel={"someOpenLabel"}
 				closeLabel={"someCloseLabel"}
-			/>
+			/> */}
 		</nav>
 	);
 };
