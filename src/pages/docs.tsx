@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		LoadFolderModes.CHILDREN,
 		LoadContentModes.METADATA
 	);
-	/* eslint-disable  @typescript-eslint/no-explicit-any */
+	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const props = {
 		props: {
 			...(indexProps as any).props,
