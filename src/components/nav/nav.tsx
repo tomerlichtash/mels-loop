@@ -6,19 +6,39 @@ import { style, classes } from "./nav.st.css";
 
 export interface NavProps extends ComponentProps {
 	sitePages: SitePage[];
-	pageId: string;
 }
+
+// const isCurrentPage = (
+// 	source: string,
+// 	id: string,
+// 	parent,
+// 	pages: SitePage[]
+// ): boolean => {
+// 	if (parent) {
+// 		const pageData = pages.filter((p) => p.id === parent)[0];
+// 		if (pageData.children && pageData.children.includes(source)) {
+// 			return id === source;
+// 		}
+// 		return parent === source;
+// 	}
+// 	return id === source;
+// };
 
 export const Nav = (props: NavProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
-	const { translate } = layoutContext;
-	const { sitePages, pageId, className } = props;
+	const { translate, pageParent, pageId, pages, isCurrentPage } = layoutContext;
+	const { sitePages, className } = props;
 	return (
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
 				<ul className={classes.list}>
 					{sitePages.map((option) => {
-						const isCurrent = pageId === option.id;
+						const isCurrent = isCurrentPage(
+							option.id,
+							pageId,
+							pageParent,
+							pages
+						);
 						const { label, id, targetPathname } = option;
 						return (
 							option.menuNav && (

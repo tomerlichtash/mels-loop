@@ -7,14 +7,13 @@ import { Button } from "../ui";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 
 export interface HeaderProps extends ComponentProps {
-	pageId: string;
 	sitePages: SitePage[];
 }
 
 export const Header = (props: HeaderProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
-	const { translate } = layoutContext;
-	const { sitePages, compKeys, pageId, className } = props;
+	const { translate, pageId } = layoutContext;
+	const { sitePages, compKeys, className } = props;
 	const { siteTitle, siteSubtitle } = compKeys;
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
@@ -48,11 +47,7 @@ export const Header = (props: HeaderProps): JSX.Element => {
 						</div>
 					)}
 				</div>
-				<Nav
-					sitePages={sitePages}
-					pageId={pageId}
-					className={classes.headerNav}
-				/>
+				<Nav sitePages={sitePages} className={classes.headerNav} />
 			</div>
 		</header>
 	);

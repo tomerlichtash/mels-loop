@@ -206,6 +206,7 @@ export interface SitePage {
 	targetPathname: string;
 	menuNav: boolean;
 	locale: Record<string, string>;
+	children?: string[];
 }
 
 export interface IPageProps {

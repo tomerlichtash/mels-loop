@@ -26,6 +26,7 @@ export const SITE_PAGES: SitePage[] = [
 		locale: DOCS_PAGE_LOCALE,
 		label: DOCS_PAGE_LOCALE.pageName,
 		targetPathname: "/docs",
+		children: ["preface", "resources", "blackjack-writeup"],
 	},
 	{
 		id: "blog",

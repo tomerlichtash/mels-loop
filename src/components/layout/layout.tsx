@@ -31,10 +31,10 @@ export default function Layout(props: LayoutProps) {
 		props.context || new PageContext(PageContentAttributes.Plain);
 
 	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, pageId } = layoutContext;
+	const { translate, pageId, pageParent } = layoutContext;
 
 	const router = useRouter();
-	const { locale, locales, pathname } = router;
+	const { locale, locales } = router;
 
 	const onSelectChange = (locale: string) => {
 		return router.push(router.asPath, router.asPath, {
@@ -44,7 +44,6 @@ export default function Layout(props: LayoutProps) {
 	};
 
 	const { siteTitle, siteSubtitle } = SITE_META;
-	const isHome = pathname === "/";
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
 
@@ -72,12 +71,13 @@ export default function Layout(props: LayoutProps) {
 				<meta name="og:title" content={title} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div className={style(classes.root, { locale })}>
+			<div
+				className={style(classes.root, { locale })}
+				data-page-id={pageId}
+				data-page-parent={pageParent}
+			>
 				<Header
 					className={classes.header}
-					// pathname={pathname}
-					// isHome={isHome}
-					pageId={pageId}
 					sitePages={SITE_PAGES}
 					compKeys={HEADER_LOCALE}
 				/>
