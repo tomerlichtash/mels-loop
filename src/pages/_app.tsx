@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 import { ERROR_404_PAGE_LOCALE } from "../locales/components";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { ILayoutContext } from "../interfaces/layout-context";
+import { PageContext, ReactPageContext } from "../components/page/page-context";
+import { PageContentAttributes } from "../interfaces/models";
+import { DynamicContentServer } from "../lib/dynamic-content-server";
 
 function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
@@ -46,9 +49,15 @@ function App({ Component, pageProps }: AppProps) {
 		translate: translateFunc,
 	};
 
+	const contentContext = new PageContext(
+		new DynamicContentServer(),
+		PageContentAttributes.Plain);
+
 	return (
 		<ReactLayoutContext.Provider value={layoutContext}>
-			<Component {...pageProps} />
+			<ReactPageContext.Provider value={contentContext}>
+				<Component {...pageProps} />
+			</ReactPageContext.Provider>
 		</ReactLayoutContext.Provider>
 	);
 }

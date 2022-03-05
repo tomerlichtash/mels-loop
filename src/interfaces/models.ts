@@ -12,6 +12,8 @@ export interface IPlainObject {
  */
 export type ParsedNode = {
 	type: ASTNODE_TYPES;
+
+	/* eslint-disable @typescript-eslint/no-explicit-any */
 	[prop: string]: any;
 };
 

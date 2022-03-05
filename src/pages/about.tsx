@@ -30,7 +30,7 @@ export default function About({ content, className }: IPageProps) {
 export const getStaticProps: GetStaticProps = async (context) => {
 	return mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.ABOUT,
-		context,
+		context.locale,
 		LoadFolderModes.FOLDER
 	);
 };
