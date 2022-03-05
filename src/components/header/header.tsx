@@ -1,19 +1,14 @@
 import React, { useContext } from "react";
 import Nav from "../nav";
-import { SitePage } from "../../interfaces/models";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./header.st.css";
 import { Button } from "../ui";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 
-export interface HeaderProps extends ComponentProps {
-	sitePages: SitePage[];
-}
-
-export const Header = (props: HeaderProps): JSX.Element => {
+export const Header = (props: ComponentProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, pageId } = layoutContext;
-	const { sitePages, compKeys, className } = props;
+	const { compKeys, className } = props;
 	const { siteTitle, siteSubtitle } = compKeys;
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
@@ -47,7 +42,7 @@ export const Header = (props: HeaderProps): JSX.Element => {
 						</div>
 					)}
 				</div>
-				<Nav sitePages={sitePages} className={classes.headerNav} />
+				<Nav className={classes.headerNav} />
 			</div>
 		</header>
 	);

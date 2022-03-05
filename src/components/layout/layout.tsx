@@ -4,7 +4,6 @@ import Header from "../header";
 import Footer from "../footer";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
-import { SITE_PAGES } from "../../config/pages";
 import { useRouter } from "next/router";
 import {
 	SITE_META,
@@ -31,7 +30,7 @@ export default function Layout(props: LayoutProps) {
 		props.context || new PageContext(PageContentAttributes.Plain);
 
 	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, pageId, pageParent } = layoutContext;
+	const { translate } = layoutContext;
 
 	const router = useRouter();
 	const { locale, locales } = router;
@@ -71,16 +70,8 @@ export default function Layout(props: LayoutProps) {
 				<meta name="og:title" content={title} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div
-				className={style(classes.root, { locale })}
-				data-page-id={pageId}
-				data-page-parent={pageParent}
-			>
-				<Header
-					className={classes.header}
-					sitePages={SITE_PAGES}
-					compKeys={HEADER_LOCALE}
-				/>
+			<div className={style(classes.root, { locale })}>
+				<Header className={classes.header} compKeys={HEADER_LOCALE} />
 				<LocaleSelector
 					className={classes.localeSelector}
 					options={localeSelectorOptions}
