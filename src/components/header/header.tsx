@@ -5,10 +5,12 @@ import { Button } from "../ui";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { style, classes } from "./header.st.css";
 
-export const Header = (props: ComponentProps): JSX.Element => {
+export const Header = ({
+	compKeys,
+	className,
+}: ComponentProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, pageId } = layoutContext;
-	const { compKeys, className } = props;
 	const { siteTitle, siteSubtitle } = compKeys;
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);

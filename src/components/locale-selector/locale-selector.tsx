@@ -10,12 +10,16 @@ export interface LocaleSelectorProps extends ComponentProps {
 	onSelectChange: (locale: string) => void;
 }
 
-export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
+export const LocaleSelector = ({
+	compKeys,
+	options,
+	onSelectChange,
+	className,
+}: LocaleSelectorProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate } = layoutContext;
 	const [optionListVisible, toggleOptionList] = useState(false);
-	const { compKeys, options, onSelectChange, className } = props;
-	const currentLang = options.find((d) => d.isCurrent).label;
+	const currentLang = options.find((option) => option.isCurrent).label;
 	return (
 		<div className={style(classes.root, className)}>
 			<div className={classes.dropDownContainer}>

@@ -3,10 +3,12 @@ import { ContentComponentProps } from "../../../../interfaces/models";
 import { ContentComponent } from "../../index";
 import { style, classes } from "./paragraph.st.css";
 
-export const Paragraph = (props: ContentComponentProps): JSX.Element => {
-	const p = props.componentData.node;
-	const children = p.children || [];
-	const { className } = props;
+export const Paragraph = ({
+	componentData,
+	className,
+}: ContentComponentProps): JSX.Element => {
+	const { node } = componentData;
+	const children = node.children || [];
 
 	if (children.length === 0) {
 		return <p className={classes.empty}></p>;
@@ -17,18 +19,18 @@ export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 			classes.root,
 			(
 				<p
-					key={p.key}
+					key={node.key}
 					className={style(classes.root, className)}
-					data-line-index={p.line}
+					data-line-index={node.line}
 				>
-					{p.children[0].text}
+					{node.children[0].text}
 				</p>
 			)
 		);
 	}
 
 	return (
-		<p key={p.key} className={classes.root} data-line-index={p.line}>
+		<p key={node.key} className={classes.root} data-line-index={node.line}>
 			{children.map((node) => {
 				return (
 					<ContentComponent

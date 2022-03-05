@@ -4,31 +4,31 @@ import { ComponentProps } from "../../interfaces/models";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { style, classes } from "./nav.st.css";
 
-export const Nav = (props: ComponentProps): JSX.Element => {
+export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
-	const { pages, translate, isCurrentPage } = layoutContext;
-	const { className } = props;
+	const { pages, getPageName, isCurrentPage } = layoutContext;
 	return (
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
 				<ul className={classes.list}>
-					{pages.map((option) => {
-						const isCurrent = isCurrentPage(option.id);
-						const { label, id, targetPathname } = option;
+					{pages.map((page) => {
+						const { id, targetPathname } = page;
+						const isCurrent = isCurrentPage(id);
+						if (!page.menuNav) {
+							return;
+						}
 						return (
-							option.menuNav && (
-								<li
-									className={style(classes.listItem, { isCurrent })}
-									key={`page-${id}`}
-								>
-									<Button
-										label={translate(label)}
-										link={targetPathname}
-										selected={isCurrent}
-										className={classes.button}
-									/>
-								</li>
-							)
+							<li
+								className={style(classes.listItem, { isCurrent })}
+								key={`nav-page-${id}`}
+							>
+								<Button
+									label={getPageName(id)}
+									link={targetPathname}
+									selected={isCurrent}
+									className={classes.button}
+								/>
+							</li>
 						);
 					})}
 				</ul>

@@ -14,17 +14,15 @@ export interface DropDownProps extends ComponentProps {
 	triggerCallback?: (state: boolean) => void;
 }
 
-export const DropDown = (props: DropDownProps): JSX.Element => {
-	const {
-		options,
-		openLabel,
-		closeLabel,
-		optionListVisible,
-		onSelectChange,
-		triggerCallback,
-		className,
-	} = props;
-
+export const DropDown = ({
+	options,
+	openLabel,
+	closeLabel,
+	optionListVisible,
+	onSelectChange,
+	triggerCallback,
+	className,
+}: DropDownProps): JSX.Element => {
 	return (
 		<div
 			className={style(classes.root, className)}

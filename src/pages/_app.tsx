@@ -19,6 +19,8 @@ function App({ Component, pageProps }: AppProps) {
 	const compLocale = pathData?.locale || ERROR_404_PAGE_LOCALE;
 	const pageId = pathData?.id ? pathData.id : pathHasChild;
 
+	const translateFunc = translate(locale);
+
 	const isCurrentPage = (targetId: string): boolean => {
 		if (pageParent) {
 			const pageData = SITE_PAGES.filter((p) => p.id === pageParent)[0];
@@ -30,13 +32,18 @@ function App({ Component, pageProps }: AppProps) {
 		return pageId === targetId;
 	};
 
+	const getPageName = (id: string) => {
+		return translateFunc(SITE_PAGES.filter((p) => p.id === id)[0].label);
+	};
+
 	const layoutContext: ILayoutContext = {
 		locale,
 		compLocale,
 		pageId,
 		pages: SITE_PAGES,
+		getPageName,
 		isCurrentPage,
-		translate: translate(locale),
+		translate: translateFunc,
 	};
 
 	return (

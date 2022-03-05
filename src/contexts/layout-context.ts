@@ -8,10 +8,13 @@ export class LayoutContext {
 	public readonly pageParent: string;
 	public readonly pageId: string;
 	public readonly pages: SitePage[];
-	translate(s: string): string {
+	public getPageName(id: string): string {
+		return id;
+	}
+	public translate(s: string): string {
 		return `%${s}%`;
 	}
-	isCurrentPage(): // source: string,
+	public isCurrentPage(): // source: string,
 	// id: string,
 	// parent,
 	// pages: SitePage[]

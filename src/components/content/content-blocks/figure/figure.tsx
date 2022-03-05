@@ -6,9 +6,11 @@ import { ContentComponentProps } from "../../../../interfaces/models";
 // import { cloudName } from "../../../../config/cloudinary/config";
 import { style, classes } from "./figure.st.css";
 
-export const Figure = (props: ContentComponentProps): JSX.Element => {
-	const { className } = props;
-	const node = props.componentData.node;
+export const Figure = ({
+	componentData,
+	className,
+}: ContentComponentProps): JSX.Element => {
+	const { node } = componentData;
 	const { target } = node;
 	// const publicId = target.split("?")[0];
 	// const imgParamsStr = target.split("?")[1];

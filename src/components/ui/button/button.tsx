@@ -13,9 +13,16 @@ export interface ButtonProps extends ComponentProps {
 	callback?: (id: string) => void;
 }
 
-export const Button = (props: ButtonProps): JSX.Element => {
-	const { id, label, icon, title, link, selected, callback, className } = props;
-
+export const Button = ({
+	id,
+	label,
+	icon,
+	title,
+	link,
+	selected,
+	callback,
+	className,
+}: ButtonProps): JSX.Element => {
 	if (link) {
 		return (
 			<Link href={`${link}`}>

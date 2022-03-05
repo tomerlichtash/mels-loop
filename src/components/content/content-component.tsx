@@ -20,12 +20,14 @@ import CustomImage from "./content-blocks/custom-image";
 import { ReactPageContext } from "../page/page-context";
 import { style, classes } from "./content-component.st.css";
 
-export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
-	const data = props.componentData;
-	const node: IMLParsedNode = data.node;
+export const ContentComponent = ({
+	componentData,
+	className,
+}: ContentComponentProps): JSX.Element => {
+	// const data = componentData;
+	const { node } = componentData;
 	const { key, type } = node;
 	const pageContext = useContext(ReactPageContext);
-	const { className } = props;
 
 	if (!key) {
 		console.warn("missing key on", node);
@@ -36,7 +38,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 			return (
 				<Section
 					key={key}
-					componentData={data}
+					componentData={componentData}
 					// className={style(classes.root, className)}
 				/>
 			);
@@ -44,7 +46,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 			return (
 				<Paragraph
 					key={key}
-					componentData={data}
+					componentData={componentData}
 					className={style(
 						classes.root,
 						{ type: "paragraph" },
@@ -61,7 +63,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 			return (
 				<ContentIterator
 					key={key}
-					componentData={{ tag: type, ...data }}
+					componentData={{ tag: type, ...componentData }}
 					className={className}
 				/>
 			);
@@ -69,7 +71,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 			return (
 				<ContentIterator
 					key={key}
-					componentData={{ tag: MLNODE_TYPES.BLOCKQUOTE, ...data }}
+					componentData={{ tag: MLNODE_TYPES.BLOCKQUOTE, ...componentData }}
 					className={className}
 				/>
 			);
@@ -91,27 +93,41 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 					className={className}
 					componentData={{
 						tag: ordered ? NODE_LIST_TYPES.ORDERED : NODE_LIST_TYPES.UNORDERED,
-						...data,
+						...componentData,
 					}}
 				/>
 			);
 		case MLNODE_TYPES.LIST_ITEM:
-			return <ListItem key={key} componentData={data} className={className} />;
+			return (
+				<ListItem
+					key={key}
+					componentData={componentData}
+					className={className}
+				/>
+			);
 		case MLNODE_TYPES.LINK:
 			return pageContext.hasAttribute(PageContentAttributes.Story) ? (
-				<PopoverLink key={key} componentData={data} className={className} />
+				<PopoverLink
+					key={key}
+					componentData={componentData}
+					className={className}
+				/>
 			) : (
-				<Link key={key} componentData={data} className={className} />
+				<Link key={key} componentData={componentData} className={className} />
 			);
 		case MLNODE_TYPES.IMAGE:
 			return (
-				<CustomImage key={key} componentData={data} className={className} />
+				<CustomImage
+					key={key}
+					componentData={componentData}
+					className={className}
+				/>
 			);
 		case MLNODE_TYPES.FIGURE:
 			return (
 				<Figure
 					key={key}
-					componentData={data}
+					componentData={componentData}
 					className={style(
 						classes.root,
 						{ type: "figure" },
@@ -122,11 +138,17 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 			);
 		default:
 			if (/heading/i.test(type)) {
-				return <Heading key={key} componentData={data} className={className} />;
+				return (
+					<Heading
+						key={key}
+						componentData={componentData}
+						className={className}
+					/>
+				);
 			}
 			return (
 				<div className={classes.error} key={key}>
-					<pre className={classes.error}>Type {data.node.type} not found</pre>
+					<pre className={classes.error}>Type {node.type} not found</pre>
 				</div>
 			);
 	}
