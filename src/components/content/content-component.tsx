@@ -26,7 +26,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 	const { key, type } = node;
 	const pageContext = useContext(ReactPageContext);
 	const { className } = props;
-	debugger;
+
 	if (!key) {
 		console.warn("missing key on", node);
 	}
@@ -108,7 +108,6 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 				<CustomImage key={key} componentData={data} className={className} />
 			);
 		case MLNODE_TYPES.FIGURE:
-			debugger;
 			return (
 				<Figure
 					key={key}

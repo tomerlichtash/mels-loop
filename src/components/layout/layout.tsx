@@ -31,7 +31,7 @@ export default function Layout(props: LayoutProps) {
 		props.context || new PageContext(PageContentAttributes.Plain);
 
 	const layoutContext = useContext(ReactLayoutContext);
-	const { translate } = layoutContext;
+	const { translate, pageId } = layoutContext;
 
 	const router = useRouter();
 	const { locale, locales, pathname } = router;
@@ -75,8 +75,9 @@ export default function Layout(props: LayoutProps) {
 			<div className={style(classes.root, { locale })}>
 				<Header
 					className={classes.header}
-					pathname={pathname}
-					isHome={isHome}
+					// pathname={pathname}
+					// isHome={isHome}
+					pageId={pageId}
 					sitePages={SITE_PAGES}
 					compKeys={HEADER_LOCALE}
 				/>

@@ -7,15 +7,14 @@ import { Button } from "../ui";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 
 export interface HeaderProps extends ComponentProps {
-	pathname: string;
-	isHome: boolean;
+	pageId: string;
 	sitePages: SitePage[];
 }
 
 export const Header = (props: HeaderProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate } = layoutContext;
-	const { pathname, isHome, sitePages, compKeys, className } = props;
+	const { sitePages, compKeys, pageId, className } = props;
 	const { siteTitle, siteSubtitle } = compKeys;
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
@@ -24,7 +23,7 @@ export const Header = (props: HeaderProps): JSX.Element => {
 		<header className={style(classes.root, className)}>
 			<div className={classes.container}>
 				<div className={classes.title}>
-					{isHome ? (
+					{pageId === "home" ? (
 						<div className={classes.titleContainer}>
 							<h1
 								className={classes.siteTitle}
@@ -51,8 +50,8 @@ export const Header = (props: HeaderProps): JSX.Element => {
 				</div>
 				<Nav
 					sitePages={sitePages}
+					pageId={pageId}
 					className={classes.headerNav}
-					pathname={pathname}
 				/>
 			</div>
 		</header>

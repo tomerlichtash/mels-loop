@@ -19,7 +19,6 @@ export const SITE_PAGES: SitePage[] = [
 		locale: HOME_PAGE_LOCALE,
 		label: HOME_PAGE_LOCALE.pageName,
 		targetPathname: "/",
-		pathname: "/",
 	},
 	{
 		id: "docs",
@@ -27,15 +26,6 @@ export const SITE_PAGES: SitePage[] = [
 		locale: DOCS_PAGE_LOCALE,
 		label: DOCS_PAGE_LOCALE.pageName,
 		targetPathname: "/docs",
-		pathname: "/docs",
-	},
-	{
-		id: "preface",
-		menuNav: true,
-		locale: PREFACE_PAGE_LOCALE,
-		label: PREFACE_PAGE_LOCALE.pageName,
-		targetPathname: "/docs/preface",
-		pathname: "/docs/[id]",
 	},
 	{
 		id: "blog",
@@ -43,7 +33,6 @@ export const SITE_PAGES: SitePage[] = [
 		locale: BLOG_PAGE_LOCALE,
 		label: BLOG_PAGE_LOCALE.pageName,
 		targetPathname: "/posts",
-		pathname: "/posts",
 	},
 	{
 		id: "story",
@@ -51,7 +40,6 @@ export const SITE_PAGES: SitePage[] = [
 		locale: STORY_PAGE_LOCALE,
 		label: STORY_PAGE_LOCALE.pageName,
 		targetPathname: "/story",
-		pathname: "/story",
 	},
 	{
 		id: "about",
@@ -59,15 +47,6 @@ export const SITE_PAGES: SitePage[] = [
 		locale: ABOUT_PAGE_LOCALE,
 		label: ABOUT_PAGE_LOCALE.pageName,
 		targetPathname: "/about",
-		pathname: "/about",
-	},
-	{
-		id: "resources",
-		menuNav: true,
-		locale: RESOURCES_PAGE_LOCALE,
-		label: RESOURCES_PAGE_LOCALE.pageName,
-		targetPathname: "/docs/resources",
-		pathname: "/docs/[id]",
 	},
 	{
 		id: "glossary",
@@ -75,7 +54,20 @@ export const SITE_PAGES: SitePage[] = [
 		locale: GLOSSARY_PAGE_LOCALE,
 		label: GLOSSARY_PAGE_LOCALE.pageName,
 		targetPathname: "/glossary",
-		pathname: "/glossary",
+	},
+	{
+		id: "preface",
+		menuNav: true,
+		locale: PREFACE_PAGE_LOCALE,
+		label: PREFACE_PAGE_LOCALE.pageName,
+		targetPathname: "/docs/preface",
+	},
+	{
+		id: "resources",
+		menuNav: true,
+		locale: RESOURCES_PAGE_LOCALE,
+		label: RESOURCES_PAGE_LOCALE.pageName,
+		targetPathname: "/docs/resources",
 	},
 	{
 		id: "error",
@@ -83,7 +75,6 @@ export const SITE_PAGES: SitePage[] = [
 		locale: ERROR_GENERAL_LOCALE,
 		label: GLOSSARY_PAGE_LOCALE.pageName,
 		targetPathname: "NONE",
-		pathname: "/_error",
 	},
 	{
 		id: "404",
@@ -91,6 +82,5 @@ export const SITE_PAGES: SitePage[] = [
 		locale: ERROR_404_PAGE_LOCALE,
 		label: GLOSSARY_PAGE_LOCALE.pageName,
 		targetPathname: "NONE",
-		pathname: "/404",
 	},
 ];

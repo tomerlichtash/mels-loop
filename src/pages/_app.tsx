@@ -8,10 +8,10 @@ import { ILayoutContext } from "../interfaces/layout-context";
 
 function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
-	const { locale, pathname } = router;
+	const { locale, asPath } = router;
 
 	const pathData = Object.values(SITE_PAGES).filter(
-		(p) => p.pathname === pathname
+		(p) => p.targetPathname === asPath
 	)[0];
 
 	const compLocale = (pathData && pathData.locale) || ERROR_404_PAGE_LOCALE;
@@ -19,6 +19,7 @@ function App({ Component, pageProps }: AppProps) {
 	const layoutContext: ILayoutContext = {
 		locale,
 		compLocale,
+		pageId: pathData.id,
 		translate: translate(locale),
 	};
 

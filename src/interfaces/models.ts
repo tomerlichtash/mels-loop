@@ -205,7 +205,6 @@ export interface SitePage {
 	id: string;
 	targetPathname: string;
 	menuNav: boolean;
-	pathname: string;
 	locale: Record<string, string>;
 }
 

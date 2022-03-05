@@ -1,26 +1,24 @@
 import React, { useContext } from "react";
 import { Button } from "../ui";
 import { ComponentProps, SitePage } from "../../interfaces/models";
-// import DropDown from "../dropdown";
-// import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { style, classes } from "./nav.st.css";
 
 export interface NavProps extends ComponentProps {
 	sitePages: SitePage[];
-	pathname: string;
+	pageId: string;
 }
 
 export const Nav = (props: NavProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate } = layoutContext;
-	const { sitePages, pathname, className } = props;
+	const { sitePages, pageId, className } = props;
 	return (
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
 				<ul className={classes.list}>
 					{sitePages.map((option) => {
-						const isCurrent = pathname === option.targetPathname;
+						const isCurrent = pageId === option.id;
 						const { label, id, targetPathname } = option;
 						return (
 							option.menuNav && (
