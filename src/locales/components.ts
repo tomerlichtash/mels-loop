@@ -9,6 +9,9 @@ const PageKeys: Record<string, ComponentKeyMap> = {
 	HOME_PAGE: {
 		pageName: "HOME_NAV_LABEL",
 	},
+	DOCS_PAGE: {
+		pageName: "DOCS_NAV_LABEL",
+	},
 	ABOUT_PAGE: {
 		pageName: "ABOUT_NAV_LABEL",
 	},
@@ -51,6 +54,7 @@ const withMeta = (keys: Record<string, string>) =>
 
 // Pages
 export const HOME_PAGE_LOCALE = withMeta(PageKeys.HOME_PAGE);
+export const DOCS_PAGE_LOCALE = withMeta(PageKeys.DOCS_PAGE);
 export const ABOUT_PAGE_LOCALE = withMeta(PageKeys.ABOUT_PAGE);
 export const STORY_PAGE_LOCALE = withMeta(PageKeys.STORY_PAGE);
 export const BLOG_PAGE_LOCALE = withMeta(PageKeys.BLOG_PAGE);

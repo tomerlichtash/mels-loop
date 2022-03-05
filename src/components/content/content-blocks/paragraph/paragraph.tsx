@@ -1,7 +1,7 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
 import { ContentComponent } from "../../index";
-import { classes } from "./paragraph.st.css";
+import { style, classes } from "./paragraph.st.css";
 
 export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 	const p = props.componentData.node;
@@ -14,9 +14,16 @@ export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 
 	if (children.length === 1 && children[0].type === "text") {
 		return (
-			<p key={p.key} className={classes.root} data-line-index={p.line}>
-				{p.children[0].text}
-			</p>
+			classes.root,
+			(
+				<p
+					key={p.key}
+					className={style(classes.root, className)}
+					data-line-index={p.line}
+				>
+					{p.children[0].text}
+				</p>
+			)
 		);
 	}
 
@@ -26,7 +33,7 @@ export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 				return (
 					<ContentComponent
 						key={node.key}
-						className={className}
+						className={style(classes.root, className)}
 						componentData={{ node: node }}
 					/>
 				);

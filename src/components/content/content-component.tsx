@@ -26,7 +26,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 	const { key, type } = node;
 	const pageContext = useContext(ReactPageContext);
 	const { className } = props;
-
+	debugger;
 	if (!key) {
 		console.warn("missing key on", node);
 	}
@@ -37,7 +37,7 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 				<Section
 					key={key}
 					componentData={data}
-					className={style(classes.section, className)}
+					// className={style(classes.root, className)}
 				/>
 			);
 		case MLNODE_TYPES.PARAGRAPH:
@@ -45,7 +45,12 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 				<Paragraph
 					key={key}
 					componentData={data}
-					className={classes.paragraph}
+					className={style(
+						classes.root,
+						{ type: "paragraph" },
+						classes.paragraph,
+						className
+					)}
 				/>
 			);
 		case MLNODE_TYPES.DEL:
@@ -71,7 +76,10 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 		case MLNODE_TYPES.TEXT:
 			const { text } = node;
 			return (
-				<span key={key} className={className}>
+				<span
+					key={key}
+					className={style(classes.text, { type: "text" }, className)}
+				>
 					{text}
 				</span>
 			);
@@ -100,7 +108,19 @@ export const ContentComponent = (props: ContentComponentProps): JSX.Element => {
 				<CustomImage key={key} componentData={data} className={className} />
 			);
 		case MLNODE_TYPES.FIGURE:
-			return <Figure key={key} componentData={data} className={className} />;
+			debugger;
+			return (
+				<Figure
+					key={key}
+					componentData={data}
+					className={style(
+						classes.root,
+						{ type: "figure" },
+						classes.figure,
+						className
+					)}
+				/>
+			);
 		default:
 			if (/heading/i.test(type)) {
 				return <Heading key={key} componentData={data} className={className} />;

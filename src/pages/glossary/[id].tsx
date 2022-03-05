@@ -4,7 +4,7 @@ import { CONTENT_TYPES } from "../../consts";
 import GenericPage from "../../components/content/generic-page";
 import { mlNextUtils, LoadFolderModes } from "../../lib/next-utils";
 
-export default function Doc(props: IPageProps) {
+export default function GlossaryTerm(props: IPageProps) {
 	return <GenericPage pageProps={props} />;
 }
 

@@ -9,6 +9,7 @@ export const LOCALE_LABELS: LocaleLabels = {
 
 export const EN_US: Language = {
 	HOME_NAV_LABEL: "Home",
+	DOCS_NAV_LABEL: "Docs",
 	ABOUT_NAV_LABEL: "About",
 	STORY_NAV_LABEL: "The Story",
 	PREFACE_NAV_LABEL: "Preface",
@@ -31,6 +32,7 @@ export const EN_US: Language = {
 
 export const HE_IL: Language = {
 	HOME_NAV_LABEL: "שער",
+	DOCS_NAV_LABEL: "מסמכים",
 	ABOUT_NAV_LABEL: "אודות",
 	STORY_NAV_LABEL: "הסיפור",
 	PREFACE_NAV_LABEL: "מבוא",

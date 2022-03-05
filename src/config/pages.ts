@@ -2,6 +2,7 @@ import { SitePage } from "../interfaces/models";
 import {
 	ABOUT_PAGE_LOCALE,
 	HOME_PAGE_LOCALE,
+	DOCS_PAGE_LOCALE,
 	PREFACE_PAGE_LOCALE,
 	RESOURCES_PAGE_LOCALE,
 	STORY_PAGE_LOCALE,
@@ -19,6 +20,14 @@ export const SITE_PAGES: SitePage[] = [
 		label: HOME_PAGE_LOCALE.pageName,
 		targetPathname: "/",
 		pathname: "/",
+	},
+	{
+		id: "docs",
+		menuNav: true,
+		locale: DOCS_PAGE_LOCALE,
+		label: DOCS_PAGE_LOCALE.pageName,
+		targetPathname: "/docs",
+		pathname: "/docs",
 	},
 	{
 		id: "preface",
@@ -62,10 +71,10 @@ export const SITE_PAGES: SitePage[] = [
 	},
 	{
 		id: "glossary",
-		menuNav: false,
+		menuNav: true,
 		locale: GLOSSARY_PAGE_LOCALE,
 		label: GLOSSARY_PAGE_LOCALE.pageName,
-		targetPathname: "/docs/resources",
+		targetPathname: "/glossary",
 		pathname: "/glossary",
 	},
 	{

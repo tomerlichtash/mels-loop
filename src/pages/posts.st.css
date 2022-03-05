@@ -1,4 +1,4 @@
-@namespace "Blog";
+@namespace "Posts";
 
 :import {
   -st-from: "../components/ui/button/button.st.css";
@@ -8,6 +8,11 @@
 :import {
   -st-from: "../components/content/content-component.st.css";
   -st-default: ContentComponent;
+}
+
+:import {
+  -st-from: "../components/content/content-blocks/figure/figure.st.css";
+  -st-default: FigureBlock;
 }
 
 .root {}
@@ -43,9 +48,18 @@
 .postDate {}
 
 .postContent {
-  /* -st-extends: ContentComponent; */
-  /* color: red; */
+  -st-extends: ContentComponent;
 }
-/* .postContent::section {
-  color: blue;
-} */
+
+.postContent:type(paragraph) {
+  margin-bottom: 1rem;
+}
+.postContent:type(text) {
+  
+}
+
+.postContent:type(figure) {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
