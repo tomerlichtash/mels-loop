@@ -6,13 +6,13 @@ import { style, classes } from "./nav.st.css";
 
 export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
-	const { pages, getPath, getPageName, isCurrentPage } = layoutContext;
+	const { getPageRefs, getPath, getPageName, isCurrentPage } = layoutContext;
 	debugger;
 	return (
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
 				<ul className={classes.list}>
-					{pages.map((page) => {
+					{getPageRefs().map((page) => {
 						const { id, menuNav } = page;
 						const isCurrent = isCurrentPage(id);
 						if (!menuNav) {

@@ -1,87 +1,50 @@
-import { SitePage } from "../interfaces/models";
-import {
-	ABOUT_PAGE_LOCALE,
-	HOME_PAGE_LOCALE,
-	DOCS_PAGE_LOCALE,
-	PREFACE_PAGE_LOCALE,
-	RESOURCES_PAGE_LOCALE,
-	STORY_PAGE_LOCALE,
-	GLOSSARY_PAGE_LOCALE,
-	BLOG_PAGE_LOCALE,
-	ERROR_404_PAGE_LOCALE,
-	ERROR_GENERAL_LOCALE,
-} from "../locales/components";
+import { SitePageRef } from "../interfaces/models";
+import { SITE_PAGES } from "./pages-data";
 
-export const SITE_PAGES: SitePage[] = [
-	{
-		id: "home",
-		menuNav: true,
-		locale: HOME_PAGE_LOCALE,
-		label: HOME_PAGE_LOCALE.pageName,
-		targetPathname: "/",
-	},
-	{
-		id: "docs",
-		menuNav: true,
-		locale: DOCS_PAGE_LOCALE,
-		label: DOCS_PAGE_LOCALE.pageName,
-		targetPathname: "/docs",
-		children: ["preface", "resources", "blackjack-writeup"],
-	},
-	{
-		id: "posts",
-		menuNav: true,
-		locale: BLOG_PAGE_LOCALE,
-		label: BLOG_PAGE_LOCALE.pageName,
-		targetPathname: "/posts",
-	},
-	{
-		id: "story",
-		menuNav: true,
-		locale: STORY_PAGE_LOCALE,
-		label: STORY_PAGE_LOCALE.pageName,
-		targetPathname: "/story",
-	},
-	{
-		id: "about",
-		menuNav: true,
-		locale: ABOUT_PAGE_LOCALE,
-		label: ABOUT_PAGE_LOCALE.pageName,
-		targetPathname: "/about",
-	},
-	{
-		id: "glossary",
-		menuNav: true,
-		locale: GLOSSARY_PAGE_LOCALE,
-		label: GLOSSARY_PAGE_LOCALE.pageName,
-		targetPathname: "/glossary",
-	},
-	{
-		id: "preface",
-		menuNav: true,
-		locale: PREFACE_PAGE_LOCALE,
-		label: PREFACE_PAGE_LOCALE.pageName,
-		targetPathname: "/docs/preface",
-	},
-	{
-		id: "resources",
-		menuNav: true,
-		locale: RESOURCES_PAGE_LOCALE,
-		label: RESOURCES_PAGE_LOCALE.pageName,
-		targetPathname: "/docs/resources",
-	},
-	{
-		id: "error",
-		menuNav: false,
-		locale: ERROR_GENERAL_LOCALE,
-		label: GLOSSARY_PAGE_LOCALE.pageName,
-		targetPathname: "NONE",
-	},
-	{
-		id: "404",
-		menuNav: false,
-		locale: ERROR_404_PAGE_LOCALE,
-		label: GLOSSARY_PAGE_LOCALE.pageName,
-		targetPathname: "NONE",
-	},
-];
+export const getPage = (id: string) => SITE_PAGES.filter((p) => p.id === id);
+
+export const getPathData = (id: string) =>
+	Object.values(SITE_PAGES).filter((p) => p.targetPathname === id)[0];
+
+export const getPageRefs = () =>
+	SITE_PAGES.map(({ id, menuNav }: SitePageRef) => {
+		return { id, menuNav };
+	});
+
+export const getPath = (id: string) => {
+	const page = getPage(id);
+	if (!page.length) {
+		throw new Error(`Missing page key: ${id}`);
+	}
+	const { targetPathname } = page[0];
+	if (!targetPathname) {
+		throw new Error(`Missing targetPathname for pageId ${id}`);
+	}
+	return targetPathname;
+};
+
+export const getPageName = (id: string) => {
+	const page = getPage(id);
+	if (!page.length) {
+		throw new Error(`Missing page key: ${id}`);
+	}
+	const { locale } = page[0];
+	if (!locale) {
+		throw new Error(`Missing locale for pageId ${id}`);
+	}
+	return locale.pageName;
+};
+
+export const isCurrentPage = (
+	id: string,
+	currentPageId: string,
+	pageParent: string
+): boolean => {
+	if (pageParent) {
+		const pageData = getPage(pageParent)[0];
+		if (!pageData?.children?.includes(id)) {
+			return pageParent === id;
+		}
+	}
+	return currentPageId === id;
+};

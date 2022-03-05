@@ -9,7 +9,7 @@ export interface ILayoutContext {
 	readonly locale: string;
 	readonly compLocale: Record<string, string>;
 	pageId: string;
-	pages: SitePageRef[];
+	getPageRefs: () => SitePageRef[];
 	getPath: (id: string) => string;
 	getPageName: (id: string) => string;
 	isCurrentPage: (pageId: string) => boolean;

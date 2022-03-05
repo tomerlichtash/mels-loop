@@ -203,12 +203,16 @@ export interface ComponentProps {
  * Site page navigation props
  */
 export interface SitePage {
-	label: string;
 	id: string;
 	targetPathname: string;
 	menuNav: boolean;
 	locale: Record<string, string>;
 	children?: string[];
+}
+
+export interface SitePageRef {
+	id: string;
+	menuNav: boolean;
 }
 
 export interface IPageProps {

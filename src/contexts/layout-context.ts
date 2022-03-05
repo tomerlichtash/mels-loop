@@ -1,13 +1,12 @@
 import { Context, createContext } from "react";
 import { ILayoutContext, SitePageRef } from "../interfaces/layout-context";
-import { ComponentKeyMap } from "../locales/types";
 
 export class LayoutContext {
 	public readonly locale: string;
 	public readonly compLocale: Record<string, string>;
 	public readonly pageParent: string;
 	public readonly pageId: string;
-	public readonly pages: SitePageRef[];
+	public getPageRefs: () => SitePageRef[];
 	public getPath(id: string): string {
 		return id;
 	}
