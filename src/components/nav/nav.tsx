@@ -6,15 +6,16 @@ import { style, classes } from "./nav.st.css";
 
 export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
-	const { pages, getPageName, isCurrentPage } = layoutContext;
+	const { pages, getPath, getPageName, isCurrentPage } = layoutContext;
+	debugger;
 	return (
 		<nav className={style(classes.root, className)}>
 			<div className={classes.menu}>
 				<ul className={classes.list}>
 					{pages.map((page) => {
-						const { id, targetPathname } = page;
+						const { id, menuNav } = page;
 						const isCurrent = isCurrentPage(id);
-						if (!page.menuNav) {
+						if (!menuNav) {
 							return;
 						}
 						return (
@@ -24,7 +25,7 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 							>
 								<Button
 									label={getPageName(id)}
-									link={targetPathname}
+									link={getPath(id)}
 									selected={isCurrent}
 									className={classes.button}
 								/>

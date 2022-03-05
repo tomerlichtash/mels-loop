@@ -1,24 +1,23 @@
 import { Context, createContext } from "react";
-import { ILayoutContext } from "../interfaces/layout-context";
-import { SitePage } from "../interfaces/models";
+import { ILayoutContext, SitePageRef } from "../interfaces/layout-context";
+import { ComponentKeyMap } from "../locales/types";
 
 export class LayoutContext {
 	public readonly locale: string;
 	public readonly compLocale: Record<string, string>;
 	public readonly pageParent: string;
 	public readonly pageId: string;
-	public readonly pages: SitePage[];
+	public readonly pages: SitePageRef[];
+	public getPath(id: string): string {
+		return id;
+	}
 	public getPageName(id: string): string {
 		return id;
 	}
 	public translate(s: string): string {
 		return `%${s}%`;
 	}
-	public isCurrentPage(): // source: string,
-	// id: string,
-	// parent,
-	// pages: SitePage[]
-	boolean {
+	public isCurrentPage(): boolean {
 		return false;
 	}
 }

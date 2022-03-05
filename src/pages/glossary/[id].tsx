@@ -9,7 +9,10 @@ export default function GlossaryTerm(props: IPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-	return mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.GLOSSARY, context.locales);
+	return mlNextUtils.getFolderStaticPaths(
+		CONTENT_TYPES.GLOSSARY,
+		context.locales
+	);
 };
 
 export const getStaticProps: GetStaticProps = async (
