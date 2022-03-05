@@ -6,6 +6,7 @@ import {
 	RESOURCES_PAGE_LOCALE,
 	STORY_PAGE_LOCALE,
 	GLOSSARY_PAGE_LOCALE,
+	BLOG_PAGE_LOCALE,
 	ERROR_404_PAGE_LOCALE,
 	ERROR_GENERAL_LOCALE,
 } from "../locales/components";
@@ -26,6 +27,14 @@ export const SITE_PAGES: SitePage[] = [
 		label: PREFACE_PAGE_LOCALE.pageName,
 		targetPathname: "/docs/preface",
 		pathname: "/docs/[id]",
+	},
+	{
+		id: "blog",
+		menuNav: true,
+		locale: BLOG_PAGE_LOCALE,
+		label: BLOG_PAGE_LOCALE.pageName,
+		targetPathname: "/posts",
+		pathname: "/posts",
 	},
 	{
 		id: "story",

@@ -44,6 +44,8 @@
   flex: 1;
 }
 
+.siteTitleHeading {}
+
 .siteTitle {
 	text-transform: uppercase;
 }

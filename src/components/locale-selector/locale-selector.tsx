@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import DropDown from "../dropdown";
 import { ComponentProps } from "../../interfaces/models";
 import { IOption } from "../dropdown/option";
 import { style, classes } from "./locale-selector.st.css";
+import { ReactLayoutContext } from "../../contexts/layout-context";
 
 export interface LocaleSelectorProps extends ComponentProps {
 	options: IOption[];
@@ -10,8 +11,10 @@ export interface LocaleSelectorProps extends ComponentProps {
 }
 
 export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
+	const layoutContext = useContext(ReactLayoutContext);
+	const { translate } = layoutContext;
 	const [optionListVisible, toggleOptionList] = useState(false);
-	const { compKeys, options, onSelectChange, translate, className } = props;
+	const { compKeys, options, onSelectChange, className } = props;
 	const currentLang = options.find((d) => d.isCurrent).label;
 	return (
 		<div className={style(classes.root, className)}>
@@ -23,7 +26,6 @@ export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 					optionListVisible={optionListVisible}
 					triggerCallback={toggleOptionList}
 					onSelectChange={onSelectChange}
-					translate={translate}
 					openLabel={`${translate(
 						"LOCALE_SELECTOR_LANGUAGE_LABEL"
 					)}: ${translate(currentLang)}`}

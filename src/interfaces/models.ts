@@ -4,7 +4,7 @@ import { ComponentKeyMap } from "../locales/types";
  * Workaround for any
  */
 export interface IPlainObject {
-	[key: string | number] : string | number | boolean | object | null
+	[key: string | number]: string | number | boolean | object | null;
 }
 
 /**
@@ -31,7 +31,7 @@ export enum ASTNODE_TYPES {
 	BLOCK_QUOTE = "blockQuote",
 	HEADING = "heading",
 	SUB = "sub",
-	SUP = "sup"
+	SUP = "sup",
 }
 
 export enum MLNODE_TYPES {
@@ -51,7 +51,7 @@ export enum MLNODE_TYPES {
 	FIGURE = "figure",
 	UNKNOWN = "unknown",
 	SUB = "sub",
-	SUP = "sup"
+	SUP = "sup",
 }
 
 export enum NODE_LIST_TYPES {
@@ -61,7 +61,7 @@ export enum NODE_LIST_TYPES {
 
 export enum MLParseModes {
 	VERSE = "verse",
-	NORMAL = "normal"
+	NORMAL = "normal",
 }
 
 /**
@@ -117,8 +117,6 @@ export interface IPageMetaData {
 	 * Display name of glossary item
 	 */
 	readonly glossary_term: string;
-
-
 }
 
 /**
@@ -187,6 +185,7 @@ export interface IContentComponentInitData {
 
 export interface ContentComponentProps {
 	componentData: IContentComponentInitData;
+	className?: string;
 }
 
 /**
@@ -194,7 +193,7 @@ export interface ContentComponentProps {
  */
 export interface ComponentProps {
 	compKeys?: Record<string, string>;
-	translate?: (key: string) => string;
+	// translate?: (key: string) => string;
 	className?: string;
 }
 
@@ -224,5 +223,6 @@ export interface IPageProps {
  * should be rendered.
  */
 export enum PageContentAttributes {
-	Story, Plain
+	Story,
+	Plain,
 }

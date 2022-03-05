@@ -1,7 +1,12 @@
+import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
 import { GetStaticProps } from "next";
-import { IPageProps, MLParseModes, PageContentAttributes } from "../interfaces/models";
+import {
+	IPageProps,
+	MLParseModes,
+	PageContentAttributes,
+} from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
 import { classes } from "./index.st.css";
 import { CONTENT_TYPES } from "../consts";
@@ -10,14 +15,17 @@ import { LoadContentModes } from "../lib/markdown-driver";
 import { useState } from "react";
 import { IPageContext } from "../interfaces/page-context";
 import { PageContext } from "../components/page/page-context";
+import { ReactLayoutContext } from "../contexts/layout-context";
 
 export default function Story(props: IPageProps) {
-	const { translate, compLocale } = props;
+	const layoutContext = useContext(ReactLayoutContext);
+	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
-	const [pageContext] = 
-		useState<IPageContext>(new PageContext(PageContentAttributes.Story));
+	const [pageContext] = useState<IPageContext>(
+		new PageContext(PageContentAttributes.Story)
+	);
 	return (
-		<Layout {...{ translate, context: pageContext }}>
+		<Layout {...{ context: pageContext }}>
 			<Head>
 				<title>
 					{translate(siteTitle)} - {translate(pageName)}
