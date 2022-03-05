@@ -4,8 +4,8 @@ import { IPageProps } from "../interfaces/models";
 import IconComp from "./../assets/svg/source_icons_computer.svg";
 import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 import { cloudName } from "../config/cloudinary/config";
-import { style, classes } from "./index.st.css";
 import Link from "next/link";
+import { style, classes } from "./index.st.css";
 
 export default function Home(props: IPageProps) {
 	const { translate, compLocale } = props;
@@ -14,7 +14,7 @@ export default function Home(props: IPageProps) {
 		<Layout {...{ translate }}>
 			<Head>
 				<title>
-					{translate(siteTitle)} - ${translate(pageName)}
+					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
 			<article className={style(classes.root)}>
