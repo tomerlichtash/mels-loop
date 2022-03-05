@@ -30,7 +30,11 @@ export default function Home() {
 				<div>
 					<Link href="/glossary">glossary</Link>
 				</div>
-				<div>photos</div>
+				<div>
+					<h2>Bios</h2>
+					<div>about ed nather</div>
+					<div>about mel kaye</div>
+				</div>
 			</article>
 		</Layout>
 	);
