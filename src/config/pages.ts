@@ -29,7 +29,7 @@ export const SITE_PAGES: SitePage[] = [
 		children: ["preface", "resources", "blackjack-writeup"],
 	},
 	{
-		id: "blog",
+		id: "posts",
 		menuNav: true,
 		locale: BLOG_PAGE_LOCALE,
 		label: BLOG_PAGE_LOCALE.pageName,

@@ -26,12 +26,11 @@ function isCurrentPage(
 function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 	const { locale, pathname, query, asPath } = router;
-
 	const pageParent = pathname.includes("[id]") ? pathname.split("/")[1] : "";
 	const pathHasChild = (query.id || "") as string;
 
 	const pathData = Object.values(SITE_PAGES).filter((p) => {
-		return p.targetPathname === asPath;
+		return p.targetPathname === pathHasChild ? pageParent : asPath;
 	})[0];
 
 	const compLocale = (pathData && pathData.locale) || ERROR_404_PAGE_LOCALE;
