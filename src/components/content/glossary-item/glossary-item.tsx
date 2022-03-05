@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ContentComponent } from "..";
+import { ContentComponent } from "../index";
 import { ReactLayoutContext } from "../../../contexts/layout-context";
 import { DynamicContentTypes, IDynamicContentRecord } from "../../../interfaces/dynamic-content";
 import { ComponentProps, IParsedPageData } from "../../../interfaces/models";
@@ -47,7 +47,7 @@ export const GlossaryItem = (props: GlossaryItemProps): JSX.Element => {
 			{elements.map((node, index) => {
 				return (
 					<ContentComponent
-						key={`glossary-${index}`}
+						key={`g-item-${index}`}
 						className={classes.root}
 						componentData={{
 							node: node,

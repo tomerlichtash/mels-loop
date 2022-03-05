@@ -24,7 +24,7 @@ export default function Story(props: IPageProps) {
 	contentContext.setAttribute(PageContentAttributes.Story);
 
 	return (
-		<Layout {...{ }}>
+		<Layout>
 			<Head>
 				<title>
 					{translate(siteTitle)} - {translate(pageName)}
