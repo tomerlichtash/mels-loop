@@ -12,20 +12,19 @@ import { classes } from "./index.st.css";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
 import { LoadContentModes } from "../lib/markdown-driver";
-import { useState } from "react";
-import { IPageContext } from "../interfaces/page-context";
-import { PageContext } from "../components/page/page-context";
+import { ReactPageContext } from "../components/page/page-context";
 import { ReactLayoutContext } from "../contexts/layout-context";
 
 export default function Story(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
-	const [pageContext] = useState<IPageContext>(
-		new PageContext(PageContentAttributes.Story)
-	);
+
+	const contentContext = useContext(ReactPageContext);
+	contentContext.setAttribute(PageContentAttributes.Story);
+
 	return (
-		<Layout {...{ context: pageContext }}>
+		<Layout>
 			<Head>
 				<title>
 					{translate(siteTitle)} - {translate(pageName)}
@@ -46,7 +45,7 @@ export default function Story(props: IPageProps) {
 export const getStaticProps: GetStaticProps = async (context) => {
 	return mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.CODEX,
-		context,
+		context.locale,
 		LoadFolderModes.FOLDER,
 		LoadContentModes.FULL,
 		MLParseModes.VERSE

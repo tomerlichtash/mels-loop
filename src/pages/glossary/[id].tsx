@@ -9,7 +9,7 @@ export default function Doc(props: IPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-	return mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.GLOSSARY, context);
+	return mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.GLOSSARY, context.locales);
 };
 
 export const getStaticProps: GetStaticProps = async (
@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
 	return mlNextUtils.getFolderStaticProps(
 		`${CONTENT_TYPES.GLOSSARY}/${context.params.id as string}`,
-		context,
+		context.locale,
 		LoadFolderModes.FOLDER
 	);
 };

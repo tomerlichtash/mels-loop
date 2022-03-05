@@ -1,9 +1,6 @@
 import {
-	GetStaticPathsContext,
 	GetStaticPathsResult,
-	GetStaticPropsContext,
 	GetStaticPropsResult,
-	PreviewData,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { ILocaleMap, MLParseModes } from "../interfaces/models";
@@ -25,7 +22,7 @@ interface FolderStaticProps {
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 type MLGetStaticProps = (
 	folderRelativePath: string,
-	context: GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
+	locale: string, //GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
 	loadMode: LoadFolderModes,
 	contentMode?: LoadContentModes,
 	parseMode?: MLParseModes
@@ -37,7 +34,7 @@ type MLGetStaticProps = (
  */
 type MLGetStaticPaths = (
 	folderRelativePath: string,
-	context: GetStaticPathsContext
+	locales: string[]
 ) => Promise<GetStaticPathsResult<ParsedUrlQuery>> | GetStaticPathsResult<ParsedUrlQuery>;
 
 /**
@@ -70,14 +67,14 @@ class MLNextUtils implements IMLNextUtils {
 
 	public getFolderStaticProps(
 		folderPath: string,
-		context: GetStaticPropsContext,
+		locale: string,
 		loadMode: LoadFolderModes,
 		contentMode: LoadContentModes = LoadContentModes.FULL,
 		parseMode: MLParseModes = MLParseModes.NORMAL,
 	): GetStaticPropsResult<FolderStaticProps> {
 		const docData = loadContentFolder({
 			relativePath: folderPath,
-			locale: context.locale,
+			locale,
 			contentMode,
 			loadMode,
 			parseMode
@@ -85,17 +82,17 @@ class MLNextUtils implements IMLNextUtils {
 		return {
 			props: {
 				content: JSON.stringify(docData.pages),
-				locale: context.locale
+				locale
 			},
 		};
 	}
 
 	public getFolderStaticPaths(
 		folderPath: string,
-		context: GetStaticPathsContext,
+		locales: string[],
 	): GetStaticPathsResult<ParsedUrlQuery> {
 		const paths: ILocaleMap[] = [];
-		(context.locales || []).forEach((locale: string) => {
+		(locales || []).forEach((locale: string) => {
 			const folderData = loadContentFolder({
 				locale,
 				relativePath: folderPath,

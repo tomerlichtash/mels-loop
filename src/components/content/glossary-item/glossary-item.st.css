@@ -1,0 +1,10 @@
+@namespace "GlossaryItem";
+
+:import {
+	-st-from: "../../../theme/common.st.css";
+	-st-named: FooterBgColor;
+}
+
+.root {
+}
+

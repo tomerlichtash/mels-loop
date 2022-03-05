@@ -3,9 +3,11 @@ import { ContentComponentProps } from "../../../../interfaces/models";
 import { ContentIterator } from "../../content-iterator";
 import * as Popover from "@radix-ui/react-popover";
 import { classes } from "./popover-link.st.css";
+import GlossaryItem from "../../glossary-item";
 
 export const PopoverLink = (props: ContentComponentProps): JSX.Element => {
-	// const p = props.componentData.node;
+	const p = props.componentData.node;
+	const url = p.target;
 	return (
 		<span className={classes.root}>
 			<Popover.Root>
@@ -15,8 +17,7 @@ export const PopoverLink = (props: ContentComponentProps): JSX.Element => {
 					</span>
 				</Popover.Trigger>
 				<Popover.Content side="top" align="center" className={classes.content}>
-					<h1>title</h1>
-					<p>some text</p>
+					<GlossaryItem url={url} />
 					<Popover.Close className={classes.closeButton}>Close</Popover.Close>
 					<Popover.Arrow className={classes.arrow} />
 				</Popover.Content>
