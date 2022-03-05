@@ -173,7 +173,7 @@ function parseDate(dateString: string | null | undefined): Date {
 }
 
 class ParsedPageData implements IParsedPageData {
-	/* eslint-disable  @typescript-eslint/no-explicit-any */
+	/* eslint-disable @typescript-eslint/no-explicit-any */
 	constructor(data: any) {
 		Object.keys(this).forEach((key) => {
 			if (data[key] !== undefined) {
