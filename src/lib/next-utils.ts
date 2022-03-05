@@ -1,9 +1,6 @@
 import {
-	GetStaticPathsContext,
 	GetStaticPathsResult,
-	GetStaticPropsContext,
 	GetStaticPropsResult,
-	PreviewData,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { ILocaleMap, MLParseModes } from "../interfaces/models";

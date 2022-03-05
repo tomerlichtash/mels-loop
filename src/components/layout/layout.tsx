@@ -12,7 +12,7 @@ import {
 	FOOTER_LOCALE,
 	LOCALE_SELECTOR_LOCALE,
 } from "../../locales/components";
-import { ComponentProps, PageContentAttributes } from "../../interfaces/models";
+import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { LOCALE_FLAGS } from "../svg";

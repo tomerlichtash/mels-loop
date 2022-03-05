@@ -81,7 +81,7 @@ export class DynamicContentServer implements IDynamicContentServer {
 			return this.contentMap[type][locale] = data.items || {};
 		}
 		catch (e) {
-			console.error(`Error fetching data for ${type}, ${locale}\n${e}`);
+			console.error(`Error fetching data for ${type}, ${locale}\n${String(e)}`);
 			return {};
 		}
 	}

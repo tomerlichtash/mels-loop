@@ -5,7 +5,7 @@ import { LoadFolderModes } from "../../lib/next-utils";
 
 export default function handler(_req, res) {
 	const locale = _req.query?.locale || "en";
-	const loadPromise = new Promise((resolve, reject) => {
+	const loadPromise = new Promise((resolve) => {
 		const docData = loadContentFolder({
 			relativePath: CONTENT_TYPES.GLOSSARY,
 			locale,

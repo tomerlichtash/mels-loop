@@ -12,28 +12,31 @@ export interface GlossaryItemProps extends ComponentProps {
 
 export const GlossaryItem = (props: GlossaryItemProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
-	const { className } = props;
+	//const { className } = props;
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
 	const [itemData] = useState<IDynamicContentRecord>(
 		pageContext.dynamicContentServer.urlToContentData(props.url, DynamicContentTypes.Glossary));
-	const [ error, setError ] = useState("");
+	const [error, setError] = useState("");
 
 	const elements = item && item.parsed;
 
 	useEffect(() => {
-		(async () => {
-			const data = await
-				pageContext.dynamicContentServer.getItems(itemData.type,
-					layoutContext.locale, [itemData.id]);
-				const page = data && data[0];
+		pageContext.dynamicContentServer.getItems(
+			itemData.type,
+			layoutContext.locale, [itemData.id])
+			.then((items: IParsedPageData[]) => {
+				const page = items && items[0];
 				if (page) {
 					setItem(page);
 				}
 				else {
 					setError("not found");
 				}
-		})();
+			})
+			.catch(e => {
+				setError(`${String(e)}`);
+			});
 	}, [])
 
 	if (error) {
@@ -56,7 +59,7 @@ export const GlossaryItem = (props: GlossaryItemProps): JSX.Element => {
 		</div>
 	}
 
-	return	<></>
+	return <></>
 };
 
 export default GlossaryItem;
