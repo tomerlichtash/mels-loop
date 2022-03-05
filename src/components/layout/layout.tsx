@@ -12,24 +12,18 @@ import {
 	FOOTER_LOCALE,
 	LOCALE_SELECTOR_LOCALE,
 } from "../../locales/components";
-import { ComponentProps, PageContentAttributes } from "../../interfaces/models";
+import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { LOCALE_FLAGS } from "../svg";
-import { IPageContext } from "../../interfaces/page-context";
-import { PageContext, ReactPageContext } from "../page/page-context";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { style, classes } from "./layout.st.css";
 
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
-	context?: IPageContext;
 }
 
 export default function Layout(props: LayoutProps) {
-	const pageContext: IPageContext =
-		props.context || new PageContext(PageContentAttributes.Plain);
-
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate } = layoutContext;
 
@@ -86,9 +80,7 @@ export default function Layout(props: LayoutProps) {
 					compKeys={LOCALE_SELECTOR_LOCALE}
 					onSelectChange={onSelectChange}
 				/>
-				<ReactPageContext.Provider value={pageContext}>
-					<Page className={classes.page} nodes={props.children} />
-				</ReactPageContext.Provider>
+				<Page className={classes.page} nodes={props.children} />
 				<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 			</div>
 		</>

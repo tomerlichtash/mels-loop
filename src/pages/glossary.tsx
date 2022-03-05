@@ -62,12 +62,12 @@ export default function Glossary(props: IPageProps) {
 export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.GLOSSARY,
-		context,
+		context.locale,
 		LoadFolderModes.FOLDER
 	);
 	const childrenProps = mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.GLOSSARY,
-		context,
+		context.locale,
 		LoadFolderModes.CHILDREN,
 		LoadContentModes.METADATA
 	);
