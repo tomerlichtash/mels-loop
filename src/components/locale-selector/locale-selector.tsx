@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import DropDown from "../dropdown";
 import { ComponentProps } from "../../interfaces/models";
 import { IOption } from "../dropdown/option";
-import { style, classes } from "./locale-selector.st.css";
 import { ReactLayoutContext } from "../../contexts/layout-context";
+import { style, classes } from "./locale-selector.st.css";
 
 export interface LocaleSelectorProps extends ComponentProps {
 	options: IOption[];

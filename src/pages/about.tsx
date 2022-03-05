@@ -6,8 +6,8 @@ import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
-import { style, classes } from "./about.st.css";
 import { ReactLayoutContext } from "../contexts/layout-context";
+import { style, classes } from "./about.st.css";
 
 export default function About(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);

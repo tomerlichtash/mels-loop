@@ -7,10 +7,9 @@ import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
 import { LoadContentModes } from "../lib/markdown-driver";
 import { usePageData } from "../components/usePageData";
-import Link from "next/link";
 import { ReactLayoutContext } from "../contexts/layout-context";
-import { style, classes } from "./about.st.css";
 import { Button } from "../components/ui";
+import { style, classes } from "./docs.st.css";
 
 export default function Docs(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);

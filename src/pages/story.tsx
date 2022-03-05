@@ -8,7 +8,6 @@ import {
 	PageContentAttributes,
 } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
-import { classes } from "./index.st.css";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
 import { LoadContentModes } from "../lib/markdown-driver";
@@ -16,6 +15,7 @@ import { useState } from "react";
 import { IPageContext } from "../interfaces/page-context";
 import { PageContext } from "../components/page/page-context";
 import { ReactLayoutContext } from "../contexts/layout-context";
+import { classes } from "./story.st.css";
 
 export default function Story(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);

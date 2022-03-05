@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import Nav from "../nav";
 import { ComponentProps } from "../../interfaces/models";
-import { style, classes } from "./header.st.css";
 import { Button } from "../ui";
 import { ReactLayoutContext } from "../../contexts/layout-context";
+import { style, classes } from "./header.st.css";
 
 export const Header = (props: ComponentProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);

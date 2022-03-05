@@ -47,9 +47,7 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 						<ContentComponent
 							key={node.key}
 							className={className}
-							componentData={{
-								node: node,
-							}}
+							componentData={{ node }}
 						/>
 					);
 				})}
@@ -59,14 +57,7 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 		return (
 			<>
 				{elements.map((node) => {
-					return (
-						<ContentComponent
-							key={node.key}
-							componentData={{
-								node: node,
-							}}
-						/>
-					);
+					return <ContentComponent key={node.key} componentData={{ node }} />;
 				})}
 			</>
 		);

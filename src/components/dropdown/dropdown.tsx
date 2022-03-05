@@ -2,8 +2,8 @@ import React from "react";
 import { Option } from "./option";
 import { IOption } from "./option";
 import { ComponentProps } from "../../interfaces/models";
-import { style, classes } from "./dropdown.st.css";
 import { Button } from "../ui";
+import { style, classes } from "./dropdown.st.css";
 
 export interface DropDownProps extends ComponentProps {
 	options: IOption[];

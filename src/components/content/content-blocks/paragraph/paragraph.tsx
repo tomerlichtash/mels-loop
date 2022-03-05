@@ -34,7 +34,7 @@ export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 					<ContentComponent
 						key={node.key}
 						className={style(classes.root, className)}
-						componentData={{ node: node }}
+						componentData={{ node }}
 					/>
 				);
 			})}

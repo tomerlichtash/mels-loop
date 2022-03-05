@@ -8,8 +8,8 @@ import { IPageProps } from "../interfaces/models";
 import { LoadContentModes } from "../lib/markdown-driver";
 import { usePageData } from "../components/usePageData";
 import { ReactLayoutContext } from "../contexts/layout-context";
-import { style, classes } from "./glossary.st.css";
 import { Button } from "../components/ui";
+import { style, classes } from "./glossary.st.css";
 
 export default function Glossary(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
