@@ -46,12 +46,12 @@ export default function Docs(props: IPageProps) {
 export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.DOCS,
-		context,
+		context.locale,
 		LoadFolderModes.FOLDER
 	);
 	const childrenProps = mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.DOCS,
-		context,
+		context.locale,
 		LoadFolderModes.CHILDREN,
 		LoadContentModes.METADATA
 	);
