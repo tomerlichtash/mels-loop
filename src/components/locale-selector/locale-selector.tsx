@@ -21,7 +21,9 @@ export const LocaleSelector = (props: LocaleSelectorProps): JSX.Element => {
 			<div className={classes.dropDownContainer}>
 				<DropDown
 					className={style(classes.localeDropDown)}
-					options={options}
+					options={options.map((opt) =>
+						Object.assign({}, opt, { label: translate(opt.label) })
+					)}
 					compKeys={compKeys}
 					optionListVisible={optionListVisible}
 					triggerCallback={toggleOptionList}
