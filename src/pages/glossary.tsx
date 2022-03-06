@@ -32,11 +32,10 @@ export default function Glossary(props: IPageProps) {
 						{metaData.map((page, index) => {
 							const term = page.metaData;
 							const key = `term-${index}`;
-							const displayName = term.glossary_term || term.glossary_key;
 							// TODO classes.error is empty, where do we import from?
-							return term && displayName ? (
+							return term && term.glossary_term ? (
 								<li className={classes.term} key={key}>
-									<Button label={displayName} link={page.path} />
+									<Button label={term.glossary_term} link={page.path} />
 								</li>
 							) : (
 								<div key={key} className={classes.error}>
