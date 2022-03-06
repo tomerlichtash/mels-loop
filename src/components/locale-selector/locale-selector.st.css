@@ -37,7 +37,7 @@
 	height: 32px;
 	line-height: 32px;
 	display: block;
-	border: 1px solid #808080;
+	border: 1px solid transparent;
 }
 
 .localeDropDown::optionListTrigger:id(en):optionListVisible::before {
@@ -47,7 +47,11 @@
 	right: 6px;
 }
 
- .localeDropDown::optionListTrigger:hover {
+.localeDropDown:hover::optionListTrigger {
+	border-color: #808080;
+}
+
+.localeDropDown::optionListTrigger:hover {
 	background-color: #f0f0f0;
 }
 

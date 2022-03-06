@@ -53,23 +53,7 @@ const withMeta = (keys: Record<string, string>) =>
 	Object.assign(keys, SITE_META);
 
 // Pages
-const HOME_PAGE_LOCALE = withMeta(PageKeys.HOME_PAGE);
-const DOCS_PAGE_LOCALE = withMeta(PageKeys.DOCS_PAGE);
-const ABOUT_PAGE_LOCALE = withMeta(PageKeys.ABOUT_PAGE);
-const STORY_PAGE_LOCALE = withMeta(PageKeys.STORY_PAGE);
-const BLOG_PAGE_LOCALE = withMeta(PageKeys.BLOG_PAGE);
-const PREFACE_PAGE_LOCALE = withMeta(PageKeys.PREFACE_PAGE);
-const RESOURCES_PAGE_LOCALE = withMeta(PageKeys.RESOURCES_PAGE);
-const GLOSSARY_PAGE_LOCALE = withMeta(PageKeys.GLOSSARY_PAGE);
-const ERROR_404_PAGE_LOCALE = withMeta(PageKeys.ERROR_404_PAGE);
-const ERROR_GENERAL_LOCALE = withMeta(PageKeys.ERROR_GENERAL);
-
-// Components
-export const HEADER_LOCALE = withMeta(CompKeys.HEADER);
-export const FOOTER_LOCALE = withMeta(CompKeys.FOOTER);
-export const LOCALE_SELECTOR_LOCALE = CompKeys.LOCALE_SELECTOR;
-
-export default {
+const PAGES_KEYS = {
 	HOME_PAGE_LOCALE: withMeta(PageKeys.HOME_PAGE),
 	DOCS_PAGE_LOCALE: withMeta(PageKeys.DOCS_PAGE),
 	ABOUT_PAGE_LOCALE: withMeta(PageKeys.ABOUT_PAGE),
@@ -80,4 +64,21 @@ export default {
 	GLOSSARY_PAGE_LOCALE: withMeta(PageKeys.GLOSSARY_PAGE),
 	ERROR_404_PAGE_LOCALE: withMeta(PageKeys.ERROR_404_PAGE),
 	ERROR_GENERAL_LOCALE: withMeta(PageKeys.ERROR_GENERAL),
+};
+// Components
+export const HEADER_LOCALE = withMeta(CompKeys.HEADER);
+export const FOOTER_LOCALE = withMeta(CompKeys.FOOTER);
+export const LOCALE_SELECTOR_LOCALE = CompKeys.LOCALE_SELECTOR;
+
+export default {
+	HOME_PAGE_LOCALE: PageKeys.HOME_PAGE,
+	DOCS_PAGE_LOCALE: PageKeys.DOCS_PAGE,
+	ABOUT_PAGE_LOCALE: PageKeys.ABOUT_PAGE,
+	STORY_PAGE_LOCALE: PageKeys.STORY_PAGE,
+	BLOG_PAGE_LOCALE: PageKeys.BLOG_PAGE,
+	PREFACE_PAGE_LOCALE: PageKeys.PREFACE_PAGE,
+	RESOURCES_PAGE_LOCALE: PageKeys.RESOURCES_PAGE,
+	GLOSSARY_PAGE_LOCALE: PageKeys.GLOSSARY_PAGE,
+	ERROR_404_PAGE_LOCALE: PageKeys.ERROR_404_PAGE,
+	ERROR_GENERAL_LOCALE: PageKeys.ERROR_GENERAL,
 };

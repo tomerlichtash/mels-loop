@@ -16,7 +16,7 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	return (
 		<nav className={style(classes.root, className)}>
 			<div className={style(classes.menu, { marker })}>
-				<div className={classes.markerStrip}></div>
+				{/* <div className={classes.markerStrip}></div> */}
 				<ul className={classes.list}>
 					{getPageRefs().map((page) => {
 						const { id } = page;
@@ -28,7 +28,7 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 								key={`nav-item-${id}`}
 								onMouseOver={() => setMarker(id)}
 							>
-								<span className={classes.markerPointer}></span>
+								{/* <span className={classes.markerPointer}></span> */}
 								<Button
 									label={getPageName(id)}
 									link={getPagePath(id)}

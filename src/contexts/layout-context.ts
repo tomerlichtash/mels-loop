@@ -7,11 +7,14 @@ export class LayoutContext {
 	public readonly pageParent: string;
 	public readonly pageId: string;
 	public getPageRefs: () => SitePageRef[];
-	public getPath(id: string): string {
+	public getPagePath(id: string): string {
 		return id;
 	}
 	public getPageName(id: string): string {
 		return id;
+	}
+	public isPageVisible(id: string): boolean {
+		return false;
 	}
 	public translate(s: string): string {
 		return `%${s}%`;
@@ -19,6 +22,8 @@ export class LayoutContext {
 	public isCurrentPage(): boolean {
 		return false;
 	}
+	public getSiteTitle: () => string;
+	public getSiteSubtitle: () => string;
 }
 
 const ctx = createContext<ILayoutContext>(new LayoutContext());

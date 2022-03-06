@@ -13,6 +13,8 @@ import {
 	getPageName,
 	isCurrentPage,
 	isPageVisible,
+	getSiteTitle,
+	getSiteSubtitle,
 } from "../config/pages";
 
 function App({ Component, pageProps }: AppProps) {
@@ -25,7 +27,6 @@ function App({ Component, pageProps }: AppProps) {
 	const pathData = getPathData(sitePageId);
 	const pageId = pathData?.id || queryId;
 	const translate = translateFunc(locale);
-	console.log(sitePageId, pageId);
 
 	const layoutContext: ILayoutContext = {
 		locale,
@@ -37,6 +38,8 @@ function App({ Component, pageProps }: AppProps) {
 		isCurrentPage: (id: string) => isCurrentPage(id, pageId, parentId),
 		isPageVisible,
 		translate,
+		getSiteTitle,
+		getSiteSubtitle,
 	};
 
 	const contentContext = new PageContext(

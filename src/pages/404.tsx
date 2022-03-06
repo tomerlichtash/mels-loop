@@ -7,13 +7,12 @@ import { classes } from "./_error.st.css";
 
 export default function Error404() {
 	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, compLocale } = layoutContext;
-	const { siteTitle, pageName } = compLocale;
+	const { translate, getSiteTitle, getSiteSubtitle } = layoutContext;
 	return (
 		<Layout>
 			<Head>
 				<title>
-					{translate(siteTitle)} - ${translate(pageName)}
+					{translate(getSiteTitle())} - ${translate(getSiteSubtitle())}
 				</title>
 			</Head>
 			<div className={classes.root}>

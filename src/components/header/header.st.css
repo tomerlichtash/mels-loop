@@ -1,37 +1,17 @@
 @namespace "Header";
 
-:import {
+/* :import {
 	-st-from: "../../theme/common.st.css";
 	-st-named: HeaderBgColor, siteTitleFontSize, siteHeaderHeight, PageWidth;
-}
-
-:import {
-	-st-from: "../nav/nav.st.css";
-	-st-default: NavBar;
-}
+} */
 
 .root {
-  /* position: fixed;
-  top: 0;
-  left: 0; */
-  width: 100%;
-  /* background: #d0d0d0; */
-  text-align: center;
 }
 
-.container {
-  /* width: value(PageWidth); */
-  margin: 0 auto;
-}
+.container {}
 
-.title {
-  /* line-height: 100px; */
-  /* flex: 1; */
-  /* background: red; */
-}
+.title {}
 
 .siteTitleHeading {}
 
-.siteTitle {
-	text-transform: uppercase;
-}
+.siteTitle {}

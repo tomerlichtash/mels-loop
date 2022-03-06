@@ -15,7 +15,7 @@
 }
 
 :global(body) {
-	padding-top: 100px;
+	/* padding-top: 350px; */
 	margin: 0;
 	height: 100%;
 }
@@ -51,19 +51,36 @@
 .page {}
 
 .siteHeader {
-  background: #fff;
+  -st-states: viewState(enum(normal, compact));
+  background-color: #fff;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-	top: 0;
-	height: 108px;
+  top: -25px;
 	width: 100%;
-	padding: 1rem 0 0;
-	position: fixed;
+	position: static;
+  transition: top 125ms ease-in-out;
+	text-align: center;
+}
+
+.siteHeader:viewState(normal) {
+	top: 0;
+}
+.siteHeader:viewState(compact) {
+  top: 0;
+  position: fixed;
+}
+.siteHeader:viewState(compact) .header {
+	padding: 0;
+}
+.siteHeader:viewState(compact) .nav {
+	position: static;
 }
 
 .header {
+	padding: 4rem 0;
 }
 
 .nav {
+	position: fixed;
 	display: flex;
 	align-items: top;
 	align-content: space-around;
@@ -79,7 +96,7 @@
 }
 	
 .nav .localeSelector {
-	position: fixed;
+	/* position: fixed; */
 	top: 1rem;
 	left: 1rem;
 }

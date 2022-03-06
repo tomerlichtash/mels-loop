@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import {
 	ContentComponentProps,
-	IMLParsedNode,
 	MLNODE_TYPES,
 	NODE_LIST_TYPES,
 	PageContentAttributes,

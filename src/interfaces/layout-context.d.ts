@@ -15,4 +15,6 @@ export interface ILayoutContext {
 	isPageVisible: (id: string) => boolean;
 	isCurrentPage: (id: string) => boolean;
 	translate: (s: string) => string;
+	getSiteTitle: () => string;
+	getSiteSubtitle: () => string;
 }
