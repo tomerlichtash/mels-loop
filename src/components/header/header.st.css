@@ -11,37 +11,23 @@
 }
 
 .root {
-  position: fixed;
+  /* position: fixed;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
-  background: #d0d0d0;
+  /* background: #d0d0d0; */
   text-align: center;
 }
 
 .container {
-  width: value(PageWidth);
+  /* width: value(PageWidth); */
   margin: 0 auto;
 }
 
 .title {
   /* line-height: 100px; */
-  flex: 1;
+  /* flex: 1; */
   /* background: red; */
-}
-
-.headerNav {
-	-st-extends: NavBar;
-  flex: 1;
-  display: flex;
-}
-
-.headerNav::menu {
-  flex: 1;
-}
-
-.headerNav::mobileNav {
-  flex: 1;
 }
 
 .siteTitleHeading {}

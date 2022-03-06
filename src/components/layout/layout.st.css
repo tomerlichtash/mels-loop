@@ -15,9 +15,9 @@
 }
 
 :global(body) {
+	padding-top: 100px;
 	margin: 0;
 	height: 100%;
-	margin-top: 100px;
 }
 
 :global(h1) {
@@ -50,7 +50,35 @@
 
 .page {}
 
-.localeSelector {
+.siteHeader {
+  background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	top: 0;
+	height: 108px;
+	width: 100%;
+	padding: 1rem 0 0;
+	position: fixed;
+}
+
+.header {
+}
+
+.nav {
+	display: flex;
+	align-items: top;
+	align-content: space-around;
+	width: 100%;
+}
+
+.primaryNav {
+	flex: 1
+}
+
+.nav .primaryNav {
+	/* background: #fa0; */
+}
+	
+.nav .localeSelector {
 	position: fixed;
 	top: 1rem;
 	left: 1rem;

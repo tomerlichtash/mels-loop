@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-import { translate } from "../locales/translate";
+import { translateFunc } from "../locales/translate";
 import { useRouter } from "next/router";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { ILayoutContext } from "../interfaces/layout-context";
@@ -8,34 +8,35 @@ import { PageContentAttributes } from "../interfaces/models";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
 import {
 	getPathData,
-	getPath,
+	getPagePath,
 	getPageRefs,
 	getPageName,
 	isCurrentPage,
+	isPageVisible,
 } from "../config/pages";
 
 function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 	const { locale, pathname, query, asPath } = router;
 
-	const parent = pathname.includes("[id]") ? pathname.split("/")[1] : "";
+	const parentId = pathname.includes("[id]") ? pathname.split("/")[1] : "";
 	const queryId = query.id as string;
-	const sitePageId = queryId ? parent : asPath;
+	const sitePageId = queryId ? parentId : asPath;
 	const pathData = getPathData(sitePageId);
-	const compLocale = pathData?.locale;
-	const pageId = pathData?.id ? pathData.id : queryId;
-
-	const translateFunc = translate(locale);
+	const pageId = pathData?.id || queryId;
+	const translate = translateFunc(locale);
+	console.log(sitePageId, pageId);
 
 	const layoutContext: ILayoutContext = {
 		locale,
-		compLocale,
+		compLocale: pathData?.locale,
 		pageId,
 		getPageRefs,
-		getPath,
-		getPageName: (id: string) => translateFunc(getPageName(id)),
-		isCurrentPage: (id: string) => isCurrentPage(id, pageId, parent),
-		translate: translateFunc,
+		getPagePath,
+		getPageName: (id: string) => translate(getPageName(id)),
+		isCurrentPage: (id: string) => isCurrentPage(id, pageId, parentId),
+		isPageVisible,
+		translate,
 	};
 
 	const contentContext = new PageContext(

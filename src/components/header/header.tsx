@@ -44,7 +44,6 @@ export const Header = ({
 						</div>
 					)}
 				</div>
-				<Nav className={classes.headerNav} />
 			</div>
 		</header>
 	);

@@ -1,31 +1,37 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { style, classes } from "./nav.st.css";
 
 export const Nav = ({ className }: ComponentProps): JSX.Element => {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { getPageRefs, getPath, getPageName, isCurrentPage } = layoutContext;
-	debugger;
+	const {
+		getPageRefs,
+		getPagePath,
+		getPageName,
+		isCurrentPage,
+		isPageVisible,
+	} = useContext(ReactLayoutContext);
+	const [marker, setMarker] = useState("");
 	return (
 		<nav className={style(classes.root, className)}>
-			<div className={classes.menu}>
+			<div className={style(classes.menu, { marker })}>
+				<div className={classes.markerStrip}></div>
 				<ul className={classes.list}>
 					{getPageRefs().map((page) => {
-						const { id, menuNav } = page;
+						const { id } = page;
 						const isCurrent = isCurrentPage(id);
-						if (!menuNav) {
-							return;
-						}
+						if (!isPageVisible(id)) return;
 						return (
 							<li
-								className={style(classes.listItem, { isCurrent })}
-								key={`nav-page-${id}`}
+								className={style(classes.listItem, { isCurrent, marker })}
+								key={`nav-item-${id}`}
+								onMouseOver={() => setMarker(id)}
 							>
+								<span className={classes.markerPointer}></span>
 								<Button
 									label={getPageName(id)}
-									link={getPath(id)}
+									link={getPagePath(id)}
 									selected={isCurrent}
 									className={classes.button}
 								/>

@@ -17,6 +17,7 @@ import { IOption } from "../dropdown/option";
 import { LOCALE_FLAGS } from "../svg";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { style, classes } from "./layout.st.css";
+import Nav from "../nav";
 
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
@@ -65,13 +66,18 @@ export default function Layout(props: LayoutProps) {
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
 			<div className={style(classes.root, { locale })}>
-				<Header className={classes.header} compKeys={HEADER_LOCALE} />
-				<LocaleSelector
-					className={classes.localeSelector}
-					options={localeSelectorOptions}
-					compKeys={LOCALE_SELECTOR_LOCALE}
-					onSelectChange={onSelectChange}
-				/>
+				<div className={classes.siteHeader}>
+					<Header className={classes.header} compKeys={HEADER_LOCALE} />
+					<div className={classes.nav}>
+						<Nav className={classes.primaryNav} />
+						<LocaleSelector
+							className={classes.localeSelector}
+							options={localeSelectorOptions}
+							compKeys={LOCALE_SELECTOR_LOCALE}
+							onSelectChange={onSelectChange}
+						/>
+					</div>
+				</div>
 				<Page className={classes.page} nodes={props.children} />
 				<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 			</div>

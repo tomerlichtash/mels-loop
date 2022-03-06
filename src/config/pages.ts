@@ -11,7 +11,19 @@ export const getPageRefs = () =>
 		return { id, menuNav };
 	});
 
-export const getPath = (id: string) => {
+export const isPageVisible = (id: string) => {
+	const page = getPage(id);
+	if (!page.length) {
+		throw new Error(`Missing page key: ${id}`);
+	}
+	if (!Object.keys(page[0]).includes("menuNav")) {
+		throw new Error(`Missing visibility settings for pageId ${id}`);
+	}
+	const { menuNav } = page[0];
+	return menuNav;
+};
+
+export const getPagePath = (id: string) => {
 	const page = getPage(id);
 	if (!page.length) {
 		throw new Error(`Missing page key: ${id}`);

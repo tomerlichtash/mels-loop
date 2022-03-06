@@ -10,8 +10,9 @@ export interface ILayoutContext {
 	readonly compLocale: Record<string, string>;
 	pageId: string;
 	getPageRefs: () => SitePageRef[];
-	getPath: (id: string) => string;
+	getPagePath: (id: string) => string;
 	getPageName: (id: string) => string;
-	isCurrentPage: (pageId: string) => boolean;
+	isPageVisible: (id: string) => boolean;
+	isCurrentPage: (id: string) => boolean;
 	translate: (s: string) => string;
 }
