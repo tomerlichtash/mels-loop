@@ -3,7 +3,7 @@ module.exports = {
 	setupFiles: ["<rootDir>/jest.setup.ts"],
 	moduleNameMapper: {
 		"^@src/(.*)$": "<rootDir>/src/$1",
-		"^.+\\.(st.css|less)$": "identity-obj-proxy",
+		"(?<!\\.st)\\.(css|scss)$": "identity-obj-proxy",
 	},
 	coveragePathIgnorePatterns: ["/node_modules/"],
 	globals: {
@@ -11,6 +11,9 @@ module.exports = {
 			tsconfig: "<rootDir>/tsconfig.jest.json",
 			diagnostics: false,
 		},
+	},
+	transform: {
+		"\\.st\\.css?$": "@stylable/jest",
 	},
 	moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
 	testMatch: ["**/*.(test|spec).(js|jsx|ts|tsx)"],

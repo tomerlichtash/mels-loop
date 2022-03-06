@@ -30,6 +30,7 @@
 		"@babel/code-frame": "^7.16.7",
 		"@stylable/cli": "^4.10.2",
 		"@stylable/core": "^4.10.2",
+		"@stylable/jest": "^4.10.4",
 		"@stylable/webpack-plugin": "^4.10.2",
 		"@svgr/webpack": "^6.2.1",
 		"@testing-library/jest-dom": "^5.16.2",
