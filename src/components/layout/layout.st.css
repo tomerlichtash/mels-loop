@@ -5,6 +5,31 @@
 	-st-named: LayoutBgColor, shadow1;
 }
 
+:import {
+	-st-from: "../../components/footer/footer.st.css";
+	-st-default: Footer;
+}
+
+:import {
+	-st-from: "../../components/header/header.st.css";
+	-st-default: Header;
+}
+
+:import {
+	-st-from: "../../components/nav/nav.st.css";
+	-st-default: Nav;
+}
+
+:import {
+	-st-from: "../../components/locale-selector/locale-selector.st.css";
+	-st-default: LocaleSelector;
+}
+
+:import {
+	-st-from: "../../theme/mixins.st.css";
+	-st-named: NavButton;
+}
+
 :global(*):focus {
 	outline: none;
 }
@@ -44,12 +69,6 @@
 	font-family: "Heebo", sans-serif;
 }
 
-.header {}
-
-.footer {}
-
-.page {}
-
 .siteHeader {
 	z-index: 1000;
   -st-states: viewState(enum(normal, compact));
@@ -61,13 +80,12 @@
   transition: top 125ms ease-in-out;
 	text-align: center;
 }
-
 .siteHeader:viewState(normal) {
 	top: 0;
 }
 .siteHeader:viewState(compact) {
   top: 0;
-  position: fixed;
+  /* position: fixed; */
 	background-color: rgba(225, 225, 225, 0.9)
 }
 .siteHeader:viewState(compact) .header {
@@ -77,27 +95,40 @@
 	position: static;
 }
 
-.header {
-	padding: 4rem 0;
-}
-
-.nav {
-	/* position: fixed; */
+.primaryNav {
 	display: flex;
 	align-items: top;
 	align-content: space-around;
 	width: 100%;
 }
 
-.primaryNav {
-	flex: 1
+/* Extended Header Components */
+
+.header {
+	-st-extends: Header;
+	padding: 4rem 0;
+}
+.header::siteTitle {
+	font-size: 4rem;
+	font-weight: 300;
 }
 
-.nav .primaryNav {
-	/* background: #fa0; */
+.footer {
+	-st-extends: Footer;
+}
+
+.page {}
+
+.nav {
+	-st-extends: Nav;
+}
+
+.nav::button {
+	-st-mixin: NavButton;
 }
 	
 .localeSelector {
+	-st-extends: LocaleSelector;
 	position: fixed;
 	top: 1rem;
 	left: 1rem;

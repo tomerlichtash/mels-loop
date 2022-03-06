@@ -1,12 +1,6 @@
 @namespace "Header";
 
-/* :import {
-	-st-from: "../../theme/common.st.css";
-	-st-named: HeaderBgColor, siteTitleFontSize, siteHeaderHeight, PageWidth;
-} */
-
-.root {
-}
+.root {}
 
 .container {}
 

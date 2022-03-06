@@ -157,8 +157,8 @@ export default function Layout(props: LayoutProps) {
 			>
 				<div className={style(classes.siteHeader, { viewState: headerState })}>
 					<Header className={classes.header} compKeys={HEADER_LOCALE} />
-					<div className={classes.nav}>
-						<Nav className={classes.primaryNav} />
+					<div className={classes.primaryNav}>
+						<Nav className={classes.nav} />
 						<LocaleSelector
 							className={classes.localeSelector}
 							options={localeSelectorOptions}

@@ -1,24 +1,13 @@
 @namespace "Nav";
 
 :import {
-	-st-from: "../../theme/common.st.css";
-	-st-named: siteHeaderHeight, shadow1, PageWidth;
-}
-
-:import {
 	-st-from: "../ui/button/button.st.css";
 	-st-default: Button;
-}
-
-:import {
-	-st-from: "../../theme/mixins.st.css";
-	-st-named: NavButton;
 }
 
 .root {
 	user-select: none;
 	margin: 0 auto;
-	/* width: value(PageWidth); */
 	position: relative;
 }
 
@@ -34,105 +23,15 @@
 
 .listItem {
 	-st-states: marker(string);
-	/* position: relative;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box; */
  	position: relative;
-  /* top: 0;
-  left: 0;
-  right: 25em;
-  bottom: 0; */
-  display: inline-block;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: .4em .2em;
-  /* color: #09C; */
-  /* text-decoration: none; */
-  /* text-shadow: 0 1px 0 white; */
-
-  /*transition*/
-  /* -webkit-transition: width .3s,right .3s;
-  -moz-transition: width .3s,right .3s;
-  -o-transition: width .3s,right .3s;
-  transition: width .3s,right .3s;	 */
-}
-.listItem::after {
-	content: "";
-  position: absolute;
-	width: 0;
-  right: inherit;
-  bottom: -3px;
-  /* width: inherit; */
-  height: 3px;
-  /* background: #f00; */
-  pointer-events: none;
-  -webkit-transition: all .5s ease;
-  -moz-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  transition: all .5s ease;
-}
-.listItem:hover::after,
-.listItem:focus::after {
-  /* background-color: rgba(255,255,255,.6); */
-	background: blue;
-	width: 100%;
-  -webkit-transition: width .3s,right .3s,background-color .3s;
-  -moz-transition: width .3s,right .3s,background-color .3s;
-  -o-transition: width .3s,right .3s,background-color .3s;
-  transition: width .3s,right .3s,background-color .3s;
-}
-/* .markerStrip {
-	height: 4px;
-	background: yellow;
-	width: 100%;
-	display: block;
-} */
-
-/* .markerPointer {
-	background: purple;
-	width: 0;
-	height: 4px;
-	display: block;
-	position: absolute;
-	top: 0;
-} */
-
-.menu:marker(glossary) .listItem:marker(glossary) .markerPointer {
-	background-color: magenta;
-	width: 100%;
 }
 
 .button {
 	-st-extends: Button;
-	/* -st-mixin: NavButton; */
 }
-
-.button:selected::label {
-	color: red;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* .mobileNav {
 	-st-states: visible(boolean);
