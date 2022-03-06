@@ -26,4 +26,26 @@ describe("ContentComponent", () => {
 			`sample line`
 		);
 	});
+	// it("should render sample line", () => {
+	// 	const compData = {
+	// 		node: {
+	// 			type: "image",
+	// 			key: "key",
+	// 			children: [
+	// 				{
+	// 					type: "image",
+	// 					key: "line-1",
+	// 					line: 1,
+	// 					text: "sample line",
+	// 				},
+	// 			],
+	// 		},
+	// 	} as IContentComponentInitData;
+
+	// 	const wrapper = render(<ContentComponent componentData={compData} />);
+
+	// 	expect(wrapper.container.querySelector("figure").textContent).toEqual(
+	// 		`sample line`
+	// 	);
+	// });
 });

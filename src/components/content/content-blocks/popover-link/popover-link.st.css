@@ -1,6 +1,7 @@
 @namespace "PopoverLink";
 
-.root {}
+.root {
+}
 
 .triggerInner {}
 
@@ -19,7 +20,10 @@
 }
 
 .content {
+	height: 250px;
 	background-color: rgba(255, 255, 255, 1);
+	overflow: hidden;
+	overflow-y: scroll;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	padding: 2rem;
 	border-radius: 4px;
