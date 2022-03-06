@@ -2,15 +2,9 @@ import React from "react";
 import { ContentComponent } from "../src/components/content";
 import { IContentComponentInitData } from "../src/interfaces/models";
 import { render } from "@testing-library/react";
-import {
-	style,
-	classes,
-} from "../src/components/content/content-component.st.css";
 
 describe("ContentComponent", () => {
 	it("should render sample line", () => {
-		// jest.mock("style", () => ({ style: jest.fn(() => "foo") }));
-
 		const compData = {
 			node: {
 				type: "paragraph",
