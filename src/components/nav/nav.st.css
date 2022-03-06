@@ -1,29 +1,19 @@
 @namespace "Nav";
 
 :import {
-	-st-from: "../../theme/common.st.css";
-	-st-named: siteHeaderHeight, shadow1, PageWidth;
-}
-
-:import {
 	-st-from: "../ui/button/button.st.css";
 	-st-default: Button;
-}
-
-:import {
-	-st-from: "../../theme/mixins.st.css";
-	-st-named: NavButton;
 }
 
 .root {
 	user-select: none;
 	margin: 0 auto;
-	width: value(PageWidth);
 	position: relative;
-	overflow: hidden;
 }
 
 .menu {
+	-st-states: marker(string);
+	display: inline-flex;
 }
 
 .list {
@@ -31,7 +21,19 @@
 	display: inline-flex;
 }
 
-.mobileNav {
+.listItem {
+	-st-states: marker(string);
+ 	position: relative;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: .4em .2em;
+}
+
+.button {
+	-st-extends: Button;
+}
+
+/* .mobileNav {
 	-st-states: visible(boolean);
 	display: none;
 }
@@ -47,17 +49,4 @@
 	background: #fff;
 	top: value(siteHeaderHeight);
 	position: relative;
-}
-
-.listItem {
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	display: flex;
-	align-content: space-around;
-}
-
-.button {
-	-st-extends: Button;
-	-st-mixin: NavButton;
-}
+} */

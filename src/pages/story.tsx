@@ -8,14 +8,14 @@ import {
 	PageContentAttributes,
 } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
-import { classes } from "./index.st.css";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
 import { LoadContentModes } from "../lib/markdown-driver";
 import { ReactPageContext } from "../components/page/page-context";
 import { ReactLayoutContext } from "../contexts/layout-context";
+import { classes } from "./story.st.css";
 
-export default function Story(props: IPageProps) {
+export default function Story({ content }: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
@@ -31,12 +31,7 @@ export default function Story(props: IPageProps) {
 				</title>
 			</Head>
 			<article className={classes.root}>
-				<ContentBrowser
-					content={props.content}
-					showTitle
-					showMoto
-					showCredits
-				/>
+				<ContentBrowser content={content} showTitle showMoto showCredits />
 			</article>
 		</Layout>
 	);

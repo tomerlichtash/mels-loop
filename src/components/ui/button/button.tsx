@@ -9,13 +9,22 @@ export interface ButtonProps extends ComponentProps {
 	icon?: string;
 	link?: string;
 	id?: string;
+	target?: string;
 	selected?: boolean;
 	callback?: (id: string) => void;
 }
 
-export const Button = (props: ButtonProps): JSX.Element => {
-	const { id, label, icon, title, link, selected, callback, className } = props;
-
+export const Button = ({
+	id,
+	label,
+	icon,
+	title,
+	link,
+	selected,
+	target,
+	callback,
+	className,
+}: ButtonProps): JSX.Element => {
 	if (link) {
 		return (
 			<Link href={`${link}`}>
@@ -23,6 +32,7 @@ export const Button = (props: ButtonProps): JSX.Element => {
 					title={title || label}
 					aria-label={title || label}
 					className={style(classes.root, { selected }, className)}
+					target={target}
 				>
 					<span className={classes.content}>
 						{icon && <span className={classes.icon}>{icon}</span>}

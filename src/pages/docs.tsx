@@ -9,15 +9,14 @@ import { LoadContentModes } from "../lib/markdown-driver";
 import { usePageData } from "../components/usePageData";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { Button } from "../components/ui";
-import { style, classes } from "./glossary.st.css";
+import { style, classes } from "./docs.st.css";
 
-export default function Glossary(props: IPageProps) {
+export default function Docs(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { className } = props;
 	const { siteTitle, pageName } = compLocale;
 	const { metaData } = usePageData(props);
-	// If the props changed, due to locale change, reparse the content
 	return (
 		<Layout>
 			<Head>
@@ -28,19 +27,13 @@ export default function Glossary(props: IPageProps) {
 			<article className={style(classes.root, className)}>
 				<h2 className={classes.title}>{translate(compLocale.pageName)}</h2>
 				{metaData.length && (
-					<ul className={classes.termList}>
+					<ul>
 						{metaData.map((page, index) => {
-							const term = page.metaData;
-							const key = `term-${index}`;
-							// TODO classes.error is empty, where do we import from?
-							return term && term.glossary_term ? (
-								<li className={classes.term} key={key}>
-									<Button label={term.glossary_term} link={page.path} />
+							const key = `doc-${index}`;
+							return (
+								<li className={classes.item} key={key}>
+									<Button label={page.metaData.title} link={page.path} />
 								</li>
-							) : (
-								<div key={key} className={classes.error}>
-									Missing glossary term data {page.id}
-								</div>
 							);
 						})}
 					</ul>
@@ -52,15 +45,15 @@ export default function Glossary(props: IPageProps) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.GLOSSARY,
+		CONTENT_TYPES.DOCS,
 		context.locale,
 		LoadFolderModes.FOLDER
 	);
 	const childrenProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.GLOSSARY,
+		CONTENT_TYPES.DOCS,
 		context.locale,
 		LoadFolderModes.CHILDREN,
-		LoadContentModes.FULL
+		LoadContentModes.METADATA
 	);
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const props = {

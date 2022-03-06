@@ -1,45 +1,46 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Button } from "../ui";
-import { ComponentProps, SitePage } from "../../interfaces/models";
-// import DropDown from "../dropdown";
-// import { IOption } from "../dropdown/option";
+import { ComponentProps } from "../../interfaces/models";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { style, classes } from "./nav.st.css";
 
-export interface NavProps extends ComponentProps {
-	sitePages: SitePage[];
-	pathname: string;
-}
-
-export const Nav = (props: NavProps): JSX.Element => {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate } = layoutContext;
-	const { sitePages, pathname, className } = props;
+export const Nav = ({ className }: ComponentProps): JSX.Element => {
+	const {
+		getPageRefs,
+		getPagePath,
+		getPageName,
+		isCurrentPage,
+		isPageVisible,
+	} = useContext(ReactLayoutContext);
+	const [marker, setMarker] = useState("");
 	return (
 		<nav className={style(classes.root, className)}>
-			<div className={classes.menu}>
+			<div className={style(classes.menu, { marker })}>
+				{/* <div className={classes.markerStrip}></div> */}
 				<ul className={classes.list}>
-					{sitePages.map((option) => {
-						const isCurrent = pathname === option.targetPathname;
-						const { label, id, targetPathname } = option;
+					{getPageRefs().map((page) => {
+						const { id } = page;
+						const isCurrent = isCurrentPage(id);
+						if (!isPageVisible(id)) return;
 						return (
-							option.menuNav && (
-								<li
-									className={style(classes.listItem, { isCurrent })}
-									key={`page-${id}`}
-								>
-									<Button
-										label={translate(label)}
-										link={targetPathname}
-										selected={isCurrent}
-										className={classes.button}
-									/>
-								</li>
-							)
+							<li
+								className={style(classes.listItem, { isCurrent, marker })}
+								key={`nav-item-${id}`}
+								onMouseOver={() => setMarker(id)}
+							>
+								{/* <span className={classes.markerPointer}></span> */}
+								<Button
+									label={getPageName(id)}
+									link={getPagePath(id)}
+									selected={isCurrent}
+									className={classes.button}
+								/>
+							</li>
 						);
 					})}
 				</ul>
 			</div>
+
 			{/* <DropDown
 				options={
 					sitePages.map((page) => {

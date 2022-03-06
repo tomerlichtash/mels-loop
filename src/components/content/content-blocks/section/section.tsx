@@ -12,14 +12,7 @@ export const Section = (props: ContentComponentProps): JSX.Element => {
 	return (
 		<div className={classes.root} key={p.key}>
 			{elements.map((node) => {
-				return (
-					<ContentComponent
-						key={node.key}
-						componentData={{
-							node: node,
-						}}
-					/>
-				);
+				return <ContentComponent key={node.key} componentData={{ node }} />;
 			})}
 		</div>
 	);

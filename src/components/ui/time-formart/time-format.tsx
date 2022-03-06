@@ -9,15 +9,13 @@ export interface DateProps extends ComponentProps {
 }
 
 const localeFormats = {
-	en: "MM-dd-yyyy hh:mm",
-	he: "dd/MM/yyyy hh:mm",
+	en: "MM-dd-yyyy",
+	he: "dd/MM/yyyy",
 };
 
 const getLocaleFormat = (locale: string): string => localeFormats[locale];
 
-export const TimeFormat = (props: DateProps): JSX.Element => {
-	const { dateStr, locale } = props;
-
+export const TimeFormat = ({ dateStr, locale }: DateProps): JSX.Element => {
 	if (!dateStr) {
 		return null;
 	}

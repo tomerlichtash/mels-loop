@@ -1,4 +1,3 @@
 ---
-title: "Mel's loop glossary"
+title: "Glossary"
 ---
-

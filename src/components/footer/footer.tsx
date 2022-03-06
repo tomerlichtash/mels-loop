@@ -3,10 +3,12 @@ import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ComponentProps } from "../../interfaces/models";
 import { style, classes } from "./footer.st.css";
 
-export const Footer = (props: ComponentProps): JSX.Element => {
+export const Footer = ({
+	compKeys,
+	className,
+}: ComponentProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate } = layoutContext;
-	const { compKeys, className } = props;
 	const licenseYears = `2021-${new Date().getFullYear()}`;
 	const { siteTitle, siteLicense } = compKeys;
 	return (

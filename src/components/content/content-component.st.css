@@ -1,5 +1,15 @@
 @namespace "ContentComponent";
 
+:import {
+	-st-from: "./content-blocks/paragraph/paragraph.st.css";
+	-st-default: Paragraph;
+}
+
+:import {
+	-st-from: "./content-blocks/figure/figure.st.css";
+	-st-default: Figure;
+}
+
 .root {
 	-st-states: type(string);
 }
@@ -10,4 +20,9 @@
 }
 
 .section {}
-.paragraph {}
+
+.text {
+}
+
+.figure {
+}

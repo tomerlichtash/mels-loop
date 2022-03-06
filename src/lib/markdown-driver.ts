@@ -209,6 +209,9 @@ class PageMetaData implements IPageMetaData {
 	public moto = "";
 	public author = "";
 	public credits = "";
+	public source_url = "";
+	public source_name = "";
+	public source_author = "";
 }
 
 class FolderContent implements IFolderContent {

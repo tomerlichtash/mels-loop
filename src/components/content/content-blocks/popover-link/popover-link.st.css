@@ -1,26 +1,36 @@
 @namespace "PopoverLink";
 
-.root {}
+.root {
+}
 
-.triggerInner {}
+.triggerInner {
+	position: relative;
+}
 
 .trigger {
-	color: green;
+	color: blue;
 	background: none;
 	border: none;
 	padding: 0;
 }
 
 .trigger:hover {
-	color: orange;
+	/* color: orange; */
+	text-decoration: underline;
 	cursor: pointer;
 	background: none;
 	border: none;
 }
 
 .content {
-	background-color: rgba(255, 255, 255, 1);
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	height: 250px;
+	background-color: yellow;
+	overflow: hidden;
+	overflow-y: scroll;
+	/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+	border: 2px solid #404040;
+	/* color: #fff; */
+	font-family: sans-serif;
 	padding: 2rem;
 	border-radius: 4px;
 	width: 250px;
@@ -34,4 +44,15 @@
 
 .closeButton {
 	cursor: pointer;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	border-radius: 50%;
+	border: none;
+	font-size: 12px;
+	width: 30px;
+	height: 30px;
+	line-height: 15px;
+	text-transform: lowercase;
+	font-family: sans-serif;
 }
