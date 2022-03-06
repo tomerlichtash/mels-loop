@@ -6,8 +6,7 @@ export interface PageProps extends ComponentProps {
 	nodes: React.ReactNode;
 }
 
-export const Page = (props: PageProps): JSX.Element => {
-	const { nodes, className } = props;
+export const Page = ({ nodes, className }: PageProps): JSX.Element => {
 	return <main className={style(classes.root, className)}>{nodes}</main>;
 };
 

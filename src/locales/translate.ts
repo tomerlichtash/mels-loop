@@ -6,7 +6,7 @@ const langs = {
 	he: HE_IL,
 };
 
-export const translate =
+export const translateFunc =
 	(id: string) =>
 	(key: string): string => {
 		if (!langs[id]) {

@@ -2,8 +2,8 @@ import React from "react";
 import { Option } from "./option";
 import { IOption } from "./option";
 import { ComponentProps } from "../../interfaces/models";
-import { style, classes } from "./dropdown.st.css";
 import { Button } from "../ui";
+import { style, classes } from "./dropdown.st.css";
 
 export interface DropDownProps extends ComponentProps {
 	options: IOption[];
@@ -14,17 +14,15 @@ export interface DropDownProps extends ComponentProps {
 	triggerCallback?: (state: boolean) => void;
 }
 
-export const DropDown = (props: DropDownProps): JSX.Element => {
-	const {
-		options,
-		openLabel,
-		closeLabel,
-		optionListVisible,
-		onSelectChange,
-		triggerCallback,
-		className,
-	} = props;
-
+export const DropDown = ({
+	options,
+	openLabel,
+	closeLabel,
+	optionListVisible,
+	onSelectChange,
+	triggerCallback,
+	className,
+}: DropDownProps): JSX.Element => {
 	return (
 		<div
 			className={style(classes.root, className)}

@@ -9,6 +9,9 @@ const PageKeys: Record<string, ComponentKeyMap> = {
 	HOME_PAGE: {
 		pageName: "HOME_NAV_LABEL",
 	},
+	DOCS_PAGE: {
+		pageName: "DOCS_NAV_LABEL",
+	},
 	ABOUT_PAGE: {
 		pageName: "ABOUT_NAV_LABEL",
 	},
@@ -50,17 +53,32 @@ const withMeta = (keys: Record<string, string>) =>
 	Object.assign(keys, SITE_META);
 
 // Pages
-export const HOME_PAGE_LOCALE = withMeta(PageKeys.HOME_PAGE);
-export const ABOUT_PAGE_LOCALE = withMeta(PageKeys.ABOUT_PAGE);
-export const STORY_PAGE_LOCALE = withMeta(PageKeys.STORY_PAGE);
-export const BLOG_PAGE_LOCALE = withMeta(PageKeys.BLOG_PAGE);
-export const PREFACE_PAGE_LOCALE = withMeta(PageKeys.PREFACE_PAGE);
-export const RESOURCES_PAGE_LOCALE = withMeta(PageKeys.RESOURCES_PAGE);
-export const GLOSSARY_PAGE_LOCALE = withMeta(PageKeys.GLOSSARY_PAGE);
-export const ERROR_404_PAGE_LOCALE = withMeta(PageKeys.ERROR_404_PAGE);
-export const ERROR_GENERAL_LOCALE = withMeta(PageKeys.ERROR_GENERAL);
-
+const PAGES_KEYS = {
+	HOME_PAGE_LOCALE: withMeta(PageKeys.HOME_PAGE),
+	DOCS_PAGE_LOCALE: withMeta(PageKeys.DOCS_PAGE),
+	ABOUT_PAGE_LOCALE: withMeta(PageKeys.ABOUT_PAGE),
+	STORY_PAGE_LOCALE: withMeta(PageKeys.STORY_PAGE),
+	BLOG_PAGE_LOCALE: withMeta(PageKeys.BLOG_PAGE),
+	PREFACE_PAGE_LOCALE: withMeta(PageKeys.PREFACE_PAGE),
+	RESOURCES_PAGE_LOCALE: withMeta(PageKeys.RESOURCES_PAGE),
+	GLOSSARY_PAGE_LOCALE: withMeta(PageKeys.GLOSSARY_PAGE),
+	ERROR_404_PAGE_LOCALE: withMeta(PageKeys.ERROR_404_PAGE),
+	ERROR_GENERAL_LOCALE: withMeta(PageKeys.ERROR_GENERAL),
+};
 // Components
 export const HEADER_LOCALE = withMeta(CompKeys.HEADER);
 export const FOOTER_LOCALE = withMeta(CompKeys.FOOTER);
 export const LOCALE_SELECTOR_LOCALE = CompKeys.LOCALE_SELECTOR;
+
+export default {
+	HOME_PAGE_LOCALE: PageKeys.HOME_PAGE,
+	DOCS_PAGE_LOCALE: PageKeys.DOCS_PAGE,
+	ABOUT_PAGE_LOCALE: PageKeys.ABOUT_PAGE,
+	STORY_PAGE_LOCALE: PageKeys.STORY_PAGE,
+	BLOG_PAGE_LOCALE: PageKeys.BLOG_PAGE,
+	PREFACE_PAGE_LOCALE: PageKeys.PREFACE_PAGE,
+	RESOURCES_PAGE_LOCALE: PageKeys.RESOURCES_PAGE,
+	GLOSSARY_PAGE_LOCALE: PageKeys.GLOSSARY_PAGE,
+	ERROR_404_PAGE_LOCALE: PageKeys.ERROR_404_PAGE,
+	ERROR_GENERAL_LOCALE: PageKeys.ERROR_GENERAL,
+};

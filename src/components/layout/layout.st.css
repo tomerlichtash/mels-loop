@@ -5,6 +5,31 @@
 	-st-named: LayoutBgColor, shadow1;
 }
 
+:import {
+	-st-from: "../../components/footer/footer.st.css";
+	-st-default: Footer;
+}
+
+:import {
+	-st-from: "../../components/header/header.st.css";
+	-st-default: Header;
+}
+
+:import {
+	-st-from: "../../components/nav/nav.st.css";
+	-st-default: Nav;
+}
+
+:import {
+	-st-from: "../../components/locale-selector/locale-selector.st.css";
+	-st-default: LocaleSelector;
+}
+
+:import {
+	-st-from: "../../theme/mixins.st.css";
+	-st-named: NavButton;
+}
+
 :global(*):focus {
 	outline: none;
 }
@@ -15,9 +40,9 @@
 }
 
 :global(body) {
+	/* padding-top: 350px; */
 	margin: 0;
 	height: 100%;
-	margin-top: 100px;
 }
 
 :global(h1) {
@@ -44,13 +69,66 @@
 	font-family: "Heebo", sans-serif;
 }
 
-.header {}
+.siteHeader {
+	z-index: 1000;
+  -st-states: viewState(enum(normal, compact));
+  background-color: #f0f0f0;
+	/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); */
+  top: -25px;
+	width: 100%;
+	position: static;
+  transition: top 125ms ease-in-out;
+	text-align: center;
+}
+.siteHeader:viewState(normal) {
+	top: 0;
+}
+.siteHeader:viewState(compact) {
+  top: 0;
+  /* position: fixed; */
+	background-color: rgba(225, 225, 225, 0.9)
+}
+.siteHeader:viewState(compact) .header {
+	padding: 0;
+}
+.siteHeader:viewState(compact) .nav {
+	position: static;
+}
 
-.footer {}
+.primaryNav {
+	display: flex;
+	align-items: top;
+	align-content: space-around;
+	width: 100%;
+}
+
+/* Extended Header Components */
+
+.header {
+	-st-extends: Header;
+	padding: 4rem 0;
+}
+.header::siteTitle {
+	font-size: 4rem;
+	font-weight: 300;
+}
+
+.footer {
+	-st-extends: Footer;
+}
 
 .page {}
 
+.nav {
+	-st-extends: Nav;
+}
+
+.nav::button {
+	-st-mixin: NavButton;
+}
+	
 .localeSelector {
+	-st-extends: LocaleSelector;
 	position: fixed;
 	top: 1rem;
 	left: 1rem;

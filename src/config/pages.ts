@@ -1,87 +1,71 @@
-import { SitePage } from "../interfaces/models";
-import {
-	ABOUT_PAGE_LOCALE,
-	HOME_PAGE_LOCALE,
-	PREFACE_PAGE_LOCALE,
-	RESOURCES_PAGE_LOCALE,
-	STORY_PAGE_LOCALE,
-	GLOSSARY_PAGE_LOCALE,
-	BLOG_PAGE_LOCALE,
-	ERROR_404_PAGE_LOCALE,
-	ERROR_GENERAL_LOCALE,
-} from "../locales/components";
+import { SitePageRef } from "../interfaces/models";
+import { SITE_PAGES } from "./pages-data";
+import { SITE_META } from "../locales/components";
 
-export const SITE_PAGES: SitePage[] = [
-	{
-		id: "home",
-		menuNav: true,
-		locale: HOME_PAGE_LOCALE,
-		label: HOME_PAGE_LOCALE.pageName,
-		targetPathname: "/",
-		pathname: "/",
-	},
-	{
-		id: "preface",
-		menuNav: true,
-		locale: PREFACE_PAGE_LOCALE,
-		label: PREFACE_PAGE_LOCALE.pageName,
-		targetPathname: "/docs/preface",
-		pathname: "/docs/[id]",
-	},
-	{
-		id: "blog",
-		menuNav: true,
-		locale: BLOG_PAGE_LOCALE,
-		label: BLOG_PAGE_LOCALE.pageName,
-		targetPathname: "/posts",
-		pathname: "/posts",
-	},
-	{
-		id: "story",
-		menuNav: true,
-		locale: STORY_PAGE_LOCALE,
-		label: STORY_PAGE_LOCALE.pageName,
-		targetPathname: "/story",
-		pathname: "/story",
-	},
-	{
-		id: "about",
-		menuNav: true,
-		locale: ABOUT_PAGE_LOCALE,
-		label: ABOUT_PAGE_LOCALE.pageName,
-		targetPathname: "/about",
-		pathname: "/about",
-	},
-	{
-		id: "resources",
-		menuNav: true,
-		locale: RESOURCES_PAGE_LOCALE,
-		label: RESOURCES_PAGE_LOCALE.pageName,
-		targetPathname: "/docs/resources",
-		pathname: "/docs/[id]",
-	},
-	{
-		id: "glossary",
-		menuNav: false,
-		locale: GLOSSARY_PAGE_LOCALE,
-		label: GLOSSARY_PAGE_LOCALE.pageName,
-		targetPathname: "/docs/resources",
-		pathname: "/glossary",
-	},
-	{
-		id: "error",
-		menuNav: false,
-		locale: ERROR_GENERAL_LOCALE,
-		label: GLOSSARY_PAGE_LOCALE.pageName,
-		targetPathname: "NONE",
-		pathname: "/_error",
-	},
-	{
-		id: "404",
-		menuNav: false,
-		locale: ERROR_404_PAGE_LOCALE,
-		label: GLOSSARY_PAGE_LOCALE.pageName,
-		targetPathname: "NONE",
-		pathname: "/404",
-	},
-];
+export const getSiteTitle = () => {
+	return SITE_META.siteTitle;
+};
+
+export const getSiteSubtitle = () => {
+	return SITE_META.siteSubtitle;
+};
+
+export const getPage = (id: string) => SITE_PAGES.filter((p) => p.id === id);
+
+export const getPathData = (id: string) =>
+	Object.values(SITE_PAGES).filter((p) => p.targetPathname === id)[0];
+
+export const getPageRefs = () =>
+	SITE_PAGES.map(({ id, menuNav }: SitePageRef) => {
+		return { id, menuNav };
+	});
+
+export const isPageVisible = (id: string) => {
+	const page = getPage(id);
+	if (!page.length) {
+		throw new Error(`Missing page key: ${id}`);
+	}
+	if (!Object.keys(page[0]).includes("menuNav")) {
+		throw new Error(`Missing visibility settings for pageId ${id}`);
+	}
+	const { menuNav } = page[0];
+	return menuNav;
+};
+
+export const getPagePath = (id: string) => {
+	const page = getPage(id);
+	if (!page.length) {
+		throw new Error(`Missing page key: ${id}`);
+	}
+	const { targetPathname } = page[0];
+	if (!targetPathname) {
+		throw new Error(`Missing targetPathname for pageId ${id}`);
+	}
+	return targetPathname;
+};
+
+export const getPageName = (id: string) => {
+	const page = getPage(id);
+	if (!page.length) {
+		throw new Error(`Missing page key: ${id}`);
+	}
+	const { locale } = page[0];
+	if (!locale) {
+		throw new Error(`Missing locale for pageId ${id}`);
+	}
+	return locale.pageName;
+};
+
+export const isCurrentPage = (
+	id: string,
+	currentPageId: string,
+	pageParent: string
+): boolean => {
+	if (pageParent) {
+		const pageData = getPage(pageParent)[0];
+		if (!pageData?.children?.includes(id)) {
+			return pageParent === id;
+		}
+	}
+	return currentPageId === id;
+};

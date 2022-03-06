@@ -1,5 +1,9 @@
 @namespace "Section";
 
+.root {
+	/* border: 2px solid purple; */
+}
+
 .root:not(:last-child) {
 	margin-bottom: 1.6rem;
 }

@@ -6,13 +6,12 @@ import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
-import { style, classes } from "./about.st.css";
 import { ReactLayoutContext } from "../contexts/layout-context";
+import { style, classes } from "./about.st.css";
 
-export default function About(props: IPageProps) {
+export default function About({ content, className }: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
-	const { className } = props;
 	const { siteTitle, pageName } = compLocale;
 	return (
 		<Layout>
@@ -22,7 +21,7 @@ export default function About(props: IPageProps) {
 				</title>
 			</Head>
 			<article className={style(classes.root, className)}>
-				<ContentBrowser content={props.content} showTitle />
+				<ContentBrowser content={content} showTitle />
 			</article>
 		</Layout>
 	);

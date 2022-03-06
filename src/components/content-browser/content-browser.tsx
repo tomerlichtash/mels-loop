@@ -34,9 +34,7 @@ export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 					<ContentComponent
 						key={`top-${index}`}
 						className={classes.contentComponent}
-						componentData={{
-							node: node,
-						}}
+						componentData={{ node }}
 					/>
 				);
 			})}

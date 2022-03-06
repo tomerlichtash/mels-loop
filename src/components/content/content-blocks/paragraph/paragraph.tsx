@@ -1,12 +1,14 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
 import { ContentComponent } from "../../index";
-import { classes } from "./paragraph.st.css";
+import { style, classes } from "./paragraph.st.css";
 
-export const Paragraph = (props: ContentComponentProps): JSX.Element => {
-	const p = props.componentData.node;
-	const children = p.children || [];
-	const { className } = props;
+export const Paragraph = ({
+	componentData,
+	className,
+}: ContentComponentProps): JSX.Element => {
+	const { node } = componentData;
+	const children = node.children || [];
 
 	if (children.length === 0) {
 		return <p className={classes.empty}></p>;
@@ -14,20 +16,27 @@ export const Paragraph = (props: ContentComponentProps): JSX.Element => {
 
 	if (children.length === 1 && children[0].type === "text") {
 		return (
-			<p key={p.key} className={classes.root} data-line-index={p.line}>
-				{p.children[0].text}
-			</p>
+			classes.root,
+			(
+				<p
+					key={node.key}
+					className={style(classes.root, className)}
+					data-line-index={node.line}
+				>
+					{node.children[0].text}
+				</p>
+			)
 		);
 	}
 
 	return (
-		<p key={p.key} className={classes.root} data-line-index={p.line}>
+		<p key={node.key} className={classes.root} data-line-index={node.line}>
 			{children.map((node) => {
 				return (
 					<ContentComponent
 						key={node.key}
-						className={className}
-						componentData={{ node: node }}
+						className={style(classes.root, className)}
+						componentData={{ node }}
 					/>
 				);
 			})}

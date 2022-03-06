@@ -3,10 +3,11 @@ import { ContentComponent } from "./index";
 import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
 import { style, classes } from "./content-iterator.st.css";
 
-export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
-	const data = props.componentData;
-	const p = data.node;
-	const { className } = props;
+export const ContentIterator = ({
+	componentData,
+	className,
+}: ContentComponentProps): JSX.Element => {
+	const p = componentData.node;
 
 	if (!p) {
 		console.warn("Content Iterator: no input node");
@@ -14,7 +15,7 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 	}
 
 	const elements: IMLParsedNode[] = Array.isArray(p.children) && p.children;
-	const Tag = data.tag as keyof JSX.IntrinsicElements;
+	const Tag = componentData.tag as keyof JSX.IntrinsicElements;
 
 	if (!elements) {
 		if (p.text) {
@@ -47,9 +48,7 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 						<ContentComponent
 							key={node.key}
 							className={className}
-							componentData={{
-								node: node,
-							}}
+							componentData={{ node }}
 						/>
 					);
 				})}
@@ -59,14 +58,7 @@ export const ContentIterator = (props: ContentComponentProps): JSX.Element => {
 		return (
 			<>
 				{elements.map((node) => {
-					return (
-						<ContentComponent
-							key={node.key}
-							componentData={{
-								node: node,
-							}}
-						/>
-					);
+					return <ContentComponent key={node.key} componentData={{ node }} />;
 				})}
 			</>
 		);

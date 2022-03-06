@@ -119,6 +119,18 @@ export interface IPageMetaData {
 	 * Display name of glossary item
 	 */
 	readonly glossary_term: string;
+	/**
+	 * Display source URL of glossary item
+	 */
+	readonly source_url: string;
+	/**
+	 * Display source name of glossary item
+	 */
+	readonly source_name: string;
+	/**
+	 * Display source author of glossary item
+	 */
+	readonly source_author: string;
 }
 
 /**
@@ -203,12 +215,16 @@ export interface ComponentProps {
  * Site page navigation props
  */
 export interface SitePage {
-	label: string;
 	id: string;
 	targetPathname: string;
 	menuNav: boolean;
-	pathname: string;
 	locale: Record<string, string>;
+	children?: string[];
+}
+
+export interface SitePageRef {
+	id: string;
+	menuNav: boolean;
 }
 
 export interface IPageProps {

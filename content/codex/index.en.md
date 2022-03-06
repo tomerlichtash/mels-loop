@@ -6,18 +6,18 @@ moto: "This was posted to Usenet by its author, Ed Nather <nather@astro.as.utexa
 A recent article devoted to the _macho_ side of programming
 made the bold and unvarnished statement:
 
-> Real Programmers write in FORTRAN.
+> [Real Programmers](#glossary/real-programmer) write in [FORTRAN](#fortran).
 
 Maybe they do now,
 in this decadent era of
-Lite beer, hand calculators, and “user-friendly” software
+Lite beer, hand calculators, and "user-friendly" software
 but back in the Good Old Days,
-when the term “software” sounded funny
-and Real Computers were made out of drums and vacuum tubes,
-Real Programmers wrote in machine code.
-Not FORTRAN. Not RATFOR. Not, even, assembly language.
-Machine Code.
-Raw, unadorned, inscrutable hexadecimal numbers.
+when the term "software" sounded funny
+and Real Computers were made out of drums and [vacuum tubes](#glossary/vacuum-tubes),
+Real Programmers wrote in [machine code](#glossary/machine-code).
+Not [FORTRAN](#glossary/fortran). Not [RATFOR](#glossary/ratfor). Not, even, [assembly language](#glossary/assembly-language).
+[Machine Code](#glossary/machine-code).
+Raw, unadorned, inscrutable [hexadecimal](#glossary/hexadecimal) numbers.
 Directly.
 
 Lest a whole new generation of programmers
@@ -30,64 +30,64 @@ because that was his name.
 
 I first met Mel when I went to work for Royal McBee Computer Corp.,
 a now-defunct subsidiary of the typewriter company.
-The firm manufactured the LGP-30,
+The firm manufactured the [LGP-30](#glossary/lgp-30),
 a small, cheap (by the standards of the day)
-drum-memory computer,
+[drum-memory](#glossary/drum-memory) computer,
 and had just started to manufacture
-the RPC-4000, a much-improved,
-bigger, better, faster — drum-memory computer.
-Cores cost too much,
+the [RPC-4000](#glossary/rpc-4000), a much-improved,
+bigger, better, faster — [drum-memory](#glossary/drum-memory) computer.
+[Cores](#glossary/magnetic-core-memory) cost too much,
 and weren't here to stay, anyway.
 (That's why you haven't heard of the company,
 or the computer.)
 
-I had been hired to write a FORTRAN compiler
+I had been hired to write a [FORTRAN](#fortran) [compiler](#glossary/compiler)
 for this new marvel and Mel was my guide to its wonders.
-Mel didn't approve of compilers.
+Mel didn't approve of [compilers](#glossary/compiler).
 
-“If a program can't rewrite its own code”,
-he asked, “what good is it?”
+"If a program can't rewrite its own code",
+he asked, "what good is it?"
 
 Mel had written,
-in hexadecimal,
+in [hexadecimal](#glossary/hexadecimal),
 the most popular computer program the company owned.
-It ran on the LGP-30
+It ran on the [LGP-30](#glossary/lgp-30)
 and played blackjack with potential customers
 at computer shows.
 Its effect was always dramatic.
-The LGP-30 booth was packed at every show,
+The [LGP-30](#glossary/lgp-30) booth was packed at every show,
 and the IBM salesmen stood around
 talking to each other.
 Whether or not this actually sold computers
 was a question we never discussed.
 
 Mel's job was to re-write
-the blackjack program for the RPC-4000.
-(Port? What does that mean?)
+the blackjack program for the [RPC-4000](#glossary/rpc-4000).
+([Port](#glossary/port)? What does that mean?)
 The new computer had a one-plus-one
-addressing scheme,
+[addressing scheme](#glossary/addressing-scheme),
 in which each machine instruction,
-in addition to the operation code
-and the address of the needed operand,
+in addition to the [operation code](#glossary/operation-code)
+and the address of the needed [operand](#glossary/operand),
 had a second address that indicated where, on the revolving drum,
 the next instruction was located.
 
 In modern parlance,
-every single instruction was followed by a GO TO!
-Put that in Pascal's pipe and smoke it.
+every single instruction was followed by a [GO TO](#glossary/goto)!
+Put that in [Pascal](#glossary/pascal)'s pipe and smoke it.
 
-Mel loved the RPC-4000
+Mel loved the [RPC-4000](#glossary/rpc-4000)
 because he could optimize his code:
 that is, locate instructions on the drum
 so that just as one finished its job,
-the next would be just arriving at the “read head”
+the next would be just arriving at the "read head"
 and available for immediate execution.
 There was a program to do that job,
-an “optimizing assembler”,
+an "optimizing assembler",
 but Mel refused to use it.
 
-“You never know where it's going to put things”,
-he explained, “so you'd have to use separate constants”.
+"You never know where it's going to put things",
+he explained, "so you'd have to use separate constants".
 
 It was a long time before I understood that remark.
 Since Mel knew the numerical value
@@ -95,7 +95,7 @@ of every operation code,
 and assigned his own drum addresses,
 every instruction he wrote could also be considered
 a numerical constant.
-He could pick up an earlier “add” instruction, say,
+He could pick up an earlier "add" instruction, say,
 and multiply by it,
 if it had the right numeric value.
 His code was not easy for someone else to modify.
@@ -103,16 +103,16 @@ His code was not easy for someone else to modify.
 I compared Mel's hand-optimized programs
 with the same code massaged by the optimizing assembler program,
 and Mel's always ran faster.
-That was because the “top-down” method of program design
+That was because the "[top-down](#glossary/top-down-design)" method of program design
 hadn't been invented yet,
 and Mel wouldn't have used it anyway.
-He wrote the innermost parts of his program loops first,
+He wrote the innermost parts of his program [loops](#glossary/loop) first,
 so they would get first choice
-of the optimum address locations on the drum.
+of the [optimum](#glossary/optimum) address locations on the drum.
 The optimizing assembler wasn't smart enough to do it that way.
 
-Mel never wrote time-delay loops, either,
-even when the balky Flexowriter
+Mel never wrote [time-delay loops](#glossary/time-delay-loop), either,
+even when the balky [Flexowriter](#glossary/friden-flexowriter)
 required a delay between output characters to work right.
 He just located instructions on the drum
 so each successive one was just past the read head
@@ -120,22 +120,22 @@ when it was needed;
 the drum had to execute another complete revolution
 to find the next instruction.
 He coined an unforgettable term for this procedure.
-Although “optimum” is an absolute term,
-like “unique”, it became common verbal practice
+Although "[optimum](#glossary/optimum)" is an absolute term,
+like "unique", it became common verbal practice
 to make it relative:
-“not quite optimum” or “less optimum”
-or “not very optimum”.
+"not quite [optimum](#glossary/optimum)" or "less [optimum](#glossary/optimum)"
+or "not very [optimum](#glossary/optimum)".
 Mel called the maximum time-delay locations
-the “most pessimum”.
+the "most [pessimum](#glossary/pessimum)".
 
 After he finished the blackjack program
 and got it to run
-(“Even the initializer is optimized”,
+("Even the initializer is optimized",
 he said proudly),
 he got a Change Request from the sales department.
 The program used an elegant (optimized)
 random number generator
-to shuffle the “cards” and deal from the “deck”,
+to shuffle the "cards" and deal from the "deck",
 and some of the salesmen felt it was too fair,
 since sometimes the customers lost.
 They wanted Mel to modify the program
@@ -173,49 +173,49 @@ hidden from human view and admiration, sometimes forever,
 by the very nature of the process.
 You can learn a lot about an individual
 just by reading through his code,
-even in hexadecimal.
+even in [hexadecimal](#glossary/hexadecimal).
 Mel was, I think, an unsung genius.
 
 Perhaps my greatest shock came
-when I found an innocent loop that had no test in it.
+when I found an innocent [loop](#glossary/loop) that had no test in it.
 No test. None.
-Common sense said it had to be a closed loop,
+Common sense said it had to be a closed [loop](#glossary/loop),
 where the program would circle, forever, endlessly.
 Program control passed right through it, however,
 and safely out the other side.
 It took me two weeks to figure it out.
 
-The RPC-4000 computer had a really modern facility
-called an index register.
-It allowed the programmer to write a program loop
+The [RPC-4000](#glossary/rpc-4000) computer had a really modern facility
+called an index [register](#glossary/register).
+It allowed the programmer to write a program [loop](#glossary/loop)
 that used an indexed instruction inside;
 each time through,
-the number in the index register
+the number in the index [register](#glossary/register)
 was added to the address of that instruction,
 so it would refer
 to the next datum in a series.
-He had only to increment the index register
+He had only to increment the index [register](#glossary/register)
 each time through.
 Mel never used it.
 
-Instead, he would pull the instruction into a machine register,
+Instead, he would pull the instruction into a machine [register](#glossary/register),
 add one to its address,
 and store it back.
 He would then execute the modified instruction
-right from the register.
-The loop was written so this additional execution time
+right from the [register](#glossary/register).
+The [loop](#glossary/loop) was written so this additional execution time
 was taken into account —
 just as this instruction finished,
 the next one was right under the drum's read head,
 ready to go.
-But the loop had no test in it.
+But the [loop](#glossary/loop) had no test in it.
 
 The vital clue came when I noticed
-the index register bit,
-the bit that lay between the address
-and the operation code in the instruction word,
+the index [register](#glossary/register) [bit](#glossary/bit),
+the [bit](#glossary/bit) that lay between the address
+and the [operation code](#glossary/operation-code) in the instruction word,
 was turned on —
-yet Mel never used the index register,
+yet Mel never used the index [register](#glossary/register),
 leaving it zero all the time.
 When the light went on it nearly blinded me.
 
@@ -227,7 +227,7 @@ incrementing the instruction address
 would make it overflow.
 The carry would add one to the
 operation code, changing it to the next one in the instruction set:
-a jump instruction.
+a [jump instruction](#glossary/jump-instruction).
 Sure enough, the next program instruction was
 in address location zero,
 and the program went happily on its way.
