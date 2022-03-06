@@ -51,7 +51,8 @@ export const GlossaryItem = (props: GlossaryItemProps): JSX.Element => {
 	if (elements) {
 		return (
 			<div className={classes.root}>
-				<h4>{item.metaData.glossary_term}</h4>
+				<p>Glossary</p>
+				<h4 className={classes.title}>{item.metaData.glossary_term}</h4>
 				{elements.map((node, index) => {
 					return (
 						<ContentComponent

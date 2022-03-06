@@ -123,7 +123,7 @@ He coined an unforgettable term for this procedure.
 Although "[optimum](#glossary/optimum)" is an absolute term,
 like "unique", it became common verbal practice
 to make it relative:
-"not quite [optimum](#glossary/optimum)" or "less [optimum](#glossary/optimum)optimum"
+"not quite [optimum](#glossary/optimum)" or "less [optimum](#glossary/optimum)"
 or "not very [optimum](#glossary/optimum)".
 Mel called the maximum time-delay locations
 the "most [pessimum](#glossary/pessimum)".

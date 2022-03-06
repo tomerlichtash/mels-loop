@@ -51,9 +51,10 @@
 .page {}
 
 .siteHeader {
+	z-index: 1000;
   -st-states: viewState(enum(normal, compact));
-  background-color: #fff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  background-color: #f0f0f0;
+	/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); */
   top: -25px;
 	width: 100%;
 	position: static;
@@ -67,6 +68,7 @@
 .siteHeader:viewState(compact) {
   top: 0;
   position: fixed;
+	background-color: rgba(225, 225, 225, 0.9)
 }
 .siteHeader:viewState(compact) .header {
 	padding: 0;
@@ -80,7 +82,7 @@
 }
 
 .nav {
-	position: fixed;
+	/* position: fixed; */
 	display: flex;
 	align-items: top;
 	align-content: space-around;
@@ -95,8 +97,8 @@
 	/* background: #fa0; */
 }
 	
-.nav .localeSelector {
-	/* position: fixed; */
+.localeSelector {
+	position: fixed;
 	top: 1rem;
 	left: 1rem;
 }

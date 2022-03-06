@@ -18,7 +18,7 @@ export const PopoverLink = (props: ContentComponentProps): JSX.Element => {
 				</Popover.Trigger>
 				<Popover.Content side="top" align="center" className={classes.content}>
 					<GlossaryItem url={url} />
-					<Popover.Close className={classes.closeButton}>Close</Popover.Close>
+					<Popover.Close className={classes.closeButton}>X</Popover.Close>
 					<Popover.Arrow className={classes.arrow} />
 				</Popover.Content>
 			</Popover.Root>

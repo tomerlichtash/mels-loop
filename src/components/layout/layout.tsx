@@ -156,6 +156,7 @@ export default function Layout(props: LayoutProps) {
 				onWheel={() => onLayoutScroll()}
 			>
 				<div className={style(classes.siteHeader, { viewState: headerState })}>
+					<Header className={classes.header} compKeys={HEADER_LOCALE} />
 					<div className={classes.nav}>
 						<Nav className={classes.primaryNav} />
 						<LocaleSelector
@@ -165,7 +166,6 @@ export default function Layout(props: LayoutProps) {
 							onSelectChange={onLocaleChange}
 						/>
 					</div>
-					<Header className={classes.header} compKeys={HEADER_LOCALE} />
 				</div>
 				<Page className={classes.page} nodes={props.children} />
 				<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
