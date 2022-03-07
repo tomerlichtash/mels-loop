@@ -5,4 +5,5 @@ export enum CONTENT_TYPES {
 	TESTS = "tests",
 	DOCS = "docs",
 	GLOSSARY = "glossary",
+	ANNOTATION = "annotations",
 }
