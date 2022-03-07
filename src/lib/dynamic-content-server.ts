@@ -15,12 +15,12 @@ interface ContentMap {
 
 const normalizeId = (id: string) => (id || "").trim().toLowerCase();
 
-const ANNOTATION_RE = /annotation\//i;
+const ANNOTATION_RE =/annotations?\//i;
 const GLOSSARY_RE = /glossary\//i;
 
-const urlToContentType = (url: string) => {
+const urlToContentType = (url: string, defaultType: DynamicContentTypes): DynamicContentTypes => {
 	if (!url) {
-		return null;
+		return defaultType || DynamicContentTypes.None;
 	}
 	if (ANNOTATION_RE.test(url)) {
 		return DynamicContentTypes.Annotation;
@@ -28,7 +28,7 @@ const urlToContentType = (url: string) => {
 	if (GLOSSARY_RE.test(url)) {
 		return DynamicContentTypes.Glossary;
 	}
-	return null;
+	return defaultType || DynamicContentTypes.None;
 };
 
 const urlToContentId = (url: string) => {
@@ -52,7 +52,7 @@ export class DynamicContentServer implements IDynamicContentServer {
 		defaultType?: DynamicContentTypes
 	): IDynamicContentRecord {
 		const contentData = {
-			type: urlToContentType(url) || defaultType,
+			type: urlToContentType(url, defaultType),
 			id: urlToContentId(url),
 		};
 		return contentData;
@@ -63,6 +63,9 @@ export class DynamicContentServer implements IDynamicContentServer {
 		locale: string,
 		ids: string[]
 	): Promise<IParsedPageData[]> {
+		if (!type) { // covers None, which is ""
+			return [];
+		}
 		const map = await this.ensureMap(type, locale);
 		return ids.map((id) => map[normalizeId(id)]);
 	}
