@@ -78,7 +78,7 @@ export class DynamicContentServer implements IDynamicContentServer {
 		}
 		try {
 			const path = this.dynamicContentTypeToURL(type);
-			const url = `/api/${path}?locale=${locale}`;
+			const url = `/api/content?type=${path}&locale=${locale}`;
 			const response = await fetch(url, {
 				method: "GET",
 			});
