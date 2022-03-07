@@ -4,7 +4,7 @@ import { IParsedPageData } from "./models";
  * Types of dynamic content
  */
 export enum DynamicContentTypes {
-	Glossary = "glossary", Annotation = "annotation"
+	Glossary = "glossary", Annotation = "annotation", None = ""
 }
 
 /**
