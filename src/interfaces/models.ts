@@ -61,10 +61,6 @@ export enum NODE_LIST_TYPES {
 	UNORDERED = "ul",
 }
 
-export enum MLParseModes {
-	VERSE = "verse",
-	NORMAL = "normal",
-}
 
 /**
  * A markdown node parsed and processed by ML

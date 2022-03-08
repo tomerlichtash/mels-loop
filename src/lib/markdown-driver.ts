@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs, { Dirent } from "fs";
 import path from "path";
 import matter from "gray-matter";
 import * as mdParser from "simple-markdown";
@@ -8,14 +8,18 @@ import {
 	IMLParsedNode,
 	IPageMetaData,
 	IParsedPageData,
-	MLParseModes,
 	PageSortField,
 	ParsedNode,
 } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
-import { LoadFolderModes } from "./next-utils";
 import { Logger } from "tslog";
 import chalk from "chalk";
+import { 
+	IContentParseOptions,
+	LoadContentModes,
+	LoadFolderModes,
+	MLParseModes 
+} from "../interfaces/parser";
 
 const log: Logger = new Logger({
 	// name: "logger",
@@ -49,11 +53,10 @@ export function getRootDir(): string {
 
 setRootDir(process.cwd());
 
-export enum LoadContentModes {
-	NONE = "none",
-	METADATA = "metadata",
-	FULL = "full",
-}
+/**
+ * What part of an index file to read - none, metadata only or full (metadata + content) 
+ */
+
 
 export interface ILoadContentOptions {
 	/**
@@ -63,19 +66,25 @@ export interface ILoadContentOptions {
 	/**
 	 * If true, iterate over children folders
 	 */
-	readonly loadMode: LoadFolderModes;
 	readonly locale: string;
-	readonly contentMode: LoadContentModes;
-	readonly parseMode: MLParseModes;
+	readonly mode: Partial<IContentParseOptions>
 }
+
+const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
+	contentMode: LoadContentModes.FULL,
+	loadMode: LoadFolderModes.FOLDER,
+	parseMode: MLParseModes.NORMAL,
+	nodeProcessor: undefined
+};
 
 export function loadContentFolder(
 	options: ILoadContentOptions
 ): IFolderContent {
+	const mode: IContentParseOptions = Object.assign({}, DEFAULT_PARSE_OPTIONS, options.mode);
 	const contentDir = path.join(getRootDir(), options.relativePath);
 
 	// Get file names under /posts
-	const contentNames = fs.readdirSync(contentDir);
+	const contentNames: Dirent[] = fs.readdirSync(contentDir, { withFileTypes: true });
 	const folderContentData = new FolderContent();
 
 	log.info(
@@ -84,27 +93,25 @@ export function loadContentFolder(
 		)} - sorted content in "${contentDir}" for locale "${options.locale}"`
 	);
 
-	contentNames.forEach((name) => {
+	const targetFileName = getIndexFileName(options.locale);
+
+	contentNames.forEach((rec: Dirent) => {
+		const name = rec.name;
 		log.info(`${chalk.magenta("process")} - content ID "${name}"`);
 
-		const filename = getIndexFileName(options.locale);
 		let fullPath: string;
 
-		if (options.loadMode === LoadFolderModes.FOLDER) {
-			if (filename !== name) {
+		if (mode.loadMode === LoadFolderModes.FOLDER) {
+			if (targetFileName !== name) {
 				return;
 			}
 			fullPath = path.join(contentDir, name);
 		} else {
-			// read children
-			// Read markdown file as string
-			const childPath = path.join(contentDir, name);
-			const stat = fs.lstatSync(childPath);
-			if (!stat.isDirectory()) {
+			if (!rec.isDirectory()) {
 				return;
 			}
 
-			fullPath = path.join(contentDir, name, filename);
+			fullPath = path.join(contentDir, name, targetFileName);
 
 			if (!fs.existsSync(fullPath)) {
 				log.warn(`error - Path not found: "${fullPath}"`);
@@ -121,7 +128,7 @@ export function loadContentFolder(
 			});
 		}
 
-		if (options.contentMode === LoadContentModes.NONE) {
+		if (mode.contentMode === LoadContentModes.NONE) {
 			return;
 		}
 
@@ -138,12 +145,12 @@ export function loadContentFolder(
 				path: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
 			});
 			folderContentData.pages.push(parsedPageData);
-			if (options.contentMode === LoadContentModes.FULL) {
+			if (mode.contentMode === LoadContentModes.FULL) {
 				// parse markdown and process
 				const mdParse = mdParser.defaultBlockParse;
 				const tree = contentUtils.processParseTree(
 					mdParse(contentUtils.stripComments(content)) as ParsedNode[],
-					options.parseMode
+					mode
 				);
 
 				// Combine the data with the id

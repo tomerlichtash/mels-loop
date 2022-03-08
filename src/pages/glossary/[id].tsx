@@ -2,7 +2,8 @@ import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import { IPageProps } from "../../interfaces/models";
 import { CONTENT_TYPES } from "../../consts";
 import GenericPage from "../../components/content/generic-page";
-import { mlNextUtils, LoadFolderModes } from "../../lib/next-utils";
+import { mlNextUtils } from "../../lib/next-utils";
+import { LoadFolderModes } from "../../interfaces/parser";
 
 export default function GlossaryTerm(props: IPageProps) {
 	return <GenericPage pageProps={props} />;
@@ -21,6 +22,6 @@ export const getStaticProps: GetStaticProps = async (
 	return mlNextUtils.getFolderStaticProps(
 		`${CONTENT_TYPES.GLOSSARY}/${context.params.id as string}`,
 		context.locale,
-		LoadFolderModes.FOLDER
+		{ loadMode: LoadFolderModes.FOLDER }
 	);
 };
