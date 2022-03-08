@@ -15,10 +15,13 @@ interface ContentMap {
 
 const normalizeId = (id: string) => (id || "").trim().toLowerCase();
 
-const ANNOTATION_RE =/annotations?\//i;
+const ANNOTATION_RE = /annotations?\//i;
 const GLOSSARY_RE = /glossary\//i;
 
-const urlToContentType = (url: string, defaultType: DynamicContentTypes): DynamicContentTypes => {
+const urlToContentType = (
+	url: string,
+	defaultType: DynamicContentTypes
+): DynamicContentTypes => {
 	if (!url) {
 		return defaultType || DynamicContentTypes.None;
 	}
@@ -63,7 +66,8 @@ export class DynamicContentServer implements IDynamicContentServer {
 		locale: string,
 		ids: string[]
 	): Promise<IParsedPageData[]> {
-		if (!type) { // covers None, which is ""
+		if (!type) {
+			// covers None, which is ""
 			return [];
 		}
 		const map = await this.ensureMap(type, locale);

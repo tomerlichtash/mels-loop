@@ -4,7 +4,9 @@ import { IParsedPageData } from "./models";
  * Types of dynamic content
  */
 export enum DynamicContentTypes {
-	Glossary = "glossary", Annotation = "annotation", None = ""
+	Glossary = "glossary",
+	Annotation = "annotation",
+	None = "",
 }
 
 /**
@@ -24,15 +26,22 @@ export interface IDynamicContentRecord {
 export interface IDynamicContentServer {
 	/**
 	 * Retrieve parsed page data for each id, given local and content type
-	 * @param type 
-	 * @param locale 
-	 * @param ids 
+	 * @param type
+	 * @param locale
+	 * @param ids
 	 */
-	getItems(type: DynamicContentTypes, locale: string, ids: Array<string>): Promise<IParsedPageData[]>;
+	getItems(
+		type: DynamicContentTypes,
+		locale: string,
+		ids: Array<string>
+	): Promise<IParsedPageData[]>;
 	/**
 	 * Extract content type and id from a url, with a default content type
-	 * @param url 
-	 * @param defaultType 
+	 * @param url
+	 * @param defaultType
 	 */
-	urlToContentData(url: string, defaultType?: DynamicContentTypes): IDynamicContentRecord;
+	urlToContentData(
+		url: string,
+		defaultType?: DynamicContentTypes
+	): IDynamicContentRecord;
 }
