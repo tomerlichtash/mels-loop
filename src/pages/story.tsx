@@ -4,15 +4,15 @@ import Layout from "../components/layout";
 import { GetStaticProps } from "next";
 import {
 	IPageProps,
-	MLParseModes,
 	PageContentAttributes,
 } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
 import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
-import { LoadContentModes } from "../lib/markdown-driver";
+import { mlNextUtils } from "../lib/next-utils";
 import { ReactPageContext } from "../components/page/page-context";
 import { ReactLayoutContext } from "../contexts/layout-context";
+import { LoadContentModes, LoadFolderModes, MLParseModes } from "../interfaces/parser";
+
 import { classes } from "./story.st.css";
 
 export default function Story({ content }: IPageProps) {
@@ -41,8 +41,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	return mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.CODEX,
 		context.locale,
-		LoadFolderModes.FOLDER,
-		LoadContentModes.FULL,
-		MLParseModes.VERSE
+		{ 
+			loadMode: LoadFolderModes.FOLDER,
+			contentMode: LoadContentModes.FULL,
+			parseMode: MLParseModes.VERSE
+		}
 	);
 };

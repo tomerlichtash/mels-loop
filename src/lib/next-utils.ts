@@ -1,7 +1,13 @@
 import { GetStaticPathsResult, GetStaticPropsResult } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { ILocaleMap, MLParseModes } from "../interfaces/models";
-import { loadContentFolder, LoadContentModes } from "./markdown-driver";
+import { ILocaleMap } from "../interfaces/models";
+import { 
+	IContentParseOptions, 
+	MLParseModes, 
+	LoadFolderModes, 
+	LoadContentModes 
+} from "../interfaces/parser";
+import { loadContentFolder } from "./markdown-driver";
 
 /**************************************************
  * Extended Next.js types
@@ -20,9 +26,7 @@ interface FolderStaticProps {
 type MLGetStaticProps = (
 	folderRelativePath: string,
 	locale: string, //GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
-	loadMode: LoadFolderModes,
-	contentMode?: LoadContentModes,
-	parseMode?: MLParseModes
+	mode: Partial<IContentParseOptions>
 ) => GetStaticPropsResult<FolderStaticProps>;
 
 /**
@@ -56,25 +60,20 @@ export interface IMLNextUtils {
 	getFolderStaticPaths: MLGetStaticPaths;
 }
 
-export enum LoadFolderModes {
-	FOLDER = "folder",
-	CHILDREN = "children",
-}
+/**
+ * Load the index file of the folder, or the children in the folder?
+ */
 
 class MLNextUtils implements IMLNextUtils {
 	public getFolderStaticProps(
 		folderPath: string,
 		locale: string,
-		loadMode: LoadFolderModes,
-		contentMode: LoadContentModes = LoadContentModes.FULL,
-		parseMode: MLParseModes = MLParseModes.NORMAL
+		mode: Partial<IContentParseOptions>
 	): GetStaticPropsResult<FolderStaticProps> {
 		const docData = loadContentFolder({
 			relativePath: folderPath,
 			locale,
-			contentMode,
-			loadMode,
-			parseMode,
+			mode
 		});
 		return {
 			props: {
@@ -93,9 +92,11 @@ class MLNextUtils implements IMLNextUtils {
 			const folderData = loadContentFolder({
 				locale,
 				relativePath: folderPath,
-				loadMode: LoadFolderModes.CHILDREN,
-				contentMode: LoadContentModes.NONE,
-				parseMode: MLParseModes.NORMAL,
+				mode: {
+					loadMode: LoadFolderModes.CHILDREN,
+					contentMode: LoadContentModes.NONE,
+					parseMode: MLParseModes.NORMAL
+				}
 			});
 			paths.push(...folderData.ids);
 		});

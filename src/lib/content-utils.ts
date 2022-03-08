@@ -2,9 +2,9 @@ import {
 	ASTNODE_TYPES,
 	IMLParsedNode,
 	MLNODE_TYPES,
-	MLParseModes,
 	ParsedNode,
 } from "../interfaces/models";
+import { IContentParseOptions, MLParseModes } from "../interfaces/parser";
 
 /**
  * Functions for processing parsed markdown nodes and maybe more
@@ -14,7 +14,7 @@ export interface IContentUtils {
 	 * Convert a markdown parse tree to a MK parse tree, in which text runs are separated into lines
 	 * @param arg0
 	 */
-	processParseTree(nodes: ParsedNode[], mode?: MLParseModes): IMLParsedNode[];
+	processParseTree(nodes: ParsedNode[], mode: IContentParseOptions): IMLParsedNode[];
 
 	stripComments(source: string): string;
 }
@@ -36,23 +36,22 @@ const AST2MLTypeMap: Map<ASTNODE_TYPES, MLNODE_TYPES> = new Map<ASTNODE_TYPES, M
 	[ASTNODE_TYPES.BLOCK_QUOTE, MLNODE_TYPES.BLOCKQUOTE]
 ]);
 
-const INLINE_TYPES:ASTNodeTypeMap = new Map<ASTNODE_TYPES, boolean>([
-	[ASTNODE_TYPES.TEXT, true],
-	[ASTNODE_TYPES.LINK, true],
-	[ASTNODE_TYPES.EM, true],
-	[ASTNODE_TYPES.STRONG, true],
-	[ASTNODE_TYPES.IMAGE, true],
-	[ASTNODE_TYPES.INS, true],
-	[ASTNODE_TYPES.DEL, true],
-	[ASTNODE_TYPES.SUB, true],
-	[ASTNODE_TYPES.SUP, true],
-]);
+const INLINE_TYPES:Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
+	ASTNODE_TYPES.TEXT,
+	ASTNODE_TYPES.LINK,
+	ASTNODE_TYPES.EM,
+	ASTNODE_TYPES.STRONG,
+	ASTNODE_TYPES.IMAGE,
+	ASTNODE_TYPES.INS,
+	ASTNODE_TYPES.DEL,
+	ASTNODE_TYPES.SUB,
+	ASTNODE_TYPES.SUP]);
 
 /**
  * Elements that should contain text directly, without an enclosing paragraph
  */
-const TEXT_CONTAINER_TYPES: ASTNodeTypeMap = new Map<ASTNODE_TYPES, boolean>([
-	[ASTNODE_TYPES.HEADING, true]
+const TEXT_CONTAINER_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
+	ASTNODE_TYPES.HEADING
 ]);
 
 const IGNORED_TYPES: ASTNodeTypeMap = new Map<ASTNODE_TYPES, boolean>([
@@ -75,7 +74,7 @@ function nodeTypeToMLType(nodeName: ASTNODE_TYPES, context: MLParseContext): MLN
 	if (!nodeName) {
 		return MLNODE_TYPES.UNKNOWN;
 	}
-	if (context.mode === MLParseModes.VERSE && nodeName === ASTNODE_TYPES.PARAGRAPH) {
+	if (context.mode.parseMode === MLParseModes.VERSE && nodeName === ASTNODE_TYPES.PARAGRAPH) {
 		return MLNODE_TYPES.SECTION;
 	}
 	return (AST2MLTypeMap[nodeName] || nodeName).toLowerCase() as MLNODE_TYPES;
@@ -96,7 +95,7 @@ class ContentUtils implements IContentUtils {
 		return (source || "").replace(/<!---?\s.*\s-?-->/g, "")
 	}
 
-	public processParseTree(nodes: ParsedNode[], mode: MLParseModes): IMLParsedNode[] {
+	public processParseTree(nodes: ParsedNode[], mode: IContentParseOptions): IMLParsedNode[] {
 		if (!nodes || !nodes.length) {
 			return [];
 		}
@@ -172,7 +171,7 @@ class ContentUtils implements IContentUtils {
 		if (processor) {
 			return processor(node, context);
 		}
-		const verseMode = context.mode === MLParseModes.VERSE;
+		const verseMode = context.mode.parseMode === MLParseModes.VERSE;
 		const resultNode: IMLParsedNode = {
 			type: nodeTypeToMLType(node.type, context),
 			line: context.indexer.currentLine(),
@@ -278,7 +277,7 @@ class ContentUtils implements IContentUtils {
 		if (!children) {
 			return node;
 		}
-		const processText = context.mode === MLParseModes.VERSE ? 
+		const processText = context.mode.parseMode === MLParseModes.VERSE ? 
 			(texts: string[]) => this.breakTextToLines(texts) :
 			(texts: string[]) => this.mergeTextElements(texts);
 
@@ -532,7 +531,7 @@ class NodeIndexer {
 }
 
 class MLParseContext {
-	constructor(public readonly mode: MLParseModes) {
+	constructor(public readonly mode: IContentParseOptions) {
 
 	}
 	public readonly linkDefs: { [key: string]: IMLParsedNode } = {};
