@@ -5,6 +5,7 @@ module.exports = {
 		"^@src/(.*)$": "<rootDir>/src/$1",
 		"(?<!\\.st)\\.(css|scss)$": "identity-obj-proxy",
 	},
+	testPathIgnorePatterns: ["<rootDir>/cypress/"],
 	coveragePathIgnorePatterns: ["/node_modules/"],
 	globals: {
 		"ts-jest": {
