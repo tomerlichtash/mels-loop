@@ -66,7 +66,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 העבודה של מל היתה לשכתב
 את תוכנת הבלאק ג'ק עבור ה-4000-RPC.[^](#annotations/mels-blackjack-game)
 (מי בכלל ידע אז מה זה [פּוֹרְט](#glossary/port)?)
-[מִיעוּן הכְּתוֹבוֹת](#glossary/addressing-scheme)[^](#glossary/annotations/instruction1) במחשב החדש
+[מִיעוּן הכְּתוֹבוֹת](#glossary/addressing-scheme)[^](#annotations/instruction1) במחשב החדש
 היה מסוג אחד-ועוד-אחד
 כך שבכל הוראה למכונה,
 בנוסף ל[קוד-הפעולה](#glossary/operation-code)
@@ -85,7 +85,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 הבאה כבר הגיעה אל "הראש הקורא"
 נגישה ליישום מיידי.
 הייתה תוכנה שנועדה לעשות את הדבר הזה בדיוק,
-"[אָסֶמְבְּלֶר](#glossary/assembly-language) מייעל",[^](#glossary/annotations/ref1)
+"[אָסֶמְבְּלֶר](#glossary/assembly-language) מייעל",[^](#annotations/ref1)
 אך מל סירב להשתמש בה.
 
 "לך תדע איפה זה יניח את הדברים",
