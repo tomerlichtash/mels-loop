@@ -1,3 +1,4 @@
+import Script from "next/script";
 import React, { useContext, useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import Header from "../header";
@@ -170,6 +171,19 @@ export default function Layout(props: LayoutProps) {
 				<Page className={classes.page} nodes={props.children} />
 				<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 			</div>
+			<Script
+				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"
+				strategy="afterInteractive"
+			/>
+			<Script id="google-analytics" strategy="afterInteractive">
+				{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+					gtag('config', 'G-XLWMW4QLVE');
+        `}
+			</Script>
 		</>
 	);
 }
