@@ -6,6 +6,7 @@ module.exports = {
 		"(?<!\\.st)\\.(css|scss)$": "identity-obj-proxy",
 	},
 	coveragePathIgnorePatterns: ["/node_modules/"],
+	testPathIgnorePatterns: ["<rootDir>/e2e/"],
 	globals: {
 		"ts-jest": {
 			tsconfig: "<rootDir>/tsconfig.jest.json",
