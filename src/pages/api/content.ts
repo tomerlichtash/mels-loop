@@ -6,7 +6,7 @@ import { LoadFolderModes } from "../../lib/next-utils";
 
 const TypeMap = {
 	annotation: CONTENT_TYPES.ANNOTATION,
-	glossary: CONTENT_TYPES.GLOSSARY
+	glossary: CONTENT_TYPES.GLOSSARY,
 };
 
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {
@@ -14,8 +14,10 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 	const type = String(_req.query.type || "");
 	const contentType = type && TypeMap[type];
 	if (!locale || !contentType) {
-		return res.status(500).json({ error: `Bad content params, locale ${locale} type ${type} 
-(expected one of ${Object.keys(TypeMap).toString()})`});
+		return res.status(500).json({
+			error: `Bad content params, locale ${locale} type ${type} 
+(expected one of ${Object.keys(TypeMap).toString()})`,
+		});
 	}
 	const loadPromise = new Promise((resolve) => {
 		const docData = loadContentFolder({
@@ -37,8 +39,10 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 	loadPromise
 		.then((data) => {
 			res.status(200).json({ data });
+			res.end();
 		})
 		.catch((error) => {
 			res.status(500).json({ error: String(error) });
+			res.end();
 		});
 }
