@@ -10,6 +10,6 @@
 	-st-states: id(string);
 }
 
-.optionButton {
+/* .optionButton {
 	-st-extends: Button;
-}
+} */

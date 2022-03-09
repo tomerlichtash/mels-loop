@@ -38,20 +38,21 @@ export const DropDown = ({
 					{options.map((option) => {
 						const { id, icon, label, isCurrent, targetPathname } = option;
 						return (
-							<Option
-								key={id}
-								className={style(classes.option, {
-									current: isCurrent,
-									id,
-								})}
-								closeDropDown={() => triggerCallback(false)}
-								onSelectChange={onSelectChange}
-								label={label}
-								isCurrent={isCurrent}
-								icon={icon}
-								id={id}
-								targetPathname={targetPathname}
-							/>
+							<li
+								className={style(classes.option, { id, isCurrent }, className)}
+							>
+								<Option
+									key={id}
+									className={classes.option}
+									closeDropDown={() => triggerCallback(false)}
+									onSelectChange={onSelectChange}
+									label={label}
+									isCurrent={isCurrent}
+									icon={icon}
+									id={id}
+									targetPathname={targetPathname}
+								/>
+							</li>
 						);
 					})}
 				</ul>

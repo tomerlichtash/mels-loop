@@ -25,36 +25,8 @@ export const Option = (props: IOption): JSX.Element => {
 		className,
 	} = props;
 
-	if (isCurrent) {
-		return (
-			<li className={style(classes.root, { id }, className)}>
-				<Button
-					label={label}
-					icon={icon}
-					className={classes.optionButton}
-					callback={closeDropDown}
-				/>{" "}
-			</li>
-		);
-	}
-
-	if (targetPathname && !onSelectChange) {
-		return (
-			<li className={style(classes.root, { id }, className)}>
-				<Button
-					label={label}
-					id={id}
-					icon={icon}
-					callback={closeDropDown}
-					link={targetPathname}
-					className={classes.button}
-				/>
-			</li>
-		);
-	}
-
-	return (
-		<li className={style(classes.root, { id }, className)}>
+	const getOptionContent = () => {
+		let optionContent = (
 			<Button
 				label={label}
 				id={id}
@@ -63,10 +35,43 @@ export const Option = (props: IOption): JSX.Element => {
 					closeDropDown();
 					return onSelectChange(id);
 				}}
-				className={classes.optionButton}
+				className={classes.root}
 			/>
-		</li>
-	);
+		);
+
+		if (isCurrent) {
+			optionContent = (
+				<Button
+					label={label}
+					icon={icon}
+					callback={closeDropDown}
+					className={classes.root}
+				/>
+			);
+		}
+
+		if (targetPathname && !onSelectChange) {
+			optionContent = (
+				<Button
+					label={label}
+					id={id}
+					icon={icon}
+					callback={closeDropDown}
+					link={targetPathname}
+					className={classes.root}
+				/>
+			);
+		}
+
+		return optionContent;
+	};
+
+	return getOptionContent();
+	// (
+	// 	<li className={style(classes.root, { id }, className)}>
+	// 		{getOptionContent()}
+	// 	</li>
+	// );
 };
 
 export default Option;

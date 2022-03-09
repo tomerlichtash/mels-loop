@@ -24,9 +24,9 @@ export const LocaleSelector = ({
 		<div className={style(classes.root, className)}>
 			<div className={classes.dropDownContainer}>
 				<DropDown
-					className={style(classes.localeDropDown)}
-					options={options.map((opt) =>
-						Object.assign({}, opt, { label: translate(opt.label) })
+					className={style(classes.localeDropDown, "locator-locale-selector")}
+					options={options.map((option) =>
+						Object.assign({}, option, { label: translate(option.label) })
 					)}
 					compKeys={compKeys}
 					optionListVisible={optionListVisible}

@@ -60,13 +60,13 @@
 	border-bottom-right-radius: 0;
 }
 
-.localeDropDown::option::optionButton {
+.localeDropDown::option {
 	position: relative;
 	display: block;
 	/* padding: 0.5rem 0; */
 }
 
-.localeDropDown::option::optionButton::labelContainer {
+.localeDropDown::option::labelContainer {
 	display: block;
 }
 
