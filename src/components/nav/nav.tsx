@@ -3,6 +3,7 @@ import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { style, classes } from "./nav.st.css";
+import { getDisplayName } from "next/dist/shared/lib/utils";
 
 export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	const {
