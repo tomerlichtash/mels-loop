@@ -131,5 +131,5 @@
 	-st-extends: LocaleSelector;
 	position: fixed;
 	top: 1rem;
-	left: 1rem;
+	right: 1rem;
 }

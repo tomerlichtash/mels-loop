@@ -8,6 +8,7 @@
 :vars {
 	buttonMargin: 38px;
 	triggerIconMargin: 10px;
+	height: 40px;
 }
 
 .root {
@@ -46,8 +47,6 @@
 	border-radius: 8px;
 	overflow: hidden;
 	box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-	/* transition: all 50ms ease-in; */
-	/* height: 40px; */
 	transition: all 50ms ease-in;
 }
 .root:isOpen .dropDownContainer,
@@ -88,8 +87,8 @@
 
 .dropdown::triggerButton,
 .dropdown::option::button {
-	height: 40px;
-	line-height: 40px;
+	height: value(height);
+	line-height: value(height);
 	display: block;
 }
 
@@ -103,8 +102,8 @@
 }
 
 .dropdown::triggerIcon {
-	height: 40px;
-	line-height: 40px;
+	height: value(height);
+	line-height: value(height);
 }
 .root:locale(en) .dropdown::triggerIcon {
 	margin-left: value(triggerIconMargin);
@@ -126,6 +125,7 @@
 	left: value(triggerIconMargin);
 }
 
+.root:isOpen .dropdown::triggerButton:hover,
 .dropdown::option::button:hover {
 	background: #f0f0f0;
 }

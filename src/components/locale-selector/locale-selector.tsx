@@ -19,7 +19,8 @@ export const LocaleSelector = ({
 }: LocaleSelectorProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, locale } = layoutContext;
-	const [optionListVisible, toggleOptionList] = useState(false);
+	// const [optionListVisible, toggleOptionList] = useState(false);
+	const [optionListVisible, toggleOptionList] = useState(true);
 	return (
 		<div
 			className={st(
@@ -28,12 +29,12 @@ export const LocaleSelector = ({
 				className
 			)}
 			title={"Select Language"}
-			aria-title={"Select Language"}
+			aria-label={"Select Language"}
 		>
 			<div className={classes.langsIcon}>{LANGS}</div>
 			<div className={classes.dropDownContainer}>
 				<DropDown
-					className={classes.dropdown}
+					className={st(classes.dropdown, "locator-locale-select")}
 					options={options.map((option) =>
 						Object.assign({}, option, { label: translate(option.label) })
 					)}

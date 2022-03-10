@@ -26,7 +26,7 @@ export default function Glossary(props: IPageProps) {
 				</title>
 			</Head>
 			<article className={style(classes.root, className)}>
-				<h2 className={classes.title}>{translate(compLocale.pageName)}</h2>
+				<h1 className={classes.title}>{translate(compLocale.pageName)}</h1>
 				{metaData.length && (
 					<ul className={classes.termList}>
 						{metaData.map((page, index) => {

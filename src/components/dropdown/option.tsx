@@ -29,7 +29,6 @@ export const Option = (props: IOption): JSX.Element => {
 		let optionContent = (
 			<Button
 				label={label}
-				id={id}
 				icon={icon}
 				callback={() => {
 					closeDropDown();
@@ -54,7 +53,6 @@ export const Option = (props: IOption): JSX.Element => {
 			optionContent = (
 				<Button
 					label={label}
-					id={id}
 					icon={icon}
 					callback={closeDropDown}
 					link={targetPathname}

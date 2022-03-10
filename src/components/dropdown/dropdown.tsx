@@ -24,7 +24,7 @@ export const DropDown = ({
 	return (
 		<div
 			className={st(classes.root, { optionListVisible }, className)}
-			onMouseLeave={() => triggerCallback(false)}
+			// onMouseLeave={() => triggerCallback(false)}
 		>
 			<div className={classes.triggerContainer}>
 				<span
@@ -50,7 +50,11 @@ export const DropDown = ({
 								return (
 									<Option
 										key={`dropdown-option-${id}`}
-										className={st(classes.option, { isCurrent, id })}
+										className={st(
+											classes.option,
+											{ isCurrent, id },
+											`locator-option-id-${id}`
+										)}
 										closeDropDown={() => triggerCallback(false)}
 										onSelectChange={onSelectChange}
 										label={label}

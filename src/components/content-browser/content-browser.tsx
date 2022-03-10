@@ -23,7 +23,7 @@ export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 
 	return (
 		<div className={style(classes.root, className)}>
-			{showTitle && <h2 className={classes.title}>{metaData.title}</h2>}
+			{showTitle && <h1 className={classes.title}>{metaData.title}</h1>}
 
 			{showMoto && metaData.moto && (
 				<p className={classes.moto}>{metaData.moto}</p>
