@@ -21,6 +21,10 @@ import {
 	MLParseModes 
 } from "../interfaces/parser";
 
+import getConfig from 'next/config'
+const { serverRuntimeConfig } = getConfig()
+
+
 const log: Logger = new Logger({
 	// name: "logger",
 	// instanceName: "MarkdownDriver",
@@ -51,7 +55,7 @@ export function getRootDir(): string {
 	return rootDir;
 }
 
-setRootDir(process.cwd());
+setRootDir(serverRuntimeConfig.PROJECT_ROOT /*process.cwd() */);
 
 /**
  * What part of an index file to read - none, metadata only or full (metadata + content) 
