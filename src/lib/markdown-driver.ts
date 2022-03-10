@@ -57,11 +57,6 @@ export function getRootDir(): string {
 
 setRootDir(serverRuntimeConfig.PROJECT_ROOT /*process.cwd() */);
 
-/**
- * What part of an index file to read - none, metadata only or full (metadata + content) 
- */
-
-
 export interface ILoadContentOptions {
 	/**
 	 * The content path, relative to the content folder
