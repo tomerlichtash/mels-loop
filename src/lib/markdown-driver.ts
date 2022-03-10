@@ -40,7 +40,7 @@ const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 let rootDir: string;
 
 export function setRootDir(root: string): void {
-	rootDir = path.join(root, "content/");
+	rootDir = path.join(root, "public/content/");
 }
 
 export function getRootDir(): string {
