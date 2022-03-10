@@ -6,10 +6,10 @@
 }
 
 .root {
-	text-decoration: none;
 	-st-states: id(string);
+	text-decoration: none;
 }
 
-/* .optionButton {
+.button {
 	-st-extends: Button;
-} */
+}

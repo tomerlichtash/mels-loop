@@ -116,9 +116,9 @@ export default function Layout(props: LayoutProps) {
 
 	useEffect(() => {
 		if (isScrollUp()) {
-			console.log("up");
+			// console.log("up");
 		} else {
-			console.log("down");
+			// console.log("down");
 		}
 
 		if (hasWindow) {

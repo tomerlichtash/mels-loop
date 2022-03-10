@@ -35,8 +35,14 @@ export const Button = ({
 					target={target}
 				>
 					<span className={classes.content}>
-						{icon && <span className={classes.icon}>{icon}</span>}
-						<span className={classes.label}>{label}</span>
+						{icon && (
+							<div className={classes.icon}>
+								<span className={classes.img}>{icon}</span>
+							</div>
+						)}
+						<span className={classes.label}>
+							<span className={classes.text}>{label}</span>
+						</span>
 					</span>
 				</a>
 			</Link>
@@ -52,13 +58,13 @@ export const Button = ({
 		>
 			<span className={classes.content}>
 				{icon && (
-					<div className={classes.iconContainer}>
-						<span className={classes.icon}>{icon}</span>
-					</div>
+					<span className={classes.icon}>
+						<span className={classes.img}>{icon}</span>
+					</span>
 				)}
-				<div className={classes.labelContainer}>
-					<span className={classes.label}>{label}</span>
-				</div>
+				<span className={classes.label}>
+					<span className={classes.text}>{label}</span>
+				</span>
 			</span>
 		</span>
 	);

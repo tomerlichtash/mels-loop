@@ -8,18 +8,20 @@
 	display: inline-flex;
 }
 
-.labelContainer {
+.label {
+	flex: 1;
 }
 
-.iconContainer {
+.icon {
+	flex: 1;
 	overflow: hidden;
-	width: 100%;
+	/* width: 100%; */
 	text-align: center;
 }
 
-.label {}
+.text {}
 
-.icon {
+.img {
 	position: relative;
 	display: inline-block;
 }

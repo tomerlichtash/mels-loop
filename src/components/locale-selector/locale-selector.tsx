@@ -3,7 +3,8 @@ import DropDown from "../dropdown";
 import { ComponentProps } from "../../interfaces/models";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
-import { style, classes } from "./locale-selector.st.css";
+import { LANGS } from "../svg";
+import { st, classes } from "./locale-selector.st.css";
 
 export interface LocaleSelectorProps extends ComponentProps {
 	options: IOption[];
@@ -17,14 +18,22 @@ export const LocaleSelector = ({
 	className,
 }: LocaleSelectorProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
-	const { translate } = layoutContext;
+	const { translate, locale } = layoutContext;
 	const [optionListVisible, toggleOptionList] = useState(false);
-	const currentLang = options.find((option) => option.isCurrent).label;
 	return (
-		<div className={style(classes.root, className)}>
+		<div
+			className={st(
+				classes.root,
+				{ locale, isOpen: optionListVisible },
+				className
+			)}
+			title={"Select Language"}
+			aria-title={"Select Language"}
+		>
+			<div className={classes.langsIcon}>{LANGS}</div>
 			<div className={classes.dropDownContainer}>
 				<DropDown
-					className={style(classes.localeDropDown, "locator-locale-selector")}
+					className={classes.dropdown}
 					options={options.map((option) =>
 						Object.assign({}, option, { label: translate(option.label) })
 					)}
@@ -32,10 +41,6 @@ export const LocaleSelector = ({
 					optionListVisible={optionListVisible}
 					triggerCallback={toggleOptionList}
 					onSelectChange={onSelectChange}
-					openLabel={`${translate(
-						"LOCALE_SELECTOR_LANGUAGE_LABEL"
-					)}: ${translate(currentLang)}`}
-					closeLabel={`${translate("LOCALE_SELECTOR_CLOSE")}`}
 				/>
 			</div>
 		</div>

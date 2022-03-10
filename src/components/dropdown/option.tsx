@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
-import { style, classes } from "./option.st.css";
+import { st, classes } from "./option.st.css";
 
 export interface IOption extends ComponentProps {
 	id: string;
@@ -35,7 +35,7 @@ export const Option = (props: IOption): JSX.Element => {
 					closeDropDown();
 					return onSelectChange(id);
 				}}
-				className={classes.root}
+				className={classes.button}
 			/>
 		);
 
@@ -45,7 +45,7 @@ export const Option = (props: IOption): JSX.Element => {
 					label={label}
 					icon={icon}
 					callback={closeDropDown}
-					className={classes.root}
+					className={classes.button}
 				/>
 			);
 		}
@@ -58,7 +58,7 @@ export const Option = (props: IOption): JSX.Element => {
 					icon={icon}
 					callback={closeDropDown}
 					link={targetPathname}
-					className={classes.root}
+					className={classes.button}
 				/>
 			);
 		}
@@ -66,12 +66,9 @@ export const Option = (props: IOption): JSX.Element => {
 		return optionContent;
 	};
 
-	return getOptionContent();
-	// (
-	// 	<li className={style(classes.root, { id }, className)}>
-	// 		{getOptionContent()}
-	// 	</li>
-	// );
+	return (
+		<span className={st(classes.root, className)}>{getOptionContent()}</span>
+	);
 };
 
 export default Option;
