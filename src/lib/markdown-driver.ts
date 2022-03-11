@@ -80,6 +80,9 @@ export function loadContentFolder(
 	const contentDir = path.join(getRootDir(), options.relativePath);
 
 	// Get file names under /posts
+	if (!fs.existsSync(contentDir)) {
+		throw new Error(`Cannot read files in ${contentDir}, try ${path.resolve("./public/content")}`);
+	}
 	const contentNames = fs.readdirSync(contentDir);
 	const folderContentData = new FolderContent();
 
