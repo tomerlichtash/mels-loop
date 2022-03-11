@@ -28,15 +28,15 @@
 	position: absolute;
 }
 
-/* .root:not(:optionListVisible):hover .triggerIcon {
-	color: blue;
+.root:not(:optionListVisible):hover .triggerIcon {
+color: blue;
 }
 .root:optionListVisible::triggerContainer .triggerIcon {
-	color: #808080;
+color: #808080;
 }
 .root:optionListVisible::triggerContainer:hover .triggerIcon {
-	color: red;
-} */
+color: red;
+}
 
 .triggerIcon {}
 
