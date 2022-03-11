@@ -55,7 +55,7 @@ export function getRootDir(): string {
 	return rootDir;
 }
 
-setRootDir(serverRuntimeConfig.PROJECT_ROOT /*process.cwd() */);
+setRootDir(String(serverRuntimeConfig.PROJECT_ROOT) /*process.cwd() */);
 
 export interface ILoadContentOptions {
 	/**
