@@ -20,6 +20,8 @@ import chalk from "chalk";
 import getConfig from "next/config";
 const { serverRuntimeConfig } = getConfig();
 
+const CONTENT_ROOT = "public/content/";
+
 
 const log: Logger = new Logger({
 	// name: "logger",
@@ -44,11 +46,11 @@ const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 let rootDir: string;
 
 export function setRootDir(root: string): void {
-	rootDir = path.join(root, "public/content/");
+	rootDir = path.join(root, CONTENT_ROOT);
 }
 
-export function getRootDir(): string {
-	return rootDir;
+function getRootDir(base: string): string {
+	return base ? path.join(base, CONTENT_ROOT) : rootDir;
 }
 
 setRootDir(String(serverRuntimeConfig.PROJECT_ROOT_FOLDER) /*process.cwd() */);
@@ -78,7 +80,7 @@ export interface ILoadContentOptions {
 export function loadContentFolder(
 	options: ILoadContentOptions
 ): IFolderContent {
-	const contentDir = path.join(options.rootFolder || getRootDir(), options.relativePath);
+	const contentDir = path.join(getRootDir(options.rootFolder), options.relativePath);
 
 	// Get file names under /posts
 	if (!fs.existsSync(contentDir)) {
