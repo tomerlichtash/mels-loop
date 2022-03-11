@@ -38,7 +38,9 @@ const nextConfig = {
 	},
 	images: {
 		domains: ["res.cloudinary.com"]
-	}
-};
+	},
+	serverRuntimeConfig: {
+        PROJECT_ROOT_FOLDER: __dirname
+    }};
 
 module.exports = nextConfig;

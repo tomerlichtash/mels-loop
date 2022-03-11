@@ -17,6 +17,10 @@ import { LoadFolderModes } from "./next-utils";
 import { Logger } from "tslog";
 import chalk from "chalk";
 
+import getConfig from "next/config";
+const { serverRuntimeConfig } = getConfig();
+
+
 const log: Logger = new Logger({
 	// name: "logger",
 	// instanceName: "MarkdownDriver",
@@ -47,7 +51,8 @@ export function getRootDir(): string {
 	return rootDir;
 }
 
-setRootDir(process.cwd());
+setRootDir(String(serverRuntimeConfig.PROJECT_ROOT_FOLDER) /*process.cwd() */);
+//setRootDir(process.cwd());
 
 export enum LoadContentModes {
 	NONE = "none",
