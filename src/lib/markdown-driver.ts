@@ -72,12 +72,13 @@ export interface ILoadContentOptions {
 	readonly locale: string;
 	readonly contentMode: LoadContentModes;
 	readonly parseMode: MLParseModes;
+	readonly rootFolder?: string;
 }
 
 export function loadContentFolder(
 	options: ILoadContentOptions
 ): IFolderContent {
-	const contentDir = path.join(getRootDir(), options.relativePath);
+	const contentDir = path.join(options.rootFolder || getRootDir(), options.relativePath);
 
 	// Get file names under /posts
 	if (!fs.existsSync(contentDir)) {

@@ -24,6 +24,7 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 			contentMode: LoadContentModes.FULL,
 			loadMode: LoadFolderModes.CHILDREN,
 			parseMode: MLParseModes.NORMAL,
+			rootFolder: process.cwd()
 		});
 		resolve({
 			locale,
