@@ -1,62 +1,51 @@
 import { test, expect } from "@playwright/test";
-import { Page, Locator } from "playwright-core"
+import { LayoutTestDriver, ILayoutDriver } from "./drivers/layout-driver";
+import {
+	ILocaleSelectorTestDriver,
+	LocaleSelectorTestDriver,
+} from "./drivers/locale-selector-driver";
 
-class LocaleSelectorDriver {
-	public page: Page;
+const ENGLISH_LOCALE_ID = "en";
+const HEBREW_LOCALE_ID = "he";
 
-	constructor(page: Page) {
-		this.page = page;
-	}
+const ROOT_DIR = "/";
+const ROOT_ENGLISH_LOCALE = `/${ENGLISH_LOCALE_ID}`;
+const ROOT_HEBREW_LOCALE = `/${HEBREW_LOCALE_ID}`;
 
-	public async goto(path: string) {
-		await this.page.goto("/");
-	}
-
-	public getLocaleSelector(): Locator {
-		return this.page.locator(`.locator-locale-select`).first();
-	}
-
-	public openLocaleSelector() {
-		this.getLocaleSelector().click()
-	};
-
-	public getLocaleOption(id: string): Locator {
-		return this.page.locator(`.locator-option-id-${id}`).first();
-	}
-
-	public async selectOption(id: string) {
-		await this.getLocaleOption(id).click()
-	};
-
-	public getSiteTitle(): Locator {
-		return this.page.locator(`.locator-site-title`);
-	};
-}
+let localeSelectorDriver: ILocaleSelectorTestDriver;
+let layoutDriver: ILayoutDriver;
 
 test.describe("LocaleSelector", () => {
-	test.only("should switch locale to Hebrew", async ({ page }) => {
-		const driver = new LocaleSelectorDriver(page);
-		await page.goto("/");
+	test.beforeEach(async ({ page }) => {
+		localeSelectorDriver = new LocaleSelectorTestDriver(page);
+		layoutDriver = new LayoutTestDriver(page);
+	});
 
-		driver.openLocaleSelector();
-		driver.selectOption("he");
+	test("should start in English locale", async ({ page }) => {
+		await page.goto(ROOT_DIR);
+		expect(await layoutDriver.getSiteTitle()).toEqual("Mel's Loop");
+	});
 
-		// const siteTitle = driver.getSiteTitle().first();
-		const siteTitle = page.locator(`.locator-site-title`).first();
-		expect(siteTitle.innerText()).toEqual("לולאת מל");
+	test("should start in Hebrew locale", async ({ page }) => {
+		await page.goto(ROOT_HEBREW_LOCALE);
+		expect(await layoutDriver.getSiteTitle()).toEqual("לולאת מל");
+	});
+
+	test("should switch locale to Hebrew", async ({ page }) => {
+		await page.goto(ROOT_ENGLISH_LOCALE);
+		expect(await layoutDriver.getSiteTitle()).toEqual("Mel's Loop");
+
+		localeSelectorDriver.openLocaleSelector();
+		await localeSelectorDriver.selectOption(HEBREW_LOCALE_ID);
+		expect(await layoutDriver.getSiteTitle()).toEqual("לולאת מל");
 	});
 
 	test("should switch locale to English", async ({ page }) => {
-		const driver = new LocaleSelectorDriver(page);
-		await page.goto("/");
+		await page.goto(ROOT_HEBREW_LOCALE);
+		expect(await layoutDriver.getSiteTitle()).toEqual("לולאת מל");
 
-		driver.openLocaleSelector();
-		await driver.selectOption("he");
-
-		driver.openLocaleSelector();
-		await driver.selectOption("en");
-
-		const siteTitle = await driver.getSiteTitle();
-		expect(siteTitle).toEqual("Mel's Loop");
+		localeSelectorDriver.openLocaleSelector();
+		await localeSelectorDriver.selectOption(ENGLISH_LOCALE_ID);
+		expect(await layoutDriver.getSiteTitle()).toEqual("Mel's Loop");
 	});
 });
