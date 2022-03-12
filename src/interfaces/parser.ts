@@ -19,10 +19,6 @@ export enum LoadFolderModes {
 
 export interface IContentParseOptions {
 	/**
-	 * Defaults to FOLDER
-	 */
-	readonly loadMode: LoadFolderModes;
-	/**
 	 * Defaults to FULL
 	 */
 	readonly contentMode: LoadContentModes;

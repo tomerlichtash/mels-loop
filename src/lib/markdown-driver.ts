@@ -43,22 +43,32 @@ const log: Logger = new Logger({
 	// setCallerAsLoggerName: true,
 });
 
+const CONTENT_PATH = "public/content/";
+
 const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 
 let rootDir: string;
 
-export function setRootDir(root: string): void {
-	rootDir = path.join(root, "public/content/");
+
+function setContentRootDir(root: string): void {
+	rootDir = path.join(root, CONTENT_PATH);
 }
 
-export function getRootDir(): string {
-	return rootDir;
+function getContentRootDir(root?: string): string {
+	return root ? path.join(root, CONTENT_PATH) : rootDir;
 }
 
-setRootDir(String(serverRuntimeConfig.PROJECT_ROOT) /*process.cwd() */);
+/**
+ * Save setting for build time
+ */
+setContentRootDir(String(serverRuntimeConfig.PROJECT_ROOT));
 
 export interface ILoadContentOptions {
 	/**
+	 * Defaults to FOLDER
+	 */
+	readonly loadMode: LoadFolderModes;
+	 /**
 	 * The content path, relative to the content folder
 	 */
 	readonly relativePath: string;
@@ -66,12 +76,16 @@ export interface ILoadContentOptions {
 	 * If true, iterate over children folders
 	 */
 	readonly locale: string;
-	readonly mode: Partial<IContentParseOptions>
+	readonly mode?: Partial<IContentParseOptions>
+
+	/**
+	 * If not empty, use this as the top level folder in which the content folder can be found
+	 */
+	readonly rootFolder?: string;
 }
 
 const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	contentMode: LoadContentModes.FULL,
-	loadMode: LoadFolderModes.FOLDER,
 	parseMode: MLParseModes.NORMAL,
 	nodeProcessor: undefined
 };
@@ -80,7 +94,7 @@ export function loadContentFolder(
 	options: ILoadContentOptions
 ): IFolderContent {
 	const mode: IContentParseOptions = Object.assign({}, DEFAULT_PARSE_OPTIONS, options.mode);
-	const contentDir = path.join(getRootDir(), options.relativePath);
+	const contentDir = path.join(getContentRootDir(), options.relativePath);
 
 	// Get file names under /posts
 	const contentNames: Dirent[] = fs.readdirSync(contentDir, { withFileTypes: true });
@@ -100,7 +114,7 @@ export function loadContentFolder(
 
 		let fullPath: string;
 
-		if (mode.loadMode === LoadFolderModes.FOLDER) {
+		if (options.loadMode === LoadFolderModes.FOLDER) {
 			if (targetFileName !== name) {
 				return;
 			}

@@ -41,8 +41,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	return mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.CODEX,
 		context.locale,
+		LoadFolderModes.FOLDER,
 		{ 
-			loadMode: LoadFolderModes.FOLDER,
 			contentMode: LoadContentModes.FULL,
 			parseMode: MLParseModes.VERSE
 		}

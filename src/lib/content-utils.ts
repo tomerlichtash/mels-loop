@@ -11,8 +11,9 @@ import { IContentParseOptions, MLParseModes } from "../interfaces/parser";
  */
 export interface IContentUtils {
 	/**
-	 * Convert a markdown parse tree to a MK parse tree, in which text runs are separated into lines
-	 * @param arg0
+	 * Convert a markdown parse tree (tree of AST nodes) to a ML parse tree (tree of IMLParsedNode)
+	 * @param nodes
+	 * @param mode Various parse options
 	 */
 	processParseTree(nodes: ParsedNode[], mode: IContentParseOptions): IMLParsedNode[];
 
@@ -91,6 +92,11 @@ class ContentUtils implements IContentUtils {
 		}
 	}
 
+	/**
+	 * Strips HTML comments from the source string
+	 * @param source 
+	 * @returns stripped string
+	 */
 	public stripComments(source: string): string {
 		return (source || "").replace(/<!---?\s.*\s-?-->/g, "")
 	}

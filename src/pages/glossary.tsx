@@ -54,13 +54,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.GLOSSARY,
 		context.locale,
-		{ loadMode: LoadFolderModes.FOLDER }
+		LoadFolderModes.FOLDER
 	);
 	const childrenProps = mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.GLOSSARY,
 		context.locale,
+		LoadFolderModes.CHILDREN,
 		{ 
-			loadMode: LoadFolderModes.CHILDREN,
 			contentMode: LoadContentModes.FULL
 		}
 	);

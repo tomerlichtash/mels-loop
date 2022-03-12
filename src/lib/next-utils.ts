@@ -26,7 +26,8 @@ interface FolderStaticProps {
 type MLGetStaticProps = (
 	folderRelativePath: string,
 	locale: string, //GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
-	mode: Partial<IContentParseOptions>
+	loadMode: LoadFolderModes,
+	mode?: Partial<IContentParseOptions>
 ) => GetStaticPropsResult<FolderStaticProps>;
 
 /**
@@ -68,10 +69,12 @@ class MLNextUtils implements IMLNextUtils {
 	public getFolderStaticProps(
 		folderPath: string,
 		locale: string,
-		mode: Partial<IContentParseOptions>
+		loadMode: LoadFolderModes,
+		mode?: Partial<IContentParseOptions>
 	): GetStaticPropsResult<FolderStaticProps> {
 		const docData = loadContentFolder({
 			relativePath: folderPath,
+			loadMode,
 			locale,
 			mode
 		});
@@ -92,8 +95,8 @@ class MLNextUtils implements IMLNextUtils {
 			const folderData = loadContentFolder({
 				locale,
 				relativePath: folderPath,
+				loadMode: LoadFolderModes.CHILDREN,
 				mode: {
-					loadMode: LoadFolderModes.CHILDREN,
 					contentMode: LoadContentModes.NONE,
 					parseMode: MLParseModes.NORMAL
 				}

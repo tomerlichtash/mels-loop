@@ -20,11 +20,12 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 		const docData = loadContentFolder({
 			relativePath: contentType,
 			locale: locale,
+			loadMode: LoadFolderModes.CHILDREN,
 			mode: {
 				contentMode: LoadContentModes.FULL,
-				loadMode: LoadFolderModes.CHILDREN,
 				parseMode: MLParseModes.NORMAL
-			}
+			},
+			rootFolder: process.cwd()
 		});
 		resolve({
 			locale,
