@@ -4,7 +4,7 @@ import {
 	MLNODE_TYPES,
 	ParsedNode,
 } from "../interfaces/models";
-import { IContentParseOptions, MLParseModes } from "../interfaces/parser";
+import { IContentParseOptions, MLNodeFilterFunction, MLParseModes } from "../interfaces/parser";
 
 /**
  * Functions for processing parsed markdown nodes and maybe more
@@ -18,6 +18,8 @@ export interface IContentUtils {
 	processParseTree(nodes: ParsedNode[], mode: IContentParseOptions): IMLParsedNode[];
 
 	stripComments(source: string): string;
+
+	createNodeMappingFilter(types: Array<MLNODE_TYPES>, filter: MLNodeFilterFunction): MLNodeFilterFunction;
 }
 
 type ParsedNodeProcessor = (node: ParsedNode, context: MLParseContext) => IMLParsedNode;
@@ -91,6 +93,23 @@ class ContentUtils implements IContentUtils {
 			"def": this.processLinkDefinition.bind(this)
 		}
 	}
+
+	public createNodeMappingFilter(types: Array<MLNODE_TYPES>, filter: MLNodeFilterFunction): MLNodeFilterFunction {
+		if (!types || !types.length) {
+			return n => null;
+		}
+		const typeMap = types.reduce((map, type) => {
+			map[type] = type;
+			return map;
+		}, {});
+		return (node: IMLParsedNode, options: IContentParseOptions) => {
+			if (!node || !(node.type in typeMap)) {
+				return null;
+			}
+			return filter(node, options);
+		}
+	}
+
 
 	/**
 	 * Strips HTML comments from the source string

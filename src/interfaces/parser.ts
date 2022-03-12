@@ -17,6 +17,8 @@ export enum LoadFolderModes {
 }
 
 
+export type MLNodeFilterFunction = (node: IMLParsedNode, options: IContentParseOptions) => IMLParsedNode | null;
+
 export interface IContentParseOptions {
 	/**
 	 * Defaults to FULL
@@ -29,6 +31,6 @@ export interface IContentParseOptions {
 	/**
 	 * an optional function that may return a new node
 	 */
-	readonly nodeProcessor?: (node: IMLParsedNode, options: IContentParseOptions) => IMLParsedNode | null;
+	readonly nodeProcessor?: MLNodeFilterFunction
 
 }

@@ -102,12 +102,12 @@ export function loadContentFolder(
 	
 	if (!fs.existsSync(contentDir)) {
 		const paths = [
-			"resolve public/content: " + path.resolve("./public/content"), 
-			"/public: " + path.resolve("/public"), 
-			"cwd: " + process.cwd()
+			path.resolve("./public/content"), 
+			path.resolve("/public"), 
+			process.cwd()
 		];
 		const diags = paths.map (p => [p, String(fs.existsSync(p))].join(' ->')).join('\n');
-		throw new Error(`Cannot read files in ${contentDir}, try ${diags}`);
+		throw new Error(`Cannot read files in ${options.rootFolder} (mapped to ${contentDir}),\ntry ${diags}`);
 	}
 
 	// Get file names under /posts
