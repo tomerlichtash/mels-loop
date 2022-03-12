@@ -12,21 +12,23 @@ import { DynamicContentTypes } from "../interfaces/dynamic-content";
 import { IParsedPageData } from "../interfaces/models";
 
 
-const testIt = () => {
-	const pageContext = useContext(ReactPageContext);
-	pageContext.dynamicContentServer
-	.getItems(DynamicContentTypes.Annotation, "en", ["fortran"])
-	.then((items: IParsedPageData[]) => {
-		console.log(items);
-	})
-	.catch(e => {
-		console.warn(e);
-	});
-}
 export default function Home() {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
+
+	const testIt = () => {
+		const pageContext = useContext(ReactPageContext);
+		pageContext.dynamicContentServer
+		.getItems(DynamicContentTypes.Annotation, "en", ["fortran"])
+		.then((items: IParsedPageData[]) => {
+			console.log(items);
+		})
+		.catch(e => {
+			console.warn(e);
+		});
+	}
+	
 	return (
 		<Layout>
 			<Head>
