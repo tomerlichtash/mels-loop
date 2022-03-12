@@ -94,7 +94,7 @@ export function loadContentFolder(
 	options: ILoadContentOptions
 ): IFolderContent {
 	const mode: IContentParseOptions = Object.assign({}, DEFAULT_PARSE_OPTIONS, options.mode);
-	const contentDir = path.join(getContentRootDir(), options.relativePath);
+	const contentDir = path.join(getContentRootDir(options.rootFolder), options.relativePath);
 
 	// Get file names under /posts
 	const contentNames: Dirent[] = fs.readdirSync(contentDir, { withFileTypes: true });
