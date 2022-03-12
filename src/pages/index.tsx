@@ -16,9 +16,9 @@ export default function Home() {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
+	const pageContext = useContext(ReactPageContext);
 
 	const testIt = () => {
-		const pageContext = useContext(ReactPageContext);
 		pageContext.dynamicContentServer
 		.getItems(DynamicContentTypes.Annotation, "en", ["fortran"])
 		.then((items: IParsedPageData[]) => {
