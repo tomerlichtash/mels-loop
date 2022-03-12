@@ -84,6 +84,9 @@ export interface ILoadContentOptions {
 	readonly rootFolder?: string;
 }
 
+/**
+ * Options for unspecified parse properties
+ */
 const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	contentMode: LoadContentModes.FULL,
 	parseMode: MLParseModes.NORMAL,
