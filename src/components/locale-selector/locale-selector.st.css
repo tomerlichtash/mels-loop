@@ -33,13 +33,14 @@
 	top: 0;
 	height: 42px;
 	color: #c0c0c0;
+	cursor: default;
 }
 
 .root:locale(en) .langsIcon {
-	right: -30px;
+	left: -30px;
 }
 .root:locale(he) .langsIcon {
-	right: -30px;
+	left: -30px;
 }
 
 .dropDownContainer {
