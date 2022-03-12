@@ -99,6 +99,17 @@ export function loadContentFolder(
 	const mode: IContentParseOptions = Object.assign({}, DEFAULT_PARSE_OPTIONS, options.mode);
 	const contentDir = path.join(getContentRootDir(options.rootFolder), options.relativePath);
 
+	
+	if (!fs.existsSync(contentDir)) {
+		const paths = [
+			"resolve public/content: " + path.resolve("./public/content"), 
+			"/public: " + path.resolve("/public"), 
+			"cwd: " + process.cwd()
+		];
+		const diags = paths.map (p => [p, String(fs.existsSync(p))].join(' ->')).join('\n');
+		throw new Error(`Cannot read files in ${contentDir}, try ${diags}`);
+	}
+
 	// Get file names under /posts
 	const contentNames: Dirent[] = fs.readdirSync(contentDir, { withFileTypes: true });
 	const folderContentData = new FolderContent();
