@@ -1,8 +1,7 @@
 import { Page } from "playwright-core";
 
 export interface ILayoutDriver {
-	goto: (path: string) => Promise<void>;
-	getSiteTitle: () => Promise<string>;
+	get getSiteTitle(): Promise<string>;
 }
 
 export class LayoutTestDriver implements ILayoutDriver {
@@ -12,11 +11,7 @@ export class LayoutTestDriver implements ILayoutDriver {
 		this.page = page;
 	}
 
-	public async goto(path: string) {
-		await this.page.goto(path);
-	}
-
-	public getSiteTitle() {
+	public get getSiteTitle() {
 		return this.page.locator(`.locator-site-title`).first().innerText();
 	}
 }

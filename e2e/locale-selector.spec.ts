@@ -5,12 +5,17 @@ import {
 	LocaleSelectorTestDriver,
 } from "./drivers/locale-selector-driver";
 
-const ENGLISH_LOCALE_ID = "en";
-const HEBREW_LOCALE_ID = "he";
+import { translateFunc } from "../src/locales/translate";
+
+const EN_ID = "en";
+const HE_ID = "he";
 
 const ROOT_DIR = "/";
-const ROOT_ENGLISH_LOCALE = `/${ENGLISH_LOCALE_ID}`;
-const ROOT_HEBREW_LOCALE = `/${HEBREW_LOCALE_ID}`;
+const ROOT_DIR_EN = `${ROOT_DIR}${EN_ID}`;
+const ROOT_DIR_HE = `${ROOT_DIR}${HE_ID}`;
+
+const SITE_TITLE_EN = translateFunc(EN_ID)("SITE_TITLE");
+const SITE_TITLE_HE = translateFunc(HE_ID)("SITE_TITLE");
 
 let localeSelectorDriver: ILocaleSelectorTestDriver;
 let layoutDriver: ILayoutDriver;
@@ -23,29 +28,29 @@ test.describe("LocaleSelector", () => {
 
 	test("should start in English locale", async ({ page }) => {
 		await page.goto(ROOT_DIR);
-		expect(await layoutDriver.getSiteTitle()).toEqual("Mel's Loop");
+		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_EN);
 	});
 
 	test("should start in Hebrew locale", async ({ page }) => {
-		await page.goto(ROOT_HEBREW_LOCALE);
-		expect(await layoutDriver.getSiteTitle()).toEqual("לולאת מל");
+		await page.goto(ROOT_DIR_HE);
+		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_HE);
 	});
 
 	test("should switch locale to Hebrew", async ({ page }) => {
-		await page.goto(ROOT_ENGLISH_LOCALE);
-		expect(await layoutDriver.getSiteTitle()).toEqual("Mel's Loop");
+		await page.goto(ROOT_DIR_EN);
+		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_EN);
 
 		localeSelectorDriver.openLocaleSelector();
-		await localeSelectorDriver.selectOption(HEBREW_LOCALE_ID);
-		expect(await layoutDriver.getSiteTitle()).toEqual("לולאת מל");
+		await localeSelectorDriver.selectOption(HE_ID);
+		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_HE);
 	});
 
 	test("should switch locale to English", async ({ page }) => {
-		await page.goto(ROOT_HEBREW_LOCALE);
-		expect(await layoutDriver.getSiteTitle()).toEqual("לולאת מל");
+		await page.goto(ROOT_DIR_HE);
+		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_HE);
 
 		localeSelectorDriver.openLocaleSelector();
-		await localeSelectorDriver.selectOption(ENGLISH_LOCALE_ID);
-		expect(await layoutDriver.getSiteTitle()).toEqual("Mel's Loop");
+		await localeSelectorDriver.selectOption(EN_ID);
+		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_EN);
 	});
 });
