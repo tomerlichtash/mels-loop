@@ -3,13 +3,13 @@ import Head from "next/head";
 import Layout from "../components/layout/layout";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
+import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
-import { LoadContentModes } from "../lib/markdown-driver";
 import { usePageData } from "../components/usePageData";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { Button } from "../components/ui";
 import { style, classes } from "./docs.st.css";
+import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 
 export default function Docs(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
@@ -53,7 +53,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		CONTENT_TYPES.DOCS,
 		context.locale,
 		LoadFolderModes.CHILDREN,
-		LoadContentModes.METADATA
+		{ 
+			contentMode: LoadContentModes.METADATA
+		}
 	);
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const props = {
