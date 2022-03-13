@@ -1,56 +1,56 @@
 import { test, expect } from "@playwright/test";
-import { LayoutTestDriver, ILayoutDriver } from "./drivers/layout-driver";
+import { LayoutTestDriver, ILayoutDriver } from "./drivers/layout-test-driver";
 import {
 	ILocaleSelectorTestDriver,
 	LocaleSelectorTestDriver,
-} from "./drivers/locale-selector-driver";
-
+} from "./drivers/locale-selector-test-driver";
 import { translateFunc } from "../src/locales/translate";
 
 const EN_ID = "en";
 const HE_ID = "he";
-
-const ROOT_DIR = "/";
-const ROOT_DIR_EN = `${ROOT_DIR}${EN_ID}`;
-const ROOT_DIR_HE = `${ROOT_DIR}${HE_ID}`;
-
 const SITE_TITLE_EN = translateFunc(EN_ID)("SITE_TITLE");
 const SITE_TITLE_HE = translateFunc(HE_ID)("SITE_TITLE");
 
-let localeSelectorDriver: ILocaleSelectorTestDriver;
-let layoutDriver: ILayoutDriver;
+let localeSelector: ILocaleSelectorTestDriver;
+let layout: ILayoutDriver;
 
 test.describe("LocaleSelector", () => {
 	test.beforeEach(async ({ page }) => {
-		localeSelectorDriver = new LocaleSelectorTestDriver(page);
-		layoutDriver = new LayoutTestDriver(page);
+		localeSelector = new LocaleSelectorTestDriver(page);
+		layout = new LayoutTestDriver(page);
 	});
 
-	test("should start in English locale", async ({ page }) => {
-		await page.goto(ROOT_DIR);
-		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_EN);
+	test("should start in English locale", async () => {
+		await layout.gotoRootDir();
+		expect(await layout.getSiteTitle).toEqual(SITE_TITLE_EN);
 	});
 
-	test("should start in Hebrew locale", async ({ page }) => {
-		await page.goto(ROOT_DIR_HE);
-		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_HE);
+	// test("should have selected English on load", async ({ page }) => {
+	// 	await page.goto(ROOT_DIR);
+
+	// 	expect(await localeSelectorDriver.getSelectedOption).toEqual("English");
+	// });
+
+	test("should start in Hebrew locale", async () => {
+		await layout.gotoRootDirLocale(HE_ID);
+		expect(await layout.getSiteTitle).toEqual(SITE_TITLE_HE);
 	});
 
-	test("should switch locale to Hebrew", async ({ page }) => {
-		await page.goto(ROOT_DIR_EN);
-		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_EN);
+	test("should switch locale to Hebrew", async () => {
+		await layout.gotoRootDirLocale(EN_ID);
+		expect(await layout.getSiteTitle).toEqual(SITE_TITLE_EN);
 
-		localeSelectorDriver.openLocaleSelector();
-		await localeSelectorDriver.selectOption(HE_ID);
-		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_HE);
+		localeSelector.dropdown.openDropdown();
+		await localeSelector.dropdown.selectOption(HE_ID);
+		expect(await layout.getSiteTitle).toEqual(SITE_TITLE_HE);
 	});
 
-	test("should switch locale to English", async ({ page }) => {
-		await page.goto(ROOT_DIR_HE);
-		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_HE);
+	test("should switch locale to English", async () => {
+		await layout.gotoRootDirLocale(HE_ID);
+		expect(await layout.getSiteTitle).toEqual(SITE_TITLE_HE);
 
-		localeSelectorDriver.openLocaleSelector();
-		await localeSelectorDriver.selectOption(EN_ID);
-		expect(await layoutDriver.getSiteTitle).toEqual(SITE_TITLE_EN);
+		localeSelector.dropdown.openDropdown();
+		await localeSelector.dropdown.selectOption(EN_ID);
+		expect(await layout.getSiteTitle).toEqual(SITE_TITLE_EN);
 	});
 });

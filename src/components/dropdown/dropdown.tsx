@@ -25,6 +25,7 @@ export const DropDown = ({
 		<div
 			className={st(classes.root, { optionListVisible }, className)}
 			onMouseLeave={() => triggerCallback(false)}
+			onClick={() => triggerCallback(!optionListVisible)}
 		>
 			<div className={classes.triggerContainer}>
 				<span
