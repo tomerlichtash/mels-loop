@@ -90,7 +90,7 @@ export interface ILoadContentOptions {
 const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	contentMode: LoadContentModes.FULL,
 	parseMode: MLParseModes.NORMAL,
-	nodeProcessor: undefined
+	nodeProcessors: undefined
 };
 
 export function loadContentFolder(

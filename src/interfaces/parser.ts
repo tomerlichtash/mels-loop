@@ -16,8 +16,11 @@ export enum LoadFolderModes {
 	CHILDREN = "children"
 }
 
-
-export type MLNodeFilterFunction = (node: IMLParsedNode, options: IContentParseOptions) => IMLParsedNode | null;
+/**
+ * A function that may return a new node, modify the current node if possible, or return the provided node.
+ * @returns a valid node, if one was received
+ */
+export type MLNodeProcessorFunction = (node: IMLParsedNode, options: IContentParseOptions) => IMLParsedNode;
 
 export interface IContentParseOptions {
 	/**
@@ -31,6 +34,6 @@ export interface IContentParseOptions {
 	/**
 	 * an optional function that may return a new node
 	 */
-	readonly nodeProcessor?: MLNodeFilterFunction
+	readonly nodeProcessors?: Array<MLNodeProcessorFunction>
 
 }

@@ -42,10 +42,7 @@ function App({ Component, pageProps }: AppProps) {
 		getSiteSubtitle,
 	};
 
-	const contentContext = new PageContext(
-		new DynamicContentServer(),
-		PageContentAttributes.Plain
-	);
+	const contentContext = new PageContext(new DynamicContentServer());
 
 	return (
 		<ReactLayoutContext.Provider value={layoutContext}>

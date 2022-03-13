@@ -1,10 +1,12 @@
+import { profileEnd } from "console";
+import { DynamicContentTypes, IDynamicContentRecord } from "../interfaces/dynamic-content";
 import {
 	ASTNODE_TYPES,
 	IMLParsedNode,
 	MLNODE_TYPES,
 	ParsedNode,
 } from "../interfaces/models";
-import { IContentParseOptions, MLNodeFilterFunction, MLParseModes } from "../interfaces/parser";
+import { IContentParseOptions, MLNodeProcessorFunction, MLParseModes } from "../interfaces/parser";
 
 /**
  * Functions for processing parsed markdown nodes and maybe more
@@ -19,7 +21,15 @@ export interface IContentUtils {
 
 	stripComments(source: string): string;
 
-	createNodeMappingFilter(types: Array<MLNODE_TYPES>, filter: MLNodeFilterFunction): MLNodeFilterFunction;
+	createNodeMappingFilter(filter: MLNodeProcessorFunction, ...types: Array<MLNODE_TYPES>): MLNodeProcessorFunction;
+
+	/**
+	 * Extract content type and id from a url, with a default content type
+	 * @param url 
+	 * @param defaultType 
+	 */
+	urlToContentData(url: string, defaultType?: DynamicContentTypes): IDynamicContentRecord;
+
 }
 
 type ParsedNodeProcessor = (node: ParsedNode, context: MLParseContext) => IMLParsedNode;
@@ -83,6 +93,33 @@ function nodeTypeToMLType(nodeName: ASTNODE_TYPES, context: MLParseContext): MLN
 	return (AST2MLTypeMap[nodeName] || nodeName).toLowerCase() as MLNODE_TYPES;
 }
 
+
+const ANNOTATION_RE =/annotations?\//i;
+const GLOSSARY_RE = /glossary\//i;
+
+const urlToContentType = (url: string, defaultType: DynamicContentTypes): DynamicContentTypes => {
+	if (!url) {
+		return defaultType || DynamicContentTypes.None;
+	}
+	if (ANNOTATION_RE.test(url)) {
+		return DynamicContentTypes.Annotation;
+	}
+	if (GLOSSARY_RE.test(url) || url[0] === '#') {
+		return DynamicContentTypes.Glossary;
+	}
+	return defaultType || DynamicContentTypes.None;
+};
+
+const urlToContentId = (url: string) => {
+	if (!url) {
+		return "";
+	}
+	const parts = url.split("/");
+	const id = parts[parts.length - 1];
+	return (id && id.replace("#", "")) || "";
+};
+
+
 class ContentUtils implements IContentUtils {
 
 	private readonly nodeProcessorMap: { [name: string]: ParsedNodeProcessor };
@@ -94,7 +131,21 @@ class ContentUtils implements IContentUtils {
 		}
 	}
 
-	public createNodeMappingFilter(types: Array<MLNODE_TYPES>, filter: MLNodeFilterFunction): MLNodeFilterFunction {
+	public urlToContentData(
+		url: string,
+		defaultType?: DynamicContentTypes
+	): IDynamicContentRecord {
+		const contentData = {
+			type: urlToContentType(url, defaultType),
+			id: urlToContentId(url),
+		};
+		return contentData;
+	}
+
+
+	public createNodeMappingFilter(
+		filter: MLNodeProcessorFunction,
+		...types: Array<MLNODE_TYPES>): MLNodeProcessorFunction {
 		if (!types || !types.length) {
 			return n => null;
 		}
@@ -132,7 +183,7 @@ class ContentUtils implements IContentUtils {
 		this.updateLinks(result, parseContext);
 		this.promoteInlines(result, parseContext);
 		this.promoteFigures(result, parseContext);
-		return result;
+		return this.applyNodeProcessors(result, parseContext);
 	}
 
 	private isTextContainer(nodeOrType: ParsedNode | string): boolean {
@@ -334,6 +385,40 @@ class ContentUtils implements IContentUtils {
 		nodes.forEach(node => this.promoteFiguresInNode(node, context));
 	}
 
+	private applyNodeProcessors(nodes: IMLParsedNode[], context: MLParseContext): IMLParsedNode[] {
+		const mode = context.mode;
+		if (!mode.nodeProcessors ||!mode.nodeProcessors.length) {
+			return nodes;
+		}
+		const processors = mode.nodeProcessors.slice();
+		const processor: MLNodeProcessorFunction = (node, context) => {
+			for (let p of processors) {
+				node = p(node, context) || node;
+			}
+			return node;
+		}
+		return nodes.map (n => this.applyProcessorsToNode(n, context, processor));
+	}
+
+	/**
+	 * 
+	 * @param node 
+	 * @param context Parse context
+	 * @param processor Guaranteed to return a valid node, if one was passed
+	 * @returns 
+	 */
+	private applyProcessorsToNode(node: IMLParsedNode, context: MLParseContext, processor: MLNodeProcessorFunction): IMLParsedNode {
+		if (!node) {
+			return null;
+		}
+		node = processor(node, context.mode);
+
+		(node.children || []).forEach((n, ind, arr) => {
+			arr[ind] = this.applyProcessorsToNode(n, context, processor);
+		});
+		return node;
+	}
+	
 	private promoteFiguresInNode(node: IMLParsedNode, context: MLParseContext): void {
 		const children = node.children;
 		if (!Array.isArray(children) || children.length < 1) {
@@ -407,7 +492,8 @@ class ContentUtils implements IContentUtils {
 		return inlines;
 	}
 	/**
- * replace [XXX] text runs that match a XXX def, with links based on the def
+ * replace [XXX] text runs that match a XXX def, with links based on the defs
+ * collected in the creation of the nodeProcessorMap
  * @param nodes 
  * @param context 
  */

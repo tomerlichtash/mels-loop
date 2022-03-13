@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import {
 	ContentComponentProps,
 	MLNODE_TYPES,
+	NODE_DISPLAY_TYPES,
 	NODE_LIST_TYPES,
 	PageContentAttributes,
 } from "../../interfaces/models";
@@ -105,7 +106,7 @@ export const ContentComponent = ({
 				/>
 			);
 		case MLNODE_TYPES.LINK:
-			return pageContext.hasAttribute(PageContentAttributes.Story) ? (
+			return node.displayType === NODE_DISPLAY_TYPES.POPOVER? (
 				<PopoverLink
 					key={key}
 					componentData={componentData}
