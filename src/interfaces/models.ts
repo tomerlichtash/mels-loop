@@ -260,11 +260,3 @@ export interface IPageProps {
 	metaData?: string;
 }
 
-/**
- * Page content properties, affecting the way that various elements
- * should be rendered.
- */
-export enum PageContentAttributes {
-	Story,
-	Plain,
-}

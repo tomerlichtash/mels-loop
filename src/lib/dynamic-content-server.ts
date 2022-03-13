@@ -1,6 +1,5 @@
 import {
 	DynamicContentTypes,
-	IDynamicContentRecord,
 	IDynamicContentServer,
 } from "../interfaces/dynamic-content";
 import { IParsedPageData } from "../interfaces/models";

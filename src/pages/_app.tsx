@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { ILayoutContext } from "../interfaces/layout-context";
 import { PageContext, ReactPageContext } from "../components/page/page-context";
-import { PageContentAttributes } from "../interfaces/models";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
 import {
 	getPathData,

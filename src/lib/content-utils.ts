@@ -1,4 +1,3 @@
-import { profileEnd } from "console";
 import { DynamicContentTypes, IDynamicContentRecord } from "../interfaces/dynamic-content";
 import {
 	ASTNODE_TYPES,
@@ -147,7 +146,7 @@ class ContentUtils implements IContentUtils {
 		filter: MLNodeProcessorFunction,
 		...types: Array<MLNODE_TYPES>): MLNodeProcessorFunction {
 		if (!types || !types.length) {
-			return n => null;
+			return n => n;
 		}
 		const typeMap = types.reduce((map, type) => {
 			map[type] = type;

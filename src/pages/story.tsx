@@ -7,12 +7,10 @@ import {
 	IPageProps,
 	MLNODE_TYPES,
 	NODE_DISPLAY_TYPES,
-	PageContentAttributes,
 } from "../interfaces/models";
 import ContentBrowser from "../components/content-browser";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
-import { ReactPageContext } from "../components/page/page-context";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { LoadContentModes, LoadFolderModes, MLNodeProcessorFunction, MLParseModes } from "../interfaces/parser";
 
@@ -49,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	 * @param mode 
 	 * @returns 
 	 */
-	const linkProcessor: MLNodeProcessorFunction = (node, mode) => {
+	const linkProcessor: MLNodeProcessorFunction = (node) => {
 		const linkData = contentUtils.urlToContentData(node.target);
 		if (linkData.type !== DynamicContentTypes.None) {
 			const nodeData: Partial<IMLParsedNode> = {
