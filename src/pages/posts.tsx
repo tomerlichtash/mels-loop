@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
 import { v4 as uuidv4 } from "uuid";
+import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
+import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps, IParsedPageData } from "../interfaces/models";
-import { LoadContentModes } from "../lib/markdown-driver";
 import { usePageData } from "../components/usePageData";
 import { Button, TimeFormat } from "../components/ui";
 import { ContentComponent } from "../components/content";
@@ -80,7 +80,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		CONTENT_TYPES.POSTS,
 		context.locale,
 		LoadFolderModes.CHILDREN,
-		LoadContentModes.METADATA
+		{ 
+			contentMode: LoadContentModes.METADATA
+		}
 	);
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const props = {

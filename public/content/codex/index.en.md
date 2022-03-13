@@ -13,7 +13,7 @@ in this decadent era of
 Lite beer, hand calculators[^](#annotations/calculators), and "user-friendly" software[^](#annotations/user-friendly-quatations)
 but back in the Good Old Days,[^](#annotations/story-timeline-estimation)
 when the term "software" sounded funny
-and Real Computers[^](#annotations/real-computers) were made out of [drums](#glossary/drum-memory) and [vacuum tubes](#glossary/vacuum-tubes),
+and Real Computers[^](#annotations/real-computers) were made out of [drums](#glossary/drum-memory) and [vacuum tubes](#glossary/vacuum-tube),
 Real Programmers wrote in [machine code](#glossary/machine-code).
 Not [FORTRAN](#glossary/fortran). Not [RATFOR](#glossary/ratfor). Not, even, [assembly language](#glossary/assembly-language).
 [Machine Code](#glossary/machine-code).

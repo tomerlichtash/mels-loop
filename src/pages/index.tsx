@@ -12,6 +12,7 @@ export default function Home() {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
+	
 	return (
 		<Layout>
 			<Head>
