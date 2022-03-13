@@ -12,7 +12,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 
 אולי כיום,
 בתקופה דקדנטית זו של
-בירה לייט, מחשבוני כיס[^](#annotations/annotations/calculators), ותוכנה ["ידידותית-למשתמש"](#)[^](#annotations/user-friendly-quatations)
+בירה לייט, מחשבוני כיס[^](#annotations/calculators), ותוכנה "ידידותית-למשתמש"[^](#annotations/user-friendly-quatations)
 אך בימים ההם[^](#annotations/story-timeline-estimation),
 כשהמונח "תוכנה" עוד היה נשמע מצחיק,
 ומחשבים אמיתיים[^](#annotations/real-computers) נבנו ב[תופים](#glossary/drum-memory) וב[שפופרות](#glossary/vaccum-tube),
