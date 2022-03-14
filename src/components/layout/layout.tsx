@@ -73,7 +73,6 @@ export default function Layout(props: LayoutProps) {
 							className={classes.localeSelector}
 							options={localeSelectorOptions}
 							compKeys={LOCALE_SELECTOR_LOCALE}
-							onSelectChange={onLocaleChange}
 						/>
 					</div>
 				</div>
