@@ -47,11 +47,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	 * @param mode 
 	 * @returns 
 	 */
-	const linkProcessor: MLNodeProcessorFunction = (node) => {
+	const linkProcessor: MLNodeProcessorFunction = (node, context) => {
 		const linkData = contentUtils.urlToContentData(node.target);
 		if (linkData.type !== DynamicContentTypes.None) {
 			const nodeData: Partial<IMLParsedNode> = {
 				displayType: NODE_DISPLAY_TYPES.POPOVER
+			}
+			if (linkData.type === DynamicContentTypes.Annotation) {
+				node = context.setNodeText(node, `[${context.getEnumerator(linkData.type) + 1}]`);
 			}
 			return Object.assign({}, node, nodeData);
 		}
