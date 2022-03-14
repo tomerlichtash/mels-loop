@@ -2,20 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import * as fs from "fs";
 import * as fsPath from "path";
 
-export default function handler(_req: NextApiRequest, res: NextApiResponse) {
-	try {
-		testIt().then(result => {
-			res.status(200).json(result);
-		})
-		.catch(err => {
-			res.status(200).json({ error: String(err) });
-		})
-	}
-	catch (e) {
-		res.status(200).json({ error: String(e) });
-	}
-}
-
 async function testIt() {
 	const p = new Promise((resolve => {
 		fs.mkdtemp("ml", (err, folder) => {
@@ -23,7 +9,7 @@ async function testIt() {
 				resolve({ error: `mkdtemp error ${String(err)}` })
 			}
 			const filePath = fsPath.join(folder, "rabak.json");
-			fs.writeFile(filePath, JSON.stringify({ name: "maor" }), (err => {
+			fs.writeFile(filePath, JSON.stringify({ name: "maor15" }), (err => {
 				if (err) {
 					resolve({ error: `write file error ${String(err)}` })
 				}
@@ -44,3 +30,18 @@ async function testIt() {
 		return { error: String(e) }
 	}
 }
+
+export default function handler(_req: NextApiRequest, res: NextApiResponse) {
+	try {
+		testIt().then(result => {
+			res.status(200).json(result);
+		})
+		.catch(err => {
+			res.status(200).json({ error: String(err) });
+		})
+	}
+	catch (e) {
+		res.status(200).json({ error: String(e) });
+	}
+}
+
