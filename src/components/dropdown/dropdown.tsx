@@ -16,7 +16,6 @@ export interface DropDownProps extends ComponentProps {
 export const DropDown = ({
 	options,
 	optionListVisible,
-	onSelectChange,
 	triggerCallback,
 	className,
 }: DropDownProps): JSX.Element => {
@@ -57,7 +56,7 @@ export const DropDown = ({
 											`locator-option-id-${id}`
 										)}
 										closeDropDown={() => triggerCallback(false)}
-										onSelectChange={onSelectChange}
+										onSelectChange={option.onSelectChange}
 										label={label}
 										isCurrent={isCurrent}
 										icon={icon}
