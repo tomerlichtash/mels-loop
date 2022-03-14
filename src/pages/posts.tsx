@@ -80,8 +80,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		CONTENT_TYPES.POSTS,
 		context.locale,
 		LoadFolderModes.CHILDREN,
-		{ 
-			contentMode: LoadContentModes.METADATA
+		{
+			contentMode: LoadContentModes.METADATA,
 		}
 	);
 	/* eslint-disable @typescript-eslint/no-explicit-any */

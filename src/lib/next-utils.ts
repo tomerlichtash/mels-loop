@@ -1,11 +1,11 @@
 import { GetStaticPathsResult, GetStaticPropsResult } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { ILocaleMap } from "../interfaces/models";
-import { 
-	IContentParseOptions, 
-	MLParseModes, 
-	LoadFolderModes, 
-	LoadContentModes 
+import {
+	IContentParseOptions,
+	MLParseModes,
+	LoadFolderModes,
+	LoadContentModes,
 } from "../interfaces/parser";
 import { loadContentFolder } from "./markdown-driver";
 
@@ -76,7 +76,7 @@ class MLNextUtils implements IMLNextUtils {
 			relativePath: folderPath,
 			loadMode,
 			locale,
-			mode
+			mode,
 		});
 		return {
 			props: {
@@ -98,8 +98,8 @@ class MLNextUtils implements IMLNextUtils {
 				loadMode: LoadFolderModes.CHILDREN,
 				mode: {
 					contentMode: LoadContentModes.NONE,
-					parseMode: MLParseModes.NORMAL
-				}
+					parseMode: MLParseModes.NORMAL,
+				},
 			});
 			paths.push(...folderData.ids);
 		});
