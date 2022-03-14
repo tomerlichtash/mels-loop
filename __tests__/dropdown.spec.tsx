@@ -5,7 +5,7 @@ import DropDown from "../src/components/dropdown";
 
 describe("DropDown", () => {
 	let onSelectChange: sinon.SinonSpy;
-	let triggerCallback: sinon.SinonSpy;
+	// let triggerCallback: sinon.SinonSpy;
 
 	const comp = (
 		<DropDown
