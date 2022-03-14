@@ -8,13 +8,11 @@ import { st, classes } from "./locale-selector.st.css";
 
 export interface LocaleSelectorProps extends ComponentProps {
 	options: IOption[];
-	// onSelectChange: (locale: string) => void;
 }
 
 export const LocaleSelector = ({
 	compKeys,
 	options,
-	// onSelectChange,
 	className,
 }: LocaleSelectorProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
@@ -41,7 +39,6 @@ export const LocaleSelector = ({
 					compKeys={compKeys}
 					optionListVisible={optionListVisible}
 					triggerCallback={toggleOptionList}
-					// onSelectChange={onSelectChange}
 				/>
 			</div>
 		</div>
