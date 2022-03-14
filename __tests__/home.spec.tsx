@@ -19,7 +19,6 @@ describe("ContentComponent", () => {
 				],
 			},
 		} as IContentComponentInitData;
-
 		const wrapper = render(<ContentComponent componentData={compData} />);
 
 		expect(wrapper.container.querySelector("p").textContent).toEqual(

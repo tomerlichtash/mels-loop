@@ -4,7 +4,7 @@ import { ContentComponentProps } from "../../../../interfaces/models";
 // import { ContentComponent } from "../../index";
 // import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 // import { cloudName } from "../../../../config/cloudinary/config";
-import { style, classes } from "./figure.st.css";
+import { st, classes } from "./figure.st.css";
 
 export const Figure = ({
 	componentData,
@@ -38,7 +38,7 @@ export const Figure = ({
 
 	return (
 		// <CloudinaryContext cloudName={cloudName}>
-		<figure className={style(classes.root, className)}>
+		<figure className={st(classes.root, className)}>
 			<img src={target} className={classes.img} />
 			{/* <Image publicId={publicId} title={title} arial-label={title}>
 				{width && height && (

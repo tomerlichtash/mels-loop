@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ComponentProps } from "../../../interfaces/models";
-import { style, classes } from "./button.st.css";
+import { st, classes } from "./button.st.css";
 
 export interface ButtonProps extends ComponentProps {
 	label?: string;
@@ -31,12 +31,18 @@ export const Button = ({
 				<a
 					title={title || label}
 					aria-label={title || label}
-					className={style(classes.root, { selected }, className)}
+					className={st(classes.root, { selected }, className)}
 					target={target}
 				>
 					<span className={classes.content}>
-						{icon && <span className={classes.icon}>{icon}</span>}
-						<span className={classes.label}>{label}</span>
+						{icon && (
+							<div className={classes.icon}>
+								<span className={classes.img}>{icon}</span>
+							</div>
+						)}
+						<span className={classes.label}>
+							<span className={classes.text}>{label}</span>
+						</span>
 					</span>
 				</a>
 			</Link>
@@ -48,17 +54,17 @@ export const Button = ({
 			title={title || label}
 			aria-label={title || label}
 			onClick={() => callback(id)}
-			className={style(classes.root, { selected }, className)}
+			className={st(classes.root, { selected }, className)}
 		>
 			<span className={classes.content}>
 				{icon && (
-					<div className={classes.iconContainer}>
-						<span className={classes.icon}>{icon}</span>
-					</div>
+					<span className={classes.icon}>
+						<span className={classes.img}>{icon}</span>
+					</span>
 				)}
-				<div className={classes.labelContainer}>
-					<span className={classes.label}>{label}</span>
-				</div>
+				<span className={classes.label}>
+					<span className={classes.text}>{label}</span>
+				</span>
 			</span>
 		</span>
 	);
