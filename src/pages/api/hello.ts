@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { testTemp } from "../../lib/api-helpers";
+import { testTempAccess } from "../../lib/api-helpers";
 
 
 
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 	try {
-		testTemp().then(result => {
+		testTempAccess().then(result => {
 			res.status(200).json(result);
 		})
 		.catch(err => {

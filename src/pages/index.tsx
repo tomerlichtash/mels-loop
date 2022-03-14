@@ -43,7 +43,7 @@ export default function Home() {
 					<h2>Bios</h2>
 					<div>about ed nather</div>
 					<div>about mel kaye</div>
-					<button onClick={testit}>Hello</button>
+					<button onClick={testit}>Hello 22:00</button>
 				</div>
 			</article>
 		</Layout>
