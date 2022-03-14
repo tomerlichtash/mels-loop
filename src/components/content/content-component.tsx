@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
 	ContentComponentProps,
 	MLNODE_TYPES,
-	NODE_LIST_TYPES,
-	PageContentAttributes,
+	NODE_DISPLAY_TYPES,
+	NODE_LIST_TYPES
 } from "../../interfaces/models";
 import {
 	Link,
@@ -16,7 +16,6 @@ import {
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
-import { ReactPageContext } from "../page/page-context";
 import { style, classes } from "./content-component.st.css";
 
 export const ContentComponent = ({
@@ -26,7 +25,6 @@ export const ContentComponent = ({
 	// const data = componentData;
 	const { node } = componentData;
 	const { key, type } = node;
-	const pageContext = useContext(ReactPageContext);
 
 	if (!key) {
 		console.warn("missing key on", node);
@@ -105,7 +103,7 @@ export const ContentComponent = ({
 				/>
 			);
 		case MLNODE_TYPES.LINK:
-			return pageContext.hasAttribute(PageContentAttributes.Story) ? (
+			return node.displayType === NODE_DISPLAY_TYPES.POPOVER? (
 				<PopoverLink
 					key={key}
 					componentData={componentData}

@@ -1,22 +1,50 @@
 import {
+	DynamicContentTypes,
+	IDynamicContentRecord,
+} from "../interfaces/dynamic-content";
+import {
 	ASTNODE_TYPES,
 	IMLParsedNode,
 	MLNODE_TYPES,
-	MLParseModes,
 	ParsedNode,
 } from "../interfaces/models";
+import {
+	IContentParseOptions,
+	INodeProcessorContext,
+	MLNodeProcessorFunction,
+	MLParseModes,
+} from "../interfaces/parser";
 
 /**
  * Functions for processing parsed markdown nodes and maybe more
  */
 export interface IContentUtils {
 	/**
-	 * Convert a markdown parse tree to a MK parse tree, in which text runs are separated into lines
-	 * @param arg0
+	 * Convert a markdown parse tree (tree of AST nodes) to a ML parse tree (tree of IMLParsedNode)
+	 * @param nodes
+	 * @param mode Various parse options
 	 */
-	processParseTree(nodes: ParsedNode[], mode?: MLParseModes): IMLParsedNode[];
+	processParseTree(
+		nodes: ParsedNode[],
+		mode: IContentParseOptions
+	): IMLParsedNode[];
 
 	stripComments(source: string): string;
+
+	createNodeMappingFilter(
+		filter: MLNodeProcessorFunction,
+		...types: Array<MLNODE_TYPES>
+	): MLNodeProcessorFunction;
+
+	/**
+	 * Extract content type and id from a url, with a default content type
+	 * @param url
+	 * @param defaultType
+	 */
+	urlToContentData(
+		url: string,
+		defaultType?: DynamicContentTypes
+	): IDynamicContentRecord;
 }
 
 type ParsedNodeProcessor = (
@@ -42,23 +70,23 @@ const AST2MLTypeMap: Map<ASTNODE_TYPES, MLNODE_TYPES> = new Map<
 	[ASTNODE_TYPES.BLOCK_QUOTE, MLNODE_TYPES.BLOCKQUOTE],
 ]);
 
-const INLINE_TYPES: ASTNodeTypeMap = new Map<ASTNODE_TYPES, boolean>([
-	[ASTNODE_TYPES.TEXT, true],
-	[ASTNODE_TYPES.LINK, true],
-	[ASTNODE_TYPES.EM, true],
-	[ASTNODE_TYPES.STRONG, true],
-	[ASTNODE_TYPES.IMAGE, true],
-	[ASTNODE_TYPES.INS, true],
-	[ASTNODE_TYPES.DEL, true],
-	[ASTNODE_TYPES.SUB, true],
-	[ASTNODE_TYPES.SUP, true],
+const INLINE_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
+	ASTNODE_TYPES.TEXT,
+	ASTNODE_TYPES.LINK,
+	ASTNODE_TYPES.EM,
+	ASTNODE_TYPES.STRONG,
+	ASTNODE_TYPES.IMAGE,
+	ASTNODE_TYPES.INS,
+	ASTNODE_TYPES.DEL,
+	ASTNODE_TYPES.SUB,
+	ASTNODE_TYPES.SUP,
 ]);
 
 /**
  * Elements that should contain text directly, without an enclosing paragraph
  */
-const TEXT_CONTAINER_TYPES: ASTNodeTypeMap = new Map<ASTNODE_TYPES, boolean>([
-	[ASTNODE_TYPES.HEADING, true],
+const TEXT_CONTAINER_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
+	ASTNODE_TYPES.HEADING,
 ]);
 
 const IGNORED_TYPES: ASTNodeTypeMap = new Map<ASTNODE_TYPES, boolean>([
@@ -85,13 +113,41 @@ function nodeTypeToMLType(
 		return MLNODE_TYPES.UNKNOWN;
 	}
 	if (
-		context.mode === MLParseModes.VERSE &&
+		context.mode.parseMode === MLParseModes.VERSE &&
 		nodeName === ASTNODE_TYPES.PARAGRAPH
 	) {
 		return MLNODE_TYPES.SECTION;
 	}
 	return (AST2MLTypeMap[nodeName] || nodeName).toLowerCase() as MLNODE_TYPES;
 }
+
+const ANNOTATION_RE = /annotations?\//i;
+const GLOSSARY_RE = /glossary\//i;
+
+const urlToContentType = (
+	url: string,
+	defaultType: DynamicContentTypes
+): DynamicContentTypes => {
+	if (!url) {
+		return defaultType || DynamicContentTypes.None;
+	}
+	if (ANNOTATION_RE.test(url)) {
+		return DynamicContentTypes.Annotation;
+	}
+	if (GLOSSARY_RE.test(url) || url[0] === "#") {
+		return DynamicContentTypes.Glossary;
+	}
+	return defaultType || DynamicContentTypes.None;
+};
+
+const urlToContentId = (url: string) => {
+	if (!url) {
+		return "";
+	}
+	const parts = url.split("/");
+	const id = parts[parts.length - 1];
+	return (id && id.replace("#", "")) || "";
+};
 
 class ContentUtils implements IContentUtils {
 	private readonly nodeProcessorMap: { [name: string]: ParsedNodeProcessor };
@@ -103,13 +159,48 @@ class ContentUtils implements IContentUtils {
 		};
 	}
 
+	public urlToContentData(
+		url: string,
+		defaultType?: DynamicContentTypes
+	): IDynamicContentRecord {
+		const contentData = {
+			type: urlToContentType(url, defaultType),
+			id: urlToContentId(url),
+		};
+		return contentData;
+	}
+
+	public createNodeMappingFilter(
+		filter: MLNodeProcessorFunction,
+		...types: Array<MLNODE_TYPES>
+	): MLNodeProcessorFunction {
+		if (!types || !types.length) {
+			return (n) => n;
+		}
+		const typeMap = types.reduce((map, type) => {
+			map[type] = type;
+			return map;
+		}, {});
+		return (node: IMLParsedNode, context: INodeProcessorContext) => {
+			if (!node || !(node.type in typeMap)) {
+				return null;
+			}
+			return filter(node, context);
+		};
+	}
+
+	/**
+	 * Strips HTML comments from the source string
+	 * @param source
+	 * @returns stripped string
+	 */
 	public stripComments(source: string): string {
 		return (source || "").replace(/<!---?\s.*\s-?-->/g, "");
 	}
 
 	public processParseTree(
 		nodes: ParsedNode[],
-		mode: MLParseModes
+		mode: IContentParseOptions
 	): IMLParsedNode[] {
 		if (!nodes || !nodes.length) {
 			return [];
@@ -122,7 +213,7 @@ class ContentUtils implements IContentUtils {
 		this.updateLinks(result, parseContext);
 		this.promoteInlines(result, parseContext);
 		this.promoteFigures(result, parseContext);
-		return result;
+		return this.applyNodeProcessors(result, parseContext);
 	}
 
 	private isTextContainer(nodeOrType: ParsedNode | string): boolean {
@@ -189,7 +280,7 @@ class ContentUtils implements IContentUtils {
 		if (processor) {
 			return processor(node, context);
 		}
-		const verseMode = context.mode === MLParseModes.VERSE;
+		const verseMode = context.mode.parseMode === MLParseModes.VERSE;
 		const resultNode: IMLParsedNode = {
 			type: nodeTypeToMLType(node.type, context),
 			line: context.indexer.currentLine(),
@@ -302,7 +393,7 @@ class ContentUtils implements IContentUtils {
 			return node;
 		}
 		const processText =
-			context.mode === MLParseModes.VERSE
+			context.mode.parseMode === MLParseModes.VERSE
 				? (texts: string[]) => this.breakTextToLines(texts)
 				: (texts: string[]) => this.mergeTextElements(texts);
 
@@ -335,6 +426,50 @@ class ContentUtils implements IContentUtils {
 		context: MLParseContext
 	): void {
 		nodes.forEach((node) => this.promoteFiguresInNode(node, context));
+	}
+
+	private applyNodeProcessors(
+		nodes: IMLParsedNode[],
+		context: MLParseContext
+	): IMLParsedNode[] {
+		const mode = context.mode;
+		if (!mode.nodeProcessors || !mode.nodeProcessors.length) {
+			return nodes;
+		}
+		const processors = mode.nodeProcessors.slice();
+		const processor: MLNodeProcessorFunction = (node, context) => {
+			for (let p of processors) {
+				node = p(node, context) || node;
+			}
+			return node;
+		};
+		const processorContext = new NodeProcessorContext(context);
+		return nodes.map((node) =>
+			this.applyProcessorsToNode(node, processorContext, processor)
+		);
+	}
+
+	/**
+	 *
+	 * @param node
+	 * @param context Parse context
+	 * @param processor Guaranteed to return a valid node, if one was passed
+	 * @returns
+	 */
+	private applyProcessorsToNode(
+		node: IMLParsedNode,
+		context: INodeProcessorContext,
+		processor: MLNodeProcessorFunction
+	): IMLParsedNode {
+		if (!node) {
+			return null;
+		}
+		node = processor(node, context);
+
+		(node.children || []).forEach((n, ind, arr) => {
+			arr[ind] = this.applyProcessorsToNode(n, context, processor);
+		});
+		return node;
 	}
 
 	private promoteFiguresInNode(
@@ -419,7 +554,8 @@ class ContentUtils implements IContentUtils {
 		return inlines;
 	}
 	/**
-	 * replace [XXX] text runs that match a XXX def, with links based on the def
+	 * replace [XXX] text runs that match a XXX def, with links based on the defs
+	 * collected in the creation of the nodeProcessorMap
 	 * @param nodes
 	 * @param context
 	 */
@@ -574,9 +710,50 @@ class NodeIndexer {
 }
 
 class MLParseContext {
-	constructor(public readonly mode: MLParseModes) {}
+	constructor(public readonly mode: IContentParseOptions) {}
 	public readonly linkDefs: { [key: string]: IMLParsedNode } = {};
 	public readonly indexer: NodeIndexer = new NodeIndexer();
+}
+
+class NodeProcessorContext implements INodeProcessorContext {
+	constructor(private readonly context: MLParseContext) {}
+
+	public get mode(): IContentParseOptions {
+		return this.context.mode;
+	}
+
+	private readonly _numberMap: Map<string, number> = new Map<string, number>();
+
+	public setNodeText(node: IMLParsedNode, text: string): IMLParsedNode {
+		if (!node) {
+			return null;
+		}
+		if (node.type === MLNODE_TYPES.TEXT) {
+			return Object.assign(node, { text });
+		}
+		return Object.assign(node, {
+			children: [
+				{
+					text,
+					key: this.context.indexer.nextKey(),
+					line: node.line || -1,
+					type: MLNODE_TYPES.TEXT,
+				},
+			],
+		});
+	}
+
+	public getEnumerator(type: string): number {
+		if (!type) {
+			return 0;
+		}
+		if (!this._numberMap.has(type)) {
+			this._numberMap.set(type, -1);
+		}
+		const current = this._numberMap.get(type) + 1;
+		this._numberMap.set(type, current);
+		return current;
+	}
 }
 
 export const contentUtils: IContentUtils = new ContentUtils();

@@ -61,19 +61,39 @@ export enum NODE_LIST_TYPES {
 	UNORDERED = "ul",
 }
 
-export enum MLParseModes {
-	VERSE = "verse",
-	NORMAL = "normal",
+/**
+ * Special display modes for nodes
+ */
+export enum NODE_DISPLAY_TYPES {
+	/**
+	 * Show in popover
+	 */
+	POPOVER = "popover",
+	NORMAL = "normal"
 }
+
 
 /**
  * A markdown node parsed and processed by ML
  */
 export interface IMLParsedNode {
 	readonly type: MLNODE_TYPES;
+	/**
+	 * Unique key across the tree in which the node resides
+	 */
 	readonly key: string;
+	/**
+	 * Line number associated with this node
+	 */
 	readonly line: number;
+	/**
+	 * Returns the actual array of children, NOT a copy, so you can manipulate
+	 * the node's children in place.
+	 */
 	readonly children?: IMLParsedNode[];
+	/**
+	 * Node text, if it is a leaf
+	 */
 	readonly text?: string;
 	/**
 	 * Un/Ordered list
@@ -87,6 +107,10 @@ export interface IMLParsedNode {
 	 * Heading level
 	 */
 	readonly level?: number | string;
+	/**
+	 * How should this node be displayed?
+	 */
+	readonly displayType?: NODE_DISPLAY_TYPES;
 }
 
 export interface IPageMetaData {
@@ -236,11 +260,3 @@ export interface IPageProps {
 	metaData?: string;
 }
 
-/**
- * Page content properties, affecting the way that various elements
- * should be rendered.
- */
-export enum PageContentAttributes {
-	Story,
-	Plain,
-}

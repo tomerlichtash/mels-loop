@@ -35,13 +35,4 @@ export interface IDynamicContentServer {
 		locale: string,
 		ids: Array<string>
 	): Promise<IParsedPageData[]>;
-	/**
-	 * Extract content type and id from a url, with a default content type
-	 * @param url
-	 * @param defaultType
-	 */
-	urlToContentData(
-		url: string,
-		defaultType?: DynamicContentTypes
-	): IDynamicContentRecord;
 }
