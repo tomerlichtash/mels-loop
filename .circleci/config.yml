@@ -104,3 +104,4 @@ workflows:
       - "build"
       - "clean-code"
       - "test"
+      - "e2e"
