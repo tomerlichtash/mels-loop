@@ -1,12 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { CONTENT_TYPES } from "../../consts";
-import { LoadContentModes, MLParseModes, LoadFolderModes } from "../../interfaces/parser";
 import { mlApiUtils } from "../../lib/api-utils";
+import {
+	LoadContentModes,
+	MLParseModes,
+	LoadFolderModes,
+} from "../../interfaces/parser";
 import { loadContentFolder } from "../../lib/markdown-driver";
 
 const TypeMap: { [key: string]: CONTENT_TYPES} = {
 	annotation: CONTENT_TYPES.ANNOTATION,
-	glossary: CONTENT_TYPES.GLOSSARY
+	glossary: CONTENT_TYPES.GLOSSARY,
 };
 
 const noop = function() { void 0; }
@@ -18,7 +22,7 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 	if (!locale || !contentType) {
 		return res.status(500).json({
 			error: `Bad content params, locale ${locale} type ${type} 
-(expected one of ${Object.keys(TypeMap).toString()})`
+(expected one of ${Object.keys(TypeMap).toString()})`,
 		});
 	}
 	
@@ -38,9 +42,9 @@ async function loadContent(res: NextApiResponse, contentType: CONTENT_TYPES, loc
 			loadMode: LoadFolderModes.CHILDREN,
 			mode: {
 				contentMode: LoadContentModes.FULL,
-				parseMode: MLParseModes.NORMAL
+				parseMode: MLParseModes.NORMAL,
 			},
-			rootFolder: process.cwd()
+			rootFolder: process.cwd(),
 		});
 		const data = {
 			locale,

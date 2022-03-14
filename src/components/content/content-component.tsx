@@ -3,7 +3,7 @@ import {
 	ContentComponentProps,
 	MLNODE_TYPES,
 	NODE_DISPLAY_TYPES,
-	NODE_LIST_TYPES
+	NODE_LIST_TYPES,
 } from "../../interfaces/models";
 import {
 	Link,
@@ -16,7 +16,7 @@ import {
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
-import { style, classes } from "./content-component.st.css";
+import { st, classes } from "./content-component.st.css";
 
 export const ContentComponent = ({
 	componentData,
@@ -44,7 +44,7 @@ export const ContentComponent = ({
 				<Paragraph
 					key={key}
 					componentData={componentData}
-					className={style(
+					className={st(
 						classes.root,
 						{ type: "paragraph" },
 						classes.paragraph,
@@ -77,7 +77,7 @@ export const ContentComponent = ({
 			return (
 				<span
 					key={key}
-					className={style(classes.text, { type: "text" }, className)}
+					className={st(classes.text, { type: "text" }, className)}
 				>
 					{text}
 				</span>
@@ -103,7 +103,7 @@ export const ContentComponent = ({
 				/>
 			);
 		case MLNODE_TYPES.LINK:
-			return node.displayType === NODE_DISPLAY_TYPES.POPOVER? (
+			return node.displayType === NODE_DISPLAY_TYPES.POPOVER ? (
 				<PopoverLink
 					key={key}
 					componentData={componentData}
@@ -125,7 +125,7 @@ export const ContentComponent = ({
 				<Figure
 					key={key}
 					componentData={componentData}
-					className={style(
+					className={st(
 						classes.root,
 						{ type: "figure" },
 						classes.figure,

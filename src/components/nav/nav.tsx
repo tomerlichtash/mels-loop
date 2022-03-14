@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLayoutContext } from "../../contexts/layout-context";
-import { style, classes } from "./nav.st.css";
+import { st, classes } from "./nav.st.css";
 
 export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	const {
@@ -14,8 +14,8 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	} = useContext(ReactLayoutContext);
 	const [marker, setMarker] = useState("");
 	return (
-		<nav className={style(classes.root, className)}>
-			<div className={style(classes.menu, { marker })}>
+		<nav className={st(classes.root, className)}>
+			<div className={st(classes.menu, { marker })}>
 				{/* <div className={classes.markerStrip}></div> */}
 				<ul className={classes.list}>
 					{getPageRefs().map((page) => {
@@ -24,7 +24,7 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 						if (!isPageVisible(id)) return;
 						return (
 							<li
-								className={style(classes.listItem, { isCurrent, marker })}
+								className={st(classes.listItem, { isCurrent, marker })}
 								key={`nav-item-${id}`}
 								onMouseOver={() => setMarker(id)}
 							>

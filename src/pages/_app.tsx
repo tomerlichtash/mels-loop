@@ -19,7 +19,6 @@ import {
 function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 	const { locale, pathname, query, asPath } = router;
-
 	const parentId = pathname.includes("[id]") ? pathname.split("/")[1] : "";
 	const queryId = query.id as string;
 	const sitePageId = queryId ? parentId : asPath;

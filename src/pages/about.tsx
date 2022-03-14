@@ -7,8 +7,8 @@ import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
 import { ReactLayoutContext } from "../contexts/layout-context";
-import { style, classes } from "./about.st.css";
 import { LoadFolderModes } from "../interfaces/parser";
+import { st, classes } from "./about.st.css";
 
 export default function About({ content, className }: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
@@ -21,7 +21,7 @@ export default function About({ content, className }: IPageProps) {
 					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
-			<article className={style(classes.root, className)}>
+			<article className={st(classes.root, className)}>
 				<ContentBrowser content={content} showTitle />
 			</article>
 		</Layout>

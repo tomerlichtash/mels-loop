@@ -1,7 +1,7 @@
 import React from "react";
 import { ContentComponent } from "./index";
 import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
-import { style, classes } from "./content-iterator.st.css";
+import { st, classes } from "./content-iterator.st.css";
 
 export const ContentIterator = ({
 	componentData,
@@ -28,21 +28,19 @@ export const ContentIterator = ({
 			}
 
 			return (
-				<span className={style(classes.root, { type: "text" }, className)}>
+				<span className={st(classes.root, { type: "text" }, className)}>
 					{p.text}
 				</span>
 			);
 		}
 		return (
-			<span
-				className={style(classes.root, { type: "unknown" }, className)}
-			></span>
+			<span className={st(classes.root, { type: "unknown" }, className)}></span>
 		);
 	}
 
 	if (Tag) {
 		return (
-			<Tag className={style(classes[Tag], className)} key={p.key}>
+			<Tag className={st(classes[Tag], className)} key={p.key}>
 				{elements.map((node) => {
 					return (
 						<ContentComponent

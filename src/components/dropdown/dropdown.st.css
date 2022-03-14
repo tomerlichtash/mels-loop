@@ -1,31 +1,52 @@
 @namespace "DropDown";
 
 :import {
-	-st-from: "../../theme/mixins.st.css";
-	-st-named: NavButton;
-}
-
-:import {
 	-st-from: "../dropdown/option.st.css";
 	-st-default: Option;
 }
 
+:import {
+	-st-from: "../ui/button/button.st.css";
+	-st-default: Button;
+}
+
 .root {
+	-st-states: optionListVisible;
 }
 
-.optionListTrigger {
-	-st-states: id(string), optionListVisible(boolean);
+.triggerContainer {
+	display: inline-flex;
+	position: relative;
 }
 
-.optionListContainer {
-	background: #fff;
+.triggerButton {
+	-st-extends: Button;
+	display: block;
 }
+
+.triggerIcon {
+	position: absolute;
+}
+
+.root:not(:optionListVisible):hover .triggerIcon {
+color: blue;
+}
+.root:optionListVisible::triggerContainer .triggerIcon {
+color: #808080;
+}
+.root:optionListVisible::triggerContainer:hover .triggerIcon {
+color: red;
+}
+
+.triggerIcon {}
+
+.optionListContainer {}
 
 .optionList {
+	-st-states: isCurrent(boolean), id(string);
 }
 
 .option {
 	-st-extends: Option;
-	-st-states: current(boolean), id(string);
+	-st-states: isCurrent(boolean), id(string);
 }
-

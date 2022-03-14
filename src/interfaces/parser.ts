@@ -15,22 +15,21 @@ export enum LoadContentModes {
 	/**
 	 * Load metadata and markdown
 	 */
-	FULL = "full"
+	FULL = "full",
 }
-
 
 export enum MLParseModes {
 	VERSE = "verse",
-	NORMAL = "normal"
+	NORMAL = "normal",
 }
 
 export enum LoadFolderModes {
 	FOLDER = "folder",
-	CHILDREN = "children"
+	CHILDREN = "children",
 }
 
 /**
- * Provides information about the parse context and 
+ * Provides information about the parse context and
  * helper functions to manipulate nodes
  */
 export interface INodeProcessorContext {
@@ -43,13 +42,13 @@ export interface INodeProcessorContext {
 	 * A helper function that sets the text of the first text child, or creates one.
 	 * The node is assumed to be simple, so no drilldown is performed past the node
 	 * itself and its immediate children
-	 * @param node 
-	 * @param text 
+	 * @param node
+	 * @param text
 	 */
 	setNodeText(node: IMLParsedNode, text: string): IMLParsedNode;
 	/**
 	 * Returns the next consecutive number, 0 based, in a series keyed by `type`
-	 * @param type 
+	 * @param type
 	 */
 	getEnumerator(type: string): number;
 }
@@ -58,10 +57,13 @@ export interface INodeProcessorContext {
  * A function that may return a new node, modify the current node if possible, or return the provided node.
  * @returns a valid node, if one was received
  */
-export type MLNodeProcessorFunction = (node: IMLParsedNode, context: INodeProcessorContext) => IMLParsedNode;
+export type MLNodeProcessorFunction = (
+	node: IMLParsedNode,
+	context: INodeProcessorContext
+) => IMLParsedNode;
 
 /**
- * 
+ *
  */
 export interface IContentParseOptions {
 	/**
@@ -75,6 +77,5 @@ export interface IContentParseOptions {
 	/**
 	 * an optional function that may return a new node
 	 */
-	readonly nodeProcessors?: Array<MLNodeProcessorFunction>
-
+	readonly nodeProcessors?: Array<MLNodeProcessorFunction>;
 }

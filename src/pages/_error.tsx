@@ -15,7 +15,7 @@ export default function CustomError() {
 				</title>
 			</Head>
 			<div className={classes.root}>
-				<h2>Error</h2>
+				<h1>Error</h1>
 			</div>
 		</Layout>
 	);

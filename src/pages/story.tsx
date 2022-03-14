@@ -12,7 +12,12 @@ import ContentBrowser from "../components/content-browser";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { ReactLayoutContext } from "../contexts/layout-context";
-import { LoadContentModes, LoadFolderModes, MLNodeProcessorFunction, MLParseModes } from "../interfaces/parser";
+import {
+	LoadContentModes,
+	LoadFolderModes,
+	MLNodeProcessorFunction,
+	MLParseModes,
+} from "../interfaces/parser";
 
 import { classes } from "./story.st.css";
 import { contentUtils } from "../lib/content-utils";
@@ -22,10 +27,6 @@ export default function Story({ content }: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
-
-	//const contentContext = useContext(ReactPageContext);
-	//contentContext.setAttribute(PageContentAttributes.Story);
-
 	return (
 		<Layout>
 			<Head>
@@ -42,33 +43,39 @@ export default function Story({ content }: IPageProps) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	/**
-	 * 
+	 *
 	 * @param node Guaranteed link node
-	 * @param mode 
-	 * @returns 
+	 * @param mode
+	 * @returns
 	 */
 	const linkProcessor: MLNodeProcessorFunction = (node, context) => {
 		const linkData = contentUtils.urlToContentData(node.target);
 		if (linkData.type !== DynamicContentTypes.None) {
 			const nodeData: Partial<IMLParsedNode> = {
-				displayType: NODE_DISPLAY_TYPES.POPOVER
-			}
+				displayType: NODE_DISPLAY_TYPES.POPOVER,
+			};
 			if (linkData.type === DynamicContentTypes.Annotation) {
-				node = context.setNodeText(node, `[${context.getEnumerator(linkData.type) + 1}]`);
+				node = context.setNodeText(
+					node,
+					`[${context.getEnumerator(linkData.type) + 1}]`
+				);
 			}
 			return Object.assign({}, node, nodeData);
 		}
 		return node;
-	}
-	const nodeProcessor = contentUtils.createNodeMappingFilter(linkProcessor, MLNODE_TYPES.LINK)
+	};
+	const nodeProcessor = contentUtils.createNodeMappingFilter(
+		linkProcessor,
+		MLNODE_TYPES.LINK
+	);
 	return mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.CODEX,
 		context.locale,
 		LoadFolderModes.FOLDER,
-		{ 
+		{
 			contentMode: LoadContentModes.FULL,
 			parseMode: MLParseModes.VERSE,
-			nodeProcessors: [nodeProcessor]
+			nodeProcessors: [nodeProcessor],
 		}
 	);
 };

@@ -27,7 +27,7 @@ export default function Blog(props: IPageProps) {
 				</title>
 			</Head>
 			<div className={classes.root}>
-				<h2 className={classes.sectionTitle}>{translate(postsList)}</h2>
+				<h1 className={classes.sectionTitle}>{translate(postsList)}</h1>
 				{sortBy(pageData, (p: IParsedPageData) => p.metaData.date).map(
 					(page: IParsedPageData) => {
 						const { metaData, path } = page;
@@ -80,8 +80,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		CONTENT_TYPES.POSTS,
 		context.locale,
 		LoadFolderModes.CHILDREN,
-		{ 
-			contentMode: LoadContentModes.METADATA
+		{
+			contentMode: LoadContentModes.METADATA,
 		}
 	);
 	/* eslint-disable @typescript-eslint/no-explicit-any */
