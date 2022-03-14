@@ -3,7 +3,7 @@ import {
 	ContentComponentProps,
 	MLNODE_TYPES,
 	NODE_DISPLAY_TYPES,
-	NODE_LIST_TYPES
+	NODE_LIST_TYPES,
 } from "../../interfaces/models";
 import {
 	Link,
@@ -103,7 +103,7 @@ export const ContentComponent = ({
 				/>
 			);
 		case MLNODE_TYPES.LINK:
-			return node.displayType === NODE_DISPLAY_TYPES.POPOVER? (
+			return node.displayType === NODE_DISPLAY_TYPES.POPOVER ? (
 				<PopoverLink
 					key={key}
 					componentData={componentData}

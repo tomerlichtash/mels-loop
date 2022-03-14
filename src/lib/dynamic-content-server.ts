@@ -20,13 +20,13 @@ export class DynamicContentServer implements IDynamicContentServer {
 		this.contentMap = {};
 	}
 
-
 	public async getItems(
 		type: DynamicContentTypes,
 		locale: string,
 		ids: string[]
 	): Promise<IParsedPageData[]> {
-		if (!type) { // covers None, which is ""
+		if (!type) {
+			// covers None, which is ""
 			return [];
 		}
 		const map = await this.ensureMap(type, locale);

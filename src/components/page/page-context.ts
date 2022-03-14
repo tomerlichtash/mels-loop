@@ -6,8 +6,6 @@ export class PageContext implements IPageContext {
 	constructor(public readonly dynamicContentServer: IDynamicContentServer) {}
 }
 
-const ctx = createContext<IPageContext>(
-	new PageContext(null)
-);
+const ctx = createContext<IPageContext>(new PageContext(null));
 
 export const ReactPageContext: Context<IPageContext> = ctx;

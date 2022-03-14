@@ -20,10 +20,7 @@ export const GlossaryItem = (props: GlossaryItemProps): JSX.Element => {
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
 	const [itemData] = useState<IDynamicContentRecord>(
-		contentUtils.urlToContentData(
-			props.url,
-			DynamicContentTypes.Glossary
-		)
+		contentUtils.urlToContentData(props.url, DynamicContentTypes.Glossary)
 	);
 	const [error, setError] = useState("");
 
