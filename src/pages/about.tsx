@@ -4,10 +4,11 @@ import Layout from "../components/layout/layout";
 import ContentBrowser from "../components/content-browser";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
+import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { style, classes } from "./about.st.css";
+import { LoadFolderModes } from "../interfaces/parser";
 
 export default function About({ content, className }: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);

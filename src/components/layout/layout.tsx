@@ -116,12 +116,6 @@ export default function Layout(props: LayoutProps) {
 	}, [hasWindow]);
 
 	useEffect(() => {
-		if (isScrollUp()) {
-			console.log("up");
-		} else {
-			console.log("down");
-		}
-
 		if (hasWindow) {
 			window.addEventListener("resize", onLayoutResize);
 			if (scroll.scrollTop <= 20) {

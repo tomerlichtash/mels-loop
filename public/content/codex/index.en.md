@@ -3,17 +3,17 @@ title: "The Story of Mel"
 moto: "This was posted to Usenet by its author, Ed Nather <nather@astro.as.utexas.edu>, on May 21, 1983."
 ---
 
-A recent article devoted to the _macho_ side of programming
+A recent article devoted to the _macho_ side of programming[^](#annotations/recent-article)
 made the bold and unvarnished statement:
 
 > [Real Programmers](#glossary/real-programmer) write in [FORTRAN](#fortran).
 
 Maybe they do now,
 in this decadent era of
-Lite beer, hand calculators, and "user-friendly" software
-but back in the Good Old Days,
+Lite beer, hand calculators[^](#annotations/calculators), and "user-friendly" software[^](#annotations/user-friendly-quatations)
+but back in the Good Old Days,[^](#annotations/story-timeline-estimation)
 when the term "software" sounded funny
-and Real Computers were made out of drums and [vacuum tubes](#glossary/vacuum-tubes),
+and Real Computers[^](#annotations/real-computers) were made out of [drums](#glossary/drum-memory) and [vacuum tubes](#glossary/vacuum-tube),
 Real Programmers wrote in [machine code](#glossary/machine-code).
 Not [FORTRAN](#glossary/fortran). Not [RATFOR](#glossary/ratfor). Not, even, [assembly language](#glossary/assembly-language).
 [Machine Code](#glossary/machine-code).
@@ -26,10 +26,10 @@ I feel duty-bound to describe,
 as best I can through the generation gap,
 how a Real Programmer wrote code.
 I'll call him Mel,
-because that was his name.
+because that was his name.[^](#annotations/mel-kaye-bio)
 
-I first met Mel when I went to work for Royal McBee Computer Corp.,
-a now-defunct subsidiary of the typewriter company.
+I first met Mel when I went to work for Royal McBee Computer Corp.,[^](#annotations/the-timeline-of-royal-mcbee)
+a now-defunct subsidiary of the typewriter company.[^](#annotations/the-ghost-of-royal-mcbee) <!-- get rid of `ghost` -->
 The firm manufactured the [LGP-30](#glossary/lgp-30),
 a small, cheap (by the standards of the day)
 [drum-memory](#glossary/drum-memory) computer,
@@ -42,30 +42,30 @@ and weren't here to stay, anyway.
 or the computer.)
 
 I had been hired to write a [FORTRAN](#fortran) [compiler](#glossary/compiler)
-for this new marvel and Mel was my guide to its wonders.
+for this new marvel[^](#annotations/marvell) and Mel was my guide to its wonders. <!-- `marvell` should be `marvel` -->
 Mel didn't approve of [compilers](#glossary/compiler).
 
 "If a program can't rewrite its own code",
 he asked, "what good is it?"
 
-Mel had written,
+Mel had written,[^](#annotations/handwritten-code)
 in [hexadecimal](#glossary/hexadecimal),
 the most popular computer program the company owned.
 It ran on the [LGP-30](#glossary/lgp-30)
-and played blackjack with potential customers
+and played blackjack with potential customers[^](#annotations/librazette-chicago-automation-show)
 at computer shows.
-Its effect was always dramatic.
-The [LGP-30](#glossary/lgp-30) booth was packed at every show,
+Its effect was always dramatic.[^](#annotations/librazette-quote-1)
+The [LGP-30](#glossary/lgp-30) booth was packed at every show,[^](#annotations/librazette-quote-2)
 and the IBM salesmen stood around
-talking to each other.
+talking to each other.[^](#annotations/librazette-quote-3)
 Whether or not this actually sold computers
 was a question we never discussed.
 
 Mel's job was to re-write
-the blackjack program for the [RPC-4000](#glossary/rpc-4000).
+the blackjack program for the [RPC-4000](#glossary/rpc-4000).[^](#annotations/mels-blackjack-game)
 ([Port](#glossary/port)? What does that mean?)
 The new computer had a one-plus-one
-[addressing scheme](#glossary/addressing-scheme),
+[addressing scheme](#glossary/addressing-scheme),[^](#annotations/instruction1)
 in which each machine instruction,
 in addition to the [operation code](#glossary/operation-code)
 and the address of the needed [operand](#glossary/operand),
@@ -83,7 +83,7 @@ so that just as one finished its job,
 the next would be just arriving at the "read head"
 and available for immediate execution.
 There was a program to do that job,
-an "optimizing assembler",
+an "optimizing assembler",[^](#annotations/ref1) <!-- consider removal -->
 but Mel refused to use it.
 
 "You never know where it's going to put things",
@@ -113,12 +113,12 @@ The optimizing assembler wasn't smart enough to do it that way.
 
 Mel never wrote [time-delay loops](#glossary/time-delay-loop), either,
 even when the balky [Flexowriter](#glossary/friden-flexowriter)
-required a delay between output characters to work right.
+required a delay between output characters to work right.[^](#annotations/flexowriter-cps)
 He just located instructions on the drum
 so each successive one was just past the read head
 when it was needed;
 the drum had to execute another complete revolution
-to find the next instruction.
+to find the next instruction.[^](#annotations/mechanical-structure-vs-original-design)
 He coined an unforgettable term for this procedure.
 Although "[optimum](#glossary/optimum)" is an absolute term,
 like "unique", it became common verbal practice
@@ -131,7 +131,7 @@ the "most [pessimum](#glossary/pessimum)".
 After he finished the blackjack program
 and got it to run
 ("Even the initializer is optimized",
-he said proudly),
+he said proudly),[^](#annotations/mels-note-location-00000)
 he got a Change Request from the sales department.
 The program used an elegant (optimized)
 random number generator
@@ -199,11 +199,11 @@ each time through.
 Mel never used it.
 
 Instead, he would pull the instruction into a machine [register](#glossary/register),
-add one to its address,
-and store it back.
+add one to its address,[^](#annotations/index-register-1)
+and store it back.[^](#annotations/index-register-2)
 He would then execute the modified instruction
 right from the [register](#glossary/register).
-The [loop](#glossary/loop) was written so this additional execution time
+the [loop](#glossary/loop) was written so this additional execution time
 was taken into account —
 just as this instruction finished,
 the next one was right under the drum's read head,
@@ -214,22 +214,22 @@ The vital clue came when I noticed
 the index [register](#glossary/register) [bit](#glossary/bit),
 the [bit](#glossary/bit) that lay between the address
 and the [operation code](#glossary/operation-code) in the instruction word,
-was turned on —
+was turned on[^](#annotations/bit-binary-note) —
 yet Mel never used the index [register](#glossary/register),
 leaving it zero all the time.
 When the light went on it nearly blinded me.
 
 He had located the data he was working on
 near the top of memory —
-the largest locations the instructions could address —
+the largest locations the instructions could address[^](#annotations/rpc-4000-operand-address) —
 so, after the last datum was handled,
 incrementing the instruction address
-would make it overflow.
-The carry would add one to the
+would make it overflow.[^](#annotations/numeric-overflow)
+The carry would add one[^](#annotations/how-instructions-are-composed) to the
 operation code, changing it to the next one in the instruction set:
 a [jump instruction](#glossary/jump-instruction).
 Sure enough, the next program instruction was
-in address location zero,
+in address location zero,[^](#annotations/rpc-4000-drum-memory-lowest-address)
 and the program went happily on its way.
 
 I haven't kept in touch with Mel,
