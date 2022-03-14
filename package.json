@@ -32,8 +32,6 @@
 		"@playwright/test": "^1.19.2",
 		"@stylable/cli": "^4.10.2",
 		"@stylable/core": "^4.10.2",
-		"@stylable/dom-test-kit": "^4.10.4",
-		"@stylable/e2e-test-kit": "^4.10.4",
 		"@stylable/jest": "^4.10.4",
 		"@stylable/webpack-plugin": "^4.10.2",
 		"@svgr/webpack": "^6.2.1",
@@ -48,7 +46,6 @@
 		"@typescript-eslint/parser": "^5.12.0",
 		"babel-jest": "^27.5.1",
 		"chalk": "^5.0.0",
-		"create-temp-directory": "^1.1.1",
 		"dotenv": "^16.0.0",
 		"eslint": "^8.9.0",
 		"eslint-codeframe-formatter": "^1.0.2",
@@ -61,16 +58,11 @@
 		"eslint-plugin-react-hooks": "^4.3.0",
 		"identity-obj-proxy": "^3.0.0",
 		"jest": "^27.5.1",
-		"node-eval": "^2.0.0",
-		"playwright-chromium": "^1.19.2",
 		"prettier": "^2.5.1",
-		"promise-assist": "^1.3.0",
 		"react-test-renderer": "^17.0.2",
 		"simple-markdown": "^0.7.3",
-		"test-drive-react": "^1.1.2",
 		"ts-jest": "^27.1.3",
 		"tslog": "^3.3.2",
-		"typescript": "^4.5.5",
-		"webpack": "^5.70.0"
+		"typescript": "^4.5.5"
 	}
 }
