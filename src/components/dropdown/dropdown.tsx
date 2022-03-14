@@ -27,7 +27,7 @@ export const DropDown = ({
 			onMouseLeave={() => triggerCallback(false)}
 			onClick={() => triggerCallback(!optionListVisible)}
 		>
-			<div className={classes.triggerContainer}>
+			<div className={st(classes.triggerContainer, { optionListVisible })}>
 				<span
 					className={classes.triggerIcon}
 					onClick={() => triggerCallback(!optionListVisible)}
@@ -35,7 +35,7 @@ export const DropDown = ({
 					{DROPDOWN_ARROW}
 				</span>
 				<Button
-					className={classes.triggerButton}
+					className={st(classes.triggerButton, "trigger-button")}
 					callback={() => triggerCallback(!optionListVisible)}
 					label={currentOption.label}
 					icon={currentOption.icon}

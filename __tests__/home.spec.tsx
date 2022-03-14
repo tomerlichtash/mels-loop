@@ -2,11 +2,6 @@ import React from "react";
 import { ContentComponent } from "../src/components/content";
 import { IContentComponentInitData } from "../src/interfaces/models";
 import { render } from "@testing-library/react";
-import type { RuntimeStylesheet } from "@stylable/runtime";
-import { readFileSync } from "fs";
-import nodeEval from "node-eval";
-import stylableTransformer from "@stylable/jest";
-import { StylableDOMUtil } from "@stylable/dom-test-kit";
 
 describe("ContentComponent", () => {
 	it("should render sample line", () => {
