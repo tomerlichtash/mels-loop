@@ -79,6 +79,25 @@ jobs:
           name: "Run Tests"
           command: "yarn test"
 
+  e2e:
+    docker:
+      - image: cimg/node:14.17
+    steps:
+      - checkout
+      - run: |
+          curl -o- -L https://yarnpkg.com/install.sh | bash
+          echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
+      - restore_cache:
+          keys:
+            - yarn-deps-{{ checksum "yarn.lock" }}
+            - yarn-deps
+      - run:
+          name: yarn install
+          command: yarn install
+      - run:
+          name: "Run Tests"
+          command: "yarn test:e2e"
+
 workflows:
   infra:
     jobs:
