@@ -27,7 +27,6 @@ test.describe("LocaleSelector", () => {
 
 	// test("should have selected English on load", async ({ page }) => {
 	// 	await page.goto(ROOT_DIR);
-
 	// 	expect(await localeSelectorDriver.getSelectedOption).toEqual("English");
 	// });
 
