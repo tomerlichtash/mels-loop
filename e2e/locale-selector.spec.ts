@@ -39,7 +39,7 @@ test.describe("LocaleSelector", () => {
 		await layout.gotoRootDirLocale(EN_ID);
 		expect(await layout.getSiteTitle).toEqual(SITE_TITLE_EN);
 
-		localeSelector.dropdown.openDropdown();
+		await localeSelector.dropdown.openDropdown();
 		await localeSelector.dropdown.selectOption(HE_ID);
 		expect(await layout.getSiteTitle).toEqual(SITE_TITLE_HE);
 	});
@@ -48,7 +48,7 @@ test.describe("LocaleSelector", () => {
 		await layout.gotoRootDirLocale(HE_ID);
 		expect(await layout.getSiteTitle).toEqual(SITE_TITLE_HE);
 
-		localeSelector.dropdown.openDropdown();
+		await localeSelector.dropdown.openDropdown();
 		await localeSelector.dropdown.selectOption(EN_ID);
 		expect(await layout.getSiteTitle).toEqual(SITE_TITLE_EN);
 	});
