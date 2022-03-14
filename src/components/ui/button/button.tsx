@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ComponentProps } from "../../../interfaces/models";
-import { style, classes } from "./button.st.css";
+import { st, classes } from "./button.st.css";
 
 export interface ButtonProps extends ComponentProps {
 	label?: string;
@@ -31,7 +31,7 @@ export const Button = ({
 				<a
 					title={title || label}
 					aria-label={title || label}
-					className={style(classes.root, { selected }, className)}
+					className={st(classes.root, { selected }, className)}
 					target={target}
 				>
 					<span className={classes.content}>
@@ -54,7 +54,7 @@ export const Button = ({
 			title={title || label}
 			aria-label={title || label}
 			onClick={() => callback(id)}
-			className={style(classes.root, { selected }, className)}
+			className={st(classes.root, { selected }, className)}
 		>
 			<span className={classes.content}>
 				{icon && (

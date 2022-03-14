@@ -16,7 +16,7 @@ import {
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
-import { style, classes } from "./content-component.st.css";
+import { st, classes } from "./content-component.st.css";
 
 export const ContentComponent = ({
 	componentData,
@@ -44,7 +44,7 @@ export const ContentComponent = ({
 				<Paragraph
 					key={key}
 					componentData={componentData}
-					className={style(
+					className={st(
 						classes.root,
 						{ type: "paragraph" },
 						classes.paragraph,
@@ -77,7 +77,7 @@ export const ContentComponent = ({
 			return (
 				<span
 					key={key}
-					className={style(classes.text, { type: "text" }, className)}
+					className={st(classes.text, { type: "text" }, className)}
 				>
 					{text}
 				</span>
@@ -125,7 +125,7 @@ export const ContentComponent = ({
 				<Figure
 					key={key}
 					componentData={componentData}
-					className={style(
+					className={st(
 						classes.root,
 						{ type: "figure" },
 						classes.figure,

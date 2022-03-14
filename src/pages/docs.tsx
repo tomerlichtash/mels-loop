@@ -8,8 +8,8 @@ import { IPageProps } from "../interfaces/models";
 import { usePageData } from "../components/usePageData";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { Button } from "../components/ui";
-import { style, classes } from "./docs.st.css";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
+import { st, classes } from "./docs.st.css";
 
 export default function Docs(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
@@ -24,7 +24,7 @@ export default function Docs(props: IPageProps) {
 					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
-			<article className={style(classes.root, className)}>
+			<article className={st(classes.root, className)}>
 				<h1 className={classes.title}>{translate(compLocale.pageName)}</h1>
 				{metaData.length && (
 					<ul>
