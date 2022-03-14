@@ -81,7 +81,9 @@ jobs:
 
   e2e:
     docker:
-      - image: cimg/node:14.17
+      - image: mcr.microsoft.com/playwright:focal
+    environment:
+      NODE_ENV: development
     steps:
       - checkout
       - run: |
