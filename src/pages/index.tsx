@@ -8,7 +8,8 @@ import { cloudName } from "../config/cloudinary/config";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { style, classes } from "./index.st.css";
 
-function testit() {
+/* eslint-disable */
+	function testit() {
 	fetch("/api/test")
 		.then(response => {
 			response.json().then(data => console.log(data));
