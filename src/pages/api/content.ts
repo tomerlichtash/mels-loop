@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { CONTENT_TYPES } from "../../consts";
-import { LoadContentModes, MLParseModes, LoadFolderModes } from "../../interfaces/parser";
+import {
+	LoadContentModes,
+	MLParseModes,
+	LoadFolderModes,
+} from "../../interfaces/parser";
 import { loadContentFolder } from "../../lib/markdown-driver";
 
 const TypeMap = {
@@ -25,9 +29,9 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 			loadMode: LoadFolderModes.CHILDREN,
 			mode: {
 				contentMode: LoadContentModes.FULL,
-				parseMode: MLParseModes.NORMAL
+				parseMode: MLParseModes.NORMAL,
 			},
-			rootFolder: process.cwd()
+			rootFolder: process.cwd(),
 		});
 		resolve({
 			locale,

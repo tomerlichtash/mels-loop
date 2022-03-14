@@ -32,7 +32,6 @@ export default function Glossary(props: IPageProps) {
 						{metaData.map((page, index) => {
 							const term = page.metaData;
 							const key = `term-${index}`;
-							// TODO classes.error is empty, where do we import from?
 							return term && term.glossary_term ? (
 								<li className={classes.term} key={key}>
 									<Button label={term.glossary_term} link={page.path} />
@@ -60,8 +59,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		CONTENT_TYPES.GLOSSARY,
 		context.locale,
 		LoadFolderModes.CHILDREN,
-		{ 
-			contentMode: LoadContentModes.FULL
+		{
+			contentMode: LoadContentModes.FULL,
 		}
 	);
 	/* eslint-disable @typescript-eslint/no-explicit-any */

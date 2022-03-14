@@ -69,9 +69,8 @@ export enum NODE_DISPLAY_TYPES {
 	 * Show in popover
 	 */
 	POPOVER = "popover",
-	NORMAL = "normal"
+	NORMAL = "normal",
 }
-
 
 /**
  * A markdown node parsed and processed by ML
@@ -259,4 +258,3 @@ export interface IPageProps {
 	className?: string;
 	metaData?: string;
 }
-

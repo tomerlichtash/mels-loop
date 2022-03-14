@@ -14,16 +14,15 @@ import {
 import { contentUtils } from "./content-utils";
 import { Logger } from "tslog";
 import chalk from "chalk";
-import { 
+import {
 	IContentParseOptions,
 	LoadContentModes,
 	LoadFolderModes,
-	MLParseModes 
+	MLParseModes,
 } from "../interfaces/parser";
 
-import getConfig from 'next/config'
-const { serverRuntimeConfig } = getConfig()
-
+import getConfig from "next/config";
+const { serverRuntimeConfig } = getConfig();
 
 const log: Logger = new Logger({
 	// name: "logger",
@@ -49,7 +48,6 @@ const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 
 let rootDir: string;
 
-
 function setContentRootDir(root: string): void {
 	rootDir = path.join(root, CONTENT_PATH);
 }
@@ -68,7 +66,7 @@ export interface ILoadContentOptions {
 	 * Defaults to FOLDER
 	 */
 	readonly loadMode: LoadFolderModes;
-	 /**
+	/**
 	 * The content path, relative to the content folder
 	 */
 	readonly relativePath: string;
@@ -76,7 +74,7 @@ export interface ILoadContentOptions {
 	 * If true, iterate over children folders
 	 */
 	readonly locale: string;
-	readonly mode?: Partial<IContentParseOptions>
+	readonly mode?: Partial<IContentParseOptions>;
 
 	/**
 	 * If not empty, use this as the top level folder in which the content folder can be found
@@ -90,28 +88,40 @@ export interface ILoadContentOptions {
 const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	contentMode: LoadContentModes.FULL,
 	parseMode: MLParseModes.NORMAL,
-	nodeProcessors: undefined
+	nodeProcessors: undefined,
 };
 
 export function loadContentFolder(
 	options: ILoadContentOptions
 ): IFolderContent {
-	const mode: IContentParseOptions = Object.assign({}, DEFAULT_PARSE_OPTIONS, options.mode);
-	const contentDir = path.join(getContentRootDir(options.rootFolder), options.relativePath);
+	const mode: IContentParseOptions = Object.assign(
+		{},
+		DEFAULT_PARSE_OPTIONS,
+		options.mode
+	);
+	const contentDir = path.join(
+		getContentRootDir(options.rootFolder),
+		options.relativePath
+	);
 
-	
 	if (!fs.existsSync(contentDir)) {
 		const paths = [
-			path.resolve("./public/content"), 
-			path.resolve("/public"), 
-			process.cwd()
+			path.resolve("./public/content"),
+			path.resolve("/public"),
+			process.cwd(),
 		];
-		const diags = paths.map (p => [p, String(fs.existsSync(p))].join(' ->')).join('\n');
-		throw new Error(`Cannot read files in ${options.rootFolder} (mapped to ${contentDir}),\ntry ${diags}`);
+		const diags = paths
+			.map((p) => [p, String(fs.existsSync(p))].join(" ->"))
+			.join("\n");
+		throw new Error(
+			`Cannot read files in ${options.rootFolder} (mapped to ${contentDir}),\ntry ${diags}`
+		);
 	}
 
 	// Get file names under /posts
-	const contentNames: Dirent[] = fs.readdirSync(contentDir, { withFileTypes: true });
+	const contentNames: Dirent[] = fs.readdirSync(contentDir, {
+		withFileTypes: true,
+	});
 	const folderContentData = new FolderContent();
 
 	log.info(
