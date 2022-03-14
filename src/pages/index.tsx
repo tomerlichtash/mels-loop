@@ -10,7 +10,7 @@ import { style, classes } from "./index.st.css";
 
 /* eslint-disable */
 	function testit() {
-	fetch("/api/ping")
+	fetch("/api/hello")
 		.then(response => {
 			response.json().then(data => console.log(data));
 		}) 
@@ -43,7 +43,7 @@ export default function Home() {
 					<h2>Bios</h2>
 					<div>about ed nather</div>
 					<div>about mel kaye</div>
-					<button onClick={testit}>Ping</button>
+					<button onClick={testit}>Hello</button>
 				</div>
 			</article>
 		</Layout>
