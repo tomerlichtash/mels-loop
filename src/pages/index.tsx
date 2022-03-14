@@ -8,11 +8,18 @@ import { cloudName } from "../config/cloudinary/config";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { style, classes } from "./index.st.css";
 
+function testit() {
+	fetch("/api/test")
+		.then(response => {
+			response.json().then(data => console.log(data));
+		}) 
+}
+
 export default function Home() {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
-	
+
 	return (
 		<Layout>
 			<Head>
@@ -35,6 +42,7 @@ export default function Home() {
 					<h2>Bios</h2>
 					<div>about ed nather</div>
 					<div>about mel kaye</div>
+					<button onClick={testit}>Test</button>
 				</div>
 			</article>
 		</Layout>
