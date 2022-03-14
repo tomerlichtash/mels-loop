@@ -1,9 +1,13 @@
 {
-	"extends": "./tsconfig.json",
 	"compilerOptions": {
-		"module": "commonjs",
+		"module": "esnext",
 		"target": "esnext",
 		"jsx": "react",
 		"esModuleInterop": true
+	},
+	"ts-node": {
+		"compilerOptions": {
+			"module": "CommonJS"
+		}
 	}
 }

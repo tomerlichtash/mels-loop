@@ -24,7 +24,7 @@ describe("DropDown", () => {
 				},
 			]}
 			optionListVisible={false}
-			triggerCallback={triggerCallback}
+			triggerCallback={() => false}
 			onSelectChange={onSelectChange}
 		/>
 	);
