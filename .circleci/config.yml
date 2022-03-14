@@ -95,6 +95,9 @@ jobs:
           name: yarn install
           command: yarn install
       - run:
+          name: npx playwright
+          command: npx playwright install
+      - run:
           name: "Run Tests"
           command: "yarn test:e2e"
 
