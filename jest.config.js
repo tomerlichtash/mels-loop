@@ -10,7 +10,7 @@ module.exports = {
 	globals: {
 		"ts-jest": {
 			tsconfig: "<rootDir>/tsconfig.jest.json",
-			diagnostics: false,
+			diagnostics: true,
 		},
 	},
 	transform: {

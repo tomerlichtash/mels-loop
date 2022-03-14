@@ -1,5 +1,5 @@
 import Script from "next/script";
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext } from "react";
 import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
@@ -19,32 +19,6 @@ import { LOCALE_FLAGS } from "../svg";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { style, classes } from "./layout.st.css";
 
-const hasWindow = typeof window !== "undefined";
-
-function getWindowDimensions() {
-	const width = hasWindow ? window.innerWidth : null;
-	const height = hasWindow ? window.innerHeight : null;
-	return {
-		width,
-		height,
-	};
-}
-
-function getScrollDimensions() {
-	const scrollTop = hasWindow
-		? document.body.scrollTop || document.documentElement.scrollTop
-		: null;
-
-	const height = hasWindow
-		? document.documentElement.scrollHeight -
-		  document.documentElement.clientHeight
-		: null;
-
-	const scrolled = hasWindow ? scrollTop / height : null;
-
-	return { scrollTop, height, scrolled };
-}
-
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
 }
@@ -53,49 +27,14 @@ export default function Layout(props: LayoutProps) {
 	const { translate, getSiteTitle, getSiteSubtitle } =
 		useContext(ReactLayoutContext);
 
-	function usePrevious(value): {
-		scrollTop: number;
-		height: number;
-		scrolled: number;
-	} {
-		const ref = useRef();
-		useEffect(() => {
-			ref.current = value;
-		}, [value]);
-		return ref.current;
-	}
-
-	const [scroll, setScroll] = useState(getScrollDimensions());
-	const prevScroll = usePrevious(scroll);
-
-	const [_dimensions, setDimensions] = useState(getWindowDimensions());
-	const [headerState, setHeaderState] = useState("normal");
-
 	const router = useRouter();
 	const { locale, locales } = router;
-
-	function onLayoutScroll() {
-		setScroll(getScrollDimensions());
-	}
-
-	function onLayoutResize() {
-		setDimensions(getWindowDimensions());
-	}
 
 	function onLocaleChange(locale: string) {
 		return router.push(router.asPath, router.asPath, {
 			locale,
 			scroll: false,
 		});
-	}
-
-	function isScrollUp() {
-		if (prevScroll) {
-			if (prevScroll.scrollTop > scroll.scrollTop) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	const localeSelectorOptions: IOption[] = locales.map((lang) => {
@@ -107,27 +46,6 @@ export default function Layout(props: LayoutProps) {
 			onSelectChange: onLocaleChange,
 		};
 	});
-
-	useEffect(() => {
-		if (hasWindow) {
-			window.addEventListener("resize", onLayoutResize);
-			return () => window.removeEventListener("resize", onLayoutResize);
-		}
-	}, [hasWindow]);
-
-	useEffect(() => {
-		if (hasWindow) {
-			window.addEventListener("resize", onLayoutResize);
-			if (scroll.scrollTop <= 20) {
-				setHeaderState("normal");
-			} else if (scroll.scrollTop >= 145) {
-				setHeaderState("compact");
-			}
-			return () => {
-				return window.removeEventListener("resize", onLayoutResize);
-			};
-		}
-	}, [scroll]);
 
 	const title = translate(getSiteTitle());
 	const subtitle = translate(getSiteSubtitle());
@@ -146,11 +64,8 @@ export default function Layout(props: LayoutProps) {
 				<meta name="og:title" content={title} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div
-				className={style(classes.root, { locale })}
-				onWheel={() => onLayoutScroll()}
-			>
-				<div className={style(classes.siteHeader, { viewState: headerState })}>
+			<div className={style(classes.root, { locale })}>
+				<div className={style(classes.siteHeader)}>
 					<Header className={classes.header} compKeys={HEADER_LOCALE} />
 					<div className={classes.primaryNav}>
 						<Nav className={classes.nav} />

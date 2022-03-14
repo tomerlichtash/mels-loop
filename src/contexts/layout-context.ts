@@ -14,7 +14,7 @@ export class LayoutContext implements ILayoutContext {
 		return id;
 	}
 	public isPageVisible(id: string): boolean {
-		return false;
+		return !!id;
 	}
 	public translate(s: string): string {
 		return `%${s}%`;

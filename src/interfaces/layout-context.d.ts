@@ -1,5 +1,3 @@
-import { SitePage } from "./models";
-
 export interface SitePageRef {
 	id: string;
 	menuNav: boolean;

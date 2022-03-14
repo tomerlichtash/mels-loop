@@ -8,5 +8,5 @@ test("should navigate to the about page", async ({ page }) => {
 	// The new url should be "/about" (baseURL is used there)
 	await expect(page).toHaveURL("/about");
 	// The new page should contain an h1 with "About Page"
-	await expect(page.locator("h2")).toContainText("About Mel's Loop Project");
+	await expect(page.locator("h1")).toContainText("About Mel's Loop Project");
 });
