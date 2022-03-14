@@ -1,18 +1,21 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import * as fs from "fs";
 import * as fsPath from "path";
-/* eslint-disable */
 
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 	try {
 		testIt().then(result => {
 			res.status(200).json(result);
-		});
+		})
+		.catch(err => {
+			res.status(200).json({ error: String(err) });
+		})
 	}
 	catch (e) {
 		res.status(200).json({ error: String(e) });
 	}
 }
+/* eslint-disable */
 
 async function testIt() {
 	const p = new Promise((resolve => {
