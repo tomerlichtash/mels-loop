@@ -6,7 +6,7 @@
 	},
 	"scripts": {
 		"dev": "next dev",
-		"build": "next build",
+		"build": "rm -rf .next/cache && next build",
 		"start": "next start",
 		"lint": "next lint",
 		"eslint": "eslint . -f codeframe",

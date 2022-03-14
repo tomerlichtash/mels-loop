@@ -9,6 +9,7 @@ import { ComponentProps, IParsedPageData } from "../../../interfaces/models";
 import { ReactPageContext } from "../../page/page-context";
 import { classes } from "./glossary-item.st.css";
 import { Button } from "../../ui";
+import { contentUtils } from "../../../lib/content-utils";
 
 export interface GlossaryItemProps extends ComponentProps {
 	url: string;
@@ -19,10 +20,7 @@ export const GlossaryItem = (props: GlossaryItemProps): JSX.Element => {
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
 	const [itemData] = useState<IDynamicContentRecord>(
-		pageContext.dynamicContentServer.urlToContentData(
-			props.url,
-			DynamicContentTypes.Glossary
-		)
+		contentUtils.urlToContentData(props.url, DynamicContentTypes.Glossary)
 	);
 	const [error, setError] = useState("");
 

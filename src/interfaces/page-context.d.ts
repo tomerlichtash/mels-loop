@@ -1,11 +1,9 @@
 import { IDynamicContentServer } from "./dynamic-content";
-import { PageContentAttributes } from "./models";
+//import { PageContentAttributes } from "./models";
 
+/**
+ * Describes a content-related context, available to all rendered components under a ML page
+ */
 interface IPageContext {
-	//readonly pageAttributes: Array<PageContentAttributes>;
-	hasAttribute(attr: PageContentAttributes): boolean;
-	setAttribute(attr: PageContentAttributes): Array<PageContentAttributes>;
-	unsetAttribute(attr: PageContentAttributes): Array<PageContentAttributes>;
-
 	readonly dynamicContentServer: IDynamicContentServer;
 }
