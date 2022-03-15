@@ -1,31 +1,55 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { CONTENT_TYPES } from "../../consts";
+import { mlApiUtils } from "../../lib/api-utils";
 import {
 	LoadContentModes,
 	MLParseModes,
 	LoadFolderModes,
 } from "../../interfaces/parser";
 import { loadContentFolder } from "../../lib/markdown-driver";
+import { IMLApiResponse, IMLDynamicContentParams, IMLDynamicContentResponse } from "../../interfaces/ml-api";
 
-const TypeMap = {
+const TypeMap: { [key: string]: CONTENT_TYPES} = {
 	annotation: CONTENT_TYPES.ANNOTATION,
 	glossary: CONTENT_TYPES.GLOSSARY,
 };
 
+const noop = function() { void 0; }
+
+/**
+ * 
+ * @param _req 
+ * @param res 
+ * @returns 
+ */
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {
-	const locale = String(_req.query.locale || "");
-	const type = String(_req.query.type || "");
-	const contentType = type && TypeMap[type];
-	if (!locale || !contentType) {
-		return res.status(500).json({
-			error: `Bad content params, locale ${locale} type ${type} 
+	const params = _req.query as unknown as IMLDynamicContentParams;
+	loadContent(params || {}).then(response => {
+		res.status(response.error ? 500 : 200).json(response);
+	})
+	.catch(e => {
+		res.status(500).json({ error: String(e) })
+	});
+}
+
+async function loadContent(params: Partial<IMLDynamicContentParams>): Promise<IMLApiResponse<IMLDynamicContentResponse>> {
+	const contentType = TypeMap[params.type];
+	if (!params?.locale || !contentType) {
+		return {
+			data: null,
+			error: `Bad content params, locale ${params?.locale} type ${params.type} 
 (expected one of ${Object.keys(TypeMap).toString()})`,
-		});
+		};
 	}
-	const loadPromise = new Promise((resolve) => {
+	const cacheKey = `dc-${contentType}-${params.locale}`;
+	try {
+		const payload = await mlApiUtils.getFromCache(cacheKey);
+		if (payload) {
+			return JSON.parse(payload);
+		}
 		const docData = loadContentFolder({
 			relativePath: contentType,
-			locale: locale,
+			locale: params.locale,
 			loadMode: LoadFolderModes.CHILDREN,
 			mode: {
 				contentMode: LoadContentModes.FULL,
@@ -33,20 +57,18 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 			},
 			rootFolder: process.cwd(),
 		});
-		resolve({
-			locale,
+		const data = {
+			locale: params.locale,
 			// turn array into map
 			items: docData.pages.reduce((acc, pageData) => {
 				acc[pageData.id] = pageData;
 				return acc;
 			}, {}),
-		});
-	});
-	loadPromise
-		.then((data) => {
-			res.status(200).json({ data });
-		})
-		.catch((error) => {
-			res.status(500).json({ error: String(error) });
-		});
+		};
+		mlApiUtils.saveToCache(cacheKey, JSON.stringify({ data })).then(noop).catch(noop);
+		return Object.assign({ data }, {cache: false });
+	}
+	catch (error) {
+		return { data: null, error: String(error) };
+	}
 }
