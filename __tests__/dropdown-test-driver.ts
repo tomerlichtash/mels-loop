@@ -1,6 +1,6 @@
 import { DriverBase, Simulate } from "test-drive-react";
 import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import style from "../src/components/dropdown/dropdown.st.css";
+import * as stylesheet from "../src/components/dropdown/dropdown.st.css";
 
 import DropDown from "../src/components/dropdown";
 
@@ -10,7 +10,7 @@ export class DropdownTestDriver extends DriverBase<Element> {
 
 	constructor(rootNodeEval: () => Element) {
 		super(rootNodeEval);
-		this.stylableDom = new StylableDOMUtil(style, rootNodeEval());
+		this.stylableDom = new StylableDOMUtil(stylesheet, rootNodeEval());
 	}
 
 	get dropdownRoot() {

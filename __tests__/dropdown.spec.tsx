@@ -33,7 +33,7 @@ describe("DropDown", () => {
 	afterEach(() => clientRenderer.cleanup());
 
 	const render = (
-		element: React.ReactElement<any>,
+		element: React.ReactElement,
 		container?: HTMLDivElement
 	): DropdownTestDriver =>
 		clientRenderer.render(element, container).withDriver(DropdownTestDriver)

@@ -1,9 +1,10 @@
 {
 	"compilerOptions": {
 		"module": "esnext",
-		"target": "esnext",
+		"target": "es5",
 		"jsx": "react",
-		"esModuleInterop": true
+		"sourceMap": true
+		// "esModuleInterop": true
 	},
 	"ts-node": {
 		"compilerOptions": {

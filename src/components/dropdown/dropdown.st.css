@@ -12,6 +12,7 @@
 
 .root {
 	-st-states: optionListVisible;
+	border: 2px solid red;
 }
 
 .triggerContainer {
