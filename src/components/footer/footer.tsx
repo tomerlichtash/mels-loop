@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ComponentProps } from "../../interfaces/models";
-import { style, classes } from "./footer.st.css";
+import { st, classes } from "./footer.st.css";
 
 export const Footer = ({
 	compKeys,
@@ -12,7 +12,7 @@ export const Footer = ({
 	const licenseYears = `2021-${new Date().getFullYear()}`;
 	const { siteTitle, siteLicense } = compKeys;
 	return (
-		<footer className={style(classes.root, className)}>
+		<footer className={st(classes.root, className)}>
 			<div className={classes.license}>
 				<time className={classes.year}>{licenseYears}</time>
 				<span className={classes.license}>({translate(siteLicense)})</span>

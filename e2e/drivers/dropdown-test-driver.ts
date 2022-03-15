@@ -6,7 +6,7 @@ import {
 
 export interface IDropdownTestDriver {
 	getOption: (optionId: string) => Locator;
-	openDropdown: () => void;
+	openDropdown: () => Promise<void>;
 	selectOption: (optionId: string) => Promise<void>;
 	component: IComponentTestDriver;
 }
@@ -24,8 +24,8 @@ export class DropdownTestDriver implements IDropdownTestDriver {
 		return this.page.locator(`.locator-option-id-${id}`).first();
 	}
 
-	public openDropdown() {
-		this.component.getComponent().click();
+	public async openDropdown() {
+		await this.component.getComponent().click();
 	}
 
 	public async selectOption(id: string) {

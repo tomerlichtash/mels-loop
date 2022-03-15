@@ -3,13 +3,13 @@ import Head from "next/head";
 import Layout from "../components/layout/layout";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils, LoadFolderModes } from "../lib/next-utils";
+import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
-import { LoadContentModes } from "../lib/markdown-driver";
 import { usePageData } from "../components/usePageData";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { Button } from "../components/ui";
-import { style, classes } from "./glossary.st.css";
+import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
+import { st, classes } from "./glossary.st.css";
 
 export default function Glossary(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
@@ -25,14 +25,13 @@ export default function Glossary(props: IPageProps) {
 					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
-			<article className={style(classes.root, className)}>
+			<article className={st(classes.root, className)}>
 				<h1 className={classes.title}>{translate(compLocale.pageName)}</h1>
 				{metaData.length && (
 					<ul className={classes.termList}>
 						{metaData.map((page, index) => {
 							const term = page.metaData;
 							const key = `term-${index}`;
-							// TODO classes.error is empty, where do we import from?
 							return term && term.glossary_term ? (
 								<li className={classes.term} key={key}>
 									<Button label={term.glossary_term} link={page.path} />
@@ -60,7 +59,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		CONTENT_TYPES.GLOSSARY,
 		context.locale,
 		LoadFolderModes.CHILDREN,
-		LoadContentModes.FULL
+		{
+			contentMode: LoadContentModes.FULL,
+		}
 	);
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const props = {

@@ -1,8 +1,8 @@
 import { Page } from "playwright-core";
 
 export interface ILayoutDriver {
-	gotoRootDir: any;
-	gotoRootDirLocale(locale: "en" | "he"): any;
+	gotoRootDir;
+	gotoRootDirLocale(locale: "en" | "he");
 	get getSiteTitle(): Promise<string>;
 }
 

@@ -1,12 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { CONTENT_TYPES } from "../../consts";
-import { MLParseModes } from "../../interfaces/models";
-import { loadContentFolder, LoadContentModes } from "../../lib/markdown-driver";
-import { LoadFolderModes } from "../../lib/next-utils";
+import {
+	LoadContentModes,
+	MLParseModes,
+	LoadFolderModes,
+} from "../../interfaces/parser";
+import { loadContentFolder } from "../../lib/markdown-driver";
 
 const TypeMap = {
 	annotation: CONTENT_TYPES.ANNOTATION,
-	glossary: CONTENT_TYPES.GLOSSARY
+	glossary: CONTENT_TYPES.GLOSSARY,
 };
 
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {
@@ -14,16 +17,21 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 	const type = String(_req.query.type || "");
 	const contentType = type && TypeMap[type];
 	if (!locale || !contentType) {
-		return res.status(500).json({ error: `Bad content params, locale ${locale} type ${type} 
-(expected one of ${Object.keys(TypeMap).toString()})`});
+		return res.status(500).json({
+			error: `Bad content params, locale ${locale} type ${type} 
+(expected one of ${Object.keys(TypeMap).toString()})`,
+		});
 	}
 	const loadPromise = new Promise((resolve) => {
 		const docData = loadContentFolder({
 			relativePath: contentType,
 			locale: locale,
-			contentMode: LoadContentModes.FULL,
 			loadMode: LoadFolderModes.CHILDREN,
-			parseMode: MLParseModes.NORMAL,
+			mode: {
+				contentMode: LoadContentModes.FULL,
+				parseMode: MLParseModes.NORMAL,
+			},
+			rootFolder: process.cwd(),
 		});
 		resolve({
 			locale,

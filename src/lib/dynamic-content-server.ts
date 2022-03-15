@@ -1,6 +1,5 @@
 import {
 	DynamicContentTypes,
-	IDynamicContentRecord,
 	IDynamicContentServer,
 } from "../interfaces/dynamic-content";
 import { IParsedPageData } from "../interfaces/models";
@@ -14,32 +13,6 @@ interface ContentMap {
 }
 
 const normalizeId = (id: string) => (id || "").trim().toLowerCase();
-
-const ANNOTATION_RE =/annotations?\//i;
-const GLOSSARY_RE = /glossary\//i;
-
-const urlToContentType = (url: string, defaultType: DynamicContentTypes): DynamicContentTypes => {
-	if (!url) {
-		return defaultType || DynamicContentTypes.None;
-	}
-	if (ANNOTATION_RE.test(url)) {
-		return DynamicContentTypes.Annotation;
-	}
-	if (GLOSSARY_RE.test(url)) {
-		return DynamicContentTypes.Glossary;
-	}
-	return defaultType || DynamicContentTypes.None;
-};
-
-const urlToContentId = (url: string) => {
-	if (!url) {
-		return "";
-	}
-	const parts = url.split("/");
-	const id = parts[parts.length - 1];
-	return (id && id.replace("#", "")) || "";
-};
-
 export class DynamicContentServer implements IDynamicContentServer {
 	private readonly contentMap: { [type: string]: ContentMap };
 
@@ -47,23 +20,13 @@ export class DynamicContentServer implements IDynamicContentServer {
 		this.contentMap = {};
 	}
 
-	public urlToContentData(
-		url: string,
-		defaultType?: DynamicContentTypes
-	): IDynamicContentRecord {
-		const contentData = {
-			type: urlToContentType(url, defaultType),
-			id: urlToContentId(url),
-		};
-		return contentData;
-	}
-
 	public async getItems(
 		type: DynamicContentTypes,
 		locale: string,
 		ids: string[]
 	): Promise<IParsedPageData[]> {
-		if (!type) { // covers None, which is ""
+		if (!type) {
+			// covers None, which is ""
 			return [];
 		}
 		const map = await this.ensureMap(type, locale);

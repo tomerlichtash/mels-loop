@@ -1,7 +1,7 @@
 import { Context, createContext } from "react";
 import { ILayoutContext, SitePageRef } from "../interfaces/layout-context";
 
-export class LayoutContext implements ILayoutContext{
+export class LayoutContext implements ILayoutContext {
 	public readonly locale: string;
 	public readonly compLocale: Record<string, string>;
 	public readonly pageParent: string;
@@ -14,7 +14,7 @@ export class LayoutContext implements ILayoutContext{
 		return id;
 	}
 	public isPageVisible(id: string): boolean {
-		return false;
+		return !!id;
 	}
 	public translate(s: string): string {
 		return `%${s}%`;

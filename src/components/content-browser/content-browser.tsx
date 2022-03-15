@@ -2,7 +2,7 @@ import React from "react";
 import ContentComponent from "../content/content-component";
 import { IMLParsedNode, IParsedPageData } from "../../interfaces/models";
 import { usePageData } from "../usePageData";
-import { style, classes } from "./content-browser.st.css";
+import { st, classes } from "./content-browser.st.css";
 
 // const FULL_PAGE_RE = /full.*text/i;
 
@@ -22,7 +22,7 @@ export const ContentBrowser = (props: ContentBrowserProps): JSX.Element => {
 	const { metaData } = pageData[0];
 
 	return (
-		<div className={style(classes.root, className)}>
+		<div className={st(classes.root, className)}>
 			{showTitle && <h1 className={classes.title}>{metaData.title}</h1>}
 
 			{showMoto && metaData.moto && (
