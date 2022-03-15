@@ -4,7 +4,7 @@ const { StylableWebpackPlugin } = require("@stylable/webpack-plugin");
 
 module.exports = {
 	mode: "development",
-	devtool: false,
+	devtool: "inline-source-map",
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".json"],
 		fallback: {

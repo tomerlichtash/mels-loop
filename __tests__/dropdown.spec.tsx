@@ -1,7 +1,7 @@
 import React from "react";
-import { ClientRenderer, Simulate, sinon } from "test-drive-react";
+import { ClientRenderer, Simulate, sinon, expect } from "test-drive-react";
 import { DropdownTestDriver } from "./dropdown-test-driver";
-import DropDown from "../src/components/dropdown";
+import DropDown from "./../src/components/dropdown";
 
 describe("DropDown", () => {
 	let onSelectChange: sinon.SinonSpy;
@@ -33,7 +33,8 @@ describe("DropDown", () => {
 	afterEach(() => clientRenderer.cleanup());
 
 	const render = (
-		element: React.ReactElement,
+		/* eslint-disable @typescript-eslint/no-explicit-any */
+		element: React.ReactElement<any>,
 		container?: HTMLDivElement
 	): DropdownTestDriver =>
 		clientRenderer.render(element, container).withDriver(DropdownTestDriver)
@@ -41,8 +42,8 @@ describe("DropDown", () => {
 
 	it("should toggle option list on click", () => {
 		let dropdown = render(comp);
-		expect(dropdown.isOpen).toBeFalsy();
+		expect(dropdown.isOpen).equal(false);
 		Simulate.click(dropdown.triggerContainer);
-		expect(dropdown.isOpen).toBeTruthy();
+		expect(dropdown.isOpen).equal("true");
 	});
 });
