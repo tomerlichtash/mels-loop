@@ -7,6 +7,7 @@ import {
 	LoadFolderModes,
 } from "../../interfaces/parser";
 import { loadContentFolder } from "../../lib/markdown-driver";
+import { IMLApiResponse, IMLDynamicContentParams, IMLDynamicContentResponse } from "../../interfaces/ml-api";
 
 const TypeMap: { [key: string]: CONTENT_TYPES} = {
 	annotation: CONTENT_TYPES.ANNOTATION,
@@ -15,30 +16,40 @@ const TypeMap: { [key: string]: CONTENT_TYPES} = {
 
 const noop = function() { void 0; }
 
+/**
+ * 
+ * @param _req 
+ * @param res 
+ * @returns 
+ */
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {
-	const locale = String(_req.query.locale || "");
-	const type = String(_req.query.type || "");
-	const contentType = type && TypeMap[type];
-	if (!locale || !contentType) {
-		return res.status(500).json({
-			error: `Bad content params, locale ${locale} type ${type} 
-(expected one of ${Object.keys(TypeMap).toString()})`,
-		});
-	}
-	
-	loadContent(res, contentType, locale).then(noop).catch(err => console.error(err));
+	const params = _req.query as unknown as IMLDynamicContentParams;
+	loadContent(params || {}).then(response => {
+		res.status(response.error ? 500 : 200).json(response);
+	})
+	.catch(e => {
+		res.status(500).json({ error: String(e) })
+	});
 }
 
-async function loadContent(res: NextApiResponse, contentType: CONTENT_TYPES, locale: string): Promise<void> {
-	const cacheKey = `dc-${contentType}-${locale}`;
+async function loadContent(params: Partial<IMLDynamicContentParams>): Promise<IMLApiResponse<IMLDynamicContentResponse>> {
+	const contentType = TypeMap[params.type];
+	if (!params?.locale || !contentType) {
+		return {
+			data: null,
+			error: `Bad content params, locale ${params?.locale} type ${params.type} 
+(expected one of ${Object.keys(TypeMap).toString()})`,
+		};
+	}
+	const cacheKey = `dc-${contentType}-${params.locale}`;
 	try {
 		const payload = await mlApiUtils.getFromCache(cacheKey);
 		if (payload) {
-			return res.status(200).send(payload);
+			return JSON.parse(payload);
 		}
 		const docData = loadContentFolder({
 			relativePath: contentType,
-			locale: locale,
+			locale: params.locale,
 			loadMode: LoadFolderModes.CHILDREN,
 			mode: {
 				contentMode: LoadContentModes.FULL,
@@ -47,17 +58,17 @@ async function loadContent(res: NextApiResponse, contentType: CONTENT_TYPES, loc
 			rootFolder: process.cwd(),
 		});
 		const data = {
-			locale,
+			locale: params.locale,
 			// turn array into map
 			items: docData.pages.reduce((acc, pageData) => {
 				acc[pageData.id] = pageData;
 				return acc;
 			}, {}),
 		};
-		res.status(200).json({ data });
 		mlApiUtils.saveToCache(cacheKey, JSON.stringify({ data })).then(noop).catch(noop);
+		return Object.assign({ data }, {cache: false });
 	}
 	catch (error) {
-		res.status(500).json({ error: String(error) });
+		return { data: null, error: String(error) };
 	}
 }

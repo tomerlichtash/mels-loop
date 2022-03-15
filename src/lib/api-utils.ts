@@ -3,8 +3,20 @@ import * as tempFiles from "tmp";
 import * as fs from "fs";
 import * as nodeUtils from "util";
 
+/**
+ * Helpers for ML API implementation
+ */
 export interface IMLApiUtils {
+	/**
+	 * Load a string from a cache, by key
+	 * @param key 
+	 */
 	getFromCache(key: string): Promise<string>;
+	/**
+	 * Save a string to cache, using `key` for later retrieval
+	 * @param key 
+	 * @param data 
+	 */
 	saveToCache(key: string, data: string): Promise<boolean>;
 }
 
