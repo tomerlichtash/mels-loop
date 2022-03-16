@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  browser-tools: circleci/browser-tools@1.2.4
-
 jobs:
   build:
     docker:
@@ -31,6 +28,9 @@ jobs:
       - run:
           name: "Build"
           command: "yarn build"
+      - run:
+          name: "Run Tests"
+          command: "yarn test:jest"
 
   "clean-code":
     docker:
@@ -62,13 +62,8 @@ jobs:
 
   test:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.17.0-rc1-focal
-    # - image: cimg/node:14.17
-    environment:
-      NODE_ENV: development
+      - image: cimg/node:14.17
     steps:
-      - browser-tools/install-browser-tools:
-          chrome-version: 85.0.4183.102
       - checkout
       - run: |
           curl -o- -L https://yarnpkg.com/install.sh | bash
@@ -81,11 +76,8 @@ jobs:
           name: yarn install
           command: yarn install
       - run:
-          name: npx playwright
-          command: npx playwright install
-      - run:
           name: "Run Tests"
-          command: "yarn test:mocha"
+          command: "yarn test"
 
   # e2e:
   #   docker:
