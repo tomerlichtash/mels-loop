@@ -1,29 +1,27 @@
-import { DriverBase } from "test-drive-react";
 import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import DropDown from "../src/components/dropdown";
 import * as stylesheet from "../src/components/dropdown/dropdown.st.css";
 
-export class DropdownTestDriver extends DriverBase<Element> {
-	public static ComponentClass = DropDown;
-	private stylableDom: StylableDOMUtil;
+export function DropdownTestDriver(element: Element) {
+	const stylableDom = new StylableDOMUtil(stylesheet, element);
 
-	constructor(rootNodeEval: () => Element) {
-		super(rootNodeEval);
-		this.stylableDom = new StylableDOMUtil(stylesheet, rootNodeEval());
+	function dropdownRoot() {
+		return stylableDom.select(".root");
 	}
 
-	get dropdownRoot() {
-		return this.stylableDom.select(".root");
+	function getTriggerContainer(): Element {
+		return stylableDom.select(".triggerContainer");
 	}
 
-	get triggerContainer() {
-		return this.stylableDom.select(".triggerContainer");
-	}
-
-	get isOpen() {
-		return this.stylableDom.hasStyleState(
-			this.triggerContainer,
+	function isOpen() {
+		return stylableDom.hasStyleState(
+			getTriggerContainer(),
 			"optionListVisible"
 		);
 	}
+
+	return {
+		isOpen,
+		getTriggerContainer,
+		dropdownRoot,
+	};
 }

@@ -1,49 +1,49 @@
 import React from "react";
-import { ClientRenderer, Simulate, sinon, expect } from "test-drive-react";
-import { DropdownTestDriver } from "./dropdown-test-driver";
+import { spy } from "sinon";
+import { expect } from "chai";
+import { render } from "./client-renderer";
 import DropDown from "./../src/components/dropdown";
+import { DropdownTestDriver } from "./dropdown-test-driver";
 
 describe("DropDown", () => {
-	let onSelectChange: sinon.SinonSpy;
-	// let triggerCallback: sinon.SinonSpy;
+	let onSelectChange = spy();
+	let triggerCallback = spy();
 
-	const comp = (
+	const sample = (
 		<DropDown
 			options={[
 				{
-					id: "option1",
-					label: "opt1",
+					id: "opt1",
+					label: "Option 1",
 					isCurrent: true,
 					onSelectChange,
 				},
 				{
-					id: "option2",
-					label: "opt2",
+					id: "opt2",
+					label: "Option 2",
 					isCurrent: false,
 					onSelectChange,
 				},
 			]}
 			optionListVisible={false}
-			triggerCallback={() => false}
+			triggerCallback={() => triggerCallback()}
 			onSelectChange={onSelectChange}
 		/>
 	);
 
-	const clientRenderer = new ClientRenderer();
-	afterEach(() => clientRenderer.cleanup());
+	it("should render in a collapsed state", () => {
+		const dropdown = render(sample, DropdownTestDriver);
+		expect(dropdown.driver.isOpen()).to.equal(false);
+	});
 
-	const render = (
-		/* eslint-disable @typescript-eslint/no-explicit-any */
-		element: React.ReactElement<any>,
-		container?: HTMLDivElement
-	): DropdownTestDriver =>
-		clientRenderer.render(element, container).withDriver(DropdownTestDriver)
-			.driver;
+	it("should render selected option in a collapsed dropdown", () => {
+		const dropdown = render(sample, DropdownTestDriver);
+		expect(dropdown.component.getByText("Option 1")).to.exist;
+	});
 
 	it("should toggle option list on click", () => {
-		let dropdown = render(comp);
-		expect(dropdown.isOpen).equal(false);
-		Simulate.click(dropdown.triggerContainer);
-		expect(dropdown.isOpen).equal("true");
+		const dropdown = render(sample, DropdownTestDriver);
+		dropdown.event.click(dropdown.driver.getTriggerContainer() as Element);
+		expect(triggerCallback).to.have.been.calledOnce;
 	});
 });
