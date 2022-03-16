@@ -4,28 +4,20 @@ import path from "path";
 const TEST_BROWSERS = [
 	{
 		name: "Desktop Chrome",
-		use: {
-			...devices["Desktop Chrome"],
-		},
+		use: { ...devices["Desktop Chrome"] },
 	},
 	{
 		name: "Desktop Firefox",
-		use: {
-			...devices["Desktop Firefox"],
-		},
+		use: { ...devices["Desktop Firefox"] },
 	},
 	{
 		name: "Desktop Safari",
-		use: {
-			...devices["Desktop Safari"],
-		},
+		use: { ...devices["Desktop Safari"] },
 	},
 	// Test against mobile viewports.
 	{
 		name: "Mobile Chrome",
-		use: {
-			...devices["Pixel 5"],
-		},
+		use: { ...devices["Pixel 5"] },
 	},
 	{
 		name: "Mobile Safari",
@@ -36,9 +28,11 @@ const TEST_BROWSERS = [
 const TEST_CI_BROWSERS = [
 	{
 		name: "Desktop Chrome",
-		use: {
-			...devices["Desktop Chrome"],
-		},
+		use: { ...devices["Desktop Chrome"] },
+	},
+	{
+		name: "Desktop Firefox",
+		use: { ...devices["Desktop Firefox"] },
 	},
 ];
 
@@ -78,36 +72,5 @@ const config: PlaywrightTestConfig = {
 	},
 
 	projects: process.env.TEST_CI ? TEST_CI_BROWSERS : TEST_BROWSERS,
-	// projects: [
-	// 	{
-	// 		name: "Desktop Chrome",
-	// 		use: {
-	// 			...devices["Desktop Chrome"],
-	// 		},
-	// 	},
-	// 	// {
-	// 	//   name: 'Desktop Firefox',
-	// 	//   use: {
-	// 	//     ...devices['Desktop Firefox'],
-	// 	//   },
-	// 	// },
-	// 	// {
-	// 	//   name: 'Desktop Safari',
-	// 	//   use: {
-	// 	//     ...devices['Desktop Safari'],
-	// 	//   },
-	// 	// },
-	// 	// Test against mobile viewports.
-	// 	{
-	// 		name: "Mobile Chrome",
-	// 		use: {
-	// 			...devices["Pixel 5"],
-	// 		},
-	// 	},
-	// 	{
-	// 		name: "Mobile Safari",
-	// 		use: devices["iPhone 12"],
-	// 	},
-	// ],
 };
 export default config;
