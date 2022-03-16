@@ -53,7 +53,7 @@ export default function Layout(props: LayoutProps) {
 	return (
 		<>
 			<Head>
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" type="image/png" href="/favicon-temp.png"/>
 				<meta name="description" content={subtitle} />
 				<meta
 					property="og:image"
