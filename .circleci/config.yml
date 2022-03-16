@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  browser-tools: circleci/browser-tools@1.2.4
+
 jobs:
   build:
     docker:
@@ -63,8 +66,6 @@ jobs:
     # - image: cimg/node:14.17
     environment:
       NODE_ENV: development
-    orbs:
-      browser-tools: circleci/browser-tools@1.2.4
     steps:
       - checkout
       - run: |
