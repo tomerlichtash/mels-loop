@@ -1,6 +1,5 @@
 import React from "react";
-import { Option } from "./option";
-import { IOption } from "./option";
+import { Option, IOption } from "./option";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import { DROPDOWN_ARROW } from "../svg";
