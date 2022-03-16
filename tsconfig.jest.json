@@ -1,9 +1,6 @@
 {
 	"extends": "./tsconfig.json",
 	"compilerOptions": {
-		"module": "commonjs",
-		"target": "esnext",
-		"jsx": "react",
-		"esModuleInterop": true
+		"jsx": "react"
 	}
 }
