@@ -40,7 +40,7 @@ export const GlossaryItem = (props: GlossaryItemProps): JSX.Element => {
 			.catch((e) => {
 				setError(`${String(e)}`);
 			});
-	}, []);
+	});
 
 	if (error) {
 		return <div>{error}</div>;
