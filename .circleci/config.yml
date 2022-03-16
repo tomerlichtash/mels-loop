@@ -60,7 +60,7 @@ jobs:
           name: "ESLint"
           command: "yarn lint"
 
-  test:
+  unit:
     docker:
       - image: cimg/node:14.17
     steps:
@@ -108,5 +108,5 @@ workflows:
     jobs:
       - "build"
       - "clean-code"
-      - "test"
+      - "unit"
       - "e2e"

@@ -34,6 +34,10 @@ const TEST_CI_BROWSERS = [
 		name: "Desktop Firefox",
 		use: { ...devices["Desktop Firefox"] },
 	},
+	{
+		name: "Desktop Safari",
+		use: { ...devices["Desktop Safari"] },
+	},
 ];
 
 // Reference: https://playwright.dev/docs/test-configuration
