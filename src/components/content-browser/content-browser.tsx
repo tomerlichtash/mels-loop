@@ -1,5 +1,5 @@
 import React from "react";
-import ContentComponent from "../content/content-component";
+import { ContentComponent } from "../content/content-component";
 import { IMLParsedNode, IParsedPageData } from "../../interfaces/models";
 import { usePageData } from "../usePageData";
 import { st, classes } from "./content-browser.st.css";
