@@ -1,3 +1,3 @@
-import LocaleSelector from "./locale-selector";
+import { LocaleSelector } from "./locale-selector";
 
 export default LocaleSelector;

@@ -1,3 +1,3 @@
-import ContentBrowser from "./content-browser";
+import { ContentBrowser } from "./content-browser";
 
 export default ContentBrowser;

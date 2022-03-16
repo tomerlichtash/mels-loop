@@ -1,8 +1,51 @@
 import { PlaywrightTestConfig, devices } from "@playwright/test";
 import path from "path";
 
+const TEST_BROWSERS = [
+	{
+		name: "Desktop Chrome",
+		use: { ...devices["Desktop Chrome"] },
+	},
+	{
+		name: "Desktop Firefox",
+		use: { ...devices["Desktop Firefox"] },
+	},
+	{
+		name: "Desktop Safari",
+		use: { ...devices["Desktop Safari"] },
+	},
+	// Test against mobile viewports.
+	{
+		name: "Mobile Chrome",
+		use: { ...devices["Pixel 5"] },
+	},
+	{
+		name: "Mobile Safari",
+		use: devices["iPhone 12"],
+	},
+];
+
+const TEST_CI_BROWSERS = [
+	{
+		name: "Desktop Chrome",
+		use: { ...devices["Desktop Chrome"] },
+	},
+	{
+		name: "Desktop Firefox",
+		use: { ...devices["Desktop Firefox"] },
+	},
+	{
+		name: "Desktop Safari",
+		use: { ...devices["Desktop Safari"] },
+	},
+];
+
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
+	// use: {
+	// 	baseURL: process.env.URL,
+	// },
+
 	// Timeout per test
 	timeout: 30 * 1000,
 	// Test directory
@@ -32,36 +75,6 @@ const config: PlaywrightTestConfig = {
 		// },
 	},
 
-	projects: [
-		{
-			name: "Desktop Chrome",
-			use: {
-				...devices["Desktop Chrome"],
-			},
-		},
-		// {
-		//   name: 'Desktop Firefox',
-		//   use: {
-		//     ...devices['Desktop Firefox'],
-		//   },
-		// },
-		// {
-		//   name: 'Desktop Safari',
-		//   use: {
-		//     ...devices['Desktop Safari'],
-		//   },
-		// },
-		// Test against mobile viewports.
-		{
-			name: "Mobile Chrome",
-			use: {
-				...devices["Pixel 5"],
-			},
-		},
-		{
-			name: "Mobile Safari",
-			use: devices["iPhone 12"],
-		},
-	],
+	projects: process.env.TEST_CI ? TEST_CI_BROWSERS : TEST_BROWSERS,
 };
 export default config;

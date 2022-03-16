@@ -3,7 +3,7 @@ import { ContentComponent } from "../src/components/content";
 import { IContentComponentInitData } from "../src/interfaces/models";
 import { render } from "@testing-library/react";
 
-describe("ContentComponent", () => {
+describe.skip("ContentComponent", () => {
 	it("should render sample line", () => {
 		const compData = {
 			node: {
@@ -19,6 +19,7 @@ describe("ContentComponent", () => {
 				],
 			},
 		} as IContentComponentInitData;
+
 		const wrapper = render(<ContentComponent componentData={compData} />);
 
 		expect(wrapper.container.querySelector("p").textContent).toEqual(
