@@ -59,7 +59,8 @@ jobs:
 
   test:
     docker:
-      - image: cimg/node:14.17
+      - image: mcr.microsoft.com/playwright:focal
+    # - image: cimg/node:14.17
     steps:
       - checkout
       - run: |
@@ -72,6 +73,9 @@ jobs:
       - run:
           name: yarn install
           command: yarn install
+      - run:
+          name: npx playwright
+          command: npx playwright install
       - run:
           name: "Run Tests"
           command: "yarn test:mocha"
