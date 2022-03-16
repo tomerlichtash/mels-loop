@@ -6,7 +6,7 @@ import {
 } from "../../interfaces/models";
 import Layout from "../layout";
 import Head from "next/head";
-import ContentIterator from "./content-iterator";
+import { ContentIterator } from "./content-iterator";
 import { usePageData } from "../usePageData";
 import { classes } from "./generic-page.st.css";
 

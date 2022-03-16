@@ -1,3 +1,3 @@
-import PopoverLink from "./popover-link";
+import { PopoverLink } from "./popover-link";
 
 export default PopoverLink;
