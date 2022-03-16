@@ -1,4 +1,5 @@
 import { ComponentKeyMap } from "../locales/types";
+import { DynamicContentTypes } from "./dynamic-content";
 
 /**
  * Workaround for any
@@ -110,6 +111,15 @@ export interface IMLParsedNode {
 	 * How should this node be displayed?
 	 */
 	readonly displayType?: NODE_DISPLAY_TYPES;
+
+	/**
+	 * Number in a series (e.g. annotation number)
+	 */
+	readonly sequence?: number;
+	/**
+	 * The type of link
+	 */
+	readonly linkType?: DynamicContentTypes;
 }
 
 export interface IPageMetaData {
@@ -179,7 +189,7 @@ export interface IParsedPageData {
 	 */
 	readonly parsed: IMLParsedNode[];
 	/**
-	 * If present, ignore the data
+	 * If not empty, ignore the data
 	 */
 	readonly error?: string;
 }
