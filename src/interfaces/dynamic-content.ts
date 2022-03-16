@@ -6,6 +6,9 @@ import { IParsedPageData } from "./models";
 export enum DynamicContentTypes {
 	Glossary = "glossary",
 	Annotation = "annotation",
+	/**
+	 * Must remain an empty string, so it can be used in truthy/falsy tests
+	 */
 	None = "",
 }
 

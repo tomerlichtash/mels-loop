@@ -2,21 +2,19 @@ import React from "react";
 import {
 	ContentComponentProps,
 	MLNODE_TYPES,
-	NODE_DISPLAY_TYPES,
 	NODE_LIST_TYPES,
 } from "../../interfaces/models";
 import {
-	Link,
 	Heading,
 	ListItem,
 	Paragraph,
 	Section,
 	Figure,
-	PopoverLink,
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
 import { st, classes } from "./content-component.st.css";
+import LinkSelector from "./content-blocks/link-selector";
 
 export const ContentComponent = ({
 	componentData,
@@ -103,14 +101,10 @@ export const ContentComponent = ({
 				/>
 			);
 		case MLNODE_TYPES.LINK:
-			return node.displayType === NODE_DISPLAY_TYPES.POPOVER ? (
-				<PopoverLink
-					key={key}
+			return (
+				<LinkSelector key={key}
 					componentData={componentData}
-					className={className}
-				/>
-			) : (
-				<Link key={key} componentData={componentData} className={className} />
+					className={className} />
 			);
 		case MLNODE_TYPES.IMAGE:
 			return (
