@@ -67,6 +67,8 @@ jobs:
     environment:
       NODE_ENV: development
     steps:
+      - browser-tools/install-browser-tools:
+          chrome-version: 85.0.4183.102
       - checkout
       - run: |
           curl -o- -L https://yarnpkg.com/install.sh | bash
