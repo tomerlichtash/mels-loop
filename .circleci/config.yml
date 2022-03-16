@@ -28,9 +28,6 @@ jobs:
       - run:
           name: "Build"
           command: "yarn build"
-      - run:
-          name: "Run Tests"
-          command: "yarn test"
 
   "clean-code":
     docker:
@@ -58,7 +55,7 @@ jobs:
           path: yarn.lock
       - run:
           name: "ESLint"
-          command: "yarn eslint"
+          command: "yarn lint"
 
   test:
     docker:
@@ -77,7 +74,7 @@ jobs:
           command: yarn install
       - run:
           name: "Run Tests"
-          command: "yarn test"
+          command: "yarn test:mocha"
 
   # e2e:
   #   docker:
