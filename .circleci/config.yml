@@ -77,7 +77,7 @@ jobs:
           command: yarn install
       - run:
           name: "Run Tests"
-          command: "yarn test"
+          command: "yarn test:jest"
 
   # e2e:
   #   docker:
