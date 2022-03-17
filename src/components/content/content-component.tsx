@@ -102,9 +102,11 @@ export const ContentComponent = ({
 			);
 		case MLNODE_TYPES.LINK:
 			return (
-				<LinkSelector key={key}
+				<LinkSelector
+					key={key}
 					componentData={componentData}
-					className={className} />
+					className={className}
+				/>
 			);
 		case MLNODE_TYPES.IMAGE:
 			return (
