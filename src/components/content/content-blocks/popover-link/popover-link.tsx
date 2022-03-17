@@ -7,18 +7,18 @@ import PopoverItem from "../../popover-item";
 export interface IPopoverProps extends ComponentProps {
 	children: React.ReactNode;
 	url: string;
-	isAnnotaion: boolean;
+	isAnnotation: boolean;
 }
 
 export const PopoverLink = ({
 	children,
 	url,
-	isAnnotaion,
+	isAnnotation,
 }: IPopoverProps): JSX.Element => {
 	return (
 		<Popover
 			trigger={children}
-			contents={<PopoverItem url={url} isAnnotaion={isAnnotaion} />}
+			contents={<PopoverItem url={url} isAnnotation={isAnnotation} />}
 			url={url}
 			className={classes.root}
 		/>

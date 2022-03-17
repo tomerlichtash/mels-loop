@@ -1,9 +1,9 @@
 @namespace "PopoverItem";
 
 .root {
-	-st-states: isAnnotaion(boolean);
+	-st-states: isAnnotation(boolean);
 }
 
-.root:isAnnotaion {
+.root:isAnnotation {
 	border: 2px solid blue;
 }

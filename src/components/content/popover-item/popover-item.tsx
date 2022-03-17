@@ -13,12 +13,12 @@ import { st, classes } from "./popover-item.st.css";
 
 export interface PopoverItemProps extends ComponentProps {
 	url: string;
-	isAnnotaion: boolean;
+	isAnnotation: boolean;
 }
 
 export const PopoverItem = ({
 	url,
-	isAnnotaion,
+	isAnnotation,
 }: PopoverItemProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const [item, setItem] = useState<IParsedPageData>(null);
@@ -52,8 +52,8 @@ export const PopoverItem = ({
 
 	if (elements) {
 		return (
-			<div className={st(classes.root, { isAnnotaion })}>
-				{isAnnotaion ? null : <p>Glossary</p>}
+			<div className={st(classes.root, { isAnnotation })}>
+				{isAnnotation ? null : <p>Glossary</p>}
 				<h4 className={classes.title}>{item.metaData.glossary_term}</h4>
 				{elements.map((node, index) => {
 					return (
