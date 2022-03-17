@@ -3,18 +3,19 @@ import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import { st, classes } from "./note.st.css";
 
-export type FootnoteType = "note" | "ref";
+export type NoteViews = "note" | "ref";
 
-export interface IFootnoteSource {
+export interface IBibliographySource {
 	name: string;
 	url: string;
+	author?: string;
 }
 
-export interface FootnoteProps extends ComponentProps {
-	type: FootnoteType;
+export interface INoteProps extends ComponentProps {
+	type: NoteViews;
 	contents: React.ReactElement[];
 	title?: string;
-	sources?: IFootnoteSource[];
+	sources?: IBibliographySource[];
 }
 
 export const Note = ({
@@ -22,7 +23,7 @@ export const Note = ({
 	contents,
 	title,
 	sources,
-}: FootnoteProps): JSX.Element => {
+}: INoteProps): JSX.Element => {
 	const getSourceList = () => {
 		if (!sources) {
 			return false;
@@ -46,7 +47,7 @@ export const Note = ({
 		<article className={st(classes.root, { type })}>
 			{type === "ref" && (
 				<header>
-					<div>Glossary</div>
+					<div>{type}</div>
 					<div className={classes.title}>{title}</div>
 				</header>
 			)}

@@ -1,17 +1,16 @@
 import React from "react";
-import { ComponentProps } from "../../interfaces/models";
 import * as RadixPopover from "@radix-ui/react-popover";
 import { st, classes } from "./popover.st.css";
 
-export interface IPopoverProps extends ComponentProps {
+export interface IPopoverProps {
 	trigger: React.ReactNode;
-	contents: React.ReactNode;
+	children: React.ReactNode;
 	className?: string;
 }
 
 export const Popover = ({
 	trigger,
-	contents,
+	children,
 	className,
 }: IPopoverProps): JSX.Element => {
 	return (
@@ -25,7 +24,7 @@ export const Popover = ({
 					align="center"
 					className={classes.content}
 				>
-					{contents}
+					{children}
 					<RadixPopover.Close className={classes.closeButton}>
 						<span className={classes.x}>X</span>
 					</RadixPopover.Close>

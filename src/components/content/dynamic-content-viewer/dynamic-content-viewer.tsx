@@ -10,13 +10,12 @@ import { ReactPageContext } from "../../page/page-context";
 import { v4 as uuidv4 } from "uuid";
 import { contentUtils } from "../../../lib/content-utils";
 import Note from "../../note";
-// import { st, classes } from "./popover-item.st.css";
 
-export interface PopoverItemProps extends ComponentProps {
+export interface DynamicContentViewerProps extends ComponentProps {
 	url: string;
 }
 
-export const PopoverItem = ({ url }: PopoverItemProps): JSX.Element => {
+export const DynamicContentViewer = ({ url }: DynamicContentViewerProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
@@ -48,32 +47,28 @@ export const PopoverItem = ({ url }: PopoverItemProps): JSX.Element => {
 	}
 
 	if (elements) {
+		const { metaData } = item;
+		const { source_name, source_url, glossary_term } = metaData;
 		const contents = elements.map((node) => (
 			<ContentComponent key={uuidv4()} componentData={{ node }} />
 		));
 
-		if (itemData.type === DynamicContentTypes.Glossary) {
-			const { metaData } = item;
-			const { source_name, source_url, glossary_term } = metaData;
-			return (
-				<Note
-					type="ref"
-					contents={contents}
-					title={glossary_term}
-					sources={[
-						{
-							name: source_name,
-							url: source_url,
-						},
-					]}
-				/>
-			);
-		} else if (itemData.type === DynamicContentTypes.Annotation) {
-			return <Note type="note" contents={contents} />;
-		}
+		return (
+			<Note
+				type={itemData.type === DynamicContentTypes.Glossary ? "ref" : "note"}
+				contents={contents}
+				title={glossary_term}
+				sources={[
+					{
+						name: source_name,
+						url: source_url,
+					},
+				]}
+			/>
+		);
 	}
 
 	return <></>;
 };
 
-export default PopoverItem;
+export default DynamicContentViewer;
