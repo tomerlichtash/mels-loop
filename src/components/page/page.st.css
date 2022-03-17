@@ -1,9 +1,6 @@
 @namespace "Page";
 
-:import {
-	-st-from: "../../theme/common.st.css";
-	-st-named: PageWidth, PageShadow, PageRadius, PageBgColor;
-}
+@st-import [PageWidth] from "../../theme/common.st.css";
 
 .root {
 	margin: 0 auto;

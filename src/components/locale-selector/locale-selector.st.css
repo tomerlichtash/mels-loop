@@ -1,9 +1,6 @@
 @namespace "LocaleSelector";
 
-:import {
-	-st-from: "../dropdown/dropdown.st.css";
-	-st-default: DropDown;
-}
+@st-import DropDown from "../dropdown/dropdown.st.css";
 
 :vars {
 	buttonMargin: 38px;

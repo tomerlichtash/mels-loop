@@ -1,12 +1,6 @@
 @namespace "Footer";
 
-:import {
-	-st-from: "../../theme/common.st.css";
-	-st-named: FooterBgColor;
-}
-
-.root {
-}
+.root {}
 
 .license {
   padding: 2rem 0;

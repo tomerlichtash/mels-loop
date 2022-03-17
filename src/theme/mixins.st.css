@@ -1,9 +1,6 @@
 @namespace "Mixins";
 
-:import {
-	-st-from: "../components/ui/button/button.st.css";
-	-st-default: Button;
-}
+@st-import Button from "../components/ui/button/button.st.css";
 
 .NavButton {
 	-st-extends: Button;

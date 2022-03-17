@@ -1,34 +1,10 @@
 @namespace "Layout";
 
-:import {
-	-st-from: "../../theme/common.st.css";
-	-st-named: LayoutBgColor, shadow1;
-}
-
-:import {
-	-st-from: "../../components/footer/footer.st.css";
-	-st-default: Footer;
-}
-
-:import {
-	-st-from: "../../components/header/header.st.css";
-	-st-default: Header;
-}
-
-:import {
-	-st-from: "../../components/nav/nav.st.css";
-	-st-default: Nav;
-}
-
-:import {
-	-st-from: "../../components/locale-selector/locale-selector.st.css";
-	-st-default: LocaleSelector;
-}
-
-:import {
-	-st-from: "../../theme/mixins.st.css";
-	-st-named: NavButton;
-}
+@st-import Header from "../../components/header/header.st.css";
+@st-import Footer from "../../components/footer/footer.st.css";
+@st-import Nav from "../../components/nav/nav.st.css";
+@st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
+@st-import [NavButton] from "../../theme/mixins.st.css";
 
 :global(*):focus {
 	outline: none;
