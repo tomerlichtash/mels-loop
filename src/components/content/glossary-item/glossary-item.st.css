@@ -1,7 +1,6 @@
 @namespace "GlossaryItem";
 
-.root {
-}
+.root {}
 
 .title {
 	font-size: 2rem;

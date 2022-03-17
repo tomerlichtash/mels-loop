@@ -1,7 +1,6 @@
 @namespace "PopoverLink";
 
-.root {
-}
+.root {}
 
 .triggerInner {
 	position: relative;
