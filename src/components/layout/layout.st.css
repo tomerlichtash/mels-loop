@@ -5,6 +5,7 @@
 @st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import [NavButton] from "../../theme/mixins.st.css";
+@st-import Note from "../../components/note/note.st.css";
 
 :global(*):focus {
 	outline: none;
@@ -107,4 +108,16 @@
 	position: fixed;
 	top: 1rem;
 	right: 1rem;
+}
+
+@st-scope body {
+	Note {
+		border: 5px solid green !important;
+	}
+}
+
+@st-scope .root {
+	LocaleSelector {
+		border: 5px solid green !important;
+	}
 }

@@ -16,19 +16,19 @@ export interface DynamicContentViewerProps extends ComponentProps {
 }
 
 export const DynamicContentViewer = ({ url }: DynamicContentViewerProps): JSX.Element => {
-	const layoutContext = useContext(ReactLayoutContext);
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
 	const [itemData] = useState<IDynamicContentRecord>(
 		contentUtils.urlToContentData(url, DynamicContentTypes.Glossary)
-	);
-	const [error, setError] = useState("");
-
+		);
+		const [error, setError] = useState("");
+		const { translate, locale } = useContext(ReactLayoutContext);
+		
 	const elements = item && item.parsed;
 
 	useEffect(() => {
 		pageContext.dynamicContentServer
-			.getItems(itemData.type, layoutContext.locale, [itemData.id])
+			.getItems(itemData.type, locale, [itemData.id])
 			.then((items: IParsedPageData[]) => {
 				const page = items && items[0];
 				if (page) {
@@ -49,14 +49,17 @@ export const DynamicContentViewer = ({ url }: DynamicContentViewerProps): JSX.El
 	if (elements) {
 		const { metaData } = item;
 		const { source_name, source_url, glossary_term } = metaData;
+		const label = translate(`NOTE_LABEL_${itemData.type.toUpperCase()}`);
+		const itemType = itemData.type === DynamicContentTypes.Glossary ? "ref" : "note";
 		const contents = elements.map((node) => (
 			<ContentComponent key={uuidv4()} componentData={{ node }} />
 		));
 
 		return (
 			<Note
-				type={itemData.type === DynamicContentTypes.Glossary ? "ref" : "note"}
+				type={itemType}
 				contents={contents}
+				label={label}
 				title={glossary_term}
 				sources={[
 					{

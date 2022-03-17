@@ -28,6 +28,8 @@ export const EN_US: Language = {
 	ERROR_GENERAL: "Error",
 	FOOTER_LICENSE: "cc-by",
 	NO_PAGE_CONTENT: "No page content",
+	NOTE_LABEL_GLOSSARY: "Glossary",
+	NOTE_LABEL_ANNOTATION: "Note",
 };
 
 export const HE_IL: Language = {
@@ -50,5 +52,7 @@ export const HE_IL: Language = {
 	ERROR_404_FILE_NOT_FOUND: "404",
 	ERROR_GENERAL: "שגיאה",
 	FOOTER_LICENSE: "cc-by",
-	NO_PAGE_CONTENT: "No page content",
+	NO_PAGE_CONTENT: "דף ללא תוכן",
+	NOTE_LABEL_GLOSSARY: "מילון מונחים",
+	NOTE_LABEL_ANNOTATION: "הערה"
 };

@@ -22,13 +22,13 @@
 }
 
 .root:not(:optionListVisible):hover .triggerIcon {
-color: blue;
+	color: blue;
 }
 .root:optionListVisible::triggerContainer .triggerIcon {
-color: #808080;
+	color: #808080;
 }
 .root:optionListVisible::triggerContainer:hover .triggerIcon {
-color: red;
+	color: red;
 }
 
 .triggerIcon {}

@@ -14,12 +14,14 @@ export interface IBibliographySource {
 export interface INoteProps extends ComponentProps {
 	type: NoteViews;
 	contents: React.ReactElement[];
+	label?: string;
 	title?: string;
 	sources?: IBibliographySource[];
 }
 
 export const Note = ({
 	type,
+	label,
 	contents,
 	title,
 	sources,
@@ -47,7 +49,7 @@ export const Note = ({
 		<article className={st(classes.root, { type })}>
 			{type === "ref" && (
 				<header>
-					<div>{type}</div>
+					<div>{label}</div>
 					<div className={classes.title}>{title}</div>
 				</header>
 			)}
