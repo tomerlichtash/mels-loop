@@ -7,19 +7,16 @@ import {
 } from "../../../interfaces/dynamic-content";
 import { ComponentProps, IParsedPageData } from "../../../interfaces/models";
 import { ReactPageContext } from "../../page/page-context";
-import { Button } from "../../ui";
+import { v4 as uuidv4 } from "uuid";
 import { contentUtils } from "../../../lib/content-utils";
-import { st, classes } from "./popover-item.st.css";
+import Note from "../../note";
+// import { st, classes } from "./popover-item.st.css";
 
 export interface PopoverItemProps extends ComponentProps {
 	url: string;
-	isAnnotation: boolean;
 }
 
-export const PopoverItem = ({
-	url,
-	isAnnotation,
-}: PopoverItemProps): JSX.Element => {
+export const PopoverItem = ({ url }: PopoverItemProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
@@ -51,31 +48,29 @@ export const PopoverItem = ({
 	}
 
 	if (elements) {
-		return (
-			<div className={st(classes.root, { isAnnotation })}>
-				{isAnnotation ? null : <p>Glossary</p>}
-				<h4 className={classes.title}>{item.metaData.glossary_term}</h4>
-				{elements.map((node, index) => {
-					return (
-						<ContentComponent
-							key={`glossary-item-${index}`}
-							// className={classes.root}
-							componentData={{ node }}
-						/>
-					);
-				})}
-				{item.metaData.source_url && (
-					<span>
-						<span>Source:</span>
-						<Button
-							label={item.metaData.source_name}
-							link={item.metaData.source_url}
-							target="_blank"
-						/>
-					</span>
-				)}
-			</div>
-		);
+		const contents = elements.map((node) => (
+			<ContentComponent key={uuidv4()} componentData={{ node }} />
+		));
+
+		if (itemData.type === DynamicContentTypes.Glossary) {
+			const { metaData } = item;
+			const { source_name, source_url, glossary_term } = metaData;
+			return (
+				<Note
+					type="ref"
+					contents={contents}
+					title={glossary_term}
+					sources={[
+						{
+							name: source_name,
+							url: source_url,
+						},
+					]}
+				/>
+			);
+		} else if (itemData.type === DynamicContentTypes.Annotation) {
+			return <Note type="note" contents={contents} />;
+		}
 	}
 
 	return <></>;

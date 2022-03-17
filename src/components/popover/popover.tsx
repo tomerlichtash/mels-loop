@@ -6,7 +6,6 @@ import { st, classes } from "./popover.st.css";
 export interface IPopoverProps extends ComponentProps {
 	trigger: React.ReactNode;
 	contents: React.ReactNode;
-	url: string;
 	className?: string;
 }
 
