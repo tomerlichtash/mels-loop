@@ -7,20 +7,24 @@ import {
 } from "../../../interfaces/dynamic-content";
 import { ComponentProps, IParsedPageData } from "../../../interfaces/models";
 import { ReactPageContext } from "../../page/page-context";
-import { classes } from "./glossary-item.st.css";
 import { Button } from "../../ui";
 import { contentUtils } from "../../../lib/content-utils";
+import { st, classes } from "./popover-item.st.css";
 
-export interface GlossaryItemProps extends ComponentProps {
+export interface PopoverItemProps extends ComponentProps {
 	url: string;
+	isAnnotaion: boolean;
 }
 
-export const GlossaryItem = (props: GlossaryItemProps): JSX.Element => {
+export const PopoverItem = ({
+	url,
+	isAnnotaion,
+}: PopoverItemProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
 	const [itemData] = useState<IDynamicContentRecord>(
-		contentUtils.urlToContentData(props.url, DynamicContentTypes.Glossary)
+		contentUtils.urlToContentData(url, DynamicContentTypes.Glossary)
 	);
 	const [error, setError] = useState("");
 
@@ -48,14 +52,14 @@ export const GlossaryItem = (props: GlossaryItemProps): JSX.Element => {
 
 	if (elements) {
 		return (
-			<div className={classes.root}>
-				<p>Glossary</p>
+			<div className={st(classes.root, { isAnnotaion })}>
+				{isAnnotaion ? null : <p>Glossary</p>}
 				<h4 className={classes.title}>{item.metaData.glossary_term}</h4>
 				{elements.map((node, index) => {
 					return (
 						<ContentComponent
 							key={`glossary-item-${index}`}
-							className={classes.root}
+							// className={classes.root}
 							componentData={{ node }}
 						/>
 					);
@@ -77,4 +81,4 @@ export const GlossaryItem = (props: GlossaryItemProps): JSX.Element => {
 	return <></>;
 };
 
-export default GlossaryItem;
+export default PopoverItem;
