@@ -10,6 +10,7 @@ import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
 import DynamicContentViewer from "../../dynamic-content-viewer";
+// import { st, classes } from "./link-selector.st.css";
 
 const getTriggerComp = (
 	type: DynamicContentTypes,
@@ -25,7 +26,8 @@ const getTriggerComp = (
 
 export const LinkSelector = ({
 	componentData,
-}: ContentComponentProps): JSX.Element => {
+}: // className,
+ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { displayType, key } = node;
 
@@ -36,7 +38,10 @@ export const LinkSelector = ({
 	const { linkType, target } = node;
 
 	return (
-		<Popover trigger={getTriggerComp(linkType, componentData)}>
+		<Popover
+			// className={st(classes.root, className)}
+			trigger={getTriggerComp(linkType, componentData)}
+		>
 			<DynamicContentViewer url={target} />
 		</Popover>
 	);

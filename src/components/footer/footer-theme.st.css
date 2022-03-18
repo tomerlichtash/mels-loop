@@ -1,0 +1,12 @@
+@namespace "FooterTheme";
+
+@st-import Footer from "./footer.st.css";
+
+:vars {
+  FooterBackgroundColor: red;
+}
+
+.root {
+  -st-extends: Footer;
+  background-color: value(FooterBackgroundColor);
+}

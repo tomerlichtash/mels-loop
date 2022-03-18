@@ -13,8 +13,8 @@ import {
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
-import { st, classes } from "./content-component.st.css";
 import LinkSelector from "./content-blocks/link-selector";
+import { st, classes } from "./content-component.st.css";
 
 export const ContentComponent = ({
 	componentData,

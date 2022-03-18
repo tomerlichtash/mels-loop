@@ -1,0 +1,16 @@
+@namespace "NavTheme";
+
+@st-import Nav from "./nav.st.css";
+
+:vars {
+  NavBackgroundColor: red;
+}
+
+.root {
+  -st-extends: Nav;
+  background-color: value(NavBackgroundColor);
+}
+
+.root::button {
+  
+}

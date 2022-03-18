@@ -5,7 +5,21 @@
 @st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import [NavButton] from "../../theme/mixins.st.css";
+
+/* Global Components */
 @st-import Note from "../../components/note/note.st.css";
+
+/* Popover */
+@st-import PopoverTrigger from "../../components/popover/popover-trigger.st.css";
+@st-import PopoverContent from "../../components/popover/popover-content.st.css";
+@st-import PopoverCloseButton from "../../components/popover/popover-close-button.st.css";
+@st-import PopoverTheme from "../../components/popover/popover-theme.st.css";
+
+/* Layout Themes */
+@st-import HeaderTheme from "../../components/header/header-theme.st.css";
+@st-import FooterTheme from "../../components/footer/footer-theme.st.css";
+@st-import NavTheme from "../../components/nav/nav-theme.st.css";
+@st-import LocaleSelectorTheme from "../../components/locale-selector/locale-selector-theme.st.css";
 
 :global(*):focus {
 	outline: none;
@@ -46,8 +60,8 @@
 }
 
 .siteHeader {
-	z-index: 1000;
   -st-states: viewState(enum(normal, compact));
+	z-index: 1000;
   background-color: #f0f0f0;
 	/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); */
   top: -25px;
@@ -61,7 +75,6 @@
 }
 .siteHeader:viewState(compact) {
   top: 0;
-  /* position: fixed; */
 	background-color: rgba(225, 225, 225, 0.9)
 }
 .siteHeader:viewState(compact) .header {
@@ -78,46 +91,114 @@
 	width: 100%;
 }
 
-/* Extended Header Components */
-
-.header {
-	-st-extends: Header;
-	padding: 4rem 0;
-}
-.header::siteTitle {
-	font-size: 4rem;
-	font-weight: 300;
-}
-
-.footer {
-	-st-extends: Footer;
-}
-
 .page {}
 
-.nav {
-	-st-extends: Nav;
-}
-
-.nav::button {
-	-st-mixin: NavButton;
-}
-	
-.localeSelector {
-	-st-extends: LocaleSelector;
-	position: fixed;
-	top: 1rem;
-	right: 1rem;
-}
-
 @st-scope body {
+	/* .root:locale(en) {
+		direction: ltr;
+		font-family: "Nunito", sans-serif;
+	}
+	.root:locale(he) {
+		direction: rtl;
+		font-family: "Heebo", sans-serif;
+	} */
+
 	Note {
-		border: 5px solid green !important;
+		/* font-family: sans-serif;
+		border: 2px solid #fff;
+		overflow-y: scroll; */
+	}
+	Note:type(ref)::topic {
+		font-weight: 300;
+		font-size: 1rem;
+		background: #f0f0f0;
+		display: inline-block;
+		padding: 0 0.5rem;
+		margin-bottom: 1rem;
+	}
+	Note:type(ref)::title {
+		font-weight: 300;
+		font-size: 2rem;
+	}
+	Note::header {
+		padding: 1rem;
+	}
+	Note::content {
+		padding: 1rem;
+	}
+	Note:type(note) {
+	}
+	Note:type(ref)::header {
 	}
 }
 
 @st-scope .root {
+	Header {
+		-st-mixin: HeaderTheme(
+			HeaderBackgroundColor green,
+			HeaderSiteTitleFontFamily "Courier New",
+			HeaderSiteTitleFontSize 4rem,
+			HeaderSiteTitleFontWeight 300,
+			HeaderPadding 10rem 0
+		);
+	}
+	Footer {
+		-st-mixin: FooterTheme(
+			FooterBackgroundColor orange
+		);
+	}
+	Nav {
+		-st-mixin: NavTheme(
+			NavBackgroundColor orange
+		);
+	}
+	Nav::button {
+		-st-mixin: NavButton;
+	}
 	LocaleSelector {
-		border: 5px solid green !important;
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
+		-st-mixin: LocaleSelectorTheme(
+		);
+	}
+
+	PopoverTrigger {
+		color: blue;
+		cursor: pointer;
+	}
+	PopoverTrigger:hover {
+		color: orange;
+	}
+	PopoverContent {
+		border: 2px solid blue;
+		background: #fff;
+		width: 350px;
+		max-height: 300px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		overflow-y: scroll;
+	}
+	PopoverCloseButton {
+		cursor: pointer;
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		border-radius: 50%;
+		border: none;
+		font-size: 12px;
+		width: 30px;
+		height: 30px;
+		line-height: 15px;
+		text-transform: lowercase;
+		font-family: sans-serif;
+	}
+	PopoverCloseButton:hover {
+		background-color: red;
+	}
+	PopoverCloseButton::icon {
+		color: blue;
+	}
+	PopoverCloseButton:hover::icon {
+		color: #fff;
 	}
 }

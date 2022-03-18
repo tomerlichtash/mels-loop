@@ -2,20 +2,14 @@
 
 .root {
 	-st-states: type(enum(note, ref));
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	/* border: 2px solid #404040; */
-	font-family: sans-serif;
-	padding: 2rem;
-	border-radius: 4px;
-	width: 250px;
 }
 
-.root:type(note) {
-	background: red;
-	color: blue;
-}
+.header {}
 
-.root:type(ref) {
-	background: blue;
-	color: red;
-}
+.topic {}
+
+.title {}
+
+.content {}
+
+.sourceList {}

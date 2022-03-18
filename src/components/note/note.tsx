@@ -25,6 +25,7 @@ export const Note = ({
 	contents,
 	title,
 	sources,
+	className,
 }: INoteProps): JSX.Element => {
 	const getSourceList = () => {
 		if (!sources) {
@@ -46,16 +47,16 @@ export const Note = ({
 		);
 	};
 	return (
-		<article className={st(classes.root, { type })}>
+		<div className={st(classes.root, { type }, className)}>
 			{type === "ref" && (
-				<header>
-					<div>{label}</div>
+				<div className={classes.header}>
+					<div className={classes.topic}>{label}</div>
 					<div className={classes.title}>{title}</div>
-				</header>
+				</div>
 			)}
-			<div>{contents}</div>
-			{sources && <footer>{getSourceList()}</footer>}
-		</article>
+			<div className={classes.content}>{contents}</div>
+			{sources && <div className={classes.sourceList}>{getSourceList()}</div>}
+		</div>
 	);
 };
 

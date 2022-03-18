@@ -1,0 +1,11 @@
+@namespace "PopoverTheme";
+
+/* @st-import Popover from './popover.st.css'; */
+
+/* :vars {
+	PopoverBackgroundColor: yellow;
+} */
+
+.root {
+	/* -st-extends: Popover; */
+}
