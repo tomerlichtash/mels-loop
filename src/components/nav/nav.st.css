@@ -4,13 +4,13 @@
 
 .root {
 	user-select: none;
-	margin: 0 auto;
-	position: relative;
+	/* margin: 0 auto; */
+	/* position: relative; */
 }
 
 .menu {
 	-st-states: marker(string);
-	display: inline-flex;
+	/* display: inline-flex; */
 }
 
 .list {

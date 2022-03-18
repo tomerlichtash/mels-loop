@@ -1,0 +1,49 @@
+@namespace "NavMobile";
+
+@st-import Nav from "./nav.st.css";
+
+.root {
+	user-select: none;
+	margin: 0 auto;
+	position: relative;
+	height: 100%;
+}
+
+.nav {
+	-st-extends: Nav;
+}
+
+.nav::list {
+	display: block;
+	text-align: left;
+}
+
+.burgerButton {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+.burgerMenu {
+  background: #373a47;
+  /* padding: 2.5em 1.5em 0; */
+  font-size: 1.15em;	
+}
+.burgerBars {
+  background: #373a47;	
+}
+.crossButton {
+  height: 24px;
+  width: 24px;	
+}
+.burgerCross {
+  background: #bdc3c7;	
+}
+.overlay {
+	top: 0;
+}
+.itemList {
+	color: #b8b7ad;
+  padding: 3rem 0 0;
+}

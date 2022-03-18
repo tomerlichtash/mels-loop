@@ -4,6 +4,7 @@ import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
 import Nav from "../nav";
+import { MobileNav } from "../nav/nav-mobile";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
 import { useRouter } from "next/router";
@@ -75,6 +76,14 @@ export default function Layout(props: LayoutProps) {
 							compKeys={LOCALE_SELECTOR_LOCALE}
 						/>
 					</div>
+					<MobileNav className={classes.mobileNav}>
+						<LocaleSelector
+							className={classes.localeSelector}
+							options={localeSelectorOptions}
+							compKeys={LOCALE_SELECTOR_LOCALE}
+						/>
+						<Nav className={classes.mobileNavMenu} />
+					</MobileNav>
 				</div>
 				<Page className={classes.page} nodes={props.children} />
 				<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />

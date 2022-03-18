@@ -7,6 +7,8 @@
 @st-import Nav from "../components/nav/nav.st.css";
 @st-import NavTheme from "../components/nav/nav-theme.st.css";
 
+@st-import NavMobile from "../components/nav/nav-mobile.st.css";
+
 @st-import Page from "../components/page/page.st.css";
 @st-import PageTheme from "../components/page/page-theme.st.css";
 
@@ -59,6 +61,11 @@
 			NavBackgroundColor value(PrimaryNavBgColor)
 		);
 	}
+
+	NavMobile::burgerBars {
+		/* border: 5px solid red; */
+		/* display: none; */
+	}
 }
 
 /* Mobile */
@@ -92,10 +99,14 @@
 		}
 
 		Nav {
-			display: none;
+			/* display: none; */
 			/* -st-mixin: NavTheme(
 				NavBackgroundColor value(PrimaryNavBgColor)
 			); */
+		}
+
+		NavMobile::burgerButton {
+			visibility: visible;
 		}
 	}
 }
