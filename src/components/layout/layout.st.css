@@ -48,29 +48,16 @@
 .root {
 	-st-states: locale(enum(en, he));
 }
-
 .root:locale(en) {
 	direction: ltr;
 	font-family: "Nunito", sans-serif;
 }
-
 .root:locale(he) {
 	direction: rtl;
 	font-family: "Heebo", sans-serif;
 }
 
-.siteHeader {
-  -st-states: viewState(enum(normal, compact));
-	z-index: 1000;
-  background-color: #f0f0f0;
-	/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); */
-  top: -25px;
-	width: 100%;
-	position: static;
-  transition: top 125ms ease-in-out;
-	text-align: center;
-}
-.siteHeader:viewState(normal) {
+/* .siteHeader:viewState(normal) {
 	top: 0;
 }
 .siteHeader:viewState(compact) {
@@ -82,32 +69,100 @@
 }
 .siteHeader:viewState(compact) .nav {
 	position: static;
-}
-
-.primaryNav {
+} */
+/* .primaryNav {
 	display: flex;
 	align-items: top;
 	align-content: space-around;
 	width: 100%;
-}
+} */
 
-.page {}
+/* .page {} */
 
-@st-scope body {
-	/* .root:locale(en) {
-		direction: ltr;
-		font-family: "Nunito", sans-serif;
+@st-scope .root {
+	Header {
+		text-align: center;
+		-st-mixin: HeaderTheme(
+			HeaderBackgroundColor #2af,
+			HeaderSiteTitleFontFamily inherit,
+			HeaderSiteTitleFontSize 4rem,
+			HeaderSiteTitleFontWeight 300,
+			HeaderPadding 10rem 0
+		);
 	}
-	.root:locale(he) {
-		direction: rtl;
-		font-family: "Heebo", sans-serif;
-	} */
 
-	Note {
-		/* font-family: sans-serif;
-		border: 2px solid #fff;
-		overflow-y: scroll; */
+	Footer {
+		-st-mixin: FooterTheme(
+			FooterBackgroundColor orange
+		);
 	}
+
+	Nav {
+		text-align: center;
+		-st-mixin: NavTheme(
+			NavBackgroundColor #08e
+		);
+	}
+	Nav::button {
+		-st-mixin: NavButton;
+	}
+
+	LocaleSelector {
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
+		-st-mixin: LocaleSelectorTheme(
+		);
+	}
+
+	PopoverTrigger {
+		color: blue;
+		cursor: pointer;
+	}
+	PopoverTrigger[data-state="open"],
+	PopoverTrigger[data-state="open"]:hover {
+		color: green;
+	}
+	PopoverTrigger:hover {
+		color: orange;
+	}
+	PopoverContent {
+		border: 2px solid blue;
+		background: #fff;
+		width: 350px;
+		max-height: 300px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		overflow-y: scroll;
+	}
+	PopoverCloseButton {
+		cursor: pointer;
+		position: absolute;
+		top: 1rem;
+		border-radius: 50%;
+		border: none;
+		font-size: 12px;
+		width: 30px;
+		height: 30px;
+		line-height: 15px;
+		text-transform: lowercase;
+		font-family: sans-serif;
+	}
+	PopoverCloseButton:posX(right) {
+		right: 1rem;
+	}
+	PopoverCloseButton:posX(left) {
+		left: 1rem;
+	}
+	PopoverCloseButton:hover {
+		background-color: red;
+	}
+	PopoverCloseButton::icon {
+		color: blue;
+	}
+	PopoverCloseButton:hover::icon {
+		color: #fff;
+	}
+
 	Note:type(ref)::topic {
 		font-weight: 300;
 		font-size: 1rem;
@@ -125,80 +180,5 @@
 	}
 	Note::content {
 		padding: 1rem;
-	}
-	Note:type(note) {
-	}
-	Note:type(ref)::header {
-	}
-}
-
-@st-scope .root {
-	Header {
-		-st-mixin: HeaderTheme(
-			HeaderBackgroundColor green,
-			HeaderSiteTitleFontFamily "Courier New",
-			HeaderSiteTitleFontSize 4rem,
-			HeaderSiteTitleFontWeight 300,
-			HeaderPadding 10rem 0
-		);
-	}
-	Footer {
-		-st-mixin: FooterTheme(
-			FooterBackgroundColor orange
-		);
-	}
-	Nav {
-		-st-mixin: NavTheme(
-			NavBackgroundColor orange
-		);
-	}
-	Nav::button {
-		-st-mixin: NavButton;
-	}
-	LocaleSelector {
-		position: fixed;
-		top: 1rem;
-		right: 1rem;
-		-st-mixin: LocaleSelectorTheme(
-		);
-	}
-
-	PopoverTrigger {
-		color: blue;
-		cursor: pointer;
-	}
-	PopoverTrigger:hover {
-		color: orange;
-	}
-	PopoverContent {
-		border: 2px solid blue;
-		background: #fff;
-		width: 350px;
-		max-height: 300px;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-		overflow-y: scroll;
-	}
-	PopoverCloseButton {
-		cursor: pointer;
-		position: absolute;
-		top: 1rem;
-		right: 1rem;
-		border-radius: 50%;
-		border: none;
-		font-size: 12px;
-		width: 30px;
-		height: 30px;
-		line-height: 15px;
-		text-transform: lowercase;
-		font-family: sans-serif;
-	}
-	PopoverCloseButton:hover {
-		background-color: red;
-	}
-	PopoverCloseButton::icon {
-		color: blue;
-	}
-	PopoverCloseButton:hover::icon {
-		color: #fff;
 	}
 }

@@ -17,7 +17,7 @@ import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { LOCALE_FLAGS } from "../svg";
 import { ReactLayoutContext } from "../../contexts/layout-context";
-import { style, classes } from "./layout.st.css";
+import { st, classes } from "./layout.st.css";
 
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
@@ -64,8 +64,8 @@ export default function Layout(props: LayoutProps) {
 				<meta name="og:title" content={title} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div className={style(classes.root, { locale })}>
-				<div className={style(classes.siteHeader)}>
+			<div className={st(classes.root, { locale })}>
+				<div className={classes.siteHeader}>
 					<Header className={classes.header} compKeys={HEADER_LOCALE} />
 					<div className={classes.primaryNav}>
 						<Nav className={classes.nav} />

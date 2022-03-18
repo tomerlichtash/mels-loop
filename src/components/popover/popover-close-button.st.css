@@ -1,5 +1,7 @@
 @namespace "PopoverCloseButton";
 
-.root {}
+.root {
+  -st-states: posX(enum(right, left));
+}
 
 .icon {}

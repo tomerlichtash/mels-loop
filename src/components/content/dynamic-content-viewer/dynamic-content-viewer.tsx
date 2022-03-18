@@ -10,7 +10,6 @@ import { ReactPageContext } from "../../page/page-context";
 import { v4 as uuidv4 } from "uuid";
 import { contentUtils } from "../../../lib/content-utils";
 import Note from "../../note";
-// import { st, classes } from "./dynamic-content-viewer.st.css";
 
 export interface DynamicContentViewerProps extends ComponentProps {
 	url: string;
@@ -62,7 +61,6 @@ export const DynamicContentViewer = ({
 
 		return (
 			<Note
-				// className={st(classes.root, { type: itemType }, className)}
 				type={itemType}
 				contents={contents}
 				label={label}

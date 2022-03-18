@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DynamicContentTypes } from "../../../../interfaces/dynamic-content";
 import {
 	ContentComponentProps,
@@ -10,7 +10,8 @@ import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
 import DynamicContentViewer from "../../dynamic-content-viewer";
-// import { st, classes } from "./link-selector.st.css";
+import { ReactLayoutContext } from "../../../../contexts/layout-context";
+import { ICloseButtonPosition } from "../../../popover/popover";
 
 const getTriggerComp = (
 	type: DynamicContentTypes,
@@ -24,12 +25,16 @@ const getTriggerComp = (
 	}
 };
 
+const getCloseButtonPosition = (locale: string): ICloseButtonPosition => {
+	return locale === "en" ? "right" : "left";
+};
+
 export const LinkSelector = ({
 	componentData,
-}: // className,
-ContentComponentProps): JSX.Element => {
+}: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { displayType, key } = node;
+	const { locale } = useContext(ReactLayoutContext);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return <Link key={key} componentData={componentData} />;
@@ -39,7 +44,7 @@ ContentComponentProps): JSX.Element => {
 
 	return (
 		<Popover
-			// className={st(classes.root, className)}
+			closePosX={getCloseButtonPosition(locale)}
 			trigger={getTriggerComp(linkType, componentData)}
 		>
 			<DynamicContentViewer url={target} />
