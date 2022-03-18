@@ -30,10 +30,9 @@
 
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
-	-st-mixin: Popover;
 }
 .root:theme(light) {
-	-st-mixin: LightTheme;
+	-st-mixin: Popover, LightTheme;
 }
 .root:theme(dark) {
 	/* -st-mixin: DarkTheme; */

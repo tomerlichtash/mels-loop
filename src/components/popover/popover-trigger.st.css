@@ -4,3 +4,7 @@
   -st-states: type(string);
   cursor: pointer;
 }
+
+.root:type(annotation) {
+  user-select: none;
+}

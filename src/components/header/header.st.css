@@ -1,5 +1,7 @@
 @namespace "Header";
 
+@st-import Button from "../ui/button/button.st.css";
+
 .root {}
 
 .container {}
@@ -9,3 +11,7 @@
 .siteTitle {}
 
 .siteSubtitle {}
+
+.siteTitleButton {
+  -st-extends: Button;
+}

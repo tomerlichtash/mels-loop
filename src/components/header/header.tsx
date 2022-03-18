@@ -26,7 +26,7 @@ export const Header = ({
 								label={title}
 								title={fullTitle}
 								link={"/"}
-								className={classes.siteTitle}
+								className={classes.siteTitleButton}
 							/>
 						)}
 					</div>
