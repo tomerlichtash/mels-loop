@@ -1,4 +1,3 @@
-
 import * as tempFiles from "tmp";
 import * as fs from "fs";
 import * as nodeUtils from "util";
@@ -9,13 +8,13 @@ import * as nodeUtils from "util";
 export interface IMLApiUtils {
 	/**
 	 * Load a string from a cache, by key
-	 * @param key 
+	 * @param key
 	 */
 	getFromCache(key: string): Promise<string>;
 	/**
 	 * Save a string to cache, using `key` for later retrieval
-	 * @param key 
-	 * @param data 
+	 * @param key
+	 * @param data
 	 */
 	saveToCache(key: string, data: string): Promise<boolean>;
 }
@@ -39,12 +38,10 @@ class MLApiUtils implements IMLApiUtils {
 				return null;
 			}
 			return JSON.parse(buffer.toString());
-		}
-		catch (e) {
+		} catch (e) {
 			return null;
 		}
 	}
-
 
 	public async saveToCache(key: string, data: string): Promise<boolean> {
 		if (!key || !data) {
@@ -59,8 +56,7 @@ class MLApiUtils implements IMLApiUtils {
 				this._fileMap.set(key, filePath);
 				return true;
 			}
-		}
-		catch (e) {
+		} catch (e) {
 			return false;
 		}
 	}

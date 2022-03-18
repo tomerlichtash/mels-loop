@@ -15,15 +15,17 @@ export interface DynamicContentViewerProps extends ComponentProps {
 	url: string;
 }
 
-export const DynamicContentViewer = ({ url }: DynamicContentViewerProps): JSX.Element => {
+export const DynamicContentViewer = ({
+	url,
+}: DynamicContentViewerProps): JSX.Element => {
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
 	const [itemData] = useState<IDynamicContentRecord>(
 		contentUtils.urlToContentData(url, DynamicContentTypes.Glossary)
-		);
-		const [error, setError] = useState("");
-		const { translate, locale } = useContext(ReactLayoutContext);
-		
+	);
+	const [error, setError] = useState("");
+	const { translate, locale } = useContext(ReactLayoutContext);
+
 	const elements = item && item.parsed;
 
 	useEffect(() => {
@@ -50,7 +52,8 @@ export const DynamicContentViewer = ({ url }: DynamicContentViewerProps): JSX.El
 		const { metaData } = item;
 		const { source_name, source_url, glossary_term } = metaData;
 		const label = translate(`NOTE_LABEL_${itemData.type.toUpperCase()}`);
-		const itemType = itemData.type === DynamicContentTypes.Glossary ? "ref" : "note";
+		const itemType =
+			itemData.type === DynamicContentTypes.Glossary ? "ref" : "note";
 		const contents = elements.map((node) => (
 			<ContentComponent key={uuidv4()} componentData={{ node }} />
 		));

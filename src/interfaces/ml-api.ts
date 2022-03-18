@@ -1,7 +1,6 @@
 import { DynamicContentTypes } from "./dynamic-content";
 import { IParsedPageData } from "./models";
 
-
 export interface IMLApiResponse<T> {
 	error?: string;
 	data: T;

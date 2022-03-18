@@ -11,16 +11,21 @@ import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
 import DynamicContentViewer from "../../dynamic-content-viewer";
 
-const getTriggerComp = (type: DynamicContentTypes, data: IContentComponentInitData): React.ReactNode => {
-	switch(type) {
+const getTriggerComp = (
+	type: DynamicContentTypes,
+	data: IContentComponentInitData
+): React.ReactNode => {
+	switch (type) {
 		case DynamicContentTypes.Annotation:
 			return <AnnotationLink componentData={data} />;
 		default:
-			return <ContentIterator componentData={data} />
+			return <ContentIterator componentData={data} />;
 	}
-}
+};
 
-export const LinkSelector = ({ componentData }: ContentComponentProps): JSX.Element => {
+export const LinkSelector = ({
+	componentData,
+}: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { displayType, key } = node;
 

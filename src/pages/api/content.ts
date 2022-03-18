@@ -7,32 +7,41 @@ import {
 	LoadFolderModes,
 } from "../../interfaces/parser";
 import { loadContentFolder } from "../../lib/markdown-driver";
-import { IMLApiResponse, IMLDynamicContentParams, IMLDynamicContentResponse } from "../../interfaces/ml-api";
+import {
+	IMLApiResponse,
+	IMLDynamicContentParams,
+	IMLDynamicContentResponse,
+} from "../../interfaces/ml-api";
 
-const TypeMap: { [key: string]: CONTENT_TYPES} = {
+const TypeMap: { [key: string]: CONTENT_TYPES } = {
 	annotation: CONTENT_TYPES.ANNOTATION,
 	glossary: CONTENT_TYPES.GLOSSARY,
 };
 
-const noop = function() { void 0; }
+const noop = function () {
+	void 0;
+};
 
 /**
- * 
- * @param _req 
- * @param res 
- * @returns 
+ *
+ * @param _req
+ * @param res
+ * @returns
  */
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {
 	const params = _req.query as unknown as IMLDynamicContentParams;
-	loadContent(params || {}).then(response => {
-		res.status(response.error ? 500 : 200).json(response);
-	})
-	.catch(e => {
-		res.status(500).json({ error: String(e) })
-	});
+	loadContent(params || {})
+		.then((response) => {
+			res.status(response.error ? 500 : 200).json(response);
+		})
+		.catch((e) => {
+			res.status(500).json({ error: String(e) });
+		});
 }
 
-async function loadContent(params: Partial<IMLDynamicContentParams>): Promise<IMLApiResponse<IMLDynamicContentResponse>> {
+async function loadContent(
+	params: Partial<IMLDynamicContentParams>
+): Promise<IMLApiResponse<IMLDynamicContentResponse>> {
 	const contentType = TypeMap[params.type];
 	if (!params?.locale || !contentType) {
 		return {
@@ -65,10 +74,12 @@ async function loadContent(params: Partial<IMLDynamicContentParams>): Promise<IM
 				return acc;
 			}, {}),
 		};
-		mlApiUtils.saveToCache(cacheKey, JSON.stringify({ data })).then(noop).catch(noop);
-		return Object.assign({ data }, {cache: false });
-	}
-	catch (error) {
+		mlApiUtils
+			.saveToCache(cacheKey, JSON.stringify({ data }))
+			.then(noop)
+			.catch(noop);
+		return Object.assign({ data }, { cache: false });
+	} catch (error) {
 		return { data: null, error: String(error) };
 	}
 }

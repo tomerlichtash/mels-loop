@@ -54,5 +54,5 @@ export const HE_IL: Language = {
 	FOOTER_LICENSE: "cc-by",
 	NO_PAGE_CONTENT: "דף ללא תוכן",
 	NOTE_LABEL_GLOSSARY: "מילון מונחים",
-	NOTE_LABEL_ANNOTATION: "הערה"
+	NOTE_LABEL_ANNOTATION: "הערה",
 };
