@@ -11,4 +11,29 @@
   -st-extends: Nav;
   background-color: value(NavBackgroundColor);
   text-align: value(NavTextAlign);
+  display: block;
+}
+
+.root::marker:isCurrent {
+  background-color: red;
+}
+
+.root::button {
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #303030;
+}
+
+.root::button:selected {
+	color: #c00;
+}
+
+.root::button:hover {
+	background-color: #808080;
+	color: #fff;
+}
+
+.root::button:selected .marker {
+
 }

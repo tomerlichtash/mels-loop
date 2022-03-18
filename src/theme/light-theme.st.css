@@ -8,9 +8,12 @@
 @st-import NavTheme from "../components/nav/nav-theme.st.css";
 @st-import LocaleSelectorTheme from "../components/locale-selector/locale-selector-theme.st.css";
 
-@st-import [NavButton] from "./mixins.st.css";
-
-@st-import [HeaderBgColor, HeaderTitleColor, HeaderSubtitleColor, PrimaryNavBgColor] from "./light-theme-commons.st.css";
+@st-import [
+	HeaderBgColor,
+	HeaderTitleColor,
+	HeaderSubtitleColor,
+	PrimaryNavBgColor
+] from "./light-theme-commons.st.css";
 
 @st-scope .root {
 	Header {
@@ -36,9 +39,9 @@
 			NavBackgroundColor value(PrimaryNavBgColor)
 		);
 	}
-	Nav::button {
+	/* Nav::button {
 		-st-mixin: NavButton;
-	}
+	} */
 
 	LocaleSelector {
 		/* -st-mixin: LocaleSelectorTheme(); */

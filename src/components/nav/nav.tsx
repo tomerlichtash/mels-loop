@@ -12,11 +12,9 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 		isCurrentPage,
 		isPageVisible,
 	} = useContext(ReactLayoutContext);
-	const [marker, setMarker] = useState("");
 	return (
 		<nav className={st(classes.root, className)}>
-			<div className={st(classes.menu, { marker })}>
-				{/* <div className={classes.markerStrip}></div> */}
+			<div className={classes.menu}>
 				<ul className={classes.list}>
 					{getPageRefs().map((page) => {
 						const { id } = page;
@@ -24,17 +22,16 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 						if (!isPageVisible(id)) return;
 						return (
 							<li
-								className={st(classes.listItem, { isCurrent, marker })}
+								className={st(classes.listItem, { isCurrent })}
 								key={`nav-item-${id}`}
-								onMouseOver={() => setMarker(id)}
 							>
-								{/* <span className={classes.markerPointer}></span> */}
 								<Button
 									label={getPageName(id)}
 									link={getPagePath(id)}
 									selected={isCurrent}
 									className={classes.button}
 								/>
+								<div className={st(classes.marker, { isCurrent })}></div>
 							</li>
 						);
 					})}
