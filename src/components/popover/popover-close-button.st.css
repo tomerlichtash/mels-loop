@@ -2,6 +2,8 @@
 
 .root {
   -st-states: posX(enum(right, left));
+  position: absolute;
+  cursor: pointer;
 }
 
 .icon {}

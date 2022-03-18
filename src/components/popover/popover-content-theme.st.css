@@ -1,0 +1,20 @@
+@namespace "PopoverContentTheme";
+
+@st-import PopoverContent from "./popover-content.st.css";
+
+:vars {
+  PopoverContentBorder: 1px solid black;
+  PopoverContentBgColor: #f0f0f0;
+  PopoverContentMaxWidth: auto;
+  PopoverContentMaxHeight: auto;
+  PopoverContentShadow: none;
+}
+
+.root {
+  -st-extends: PopoverContent;
+		border: value(PopoverContentBorder);
+		background: value(PopoverContentBgColor);
+		width: value(PopoverContentMaxWidth);
+		max-height:value(PopoverContentMaxHeight);
+		box-shadow: value(PopoverContentShadow);
+}

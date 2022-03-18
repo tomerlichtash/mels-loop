@@ -3,14 +3,12 @@
 @st-import Nav from "./nav.st.css";
 
 :vars {
-  NavBackgroundColor: red;
+  NavBackgroundColor: #404040;
+  NavTextAlign: center;
 }
 
 .root {
   -st-extends: Nav;
   background-color: value(NavBackgroundColor);
-}
-
-.root::button {
-  
+  text-align: value(NavTextAlign);
 }

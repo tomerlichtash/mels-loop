@@ -8,12 +8,14 @@
   HeaderSiteTitleFontSize: 1rem;
   HeaderSiteTitleFontWeight: 300;
   HeaderPadding: 0;
+  HeaderTextAlign: center;
 }
 
 .root {
   -st-extends: Header;
   background-color: value(HeaderBackgroundColor);
-  padding: value(HeaderPadding)
+  padding: value(HeaderPadding);
+  text-align: value(HeaderTextAlign);
 }
 
 .root::siteTitle {
