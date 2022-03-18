@@ -1,0 +1,46 @@
+@st-import Header from "../components/header/header.st.css";
+@st-import Footer from "../components/footer/footer.st.css";
+@st-import Nav from "../components/nav/nav.st.css";
+@st-import LocaleSelector from "../components/locale-selector/locale-selector.st.css";
+
+@st-import HeaderTheme from "../components/header/header-theme.st.css";
+@st-import FooterTheme from "../components/footer/footer-theme.st.css";
+@st-import NavTheme from "../components/nav/nav-theme.st.css";
+@st-import LocaleSelectorTheme from "../components/locale-selector/locale-selector-theme.st.css";
+
+@st-import [NavButton] from "./mixins.st.css";
+
+@st-import [HeaderBgColor, HeaderTitleColor, HeaderSubtitleColor, PrimaryNavBgColor] from "./light-theme-commons.st.css";
+
+@st-scope .root {
+	Header {
+		-st-mixin: HeaderTheme(
+			HeaderBackgroundColor value(HeaderBgColor),
+			HeaderSiteTitleColor value(HeaderTitleColor),
+			HeaderSiteSubtitleColor value(HeaderSubtitleColor),
+			HeaderSiteTitleFontFamily inherit,
+			HeaderSiteTitleFontSize 4rem,
+			HeaderSiteTitleFontWeight 300,
+			HeaderPadding 4rem 0,
+		);
+	}
+
+	Footer {
+		-st-mixin: FooterTheme(
+			FooterPadding 4rem 0
+		);
+	}
+
+	Nav {
+		-st-mixin: NavTheme(
+			NavBackgroundColor value(PrimaryNavBgColor)
+		);
+	}
+	Nav::button {
+		-st-mixin: NavButton;
+	}
+
+	LocaleSelector {
+		/* -st-mixin: LocaleSelectorTheme(); */
+	}
+}

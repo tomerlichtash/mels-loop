@@ -64,7 +64,7 @@ export default function Layout(props: LayoutProps) {
 				<meta name="og:title" content={title} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div className={st(classes.root, { locale })}>
+			<div className={st(classes.root, { locale, theme: "light" })}>
 				<div className={classes.siteHeader}>
 					<Header className={classes.header} compKeys={HEADER_LOCALE} />
 					<div className={classes.primaryNav}>

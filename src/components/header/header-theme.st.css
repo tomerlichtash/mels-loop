@@ -4,6 +4,8 @@
 
 :vars {
   HeaderBackgroundColor: red;
+  HeaderSiteTitleColor: blue;
+  HeaderSiteSubtitleColor: green;
   HeaderSiteTitleFontFamily: Arial, sans-serif;
   HeaderSiteTitleFontSize: 1rem;
   HeaderSiteTitleFontWeight: 300;
@@ -19,7 +21,12 @@
 }
 
 .root::siteTitle {
+  color: value(HeaderSiteTitleColor);
   font-size: value(HeaderSiteTitleFontSize);
   font-family: value(HeaderSiteTitleFontFamily);
   font-weight: value(HeaderSiteTitleFontWeight);
+}
+
+.root::siteSubtitle {
+  color: value(HeaderSiteSubtitleColor);
 }

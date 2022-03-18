@@ -1,0 +1,30 @@
+@namespace "NoteTheme";
+
+@st-import Note from "./note.st.css";
+
+.root {
+	-st-extends: Note;
+		margin: 2rem;
+}
+
+.root:type(ref)::topic {
+	font-weight: 300;
+	font-size: 1rem;
+	background: #f0f0f0;
+	display: inline-block;
+	padding: 0 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.root:type(ref)::title {
+	font-weight: 300;
+	font-size: 2rem;
+}
+
+.root::header {
+	padding: 2rem 2rem 0;
+}
+
+.root::content {
+	padding: 2rem;
+}

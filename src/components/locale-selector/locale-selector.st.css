@@ -10,11 +10,13 @@
 
 .root {
 	-st-states: locale(string), isOpen(boolean);
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
 	cursor: pointer;
 	display: flex;
 	box-sizing: border-box;
 	border-radius: 8px;
-	position: relative;
 }
 .root:locale(en) {
 	direction: ltr;
