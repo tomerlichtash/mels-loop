@@ -1,6 +1,9 @@
 import React from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
-import { classes as triggerClasses } from "./popover-trigger.st.css";
+import {
+	st as triggerStyle,
+	classes as triggerClasses,
+} from "./popover-trigger.st.css";
 import { classes as contentClasses } from "./popover-content.st.css";
 import {
 	st as closeButtonStyle,
@@ -10,12 +13,14 @@ import {
 export type ICloseButtonPosition = "right" | "left";
 
 export interface IPopoverProps {
+	type: string;
 	trigger: React.ReactNode;
 	children: React.ReactNode;
 	closePosX: ICloseButtonPosition;
 }
 
 export const Popover = ({
+	type,
 	trigger,
 	children,
 	closePosX,
@@ -23,7 +28,9 @@ export const Popover = ({
 	return (
 		<RadixPopover.Root>
 			<RadixPopover.Trigger asChild>
-				<span className={triggerClasses.root}>{trigger}</span>
+				<span className={triggerStyle(triggerClasses.root, { type })}>
+					{trigger}
+				</span>
 			</RadixPopover.Trigger>
 			<RadixPopover.Content side="top" align="center" portalled={false}>
 				<div className={contentClasses.root}>{children}</div>

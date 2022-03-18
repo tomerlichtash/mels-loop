@@ -4,6 +4,7 @@
 
 :vars {
   PopoverContentBorder: 1px solid black;
+  PopoverContentRadius: 0;
   PopoverContentBgColor: #f0f0f0;
   PopoverContentMaxWidth: auto;
   PopoverContentMaxHeight: auto;
@@ -13,6 +14,7 @@
 .root {
   -st-extends: PopoverContent;
 		border: value(PopoverContentBorder);
+    border-radius: value(PopoverContentRadius);
 		background: value(PopoverContentBgColor);
 		width: value(PopoverContentMaxWidth);
 		max-height:value(PopoverContentMaxHeight);

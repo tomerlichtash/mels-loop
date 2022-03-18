@@ -15,6 +15,7 @@
 @st-import FooterTheme from "../../components/footer/footer-theme.st.css";
 @st-import NavTheme from "../../components/nav/nav-theme.st.css";
 @st-import LocaleSelectorTheme from "../../components/locale-selector/locale-selector-theme.st.css";
+/* todo: note theme */
 @st-import PopoverTriggerTheme from "../../components/popover/popover-trigger-theme.st.css";
 @st-import PopoverContentTheme from "../../components/popover/popover-content-theme.st.css";
 @st-import PopoverCloseButtonTheme from "../../components/popover/popover-close-button-theme.st.css";
@@ -122,7 +123,9 @@
 	}
 	PopoverContent {
 		-st-mixin: PopoverContentTheme(
-			PopoverContentBorder 2px solid blue,
+			PopoverContentBorder none,
+			PopoverContentRadius 6px,
+			/* PopoverContentBorder 2px solid blue, */
 			PopoverContentBgColor #fff,
 			PopoverContentMaxWidth 350px,
 			PopoverContentMaxHeight 300px,
@@ -143,6 +146,11 @@
 		);
 	}
 
+	Note {
+  	/* border: 2px solid #f0f0f0; */
+		margin: 2rem;
+
+	}
 	Note:type(ref)::topic {
 		font-weight: 300;
 		font-size: 1rem;
@@ -156,9 +164,9 @@
 		font-size: 2rem;
 	}
 	Note::header {
-		padding: 1rem;
+		padding: 2rem 2rem 0;
 	}
 	Note::content {
-		padding: 1rem;
+		padding: 2rem;
 	}
 }

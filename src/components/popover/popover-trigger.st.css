@@ -1,5 +1,6 @@
 @namespace "PopoverTrigger";
 
 .root {
+  -st-states: type(string);
   cursor: pointer;
 }

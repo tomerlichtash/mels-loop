@@ -44,6 +44,7 @@ export const LinkSelector = ({
 
 	return (
 		<Popover
+			type={linkType}
 			closePosX={getCloseButtonPosition(locale)}
 			trigger={getTriggerComp(linkType, componentData)}
 		>
