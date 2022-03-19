@@ -1,7 +1,10 @@
 @namespace "PopoverCloseButton";
 
+@st-import [preventSelection] from "../../theme/common.st.css";
+
 .root {
   -st-states: posX(enum(right, left));
+  -st-mixin: preventSelection;
   position: absolute;
   cursor: pointer;
 }
