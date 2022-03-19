@@ -47,10 +47,6 @@
 	font-family: "Heebo", sans-serif;
 }
 
-.primaryNav {
-	/* position: relative; */
-}
-
 .nav {
 	-st-extends: Nav;
 }

@@ -8,12 +8,10 @@
 @st-import MobileNav from "../components/nav/nav-mobile.st.css";
 @st-import NavTheme from "../components/nav/nav-theme.st.css";
 
-@st-import NavMobile from "../components/nav/nav-mobile.st.css";
-
 @st-import Page from "../components/page/page.st.css";
 @st-import PageTheme from "../components/page/page-theme.st.css";
 
-/* @st-import LocaleSelector from "../components/locale-selector/locale-selector.st.css"; */
+@st-import LocaleSelector from "../components/locale-selector/locale-selector.st.css";
 /* @st-import LocaleSelectorTheme from "../components/locale-selector/locale-selector-theme.st.css"; */
 
 /* Debug Media Queries */
@@ -33,6 +31,10 @@
 
 /* Default */
 @st-scope .root {	
+	:global(.mobileNavTrigger) {
+		display: none;
+	}
+
 	Page {
 		width: value(PageWidth);
 		margin: 0 auto;
@@ -63,20 +65,27 @@
 		);
 	}
 
-	NavMobile::nav {
+	MobileNav::nav {
 		background-color: transparent;
 		text-align: left;
 	}
-	NavMobile::nav::button {
+	MobileNav::nav::button {
 		color: #fff;
 	}
-	NavMobile::nav::button:selected {
+	MobileNav::nav::button:selected {
 		background-color: #c00;
 	}
 }
 
 /* Mobile */
 @media (min-width: 481px) and (max-width: 767px) {
+	:global(.mobileNavTrigger) {
+		display:block;
+	}
+	:global(img) {
+		width: 100%;
+	}
+	
 	@st-scope .root {	
 		Page {
 			width: 100%;
@@ -106,14 +115,17 @@
 		}
 
 		Nav {
-			/* display: none; */
+			display: none;
 			/* -st-mixin: NavTheme(
 				NavBackgroundColor value(PrimaryNavBgColor)
 			); */
 		}
+		LocaleSelector {
+			display: none;
+		}
 
-		/* NavMobile::burgerButton {
-			visibility: visible;
-		} */
+		MobileNav::nav {
+			display: block;
+		}
 	}
 }

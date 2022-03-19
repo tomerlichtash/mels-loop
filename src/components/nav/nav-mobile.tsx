@@ -18,15 +18,15 @@ export const MobileNav = ({
 	return (
 		<Menu
 			className={st(classes.root, className)}
-			// width={100}
-			burgerButtonClassName={classes.burgerButton}
+			burgerButtonClassName={st(classes.burgerButton, "mobileNavTrigger")}
 			menuClassName={classes.burgerMenu}
 			burgerBarClassName={classes.burgerBars}
 			crossButtonClassName={classes.crossButton}
 			crossClassName={classes.burgerCross}
 			overlayClassName={classes.overlay}
 			itemListClassName={classes.itemList}
-			itemListElement="div"
+			// width={100}
+			// itemListElement="div"
 			styles={{
 				bmMenuWrap: {
 					position: "fixed",

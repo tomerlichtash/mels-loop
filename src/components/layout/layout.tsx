@@ -76,13 +76,13 @@ export default function Layout(props: LayoutProps) {
 							compKeys={LOCALE_SELECTOR_LOCALE}
 						/>
 					</div>
-					<MobileNav
-						className={classes.mobileNav}
-						localeOptions={localeSelectorOptions}
-					/>
 				</div>
 				<Page className={classes.page} nodes={props.children} />
 				<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
+				<MobileNav
+					className={classes.mobileNav}
+					localeOptions={localeSelectorOptions}
+				/>
 			</div>
 			<Script
 				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"
