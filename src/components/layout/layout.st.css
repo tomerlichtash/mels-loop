@@ -2,6 +2,7 @@
 
 @st-import LightTheme from "../../theme/light-theme.st.css";
 @st-import Popover from "../../theme/popover-theme.st.css";
+@st-import Nav from "../../components/nav/nav.st.css";
 
 :global(*):focus {
 	outline: none;
@@ -50,7 +51,11 @@
 	/* position: relative; */
 }
 
-.mobileNav {
+.nav {
+	-st-extends: Nav;
+}
+.nav::list {
+	display: inline-flex;
 }
 
 /* .siteHeader:viewState(normal) {
@@ -68,5 +73,3 @@
 } */
 
 /* .page {} */
-
-

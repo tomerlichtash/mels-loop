@@ -5,6 +5,7 @@
 @st-import FooterTheme from "../components/footer/footer-theme.st.css";
 
 @st-import Nav from "../components/nav/nav.st.css";
+@st-import MobileNav from "../components/nav/nav-mobile.st.css";
 @st-import NavTheme from "../components/nav/nav-theme.st.css";
 
 @st-import NavMobile from "../components/nav/nav-mobile.st.css";
@@ -62,9 +63,15 @@
 		);
 	}
 
-	NavMobile::burgerBars {
-		/* border: 5px solid red; */
-		/* display: none; */
+	NavMobile::nav {
+		background-color: transparent;
+		text-align: left;
+	}
+	NavMobile::nav::button {
+		color: #fff;
+	}
+	NavMobile::nav::button:selected {
+		background-color: #c00;
 	}
 }
 
@@ -105,8 +112,8 @@
 			); */
 		}
 
-		NavMobile::burgerButton {
+		/* NavMobile::burgerButton {
 			visibility: visible;
-		}
+		} */
 	}
 }

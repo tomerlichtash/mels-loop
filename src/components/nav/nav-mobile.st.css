@@ -13,10 +13,10 @@
 	-st-extends: Nav;
 }
 
-.nav::list {
+/* .nav::list {
 	display: block;
 	text-align: left;
-}
+} */
 
 .burgerButton {
   position: fixed;

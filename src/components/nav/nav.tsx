@@ -37,20 +37,6 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 					})}
 				</ul>
 			</div>
-
-			{/* <DropDown
-				options={
-					sitePages.map((page) => {
-						const { label, targetPathname } = page;
-						return { label, targetPathname };
-					}) as IOption[]
-				}
-				triggerCallback={() => false}
-				optionListVisible={false}
-				className={classes.mobileNav}
-				openLabel={"someOpenLabel"}
-				closeLabel={"someCloseLabel"}
-			/> */}
 		</nav>
 	);
 };

@@ -76,14 +76,10 @@ export default function Layout(props: LayoutProps) {
 							compKeys={LOCALE_SELECTOR_LOCALE}
 						/>
 					</div>
-					<MobileNav className={classes.mobileNav}>
-						<LocaleSelector
-							className={classes.localeSelector}
-							options={localeSelectorOptions}
-							compKeys={LOCALE_SELECTOR_LOCALE}
-						/>
-						<Nav className={classes.mobileNavMenu} />
-					</MobileNav>
+					<MobileNav
+						className={classes.mobileNav}
+						localeOptions={localeSelectorOptions}
+					/>
 				</div>
 				<Page className={classes.page} nodes={props.children} />
 				<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />

@@ -4,18 +4,14 @@
 
 .root {
 	user-select: none;
-	/* margin: 0 auto; */
-	/* position: relative; */
 }
 
 .menu {
 	-st-states: marker(string);
-	/* display: inline-flex; */
 }
 
 .list {
 	margin: 0;
-	display: inline-flex;
 }
 
 .listItem {
@@ -39,21 +35,3 @@
 	left: 0;
 	bottom: 0;
 }
-
-/* .mobileNav {
-	-st-states: visible(boolean);
-	display: none;
-}
-.mobileNav:visible {
-}
-.mobileNavTrigger {
-	width: 30px;
-	height: value(siteHeaderHeight);
-	left: 0;
-}
-
-.mobileNavMenu {
-	background: #fff;
-	top: value(siteHeaderHeight);
-	position: relative;
-} */
