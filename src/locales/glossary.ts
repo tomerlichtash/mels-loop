@@ -74,7 +74,7 @@ export const GLOSSARY_TERMS_HE: GlossaryTerms = {
 	DRUM_MEMORY: "זִכְרוֹן תֹּף",
 	FORTRAN: "פוֹרְטְרַן",
 	FRIDEN_FLEXOWRITER: "פרידן פלקסורייטר",
-	GOTO: '"לך-אל"',
+	GOTO: "פְּקֻדָּת GOTO",
 	HEXADECIMAL: "בְּסִיס הֶקְסָדֵּצִימָלִי",
 	INFINITE_LOOP: "לוּלָאָה אֵינְסוֹפִית",
 	JUMP_INSTRUCTION: "הוֹרָאַת דִּלּוּג",
