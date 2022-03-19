@@ -3,15 +3,18 @@
 @st-import LightTheme from "../../theme/light-theme.st.css";
 @st-import Popover from "../../theme/popover-theme.st.css";
 @st-import Nav from "../../components/nav/nav.st.css";
+@st-import [boxSizing] from "../../theme/common.st.css";
 
 :global(*):focus {
 	outline: none;
 }
 :global(html) {
+	-st-mixin: boxSizing;
 	margin: 0;
 	height: 100%;
 }
 :global(body) {
+	-st-mixin: boxSizing;
 	margin: 0;
 	height: 100%;
 }
