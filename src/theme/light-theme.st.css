@@ -113,15 +113,5 @@
 				FooterPadding 4rem 0
 			);
 		}
-
-		/* Nav { */
-			/* -st-mixin: NavTheme(
-				NavBackgroundColor value(PrimaryNavBgColor)
-			); */
-		/* } */
-
-		/* MobileNav::nav {
-			display: block;
-		} */
 	}
 }
