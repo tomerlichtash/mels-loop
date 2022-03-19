@@ -16,12 +16,14 @@ export interface INoteProps extends ComponentProps {
 	contents: React.ReactElement[];
 	label?: string;
 	title?: string;
+	term?: string;
 	sources?: IBibliographySource[];
 }
 
 export const Note = ({
 	type,
 	label,
+	term,
 	contents,
 	title,
 	sources,
@@ -52,6 +54,7 @@ export const Note = ({
 				<div className={classes.header}>
 					<div className={classes.topic}>{label}</div>
 					<div className={classes.title}>{title}</div>
+					<div className={classes.term}>{term}</div>
 				</div>
 			)}
 			<div className={classes.content}>{contents}</div>

@@ -1,6 +1,5 @@
 ---
 glossary_key: "PORT"
-glossary_term: "Port"
 # source_url: TBD
 source_name: Wikipedia
 ---

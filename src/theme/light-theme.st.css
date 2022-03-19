@@ -50,7 +50,11 @@
 			HeaderSiteTitleFontSize 4rem,
 			HeaderSiteTitleFontWeight 300,
 			HeaderPadding 4rem 0,
+			HeaderSiteTitleHoverColor red
 		);
+	}
+	Header::siteTitle:hover {
+		color: red;
 	}
 
 	Footer {
