@@ -109,4 +109,4 @@ workflows:
       - "build"
       - "clean-code"
       - "unit"
-      - "e2e"
+      # - "e2e"
