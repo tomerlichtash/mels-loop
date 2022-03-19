@@ -1,7 +1,7 @@
 @namespace "Nav";
 
 @st-import Button from "../ui/button/button.st.css";
-@st-import [preventSelection] from "../../theme/common.st.css";
+@st-import [preventSelection, boxSizing] from "../../theme/common.st.css";
 
 .root {
 	-st-mixin: preventSelection;
@@ -17,9 +17,8 @@
 
 .listItem {
 	-st-states: isCurrent(boolean);
+	-st-mixin: boxSizing;
  	position: relative;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
 	padding: 0;
 }
 

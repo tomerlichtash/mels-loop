@@ -1,7 +1,7 @@
 @namespace "LocaleSelector";
 
 @st-import DropDown from "../dropdown/dropdown.st.css";
-@st-import [preventSelection] from "../../theme/common.st.css";
+@st-import [preventSelection, boxSizing] from "../../theme/common.st.css";
 
 :vars {
 	buttonMargin: 38px;
@@ -11,12 +11,12 @@
 
 .root {
 	-st-states: locale(string), isOpen(boolean);
+	-st-mixin: boxSizing;
 	position: absolute;
 	top: 1rem;
 	right: 1rem;
 	cursor: pointer;
 	display: flex;
-	box-sizing: border-box;
 	border-radius: 8px;
 }
 .root:locale(en) {

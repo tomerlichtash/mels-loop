@@ -1,7 +1,9 @@
 @namespace "Page";
 
+@st-import [boxSizing] from "../../theme/common.st.css";
+
 .root {
-	box-sizing: border-box;
+	-st-mixin: boxSizing;
 }
 
 .gutter {}

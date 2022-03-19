@@ -1,8 +1,10 @@
 @namespace "Figure";
 
+@st-import [boxSizing] from "../../../../theme/common.st.css";
+
 .root {
+  -st-mixin: boxSizing;
   margin: 0;
-  box-sizing: border-box;
 }
 
 .img {
