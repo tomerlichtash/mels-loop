@@ -1,7 +1,8 @@
 @namespace "MobileNav";
 
 @st-import Nav from "./nav.st.css";
-@st-import [preventSelection] from "./../../theme/common.st.css";
+@st-import LocaleSelector from "../locale-selector/locale-selector.st.css";
+@st-import [preventSelection] from "./../../theme/mixins.st.css";
 
 .root {
   -st-states: visibility(boolean);
@@ -15,6 +16,10 @@
 	-st-extends: Nav;
 }
 
+.localeSelector {
+	-st-extends: LocaleSelector;
+}
+
 .burgerButton {
   position: fixed;
   width: 24px;
@@ -25,7 +30,6 @@
 
 .burgerMenu {
   background: #373a47;
-  /* padding: 2.5em 1.5em 0; */
   font-size: 1.15em;	
 }
 

@@ -114,18 +114,14 @@
 			);
 		}
 
-		Nav {
-			display: none;
+		/* Nav { */
 			/* -st-mixin: NavTheme(
 				NavBackgroundColor value(PrimaryNavBgColor)
 			); */
-		}
-		LocaleSelector {
-			display: none;
-		}
+		/* } */
 
-		MobileNav::nav {
+		/* MobileNav::nav {
 			display: block;
-		}
+		} */
 	}
 }

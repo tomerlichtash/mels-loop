@@ -65,20 +65,25 @@ export default function Layout(props: LayoutProps) {
 				<meta name="og:title" content={title} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div className={st(classes.root, { locale, theme: "light" })}>
-				<div className={classes.siteHeader}>
-					<Header className={classes.header} compKeys={HEADER_LOCALE} />
-					<div className={classes.primaryNav}>
-						<Nav className={classes.nav} />
-						<LocaleSelector
-							className={classes.localeSelector}
-							options={localeSelectorOptions}
-							compKeys={LOCALE_SELECTOR_LOCALE}
-						/>
+			<div
+				className={st(classes.root, { locale, theme: "light" })}
+				id="outer-container"
+			>
+				<div id="page-wrap">
+					<div className={classes.siteHeader}>
+						<Header className={classes.header} compKeys={HEADER_LOCALE} />
+						<div className={classes.primaryNav}>
+							<Nav className={classes.nav} />
+							<LocaleSelector
+								className={classes.localeSelector}
+								options={localeSelectorOptions}
+								compKeys={LOCALE_SELECTOR_LOCALE}
+							/>
+						</div>
 					</div>
+					<Page className={classes.page} nodes={props.children} />
+					<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 				</div>
-				<Page className={classes.page} nodes={props.children} />
-				<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 				<MobileNav
 					className={classes.mobileNav}
 					localeOptions={localeSelectorOptions}

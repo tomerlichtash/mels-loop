@@ -1,6 +1,6 @@
 @namespace "PopoverCloseButton";
 
-@st-import [preventSelection] from "../../theme/common.st.css";
+@st-import [preventSelection] from "../../theme/mixins.st.css";
 
 .root {
   -st-states: posX(enum(right, left));

@@ -1,7 +1,7 @@
 @namespace "Nav";
 
 @st-import Button from "../ui/button/button.st.css";
-@st-import [preventSelection, boxSizing] from "../../theme/common.st.css";
+@st-import [preventSelection, boxSizing] from "../../theme/mixins.st.css";
 
 .root {
 	-st-mixin: preventSelection;

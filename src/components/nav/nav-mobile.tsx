@@ -3,7 +3,7 @@ import { ComponentProps } from "../../interfaces/models";
 import LocaleSelector from "../locale-selector";
 import Nav from "../nav";
 import { LOCALE_SELECTOR_LOCALE } from "../../locales/components";
-import { slide as Menu } from "react-burger-menu";
+import { push as Menu } from "react-burger-menu";
 import { st, classes } from "./nav-mobile.st.css";
 import { IOption } from "../dropdown/option";
 
@@ -18,6 +18,8 @@ export const MobileNav = ({
 	return (
 		<Menu
 			className={st(classes.root, className)}
+			pageWrapId={"page-wrap"}
+			outerContainerId={"outer-container"}
 			burgerButtonClassName={st(classes.burgerButton, "mobileNavTrigger")}
 			menuClassName={classes.burgerMenu}
 			burgerBarClassName={classes.burgerBars}
@@ -25,13 +27,11 @@ export const MobileNav = ({
 			crossClassName={classes.burgerCross}
 			overlayClassName={classes.overlay}
 			itemListClassName={classes.itemList}
-			// width={100}
-			// itemListElement="div"
 			styles={{
 				bmMenuWrap: {
 					position: "fixed",
 					height: "100%",
-					maxWidth: "300px",
+					width: "300px",
 					top: "0",
 				},
 			}}

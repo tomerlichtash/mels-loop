@@ -1,6 +1,6 @@
 @namespace "Figure";
 
-@st-import [boxSizing] from "../../../../theme/common.st.css";
+@st-import [boxSizing] from "../../../../theme/mixins.st.css";
 
 .root {
   -st-mixin: boxSizing;

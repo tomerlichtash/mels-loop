@@ -1,46 +1,21 @@
 @namespace "Layout";
 
-@st-import LightTheme from "../../theme/light-theme.st.css";
-@st-import Popover from "../../theme/popover-theme.st.css";
 @st-import Nav from "../../components/nav/nav.st.css";
-@st-import [boxSizing] from "../../theme/common.st.css";
-
-:global(*):focus {
-	outline: none;
-}
-:global(html) {
-	-st-mixin: boxSizing;
-	margin: 0;
-	height: 100%;
-}
-:global(body) {
-	-st-mixin: boxSizing;
-	margin: 0;
-	height: 100%;
-}
-:global(h1),
-:global(h2),
-:global(h3),
-:global(h4),
-:global(h5),
-:global(h6) {
-	margin: 0;
-}
-:global(ul) {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
+@st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
+@st-import Popover from "../../theme/popover-theme.st.css";
+@st-import Globals from "../../theme/globals.st.css";
+@st-import LightTheme from "../../theme/light-theme.st.css";
 
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
+	-st-mixin: Globals, Popover;
 }
 .root:theme(light) {
-	-st-mixin: Popover, LightTheme;
+	-st-mixin: LightTheme;
 }
-.root:theme(dark) {
-	/* -st-mixin: DarkTheme; */
-}
+/* .root:theme(dark) {
+	-st-mixin: DarkTheme;
+} */
 .root:locale(en) {
 	direction: ltr;
 	font-family: "Nunito", sans-serif;
@@ -49,6 +24,8 @@
 	direction: rtl;
 	font-family: "Heebo", sans-serif;
 }
+
+.primaryNav {}
 
 .nav {
 	-st-extends: Nav;
@@ -72,3 +49,9 @@
 } */
 
 /* .page {} */
+
+@media (min-width: 320px) and (max-width: 767px) {
+	.primaryNav {
+		display: none;
+	}
+}
