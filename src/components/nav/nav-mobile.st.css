@@ -1,10 +1,11 @@
 @namespace "MobileNav";
 
 @st-import Nav from "./nav.st.css";
+@st-import [preventSelection] from "./../../theme/common.st.css";
 
 .root {
   -st-states: visibility(boolean);
-	user-select: none;
+	-st-mixin: preventSelection;
 	margin: 0 auto;
 	position: relative;
 	height: 100%;

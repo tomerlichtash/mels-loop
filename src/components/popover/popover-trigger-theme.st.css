@@ -24,6 +24,5 @@
 
 .root[data-state="open"]:type(glossary) {
   border-bottom: 3px double red;
-  user-select: none;
   background-color: yellow;
 }

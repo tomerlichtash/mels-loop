@@ -1,6 +1,7 @@
 @namespace "LocaleSelector";
 
 @st-import DropDown from "../dropdown/dropdown.st.css";
+@st-import [preventSelection] from "../../theme/common.st.css";
 
 :vars {
 	buttonMargin: 38px;
@@ -58,7 +59,7 @@
 .dropdown {
 	-st-extends: DropDown;
 	-st-states: locale(string);
-	user-select: none;
+	-st-mixin: preventSelection;
 	display: block;
 	width: 150px;
 	background: #fff;

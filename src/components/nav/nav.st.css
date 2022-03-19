@@ -1,9 +1,10 @@
 @namespace "Nav";
 
 @st-import Button from "../ui/button/button.st.css";
+@st-import [preventSelection] from "../../theme/common.st.css";
 
 .root {
-	user-select: none;
+	-st-mixin: preventSelection;
 }
 
 .menu {
