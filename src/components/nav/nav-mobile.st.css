@@ -21,12 +21,19 @@
 }
 
 .burgerButton {
+  -st-states: right(boolean);
   position: fixed;
   width: 24px;
   height: 20px;
-  left: 24px;
   top: 24px;
 }
+.burgerButton:right(true) {
+  right: 24px;
+}
+.burgerButton:not(:right) {
+  left: 24px;
+}
+
 
 .burgerMenu {
   background: #373a47;

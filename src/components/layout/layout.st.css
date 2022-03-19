@@ -2,6 +2,7 @@
 
 @st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
+@st-import MobileNav from "../../components/nav/nav-mobile.st.css";
 @st-import Popover from "../../theme/popover-theme.st.css";
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
@@ -23,6 +24,15 @@
 .root:locale(he) {
 	direction: rtl;
 	font-family: "Heebo", sans-serif;
+}
+
+.mobileNav {
+	-st-extends: MobileNav;
+}
+.mobileNav::burgerButton {
+		right: 1rem;
+		border: 2px solid red;
+		/* left: auto; */
 }
 
 .primaryNav {}

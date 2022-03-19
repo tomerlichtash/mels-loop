@@ -86,6 +86,7 @@ export default function Layout(props: LayoutProps) {
 				</div>
 				<MobileNav
 					className={classes.mobileNav}
+					right={locale === "he"}
 					localeOptions={localeSelectorOptions}
 				/>
 			</div>
