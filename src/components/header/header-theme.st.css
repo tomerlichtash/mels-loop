@@ -1,0 +1,45 @@
+@namespace "HeaderTheme";
+
+@st-import Header from "./header.st.css";
+
+:vars {
+  HeaderBackgroundColor: red;
+  HeaderSiteTitleColor: blue;
+  HeaderSiteSubtitleColor: green;
+  HeaderSiteTitleFontFamily: Arial, sans-serif;
+  HeaderSiteTitleFontSize: 1rem;
+  HeaderSiteTitleFontWeight: 300;
+  HeaderPadding: 0;
+  HeaderTextAlign: center;
+}
+
+.root {
+  -st-extends: Header;
+  background-color: value(HeaderBackgroundColor);
+  padding: value(HeaderPadding);
+  text-align: value(HeaderTextAlign);
+}
+
+.root::siteTitle {
+  color: value(HeaderSiteTitleColor);
+  font-size: value(HeaderSiteTitleFontSize);
+  font-family: value(HeaderSiteTitleFontFamily);
+  font-weight: value(HeaderSiteTitleFontWeight);
+}
+
+.root::siteTitle {}
+
+.root::siteSubtitle {
+  color: value(HeaderSiteSubtitleColor);
+}
+
+.root::siteTitleButton {
+  text-decoration: none;
+  color: value(HeaderSiteTitleColor);
+  /* border-bottom: 1px solid #808080; */
+}
+
+.root::siteTitleButton:hover {
+  color: red;
+  text-decoration: underline;
+}

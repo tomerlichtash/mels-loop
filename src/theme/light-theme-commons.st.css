@@ -1,0 +1,17 @@
+@namespace "LightThemeCommons";
+
+:vars {
+	color0: #fff;
+	color1: #f0f0f0;
+	color2: #303030;
+	color3: #f0f0f0;
+	color4: #e0e0e0;
+	color5: #808080;
+}
+
+:vars {
+	HeaderBgColor: value(color3);
+	HeaderTitleColor: value(color2);
+	HeaderSubtitleColor: value(color5);
+	PrimaryNavBgColor: value(color4);
+}

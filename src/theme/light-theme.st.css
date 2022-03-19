@@ -1,0 +1,117 @@
+@st-import Header from "../components/header/header.st.css";
+@st-import HeaderTheme from "../components/header/header-theme.st.css";
+
+@st-import Footer from "../components/footer/footer.st.css";
+@st-import FooterTheme from "../components/footer/footer-theme.st.css";
+
+@st-import Nav from "../components/nav/nav.st.css";
+@st-import MobileNav from "../components/nav/nav-mobile.st.css";
+@st-import NavTheme from "../components/nav/nav-theme.st.css";
+
+@st-import Page from "../components/page/page.st.css";
+@st-import PageTheme from "../components/page/page-theme.st.css";
+
+@st-import LocaleSelector from "../components/locale-selector/locale-selector.st.css";
+/* @st-import LocaleSelectorTheme from "../components/locale-selector/locale-selector-theme.st.css"; */
+
+/* Debug Media Queries */
+/* @st-import Responsive from "./responsive-mixin.st.css"; */
+/* .root {
+	-st-mixin: Responsive;
+} */
+
+@st-import [PageWidth] from "./common.st.css";
+
+@st-import [
+	HeaderBgColor,
+	HeaderTitleColor,
+	HeaderSubtitleColor,
+	PrimaryNavBgColor
+] from "./light-theme-commons.st.css";
+
+/* Default */
+@st-scope .root {	
+	:global(.mobileNavTrigger) {
+		display: none;
+	}
+
+	Page {
+		width: value(PageWidth);
+		margin: 0 auto;
+		padding: 2rem;
+	}
+
+	Header {
+		-st-mixin: HeaderTheme(
+			HeaderBackgroundColor value(HeaderBgColor),
+			HeaderSiteTitleColor value(HeaderTitleColor),
+			HeaderSiteSubtitleColor value(HeaderSubtitleColor),
+			HeaderSiteTitleFontFamily inherit,
+			HeaderSiteTitleFontSize 4rem,
+			HeaderSiteTitleFontWeight 300,
+			HeaderPadding 4rem 0,
+		);
+	}
+
+	Footer {
+		-st-mixin: FooterTheme(
+			FooterPadding 4rem 0
+		);
+	}
+
+	Nav {
+		-st-mixin: NavTheme(
+			NavBackgroundColor value(PrimaryNavBgColor)
+		);
+	}
+
+	MobileNav::nav {
+		background-color: transparent;
+		text-align: left;
+	}
+	MobileNav::nav::button {
+		color: #fff;
+	}
+	MobileNav::nav::button:selected {
+		background-color: #c00;
+	}
+}
+
+/* Mobile */
+@media (min-width: 320px) and (max-width: 767px) {
+	:global(.mobileNavTrigger) {
+		display:block;
+	}
+	:global(img) {
+		width: 100%;
+	}
+	
+	@st-scope .root {	
+		Page {
+			width: 100%;
+			overflow: hidden;
+			margin: 0 auto;
+		}
+		Page::gutter {
+			padding: 0 1rem;
+		}
+
+		Header {
+			-st-mixin: HeaderTheme(
+				HeaderBackgroundColor value(HeaderBgColor),
+				HeaderSiteTitleColor value(HeaderTitleColor),
+				HeaderSiteSubtitleColor value(HeaderSubtitleColor),
+				HeaderSiteTitleFontFamily inherit,
+				HeaderSiteTitleFontSize 2rem,
+				HeaderSiteTitleFontWeight 300,
+				HeaderPadding 2rem 0,
+			);
+		}
+
+		Footer {
+			-st-mixin: FooterTheme(
+				FooterPadding 4rem 0
+			);
+		}
+	}
+}

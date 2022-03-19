@@ -1,0 +1,56 @@
+@namespace "MobileNav";
+
+@st-import Nav from "./nav.st.css";
+@st-import LocaleSelector from "../locale-selector/locale-selector.st.css";
+@st-import [preventSelection] from "./../../theme/mixins.st.css";
+
+.root {
+  -st-states: visibility(boolean);
+	-st-mixin: preventSelection;
+	margin: 0 auto;
+	position: relative;
+	height: 100%;
+}
+
+.nav {
+	-st-extends: Nav;
+}
+
+.localeSelector {
+	-st-extends: LocaleSelector;
+}
+
+.burgerButton {
+  position: fixed;
+  width: 24px;
+  height: 20px;
+  left: 24px;
+  top: 24px;
+}
+
+.burgerMenu {
+  background: #373a47;
+  font-size: 1.15em;	
+}
+
+.burgerBars {
+  background: #373a47;	
+}
+
+.crossButton {
+  height: 24px;
+  width: 24px;	
+}
+
+.burgerCross {
+  background: #bdc3c7;	
+}
+
+.overlay {
+	top: 0;
+}
+
+.itemList {
+	color: #b8b7ad;
+  padding: 3rem 0 0;
+}

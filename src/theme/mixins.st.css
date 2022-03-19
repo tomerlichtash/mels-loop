@@ -1,22 +1,15 @@
 @namespace "Mixins";
 
-:import {
-	-st-from: "../components/ui/button/button.st.css";
-	-st-default: Button;
+.boxSizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-.NavButton {
-	-st-extends: Button;
-	cursor: pointer;
-	padding: 10px;
-	text-decoration: none;
-}
-
-.NavButton:selected {
-	color: red;
-}
-
-.NavButton:hover {
-	background-color: #808080;
-	color: #fff;
+/* https://css-tricks.com/almanac/properties/u/user-select/ */
+.preventSelection {
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */     
 }

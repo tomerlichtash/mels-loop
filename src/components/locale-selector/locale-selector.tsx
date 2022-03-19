@@ -18,7 +18,6 @@ export const LocaleSelector = ({
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, locale } = layoutContext;
 	const [optionListVisible, toggleOptionList] = useState(false);
-	// const [optionListVisible, toggleOptionList] = useState(true);
 	return (
 		<div
 			className={st(

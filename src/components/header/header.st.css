@@ -1,11 +1,20 @@
 @namespace "Header";
 
-.root {}
+@st-import Button from "../ui/button/button.st.css";
+@st-import [boxSizing] from "../../theme/mixins.st.css";
+
+.root {
+	-st-mixin: boxSizing;
+}
 
 .container {}
 
 .title {}
 
-.siteTitleHeading {}
-
 .siteTitle {}
+
+.siteSubtitle {}
+
+.siteTitleButton {
+  -st-extends: Button;
+}

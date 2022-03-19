@@ -1,14 +1,7 @@
 @namespace "ContentComponent";
 
-:import {
-	-st-from: "./content-blocks/paragraph/paragraph.st.css";
-	-st-default: Paragraph;
-}
-
-:import {
-	-st-from: "./content-blocks/figure/figure.st.css";
-	-st-default: Figure;
-}
+@st-import Paragraph from "./content-blocks/paragraph/paragraph.st.css";
+@st-import Figure from "./content-blocks/figure/figure.st.css";
 
 .root {
 	-st-states: type(string);

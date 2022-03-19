@@ -1,9 +1,6 @@
 @namespace "Option";
 
-:import {
-	-st-from: "../ui/button/button.st.css";
-	-st-default: Button;
-}
+@st-import Button from "../ui/button/button.st.css";
 
 .root {
 	-st-states: id(string);

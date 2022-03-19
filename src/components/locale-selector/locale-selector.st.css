@@ -1,9 +1,7 @@
 @namespace "LocaleSelector";
 
-:import {
-	-st-from: "../dropdown/dropdown.st.css";
-	-st-default: DropDown;
-}
+@st-import DropDown from "../dropdown/dropdown.st.css";
+@st-import [preventSelection, boxSizing] from "../../theme/mixins.st.css";
 
 :vars {
 	buttonMargin: 38px;
@@ -13,11 +11,13 @@
 
 .root {
 	-st-states: locale(string), isOpen(boolean);
+	-st-mixin: boxSizing;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
 	cursor: pointer;
 	display: flex;
-	box-sizing: border-box;
 	border-radius: 8px;
-	position: relative;
 }
 .root:locale(en) {
 	direction: ltr;
@@ -59,7 +59,7 @@
 .dropdown {
 	-st-extends: DropDown;
 	-st-states: locale(string);
-	user-select: none;
+	-st-mixin: preventSelection;
 	display: block;
 	width: 150px;
 	background: #fff;
