@@ -3,9 +3,7 @@
 @st-import Button from "../ui/button/button.st.css";
 @st-import [preventSelection, boxSizing] from "../../theme/mixins.st.css";
 
-.root {
-	-st-mixin: preventSelection;
-}
+.root {}
 
 .menu {
 	-st-states: marker(string);
@@ -17,7 +15,7 @@
 
 .listItem {
 	-st-states: isCurrent(boolean);
-	-st-mixin: boxSizing;
+	-st-mixin: boxSizing, preventSelection;
  	position: relative;
 	padding: 0;
 }
