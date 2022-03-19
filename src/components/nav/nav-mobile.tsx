@@ -48,7 +48,7 @@ export const MobileNav = ({
 				options={localeOptions}
 				compKeys={LOCALE_SELECTOR_LOCALE}
 			/>
-			<Nav className={classes.nav} />
+			<Nav className={st(classes.nav, { right })} />
 		</Menu>
 	);
 };

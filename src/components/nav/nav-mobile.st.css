@@ -14,10 +14,16 @@
 
 .nav {
 	-st-extends: Nav;
+  -st-states: right(boolean);
+  padding-top: 2rem;
+}
+.nav:right::button {
+  text-align: right;
 }
 
 .localeSelector {
 	-st-extends: LocaleSelector;
+  z-index: 1;
 }
 
 .burgerButton {
@@ -33,7 +39,6 @@
 .burgerButton:not(:right) {
   left: 24px;
 }
-
 
 .burgerMenu {
   background: #373a47;
