@@ -4,6 +4,7 @@ import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
 import Nav from "../nav";
+import { MobileNav } from "../nav/nav-mobile";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
 import { useRouter } from "next/router";
@@ -17,7 +18,7 @@ import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { LOCALE_FLAGS } from "../svg";
 import { ReactLayoutContext } from "../../contexts/layout-context";
-import { style, classes } from "./layout.st.css";
+import { st, classes } from "./layout.st.css";
 
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
@@ -53,7 +54,7 @@ export default function Layout(props: LayoutProps) {
 	return (
 		<>
 			<Head>
-				<link rel="icon" type="image/png" href="/favicon-temp.png"/>
+				<link rel="icon" type="image/png" href="/favicon-temp.png" />
 				<meta name="description" content={subtitle} />
 				<meta
 					property="og:image"
@@ -64,20 +65,29 @@ export default function Layout(props: LayoutProps) {
 				<meta name="og:title" content={title} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div className={style(classes.root, { locale })}>
-				<div className={style(classes.siteHeader)}>
-					<Header className={classes.header} compKeys={HEADER_LOCALE} />
-					<div className={classes.primaryNav}>
-						<Nav className={classes.nav} />
-						<LocaleSelector
-							className={classes.localeSelector}
-							options={localeSelectorOptions}
-							compKeys={LOCALE_SELECTOR_LOCALE}
-						/>
+			<div
+				className={st(classes.root, { locale, theme: "light" })}
+				id="outer-container"
+			>
+				<div id="page-wrap">
+					<div className={classes.siteHeader}>
+						<Header className={classes.header} compKeys={HEADER_LOCALE} />
+						<div className={classes.primaryNav}>
+							<Nav className={classes.nav} />
+							<LocaleSelector
+								className={classes.localeSelector}
+								options={localeSelectorOptions}
+								compKeys={LOCALE_SELECTOR_LOCALE}
+							/>
+						</div>
 					</div>
+					<Page className={classes.page} nodes={props.children} />
+					<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 				</div>
-				<Page className={classes.page} nodes={props.children} />
-				<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
+				<MobileNav
+					className={classes.mobileNav}
+					localeOptions={localeSelectorOptions}
+				/>
 			</div>
 			<Script
 				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"

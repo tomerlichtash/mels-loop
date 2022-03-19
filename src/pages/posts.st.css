@@ -1,19 +1,8 @@
 @namespace "Posts";
 
-:import {
-  -st-from: "../components/ui/button/button.st.css";
-  -st-default: Button;
-}
-
-:import {
-  -st-from: "../components/content/content-component.st.css";
-  -st-default: ContentComponent;
-}
-
-:import {
-  -st-from: "../components/content/content-blocks/figure/figure.st.css";
-  -st-default: FigureBlock;
-}
+@st-import Button from "../components/ui/button/button.st.css";
+@st-import ContentComponent from "../components/content/content-component.st.css";
+@st-import FigureBlock from "../components/content/content-blocks/figure/figure.st.css";
 
 .root {}
 

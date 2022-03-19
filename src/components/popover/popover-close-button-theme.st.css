@@ -1,0 +1,47 @@
+@namespace "PopoverCloseButtonTheme";
+
+@st-import PopoverCloseButton from "./popover-close-button.st.css";
+
+:vars {
+  PopoverCloseMarginTop: 0;
+  PopoverCloseBorderRadius: 0;
+  PopoverCloseBorder: none;
+  PopoverCloseFontSize: 10px;
+  PopoverCloseSize: 20px;
+  PopoverCloseCase: lowercase;
+  PopoverCloseBgHover: #000;
+  PopoverClosePosRight: 0;
+  PopoverClosePosLeft: 0;
+  PopoverCloseIconColor: green;
+  PopoverCloseIconColorHover: red;
+}
+
+.root {
+  -st-extends: PopoverCloseButton;
+  top: value(PopoverCloseMarginTop);
+  border-radius: value(PopoverCloseBorderRadius);
+  border: value(PopoverCloseBorder);
+  font-size: value(PopoverCloseFontSize);
+  width: value(PopoverCloseSize);
+  height: value(PopoverCloseSize);
+  line-height: value(PopoverCloseSize);
+  text-transform: value(PopoverCloseCase);
+}
+
+.root:hover {
+  background-color: value(PopoverCloseBgHover);
+}
+
+.root:posX(right) {
+  right: value(PopoverClosePosRight);
+}
+.root:posX(left) {
+  left: value(PopoverClosePosLeft);
+}
+
+.root::icon {
+  color: value(PopoverCloseIconColor);
+}
+.root:hover::icon {
+  color: value(PopoverCloseIconColorHover);
+}

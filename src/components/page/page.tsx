@@ -7,7 +7,11 @@ export interface PageProps extends ComponentProps {
 }
 
 export const Page = ({ nodes, className }: PageProps): JSX.Element => {
-	return <main className={st(classes.root, className)}>{nodes}</main>;
+	return (
+		<main className={st(classes.root, className)}>
+			<div className={classes.gutter}>{nodes}</div>
+		</main>
+	);
 };
 
 export default Page;

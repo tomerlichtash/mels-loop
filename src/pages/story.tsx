@@ -55,12 +55,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		}
 		const nodeData: Partial<IMLParsedNode> = {
 			displayType: NODE_DISPLAY_TYPES.POPOVER,
-			linkType: linkData.type
+			linkType: linkData.type,
 		};
 		if (linkData.type === DynamicContentTypes.Annotation) {
-			Object.assign(nodeData, { sequence: context.getEnumerator(linkData.type) + 1});
+			Object.assign(nodeData, {
+				sequence: context.getEnumerator(linkData.type) + 1,
+			});
 		}
-		return {...node, ...nodeData };
+		return { ...node, ...nodeData };
 	};
 	const nodeProcessor = contentUtils.createNodeMappingFilter(
 		linkProcessor,

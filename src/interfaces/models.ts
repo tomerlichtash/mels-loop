@@ -240,7 +240,7 @@ export interface ContentComponentProps {
  */
 export interface ComponentProps {
 	compKeys?: Record<string, string>;
-	// translate?: (key: string) => string;
+	children?: React.ReactNode;
 	className?: string;
 }
 

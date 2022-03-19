@@ -1,0 +1,12 @@
+@namespace "PopoverCloseButton";
+
+@st-import [preventSelection] from "../../theme/mixins.st.css";
+
+.root {
+  -st-states: posX(enum(right, left));
+  -st-mixin: preventSelection;
+  position: absolute;
+  cursor: pointer;
+}
+
+.icon {}

@@ -1,52 +1,35 @@
 @namespace "Nav";
 
-:import {
-	-st-from: "../ui/button/button.st.css";
-	-st-default: Button;
-}
+@st-import Button from "../ui/button/button.st.css";
+@st-import [preventSelection, boxSizing] from "../../theme/mixins.st.css";
 
-.root {
-	user-select: none;
-	margin: 0 auto;
-	position: relative;
-}
+.root {}
 
 .menu {
 	-st-states: marker(string);
-	display: inline-flex;
 }
 
 .list {
 	margin: 0;
-	display: inline-flex;
 }
 
 .listItem {
-	-st-states: marker(string);
+	-st-states: isCurrent(boolean);
+	-st-mixin: boxSizing, preventSelection;
  	position: relative;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: .4em .2em;
+	padding: 0;
 }
 
 .button {
 	-st-extends: Button;
-}
-
-/* .mobileNav {
-	-st-states: visible(boolean);
-	display: none;
-}
-.mobileNav:visible {
-}
-.mobileNavTrigger {
-	width: 30px;
-	height: value(siteHeaderHeight);
-	left: 0;
-}
-
-.mobileNavMenu {
-	background: #fff;
-	top: value(siteHeaderHeight);
 	position: relative;
-} */
+}
+
+.marker {
+	-st-states: isCurrent(boolean);
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	left: 0;
+	bottom: 0;
+}

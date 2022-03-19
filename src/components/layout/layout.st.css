@@ -1,91 +1,44 @@
 @namespace "Layout";
 
-:import {
-	-st-from: "../../theme/common.st.css";
-	-st-named: LayoutBgColor, shadow1;
-}
-
-:import {
-	-st-from: "../../components/footer/footer.st.css";
-	-st-default: Footer;
-}
-
-:import {
-	-st-from: "../../components/header/header.st.css";
-	-st-default: Header;
-}
-
-:import {
-	-st-from: "../../components/nav/nav.st.css";
-	-st-default: Nav;
-}
-
-:import {
-	-st-from: "../../components/locale-selector/locale-selector.st.css";
-	-st-default: LocaleSelector;
-}
-
-:import {
-	-st-from: "../../theme/mixins.st.css";
-	-st-named: NavButton;
-}
-
-:global(*):focus {
-	outline: none;
-}
-
-:global(html) {
-	margin: 0;
-	height: 100%;
-}
-
-:global(body) {
-	/* padding-top: 350px; */
-	margin: 0;
-	height: 100%;
-}
-
-:global(h1) {
-	margin: 0;
-}
-
-:global(ul) {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
+@st-import Nav from "../../components/nav/nav.st.css";
+@st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
+@st-import Popover from "../../theme/popover-theme.st.css";
+@st-import Globals from "../../theme/globals.st.css";
+@st-import LightTheme from "../../theme/light-theme.st.css";
 
 .root {
-	-st-states: locale(enum(en, he));
+	-st-states: locale(enum(en, he)), theme(enum(light, dark));
+	-st-mixin: Globals, Popover;
 }
-
+.root:theme(light) {
+	-st-mixin: LightTheme;
+}
+/* .root:theme(dark) {
+	-st-mixin: DarkTheme;
+} */
 .root:locale(en) {
 	direction: ltr;
 	font-family: "Nunito", sans-serif;
 }
-
 .root:locale(he) {
 	direction: rtl;
 	font-family: "Heebo", sans-serif;
 }
 
-.siteHeader {
-	z-index: 1000;
-  -st-states: viewState(enum(normal, compact));
-  background-color: #f0f0f0;
-	/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); */
-  top: -25px;
-	width: 100%;
-	position: static;
-  transition: top 125ms ease-in-out;
-	text-align: center;
+.primaryNav {}
+
+.nav {
+	-st-extends: Nav;
 }
-.siteHeader:viewState(normal) {
+.nav::list {
+	display: inline-flex;
+}
+
+/* .siteHeader:viewState(normal) {
 	top: 0;
 }
 .siteHeader:viewState(compact) {
   top: 0;
-  /* position: fixed; */
 	background-color: rgba(225, 225, 225, 0.9)
 }
 .siteHeader:viewState(compact) .header {
@@ -93,43 +46,12 @@
 }
 .siteHeader:viewState(compact) .nav {
 	position: static;
-}
+} */
 
-.primaryNav {
-	display: flex;
-	align-items: top;
-	align-content: space-around;
-	width: 100%;
-}
+/* .page {} */
 
-/* Extended Header Components */
-
-.header {
-	-st-extends: Header;
-	padding: 4rem 0;
-}
-.header::siteTitle {
-	font-size: 4rem;
-	font-weight: 300;
-}
-
-.footer {
-	-st-extends: Footer;
-}
-
-.page {}
-
-.nav {
-	-st-extends: Nav;
-}
-
-.nav::button {
-	-st-mixin: NavButton;
-}
-	
-.localeSelector {
-	-st-extends: LocaleSelector;
-	position: fixed;
-	top: 1rem;
-	right: 1rem;
+@media (min-width: 320px) and (max-width: 767px) {
+	.primaryNav {
+		display: none;
+	}
 }

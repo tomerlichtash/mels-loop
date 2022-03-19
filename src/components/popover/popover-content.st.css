@@ -1,0 +1,5 @@
+@namespace "PopoverContent";
+
+.root {
+  overflow-y: scroll;
+}

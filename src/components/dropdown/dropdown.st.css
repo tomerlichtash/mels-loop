@@ -1,14 +1,7 @@
 @namespace "DropDown";
 
-:import {
-	-st-from: "../dropdown/option.st.css";
-	-st-default: Option;
-}
-
-:import {
-	-st-from: "../ui/button/button.st.css";
-	-st-default: Button;
-}
+@st-import Option from "../dropdown/option.st.css";
+@st-import Button from "../ui/button/button.st.css";
 
 .root {
 	-st-states: optionListVisible;
@@ -29,13 +22,13 @@
 }
 
 .root:not(:optionListVisible):hover .triggerIcon {
-color: blue;
+	color: blue;
 }
 .root:optionListVisible::triggerContainer .triggerIcon {
-color: #808080;
+	color: #808080;
 }
 .root:optionListVisible::triggerContainer:hover .triggerIcon {
-color: red;
+	color: red;
 }
 
 .triggerIcon {}
