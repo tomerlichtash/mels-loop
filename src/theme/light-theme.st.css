@@ -78,7 +78,7 @@
 }
 
 /* Mobile */
-@media (min-width: 481px) and (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 767px) {
 	:global(.mobileNavTrigger) {
 		display:block;
 	}
@@ -93,7 +93,7 @@
 			margin: 0 auto;
 		}
 		Page::gutter {
-			padding: 0 2rem;
+			padding: 0 1rem;
 		}
 
 		Header {

@@ -1,8 +1,11 @@
 @namespace "Header";
 
 @st-import Button from "../ui/button/button.st.css";
+@st-import [boxSizing] from "../../theme/common.st.css";
 
-.root {}
+.root {
+	-st-mixin: boxSizing;
+}
 
 .container {}
 
