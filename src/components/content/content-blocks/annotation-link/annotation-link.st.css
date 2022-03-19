@@ -1,3 +1,7 @@
 @namespace "AnnotationLink";
 
-.root {}
+@st-import [preventSelection] from "../../../../theme/common.st.css";
+
+.root {
+  -st-mixin: preventSelection;
+}
