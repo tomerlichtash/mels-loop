@@ -10,13 +10,13 @@ import {
 	classes as closeButtonClasses,
 } from "./popover-close-button.st.css";
 
-export type ICloseButtonPosition = "right" | "left";
+export type CloseButtonPosition = "right" | "left";
 
 export interface IPopoverProps {
 	type: string;
 	trigger: React.ReactNode;
 	children: React.ReactNode;
-	closePosX: ICloseButtonPosition;
+	closePosX: CloseButtonPosition;
 }
 
 export const Popover = ({
@@ -25,6 +25,8 @@ export const Popover = ({
 	children,
 	closePosX,
 }: IPopoverProps): JSX.Element => {
+	console.log("popover");
+
 	return (
 		<RadixPopover.Root>
 			<RadixPopover.Trigger asChild>

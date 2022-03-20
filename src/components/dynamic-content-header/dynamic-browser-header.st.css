@@ -1,0 +1,23 @@
+@namespace "DynamicBrowserHeader";
+
+@st-import Button from "../ui/button/button.st.css";
+@st-import [boxSizing] from "../../theme/mixins.st.css";
+
+.root {
+	-st-mixin: boxSizing;
+}
+
+.linksContainer {
+	display: flex;
+	justify-content: flex-start;
+	gap: 5px;
+	flex-wrap: nowrap;
+}
+
+.itemLink:not(:last-child) {
+	cursor: pointer;
+}
+
+.itemLink:not(:last-child)::after {
+	content: " * "
+}

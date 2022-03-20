@@ -4,6 +4,7 @@ import { CONTENT_TYPES } from "../../consts";
 import GenericPage from "../../components/content/generic-page";
 import { mlNextUtils } from "../../lib/next-utils";
 import { LoadFolderModes } from "../../interfaces/parser";
+import { contentUtils } from "../../lib/content-utils";
 
 export default function GlossaryTerm(props: IPageProps) {
 	return <GenericPage pageProps={props} />;
@@ -12,7 +13,7 @@ export default function GlossaryTerm(props: IPageProps) {
 export const getStaticPaths: GetStaticPaths = async (context) => {
 	return mlNextUtils.getFolderStaticPaths(
 		CONTENT_TYPES.GLOSSARY,
-		context.locales
+		context.locales,
 	);
 };
 
@@ -22,6 +23,9 @@ export const getStaticProps: GetStaticProps = async (
 	return mlNextUtils.getFolderStaticProps(
 		`${CONTENT_TYPES.GLOSSARY}/${context.params.id as string}`,
 		context.locale,
-		LoadFolderModes.FOLDER
+		LoadFolderModes.FOLDER,
+		{
+			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()]
+		}
 	);
 };

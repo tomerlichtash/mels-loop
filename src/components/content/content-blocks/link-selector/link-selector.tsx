@@ -9,9 +9,10 @@ import { ContentIterator } from "../../content-iterator";
 import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
-import DynamicContentViewer from "../../dynamic-content-viewer";
 import { ReactLayoutContext } from "../../../../contexts/layout-context";
-import { ICloseButtonPosition } from "../../../popover/popover";
+import { CloseButtonPosition } from "../../../popover/popover";
+import DynamicContentBrowser from "../../../dynamic-content-browser";
+import { ReactDynamicContentContext } from "../../../../contexts/dynamic-content-context";
 
 const getTriggerComp = (
 	type: DynamicContentTypes,
@@ -25,7 +26,7 @@ const getTriggerComp = (
 	}
 };
 
-const getCloseButtonPosition = (locale: string): ICloseButtonPosition => {
+const getCloseButtonPosition = (locale: string): CloseButtonPosition => {
 	return locale === "en" ? "right" : "left";
 };
 
@@ -34,21 +35,35 @@ export const LinkSelector = ({
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { displayType, key } = node;
+	const dcContext = useContext(ReactDynamicContentContext);
 	const { locale } = useContext(ReactLayoutContext);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
+		console.log("linkselector rendering normal link");
 		return <Link key={key} componentData={componentData} />;
 	}
 
-	const { linkType, target } = node;
-
+	const { linkType } = node;
+	if (dcContext) {
+		console.log("linkselector rendering click-only link");
+		const onClick = (evt: React.MouseEvent) => {
+			dcContext.setCurrentNode(node);
+			evt.preventDefault();
+			evt.stopPropagation();
+			return false;
+		};
+		return <Link key={key} componentData={componentData}
+			onClick={onClick}/>;
+	}
+	console.log("link selector rendering popover");
 	return (
 		<Popover
 			type={linkType}
 			closePosX={getCloseButtonPosition(locale)}
 			trigger={getTriggerComp(linkType, componentData)}
 		>
-			<DynamicContentViewer url={target} />
+			<DynamicContentBrowser 
+				node={node}></DynamicContentBrowser>
 		</Popover>
 	);
 };

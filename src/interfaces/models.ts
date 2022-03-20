@@ -268,3 +268,31 @@ export interface IPageProps {
 	className?: string;
 	metaData?: string;
 }
+
+/**
+ * A stack of parsed nodes
+ */
+ export interface IContentStack<T> {
+	readonly count: number;
+	/**
+	 * returns the topmost node, null when the stack is empty.
+	 */
+	readonly current: T | null;
+
+	/**
+	 * Returns a copy of the stack array
+	 */
+	readonly stack: Array<T>;
+	 /**
+	 * Pushes the node only if its not null and different (by key) from the top node
+	 * @param node 
+	 * @returns the content stack object, e.g. for chaining
+	 */
+	push(node: T): IContentStack<T>;
+	/**
+	 * returns the topmost node, after removing it from the stack
+	 * Null when the stack is empty.
+	 */
+	pop(): T | null;
+	clear(): IContentStack<T>;
+}

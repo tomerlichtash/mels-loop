@@ -6,6 +6,7 @@ import {
 	ASTNODE_TYPES,
 	IMLParsedNode,
 	MLNODE_TYPES,
+	NODE_DISPLAY_TYPES,
 	ParsedNode,
 } from "../interfaces/models";
 import {
@@ -14,6 +15,7 @@ import {
 	MLNodeProcessorFunction,
 	MLParseModes,
 } from "../interfaces/parser";
+import { mlUtils } from "./ml-utils";
 
 /**
  * Functions for processing parsed markdown nodes and maybe more
@@ -29,12 +31,29 @@ export interface IContentUtils {
 		mode: IContentParseOptions
 	): IMLParsedNode[];
 
+	/**
+	 * Strips xml comments from the string
+	 * @param source 
+	 */
 	stripComments(source: string): string;
 
+	/**
+	 * Creates a content mapping function (maps node => node) only for the provided types
+	 * @param filter 
+	 * @param types 
+	 */
 	createNodeMappingFilter(
 		filter: MLNodeProcessorFunction,
 		...types: Array<MLNODE_TYPES>
 	): MLNodeProcessorFunction;
+
+	/**
+	 * Marks links as popovers for the links that match the provided dynamic content types.
+	 * 
+	 * If not types are provided, glossary and annotations are assumed
+	 * @param types 
+	 */
+	createPopoverLinksMappingFilter(...types: DynamicContentTypes[]): MLNodeProcessorFunction;
 
 	/**
 	 * Extract content type and id from a url, with a default content type
@@ -159,6 +178,28 @@ class ContentUtils implements IContentUtils {
 		};
 	}
 
+	public createPopoverLinksMappingFilter(...types: DynamicContentTypes[]): MLNodeProcessorFunction {
+		if (!types || !types.length) {
+			types = [ DynamicContentTypes.Annotation, DynamicContentTypes.Glossary];
+		}
+		const linkProcessor: MLNodeProcessorFunction = (node, context) => {
+			const linkData = contentUtils.urlToContentData(node.target);
+			if (!types.includes(linkData.type)) {
+				return node;
+			}
+			const nodeData: Partial<IMLParsedNode> = {
+				displayType: NODE_DISPLAY_TYPES.POPOVER,
+				linkType: linkData.type,
+				sequence: context.getEnumerator(linkData.type) + 1,
+			};
+			return { ...node, ...nodeData };
+		}
+		return this.createNodeMappingFilter(
+			linkProcessor,
+			MLNODE_TYPES.LINK
+		)
+	}
+
 	public urlToContentData(
 		url: string,
 		defaultType?: DynamicContentTypes
@@ -177,10 +218,7 @@ class ContentUtils implements IContentUtils {
 		if (!types || !types.length) {
 			return (n) => n;
 		}
-		const typeMap = types.reduce((map, type) => {
-			map[type] = type;
-			return map;
-		}, {});
+		const typeMap = mlUtils.stringArrayToMap(types);
 		return (node: IMLParsedNode, context: INodeProcessorContext) => {
 			if (!node || !(node.type in typeMap)) {
 				return null;

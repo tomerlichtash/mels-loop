@@ -39,3 +39,4 @@ export interface IDynamicContentServer {
 		ids: Array<string>
 	): Promise<IParsedPageData[]>;
 }
+
