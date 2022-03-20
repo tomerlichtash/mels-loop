@@ -28,7 +28,7 @@ export const MobileNav = ({
 			)}
 			menuClassName={classes.burgerMenu}
 			burgerBarClassName={classes.burgerBars}
-			crossButtonClassName={classes.crossButton}
+			crossButtonClassName={st(classes.crossButton, { right })}
 			crossClassName={classes.burgerCross}
 			overlayClassName={classes.overlay}
 			itemListClassName={classes.itemList}
@@ -44,7 +44,7 @@ export const MobileNav = ({
 			className={st(classes.root, className)}
 		>
 			<LocaleSelector
-				className={classes.localeSelector}
+				className={st(classes.localeSelector, { right })}
 				options={localeOptions}
 				compKeys={LOCALE_SELECTOR_LOCALE}
 			/>

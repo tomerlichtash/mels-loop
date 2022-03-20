@@ -1,5 +1,5 @@
-import Script from "next/script";
 import React, { useContext } from "react";
+import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
@@ -75,7 +75,7 @@ export default function Layout(props: LayoutProps) {
 						<div className={classes.primaryNav}>
 							<Nav className={classes.nav} />
 							<LocaleSelector
-								className={classes.localeSelector}
+								className={st(classes.localeSelector, { locale })}
 								options={localeSelectorOptions}
 								compKeys={LOCALE_SELECTOR_LOCALE}
 							/>
