@@ -7,21 +7,20 @@ export interface IBrowserHeaderProps {
 	pages: IParsedPageData[]
 }
 
-const DynamicBrowserHeader = ({ pages }: IBrowserHeaderProps) : JSX.Element => {
+export default function DynamicBrowserHeader({ pages }: IBrowserHeaderProps) : JSX.Element {
 	if (!pages || pages.length < 2) {
 		return (<></>);
 	}
 	return (
-		<div className={classes.linksContainer}>
+		<span className={classes.linksContainer}>
 			{
 				pages.map(page => (
-					<div className={classes.itemLink} key={mlUtils.uniqueId()}>
+					<span className={classes.itemLink} key={mlUtils.uniqueId()}>
 						<span>{page.metaData.title || page.metaData.glossary_term || page.id}</span>
-					</div>
+					</span>
 				))
 			}
-		</div>
+		</span>
 	);
-};
+}
 
-export default DynamicBrowserHeader;

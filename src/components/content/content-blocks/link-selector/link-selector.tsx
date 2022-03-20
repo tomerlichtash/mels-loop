@@ -39,13 +39,11 @@ export const LinkSelector = ({
 	const { locale } = useContext(ReactLayoutContext);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
-		console.log("linkselector rendering normal link");
 		return <Link key={key} componentData={componentData} />;
 	}
 
 	const { linkType } = node;
 	if (dcContext) {
-		console.log("linkselector rendering click-only link");
 		const onClick = (evt: React.MouseEvent) => {
 			dcContext.setCurrentNode(node);
 			evt.preventDefault();
@@ -55,7 +53,6 @@ export const LinkSelector = ({
 		return <Link key={key} componentData={componentData}
 			onClick={onClick}/>;
 	}
-	console.log("link selector rendering popover");
 	return (
 		<Popover
 			type={linkType}

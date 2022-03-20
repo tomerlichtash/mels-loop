@@ -50,7 +50,6 @@ export const DynamicContentViewer = ({
 	}
 
 	if (elements) {
-		console.log("Rendering note in dynamic-content-viewer");
 		const itemData = contentUtils.urlToContentData(url, DynamicContentTypes.Glossary);
 		const { metaData } = item;
 		const { source_name, source_url, glossary_term } = metaData;

@@ -25,8 +25,6 @@ export const Popover = ({
 	children,
 	closePosX,
 }: IPopoverProps): JSX.Element => {
-	console.log("popover");
-
 	return (
 		<RadixPopover.Root>
 			<RadixPopover.Trigger asChild>

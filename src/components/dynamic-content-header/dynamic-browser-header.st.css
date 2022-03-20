@@ -1,6 +1,5 @@
 @namespace "DynamicBrowserHeader";
 
-@st-import Button from "../ui/button/button.st.css";
 @st-import [boxSizing] from "../../theme/mixins.st.css";
 
 .root {
