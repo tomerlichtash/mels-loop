@@ -18,10 +18,9 @@ import {
 	MLNodeProcessorFunction,
 	MLParseModes,
 } from "../interfaces/parser";
-
-import { classes } from "./story.st.css";
 import { contentUtils } from "../lib/content-utils";
 import { DynamicContentTypes } from "../interfaces/dynamic-content";
+import { classes } from "./story.st.css";
 
 export default function Story({ content }: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);

@@ -3,16 +3,15 @@
 @st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import MobileNav from "../../components/nav/nav-mobile.st.css";
-@st-import Popover from "../../theme/popover-theme.st.css";
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
+
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
-	-st-mixin: Globals, Popover;
 }
 .root:theme(light) {
-	-st-mixin: LightTheme;
+	-st-mixin: Globals, LightTheme;
 }
 /* .root:theme(dark) {
 	-st-mixin: DarkTheme;

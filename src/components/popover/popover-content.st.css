@@ -1,5 +1,20 @@
 @namespace "PopoverContent";
 
+:vars {
+  PopoverContentBorder: none;
+  PopoverContentRadius: 6px;
+  PopoverContentBgColor: #fff;
+  PopoverContentMaxWidth: 350px;
+  PopoverContentMaxHeight: 300px;
+  PopoverContentShadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 .root {
   overflow-y: scroll;
+  border: value(PopoverContentBorder);
+  border-radius: value(PopoverContentRadius);
+  background: value(PopoverContentBgColor);
+  width: value(PopoverContentMaxWidth);
+  max-height:value(PopoverContentMaxHeight);
+  box-shadow: value(PopoverContentShadow);
 }
