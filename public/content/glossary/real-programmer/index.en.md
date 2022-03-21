@@ -1,6 +1,5 @@
 ---
 glossary_key: "REAL_PROGRAMMER"
-glossary_term: "Real Programmer"
 # source_url: TBD
 source_name: The Jargon File
 ---

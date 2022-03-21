@@ -1,6 +1,5 @@
 ---
 glossary_key: "PASCAL"
-glossary_term: "Pascal"
 # source_url: TBD
 source_name: Wikipedia
 ---

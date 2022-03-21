@@ -1,6 +1,5 @@
 ---
 glossary_key: "BIT"
-glossary_term: "Bit"
 source_url: https://en.wikipedia.org/wiki/Bit
 source_name: Wikipedia
 ---

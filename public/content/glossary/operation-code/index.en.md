@@ -1,6 +1,5 @@
 ---
 glossary_key: "OPERATION_CODE"
-glossary_term: "Operation Code"
 source_url: https://en.wikipedia.org/wiki/Opcode
 source_name: Wikipedia
 ---

@@ -1,6 +1,5 @@
 ---
 glossary_key: "ASSEMBLY_LANGUAGE"
-glossary_term: "Assembly Language"
 source_url: https://en.wikipedia.org/wiki/Assembly_language
 source_name: Wikipedia
 ---
