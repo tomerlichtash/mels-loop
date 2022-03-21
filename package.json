@@ -5,6 +5,7 @@
 		"node": ">=14"
 	},
 	"scripts": {
+		"fix-styles": "source ./scripts/touch-css.sh",
 		"dev": "rm -rf .next/cache && next dev",
 		"build": "rm -rf .next/cache && next build",
 		"start": "next start",
