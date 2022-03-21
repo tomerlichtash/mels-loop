@@ -5,8 +5,9 @@
 		"node": ">=14"
 	},
 	"scripts": {
+		"clean": "rimraf .next",
 		"dev": "next dev",
-		"build": "rm -rf .next/cache && next build",
+		"build": "next build",
 		"start": "next start",
 		"lint": "eslint . -f codeframe",
 		"test:jest": "jest --setupFiles ./__tests__/test-setup.ts",
@@ -78,6 +79,7 @@
 		"path": "^0.12.7",
 		"playwright-chromium": "^1.20.0",
 		"prettier": "^2.6.0",
+		"rimraf": "^3.0.2",
 		"simple-markdown": "^0.7.3",
 		"sinon": "^13.0.1",
 		"sinon-chai": "^3.7.0",
