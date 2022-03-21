@@ -7,12 +7,13 @@ const langs = {
 };
 
 export const translateFunc =
-	(id: string) =>
-	(key: string): string => {
-		if (!langs[id]) {
-			return `%MISSING_LOCALE_${id}_%${key}%`;
-		} else if (!langs[id][key]) {
+	(langRef: string) =>
+	(key: string, lang?: string): string => {
+		const ref = lang || langRef;
+		if (!langs[ref]) {
+			return `%MISSING_LOCALE_${ref}_%${key}%`;
+		} else if (!langs[ref][key]) {
 			return `%MISSING_KEY_${key}%`;
 		}
-		return langs[id][key] || `%${key}%`;
+		return langs[ref][key] || `%${key}%`;
 	};

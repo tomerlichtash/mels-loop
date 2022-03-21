@@ -1,6 +1,5 @@
 ---
 glossary_key: "GOTO"
-glossary_term: "GOTO Command"
 source_url: https://en.wikipedia.org/wiki/Goto
 source_name: Wikipedia
 ---

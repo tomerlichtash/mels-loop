@@ -2,6 +2,7 @@
 
 @st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
+@st-import MobileNav from "../../components/nav/nav-mobile.st.css";
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
@@ -24,6 +25,14 @@
 	font-family: "Heebo", sans-serif;
 }
 
+.mobileNav {
+	-st-extends: MobileNav;
+}
+.mobileNav::burgerButton {
+		right: 1rem;
+		border: 2px solid red;
+}
+
 .primaryNav {}
 
 .nav {
@@ -33,19 +42,17 @@
 	display: inline-flex;
 }
 
-/* .siteHeader:viewState(normal) {
-	top: 0;
+.localeSelector {
+	-st-states: locale(string);
+	position: absolute;
+	top: 1rem;
 }
-.siteHeader:viewState(compact) {
-  top: 0;
-	background-color: rgba(225, 225, 225, 0.9)
+.localeSelector:locale(en) {
+	left: 1rem;
 }
-.siteHeader:viewState(compact) .header {
-	padding: 0;
+.localeSelector:locale(he) {
+	right: 1rem;
 }
-.siteHeader:viewState(compact) .nav {
-	position: static;
-} */
 
 /* .page {} */
 

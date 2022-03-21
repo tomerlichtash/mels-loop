@@ -128,7 +128,7 @@
 /* Mobile */
 @media (min-width: 320px) and (max-width: 767px) {
 	:global(.mobileNavTrigger) {
-		display:block;
+		display: block;
 	}
 	:global(img) {
 		width: 100%;

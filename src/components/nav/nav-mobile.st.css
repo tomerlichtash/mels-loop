@@ -14,36 +14,66 @@
 
 .nav {
 	-st-extends: Nav;
+  -st-states: right(boolean);
+  padding-top: 2rem;
+}
+.nav:right::button {
+  text-align: right;
 }
 
 .localeSelector {
 	-st-extends: LocaleSelector;
+  -st-states: right(boolean);
+  z-index: 1;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+.localeSelector:right {
+  right: 1rem;
 }
 
 .burgerButton {
+  -st-states: right(boolean);
   position: fixed;
   width: 24px;
   height: 20px;
-  left: 24px;
   top: 24px;
+}
+.burgerButton:right(true) {
+  right: 24px;
+}
+.burgerButton:not(:right) {
+  left: 24px;
 }
 
 .burgerMenu {
   background: #373a47;
-  font-size: 1.15em;	
+  font-size: 1.15em;
 }
 
 .burgerBars {
-  background: #373a47;	
+  background: #373a47;
 }
 
 .crossButton {
+  -st-states: right(boolean);
   height: 24px;
-  width: 24px;	
+  width: 24px;
+}
+.crossButton:right {
+  top: 10px !important;
+  left: 10px;
+  right: auto !important;
+}
+.crossButton:not(:right) {
+  top: 10px !important;
+  left: auto !important;
+  right: 10px;
 }
 
 .burgerCross {
-  background: #bdc3c7;	
+  background: #bdc3c7;
 }
 
 .overlay {
