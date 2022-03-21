@@ -42,7 +42,7 @@ and weren't here to stay, anyway.
 or the computer.)
 
 I had been hired to write a [FORTRAN](#fortran) [compiler](#glossary/compiler)
-for this new marvel[^](#annotations/marvell) and Mel was my guide to its wonders. <!-- `marvell` should be `marvel` -->
+for this new marvel[^](#annotations/librazette-marvel) and Mel was my guide to its wonders.
 Mel didn't approve of [compilers](#glossary/compiler).
 
 "If a program can't rewrite its own code",

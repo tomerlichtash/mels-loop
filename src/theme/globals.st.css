@@ -2,9 +2,9 @@
 
 @st-import [boxSizing] from "./mixins.st.css";
 
-:global(*):focus {
+/* :global(*):focus {
 	outline: none;
-}
+} */
 
 :global(html) {
 	-st-mixin: boxSizing;
