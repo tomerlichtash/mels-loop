@@ -1,6 +1,5 @@
 ---
 glossary_key: "LOOP"
-glossary_term: "Loop"
 source_url: https://en.wikipedia.org/wiki/Control_flow#Loops
 # source_name: TBD
 ---

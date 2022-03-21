@@ -1,6 +1,5 @@
 ---
 glossary_key: "OPERAND"
-glossary_term: "Operand"
 source_url: https://en.wikipedia.org/wiki/Operand
 source_name: Wikipedia
 ---

@@ -32,9 +32,13 @@ export default function Glossary(props: IPageProps) {
 						{metaData.map((page, index) => {
 							const term = page.metaData;
 							const key = `term-${index}`;
-							return term && term.glossary_term ? (
+							const { glossary_key } = term;
+							return glossary_key ? (
 								<li className={classes.term} key={key}>
-									<Button label={term.glossary_term} link={page.path} />
+									<Button
+										label={translate(term.glossary_key)}
+										link={page.path}
+									/>
 								</li>
 							) : (
 								<div key={key} className={classes.error}>

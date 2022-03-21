@@ -247,7 +247,6 @@ class PageMetaData implements IPageMetaData {
 		}
 	}
 	public glossary_key = "";
-	public glossary_term = "";
 	public date: Date = null;
 	public title = "";
 	public moto = "";
