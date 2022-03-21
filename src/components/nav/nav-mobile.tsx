@@ -9,21 +9,26 @@ import { IOption } from "../dropdown/option";
 
 export interface IMobileNavProps extends ComponentProps {
 	localeOptions: IOption[];
+	right: boolean;
 }
 
 export const MobileNav = ({
 	localeOptions,
+	right,
 	className,
 }: IMobileNavProps): JSX.Element => {
 	return (
 		<Menu
-			className={st(classes.root, className)}
 			pageWrapId={"page-wrap"}
 			outerContainerId={"outer-container"}
-			burgerButtonClassName={st(classes.burgerButton, "mobileNavTrigger")}
+			burgerButtonClassName={st(
+				classes.burgerButton,
+				{ right },
+				"mobileNavTrigger"
+			)}
 			menuClassName={classes.burgerMenu}
 			burgerBarClassName={classes.burgerBars}
-			crossButtonClassName={classes.crossButton}
+			crossButtonClassName={st(classes.crossButton, { right })}
 			crossClassName={classes.burgerCross}
 			overlayClassName={classes.overlay}
 			itemListClassName={classes.itemList}
@@ -35,13 +40,15 @@ export const MobileNav = ({
 					top: "0",
 				},
 			}}
+			right={right}
+			className={st(classes.root, className)}
 		>
 			<LocaleSelector
-				className={classes.localeSelector}
+				className={st(classes.localeSelector, { right })}
 				options={localeOptions}
 				compKeys={LOCALE_SELECTOR_LOCALE}
 			/>
-			<Nav className={classes.nav} />
+			<Nav className={st(classes.nav, { right })} />
 		</Menu>
 	);
 };

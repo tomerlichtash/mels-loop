@@ -14,8 +14,8 @@ export const Footer = ({
 	return (
 		<footer className={st(classes.root, className)}>
 			<div className={classes.license}>
-				<time className={classes.year}>{licenseYears}</time>
-				<span className={classes.license}>({translate(siteLicense)})</span>
+				<time className={classes.year}>{licenseYears}</time>{" "}
+				<span className={classes.license}>({translate(siteLicense)})</span>{" "}
 				<span className={classes.title}>{translate(siteTitle)}</span>
 			</div>
 		</footer>

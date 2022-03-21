@@ -9,4 +9,5 @@
 
 .button {
 	-st-extends: Button;
+	position: relative;
 }
