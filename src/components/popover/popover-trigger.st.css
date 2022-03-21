@@ -1,10 +1,32 @@
 @namespace "PopoverTrigger";
 
+:vars {
+  triggerColor: blue;
+  triggerColorOpen: green;
+  triggerColorHover: orange;
+}
+
 .root {
   -st-states: type(string);
   cursor: pointer;
+  color: value(triggerColor);
+  padding: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+  background: inherit;
 }
 
-/* .root:type(annotation) {
-  user-select: none;
-} */
+.root[data-state="open"],
+.root[data-state="open"]:hover {
+  color: value(triggerColorOpen);
+}
+
+.root:hover {
+  color: value(triggerColorHover);
+}
+
+.root[data-state="open"]:type(glossary) {
+  background-color: yellow;
+}

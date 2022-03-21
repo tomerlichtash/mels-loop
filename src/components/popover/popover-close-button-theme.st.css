@@ -1,4 +1,4 @@
-@namespace "PopoverCloseButtonTheme";
+/* @namespace "PopoverCloseButtonTheme";
 
 @st-import PopoverCloseButton from "./popover-close-button.st.css";
 
@@ -44,4 +44,4 @@
 }
 .root:hover::icon {
   color: value(PopoverCloseIconColorHover);
-}
+} */

@@ -27,10 +27,10 @@ export const Popover = ({
 }: IPopoverProps): JSX.Element => {
 	return (
 		<RadixPopover.Root>
-			<RadixPopover.Trigger asChild>
-				<span className={triggerStyle(triggerClasses.root, { type })}>
-					{trigger}
-				</span>
+			<RadixPopover.Trigger
+				className={triggerStyle(triggerClasses.root, { type })}
+			>
+				{trigger}
 			</RadixPopover.Trigger>
 			<RadixPopover.Content side="top" align="center" portalled={false}>
 				<div className={contentClasses.root}>{children}</div>
