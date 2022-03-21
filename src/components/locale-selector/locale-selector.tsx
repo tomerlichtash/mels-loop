@@ -3,7 +3,7 @@ import DropDown from "../dropdown";
 import { ComponentProps } from "../../interfaces/models";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
-import { LANGS } from "../svg";
+// import { LANGS } from "../svg";
 import { st, classes } from "./locale-selector.st.css";
 
 export interface LocaleSelectorProps extends ComponentProps {
@@ -28,7 +28,7 @@ export const LocaleSelector = ({
 			title={"Select Language"}
 			aria-label={"Select Language"}
 		>
-			<div className={classes.langsIcon}>{LANGS}</div>
+			{/* <div className={classes.langsIcon}>{LANGS}</div> */}
 			<div className={classes.dropDownContainer}>
 				<DropDown
 					className={st(classes.dropdown, "locator-locale-select")}

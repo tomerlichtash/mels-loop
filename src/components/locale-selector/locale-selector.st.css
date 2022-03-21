@@ -12,9 +12,6 @@
 .root {
 	-st-states: locale(string), isOpen(boolean);
 	-st-mixin: boxSizing;
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
 	cursor: pointer;
 	display: flex;
 	border-radius: 8px;
