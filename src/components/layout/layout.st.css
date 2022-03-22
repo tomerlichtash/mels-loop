@@ -6,6 +6,103 @@
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
+:vars {
+	color1: #FCFBF9;
+	color2: #F2EFE4;
+	color3: #E6E3D8;
+	color4: #E6E3D8;
+	color5: #666560;
+	color6: #434440;
+	color7: #FD658A;
+	color8: #BD5E91;
+	color9: #70538A;
+	color10: #4E4A7A;
+	color11: #3770C5;
+	color12: #274F8C;
+	color13: #1A355F;
+	color14: #00173A;
+}
+
+:vars {
+	level1: value(color1);
+	level2: value(color2);
+	level3: value(color3);
+	level4: value(color4);
+	level5: value(color5);
+	level6: value(color6);
+	primary1: value(color7);
+	primary2: value(color8);
+	primary3: value(color9);
+	primary4: value(color10);
+	accent1: value(color11);
+	accent2: value(color12);
+	accent3: value(color13);
+	accent4: value(color14);
+}
+
+:vars {
+	fontSize1: 48px;
+	fontSize2: 39px;
+	fontSize3: 31px;
+	fontSize4: 25px;
+	fontSize5: 20px;
+	fontSize6: 16px;
+	fontSize7: 12px;
+
+	fontWeightBold: 700;
+	fontWeightMedium: 500;
+	fontWeightRegular: 400;
+
+	lineHeight1: 60px;
+	lineHeight2: 49px;
+	lineHeight3: 39px;
+	lineHeight4: 31px;
+	lineHeight5: 25px;
+	lineHeight6: 20px;
+	lineHeight7: 24px;
+	lineHeight8: 16px;
+}
+
+.heading1 {
+	font-size: value(fontSize1);
+	font-weight: value(fontWeightMedium);
+	line-height: value(lineHeight1);
+}
+.heading2 {
+	font-size: value(fontSize2);
+	font-weight: value(fontWeightBold);
+	line-height: value(lineHeight2);
+}
+.heading3 {
+	font-size: value(fontSize3);
+	font-weight: value(fontWeightBold);
+	line-height: value(lineHeight3);
+}
+.heading4 {
+	font-size: value(fontSize4);
+	font-weight: value(fontWeightMedium);
+	line-height: value(lineHeight4);
+}
+.heading5 {
+	font-size: value(fontSize5);
+	font-weight: value(fontWeightMedium);
+	line-height: value(lineHeight5);
+}
+.heading6 {
+	font-size: value(fontSize6);
+	font-weight: value(fontWeightMedium);
+	line-height: value(lineHeight6);
+}
+.bodyTextNormal {
+	font-size: value(fontSize6);
+	font-weight: value(fontWeightRegular);
+	line-height: value(lineHeight7);
+}
+.bodyTextSmall {
+	font-size: value(fontSize7);
+	font-weight: value(fontWeightRegular);
+	line-height: value(lineHeight8);
+}
 
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
@@ -17,12 +114,11 @@
 	-st-mixin: DarkTheme;
 } */
 .root:locale(en) {
+	font-family: "Roboto Slab", serif;
 	direction: ltr;
-	font-family: "Nunito", sans-serif;
 }
 .root:locale(he) {
 	direction: rtl;
-	font-family: "Heebo", sans-serif;
 }
 
 .mobileNav {
