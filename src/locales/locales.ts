@@ -3,8 +3,8 @@ import { Language, LocaleLabels } from "./types";
 export const localeLabelPrefix = "LOCALE_LABEL";
 
 export const LOCALE_LABELS: LocaleLabels = {
-	LOCALE_LABEL_EN: "English",
-	LOCALE_LABEL_HE: "עברית",
+	LOCALE_LABEL_EN: "EN",
+	LOCALE_LABEL_HE: "ע",
 };
 
 export const EN_US: Language = {
