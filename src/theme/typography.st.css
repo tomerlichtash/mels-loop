@@ -11,6 +11,7 @@
 :vars {
 	fontWeightBold: 700;
 	fontWeightMedium: 500;
+	fontWeightSemiBold: 600;
 	fontWeightRegular: 400;
 }
 
@@ -23,6 +24,15 @@
 	lineHeight6: 20px;
 	lineHeight7: 24px;
 	lineHeight8: 16px;
+}
+
+.LatinText {
+	font-family: "Roboto Slab", serif;
+	direction: ltr;
+}
+.HebrewText {
+	font-family: "Assistant", sans-serif;
+	direction: rtl;
 }
 
 .heading1 {
@@ -55,6 +65,7 @@
 	font-weight: value(fontWeightMedium);
 	/* line-height: value(lineHeight6); */
 }
+
 .bodyTextNormal {
 	font-size: value(fontSize6);
 	font-weight: value(fontWeightRegular);
