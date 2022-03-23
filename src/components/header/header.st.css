@@ -7,14 +7,14 @@
 	-st-mixin: boxSizing;
 }
 
+.logo {}
+
 .container {}
 
 .title {}
 
-.siteTitle {}
-
-.siteSubtitle {}
-
-.siteTitleButton {
+.siteTitle {
   -st-extends: Button;
 }
+
+.siteSubtitle {}

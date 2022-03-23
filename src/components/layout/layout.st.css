@@ -1,111 +1,20 @@
 @namespace "Layout";
 
+@st-import Page from "../../components/page/page.st.css";
+@st-import Header from "../../components/header/header.st.css";
 @st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import MobileNav from "../../components/nav/nav-mobile.st.css";
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
-:vars {
-	color1: #FCFBF9;
-	color2: #F2EFE4;
-	color3: #E6E3D8;
-	color4: #E6E3D8;
-	color5: #666560;
-	color6: #434440;
-	color7: #FD658A;
-	color8: #BD5E91;
-	color9: #70538A;
-	color10: #4E4A7A;
-	color11: #3770C5;
-	color12: #274F8C;
-	color13: #1A355F;
-	color14: #00173A;
-}
-
-:vars {
-	level1: value(color1);
-	level2: value(color2);
-	level3: value(color3);
-	level4: value(color4);
-	level5: value(color5);
-	level6: value(color6);
-	primary1: value(color7);
-	primary2: value(color8);
-	primary3: value(color9);
-	primary4: value(color10);
-	accent1: value(color11);
-	accent2: value(color12);
-	accent3: value(color13);
-	accent4: value(color14);
-}
-
-:vars {
-	fontSize1: 48px;
-	fontSize2: 39px;
-	fontSize3: 31px;
-	fontSize4: 25px;
-	fontSize5: 20px;
-	fontSize6: 16px;
-	fontSize7: 12px;
-
-	fontWeightBold: 700;
-	fontWeightMedium: 500;
-	fontWeightRegular: 400;
-
-	lineHeight1: 60px;
-	lineHeight2: 49px;
-	lineHeight3: 39px;
-	lineHeight4: 31px;
-	lineHeight5: 25px;
-	lineHeight6: 20px;
-	lineHeight7: 24px;
-	lineHeight8: 16px;
-}
-
-.heading1 {
-	font-size: value(fontSize1);
-	font-weight: value(fontWeightMedium);
-	line-height: value(lineHeight1);
-}
-.heading2 {
-	font-size: value(fontSize2);
-	font-weight: value(fontWeightBold);
-	line-height: value(lineHeight2);
-}
-.heading3 {
-	font-size: value(fontSize3);
-	font-weight: value(fontWeightBold);
-	line-height: value(lineHeight3);
-}
-.heading4 {
-	font-size: value(fontSize4);
-	font-weight: value(fontWeightMedium);
-	line-height: value(lineHeight4);
-}
-.heading5 {
-	font-size: value(fontSize5);
-	font-weight: value(fontWeightMedium);
-	line-height: value(lineHeight5);
-}
-.heading6 {
-	font-size: value(fontSize6);
-	font-weight: value(fontWeightMedium);
-	line-height: value(lineHeight6);
-}
-.bodyTextNormal {
-	font-size: value(fontSize6);
-	font-weight: value(fontWeightRegular);
-	line-height: value(lineHeight7);
-}
-.bodyTextSmall {
-	font-size: value(fontSize7);
-	font-weight: value(fontWeightRegular);
-	line-height: value(lineHeight8);
-}
+@st-import [level2, level5, level4] from '../../theme/common.st.css';
+@st-import [heading6, bodyTextNormal] from '../../theme/typography.st.css';
+@st-import [boxSizing] from '../../theme/mixins.st.css';
 
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
+	font-size: 16px;
 }
 .root:theme(light) {
 	-st-mixin: Globals, LightTheme;
@@ -118,6 +27,7 @@
 	direction: ltr;
 }
 .root:locale(he) {
+	font-family: "Assistant", serif;
 	direction: rtl;
 }
 
@@ -129,28 +39,151 @@
 		border: 2px solid red;
 }
 
-.primaryNav {}
+.topBar {
+	-st-mixin: boxSizing;
+	position: fixed;
+	width: 100%;
+}
+
+.siteHeader {
+	padding: 0.5rem 1rem;
+	background-color: value(level2);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	/* flex-direction: row; */
+	/* flex-wrap: nowrap; */
+	/* padding: 1rem 1.5rem; */
+}
+
+.header {
+	-st-extends: Header;
+}
+.header::title {
+	align-items: center;
+}
+.header::container {
+	display: flex;
+	align-items: center;
+}
+.header::logo {
+}
+.root:locale(en) .header::logo {
+	margin-right: 0.5rem;
+}
+.root:locale(he) .header::logo {
+	margin-left: 0.5rem;
+}
+
+.header::title {
+	display: flex;
+  /* align-items: center;
+  justify-content: center; */
+	/* display: inline-block; */
+	/* text-align: left; */
+}
+.header::siteTitle {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	/* flex: 1; */
+	-st-mixin: heading6;
+}
+.root:locale(en) .header::siteTitle::icon img {
+	margin-right: 0.5rem;
+}
+.root:locale(he) .header::siteTitle::icon img {
+	margin-left: 0.5rem;
+}
+.header::siteSubtitle {
+	-st-mixin: bodyTextNormal;
+	/* flex: 2; */
+}
+.header::siteSubtitle::before {
+	margin: 0 0.5rem;
+	opacity: 0.3;
+	content: '|';
+}
+
+.primaryNav {
+	display: flex;
+	/* -st-mixin: bodyTextNormal; */
+	/* flex: 1; */
+}
 
 .nav {
 	-st-extends: Nav;
 }
 .nav::list {
-	display: inline-flex;
+	/* display: flex; */
+}
+
+.nav::list,
+.localeSelector::list {
+	display: flex;
+}
+
+.localeSelector::item:first-child {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+.localeSelector::item:last-child {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+.nav::listItem {
+	border-radius: 4px;
+}
+.localeSelector::item,
+.nav::button {
+	padding: 0.25rem 0.5rem;
+	display: block;
+}
+.localeSelector::item {
+	width: 30px;
+	text-align: center;
+}
+.nav::listItem:hover,
+.localeSelector::item:hover {
+	background-color: value(level5);
 }
 
 .localeSelector {
+	-st-extends: LocaleSelector;
 	-st-states: locale(string);
-	position: absolute;
-	top: 1rem;
+	/* position: absolute;
+	top: 1rem; */
+	/* display: flex; */
+  justify-content: right;
+	display: inline-block;
+	border-radius: 6px;
+	border: 1px solid value(level4);
+	overflow: hidden;
+	/* margin: 0 1rem; */
 }
-.localeSelector:locale(en) {
-	left: 1rem;
+.localeSelector::item {
+	/* padding: 0.25rem 0.5rem; */
+	/* margin: 0 0.25rem; */
+	/* padding: 0.5rem 0.25rem; */
+	/* border-radius: 4px; */
 }
-.localeSelector:locale(he) {
-	right: 1rem;
+.localeSelector::item:hover {
+	/* background-color: value(level5); */
+}
+.localeSelector::item:selected {
+	background-color: value(level4);
 }
 
-/* .page {} */
+.localeSelector:locale(en) {
+	/* left: 1rem; */
+}
+.localeSelector:locale(he) {
+	/* right: 1rem; */
+}
+
+.page {
+	-st-extends: Page;
+	padding-top: 100px;
+}
 
 @media (min-width: 320px) and (max-width: 767px) {
 	.primaryNav {

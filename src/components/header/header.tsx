@@ -18,18 +18,16 @@ export const Header = ({
 		<header className={st(classes.root, className)}>
 			<div className={classes.container}>
 				<div className={classes.title}>
-					<div className={st(classes.siteTitle, "locator-site-title")}>
-						{pageId === "home" ? (
-							title
-						) : (
-							<Button
-								label={title}
-								title={fullTitle}
-								link={"/"}
-								className={classes.siteTitleButton}
-							/>
-						)}
-					</div>
+					{/* <div className={st(classes.siteTitle, "locator-site-title")}> */}
+					<Button
+						icon={<img src="/favicon-temp.png" />}
+						label={title}
+						title={fullTitle}
+						link={pageId === "home" ? "" : "/"}
+						callback={() => false}
+						className={classes.siteTitle}
+					/>
+					{/* </div> */}
 					<div className={classes.siteSubtitle}>{subtitle}</div>
 				</div>
 			</div>

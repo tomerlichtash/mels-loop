@@ -70,15 +70,18 @@ export default function Layout(props: LayoutProps) {
 				id="outer-container"
 			>
 				<div id="page-wrap">
-					<div className={classes.siteHeader}>
-						<Header className={classes.header} compKeys={HEADER_LOCALE} />
-						<div className={classes.primaryNav}>
-							<Nav className={classes.nav} />
-							<LocaleSelector
-								className={st(classes.localeSelector, { locale })}
-								options={localeSelectorOptions}
-								compKeys={LOCALE_SELECTOR_LOCALE}
-							/>
+					<div className={classes.topBar}>
+						<div className={classes.siteHeader}>
+							<Header className={classes.header} compKeys={HEADER_LOCALE} />
+							<div className={classes.primaryNav}>
+								<Nav className={classes.nav} />
+								<LocaleSelector
+									className={st(classes.localeSelector, { locale })}
+									onLocaleChange={onLocaleChange}
+									options={localeSelectorOptions}
+									compKeys={LOCALE_SELECTOR_LOCALE}
+								/>
+							</div>
 						</div>
 					</div>
 					<Page className={classes.page} nodes={props.children} />

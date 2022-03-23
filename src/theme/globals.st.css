@@ -6,6 +6,8 @@
 	outline: none;
 } */
 
+@st-import [heading1, heading3] from './typography.st.css'
+
 :global(html) {
 	-st-mixin: boxSizing;
 	margin: 0;
@@ -16,6 +18,13 @@
 	-st-mixin: boxSizing;
 	margin: 0;
 	height: 100%;
+}
+
+:global(h1) {
+	-st-mixin: heading1;
+}
+:global(h2) {
+	-st-mixin: heading3;
 }
 
 :global(h1),

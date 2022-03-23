@@ -3,14 +3,14 @@
 @st-import Header from "./header.st.css";
 
 :vars {
-  HeaderBackgroundColor: red;
-  HeaderSiteTitleColor: blue;
-  HeaderSiteSubtitleColor: green;
+  HeaderBackgroundColor: transparent;
+  HeaderSiteTitleColor: #000;
+  HeaderSiteSubtitleColor: #000;
   HeaderSiteTitleFontFamily: Arial, sans-serif;
-  HeaderSiteTitleFontSize: 1rem;
-  HeaderSiteTitleFontWeight: 300;
+  HeaderSiteTitleFontSize: 12px;
+  HeaderSiteTitleFontWeight: 500;
   HeaderPadding: 0;
-  HeaderTextAlign: center;
+  HeaderTextAlign: left;
 }
 
 .root {

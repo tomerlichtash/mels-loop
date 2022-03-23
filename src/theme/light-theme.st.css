@@ -1,5 +1,7 @@
 @namespace "LightTheme";
 
+@st-import ContentBrowser from "../components/content-browser/content-browser.st.css";
+
 @st-import Header from "../components/header/header.st.css";
 @st-import HeaderTheme from "../components/header/header-theme.st.css";
 
@@ -31,7 +33,9 @@
 	-st-mixin: Responsive;
 } */
 
+
 @st-import [PageWidth] from "./common.st.css";
+@st-import [heading1] from "./typography.st.css";
 
 @st-import [
 	HeaderBgColor,
@@ -49,19 +53,19 @@
 	Page {
 		width: value(PageWidth);
 		margin: 0 auto;
-		padding: 2rem;
+		/* padding: 2rem; */
 	}
 
 	Header {
-		-st-mixin: HeaderTheme(
-			HeaderBackgroundColor value(HeaderBgColor),
-			HeaderSiteTitleColor value(HeaderTitleColor),
-			HeaderSiteSubtitleColor value(HeaderSubtitleColor),
-			HeaderSiteTitleFontFamily inherit,
-			HeaderSiteTitleFontSize 4rem,
-			HeaderSiteTitleFontWeight 300,
-			HeaderPadding 4rem 0,
-		);
+		/* -st-mixin: HeaderTheme( */
+			/* HeaderBackgroundColor value(HeaderBgColor), */
+			/* HeaderSiteTitleColor value(HeaderTitleColor), */
+			/* HeaderSiteSubtitleColor value(HeaderSubtitleColor), */
+			/* HeaderSiteTitleFontFamily inherit, */
+			/* HeaderSiteTitleFontSize 4rem, */
+			/* HeaderSiteTitleFontWeight 300, */
+			/* HeaderPadding 4rem 0, */
+		/* ); */
 	}
 
 	Footer {
@@ -71,9 +75,14 @@
 	}
 
 	Nav {
-		-st-mixin: NavTheme(
+		/* -st-mixin: NavTheme(
 			NavBackgroundColor value(PrimaryNavBgColor)
-		);
+		); */
+	}
+
+	ContentBrowser::title {
+		-st-mixin: heading1;
+
 	}
 
 	MobileNav::nav {
