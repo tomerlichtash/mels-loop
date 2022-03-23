@@ -48,25 +48,25 @@
 
 /* Default */
 @st-scope .root {	
-	blockquote {
+	Page {
+		width: value(PageWidth);
+	}
+
+	:global(blockquote) {
 		margin-bottom: 1.5rem;
 		margin-left: 2rem;
 	}
-	blockquote * {
+	:global(blockquote) * {
 		font-style: italic;
 	}
+
 	Section {
-		margin-bottom: 1.5rem;
-	}
-	Paragraph {
-		line-height: 28px;
-		margin: 0;
+		/* margin-bottom: 1.5rem; */
 	}
 
-	Page {
-		width: value(PageWidth);
-		margin: 0 auto;
-		/* padding: 2rem; */
+	Paragraph {
+		/* line-height: 28px; */
+		/* margin: 0 0 1.5rem; */
 	}
 
 	Header {
@@ -82,9 +82,9 @@
 	}
 
 	Footer {
-		-st-mixin: FooterTheme(
+		/* -st-mixin: FooterTheme(
 			FooterPadding 4rem 0
-		);
+		); */
 	}
 
 	Nav {
@@ -158,15 +158,13 @@
 			margin: 0 auto;
 		}
 		Page::gutter {
-			padding: 0 1rem;
+			padding: 0 3rem;
 		}
 
 		Header::siteTitle {
-			/* display: none; */
 			font-size: 14px
 		}
 		Header::siteSubtitle {
-			/* display: none; */
 			font-size: 14px
 		}
 		Header {

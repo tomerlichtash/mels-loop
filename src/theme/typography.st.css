@@ -43,6 +43,8 @@
 .heading2 {
 	font-size: value(fontSize2);
 	font-weight: value(fontWeightBold);
+	padding-top: 2rem;
+	padding-bottom: 1rem;
 	/* line-height: value(lineHeight2); */
 }
 .heading3 {

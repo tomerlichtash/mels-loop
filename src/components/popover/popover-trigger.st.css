@@ -1,5 +1,7 @@
 @namespace "PopoverTrigger";
 
+@st-import [preventSelection] from "../../theme/mixins.st.css";
+
 :vars {
   triggerColor: blue;
   triggerColorOpen: green;
@@ -33,7 +35,10 @@
 
 .root:type(glossary)::after {
   content: '※';
+  -st-mixin: preventSelection;
   /* font-size: 50%; */
+  z-index: 0;
   position: relative;
   top: -5px;
 }
+

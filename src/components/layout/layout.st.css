@@ -5,19 +5,20 @@
 @st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import MobileNav from "../../components/nav/nav-mobile.st.css";
+
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
-@st-import [level2, level5, level4] from '../../theme/common.st.css';
+@st-import [PageWidth, level2, level5, level4] from '../../theme/common.st.css';
 @st-import [heading6, bodyTextNormal, LatinText, HebrewText] from '../../theme/typography.st.css';
 @st-import [boxSizing] from '../../theme/mixins.st.css';
 
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
+	-st-mixin: Globals, LightTheme;
 	font-size: 16px;
 }
 .root:theme(light) {
-	-st-mixin: Globals, LightTheme;
 }
 /* .root:theme(dark) {
 	-st-mixin: DarkTheme;
@@ -36,13 +37,13 @@
 }
 .mobileNav::burgerButton {
 		right: 1rem;
-		border: 2px solid red;
 }
 
 .topBar {
 	-st-mixin: boxSizing;
 	position: fixed;
 	width: 100%;
+	z-index: 1;
 }
 
 .siteHeader {
@@ -134,6 +135,7 @@
 .page {
 	-st-extends: Page;
 	padding-top: 100px;
+	
 }
 
 /* @media (min-width: 320px) and (max-width: 767px) {

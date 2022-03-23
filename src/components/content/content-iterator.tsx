@@ -7,45 +7,40 @@ export const ContentIterator = ({
 	componentData,
 	className,
 }: ContentComponentProps): JSX.Element => {
-	const p = componentData.node;
+	const { node } = componentData;
 
-	if (!p) {
+	if (!node) {
 		console.warn("Content Iterator: no input node");
 		return <div className={classes.noData}></div>;
 	}
 
-	const elements: IMLParsedNode[] = Array.isArray(p.children) && p.children;
+	const elements: IMLParsedNode[] =
+		Array.isArray(node.children) && node.children;
 	const Tag = componentData.tag as keyof JSX.IntrinsicElements;
 
 	if (!elements) {
-		if (p.text) {
+		if (node.text) {
 			if (Tag) {
 				return (
-					<Tag className={className} key={p.key}>
-						{p.text}
+					<Tag className={className} key={node.key}>
+						{node.text}
 					</Tag>
 				);
 			}
 
-			return (
-				<span className={st(classes.root, { type: "text" }, className)}>
-					{p.text}
-				</span>
-			);
+			return <span className={className}>{node.text}</span>;
 		}
-		return (
-			<span className={st(classes.root, { type: "unknown" }, className)}></span>
-		);
+		return <span></span>;
 	}
 
 	if (Tag) {
 		return (
-			<Tag className={st(classes[Tag], className)} key={p.key}>
+			<Tag className={st(classes[Tag], className)} key={node.key}>
 				{elements.map((node) => {
 					return (
 						<ContentComponent
 							key={node.key}
-							className={className}
+							// className={className}
 							componentData={{ node }}
 						/>
 					);

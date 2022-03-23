@@ -17,6 +17,7 @@
   content: '[';
   margin-right: 0.1rem;
 }
+
 .root::after {
   content: ']';
   margin-left: 0.1rem;
