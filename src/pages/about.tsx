@@ -1,19 +1,30 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
-import ContentBrowser from "../components/content-browser";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
-import { IPageProps } from "../interfaces/models";
+import { usePageData } from "../components/usePageData";
+import {
+	IMLParsedNode,
+	IPageProps,
+	IParsedPageData,
+} from "../interfaces/models";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { LoadFolderModes } from "../interfaces/parser";
-import { st, classes } from "./about.st.css";
+import { ContentComponent } from "../components/content";
+import { classes } from "./about.st.css";
 
-export default function About({ content, className }: IPageProps) {
+export default function About(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
+
+	const { pageData } = usePageData(props);
+	const page = pageData[0] || ({} as IParsedPageData);
+	const elements: IMLParsedNode[] = page.parsed || [];
+	const { metaData } = pageData[0];
+
 	return (
 		<Layout>
 			<Head>
@@ -21,8 +32,17 @@ export default function About({ content, className }: IPageProps) {
 					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
-			<article className={st(classes.root, className)}>
-				<ContentBrowser content={content} showTitle />
+			<article className={classes.root}>
+				<h1>{metaData.title}</h1>
+				{elements.map((node, index) => {
+					return (
+						<ContentComponent
+							key={`top-${index}`}
+							className={classes.contentComponent}
+							componentData={{ node }}
+						/>
+					);
+				})}
 			</article>
 		</Layout>
 	);
