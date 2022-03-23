@@ -1,7 +1,7 @@
 ---
-title: "Preface"
+title: "Preface to The Story of Mel"
 author: "Tomer Lichtash"
-date: "2021"
+date: Wed Apr 7 2021 13:45 GMT+0300
 ---
 
 <!-- ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1643544201/mels-loop/mel-kaye/mel-kaye-yearbook-photo_xgoxpv.jpg) -->
@@ -34,5 +34,7 @@ While translating the story, some questions surfaced and re-surfaced. Not only d
 Naturally, the first datum I needed to clarify was the veracity of the story and the real identity of Mel. These doubts have been completely disspelled. The story is indeed an accurate account of real events and Mel was a real person. Melvin Kornitzky (1931-2018) was born to a Jewish family in Brooklyn, New York. The family relocated to California and Mel changed his name twice during his adult life (Melvin Kornitzky -> Melvin Kaye -> Mel Kaye). It might have been an attempt to play down his Jewish identity, perhaps a step to help him become a true star in the West coast technology scene. A self-contracted detective project ensued, uncovering Mel's blurry footsteps and yielding many related stories.
 
 The translation of _The Story of Mel_ required a significant effort on my part, to catch up on the technological and historical knowledge required to fully understand the story. This effort included deep dives into archives, books, interviews and old computer manuals. The gist of this information is provided in the footnotes and comments, alongside the translated story, hopefully making it easier to read and appreciate. These additions will hopefully open a door for non-technical readers into the world of Hacking folklore. Heretofore, the story hasn't been discussed in a literary context. Its publication in a literary journal is unprecedented, possibly for any story about code or hacking.
+
+## Thanks
 
 I'm grateful to David Frenkiel, my partner in this project. Ten years ago, he (virtually) handed me a copy of the story, with a simple and assertive demand: "read". His contribution to deciphering archaic code and obsolete technology, as well as understanding the spirit of the "real programmer", enlightened me time and again both as a reader and as a translator of this epic.
