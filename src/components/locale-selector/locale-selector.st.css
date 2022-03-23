@@ -25,14 +25,6 @@
 	text-align: right;
 }
 
-.langsIcon {
-	position: absolute;
-	top: 0;
-	height: 42px;
-	color: #c0c0c0;
-	cursor: default;
-}
-
 .root:locale(en) .langsIcon {
 	left: -30px;
 }
@@ -40,105 +32,11 @@
 	left: -30px;
 }
 
-.dropDownContainer {
-	border: 1px solid #c0c0c0;
-	border-radius: 8px;
-	overflow: hidden;
-	box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-	transition: all 50ms ease-in;
-}
-.root:isOpen .dropDownContainer,
-.dropDownContainer:hover {
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-	border: 1px solid #b0b0b0;
-}
-
-.dropdown {
-	-st-extends: DropDown;
-	-st-states: locale(string);
-	-st-mixin: preventSelection;
-	display: block;
-	width: 150px;
-	background: #fff;
-	overflow: hidden;
-}
-
 .item {
-	-st-states: selected(boolean);
+	-st-states: locale(enum(en, he)), selected(boolean);
 	border: none;
 	padding: 0;
-	/* background-color: red;
-	display: inline-block;
-	width: 40px;
-	height: 40px; */
 	cursor: pointer;
 }
-/* .item:selected {
-} */
 
 .list {}
-
-.dropdown::triggerContainer {
-	display: block;
-}
-.dropdown::triggerContainer:hover {
-	color:#303030;
-}
-
-.dropdown::triggerButton::text {
-	font-weight: 700;
-}
-
-.dropdown::option::button::text {
-	font-weight: 300;
-}
-
-.root:hover .dropdown::triggerButton::text,
-.root:isOpen .dropdown::triggerButton::text {
-	color: blue;
-}
-
-.dropdown::triggerButton,
-.dropdown::option::button {
-	height: value(height);
-	line-height: value(height);
-	display: block;
-}
-
-.root:locale(en) .dropdown::triggerButton,
-.root:locale(en) .dropdown::option::button {
-	padding-left: value(buttonMargin);
-}
-.root:locale(he) .dropdown::triggerButton,
-.root:locale(he) .dropdown::option::button {
-	padding-right: value(buttonMargin);
-}
-
-.dropdown::triggerIcon {
-	height: value(height);
-	line-height: value(height);
-}
-.root:locale(en) .dropdown::triggerIcon {
-	margin-left: value(triggerIconMargin);
-}
-.root:locale(he) .dropdown::triggerIcon {
-	margin-right: value(triggerIconMargin);
-}
-
-.dropdown::triggerButton::icon,
-.dropdown::option::button::icon {
-	position: absolute;
-}
-.root:locale(en) .dropdown::triggerButton::icon,
-.root:locale(en) .dropdown::option::button::icon {
-	right: value(triggerIconMargin);
-}
-.root:locale(he) .dropdown::triggerButton::icon,
-.root:locale(he) .dropdown::option::button::icon {
-	left: value(triggerIconMargin);
-}
-
-.root:isOpen .dropdown::triggerButton:hover,
-.dropdown::option::button:hover {
-	background: #f0f0f0;
-}

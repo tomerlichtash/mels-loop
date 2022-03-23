@@ -9,12 +9,19 @@
 
 .logo {}
 
-.container {}
-
-.title {}
+.container {
+	display: flex;
+	align-items: center;
+}
 
 .siteTitle {
   -st-extends: Button;
 }
 
 .siteSubtitle {}
+
+.siteSubtitle::before {
+	margin: 0 0.5rem;
+	opacity: 0.3;
+	content: '|';
+}

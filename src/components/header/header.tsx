@@ -14,22 +14,19 @@ export const Header = ({
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
 	const fullTitle = `${title} - ${subtitle}`;
+	const logo = <img src="/favicon-temp.png" />;
 	return (
 		<header className={st(classes.root, className)}>
 			<div className={classes.container}>
-				<div className={classes.title}>
-					{/* <div className={st(classes.siteTitle, "locator-site-title")}> */}
-					<Button
-						icon={<img src="/favicon-temp.png" />}
-						label={title}
-						title={fullTitle}
-						link={pageId === "home" ? "" : "/"}
-						callback={() => false}
-						className={classes.siteTitle}
-					/>
-					{/* </div> */}
-					<div className={classes.siteSubtitle}>{subtitle}</div>
-				</div>
+				<Button
+					icon={logo as React.ReactElement}
+					label={title}
+					title={fullTitle}
+					link={pageId === "home" ? "" : "/"}
+					callback={() => false}
+					className={classes.siteTitle}
+				/>
+				<div className={classes.siteSubtitle}>{subtitle}</div>
 			</div>
 		</header>
 	);

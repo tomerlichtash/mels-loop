@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
@@ -8,30 +8,57 @@ import { MobileNav } from "../nav/nav-mobile";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
 import { useRouter } from "next/router";
-import {
-	HEADER_LOCALE,
-	FOOTER_LOCALE,
-	LOCALE_SELECTOR_LOCALE,
-} from "../../locales/components";
+import { HEADER_LOCALE, FOOTER_LOCALE } from "../../locales/components";
 import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
-import { LOCALE_FLAGS } from "../svg";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { st, classes } from "./layout.st.css";
+interface Size {
+	width: number | undefined;
+	height: number | undefined;
+}
 
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
 }
 
+function useWindowSize(): Size {
+	// Initialize state with undefined width/height so server and client renders match
+	// Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+	const [windowSize, setWindowSize] = useState<Size>({
+		width: undefined,
+		height: undefined,
+	});
+	useEffect(() => {
+		// Handler to call on window resize
+		function handleResize() {
+			// Set window width/height to state
+			setWindowSize({
+				width: window.innerWidth,
+				height: window.innerHeight,
+			});
+		}
+		// Add event listener
+		window.addEventListener("resize", handleResize);
+		// Call handler right away so state gets updated with initial window size
+		handleResize();
+		// Remove event listener on cleanup
+		return () => window.removeEventListener("resize", handleResize);
+	}, []); // Empty array ensures that effect is only run on mount
+	return windowSize;
+}
+
 export default function Layout(props: LayoutProps) {
+	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
+
 	const { translate, getSiteTitle, getSiteSubtitle } =
 		useContext(ReactLayoutContext);
 
 	const router = useRouter();
 	const { locale, locales } = router;
 
-	function onLocaleChange(locale: string) {
+	function onLocaleChange(locale: string): Promise<boolean> {
 		return router.push(router.asPath, router.asPath, {
 			locale,
 			scroll: false,
@@ -41,15 +68,15 @@ export default function Layout(props: LayoutProps) {
 	const localeSelectorOptions: IOption[] = locales.map((lang) => {
 		return {
 			id: lang,
-			label: `${localeLabelPrefix}_${lang.toUpperCase()}`,
-			isCurrent: locale === lang,
-			icon: LOCALE_FLAGS[lang],
-			onSelectChange: onLocaleChange,
+			label: translate(`${localeLabelPrefix}_${lang.toUpperCase()}`),
 		};
 	});
 
 	const title = translate(getSiteTitle());
 	const subtitle = translate(getSiteSubtitle());
+
+	const size: Size = useWindowSize();
+	const isMobile = size.width <= 970;
 
 	return (
 		<>
@@ -66,32 +93,40 @@ export default function Layout(props: LayoutProps) {
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
 			<div
-				className={st(classes.root, { locale, theme: "light" })}
+				className={st(classes.root, {
+					locale,
+					isMobile,
+					theme: "light",
+				})}
 				id="outer-container"
 			>
 				<div id="page-wrap">
 					<div className={classes.topBar}>
 						<div className={classes.siteHeader}>
 							<Header className={classes.header} compKeys={HEADER_LOCALE} />
-							<div className={classes.primaryNav}>
-								<Nav className={classes.nav} />
-								<LocaleSelector
-									className={st(classes.localeSelector, { locale })}
-									onLocaleChange={onLocaleChange}
-									options={localeSelectorOptions}
-									compKeys={LOCALE_SELECTOR_LOCALE}
-								/>
-							</div>
+							{!isMobile && (
+								<div className={classes.primaryNav}>
+									<Nav className={classes.nav} />
+									<LocaleSelector
+										options={localeSelectorOptions}
+										onLocaleChange={onLocaleChange}
+										className={st(classes.localeSelector, { locale })}
+									/>
+								</div>
+							)}
 						</div>
 					</div>
 					<Page className={classes.page} nodes={props.children} />
 					<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 				</div>
-				<MobileNav
-					className={classes.mobileNav}
-					right={locale === "he"}
-					localeOptions={localeSelectorOptions}
-				/>
+				{isMobile && (
+					<MobileNav
+						className={classes.mobileNav}
+						right={locale === "en"}
+						onLocaleChange={onLocaleChange}
+						localeOptions={localeSelectorOptions}
+					/>
+				)}
 			</div>
 			<Script
 				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"

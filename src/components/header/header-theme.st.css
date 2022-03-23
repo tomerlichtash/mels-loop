@@ -32,14 +32,3 @@
 .root::siteSubtitle {
   color: value(HeaderSiteSubtitleColor);
 }
-
-.root::siteTitleButton {
-  text-decoration: none;
-  color: value(HeaderSiteTitleColor);
-  /* border-bottom: 1px solid #808080; */
-}
-
-.root::siteTitleButton:hover {
-  color: red;
-  text-decoration: underline;
-}

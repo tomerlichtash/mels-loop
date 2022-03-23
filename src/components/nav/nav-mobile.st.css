@@ -21,7 +21,7 @@
   text-align: right;
 }
 
-.localeSelector {
+/* .localeSelector {
 	-st-extends: LocaleSelector;
   -st-states: right(boolean);
   z-index: 1;
@@ -31,20 +31,20 @@
 }
 .localeSelector:right {
   right: 1rem;
-}
+} */
 
 .burgerButton {
   -st-states: right(boolean);
   position: fixed;
   width: 24px;
   height: 20px;
-  top: 24px;
+  top: 16px;
 }
 .burgerButton:right(true) {
-  right: 24px;
+  right: 16px;
 }
 .burgerButton:not(:right) {
-  left: 24px;
+  left: 16px;
 }
 
 .burgerMenu {
