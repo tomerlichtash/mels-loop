@@ -1,5 +1,7 @@
 @namespace "LightTheme";
 
+@st-import ContentBrowser from "../components/content-browser/content-browser.st.css";
+
 @st-import Header from "../components/header/header.st.css";
 @st-import HeaderTheme from "../components/header/header-theme.st.css";
 
@@ -33,7 +35,6 @@
 /* .root {
 	-st-mixin: Responsive;
 } */
-
 
 @st-import [PageWidth] from "./common.st.css";
 @st-import [heading1] from "./typography.st.css";

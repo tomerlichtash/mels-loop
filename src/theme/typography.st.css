@@ -65,14 +65,8 @@
 	font-weight: value(fontWeightMedium);
 	/* line-height: value(lineHeight6); */
 }
-
 .bodyTextNormal {
 	font-size: value(fontSize6);
 	font-weight: value(fontWeightRegular);
 	/* line-height: value(lineHeight7); */
-}
-.bodyTextSmall {
-	font-size: value(fontSize7);
-	font-weight: value(fontWeightRegular);
-	line-height: value(lineHeight8);
 }

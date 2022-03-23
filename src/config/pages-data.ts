@@ -34,6 +34,12 @@ export const SITE_PAGES: SitePage[] = [
 		targetPathname: "/docs/resources",
 	},
 	{
+		id: "glossary",
+		menuNav: false,
+		locale: GLOSSARY_PAGE_LOCALE,
+		targetPathname: "/glossary",
+	},
+	{
 		id: "about",
 		menuNav: true,
 		locale: ABOUT_PAGE_LOCALE,
@@ -58,12 +64,6 @@ export const SITE_PAGES: SitePage[] = [
 	// 	locale: STORY_PAGE_LOCALE,
 	// 	targetPathname: "/story",
 	// },
-	{
-		id: "glossary",
-		menuNav: false,
-		locale: GLOSSARY_PAGE_LOCALE,
-		targetPathname: "/glossary",
-	},
 	{
 		id: "error",
 		menuNav: false,

@@ -1,11 +1,6 @@
 @namespace "Global";
 
 @st-import [boxSizing] from "./mixins.st.css";
-
-/* :global(*):focus {
-	outline: none;
-} */
-
 @st-import [heading1, heading3] from './typography.st.css'
 
 :global(html) {
