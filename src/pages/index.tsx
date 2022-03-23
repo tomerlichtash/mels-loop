@@ -5,10 +5,10 @@ import { GetStaticProps } from "next";
 import {
 	IMLParsedNode,
 	IPageProps,
+	IParsedPageData,
 	MLNODE_TYPES,
 	NODE_DISPLAY_TYPES,
 } from "../interfaces/models";
-import ContentBrowser from "../components/content-browser";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { ReactLayoutContext } from "../contexts/layout-context";
@@ -20,12 +20,23 @@ import {
 } from "../interfaces/parser";
 import { contentUtils } from "../lib/content-utils";
 import { DynamicContentTypes } from "../interfaces/dynamic-content";
+import { usePageData } from "../components/usePageData";
+import { ContentComponent } from "../components/content";
+import { v4 as uuidv4 } from "uuid";
 import { classes } from "./index.st.css";
 
-export default function Story({ content }: IPageProps) {
+export default function Story(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
+	const { className } = props;
+
+	const { pageData } = usePageData(props);
+	const page = pageData[0] || ({} as IParsedPageData);
+	const { metaData } = pageData[0];
+	const { title, moto } = metaData;
+	const elements: IMLParsedNode[] = page.parsed || [];
+
 	return (
 		<Layout>
 			<Head>
@@ -34,7 +45,17 @@ export default function Story({ content }: IPageProps) {
 				</title>
 			</Head>
 			<article className={classes.root}>
-				<ContentBrowser content={content} showTitle showMoto showCredits />
+				<h1 className={classes.title}>{title}</h1>
+				<p className={classes.moto}>{moto}</p>
+				{elements.map((node) => {
+					return (
+						<ContentComponent
+							key={uuidv4()}
+							className={(classes.contentComponent, className)}
+							componentData={{ node }}
+						/>
+					);
+				})}
 			</article>
 		</Layout>
 	);

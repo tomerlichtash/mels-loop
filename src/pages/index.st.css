@@ -2,25 +2,10 @@
 
 .root {}
 
-.article {}
+.title {}
 
-.verse {}
-
-.paragraph {}
-
-.popOverTrigger {
-	background: none;
-	border: none;
-}
-.popOverTrigger:hover {
-	background: #e0f;
-	border-radius: 4px;
-}
-
-.popOverContent {
-	border-radius: 4px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-	width: 250px;
-	padding: 1rem;
-	background: #f0f0f0;
+.moto {
+	font-size: 14px;
+	font-style: italic;
+	padding: 2rem;
 }
