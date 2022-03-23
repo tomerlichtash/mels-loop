@@ -6,7 +6,9 @@ export const AnnotationLink = (props: ContentComponentProps): JSX.Element => {
 	const p = props.componentData.node;
 	return (
 		<>
-			<sup className={classes.root}>{p.sequence}</sup>
+			<sup className={classes.root}>{`${p.sequence <= 9 ? "0" : ""}${
+				p.sequence
+			}`}</sup>
 		</>
 	);
 };
