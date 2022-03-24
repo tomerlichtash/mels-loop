@@ -136,7 +136,6 @@
 .page {
 	-st-extends: Page;
 	padding-top: 100px;
-	
 }
 
 /* @media (min-width: 320px) and (max-width: 767px) {
