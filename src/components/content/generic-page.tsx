@@ -27,8 +27,6 @@ export default function GenericPage(props: IContentComponentData) {
 			</Head>
 			<article className={classes.root}>
 				<h1 className={classes.title}>{metaData?.title}</h1>
-				<p>{metaData.author}</p>
-				<p>{metaData.date}</p>
 				{node ? (
 					<ContentIterator componentData={{ node }} />
 				) : (

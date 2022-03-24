@@ -38,13 +38,7 @@ export const ContentIterator = ({
 		return (
 			<Tag className={st(classes[Tag], className)} key={uuidv4()}>
 				{elements.map((node) => {
-					return (
-						<ContentComponent
-							key={uuidv4()}
-							// className={className}
-							componentData={{ node }}
-						/>
-					);
+					return <ContentComponent key={uuidv4()} componentData={{ node }} />;
 				})}
 			</Tag>
 		);
