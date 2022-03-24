@@ -14,25 +14,25 @@ export const Paragraph = ({
 		return <p className={classes.empty}></p>;
 	}
 
+	const { line } = node;
+
 	if (children.length === 1 && children[0].type === "text") {
 		return (
-			<p key={node.key} className={className} data-line-index={node.line}>
+			<p key={node.key} className={className} data-line-index={line}>
 				{node.children[0].text}
 			</p>
 		);
 	}
 
 	return (
-		<p key={node.key} className={className} data-line-index={node.line}>
-			{children.map((node) => {
-				return (
-					<ContentComponent
-						key={node.key}
-						className={className}
-						componentData={{ node }}
-					/>
-				);
-			})}
+		<p key={node.key} className={className} data-line-index={line}>
+			{children.map((node) => (
+				<ContentComponent
+					key={node.key}
+					className={className}
+					componentData={{ node }}
+				/>
+			))}
 		</p>
 	);
 };

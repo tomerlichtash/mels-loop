@@ -13,7 +13,7 @@ export const Heading = ({
 
 	return (
 		<Title className={className} key={node.key}>
-			<ContentIterator componentData={componentData} className={className} />
+			<ContentIterator componentData={componentData} />
 		</Title>
 	);
 };

@@ -13,11 +13,10 @@
 @st-import Page from "../components/page/page.st.css";
 @st-import PageTheme from "../components/page/page-theme.st.css";
 
-@st-import Section from "../components/content/content-blocks/section/section.st.css";
-@st-import Paragraph from "../components/content/content-blocks/paragraph/paragraph.st.css";
-
 @st-import LocaleSelector from "../components/locale-selector/locale-selector.st.css";
 /* @st-import LocaleSelectorTheme from "../components/locale-selector/locale-selector-theme.st.css"; */
+
+@st-import ContentComponent from "../components/content/content-component.st.css";
 
 /* @st-import PopoverTrigger from "../components/popover/popover-trigger.st.css";
 @st-import PopoverContent from "../components/popover/popover-content.st.css";
@@ -50,21 +49,14 @@
 		width: value(PageWidth);
 	}
 
-	:global(blockquote) {
-		margin-bottom: 1.5rem;
-		margin-left: 2rem;
-	}
-	:global(blockquote) * {
-		font-style: italic;
+	ContentComponent:type(section),
+	ContentComponent:type(blockquote) {
+		margin-bottom: 2rem;
 	}
 
-	Section {
-		/* margin-bottom: 1.5rem; */
-	}
-
-	Paragraph {
-		/* line-height: 28px; */
-		/* margin: 0 0 1.5rem; */
+	ContentComponent:type(paragraph),
+	ContentComponent:type(blockquote) {
+		line-height: 1.75rem;
 	}
 
 	Header {

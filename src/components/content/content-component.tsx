@@ -14,14 +14,14 @@ import {
 import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
 import LinkSelector from "./content-blocks/link-selector";
-import { classes } from "./content-component.st.css";
+import { st, classes } from "./content-component.st.css";
 
 export const ContentComponent = ({
 	componentData,
 }: ContentComponentProps): JSX.Element => {
-	// const data = componentData;
 	const { node } = componentData;
 	const { key, type } = node;
+	const stylableClassName = st(classes.root, { type });
 
 	if (!key) {
 		console.warn("missing key on", node);
@@ -33,7 +33,7 @@ export const ContentComponent = ({
 				<Section
 					key={key}
 					componentData={componentData}
-					className={classes[type]}
+					className={stylableClassName}
 				/>
 			);
 		case MLNODE_TYPES.PARAGRAPH:
@@ -41,7 +41,7 @@ export const ContentComponent = ({
 				<Paragraph
 					key={key}
 					componentData={componentData}
-					className={classes[type]}
+					className={stylableClassName}
 				/>
 			);
 		case MLNODE_TYPES.DEL:
@@ -53,32 +53,35 @@ export const ContentComponent = ({
 				<ContentIterator
 					key={key}
 					componentData={{ tag: type, ...componentData }}
-					className={classes[type]}
+					className={stylableClassName}
 				/>
 			);
 		case MLNODE_TYPES.BLOCKQUOTE:
 			return (
 				<ContentIterator
 					key={key}
-					componentData={{ tag: MLNODE_TYPES.BLOCKQUOTE, ...componentData }}
-					className={classes[type]}
+					componentData={{ tag: type, ...componentData }}
+					className={stylableClassName}
 				/>
 			);
 		case MLNODE_TYPES.TEXT:
 			const { text } = node;
 			return (
-				<span key={key} className={classes[type]}>
+				<span key={key} className={stylableClassName}>
 					{text}
 				</span>
 			);
 		case MLNODE_TYPES.LIST:
 			const { ordered } = node;
+			const listType = ordered
+				? NODE_LIST_TYPES.ORDERED
+				: NODE_LIST_TYPES.UNORDERED;
 			return (
 				<ContentIterator
 					key={key}
-					className={classes[type]}
+					className={stylableClassName}
 					componentData={{
-						tag: ordered ? NODE_LIST_TYPES.ORDERED : NODE_LIST_TYPES.UNORDERED,
+						tag: listType,
 						...componentData,
 					}}
 				/>
@@ -88,7 +91,7 @@ export const ContentComponent = ({
 				<ListItem
 					key={key}
 					componentData={componentData}
-					className={classes[type]}
+					className={stylableClassName}
 				/>
 			);
 		case MLNODE_TYPES.LINK:
@@ -96,7 +99,7 @@ export const ContentComponent = ({
 				<LinkSelector
 					key={key}
 					componentData={componentData}
-					className={classes[type]}
+					className={stylableClassName}
 				/>
 			);
 		case MLNODE_TYPES.IMAGE:
@@ -104,7 +107,7 @@ export const ContentComponent = ({
 				<CustomImage
 					key={key}
 					componentData={componentData}
-					className={classes[type]}
+					className={stylableClassName}
 				/>
 			);
 		case MLNODE_TYPES.FIGURE:
@@ -112,7 +115,7 @@ export const ContentComponent = ({
 				<Figure
 					key={key}
 					componentData={componentData}
-					className={classes[type]}
+					className={stylableClassName}
 				/>
 			);
 		default:
@@ -121,7 +124,9 @@ export const ContentComponent = ({
 					<Heading
 						key={key}
 						componentData={componentData}
-						className={classes[`heading_${componentData.node.level}`]}
+						className={st(classes.root, {
+							type: `heading_${componentData.node.level}`,
+						})}
 					/>
 				);
 			}
