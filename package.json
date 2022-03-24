@@ -7,7 +7,7 @@
 	"scripts": {
 		"clean": "rm -rf .next",
 		"dev": "next dev",
-		"build": "next build",
+		"build": "yarn clean && next build",
 		"start": "next start",
 		"lint": "eslint . -f codeframe",
 		"test:jest": "jest --setupFiles ./__tests__/test-setup.ts",
