@@ -2896,9 +2896,10 @@ cloudinary-core@^2.11.3:
   version "2.12.3"
   resolved "https://registry.npmjs.org/cloudinary-core/-/cloudinary-core-2.12.3.tgz"
 
-cloudinary-react@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.npmjs.org/cloudinary-react/-/cloudinary-react-1.7.1.tgz"
+cloudinary-react@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/cloudinary-react/-/cloudinary-react-1.7.2.tgz#1e43a41cd7df38f4b2cfc42bb6c933aafd6a6061"
+  integrity sha512-crwKQRGLP5SkYblwR8Li5O+ZiwKLL/xAz9BjIkg8/hNDF5/+vT3/K+JCWne86lA2AWAuk4OTbv4YVjHx4xA8eA==
   dependencies:
     cloudinary-core "^2.11.3"
     prop-types "^15.6.2"

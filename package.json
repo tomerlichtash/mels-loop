@@ -21,7 +21,7 @@
 	},
 	"dependencies": {
 		"@radix-ui/react-popover": "^0.1.6",
-		"cloudinary-react": "^1.7.1",
+		"cloudinary-react": "^1.7.2",
 		"date-fns": "^2.28.0",
 		"gray-matter": "^4.0.3",
 		"lodash.sortby": "^4.7.0",
