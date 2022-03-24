@@ -2,16 +2,9 @@
 
 @st-import [preventSelection] from "../../theme/mixins.st.css";
 
-:vars {
-  triggerColor: blue;
-  triggerColorOpen: green;
-  triggerColorHover: orange;
-}
-
 .root {
   -st-states: type(string);
   cursor: pointer;
-  color: value(triggerColor);
   padding: inherit;
   line-height: inherit;
   font-size: inherit;
@@ -20,25 +13,10 @@
   background: inherit;
 }
 
-.root[data-state="open"],
-.root[data-state="open"]:hover {
-  color: value(triggerColorOpen);
-}
-
-.root:hover {
-  color: value(triggerColorHover);
-}
-
-.root[data-state="open"]:type(glossary) {
-  background-color: yellow;
-}
-
 .root:type(glossary)::after {
-  content: '※';
   -st-mixin: preventSelection;
-  /* font-size: 50%; */
+  content: '※';
   z-index: 0;
   position: relative;
   top: -5px;
 }
-

@@ -18,6 +18,7 @@
 
 @st-import ContentComponent from "../components/content/content-component.st.css";
 
+@st-import PopoverTrigger from "../components/popover/popover-trigger.st.css";
 /* @st-import PopoverTrigger from "../components/popover/popover-trigger.st.css";
 @st-import PopoverContent from "../components/popover/popover-content.st.css";
 @st-import PopoverCloseButton from "../components/popover/popover-close-button.st.css";
@@ -53,10 +54,23 @@
 	ContentComponent:type(blockquote) {
 		margin-bottom: 2rem;
 	}
-
 	ContentComponent:type(paragraph),
 	ContentComponent:type(blockquote) {
 		line-height: 1.75rem;
+	}
+	ContentComponent:type(link) {
+		color: blue;
+	}
+	ContentComponent:type(link):hover {
+		color: green;
+	}
+	ContentComponent:type(link)[data-state="open"],
+	ContentComponent:type(link)[data-state="open"]:hover {
+		color: orange;
+	}
+
+	PopoverTrigger:type(glossary)[data-state="open"] {
+	  background-color: yellow;
 	}
 
 	Header {
