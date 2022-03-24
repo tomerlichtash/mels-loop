@@ -33,7 +33,7 @@
 		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.20.0",
+		"@playwright/test": "^1.20.1",
 		"@stylable/core": "^4.11.0",
 		"@stylable/dom-test-kit": "^4.11.0",
 		"@stylable/jest": "^4.11.0",
