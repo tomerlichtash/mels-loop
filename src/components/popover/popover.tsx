@@ -17,6 +17,7 @@ export interface IPopoverProps {
 	trigger: React.ReactNode;
 	children: React.ReactNode;
 	closePosX: ICloseButtonPosition;
+	onTriggerClick: (yPos: number) => void;
 	className?: string;
 }
 
@@ -25,11 +26,18 @@ export const Popover = ({
 	trigger,
 	children,
 	closePosX,
+	onTriggerClick,
 	className,
 }: IPopoverProps): JSX.Element => {
 	return (
 		<RadixPopover.Root>
-			<RadixPopover.Trigger asChild>
+			<RadixPopover.Trigger
+				asChild
+				onClick={(args) => {
+					console.log(args);
+					onTriggerClick(args.pageY);
+				}}
+			>
 				<span
 					className={triggerStyle(triggerClasses.root, { type }, className)}
 				>

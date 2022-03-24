@@ -1,3 +1,5 @@
+import { IPosition } from "../components/peephole/peephole";
+
 export interface SitePageRef {
 	id: string;
 	menuNav: boolean;
@@ -15,4 +17,8 @@ export interface ILayoutContext {
 	translate: (s: string, lang?: string) => string;
 	getSiteTitle: () => string;
 	getSiteSubtitle: () => string;
+	peepholePosition: IPosition;
+	setPeepholePosition: (x: number, y: number) => void;
+	showPeephole: boolean;
+	togglePeephole: () => void;
 }

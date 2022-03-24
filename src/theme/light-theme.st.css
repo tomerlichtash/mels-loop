@@ -34,7 +34,7 @@
 	-st-mixin: Responsive;
 } */
 
-@st-import [PageWidth] from "./common.st.css";
+@st-import [PageWidth, accent1] from "./common.st.css";
 @st-import [heading1] from "./typography.st.css";
 
 @st-import [
@@ -47,7 +47,8 @@
 /* Default */
 @st-scope .root {	
 	Page {
-		width: value(PageWidth);
+		/* width: value(PageWidth); */
+		width: 1200px;
 	}
 
 	ContentComponent:type(section),
@@ -59,7 +60,7 @@
 		line-height: 1.75rem;
 	}
 	ContentComponent:type(link) {
-		color: blue;
+		color: value(accent1);
 	}
 	ContentComponent:type(link):hover {
 		color: green;

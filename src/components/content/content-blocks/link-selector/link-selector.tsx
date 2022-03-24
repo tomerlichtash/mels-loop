@@ -36,7 +36,8 @@ export const LinkSelector = ({
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { displayType, key } = node;
-	const { locale } = useContext(ReactLayoutContext);
+	const { locale, togglePeephole, setPeepholePosition } =
+		useContext(ReactLayoutContext);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return (
@@ -51,6 +52,11 @@ export const LinkSelector = ({
 			type={linkType}
 			className={className}
 			closePosX={getCloseButtonPosition(locale)}
+			onTriggerClick={(yPos: number) => {
+				console.log("set popover yPos from link selector", yPos);
+				setPeepholePosition(0, yPos);
+				togglePeephole(true);
+			}}
 			trigger={getTriggerComp(linkType, componentData, className)}
 		>
 			<DynamicContentViewer url={target} />

@@ -9,11 +9,18 @@
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
-@st-import [PageWidth, level2, level5, level4] from '../../theme/common.st.css';
+@st-import [PageWidth, level1, level2, level5, level4] from '../../theme/common.st.css';
 @st-import [heading6, bodyTextNormal, LatinText, HebrewText] from '../../theme/typography.st.css';
 @st-import [boxSizing] from '../../theme/mixins.st.css';
 
+:global(html) {
+	background-color: value(level1);
+}
+
+.page {}
+
 .root {
+	background-color: #fff;
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
 	-st-mixin: Globals;
 	font-size: 16px;
@@ -135,7 +142,6 @@
 
 .page {
 	-st-extends: Page;
-	padding-top: 100px;
 }
 
 /* @media (min-width: 320px) and (max-width: 767px) {

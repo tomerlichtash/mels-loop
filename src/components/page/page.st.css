@@ -7,8 +7,17 @@
 	width: 100%;
 	overflow: hidden;
 	margin: 0 auto;
+	display: flex;
+	align-content: space-around;
 }
 
 .gutter {
-	padding: 0 1rem;
+	/* padding: 0 1rem; */
+	padding-top: 100px;
+	flex: 2;
+}
+
+.aside {
+	flex: 1;
+	position: relative;
 }

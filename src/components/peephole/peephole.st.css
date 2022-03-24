@@ -1,0 +1,13 @@
+@namespace "Note";
+
+@st-import Bibliography from "../bibliography/bibliography.st.css";
+
+.root {
+	-st-states: type(enum(note, ref));
+	background: #c0c0c0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-height: 500px;
+	width: 100%;
+}

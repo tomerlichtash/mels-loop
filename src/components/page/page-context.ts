@@ -1,6 +1,7 @@
 import { Context, createContext } from "react";
 import { IDynamicContentServer } from "../../interfaces/dynamic-content";
 import { IPageContext } from "../../interfaces/page-context";
+import { IPosition } from "../peephole/peephole";
 
 export class PageContext implements IPageContext {
 	constructor(public readonly dynamicContentServer: IDynamicContentServer) {}
