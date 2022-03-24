@@ -20,5 +20,5 @@ export interface ILayoutContext {
 	peepholePosition: IPosition;
 	setPeepholePosition: (x: number, y: number) => void;
 	showPeephole: boolean;
-	togglePeephole: () => void;
+	togglePeephole: (state?: boolean) => void;
 }
