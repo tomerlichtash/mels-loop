@@ -1,0 +1,5 @@
+@namespace "Note";
+
+.root {
+	-st-states: type(enum(note, ref));
+}

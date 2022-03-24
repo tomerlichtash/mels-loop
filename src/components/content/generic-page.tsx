@@ -6,7 +6,6 @@ import {
 } from "../../interfaces/models";
 import Layout from "../layout";
 import Head from "next/head";
-import { TimeFormat } from "../../components/ui";
 import { ContentIterator } from "./content-iterator";
 import { usePageData } from "../usePageData";
 import { classes } from "./generic-page.st.css";
@@ -30,12 +29,6 @@ export default function GenericPage(props: IContentComponentData) {
 				<h1 className={classes.title}>{metaData?.title}</h1>
 				<p>{metaData.author}</p>
 				<p>{metaData.date}</p>
-				{/* <TimeFormat
-					dateStr={metaData.date}
-					locale={locale}
-					className={classes.date}
-				/> */}
-
 				{node ? (
 					<ContentIterator componentData={{ node }} />
 				) : (

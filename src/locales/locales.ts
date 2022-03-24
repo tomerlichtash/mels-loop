@@ -41,7 +41,7 @@ export const HE_IL: Language = {
 	BLOG_NAV_LABEL: "בלוג",
 	BLOG_POSTS_LIST: "פוסטים",
 	RESOURCES_NAV_LABEL: "מקורות",
-	GLOSSARY_NAV_LABEL: "מונחון",
+	GLOSSARY_NAV_LABEL: "מילון מונחים",
 	SITE_TITLE: "לולאת מל",
 	SITE_SUBTITLE: "המדריך המקיף לסיפור על מל",
 	LOCALE_SELECTOR_TITLE: "בחירת שפה",

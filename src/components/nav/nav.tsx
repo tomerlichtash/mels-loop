@@ -14,7 +14,6 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	} = useContext(ReactLayoutContext);
 	return (
 		<nav className={st(classes.root, className)}>
-			{/* <div className={classes.menu}> */}
 			<ul className={classes.list}>
 				{getPageRefs().map((page) => {
 					const { id } = page;
@@ -36,7 +35,6 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 					);
 				})}
 			</ul>
-			{/* </div> */}
 		</nav>
 	);
 };
