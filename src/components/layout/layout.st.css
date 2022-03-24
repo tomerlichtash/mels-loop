@@ -15,10 +15,11 @@
 
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
-	-st-mixin: Globals, LightTheme;
+	-st-mixin: Globals;
 	font-size: 16px;
 }
 .root:theme(light) {
+	-st-mixin: LightTheme;
 }
 /* .root:theme(dark) {
 	-st-mixin: DarkTheme;
