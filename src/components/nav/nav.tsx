@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
-import { Button } from "../ui";
+// import { Button } from "../ui";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { st, classes } from "./nav.st.css";
+import NavigationMenuDemo from "./menu";
 
 export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	const {
@@ -14,7 +16,38 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	} = useContext(ReactLayoutContext);
 	return (
 		<nav className={st(classes.root, className)}>
-			<ul className={classes.list}>
+			{/* <NavigationMenuDemo /> */}
+
+			{/* <NavigationMenu.Root>
+				<NavigationMenu.List>
+					<NavigationMenu.Item>
+						<NavigationMenu.Trigger />
+						<NavigationMenu.Content>
+							<NavigationMenu.Link />
+						</NavigationMenu.Content>
+					</NavigationMenu.Item>
+
+					<NavigationMenu.Item>
+						<NavigationMenu.Link />
+					</NavigationMenu.Item>
+
+					<NavigationMenu.Item>
+						<NavigationMenu.Trigger />
+						<NavigationMenu.Content>
+							<NavigationMenu.Sub>
+								<NavigationMenu.List />
+								<NavigationMenu.Viewport />
+							</NavigationMenu.Sub>
+						</NavigationMenu.Content>
+					</NavigationMenu.Item>
+
+					<NavigationMenu.Indicator />
+				</NavigationMenu.List>
+
+				<NavigationMenu.Viewport />
+			</NavigationMenu.Root> */}
+
+			{/* <ul className={classes.list}>
 				{getPageRefs().map((page) => {
 					const { id } = page;
 					const isCurrent = isCurrentPage(id);
@@ -34,7 +67,7 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 						</li>
 					);
 				})}
-			</ul>
+			</ul> */}
 		</nav>
 	);
 };

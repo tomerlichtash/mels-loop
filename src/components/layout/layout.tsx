@@ -14,6 +14,7 @@ import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { st, classes } from "./layout.st.css";
+import { NavigationMenuDemo } from "../nav/menu-js";
 interface Size {
 	width: number | undefined;
 	height: number | undefined;
@@ -106,7 +107,9 @@ export default function Layout(props: LayoutProps) {
 							<Header className={classes.header} compKeys={HEADER_LOCALE} />
 							{!isMobile && (
 								<div className={classes.primaryNav}>
-									<Nav className={classes.nav} />
+									{/* <Nav className={classes.nav} /> */}
+									<NavigationMenuDemo />
+
 									<LocaleSelector
 										options={localeSelectorOptions}
 										onLocaleChange={onLocaleChange}
