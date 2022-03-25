@@ -11,7 +11,7 @@ import { usePageData } from "../components/usePageData";
 import { Button, TimeFormat } from "../components/ui";
 import { ContentComponent } from "../components/content";
 import { ReactLayoutContext } from "../contexts/layout-context";
-import sortBy from "lodash.sortby";
+import orderBy from "lodash.orderby";
 import { classes } from "./posts.st.css";
 
 export default function Blog(props: IPageProps) {
@@ -28,7 +28,7 @@ export default function Blog(props: IPageProps) {
 			</Head>
 			<div className={classes.root}>
 				<h1 className={classes.sectionTitle}>{translate(postsList)}</h1>
-				{sortBy(pageData, (p: IParsedPageData) => p.metaData.date).map(
+				{orderBy(pageData, ["metaData.date"], ["desc"]).map(
 					(page: IParsedPageData) => {
 						const { metaData, path } = page;
 						const { title, date } = metaData;
