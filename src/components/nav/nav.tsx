@@ -14,29 +14,27 @@ export const Nav = ({ className }: ComponentProps): JSX.Element => {
 	} = useContext(ReactLayoutContext);
 	return (
 		<nav className={st(classes.root, className)}>
-			<div className={classes.menu}>
-				<ul className={classes.list}>
-					{getPageRefs().map((page) => {
-						const { id } = page;
-						const isCurrent = isCurrentPage(id);
-						if (!isPageVisible(id)) return;
-						return (
-							<li
-								className={st(classes.listItem, { isCurrent })}
-								key={`nav-item-${id}`}
-							>
-								<Button
-									label={getPageName(id)}
-									link={getPagePath(id)}
-									selected={isCurrent}
-									className={classes.button}
-								/>
-								<div className={st(classes.marker, { isCurrent })}></div>
-							</li>
-						);
-					})}
-				</ul>
-			</div>
+			<ul className={classes.list}>
+				{getPageRefs().map((page) => {
+					const { id } = page;
+					const isCurrent = isCurrentPage(id);
+					if (!isPageVisible(id)) return;
+					return (
+						<li
+							className={st(classes.listItem, { isCurrent })}
+							key={`nav-item-${id}`}
+						>
+							<Button
+								label={getPageName(id)}
+								link={getPagePath(id)}
+								selected={isCurrent}
+								className={classes.button}
+							/>
+							<div className={st(classes.marker, { isCurrent })}></div>
+						</li>
+					);
+				})}
+			</ul>
 		</nav>
 	);
 };

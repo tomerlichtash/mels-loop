@@ -6,6 +6,7 @@
 
 .content {
 	display: inline-flex;
+	align-items: center;
 }
 
 .label {
@@ -13,9 +14,6 @@
 }
 
 .icon {
-	flex: 1;
-	overflow: hidden;
-	/* width: 100%; */
 	text-align: center;
 }
 

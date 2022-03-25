@@ -177,7 +177,7 @@ even in [hexadecimal](#glossary/hexadecimal).
 Mel was, I think, an unsung genius.
 
 Perhaps my greatest shock came
-when I found an innocent [loop](#glossary/loop) that had no test in it.
+when I found an innocent [loop](#glossary/loop) that had no [test](#glossary/terminating-condition) in it.
 No test. None.
 Common sense said it had to be a closed [loop](#glossary/loop),
 where the program would circle, forever, endlessly.

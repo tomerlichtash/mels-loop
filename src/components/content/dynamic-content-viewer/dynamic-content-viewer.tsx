@@ -65,7 +65,7 @@ export const DynamicContentViewer = ({
 				contents={contents}
 				label={label}
 				title={translate(glossary_key)}
-				term={locale === "en" ? "" : translate(glossary_key)}
+				term={locale === "en" ? "" : translate(glossary_key, "en")}
 				sources={[
 					{
 						name: source_name,

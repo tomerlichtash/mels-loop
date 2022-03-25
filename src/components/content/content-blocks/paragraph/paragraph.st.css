@@ -1,8 +1,5 @@
 @namespace "Paragraph";
 
-.root {
-	margin: 0;
-	line-height: 1.6rem;
-}
+.root {}
 
 .empty {}

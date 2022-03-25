@@ -12,7 +12,7 @@ export interface ILayoutContext {
 	getPageName: (id: string) => string;
 	isPageVisible: (id: string) => boolean;
 	isCurrentPage: (id: string) => boolean;
-	translate: (s: string) => string;
+	translate: (s: string, lang?: string) => string;
 	getSiteTitle: () => string;
 	getSiteSubtitle: () => string;
 }
