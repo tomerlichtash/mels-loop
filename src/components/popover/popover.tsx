@@ -32,6 +32,7 @@ export const Popover = ({
 			<RadixPopover.Trigger asChild>
 				<span
 					className={triggerStyle(triggerClasses.root, { type }, className)}
+					tabIndex={1}
 				>
 					{trigger}
 				</span>

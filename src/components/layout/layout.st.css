@@ -135,7 +135,7 @@
 
 .page {
 	-st-extends: Page;
-	padding-top: 100px;
+	padding-top: 150px;
 }
 
 /* @media (min-width: 320px) and (max-width: 767px) {
@@ -143,3 +143,4 @@
 		display: none;
 	}
 } */
+  
