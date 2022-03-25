@@ -17,7 +17,8 @@
 		"test:e2e:browser": "playwright test --headed",
 		"test:mocha": "mocha-play ./__tests__/test-setup.ts \"__tests__/**/*.spec.ts?(x)\"",
 		"test:mocha:browser": "yarn test:mocha -w",
-		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src"
+		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src",
+		"fix-styles": "source ./scripts/touch-css.sh"
 	},
 	"dependencies": {
 		"@radix-ui/react-popover": "^0.1.6",
