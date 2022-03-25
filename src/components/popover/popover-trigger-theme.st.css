@@ -1,4 +1,4 @@
-@namespace "PopoverTriggerTheme";
+/* @namespace "PopoverTriggerTheme";
 
 @st-import PopoverTrigger from "./popover-trigger.st.css";
 
@@ -23,6 +23,5 @@
 }
 
 .root[data-state="open"]:type(glossary) {
-  border-bottom: 3px double red;
   background-color: yellow;
-}
+} */

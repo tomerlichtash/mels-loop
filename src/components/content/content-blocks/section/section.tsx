@@ -4,15 +4,25 @@ import {
 	IMLParsedNode,
 	ContentComponentProps,
 } from "../../../../interfaces/models";
-import { classes } from "./section.st.css";
 
-export const Section = (props: ContentComponentProps): JSX.Element => {
-	const p = props.componentData.node;
-	const elements: IMLParsedNode[] = Array.isArray(p.children) ? p.children : [];
+export const Section = ({
+	componentData,
+	className,
+}: ContentComponentProps): JSX.Element => {
+	const { node } = componentData;
+	const elements: IMLParsedNode[] = Array.isArray(node.children)
+		? node.children
+		: [];
 	return (
-		<div className={classes.root} key={p.key}>
+		<div className={className} key={node.key}>
 			{elements.map((node) => {
-				return <ContentComponent key={node.key} componentData={{ node }} />;
+				return (
+					<ContentComponent
+						key={node.key}
+						componentData={{ node }}
+						className={className}
+					/>
+				);
 			})}
 		</div>
 	);

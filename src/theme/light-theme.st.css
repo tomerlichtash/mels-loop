@@ -1,3 +1,5 @@
+@namespace "LightTheme";
+
 @st-import Header from "../components/header/header.st.css";
 @st-import HeaderTheme from "../components/header/header-theme.st.css";
 
@@ -14,6 +16,18 @@
 @st-import LocaleSelector from "../components/locale-selector/locale-selector.st.css";
 /* @st-import LocaleSelectorTheme from "../components/locale-selector/locale-selector-theme.st.css"; */
 
+@st-import ContentComponent from "../components/content/content-component.st.css";
+
+@st-import PopoverTrigger from "../components/popover/popover-trigger.st.css";
+/* @st-import PopoverTrigger from "../components/popover/popover-trigger.st.css";
+@st-import PopoverContent from "../components/popover/popover-content.st.css";
+@st-import PopoverCloseButton from "../components/popover/popover-close-button.st.css";
+@st-import PopoverTriggerTheme from "../components/popover/popover-trigger-theme.st.css";
+@st-import PopoverContentTheme from "../components/popover/popover-content-theme.st.css";
+@st-import PopoverCloseButtonTheme from "../components/popover/popover-close-button-theme.st.css";
+@st-import Note from "../components/note/note.st.css";
+@st-import NoteTheme from "../components/note/note-theme.st.css"; */
+
 /* Debug Media Queries */
 /* @st-import Responsive from "./responsive-mixin.st.css"; */
 /* .root {
@@ -21,6 +35,7 @@
 } */
 
 @st-import [PageWidth] from "./common.st.css";
+@st-import [heading1] from "./typography.st.css";
 
 @st-import [
 	HeaderBgColor,
@@ -31,38 +46,55 @@
 
 /* Default */
 @st-scope .root {	
-	:global(.mobileNavTrigger) {
-		display: none;
-	}
-
 	Page {
 		width: value(PageWidth);
-		margin: 0 auto;
-		padding: 2rem;
+	}
+
+	ContentComponent:type(section),
+	ContentComponent:type(blockquote) {
+		margin-bottom: 2rem;
+	}
+	ContentComponent:type(paragraph),
+	ContentComponent:type(blockquote) {
+		line-height: 1.75rem;
+	}
+	ContentComponent:type(link) {
+		color: blue;
+	}
+	ContentComponent:type(link):hover {
+		color: green;
+	}
+	ContentComponent:type(link)[data-state="open"],
+	ContentComponent:type(link)[data-state="open"]:hover {
+		color: orange;
+	}
+
+	PopoverTrigger:type(glossary)[data-state="open"] {
+	  background-color: yellow;
 	}
 
 	Header {
-		-st-mixin: HeaderTheme(
-			HeaderBackgroundColor value(HeaderBgColor),
-			HeaderSiteTitleColor value(HeaderTitleColor),
-			HeaderSiteSubtitleColor value(HeaderSubtitleColor),
-			HeaderSiteTitleFontFamily inherit,
-			HeaderSiteTitleFontSize 4rem,
-			HeaderSiteTitleFontWeight 300,
-			HeaderPadding 4rem 0,
-		);
+		/* -st-mixin: HeaderTheme( */
+			/* HeaderBackgroundColor value(HeaderBgColor), */
+			/* HeaderSiteTitleColor value(HeaderTitleColor), */
+			/* HeaderSiteSubtitleColor value(HeaderSubtitleColor), */
+			/* HeaderSiteTitleFontFamily inherit, */
+			/* HeaderSiteTitleFontSize 4rem, */
+			/* HeaderSiteTitleFontWeight 300, */
+			/* HeaderPadding 4rem 0, */
+		/* ); */
 	}
 
 	Footer {
-		-st-mixin: FooterTheme(
+		/* -st-mixin: FooterTheme(
 			FooterPadding 4rem 0
-		);
+		); */
 	}
 
 	Nav {
-		-st-mixin: NavTheme(
+		/* -st-mixin: NavTheme(
 			NavBackgroundColor value(PrimaryNavBgColor)
-		);
+		); */
 	}
 
 	MobileNav::nav {
@@ -75,12 +107,49 @@
 	MobileNav::nav::button:selected {
 		background-color: #c00;
 	}
+
+	/* PopoverTrigger {
+    -st-mixin: PopoverTriggerTheme(
+      triggerColor blue,
+      triggerColorOpen green,
+      triggerColorHover orange
+    )
+  }
+  PopoverContent {
+		border: 2px solid blue;
+    -st-mixin: PopoverContentTheme(
+      PopoverContentBorder none,
+      PopoverContentRadius 6px,
+      PopoverContentBgColor #fff,
+      PopoverContentMaxWidth 350px,
+      PopoverContentMaxHeight 300px,
+      PopoverContentShadow 0 0 10px rgba(0, 0, 0, 0.5)
+    )
+  }
+  PopoverCloseButton {
+		border: 2px solid green;
+    -st-mixin: PopoverCloseButtonTheme(
+      PopoverCloseMarginTop 1rem,
+      PopoverCloseBorderRadius 50%,
+      PopoverCloseFontSize 12px,
+      PopoverCloseSize 30px,
+      PopoverCloseBgHover red,
+      PopoverClosePosRight 1rem,
+      PopoverClosePosLeft 1rem,
+      PopoverCloseIconColor blue,
+      PopoverCloseIconColorHover #fff
+    );
+  }
+  Note {
+		-st-mixin: NoteTheme;
+	} */
+
 }
 
 /* Mobile */
 @media (min-width: 320px) and (max-width: 767px) {
 	:global(.mobileNavTrigger) {
-		display:block;
+		display: block;
 	}
 	:global(img) {
 		width: 100%;
@@ -93,11 +162,17 @@
 			margin: 0 auto;
 		}
 		Page::gutter {
-			padding: 0 1rem;
+			padding: 0 3rem;
 		}
 
+		Header::siteTitle {
+			font-size: 14px
+		}
+		Header::siteSubtitle {
+			font-size: 14px
+		}
 		Header {
-			-st-mixin: HeaderTheme(
+			/* -st-mixin: HeaderTheme(
 				HeaderBackgroundColor value(HeaderBgColor),
 				HeaderSiteTitleColor value(HeaderTitleColor),
 				HeaderSiteSubtitleColor value(HeaderSubtitleColor),
@@ -105,13 +180,13 @@
 				HeaderSiteTitleFontSize 2rem,
 				HeaderSiteTitleFontWeight 300,
 				HeaderPadding 2rem 0,
-			);
+			); */
 		}
 
 		Footer {
-			-st-mixin: FooterTheme(
+			/* -st-mixin: FooterTheme(
 				FooterPadding 4rem 0
-			);
+			); */
 		}
 	}
 }

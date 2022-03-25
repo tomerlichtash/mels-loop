@@ -1,20 +1,45 @@
 @namespace "StyleCommons";
 
 :vars {
-    color0: #fff;
-    color1: #f0f0f0;
-    color2: #fa90fa;
-    color3: #4f8;
-    color4: #89f;
-    color5: #239;
+	color1: #FCFBF9;
+	color2: #F2EFE4;
+	color3: #E6E3D8;
+	color4: #CCC9C0;
+	color5: #A6A49C;
+	color6: #666560;
+	color7: #434440;
+	color8: #FD658A;
+	color9: #BD5E91;
+	color10: #70538A;
+	color11: #4E4A7A;
+	color12: #3770C5;
+	color13: #274F8C;
+	color14: #1A355F;
+	color15: #00173A;
 }
 
 :vars {
-    width1: 800px;
+	level1: value(color1);
+	level2: value(color2);
+	level3: value(color3);
+	level4: value(color4);
+	level5: value(color5);
+	level6: value(color6);
+	level7: value(color7);
+	primary1: value(color8);
+	primary2: value(color9);
+	primary3: value(color10);
+	primary4: value(color11);
+	accent1: value(color12);
+	accent2: value(color13);
+	accent3: value(color14);
+	accent4: value(color15);
 }
 
 :vars {
-    siteTitleFontSize: 4rem;
-    siteHeaderHeight: 60px;
-    PageWidth: value(width1);
+	width1: 800px;
+}
+
+:vars {
+	PageWidth: value(width1);
 }

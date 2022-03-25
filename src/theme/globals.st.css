@@ -1,10 +1,7 @@
 @namespace "Global";
 
 @st-import [boxSizing] from "./mixins.st.css";
-
-:global(*):focus {
-	outline: none;
-}
+@st-import [heading1, heading2] from './typography.st.css'
 
 :global(html) {
 	-st-mixin: boxSizing;
@@ -18,6 +15,15 @@
 	height: 100%;
 }
 
+:global(h1) {
+	-st-mixin: heading1;
+}
+:global(h2) {
+	-st-mixin: heading2;
+}
+
+:global(p),
+:global(blockquote),
 :global(h1),
 :global(h2),
 :global(h3),

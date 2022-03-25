@@ -1,4 +1,4 @@
-@namespace "PopoverContentTheme";
+/* @namespace "PopoverContentTheme";
 
 @st-import PopoverContent from "./popover-content.st.css";
 
@@ -19,4 +19,4 @@
 		width: value(PopoverContentMaxWidth);
 		max-height:value(PopoverContentMaxHeight);
 		box-shadow: value(PopoverContentShadow);
-}
+} */

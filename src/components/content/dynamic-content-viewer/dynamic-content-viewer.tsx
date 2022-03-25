@@ -52,7 +52,7 @@ export const DynamicContentViewer = ({
 	if (elements) {
 		const itemData = contentUtils.urlToContentData(url, DynamicContentTypes.Glossary);
 		const { metaData } = item;
-		const { source_name, source_url, glossary_term } = metaData;
+		const { source_name, source_url, glossary_key } = metaData;
 		const label = translate(`NOTE_LABEL_${itemData.type.toUpperCase()}`);
 		const itemType =
 			itemData.type === DynamicContentTypes.Glossary ? "ref" : "note";
@@ -65,7 +65,8 @@ export const DynamicContentViewer = ({
 				type={itemType}
 				contents={contents}
 				label={label}
-				title={glossary_term}
+				title={translate(glossary_key)}
+				term={locale === "en" ? "" : translate(glossary_key, "en")}
 				sources={[
 					{
 						name: source_name,

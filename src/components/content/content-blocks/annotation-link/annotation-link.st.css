@@ -4,4 +4,21 @@
 
 .root {
   -st-mixin: preventSelection;
+  font-weight: 600;
+  line-height: 12px;
+}
+
+.root::before,
+.root::after {
+  color: #000;
+}
+
+.root::before {
+  content: '[';
+  margin-right: 0.1rem;
+}
+
+.root::after {
+  content: ']';
+  margin-left: 0.1rem;
 }

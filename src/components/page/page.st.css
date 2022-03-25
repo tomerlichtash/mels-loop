@@ -4,6 +4,11 @@
 
 .root {
 	-st-mixin: boxSizing;
+	width: 100%;
+	overflow: hidden;
+	margin: 0 auto;
 }
 
-.gutter {}
+.gutter {
+	padding: 0 1rem;
+}

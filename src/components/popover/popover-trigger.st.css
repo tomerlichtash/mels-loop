@@ -1,10 +1,22 @@
 @namespace "PopoverTrigger";
 
+@st-import [preventSelection] from "../../theme/mixins.st.css";
+
 .root {
   -st-states: type(string);
   cursor: pointer;
+  padding: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+  background: inherit;
 }
 
-/* .root:type(annotation) {
-  user-select: none;
-} */
+.root:type(glossary)::after {
+  -st-mixin: preventSelection;
+  content: '※';
+  z-index: 0;
+  position: relative;
+  top: -5px;
+}

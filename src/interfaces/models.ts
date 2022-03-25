@@ -149,10 +149,6 @@ export interface IPageMetaData {
 	 */
 	readonly glossary_key: string;
 	/**
-	 * Display name of glossary item
-	 */
-	readonly glossary_term: string;
-	/**
 	 * Display source URL of glossary item
 	 */
 	readonly source_url: string;
