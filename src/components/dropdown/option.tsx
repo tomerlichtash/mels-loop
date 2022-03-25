@@ -4,12 +4,12 @@ import { ComponentProps } from "../../interfaces/models";
 import { st, classes } from "./option.st.css";
 
 export interface IOption extends ComponentProps {
-	id: string;
+	id?: string;
 	label: string;
 	icon?: string;
 	targetPathname?: string;
 	isCurrent?: boolean;
-	onSelectChange: (id: string) => void;
+	onSelectChange?: (id: string) => void;
 	closeDropDown?: () => void;
 }
 

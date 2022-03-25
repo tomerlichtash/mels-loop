@@ -1,28 +1,36 @@
 @namespace "Layout";
 
+@st-import Page from "../../components/page/page.st.css";
+@st-import Header from "../../components/header/header.st.css";
 @st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import MobileNav from "../../components/nav/nav-mobile.st.css";
+
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
+@st-import [PageWidth, level2, level5, level4] from '../../theme/common.st.css';
+@st-import [heading6, bodyTextNormal, LatinText, HebrewText] from '../../theme/typography.st.css';
+@st-import [boxSizing] from '../../theme/mixins.st.css';
 
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
+	-st-mixin: Globals;
+	font-size: 16px;
 }
 .root:theme(light) {
-	-st-mixin: Globals, LightTheme;
+	-st-mixin: LightTheme;
 }
 /* .root:theme(dark) {
 	-st-mixin: DarkTheme;
 } */
 .root:locale(en) {
+	font-family: "Roboto Slab", serif;
 	direction: ltr;
-	font-family: "Nunito", sans-serif;
 }
 .root:locale(he) {
+	font-family: "Assistant", serif;
 	direction: rtl;
-	font-family: "Heebo", sans-serif;
 }
 
 .mobileNav {
@@ -30,34 +38,109 @@
 }
 .mobileNav::burgerButton {
 		right: 1rem;
-		border: 2px solid red;
 }
 
-.primaryNav {}
+.topBar {
+	-st-mixin: boxSizing;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+}
 
+.siteHeader {
+	padding: 0 1rem;
+	height: 48px;
+	background-color: value(level2);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header::siteTitle::icon img {
+	width: 24px;
+}
+.root:locale(en) .header::siteTitle::icon img {
+	margin-right: 0.5rem;
+}
+.root:locale(he) .header::siteTitle::icon img {
+	margin-left: 0.5rem;
+}
+
+.header {
+	-st-extends: Header;
+}
+
+.header::siteTitle {
+	-st-mixin: heading6;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+.header::siteSubtitle {
+	-st-mixin: bodyTextNormal;
+}
+
+.primaryNav {
+	display: flex;
+}
 .nav {
 	-st-extends: Nav;
 }
-.nav::list {
-	display: inline-flex;
+.nav::list,
+.localeSelector::list {
+	display: flex;
+}
+.localeSelector::item:first-child {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+.localeSelector::item:last-child {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+.nav::listItem {
+	border-radius: 4px;
+}
+.localeSelector::item,
+.nav::button {
+	padding: 0.25rem 0.5rem;
+	display: block;
+}
+.localeSelector::item {
+	width: 30px;
+	text-align: center;
+}
+.nav::listItem:hover,
+.localeSelector::item:hover {
+	background-color: value(level5);
 }
 
 .localeSelector {
+	-st-extends: LocaleSelector;
 	-st-states: locale(string);
-	position: absolute;
-	top: 1rem;
+  justify-content: right;
+	display: inline-block;
+	border-radius: 6px;
+	border: 1px solid value(level4);
+	overflow: hidden;
 }
-.localeSelector:locale(en) {
-	left: 1rem;
+.localeSelector::item:locale(en) {
+	-st-mixin: LatinText;
 }
-.localeSelector:locale(he) {
-	right: 1rem;
+.localeSelector::item:locale(he) {
+	-st-mixin: HebrewText;
+}
+.localeSelector::item:selected {
+	background-color: value(level4);
 }
 
-/* .page {} */
+.page {
+	-st-extends: Page;
+	padding-top: 150px;
+}
 
-@media (min-width: 320px) and (max-width: 767px) {
+/* @media (min-width: 320px) and (max-width: 767px) {
 	.primaryNav {
 		display: none;
 	}
-}
+} */
+  

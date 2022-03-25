@@ -1,0 +1,11 @@
+@namespace "GlossaryItem";
+
+@st-import Bibliography from "../../components/bibliography/bibliography.st.css";
+
+.root {}
+
+.title {}
+
+.bibliography {
+  -st-extends: Bibliography;
+}

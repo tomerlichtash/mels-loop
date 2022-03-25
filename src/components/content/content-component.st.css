@@ -1,21 +1,28 @@
 @namespace "ContentComponent";
 
-@st-import Paragraph from "./content-blocks/paragraph/paragraph.st.css";
-@st-import Figure from "./content-blocks/figure/figure.st.css";
-
 .root {
-	-st-states: type(string);
+	-st-states: type(enum(
+		section,
+		paragraph,
+		del,
+		ins,
+		strong,
+		em,
+		code,
+		blockquote,
+		text,
+		list,
+		item,
+		link,
+		image,
+		figure,
+		unknown,
+		sub,
+		sup
+	));
 }
 
 .error {
 	background: red;
 	color: #fff;
-}
-
-.section {}
-
-.text {
-}
-
-.figure {
 }

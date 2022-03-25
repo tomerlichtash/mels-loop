@@ -6,7 +6,7 @@ import { st, classes } from "./button.st.css";
 export interface ButtonProps extends ComponentProps {
 	label?: string;
 	title?: string;
-	icon?: string;
+	icon?: string | React.ReactElement;
 	link?: string;
 	id?: string;
 	target?: string;
@@ -25,6 +25,27 @@ export const Button = ({
 	callback,
 	className,
 }: ButtonProps): JSX.Element => {
+	if (!link && !target && !callback) {
+		return (
+			<span
+				title={title || label}
+				aria-label={title || label}
+				className={st(classes.root, { selected }, className)}
+			>
+				<span className={classes.content}>
+					{icon && (
+						<span className={classes.icon}>
+							<span className={classes.img}>{icon}</span>
+						</span>
+					)}
+					<span className={classes.label}>
+						<span className={classes.text}>{label}</span>
+					</span>
+				</span>
+			</span>
+		);
+	}
+
 	if (link) {
 		return (
 			<Link href={`${link}`}>
