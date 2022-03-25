@@ -78,7 +78,7 @@
 		"node-polyfill-webpack-plugin": "^1.1.4",
 		"path": "^0.12.7",
 		"playwright-chromium": "^1.20.0",
-		"prettier": "^2.6.0",
+		"prettier": "^2.6.1",
 		"simple-markdown": "^0.7.3",
 		"sinon": "^13.0.1",
 		"sinon-chai": "^3.7.0",
