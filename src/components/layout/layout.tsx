@@ -3,7 +3,7 @@ import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
-import Nav from "../nav";
+// import Nav from "../nav";
 import { MobileNav } from "../nav/nav-mobile";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
@@ -14,7 +14,9 @@ import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { st, classes } from "./layout.st.css";
-import { NavigationMenuDemo } from "../nav/menu-js";
+import { NavMenu } from "../nav/menu-js";
+import { navItems } from "../../config/menu-data";
+
 interface Size {
 	width: number | undefined;
 	height: number | undefined;
@@ -108,7 +110,7 @@ export default function Layout(props: LayoutProps) {
 							{!isMobile && (
 								<div className={classes.primaryNav}>
 									{/* <Nav className={classes.nav} /> */}
-									<NavigationMenuDemo />
+									<NavMenu items={navItems} />
 
 									<LocaleSelector
 										options={localeSelectorOptions}
