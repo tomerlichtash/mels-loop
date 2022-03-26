@@ -44,7 +44,7 @@ export const NavMenu = ({ items }: NavMenuProps) => {
 	const listItem = (item) => (
 		<ListItem key={uuidv4()}>
 			<NavigationMenuLink css={navMenuLinkStyle} href={item.url}>
-				<LinkTitle>{translate(item.title)}</LinkTitle>
+				<LinkTitle>{translate(item.title as string)}</LinkTitle>
 				<LinkText>{item.description}</LinkText>
 			</NavigationMenuLink>
 		</ListItem>
