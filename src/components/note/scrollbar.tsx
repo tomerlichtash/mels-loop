@@ -49,6 +49,7 @@ export const ScrollBarThumb = styled(ScrollAreaPrimitive.Thumb, {
 	},
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ScrollArea({ children, orientation = "vertical" }: any) {
 	return (
 		<StyledScrollArea>
