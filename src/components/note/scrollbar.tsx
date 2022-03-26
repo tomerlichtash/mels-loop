@@ -1,3 +1,4 @@
+import React from "react";
 import { styled } from "@stitches/react";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 
