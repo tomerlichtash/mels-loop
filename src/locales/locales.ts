@@ -30,6 +30,8 @@ export const EN_US: Language = {
 	NO_PAGE_CONTENT: "No page content",
 	NOTE_LABEL_GLOSSARY: "Glossary",
 	NOTE_LABEL_ANNOTATION: "Note",
+	NAV_ARTICLES_LABEL: "Articles",
+	NAV_RESOURCES_LABEL: "Resources",
 };
 
 export const HE_IL: Language = {
@@ -55,4 +57,6 @@ export const HE_IL: Language = {
 	NO_PAGE_CONTENT: "דף ללא תוכן",
 	NOTE_LABEL_GLOSSARY: "מילון מונחים",
 	NOTE_LABEL_ANNOTATION: "הערה",
+	NAV_ARTICLES_LABEL: "רשימות",
+	NAV_RESOURCES_LABEL: "מקורות",
 };
