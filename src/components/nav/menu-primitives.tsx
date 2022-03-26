@@ -1,4 +1,3 @@
-import React from "react";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { styled } from "@stitches/react";
 import { CaretDownIcon } from "@radix-ui/react-icons";
@@ -8,17 +7,7 @@ import {
 	styledCaretStyle,
 	styledIndicatorStyle,
 } from "./stiches-styles";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const createCompRef = (Comp: any) =>
-	// eslint-disable-next-line react/display-name
-	React.forwardRef<
-		React.ElementRef<typeof Comp>,
-		React.ComponentProps<typeof Comp>
-	>((props, forwardedRef) => {
-		const { className, ...itemProps } = props;
-		return <Comp {...itemProps} ref={forwardedRef} className={className} />;
-	});
+import { createCompRef } from "../create-ref";
 
 const StyledMenu = createCompRef(NavigationMenuPrimitive.Root);
 const StyledList = createCompRef(NavigationMenuPrimitive.List);

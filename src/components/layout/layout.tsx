@@ -3,7 +3,6 @@ import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
-// import Nav from "../nav";
 import { MobileNav } from "../nav/nav-mobile";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
@@ -13,10 +12,10 @@ import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
-import { st, classes } from "./layout.st.css";
-import { NavMenu } from "../nav/menu-js";
+import { NavMenu } from "../nav/menu";
 import { navItems } from "../../config/menu-data";
 import { MenuGroup } from "../nav/types";
+import { st, classes } from "./layout.st.css";
 
 interface Size {
 	width: number | undefined;

@@ -1,10 +1,20 @@
 @namespace "Note";
 
 @st-import Bibliography from "../bibliography/bibliography.st.css";
+@st-import [heading6, bodyTextNormal] from "../../theme/typography.st.css";
+@st-import [primary2, level2] from "../../theme/common.st.css";
+
 
 .root {
 	-st-states: type(enum(note, ref));
-	margin: 2rem;
+	/* margin: 2rem; */
+	overflow: hidden;
+	padding: 0 32px 22px 17px;
+	position: relative;
+  /* top: -5px; */
+	/* -st-mixin: heading6, primary2; */
+
+	/* top: -20px; */
 }
 
 .header {}
@@ -18,27 +28,39 @@
 .sourceList {}
 
 .root:type(ref)::topic {
-	font-weight: 300;
-	font-size: 1rem;
-	background: #f0f0f0;
+	padding: 0 6px;
+	border-radius: 4px;
+	/* font-weight: 300;
+	font-size: 1rem; */
+	background: value(level2);
 	display: inline-block;
-	padding: 0 0.5rem;
-	margin-bottom: 1rem;
+	/* padding: 0 0.5rem; */
+	margin-bottom: 10px;
+	-st-mixin: heading6;
+	color: value(primary2);
 }
 
 .root:type(ref)::title {
 	font-weight: 300;
 	font-size: 2rem;
+	margin-bottom: 9px;
 }
 
 .root::header {
-	padding: 2rem 2rem 0;
+	/* padding: 2rem 2rem 0; */
 }
 
 .root::content {
-	padding: 2rem;
+	-st-mixin: bodyTextNormal;
+	/* padding: 35px 32px 26px 17px; */
 }
 
 .bibliography {
   -st-extends: Bibliography;
+}
+
+.scrollable {
+  border: 2px solid red;
+  margin: 10px 0 0;
+  overflow: hidden;
 }

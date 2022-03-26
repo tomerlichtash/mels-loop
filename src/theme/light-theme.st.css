@@ -18,15 +18,7 @@
 
 @st-import ContentComponent from "../components/content/content-component.st.css";
 
-@st-import PopoverTrigger from "../components/popover/popover-trigger.st.css";
-/* @st-import PopoverTrigger from "../components/popover/popover-trigger.st.css";
-@st-import PopoverContent from "../components/popover/popover-content.st.css";
-@st-import PopoverCloseButton from "../components/popover/popover-close-button.st.css";
-@st-import PopoverTriggerTheme from "../components/popover/popover-trigger-theme.st.css";
-@st-import PopoverContentTheme from "../components/popover/popover-content-theme.st.css";
-@st-import PopoverCloseButtonTheme from "../components/popover/popover-close-button-theme.st.css";
-@st-import Note from "../components/note/note.st.css";
-@st-import NoteTheme from "../components/note/note-theme.st.css"; */
+@st-import Popover from "../components/popover/popover.st.css";
 
 /* Debug Media Queries */
 /* @st-import Responsive from "./responsive-mixin.st.css"; */
@@ -34,7 +26,7 @@
 	-st-mixin: Responsive;
 } */
 
-@st-import [PageWidth] from "./common.st.css";
+@st-import [PageWidth, siteBgColor] from "./common.st.css";
 @st-import [heading1] from "./typography.st.css";
 
 @st-import [
@@ -43,6 +35,10 @@
 	HeaderSubtitleColor,
 	PrimaryNavBgColor
 ] from "./light-theme-commons.st.css";
+
+:global(body) {
+	background: value(siteBgColor);
+}
 
 /* Default */
 @st-scope .root {	
@@ -68,11 +64,7 @@
 	ContentComponent:type(link)[data-state="open"]:hover {
 		color: orange;
 	}
-
-	PopoverTrigger:type(glossary)[data-state="open"] {
-	  background-color: yellow;
-	}
-
+	
 	Header {
 		/* -st-mixin: HeaderTheme( */
 			/* HeaderBackgroundColor value(HeaderBgColor), */

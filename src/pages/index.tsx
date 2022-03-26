@@ -25,7 +25,7 @@ import { ContentComponent } from "../components/content";
 import { v4 as uuidv4 } from "uuid";
 import { classes } from "./index.st.css";
 
-export default function Story(props: IPageProps) {
+export default function Index(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
