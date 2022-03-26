@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import React from "react";
+import { NavMenuProps } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import {
 	NavigationMenu,
@@ -8,242 +8,51 @@ import {
 	NavigationMenuLink,
 	NavigationMenuContent,
 	NavigationMenuViewport,
-	ViewportPosition,
-	StyledIndicator,
-	StyledTrigger,
-	StyledArrow,
-	StyledCaret,
-	ContentList,
-	ListItem,
-	LinkTitle,
-	LinkText,
-	navMenuLinkStyle,
-} from "./styled-primitives";
+	NavigationIndicator,
+	NavigationTrigger,
+	NavigationCaret,
+} from "./menu-primitives";
+import { st, classes } from "./menu.st.css";
 
-type GroupLayoutType = "one" | "two";
-export interface MenuItem {
-	type: string;
-	title: string;
-	description: string;
-	url: string;
-}
-
-export interface MenuGroup {
-	title: string;
-	layout: string;
-	content: MenuItem[];
-}
-
-interface NavMenuProps {
-	items: MenuGroup[];
-}
-
-export const NavMenu = ({ items }: NavMenuProps) => {
-	const { translate } = useContext(ReactLayoutContext);
-
-	const listItem = (item) => (
-		<ListItem key={uuidv4()}>
-			<NavigationMenuLink css={navMenuLinkStyle} href={item.url}>
-				<LinkTitle>{translate(item.title as string)}</LinkTitle>
-				<LinkText>{item.description}</LinkText>
+export const NavMenu = ({ items, className }: NavMenuProps) => {
+	const listItem = ({ title, description, url }) => (
+		<li key={uuidv4()}>
+			<NavigationMenuLink href={url} className={classes.link}>
+				<div className={classes.linkTitle}>{title as string}</div>
+				<p className={classes.linkText}>{description}</p>
 			</NavigationMenuLink>
-		</ListItem>
+		</li>
 	);
 
-	const menuItem = (group) => (
-		<NavigationMenuItem key={uuidv4()}>
-			<StyledTrigger>
-				{group.title}
-				<StyledCaret aria-hidden />
-			</StyledTrigger>
+	const menuItem = ({ title, content, layout }) => (
+		<NavigationMenuItem key={uuidv4()} className={classes.item}>
+			<NavigationTrigger className={classes.trigger}>
+				{title}
+				<NavigationCaret aria-hidden />
+			</NavigationTrigger>
 			<NavigationMenuContent>
-				<ContentList layout={group.layout as GroupLayoutType}>
-					{group.content.map(listItem)}
-				</ContentList>
+				<ul className={st(classes.menuContent, { layout })}>
+					{content.map(listItem)}
+				</ul>
 			</NavigationMenuContent>
 		</NavigationMenuItem>
 	);
 
 	return (
-		<NavigationMenu>
-			<NavigationMenuList style={{ padding: 0 }}>
-				{items.map(menuItem)}
-				<StyledIndicator>
-					<StyledArrow />
-				</StyledIndicator>
+		<NavigationMenu className={st(classes.root, className)}>
+			<NavigationMenuList asChild>
+				<div className={classes.list}>
+					{items.map(menuItem)}
+					<NavigationIndicator>
+						<div className={classes.arrow}></div>
+					</NavigationIndicator>
+				</div>
 			</NavigationMenuList>
-			<ViewportPosition>
+			<div className={classes.viewportPosition}>
 				<NavigationMenuViewport />
-			</ViewportPosition>
+			</div>
 		</NavigationMenu>
 	);
 };
 
 export default NavMenu;
-
-{
-	/* <NavigationMenuItem>
-					<StyledTrigger>
-						Articles
-						<StyledCaret aria-hidden />
-					</StyledTrigger>
-					<NavigationMenuContent>
-						<ContentList layout="one">
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 1</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 2</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 3</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 4</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-						</ContentList>
-					</NavigationMenuContent>
-				</NavigationMenuItem>
-
-				<NavigationMenuItem>
-					<StyledTrigger>
-						Resources
-						<StyledCaret aria-hidden />
-					</StyledTrigger>
-					<NavigationMenuContent>
-						<ContentList layout="two">
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 1</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 2</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 3</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 4</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-						</ContentList>
-					</NavigationMenuContent>
-				</NavigationMenuItem>
-
-				<NavigationMenuItem>
-					<StyledTrigger>
-						About
-						<StyledCaret aria-hidden />
-					</StyledTrigger>
-					<NavigationMenuContent>
-						<ContentList layout="two">
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 1</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 2</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 3</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-							<ListItem>
-								<NavigationMenuLink
-									css={navMenuLinkStyle}
-									href="http://melsloop.com"
-								>
-									<LinkTitle>Item 4</LinkTitle>
-									<LinkText>
-										CSS-in-JS with best-in-class developer experience.
-									</LinkText>
-								</NavigationMenuLink>
-							</ListItem>
-						</ContentList>
-					</NavigationMenuContent>
-				</NavigationMenuItem> */
-}

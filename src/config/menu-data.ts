@@ -1,24 +1,26 @@
-export const navItems = [
+import { MenuGroup } from "../components/nav/types";
+
+export const navItems: MenuGroup[] = [
 	{
-		title: "Articles",
+		title: "NAV_ARTICLES_LABEL",
 		layout: "one",
 		content: [
 			{
 				type: "link",
-				title: "PREFACE",
-				description: "A preface to The Story of Mel by Tomer Lichtash",
+				title: "PREFACE_TITLE",
+				description: "PREFACE_DESCRIPTION",
 				url: "/docs/preface",
 			},
 			{
 				type: "link",
-				title: "ABOUT_MELS_HACK",
-				description: "About Mel's hack by David Frankiel",
+				title: "ABOUT_MELS_HACK_TITLE",
+				description: "ABOUT_MELS_HACK_DESCRIPTION",
 				url: "/docs/mels-hack",
 			},
 		],
 	},
 	{
-		title: "Resources",
+		title: "NAV_RESOURCES_LABEL",
 		layout: "two",
 		content: [
 			{

@@ -16,6 +16,7 @@ import { ReactLayoutContext } from "../../contexts/layout-context";
 import { st, classes } from "./layout.st.css";
 import { NavMenu } from "../nav/menu-js";
 import { navItems } from "../../config/menu-data";
+import { MenuGroup } from "../nav/types";
 
 interface Size {
 	width: number | undefined;
@@ -81,6 +82,20 @@ export default function Layout(props: LayoutProps) {
 	const size: Size = useWindowSize();
 	const isMobile = size.width <= 970;
 
+	const translateItems = (items: MenuGroup[]) => {
+		return items.map((group) =>
+			Object.assign({}, group, {
+				title: translate(group.title),
+				content: group.content.map((item) =>
+					Object.assign({}, item, {
+						title: translate(item.title),
+						description: translate(item.description),
+					})
+				),
+			})
+		);
+	};
+
 	return (
 		<>
 			<Head>
@@ -110,7 +125,10 @@ export default function Layout(props: LayoutProps) {
 							{!isMobile && (
 								<div className={classes.primaryNav}>
 									{/* <Nav className={classes.nav} /> */}
-									<NavMenu items={navItems} />
+									<NavMenu
+										className={classes.nav}
+										items={translateItems(navItems)}
+									/>
 
 									<LocaleSelector
 										options={localeSelectorOptions}
