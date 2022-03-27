@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { IBibliographySource } from "../bibliography/bibliography";
 import Bibliography from "../bibliography";
-import ScrollArea from "../scrollbar";
+// import ScrollArea from "../scrollbar";
 import { st, classes } from "./note.st.css";
 
 export type NoteViews = "note" | "ref";
@@ -26,19 +26,19 @@ export const Note = ({
 	className,
 }: INoteProps): JSX.Element => {
 	return (
-		<ScrollArea height="300px">
-			<div className={st(classes.root, { type }, className)}>
-				{type === "ref" && (
-					<div className={classes.header}>
-						<div className={classes.topic}>{label}</div>
-						<div className={classes.title}>{title}</div>
-						<div className={classes.term}>{term}</div>
-					</div>
-				)}
-				{contents}
-				<Bibliography sources={sources} />
-			</div>
-		</ScrollArea>
+		// <ScrollArea height="300px">
+		<div className={st(classes.root, { type }, className)}>
+			{type === "ref" && (
+				<div className={classes.header}>
+					<div className={classes.topic}>{label}</div>
+					<div className={classes.title}>{title}</div>
+					<div className={classes.term}>{term}</div>
+				</div>
+			)}
+			{contents}
+			<Bibliography sources={sources} />
+		</div>
+		// </ScrollArea>
 	);
 };
 

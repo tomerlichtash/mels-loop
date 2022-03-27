@@ -20,7 +20,7 @@ export function ScrollArea({
 	className,
 }: ScrollAreaProps) {
 	return (
-		<StyledScrollArea className={st(classes.root, className)}>
+		<StyledScrollArea className={st(classes.root, className)} type="always">
 			<ScrollViewport style={{ height: `${height}` }}>
 				{children}
 			</ScrollViewport>

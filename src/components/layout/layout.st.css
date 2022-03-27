@@ -11,28 +11,41 @@
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
-@st-import [PageWidth, level2, level5, level4] from '../../theme/common.st.css';
+@st-import [PageWidth, level0, level1, level2, level5, level4, primary2] from '../../theme/common.st.css';
 @st-import [heading6, bodyTextNormal, LatinText, HebrewText] from '../../theme/typography.st.css';
 @st-import [boxSizing, preventSelection] from '../../theme/mixins.st.css';
 
 @st-scope .root {
 	Popover:type(annotation)::trigger,
 	Popover:type(glossary)::trigger {
-		color: blue;
+		border-radius: 4px;
+		display: inline-block;
 	}
 	Popover:type(annotation)::trigger:hover,
-	Popover:type(glossary)::trigger:hover {
+	Popover:type(glossary)[data-state="closed"]::trigger:hover,
+	Popover:type(glossary)[data-state="closed"]::trigger:hover::after {
 		color: orange;
 	}
-	Popover:type(glossary)[data-state="open"] {
-		background-color: red;
+	Popover:type(glossary)[data-state="closed"] {
+		color: blue;
+	}
+	Popover:type(glossary)[data-state="open"],
+	Popover:type(glossary)[data-state="open"]:hover {
+		background-color: value(primary2);
+		color: value(level0);
 	}
 	Popover:type(glossary)::trigger::after {
 		-st-mixin: preventSelection;
 		content: '※';
-		z-index: -1;
-		position: relative;
+		color: lightblue;
 		top: -5px;
+		position: relative;
+	}
+	Popover:type(glossary)[data-state="open"]::trigger::after {
+		color: value(level0);
+	}
+	Popover::content {
+		margin-top: 20px;
 	}
 }
 
@@ -40,6 +53,7 @@
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
 	-st-mixin: Globals;
 	font-size: 16px;
+	background: value(level1);
 }
 .root:theme(light) {
 	-st-mixin: LightTheme;
@@ -58,8 +72,6 @@
 
 .scrollablePage {
 	height: 100vh;
-	/* padding-top: 50px; */
-	/* overflow: hidden; */
 }  
 .page {
 	-st-extends: Page;

@@ -1,5 +1,7 @@
 import React from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
+import ScrollArea from "../scrollbar";
+import { Cross2Icon } from "@radix-ui/react-icons";
 import { st, classes } from "./popover.st.css";
 
 export type CloseButtonPosition = "right" | "left";
@@ -29,7 +31,13 @@ export const Popover = ({
 					</span>
 				</span>
 			</RadixPopover.Trigger>
-			<RadixPopover.Content side={side} align="center" portalled={false}>
+			<RadixPopover.Content
+				side={side}
+				align="center"
+				portalled={false}
+				sideOffset={5}
+				avoidCollisions={true}
+			>
 				<div className={st(classes.content)}>
 					<div className={classes.close}>
 						<RadixPopover.Close
@@ -37,10 +45,14 @@ export const Popover = ({
 								posX: closePosX,
 							})}
 						>
-							<span className={classes.closeIcon}>X</span>
+							<span className={classes.closeIcon}>
+								<Cross2Icon />
+							</span>
 						</RadixPopover.Close>
 					</div>
-					{children}
+					<div className={st(classes.scrollable)}>
+						<ScrollArea height="300px">{children}</ScrollArea>
+					</div>
 				</div>
 				<RadixPopover.Arrow />
 			</RadixPopover.Content>

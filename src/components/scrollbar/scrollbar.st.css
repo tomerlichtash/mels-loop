@@ -15,14 +15,13 @@
 	display: flex;
 	user-select: none;
 	touch-action: none;
-	padding: 12px;
-	background: transparent;
+	padding: 0 12px;
 	transition: background 160ms ease-out;
 	cursor: pointer;
 }
-.scrollbar:hover {
+/* .scrollbar:hover {
   background: gray;
-}
+} */
 .scrollbar[data-orientation="vertical"] {
   width: value(scrollbarSize)
 }
