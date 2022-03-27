@@ -5,6 +5,7 @@
 @st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import MobileNav from "../../components/nav/nav-mobile.st.css";
+@st-import Scrollable from "../../components/scrollbar/scrollbar.st.css";
 
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
@@ -33,6 +34,18 @@
 	direction: rtl;
 }
 
+.scrollablePage {
+	height: 100vh;
+	/* padding-top: 50px; */
+	/* overflow: hidden; */
+}  
+.page {
+	-st-extends: Page;
+	padding-top: 80px;
+	/* padding-top: 100px; */
+	/* overflow: hidden; */
+}
+
 .mobileNav {
 	-st-extends: MobileNav;
 }
@@ -56,6 +69,17 @@
 	align-items: center;
 }
 
+.header {
+	-st-extends: Header;
+}
+.header::siteTitle {
+	-st-mixin: heading6;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+.header::siteSubtitle {
+	-st-mixin: bodyTextNormal;
+}
 .header::siteTitle::icon img {
 	width: 24px;
 }
@@ -66,26 +90,31 @@
 	margin-left: 0.5rem;
 }
 
-.header {
-	-st-extends: Header;
-}
-
-.header::siteTitle {
-	-st-mixin: heading6;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-}
-.header::siteSubtitle {
-	-st-mixin: bodyTextNormal;
-}
-
 .primaryNav {
 	display: flex;
 }
-.nav {
-	/* -st-extends: Nav; */
-}
+/* .nav {
+	-st-extends: Nav;
+} */
 /* .nav::list, */
+.localeSelector {
+	-st-extends: LocaleSelector;
+	-st-states: locale(string);
+  justify-content: right;
+	display: inline-block;
+	border-radius: 6px;
+	border: 1px solid value(level4);
+	overflow: hidden;
+}
+.localeSelector::item:locale(en) {
+	-st-mixin: LatinText;
+}
+.localeSelector::item:locale(he) {
+	-st-mixin: HebrewText;
+}
+.localeSelector::item:selected {
+	background-color: value(level4);
+}
 .localeSelector::list {
 	display: flex;
 }
@@ -114,33 +143,11 @@
 	background-color: value(level5);
 }
 
-.localeSelector {
-	-st-extends: LocaleSelector;
-	-st-states: locale(string);
-  justify-content: right;
-	display: inline-block;
-	border-radius: 6px;
-	border: 1px solid value(level4);
-	overflow: hidden;
-}
-.localeSelector::item:locale(en) {
-	-st-mixin: LatinText;
-}
-.localeSelector::item:locale(he) {
-	-st-mixin: HebrewText;
-}
-.localeSelector::item:selected {
-	background-color: value(level4);
-}
-
-.page {
-	-st-extends: Page;
-	padding-top: 150px;
-}
-
 /* @media (min-width: 320px) and (max-width: 767px) {
 	.primaryNav {
 		display: none;
 	}
 } */
-  
+
+.scrollable {
+}

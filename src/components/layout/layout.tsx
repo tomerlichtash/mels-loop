@@ -15,6 +15,7 @@ import { ReactLayoutContext } from "../../contexts/layout-context";
 import { NavMenu } from "../nav/menu";
 import { navItems } from "../../config/menu-data";
 import { MenuGroup } from "../nav/types";
+import ScrollArea from "../scrollbar";
 import { st, classes } from "./layout.st.css";
 
 interface Size {
@@ -138,9 +139,16 @@ export default function Layout(props: LayoutProps) {
 							)}
 						</div>
 					</div>
-					<Page className={classes.page} nodes={props.children} />
-					<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
+					<div className={classes.scrollablePage}>
+						<ScrollArea>
+							<div className={classes.scrollable}>
+								<Page className={classes.page} nodes={props.children} />
+								<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
+							</div>
+						</ScrollArea>
+					</div>
 				</div>
+
 				{isMobile && (
 					<MobileNav
 						className={classes.mobileNav}
