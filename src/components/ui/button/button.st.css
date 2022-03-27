@@ -2,7 +2,6 @@
 
 .root {
 	-st-states: selected(boolean);
-	border: 2px solid blue;
 }
 
 .content {
