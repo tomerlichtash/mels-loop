@@ -31,15 +31,13 @@ export const Popover = ({
 }: IPopoverProps): JSX.Element => {
 	return (
 		<RadixPopover.Root>
-			<RadixPopover.Trigger
-				asChild
-				onClick={(args) => {
-					console.log(args);
-					onTriggerClick(args.pageY);
-				}}
-			>
+			<RadixPopover.Trigger asChild>
 				<span
 					className={triggerStyle(triggerClasses.root, { type }, className)}
+					onClick={(args) => {
+						console.log(args);
+						onTriggerClick(args.pageY);
+					}}
 				>
 					{trigger}
 				</span>

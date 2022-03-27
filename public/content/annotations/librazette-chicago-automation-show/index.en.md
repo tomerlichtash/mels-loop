@@ -1,5 +1,5 @@
 ---
-source_name: `"LGP-30 Wins Wide Acclaim At Chicago Automation Show", Librazette, December 1955, p.6`
+source_name: "LGP-30 Wins Wide Acclaim At Chicago Automation Show", Librazette, December 1955, p.6`
 source_author: Librazette
 ---
 
