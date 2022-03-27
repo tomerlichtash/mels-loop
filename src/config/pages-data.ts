@@ -5,6 +5,7 @@ const {
 	HOME_PAGE_LOCALE,
 	DOCS_PAGE_LOCALE,
 	ABOUT_PAGE_LOCALE,
+	CONTRIBUTE_PAGE_LOCALE,
 	STORY_PAGE_LOCALE,
 	BLOG_PAGE_LOCALE,
 	PREFACE_PAGE_LOCALE,
@@ -45,6 +46,12 @@ export const SITE_PAGES: SitePage[] = [
 		menuNav: true,
 		locale: ABOUT_PAGE_LOCALE,
 		targetPathname: "/about",
+	},
+	{
+		id: "contribute",
+		menuNav: true,
+		locale: CONTRIBUTE_PAGE_LOCALE,
+		targetPathname: "/contribute",
 	},
 	{
 		id: "glossary",

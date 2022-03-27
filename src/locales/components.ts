@@ -15,6 +15,9 @@ const PageKeys: Record<string, ComponentKeyMap> = {
 	ABOUT_PAGE: {
 		pageName: "ABOUT_NAV_LABEL",
 	},
+	CONTRIBUTE_PAGE: {
+		pageName: "CONTRIBUTE_NAV_LABEL",
+	},
 	STORY_PAGE: {
 		pageName: "STORY_NAV_LABEL",
 	},
@@ -61,6 +64,7 @@ export default {
 	HOME_PAGE_LOCALE: withMeta(PageKeys.HOME_PAGE),
 	DOCS_PAGE_LOCALE: withMeta(PageKeys.DOCS_PAGE),
 	ABOUT_PAGE_LOCALE: withMeta(PageKeys.ABOUT_PAGE),
+	CONTRIBUTE_PAGE_LOCALE: withMeta(PageKeys.CONTRIBUTE_PAGE),
 	STORY_PAGE_LOCALE: withMeta(PageKeys.STORY_PAGE),
 	BLOG_PAGE_LOCALE: withMeta(PageKeys.BLOG_PAGE),
 	PREFACE_PAGE_LOCALE: withMeta(PageKeys.PREFACE_PAGE),
