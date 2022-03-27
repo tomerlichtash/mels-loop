@@ -13,6 +13,7 @@
 	justify-content: flex-start;
 }
 
+/* The radixui trigger button, doesn't work with display none, so this is close enuf */
 .header button[data-state] {
 	width: 1px;
 	height: 1px;
@@ -42,9 +43,6 @@
 	background-color: value(level3);
 	border: 1px solid value(level5);
 	padding: 2px 3px;
-}
-
-.itemLink {
 }
 
 .itemLink:not([data-disabled='true']):hover {

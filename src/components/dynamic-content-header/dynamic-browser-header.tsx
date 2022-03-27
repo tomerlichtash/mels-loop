@@ -10,12 +10,9 @@ export interface IBrowserHeaderProps {
 	pages: IParsedPageData[];
 }
 
-enum MenuStates { None, Open, Close };
+enum MenuStates { None, Open, Close }
 
 export default function DynamicBrowserHeader({ pages }: IBrowserHeaderProps): JSX.Element {
-	if (!pages || pages.length < 2) {
-		return (<></>);
-	}
 	const [menuTimeout, setMenuTimeout] = useState(0);
 	const [isMenuOpen, setMenuOpen] = useState(false);
 	const [menuState, setMenuState] = useState(MenuStates.None);
@@ -62,7 +59,11 @@ export default function DynamicBrowserHeader({ pages }: IBrowserHeaderProps): JS
 			dcCtx.setPageIndex(targetPage);
 		}
 		return () => window.clearTimeout(menuTimeout); // harmless if menuTimeout is 0
-	}, [menuState, isMenuOpen, menuTimeout])
+	}, [menuState, isMenuOpen, menuTimeout, pages])
+
+	if (!pages || pages.length < 2) {
+		return (<></>);
+	}
 
 	return (
 		<div className={classes.header}>

@@ -28,7 +28,7 @@ export default function DynamicContentBrowser(props: IStackBrowserProps): JSX.El
 	useEffect(() => {
 		pageStack.push(currentPage);
 		setCurrentIndex(contentStack.count - 1);
-	}, [currentPage, pageStack]);
+	}, [currentPage, pageStack, contentStack]);
 
 	useEffect(() => {
 		if (currentIndex >= 0) {
@@ -36,7 +36,7 @@ export default function DynamicContentBrowser(props: IStackBrowserProps): JSX.El
 			setPages(pageStack.setIndex(currentIndex).stack);
 			setUrl(contentStack.current?.target);
 		}
-	}, [currentIndex, pageStack]);
+	}, [currentIndex, pageStack, contentStack]);
 
 	if (!url) {
 		return (<></>);
