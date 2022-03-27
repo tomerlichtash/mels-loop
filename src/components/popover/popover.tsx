@@ -9,6 +9,7 @@ export interface IPopoverProps {
 	trigger: React.ReactNode;
 	children: React.ReactNode;
 	closePosX: ICloseButtonPosition;
+	side: ICloseButtonPosition;
 	className?: string;
 }
 
@@ -16,6 +17,7 @@ export const Popover = ({
 	type,
 	trigger,
 	children,
+	side,
 	closePosX,
 }: IPopoverProps): JSX.Element => {
 	return (
@@ -27,7 +29,7 @@ export const Popover = ({
 					</span>
 				</span>
 			</RadixPopover.Trigger>
-			<RadixPopover.Content side="right" align="center" portalled={false}>
+			<RadixPopover.Content side={side} align="center" portalled={false}>
 				<div className={st(classes.content)}>
 					<div className={classes.close}>
 						<RadixPopover.Close

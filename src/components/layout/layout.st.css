@@ -30,7 +30,7 @@
 	Popover:type(glossary)::trigger::after {
 		-st-mixin: preventSelection;
 		content: '※';
-		z-index: 0;
+		z-index: -1;
 		position: relative;
 		top: -5px;
 	}

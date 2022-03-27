@@ -51,6 +51,7 @@ export const LinkSelector = ({
 			type={linkType}
 			className={className}
 			closePosX={getCloseButtonPosition(locale)}
+			side={locale === "en" ? "right" : "left"}
 			trigger={getTriggerComp(linkType, componentData, className)}
 		>
 			<DynamicContentViewer url={target} />
