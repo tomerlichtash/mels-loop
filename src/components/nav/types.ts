@@ -1,10 +1,14 @@
 import { ComponentProps } from "../../interfaces/models";
+import { IContentAuthors } from "../../locales/types";
+
+type ItemType = "page" | "article" | "link";
 
 interface MenuItem {
-	type: string;
+	type: ItemType;
 	title: string;
 	description: string;
 	url: string;
+	author?: keyof IContentAuthors;
 }
 
 export interface MenuGroup {

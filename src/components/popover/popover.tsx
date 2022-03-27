@@ -17,13 +17,14 @@ export const Popover = ({
 	trigger,
 	children,
 	closePosX,
-	className,
 }: IPopoverProps): JSX.Element => {
 	return (
 		<RadixPopover.Root>
 			<RadixPopover.Trigger asChild>
-				<span className={st(classes.trigger, { type }, className)} tabIndex={1}>
-					{trigger}
+				<span className={st(classes.root, { type })}>
+					<span className={classes.trigger} tabIndex={1}>
+						{trigger}
+					</span>
 				</span>
 			</RadixPopover.Trigger>
 			<RadixPopover.Content side="right" align="center" portalled={false}>

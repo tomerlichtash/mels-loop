@@ -23,8 +23,11 @@
   PopoverCloseCase: lowercase;
 }
 
-.trigger {
+.root {
   -st-states: type(string);
+}
+
+.trigger {
   cursor: pointer;
   padding: inherit;
   line-height: inherit;
@@ -32,16 +35,6 @@
   font-family: inherit;
   border: none;
   background: inherit;
-}
-.trigger:type(glossary)::after {
-  -st-mixin: preventSelection;
-  content: '※';
-  z-index: 0;
-  position: relative;
-  top: -5px;
-}
-.trigger:type(glossary)[data-state="open"] {
-  background-color: red;
 }
 
 .content {

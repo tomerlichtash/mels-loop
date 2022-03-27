@@ -6,13 +6,35 @@
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import MobileNav from "../../components/nav/nav-mobile.st.css";
 @st-import Scrollable from "../../components/scrollbar/scrollbar.st.css";
+@st-import Popover from "../../components/popover/popover.st.css";
 
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
 @st-import [PageWidth, level2, level5, level4] from '../../theme/common.st.css';
 @st-import [heading6, bodyTextNormal, LatinText, HebrewText] from '../../theme/typography.st.css';
-@st-import [boxSizing] from '../../theme/mixins.st.css';
+@st-import [boxSizing, preventSelection] from '../../theme/mixins.st.css';
+
+@st-scope .root {
+	Popover:type(annotation)::trigger,
+	Popover:type(glossary)::trigger {
+		color: blue;
+	}
+	Popover:type(annotation)::trigger:hover,
+	Popover:type(glossary)::trigger:hover {
+		color: orange;
+	}
+	Popover:type(glossary)[data-state="open"] {
+		background-color: red;
+	}
+	Popover:type(glossary)::trigger::after {
+		-st-mixin: preventSelection;
+		content: '※';
+		z-index: 0;
+		position: relative;
+		top: -5px;
+	}
+}
 
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
