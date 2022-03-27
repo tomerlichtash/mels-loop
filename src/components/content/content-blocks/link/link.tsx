@@ -2,19 +2,21 @@ import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
 import { ContentIterator } from "../../content-iterator";
 
-export const Link = ({
-	componentData,
-	className,
-}: ContentComponentProps): JSX.Element => {
-	const { node } = componentData;
+export interface ILinkProps extends ContentComponentProps {
+	onClick?: (evt: React.MouseEvent) => boolean;
+}
+
+export const Link = (props: ILinkProps): JSX.Element => {
+	const className = props.className;
 	return (
 		<a
 			className={className}
-			href={node.target}
+			href={props.componentData.node.target}
 			target="_blank"
 			rel="noreferrer"
+			onClick={props.onClick}
 		>
-			<ContentIterator componentData={componentData} className={className} />
+			<ContentIterator componentData={props.componentData} className={className} />
 		</a>
 	);
 };

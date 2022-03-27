@@ -21,6 +21,7 @@
 		"fix-styles": "source ./scripts/touch-css.sh"
 	},
 	"dependencies": {
+		"@radix-ui/react-dropdown-menu": "^0.1.6",
 		"@radix-ui/react-popover": "^0.1.6",
 		"@radix-ui/react-toggle-group": "^0.1.5",
 		"cloudinary-react": "^1.7.2",

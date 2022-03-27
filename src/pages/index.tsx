@@ -6,8 +6,6 @@ import {
 	IMLParsedNode,
 	IPageProps,
 	IParsedPageData,
-	MLNODE_TYPES,
-	NODE_DISPLAY_TYPES,
 } from "../interfaces/models";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
@@ -15,11 +13,9 @@ import { ReactLayoutContext } from "../contexts/layout-context";
 import {
 	LoadContentModes,
 	LoadFolderModes,
-	MLNodeProcessorFunction,
 	MLParseModes,
 } from "../interfaces/parser";
 import { contentUtils } from "../lib/content-utils";
-import { DynamicContentTypes } from "../interfaces/dynamic-content";
 import { usePageData } from "../components/usePageData";
 import { ContentComponent } from "../components/content";
 import { v4 as uuidv4 } from "uuid";
@@ -68,26 +64,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	 * @param mode
 	 * @returns
 	 */
-	const linkProcessor: MLNodeProcessorFunction = (node, context) => {
-		const linkData = contentUtils.urlToContentData(node.target);
-		if (linkData.type === DynamicContentTypes.None) {
-			return node;
-		}
-		const nodeData: Partial<IMLParsedNode> = {
-			displayType: NODE_DISPLAY_TYPES.POPOVER,
-			linkType: linkData.type,
-		};
-		if (linkData.type === DynamicContentTypes.Annotation) {
-			Object.assign(nodeData, {
-				sequence: context.getEnumerator(linkData.type) + 1,
-			});
-		}
-		return { ...node, ...nodeData };
-	};
-	const nodeProcessor = contentUtils.createNodeMappingFilter(
-		linkProcessor,
-		MLNODE_TYPES.LINK
-	);
 	return mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.CODEX,
 		context.locale,
@@ -95,7 +71,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		{
 			contentMode: LoadContentModes.FULL,
 			parseMode: MLParseModes.VERSE,
-			nodeProcessors: [nodeProcessor],
+			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
 		}
 	);
 };
