@@ -7,14 +7,23 @@
 	-st-mixin: boxSizing;
 }
 
-.container {}
+.logo {}
 
-.title {}
+.container {
+	display: flex;
+	align-items: center;
+}
 
-.siteTitle {}
+.siteTitle {
+  -st-extends: Button;
+}
 
 .siteSubtitle {}
 
-.siteTitleButton {
-  -st-extends: Button;
+.siteSubtitle::before {
+	margin: 0 0.5rem;
+	opacity: 0.3;
+	content: '|';
 }
+
+.siteSubtitle {}

@@ -1,17 +1,26 @@
 @namespace "LightThemeCommons";
 
-:vars {
-	color0: #fff;
-	color1: #f0f0f0;
-	color2: #303030;
-	color3: #f0f0f0;
-	color4: #e0e0e0;
-	color5: #808080;
-}
+@st-import [
+	level1,
+	level2,
+	level3,
+	level4,
+	level5,
+	level6,
+	level7,
+	primary1,
+	primary2,
+	primary3,
+	primary4,
+	accent1,
+	accent2,
+	accent3,
+	accent4
+] from "./common.st.css";
 
 :vars {
-	HeaderBgColor: value(color3);
-	HeaderTitleColor: value(color2);
-	HeaderSubtitleColor: value(color5);
-	PrimaryNavBgColor: value(color4);
+	HeaderBgColor: value(level7);
+	HeaderTitleColor: value(accent1);
+	HeaderSubtitleColor: value(accent2);
+	PrimaryNavBgColor: value(primary2);
 }

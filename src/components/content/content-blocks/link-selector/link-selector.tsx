@@ -15,13 +15,14 @@ import { ICloseButtonPosition } from "../../../popover/popover";
 
 const getTriggerComp = (
 	type: DynamicContentTypes,
-	data: IContentComponentInitData
+	data: IContentComponentInitData,
+	className: string
 ): React.ReactNode => {
 	switch (type) {
 		case DynamicContentTypes.Annotation:
-			return <AnnotationLink componentData={data} />;
+			return <AnnotationLink className={className} componentData={data} />;
 		default:
-			return <ContentIterator componentData={data} />;
+			return <ContentIterator className={className} componentData={data} />;
 	}
 };
 
@@ -31,13 +32,16 @@ const getCloseButtonPosition = (locale: string): ICloseButtonPosition => {
 
 export const LinkSelector = ({
 	componentData,
+	className,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { displayType, key } = node;
 	const { locale } = useContext(ReactLayoutContext);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
-		return <Link key={key} componentData={componentData} />;
+		return (
+			<Link key={key} componentData={componentData} className={className} />
+		);
 	}
 
 	const { linkType, target } = node;
@@ -45,8 +49,9 @@ export const LinkSelector = ({
 	return (
 		<Popover
 			type={linkType}
+			className={className}
 			closePosX={getCloseButtonPosition(locale)}
-			trigger={getTriggerComp(linkType, componentData)}
+			trigger={getTriggerComp(linkType, componentData, className)}
 		>
 			<DynamicContentViewer url={target} />
 		</Popover>

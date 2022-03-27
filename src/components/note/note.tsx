@@ -1,15 +1,10 @@
 import React from "react";
 import { ComponentProps } from "../../interfaces/models";
-import { Button } from "../ui";
+import Bibliography from "../bibliography";
+import { IBibliographySource } from "../bibliography/bibliography";
 import { st, classes } from "./note.st.css";
 
 export type NoteViews = "note" | "ref";
-
-export interface IBibliographySource {
-	name: string;
-	url: string;
-	author?: string;
-}
 
 export interface INoteProps extends ComponentProps {
 	type: NoteViews;
@@ -29,25 +24,6 @@ export const Note = ({
 	sources,
 	className,
 }: INoteProps): JSX.Element => {
-	const getSourceList = () => {
-		if (!sources) {
-			return false;
-		}
-		return (
-			<span className={classes.sourceList}>
-				{sources.map(({ name, url }, index: number) => {
-					return (
-						<Button
-							key={`source-id-${index}`}
-							label={name}
-							link={url}
-							target="_blank"
-						/>
-					);
-				})}
-			</span>
-		);
-	};
 	return (
 		<div className={st(classes.root, { type }, className)}>
 			{type === "ref" && (
@@ -58,7 +34,7 @@ export const Note = ({
 				</div>
 			)}
 			<div className={classes.content}>{contents}</div>
-			{sources && <div className={classes.sourceList}>{getSourceList()}</div>}
+			<Bibliography sources={sources} />
 		</div>
 	);
 };

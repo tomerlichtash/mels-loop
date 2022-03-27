@@ -3,8 +3,8 @@ import { Language, LocaleLabels } from "./types";
 export const localeLabelPrefix = "LOCALE_LABEL";
 
 export const LOCALE_LABELS: LocaleLabels = {
-	LOCALE_LABEL_EN: "English",
-	LOCALE_LABEL_HE: "עברית",
+	LOCALE_LABEL_EN: "EN",
+	LOCALE_LABEL_HE: "ע",
 };
 
 export const EN_US: Language = {
@@ -43,7 +43,7 @@ export const HE_IL: Language = {
 	BLOG_NAV_LABEL: "בלוג",
 	BLOG_POSTS_LIST: "פוסטים",
 	RESOURCES_NAV_LABEL: "מקורות",
-	GLOSSARY_NAV_LABEL: "מונחון",
+	GLOSSARY_NAV_LABEL: "מילון מונחים",
 	SITE_TITLE: "לולאת מל",
 	SITE_SUBTITLE: "המדריך המקיף לסיפור על מל",
 	LOCALE_SELECTOR_TITLE: "בחירת שפה",

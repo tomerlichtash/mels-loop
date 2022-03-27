@@ -25,7 +25,6 @@ const nextConfig = {
 			new StylableWebpackPlugin({
 				/* let NextJS handle assets */
 				filterAssets: () => false,
-
 				/* output CSS to the correct location */
 				filename: "static/css/stylable.[contenthash].css",
 			})
@@ -37,11 +36,11 @@ const nextConfig = {
 		defaultLocale: "en",
 	},
 	images: {
-		domains: ["res.cloudinary.com"]
+		domains: ["res.cloudinary.com"],
 	},
 	serverRuntimeConfig: {
-        PROJECT_ROOT: __dirname
-    }
+		PROJECT_ROOT: __dirname,
+	},
 };
 
 module.exports = nextConfig;

@@ -1,5 +1,7 @@
 @namespace "Note";
 
+@st-import Bibliography from "../bibliography/bibliography.st.css";
+
 .root {
 	-st-states: type(enum(note, ref));
 	margin: 2rem;
@@ -35,4 +37,8 @@
 
 .root::content {
 	padding: 2rem;
+}
+
+.bibliography {
+  -st-extends: Bibliography;
 }

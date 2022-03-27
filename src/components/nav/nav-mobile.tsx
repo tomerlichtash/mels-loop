@@ -2,18 +2,19 @@ import React from "react";
 import { ComponentProps } from "../../interfaces/models";
 import LocaleSelector from "../locale-selector";
 import Nav from "../nav";
-import { LOCALE_SELECTOR_LOCALE } from "../../locales/components";
 import { push as Menu } from "react-burger-menu";
 import { st, classes } from "./nav-mobile.st.css";
 import { IOption } from "../dropdown/option";
 
 export interface IMobileNavProps extends ComponentProps {
 	localeOptions: IOption[];
+	onLocaleChange: (id: string) => Promise<boolean>;
 	right: boolean;
 }
 
 export const MobileNav = ({
 	localeOptions,
+	onLocaleChange,
 	right,
 	className,
 }: IMobileNavProps): JSX.Element => {
@@ -44,9 +45,9 @@ export const MobileNav = ({
 			className={st(classes.root, className)}
 		>
 			<LocaleSelector
-				className={st(classes.localeSelector, { right })}
 				options={localeOptions}
-				compKeys={LOCALE_SELECTOR_LOCALE}
+				onLocaleChange={onLocaleChange}
+				className={classes.localeSelector}
 			/>
 			<Nav className={st(classes.nav, { right })} />
 		</Menu>
