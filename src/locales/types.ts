@@ -65,6 +65,8 @@ export interface ILanguageKeys {
 	MENU_ITEM_ENTRY_DESC_LINK_GITHUB: "MENU_ITEM_ENTRY_DESC_LINK_GITHUB";
 }
 
+export type Authors = Record<keyof IContentAuthors, string>;
+
 export type Language = Record<keyof ILanguageKeys, string>;
 
 export type LocaleLabels = Record<keyof ILocaleKeys, string>;

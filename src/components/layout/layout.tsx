@@ -90,6 +90,7 @@ export default function Layout(props: LayoutProps) {
 					Object.assign({}, item, {
 						title: translate(item.title),
 						description: translate(item.description),
+						author: translate(item.author),
 					})
 				),
 			})

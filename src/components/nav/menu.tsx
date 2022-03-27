@@ -15,7 +15,7 @@ import {
 import { st, classes } from "./menu.st.css";
 
 export const NavMenu = ({ items, className }: NavMenuProps) => {
-	const listItem = ({ type, title, description, url }) => (
+	const listItem = ({ type, title, description, url, author }) => (
 		<li key={uuidv4()}>
 			<NavigationMenuLink
 				target={type === "link" ? "_blank" : ""}
@@ -23,7 +23,9 @@ export const NavMenu = ({ items, className }: NavMenuProps) => {
 				className={classes.link}
 			>
 				<div className={classes.linkTitle}>{title as string}</div>
-				<p className={classes.linkText}>{description}</p>
+				<p className={classes.linkText}>
+					{type === "article" ? author : { description }}
+				</p>
 			</NavigationMenuLink>
 		</li>
 	);

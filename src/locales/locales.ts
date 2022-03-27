@@ -1,10 +1,19 @@
-import { Language, LocaleLabels } from "./types";
+import { Authors, Language, LocaleLabels } from "./types";
 
 export const localeLabelPrefix = "LOCALE_LABEL";
 
 export const LOCALE_LABELS: LocaleLabels = {
 	LOCALE_LABEL_EN: "EN",
 	LOCALE_LABEL_HE: "ע",
+};
+
+export const AUTHORS_EN: Authors = {
+	AUTHOR_TOMER_LICHTASH: "Tomer Lichtash",
+	AUTHOR_DAVID_FRANKIEL: "David Frankiel",
+};
+export const AUTHORS_HE: Authors = {
+	AUTHOR_TOMER_LICHTASH: "תומר ליכטש",
+	AUTHOR_DAVID_FRANKIEL: "דוד פרנקל",
 };
 
 export const EN_US: Language = {
@@ -38,10 +47,8 @@ export const EN_US: Language = {
 	MENU_ITEM_ENTRY_TITLE_ARTICLE_PREFACE: "Preface",
 	MENU_ITEM_ENTRY_TITLE_ARTICLE_ABOUT_THE_HACK: "About Mel's Hack",
 
-	MENU_ITEM_ENTRY_DESC_ARTICLE_PREFACE:
-		"Preface to the Story of Mel / Tomer Lichtash",
-	MENU_ITEM_ENTRY_DESC_ARTICLE_ABOUT_THE_HACK:
-		"About Mel's Hack / David Frankiel",
+	MENU_ITEM_ENTRY_DESC_ARTICLE_PREFACE: "Preface to the Story of Mel",
+	MENU_ITEM_ENTRY_DESC_ARTICLE_ABOUT_THE_HACK: "About Mel's Hack",
 
 	MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_ABOUT: "About",
 	MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_CONTRIBUTE: "Contribute",
