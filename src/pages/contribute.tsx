@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
-import ContentBrowser from "../components/content-browser";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
@@ -21,9 +20,7 @@ export default function Contrib({ content, className }: IPageProps) {
 					{translate(siteTitle)} - {translate(pageName)}
 				</title>
 			</Head>
-			<article className={st(classes.root, className)}>
-				<ContentBrowser content={content} showTitle />
-			</article>
+			<article className={st(classes.root, className)}>TBD</article>
 		</Layout>
 	);
 }
