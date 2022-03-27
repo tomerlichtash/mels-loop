@@ -3,7 +3,7 @@ import { translateFunc } from "../locales/translate";
 import { useRouter } from "next/router";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { ILayoutContext } from "../interfaces/layout-context";
-import { PageContext, ReactPageContext } from "../components/page/page-context";
+import { PageContext, ReactPageContext } from "../contexts/page-context";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
 import {
 	getPathData,

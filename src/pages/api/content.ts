@@ -12,6 +12,8 @@ import {
 	IMLDynamicContentParams,
 	IMLDynamicContentResponse,
 } from "../../interfaces/ml-api";
+import { contentUtils } from "../../lib/content-utils";
+import { mlUtils } from "../../lib/ml-utils";
 
 const TypeMap: { [key: string]: CONTENT_TYPES } = {
 	annotation: CONTENT_TYPES.ANNOTATION,
@@ -28,15 +30,15 @@ const noop = function () {
  * @param res
  * @returns
  */
-export default function handler(_req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(_req: NextApiRequest, res: NextApiResponse) {
 	const params = _req.query as unknown as IMLDynamicContentParams;
-	loadContent(params || {})
-		.then((response) => {
-			res.status(response.error ? 500 : 200).json(response);
-		})
-		.catch((e) => {
-			res.status(500).json({ error: String(e) });
-		});
+	try {
+		const response = await loadContent(params || {});
+		res.status(response.error ? 500 : 200).json(response);
+	}
+	catch (e) {
+		res.status(500).json({ error: String(e) })
+	}
 }
 
 async function loadContent(
@@ -63,23 +65,24 @@ async function loadContent(
 			mode: {
 				contentMode: LoadContentModes.FULL,
 				parseMode: MLParseModes.NORMAL,
+				nodeProcessors: [ 
+					contentUtils.createPopoverLinksMappingFilter()
+				],
 			},
 			rootFolder: process.cwd(),
 		});
 		const data = {
 			locale: params.locale,
 			// turn array into map
-			items: docData.pages.reduce((acc, pageData) => {
-				acc[pageData.id] = pageData;
-				return acc;
-			}, {}),
+			items: mlUtils.arrayToMap(docData.pages, "id")
 		};
 		mlApiUtils
 			.saveToCache(cacheKey, JSON.stringify({ data }))
 			.then(noop)
 			.catch(noop);
 		return Object.assign({ data }, { cache: false });
-	} catch (error) {
+	}
+	catch (error) {
 		return { data: null, error: String(error) };
 	}
 }

@@ -18,7 +18,8 @@
 	},
 	"paths": {
 		"@/components/*": ["src/components/*"],
-		"@/pages/*": ["src/pages/*"]
+		"@/pages/*": ["src/pages/*"],
+		"@theme/*": ["src/theme/*"]
 	},
 	"include": ["next-env.d.ts", "**/**/*.ts", "**/**/*.tsx", "globals.d.ts"],
 	"exclude": ["node_modules", "**/snippets/**"]

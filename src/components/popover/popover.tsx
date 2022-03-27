@@ -2,13 +2,13 @@ import React from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
 import { st, classes } from "./popover.st.css";
 
-export type ICloseButtonPosition = "right" | "left";
+export type CloseButtonPosition = "right" | "left";
 
 export interface IPopoverProps {
 	type: string;
 	trigger: React.ReactNode;
 	children: React.ReactNode;
-	closePosX: ICloseButtonPosition;
+	closePosX: CloseButtonPosition;
 	side: ICloseButtonPosition;
 	className?: string;
 }

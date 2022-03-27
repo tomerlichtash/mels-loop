@@ -51,12 +51,14 @@ export class DynamicContentServer implements IDynamicContentServer {
 			const responseData = await response.json();
 			const data = responseData?.data;
 			if (!data || data.locale !== locale) {
-				console.warn(`null or wrong data for ${type}, ${locale}`, data);
+			// TODO replaec with logger call
+			console.warn(`null or wrong data for ${type}, ${locale}`, data);
 				return {};
 			}
 			this.contentMap[type] = this.contentMap[type] || {};
 			return (this.contentMap[type][locale] = data.items || {});
 		} catch (e) {
+			// TODO replaec with logger call
 			console.error(`Error fetching data for ${type}, ${locale}\n${String(e)}`);
 			return {};
 		}
