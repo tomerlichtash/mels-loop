@@ -18,8 +18,11 @@
 @st-scope .root {
 	Popover:type(annotation)::trigger,
 	Popover:type(glossary)::trigger {
-		border-radius: 4px;
 		display: inline-block;
+    line-height: 24px;
+	}
+	Popover:type(glossary)::triggerWrapper {
+		border-radius: 4px;
 	}
 	Popover:type(annotation)::trigger:hover,
 	Popover:type(glossary)[data-state="closed"]::trigger:hover,
@@ -29,19 +32,18 @@
 	Popover:type(glossary)[data-state="closed"] {
 		color: blue;
 	}
-	Popover:type(glossary)[data-state="open"],
-	Popover:type(glossary)[data-state="open"]:hover {
+	Popover:type(glossary)[data-state="open"]::triggerWrapper,
+	Popover:type(glossary)[data-state="open"]::triggerWrapper:hover {
 		background-color: value(primary2);
 		color: value(level0);
 	}
 	Popover:type(glossary)::trigger::after {
 		-st-mixin: preventSelection;
 		content: '※';
-		color: lightblue;
 		top: -5px;
 		position: relative;
 	}
-	Popover:type(glossary)[data-state="open"]::trigger::after {
+	Popover:type(glossary)[data-state="open"]::triggerWrapper::after {
 		color: value(level0);
 	}
 	Popover::content {
@@ -76,8 +78,6 @@
 .page {
 	-st-extends: Page;
 	padding-top: 80px;
-	/* padding-top: 100px; */
-	/* overflow: hidden; */
 }
 
 .mobileNav {
@@ -127,10 +127,7 @@
 .primaryNav {
 	display: flex;
 }
-/* .nav {
-	-st-extends: Nav;
-} */
-/* .nav::list, */
+
 .localeSelector {
 	-st-extends: LocaleSelector;
 	-st-states: locale(string);
@@ -160,10 +157,6 @@
 	border-top-right-radius: 6px;
 	border-bottom-right-radius: 6px;
 }
-/* .nav::listItem {
-	border-radius: 4px;
-} */
-/* .nav::button, */
 .localeSelector::item {
 	padding: 0.25rem 0.5rem;
 	display: block;
@@ -172,7 +165,6 @@
 	width: 30px;
 	text-align: center;
 }
-/* .nav::listItem:hover, */
 .localeSelector::item:hover {
 	background-color: value(level5);
 }
@@ -183,5 +175,4 @@
 	}
 } */
 
-.scrollable {
-}
+.scrollable {}

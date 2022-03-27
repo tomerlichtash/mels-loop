@@ -28,6 +28,9 @@
 .itemStyles:hover {
 	background-color: value(level3);
 }
+.itemStyles[data-state="open"] {
+	background-color: value(level3);
+}
 
 .list {
 	box-shadow: 0 0 1px red;

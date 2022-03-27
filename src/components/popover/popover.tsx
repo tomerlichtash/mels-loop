@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
 import ScrollArea from "../scrollbar";
 import { Cross2Icon } from "@radix-ui/react-icons";
@@ -27,7 +27,7 @@ export const Popover = ({
 			<RadixPopover.Trigger asChild>
 				<span className={st(classes.root, { type })}>
 					<span className={classes.trigger} tabIndex={1}>
-						{trigger}
+						<span className={st(classes.triggerWrapper)}>{trigger}</span>
 					</span>
 				</span>
 			</RadixPopover.Trigger>
@@ -39,15 +39,13 @@ export const Popover = ({
 				avoidCollisions={true}
 			>
 				<div className={st(classes.content)}>
-					<div className={classes.close}>
-						<RadixPopover.Close
-							className={st(classes.closeButton, {
-								posX: closePosX,
-							})}
-						>
-							<span className={classes.closeIcon}>
-								<Cross2Icon />
-							</span>
+					<div
+						className={st(classes.close, {
+							posX: closePosX,
+						})}
+					>
+						<RadixPopover.Close className={classes.closeButton}>
+							<Cross2Icon className={classes.cross} />
 						</RadixPopover.Close>
 					</div>
 					<div className={st(classes.scrollable)}>

@@ -16,8 +16,7 @@
   PopoverCloseFontSize: 12px;
   PopoverCloseSize: 30px;
   PopoverCloseBgHover: red;
-  PopoverClosePosRight: 0;
-  PopoverClosePosLeft: 0;
+  PopoverClosePosMargin: 8px;
   PopoverCloseIconColor: #E6E3D8;
   PopoverCloseIconColorHover: red;
   PopoverCloseCase: lowercase;
@@ -37,10 +36,12 @@
   background: inherit;
 }
 
+.triggerWrapper {}
+
 .content {
   z-index: 2;
   overflow: hidden;
-  padding: 24px 0 12px;
+  padding: 32px 0 12px;
   width: value(PopoverContentMaxWidth);
   background: value(PopoverContentBgColor);
   border-radius: value(PopoverContentRadius);
@@ -51,36 +52,44 @@
 
 .close {
   -st-mixin: preventSelection;
-}
-.closeButton {
   -st-states: posX(enum(right, left));
-  -st-mixin: preventSelection;
-  cursor: pointer;
   position: absolute;
-  top: 0;
-  width: 32px;
-  height: 32px;
-  /* top: 10px; */
-  z-index: 2;
-  text-align: right;
+  /* right: 8px; */
+  top: 12px;
+  width: 16px;
+  height: 16px;
+}
+
+.closeButton {
+  -st-mixin: preventSelection;
+  /* position: absolute; */
+  right: 16px;
+  cursor: pointer;
   border: none;
   background: none;
-  text-align: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
 }
-.closeButton:hover {
-  background-color: red;
+
+.close:posX(right) {
+  right: value(PopoverClosePosMargin);
 }
-.closeButton:posX(right) {
-  right: value(PopoverClosePosRight);
+.close:posX(left) {
+  left: value(PopoverClosePosMargin);
 }
-.closeButton:posX(left) {
-  left: value(PopoverClosePosLeft);
+
+.cross {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
 }
-.closeIcon {
-  font-size: 16px;
-  color: value(PopoverCloseIconColor);
-  /* width: 11.3px;
-  height: 11.3px; */
+.cross path {
+  fill: blue;
+}
+.cross:hover path {
+  fill: red;
 }
 
 @keyframes fadeIn {
@@ -103,5 +112,4 @@
 .scrollable {
   position: relative;
   margin-top: 0px;
-  /* top: 10px; */
 }
