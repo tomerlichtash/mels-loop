@@ -27,7 +27,8 @@ export const LocaleSelector = ({
 				type="single"
 				onValueChange={(localeId) => {
 					onLocaleChange(localeId).catch(() =>
-						console.error("onLocaleChange Error")
+			// TODO replaec with logger call
+					console.error("onLocaleChange Error")
 					);
 				}}
 			>
