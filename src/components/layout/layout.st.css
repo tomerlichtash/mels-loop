@@ -16,7 +16,6 @@
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
 	-st-mixin: Globals;
-	border: 2px solid red;
 	font-size: 16px;
 }
 .root:theme(light) {
