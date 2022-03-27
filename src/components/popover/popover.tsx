@@ -9,7 +9,7 @@ export interface IPopoverProps {
 	trigger: React.ReactNode;
 	children: React.ReactNode;
 	closePosX: CloseButtonPosition;
-	side: ICloseButtonPosition;
+	side: CloseButtonPosition;
 	className?: string;
 }
 
