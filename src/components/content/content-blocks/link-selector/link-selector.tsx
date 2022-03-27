@@ -49,7 +49,7 @@ export const LinkSelector = ({
 	const { linkType } = node;
 	if (dcContext) {
 		const onClick = (evt: React.MouseEvent) => {
-			dcContext.setCurrentNode(node);
+			dcContext.addContentNode(node);
 			evt.preventDefault();
 			evt.stopPropagation();
 			return false;

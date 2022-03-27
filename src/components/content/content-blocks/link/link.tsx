@@ -7,16 +7,16 @@ export interface ILinkProps extends ContentComponentProps {
 }
 
 export const Link = (props: ILinkProps): JSX.Element => {
-	const p = props.componentData.node;
+	const className = props.className;
 	return (
 		<a
 			className={className}
-			href={node.target}
+			href={props.componentData.node.target}
 			target="_blank"
 			rel="noreferrer"
 			onClick={props.onClick}
 		>
-			<ContentIterator componentData={componentData} className={className} />
+			<ContentIterator componentData={props.componentData} className={className} />
 		</a>
 	);
 };

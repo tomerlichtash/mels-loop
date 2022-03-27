@@ -14,6 +14,13 @@ export class ContentStack<T> implements IContentStack<T> {
 		return this._nodes.slice();
 	}
 
+	public setIndex(index: number): IContentStack<T> {
+		if (index >= 0 && index < this._nodes.length - 1) {
+			this._nodes.length = index + 1;
+		}
+		return this;
+	}
+
 	public clear(): IContentStack<T> {
 		this._nodes.length = 0;
 		return this;

@@ -25,6 +25,8 @@ export const DynamicContentViewer = ({
 	const elements = item && item.parsed;
 
 	useEffect(() => {
+		// safeguard against a promise resolving after the component was torn down
+		let removed = false;
 		const itemData = contentUtils.urlToContentData(url, DynamicContentTypes.Glossary);
 		if (itemData.type === DynamicContentTypes.None) {
 			setError(`Bad url ${url}`);
@@ -32,17 +34,23 @@ export const DynamicContentViewer = ({
 		pageContext.dynamicContentServer
 			.getItems(itemData.type, locale, [itemData.id])
 			.then((items: IParsedPageData[]) => {
+				if (removed) {
+					return;
+				}
 				const page = items && items[0];
 				if (page) {
 					setItem(page);
-					dynamicContentContext?.setCurrentPage(page);
+					dynamicContentContext?.addPage(page);
 				} else {
 					setError("not found");
 				}
 			})
 			.catch((e) => {
-				setError(`${String(e)}`);
+				if (!removed) {
+					setError(`${String(e)}`);
+				}
 			});
+			return () => { removed = true };
 	}, [url, dynamicContentContext, pageContext, locale]);
 
 	if (error) {

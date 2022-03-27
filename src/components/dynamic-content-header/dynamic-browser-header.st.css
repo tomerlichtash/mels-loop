@@ -1,22 +1,61 @@
 @namespace "DynamicBrowserHeader";
 
 @st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [level3,level4,level5] from "../../theme/common.st.css";
 
 .root {
 	-st-mixin: boxSizing;
 }
 
-.linksContainer {
+.header {
+	background-color: value(level5);
 	display: flex;
 	justify-content: flex-start;
-	gap: 5px;
-	flex-wrap: nowrap;
 }
 
-.itemLink:not(:last-child) {
+.header button[data-state] {
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	background-color: transparent;
+	border-width: 0px;
+}
+
+.backIndicator {
+	width: 24px;
+	opacity: 0.9;
+	margin: 0 5px;
+	/*position: relative;*/
+}
+
+.backIndicator:hover {
 	cursor: pointer;
+	opacity: 1;
 }
 
-.itemLink:not(:last-child)::after {
-	content: " * "
+.backIndicator img {
+	width: 100%;
+	height: auto;
+}
+
+.linksContainer {
+	background-color: value(level3);
+	border: 1px solid value(level5);
+	padding: 2px 3px;
+}
+
+.itemLink {
+}
+
+.itemLink:not([data-disabled='true']):hover {
+	cursor: pointer;
+	text-decoration: underline;
+	background-color: value(level4);
+}
+
+.linkSeparator {
+	display: inline-block;
+	height: 1px;
+	width: 100%;
+	background-color: value(level5);
 }

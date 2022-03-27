@@ -285,6 +285,12 @@ export interface IPageProps {
 	 * @returns the content stack object, e.g. for chaining
 	 */
 	push(node: T): IContentStack<T>;
+
+	/**
+	 * Set the tip of the stack to the provided index, if legal (bad input is ignored)
+	 * @param index 
+	 */
+	setIndex(index: number): IContentStack<T>;
 	/**
 	 * returns the topmost node, after removing it from the stack
 	 * Null when the stack is empty.

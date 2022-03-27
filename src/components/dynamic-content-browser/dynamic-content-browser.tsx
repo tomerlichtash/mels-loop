@@ -13,7 +13,8 @@ export interface IStackBrowserProps {
 export default function DynamicContentBrowser(props: IStackBrowserProps): JSX.Element {
 	const [currentNode, setCurrentNode] = useState<IMLParsedNode>(null);
 	const [currentPage, setCurrentPage] = useState<IParsedPageData>(null);
-	//const [contentContext] = useState<IDynamicContentContext>(new DynamicContentContext());
+	// always one less than the contentstack's length, which starts at 0
+	const [currentIndex, setCurrentIndex] = useState(-1); 
 	const [contentStack] = useState((new ContentStack<IMLParsedNode>()).push(props.node));
 	const [pageStack] = useState((new ContentStack<IParsedPageData>("id")));
 	const [pages, setPages] = useState<Array<IParsedPageData>>([]);
@@ -26,8 +27,16 @@ export default function DynamicContentBrowser(props: IStackBrowserProps): JSX.El
 
 	useEffect(() => {
 		pageStack.push(currentPage);
-		setPages(pageStack.stack);
+		setCurrentIndex(contentStack.count - 1);
 	}, [currentPage, pageStack]);
+
+	useEffect(() => {
+		if (currentIndex >= 0) {
+			setCurrentNode(contentStack.setIndex(currentIndex).current);
+			setPages(pageStack.setIndex(currentIndex).stack);
+			setUrl(contentStack.current?.target);
+		}
+	}, [currentIndex, pageStack]);
 
 	if (!url) {
 		return (<></>);
@@ -35,14 +44,17 @@ export default function DynamicContentBrowser(props: IStackBrowserProps): JSX.El
 	const ctx: IDynamicContentContext = {
 		currentNode,
 		currentPage,
-		setCurrentNode,
-		setCurrentPage
+		addContentNode: setCurrentNode,
+		addPage: setCurrentPage,
+		pageIndex: currentIndex,
+		setPageIndex: setCurrentIndex
 	};
 	return (
 		<ReactDynamicContentContext.Provider value={ctx}>
 			<>
 				{pages.length > 1 && (
-				<DynamicBrowserHeader pages={pages} />
+				<DynamicBrowserHeader 
+					pages={pages} />
 			)}
 				<DynamicContentViewer url={url} />
 			</>
