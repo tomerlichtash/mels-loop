@@ -20,6 +20,7 @@
 	Popover:type(glossary)::trigger {
 		display: inline-block;
     line-height: 24px;
+		color: blue;
 	}
 	Popover:type(glossary)::triggerWrapper {
 		border-radius: 4px;
@@ -28,9 +29,6 @@
 	Popover:type(glossary)[data-state="closed"]::trigger:hover,
 	Popover:type(glossary)[data-state="closed"]::trigger:hover::after {
 		color: orange;
-	}
-	Popover:type(glossary)[data-state="closed"] {
-		color: blue;
 	}
 	Popover:type(glossary)[data-state="open"]::triggerWrapper,
 	Popover:type(glossary)[data-state="open"]::triggerWrapper:hover {

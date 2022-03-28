@@ -1,5 +1,6 @@
 @namespace "Popover";
 
+@st-import [color4] from "../../theme/common.st.css";
 @st-import [preventSelection] from "../../theme/mixins.st.css";
 
 :vars {
@@ -17,7 +18,7 @@
   PopoverCloseSize: 30px;
   PopoverCloseBgHover: red;
   PopoverClosePosMargin: 8px;
-  PopoverCloseIconColor: #E6E3D8;
+  PopoverCloseIconColor: value(color4);
   PopoverCloseIconColorHover: red;
   PopoverCloseCase: lowercase;
 }
@@ -86,10 +87,10 @@
   border-radius: 50%;
 }
 .cross path {
-  fill: blue;
+  fill: value(PopoverCloseIconColor);
 }
 .cross:hover path {
-  fill: red;
+  fill: value(PopoverCloseIconColorHover);
 }
 
 @keyframes fadeIn {
