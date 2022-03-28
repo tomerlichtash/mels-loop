@@ -1,3 +1,5 @@
+export type ForcePopoverProps = { type: string; id: string } | null;
+
 export interface SitePageRef {
 	id: string;
 	menuNav: boolean;
@@ -15,4 +17,5 @@ export interface ILayoutContext {
 	translate: (s: string, lang?: string) => string;
 	getSiteTitle: () => string;
 	getSiteSubtitle: () => string;
+	forcePopover?: ForcePopoverProps;
 }

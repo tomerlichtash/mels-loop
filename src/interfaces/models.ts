@@ -1,5 +1,6 @@
 import { ComponentKeyMap } from "../locales/types";
 import { DynamicContentTypes } from "./dynamic-content";
+import { ForcePopoverProps } from "./layout-context";
 
 /**
  * Workaround for any
@@ -228,6 +229,7 @@ export interface IContentComponentInitData {
 
 export interface ContentComponentProps {
 	componentData: IContentComponentInitData;
+	forcePopover?: ForcePopoverProps;
 	className?: string;
 }
 
@@ -268,7 +270,7 @@ export interface IPageProps {
 /**
  * A stack of parsed nodes
  */
- export interface IContentStack<T> {
+export interface IContentStack<T> {
 	readonly count: number;
 	/**
 	 * returns the topmost node, null when the stack is empty.
@@ -279,16 +281,16 @@ export interface IPageProps {
 	 * Returns a copy of the stack array
 	 */
 	readonly stack: Array<T>;
-	 /**
+	/**
 	 * Pushes the node only if its not null and different (by key) from the top node
-	 * @param node 
+	 * @param node
 	 * @returns the content stack object, e.g. for chaining
 	 */
 	push(node: T): IContentStack<T>;
 
 	/**
 	 * Set the tip of the stack to the provided index, if legal (bad input is ignored)
-	 * @param index 
+	 * @param index
 	 */
 	setIndex(index: number): IContentStack<T>;
 	/**

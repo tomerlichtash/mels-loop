@@ -18,11 +18,11 @@ import { st, classes } from "./content-component.st.css";
 
 export const ContentComponent = ({
 	componentData,
+	forcePopover,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { key, type } = node;
 	const stylableClassName = st(classes.root, { type });
-
 	if (!key) {
 		console.warn("missing key on", node);
 	}
@@ -33,6 +33,7 @@ export const ContentComponent = ({
 				<Section
 					key={key}
 					componentData={componentData}
+					forcePopover={forcePopover}
 					className={stylableClassName}
 				/>
 			);
@@ -41,6 +42,7 @@ export const ContentComponent = ({
 				<Paragraph
 					key={key}
 					componentData={componentData}
+					forcePopover={forcePopover}
 					className={stylableClassName}
 				/>
 			);
@@ -53,6 +55,7 @@ export const ContentComponent = ({
 				<ContentIterator
 					key={key}
 					componentData={{ tag: type, ...componentData }}
+					forcePopover={forcePopover}
 					className={stylableClassName}
 				/>
 			);
@@ -61,6 +64,7 @@ export const ContentComponent = ({
 				<ContentIterator
 					key={key}
 					componentData={{ tag: type, ...componentData }}
+					forcePopover={forcePopover}
 					className={stylableClassName}
 				/>
 			);
@@ -95,9 +99,11 @@ export const ContentComponent = ({
 				/>
 			);
 		case MLNODE_TYPES.LINK:
+			console.log("content component", forcePopover);
 			return (
 				<LinkSelector
 					key={key}
+					forcePopover={forcePopover}
 					componentData={componentData}
 					className={stylableClassName}
 				/>

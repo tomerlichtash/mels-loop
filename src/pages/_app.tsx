@@ -15,6 +15,8 @@ import {
 	getSiteTitle,
 	getSiteSubtitle,
 } from "../config/pages";
+import { QueryContext, ReactQueryContext } from "../contexts/query-context";
+import { IQueryContext } from "../interfaces/query-context";
 
 function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
@@ -38,14 +40,28 @@ function App({ Component, pageProps }: AppProps) {
 		translate,
 		getSiteTitle,
 		getSiteSubtitle,
+		forcePopover: query.show
+			? {
+					type: String(query.show).split("/")[0],
+					id: String(query.show).split("/")[1],
+			  }
+			: null,
 	};
 
+	const qctx: IQueryContext = {
+		query,
+		router,
+	};
+
+	const queryContext = new QueryContext(qctx);
 	const contentContext = new PageContext(new DynamicContentServer());
 
 	return (
 		<ReactLayoutContext.Provider value={layoutContext}>
 			<ReactPageContext.Provider value={contentContext}>
+				{/* <ReactQueryContext.Provider value={queryContext}> */}
 				<Component {...pageProps} />
+				{/* </ReactQueryContext.Provider> */}
 			</ReactPageContext.Provider>
 		</ReactLayoutContext.Provider>
 	);
