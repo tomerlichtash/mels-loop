@@ -9,6 +9,9 @@ const langs = {
 export const translateFunc =
 	(langRef: string) =>
 	(key: string, lang?: string): string => {
+		if (!key) {
+			return;
+		}
 		const ref = lang || langRef;
 		if (!langs[ref]) {
 			return `%MISSING_LOCALE_${ref}_%${key}%`;

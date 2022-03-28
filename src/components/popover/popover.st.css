@@ -1,0 +1,116 @@
+@namespace "Popover";
+
+@st-import [color4] from "../../theme/common.st.css";
+@st-import [preventSelection] from "../../theme/mixins.st.css";
+
+:vars {
+  PopoverContentBorder: none;
+  PopoverContentRadius: 2px;
+  PopoverContentBgColor: #fff;
+  PopoverContentMaxWidth: 341px;
+  PopoverContentMaxHeight: 300px;
+  PopoverContentShadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+
+  PopoverCloseBorder: none;
+  PopoverCloseMarginTop: 0;
+  PopoverCloseBorderRadius: 0;
+  PopoverCloseFontSize: 12px;
+  PopoverCloseSize: 30px;
+  PopoverCloseBgHover: red;
+  PopoverClosePosMargin: 8px;
+  PopoverCloseIconColor: value(color4);
+  PopoverCloseIconColorHover: red;
+  PopoverCloseCase: lowercase;
+}
+
+.root {
+  -st-states: type(string);
+}
+
+.trigger {
+  cursor: pointer;
+  padding: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+  background: inherit;
+}
+
+.triggerWrapper {}
+
+.content {
+  z-index: 2;
+  overflow: hidden;
+  padding: 32px 0 12px;
+  width: value(PopoverContentMaxWidth);
+  background: value(PopoverContentBgColor);
+  border-radius: value(PopoverContentRadius);
+  box-shadow: value(PopoverContentShadow);
+  animation: fadeIn 300ms ease-out forwards;
+  height: value(PopoverContentMaxHeight);
+}
+
+.close {
+  -st-mixin: preventSelection;
+  -st-states: posX(enum(right, left));
+  position: absolute;
+  /* right: 8px; */
+  top: 12px;
+  width: 16px;
+  height: 16px;
+}
+
+.closeButton {
+  -st-mixin: preventSelection;
+  /* position: absolute; */
+  right: 16px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.close:posX(right) {
+  right: value(PopoverClosePosMargin);
+}
+.close:posX(left) {
+  left: value(PopoverClosePosMargin);
+}
+
+.cross {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+}
+.cross path {
+  fill: value(PopoverCloseIconColor);
+}
+.cross:hover path {
+  fill: value(PopoverCloseIconColorHover);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.scrollable {
+  position: relative;
+  margin-top: 0px;
+}

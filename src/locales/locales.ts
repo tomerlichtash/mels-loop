@@ -1,10 +1,19 @@
-import { Language, LocaleLabels } from "./types";
+import { Authors, Language, LocaleLabels } from "./types";
 
 export const localeLabelPrefix = "LOCALE_LABEL";
 
 export const LOCALE_LABELS: LocaleLabels = {
 	LOCALE_LABEL_EN: "EN",
 	LOCALE_LABEL_HE: "ע",
+};
+
+export const AUTHORS_EN: Authors = {
+	AUTHOR_TOMER_LICHTASH: "Tomer Lichtash",
+	AUTHOR_DAVID_FRANKIEL: "David Frankiel",
+};
+export const AUTHORS_HE: Authors = {
+	AUTHOR_TOMER_LICHTASH: "תומר ליכטש",
+	AUTHOR_DAVID_FRANKIEL: "דוד פרנקל",
 };
 
 export const EN_US: Language = {
@@ -30,6 +39,36 @@ export const EN_US: Language = {
 	NO_PAGE_CONTENT: "No page content",
 	NOTE_LABEL_GLOSSARY: "Glossary",
 	NOTE_LABEL_ANNOTATION: "Note",
+
+	MENU_ITEM_TITLE_ARTICLES: "Articles",
+	MENU_ITEM_TITLE_RESOURCES: "Resources",
+	MENU_ITEM_TITLE_ABOUT: "About",
+
+	MENU_ITEM_ENTRY_TITLE_ARTICLE_PREFACE: "Preface",
+	MENU_ITEM_ENTRY_TITLE_ARTICLE_ABOUT_THE_HACK: "About Mel's Hack",
+
+	MENU_ITEM_ENTRY_DESC_ARTICLE_PREFACE: "Preface to the Story of Mel",
+	MENU_ITEM_ENTRY_DESC_ARTICLE_ABOUT_THE_HACK: "About Mel's Hack",
+
+	MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_ABOUT: "About",
+	MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_CONTRIBUTE: "Contribute",
+	MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_BLOG: "Blog",
+	MENU_ITEM_ENTRY_DESC_STATIC_PAGE_ABOUT: "About the project",
+	MENU_ITEM_ENTRY_DESC_STATIC_PAGE_CONTRIBUTE:
+		"How to contribute to the project",
+	MENU_ITEM_ENTRY_DESC_STATIC_PAGE_BLOG: "News and Updates",
+
+	MENU_ITEM_ENTRY_TITLE_LINK_TWITTER: "Twitter",
+	MENU_ITEM_ENTRY_TITLE_LINK_GITHUB: "Github",
+
+	MENU_ITEM_ENTRY_DESC_LINK_TWITTER: "@aboutmelsloop",
+	MENU_ITEM_ENTRY_DESC_LINK_GITHUB: "Check out our repo on Github",
+
+	MENU_ITEM_ENTRY_TITLE_LINK_WIKIPEDIA: "Wikipedia",
+	MENU_ITEM_ENTRY_TITLE_PAGE_RESOURCES: "Resources List",
+
+	MENU_ITEM_ENTRY_DESC_LINK_WIKIPEDIA: "Story of Mel in Wikipedia",
+	MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES: "Web Resources for the Story of Mel",
 };
 
 export const HE_IL: Language = {
@@ -55,4 +94,34 @@ export const HE_IL: Language = {
 	NO_PAGE_CONTENT: "דף ללא תוכן",
 	NOTE_LABEL_GLOSSARY: "מילון מונחים",
 	NOTE_LABEL_ANNOTATION: "הערה",
+
+	MENU_ITEM_TITLE_ARTICLES: "רשימות",
+	MENU_ITEM_TITLE_RESOURCES: "מקורות",
+	MENU_ITEM_TITLE_ABOUT: "פרטים נוספים",
+
+	MENU_ITEM_ENTRY_TITLE_ARTICLE_PREFACE: "מבוא",
+	MENU_ITEM_ENTRY_TITLE_ARTICLE_ABOUT_THE_HACK: "הסבר להאק של מל",
+
+	MENU_ITEM_ENTRY_DESC_ARTICLE_PREFACE: "מבוא לסיפור ולתרגום",
+	MENU_ITEM_ENTRY_DESC_ARTICLE_ABOUT_THE_HACK: "הסבר טכני על ההאק של מל",
+
+	MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_ABOUT: "אודות",
+	MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_CONTRIBUTE: "כיצד לתרום",
+	MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_BLOG: "בלוג",
+	MENU_ITEM_ENTRY_DESC_STATIC_PAGE_ABOUT: "על פרויקט לולאת מל",
+	MENU_ITEM_ENTRY_DESC_STATIC_PAGE_CONTRIBUTE:
+		"כיצד לתרום תוכן לפרויקט לולאת מל",
+	MENU_ITEM_ENTRY_DESC_STATIC_PAGE_BLOG: "חדשות ועדכונים",
+
+	MENU_ITEM_ENTRY_TITLE_LINK_TWITTER: "טוויטר",
+	MENU_ITEM_ENTRY_TITLE_LINK_GITHUB: "גיטהאב",
+
+	MENU_ITEM_ENTRY_DESC_LINK_TWITTER: "@aboutmelsloop",
+	MENU_ITEM_ENTRY_DESC_LINK_GITHUB: "הקוד של הפרויקט בגיטהאב",
+
+	MENU_ITEM_ENTRY_TITLE_LINK_WIKIPEDIA: "ויקיפדיה",
+	MENU_ITEM_ENTRY_TITLE_PAGE_RESOURCES: "מקורות",
+
+	MENU_ITEM_ENTRY_DESC_LINK_WIKIPEDIA: "הסיפור על מל בויקיפדיה",
+	MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES: "רשימת מקורות מלאה",
 };
