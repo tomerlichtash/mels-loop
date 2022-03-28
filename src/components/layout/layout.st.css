@@ -5,18 +5,55 @@
 @st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import MobileNav from "../../components/nav/nav-mobile.st.css";
+@st-import Scrollable from "../../components/scrollbar/scrollbar.st.css";
+@st-import Popover from "../../components/popover/popover.st.css";
 
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
-@st-import [PageWidth, level2, level5, level4] from '../../theme/common.st.css';
+@st-import [PageWidth, level0, level1, level2, level5, level4, primary2] from '../../theme/common.st.css';
 @st-import [heading6, bodyTextNormal, LatinText, HebrewText] from '../../theme/typography.st.css';
-@st-import [boxSizing] from '../../theme/mixins.st.css';
+@st-import [boxSizing, preventSelection] from '../../theme/mixins.st.css';
+
+@st-scope .root {
+	Popover:type(annotation)::trigger,
+	Popover:type(glossary)::trigger {
+		display: inline-block;
+    line-height: 24px;
+		color: blue;
+	}
+	Popover:type(glossary)::triggerWrapper {
+		border-radius: 4px;
+	}
+	Popover:type(annotation)::trigger:hover,
+	Popover:type(glossary)[data-state="closed"]::trigger:hover,
+	Popover:type(glossary)[data-state="closed"]::trigger:hover::after {
+		color: orange;
+	}
+	Popover:type(glossary)[data-state="open"]::triggerWrapper,
+	Popover:type(glossary)[data-state="open"]::triggerWrapper:hover {
+		background-color: value(primary2);
+		color: value(level0);
+	}
+	Popover:type(glossary)::trigger::after {
+		-st-mixin: preventSelection;
+		content: '※';
+		top: -5px;
+		position: relative;
+	}
+	Popover:type(glossary)[data-state="open"]::triggerWrapper::after {
+		color: value(level0);
+	}
+	Popover::content {
+		margin-top: 20px;
+	}
+}
 
 .root {
 	-st-states: locale(enum(en, he)), theme(enum(light, dark));
 	-st-mixin: Globals;
 	font-size: 16px;
+	background: value(level1);
 }
 .root:theme(light) {
 	-st-mixin: LightTheme;
@@ -31,6 +68,14 @@
 .root:locale(he) {
 	font-family: "Assistant", serif;
 	direction: rtl;
+}
+
+.scrollablePage {
+	height: 100vh;
+}  
+.page {
+	-st-extends: Page;
+	padding-top: 80px;
 }
 
 .mobileNav {
@@ -56,6 +101,17 @@
 	align-items: center;
 }
 
+.header {
+	-st-extends: Header;
+}
+.header::siteTitle {
+	-st-mixin: heading6;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+.header::siteSubtitle {
+	-st-mixin: bodyTextNormal;
+}
 .header::siteTitle::icon img {
 	width: 24px;
 }
@@ -66,52 +122,8 @@
 	margin-left: 0.5rem;
 }
 
-.header {
-	-st-extends: Header;
-}
-
-.header::siteTitle {
-	-st-mixin: heading6;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-}
-.header::siteSubtitle {
-	-st-mixin: bodyTextNormal;
-}
-
 .primaryNav {
 	display: flex;
-}
-.nav {
-	-st-extends: Nav;
-}
-.nav::list,
-.localeSelector::list {
-	display: flex;
-}
-.localeSelector::item:first-child {
-	border-top-left-radius: 6px;
-	border-bottom-left-radius: 6px;
-}
-.localeSelector::item:last-child {
-	border-top-right-radius: 6px;
-	border-bottom-right-radius: 6px;
-}
-.nav::listItem {
-	border-radius: 4px;
-}
-.localeSelector::item,
-.nav::button {
-	padding: 0.25rem 0.5rem;
-	display: block;
-}
-.localeSelector::item {
-	width: 30px;
-	text-align: center;
-}
-.nav::listItem:hover,
-.localeSelector::item:hover {
-	background-color: value(level5);
 }
 
 .localeSelector {
@@ -132,10 +144,27 @@
 .localeSelector::item:selected {
 	background-color: value(level4);
 }
-
-.page {
-	-st-extends: Page;
-	padding-top: 150px;
+.localeSelector::list {
+	display: flex;
+}
+.localeSelector::item:first-child {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+.localeSelector::item:last-child {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+.localeSelector::item {
+	padding: 0.25rem 0.5rem;
+	display: block;
+}
+.localeSelector::item {
+	width: 30px;
+	text-align: center;
+}
+.localeSelector::item:hover {
+	background-color: value(level5);
 }
 
 /* @media (min-width: 320px) and (max-width: 767px) {
@@ -143,4 +172,5 @@
 		display: none;
 	}
 } */
-  
+
+.scrollable {}

@@ -3,7 +3,6 @@ import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
-import Nav from "../nav";
 import { MobileNav } from "../nav/nav-mobile";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
@@ -13,7 +12,12 @@ import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
+import { NavMenu } from "../nav/menu";
+import { navItems } from "../../config/menu-data";
+import { MenuGroup } from "../nav/types";
+import ScrollArea from "../scrollbar";
 import { st, classes } from "./layout.st.css";
+
 interface Size {
 	width: number | undefined;
 	height: number | undefined;
@@ -78,6 +82,21 @@ export default function Layout(props: LayoutProps) {
 	const size: Size = useWindowSize();
 	const isMobile = size.width <= 970;
 
+	const translateItems = (items: MenuGroup[]) => {
+		return items.map((group) =>
+			Object.assign({}, group, {
+				title: translate(group.title),
+				content: group.content.map((item) =>
+					Object.assign({}, item, {
+						title: translate(item.title),
+						description: translate(item.description),
+						author: translate(item.author),
+					})
+				),
+			})
+		);
+	};
+
 	return (
 		<>
 			<Head>
@@ -106,7 +125,12 @@ export default function Layout(props: LayoutProps) {
 							<Header className={classes.header} compKeys={HEADER_LOCALE} />
 							{!isMobile && (
 								<div className={classes.primaryNav}>
-									<Nav className={classes.nav} />
+									{/* <Nav className={classes.nav} /> */}
+									<NavMenu
+										className={classes.nav}
+										items={translateItems(navItems)}
+									/>
+
 									<LocaleSelector
 										options={localeSelectorOptions}
 										onLocaleChange={onLocaleChange}
@@ -116,9 +140,16 @@ export default function Layout(props: LayoutProps) {
 							)}
 						</div>
 					</div>
-					<Page className={classes.page} nodes={props.children} />
-					<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
+					<div className={classes.scrollablePage}>
+						<ScrollArea>
+							<div className={classes.scrollable}>
+								<Page className={classes.page} nodes={props.children} />
+								<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
+							</div>
+						</ScrollArea>
+					</div>
 				</div>
+
 				{isMobile && (
 					<MobileNav
 						className={classes.mobileNav}

@@ -25,68 +25,43 @@ export const Button = ({
 	callback,
 	className,
 }: ButtonProps): JSX.Element => {
-	if (!link && !target && !callback) {
-		return (
-			<span
-				title={title || label}
-				aria-label={title || label}
-				className={st(classes.root, { selected }, className)}
-			>
-				<span className={classes.content}>
-					{icon && (
-						<span className={classes.icon}>
-							<span className={classes.img}>{icon}</span>
-						</span>
-					)}
-					<span className={classes.label}>
-						<span className={classes.text}>{label}</span>
-					</span>
+	const btnLabel = title || label;
+	const btnClassName = st(classes.root, { selected }, className);
+	const btnProps = {
+		title: btnLabel,
+		"aria-label": btnLabel,
+		className: btnClassName,
+	};
+	const btnContent = (
+		<span className={classes.content}>
+			{icon && (
+				<span className={classes.icon}>
+					<span className={classes.img}>{icon}</span>
 				</span>
+			)}
+			<span className={classes.label}>
+				<span className={classes.text}>{label}</span>
 			</span>
-		);
+		</span>
+	);
+
+	if (!link && !target && !callback) {
+		return <span {...btnProps}>{btnContent}</span>;
 	}
 
 	if (link) {
 		return (
 			<Link href={`${link}`}>
-				<a
-					title={title || label}
-					aria-label={title || label}
-					className={st(classes.root, { selected }, className)}
-					target={target}
-				>
-					<span className={classes.content}>
-						{icon && (
-							<div className={classes.icon}>
-								<span className={classes.img}>{icon}</span>
-							</div>
-						)}
-						<span className={classes.label}>
-							<span className={classes.text}>{label}</span>
-						</span>
-					</span>
+				<a target={target} {...btnProps}>
+					{btnContent}
 				</a>
 			</Link>
 		);
 	}
 
 	return (
-		<span
-			title={title || label}
-			aria-label={title || label}
-			onClick={() => callback(id)}
-			className={st(classes.root, { selected }, className)}
-		>
-			<span className={classes.content}>
-				{icon && (
-					<span className={classes.icon}>
-						<span className={classes.img}>{icon}</span>
-					</span>
-				)}
-				<span className={classes.label}>
-					<span className={classes.text}>{label}</span>
-				</span>
-			</span>
+		<span onClick={() => callback(id)} {...btnProps}>
+			{btnContent}
 		</span>
 	);
 };
