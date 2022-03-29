@@ -74,7 +74,6 @@ export class QueryContext implements IQueryContext {
 			return false;
 		}
 
-		const { target, occuranceIndex, line } = node;
 		const { queryType, queryTarget, queryLine, queryOccurance } =
 			this.queryParams;
 		const exactMatch =
@@ -82,10 +81,9 @@ export class QueryContext implements IQueryContext {
 			queryTarget &&
 			queryLine &&
 			queryOccurance &&
-			`${queryType}/${queryTarget}` === target &&
-			queryLine === line &&
-			queryOccurance === occuranceIndex &&
-			line === queryLine;
+			`${queryType}/${queryTarget}` === node.target &&
+			queryOccurance === node.occuranceIndex &&
+			queryLine === node.line;
 
 		if (exactMatch) {
 			return true;
