@@ -58,12 +58,15 @@ export const LinkSelector = ({
 		};
 		return <Link key={key} componentData={componentData} onClick={onClick} />;
 	}
-	const { getForcePopoverId, onExit } = queryContext;
+
+	const { registerNode, onExit } = queryContext;
+	const nodeWithQuery = registerNode(node);
+
 	return (
 		<Popover
 			type={linkType}
 			id={node.target}
-			forcePopover={getForcePopoverId(node.target)}
+			forcePopover={nodeWithQuery}
 			onExit={() => onExit()}
 			closePosX={getCloseButtonPosition(locale)}
 			side={locale === "en" ? "right" : "left"}

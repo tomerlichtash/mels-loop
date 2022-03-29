@@ -19,6 +19,7 @@ export const Paragraph = ({
 	if (children.length === 1 && children[0].type === "text") {
 		return (
 			<p key={node.key} className={className} data-line-index={line}>
+				<a id={`line${line}`}></a>
 				{node.children[0].text}
 			</p>
 		);
@@ -26,6 +27,7 @@ export const Paragraph = ({
 
 	return (
 		<p key={node.key} className={className} data-line-index={line}>
+			<a id={`line${line}`}></a>
 			{children.map((node) => (
 				<ContentComponent
 					key={node.key}

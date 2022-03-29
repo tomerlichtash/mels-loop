@@ -1,5 +1,3 @@
-export type ForcePopoverProps = { type: string; id: string } | null;
-
 export interface SitePageRef {
 	id: string;
 	menuNav: boolean;

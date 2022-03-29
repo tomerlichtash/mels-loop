@@ -22,7 +22,7 @@ function App({ Component, pageProps }: AppProps) {
 	const { locale, pathname, query, asPath } = router;
 	const parentId = pathname.includes("[id]") ? pathname.split("/")[1] : "";
 	const queryId = query.id as string;
-	const sitePageId = queryId ? parentId : asPath;
+	const sitePageId = queryId ? parentId : asPath.split("?")[0];
 	const pathData = getPathData(sitePageId);
 	const pageId = pathData?.id || queryId;
 	const translate = translateFunc(locale);

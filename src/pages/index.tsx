@@ -24,7 +24,7 @@ import { classes } from "./index.st.css";
 export default function Index(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 
-	const { translate, compLocale, forcePopover } = layoutContext;
+	const { translate, compLocale } = layoutContext;
 	// const { siteTitle, pageName } = compLocale;
 	const { className } = props;
 
@@ -48,7 +48,6 @@ export default function Index(props: IPageProps) {
 							key={uuidv4()}
 							className={(classes.contentComponent, className)}
 							componentData={{ node }}
-							forcePopover={forcePopover}
 						/>
 					);
 				})}

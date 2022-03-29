@@ -18,7 +18,6 @@ import { st, classes } from "./content-component.st.css";
 
 export const ContentComponent = ({
 	componentData,
-	forcePopover,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { key, type } = node;
@@ -33,7 +32,6 @@ export const ContentComponent = ({
 				<Section
 					key={key}
 					componentData={componentData}
-					forcePopover={forcePopover}
 					className={stylableClassName}
 				/>
 			);
@@ -42,7 +40,6 @@ export const ContentComponent = ({
 				<Paragraph
 					key={key}
 					componentData={componentData}
-					forcePopover={forcePopover}
 					className={stylableClassName}
 				/>
 			);
@@ -55,7 +52,6 @@ export const ContentComponent = ({
 				<ContentIterator
 					key={key}
 					componentData={{ tag: type, ...componentData }}
-					forcePopover={forcePopover}
 					className={stylableClassName}
 				/>
 			);
@@ -64,7 +60,6 @@ export const ContentComponent = ({
 				<ContentIterator
 					key={key}
 					componentData={{ tag: type, ...componentData }}
-					forcePopover={forcePopover}
 					className={stylableClassName}
 				/>
 			);
@@ -102,7 +97,6 @@ export const ContentComponent = ({
 			return (
 				<LinkSelector
 					key={key}
-					forcePopover={forcePopover}
 					componentData={componentData}
 					className={stylableClassName}
 				/>

@@ -13,8 +13,8 @@ export interface IPopoverProps {
 	children: React.ReactNode;
 	closePosX: CloseButtonPosition;
 	side: CloseButtonPosition;
-	forcePopover?: boolean | null;
-	onExit?: () => void;
+	forcePopover?: boolean;
+	onExit?: (state: boolean) => void;
 	className?: string;
 }
 
@@ -39,13 +39,13 @@ export const Popover = ({
 				</span>
 			</RadixPopover.Trigger>
 			<RadixPopover.Content
-				forceMount={forcePopover ? true : null}
+				forceMount={forcePopover ? forcePopover : null}
 				side={side}
 				align="center"
 				portalled={false}
 				sideOffset={5}
 				avoidCollisions={true}
-				onInteractOutside={() => forcePopover && onExit()}
+				onInteractOutside={() => onExit(forcePopover)}
 			>
 				<div className={st(classes.content)}>
 					<div
@@ -55,7 +55,7 @@ export const Popover = ({
 					>
 						<RadixPopover.Close
 							className={classes.closeButton}
-							onClick={() => forcePopover && onExit()}
+							onClick={() => onExit(forcePopover)}
 						>
 							<Cross2Icon className={classes.cross} />
 						</RadixPopover.Close>

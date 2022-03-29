@@ -1,6 +1,5 @@
 import { ComponentKeyMap } from "../locales/types";
 import { DynamicContentTypes } from "./dynamic-content";
-import { ForcePopoverProps } from "./layout-context";
 
 /**
  * Workaround for any
@@ -229,7 +228,6 @@ export interface IContentComponentInitData {
 
 export interface ContentComponentProps {
 	componentData: IContentComponentInitData;
-	forcePopover?: ForcePopoverProps;
 	className?: string;
 }
 

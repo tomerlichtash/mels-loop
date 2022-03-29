@@ -97,6 +97,24 @@ export default function Layout(props: LayoutProps) {
 		);
 	};
 
+	// useEffect(() => {
+	// 	const path = window.location.hash;
+	// 	if (path && path.includes("#")) {
+	// 		// window.next.router.scrollToHash(path.split("#")[1]);
+	// 		// window.top.router.scrollToHash("#line50");
+	// 		// setTimeout(() => {
+	// 		// 	debugger;
+	// 		// 	const id = path.replace("#", "");
+	// 		// 	const el = window.document.getElementById(id);
+	// 		// 	const r = el.getBoundingClientRect();
+	// 		// 	window.top.scroll({
+	// 		// 		top: scrollY + r.top,
+	// 		// 		behavior: "smooth",
+	// 		// 	});
+	// 		// }, 600);
+	// 	}
+	// });
+
 	return (
 		<>
 			<Head>
