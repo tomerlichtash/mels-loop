@@ -92,6 +92,10 @@ export interface IMLParsedNode {
 	 */
 	readonly children?: IMLParsedNode[];
 	/**
+	 * Occurance index in parent line
+	 */
+	readonly occuranceIndex?: number;
+	/**
 	 * Node text, if it is a leaf
 	 */
 	readonly text?: string;

@@ -61,7 +61,6 @@ export const LinkSelector = ({
 
 	const { registerNode, onExit } = queryContext;
 	const nodeWithQuery = registerNode(node);
-
 	return (
 		<Popover
 			type={linkType}

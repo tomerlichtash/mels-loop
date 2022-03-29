@@ -7,7 +7,7 @@ export enum QUERY_PARAMS {
 	DETAIL_TYPE = "detailtype",
 	DETAIL_TARGET = "detailtarget",
 	DETAIL_LINE = "detailline",
-	DETAIL_KEY = "detailkey",
+	DETAIL_OCCURANCE = "detailoccurance",
 }
 
 export class QueryContext implements IQueryContext {
@@ -59,7 +59,7 @@ export class QueryContext implements IQueryContext {
 			queryType: getParam(QUERY_PARAMS.DETAIL_TYPE) || "",
 			queryTarget: getParam(QUERY_PARAMS.DETAIL_TARGET) || "",
 			queryLine: Number(getParam(QUERY_PARAMS.DETAIL_LINE)) || "",
-			queryKey: getParam(QUERY_PARAMS.DETAIL_KEY) || "",
+			queryOccurance: Number(getParam(QUERY_PARAMS.DETAIL_OCCURANCE)) || "",
 		};
 	}
 
@@ -74,31 +74,20 @@ export class QueryContext implements IQueryContext {
 			return false;
 		}
 
-		const { queryType, queryTarget, queryLine, queryKey } = this.queryParams;
-		// if all params in query then they all fit together
-		// if (
-		// 	queryType &&
-		// 	queryTarget &&
-		// 	queryLine &&
-		// 	queryKey &&
-		// 	`${queryType}/${queryTarget}` === node.target &&
-		// 	node.key === queryKey &&
-		// 	node.line === queryLine
-		// ) {
-		// 	// TODO: pop this
-		// 	return;
-		// }
+		const { target, occuranceIndex, line } = node;
+		const { queryType, queryTarget, queryLine, queryOccurance } =
+			this.queryParams;
+		const exactMatch =
+			queryType &&
+			queryTarget &&
+			queryLine &&
+			queryOccurance &&
+			`${queryType}/${queryTarget}` === target &&
+			queryLine === line &&
+			queryOccurance === occuranceIndex &&
+			line === queryLine;
 
-		if (
-			//type and target only
-			`${queryType}/${queryTarget}` === node.target
-		) {
-			// console.log(node.key);
-			this.setKeyIndex(node.key);
-			this.setLineIndex(node.line);
-			// console.log(node.key);
-			// this.getRouter.push(`${asPath}#line${node.line}`);
-			// window.next.router.scrollToHash(`line${node.line}`);
+		if (exactMatch) {
 			return true;
 		}
 
