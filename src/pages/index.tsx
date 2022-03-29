@@ -23,11 +23,9 @@ import { classes } from "./index.st.css";
 
 export default function Index(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
-
 	const { translate, compLocale } = layoutContext;
 	const { siteTitle, pageName } = compLocale;
 	const { className } = props;
-
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
 	const { metaData } = pageData[0];
