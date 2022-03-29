@@ -22,6 +22,7 @@ export const ContentComponent = ({
 	const { node } = componentData;
 	const { key, type } = node;
 	const stylableClassName = st(classes.root, { type });
+
 	if (!key) {
 		console.warn("missing key on", node);
 	}
