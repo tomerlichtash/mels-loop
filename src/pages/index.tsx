@@ -25,7 +25,7 @@ export default function Index(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 
 	const { translate, compLocale } = layoutContext;
-	// const { siteTitle, pageName } = compLocale;
+	const { siteTitle, pageName } = compLocale;
 	const { className } = props;
 
 	const { pageData } = usePageData(props);
@@ -37,7 +37,9 @@ export default function Index(props: IPageProps) {
 	return (
 		<Layout>
 			<Head>
-				<title>{/* {translate(siteTitle)} - {translate(pageName)} */}</title>
+				<title>
+					{translate(siteTitle)} - {translate(pageName)}
+				</title>
 			</Head>
 			<article className={classes.root}>
 				<h1 className={classes.title}>{title}</h1>
