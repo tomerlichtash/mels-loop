@@ -13,8 +13,8 @@ export interface IPopoverProps {
 	children: React.ReactNode;
 	closePosX: CloseButtonPosition;
 	side: CloseButtonPosition;
-	forcePopover?: true | null;
-	onExit?: () => Promise<boolean>;
+	forcePopover?: boolean | null;
+	onExit?: () => void;
 	className?: string;
 }
 
@@ -28,25 +28,24 @@ export const Popover = ({
 	forcePopover,
 	onExit,
 }: IPopoverProps): JSX.Element => {
-	console.log(forcePopover);
-	// console.log(`#${forcePopover?.type}/${forcePopover?.id} : 'false'`);
+	const forcePopoverProp = forcePopover ? { "data-state": "open" } : {};
 	return (
 		<RadixPopover.Root>
 			<RadixPopover.Trigger asChild>
-				<span className={st(classes.root, { type })}>
+				<span className={st(classes.root, { type })} {...forcePopoverProp}>
 					<span className={classes.trigger} tabIndex={1} data-link-id={id}>
 						<span className={st(classes.triggerWrapper)}>{trigger}</span>
 					</span>
 				</span>
 			</RadixPopover.Trigger>
 			<RadixPopover.Content
-				forceMount={forcePopover}
+				forceMount={forcePopover ? true : null}
 				side={side}
 				align="center"
 				portalled={false}
 				sideOffset={5}
 				avoidCollisions={true}
-				onInteractOutside={onExit}
+				onInteractOutside={() => forcePopover && onExit()}
 			>
 				<div className={st(classes.content)}>
 					<div
@@ -56,9 +55,7 @@ export const Popover = ({
 					>
 						<RadixPopover.Close
 							className={classes.closeButton}
-							onClick={() => {
-								console.log("after close");
-							}}
+							onClick={() => forcePopover && onExit()}
 						>
 							<Cross2Icon className={classes.cross} />
 						</RadixPopover.Close>

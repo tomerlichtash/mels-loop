@@ -10,7 +10,6 @@ import {
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { ReactLayoutContext } from "../contexts/layout-context";
-import { ReactQueryContext } from "../contexts/query-context";
 import {
 	LoadContentModes,
 	LoadFolderModes,
@@ -24,9 +23,6 @@ import { classes } from "./index.st.css";
 
 export default function Index(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
-	const qctx = useContext(ReactQueryContext);
-
-	// console.log("from context", getPopoverForceId());
 
 	const { translate, compLocale, forcePopover } = layoutContext;
 	// const { siteTitle, pageName } = compLocale;
@@ -37,7 +33,7 @@ export default function Index(props: IPageProps) {
 	const { metaData } = pageData[0];
 	const { title, moto } = metaData;
 	const elements: IMLParsedNode[] = page.parsed || [];
-	console.log(`forcePopover from index`, JSON.stringify(forcePopover));
+
 	return (
 		<Layout>
 			<Head>

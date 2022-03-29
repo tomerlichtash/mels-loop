@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { DynamicContentTypes } from "../../../../interfaces/dynamic-content";
-import { useRouter } from "next/router";
 import {
 	ContentComponentProps,
 	IContentComponentInitData,
@@ -35,28 +34,13 @@ const getCloseButtonPosition = (locale: string): CloseButtonPosition => {
 
 export const LinkSelector = ({
 	componentData,
-	forcePopover,
 	className,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
 	const queryContext = useContext(ReactQueryContext);
-	const router = useRouter();
-	const { query, asPath } = router;
 	const { locale } = useContext(ReactLayoutContext);
-
-	function resetPath(locale: string): Promise<boolean> {
-		debugger;
-		return router.push(
-			router.asPath.split("?")[0],
-			router.asPath.split("?")[0],
-			{
-				locale,
-				scroll: false,
-			}
-		);
-	}
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return (
@@ -74,13 +58,13 @@ export const LinkSelector = ({
 		};
 		return <Link key={key} componentData={componentData} onClick={onClick} />;
 	}
-	console.log("link selector", forcePopover);
+	const { getForcePopoverId, onExit } = queryContext;
 	return (
 		<Popover
 			type={linkType}
 			id={node.target}
-			forcePopover={queryContext.getForcePopoverId(node.target)}
-			onExit={() => resetPath(locale)}
+			forcePopover={getForcePopoverId(node.target)}
+			onExit={() => onExit()}
 			closePosX={getCloseButtonPosition(locale)}
 			side={locale === "en" ? "right" : "left"}
 			trigger={getTriggerComp(linkType, componentData, className)}

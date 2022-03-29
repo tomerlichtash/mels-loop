@@ -99,7 +99,6 @@ export const ContentComponent = ({
 				/>
 			);
 		case MLNODE_TYPES.LINK:
-			console.log("content component", forcePopover);
 			return (
 				<LinkSelector
 					key={key}

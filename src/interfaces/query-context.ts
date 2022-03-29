@@ -1,11 +1,8 @@
-import { NextRouter, Router } from "next/router";
-import { ParsedUrlQuery } from "querystring";
-
-// export type ForcePopoverProps = { type: string; id: string } | null;
+import { NextRouter } from "next/router";
 
 export interface IQueryContext {
-	query: ParsedUrlQuery;
-	router: NextRouter;
-	getForcePopoverId?(id: string): true | null;
-	onExit?(): void;
+	router: NextRouter | null;
+	// state: boolean | null;
+	// onExit(): Promise<boolean>;
+	// getForcePopoverId(id: string): boolean | null;
 }

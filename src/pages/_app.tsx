@@ -1,8 +1,9 @@
 import { AppProps } from "next/app";
-import { translateFunc } from "../locales/translate";
 import { useRouter } from "next/router";
-import { ReactLayoutContext } from "../contexts/layout-context";
+import { translateFunc } from "../locales/translate";
 import { ILayoutContext } from "../interfaces/layout-context";
+import { ReactLayoutContext } from "../contexts/layout-context";
+import { QueryContext, ReactQueryContext } from "../contexts/query-context";
 import { PageContext, ReactPageContext } from "../contexts/page-context";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
 import {
@@ -15,8 +16,6 @@ import {
 	getSiteTitle,
 	getSiteSubtitle,
 } from "../config/pages";
-import { QueryContext, ReactQueryContext } from "../contexts/query-context";
-import { IQueryContext } from "../interfaces/query-context";
 
 function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
@@ -40,30 +39,19 @@ function App({ Component, pageProps }: AppProps) {
 		translate,
 		getSiteTitle,
 		getSiteSubtitle,
-		forcePopover: query.show
-			? {
-					type: String(query.show).split("/")[0],
-					id: String(query.show).split("/")[1],
-			  }
-			: null,
 	};
 
-	const qctx: IQueryContext = {
-		query,
-		router,
-	};
-
-	const queryContext = new QueryContext(qctx);
+	const queryContext = new QueryContext({ router });
 	const contentContext = new PageContext(new DynamicContentServer());
 
 	return (
-		<ReactLayoutContext.Provider value={layoutContext}>
-			<ReactPageContext.Provider value={contentContext}>
-				{/* <ReactQueryContext.Provider value={queryContext}> */}
-				<Component {...pageProps} />
-				{/* </ReactQueryContext.Provider> */}
-			</ReactPageContext.Provider>
-		</ReactLayoutContext.Provider>
+		<ReactQueryContext.Provider value={queryContext}>
+			<ReactLayoutContext.Provider value={layoutContext}>
+				<ReactPageContext.Provider value={contentContext}>
+					<Component {...pageProps} />
+				</ReactPageContext.Provider>
+			</ReactLayoutContext.Provider>
+		</ReactQueryContext.Provider>
 	);
 }
 

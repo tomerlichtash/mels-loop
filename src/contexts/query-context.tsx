@@ -1,26 +1,29 @@
 import { NextRouter } from "next/router";
-import { ParsedUrlQuery } from "querystring";
 import { Context, createContext } from "react";
 import { IQueryContext } from "../interfaces/query-context";
 
 export class QueryContext implements IQueryContext {
-	public query: ParsedUrlQuery | null;
-	public router: NextRouter;
-	public state: boolean;
-	constructor(props) {
-		if (props && props.query) {
-			debugger;
-			this.state = true;
-		}
+	readonly router: NextRouter;
+
+	constructor(props: IQueryContext) {
+		debugger;
+		this.router = props?.router;
 	}
 
 	public getForcePopoverId(id: string) {
-		debugger;
-		return this.state;
+		console.log("this", this);
+		// if (!this.router && !this.router?.asPath) {
+		// 	return null;
+		// }
+		// if (this.router.asPath.split("show=")[1] === id) {
+		// 	this.state = true;
+		// 	return true;
+		// }
+		return null;
 	}
 
 	public onExit() {
-		this.state = true;
+		return this.router.push(this.router.asPath.split("?")[0]);
 	}
 }
 
