@@ -6,7 +6,7 @@ moto: "This was posted to Usenet by its author, Ed Nather <nather@astro.as.utexa
 A recent article devoted to the _macho_ side of programming[^](annotations/recent-article)
 made the bold and unvarnished statement:
 
-> [Real Programmers](glossary/real-programmer) write in [FORTRAN](#fortran).
+> [Real Programmers](glossary/real-programmer) write in [FORTRAN](glossary/fortran).
 
 Maybe they do now,
 in this decadent era of
