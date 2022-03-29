@@ -10,9 +10,7 @@ export const getSiteSubtitle = () => {
 	return SITE_META.siteSubtitle;
 };
 
-export const getPage = (id: string) => {
-	return SITE_PAGES.filter((p) => p.id === id);
-};
+export const getPage = (id: string) => SITE_PAGES.filter((p) => p.id === id);
 
 export const getPathData = (id: string) =>
 	Object.values(SITE_PAGES).filter((p) => p.targetPathname === id)[0];
