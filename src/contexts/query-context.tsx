@@ -3,6 +3,13 @@ import { Context, createContext } from "react";
 import { IMLParsedNode } from "../interfaces/models";
 import { IQueryContext } from "../interfaces/query-context";
 
+export enum QUERY_PARAMS {
+	DETAIL_TYPE = "detailtype",
+	DETAIL_TARGET = "detailtarget",
+	DETAIL_LINE = "detailline",
+	DETAIL_KEY = "detailkey",
+}
+
 export class QueryContext implements IQueryContext {
 	readonly router: NextRouter;
 	private line: number;
@@ -39,6 +46,23 @@ export class QueryContext implements IQueryContext {
 		this.key = null;
 	};
 
+	private get queryParams() {
+		const { asPath } = this.getRouter;
+		const getParam = (p: string) => {
+			const base = asPath.toLowerCase().split(`${p.toLowerCase()}=`)[1];
+			if (!base) {
+				return false;
+			}
+			return base.split("&")[0];
+		};
+		return {
+			queryType: getParam(QUERY_PARAMS.DETAIL_TYPE) || "",
+			queryTarget: getParam(QUERY_PARAMS.DETAIL_TARGET) || "",
+			queryLine: Number(getParam(QUERY_PARAMS.DETAIL_LINE)) || "",
+			queryKey: getParam(QUERY_PARAMS.DETAIL_KEY) || "",
+		};
+	}
+
 	public registerNode = (node: IMLParsedNode): boolean => {
 		const { asPath } = this.getRouter;
 
@@ -50,9 +74,29 @@ export class QueryContext implements IQueryContext {
 			return false;
 		}
 
-		if (asPath.split("show=")[1] === node.target) {
+		const { queryType, queryTarget, queryLine, queryKey } = this.queryParams;
+		// if all params in query then they all fit together
+		// if (
+		// 	queryType &&
+		// 	queryTarget &&
+		// 	queryLine &&
+		// 	queryKey &&
+		// 	`${queryType}/${queryTarget}` === node.target &&
+		// 	node.key === queryKey &&
+		// 	node.line === queryLine
+		// ) {
+		// 	// TODO: pop this
+		// 	return;
+		// }
+
+		if (
+			//type and target only
+			`${queryType}/${queryTarget}` === node.target
+		) {
+			// console.log(node.key);
 			this.setKeyIndex(node.key);
 			this.setLineIndex(node.line);
+			// console.log(node.key);
 			// this.getRouter.push(`${asPath}#line${node.line}`);
 			// window.next.router.scrollToHash(`line${node.line}`);
 			return true;
