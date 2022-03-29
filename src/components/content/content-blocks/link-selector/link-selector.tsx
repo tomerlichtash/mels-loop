@@ -72,7 +72,7 @@ export const LinkSelector = ({
 			trigger={getTriggerComp(linkType, componentData, className)}
 			className={className}
 		>
-			<DynamicContentBrowser node={node}></DynamicContentBrowser>
+			<DynamicContentBrowser node={node} />
 		</Popover>
 	);
 };
