@@ -11,7 +11,6 @@ export const getSiteSubtitle = () => {
 };
 
 export const getPage = (id: string) => {
-	// debugger;
 	return SITE_PAGES.filter((p) => p.id === id);
 };
 
