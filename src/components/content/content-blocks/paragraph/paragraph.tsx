@@ -18,16 +18,16 @@ export const Paragraph = ({
 
 	if (children.length === 1 && children[0].type === "text") {
 		return (
-			<p key={node.key} className={className} data-line-index={line}>
-				<a id={`line${line}`}></a>
+			<p key={node.key} className={className} data-line-index={line + 1}>
+				<a id={`line${line + 1}`}></a>
 				{node.children[0].text}
 			</p>
 		);
 	}
 
 	return (
-		<p key={node.key} className={className} data-line-index={line}>
-			<a id={`line${line}`}></a>
+		<p key={node.key} className={className} data-line-index={line + 1}>
+			<a id={`line${line + 1}`}></a>
 			{children.map((node) => (
 				<ContentComponent
 					key={node.key}
