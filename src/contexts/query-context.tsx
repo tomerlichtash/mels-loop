@@ -7,7 +7,7 @@ export enum QUERY_PARAMS {
 	DETAIL_TYPE = "detailtype",
 	DETAIL_TARGET = "detailtarget",
 	DETAIL_LINE = "detailline",
-	DETAIL_OCCURANCE = "detailoccurance",
+	DETAIL_OCCURRENCE = "detailoccurrence",
 }
 
 export class QueryContext implements IQueryContext {
@@ -53,7 +53,7 @@ export class QueryContext implements IQueryContext {
 			queryType: url.get(QUERY_PARAMS.DETAIL_TYPE) || "",
 			queryTarget: url.get(QUERY_PARAMS.DETAIL_TARGET) || "",
 			queryLine: Number(url.get(QUERY_PARAMS.DETAIL_LINE)) || "",
-			queryOccurance: Number(url.get(QUERY_PARAMS.DETAIL_OCCURANCE)) || "",
+			queryOccurrence: Number(url.get(QUERY_PARAMS.DETAIL_OCCURRENCE)) || "",
 		};
 	}
 
@@ -68,15 +68,15 @@ export class QueryContext implements IQueryContext {
 			return false;
 		}
 
-		const { queryType, queryTarget, queryLine, queryOccurance } =
+		const { queryType, queryTarget, queryLine, queryOccurrence } =
 			this.queryParams;
 		const exactMatch =
 			queryType &&
 			queryTarget &&
 			queryLine &&
-			queryOccurance &&
+			queryOccurrence &&
 			`${queryType}/${queryTarget}` === node.target &&
-			queryOccurance === node.occuranceIndex &&
+			queryOccurrence === node.occurrenceIndex &&
 			queryLine === node.line;
 
 		if (exactMatch) {

@@ -194,7 +194,7 @@ class ContentUtils implements IContentUtils {
 			const nodeData: Partial<IMLParsedNode> = {
 				displayType: NODE_DISPLAY_TYPES.POPOVER,
 				linkType: linkData.type,
-				occuranceIndex:
+				occurrenceIndex:
 					context.getEnumerator(`${node.line}_${node.target}`) + 1,
 				sequence: context.getEnumerator(linkData.type) + 1,
 			};
