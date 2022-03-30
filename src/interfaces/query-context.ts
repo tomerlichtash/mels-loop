@@ -5,4 +5,5 @@ export interface IQueryContext {
 	router: NextRouter | null;
 	onExit?: () => void;
 	registerNode?: (node: IMLParsedNode) => boolean;
+	getQueryUrl?: (node: IMLParsedNode) => string;
 }

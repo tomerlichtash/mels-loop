@@ -1,7 +1,8 @@
 import React from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
 import ScrollArea from "../scrollbar";
-import { Cross2Icon } from "@radix-ui/react-icons";
+import { Cross2Icon, ExternalLinkIcon } from "@radix-ui/react-icons";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { st, classes } from "./popover.st.css";
 
 export type CloseButtonPosition = "right" | "left";
@@ -14,6 +15,7 @@ export interface IPopoverProps {
 	closePosX: CloseButtonPosition;
 	side: CloseButtonPosition;
 	forcePopover?: boolean;
+	query: string;
 	onExit?: () => void;
 	className?: string;
 }
@@ -26,6 +28,7 @@ export const Popover = ({
 	side,
 	closePosX,
 	forcePopover,
+	query,
 	onExit,
 }: IPopoverProps): JSX.Element => {
 	const forcePopoverProp = forcePopover ? { "data-state": "open" } : {};
@@ -61,6 +64,18 @@ export const Popover = ({
 						</RadixPopover.Close>
 					</div>
 					<div className={st(classes.scrollable)}>
+						<CopyToClipboard
+							text={query}
+							onCopy={() => {
+								console.log("success");
+							}}
+						>
+							<button>
+								<ExternalLinkIcon />
+								Copy URL
+							</button>
+						</CopyToClipboard>
+
 						<ScrollArea height="300px">{children}</ScrollArea>
 					</div>
 				</div>

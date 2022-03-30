@@ -33,14 +33,6 @@ export class QueryContext implements IQueryContext {
 		return this.line;
 	}
 
-	private setKeyIndex = (key: string): void => {
-		this.key = key;
-	};
-
-	private setLineIndex = (line: number): void => {
-		this.line = line;
-	};
-
 	private resetIndices = () => {
 		this.line = -1;
 		this.key = null;
@@ -93,6 +85,18 @@ export class QueryContext implements IQueryContext {
 	public onExit = () => {
 		this.resetIndices();
 		return this.router.push(this.router.asPath.split("?")[0]);
+	};
+
+	public getQueryUrl = (node: IMLParsedNode): string => {
+		const { type, target, line, occurrenceIndex } = node;
+		const params = [
+			`detailType=${type}`,
+			`detailTarget=${target}`,
+			`detailLine=${line}`,
+			`detailOccurrence=${occurrenceIndex}`,
+			`#line${line}`,
+		];
+		return `${this.getRouter.asPath}?${params.join("&")}`;
 	};
 }
 
