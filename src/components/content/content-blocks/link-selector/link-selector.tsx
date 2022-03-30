@@ -61,7 +61,6 @@ export const LinkSelector = ({
 
 	const { registerNode, onExit, getQueryUrl } = queryContext;
 	const nodeWithQuery = registerNode(node);
-
 	const query = getQueryUrl(node);
 
 	return (

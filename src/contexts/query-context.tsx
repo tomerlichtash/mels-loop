@@ -88,15 +88,20 @@ export class QueryContext implements IQueryContext {
 	};
 
 	public getQueryUrl = (node: IMLParsedNode): string => {
-		const { type, target, line, occurrenceIndex } = node;
+		let href = "";
+		if (typeof window !== "undefined") {
+			href = window.location.host;
+		}
+		const { target, line, occurrenceIndex } = node;
+		const [type, id] = target.split("/");
 		const params = [
 			`detailType=${type}`,
-			`detailTarget=${target}`,
+			`detailTarget=${id}`,
 			`detailLine=${line}`,
 			`detailOccurrence=${occurrenceIndex}`,
 			`#line${line}`,
 		];
-		return `${this.getRouter.asPath}?${params.join("&")}`;
+		return `${href}${this.getRouter.asPath}?${params.join("&")}`;
 	};
 }
 
