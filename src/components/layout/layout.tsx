@@ -17,7 +17,7 @@ import { navItems } from "../../config/menu-data";
 import { MenuGroup } from "../nav/types";
 import ScrollArea from "../scrollbar";
 import { st, classes } from "./layout.st.css";
-import { FavIconAnimator, IFavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
+import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 
 interface Size {
 	width: number | undefined;
@@ -108,13 +108,13 @@ export default function Layout(props: LayoutProps) {
 	};
 
 	useEffect(() => {
-		new FavIconAnimator(ICON_ANIMATOR_PROPS).run();
+		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0)
 	}, [currentUrl, locale])
 
 
 	useEffect(() => {
 		const handleRouteChange = () => {
-			new FavIconAnimator(ICON_ANIMATOR_PROPS).run();
+			new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
 		}
 
 		router.events.on('routeChangeStart', handleRouteChange)
@@ -122,7 +122,7 @@ export default function Layout(props: LayoutProps) {
 		return () => {
 			router.events.off('routeChangeStart', handleRouteChange)
 		}
-	}, []);
+	}, [router.events]);
 
 
 	return (

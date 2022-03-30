@@ -90,14 +90,14 @@ interface IFIProps extends IFavIconProps {
 	 * Resolve function for the `run()` promise, to call when the animation is done
 	 */
 	resolve: ((...args: unknown[]) => void) | null;
-};
+}
 
 /**
  * The context is assumed to be cleared
  */
 type AnimatorFunction = (ctx: CanvasRenderingContext2D, props: IFIProps) => string;
 
-export class FavIconAnimator<T extends IconAnimtationTypes> implements IFavIconAnimator {
+export class FavIconAnimator implements IFavIconAnimator {
 	constructor(animationProps: IFavIconProps) {
 		const doc = window.top.document;
 		const icon = animationProps.icon || doc.querySelector("link[rel='icon']");
@@ -175,7 +175,7 @@ export class FavIconAnimator<T extends IconAnimtationTypes> implements IFavIconA
 			src = props.image;
 		}
 		if (src) {
-			var img = new Image();
+			const img = new Image();
 			img.addEventListener("load", () => this._onImageLoaded(img, props));
 			img.addEventListener("error", () => this._onImageLoaded(null, props));
 			img.src = src;
@@ -186,8 +186,8 @@ export class FavIconAnimator<T extends IconAnimtationTypes> implements IFavIconA
 	}
 
 	private _getAnimator(props: IFIProps): AnimatorFunction | null {
-		return props.type === "frames" ? this._drawIconFrame
-			: props.type === "rotate" ? this._rotateIconFrame
+		return props.type === "frames" ? this._drawIconFrame.bind(this)
+			: props.type === "rotate" ? this._rotateIconFrame.bind(this)
 				: null;
 	}
 
@@ -203,7 +203,7 @@ export class FavIconAnimator<T extends IconAnimtationTypes> implements IFavIconA
 			return p.resolve();
 		}
 		if (!img) {
-			this.warn(`failed to load image ${p.image}`);
+			this.warn(`failed to load image ${String(p.image)}`);
 			return p.resolve();
 		}
 		p.image = img;
@@ -228,10 +228,9 @@ export class FavIconAnimator<T extends IconAnimtationTypes> implements IFavIconA
 			this.warn("Missing animator for type", p.type);
 			return p.resolve();
 		}
-		var ctx = p.canvas.getContext("2d");
 
 		p.interval = window.setInterval((p: IFIProps) => {
-			const ic = window.top.document.querySelector("link[rel='icon']") as HTMLLinkElement;
+			const ic = window.top.document.querySelector("link[rel='icon']");
 			if (!ic || this._abort || (Date.now() - p.startTime) >= p.durationSeconds * 1000) {
 				clearInterval(p.interval);
 				this._abort = false;
@@ -239,11 +238,12 @@ export class FavIconAnimator<T extends IconAnimtationTypes> implements IFavIconA
 				return p.resolve();
 			}
 			if (ic !== p.icon) {
-				p.icon = ic;
+				p.icon = ic as HTMLLinkElement;
 				p.savedIconHref = ic && ic.getAttribute("href");
 			}
+			const ctx = p.canvas.getContext("2d");
 			ctx.clearRect(0, 0, p.width, p.height);
-			const dataUrl = animateIt.call(this, ctx, p);
+			const dataUrl = animateIt(ctx, p);
 			p.icon.href = dataUrl;
 			p.count++;
 		}, (1000 / p.fps), p);
@@ -270,7 +270,7 @@ export class FavIconAnimator<T extends IconAnimtationTypes> implements IFavIconA
 			return dataUrl;
 		}
 
-		var angle = Math.PI / 18;
+		const angle = Math.PI / 18;
 		ctx.drawImage(p.image as HTMLImageElement,
 			0, 0, p.frameWidth, p.frameHeight,
 			0, 0, p.width, p.height);
