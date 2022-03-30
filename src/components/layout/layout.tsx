@@ -57,16 +57,17 @@ export default function Layout({ children }: LayoutProps) {
 		const skipTo = getSkipTo();
 		if (skipTo.length) {
 			const ref = getRefByLine(`line${skipTo}`);
-			try {
-				ref[0].ref.current.scrollIntoView({ behavior: "smooth" });
-			} catch (error) {
-				console.log(`ref0 error: ${String(error)}`);
-			}
-			try {
-				ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
-			} catch (error) {
-				console.log(`ref1 error: ${String(error)}`);
-			}
+			console.log(ref);
+			// try {
+			// 	ref[0].ref.current.scrollIntoView({ behavior: "smooth" });
+			// } catch (error) {
+			// 	console.log(`ref0 error: ${String(error)}`);
+			// }
+			// try {
+			// 	ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
+			// } catch (error) {
+			// 	console.log(`ref1 error: ${String(error)}`);
+			// }
 		}
 	});
 
