@@ -57,7 +57,11 @@ export default function Layout({ children }: LayoutProps) {
 		const skipTo = getSkipTo();
 		if (skipTo.length) {
 			const ref = getRefByLine(`line${skipTo}`);
-			ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
+			try {
+				ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
+			} catch (error) {
+				console.log(`ref error: ${String(error)} - ${JSON.stringify(ref)}`);
+			}
 		}
 	}, [router.asPath]);
 
