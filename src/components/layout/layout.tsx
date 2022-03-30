@@ -71,6 +71,7 @@ export default function Layout({ children }: LayoutProps) {
 	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
+	// see: https://github.com/vercel/next.js/issues/11109#issuecomment-942789246
 	useEffect(() => {
 		const skipTo = getSkipTo();
 		if (skipTo.length) {
