@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
 import ScrollArea from "../scrollbar";
 import { Cross2Icon } from "@radix-ui/react-icons";

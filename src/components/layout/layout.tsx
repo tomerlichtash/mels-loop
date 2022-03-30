@@ -17,6 +17,7 @@ import { navItems } from "../../config/menu-data";
 import { MenuGroup } from "../nav/types";
 import ScrollArea from "../scrollbar";
 import { st, classes } from "./layout.st.css";
+import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 
 interface Size {
 	width: number | undefined;
@@ -26,6 +27,15 @@ interface Size {
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
 }
+
+const ICON_ANIMATOR_PROPS: IFavIconProps = {
+	type: "rotate",
+	durationSeconds: 2,
+	height: 32,
+	width: 32,
+	debug: true,
+	image: "/assets/ml-logo.png",
+};
 
 function useWindowSize(): Size {
 	// Initialize state with undefined width/height so server and client renders match
@@ -60,10 +70,10 @@ export default function Layout(props: LayoutProps) {
 		useContext(ReactLayoutContext);
 
 	const router = useRouter();
-	const { locale, locales } = router;
+	const { locale, locales, asPath: currentUrl } = router;
 
 	function onLocaleChange(locale: string): Promise<boolean> {
-		return router.push(router.asPath, router.asPath, {
+		return router.push(currentUrl, currentUrl, {
 			locale,
 			scroll: false,
 		});
@@ -96,6 +106,24 @@ export default function Layout(props: LayoutProps) {
 			})
 		);
 	};
+
+	useEffect(() => {
+		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0)
+	}, [currentUrl, locale])
+
+
+	useEffect(() => {
+		const handleRouteChange = () => {
+			new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
+		}
+
+		router.events.on('routeChangeStart', handleRouteChange)
+		// unsubscribe on unmount
+		return () => {
+			router.events.off('routeChangeStart', handleRouteChange)
+		}
+	}, [router.events]);
+
 
 	return (
 		<>
