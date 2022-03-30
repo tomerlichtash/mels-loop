@@ -60,7 +60,7 @@ export default function Layout({ children }: LayoutProps) {
 			try {
 				ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
 			} catch (error) {
-				console.log(`ref error: ${String(error)} - ${JSON.stringify(ref)}`);
+				console.log(`ref error: ${String(error)}`);
 			}
 		}
 	}, [router.asPath]);
