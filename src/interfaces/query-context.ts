@@ -1,9 +1,9 @@
-import React from "react";
+import { RefObject } from "react";
 import { NextRouter } from "next/router";
 import { IMLParsedNode } from "./models";
 
 export interface RefNode {
-	ref: React.ComponentRef<null>;
+	ref: RefObject<Element>;
 	key: string;
 	line: number;
 }
@@ -13,7 +13,7 @@ export interface IQueryContext {
 	onExit?: () => void;
 	registerNode?: (node: IMLParsedNode) => boolean;
 	getQueryUrl?: (node: IMLParsedNode) => string;
-	addRef?: (ref: React.ReactFragment, key: string, line: number) => void;
+	addRef?: (ref: RefObject<Element>, key: string, line: number) => void;
 	getRefByLine?: (line: string) => RefNode[];
 	getSkipTo?: () => string;
 }

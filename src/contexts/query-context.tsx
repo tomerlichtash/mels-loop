@@ -1,5 +1,5 @@
 import { NextRouter } from "next/router";
-import { Context, createContext, ReactFragment } from "react";
+import { Context, createContext, RefObject } from "react";
 import { IMLParsedNode } from "../interfaces/models";
 import { IQueryContext, RefNode } from "../interfaces/query-context";
 
@@ -114,7 +114,11 @@ export class QueryContext implements IQueryContext {
 		return `${href}${this.getRouter.asPath}?${params.join("&")}`;
 	};
 
-	public addRef = (ref: ReactFragment, key: string, line: number): void => {
+	public addRef = (
+		ref: RefObject<Element>,
+		key: string,
+		line: number
+	): void => {
 		this.nodes.push({ ref, key, line });
 	};
 

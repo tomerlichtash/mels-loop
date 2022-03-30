@@ -105,7 +105,11 @@ export default function Layout({ children }: LayoutProps) {
 				<div id="page-wrap">
 					<div className={classes.topBar}>
 						<div className={classes.siteHeader}>
-							<Header className={classes.header} compKeys={HEADER_LOCALE} />
+							<Header
+								className={classes.header}
+								compKeys={HEADER_LOCALE}
+								isHome={router.asPath === "/"}
+							/>
 							{!isMobile && (
 								<div className={classes.primaryNav}>
 									<NavMenu
