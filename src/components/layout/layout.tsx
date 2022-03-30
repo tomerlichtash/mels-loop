@@ -21,10 +21,10 @@ import { st, classes } from "./layout.st.css";
 
 export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
+	const { getRefByLine, getSkipTo } = useContext(ReactQueryContext);
+
 	const { translate, getSiteTitle, getSiteSubtitle } =
 		useContext(ReactLayoutContext);
-
-	const { getRefByLine, getSkipTo } = useContext(ReactQueryContext);
 
 	const router = useRouter();
 	const { locale, locales } = router;
@@ -42,7 +42,6 @@ export default function Layout({ children }: ComponentProps) {
 			label: translate(`${localeLabelPrefix}_${lang.toUpperCase()}`),
 		};
 	});
-
 	const title = translate(getSiteTitle());
 	const subtitle = translate(getSiteSubtitle());
 	const size: ISize = useWindowSize();
@@ -53,13 +52,21 @@ export default function Layout({ children }: ComponentProps) {
 		const skipTo = getSkipTo();
 		if (skipTo.length) {
 			const ref = getRefByLine(`line${skipTo}`);
+
 			try {
-				ref[0].ref.current.scrollIntoView({ behavior: "smooth" });
+				ref[0].ref.current.scrollIntoView({
+					behavior: "smooth",
+					block: "center",
+				});
 			} catch (error) {
 				console.log(`ref0 error: ${String(error)}`);
 			}
+
 			try {
-				ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
+				ref[1].ref.current.scrollIntoView({
+					behavior: "smooth",
+					block: "center",
+				});
 			} catch (error) {
 				console.log(`ref1 error: ${String(error)}`);
 			}
@@ -71,12 +78,12 @@ export default function Layout({ children }: ComponentProps) {
 			<Head>
 				<link rel="icon" type="image/png" href="/favicon-temp.png" />
 				<meta name="description" content={subtitle} />
-				<meta
+				{/* <meta
 					property="og:image"
 					content={`https://og-image.vercel.app/${encodeURI(
 						title
 					)}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-				/>
+				/> */}
 				<meta name="og:title" content={title} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
