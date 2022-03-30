@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
@@ -7,57 +7,47 @@ import { MobileNav } from "../nav/nav-mobile";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
 import { useRouter } from "next/router";
+import { useWindowSize, ISize } from "./use-window-size";
 import { HEADER_LOCALE, FOOTER_LOCALE } from "../../locales/components";
 import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems } from "../../config/menu-data";
 import { MenuGroup } from "../nav/types";
 import ScrollArea from "../scrollbar";
 import { st, classes } from "./layout.st.css";
 
-interface Size {
-	width: number | undefined;
-	height: number | undefined;
-}
-
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
 }
 
-function useWindowSize(): Size {
-	// Initialize state with undefined width/height so server and client renders match
-	// Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-	const [windowSize, setWindowSize] = useState<Size>({
-		width: undefined,
-		height: undefined,
-	});
-	useEffect(() => {
-		// Handler to call on window resize
-		function handleResize() {
-			// Set window width/height to state
-			setWindowSize({
-				width: window.innerWidth,
-				height: window.innerHeight,
-			});
-		}
-		// Add event listener
-		window.addEventListener("resize", handleResize);
-		// Call handler right away so state gets updated with initial window size
-		handleResize();
-		// Remove event listener on cleanup
-		return () => window.removeEventListener("resize", handleResize);
-	}, []); // Empty array ensures that effect is only run on mount
-	return windowSize;
-}
+const translateItems = (
+	items: MenuGroup[],
+	translate: (s: string) => string
+) => {
+	return items.map((group) =>
+		Object.assign({}, group, {
+			title: translate(group.title),
+			content: group.content.map((item) =>
+				Object.assign({}, item, {
+					title: translate(item.title),
+					description: translate(item.description),
+					author: translate(item.author),
+				})
+			),
+		})
+	);
+};
 
-export default function Layout(props: LayoutProps) {
+export default function Layout({ children }: LayoutProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
-
 	const { translate, getSiteTitle, getSiteSubtitle } =
 		useContext(ReactLayoutContext);
+
+	const { getRefByLine, getSkipTo } = useContext(ReactQueryContext);
 
 	const router = useRouter();
 	const { locale, locales } = router;
@@ -78,24 +68,16 @@ export default function Layout(props: LayoutProps) {
 
 	const title = translate(getSiteTitle());
 	const subtitle = translate(getSiteSubtitle());
-
-	const size: Size = useWindowSize();
+	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
-	const translateItems = (items: MenuGroup[]) => {
-		return items.map((group) =>
-			Object.assign({}, group, {
-				title: translate(group.title),
-				content: group.content.map((item) =>
-					Object.assign({}, item, {
-						title: translate(item.title),
-						description: translate(item.description),
-						author: translate(item.author),
-					})
-				),
-			})
-		);
-	};
+	useEffect(() => {
+		const skipTo = getSkipTo();
+		if (skipTo.length) {
+			const ref = getRefByLine(`line${skipTo}`);
+			ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
+		}
+	}, [router.asPath, getRefByLine, getSkipTo]);
 
 	return (
 		<>
@@ -125,10 +107,9 @@ export default function Layout(props: LayoutProps) {
 							<Header className={classes.header} compKeys={HEADER_LOCALE} />
 							{!isMobile && (
 								<div className={classes.primaryNav}>
-									{/* <Nav className={classes.nav} /> */}
 									<NavMenu
 										className={classes.nav}
-										items={translateItems(navItems)}
+										items={translateItems(navItems, translate)}
 									/>
 
 									<LocaleSelector
@@ -143,7 +124,7 @@ export default function Layout(props: LayoutProps) {
 					<div className={classes.scrollablePage}>
 						<ScrollArea>
 							<div className={classes.scrollable}>
-								<Page className={classes.page} nodes={props.children} />
+								<Page className={classes.page} nodes={children} />
 								<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 							</div>
 						</ScrollArea>
@@ -168,7 +149,6 @@ export default function Layout(props: LayoutProps) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-
 					gtag('config', 'G-XLWMW4QLVE');
         `}
 			</Script>

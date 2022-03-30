@@ -47,7 +47,7 @@ export const navItems: MenuGroup[] = [
 				type: "page",
 				title: "MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_ABOUT",
 				description: "MENU_ITEM_ENTRY_DESC_STATIC_PAGE_ABOUT",
-				url: "/docs/preface",
+				url: "/about",
 			},
 			{
 				type: "page",

@@ -6,12 +6,6 @@ export interface SitePageRef {
 export interface ILayoutContext {
 	readonly locale: string;
 	readonly compLocale: Record<string, string>;
-	pageId: string;
-	getPageRefs: () => SitePageRef[];
-	getPagePath: (id: string) => string;
-	getPageName: (id: string) => string;
-	isPageVisible: (id: string) => boolean;
-	isCurrentPage: (id: string) => boolean;
 	translate: (s: string, lang?: string) => string;
 	getSiteTitle: () => string;
 	getSiteSubtitle: () => string;

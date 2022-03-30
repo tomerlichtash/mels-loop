@@ -58,12 +58,6 @@ export const SITE_PAGES: SitePage[] = [
 		targetPathname: "/docs",
 		children: ["preface", "resources", "blackjack-writeup"],
 	},
-	// {
-	// 	id: "story",
-	// 	menuNav: true,
-	// 	locale: STORY_PAGE_LOCALE,
-	// 	targetPathname: "/story",
-	// },
 	{
 		id: "error",
 		menuNav: false,
