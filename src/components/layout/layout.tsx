@@ -15,32 +15,13 @@ import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
-import { navItems } from "../../config/menu-data";
-import { MenuGroup } from "../nav/types";
+import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { st, classes } from "./layout.st.css";
 
 export interface LayoutProps extends ComponentProps {
 	children: React.ReactNode;
 }
-
-const translateItems = (
-	items: MenuGroup[],
-	translate: (s: string) => string
-) => {
-	return items.map((group) =>
-		Object.assign({}, group, {
-			title: translate(group.title),
-			content: group.content.map((item) =>
-				Object.assign({}, item, {
-					title: translate(item.title),
-					description: translate(item.description),
-					author: translate(item.author),
-				})
-			),
-		})
-	);
-};
 
 export default function Layout({ children }: LayoutProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
@@ -78,7 +59,7 @@ export default function Layout({ children }: LayoutProps) {
 			const ref = getRefByLine(`line${skipTo}`);
 			ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
 		}
-	}, [router.asPath, getRefByLine, getSkipTo]);
+	});
 
 	return (
 		<>
