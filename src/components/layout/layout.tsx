@@ -59,7 +59,7 @@ export default function Layout({ children }: LayoutProps) {
 			const ref = getRefByLine(`line${skipTo}`);
 			ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
 		}
-	});
+	}, [router.asPath]);
 
 	return (
 		<>
