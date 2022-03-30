@@ -5,6 +5,7 @@ export interface ISize {
 	height: number | undefined;
 }
 
+// source: https://usehooks.com/useWindowSize/
 export function useWindowSize(): ISize {
 	// Initialize state with undefined width/height so server and client renders match
 	// Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
