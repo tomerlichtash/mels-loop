@@ -4,7 +4,7 @@ export function translateItems(
 	items: MenuGroup[],
 	translate: (s: string) => string
 ) {
-	return items.map((group) =>
+	return items.map((group: MenuGroup) =>
 		Object.assign({}, group, {
 			title: translate(group.title),
 			content: group.content.map((item) =>

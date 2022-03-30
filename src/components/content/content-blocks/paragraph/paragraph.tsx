@@ -26,7 +26,6 @@ export const Paragraph = ({
 				key={node.key}
 				className={className}
 				data-line-index={line + 1}
-				data-has-ref={"WITH_CHILDREN"}
 				ref={ref}
 			>
 				<a id={`line${line + 1}`}></a>
@@ -41,7 +40,6 @@ export const Paragraph = ({
 			className={className}
 			data-line-index={line + 1}
 			ref={ref}
-			data-has-ref={"SINGLE"}
 		>
 			<a id={`line${line + 1}`}></a>
 			{children.map((node) => (

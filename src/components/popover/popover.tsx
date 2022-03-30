@@ -64,12 +64,7 @@ export const Popover = ({
 						</RadixPopover.Close>
 					</div>
 					<div className={st(classes.scrollable)}>
-						<CopyToClipboard
-							text={query}
-							onCopy={() => {
-								console.log("success");
-							}}
-						>
+						<CopyToClipboard text={query}>
 							<button>
 								<ExternalLinkIcon />
 								Copy URL

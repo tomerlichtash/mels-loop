@@ -52,21 +52,19 @@ export default function Layout({ children }: ComponentProps) {
 		const skipTo = getSkipTo();
 		if (skipTo.length) {
 			const ref = getRefByLine(`line${skipTo}`);
+			const scrollProps: ScrollIntoViewOptions = {
+				behavior: "smooth",
+				block: "center",
+			};
 
 			try {
-				ref[0].ref.current.scrollIntoView({
-					behavior: "smooth",
-					block: "center",
-				});
+				ref[0].ref.current.scrollIntoView(scrollProps);
 			} catch (error) {
 				console.log(`ref0 error: ${String(error)}`);
 			}
 
 			try {
-				ref[1].ref.current.scrollIntoView({
-					behavior: "smooth",
-					block: "center",
-				});
+				ref[1].ref.current.scrollIntoView(scrollProps);
 			} catch (error) {
 				console.log(`ref1 error: ${String(error)}`);
 			}
