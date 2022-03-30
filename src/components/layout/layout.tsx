@@ -19,11 +19,7 @@ import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { st, classes } from "./layout.st.css";
 
-export interface LayoutProps extends ComponentProps {
-	children: React.ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 	const { translate, getSiteTitle, getSiteSubtitle } =
 		useContext(ReactLayoutContext);
@@ -57,17 +53,16 @@ export default function Layout({ children }: LayoutProps) {
 		const skipTo = getSkipTo();
 		if (skipTo.length) {
 			const ref = getRefByLine(`line${skipTo}`);
-			console.log(ref);
-			// try {
-			// 	ref[0].ref.current.scrollIntoView({ behavior: "smooth" });
-			// } catch (error) {
-			// 	console.log(`ref0 error: ${String(error)}`);
-			// }
-			// try {
-			// 	ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
-			// } catch (error) {
-			// 	console.log(`ref1 error: ${String(error)}`);
-			// }
+			try {
+				ref[0].ref.current.scrollIntoView({ behavior: "smooth" });
+			} catch (error) {
+				console.log(`ref0 error: ${String(error)}`);
+			}
+			try {
+				ref[1].ref.current.scrollIntoView({ behavior: "smooth" });
+			} catch (error) {
+				console.log(`ref1 error: ${String(error)}`);
+			}
 		}
 	});
 
