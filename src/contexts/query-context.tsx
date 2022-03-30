@@ -48,7 +48,7 @@ export class QueryContext implements IQueryContext {
 
 	private get queryParams() {
 		const { asPath } = this.getRouter;
-		const url = new URLSearchParams(asPath.split("?")[1].toLowerCase());
+		const url = new URLSearchParams(asPath.split("?")[1]?.toLowerCase());
 		return {
 			queryType: url.get(QUERY_PARAMS.DETAIL_TYPE) || "",
 			queryTarget: url.get(QUERY_PARAMS.DETAIL_TARGET) || "",
