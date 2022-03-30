@@ -68,7 +68,7 @@ export default function Layout({ children }: LayoutProps) {
 				console.log(`ref1 error: ${String(error)}`);
 			}
 		}
-	}, [router.asPath]);
+	});
 
 	return (
 		<>
