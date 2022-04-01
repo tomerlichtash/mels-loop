@@ -38,7 +38,7 @@ export const LinkSelector = ({
 	const { node } = componentData;
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
-	const { locale } = useContext(ReactLayoutContext);
+	const { locale, localeInfo } = useContext(ReactLayoutContext);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return (
@@ -62,7 +62,7 @@ export const LinkSelector = ({
 			type={linkType}
 			className={className}
 			closePosX={getCloseButtonPosition(locale)}
-			side={locale === "en" ? "right" : "left"}
+			side={localeInfo.right}
 			trigger={getTriggerComp(linkType, componentData, className)}
 		>
 			<DynamicContentBrowser 

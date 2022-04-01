@@ -3,8 +3,17 @@ export interface SitePageRef {
 	menuNav: boolean;
 }
 
+type TextDirection = "rtl" | "ltr";
+type Direction = "right" | "left";
+export interface ILocaleInfo {
+	readonly direction: TextDirection;
+	readonly right: Direction;
+	readonly left: Direction
+}
+
 export interface ILayoutContext {
 	readonly locale: string;
+	readonly localeInfo: ILocaleInfo;
 	readonly compLocale: Record<string, string>;
 	pageId: string;
 	getPageRefs: () => SitePageRef[];

@@ -30,6 +30,17 @@ function App({ Component, pageProps }: AppProps) {
 		locale,
 		compLocale: pathData?.locale,
 		pageId,
+		localeInfo: locale === "he" ?
+			{
+				direction: "rtl",
+				right: "left",
+				left: "right"
+			} :
+			{
+				direction: "ltr",
+				right: "right",
+				left: "left"
+			},
 		getPageRefs,
 		getPagePath,
 		getPageName: (id: string) => translate(getPageName(id)),

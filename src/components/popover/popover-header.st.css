@@ -1,0 +1,65 @@
+@namespace "Popover";
+
+@st-import [color4] from "../../theme/common.st.css";
+@st-import [preventSelection] from "../../theme/mixins.st.css";
+
+:vars {
+  PopoverContentBorder: none;
+  PopoverContentRadius: 2px;
+  PopoverContentBgColor: #fff;
+  PopoverContentMaxWidth: 341px;
+  PopoverContentMaxHeight: 300px;
+  PopoverContentShadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+
+  PopoverCloseBorder: none;
+  PopoverCloseMarginTop: 0;
+  PopoverCloseBorderRadius: 0;
+  PopoverCloseFontSize: 12px;
+  PopoverCloseSize: 30px;
+  PopoverCloseBgHover: red;
+  PopoverClosePosMargin: 8px;
+  PopoverCloseIconColor: value(color4);
+  PopoverCloseIconColorHover: red;
+  PopoverCloseCase: lowercase;
+}
+
+.root {
+
+}
+
+.headerContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 2px 5px;
+}
+
+.toolbarContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-grow: 1;
+}
+
+.closeButton {
+  -st-mixin: preventSelection;
+  /* position: absolute; */
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-grow: 0;
+}
+
+.cross {
+  border-radius: 50%;
+}
+.cross path {
+  fill: value(PopoverCloseIconColor);
+}
+.cross:hover path {
+  fill: value(PopoverCloseIconColorHover);
+}
+
