@@ -3,8 +3,8 @@ export interface SitePageRef {
 	menuNav: boolean;
 }
 
-type TextDirection = "rtl" | "ltr";
-type Direction = "right" | "left";
+export type TextDirection = "rtl" | "ltr";
+export type Direction = "right" | "left";
 export interface ILocaleInfo {
 	readonly direction: TextDirection;
 	readonly right: Direction;

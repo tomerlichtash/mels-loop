@@ -10,7 +10,6 @@ import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
 import { ReactLayoutContext } from "../../../../contexts/layout-context";
-import { CloseButtonPosition } from "../../../popover/popover";
 import DynamicContentBrowser from "../../../dynamic-content-browser";
 import { ReactDynamicContentContext } from "../../../../contexts/dynamic-content-context";
 
@@ -27,10 +26,6 @@ const getTriggerComp = (
 	}
 };
 
-const getCloseButtonPosition = (locale: string): CloseButtonPosition => {
-	return locale === "en" ? "right" : "left";
-};
-
 export const LinkSelector = ({
 	componentData,
 	className,
@@ -38,7 +33,7 @@ export const LinkSelector = ({
 	const { node } = componentData;
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
-	const { locale, localeInfo } = useContext(ReactLayoutContext);
+	const { localeInfo } = useContext(ReactLayoutContext);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return (
@@ -61,7 +56,6 @@ export const LinkSelector = ({
 		<Popover
 			type={linkType}
 			className={className}
-			closePosX={getCloseButtonPosition(locale)}
 			side={localeInfo.right}
 			trigger={getTriggerComp(linkType, componentData, className)}
 		>

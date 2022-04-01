@@ -6,6 +6,7 @@ import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ReactDynamicContentContext } from "../../contexts/dynamic-content-context";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { ReactPopoverContext } from "../../contexts/popover-context";
 
 export interface IBrowserHeaderProps {
 	pages: IParsedPageData[];
@@ -23,8 +24,9 @@ export default function DynamicBrowserHeader({
 	const [menuTimeout, setMenuTimeout] = useState(0);
 	const [isMenuOpen, setMenuOpen] = useState(false);
 	const [menuState, setMenuState] = useState(MenuStates.None);
-	const { translate, locale } = useContext(ReactLayoutContext);
+	const { translate, locale, localeInfo } = useContext(ReactLayoutContext);
 	const dcCtx = useContext(ReactDynamicContentContext);
+	const { toolbar } = useContext(ReactPopoverContext);
 
 	// on mouse down in the navigation arrow, start a timer to pop up the navigation menu
 	const onMouseDown = () => {
@@ -37,6 +39,15 @@ export default function DynamicBrowserHeader({
 	const onMouseUp = () => {
 		setMenuState(MenuStates.Close);
 	};
+
+	useEffect(() => {
+		if (pages.length > 1) {
+			toolbar.addItems({
+				element: <ArrowLeftIcon key="header-back" />,
+				key: "header-back"
+			})
+		}
+	}, [toolbar, pages])
 
 	useEffect(() => {
 		let changed = false;
@@ -87,7 +98,7 @@ export default function DynamicBrowserHeader({
 					<span></span>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content
-					side="left"
+					side={localeInfo.left}
 					align="center"
 					sideOffset={25}
 					onInteractOutside={() => setMenuState(MenuStates.Close)}

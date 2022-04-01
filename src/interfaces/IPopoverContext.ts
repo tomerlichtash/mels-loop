@@ -1,12 +1,22 @@
-import { IMLParsedNode, IParsedPageData } from "./models";
+export interface IToolbarItem {
+	element: React.ReactNode;
+	key: string;
+}
+
+export interface IToolbar {
+	readonly items: IToolbarItem[];
+	/**
+	 * Will not add items with keys that already exist in the items collection
+	 * @param items 
+	 */
+	addItems(items: IToolbarItem | IToolbarItem[]): IToolbar;
+}
 
 /**
- * Describes a content-related context, available to all rendered components under a ML page.
- * The implementation currently supports only links, which are used to retrieve content
- * from the server and display it in a content browser, but when the dynamic content viewer
- * supports arbitrary content, we can modify this context.
+ * Contains objects and functions that are needed in various parts of
+ * the popover
  */
 export interface IPopoverContext {
-
+	readonly toolbar: IToolbar;
 	
 }
