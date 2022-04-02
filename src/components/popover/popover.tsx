@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
 import ScrollArea from "../scrollbar";
-import { Cross2Icon, ExternalLinkIcon } from "@radix-ui/react-icons";
+import { Cross2Icon, ExternalLinkIcon, CheckIcon } from "@radix-ui/react-icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { st, classes } from "./popover.st.css";
+import {
+	StyledArrow,
+	Tooltip,
+	TooltipTrigger,
+	TooltipContent,
+} from "../tooltip/tooltip";
 
 export type CloseButtonPosition = "right" | "left";
 
@@ -32,6 +38,26 @@ export const Popover = ({
 	onExit,
 }: IPopoverProps): JSX.Element => {
 	const forcePopoverProp = forcePopover ? { "data-state": "open" } : {};
+	const [toggleCopyIcon, setToggleCopyIcon] = useState(false);
+
+	const onCopy = () => {
+		setToggleCopyIcon(true);
+		setTimeout(() => setToggleCopyIcon(false), 1000);
+	};
+	const copyIcon = toggleCopyIcon ? <CheckIcon /> : <ExternalLinkIcon />;
+
+	const tooltip = (
+		<Tooltip delayDuration={0} open={toggleCopyIcon}>
+			<CopyToClipboard text={query} onCopy={onCopy}>
+				<TooltipTrigger>{copyIcon}</TooltipTrigger>
+			</CopyToClipboard>
+			<TooltipContent>
+				Copied!
+				<StyledArrow />
+			</TooltipContent>
+		</Tooltip>
+	);
+
 	return (
 		<RadixPopover.Root>
 			<RadixPopover.Trigger asChild>
@@ -48,7 +74,7 @@ export const Popover = ({
 				portalled={false}
 				sideOffset={5}
 				avoidCollisions={true}
-				onInteractOutside={() => onExit()}
+				onInteractOutside={onExit}
 			>
 				<div className={st(classes.content)}>
 					<div
@@ -58,19 +84,13 @@ export const Popover = ({
 					>
 						<RadixPopover.Close
 							className={classes.closeButton}
-							onClick={() => onExit()}
+							onClick={onExit}
 						>
 							<Cross2Icon className={classes.cross} />
 						</RadixPopover.Close>
 					</div>
 					<div className={st(classes.scrollable)}>
-						<CopyToClipboard text={query}>
-							<button>
-								<ExternalLinkIcon />
-								Copy URL
-							</button>
-						</CopyToClipboard>
-
+						{tooltip}
 						<ScrollArea height="300px">{children}</ScrollArea>
 					</div>
 				</div>

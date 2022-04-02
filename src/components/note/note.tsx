@@ -26,7 +26,6 @@ export const Note = ({
 	className,
 }: INoteProps): JSX.Element => {
 	return (
-		// <ScrollArea height="300px">
 		<div className={st(classes.root, { type }, className)}>
 			{type === "ref" && (
 				<div className={classes.header}>
@@ -38,7 +37,6 @@ export const Note = ({
 			{contents}
 			<Bibliography sources={sources} />
 		</div>
-		// </ScrollArea>
 	);
 };
 
