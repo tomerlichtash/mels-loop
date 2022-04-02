@@ -1,9 +1,9 @@
 import { MenuGroup } from "../components/nav/types";
 
-export function translateItems(
+export const translateItems = (
 	items: MenuGroup[],
 	translate: (s: string) => string
-) {
+) => {
 	return items.map((group: MenuGroup) =>
 		Object.assign({}, group, {
 			title: translate(group.title),
@@ -16,7 +16,7 @@ export function translateItems(
 			),
 		})
 	);
-}
+};
 
 export const navItems: MenuGroup[] = [
 	{
