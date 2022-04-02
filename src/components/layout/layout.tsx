@@ -83,7 +83,7 @@ export default function Layout({ children }: ComponentProps) {
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-	}, [currentUrl, locale, ICON_ANIMATOR_PROPS]);
+	}, [currentUrl, locale]);
 
 	useEffect(() => {
 		const handleRouteChange = () => {
@@ -95,7 +95,7 @@ export default function Layout({ children }: ComponentProps) {
 		return () => {
 			router.events.off("routeChangeStart", handleRouteChange);
 		};
-	}, [router.events, ICON_ANIMATOR_PROPS]);
+	}, [router.events]);
 
 	return (
 		<>

@@ -14,7 +14,7 @@ export interface CopyButtonProps extends ContentComponentProps {
 	query: string;
 }
 
-export const CopyButton = ({ query }: INoteProps): JSX.Element => {
+export const CopyButton = (props): JSX.Element => {
 	const [toggleCopyIcon, setToggleCopyIcon] = useState(false);
 	const copyIcon = toggleCopyIcon ? <CheckIcon /> : <ExternalLinkIcon />;
 	const onCopy = () => {
@@ -23,7 +23,7 @@ export const CopyButton = ({ query }: INoteProps): JSX.Element => {
 	};
 	return (
 		<Tooltip delayDuration={0} open={toggleCopyIcon}>
-			<CopyToClipboard text={query} onCopy={onCopy}>
+			<CopyToClipboard text={props.query} onCopy={onCopy}>
 				<TooltipTrigger>{copyIcon}</TooltipTrigger>
 			</CopyToClipboard>
 			<TooltipContent>

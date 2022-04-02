@@ -48,7 +48,7 @@ export const LinkSelector = ({
 	const query = getQueryUrl(node);
 
 	const nodeWithQuery = registerNode(node);
-	console.log("nodeWithQuery", nodeWithQuery);
+	// console.log("nodeWithQuery", nodeWithQuery);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return (

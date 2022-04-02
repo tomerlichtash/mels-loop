@@ -99,11 +99,30 @@ export class QueryManager implements IQueryManager {
 			this.setKey(node.key);
 			this.line = node.line;
 			this.occIndex = node.occurrenceIndex;
-			console.log("register node", node.target, node.key, node.line);
+			// console.log("register node", node.target, node.key, node.line);
 			return true;
 		}
 
 		return false;
+	};
+
+	public addRef = (
+		ref: RefObject<Element>,
+		key: string,
+		line: number
+	): void => {
+		if (!this.router.isReady) {
+			return;
+		}
+		if (this.getRefByKey(key).length) {
+			return;
+		}
+		// console.log("addref", key);
+		this.nodes.push({ ref, key, line });
+	};
+
+	public getRefByKey = (key: string): RefNode[] => {
+		return this.nodes.filter((ref) => ref.key === key);
 	};
 
 	public onExit = () => {
@@ -119,35 +138,11 @@ export class QueryManager implements IQueryManager {
 		const { target, line, occurrenceIndex } = node;
 		const [type, id] = target.split("/");
 		const params = [
-			`detailType=${type}`,
-			`detailTarget=${id}`,
-			`detailLine=${line}`,
-			`detailOccurrence=${occurrenceIndex}`,
-			// `skipTo=${line}`,
+			`${QUERY_PARAMS.DETAIL_TYPE}=${type}`,
+			`${QUERY_PARAMS.DETAIL_TARGET}=${id}`,
+			`${QUERY_PARAMS.DETAIL_LINE}=${line}`,
+			`${QUERY_PARAMS.DETAIL_OCCURRENCE}=${occurrenceIndex}`,
 		];
 		return `${href}${this.asPath}?${params.join("&")}`;
 	};
-
-	public addRef = (
-		ref: RefObject<Element>,
-		key: string,
-		line: number
-	): void => {
-		if (!this.router.isReady) {
-			return;
-		}
-		if (this.getRefByKey(key).length) {
-			return;
-		}
-		console.log("addref", key);
-		this.nodes.push({ ref, key, line });
-	};
-
-	public getRefByKey = (key: string): RefNode[] => {
-		return this.nodes.filter((ref) => ref.key === key);
-	};
 }
-
-// const ctx = createContext<IQueryContext>(new QueryContext(null));
-
-// export const ReactQueryContext: Context<IQueryContext> = ctx;
