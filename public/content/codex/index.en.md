@@ -14,7 +14,7 @@ Lite beer, hand calculators[^](annotations/calculators), and "user-friendly" sof
 but back in the Good Old Days,[^](annotations/story-timeline-estimation)
 when the term "software" sounded funny
 and Real Computers[^](annotations/real-computers) were made out of [drums](glossary/drum-memory) and [vacuum tubes](glossary/vacuum-tube),
-Real Programmers wrote in [machine code](glossary/machine-code).
+[Real Programmers](glossary/real-programmer) wrote in [machine code](glossary/machine-code).
 Not [FORTRAN](glossary/fortran). Not [RATFOR](glossary/ratfor). Not, even, [assembly language](glossary/assembly-language).
 [Machine Code](glossary/machine-code).
 Raw, unadorned, inscrutable [hexadecimal](glossary/hexadecimal) numbers.
@@ -24,7 +24,7 @@ Lest a whole new generation of programmers
 grow up in ignorance of this glorious past,
 I feel duty-bound to describe,
 as best I can through the generation gap,
-how a Real Programmer wrote code.
+how a [Real Programmer](glossary/real-programmer) wrote code.
 I'll call him Mel,
 because that was his name.[^](annotations/mel-kaye-bio)
 
@@ -248,4 +248,4 @@ the blackjack program would still cheat
 if you turned on the right sense switch,
 and I think that's how it should be.
 I didn't feel comfortable
-hacking up the code of a Real Programmer.
+hacking up the code of a [Real Programmer](glossary/real-programmer).
