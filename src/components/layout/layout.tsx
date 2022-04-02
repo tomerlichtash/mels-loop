@@ -31,7 +31,6 @@ export default function Layout({ children }: ComponentProps) {
 	};
 
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
-	const { getRefByLine, getSkipTo } = useContext(ReactQueryContext);
 
 	const { translate, getSiteTitle, getSiteSubtitle } =
 		useContext(ReactLayoutContext);
@@ -57,33 +56,34 @@ export default function Layout({ children }: ComponentProps) {
 	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
+	// const { getRefByKey, getSkipTo } = useContext(ReactQueryContext);
 	// see: https://github.com/vercel/next.js/issues/11109#issuecomment-942789246
-	useEffect(() => {
-		const skipTo = getSkipTo();
-		if (skipTo.length) {
-			const ref = getRefByLine(`line${skipTo}`);
-			const scrollProps: ScrollIntoViewOptions = {
-				behavior: "smooth",
-				block: "center",
-			};
+	// useEffect(() => {
+	// 	const skipTo = getSkipTo();
+	// 	if (skipTo.length) {
+	// 		const ref = getRefByLine(`line${skipTo}`);
+	// 		const scrollProps: ScrollIntoViewOptions = {
+	// 			behavior: "smooth",
+	// 			block: "center",
+	// 		};
 
-			try {
-				ref[0].ref.current.scrollIntoView(scrollProps);
-			} catch (error) {
-				console.log(`ref0 error: ${String(error)}`);
-			}
+	// 		try {
+	// 			ref[0].ref.current.scrollIntoView(scrollProps);
+	// 		} catch (error) {
+	// 			console.log(`ref0 error: ${String(error)}`);
+	// 		}
 
-			try {
-				ref[1].ref.current.scrollIntoView(scrollProps);
-			} catch (error) {
-				console.log(`ref1 error: ${String(error)}`);
-			}
-		}
-	});
+	// 		try {
+	// 			ref[1].ref.current.scrollIntoView(scrollProps);
+	// 		} catch (error) {
+	// 			console.log(`ref1 error: ${String(error)}`);
+	// 		}
+	// 	}
+	// });
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-	}, [currentUrl, locale]);
+	}, [currentUrl, locale, ICON_ANIMATOR_PROPS]);
 
 	useEffect(() => {
 		const handleRouteChange = () => {
@@ -95,7 +95,7 @@ export default function Layout({ children }: ComponentProps) {
 		return () => {
 			router.events.off("routeChangeStart", handleRouteChange);
 		};
-	}, [router.events]);
+	}, [router.events, ICON_ANIMATOR_PROPS]);
 
 	return (
 		<>

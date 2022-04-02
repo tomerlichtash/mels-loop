@@ -11,14 +11,15 @@ export const Paragraph = ({
 	const { node } = componentData;
 	const children = node.children || [];
 	const ref = useRef(null);
-	const { addRef } = useContext(ReactQueryContext);
+	const qc = useContext(ReactQueryContext);
 
 	if (children.length === 0) {
 		return <p className={classes.empty}></p>;
 	}
 
 	const { line, key } = node;
-	addRef(ref, key, line);
+
+	qc.query.addRef(ref, key, line);
 
 	if (children.length === 1 && children[0].type === "text") {
 		return (

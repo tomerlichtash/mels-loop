@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { DynamicContentTypes } from "../../../../interfaces/dynamic-content";
 import {
 	ContentComponentProps,
@@ -42,6 +42,14 @@ export const LinkSelector = ({
 	const queryContext = useContext(ReactQueryContext);
 	const { locale } = useContext(ReactLayoutContext);
 
+	const qc = queryContext;
+	const { getQueryUrl, registerNode, onExit } = qc.query;
+
+	const query = getQueryUrl(node);
+
+	const nodeWithQuery = registerNode(node);
+	console.log("nodeWithQuery", nodeWithQuery);
+
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return (
 			<Link key={key} componentData={componentData} className={className} />
@@ -59,10 +67,6 @@ export const LinkSelector = ({
 		return <Link key={key} componentData={componentData} onClick={onClick} />;
 	}
 
-	const { registerNode, onExit, getQueryUrl } = queryContext;
-	const nodeWithQuery = registerNode(node);
-	const query = getQueryUrl(node);
-
 	return (
 		<Popover
 			type={linkType}
@@ -72,7 +76,8 @@ export const LinkSelector = ({
 			onExit={() => onExit()}
 			closePosX={getCloseButtonPosition(locale)}
 			side={locale === "en" ? "right" : "left"}
-			trigger={getTriggerComp(linkType, componentData, className)}
+			// trigger={getTriggerComp(linkType, componentData, className)}
+			trigger={node.key}
 			className={className}
 		>
 			<DynamicContentBrowser node={node} />
