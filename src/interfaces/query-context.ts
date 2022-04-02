@@ -1,6 +1,4 @@
 import { RefObject } from "react";
-import { NextRouter } from "next/router";
-import { IMLParsedNode } from "./models";
 import { IQueryManager } from "./query-manager";
 
 export interface RefNode {
@@ -11,14 +9,4 @@ export interface RefNode {
 
 export interface IQueryContext {
 	query: IQueryManager;
-	// _router: NextRouter | null;
-	// readonly asPath?: string;
-	// readonly asSplitPath?: string[];
-	// readonly getPathParams?: URLSearchParams;
-	// onExit?: () => void;
-	// registerNode?: (node: IMLParsedNode) => boolean;
-	// getQueryUrl?: (node: IMLParsedNode) => string;
-	// addRef?: (ref: RefObject<Element>, key: string, line: number) => void;
-	// getRefByKey?: (key: string) => RefNode[];
-	// getSkipTo?: () => string;
 }

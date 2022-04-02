@@ -13,12 +13,12 @@ import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
-import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { st, classes } from "./layout.st.css";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
+import { ReactQueryContext } from "../../contexts/query-context";
 
 export default function Layout({ children }: ComponentProps) {
 	const ICON_ANIMATOR_PROPS: IFavIconProps = {
@@ -32,7 +32,7 @@ export default function Layout({ children }: ComponentProps) {
 
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { translate, getSiteTitle, getSiteSubtitle } =
+	const { translate, getSiteTitle, getSiteSubtitle, popoverRef } =
 		useContext(ReactLayoutContext);
 
 	const router = useRouter();
@@ -56,30 +56,21 @@ export default function Layout({ children }: ComponentProps) {
 	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
-	// const { getRefByKey, getSkipTo } = useContext(ReactQueryContext);
-	// see: https://github.com/vercel/next.js/issues/11109#issuecomment-942789246
-	// useEffect(() => {
-	// 	const skipTo = getSkipTo();
-	// 	if (skipTo.length) {
-	// 		const ref = getRefByLine(`line${skipTo}`);
-	// 		const scrollProps: ScrollIntoViewOptions = {
-	// 			behavior: "smooth",
-	// 			block: "center",
-	// 		};
+	const qc = useContext(ReactQueryContext);
+	const { getLine } = qc.query;
 
-	// 		try {
-	// 			ref[0].ref.current.scrollIntoView(scrollProps);
-	// 		} catch (error) {
-	// 			console.log(`ref0 error: ${String(error)}`);
-	// 		}
-
-	// 		try {
-	// 			ref[1].ref.current.scrollIntoView(scrollProps);
-	// 		} catch (error) {
-	// 			console.log(`ref1 error: ${String(error)}`);
-	// 		}
-	// 	}
-	// });
+	useEffect(() => {
+		if (getLine > -1) {
+			const scrollProps: ScrollIntoViewOptions = {
+				behavior: "smooth",
+				block: "center",
+			};
+			setTimeout(() => {
+				const el = window.document.getElementById(`line${getLine}`);
+				el.scrollIntoView(scrollProps);
+			}, 200);
+		}
+	});
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
@@ -151,6 +142,11 @@ export default function Layout({ children }: ComponentProps) {
 							</div>
 						</ScrollArea>
 					</div>
+					<div
+						id="popoverRef"
+						ref={popoverRef}
+						className={classes.popoverRef}
+					></div>
 				</div>
 
 				{isMobile && (

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
+// import * as Portal from "@radix-ui/react-portal";
 import ScrollArea from "../scrollbar";
 import { Cross2Icon, ExternalLinkIcon, CheckIcon } from "@radix-ui/react-icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -18,6 +19,7 @@ export interface IPopoverProps {
 	id: string;
 	trigger: React.ReactNode;
 	children: React.ReactNode;
+	popoverRef: React.RefObject<HTMLElement>;
 	closePosX: CloseButtonPosition;
 	side: CloseButtonPosition;
 	forcePopover?: boolean;
@@ -35,6 +37,7 @@ export const Popover = ({
 	closePosX,
 	forcePopover,
 	query,
+	// popoverRef,
 	onExit,
 }: IPopoverProps): JSX.Element => {
 	const forcePopoverProp = forcePopover ? { "data-state": "open" } : {};
@@ -76,6 +79,7 @@ export const Popover = ({
 				avoidCollisions={true}
 				onInteractOutside={onExit}
 			>
+				{/* <Portal.Root containerRef={popoverRef}> */}
 				<div className={st(classes.content)}>
 					<div
 						className={st(classes.close, {
@@ -91,10 +95,11 @@ export const Popover = ({
 					</div>
 					<div className={st(classes.scrollable)}>
 						{tooltip}
-						<ScrollArea height="300px">{children}</ScrollArea>
+						<ScrollArea>{children}</ScrollArea>
 					</div>
 				</div>
 				<RadixPopover.Arrow />
+				{/* </Portal.Root> */}
 			</RadixPopover.Content>
 		</RadixPopover.Root>
 	);

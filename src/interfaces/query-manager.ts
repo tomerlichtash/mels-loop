@@ -16,7 +16,8 @@ export interface IQueryManager {
 	onExit?: () => void;
 	registerNode?: (node: IMLParsedNode) => boolean;
 	getQueryUrl?: (node: IMLParsedNode) => string;
-	addRef?: (ref: RefObject<Element>, key: string, line: number) => void;
+	addLineRef?: (key: string, line: number) => RefNode;
 	getRefByKey?: (key: string) => RefNode[];
-	// getSkipTo?: () => string;
+	getRefByLine?: (line: number) => RefNode;
+	getLine?: number;
 }

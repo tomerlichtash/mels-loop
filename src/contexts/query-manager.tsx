@@ -1,5 +1,4 @@
 import { NextRouter } from "next/router";
-import { RefObject } from "react";
 import { IMLParsedNode } from "../interfaces/models";
 import { IQueryManager, RefNode } from "../interfaces/query-manager";
 
@@ -12,9 +11,9 @@ export enum QUERY_PARAMS {
 
 export class QueryManager implements IQueryManager {
 	readonly _router: NextRouter;
+	private key: string;
 	private line: number;
 	private occIndex: number;
-	private key: string;
 	public nodes: RefNode[];
 
 	constructor(props: IQueryManager) {
@@ -25,7 +24,7 @@ export class QueryManager implements IQueryManager {
 		this.nodes = [];
 	}
 
-	private get router() {
+	public get router() {
 		return this._router;
 	}
 
@@ -34,115 +33,118 @@ export class QueryManager implements IQueryManager {
 	}
 
 	get asSplitPath() {
-		if (!this.asPath || !this.asPath.includes("?")) {
-			return;
-		}
+		if (!this.asPath || !this.asPath.includes("?")) return;
 		return this.asPath.split("?");
 	}
 
-	get pathParams() {
-		if (!this.asSplitPath) {
-			return;
-		}
+	private get pathParams() {
+		if (!this.asSplitPath) return;
 		return new URLSearchParams(this.asSplitPath[1].toLowerCase());
 	}
 
-	private setKey = (key: string) => {
-		this.key = key;
-	};
-
-	private getKey = () => {
-		return this.key;
-	};
+	private get getBaseUrl() {
+		if (typeof window !== "undefined") return window.location.host;
+		return "";
+	}
 
 	private getQueryParams = () => {
-		if (!this.asSplitPath) {
-			return;
-		}
-
-		if (this.asSplitPath.length <= 1) {
-			return;
-		}
-
+		if (!this.asSplitPath) return;
+		if (this.asSplitPath.length <= 1) return;
 		return Object.fromEntries(
-			Object.values(QUERY_PARAMS).map((param) => {
-				return [param, this.pathParams.get(param)];
-			})
+			Object.values(QUERY_PARAMS).map((param) => [
+				param,
+				this.pathParams.get(param),
+			])
 		);
 	};
 
-	public registerNode = (node: IMLParsedNode): boolean => {
-		if (!this.router.isReady) {
-			return;
-		}
+	private setRef = (node: IMLParsedNode) => {
+		this.key = node.key;
+		this.line = node.line;
+		this.occIndex = node.occurrenceIndex;
+		return true;
+	};
 
-		if (this.key || this.line > -1 || this.occIndex > -1) {
-			// console.log("qc skip", this.key, this.line, this.occIndex);
-			return false;
-		}
+	public get getLine(): number {
+		return this.line;
+	}
 
-		const params = this.getQueryParams();
-		if (!params) {
-			return false;
-		}
+	// public addLineRef = (
+	// 	key: string,
+	// 	line: number,
+	// 	ref: RefObject<HTMLParagraphElement>
+	// ): RefNode => {
+	// 	if (!this.router.isReady) return;
+	// 	if (this.getRefByKey(key).length) return;
+	// 	this.nodes.push({ ref, key, line });
+	// };
 
+	// public getRefByKey = (key: string): RefNode[] =>
+	// 	this.nodes.filter((ref) => ref.key === key);
+
+	// public getRefByLine = (line: number): RefNode => {
+	// 	return this.nodes.filter((ref) => {
+	// 		return ref.line === line;
+	// 	})[0];
+	// };
+
+	matchParams = (node: IMLParsedNode, params: Record<string, string>) => {
 		const { detailtype, detailtarget } = params;
-		if (!detailtype || !detailtarget) {
+		if (!detailtype || !detailtarget) return false;
+		const baseMatch = `${detailtype}/${detailtarget}` === node.target;
+		if (!baseMatch) {
 			return false;
 		}
 
-		// if (this.key === node.key) {
-		// 	return false;
-		// }
+		const { detailline, detailoccurrence } = params;
+		const exactLine = Number(detailline) === node.line;
+		const exactOcc = Number(detailoccurrence) === node.occurrenceIndex;
 
-		if (`${detailtype}/${detailtarget}` === node.target) {
-			this.setKey(node.key);
-			this.line = node.line;
-			this.occIndex = node.occurrenceIndex;
-			// console.log("register node", node.target, node.key, node.line);
-			return true;
+		// if only base match then match first appearance
+		if (!detailline && !detailoccurrence) return this.setRef(node);
+
+		// if exact match then match exact appearance
+		if (detailline && detailoccurrence && exactLine && exactOcc)
+			return this.setRef(node);
+
+		// if line param supplied match first in line
+		if (!detailoccurrence && detailline && exactLine) {
+			return this.setRef(node);
 		}
 
 		return false;
 	};
 
-	public addRef = (
-		ref: RefObject<Element>,
-		key: string,
-		line: number
-	): void => {
-		if (!this.router.isReady) {
-			return;
-		}
-		if (this.getRefByKey(key).length) {
-			return;
-		}
-		// console.log("addref", key);
-		this.nodes.push({ ref, key, line });
-	};
+	public registerNode = (node: IMLParsedNode): boolean => {
+		if (!this.router.isReady) return false;
 
-	public getRefByKey = (key: string): RefNode[] => {
-		return this.nodes.filter((ref) => ref.key === key);
-	};
+		if (this.key || this.line > -1 || this.occIndex > -1)
+			return this.key === node.key && this.line === node.line;
 
-	public onExit = () => {
-		// this.resetIndices();
-		return this.router.push(this.router.asPath.split("?")[0]);
+		const params = this.getQueryParams();
+		if (!params) return false;
+
+		if (this.matchParams(node, params)) {
+			return this.setRef(node);
+		}
+
+		return false;
 	};
 
 	public getQueryUrl = (node: IMLParsedNode): string => {
-		let href = "";
-		if (typeof window !== "undefined") {
-			href = window.location.host;
-		}
 		const { target, line, occurrenceIndex } = node;
 		const [type, id] = target.split("/");
-		const params = [
-			`${QUERY_PARAMS.DETAIL_TYPE}=${type}`,
-			`${QUERY_PARAMS.DETAIL_TARGET}=${id}`,
-			`${QUERY_PARAMS.DETAIL_LINE}=${line}`,
-			`${QUERY_PARAMS.DETAIL_OCCURRENCE}=${occurrenceIndex}`,
+		const { DETAIL_TYPE, DETAIL_TARGET, DETAIL_LINE, DETAIL_OCCURRENCE } =
+			QUERY_PARAMS;
+		const paramData = [
+			[DETAIL_TYPE, type],
+			[DETAIL_TARGET, id],
+			[DETAIL_LINE, line],
+			[DETAIL_OCCURRENCE, occurrenceIndex],
 		];
-		return `${href}${this.asPath}?${params.join("&")}`;
+		const params = paramData.map((entry) => entry.join("=")).join("&");
+		return `${this.getBaseUrl}${this.asPath}?${params}`;
 	};
+
+	public onExit = () => this.router.push(this.router.asPath.split("?")[0]);
 }

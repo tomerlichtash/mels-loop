@@ -8,7 +8,7 @@ import {
 	TooltipTrigger,
 	TooltipContent,
 } from "../tooltip/tooltip";
-import { st, classes } from "./copy-button.st.css";
+// import { st, classes } from "./copy-button.st.css";
 
 export interface CopyButtonProps extends ContentComponentProps {
 	query: string;

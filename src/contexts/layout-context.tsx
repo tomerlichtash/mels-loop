@@ -1,4 +1,4 @@
-import { Context, createContext } from "react";
+import { Context, createContext, RefObject } from "react";
 import { ILayoutContext, SitePageRef } from "../interfaces/layout-context";
 
 export class LayoutContext implements ILayoutContext {
@@ -24,6 +24,7 @@ export class LayoutContext implements ILayoutContext {
 	}
 	public getSiteTitle: () => string;
 	public getSiteSubtitle: () => string;
+	public popoverRef: RefObject<HTMLDivElement>;
 }
 
 const ctx = createContext<ILayoutContext>(new LayoutContext());
