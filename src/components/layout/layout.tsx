@@ -32,7 +32,7 @@ export default function Layout({ children }: ComponentProps) {
 
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { translate, getSiteTitle, getSiteSubtitle, popoverRef } =
+	const { translate, getSiteTitle, getSiteSubtitle /*, popoverRef*/ } =
 		useContext(ReactLayoutContext);
 
 	const router = useRouter();
