@@ -1,5 +1,5 @@
 // import React from "react";
-import { styled, keyframes } from "@stitches/react";
+import { styled } from "@stitches/react";
 // import { PlusIcon } from "@radix-ui/react-icons";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
