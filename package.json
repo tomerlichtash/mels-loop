@@ -43,7 +43,7 @@
 		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.20.2",
+		"@playwright/test": "^1.20.1",
 		"@stylable/core": "^4.11.0",
 		"@stylable/dom-test-kit": "^4.11.0",
 		"@stylable/jest": "^4.11.0",
@@ -51,8 +51,8 @@
 		"@svgr/webpack": "^6.2.1",
 		"@testing-library/dom": "^8.12.0",
 		"@testing-library/jest-dom": "^5.16.3",
-		"@testing-library/react": "^13.0.0",
-		"@testing-library/user-event": "^14.0.4",
+		"@testing-library/react": "^12.1.4",
+		"@testing-library/user-event": "^13.5.0",
 		"@ts-tools/node": "^3.0.1",
 		"@ts-tools/webpack-loader": "^3.0.2",
 		"@types/chai": "^4.3.0",
@@ -89,7 +89,7 @@
 		"mocha-play": "^3.1.0",
 		"node-polyfill-webpack-plugin": "^1.1.4",
 		"path": "^0.12.7",
-		"playwright-chromium": "^1.20.2",
+		"playwright-chromium": "^1.20.1",
 		"prettier": "^2.6.1",
 		"simple-markdown": "^0.7.3",
 		"sinon": "^13.0.1",
