@@ -142,11 +142,11 @@ export default function Layout({ children }: ComponentProps) {
 							</div>
 						</ScrollArea>
 					</div>
-					<div
+					{/* <div
 						id="popoverRef"
 						ref={popoverRef}
 						className={classes.popoverRef}
-					></div>
+					></div> */}
 				</div>
 
 				{isMobile && (
