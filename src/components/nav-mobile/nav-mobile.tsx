@@ -4,15 +4,15 @@ import LocaleSelector from "../locale-selector";
 import Nav from "../nav";
 import { push as Menu } from "react-burger-menu";
 import { st, classes } from "./nav-mobile.st.css";
-import { ILocaleSelectorOption } from "../../locales/types";
+import { IOption } from "../_deprecated/dropdown/option";
 
 export interface IMobileNavProps extends ComponentProps {
-	localeOptions: ILocaleSelectorOption[];
+	localeOptions: IOption[];
 	onLocaleChange: (id: string) => Promise<boolean>;
 	right: boolean;
 }
 
-export const MobileNav = ({
+export const NavMobile = ({
 	localeOptions,
 	onLocaleChange,
 	right,
@@ -54,4 +54,4 @@ export const MobileNav = ({
 	);
 };
 
-export default MobileNav;
+export default NavMobile;

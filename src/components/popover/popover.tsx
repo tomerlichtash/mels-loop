@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
-// import * as Portal from "@radix-ui/react-portal";
+// import { PortalRoot } from "../portal";
 import ScrollArea from "../scrollbar";
 import { Cross2Icon, ExternalLinkIcon, CheckIcon } from "@radix-ui/react-icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { st, classes } from "./popover.st.css";
 import {
-	StyledArrow,
 	Tooltip,
 	TooltipTrigger,
 	TooltipContent,
-} from "../tooltip/tooltip";
+	TooltipArrow,
+} from "../tooltip";
 
 export type CloseButtonPosition = "right" | "left";
 
@@ -48,15 +48,14 @@ export const Popover = ({
 		setTimeout(() => setToggleCopyIcon(false), 1000);
 	};
 	const copyIcon = toggleCopyIcon ? <CheckIcon /> : <ExternalLinkIcon />;
-
-	const tooltip = (
+	const copyButton = (
 		<Tooltip delayDuration={0} open={toggleCopyIcon}>
 			<CopyToClipboard text={query} onCopy={onCopy}>
 				<TooltipTrigger>{copyIcon}</TooltipTrigger>
 			</CopyToClipboard>
-			<TooltipContent>
+			<TooltipContent className={st(classes.copyButtonContent)}>
 				Copied!
-				<StyledArrow />
+				<TooltipArrow className={st(classes.copyButtonTooltipArrow)} />
 			</TooltipContent>
 		</Tooltip>
 	);
@@ -79,7 +78,7 @@ export const Popover = ({
 				avoidCollisions={true}
 				onInteractOutside={onExit}
 			>
-				{/* <Portal.Root containerRef={popoverRef}> */}
+				{/* <PortalRoot containerRef={popoverRef}> */}
 				<div className={st(classes.content)}>
 					<div
 						className={st(classes.close, {
@@ -94,12 +93,12 @@ export const Popover = ({
 						</RadixPopover.Close>
 					</div>
 					<div className={st(classes.scrollable)}>
-						{tooltip}
+						{copyButton}
 						<ScrollArea>{children}</ScrollArea>
 					</div>
 				</div>
 				<RadixPopover.Arrow />
-				{/* </Portal.Root> */}
+				{/* </PortalRoot> */}
 			</RadixPopover.Content>
 		</RadixPopover.Root>
 	);

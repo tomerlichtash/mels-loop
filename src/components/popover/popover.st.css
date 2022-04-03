@@ -1,6 +1,6 @@
 @namespace "Popover";
 
-@st-import [color4] from "../../theme/common.st.css";
+@st-import [level5, color4] from "../../theme/common.st.css";
 @st-import [preventSelection] from "../../theme/mixins.st.css";
 
 :vars {
@@ -113,4 +113,22 @@
 .scrollable {
   position: relative;
   margin-top: 0px;
+}
+
+:vars {
+  CopyButtonBgColor: value(level5);
+  CopyButtonTextColor: value(color4);
+}
+.copyButton {
+  border: 2px solid blue;
+}
+.copyButtonContent {
+  border-radius: 4px;
+  padding: 10px 15px;
+  color: value(CopyButtonTextColor);
+  background-color: value(CopyButtonBgColor);
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+}
+.copyButtonTooltipArrow {
+  fill: value(CopyButtonBgColor);
 }

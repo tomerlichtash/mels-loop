@@ -1,7 +1,7 @@
 @namespace "DropDown";
 
 @st-import Option from "../dropdown/option.st.css";
-@st-import Button from "../ui/button/button.st.css";
+@st-import Button from "../../ui/button/button.st.css";
 
 .root {
 	-st-states: optionListVisible;

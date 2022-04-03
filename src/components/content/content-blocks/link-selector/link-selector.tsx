@@ -77,7 +77,6 @@ export const LinkSelector = ({
 			closePosX={getCloseButtonPosition(locale)}
 			side={locale === "en" ? "right" : "left"}
 			trigger={getTriggerComp(linkType, componentData, className)}
-			// trigger={node.key}
 			className={className}
 		>
 			<DynamicContentBrowser node={node} />

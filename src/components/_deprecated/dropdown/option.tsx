@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "../ui";
-import { ComponentProps } from "../../interfaces/models";
+import { Button } from "../../ui";
+import { ComponentProps } from "../../../interfaces/models";
 import { st, classes } from "./option.st.css";
 
 export interface IOption extends ComponentProps {

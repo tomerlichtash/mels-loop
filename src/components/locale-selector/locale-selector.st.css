@@ -1,6 +1,6 @@
 @namespace "LocaleSelector";
 
-@st-import DropDown from "../dropdown/dropdown.st.css";
+@st-import DropDown from "../_deprecated/dropdown/dropdown.st.css";
 @st-import [preventSelection, boxSizing] from "../../theme/mixins.st.css";
 
 :vars {

@@ -1,3 +1,10 @@
+export type Locales = "en" | "he";
+
+export interface ILocaleSelectorOption {
+	id: Locales;
+	label: string;
+}
+
 export type LocaleId = "EN_US" | "HE_IL";
 
 export interface IContentAuthors {

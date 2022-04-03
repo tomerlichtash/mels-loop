@@ -1,5 +1,5 @@
 import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as stylesheet from "../src/components/dropdown/dropdown.st.css";
+import * as stylesheet from "../src/components/_deprecated/dropdown/dropdown.st.css";
 
 export function DropdownTestDriver(element: Element) {
 	const stylableDom = new StylableDOMUtil(stylesheet, element);

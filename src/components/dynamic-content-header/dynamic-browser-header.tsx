@@ -5,7 +5,13 @@ import { mlUtils } from "../../lib/ml-utils";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ReactDynamicContentContext } from "../../contexts/dynamic-content-context";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import {
+	Dropdown,
+	DropdownTrigger,
+	DropdownContent,
+	DropdownSeparator,
+	DropdownItem,
+} from "../dropdown";
 
 export interface IBrowserHeaderProps {
 	pages: IParsedPageData[];
@@ -82,11 +88,11 @@ export default function DynamicBrowserHeader({
 			>
 				{locale === "en" ? <ArrowLeftIcon /> : <ArrowRightIcon />}
 			</span>
-			<DropdownMenu.Root open={isMenuOpen}>
-				<DropdownMenu.Trigger>
+			<Dropdown open={isMenuOpen}>
+				<DropdownTrigger>
 					<span></span>
-				</DropdownMenu.Trigger>
-				<DropdownMenu.Content
+				</DropdownTrigger>
+				<DropdownContent
 					side="left"
 					align="center"
 					sideOffset={25}
@@ -108,14 +114,11 @@ export default function DynamicBrowserHeader({
 									<>
 										{/* The last page is not navigable*/}
 										{isLast && (
-											<DropdownMenu.Separator key={mlUtils.uniqueId()}>
+											<DropdownSeparator key={mlUtils.uniqueId()}>
 												<span className={classes.linkSeparator}></span>
-											</DropdownMenu.Separator>
+											</DropdownSeparator>
 										)}
-										<DropdownMenu.Item
-											key={mlUtils.uniqueId()}
-											onSelect={setIndex}
-										>
+										<DropdownItem key={mlUtils.uniqueId()} onSelect={setIndex}>
 											<span
 												className={classes.itemLink}
 												data-disabled={String(isLast)}
@@ -125,14 +128,14 @@ export default function DynamicBrowserHeader({
 													translate(page.metaData.glossary_key) ||
 													page.id}
 											</span>
-										</DropdownMenu.Item>
+										</DropdownItem>
 									</>
 								);
 							})
 						}
 					</div>
-				</DropdownMenu.Content>
-			</DropdownMenu.Root>
+				</DropdownContent>
+			</Dropdown>
 		</div>
 	);
 }

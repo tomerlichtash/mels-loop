@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ComponentProps } from "../../interfaces/models";
-import { IOption } from "../dropdown/option";
+import { IOption } from "../_deprecated/dropdown/option";
 import { Button } from "../ui";
-import * as ToggleGroup from "@radix-ui/react-toggle-group";
+import { ToggleGroup, ToggleGroupItem } from "../toggle";
 import { st, classes } from "./locale-selector.st.css";
 
 export interface LocaleSelectorProps extends ComponentProps {
@@ -23,10 +23,10 @@ export const LocaleSelector = ({
 			title={"Select Language"}
 			aria-label={"Select Language"}
 		>
-			<ToggleGroup.Root
+			<ToggleGroup
 				type="single"
 				onValueChange={(localeId) => {
-					onLocaleChange(localeId).catch(() =>
+					onLocaleChange(localeId as string).catch(() =>
 						// TODO replace with logger call
 						console.error("onLocaleChange Error")
 					);
@@ -35,7 +35,7 @@ export const LocaleSelector = ({
 				<ul className={classes.list}>
 					{options.map((option) => {
 						return (
-							<ToggleGroup.Item
+							<ToggleGroupItem
 								key={option.id}
 								tabIndex={1}
 								asChild
@@ -50,11 +50,11 @@ export const LocaleSelector = ({
 								>
 									<Button label={option.label} />
 								</li>
-							</ToggleGroup.Item>
+							</ToggleGroupItem>
 						);
 					})}
 				</ul>
-			</ToggleGroup.Root>
+			</ToggleGroup>
 		</div>
 	);
 };
