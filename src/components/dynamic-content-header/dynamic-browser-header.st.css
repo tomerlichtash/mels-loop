@@ -8,9 +8,9 @@
 }
 
 .header {
-	background-color: value(level5);
-	display: flex;
-	justify-content: flex-start;
+	/*background-color: value(level5);*/
+	display: inline-block;
+	/*justify-content: flex-start;*/
 }
 
 /* The radixui trigger button, doesn't work with display none, so this is close enuf */
@@ -49,6 +49,11 @@
 	cursor: pointer;
 	text-decoration: underline;
 	background-color: value(level4);
+}
+
+.itemLink:last-child {
+	border-top: 1px solid value(level5);
+	padding-top: 4px;
 }
 
 .linkSeparator {

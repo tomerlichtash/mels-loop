@@ -8,6 +8,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 
+/* eslint-disable */
 export interface IBrowserHeaderProps {
 	pages: IParsedPageData[];
 }
@@ -18,36 +19,105 @@ enum MenuStates {
 	Close,
 }
 
+const NAV_BUTTON_KEY = "header-back";
 export default function DynamicBrowserHeader({
 	pages,
 }: IBrowserHeaderProps): JSX.Element {
 	const [menuTimeout, setMenuTimeout] = useState(0);
 	const [isMenuOpen, setMenuOpen] = useState(false);
 	const [menuState, setMenuState] = useState(MenuStates.None);
+	const [prevPageCount, setPrevPageCount] = useState(0);
 	const { translate, locale, localeInfo } = useContext(ReactLayoutContext);
 	const dcCtx = useContext(ReactDynamicContentContext);
-	const { toolbar } = useContext(ReactPopoverContext);
+	const popoverCtx = useContext(ReactPopoverContext);
 
 	// on mouse down in the navigation arrow, start a timer to pop up the navigation menu
 	const onMouseDown = () => {
+		//console.log("mouse down");
 		setMenuTimeout(
 			window.setTimeout(() => {
+				//console.log("setting menu state to open")
 				setMenuState(MenuStates.Open);
 			}, 500)
 		);
 	};
 	const onMouseUp = () => {
+		//console.log("mouse up");
 		setMenuState(MenuStates.Close);
 	};
 
 	useEffect(() => {
-		if (pages.length > 1) {
-			toolbar.addItems({
-				element: <ArrowLeftIcon key="header-back" />,
-				key: "header-back"
-			})
+		//console.log("useeffect for toolbar, pages", pages.length, "toolbar:", toolbar)
+		if (pages.length === prevPageCount) {
+			//console.log("page count hasn't change", prevPageCount);
+			return;
 		}
-	}, [toolbar, pages])
+		//console.log("page count changed");
+		setPrevPageCount(pages.length)
+		if (pages.length === 0) {
+			popoverCtx.removeToolbarItems(NAV_BUTTON_KEY);
+			return;
+		}
+		popoverCtx.addToolbarItems({
+			element: (
+				<div className={classes.header} key={mlUtils.uniqueId(NAV_BUTTON_KEY)}>
+				<span
+					className={classes.backIndicator}
+					onMouseDown={onMouseDown}
+					onMouseUp={onMouseUp}
+				>
+					{locale === "en" ? <ArrowLeftIcon /> : <ArrowRightIcon />}
+				</span>
+				<DropdownMenu.Root open={isMenuOpen}>
+					<DropdownMenu.Trigger>
+						<span></span>
+					</DropdownMenu.Trigger>
+					<DropdownMenu.Content
+						side={localeInfo.left}
+						align="center"
+						sideOffset={25}
+						onInteractOutside={() => setMenuState(MenuStates.Close)}
+					>
+						<div className={classes.linksContainer}>
+							{
+								// Map each page to a menuitem with a title
+								pages.map((page, index) => {
+									const isLast = index === dcCtx.pageIndex;
+									// do nothing if this item points to the current page
+									const setIndex = isLast
+										? () => void 0
+										: () => {
+												setMenuState(MenuStates.Close);
+												dcCtx.setPageIndex(index);
+											};
+									return (
+											<DropdownMenu.Item
+												key={mlUtils.uniqueId()}
+												onSelect={setIndex}
+											>
+												<span
+													className={classes.itemLink}
+													data-disabled={String(isLast)}
+													onMouseUp={setIndex}
+													key={mlUtils.uniqueId()}
+												>
+													{page.metaData.title ||
+														translate(page.metaData.glossary_key) ||
+														page.id}
+												</span>
+											</DropdownMenu.Item>
+									);
+								})
+							}
+						</div>
+					</DropdownMenu.Content>
+				</DropdownMenu.Root>
+			</div>
+				),
+			id: NAV_BUTTON_KEY,
+			enabled: true,
+		})
+	}, [toolbar, pages, prevPageCount, dcCtx])
 
 	useEffect(() => {
 		let changed = false;
@@ -80,7 +150,7 @@ export default function DynamicBrowserHeader({
 		return () => window.clearTimeout(menuTimeout); // harmless if menuTimeout is 0
 	}, [menuState, isMenuOpen, menuTimeout, pages, dcCtx]);
 
-	if (!pages || pages.length < 2) {
+	if (!pages || pages.length < 100) {
 		return <></>;
 	}
 
@@ -116,13 +186,6 @@ export default function DynamicBrowserHeader({
 											dcCtx.setPageIndex(index);
 									  };
 								return (
-									<>
-										{/* The last page is not navigable*/}
-										{isLast && (
-											<DropdownMenu.Separator key={mlUtils.uniqueId()}>
-												<span className={classes.linkSeparator}></span>
-											</DropdownMenu.Separator>
-										)}
 										<DropdownMenu.Item
 											key={mlUtils.uniqueId()}
 											onSelect={setIndex}
@@ -131,13 +194,13 @@ export default function DynamicBrowserHeader({
 												className={classes.itemLink}
 												data-disabled={String(isLast)}
 												onMouseUp={setIndex}
+												key={mlUtils.uniqueId()}
 											>
 												{page.metaData.title ||
 													translate(page.metaData.glossary_key) ||
 													page.id}
 											</span>
 										</DropdownMenu.Item>
-									</>
 								);
 							})
 						}

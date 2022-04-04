@@ -1,9 +1,8 @@
 import React from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
 import ScrollArea from "../scrollbar";
-import { Cross2Icon } from "@radix-ui/react-icons";
 import { st, classes } from "./popover.st.css";
-import PopoverHeader from "./popover-header";
+import { PopoverHeader } from "./popover-header";
 import { Direction } from "../../interfaces/layout-context";
 import { IPopoverContext } from "../../interfaces/IPopoverContext";
 import { ReactPopoverContext } from "../../contexts/popover-context";
@@ -23,9 +22,11 @@ export const Popover = ({
 	children,
 	side,
 }: IPopoverProps): JSX.Element => {
-	const { toolbar } = useToolbar(); 
+	const toolbar = useToolbar(); 
 	const ctx: IPopoverContext = {
-		toolbar
+		toolbar: toolbar.items,
+		addToolbarItems: toolbar.addItems,
+		removeToolbarItems: toolbar.removeItemsById,
 	};
 
 	return (
@@ -45,7 +46,7 @@ export const Popover = ({
 					sideOffset={5}
 					avoidCollisions={true}
 				>
-					<PopoverHeader />
+					<PopoverHeader items={toolbar.items}/>
 					<div className={st(classes.content)}>
 						<div className={st(classes.scrollable)}>
 							<ScrollArea height="300px">{children}</ScrollArea>

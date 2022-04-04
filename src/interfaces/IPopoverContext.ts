@@ -1,15 +1,7 @@
 export interface IToolbarItem {
 	element: React.ReactNode;
-	key: string;
-}
-
-export interface IToolbar {
-	readonly items: IToolbarItem[];
-	/**
-	 * Will not add items with keys that already exist in the items collection
-	 * @param items 
-	 */
-	addItems(items: IToolbarItem | IToolbarItem[]): IToolbar;
+	id: string;
+	enabled: boolean;
 }
 
 /**
@@ -17,6 +9,15 @@ export interface IToolbar {
  * the popover
  */
 export interface IPopoverContext {
-	readonly toolbar: IToolbar;
-	
+	readonly toolbar: IToolbarItem[];
+	/**
+	 * Adds or replaces items by their provided keys
+	 * @param items 
+	 */
+	addToolbarItems(items: IToolbarItem | IToolbarItem[]): void;
+	/**
+	 * Remove item/s with matching keys
+	 * @param ids 
+	 */
+	removeToolbarItems(ids: string | string[]): void;
 }
