@@ -34,12 +34,12 @@ function App({ Component, pageProps }: AppProps) {
 			{
 				direction: "rtl",
 				right: "left",
-				left: "right"
+				left: "right",
 			} :
 			{
 				direction: "ltr",
 				right: "right",
-				left: "left"
+				left: "left",
 			},
 		getPageRefs,
 		getPagePath,

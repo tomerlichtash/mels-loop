@@ -14,7 +14,7 @@ export interface IDynamicContentToolbarProps {
 const NAV_BUTTON_KEY = "header-back";
 export default function DynamicContentToolbar({pages}: IDynamicContentToolbarProps): JSX.Element {
 	const [prevPageId, setPrevPageid] = useState("");
-	const { locale, translate } = useContext(ReactLayoutContext);
+	const { localeInfo, translate } = useContext(ReactLayoutContext);
 	const popoverCtx = useContext(ReactPopoverContext);
 	const dcCtx = useContext(ReactDynamicContentContext);
 
@@ -31,7 +31,6 @@ export default function DynamicContentToolbar({pages}: IDynamicContentToolbarPro
 		const title = prevPage.metaData.title ||
 			translate(prevPage.metaData.glossary_key) ||
 			prevPage.id;
-
 		popoverCtx.addToolbarItems({
 			element: (
 				<button 
@@ -41,13 +40,13 @@ export default function DynamicContentToolbar({pages}: IDynamicContentToolbarPro
 					}}
 					title={title}
 					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}>
-					{locale === "en" ? <ArrowLeftIcon /> : <ArrowRightIcon />}
+					{localeInfo.direction === "ltr" ? <ArrowLeftIcon /> : <ArrowRightIcon />}
 				</button>
 				),
 			id: NAV_BUTTON_KEY,
 			enabled: true,
 		})
-	}, [pages, prevPageId, locale, translate, dcCtx, popoverCtx])
+	}, [pages, prevPageId, localeInfo, translate, dcCtx, popoverCtx])
 
 	return (
 		<></>
