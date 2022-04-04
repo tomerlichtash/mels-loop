@@ -1,4 +1,6 @@
 import { AppProps } from "next/app";
+import { IconProps } from "@radix-ui/react-icons/dist/types.d";
+import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { translateFunc } from "../locales/translate";
 import { useRouter } from "next/router";
 import { ReactLayoutContext } from "../contexts/layout-context";
@@ -35,11 +37,15 @@ function App({ Component, pageProps }: AppProps) {
 				direction: "rtl",
 				right: "left",
 				left: "right",
+				arrowLeft: (props: Partial<IconProps>) => <ArrowRightIcon {...props} />,
+				arrowRight: (props: Partial<IconProps>) => <ArrowLeftIcon {...props} />,
 			} :
 			{
 				direction: "ltr",
 				right: "right",
 				left: "left",
+				arrowLeft: (props: Partial<IconProps>) => <ArrowLeftIcon {...props} />,
+				arrowRight: (props: Partial<IconProps>) => <ArrowRightIcon {...props} />,
 			},
 		getPageRefs,
 		getPagePath,

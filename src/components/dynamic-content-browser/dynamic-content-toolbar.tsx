@@ -4,7 +4,6 @@ import { classes } from "./dynamic-content-browser.st.css";
 import { mlUtils } from "../../lib/ml-utils";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ReactDynamicContentContext } from "../../contexts/dynamic-content-context";
-import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 
 export interface IDynamicContentToolbarProps {
@@ -40,7 +39,7 @@ export default function DynamicContentToolbar({pages}: IDynamicContentToolbarPro
 					}}
 					title={title}
 					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}>
-					{localeInfo.direction === "ltr" ? <ArrowLeftIcon /> : <ArrowRightIcon />}
+					{localeInfo.arrowLeft({})}
 				</button>
 				),
 			id: NAV_BUTTON_KEY,
