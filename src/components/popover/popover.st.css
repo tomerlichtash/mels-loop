@@ -51,48 +51,6 @@
   height: value(PopoverContentMaxHeight);
 }
 
-.close {
-  -st-mixin: preventSelection;
-  -st-states: posX(enum(right, left));
-  position: absolute;
-  /* right: 8px; */
-  top: 12px;
-  width: 16px;
-  height: 16px;
-}
-
-.closeButton {
-  -st-mixin: preventSelection;
-  /* position: absolute; */
-  right: 16px;
-  cursor: pointer;
-  border: none;
-  background: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-}
-
-.close:posX(right) {
-  right: value(PopoverClosePosMargin);
-}
-.close:posX(left) {
-  left: value(PopoverClosePosMargin);
-}
-
-.cross {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-radius: 50%;
-}
-.cross path {
-  fill: value(PopoverCloseIconColor);
-}
-.cross:hover path {
-  fill: value(PopoverCloseIconColorHover);
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;

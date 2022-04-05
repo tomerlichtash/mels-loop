@@ -4,7 +4,7 @@ import { IDynamicContentContext } from "../../interfaces/dynamic-content-context
 import { IMLParsedNode, IParsedPageData } from "../../interfaces/models";
 import { ContentStack } from "../../lib/content-stack";
 import DynamicContentViewer from "../content/dynamic-content-viewer";
-import DynamicBrowserHeader from "../dynamic-content-header";
+import DynamicContentToolbar from "./dynamic-content-toolbar";
 
 export interface IStackBrowserProps {
 	node: IMLParsedNode;
@@ -52,11 +52,8 @@ export default function DynamicContentBrowser(props: IStackBrowserProps): JSX.El
 	return (
 		<ReactDynamicContentContext.Provider value={ctx}>
 			<>
-				{pages.length > 1 && (
-				<DynamicBrowserHeader 
-					pages={pages} />
-			)}
-				<DynamicContentViewer url={url} />
+			<DynamicContentToolbar pages={pages} />
+			<DynamicContentViewer url={url} />
 			</>
 		</ReactDynamicContentContext.Provider>
 	);

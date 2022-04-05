@@ -1,11 +1,12 @@
 import { Context, createContext } from "react";
-import { ILayoutContext, SitePageRef } from "../interfaces/layout-context";
+import { ILayoutContext, ILocaleInfo, SitePageRef } from "../interfaces/layout-context";
 
 export class LayoutContext implements ILayoutContext {
 	public readonly locale: string;
 	public readonly compLocale: Record<string, string>;
 	public readonly pageParent: string;
 	public readonly pageId: string;
+	public readonly localeInfo: ILocaleInfo;
 	public getPageRefs: () => SitePageRef[];
 	public getPagePath(id: string): string {
 		return id;
