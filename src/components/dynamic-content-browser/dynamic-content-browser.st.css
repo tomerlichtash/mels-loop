@@ -1,0 +1,15 @@
+@namespace "DynamicContentBrowser";
+
+@st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [level3,level4,level5] from "../../theme/common.st.css";
+
+.root {
+	-st-mixin: boxSizing;
+}
+
+.backButton {
+	background-color: transparent;
+	margin: 0px;
+	border: 0px;
+	cursor: pointer;
+}
