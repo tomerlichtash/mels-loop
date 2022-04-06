@@ -30,7 +30,7 @@ export interface IFavIconProps {
 	 * Optional number of columns in a multi-frame image. Defaults to 1
 	 */
 	cols?: number;
-	 /**
+	/**
 	 * Optional number of rows in a multi-frame image. Defaults to 1
 	 */
 	rows?: number;
@@ -95,15 +95,20 @@ interface IFIProps extends IFavIconProps {
 /**
  * The context is assumed to be cleared
  */
-type AnimatorFunction = (ctx: CanvasRenderingContext2D, props: IFIProps) => string;
+type AnimatorFunction = (
+	ctx: CanvasRenderingContext2D,
+	props: IFIProps
+) => string;
 
 export class FavIconAnimator implements IFavIconAnimator {
 	constructor(animationProps: IFavIconProps) {
 		const doc = window.top.document;
 		const icon = animationProps.icon || doc.querySelector("link[rel='icon']");
-		this.warn = animationProps.debug ? (...args: unknown[]) => {
-			console.warn("favicon animator: ", ...args);
-		} : () => void 0;
+		this.warn = animationProps.debug
+			? (...args: unknown[]) => {
+					console.warn("favicon animator: ", ...args);
+			  }
+			: () => void 0;
 		this.props = {
 			...animationProps,
 			canvas: doc.createElement("canvas"),
@@ -119,7 +124,6 @@ export class FavIconAnimator implements IFavIconAnimator {
 			cache: {},
 			savedIconHref: (icon && icon.href) || "",
 			icon: icon,
-
 		};
 		this.props.canvas.width = this.props.width;
 		this.props.canvas.height = this.props.height;
@@ -144,10 +148,10 @@ export class FavIconAnimator implements IFavIconAnimator {
 		return new Promise((resolve) => {
 			this.props.resolve = resolve;
 			this._loadImage(this.props);
-		})
-		.then(() => { // force execution even if no one has `then`ed this call
+		}).then(() => {
+			// force execution even if no one has `then`ed this call
 			void 0;
-		})
+		});
 	}
 
 	/////////////////// Implementation /////////////////////
@@ -164,7 +168,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 
 	/**
 	 * Icon is guaranteed to exist at this stage
-	 * @param props 
+	 * @param props
 	 */
 	private _loadImage(props: IFIProps): void {
 		let src = "";
@@ -179,23 +183,24 @@ export class FavIconAnimator implements IFavIconAnimator {
 			img.addEventListener("load", () => this._onImageLoaded(img, props));
 			img.addEventListener("error", () => this._onImageLoaded(null, props));
 			img.src = src;
-		}
-		else if (props.image) {
+		} else if (props.image) {
 			this._onImageLoaded(props.image as HTMLImageElement, props);
 		}
 	}
 
 	private _getAnimator(props: IFIProps): AnimatorFunction | null {
-		return props.type === "frames" ? this._drawIconFrame.bind(this)
-			: props.type === "rotate" ? this._rotateIconFrame.bind(this)
-				: null;
+		return props.type === "frames"
+			? this._drawIconFrame.bind(this)
+			: props.type === "rotate"
+			? this._rotateIconFrame.bind(this)
+			: null;
 	}
 
 	/**
 	 * Launches the animation if the image has been loaded
-	 * @param img 
-	 * @param p 
-	 * @returns 
+	 * @param img
+	 * @param p
+	 * @returns
 	 */
 	private _onImageLoaded(img: HTMLImageElement | null, p: IFIProps): void {
 		if (this._abort) {
@@ -210,8 +215,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 		if (p.type === "frames") {
 			p.frameWidth = img.width / p.cols;
 			p.frameHeight = img.height / p.rows;
-		}
-		else {
+		} else {
 			p.frameHeight = img.height;
 			p.frameWidth = img.width;
 		}
@@ -229,38 +233,54 @@ export class FavIconAnimator implements IFavIconAnimator {
 			return p.resolve();
 		}
 
-		p.interval = window.setInterval((p: IFIProps) => {
-			const ic = window.top.document.querySelector("link[rel='icon']");
-			if (!ic || this._abort || (Date.now() - p.startTime) >= p.durationSeconds * 1000) {
-				clearInterval(p.interval);
-				this._abort = false;
-				p.icon.href = p.savedIconHref;
-				return p.resolve();
-			}
-			if (ic !== p.icon) {
-				p.icon = ic as HTMLLinkElement;
-				p.savedIconHref = ic && ic.getAttribute("href");
-			}
-			const ctx = p.canvas.getContext("2d");
-			ctx.clearRect(0, 0, p.width, p.height);
-			const dataUrl = animateIt(ctx, p);
-			p.icon.href = dataUrl;
-			p.count++;
-		}, (1000 / p.fps), p);
+		p.interval = window.setInterval(
+			(p: IFIProps) => {
+				const ic = window.top.document.querySelector("link[rel='icon']");
+				if (
+					!ic ||
+					this._abort ||
+					Date.now() - p.startTime >= p.durationSeconds * 1000
+				) {
+					clearInterval(p.interval);
+					this._abort = false;
+					p.icon.href = p.savedIconHref;
+					return p.resolve();
+				}
+				if (ic !== p.icon) {
+					p.icon = ic as HTMLLinkElement;
+					p.savedIconHref = ic && ic.getAttribute("href");
+				}
+				const ctx = p.canvas.getContext("2d");
+				ctx.clearRect(0, 0, p.width, p.height);
+				const dataUrl = animateIt(ctx, p);
+				p.icon.href = dataUrl;
+				p.count++;
+			},
+			1000 / p.fps,
+			p
+		);
 	}
 
 	private _drawIconFrame(ctx: CanvasRenderingContext2D, p: IFIProps): string {
 		const col = p.count % p.cols,
 			row = Math.floor(p.count / p.rows) % p.rows,
-			key = [col, 'x', row].join('');
+			key = [col, "x", row].join("");
 		let dataUrl = p.cache[key];
 		if (dataUrl) {
 			return dataUrl;
 		}
-		ctx.drawImage(p.image as HTMLImageElement,
-			col * p.frameWidth, row * p.frameHeight, p.frameWidth, p.frameHeight,
-			0, 0, p.width, p.height);
-		return p.cache[key] = p.canvas.toDataURL("image/png");
+		ctx.drawImage(
+			p.image as HTMLImageElement,
+			col * p.frameWidth,
+			row * p.frameHeight,
+			p.frameWidth,
+			p.frameHeight,
+			0,
+			0,
+			p.width,
+			p.height
+		);
+		return (p.cache[key] = p.canvas.toDataURL("image/png"));
 	}
 
 	private _rotateIconFrame(ctx: CanvasRenderingContext2D, p: IFIProps) {
@@ -271,12 +291,20 @@ export class FavIconAnimator implements IFavIconAnimator {
 		}
 
 		const angle = Math.PI / 18;
-		ctx.drawImage(p.image as HTMLImageElement,
-			0, 0, p.frameWidth, p.frameHeight,
-			0, 0, p.width, p.height);
+		ctx.drawImage(
+			p.image as HTMLImageElement,
+			0,
+			0,
+			p.frameWidth,
+			p.frameHeight,
+			0,
+			0,
+			p.width,
+			p.height
+		);
 		ctx.translate(p.width * 0.5, p.height * 0.5);
 		ctx.rotate(frame * angle);
 		ctx.translate(p.width * -0.5, p.height * -0.5);
-		return p.cache[String(frame)] = p.canvas.toDataURL("image/png");
+		return (p.cache[String(frame)] = p.canvas.toDataURL("image/png"));
 	}
 }
