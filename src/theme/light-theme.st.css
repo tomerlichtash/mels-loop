@@ -54,6 +54,20 @@
 	ContentComponent:type(blockquote) {
 		line-height: 1.75rem;
 	}
+
+	/* Debug Line Index */
+	/* ContentComponent:type(paragraph):hover::before {
+		color: red;
+	}
+	ContentComponent:type(paragraph)::before {
+		content: attr(data-line-index);
+		color: #c0c0c0;
+		width: 20px;
+		padding-right: 20px;
+		text-align: right;
+		display: inline-block;
+	} */
+
 	ContentComponent:type(link) {
 		color: blue;
 	}
