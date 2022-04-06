@@ -20,6 +20,7 @@ export default function DynamicContentToolbar({pages}: IDynamicContentToolbarPro
 	useEffect(() => {
 		if (pages.length < 2) {
 			popoverCtx.removeToolbarItems(NAV_BUTTON_KEY);
+			setPrevPageid("");
 			return;
 		}
 		const prevPage = pages[pages.length - 2]; // guaranteed

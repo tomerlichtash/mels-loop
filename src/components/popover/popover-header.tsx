@@ -14,7 +14,6 @@ export const PopoverHeader = ({
 	showClose,
 	items
 }: IPopoverHeaderProps): JSX.Element => {
-
 	return (
 		<div className={classes.headerContainer}>
 			<div className={classes.toolbarContainer}>
