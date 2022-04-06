@@ -9,7 +9,12 @@ import { ReactLayoutContext } from "../contexts/layout-context";
 import { QueryContext, ReactQueryContext } from "../contexts/query-context";
 import { PageContext, ReactPageContext } from "../contexts/page-context";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
-import { getPathData, getSiteTitle, getSiteSubtitle } from "../config/pages";
+import {
+	getPathData,
+	getSiteTitle,
+	getSiteSubtitle,
+	getPopoverBackLabel,
+} from "../config/pages";
 import { QueryManager } from "../contexts/query-manager";
 
 function App({ Component, pageProps }: AppProps) {
@@ -49,6 +54,7 @@ function App({ Component, pageProps }: AppProps) {
 		translate,
 		getSiteTitle,
 		getSiteSubtitle,
+		getPopoverBackLabel,
 		popoverRef: React.createRef(),
 	};
 	return (

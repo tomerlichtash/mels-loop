@@ -69,25 +69,6 @@ export class QueryManager implements IQueryManager {
 		return this.line;
 	}
 
-	// public addLineRef = (
-	// 	key: string,
-	// 	line: number,
-	// 	ref: RefObject<HTMLParagraphElement>
-	// ): RefNode => {
-	// 	if (!this.router.isReady) return;
-	// 	if (this.getRefByKey(key).length) return;
-	// 	this.nodes.push({ ref, key, line });
-	// };
-
-	// public getRefByKey = (key: string): RefNode[] =>
-	// 	this.nodes.filter((ref) => ref.key === key);
-
-	// public getRefByLine = (line: number): RefNode => {
-	// 	return this.nodes.filter((ref) => {
-	// 		return ref.line === line;
-	// 	})[0];
-	// };
-
 	matchParams = (node: IMLParsedNode, params: Record<string, string>) => {
 		const { detailtype, detailtarget } = params;
 		if (!detailtype || !detailtarget) return false;

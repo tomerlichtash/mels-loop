@@ -23,5 +23,6 @@ export interface ILayoutContext {
 	translate: (s: string, lang?: string) => string;
 	getSiteTitle: () => string;
 	getSiteSubtitle: () => string;
+	getPopoverBackLabel: () => string;
 	popoverRef: RefObject<HTMLDivElement>;
 }

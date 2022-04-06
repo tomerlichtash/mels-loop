@@ -38,11 +38,8 @@ export const LinkSelector = ({
 	const { popoverRef } = useContext(ReactLayoutContext);
 	const { localeInfo } = useContext(ReactLayoutContext);
 
-	const qc = queryContext;
-	const { getQueryUrl, registerNode, onExit } = qc.query;
-
-	const query = getQueryUrl(node);
-
+	const { query } = queryContext;
+	const { getQueryUrl, registerNode, onExit } = query;
 	const nodeWithQuery = registerNode(node);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
@@ -68,7 +65,7 @@ export const LinkSelector = ({
 			id={node.target}
 			popoverRef={popoverRef}
 			forcePopover={nodeWithQuery}
-			query={query}
+			query={getQueryUrl(node)}
 			onExit={() => onExit()}
 			side={localeInfo.right}
 			trigger={getTriggerComp(linkType, componentData, className)}

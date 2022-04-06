@@ -1,19 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IParsedPageData } from "../../interfaces/models";
-import { classes } from "./dynamic-content-browser.st.css";
 import { mlUtils } from "../../lib/ml-utils";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ReactDynamicContentContext } from "../../contexts/dynamic-content-context";
 import { ReactPopoverContext } from "../../contexts/popover-context";
+import { classes } from "./dynamic-content-browser.st.css";
 
 export interface IDynamicContentToolbarProps {
 	pages: IParsedPageData[];
 }
 
 const NAV_BUTTON_KEY = "header-back";
-export default function DynamicContentToolbar({pages}: IDynamicContentToolbarProps): JSX.Element {
+
+export default function DynamicContentToolbar({
+	pages,
+}: IDynamicContentToolbarProps): JSX.Element {
 	const [prevPageId, setPrevPageid] = useState("");
-	const { localeInfo, translate } = useContext(ReactLayoutContext);
+	const { localeInfo, translate, getPopoverBackLabel } =
+		useContext(ReactLayoutContext);
 	const popoverCtx = useContext(ReactPopoverContext);
 	const dcCtx = useContext(ReactDynamicContentContext);
 
@@ -26,28 +30,36 @@ export default function DynamicContentToolbar({pages}: IDynamicContentToolbarPro
 		if (prevPage.id === prevPageId) {
 			return;
 		}
-		setPrevPageid(prevPage.id)
-		const title = prevPage.metaData.title ||
+		setPrevPageid(prevPage.id);
+		const title =
+			prevPage.metaData.title ||
 			translate(prevPage.metaData.glossary_key) ||
 			prevPage.id;
 		popoverCtx.addToolbarItems({
 			element: (
-				<button 
+				<button
 					className={classes.backButton}
 					onClick={() => {
 						dcCtx.setPageIndex(pages.length - 2);
 					}}
 					title={title}
-					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}>
-					{localeInfo.arrowLeft({})}
+					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}
+				>
+					{localeInfo.arrowLeft({})} {translate(getPopoverBackLabel())}
 				</button>
-				),
+			),
 			id: NAV_BUTTON_KEY,
 			enabled: true,
-		})
-	}, [pages, prevPageId, localeInfo, translate, dcCtx, popoverCtx])
+		});
+	}, [
+		pages,
+		prevPageId,
+		localeInfo,
+		dcCtx,
+		popoverCtx,
+		translate,
+		getPopoverBackLabel,
+	]);
 
-	return (
-		<></>
-	)
+	return <></>;
 }

@@ -1,28 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
-// import * as Portal from "@radix-ui/react-portal";
 import ScrollArea from "../scrollbar";
-import { ExternalLinkIcon, CheckIcon } from "@radix-ui/react-icons";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { PopoverHeader } from "./popover-header";
-
+import { PopoverToolbar } from "./popover-toolbar";
 import { Direction } from "../../interfaces/layout-context";
 import { IPopoverContext } from "../../interfaces/IPopoverContext";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 import { useToolbar } from "./useToolbar";
-
-import {
-	StyledArrow,
-	Tooltip,
-	TooltipTrigger,
-	TooltipContent,
-} from "../tooltip/tooltip";
-
 import { st, classes } from "./popover.st.css";
+// import * as Portal from "@radix-ui/react-portal";
 
 export interface IPopoverProps {
-	type: string;
 	id: string;
+	type: string;
 	trigger: React.ReactNode;
 	children: React.ReactNode;
 	popoverRef: React.RefObject<HTMLElement>;
@@ -39,6 +28,7 @@ export const Popover = ({
 	children,
 	side,
 	forcePopover,
+	onExit,
 	query,
 }: IPopoverProps): JSX.Element => {
 	const toolbar = useToolbar();
@@ -49,25 +39,6 @@ export const Popover = ({
 	};
 
 	const forcePopoverProp = forcePopover ? { "data-state": "open" } : {};
-	const [toggleCopyIcon, setToggleCopyIcon] = useState(false);
-
-	const onCopy = () => {
-		setToggleCopyIcon(true);
-		setTimeout(() => setToggleCopyIcon(false), 1000);
-	};
-	const copyIcon = toggleCopyIcon ? <CheckIcon /> : <ExternalLinkIcon />;
-
-	const tooltip = (
-		<Tooltip delayDuration={0} open={toggleCopyIcon}>
-			<CopyToClipboard text={query} onCopy={onCopy}>
-				<TooltipTrigger>{copyIcon}</TooltipTrigger>
-			</CopyToClipboard>
-			<TooltipContent>
-				Copied!
-				<StyledArrow />
-			</TooltipContent>
-		</Tooltip>
-	);
 
 	return (
 		<ReactPopoverContext.Provider value={ctx}>
@@ -88,16 +59,14 @@ export const Popover = ({
 					sideOffset={5}
 					avoidCollisions={true}
 				>
-					<PopoverHeader items={toolbar.items} />
 					<div className={st(classes.content)}>
 						<div className={st(classes.scrollable)}>
 							<ScrollArea height="300px">{children}</ScrollArea>
 						</div>
 					</div>
 					<RadixPopover.Arrow />
-					{tooltip}
-
 					{/* </Portal.Root> */}
+					<PopoverToolbar items={toolbar.items} query={query} onExit={onExit} />
 				</RadixPopover.Content>
 			</RadixPopover.Root>
 		</ReactPopoverContext.Provider>
