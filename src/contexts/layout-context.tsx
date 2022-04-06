@@ -1,5 +1,5 @@
-import { Context, createContext } from "react";
-import { ILayoutContext, ILocaleInfo, SitePageRef } from "../interfaces/layout-context";
+import { Context, createContext, RefObject } from "react";
+import { ILayoutContext, ILocaleInfo } from "../interfaces/layout-context";
 
 export class LayoutContext implements ILayoutContext {
 	public readonly locale: string;
@@ -7,24 +7,13 @@ export class LayoutContext implements ILayoutContext {
 	public readonly pageParent: string;
 	public readonly pageId: string;
 	public readonly localeInfo: ILocaleInfo;
-	public getPageRefs: () => SitePageRef[];
-	public getPagePath(id: string): string {
-		return id;
-	}
-	public getPageName(id: string): string {
-		return id;
-	}
-	public isPageVisible(id: string): boolean {
-		return !!id;
-	}
 	public translate(s: string): string {
 		return `%${s}%`;
 	}
-	public isCurrentPage(): boolean {
-		return false;
-	}
+
 	public getSiteTitle: () => string;
 	public getSiteSubtitle: () => string;
+	public popoverRef: RefObject<HTMLDivElement>;
 }
 
 const ctx = createContext<ILayoutContext>(new LayoutContext());

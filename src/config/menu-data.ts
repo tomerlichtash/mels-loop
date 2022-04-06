@@ -1,5 +1,23 @@
 import { MenuGroup } from "../components/nav/types";
 
+export const translateItems = (
+	items: MenuGroup[],
+	translate: (s: string) => string
+) => {
+	return items.map((group: MenuGroup) =>
+		Object.assign({}, group, {
+			title: translate(group.title),
+			content: group.content.map((item) =>
+				Object.assign({}, item, {
+					title: translate(item.title),
+					description: translate(item.description),
+					author: translate(item.author),
+				})
+			),
+		})
+	);
+};
+
 export const navItems: MenuGroup[] = [
 	{
 		title: "MENU_ITEM_TITLE_ARTICLES",
@@ -47,7 +65,7 @@ export const navItems: MenuGroup[] = [
 				type: "page",
 				title: "MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_ABOUT",
 				description: "MENU_ITEM_ENTRY_DESC_STATIC_PAGE_ABOUT",
-				url: "/docs/preface",
+				url: "/about",
 			},
 			{
 				type: "page",

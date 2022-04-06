@@ -10,6 +10,7 @@ import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
 import { ReactLayoutContext } from "../../../../contexts/layout-context";
+import { ReactQueryContext } from "../../../../contexts/query-context";
 import DynamicContentBrowser from "../../../dynamic-content-browser";
 import { ReactDynamicContentContext } from "../../../../contexts/dynamic-content-context";
 
@@ -33,7 +34,13 @@ export const LinkSelector = ({
 	const { node } = componentData;
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
+	const queryContext = useContext(ReactQueryContext);
+	const { popoverRef } = useContext(ReactLayoutContext);
 	const { localeInfo } = useContext(ReactLayoutContext);
+
+	const { query } = queryContext;
+	const { getQueryUrl, registerNode, onExit } = query;
+	const nodeWithQuery = registerNode(node);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return (
@@ -49,18 +56,22 @@ export const LinkSelector = ({
 			evt.stopPropagation();
 			return false;
 		};
-		return <Link key={key} componentData={componentData}
-			onClick={onClick}/>;
+		return <Link key={key} componentData={componentData} onClick={onClick} />;
 	}
+
 	return (
 		<Popover
 			type={linkType}
-			className={className}
+			id={node.target}
+			popoverRef={popoverRef}
+			forcePopover={nodeWithQuery}
+			query={getQueryUrl(node)}
+			onExit={() => onExit()}
 			side={localeInfo.right}
 			trigger={getTriggerComp(linkType, componentData, className)}
+			className={className}
 		>
-			<DynamicContentBrowser 
-				node={node}></DynamicContentBrowser>
+			<DynamicContentBrowser node={node} />
 		</Popover>
 	);
 };

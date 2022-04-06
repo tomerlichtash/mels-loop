@@ -1,4 +1,5 @@
-import { IconProps } from "@radix-ui/react-icons/dist/types";
+import type { IconProps } from "@radix-ui/react-icons/dist/types.d";
+import { RefObject } from "react";
 
 export interface SitePageRef {
 	id: string;
@@ -19,13 +20,9 @@ export interface ILayoutContext {
 	readonly locale: string;
 	readonly localeInfo: ILocaleInfo;
 	readonly compLocale: Record<string, string>;
-	pageId: string;
-	getPageRefs: () => SitePageRef[];
-	getPagePath: (id: string) => string;
-	getPageName: (id: string) => string;
-	isPageVisible: (id: string) => boolean;
-	isCurrentPage: (id: string) => boolean;
 	translate: (s: string, lang?: string) => string;
 	getSiteTitle: () => string;
 	getSiteSubtitle: () => string;
+	getPopoverBackLabel: () => string;
+	popoverRef: RefObject<HTMLDivElement>;
 }
