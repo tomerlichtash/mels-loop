@@ -20,16 +20,16 @@ import { st, classes } from "./layout.st.css";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { ReactQueryContext } from "../../contexts/query-context";
 
-export default function Layout({ children }: ComponentProps) {
-	const ICON_ANIMATOR_PROPS: IFavIconProps = {
-		type: "rotate",
-		durationSeconds: 2,
-		height: 32,
-		width: 32,
-		debug: true,
-		image: "/assets/ml-logo.png",
-	};
+const ICON_ANIMATOR_PROPS: IFavIconProps = {
+	type: "rotate",
+	durationSeconds: 2,
+	height: 32,
+	width: 32,
+	debug: true,
+	image: "/assets/ml-logo.png",
+};
 
+export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
 	const { translate, getSiteTitle, getSiteSubtitle /*, popoverRef*/ } =
