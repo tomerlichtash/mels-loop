@@ -27,7 +27,10 @@ export const DynamicContentViewer = ({
 	useEffect(() => {
 		// safeguard against a promise resolving after the component was torn down
 		let removed = false;
-		const itemData = contentUtils.urlToContentData(url, DynamicContentTypes.Glossary);
+		const itemData = contentUtils.urlToContentData(
+			url,
+			DynamicContentTypes.Glossary
+		);
 		if (itemData.type === DynamicContentTypes.None) {
 			setError(`Bad url ${url}`);
 		}
@@ -50,7 +53,9 @@ export const DynamicContentViewer = ({
 					setError(`${String(e)}`);
 				}
 			});
-			return () => { removed = true };
+		return () => {
+			removed = true;
+		};
 	}, [url, dynamicContentContext, pageContext, locale]);
 
 	if (error) {
@@ -58,7 +63,10 @@ export const DynamicContentViewer = ({
 	}
 
 	if (elements) {
-		const itemData = contentUtils.urlToContentData(url, DynamicContentTypes.Glossary);
+		const itemData = contentUtils.urlToContentData(
+			url,
+			DynamicContentTypes.Glossary
+		);
 		const { metaData } = item;
 		const { source_name, source_url, glossary_key } = metaData;
 		const label = translate(`NOTE_LABEL_${itemData.type.toUpperCase()}`);

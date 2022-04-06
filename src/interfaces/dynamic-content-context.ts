@@ -13,7 +13,7 @@ export interface IDynamicContentContext {
 	readonly currentNode: IMLParsedNode;
 	/**
 	 * Add a content node to the top of this dynamic context stack
-	 * @param node 
+	 * @param node
 	 */
 	addContentNode(node: IMLParsedNode): void;
 	/**

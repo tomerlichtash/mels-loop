@@ -30,14 +30,16 @@ const noop = function () {
  * @param res
  * @returns
  */
-export default async function handler(_req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+	_req: NextApiRequest,
+	res: NextApiResponse
+) {
 	const params = _req.query as unknown as IMLDynamicContentParams;
 	try {
 		const response = await loadContent(params || {});
 		res.status(response.error ? 500 : 200).json(response);
-	}
-	catch (e) {
-		res.status(500).json({ error: String(e) })
+	} catch (e) {
+		res.status(500).json({ error: String(e) });
 	}
 }
 
@@ -65,24 +67,21 @@ async function loadContent(
 			mode: {
 				contentMode: LoadContentModes.FULL,
 				parseMode: MLParseModes.NORMAL,
-				nodeProcessors: [ 
-					contentUtils.createPopoverLinksMappingFilter()
-				],
+				nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
 			},
 			rootFolder: process.cwd(),
 		});
 		const data = {
 			locale: params.locale,
 			// turn array into map
-			items: mlUtils.arrayToMap(docData.pages, "id")
+			items: mlUtils.arrayToMap(docData.pages, "id"),
 		};
 		mlApiUtils
 			.saveToCache(cacheKey, JSON.stringify({ data }))
 			.then(noop)
 			.catch(noop);
 		return Object.assign({ data }, { cache: false });
-	}
-	catch (error) {
+	} catch (error) {
 		return { data: null, error: String(error) };
 	}
 }
