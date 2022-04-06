@@ -2,9 +2,15 @@ import React, { useState } from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
 // import * as Portal from "@radix-ui/react-portal";
 import ScrollArea from "../scrollbar";
-import { Cross2Icon, ExternalLinkIcon, CheckIcon } from "@radix-ui/react-icons";
+import { ExternalLinkIcon, CheckIcon } from "@radix-ui/react-icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { st, classes } from "./popover.st.css";
+import { PopoverHeader } from "./popover-header";
+
+import { Direction } from "../../interfaces/layout-context";
+import { IPopoverContext } from "../../interfaces/IPopoverContext";
+import { ReactPopoverContext } from "../../contexts/popover-context";
+import { useToolbar } from "./useToolbar";
+
 import {
 	StyledArrow,
 	Tooltip,
@@ -12,7 +18,7 @@ import {
 	TooltipContent,
 } from "../tooltip/tooltip";
 
-export type CloseButtonPosition = "right" | "left";
+import { st, classes } from "./popover.st.css";
 
 export interface IPopoverProps {
 	type: string;
@@ -20,26 +26,28 @@ export interface IPopoverProps {
 	trigger: React.ReactNode;
 	children: React.ReactNode;
 	popoverRef: React.RefObject<HTMLElement>;
-	closePosX: CloseButtonPosition;
-	side: CloseButtonPosition;
 	forcePopover?: boolean;
 	query: string;
 	onExit?: () => void;
+	side: Direction;
 	className?: string;
 }
 
 export const Popover = ({
 	type,
-	id,
 	trigger,
 	children,
 	side,
-	closePosX,
 	forcePopover,
 	query,
-	// popoverRef,
-	onExit,
 }: IPopoverProps): JSX.Element => {
+	const toolbar = useToolbar();
+	const ctx: IPopoverContext = {
+		toolbar: toolbar.items,
+		addToolbarItems: toolbar.addItems,
+		removeToolbarItems: toolbar.removeItemsById,
+	};
+
 	const forcePopoverProp = forcePopover ? { "data-state": "open" } : {};
 	const [toggleCopyIcon, setToggleCopyIcon] = useState(false);
 
@@ -62,46 +70,37 @@ export const Popover = ({
 	);
 
 	return (
-		<RadixPopover.Root>
-			<RadixPopover.Trigger asChild>
-				<span className={st(classes.root, { type })} {...forcePopoverProp}>
-					<span className={classes.trigger} tabIndex={1} data-link-id={id}>
-						<span className={st(classes.triggerWrapper)}>{trigger}</span>
+		<ReactPopoverContext.Provider value={ctx}>
+			<RadixPopover.Root>
+				<RadixPopover.Trigger asChild>
+					<span className={st(classes.root, { type })} {...forcePopoverProp}>
+						<span className={classes.trigger} tabIndex={1}>
+							<span className={st(classes.triggerWrapper)}>{trigger}</span>
+						</span>
 					</span>
-				</span>
-			</RadixPopover.Trigger>
-			<RadixPopover.Content
-				forceMount={forcePopover ? forcePopover : null}
-				side={side}
-				align="center"
-				portalled={false}
-				sideOffset={5}
-				avoidCollisions={true}
-				onInteractOutside={onExit}
-			>
+				</RadixPopover.Trigger>
 				{/* <Portal.Root containerRef={popoverRef}> */}
-				<div className={st(classes.content)}>
-					<div
-						className={st(classes.close, {
-							posX: closePosX,
-						})}
-					>
-						<RadixPopover.Close
-							className={classes.closeButton}
-							onClick={onExit}
-						>
-							<Cross2Icon className={classes.cross} />
-						</RadixPopover.Close>
+				<RadixPopover.Content
+					forceMount={forcePopover ? forcePopover : null}
+					side={side}
+					align="center"
+					portalled={false}
+					sideOffset={5}
+					avoidCollisions={true}
+				>
+					<PopoverHeader items={toolbar.items} />
+					<div className={st(classes.content)}>
+						<div className={st(classes.scrollable)}>
+							<ScrollArea height="300px">{children}</ScrollArea>
+						</div>
 					</div>
-					<div className={st(classes.scrollable)}>
-						{tooltip}
-						<ScrollArea>{children}</ScrollArea>
-					</div>
-				</div>
-				<RadixPopover.Arrow />
-				{/* </Portal.Root> */}
-			</RadixPopover.Content>
-		</RadixPopover.Root>
+					<RadixPopover.Arrow />
+					{tooltip}
+
+					{/* </Portal.Root> */}
+				</RadixPopover.Content>
+			</RadixPopover.Root>
+		</ReactPopoverContext.Provider>
 	);
 };
 

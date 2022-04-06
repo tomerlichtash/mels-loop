@@ -11,7 +11,6 @@ import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
 import { ReactLayoutContext } from "../../../../contexts/layout-context";
 import { ReactQueryContext } from "../../../../contexts/query-context";
-import { CloseButtonPosition } from "../../../popover/popover";
 import DynamicContentBrowser from "../../../dynamic-content-browser";
 import { ReactDynamicContentContext } from "../../../../contexts/dynamic-content-context";
 
@@ -28,10 +27,6 @@ const getTriggerComp = (
 	}
 };
 
-const getCloseButtonPosition = (locale: string): CloseButtonPosition => {
-	return locale === "en" ? "right" : "left";
-};
-
 export const LinkSelector = ({
 	componentData,
 	className,
@@ -40,7 +35,8 @@ export const LinkSelector = ({
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
 	const queryContext = useContext(ReactQueryContext);
-	const { locale, popoverRef } = useContext(ReactLayoutContext);
+	const { popoverRef } = useContext(ReactLayoutContext);
+	const { localeInfo } = useContext(ReactLayoutContext);
 
 	const qc = queryContext;
 	const { getQueryUrl, registerNode, onExit } = qc.query;
@@ -74,10 +70,8 @@ export const LinkSelector = ({
 			forcePopover={nodeWithQuery}
 			query={query}
 			onExit={() => onExit()}
-			closePosX={getCloseButtonPosition(locale)}
-			side={locale === "en" ? "right" : "left"}
+			side={localeInfo.right}
 			trigger={getTriggerComp(linkType, componentData, className)}
-			// trigger={node.key}
 			className={className}
 		>
 			<DynamicContentBrowser node={node} />
