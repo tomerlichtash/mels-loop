@@ -4,12 +4,17 @@ import { Button } from "../ui";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { st, classes } from "./header.st.css";
 
+export interface HeaderProps extends ComponentProps {
+	isHome: boolean;
+}
+
 export const Header = ({
+	isHome,
 	compKeys,
 	className,
-}: ComponentProps): JSX.Element => {
+}: HeaderProps): JSX.Element => {
 	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, pageId } = layoutContext;
+	const { translate } = layoutContext;
 	const { siteTitle, siteSubtitle } = compKeys;
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
@@ -22,7 +27,7 @@ export const Header = ({
 					icon={logo as React.ReactElement}
 					label={title}
 					title={fullTitle}
-					link={pageId === "home" ? "" : "/"}
+					link={isHome ? "" : "/"}
 					callback={() => false}
 					className={classes.siteTitle}
 				/>

@@ -69,6 +69,8 @@ export const EN_US: Language = {
 
 	MENU_ITEM_ENTRY_DESC_LINK_WIKIPEDIA: "Story of Mel in Wikipedia",
 	MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES: "Web Resources for the Story of Mel",
+
+	POPOVER_BACK: "Back",
 };
 
 export const HE_IL: Language = {
@@ -124,4 +126,6 @@ export const HE_IL: Language = {
 
 	MENU_ITEM_ENTRY_DESC_LINK_WIKIPEDIA: "הסיפור על מל בויקיפדיה",
 	MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES: "רשימת מקורות מלאה",
+
+	POPOVER_BACK: "חזרה",
 };

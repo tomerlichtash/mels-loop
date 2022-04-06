@@ -63,6 +63,8 @@ export interface ILanguageKeys {
 
 	MENU_ITEM_ENTRY_DESC_LINK_TWITTER: "MENU_ITEM_ENTRY_DESC_LINK_TWITTER";
 	MENU_ITEM_ENTRY_DESC_LINK_GITHUB: "MENU_ITEM_ENTRY_DESC_LINK_GITHUB";
+
+	POPOVER_BACK: "POPOVER_BACK";
 }
 
 export type Authors = Record<keyof IContentAuthors, string>;
@@ -80,6 +82,7 @@ export interface IComponentKeyProps {
 	pageName: "pageName";
 	languageLabel: "languageLabel";
 	postsList: "postsList";
+	popoverBackLabel: "popoverBackLabel";
 }
 
 export type ComponentKeyMap = Partial<

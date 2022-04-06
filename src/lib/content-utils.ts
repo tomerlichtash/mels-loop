@@ -33,14 +33,14 @@ export interface IContentUtils {
 
 	/**
 	 * Strips xml comments from the string
-	 * @param source 
+	 * @param source
 	 */
 	stripComments(source: string): string;
 
 	/**
 	 * Creates a content mapping function (maps node => node) only for the provided types
-	 * @param filter 
-	 * @param types 
+	 * @param filter
+	 * @param types
 	 */
 	createNodeMappingFilter(
 		filter: MLNodeProcessorFunction,
@@ -49,11 +49,13 @@ export interface IContentUtils {
 
 	/**
 	 * Marks links as popovers for the links that match the provided dynamic content types.
-	 * 
+	 *
 	 * If not types are provided, glossary and annotations are assumed
-	 * @param types 
+	 * @param types
 	 */
-	createPopoverLinksMappingFilter(...types: DynamicContentTypes[]): MLNodeProcessorFunction;
+	createPopoverLinksMappingFilter(
+		...types: DynamicContentTypes[]
+	): MLNodeProcessorFunction;
 
 	/**
 	 * Extract content type and id from a url, with a default content type
@@ -178,9 +180,11 @@ class ContentUtils implements IContentUtils {
 		};
 	}
 
-	public createPopoverLinksMappingFilter(...types: DynamicContentTypes[]): MLNodeProcessorFunction {
+	public createPopoverLinksMappingFilter(
+		...types: DynamicContentTypes[]
+	): MLNodeProcessorFunction {
 		if (!types || !types.length) {
-			types = [ DynamicContentTypes.Annotation, DynamicContentTypes.Glossary];
+			types = [DynamicContentTypes.Annotation, DynamicContentTypes.Glossary];
 		}
 		const linkProcessor: MLNodeProcessorFunction = (node, context) => {
 			const linkData = contentUtils.urlToContentData(node.target);
@@ -190,14 +194,13 @@ class ContentUtils implements IContentUtils {
 			const nodeData: Partial<IMLParsedNode> = {
 				displayType: NODE_DISPLAY_TYPES.POPOVER,
 				linkType: linkData.type,
+				occurrenceIndex:
+					context.getEnumerator(`${node.line}_${node.target}`) + 1,
 				sequence: context.getEnumerator(linkData.type) + 1,
 			};
 			return { ...node, ...nodeData };
-		}
-		return this.createNodeMappingFilter(
-			linkProcessor,
-			MLNODE_TYPES.LINK
-		)
+		};
+		return this.createNodeMappingFilter(linkProcessor, MLNODE_TYPES.LINK);
 	}
 
 	public urlToContentData(

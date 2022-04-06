@@ -10,22 +10,25 @@ export const Paragraph = ({
 	const { node } = componentData;
 	const children = node.children || [];
 
+	const { line } = node;
+	const anchor = <a id={`line${line + 1}`}></a>;
+
 	if (children.length === 0) {
 		return <p className={classes.empty}></p>;
 	}
 
-	const { line } = node;
-
 	if (children.length === 1 && children[0].type === "text") {
 		return (
-			<p key={node.key} className={className} data-line-index={line}>
+			<p key={node.key} className={className} data-line-index={line + 1}>
+				{anchor}
 				{node.children[0].text}
 			</p>
 		);
 	}
 
 	return (
-		<p key={node.key} className={className} data-line-index={line}>
+		<p key={node.key} className={className} data-line-index={line + 1}>
+			{anchor}
 			{children.map((node) => (
 				<ContentComponent
 					key={node.key}

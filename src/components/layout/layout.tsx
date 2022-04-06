@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
@@ -7,26 +7,18 @@ import { MobileNav } from "../nav/nav-mobile";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
 import { useRouter } from "next/router";
+import { useWindowSize, ISize } from "./use-window-size";
 import { HEADER_LOCALE, FOOTER_LOCALE } from "../../locales/components";
 import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { NavMenu } from "../nav/menu";
-import { navItems } from "../../config/menu-data";
-import { MenuGroup } from "../nav/types";
+import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { st, classes } from "./layout.st.css";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
-
-interface Size {
-	width: number | undefined;
-	height: number | undefined;
-}
-
-export interface LayoutProps extends ComponentProps {
-	children: React.ReactNode;
-}
+import { ReactQueryContext } from "../../contexts/query-context";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
@@ -37,36 +29,10 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	image: "/assets/ml-logo.png",
 };
 
-function useWindowSize(): Size {
-	// Initialize state with undefined width/height so server and client renders match
-	// Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-	const [windowSize, setWindowSize] = useState<Size>({
-		width: undefined,
-		height: undefined,
-	});
-	useEffect(() => {
-		// Handler to call on window resize
-		function handleResize() {
-			// Set window width/height to state
-			setWindowSize({
-				width: window.innerWidth,
-				height: window.innerHeight,
-			});
-		}
-		// Add event listener
-		window.addEventListener("resize", handleResize);
-		// Call handler right away so state gets updated with initial window size
-		handleResize();
-		// Remove event listener on cleanup
-		return () => window.removeEventListener("resize", handleResize);
-	}, []); // Empty array ensures that effect is only run on mount
-	return windowSize;
-}
-
-export default function Layout(props: LayoutProps) {
+export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { translate, getSiteTitle, getSiteSubtitle } =
+	const { translate, getSiteTitle, getSiteSubtitle /*, popoverRef*/ } =
 		useContext(ReactLayoutContext);
 
 	const router = useRouter();
@@ -75,7 +41,7 @@ export default function Layout(props: LayoutProps) {
 	function onLocaleChange(locale: string): Promise<boolean> {
 		return router.push(currentUrl, currentUrl, {
 			locale,
-			scroll: false,
+			scroll: true,
 		});
 	}
 
@@ -85,57 +51,54 @@ export default function Layout(props: LayoutProps) {
 			label: translate(`${localeLabelPrefix}_${lang.toUpperCase()}`),
 		};
 	});
-
 	const title = translate(getSiteTitle());
 	const subtitle = translate(getSiteSubtitle());
-
-	const size: Size = useWindowSize();
+	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
-	const translateItems = (items: MenuGroup[]) => {
-		return items.map((group) =>
-			Object.assign({}, group, {
-				title: translate(group.title),
-				content: group.content.map((item) =>
-					Object.assign({}, item, {
-						title: translate(item.title),
-						description: translate(item.description),
-						author: translate(item.author),
-					})
-				),
-			})
-		);
-	};
+	const qc = useContext(ReactQueryContext);
+	const { getLine } = qc.query;
 
 	useEffect(() => {
-		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0)
-	}, [currentUrl, locale])
+		if (getLine > -1) {
+			const scrollProps: ScrollIntoViewOptions = {
+				behavior: "smooth",
+				block: "center",
+			};
+			setTimeout(() => {
+				const el = window.document.getElementById(`line${getLine}`);
+				el.scrollIntoView(scrollProps);
+			}, 200);
+		}
+	});
 
+	useEffect(() => {
+		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
+	}, [currentUrl, locale]);
 
 	useEffect(() => {
 		const handleRouteChange = () => {
 			new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-		}
+		};
 
-		router.events.on('routeChangeStart', handleRouteChange)
+		router.events.on("routeChangeStart", handleRouteChange);
 		// unsubscribe on unmount
 		return () => {
-			router.events.off('routeChangeStart', handleRouteChange)
-		}
+			router.events.off("routeChangeStart", handleRouteChange);
+		};
 	}, [router.events]);
-
 
 	return (
 		<>
 			<Head>
 				<link rel="icon" type="image/png" href="/favicon-temp.png" />
 				<meta name="description" content={subtitle} />
-				<meta
+				{/* <meta
 					property="og:image"
 					content={`https://og-image.vercel.app/${encodeURI(
 						title
 					)}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-				/>
+				/> */}
 				<meta name="og:title" content={title} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
@@ -150,13 +113,16 @@ export default function Layout(props: LayoutProps) {
 				<div id="page-wrap">
 					<div className={classes.topBar}>
 						<div className={classes.siteHeader}>
-							<Header className={classes.header} compKeys={HEADER_LOCALE} />
+							<Header
+								className={classes.header}
+								compKeys={HEADER_LOCALE}
+								isHome={router.asPath === "/"}
+							/>
 							{!isMobile && (
 								<div className={classes.primaryNav}>
-									{/* <Nav className={classes.nav} /> */}
 									<NavMenu
 										className={classes.nav}
-										items={translateItems(navItems)}
+										items={translateItems(navItems, translate)}
 									/>
 
 									<LocaleSelector
@@ -171,11 +137,16 @@ export default function Layout(props: LayoutProps) {
 					<div className={classes.scrollablePage}>
 						<ScrollArea>
 							<div className={classes.scrollable}>
-								<Page className={classes.page} nodes={props.children} />
+								<Page className={classes.page} nodes={children} />
 								<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 							</div>
 						</ScrollArea>
 					</div>
+					{/* <div
+						id="popoverRef"
+						ref={popoverRef}
+						className={classes.popoverRef}
+					></div> */}
 				</div>
 
 				{isMobile && (
@@ -196,7 +167,6 @@ export default function Layout(props: LayoutProps) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-
 					gtag('config', 'G-XLWMW4QLVE');
         `}
 			</Script>

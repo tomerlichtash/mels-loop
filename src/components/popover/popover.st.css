@@ -42,7 +42,7 @@
 .content {
   z-index: 2;
   overflow: hidden;
-  padding: 32px 0 12px;
+  /* padding: 32px 0 12px; */
   width: value(PopoverContentMaxWidth);
   background: value(PopoverContentBgColor);
   border-radius: value(PopoverContentRadius);
