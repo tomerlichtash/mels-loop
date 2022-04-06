@@ -41,11 +41,11 @@ describe("DropDown", () => {
 		expect(dropdown.component.getByText("Option 1")).to.exist;
 	});
 
-	xit("should toggle option list on click", () => {
-		const dropdown = render(sample, DropdownTestDriver);
-		dropdown.event.click(dropdown.driver.getTriggerContainer() as Element);
-		expect(triggerCallback).to.have.been.calledOnce;
-	});
+	// xit("should toggle option list on click", () => {
+	// 	const dropdown = render(sample, DropdownTestDriver);
+	// 	dropdown.event.click(dropdown.driver.getTriggerContainer() as Element);
+	// 	expect(triggerCallback).to.have.been.calledOnce;
+	// });
 });
 
 export {};
