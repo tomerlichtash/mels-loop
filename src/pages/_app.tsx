@@ -1,6 +1,6 @@
 import React from "react";
 import { AppProps } from "next/app";
-import { IconProps } from "@radix-ui/react-icons/dist/types.d";
+import type { IconProps } from "@radix-ui/react-icons/dist/types.d";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { translateFunc } from "../locales/translate";
 import { useRouter } from "next/router";

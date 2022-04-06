@@ -1,4 +1,4 @@
-import { IconProps } from "@radix-ui/react-icons/dist/types";
+import type { IconProps } from "@radix-ui/react-icons/dist/types.d";
 import { RefObject } from "react";
 
 export interface SitePageRef {
