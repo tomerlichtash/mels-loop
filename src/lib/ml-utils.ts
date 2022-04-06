@@ -1,4 +1,3 @@
-
 /**
  * General utility functions
  */
@@ -7,7 +6,7 @@ export interface IMLUtils {
 
 	arrayToMap<T>(array: Array<T>, field: string): { [key: string]: T };
 
-	stringArrayToMap(array: Array<string>): { [key: string]: 1};
+	stringArrayToMap(array: Array<string>): { [key: string]: 1 };
 }
 
 class MLUtils implements IMLUtils {
@@ -18,19 +17,18 @@ class MLUtils implements IMLUtils {
 	}
 
 	public arrayToMap<T>(array: Array<T>, field: string): { [key: string]: T } {
-		const map: { [key: string]: T } = 
-			array.reduce((acc, elem) => {
-				const value = elem && elem[field];
-				if (value !== null && value !== undefined) {
-					acc[String(value)] = elem;
-				}
-				return acc;
-			}, {});
+		const map: { [key: string]: T } = array.reduce((acc, elem) => {
+			const value = elem && elem[field];
+			if (value !== null && value !== undefined) {
+				acc[String(value)] = elem;
+			}
+			return acc;
+		}, {});
 
 		return map;
 	}
 
-	public stringArrayToMap(array: Array<string>): { [key: string]: 1} {
+	public stringArrayToMap(array: Array<string>): { [key: string]: 1 } {
 		return array.reduce((acc, str) => {
 			acc[str] = 1;
 			return acc;

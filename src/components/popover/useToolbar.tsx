@@ -2,10 +2,9 @@ import { useState } from "react";
 import { IToolbarItem } from "../../interfaces/IPopoverContext";
 import { mlUtils } from "../../lib/ml-utils";
 
-
 export interface IUseToolbar {
 	readonly items: IToolbarItem[];
-	addItems(this:void, items: IToolbarItem | IToolbarItem[]): void;
+	addItems(this: void, items: IToolbarItem | IToolbarItem[]): void;
 	removeItemsById(this: void, keys: string | string[]): void;
 }
 
@@ -31,18 +30,16 @@ class Toolbar {
 			items = [items];
 		}
 		items
-			.filter(i => i?.element)
-			.map(i => ({
+			.filter((i) => i?.element)
+			.map((i) => ({
 				...i,
-				key: mlUtils.uniqueId("toolbar")
-
+				key: mlUtils.uniqueId("toolbar"),
 			}))
-			.forEach(i => {
+			.forEach((i) => {
 				const ind = this.findItemIndex(i);
 				if (ind >= 0) {
 					this._items[ind] = i;
-				}
-				else {
+				} else {
 					this._items.push(i);
 				}
 			});
@@ -51,9 +48,9 @@ class Toolbar {
 
 	public removeItems(ids: string | string[]) {
 		if (typeof ids === "string") {
-			ids = [ids]
+			ids = [ids];
 		}
-		ids.forEach(key => {
+		ids.forEach((key) => {
 			const ind = this.findItemIndex(key);
 			if (ind >= 0) {
 				this._items.splice(ind, 1);
@@ -64,13 +61,15 @@ class Toolbar {
 
 	private findItemIndex(item: IToolbarItem | string): number {
 		const id = typeof item === "string" ? item : item.id;
-		return this._items.findIndex(i => i.id === id);
+		return this._items.findIndex((i) => i.id === id);
 	}
 }
 
 export const useToolbar = (): IUseToolbar => {
 	const [toolbar] = useState<Toolbar>(new Toolbar());
-	const [toolbarItems, setToolbarItems] = useState<IToolbarItem[]>(toolbar.items);
+	const [toolbarItems, setToolbarItems] = useState<IToolbarItem[]>(
+		toolbar.items
+	);
 
 	return {
 		items: toolbarItems,
@@ -83,6 +82,6 @@ export const useToolbar = (): IUseToolbar => {
 			if (toolbar.items.length !== toolbarItems.length) {
 				setToolbarItems(toolbar.items);
 			}
-		}
-	}
-}
+		},
+	};
+};

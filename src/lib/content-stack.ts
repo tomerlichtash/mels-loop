@@ -36,15 +36,12 @@ export class ContentStack<T> implements IContentStack<T> {
 			this._nodes.push(node);
 		}
 		return this;
-
 	}
 
 	public pop(): T | null {
-		return (this._nodes.length && this._nodes.pop())
-		|| null;
+		return (this._nodes.length && this._nodes.pop()) || null;
 	}
 	public get current(): T | null {
-		return this._nodes.length ?
-			this._nodes[this._nodes.length - 1] : null;
+		return this._nodes.length ? this._nodes[this._nodes.length - 1] : null;
 	}
 }
