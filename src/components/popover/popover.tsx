@@ -7,7 +7,6 @@ import { IPopoverContext } from "../../interfaces/IPopoverContext";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 import { useToolbar } from "./useToolbar";
 import { st, classes } from "./popover.st.css";
-// import * as Portal from "@radix-ui/react-portal";
 
 export interface IPopoverProps {
 	id: string;
@@ -50,7 +49,6 @@ export const Popover = ({
 						</span>
 					</span>
 				</RadixPopover.Trigger>
-				{/* <Portal.Root containerRef={popoverRef}> */}
 				<RadixPopover.Content
 					forceMount={forcePopover ? forcePopover : null}
 					side={side}
@@ -65,7 +63,6 @@ export const Popover = ({
 						</div>
 					</div>
 					<RadixPopover.Arrow />
-					{/* </Portal.Root> */}
 					<PopoverToolbar items={toolbar.items} query={query} onExit={onExit} />
 				</RadixPopover.Content>
 			</RadixPopover.Root>
