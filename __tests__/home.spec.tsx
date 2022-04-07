@@ -3,17 +3,19 @@ import { ContentComponent } from "../src/components/content";
 import { IContentComponentInitData } from "../src/interfaces/models";
 import { render } from "@testing-library/react";
 
-describe.skip("ContentComponent", () => {
+describe("ContentComponent", () => {
 	it("should render sample line", () => {
 		const compData = {
 			node: {
 				type: "paragraph",
 				key: "key",
+				line: 1,
 				children: [
 					{
 						type: "text",
 						key: "line-1",
 						line: 1,
+						occurrenceIndex: 1,
 						text: "sample line",
 					},
 				],
@@ -27,3 +29,5 @@ describe.skip("ContentComponent", () => {
 		);
 	});
 });
+
+export {};

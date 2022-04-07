@@ -10,7 +10,9 @@ export interface IStackBrowserProps {
 	node: IMLParsedNode;
 }
 
-export default function DynamicContentBrowser(props: IStackBrowserProps): JSX.Element {
+export default function DynamicContentBrowser(
+	props: IStackBrowserProps
+): JSX.Element {
 	const [currentNode, setCurrentNode] = useState<IMLParsedNode>(props.node);
 	const [currentPage, setCurrentPage] = useState<IParsedPageData>(null);
 	// always one less than the contentstack's length, which starts at 0
@@ -38,7 +40,7 @@ export default function DynamicContentBrowser(props: IStackBrowserProps): JSX.El
 	}, [currentIndex, pageStack, contentStack]);
 
 	if (!url) {
-		return (<></>);
+		return <></>;
 	}
 	const ctx: IDynamicContentContext = {
 		currentNode,
@@ -46,15 +48,14 @@ export default function DynamicContentBrowser(props: IStackBrowserProps): JSX.El
 		addContentNode: setCurrentNode,
 		addPage: setCurrentPage,
 		pageIndex: currentIndex,
-		setPageIndex: setCurrentIndex
+		setPageIndex: setCurrentIndex,
 	};
 	return (
 		<ReactDynamicContentContext.Provider value={ctx}>
 			<>
-			<DynamicContentToolbar pages={pages} />
-			<DynamicContentViewer url={url} />
+				<DynamicContentToolbar pages={pages} />
+				<DynamicContentViewer url={url} />
 			</>
 		</ReactDynamicContentContext.Provider>
 	);
 }
-

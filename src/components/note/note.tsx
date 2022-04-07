@@ -2,7 +2,6 @@ import React from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { IBibliographySource } from "../bibliography/bibliography";
 import Bibliography from "../bibliography";
-// import ScrollArea from "../scrollbar";
 import { st, classes } from "./note.st.css";
 
 export type NoteViews = "note" | "ref";

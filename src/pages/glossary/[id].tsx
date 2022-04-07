@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
-
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import { CONTENT_TYPES } from "../../consts";
 import { mlNextUtils } from "../../lib/next-utils";
 import { LoadFolderModes } from "../../interfaces/parser";
 import { contentUtils } from "../../lib/content-utils";
-
 import {
-	// IContentComponentData,
 	IMLParsedNode,
 	IPageProps,
 	MLNODE_TYPES,
@@ -71,7 +68,7 @@ export default function GlossaryTerm(props: IPageProps) {
 export const getStaticPaths: GetStaticPaths = async (context) => {
 	return mlNextUtils.getFolderStaticPaths(
 		CONTENT_TYPES.GLOSSARY,
-		context.locales,
+		context.locales
 	);
 };
 
@@ -83,7 +80,7 @@ export const getStaticProps: GetStaticProps = async (
 		context.locale,
 		LoadFolderModes.FOLDER,
 		{
-			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()]
+			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
 		}
 	);
 };

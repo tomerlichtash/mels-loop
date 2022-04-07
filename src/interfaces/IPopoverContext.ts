@@ -12,12 +12,12 @@ export interface IPopoverContext {
 	readonly toolbar: IToolbarItem[];
 	/**
 	 * Adds or replaces items by their provided keys
-	 * @param items 
+	 * @param items
 	 */
 	addToolbarItems(items: IToolbarItem | IToolbarItem[]): void;
 	/**
 	 * Remove item/s with matching keys
-	 * @param ids 
+	 * @param ids
 	 */
 	removeToolbarItems(ids: string | string[]): void;
 }
