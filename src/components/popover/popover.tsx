@@ -19,6 +19,7 @@ export interface IPopoverProps {
 	query: string;
 	onExit?: () => void;
 	side: Direction;
+	open?: boolean /* used for story simulation */;
 	className?: string;
 }
 
@@ -30,6 +31,7 @@ export const Popover = ({
 	forcePopover,
 	onExit,
 	query,
+	open,
 }: IPopoverProps): JSX.Element => {
 	const toolbar = useToolbar();
 	const ctx: IPopoverContext = {
@@ -42,7 +44,7 @@ export const Popover = ({
 
 	return (
 		<ReactPopoverContext.Provider value={ctx}>
-			<RadixPopover.Root>
+			<RadixPopover.Root open={open}>
 				<RadixPopover.Trigger asChild>
 					<span className={st(classes.root, { type })} {...forcePopoverProp}>
 						<span className={classes.trigger} tabIndex={1}>
