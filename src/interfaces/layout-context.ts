@@ -1,19 +1,9 @@
-import type { IconProps } from "@radix-ui/react-icons/dist/types.d";
 import { RefObject } from "react";
+import { ILocaleInfo } from "../locales/locale-info";
 
 export interface SitePageRef {
 	id: string;
 	menuNav: boolean;
-}
-
-export type TextDirection = "rtl" | "ltr";
-export type Direction = "right" | "left";
-export interface ILocaleInfo {
-	readonly direction: TextDirection;
-	readonly right: Direction;
-	readonly left: Direction;
-	readonly arrowLeft: (props: Partial<IconProps>) => JSX.Element;
-	readonly arrowRight: (props: Partial<IconProps>) => JSX.Element;
 }
 
 export interface ILayoutContext {
