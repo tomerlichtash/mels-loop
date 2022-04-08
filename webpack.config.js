@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const { StylableWebpackPlugin } = require("@stylable/webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	mode: "development",
@@ -25,11 +26,16 @@ module.exports = {
 					},
 				},
 			},
+			{
+				test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+				loader: "url-loader?limit=100000",
+			},
 		],
 	},
 	plugins: [
 		new webpack.ContextReplacementPlugin(/mocha$/),
 		new NodePolyfillPlugin(),
+		new HtmlWebpackPlugin(),
 		new StylableWebpackPlugin({
 			filename: "stylable.css",
 			cssInjection: "js",
