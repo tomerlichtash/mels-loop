@@ -12,7 +12,6 @@ import {
 	getPathData,
 	getSiteTitle,
 	getSiteSubtitle,
-	getPopoverBackLabel,
 } from "../config/pages";
 import { QueryManager } from "../contexts/query-manager";
 
@@ -30,8 +29,6 @@ function App({ Component, pageProps }: AppProps) {
 		translate,
 		getSiteTitle,
 		getSiteSubtitle,
-		getPopoverBackLabel,
-		popoverRef: React.createRef(),
 	};
 	return (
 		<ReactQueryContext.Provider value={queryContext}>
