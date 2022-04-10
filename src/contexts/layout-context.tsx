@@ -1,5 +1,6 @@
 import { Context, createContext, RefObject } from "react";
-import { ILayoutContext, ILocaleInfo } from "../interfaces/layout-context";
+import { ILayoutContext } from "../interfaces/layout-context";
+import { ILocaleInfo } from "../locales/locale-info";
 
 export class LayoutContext implements ILayoutContext {
 	public readonly locale: string;
