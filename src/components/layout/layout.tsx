@@ -10,15 +10,14 @@ import { useRouter } from "next/router";
 import { useWindowSize, ISize } from "./use-window-size";
 import { HEADER_LOCALE, FOOTER_LOCALE } from "../../locales/components";
 import { ComponentProps } from "../../interfaces/models";
-import { localeLabelPrefix } from "../../locales/locales";
-import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
-import { st, classes } from "./layout.st.css";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { ReactQueryContext } from "../../contexts/query-context";
+import { localeSelectorOptions } from "../../locales/locale-info";
+import { st, classes } from "./layout.st.css";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
@@ -45,12 +44,6 @@ export default function Layout({ children }: ComponentProps) {
 		});
 	}
 
-	const localeSelectorOptions: IOption[] = locales.map((lang) => {
-		return {
-			id: lang,
-			label: translate(`${localeLabelPrefix}_${lang.toUpperCase()}`),
-		};
-	});
 	const title = translate(getSiteTitle());
 	const subtitle = translate(getSiteSubtitle());
 	const size: ISize = useWindowSize();
@@ -87,7 +80,6 @@ export default function Layout({ children }: ComponentProps) {
 			router.events.off("routeChangeStart", handleRouteChange);
 		};
 	}, [router.events]);
-
 	return (
 		<>
 			<Head>
@@ -126,7 +118,7 @@ export default function Layout({ children }: ComponentProps) {
 									/>
 
 									<LocaleSelector
-										options={localeSelectorOptions}
+										options={localeSelectorOptions(locales, translate)}
 										onLocaleChange={onLocaleChange}
 										className={st(classes.localeSelector, { locale })}
 									/>
@@ -154,7 +146,7 @@ export default function Layout({ children }: ComponentProps) {
 						className={classes.mobileNav}
 						right={locale === "en"}
 						onLocaleChange={onLocaleChange}
-						localeOptions={localeSelectorOptions}
+						localeOptions={localeSelectorOptions(locales, translate)}
 					/>
 				)}
 			</div>
