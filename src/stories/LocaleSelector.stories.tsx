@@ -2,29 +2,33 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { LocaleSelector } from "../components/locale-selector/locale-selector";
-
-const SampleComp = LocaleSelector;
+import {
+	st,
+	classes,
+} from "../components/locale-selector/locale-selector-base-theme.st.css";
 
 export default {
 	title: "Composite/LocaleSelector",
-	component: SampleComp,
-} as ComponentMeta<typeof SampleComp>;
+	component: LocaleSelector,
+} as ComponentMeta<typeof LocaleSelector>;
 
-const Template: ComponentStory<typeof SampleComp> = (args) => (
-	<SampleComp {...args} />
+const Template: ComponentStory<typeof LocaleSelector> = (args) => (
+	<LocaleSelector {...args} className={classes.root} />
 );
+
+const options = [
+	{
+		id: "en",
+		label: "EN",
+	},
+	{
+		id: "he",
+		label: "ע",
+	},
+];
 
 export const Normal = Template.bind({});
 Normal.args = {
-	options: [
-		{
-			id: "en",
-			label: "EN",
-		},
-		{
-			id: "he",
-			label: "ע",
-		},
-	],
-	onLocaleChange: (id: string) => new Promise(() => {}),
+	options,
+	onLocaleChange: (id: string) => new Promise(() => id),
 };
