@@ -1,5 +1,7 @@
 import type { IconProps } from "@radix-ui/react-icons/dist/types.d";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+import { IOption } from "../components/dropdown/option";
+import { localeLabelPrefix } from "./locales";
 
 export type TextDirection = "rtl" | "ltr";
 export type Direction = "right" | "left";
@@ -36,3 +38,15 @@ export const LOCALE_INFO = {
 };
 
 export const getLocaleInfo = (localeId: string) => LOCALE_INFO[localeId];
+
+export const localeSelectorOptions = (
+	locales: string[],
+	translate: (s: string) => string
+): IOption[] => {
+	return locales.map((lang) => {
+		return {
+			id: lang,
+			label: translate(`${localeLabelPrefix}_${lang.toUpperCase()}`),
+		};
+	});
+};
