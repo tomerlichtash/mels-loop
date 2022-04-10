@@ -14,7 +14,6 @@ export class LayoutContext implements ILayoutContext {
 	public getSiteTitle: () => string;
 	public getSiteSubtitle: () => string;
 	public popoverRef: RefObject<HTMLDivElement>;
-	getPopoverBackLabel: () => string;
 }
 
 const ctx = createContext<ILayoutContext>(new LayoutContext());
