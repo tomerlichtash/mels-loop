@@ -24,6 +24,8 @@ export const DynamicContentViewer = ({
 	const dynamicContentContext = useContext(ReactDynamicContentContext);
 	const elements = item && item.parsed;
 
+	const UUID = "DynamicContentViewer";
+
 	useEffect(() => {
 		// safeguard against a promise resolving after the component was torn down
 		let removed = false;
@@ -73,7 +75,7 @@ export const DynamicContentViewer = ({
 		const itemType =
 			itemData.type === DynamicContentTypes.Glossary ? "ref" : "note";
 		const contents = elements.map((node) => (
-			<ContentComponent key={mlUtils.uniqueId()} componentData={{ node }} />
+			<ContentComponent key={mlUtils.uniqueId(UUID)} componentData={{ node }} />
 		));
 
 		return (

@@ -18,8 +18,10 @@ import {
 import { contentUtils } from "../lib/content-utils";
 import { usePageData } from "../components/usePageData";
 import { ContentComponent } from "../components/content";
-import { v4 as uuidv4 } from "uuid";
+import { mlUtils } from "../lib/ml-utils";
 import { classes } from "./index.st.css";
+
+const UUID = "Story";
 
 export default function Index(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
@@ -45,7 +47,7 @@ export default function Index(props: IPageProps) {
 				{elements.map((node) => {
 					return (
 						<ContentComponent
-							key={uuidv4()}
+							key={mlUtils.uniqueId(UUID)}
 							className={(classes.contentComponent, className)}
 							componentData={{ node }}
 						/>

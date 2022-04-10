@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
-import { v4 as uuidv4 } from "uuid";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
@@ -12,7 +11,10 @@ import { Button, TimeFormat } from "../components/ui";
 import { ContentComponent } from "../components/content";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import orderBy from "lodash.orderby";
+import { mlUtils } from "../lib/ml-utils";
 import { classes } from "./posts.st.css";
+
+const UUID = "Post";
 
 export default function Blog(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
@@ -33,7 +35,7 @@ export default function Blog(props: IPageProps) {
 						const { metaData, path } = page;
 						const { title, date } = metaData;
 						return (
-							<article className={classes.post} key={uuidv4()}>
+							<article className={classes.post} key={mlUtils.uniqueId(UUID)}>
 								<header className={classes.postHeader}>
 									<h3 className={classes.postHeading}>
 										<Button
@@ -54,7 +56,7 @@ export default function Blog(props: IPageProps) {
 									{page.parsed.map((node) => {
 										return (
 											<ContentComponent
-												key={uuidv4()}
+												key={mlUtils.uniqueId(UUID)}
 												className={classes.postContent}
 												componentData={{ node }}
 											/>

@@ -39,8 +39,7 @@
 		"react-burger-menu": "^3.0.6",
 		"react-copy-to-clipboard": "^5.0.4",
 		"react-dom": "18.0.0",
-		"tmp": "^0.2.1",
-		"uuid": "^8.3.2"
+		"tmp": "^0.2.1"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.20.1",
