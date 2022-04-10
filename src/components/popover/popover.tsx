@@ -2,7 +2,7 @@ import React from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
 import ScrollArea from "../scrollbar";
 import { PopoverToolbar } from "./popover-toolbar";
-import { Direction } from "../../interfaces/layout-context";
+import { Direction } from "../../locales/locale-info";
 import { IPopoverContext } from "../../interfaces/IPopoverContext";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 import { useToolbar } from "./useToolbar";

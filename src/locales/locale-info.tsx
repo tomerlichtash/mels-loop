@@ -4,7 +4,9 @@ import { IOption } from "../components/dropdown/option";
 import { localeLabelPrefix } from "./locales";
 
 export type TextDirection = "rtl" | "ltr";
+
 export type Direction = "right" | "left";
+
 export interface ILocaleInfo {
 	readonly direction: TextDirection;
 	readonly right: Direction;
