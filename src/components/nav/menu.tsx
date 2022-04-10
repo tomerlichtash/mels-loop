@@ -11,7 +11,7 @@ import {
 	NavigationIndicator,
 	NavigationTrigger,
 	NavigationCaret,
-} from "./menu-primitives";
+} from "../radix-primitives";
 import { st, classes } from "./menu.st.css";
 
 export const NavMenu = ({ items, className }: NavMenuProps) => {

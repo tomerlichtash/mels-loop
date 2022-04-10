@@ -1,17 +1,13 @@
 import React from "react";
-import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
-import { ScrollAreaScrollbarVisibleProps } from "@radix-ui/react-scroll-area";
-import { createCompRef } from "../create-ref";
 import { st, classes } from "./scrollbar.st.css";
 
-export interface ScrollAreaProps extends ScrollAreaScrollbarVisibleProps {
-	height?: string;
-}
-
-const StyledScrollArea = createCompRef(ScrollAreaPrimitive.Root);
-const ScrollViewport = createCompRef(ScrollAreaPrimitive.Viewport);
-const ScrollBar = createCompRef(ScrollAreaPrimitive.Scrollbar);
-const ScrollBarThumb = createCompRef(ScrollAreaPrimitive.Thumb);
+import {
+	StyledScrollArea,
+	ScrollViewport,
+	ScrollBar,
+	ScrollBarThumb,
+	ScrollAreaProps,
+} from "../radix-primitives";
 
 export function ScrollArea({
 	children,
