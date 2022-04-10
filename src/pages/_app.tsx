@@ -49,7 +49,6 @@ function App({ Component, pageProps }: AppProps) {
 		translate,
 		getSiteTitle,
 		getSiteSubtitle,
-		popoverRef: React.createRef(),
 	};
 	return (
 		<ReactQueryContext.Provider value={queryContext}>

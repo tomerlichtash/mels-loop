@@ -13,7 +13,6 @@ export interface IPopoverProps {
 	type: string;
 	trigger: React.ReactNode;
 	children: React.ReactNode;
-	popoverRef: React.RefObject<HTMLElement>;
 	forcePopover?: boolean;
 	query: string;
 	onExit?: () => void;

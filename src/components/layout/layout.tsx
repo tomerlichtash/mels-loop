@@ -32,7 +32,7 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { translate, getSiteTitle, getSiteSubtitle /*, popoverRef*/ } =
+	const { translate, getSiteTitle, getSiteSubtitle } =
 		useContext(ReactLayoutContext);
 
 	const router = useRouter();
@@ -142,11 +142,6 @@ export default function Layout({ children }: ComponentProps) {
 							</div>
 						</ScrollArea>
 					</div>
-					{/* <div
-						id="popoverRef"
-						ref={popoverRef}
-						className={classes.popoverRef}
-					></div> */}
 				</div>
 
 				{isMobile && (

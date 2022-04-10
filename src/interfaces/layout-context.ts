@@ -1,5 +1,4 @@
 import type { IconProps } from "@radix-ui/react-icons/dist/types.d";
-import { RefObject } from "react";
 
 export interface SitePageRef {
 	id: string;
@@ -23,5 +22,4 @@ export interface ILayoutContext {
 	translate: (s: string, lang?: string) => string;
 	getSiteTitle: () => string;
 	getSiteSubtitle: () => string;
-	popoverRef: RefObject<HTMLDivElement>;
 }

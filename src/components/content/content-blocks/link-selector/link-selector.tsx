@@ -35,7 +35,6 @@ export const LinkSelector = ({
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
 	const queryContext = useContext(ReactQueryContext);
-	const { popoverRef } = useContext(ReactLayoutContext);
 	const { localeInfo } = useContext(ReactLayoutContext);
 
 	const { query } = queryContext;
@@ -63,7 +62,6 @@ export const LinkSelector = ({
 		<Popover
 			type={linkType}
 			id={node.target}
-			popoverRef={popoverRef}
 			forcePopover={nodeWithQuery}
 			query={getQueryUrl(node)}
 			onExit={() => onExit()}
