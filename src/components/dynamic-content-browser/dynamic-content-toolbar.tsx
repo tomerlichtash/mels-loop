@@ -16,14 +16,14 @@ export default function DynamicContentToolbar({
 	pages,
 }: IDynamicContentToolbarProps): JSX.Element {
 	const [prevPageId, setPrevPageid] = useState("");
-	const { localeInfo, translate, getPopoverBackLabel } =
-		useContext(ReactLayoutContext);
+	const { localeInfo, translate } = useContext(ReactLayoutContext);
 	const popoverCtx = useContext(ReactPopoverContext);
 	const dcCtx = useContext(ReactDynamicContentContext);
 
 	useEffect(() => {
 		if (pages.length < 2) {
 			popoverCtx.removeToolbarItems(NAV_BUTTON_KEY);
+			setPrevPageid("");
 			return;
 		}
 		const prevPage = pages[pages.length - 2]; // guaranteed
@@ -45,21 +45,13 @@ export default function DynamicContentToolbar({
 					title={title}
 					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}
 				>
-					{localeInfo.arrowLeft({})} {translate(getPopoverBackLabel())}
+					{localeInfo.arrowLeft({})}
 				</button>
 			),
 			id: NAV_BUTTON_KEY,
 			enabled: true,
 		});
-	}, [
-		pages,
-		prevPageId,
-		localeInfo,
-		dcCtx,
-		popoverCtx,
-		translate,
-		getPopoverBackLabel,
-	]);
+	}, [pages, prevPageId, localeInfo, dcCtx, popoverCtx, translate]);
 
 	return <></>;
 }
