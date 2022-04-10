@@ -1,5 +1,6 @@
-import { styled } from "@stitches/react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import { styled } from "@stitches/react";
+import { createCompRef } from "../../create-ref";
 
 const StyledContent = styled(TooltipPrimitive.Content, {
 	borderRadius: 4,
@@ -33,7 +34,7 @@ export const IconButton = styled("button", {
 });
 
 // Exports
-export const Provider = TooltipPrimitive.Provider;
-export const Tooltip = TooltipPrimitive.Root;
-export const TooltipTrigger = TooltipPrimitive.Trigger;
+export const Provider = createCompRef(TooltipPrimitive.Provider);
+export const Tooltip = createCompRef(TooltipPrimitive.Root);
+export const TooltipTrigger = createCompRef(TooltipPrimitive.Trigger);
 export const TooltipContent = StyledContent;
