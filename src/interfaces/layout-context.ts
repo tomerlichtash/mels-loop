@@ -1,4 +1,3 @@
-import { RefObject } from "react";
 import { ILocaleInfo } from "../locales/locale-info";
 
 export interface SitePageRef {
