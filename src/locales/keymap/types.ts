@@ -5,7 +5,7 @@ export interface IComponentKeyProps {
 	siteSubtitle: "siteSubtitle";
 	siteLicense: "siteLicense";
 	pageName: "pageName";
-	postsList: "postsList";
+	sectionName: "sectionName";
 }
 
 export type ComponentKeyMap = Partial<

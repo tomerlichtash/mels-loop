@@ -15,9 +15,8 @@ import orderBy from "lodash.orderby";
 import { classes } from "./posts.st.css";
 
 export default function Blog(props: IPageProps) {
-	const { translate, compLocale, locale, siteTitle, pageName } =
+	const { locale, siteTitle, pageName, sectionName } =
 		useContext(ReactLocaleContext);
-	const { postsList } = compLocale;
 	const { pageData } = usePageData(props);
 	return (
 		<Layout>
@@ -27,7 +26,7 @@ export default function Blog(props: IPageProps) {
 				</title>
 			</Head>
 			<div className={classes.root}>
-				<h1 className={classes.sectionTitle}>{translate(postsList)}</h1>
+				<h1 className={classes.sectionTitle}>{sectionName}</h1>
 				{orderBy(pageData, ["metaData.date"], ["desc"]).map(
 					(page: IParsedPageData) => {
 						const { metaData, path } = page;

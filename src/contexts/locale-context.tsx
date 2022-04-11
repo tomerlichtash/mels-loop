@@ -6,16 +6,20 @@ import {
 	LocaleId,
 	LocaleInfo,
 } from "../interfaces/locale-context";
-import { SITE_PAGES } from "../config/pages-data";
-import { SITE_META } from "../locales/keymap/common";
 import { _translate } from "../locales/translate";
 import { LANGS } from "../locales";
+import LocaleMetaContext, { ILocaleMetaContext } from "./locale-meta-context";
+import LocalePageContext, { ILocalePageContext } from "./locale-page-context";
+
+const getLocaleLabel = (id: string) =>
+	[localeLabelPrefix, id].join("_").toUpperCase();
 
 export class LocaleContext implements ILocaleContext {
 	private _locale: string;
 	private _locales: string[];
-	private _route: string;
 	private _translate: (s: string, lang?: LocaleId) => string;
+	public meta: ILocaleMetaContext;
+	public pages: ILocalePageContext;
 	constructor(props: ILocaleContextProps) {
 		if (!props) {
 			return;
@@ -24,12 +28,10 @@ export class LocaleContext implements ILocaleContext {
 		const { locale, locales, route } = router;
 		this._locale = locale;
 		this._locales = locales;
-		this._route = route;
-		this._translate = _translate(this.locale, LANGS);
+		this.meta = new LocaleMetaContext();
+		this.pages = new LocalePageContext(route);
+		this._translate = _translate(locale, LANGS);
 	}
-
-	private getPathData = (id: string) =>
-		Object.values(SITE_PAGES).filter((p) => p.targetPathname === id)[0];
 
 	public get locale() {
 		return this._locale;
@@ -39,35 +41,34 @@ export class LocaleContext implements ILocaleContext {
 		return this._locales;
 	}
 
-	public get compLocale() {
-		const pathData = this.getPathData(this._route);
-		if (!pathData.locale) {
-			return;
-		}
-		return pathData?.locale;
-	}
+	public translate = (key: string, lang?: LocaleId) =>
+		this._translate(key, lang);
 
-	public get pageName() {
-		return this.translate(this.compLocale.pageName);
-	}
+	public getLocaleSymbol = (id: string) => this.translate(getLocaleLabel(id));
 
 	public get localeInfo() {
 		return LocaleInfo[this.locale];
 	}
 
+	public get pageName() {
+		return this.translate(this.pages.pageName);
+	}
+
+	public get sectionName() {
+		return this.translate(this.pages.sectionName);
+	}
+
 	public get siteTitle() {
-		return this.translate(SITE_META.siteTitle);
+		return this.translate(this.meta.siteTitle);
 	}
 
 	public get siteSubtitle() {
-		return this.translate(SITE_META.siteSubtitle);
+		return this.translate(this.meta.siteSubtitle);
 	}
 
-	public translate = (key: string, lang?: LocaleId) =>
-		this._translate(key, lang);
-
-	public getLocaleSymbol = (id: string) =>
-		this.translate(`${localeLabelPrefix}_${id}`.toUpperCase());
+	public get siteLicense() {
+		return this.translate(this.meta.siteLicense);
+	}
 }
 
 const ctx = createContext<ILocaleContext>(new LocaleContext(null));

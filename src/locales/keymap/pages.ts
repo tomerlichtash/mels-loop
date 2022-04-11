@@ -18,7 +18,7 @@ const PageKeys: Record<string, ComponentKeyMap> = {
 	},
 	BLOG_PAGE: {
 		pageName: "BLOG_NAV_LABEL",
-		postsList: "BLOG_POSTS_LIST",
+		sectionName: "BLOG_POSTS_LIST",
 	},
 	RESOURCES_PAGE: {
 		pageName: "RESOURCES_NAV_LABEL",

@@ -8,15 +8,14 @@ import Page from "../page";
 import LocaleSelector from "../locale-selector";
 import { useRouter } from "next/router";
 import { useWindowSize, ISize } from "./use-window-size";
-import { FOOTER_LOCALE } from "../../locales/keymap/components";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLocaleContext } from "../../contexts/locale-context";
+import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
-import { st, classes } from "./layout.st.css";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
-import { ReactQueryContext } from "../../contexts/query-context";
+import { st, classes } from "./layout.st.css";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
@@ -125,7 +124,7 @@ export default function Layout({ children }: ComponentProps) {
 						<ScrollArea>
 							<div className={classes.scrollable}>
 								<Page className={classes.page} nodes={children} />
-								<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
+								<Footer className={classes.footer} />
 							</div>
 						</ScrollArea>
 					</div>
