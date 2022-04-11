@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IParsedPageData } from "../../interfaces/models";
 import { mlUtils } from "../../lib/ml-utils";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ReactDynamicContentContext } from "../../contexts/dynamic-content-context";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 import { classes } from "./dynamic-content-browser.st.css";
@@ -16,7 +16,7 @@ export default function DynamicContentToolbar({
 	pages,
 }: IDynamicContentToolbarProps): JSX.Element {
 	const [prevPageId, setPrevPageid] = useState("");
-	const { localeInfo, translate } = useContext(ReactLayoutContext);
+	const { localeInfo, translate } = useContext(ReactLocaleContext);
 	const popoverCtx = useContext(ReactPopoverContext);
 	const dcCtx = useContext(ReactDynamicContentContext);
 

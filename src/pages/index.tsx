@@ -9,7 +9,7 @@ import {
 } from "../interfaces/models";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
-import { ReactLayoutContext } from "../contexts/layout-context";
+import { ReactLocaleContext } from "../contexts/locale-context";
 import {
 	LoadContentModes,
 	LoadFolderModes,
@@ -22,8 +22,7 @@ import { v4 as uuidv4 } from "uuid";
 import { classes } from "./index.st.css";
 
 export default function Index(props: IPageProps) {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, compLocale } = layoutContext;
+	const { translate, compLocale } = useContext(ReactLocaleContext);
 	const { siteTitle, pageName } = compLocale;
 	const { className } = props;
 	const { pageData } = usePageData(props);

@@ -10,13 +10,12 @@ import { IPageProps, IParsedPageData } from "../interfaces/models";
 import { usePageData } from "../components/usePageData";
 import { Button, TimeFormat } from "../components/ui";
 import { ContentComponent } from "../components/content";
-import { ReactLayoutContext } from "../contexts/layout-context";
+import { ReactLocaleContext } from "../contexts/locale-context";
 import orderBy from "lodash.orderby";
 import { classes } from "./posts.st.css";
 
 export default function Blog(props: IPageProps) {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, compLocale, locale } = layoutContext;
+	const { translate, compLocale, locale } = useContext(ReactLocaleContext);
 	const { siteTitle, pageName, postsList } = compLocale;
 	const { pageData } = usePageData(props);
 	return (

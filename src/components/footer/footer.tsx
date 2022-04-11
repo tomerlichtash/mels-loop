@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import { st, classes } from "./footer.st.css";
@@ -8,8 +8,7 @@ export const Footer = ({
 	compKeys,
 	className,
 }: ComponentProps): JSX.Element => {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate } = layoutContext;
+	const { translate } = useContext(ReactLocaleContext);
 	const licenseYears = `2021-${new Date().getFullYear()}`;
 	const { siteTitle, siteLicense } = compKeys;
 	return (

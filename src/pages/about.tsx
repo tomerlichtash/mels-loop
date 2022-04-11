@@ -10,14 +10,13 @@ import {
 	IPageProps,
 	IParsedPageData,
 } from "../interfaces/models";
-import { ReactLayoutContext } from "../contexts/layout-context";
+import { ReactLocaleContext } from "../contexts/locale-context";
 import { LoadFolderModes } from "../interfaces/parser";
 import { ContentComponent } from "../components/content";
 import { classes } from "./about.st.css";
 
 export default function About(props: IPageProps) {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, compLocale } = layoutContext;
+	const { translate, compLocale } = useContext(ReactLocaleContext);
 	const { siteTitle, pageName } = compLocale;
 
 	const { pageData } = usePageData(props);

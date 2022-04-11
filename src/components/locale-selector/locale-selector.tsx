@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
 import { IOption } from "../dropdown/option";
 import { Button } from "../ui";
@@ -16,7 +16,7 @@ export const LocaleSelector = ({
 	onLocaleChange,
 	className,
 }: LocaleSelectorProps): JSX.Element => {
-	const { locale } = useContext(ReactLayoutContext);
+	const { locale } = useContext(ReactLocaleContext);
 	return (
 		<div
 			className={st(classes.root, className)}

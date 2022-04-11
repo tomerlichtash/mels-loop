@@ -6,7 +6,7 @@ export interface SitePageRef {
 	menuNav: boolean;
 }
 
-export interface ILayoutContext {
+export interface ILocaleContext {
 	readonly locale: string;
 	readonly localeInfo: ILocaleInfo;
 	readonly compLocale: Record<string, string>;

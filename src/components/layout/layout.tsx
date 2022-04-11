@@ -12,7 +12,7 @@ import { HEADER_LOCALE, FOOTER_LOCALE } from "../../locales/components";
 import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
@@ -32,8 +32,8 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { translate, getSiteTitle, getSiteSubtitle /*, popoverRef*/ } =
-		useContext(ReactLayoutContext);
+	const { translate, getSiteTitle, getSiteSubtitle } =
+		useContext(ReactLocaleContext);
 
 	const router = useRouter();
 	const { locale, locales, asPath: currentUrl } = router;

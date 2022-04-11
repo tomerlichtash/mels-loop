@@ -1,8 +1,8 @@
 import { Context, createContext, RefObject } from "react";
-import { ILayoutContext } from "../interfaces/layout-context";
+import { ILocaleContext } from "../interfaces/layout-context";
 import { ILocaleInfo } from "../locales/locale-info";
 
-export class LayoutContext implements ILayoutContext {
+export class LocaleContext implements ILocaleContext {
 	public readonly locale: string;
 	public readonly compLocale: Record<string, string>;
 	public readonly pageParent: string;
@@ -17,6 +17,6 @@ export class LayoutContext implements ILayoutContext {
 	public popoverRef: RefObject<HTMLDivElement>;
 }
 
-const ctx = createContext<ILayoutContext>(new LayoutContext());
+const ctx = createContext<ILocaleContext>(new LocaleContext());
 
-export const ReactLayoutContext: Context<ILayoutContext> = ctx;
+export const ReactLocaleContext: Context<ILocaleContext> = ctx;

@@ -2,8 +2,8 @@ import React from "react";
 import { AppProps } from "next/app";
 import { translateFunc } from "../locales/translate";
 import { useRouter } from "next/router";
-import { ILayoutContext } from "../interfaces/layout-context";
-import { ReactLayoutContext } from "../contexts/layout-context";
+import { ILocaleContext } from "../interfaces/layout-context";
+import { ReactLocaleContext } from "../contexts/locale-context";
 import { QueryContext, ReactQueryContext } from "../contexts/query-context";
 import { PageContext, ReactPageContext } from "../contexts/page-context";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
@@ -18,7 +18,7 @@ function App({ Component, pageProps }: AppProps) {
 	const pathData = getPathData(router.route);
 	const queryContext = new QueryContext(new QueryManager({ _router: router }));
 	const contentContext = new PageContext(new DynamicContentServer());
-	const layoutContext: ILayoutContext = {
+	const localeContext: ILocaleContext = {
 		locale,
 		compLocale: pathData?.locale,
 		localeInfo: getLocaleInfo(locale),
@@ -29,11 +29,11 @@ function App({ Component, pageProps }: AppProps) {
 	};
 	return (
 		<ReactQueryContext.Provider value={queryContext}>
-			<ReactLayoutContext.Provider value={layoutContext}>
+			<ReactLocaleContext.Provider value={localeContext}>
 				<ReactPageContext.Provider value={contentContext}>
 					<Component {...pageProps} />
 				</ReactPageContext.Provider>
-			</ReactLayoutContext.Provider>
+			</ReactLocaleContext.Provider>
 		</ReactQueryContext.Provider>
 	);
 }

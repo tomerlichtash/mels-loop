@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { st, classes } from "./header.st.css";
 
 export interface HeaderProps extends ComponentProps {
@@ -13,8 +13,7 @@ export const Header = ({
 	compKeys,
 	className,
 }: HeaderProps): JSX.Element => {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate } = layoutContext;
+	const { translate } = useContext(ReactLocaleContext);
 	const { siteTitle, siteSubtitle } = compKeys;
 	const title = translate(siteTitle);
 	const subtitle = translate(siteSubtitle);
