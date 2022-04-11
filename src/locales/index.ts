@@ -1,8 +1,11 @@
-import { AvailableLocales } from "./types";
-import { LOCALE_LABELS, EN_US, HE_IL, AUTHORS_EN, AUTHORS_HE } from "./locales";
-import { GLOSSARY_TERMS_EN, GLOSSARY_TERMS_HE } from "./glossary";
+import type { AvailableLocales } from "./languages/types/common";
+import COMMON from "./languages/common";
+import EN_US from "./languages/en";
+import HE_IL from "./languages/he";
 
-export const Locale: AvailableLocales = {
-	EN_US: Object.assign(EN_US, LOCALE_LABELS, AUTHORS_EN, GLOSSARY_TERMS_EN),
-	HE_IL: Object.assign(HE_IL, LOCALE_LABELS, AUTHORS_HE, GLOSSARY_TERMS_HE),
+export const LANGS: AvailableLocales = {
+	en: Object.assign({}, COMMON, EN_US),
+	he: Object.assign({}, COMMON, HE_IL),
 };
+
+export default LANGS;

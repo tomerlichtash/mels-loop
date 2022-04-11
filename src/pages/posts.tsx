@@ -15,14 +15,15 @@ import orderBy from "lodash.orderby";
 import { classes } from "./posts.st.css";
 
 export default function Blog(props: IPageProps) {
-	const { translate, compLocale, locale } = useContext(ReactLocaleContext);
-	const { siteTitle, pageName, postsList } = compLocale;
+	const { translate, compLocale, locale, siteTitle, pageName } =
+		useContext(ReactLocaleContext);
+	const { postsList } = compLocale;
 	const { pageData } = usePageData(props);
 	return (
 		<Layout>
 			<Head>
 				<title>
-					{translate(siteTitle)} - {translate(pageName)}
+					{siteTitle} - {pageName}
 				</title>
 			</Head>
 			<div className={classes.root}>

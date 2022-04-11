@@ -62,11 +62,10 @@ export const LinkSelector = ({
 		<Popover
 			type={linkType}
 			id={node.target}
-			popoverRef={popoverRef}
 			forcePopover={nodeWithQuery}
 			query={getQueryUrl(node)}
 			onExit={() => onExit()}
-			side={localeInfo.right}
+			side={localeInfo.popoverDirection}
 			trigger={getTriggerComp(linkType, componentData, className)}
 			className={className}
 		>

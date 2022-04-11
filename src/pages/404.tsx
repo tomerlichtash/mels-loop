@@ -6,13 +6,12 @@ import { ReactLocaleContext } from "../contexts/locale-context";
 import { classes } from "./_error.st.css";
 
 export default function Error404() {
-	const { translate, getSiteTitle, getSiteSubtitle } =
-		useContext(ReactLocaleContext);
+	const { siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 	return (
 		<Layout>
 			<Head>
 				<title>
-					{translate(getSiteTitle())} - ${translate(getSiteSubtitle())}
+					{siteTitle} - {siteSubtitle}
 				</title>
 			</Head>
 			<div className={classes.root}>

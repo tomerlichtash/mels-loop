@@ -8,15 +8,15 @@ export const Footer = ({
 	compKeys,
 	className,
 }: ComponentProps): JSX.Element => {
-	const { translate } = useContext(ReactLocaleContext);
+	const { translate, siteTitle } = useContext(ReactLocaleContext);
 	const licenseYears = `2021-${new Date().getFullYear()}`;
-	const { siteTitle, siteLicense } = compKeys;
+	const { siteLicense } = compKeys;
 	return (
 		<footer className={st(classes.root, className)}>
 			<div className={classes.license}>
 				<time className={classes.year}>{licenseYears}</time>{" "}
 				<span className={classes.license}>({translate(siteLicense)})</span>{" "}
-				<span className={classes.title}>{translate(siteTitle)}</span>
+				<span className={classes.title}>{siteTitle}</span>
 			</div>
 			<div>
 				<ul>

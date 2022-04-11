@@ -2,8 +2,8 @@ import React from "react";
 import * as RadixPopover from "@radix-ui/react-popover";
 import ScrollArea from "../scrollbar";
 import { PopoverToolbar } from "./popover-toolbar";
-import { Direction } from "../../locales/locale-info";
 import { IPopoverContext } from "../../interfaces/IPopoverContext";
+import { Direction } from "../../interfaces/locale-context";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 import { useToolbar } from "./useToolbar";
 import { st, classes } from "./popover.st.css";
@@ -13,7 +13,6 @@ export interface IPopoverProps {
 	type: string;
 	trigger: React.ReactNode;
 	children: React.ReactNode;
-	popoverRef: React.RefObject<HTMLElement>;
 	forcePopover?: boolean;
 	query: string;
 	onExit?: () => void;

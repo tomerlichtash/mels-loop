@@ -1,4 +1,4 @@
-import { ComponentKeyMap } from "../locales/types";
+import { ComponentKeyMap } from "../locales/keymap/types";
 import { DynamicContentTypes } from "./dynamic-content";
 
 /**
@@ -253,11 +253,6 @@ export interface SitePage {
 	menuNav: boolean;
 	locale: Record<string, string>;
 	children?: string[];
-}
-
-export interface SitePageRef {
-	id: string;
-	menuNav: boolean;
 }
 
 export interface IPageProps {
