@@ -14,11 +14,9 @@ import {
 import { mlUtils } from "../../lib/ml-utils";
 import { st, classes } from "./menu.st.css";
 
-const UUID = "NavigationMenu";
-
 export const NavMenu = ({ items, className }: NavMenuProps) => {
 	const listItem = ({ type, title, description, url, author }) => (
-		<li key={mlUtils.uniqueId(UUID)} data-unique-id={"dada"}>
+		<li key={mlUtils.uniqueId()}>
 			<NavigationMenuLink
 				target={type === "link" ? "_blank" : ""}
 				href={url}
@@ -33,7 +31,7 @@ export const NavMenu = ({ items, className }: NavMenuProps) => {
 	);
 
 	const menuItem = ({ title, content, layout }) => (
-		<NavigationMenuItem key={mlUtils.uniqueId(UUID)} className={classes.item}>
+		<NavigationMenuItem key={mlUtils.uniqueId()} className={classes.item}>
 			<NavigationTrigger className={classes.trigger}>
 				{title}
 				<NavigationCaret aria-hidden />

@@ -14,8 +14,6 @@ export interface IBibliographyProps extends ComponentProps {
 	sources?: IBibliographySource[];
 }
 
-const UUID = "Bibliography";
-
 export const Bibliography = ({
 	sources,
 	className,
@@ -30,7 +28,7 @@ export const Bibliography = ({
 				{sources.map(({ name, url }) => {
 					return (
 						<Button
-							key={mlUtils.uniqueId(UUID)}
+							key={mlUtils.uniqueId()}
 							label={name}
 							link={url}
 							target="_blank"

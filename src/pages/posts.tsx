@@ -14,8 +14,6 @@ import orderBy from "lodash.orderby";
 import { mlUtils } from "../lib/ml-utils";
 import { classes } from "./posts.st.css";
 
-const UUID = "Post";
-
 export default function Blog(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale, locale } = layoutContext;
@@ -35,7 +33,7 @@ export default function Blog(props: IPageProps) {
 						const { metaData, path } = page;
 						const { title, date } = metaData;
 						return (
-							<article className={classes.post} key={mlUtils.uniqueId(UUID)}>
+							<article className={classes.post} key={mlUtils.uniqueId()}>
 								<header className={classes.postHeader}>
 									<h3 className={classes.postHeading}>
 										<Button
@@ -56,7 +54,7 @@ export default function Blog(props: IPageProps) {
 									{page.parsed.map((node) => {
 										return (
 											<ContentComponent
-												key={mlUtils.uniqueId(UUID)}
+												key={mlUtils.uniqueId()}
 												className={classes.postContent}
 												componentData={{ node }}
 											/>

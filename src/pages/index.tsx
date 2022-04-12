@@ -21,8 +21,6 @@ import { ContentComponent } from "../components/content";
 import { mlUtils } from "../lib/ml-utils";
 import { classes } from "./index.st.css";
 
-const UUID = "Story";
-
 export default function Index(props: IPageProps) {
 	const layoutContext = useContext(ReactLayoutContext);
 	const { translate, compLocale } = layoutContext;
@@ -47,7 +45,7 @@ export default function Index(props: IPageProps) {
 				{elements.map((node) => {
 					return (
 						<ContentComponent
-							key={mlUtils.uniqueId(UUID)}
+							key={mlUtils.uniqueId()}
 							className={(classes.contentComponent, className)}
 							componentData={{ node }}
 						/>
