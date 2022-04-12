@@ -1,6 +1,5 @@
 import React from "react";
 import { NavMenuProps } from "./types";
-import { v4 as uuidv4 } from "uuid";
 import {
 	NavigationMenu,
 	NavigationMenuList,
@@ -12,11 +11,12 @@ import {
 	NavigationTrigger,
 	NavigationCaret,
 } from "./menu-primitives";
+import { mlUtils } from "../../lib/ml-utils";
 import { st, classes } from "./menu.st.css";
 
 export const NavMenu = ({ items, className }: NavMenuProps) => {
 	const listItem = ({ type, title, description, url, author }) => (
-		<li key={uuidv4()}>
+		<li key={mlUtils.uniqueId()}>
 			<NavigationMenuLink
 				target={type === "link" ? "_blank" : ""}
 				href={url}
@@ -31,7 +31,7 @@ export const NavMenu = ({ items, className }: NavMenuProps) => {
 	);
 
 	const menuItem = ({ title, content, layout }) => (
-		<NavigationMenuItem key={uuidv4()} className={classes.item}>
+		<NavigationMenuItem key={mlUtils.uniqueId()} className={classes.item}>
 			<NavigationTrigger className={classes.trigger}>
 				{title}
 				<NavigationCaret aria-hidden />
