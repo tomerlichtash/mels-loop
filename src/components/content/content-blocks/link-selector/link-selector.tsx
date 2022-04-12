@@ -35,7 +35,7 @@ export const LinkSelector = ({
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
 	const queryContext = useContext(ReactQueryContext);
-	const { localeInfo } = useContext(ReactLocaleContext);
+	const { textDirection } = useContext(ReactLocaleContext);
 
 	const { query } = queryContext;
 	const { getQueryUrl, registerNode, onExit } = query;
@@ -65,7 +65,7 @@ export const LinkSelector = ({
 			forcePopover={nodeWithQuery}
 			query={getQueryUrl(node)}
 			onExit={() => onExit()}
-			side={localeInfo.popoverDirection}
+			side={textDirection === "ltr" ? "right" : "left"}
 			trigger={getTriggerComp(linkType, componentData, className)}
 			className={className}
 		>

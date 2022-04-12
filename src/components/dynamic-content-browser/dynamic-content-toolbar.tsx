@@ -17,7 +17,7 @@ export default function DynamicContentToolbar({
 	pages,
 }: IDynamicContentToolbarProps): JSX.Element {
 	const [prevPageId, setPrevPageid] = useState("");
-	const { localeInfo, translate } = useContext(ReactLocaleContext);
+	const { textDirection, translate } = useContext(ReactLocaleContext);
 	const popoverCtx = useContext(ReactPopoverContext);
 	const dcCtx = useContext(ReactDynamicContentContext);
 
@@ -46,17 +46,13 @@ export default function DynamicContentToolbar({
 					title={title}
 					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}
 				>
-					{localeInfo.direction === "ltr" ? (
-						<ArrowLeftIcon />
-					) : (
-						<ArrowRightIcon />
-					)}
+					{textDirection === "ltr" ? <ArrowLeftIcon /> : <ArrowRightIcon />}
 				</button>
 			),
 			id: NAV_BUTTON_KEY,
 			enabled: true,
 		});
-	}, [pages, prevPageId, localeInfo, dcCtx, popoverCtx, translate]);
+	}, [pages, prevPageId, dcCtx, popoverCtx, translate, textDirection]);
 
 	return <></>;
 }

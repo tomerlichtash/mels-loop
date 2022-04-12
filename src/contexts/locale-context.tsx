@@ -7,7 +7,7 @@ import {
 	LocaleInfo,
 } from "../interfaces/locale-context";
 import { _translate } from "../locales/translate";
-import { LANGS } from "../locales";
+import { Languages } from "../locales";
 import LocaleMetaContext, { ILocaleMetaContext } from "./locale-meta-context";
 import LocalePageContext, { ILocalePageContext } from "./locale-page-context";
 
@@ -30,7 +30,7 @@ export class LocaleContext implements ILocaleContext {
 		this._locales = locales;
 		this.meta = new LocaleMetaContext();
 		this.pages = new LocalePageContext(route);
-		this._translate = _translate(locale, LANGS);
+		this._translate = _translate(locale, Languages);
 	}
 
 	public get locale() {
@@ -48,6 +48,10 @@ export class LocaleContext implements ILocaleContext {
 
 	public get localeInfo() {
 		return LocaleInfo[this.locale];
+	}
+
+	public get textDirection() {
+		return this.localeInfo.direction;
 	}
 
 	public get pageName() {

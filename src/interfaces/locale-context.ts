@@ -12,6 +12,7 @@ export interface ILocaleContext {
 	readonly pages: ILocalePageContext;
 	translate: (s: string, lang?: string) => string;
 	getLocaleSymbol: (id: string) => string;
+	textDirection: TextDirection;
 	siteTitle: string;
 	siteSubtitle: string;
 	siteLicense: string;
@@ -29,12 +30,11 @@ export type Direction = "right" | "left";
 
 export interface ILocaleInfo {
 	readonly direction: TextDirection;
-	readonly popoverDirection: Direction;
 }
 
 export const LocaleInfo: Record<LocaleId, ILocaleInfo> = {
-	en: { direction: "rtl", popoverDirection: "left" },
-	he: { direction: "ltr", popoverDirection: "right" },
+	en: { direction: "rtl" },
+	he: { direction: "ltr" },
 };
 
 export const localeLabelPrefix = "LOCALE_LABEL";
