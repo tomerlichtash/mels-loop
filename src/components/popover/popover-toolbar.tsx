@@ -1,8 +1,8 @@
 import React from "react";
-import * as RadixPopover from "@radix-ui/react-popover";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { IToolbarItem } from "../../interfaces/IPopoverContext";
 import CopyUrlButton from "../copy-button";
+import { PopoverClose } from "../radix-primitives";
 import { classes } from "./popover-toolbar.st.css";
 
 export interface IPopoverHeaderProps {
@@ -26,9 +26,9 @@ export const PopoverToolbar = ({
 
 			{query && <CopyUrlButton query={query} />}
 
-			<RadixPopover.Close className={classes.closeButton} onClick={onExit}>
+			<PopoverClose className={classes.closeButton} onClick={onExit}>
 				<Cross2Icon className={classes.cross} />
-			</RadixPopover.Close>
+			</PopoverClose>
 		</div>
 	);
 };

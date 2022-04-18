@@ -10,7 +10,7 @@ import {
 	NavigationIndicator,
 	NavigationTrigger,
 	NavigationCaret,
-} from "./menu-primitives";
+} from "../radix-primitives";
 import { mlUtils } from "../../lib/ml-utils";
 import { st, classes } from "./menu.st.css";
 
