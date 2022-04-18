@@ -8,7 +8,6 @@
 	display: flex;
 	justify-content: center;
 	width: 500px;
-	z-index: 1;
 }
 
 .itemStyles {
@@ -118,8 +117,7 @@
 	justify-content: center;
 	height: 10px;
 	top: 100%;
-	overflow: hidden;
-	z-index: 1; */
+	overflow: hidden;*/
 }
 
 .link {

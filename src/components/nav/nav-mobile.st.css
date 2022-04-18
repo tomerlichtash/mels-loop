@@ -24,7 +24,6 @@
 /* .localeSelector {
 	-st-extends: LocaleSelector;
   -st-states: right(boolean);
-  z-index: 1;
   position: absolute;
   top: 1rem;
   left: 1rem;
