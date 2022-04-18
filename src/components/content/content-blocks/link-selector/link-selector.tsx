@@ -9,10 +9,15 @@ import { ContentIterator } from "../../content-iterator";
 import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
+import { ReactThemeContext } from "../../../../contexts/theme-context";
 import { ReactLayoutContext } from "../../../../contexts/layout-context";
 import { ReactQueryContext } from "../../../../contexts/query-context";
 import DynamicContentBrowser from "../../../dynamic-content-browser";
 import { ReactDynamicContentContext } from "../../../../contexts/dynamic-content-context";
+import {
+	st as layoutStyle,
+	classes as layoutClasses,
+} from "../../../layout/layout.st.css";
 
 const getTriggerComp = (
 	type: DynamicContentTypes,
@@ -35,8 +40,9 @@ export const LinkSelector = ({
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
 	const queryContext = useContext(ReactQueryContext);
-	const { popoverRef } = useContext(ReactLayoutContext);
+	const { popoverRef, locale } = useContext(ReactLayoutContext);
 	const { localeInfo } = useContext(ReactLayoutContext);
+	const { theme } = useContext(ReactThemeContext);
 
 	const { query } = queryContext;
 	const { getQueryUrl, registerNode, onExit } = query;
@@ -56,9 +62,15 @@ export const LinkSelector = ({
 			evt.stopPropagation();
 			return false;
 		};
-		return <Link key={key} componentData={componentData} onClick={onClick} />;
+		return (
+			<Link
+				key={key}
+				componentData={componentData}
+				onClick={onClick}
+				className={className}
+			/>
+		);
 	}
-
 	return (
 		<Popover
 			type={linkType}
@@ -69,7 +81,8 @@ export const LinkSelector = ({
 			onExit={() => onExit()}
 			side={localeInfo.right}
 			trigger={getTriggerComp(linkType, componentData, className)}
-			className={className}
+			portalled={true}
+			portalStyles={layoutStyle(layoutClasses.root, { locale, theme })}
 		>
 			<DynamicContentBrowser node={node} />
 		</Popover>
