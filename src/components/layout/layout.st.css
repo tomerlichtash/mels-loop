@@ -1,5 +1,7 @@
 @namespace "Layout";
 
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @st-import Page from "../../components/page/page.st.css";
 @st-import Header from "../../components/header/header.st.css";
 @st-import Nav from "../../components/nav/nav.st.css";
@@ -11,42 +13,19 @@
 @st-import Globals from "../../theme/globals.st.css";
 @st-import LightTheme from "../../theme/light-theme.st.css";
 
-@st-import [PageWidth, level0, level1, level2, level5, level4, primary2] from '../../theme/common.st.css';
+@st-import [PageWidth, level0, level1, level2, level5, level6, level4, primary2, accent1, primary2, topLevelIndex] from '../../theme/common.st.css';
 @st-import [heading6, bodyTextNormal, LatinText, HebrewText] from '../../theme/typography.st.css';
-@st-import [boxSizing, preventSelection] from '../../theme/mixins.st.css';
+@st-import [boxSizing, preventSelection] from "../../theme/mixins.st.css";
 
-@st-scope .root {
-	Popover:type(annotation)::trigger,
-	Popover:type(glossary)::trigger {
-		display: inline-block;
-    line-height: 24px;
-		color: blue;
-	}
-	Popover:type(glossary)::triggerWrapper {
-		border-radius: 4px;
-	}
-	Popover:type(annotation)::trigger:hover,
-	Popover:type(glossary)[data-state="closed"]::trigger:hover,
-	Popover:type(glossary)[data-state="closed"]::trigger:hover::after {
-		color: orange;
-	}
-	Popover:type(glossary)[data-state="open"]::triggerWrapper,
-	Popover:type(glossary)[data-state="open"]::triggerWrapper:hover {
-		background-color: value(primary2);
-		color: value(level0);
-	}
-	Popover:type(glossary)::trigger::after {
-		-st-mixin: preventSelection;
-		content: '※';
-		top: -5px;
-		position: relative;
-	}
-	Popover:type(glossary)[data-state="open"]::triggerWrapper::after {
-		color: value(level0);
-	}
-	Popover::content {
-		margin-top: 20px;
-	}
+:vars {
+	linkColor: value(accent1);
+	linkHoverColor: value(primary2);
+}
+.linkStyle {
+	color: value(linkColor);
+}
+.linkStyle:hover {
+	color: value(linkHoverColor);
 }
 
 .root {
@@ -89,7 +68,7 @@
 	-st-mixin: boxSizing;
 	position: fixed;
 	width: 100%;
-	z-index: 1;
+	z-index: value(topLevelIndex);
 }
 
 .siteHeader {
@@ -129,23 +108,12 @@
 .localeSelector {
 	-st-extends: LocaleSelector;
 	-st-states: locale(string);
-  justify-content: right;
-	display: inline-block;
 	border-radius: 6px;
-	border: 1px solid value(level4);
+	border-color: value(level4);
 	overflow: hidden;
-}
-.localeSelector::item:locale(en) {
-	-st-mixin: LatinText;
-}
-.localeSelector::item:locale(he) {
-	-st-mixin: HebrewText;
 }
 .localeSelector::item:selected {
 	background-color: value(level4);
-}
-.localeSelector::list {
-	display: flex;
 }
 .localeSelector::item:first-child {
 	border-top-left-radius: 6px;
@@ -157,7 +125,6 @@
 }
 .localeSelector::item {
 	padding: 0.25rem 0.5rem;
-	display: block;
 }
 .localeSelector::item {
 	width: 30px;
@@ -165,6 +132,12 @@
 }
 .localeSelector::item:hover {
 	background-color: value(level5);
+}
+.localeSelector::item:locale(en) {
+	-st-mixin: LatinText;
+}
+.localeSelector::item:locale(he) {
+	-st-mixin: HebrewText;
 }
 
 /* @media (min-width: 320px) and (max-width: 767px) {
@@ -174,11 +147,3 @@
 } */
 
 .scrollable {}
-
-.popoverRef {
-	position: fixed;
-	top: 0;
-	right: 0;
-	width: 50%;
-	height: 100vh;
-}
