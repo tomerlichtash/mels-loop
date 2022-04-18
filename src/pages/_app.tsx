@@ -8,6 +8,7 @@ import { ILayoutContext } from "../interfaces/layout-context";
 import { ReactLayoutContext } from "../contexts/layout-context";
 import { QueryContext, ReactQueryContext } from "../contexts/query-context";
 import { PageContext, ReactPageContext } from "../contexts/page-context";
+import { ReactThemeContext } from "../contexts/theme-context";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
 import { getPathData, getSiteTitle, getSiteSubtitle } from "../config/pages";
 import { QueryManager } from "../contexts/query-manager";
@@ -19,6 +20,7 @@ function App({ Component, pageProps }: AppProps) {
 	const pathData = getPathData(router.route);
 	const queryContext = new QueryContext(new QueryManager({ _router: router }));
 	const contentContext = new PageContext(new DynamicContentServer());
+	const themeContext = { theme: "light" };
 	const layoutContext: ILayoutContext = {
 		locale,
 		compLocale: pathData?.locale,
@@ -54,9 +56,11 @@ function App({ Component, pageProps }: AppProps) {
 	return (
 		<ReactQueryContext.Provider value={queryContext}>
 			<ReactLayoutContext.Provider value={layoutContext}>
-				<ReactPageContext.Provider value={contentContext}>
-					<Component {...pageProps} />
-				</ReactPageContext.Provider>
+				<ReactThemeContext.Provider value={themeContext}>
+					<ReactPageContext.Provider value={contentContext}>
+						<Component {...pageProps} />
+					</ReactPageContext.Provider>
+				</ReactThemeContext.Provider>
 			</ReactLayoutContext.Provider>
 		</ReactQueryContext.Provider>
 	);
