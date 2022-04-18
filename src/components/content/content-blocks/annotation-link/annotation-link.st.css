@@ -1,16 +1,16 @@
 @namespace "AnnotationLink";
 
-@st-import [preventSelection] from "../../../../theme/mixins.st.css";
+@st-import [preventSelection, verticalAlignSuper] from "../../../../theme/mixins.st.css";
 
 .root {
-  -st-mixin: preventSelection;
+  -st-mixin: preventSelection, verticalAlignSuper;
   font-weight: 600;
-  line-height: 12px;
 }
 
 .root::before,
 .root::after {
   color: #000;
+  font-weight: 300;
 }
 
 .root::before {
