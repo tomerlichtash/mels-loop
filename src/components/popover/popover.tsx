@@ -1,5 +1,4 @@
 import React from "react";
-import * as RadixPopover from "@radix-ui/react-popover";
 import ScrollArea from "../scrollbar";
 import { PopoverToolbar } from "./popover-toolbar";
 import { Direction } from "../../interfaces/layout-context";
@@ -7,6 +6,13 @@ import { IPopoverContext } from "../../interfaces/IPopoverContext";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 import { useToolbar } from "./useToolbar";
 import { st, classes } from "./popover.st.css";
+
+import {
+	PopoverRoot,
+	PopoverTrigger,
+	PopoverContent,
+	PopoverArrow,
+} from "../radix-primitives";
 
 export interface IPopoverProps {
 	id: string;
@@ -41,15 +47,15 @@ export const Popover = ({
 
 	return (
 		<ReactPopoverContext.Provider value={ctx}>
-			<RadixPopover.Root>
-				<RadixPopover.Trigger asChild>
+			<PopoverRoot>
+				<PopoverTrigger asChild>
 					<span className={st(classes.root, { type })} {...forcePopoverProp}>
 						<span className={classes.trigger} tabIndex={1}>
 							<span className={st(classes.triggerWrapper)}>{trigger}</span>
 						</span>
 					</span>
-				</RadixPopover.Trigger>
-				<RadixPopover.Content
+				</PopoverTrigger>
+				<PopoverContent
 					forceMount={forcePopover ? forcePopover : null}
 					side={side}
 					align="center"
@@ -62,10 +68,10 @@ export const Popover = ({
 							<ScrollArea height="300px">{children}</ScrollArea>
 						</div>
 					</div>
-					<RadixPopover.Arrow />
+					<PopoverArrow />
 					<PopoverToolbar items={toolbar.items} query={query} onExit={onExit} />
-				</RadixPopover.Content>
-			</RadixPopover.Root>
+				</PopoverContent>
+			</PopoverRoot>
 		</ReactPopoverContext.Provider>
 	);
 };

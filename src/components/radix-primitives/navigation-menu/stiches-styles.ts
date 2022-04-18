@@ -8,7 +8,7 @@ import {
 	fadeIn,
 	fadeOut,
 } from "./stiches-keyframes";
-import { stVars } from "../../theme/common.st.css";
+import { stVars } from "../../../theme/common.st.css";
 
 export const styledContentStyle = {
 	position: "absolute",

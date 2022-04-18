@@ -6,7 +6,7 @@ import {
 	Tooltip,
 	TooltipTrigger,
 	TooltipContent,
-} from "../tooltip/tooltip";
+} from "../radix-primitives";
 import { classes } from "./copy-url-button.st.css";
 
 export interface ICopyUrlButtonProps {
