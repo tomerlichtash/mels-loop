@@ -1495,7 +1495,7 @@
     "@radix-ui/react-toggle" "0.1.4"
     "@radix-ui/react-use-controllable-state" "0.1.0"
 
-"@radix-ui/react-toggle@0.1.4":
+"@radix-ui/react-toggle@0.1.4", "@radix-ui/react-toggle@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-toggle/-/react-toggle-0.1.4.tgz#c5c63f7cc5a03556bb58e0a763735b41bb0331f9"
   dependencies:
