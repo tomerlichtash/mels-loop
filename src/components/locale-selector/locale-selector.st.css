@@ -12,9 +12,10 @@
 .root {
 	-st-states: locale(string), isOpen(boolean);
 	-st-mixin: boxSizing;
+  justify-content: right;
+	display: inline-block;
 	cursor: pointer;
-	display: flex;
-	border-radius: 8px;
+	border: 1px solid black;
 }
 .root:locale(en) {
 	direction: ltr;
@@ -36,7 +37,10 @@
 	-st-states: locale(enum(en, he)), selected(boolean);
 	border: none;
 	padding: 0;
+	display: block;
 	cursor: pointer;
 }
 
-.list {}
+.list {
+	display: flex;
+}
