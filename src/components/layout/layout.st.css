@@ -1,7 +1,5 @@
 @namespace "Layout";
 
-/* @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
-
 @st-import Page from "../../components/page/page.st.css";
 @st-import Header from "../../components/header/header.st.css";
 @st-import Nav from "../../components/nav/nav.st.css";
