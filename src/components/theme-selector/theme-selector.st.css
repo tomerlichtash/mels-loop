@@ -1,0 +1,22 @@
+@namespace "ThemeSelector";
+
+.root {
+	-st-states: dark(boolean);
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 50%;
+}
+
+.root:not(:dark) {
+	border: 1px solid blue;
+}
+
+.root:dark {
+	border: 1px solid red;
+}
+
+.icon {
+}

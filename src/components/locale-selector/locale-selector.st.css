@@ -16,6 +16,7 @@
 	display: inline-block;
 	cursor: pointer;
 	border: 1px solid black;
+	overflow: hidden;
 }
 .root:locale(en) {
 	direction: ltr;

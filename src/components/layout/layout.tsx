@@ -6,6 +6,7 @@ import Footer from "../footer";
 import { MobileNav } from "../nav/nav-mobile";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
+import ThemeSelector from "../theme-selector";
 import { useRouter } from "next/router";
 import { useWindowSize, ISize } from "./use-window-size";
 import { HEADER_LOCALE, FOOTER_LOCALE } from "../../locales/components";
@@ -14,12 +15,12 @@ import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ReactThemeContext } from "../../contexts/theme-context";
+import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
-import { st, classes } from "./layout.st.css";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
-import { ReactQueryContext } from "../../contexts/query-context";
+import { st, classes } from "./layout.st.css";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
@@ -127,12 +128,12 @@ export default function Layout({ children }: ComponentProps) {
 										className={classes.nav}
 										items={translateItems(navItems, translate)}
 									/>
-
 									<LocaleSelector
 										options={localeSelectorOptions}
 										onLocaleChange={onLocaleChange}
 										className={st(classes.localeSelector, { locale })}
 									/>
+									<ThemeSelector />
 								</div>
 							)}
 						</div>
@@ -145,11 +146,6 @@ export default function Layout({ children }: ComponentProps) {
 							</div>
 						</ScrollArea>
 					</div>
-					{/* <div
-						id="popoverRef"
-						ref={popoverRef}
-						className={classes.popoverRef}
-					></div> */}
 				</div>
 
 				{isMobile && (
