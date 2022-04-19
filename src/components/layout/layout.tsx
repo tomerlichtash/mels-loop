@@ -110,7 +110,7 @@ export default function Layout({ children }: ComponentProps) {
 				className={st(classes.root, {
 					locale,
 					isMobile,
-					theme,
+					theme: "light",
 				})}
 				id="outer-container"
 			>

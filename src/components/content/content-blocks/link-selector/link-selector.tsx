@@ -9,7 +9,7 @@ import { ContentIterator } from "../../content-iterator";
 import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
-import { ReactThemeContext } from "../../../../contexts/theme-context";
+// import { ReactThemeContext } from "../../../../contexts/theme-context";
 import { ReactLayoutContext } from "../../../../contexts/layout-context";
 import { ReactQueryContext } from "../../../../contexts/query-context";
 import DynamicContentBrowser from "../../../dynamic-content-browser";
@@ -42,7 +42,7 @@ export const LinkSelector = ({
 	const queryContext = useContext(ReactQueryContext);
 	const { popoverRef, locale } = useContext(ReactLayoutContext);
 	const { localeInfo } = useContext(ReactLayoutContext);
-	const { theme } = useContext(ReactThemeContext);
+	// const { theme } = useContext(ReactThemeContext);
 
 	const { query } = queryContext;
 	const { getQueryUrl, registerNode, onExit } = query;
@@ -82,7 +82,7 @@ export const LinkSelector = ({
 			side={localeInfo.right}
 			trigger={getTriggerComp(linkType, componentData, className)}
 			portalled={true}
-			portalStyles={layoutStyle(layoutClasses.root, { locale, theme })}
+			portalStyles={layoutStyle(layoutClasses.root, { locale, theme: "light" })}
 		>
 			<DynamicContentBrowser node={node} />
 		</Popover>
