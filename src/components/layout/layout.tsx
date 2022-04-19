@@ -15,21 +15,21 @@ import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ReactThemeContext } from "../../contexts/theme-context";
-import { ReactQueryContext } from "../../contexts/query-context";
+// import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
-import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
+// import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
 
-const ICON_ANIMATOR_PROPS: IFavIconProps = {
-	type: "rotate",
-	durationSeconds: 2,
-	height: 32,
-	width: 32,
-	debug: true,
-	image: "/assets/ml-logo.png",
-};
+// const ICON_ANIMATOR_PROPS: IFavIconProps = {
+// 	type: "rotate",
+// 	durationSeconds: 2,
+// 	height: 32,
+// 	width: 32,
+// 	debug: true,
+// 	image: "/assets/ml-logo.png",
+// };
 
 export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
@@ -60,37 +60,37 @@ export default function Layout({ children }: ComponentProps) {
 	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
-	const qc = useContext(ReactQueryContext);
-	const { getLine } = qc.query;
+	// const qc = useContext(ReactQueryContext);
+	// const { getLine } = qc.query;
 
-	useEffect(() => {
-		if (getLine > -1) {
-			const scrollProps: ScrollIntoViewOptions = {
-				behavior: "smooth",
-				block: "center",
-			};
-			setTimeout(() => {
-				const el = window.document.getElementById(`line${getLine}`);
-				el.scrollIntoView(scrollProps);
-			}, 200);
-		}
-	});
+	// useEffect(() => {
+	// 	if (getLine > -1) {
+	// 		const scrollProps: ScrollIntoViewOptions = {
+	// 			behavior: "smooth",
+	// 			block: "center",
+	// 		};
+	// 		setTimeout(() => {
+	// 			const el = window.document.getElementById(`line${getLine}`);
+	// 			el.scrollIntoView(scrollProps);
+	// 		}, 200);
+	// 	}
+	// });
 
-	useEffect(() => {
-		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-	}, [currentUrl, locale]);
+	// useEffect(() => {
+	// 	new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
+	// }, [currentUrl, locale]);
 
-	useEffect(() => {
-		const handleRouteChange = () => {
-			new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-		};
+	// useEffect(() => {
+	// 	const handleRouteChange = () => {
+	// 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
+	// 	};
 
-		router.events.on("routeChangeStart", handleRouteChange);
-		// unsubscribe on unmount
-		return () => {
-			router.events.off("routeChangeStart", handleRouteChange);
-		};
-	}, [router.events]);
+	// 	router.events.on("routeChangeStart", handleRouteChange);
+	// 	// unsubscribe on unmount
+	// 	return () => {
+	// 		router.events.off("routeChangeStart", handleRouteChange);
+	// 	};
+	// }, [router.events]);
 
 	return (
 		<>
