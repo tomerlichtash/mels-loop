@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
@@ -14,13 +14,20 @@ import { ComponentProps } from "../../interfaces/models";
 import { localeLabelPrefix } from "../../locales/locales";
 import { IOption } from "../dropdown/option";
 import { ReactLayoutContext } from "../../contexts/layout-context";
-import { ReactThemeContext } from "../../contexts/theme-context";
 import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
+
+import {
+	ThemeContext,
+	ReactThemeContext,
+	IThemeContext,
+	Themes,
+} from "../../contexts/theme-context";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
@@ -32,9 +39,18 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 };
 
 export default function Layout({ children }: ComponentProps) {
+	const [lsTheme, setLSTheme] = useLocalStorage<Themes>("theme", "light");
+	const [theme, setTheme] = useState<Themes>(null);
+	const themeContext: IThemeContext = new ThemeContext({
+		theme,
+		setTheme,
+		setLSTheme,
+	});
+	useEffect(() => setTheme(lsTheme), [lsTheme, theme]);
+
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { theme, isDarkTheme, toggleTheme } = useContext(ReactThemeContext);
+	// const { theme, isDarkTheme, toggleTheme } = useContext(ReactThemeContext);
 	const { translate, getSiteTitle, getSiteSubtitle /*, popoverRef*/ } =
 		useContext(ReactLayoutContext);
 
@@ -105,61 +121,63 @@ export default function Layout({ children }: ComponentProps) {
 				<meta name="og:title" content={title} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div
-				className={st(classes.root, {
-					locale,
-					isMobile,
-					theme,
-				})}
-				id="outer-container"
-			>
-				<div id="page-wrap">
-					<div className={classes.topBar}>
-						<div className={classes.siteHeader}>
-							<Header
-								className={classes.header}
-								compKeys={HEADER_LOCALE}
-								isHome={router.asPath === "/"}
-							/>
-							{!isMobile && (
-								<div className={classes.primaryNav}>
-									<NavMenu
-										className={classes.nav}
-										items={translateItems(navItems, translate)}
-									/>
-									<LocaleSelector
-										options={localeSelectorOptions}
-										onLocaleChange={onLocaleChange}
-										className={st(classes.localeSelector, { locale })}
-									/>
-									<ThemeSelector
-										theme={theme}
-										isDarkTheme={isDarkTheme}
-										toggleTheme={toggleTheme}
-									/>
+			<ReactThemeContext.Provider value={themeContext}>
+				<div
+					className={st(classes.root, {
+						locale,
+						isMobile,
+						theme,
+					})}
+					id="outer-container"
+				>
+					<div id="page-wrap">
+						<div className={classes.topBar}>
+							<div className={classes.siteHeader}>
+								<Header
+									className={classes.header}
+									compKeys={HEADER_LOCALE}
+									isHome={router.asPath === "/"}
+								/>
+								{!isMobile && (
+									<div className={classes.primaryNav}>
+										<NavMenu
+											className={classes.nav}
+											items={translateItems(navItems, translate)}
+										/>
+										<LocaleSelector
+											options={localeSelectorOptions}
+											onLocaleChange={onLocaleChange}
+											className={st(classes.localeSelector, { locale })}
+										/>
+										<ThemeSelector
+											theme={theme}
+											// isDarkTheme={isDarkTheme}
+											// toggleTheme={toggleTheme}
+										/>
+									</div>
+								)}
+							</div>
+						</div>
+						<div className={classes.scrollablePage}>
+							<ScrollArea>
+								<div className={classes.scrollable}>
+									<Page className={classes.page} nodes={children} />
+									<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
 								</div>
-							)}
+							</ScrollArea>
 						</div>
 					</div>
-					<div className={classes.scrollablePage}>
-						<ScrollArea>
-							<div className={classes.scrollable}>
-								<Page className={classes.page} nodes={children} />
-								<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
-							</div>
-						</ScrollArea>
-					</div>
-				</div>
 
-				{isMobile && (
-					<MobileNav
-						className={classes.mobileNav}
-						right={locale === "en"}
-						onLocaleChange={onLocaleChange}
-						localeOptions={localeSelectorOptions}
-					/>
-				)}
-			</div>
+					{isMobile && (
+						<MobileNav
+							className={classes.mobileNav}
+							right={locale === "en"}
+							onLocaleChange={onLocaleChange}
+							localeOptions={localeSelectorOptions}
+						/>
+					)}
+				</div>
+			</ReactThemeContext.Provider>
 			<Script
 				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"
 				strategy="afterInteractive"
