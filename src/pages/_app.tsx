@@ -19,6 +19,7 @@ function App({ Component, pageProps }: AppProps) {
 	const queryContext = new QueryContext(new QueryManager({ router }));
 	const localeContext = new LocaleContext({ router });
 	const contentContext = new PageContext(new DynamicContentServer());
+
 	const [lsTheme, setLSTheme] = useLocalStorage<Themes>("theme", "light");
 	const [theme, setTheme] = useState<Themes>(null);
 	const themeContext: IThemeContext = new ThemeContext({
@@ -26,7 +27,7 @@ function App({ Component, pageProps }: AppProps) {
 		setTheme,
 		setLSTheme,
 	});
-	useEffect(() => setTheme(lsTheme), [lsTheme]);
+	// useEffect(() => setTheme(lsTheme), [lsTheme]);
 
 	return (
 		<ReactQueryContext.Provider value={queryContext}>
