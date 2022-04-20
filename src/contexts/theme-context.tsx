@@ -19,9 +19,6 @@ export class ThemeContext implements IThemeContext {
 	private _setState: (theme: Themes) => void;
 	private _setLocalStorage: (theme: Themes) => void;
 	constructor(props: IThemeContextProps) {
-		if (!props) {
-			return;
-		}
 		const { theme, setTheme, setLSTheme } = props;
 		this._theme = theme;
 		this._setState = setTheme;
@@ -29,7 +26,7 @@ export class ThemeContext implements IThemeContext {
 	}
 
 	private setTheme(theme: Themes) {
-		localStorage.clear();
+		// localStorage.clear();
 		this._setState(theme);
 		this._setLocalStorage(theme);
 	}
@@ -47,6 +44,12 @@ export class ThemeContext implements IThemeContext {
 	};
 }
 
-const ctx = createContext<IThemeContext>(new ThemeContext(null));
+const ctx = createContext<IThemeContext>(
+	new ThemeContext({
+		theme: "light",
+		setTheme: () => null,
+		setLSTheme: () => null,
+	})
+);
 
 export const ReactThemeContext: Context<IThemeContext> = ctx;
