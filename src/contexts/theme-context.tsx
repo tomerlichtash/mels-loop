@@ -20,7 +20,7 @@ export class ThemeContext implements IThemeContext {
 	private _setLocalStorage: (theme: Themes) => void;
 	constructor(props: IThemeContextProps) {
 		if (!props) {
-			return null;
+			return;
 		}
 		const { theme, setTheme, setLSTheme } = props;
 		this._theme = theme;

@@ -34,7 +34,7 @@ function App({ Component, pageProps }: AppProps) {
 		setTheme,
 		setLSTheme,
 	});
-	useEffect(() => setTheme(lsTheme), [lsTheme, theme, setTheme]);
+	useEffect(() => setTheme(lsTheme), [lsTheme, theme]);
 
 	const layoutContext: ILayoutContext = {
 		locale,
