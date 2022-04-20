@@ -27,8 +27,8 @@ export class ThemeContext implements IThemeContext {
 
 	private setTheme(theme: Themes) {
 		// localStorage.clear();
-		// this._setState(theme);
-		// this._setLocalStorage(theme);
+		this._setState(theme);
+		this._setLocalStorage(theme);
 	}
 
 	public get theme() {

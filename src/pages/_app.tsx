@@ -27,7 +27,11 @@ function App({ Component, pageProps }: AppProps) {
 		setTheme,
 		setLSTheme,
 	});
-	// useEffect(() => setTheme(lsTheme), [lsTheme]);
+	useEffect(() => {
+		if (lsTheme !== theme) {
+			setTheme(lsTheme);
+		}
+	}, [lsTheme, theme]);
 
 	return (
 		<ReactQueryContext.Provider value={queryContext}>
