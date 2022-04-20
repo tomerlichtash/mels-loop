@@ -4,9 +4,10 @@ import { SunIcon } from "@radix-ui/react-icons";
 import { st, classes } from "./theme-selector.st.css";
 import { ReactThemeContext } from "../../contexts/theme-context";
 export interface IThemeSelectorProps extends ComponentProps {
-	isDarkTheme: boolean;
-	toggleTheme: () => void;
-	theme: string;
+	// isDarkTheme: boolean;
+	// toggleTheme: () => void;
+	// theme: string;
+	className?: string;
 }
 
 export const ThemeSelector = ({

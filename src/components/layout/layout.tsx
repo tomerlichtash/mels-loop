@@ -150,9 +150,9 @@ export default function Layout({ children }: ComponentProps) {
 											className={st(classes.localeSelector, { locale })}
 										/>
 										<ThemeSelector
-											theme={theme}
-											// isDarkTheme={isDarkTheme}
-											// toggleTheme={toggleTheme}
+										// theme={theme}
+										// isDarkTheme={isDarkTheme}
+										// toggleTheme={toggleTheme}
 										/>
 									</div>
 								)}
