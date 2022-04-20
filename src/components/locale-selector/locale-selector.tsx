@@ -1,22 +1,19 @@
 import React, { useContext } from "react";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
-import { IOption } from "../dropdown/option";
 import { Button } from "../ui";
 import { ToggleGroupRoot, ToggleGroupItem } from "../radix-primitives";
 import { st, classes } from "./locale-selector.st.css";
 
 export interface LocaleSelectorProps extends ComponentProps {
-	options: IOption[];
 	onLocaleChange: (localeId: string) => Promise<boolean>;
 }
 
 export const LocaleSelector = ({
-	options,
 	onLocaleChange,
 	className,
 }: LocaleSelectorProps): JSX.Element => {
-	const { locale } = useContext(ReactLayoutContext);
+	const { locale, locales, getLocaleSymbol } = useContext(ReactLocaleContext);
 	return (
 		<div
 			className={st(classes.root, className)}
@@ -33,22 +30,23 @@ export const LocaleSelector = ({
 				}}
 			>
 				<ul className={classes.list}>
-					{options.map((option) => {
+					{locales.map((id) => {
+						const localeLabel = getLocaleSymbol(id);
 						return (
 							<ToggleGroupItem
-								key={option.id}
+								key={id}
 								tabIndex={1}
 								asChild
-								title={option.label}
-								value={option.id}
+								title={localeLabel}
+								value={id}
 							>
 								<li
 									className={st(classes.item, {
-										locale: option.id,
-										selected: locale === option.id,
+										locale: id,
+										selected: locale === id,
 									})}
 								>
-									<Button label={option.label} />
+									<Button label={localeLabel} />
 								</li>
 							</ToggleGroupItem>
 						);

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import {
@@ -10,14 +10,9 @@ import {
 } from "@radix-ui/react-icons";
 import { st, classes } from "./footer.st.css";
 
-export const Footer = ({
-	compKeys,
-	className,
-}: ComponentProps): JSX.Element => {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate } = layoutContext;
-	const licenseYears = `${new Date().getFullYear()}`;
-	const { siteTitle, siteLicense } = compKeys;
+export const Footer = ({ className }: ComponentProps): JSX.Element => {
+	const { siteTitle, siteLicense } = useContext(ReactLocaleContext);
+	const licenseYears = `2021-${new Date().getFullYear()}`;
 	return (
 		<footer className={st(classes.root, className)}>
 			<div className={classes.strip}></div>
@@ -26,10 +21,8 @@ export const Footer = ({
 					<div className={st(classes.column, { size: 3 })}>
 						<div className={classes.title}>
 							<time className={classes.year}>{licenseYears}</time>{" "}
-							<span className={classes.license}>
-								({translate(siteLicense)})
-							</span>{" "}
-							<span className={classes.title}>{translate(siteTitle)}</span>
+							<span className={classes.license}>({siteLicense})</span>{" "}
+							<span className={classes.title}>{siteTitle}</span>
 						</div>
 
 						<div className={classes.subtitle}>
