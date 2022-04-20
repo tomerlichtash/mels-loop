@@ -1,5 +1,4 @@
 import { Context, createContext } from "react";
-import { setTokenCookie } from "../pages/cookies";
 
 export type Themes = "light" | "dark" | null;
 
