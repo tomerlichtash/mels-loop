@@ -46,7 +46,7 @@ export class ThemeContext implements IThemeContext {
 
 const ctx = createContext<IThemeContext>(
 	new ThemeContext({
-		theme: "light",
+		theme: null,
 		setTheme: () => null,
 		setLSTheme: () => null,
 	})

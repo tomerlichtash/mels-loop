@@ -34,8 +34,7 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { theme } = useContext(ReactThemeContext);
-
+	const { theme, isDarkTheme, toggleTheme } = useContext(ReactThemeContext);
 	const { translate, getSiteTitle, getSiteSubtitle /*, popoverRef*/ } =
 		useContext(ReactLayoutContext);
 
@@ -133,7 +132,11 @@ export default function Layout({ children }: ComponentProps) {
 										onLocaleChange={onLocaleChange}
 										className={st(classes.localeSelector, { locale })}
 									/>
-									<ThemeSelector />
+									<ThemeSelector
+										theme={theme}
+										isDarkTheme={isDarkTheme}
+										toggleTheme={toggleTheme}
+									/>
 								</div>
 							)}
 						</div>

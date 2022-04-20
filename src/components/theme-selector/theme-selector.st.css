@@ -1,7 +1,7 @@
 @namespace "ThemeSelector";
 
 .root {
-	-st-states: dark(boolean);
+	-st-states: theme(enum(light, dark));
 	width: 25px;
 	height: 25px;
 	line-height: 25px;
@@ -10,13 +10,12 @@
 	border-radius: 50%;
 }
 
-.root:not(:dark) {
+.root:theme(light) {
 	border: 1px solid blue;
 }
 
-.root:dark {
+.root:theme(dark) {
 	border: 1px solid red;
 }
 
-.icon {
-}
+.icon {}
