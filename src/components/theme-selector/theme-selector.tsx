@@ -1,21 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { SunIcon } from "@radix-ui/react-icons";
 import { st, classes } from "./theme-selector.st.css";
-import { ReactThemeContext } from "../../contexts/theme-context";
+
 export interface IThemeSelectorProps extends ComponentProps {
-	// isDarkTheme: boolean;
-	// toggleTheme: () => void;
-	// theme: string;
-	className?: string;
+	isDarkTheme: boolean;
+	toggleTheme: () => void;
+	theme: string;
 }
 
 export const ThemeSelector = ({
-	// toggleTheme,
-	// theme,
+	toggleTheme,
+	theme,
 	className,
 }: IThemeSelectorProps): JSX.Element => {
-	const { theme, toggleTheme } = useContext(ReactThemeContext);
 	const label = `Toggle ${theme} Theme`;
 	return (
 		<div

@@ -11,13 +11,13 @@ import { PageContext, ReactPageContext } from "../contexts/page-context";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
 import { getPathData, getSiteTitle, getSiteSubtitle } from "../config/pages";
 import { QueryManager } from "../contexts/query-manager";
-// import {
-// 	ThemeContext,
-// 	ReactThemeContext,
-// 	IThemeContext,
-// 	Themes,
-// } from "../contexts/theme-context";
-// import { useLocalStorage } from "../hooks/useLocalStorage";
+import {
+	ThemeContext,
+	ReactThemeContext,
+	IThemeContext,
+	Themes,
+} from "../contexts/theme-context";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
@@ -27,14 +27,14 @@ function App({ Component, pageProps }: AppProps) {
 	const queryContext = new QueryContext(new QueryManager({ _router: router }));
 	const contentContext = new PageContext(new DynamicContentServer());
 
-	// const [lsTheme, setLSTheme] = useLocalStorage<Themes>("theme", "light");
-	// const [theme, setTheme] = useState<Themes>(null);
-	// const themeContext: IThemeContext = new ThemeContext({
-	// 	theme,
-	// 	setTheme,
-	// 	setLSTheme,
-	// });
-	// useEffect(() => setTheme(lsTheme), [lsTheme, theme]);
+	const [lsTheme, setLSTheme] = useLocalStorage<Themes>("theme", "light");
+	const [theme, setTheme] = useState<Themes>(null);
+	const themeContext: IThemeContext = new ThemeContext({
+		theme,
+		setTheme,
+		setLSTheme,
+	});
+	useEffect(() => setTheme(lsTheme), [lsTheme]);
 
 	const layoutContext: ILayoutContext = {
 		locale,
@@ -73,9 +73,9 @@ function App({ Component, pageProps }: AppProps) {
 		<ReactQueryContext.Provider value={queryContext}>
 			<ReactLayoutContext.Provider value={layoutContext}>
 				<ReactPageContext.Provider value={contentContext}>
-					{/* <ReactThemeContext.Provider value={themeContext}> */}
-					<Component {...pageProps} />
-					{/* </ReactThemeContext.Provider> */}
+					<ReactThemeContext.Provider value={themeContext}>
+						<Component {...pageProps} />
+					</ReactThemeContext.Provider>
 				</ReactPageContext.Provider>
 			</ReactLayoutContext.Provider>
 		</ReactQueryContext.Provider>
