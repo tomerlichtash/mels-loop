@@ -11,13 +11,13 @@ export interface IThemeSelectorProps extends ComponentProps {
 
 export const ThemeSelector = ({
 	toggleTheme,
-	theme,
+	// theme,
 	className,
 }: IThemeSelectorProps): JSX.Element => {
-	const label = `Toggle ${theme} Theme`;
+	const label = `Toggle Theme`;
 	return (
 		<div
-			className={st(classes.root, { theme }, className)}
+			className={st(classes.root, { theme: false }, className)}
 			title={label}
 			aria-label={label}
 			onClick={toggleTheme}

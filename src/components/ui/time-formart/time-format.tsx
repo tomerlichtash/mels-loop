@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentProps } from "../../../interfaces/models";
-// import { format } from "date-fns";
+import { format } from "date-fns";
 import { st, classes } from "./time-format.st.css";
 
 export interface DateProps extends ComponentProps {
@@ -8,12 +8,12 @@ export interface DateProps extends ComponentProps {
 	locale: string;
 }
 
-// const localeFormats = {
-// 	en: "MM-dd-yyyy",
-// 	he: "dd/MM/yyyy",
-// };
+const localeFormats = {
+	en: "MM-dd-yyyy",
+	he: "dd/MM/yyyy",
+};
 
-// const getLocaleFormat = (locale: string): string => localeFormats[locale];
+const getLocaleFormat = (locale: string): string => localeFormats[locale];
 
 export const TimeFormat = ({ dateStr, locale }: DateProps): JSX.Element => {
 	if (!dateStr) {
@@ -24,7 +24,7 @@ export const TimeFormat = ({ dateStr, locale }: DateProps): JSX.Element => {
 
 	return (
 		<time dateTime={date.toString()} className={st(classes.root)}>
-			{/* {format(date, getLocaleFormat(locale))} */}
+			{format(date, getLocaleFormat(locale))}
 		</time>
 	);
 };

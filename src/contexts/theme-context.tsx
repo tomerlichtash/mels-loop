@@ -1,37 +1,40 @@
 import { Context, createContext } from "react";
-
+import Cookies from "js-cookie";
 export type Themes = "light" | "dark" | null;
 
 export interface IThemeContextProps {
 	theme: Themes;
 	setTheme: (theme: Themes) => void;
-	setLSTheme: (theme: Themes) => void;
 }
 
 export interface IThemeContext {
-	theme: string;
+	theme: Themes;
+	setTheme: (theme: Themes) => void;
 	toggleTheme: () => void;
 	isDarkTheme: boolean;
 }
 
 export class ThemeContext implements IThemeContext {
-	private _theme: string;
+	private _theme: Themes;
 	private _setState: (theme: Themes) => void;
-	private _setLocalStorage: (theme: Themes) => void;
 	constructor(props: IThemeContextProps) {
-		const { theme, setTheme, setLSTheme } = props;
+		const { theme, setTheme } = props;
 		this._theme = theme;
 		this._setState = setTheme;
-		this._setLocalStorage = setLSTheme;
+		if (theme !== null) {
+			Cookies.set("theme", theme);
+		}
 	}
 
-	private setTheme(theme: Themes) {
-		// localStorage.clear();
+	public setTheme = (theme: Themes) => {
+		if (theme === this.theme) {
+			return;
+		}
+
 		this._setState(theme);
-		this._setLocalStorage(theme);
-	}
+	};
 
-	public get theme() {
+	public get theme(): Themes {
 		return this._theme;
 	}
 
@@ -48,7 +51,6 @@ const ctx = createContext<IThemeContext>(
 	new ThemeContext({
 		theme: null,
 		setTheme: () => null,
-		setLSTheme: () => null,
 	})
 );
 

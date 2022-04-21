@@ -136,7 +136,6 @@ export default function Layout({ children }: ComponentProps) {
 						</ScrollArea>
 					</div>
 				</div>
-
 				{isMobile && (
 					<MobileNav
 						className={classes.mobileNav}
