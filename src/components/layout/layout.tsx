@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
@@ -19,6 +19,7 @@ import ScrollArea from "../scrollbar";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
 import Cookies from "js-cookie";
+import { MenuGroup } from "../nav/types";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
@@ -35,10 +36,10 @@ export default function Layout({ children }: ComponentProps) {
 	const { theme, setTheme, isDarkTheme, toggleTheme } =
 		useContext(ReactThemeContext);
 
-	useEffect(() => {
+	useMemo(() => {
 		const storedTheme = (Cookies.get("theme") as Themes) || "light";
 		setTheme(storedTheme);
-	}, [theme, setTheme]);
+	}, [setTheme]);
 
 	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 
@@ -70,7 +71,6 @@ export default function Layout({ children }: ComponentProps) {
 	// 		}, 200);
 	// 	}
 	// });
-
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
 	}, [currentUrl, locale]);
@@ -86,6 +86,13 @@ export default function Layout({ children }: ComponentProps) {
 			router.events.off("routeChangeStart", handleRouteChange);
 		};
 	}, [router.events]);
+
+	const menuItems = useMemo(
+		() => translateItems(navItems, translate) as MenuGroup[],
+		[translate]
+	);
+
+	// const menuItems = translateItems(navItems, translate) as MenuGroup[]
 
 	return (
 		<>
@@ -118,10 +125,7 @@ export default function Layout({ children }: ComponentProps) {
 							/>
 							{!isMobile && (
 								<div className={classes.primaryNav}>
-									<NavMenu
-										className={classes.nav}
-										items={translateItems(navItems, translate)}
-									/>
+									<NavMenu className={classes.nav} items={menuItems} />
 									<LocaleSelector
 										onLocaleChange={onLocaleChange}
 										className={st(classes.localeSelector, { locale })}
