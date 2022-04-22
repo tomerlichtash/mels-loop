@@ -12,7 +12,7 @@ import { useWindowSize, ISize } from "./use-window-size";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ReactThemeContext, Themes } from "../../contexts/theme-context";
-import { ReactQueryContext } from "../../contexts/query-context";
+// import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
