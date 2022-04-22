@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import Script from "next/script";
+// import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
