@@ -55,8 +55,8 @@ export default function Layout({ children }: ComponentProps) {
 	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
-	const qc = useContext(ReactQueryContext);
-	const { getLine } = qc.query;
+	// const qc = useContext(ReactQueryContext);
+	// const { getLine } = qc.query;
 
 	// useEffect(() => {
 	// 	if (getLine > -1) {
