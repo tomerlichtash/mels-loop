@@ -24,6 +24,9 @@ export class ThemeContext implements IThemeContext {
 	}
 
 	public setTheme = (theme: Themes) => {
+		if (theme === this.theme) {
+			return;
+		}
 		this._setState(theme);
 		Cookies.set("theme", theme);
 	};
