@@ -11,13 +11,14 @@ import { useRouter } from "next/router";
 import { useWindowSize, ISize } from "./use-window-size";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { ReactThemeContext } from "../../contexts/theme-context";
+import { ReactThemeContext, Themes } from "../../contexts/theme-context";
 import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
+import Cookies from "js-cookie";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
@@ -31,7 +32,14 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { theme, isDarkTheme, toggleTheme } = useContext(ReactThemeContext);
+	const { theme, setTheme, isDarkTheme, toggleTheme } =
+		useContext(ReactThemeContext);
+
+	const storedTheme = (Cookies.get("theme") as Themes) || "light";
+	useEffect(() => {
+		setTheme(storedTheme);
+	}, [setTheme, storedTheme]);
+
 	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 
 	const router = useRouter();

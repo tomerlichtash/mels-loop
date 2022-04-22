@@ -12,7 +12,6 @@ import {
 	IThemeContext,
 	Themes,
 } from "../contexts/theme-context";
-import Cookies from "js-cookie";
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const router = useRouter();
@@ -25,8 +24,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 		theme,
 		setTheme,
 	});
-
-	useEffect(() => setTheme(Cookies.get("theme") as Themes), [theme]);
 
 	return (
 		<div>

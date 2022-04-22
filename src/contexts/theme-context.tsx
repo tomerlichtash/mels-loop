@@ -21,17 +21,11 @@ export class ThemeContext implements IThemeContext {
 		const { theme, setTheme } = props;
 		this._theme = theme;
 		this._setState = setTheme;
-		if (theme !== null) {
-			Cookies.set("theme", theme);
-		}
 	}
 
 	public setTheme = (theme: Themes) => {
-		if (theme === this.theme) {
-			return;
-		}
-
 		this._setState(theme);
+		Cookies.set("theme", theme);
 	};
 
 	public get theme(): Themes {
