@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-// import Script from "next/script";
+import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
 import Footer from "../footer";
@@ -126,11 +126,11 @@ export default function Layout({ children }: ComponentProps) {
 										onLocaleChange={onLocaleChange}
 										className={st(classes.localeSelector, { locale })}
 									/>
-									<ThemeSelector
+									{/* <ThemeSelector
 										theme={theme}
 										isDarkTheme={isDarkTheme}
 										toggleTheme={toggleTheme}
-									/>
+									/> */}
 								</div>
 							)}
 						</div>
@@ -152,18 +152,18 @@ export default function Layout({ children }: ComponentProps) {
 					/>
 				)}
 			</div>
-			{/* <Script
+			<Script
 				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"
-				strategy="afterInteractive"
+				strategy="lazyOnload"
 			/>
-			<Script id="google-analytics" strategy="afterInteractive">
+			<Script id="google-analytics" strategy="lazyOnload">
 				{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 					gtag('config', 'G-XLWMW4QLVE');
         `}
-			</Script> */}
+			</Script>
 		</>
 	);
 }
