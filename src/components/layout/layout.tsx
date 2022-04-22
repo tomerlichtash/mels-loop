@@ -71,21 +71,21 @@ export default function Layout({ children }: ComponentProps) {
 	// 	}
 	// });
 
-	useEffect(() => {
-		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-	}, [currentUrl, locale]);
+	// useEffect(() => {
+	// 	new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
+	// }, [currentUrl, locale]);
 
-	useEffect(() => {
-		const handleRouteChange = () => {
-			new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-		};
+	// useEffect(() => {
+	// 	const handleRouteChange = () => {
+	// 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
+	// 	};
 
-		router.events.on("routeChangeStart", handleRouteChange);
-		// unsubscribe on unmount
-		return () => {
-			router.events.off("routeChangeStart", handleRouteChange);
-		};
-	}, [router.events]);
+	// 	router.events.on("routeChangeStart", handleRouteChange);
+	// 	// unsubscribe on unmount
+	// 	return () => {
+	// 		router.events.off("routeChangeStart", handleRouteChange);
+	// 	};
+	// }, [router.events]);
 
 	return (
 		<>
