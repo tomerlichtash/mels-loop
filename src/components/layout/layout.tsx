@@ -58,18 +58,18 @@ export default function Layout({ children }: ComponentProps) {
 	const qc = useContext(ReactQueryContext);
 	const { getLine } = qc.query;
 
-	useEffect(() => {
-		if (getLine > -1) {
-			const scrollProps: ScrollIntoViewOptions = {
-				behavior: "smooth",
-				block: "center",
-			};
-			setTimeout(() => {
-				const el = window.document.getElementById(`line${getLine}`);
-				el.scrollIntoView(scrollProps);
-			}, 200);
-		}
-	});
+	// useEffect(() => {
+	// 	if (getLine > -1) {
+	// 		const scrollProps: ScrollIntoViewOptions = {
+	// 			behavior: "smooth",
+	// 			block: "center",
+	// 		};
+	// 		setTimeout(() => {
+	// 			const el = window.document.getElementById(`line${getLine}`);
+	// 			el.scrollIntoView(scrollProps);
+	// 		}, 200);
+	// 	}
+	// });
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
