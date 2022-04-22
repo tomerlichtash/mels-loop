@@ -36,9 +36,9 @@ export default function Layout({ children }: ComponentProps) {
 		useContext(ReactThemeContext);
 
 	const storedTheme = (Cookies.get("theme") as Themes) || "light";
-	// useEffect(() => {
-	// 	setTheme(storedTheme);
-	// }, [setTheme, storedTheme]);
+	useEffect(() => {
+		setTheme(storedTheme);
+	}, [setTheme, storedTheme]);
 
 	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 
