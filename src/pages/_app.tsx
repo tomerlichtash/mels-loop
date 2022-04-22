@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { LocaleContext, ReactLocaleContext } from "../contexts/locale-context";
@@ -26,8 +26,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 		setTheme,
 	});
 
-	const storedTheme = Cookies.get("theme") as Themes;
-	useMemo(() => setTheme(storedTheme), [storedTheme]);
+	useEffect(() => setTheme(Cookies.get("theme") as Themes), [theme]);
 
 	return (
 		<div>
