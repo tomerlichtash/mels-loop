@@ -36,7 +36,7 @@ export default function Layout({ children }: ComponentProps) {
 	const { theme, setTheme, isDarkTheme, toggleTheme } =
 		useContext(ReactThemeContext);
 
-	useMemo(() => {
+	useEffect(() => {
 		const storedTheme = (Cookies.get("theme") as Themes) || "light";
 		setTheme(storedTheme);
 	}, [setTheme]);
