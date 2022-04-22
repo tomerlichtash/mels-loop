@@ -152,7 +152,7 @@ export default function Layout({ children }: ComponentProps) {
 					/>
 				)}
 			</div>
-			<Script
+			{/* <Script
 				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"
 				strategy="afterInteractive"
 			/>
@@ -163,7 +163,7 @@ export default function Layout({ children }: ComponentProps) {
           gtag('js', new Date());
 					gtag('config', 'G-XLWMW4QLVE');
         `}
-			</Script>
+			</Script> */}
 		</>
 	);
 }
