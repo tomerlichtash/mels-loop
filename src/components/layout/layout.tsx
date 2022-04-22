@@ -55,37 +55,37 @@ export default function Layout({ children }: ComponentProps) {
 	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
-	const qc = useContext(ReactQueryContext);
-	const { getLine } = qc.query;
+	// const qc = useContext(ReactQueryContext);
+	// const { getLine } = qc.query;
 
-	useEffect(() => {
-		if (getLine > -1) {
-			const scrollProps: ScrollIntoViewOptions = {
-				behavior: "smooth",
-				block: "center",
-			};
-			setTimeout(() => {
-				const el = window.document.getElementById(`line${getLine}`);
-				el.scrollIntoView(scrollProps);
-			}, 200);
-		}
-	});
+	// useEffect(() => {
+	// 	if (getLine > -1) {
+	// 		const scrollProps: ScrollIntoViewOptions = {
+	// 			behavior: "smooth",
+	// 			block: "center",
+	// 		};
+	// 		setTimeout(() => {
+	// 			const el = window.document.getElementById(`line${getLine}`);
+	// 			el.scrollIntoView(scrollProps);
+	// 		}, 200);
+	// 	}
+	// });
 
-	useEffect(() => {
-		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-	}, [currentUrl, locale]);
+	// useEffect(() => {
+	// 	new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
+	// }, [currentUrl, locale]);
 
-	useEffect(() => {
-		const handleRouteChange = () => {
-			new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-		};
+	// useEffect(() => {
+	// 	const handleRouteChange = () => {
+	// 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
+	// 	};
 
-		router.events.on("routeChangeStart", handleRouteChange);
-		// unsubscribe on unmount
-		return () => {
-			router.events.off("routeChangeStart", handleRouteChange);
-		};
-	}, [router.events]);
+	// 	router.events.on("routeChangeStart", handleRouteChange);
+	// 	// unsubscribe on unmount
+	// 	return () => {
+	// 		router.events.off("routeChangeStart", handleRouteChange);
+	// 	};
+	// }, [router.events]);
 
 	return (
 		<>
