@@ -17,7 +17,7 @@ export class QueryManager implements IQueryManager {
 	public nodes: RefNode[];
 
 	constructor(props: IQueryManager) {
-		this._router = props?._router;
+		this._router = props?.router;
 		this.line = -1;
 		this.occIndex = -1;
 		this.key = null;

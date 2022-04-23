@@ -1,5 +1,5 @@
 import { ComponentProps } from "../../interfaces/models";
-import { IContentAuthors } from "../../locales/types";
+import { IContentAuthors } from "../../locales/languages/types/authors";
 
 type ItemType = "page" | "article" | "link";
 

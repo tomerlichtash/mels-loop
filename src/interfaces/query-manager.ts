@@ -9,7 +9,7 @@ export interface RefNode {
 }
 
 export interface IQueryManager {
-	_router: NextRouter | null;
+	router: NextRouter | null;
 	readonly asPath?: string;
 	readonly asSplitPath?: string[];
 	readonly getPathParams?: URLSearchParams;

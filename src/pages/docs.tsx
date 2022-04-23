@@ -6,26 +6,24 @@ import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
 import { usePageData } from "../components/usePageData";
-import { ReactLayoutContext } from "../contexts/layout-context";
+import { ReactLocaleContext } from "../contexts/locale-context";
 import { Button } from "../components/ui";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { st, classes } from "./docs.st.css";
 
 export default function Docs(props: IPageProps) {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, compLocale } = layoutContext;
+	const { siteTitle, pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
-	const { siteTitle, pageName } = compLocale;
 	const { metaData } = usePageData(props);
 	return (
 		<Layout>
 			<Head>
 				<title>
-					{translate(siteTitle)} - {translate(pageName)}
+					{siteTitle} - {pageName}
 				</title>
 			</Head>
 			<article className={st(classes.root, className)}>
-				<h1 className={classes.title}>{translate(compLocale.pageName)}</h1>
+				<h1 className={classes.title}>{pageName}</h1>
 				{metaData.length && (
 					<ul>
 						{metaData.map((page, index) => {

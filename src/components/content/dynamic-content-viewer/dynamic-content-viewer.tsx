@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ContentComponent } from "../index";
-import { ReactLayoutContext } from "../../../contexts/layout-context";
+import { ReactLocaleContext } from "../../../contexts/locale-context";
 import { DynamicContentTypes } from "../../../interfaces/dynamic-content";
 import { ComponentProps, IParsedPageData } from "../../../interfaces/models";
 import { ReactPageContext } from "../../../contexts/page-context";
@@ -20,7 +20,7 @@ export const DynamicContentViewer = ({
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
 	const [error, setError] = useState("");
-	const { translate, locale } = useContext(ReactLayoutContext);
+	const { translate, locale } = useContext(ReactLocaleContext);
 	const dynamicContentContext = useContext(ReactDynamicContentContext);
 	const elements = item && item.parsed;
 
