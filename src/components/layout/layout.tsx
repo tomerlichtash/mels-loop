@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
@@ -10,14 +10,16 @@ import ThemeSelector from "../theme-selector";
 import { useRouter } from "next/router";
 import { useWindowSize, ISize } from "./use-window-size";
 import { ComponentProps } from "../../interfaces/models";
-import { ReactThemeContext } from "../../contexts/theme-context";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { ReactQueryContext } from "../../contexts/query-context";
+import { ReactThemeContext, Themes } from "../../contexts/theme-context";
+// import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
+import Cookies from "js-cookie";
+import { MenuGroup } from "../nav/types";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
@@ -31,7 +33,9 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { theme, isDarkTheme, toggleTheme } = useContext(ReactThemeContext);
+	const { theme, setTheme, isDarkTheme, toggleTheme } =
+		useContext(ReactThemeContext);
+
 	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 
 	const router = useRouter();
@@ -47,21 +51,26 @@ export default function Layout({ children }: ComponentProps) {
 	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
-	const qc = useContext(ReactQueryContext);
-	const { getLine } = qc.query;
+	// const qc = useContext(ReactQueryContext);
+	// const { getLine } = qc.query;
 
-	useEffect(() => {
-		if (getLine > -1) {
-			const scrollProps: ScrollIntoViewOptions = {
-				behavior: "smooth",
-				block: "center",
-			};
-			setTimeout(() => {
-				const el = window.document.getElementById(`line${getLine}`);
-				el.scrollIntoView(scrollProps);
-			}, 200);
-		}
-	});
+	// useEffect(() => {
+	// 	if (getLine > -1) {
+	// 		const scrollProps: ScrollIntoViewOptions = {
+	// 			behavior: "smooth",
+	// 			block: "center",
+	// 		};
+	// 		setTimeout(() => {
+	// 			const el = window.document.getElementById(`line${getLine}`);
+	// 			el.scrollIntoView(scrollProps);
+	// 		}, 200);
+	// 	}
+	// });
+	const menuItems = useMemo(
+		() => translateItems(navItems, translate) as MenuGroup[],
+		[translate]
+	);
+	// const menuItems = translateItems(navItems, translate) as MenuGroup[]
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
@@ -78,6 +87,11 @@ export default function Layout({ children }: ComponentProps) {
 			router.events.off("routeChangeStart", handleRouteChange);
 		};
 	}, [router.events]);
+
+	useEffect(() => {
+		const storedTheme = (Cookies.get("theme") as Themes) || "light";
+		setTheme(storedTheme);
+	}, [setTheme]);
 
 	return (
 		<>
@@ -110,10 +124,7 @@ export default function Layout({ children }: ComponentProps) {
 							/>
 							{!isMobile && (
 								<div className={classes.primaryNav}>
-									<NavMenu
-										className={classes.nav}
-										items={translateItems(navItems, translate)}
-									/>
+									<NavMenu className={classes.nav} items={menuItems} />
 									<LocaleSelector
 										onLocaleChange={onLocaleChange}
 										className={st(classes.localeSelector, { locale })}
@@ -136,7 +147,6 @@ export default function Layout({ children }: ComponentProps) {
 						</ScrollArea>
 					</div>
 				</div>
-
 				{isMobile && (
 					<MobileNav
 						className={classes.mobileNav}
@@ -147,9 +157,9 @@ export default function Layout({ children }: ComponentProps) {
 			</div>
 			<Script
 				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"
-				strategy="afterInteractive"
+				strategy="lazyOnload"
 			/>
-			<Script id="google-analytics" strategy="afterInteractive">
+			<Script id="google-analytics" strategy="lazyOnload">
 				{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
