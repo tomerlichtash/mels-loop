@@ -36,11 +36,6 @@ export default function Layout({ children }: ComponentProps) {
 	const { theme, setTheme, isDarkTheme, toggleTheme } =
 		useContext(ReactThemeContext);
 
-	useEffect(() => {
-		const storedTheme = (Cookies.get("theme") as Themes) || "light";
-		setTheme(storedTheme);
-	}, [setTheme]);
-
 	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 
 	const router = useRouter();
@@ -71,6 +66,12 @@ export default function Layout({ children }: ComponentProps) {
 	// 		}, 200);
 	// 	}
 	// });
+	const menuItems = useMemo(
+		() => translateItems(navItems, translate) as MenuGroup[],
+		[translate]
+	);
+	// const menuItems = translateItems(navItems, translate) as MenuGroup[]
+
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
 	}, [currentUrl, locale]);
@@ -87,12 +88,10 @@ export default function Layout({ children }: ComponentProps) {
 		};
 	}, [router.events]);
 
-	const menuItems = useMemo(
-		() => translateItems(navItems, translate) as MenuGroup[],
-		[translate]
-	);
-
-	// const menuItems = translateItems(navItems, translate) as MenuGroup[]
+	useEffect(() => {
+		const storedTheme = (Cookies.get("theme") as Themes) || "light";
+		setTheme(storedTheme);
+	}, [setTheme]);
 
 	return (
 		<>
