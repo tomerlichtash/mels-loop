@@ -6,7 +6,7 @@ import { QueryContext, ReactQueryContext } from "../contexts/query-context";
 import { PageContext, ReactPageContext } from "../contexts/page-context";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
 import { QueryManager } from "../contexts/query-manager";
-import { ThemeCtx } from "../contexts/theme-context";
+import { ThemeContextProvider } from "../contexts/theme-context";
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const router = useRouter();
@@ -18,9 +18,9 @@ const App = ({ Component, pageProps }: AppProps) => {
 		<ReactQueryContext.Provider value={queryContext}>
 			<ReactLocaleContext.Provider value={localeContext}>
 				<ReactPageContext.Provider value={contentContext}>
-					<ThemeCtx>
+					<ThemeContextProvider>
 						<Component {...pageProps} />
-					</ThemeCtx>
+					</ThemeContextProvider>
 				</ReactPageContext.Provider>
 			</ReactLocaleContext.Provider>
 		</ReactQueryContext.Provider>

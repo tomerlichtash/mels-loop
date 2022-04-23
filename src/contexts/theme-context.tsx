@@ -5,6 +5,7 @@ import { classes as LightTheme } from "../theme/light-theme.st.css";
 import { classes as DarkTheme } from "../theme/dark-theme.st.css";
 
 export type Themes = "light" | "dark" | null;
+
 export interface IThemeContextProps {
 	theme: Themes;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,7 +30,7 @@ const themes = {
 	dark: [DarkTheme.root],
 };
 
-export function ThemeCtx({ children }: ThemeCtxProps) {
+export function ThemeContextProvider({ children }: ThemeCtxProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	const styleRef = useRef<HTMLStyleElement>(null);
 	const [theme, setTheme, _ref] = useTheme(

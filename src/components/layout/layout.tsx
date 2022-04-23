@@ -11,14 +11,13 @@ import { useRouter } from "next/router";
 import { useWindowSize, ISize } from "./use-window-size";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { ReactThemeContext } from "../../contexts/theme-context";
 import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
-import { st, classes } from "./layout.st.css";
 import { MenuGroup } from "../nav/types";
+import { st, classes } from "./layout.st.css";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
@@ -32,7 +31,6 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { setTheme } = useContext(ReactThemeContext);
 	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 
 	const router = useRouter();
@@ -120,8 +118,6 @@ export default function Layout({ children }: ComponentProps) {
 										onLocaleChange={onLocaleChange}
 										className={st(classes.localeSelector, { locale })}
 									/>
-									<button onClick={() => setTheme("dark")}>dark</button>
-									<button onClick={() => setTheme("light")}>light</button>
 									<ThemeSelector />
 								</div>
 							)}
