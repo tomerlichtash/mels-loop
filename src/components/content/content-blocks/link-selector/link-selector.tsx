@@ -9,7 +9,7 @@ import { ContentIterator } from "../../content-iterator";
 import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
-// import { ReactThemeContext } from "../../../../contexts/theme-context";
+import { ReactThemeContext } from "../../../../contexts/theme-context";
 import { ReactLocaleContext } from "../../../../contexts/locale-context";
 import { ReactQueryContext } from "../../../../contexts/query-context";
 import DynamicContentBrowser from "../../../dynamic-content-browser";
@@ -41,7 +41,7 @@ export const LinkSelector = ({
 	const dcContext = useContext(ReactDynamicContentContext);
 	const queryContext = useContext(ReactQueryContext);
 	const { locale, textDirection } = useContext(ReactLocaleContext);
-
+	const { themeRef } = useContext(ReactThemeContext);
 	const { query } = queryContext;
 	const { getQueryUrl, registerNode, onExit } = query;
 	const nodeWithQuery = registerNode(node);
@@ -79,7 +79,8 @@ export const LinkSelector = ({
 			side={textDirection === "ltr" ? "right" : "left"}
 			trigger={getTriggerComp(linkType, componentData, className)}
 			portalled={true}
-			portalStyles={layoutStyle(layoutClasses.root, { locale, theme: "light" })}
+			portalStyles={layoutStyle(layoutClasses.root, { locale })}
+			contentClassName={themeRef}
 		>
 			<DynamicContentBrowser node={node} />
 		</Popover>

@@ -46,5 +46,5 @@ export function useTheme<
 		};
 	}, [themes, theme, ref, styleRef]);
 
-	return [theme, setTheme] as const;
+	return [theme, setTheme, ref] as const;
 }

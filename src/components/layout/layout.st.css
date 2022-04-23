@@ -6,10 +6,7 @@
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import MobileNav from "../../components/nav/nav-mobile.st.css";
 @st-import Scrollable from "../../components/scrollbar/scrollbar.st.css";
-@st-import Popover from "../../components/popover/popover.st.css";
-
 @st-import Globals from "../../theme/globals.st.css";
-
 @st-import [PageWidth, level0, level1, level2, level5, level6, level4, primary2, accent1, primary2, topLevelIndex] from '../../theme/common.st.css';
 @st-import [heading6, bodyTextNormal, LatinText, HebrewText] from '../../theme/typography.st.css';
 @st-import [boxSizing, preventSelection] from "../../theme/mixins.st.css";

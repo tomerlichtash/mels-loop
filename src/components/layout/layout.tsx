@@ -12,7 +12,7 @@ import { useWindowSize, ISize } from "./use-window-size";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ReactThemeContext } from "../../contexts/theme-context";
-// import { ReactQueryContext } from "../../contexts/query-context";
+import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
@@ -48,25 +48,26 @@ export default function Layout({ children }: ComponentProps) {
 	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
-	// const qc = useContext(ReactQueryContext);
-	// const { getLine } = qc.query;
+	const { query } = useContext(ReactQueryContext);
+	const { getLine } = query;
 
-	// useEffect(() => {
-	// 	if (getLine > -1) {
-	// 		const scrollProps: ScrollIntoViewOptions = {
-	// 			behavior: "smooth",
-	// 			block: "center",
-	// 		};
-	// 		setTimeout(() => {
-	// 			const el = window.document.getElementById(`line${getLine}`);
-	// 			el.scrollIntoView(scrollProps);
-	// 		}, 200);
-	// 	}
-	// });
 	const menuItems = useMemo(
 		() => translateItems(navItems, translate) as MenuGroup[],
 		[translate]
 	);
+
+	useEffect(() => {
+		if (getLine > -1) {
+			const scrollProps: ScrollIntoViewOptions = {
+				behavior: "smooth",
+				block: "center",
+			};
+			setTimeout(() => {
+				const el = window.document.getElementById(`line${getLine}`);
+				el.scrollIntoView(scrollProps);
+			}, 200);
+		}
+	});
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
@@ -121,11 +122,7 @@ export default function Layout({ children }: ComponentProps) {
 									/>
 									<button onClick={() => setTheme("dark")}>dark</button>
 									<button onClick={() => setTheme("light")}>light</button>
-									<ThemeSelector
-									// theme={theme}
-									// isDarkTheme={isDarkTheme}
-									// toggleTheme={toggleTheme}
-									/>
+									<ThemeSelector />
 								</div>
 							)}
 						</div>

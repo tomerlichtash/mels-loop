@@ -25,6 +25,7 @@ export interface IPopoverProps {
 	side: Direction;
 	portalled?: boolean;
 	portalStyles?: string;
+	contentClassName?: string;
 	className?: string;
 }
 
@@ -35,9 +36,10 @@ export const Popover = ({
 	side,
 	forcePopover,
 	onExit,
-	// query,
+	query,
 	portalled,
 	portalStyles,
+	contentClassName,
 }: IPopoverProps): JSX.Element => {
 	const toolbar = useToolbar();
 	const ctx: IPopoverContext = {
@@ -66,9 +68,9 @@ export const Popover = ({
 					portalled={portalled}
 					className={portalStyles}
 				>
-					<div className={classes.content}>
+					<div className={st(classes.content, contentClassName)}>
 						<PopoverToolbar
-							// query={query}
+							query={query}
 							items={toolbar.items}
 							onExit={onExit}
 							className={st(classes.toolbar, "popoverToolbar")}

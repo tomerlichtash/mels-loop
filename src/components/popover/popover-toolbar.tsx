@@ -1,7 +1,7 @@
 import React from "react";
 import { IToolbarItem } from "../../interfaces/IPopoverContext";
 import { PopoverCloseButton } from "./popover-close-button";
-// import CopyUrlButton from "../copy-button";
+import CopyUrlButton from "../copy-button";
 import { st, classes } from "./popover-toolbar.st.css";
 
 export interface IPopoverToolbarProps {
@@ -15,6 +15,7 @@ export interface IPopoverToolbarProps {
 export const PopoverToolbar = ({
 	items,
 	onExit,
+	query,
 	className,
 }: IPopoverToolbarProps): JSX.Element => {
 	return (
@@ -22,7 +23,7 @@ export const PopoverToolbar = ({
 			<div className={classes.toolbarContainer}>
 				{items.map((item) => item.element)}
 			</div>
-			{/* {query && <CopyUrlButton query={query} />} */}
+			{query && <CopyUrlButton query={query} />}
 			<PopoverCloseButton onExit={onExit} />
 		</div>
 	);
