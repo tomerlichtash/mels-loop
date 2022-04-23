@@ -1,20 +1,14 @@
-import { Locale } from "./index";
-const { HE_IL, EN_US } = Locale;
+import { AvailableLocales } from "./languages/types/common";
 
-const langs = {
-	en: EN_US,
-	he: HE_IL,
-};
-
-export const translateFunc =
-	(langRef: string) =>
+export const _translate =
+	(langRef: string, langs: AvailableLocales) =>
 	(key: string, lang?: string): string => {
 		if (!key) {
 			return;
 		}
 		const ref = lang || langRef;
 		if (!langs[ref]) {
-			return `%MISSING_LOCALE_${ref}_%${key}%`;
+			return `%MISSING_LOCALE_${ref}_${key}%`;
 		} else if (!langs[ref][key]) {
 			return `%MISSING_KEY_${key}%`;
 		}

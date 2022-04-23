@@ -9,12 +9,9 @@ import LocaleSelector from "../locale-selector";
 import ThemeSelector from "../theme-selector";
 import { useRouter } from "next/router";
 import { useWindowSize, ISize } from "./use-window-size";
-import { HEADER_LOCALE, FOOTER_LOCALE } from "../../locales/components";
 import { ComponentProps } from "../../interfaces/models";
-import { localeLabelPrefix } from "../../locales/locales";
-import { IOption } from "../dropdown/option";
-import { ReactLayoutContext } from "../../contexts/layout-context";
 import { ReactThemeContext } from "../../contexts/theme-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
@@ -35,11 +32,10 @@ export default function Layout({ children }: ComponentProps) {
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
 	const { theme, isDarkTheme, toggleTheme } = useContext(ReactThemeContext);
-	const { translate, getSiteTitle, getSiteSubtitle /*, popoverRef*/ } =
-		useContext(ReactLayoutContext);
+	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 
 	const router = useRouter();
-	const { locale, locales, asPath: currentUrl } = router;
+	const { locale, asPath: currentUrl } = router;
 
 	function onLocaleChange(locale: string): Promise<boolean> {
 		return router.push(currentUrl, currentUrl, {
@@ -48,14 +44,6 @@ export default function Layout({ children }: ComponentProps) {
 		});
 	}
 
-	const localeSelectorOptions: IOption[] = locales.map((lang) => {
-		return {
-			id: lang,
-			label: translate(`${localeLabelPrefix}_${lang.toUpperCase()}`),
-		};
-	});
-	const title = translate(getSiteTitle());
-	const subtitle = translate(getSiteSubtitle());
 	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
@@ -95,14 +83,14 @@ export default function Layout({ children }: ComponentProps) {
 		<>
 			<Head>
 				<link rel="icon" type="image/png" href="/favicon-temp.png" />
-				<meta name="description" content={subtitle} />
+				<meta name="description" content={siteSubtitle} />
 				{/* <meta
 					property="og:image"
 					content={`https://og-image.vercel.app/${encodeURI(
 						title
 					)}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
 				/> */}
-				<meta name="og:title" content={title} />
+				<meta name="og:title" content={siteTitle} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
 			<div
@@ -118,7 +106,6 @@ export default function Layout({ children }: ComponentProps) {
 						<div className={classes.siteHeader}>
 							<Header
 								className={classes.header}
-								compKeys={HEADER_LOCALE}
 								isHome={router.asPath === "/"}
 							/>
 							{!isMobile && (
@@ -128,7 +115,6 @@ export default function Layout({ children }: ComponentProps) {
 										items={translateItems(navItems, translate)}
 									/>
 									<LocaleSelector
-										options={localeSelectorOptions}
 										onLocaleChange={onLocaleChange}
 										className={st(classes.localeSelector, { locale })}
 									/>
@@ -145,7 +131,7 @@ export default function Layout({ children }: ComponentProps) {
 						<ScrollArea>
 							<div className={classes.scrollable}>
 								<Page className={classes.page} nodes={children} />
-								<Footer className={classes.footer} compKeys={FOOTER_LOCALE} />
+								<Footer className={classes.footer} />
 							</div>
 						</ScrollArea>
 					</div>
@@ -156,7 +142,6 @@ export default function Layout({ children }: ComponentProps) {
 						className={classes.mobileNav}
 						right={locale === "en"}
 						onLocaleChange={onLocaleChange}
-						localeOptions={localeSelectorOptions}
 					/>
 				)}
 			</div>

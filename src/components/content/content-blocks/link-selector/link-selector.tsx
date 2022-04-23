@@ -9,8 +9,7 @@ import { ContentIterator } from "../../content-iterator";
 import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
 import Popover from "../../../popover";
-// import { ReactThemeContext } from "../../../../contexts/theme-context";
-import { ReactLayoutContext } from "../../../../contexts/layout-context";
+import { ReactLocaleContext } from "../../../../contexts/locale-context";
 import { ReactQueryContext } from "../../../../contexts/query-context";
 import DynamicContentBrowser from "../../../dynamic-content-browser";
 import { ReactDynamicContentContext } from "../../../../contexts/dynamic-content-context";
@@ -40,9 +39,7 @@ export const LinkSelector = ({
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
 	const queryContext = useContext(ReactQueryContext);
-	const { popoverRef, locale } = useContext(ReactLayoutContext);
-	const { localeInfo } = useContext(ReactLayoutContext);
-	// const { theme } = useContext(ReactThemeContext);
+	const { locale, textDirection } = useContext(ReactLocaleContext);
 
 	const { query } = queryContext;
 	const { getQueryUrl, registerNode, onExit } = query;
@@ -75,11 +72,10 @@ export const LinkSelector = ({
 		<Popover
 			type={linkType}
 			id={node.target}
-			popoverRef={popoverRef}
 			forcePopover={nodeWithQuery}
 			query={getQueryUrl(node)}
 			onExit={() => onExit()}
-			side={localeInfo.right}
+			side={textDirection === "ltr" ? "right" : "left"}
 			trigger={getTriggerComp(linkType, componentData, className)}
 			portalled={true}
 			portalStyles={layoutStyle(layoutClasses.root, { locale, theme: "light" })}
