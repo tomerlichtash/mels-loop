@@ -88,10 +88,10 @@ export default function Layout({ children }: ComponentProps) {
 		};
 	}, [router.events]);
 
-	useEffect(() => {
-		const storedTheme = (Cookies.get("theme") as Themes) || "light";
-		setTheme(storedTheme);
-	}, [setTheme]);
+	// useEffect(() => {
+	// 	const storedTheme = (Cookies.get("theme") as Themes) || "light";
+	// 	setTheme(storedTheme);
+	// }, [setTheme]);
 
 	return (
 		<>
