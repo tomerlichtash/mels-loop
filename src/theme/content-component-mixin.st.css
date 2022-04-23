@@ -1,0 +1,46 @@
+@namespace "ContentComponentMixin";
+
+@st-import ContentComponent from "../components/content/content-component.st.css";
+@st-import [
+  level0,
+	accent1,
+	primary2
+] from './common.st.css';
+
+:vars {
+	linkColor: red;
+	linkHoverColor: blue;
+}
+
+.linkStyle {
+	color: value(linkColor);
+}
+.linkStyle:hover {
+	color: value(linkHoverColor);
+}
+
+.root {
+  -st-extends: ContentComponent;
+}
+
+.root:type(section),
+.root:type(blockquote) {
+  margin-bottom: 1.8rem;
+}
+
+.root:type(paragraph),
+.root:type(blockquote) {
+  line-height: 1.8rem;
+}
+
+.root:type(blockquote) {
+  padding: 0 1.8rem;
+}
+
+.root:type(link) {
+  -st-mixin: linkStyle;
+}
+
+.root:type(link):hover {
+  color: green;
+}

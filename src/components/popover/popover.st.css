@@ -24,7 +24,7 @@
 }
 
 .root {
-  -st-states: type(string);
+  -st-states: type(string), locale(string);
 }
 
 .trigger {
@@ -39,16 +39,17 @@
 
 .triggerWrapper {}
 
+.contentWrapper {}
+
+.toolbar {}
+
 .content {
-  z-index: 2;
   overflow: hidden;
-  /* padding: 32px 0 12px; */
   width: value(PopoverContentMaxWidth);
   background: value(PopoverContentBgColor);
   border-radius: value(PopoverContentRadius);
   box-shadow: value(PopoverContentShadow);
   animation: fadeIn 300ms ease-out forwards;
-  height: value(PopoverContentMaxHeight);
 }
 
 @keyframes fadeIn {

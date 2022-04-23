@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CopyIcon, CheckIcon } from "@radix-ui/react-icons";
+import { Share1Icon, CheckIcon } from "@radix-ui/react-icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import {
 	StyledArrow,
@@ -29,7 +29,7 @@ export const CopyUrlButton = ({ query }: ICopyUrlButtonProps): JSX.Element => {
 			<CopyToClipboard text={query} onCopy={onCopy}>
 				<TooltipTrigger asChild>
 					<div className={classes.root}>
-						{toggleCopyIcon ? <CheckIcon /> : <CopyIcon />}
+						{toggleCopyIcon ? <CheckIcon /> : <Share1Icon />}
 					</div>
 				</TooltipTrigger>
 			</CopyToClipboard>
