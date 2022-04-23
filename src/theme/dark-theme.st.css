@@ -1,4 +1,4 @@
-@namespace "LightTheme";
+@namespace "DarkTheme";
 
 @st-import Header from "../components/header/header.st.css";
 @st-import Footer from "../components/footer/footer.st.css";
@@ -22,11 +22,6 @@
 	primary2
 ] from './common.st.css';
 
-:vars {
-	linkColor: green;
-	linkHoverColor: red;
-}
-
 @st-scope .root {	
 	Page {
 		width: value(PageWidth);
@@ -37,8 +32,8 @@
 	}
 	Popover {
 		-st-mixin: PopoverMixin(
-				linkColor value(accent1),
-				linkHoverColor value(primary2)
+				linkColor magenta,
+				linkHoverColor orange
 		);
 	}
 

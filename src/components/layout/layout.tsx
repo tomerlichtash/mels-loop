@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
@@ -6,6 +6,7 @@ import Footer from "../footer";
 import { MobileNav } from "../nav/nav-mobile";
 import Page from "../page";
 import LocaleSelector from "../locale-selector";
+import ThemeSelector from "../theme-selector";
 import { useRouter } from "next/router";
 import { useWindowSize, ISize } from "./use-window-size";
 import { ComponentProps } from "../../interfaces/models";
@@ -15,6 +16,7 @@ import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
+import { MenuGroup } from "../nav/types";
 import { st, classes } from "./layout.st.css";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
@@ -44,8 +46,13 @@ export default function Layout({ children }: ComponentProps) {
 	const size: ISize = useWindowSize();
 	const isMobile = size.width <= 970;
 
-	const qc = useContext(ReactQueryContext);
-	const { getLine } = qc.query;
+	const { query } = useContext(ReactQueryContext);
+	const { getLine } = query;
+
+	const menuItems = useMemo(
+		() => translateItems(navItems, translate) as MenuGroup[],
+		[translate]
+	);
 
 	useEffect(() => {
 		if (getLine > -1) {
@@ -94,7 +101,6 @@ export default function Layout({ children }: ComponentProps) {
 				className={st(classes.root, {
 					locale,
 					isMobile,
-					theme: "light",
 				})}
 				id="outer-container"
 			>
@@ -107,15 +113,12 @@ export default function Layout({ children }: ComponentProps) {
 							/>
 							{!isMobile && (
 								<div className={classes.primaryNav}>
-									<NavMenu
-										className={classes.nav}
-										items={translateItems(navItems, translate)}
-									/>
-
+									<NavMenu className={classes.nav} items={menuItems} />
 									<LocaleSelector
 										onLocaleChange={onLocaleChange}
 										className={st(classes.localeSelector, { locale })}
 									/>
+									<ThemeSelector />
 								</div>
 							)}
 						</div>
@@ -129,7 +132,6 @@ export default function Layout({ children }: ComponentProps) {
 						</ScrollArea>
 					</div>
 				</div>
-
 				{isMobile && (
 					<MobileNav
 						className={classes.mobileNav}

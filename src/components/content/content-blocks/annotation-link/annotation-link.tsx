@@ -1,6 +1,6 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
-import { classes } from "./annotation-link.st.css";
+import { st, classes } from "./annotation-link.st.css";
 
 export const AnnotationLink = ({
 	componentData,
@@ -9,10 +9,10 @@ export const AnnotationLink = ({
 	const annotationPrefix = node.sequence <= 9 ? "0" : "";
 	return (
 		<>
-			<sup className={classes.root}>
+			<span className={st(classes.root)}>
 				{annotationPrefix}
 				{node.sequence}
-			</sup>
+			</span>
 		</>
 	);
 };

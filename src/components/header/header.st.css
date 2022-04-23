@@ -18,7 +18,9 @@
   -st-extends: Button;
 }
 
-.siteSubtitle {}
+.siteSubtitle {
+	text-transform: lowercase;
+}
 
 .siteSubtitle::before {
 	margin: 0 0.5rem;

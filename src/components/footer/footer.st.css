@@ -1,9 +1,56 @@
 @namespace "Footer";
 
-.root {}
+@st-import [primary1, primary3, primary4, level2, PageWidth] from "../../theme/common.st.css";
+
+.root {
+  background-color: value(level2);
+  margin-top: 4rem;
+}
+
+/* https://cssgradient.io/ */
+.strip {
+  height: 4px;
+  background: rgb(78,74,122);
+  background: linear-gradient(90deg, value(primary1) 0%, value(primary3) 50%, value(primary4) 100%);  
+}
+
+.layout {
+  display: inline-flex;
+}
+
+.column {
+  -st-states: size(number);
+}
+.column:size(1) {
+  flex: 1;
+}
+.column:size(2) {
+  flex: 2;
+}
+.column:size(3) {
+  flex: 3;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.subtitle {}
 
 .license {}
 
 .year {}
 
-.title {}
+
+.sitePages {
+  flex: 1;
+}
+
+.pageContainer {
+  width: value(PageWidth);
+  margin: 0 auto;
+  padding: 4rem 0;
+}
+
+.item {
+}
