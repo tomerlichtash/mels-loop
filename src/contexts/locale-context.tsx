@@ -1,4 +1,4 @@
-import { Context, createContext } from "react";
+import React, { Context, createContext } from "react";
 import {
 	ILocaleContext,
 	ILocaleContextProps,
@@ -78,3 +78,11 @@ export class LocaleContext implements ILocaleContext {
 const ctx = createContext<ILocaleContext>(new LocaleContext(null));
 
 export const ReactLocaleContext: Context<ILocaleContext> = ctx;
+
+export const LocaleContextProvider = ({ children, router }) => {
+	return (
+		<ReactLocaleContext.Provider value={new LocaleContext({ router })}>
+			{children}
+		</ReactLocaleContext.Provider>
+	);
+};
