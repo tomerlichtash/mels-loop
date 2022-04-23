@@ -12,6 +12,9 @@ import {
 	IThemeContext,
 	Themes,
 } from "../contexts/theme-context";
+import Cookies from "js-cookie";
+
+const themeFromCookie = Cookies.get("theme") as Themes;
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const router = useRouter();
@@ -22,6 +25,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 	const themeContext: IThemeContext = new ThemeContext({
 		theme,
 		setTheme,
+		themeFromCookie,
 	});
 
 	return (

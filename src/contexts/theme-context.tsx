@@ -4,6 +4,7 @@ export type Themes = "light" | "dark" | null;
 
 export interface IThemeContextProps {
 	theme: Themes;
+	themeFromCookie: Themes;
 	setTheme: (theme: Themes) => void;
 }
 
@@ -16,19 +17,25 @@ export interface IThemeContext {
 
 export class ThemeContext implements IThemeContext {
 	private _theme: Themes;
+	private _themeFromCookie: Themes;
 	private _setState: (theme: Themes) => void;
 	constructor(props: IThemeContextProps) {
-		const { theme, setTheme } = props;
+		const { theme, themeFromCookie, setTheme } = props;
 		this._theme = theme;
 		this._setState = setTheme;
+		this._themeFromCookie = themeFromCookie;
 	}
 
 	public setTheme = (theme: Themes) => {
-		if (theme === this.theme) {
-			return;
+		if (!theme) {
+			this._setState("light");
 		}
-		this._setState(theme);
-		Cookies.set("theme", theme);
+		if (theme !== this.theme) {
+			this._setState(theme);
+		}
+		// if (theme === "dark") {
+		// 	// Cookies.set("theme", theme);
+		// }
 	};
 
 	public get theme(): Themes {
@@ -47,6 +54,7 @@ export class ThemeContext implements IThemeContext {
 const ctx = createContext<IThemeContext>(
 	new ThemeContext({
 		theme: null,
+		themeFromCookie: null,
 		setTheme: () => null,
 	})
 );

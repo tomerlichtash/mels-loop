@@ -18,7 +18,7 @@ import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { MenuGroup } from "../nav/types";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
@@ -88,10 +88,10 @@ export default function Layout({ children }: ComponentProps) {
 		};
 	}, [router.events]);
 
-	// useEffect(() => {
-	// 	const storedTheme = (Cookies.get("theme") as Themes) || "light";
-	// 	setTheme(storedTheme);
-	// }, [setTheme]);
+	useEffect(() => {
+		// const storedTheme = (Cookies.get("theme") as Themes) || "light";
+		setTheme(theme);
+	}, [setTheme, theme]);
 
 	return (
 		<>
