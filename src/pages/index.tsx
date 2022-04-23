@@ -19,7 +19,7 @@ import { contentUtils } from "../lib/content-utils";
 import { usePageData } from "../components/usePageData";
 import { ContentComponent } from "../components/content";
 import { mlUtils } from "../lib/ml-utils";
-import { classes } from "./index.st.css";
+import { st, classes } from "./index.st.css";
 
 export default function Index(props: IPageProps) {
 	const { siteTitle, pageName } = useContext(ReactLocaleContext);
@@ -44,7 +44,7 @@ export default function Index(props: IPageProps) {
 					return (
 						<ContentComponent
 							key={mlUtils.uniqueId()}
-							className={(classes.contentComponent, className)}
+							className={st(classes.contentComponent, className)}
 							componentData={{ node }}
 						/>
 					);
