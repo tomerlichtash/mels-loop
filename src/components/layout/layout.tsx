@@ -142,9 +142,9 @@ export default function Layout({ children }: ComponentProps) {
 			</div>
 			<Script
 				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"
-				strategy="lazyOnload"
+				strategy="afterInteractive"
 			/>
-			<Script id="google-analytics" strategy="lazyOnload">
+			<Script id="google-analytics" strategy="afterInteractive">
 				{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
