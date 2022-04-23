@@ -1,23 +1,18 @@
 import React, { useContext } from "react";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import { st, classes } from "./footer.st.css";
 
-export const Footer = ({
-	compKeys,
-	className,
-}: ComponentProps): JSX.Element => {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate } = layoutContext;
+export const Footer = ({ className }: ComponentProps): JSX.Element => {
+	const { siteTitle, siteLicense } = useContext(ReactLocaleContext);
 	const licenseYears = `2021-${new Date().getFullYear()}`;
-	const { siteTitle, siteLicense } = compKeys;
 	return (
 		<footer className={st(classes.root, className)}>
 			<div className={classes.license}>
 				<time className={classes.year}>{licenseYears}</time>{" "}
-				<span className={classes.license}>({translate(siteLicense)})</span>{" "}
-				<span className={classes.title}>{translate(siteTitle)}</span>
+				<span className={classes.license}>({siteLicense})</span>{" "}
+				<span className={classes.title}>{siteTitle}</span>
 			</div>
 			<div>
 				<ul>

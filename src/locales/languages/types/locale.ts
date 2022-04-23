@@ -1,14 +1,4 @@
-export type LocaleId = "EN_US" | "HE_IL";
-
-export interface IContentAuthors {
-	AUTHOR_TOMER_LICHTASH: "TOMER_LICHTASH";
-	AUTHOR_DAVID_FRANKIEL: "DAVID_FRANKIEL";
-}
-
-export interface ILocaleKeys {
-	LOCALE_LABEL_EN: "LOCALE_LABEL_EN";
-	LOCALE_LABEL_HE: "LOCALE_LABEL_HE";
-}
+export type Language = Record<keyof ILanguageKeys, string>;
 
 export interface ILanguageKeys {
 	HOME_NAV_LABEL: "HOME_NAV_LABEL";
@@ -66,25 +56,3 @@ export interface ILanguageKeys {
 
 	POPOVER_BACK: "POPOVER_BACK";
 }
-
-export type Authors = Record<keyof IContentAuthors, string>;
-
-export type Language = Record<keyof ILanguageKeys, string>;
-
-export type LocaleLabels = Record<keyof ILocaleKeys, string>;
-
-export type AvailableLocales = Record<LocaleId, Language & LocaleLabels>;
-
-export interface IComponentKeyProps {
-	siteTitle: "siteTitle";
-	siteSubtitle: "siteSubtitle";
-	siteLicense: "siteLicense";
-	pageName: "pageName";
-	languageLabel: "languageLabel";
-	postsList: "postsList";
-	popoverBackLabel: "popoverBackLabel";
-}
-
-export type ComponentKeyMap = Partial<
-	Record<keyof IComponentKeyProps, keyof ILanguageKeys>
->;

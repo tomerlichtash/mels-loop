@@ -1,8 +1,8 @@
 import React from "react";
 import ScrollArea from "../scrollbar";
 import { PopoverToolbar } from "./popover-toolbar";
-import { Direction } from "../../interfaces/layout-context";
 import { IPopoverContext } from "../../interfaces/IPopoverContext";
+import { Direction } from "../../interfaces/locale-context";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 import { useToolbar } from "./useToolbar";
 import { st, classes } from "./popover.st.css";
@@ -19,7 +19,6 @@ export interface IPopoverProps {
 	type: string;
 	trigger: React.ReactNode;
 	children: React.ReactNode;
-	popoverRef: React.RefObject<HTMLElement>;
 	forcePopover?: boolean;
 	query: string;
 	onExit?: () => void;

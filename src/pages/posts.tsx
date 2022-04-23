@@ -9,25 +9,24 @@ import { IPageProps, IParsedPageData } from "../interfaces/models";
 import { usePageData } from "../components/usePageData";
 import { Button, TimeFormat } from "../components/ui";
 import { ContentComponent } from "../components/content";
-import { ReactLayoutContext } from "../contexts/layout-context";
+import { ReactLocaleContext } from "../contexts/locale-context";
 import orderBy from "lodash.orderby";
 import { mlUtils } from "../lib/ml-utils";
 import { classes } from "./posts.st.css";
 
 export default function Blog(props: IPageProps) {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, compLocale, locale } = layoutContext;
-	const { siteTitle, pageName, postsList } = compLocale;
+	const { locale, siteTitle, pageName, sectionName } =
+		useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	return (
 		<Layout>
 			<Head>
 				<title>
-					{translate(siteTitle)} - {translate(pageName)}
+					{siteTitle} - {pageName}
 				</title>
 			</Head>
 			<div className={classes.root}>
-				<h1 className={classes.sectionTitle}>{translate(postsList)}</h1>
+				<h1 className={classes.sectionTitle}>{sectionName}</h1>
 				{orderBy(pageData, ["metaData.date"], ["desc"]).map(
 					(page: IParsedPageData) => {
 						const { metaData, path } = page;
