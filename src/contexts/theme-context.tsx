@@ -1,4 +1,4 @@
-import { Context, createContext, useRef } from "react";
+import React, { Context, createContext, useRef } from "react";
 import Cookies from "js-cookie";
 import { useTheme } from "../hooks/useTheme";
 import { classes as LightTheme } from "../theme/light-theme.st.css";
