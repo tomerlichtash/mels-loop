@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
+const storedTheme = Cookies.get("theme");
+
 export function useTheme<
 	T extends Record<string, string[] | { classes: string[]; css: string }>
 >(
@@ -9,7 +11,7 @@ export function useTheme<
 	styleRef: React.MutableRefObject<any>
 ): (theme: keyof T) => void {
 	const [theme, setTheme] = useState<keyof T>(
-		Cookies.get("theme") || Object.keys(themes)[0]
+		storedTheme || Object.keys(themes)[0]
 	);
 
 	useEffect(() => {
