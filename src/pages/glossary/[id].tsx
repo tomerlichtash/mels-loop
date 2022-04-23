@@ -14,12 +14,12 @@ import Head from "next/head";
 import { ContentIterator } from "../../components/content/content-iterator";
 import { usePageData } from "../../components/usePageData";
 import { classes } from "./glossary-item.st.css";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { Button } from "../../components/ui";
 import Bibliography from "../../components/bibliography";
 
 export default function GlossaryTerm(props: IPageProps) {
-	const { translate } = useContext(ReactLayoutContext);
+	const { translate } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;

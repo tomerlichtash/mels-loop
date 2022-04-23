@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
-import { v4 as uuidv4 } from "uuid";
+import { mlUtils } from "../../lib/ml-utils";
 import { st, classes } from "./bibliography.st.css";
 
 export interface IBibliographySource {
@@ -27,7 +27,12 @@ export const Bibliography = ({
 			<span className={classes.list}>
 				{sources.map(({ name, url }) => {
 					return (
-						<Button key={uuidv4()} label={name} link={url} target="_blank" />
+						<Button
+							key={mlUtils.uniqueId()}
+							label={name}
+							link={url}
+							target="_blank"
+						/>
 					);
 				})}
 			</span>
