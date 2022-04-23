@@ -90,7 +90,10 @@ export default function Layout({ children }: ComponentProps) {
 
 	useEffect(() => {
 		// const storedTheme = (Cookies.get("theme") as Themes) || "light";
-		setTheme(theme);
+		if (theme === null) {
+			console.log(theme);
+			setTheme(theme);
+		}
 	}, [setTheme, theme]);
 
 	return (
