@@ -34,12 +34,12 @@
 	background: value(level1);
 }
 
-.root:theme(light) {
+/* .root:theme(light) {
 	-st-mixin: LightTheme;
 }
 .root:theme(dark) {
 	-st-mixin: DarkTheme;
-}
+} */
 
 .root:locale(en) {
 	font-family: "Roboto Slab", serif;

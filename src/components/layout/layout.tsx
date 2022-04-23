@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect, useRef, useMemo } from "react";
 import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
@@ -18,7 +18,7 @@ import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 import { MenuGroup } from "../nav/types";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
@@ -31,10 +31,24 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 };
 
 export default function Layout({ children }: ComponentProps) {
+	// const ref = useRef<HTMLDivElement>(null);
+	// const styleRef = useRef<HTMLStyleElement>(null);
+	// const setTheme = useTheme(
+	// 	themes,
+	// 	ref,
+	// 	styleRef as React.MutableRefObject<any>
+	// );
+
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const { theme, setTheme, isDarkTheme, toggleTheme } =
-		useContext(ReactThemeContext);
+	const {
+		// theme,
+		// getThemeFromCookie,
+		// storedTheme,
+		setTheme,
+		// isDarkTheme,
+		// toggleTheme,
+	} = useContext(ReactThemeContext);
 
 	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 
@@ -88,13 +102,19 @@ export default function Layout({ children }: ComponentProps) {
 		};
 	}, [router.events]);
 
-	useEffect(() => {
-		// const storedTheme = (Cookies.get("theme") as Themes) || "light";
-		if (theme === null) {
-			console.log(theme);
-			setTheme(theme);
-		}
-	}, [setTheme, theme]);
+	// useMemo(() => {
+	// 	// debugger;
+	// 	getThemeFromCookie();
+	// 	// const storedTheme = (Cookies.get("theme") as Themes) || "light";
+	// }, []);
+
+	// useEffect(() => {
+	// 	// const storedTheme = (Cookies.get("theme") as Themes) || "light";
+	// 	if (theme === null) {
+	// 		console.log("setTheme", theme);
+	// 		setTheme(storedTheme || theme);
+	// 	}
+	// }, [setTheme, theme]);
 
 	return (
 		<>
@@ -114,7 +134,7 @@ export default function Layout({ children }: ComponentProps) {
 				className={st(classes.root, {
 					locale,
 					isMobile,
-					theme,
+					// theme,
 				})}
 				id="outer-container"
 			>
@@ -132,11 +152,13 @@ export default function Layout({ children }: ComponentProps) {
 										onLocaleChange={onLocaleChange}
 										className={st(classes.localeSelector, { locale })}
 									/>
-									<ThemeSelector
+									<button onClick={() => setTheme("dark")}>dark</button>
+									<button onClick={() => setTheme("light")}>light</button>
+									{/* <ThemeSelector
 										theme={theme}
 										isDarkTheme={isDarkTheme}
 										toggleTheme={toggleTheme}
-									/>
+									/> */}
 								</div>
 							)}
 						</div>
