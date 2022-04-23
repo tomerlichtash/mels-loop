@@ -7,9 +7,11 @@ export function useTheme<
 	T extends Record<string, string[] | { classes: string[]; css: string }>
 >(
 	themes: T,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	ref: React.MutableRefObject<any>,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	styleRef: React.MutableRefObject<any>
-): (theme: keyof T) => void {
+) {
 	const [theme, setTheme] = useState<keyof T>(
 		storedTheme || Object.keys(themes)[0]
 	);
@@ -44,5 +46,5 @@ export function useTheme<
 		};
 	}, [themes, theme, ref, styleRef]);
 
-	return setTheme;
+	return [theme, setTheme] as const;
 }

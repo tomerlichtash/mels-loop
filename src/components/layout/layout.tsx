@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import Script from "next/script";
 import Head from "next/head";
 import Header from "../header";
@@ -11,14 +11,13 @@ import { useRouter } from "next/router";
 import { useWindowSize, ISize } from "./use-window-size";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { ReactThemeContext, Themes } from "../../contexts/theme-context";
+import { ReactThemeContext } from "../../contexts/theme-context";
 // import { ReactQueryContext } from "../../contexts/query-context";
 import { NavMenu } from "../nav/menu";
 import { navItems, translateItems } from "../../config/menu-data";
 import ScrollArea from "../scrollbar";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
-import Cookies from "js-cookie";
 import { MenuGroup } from "../nav/types";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
@@ -31,25 +30,9 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 };
 
 export default function Layout({ children }: ComponentProps) {
-	// const ref = useRef<HTMLDivElement>(null);
-	// const styleRef = useRef<HTMLStyleElement>(null);
-	// const setTheme = useTheme(
-	// 	themes,
-	// 	ref,
-	// 	styleRef as React.MutableRefObject<any>
-	// );
-
 	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
 
-	const {
-		// theme,
-		// getThemeFromCookie,
-		// storedTheme,
-		setTheme,
-		// isDarkTheme,
-		// toggleTheme,
-	} = useContext(ReactThemeContext);
-
+	const { setTheme } = useContext(ReactThemeContext);
 	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 
 	const router = useRouter();
@@ -84,7 +67,6 @@ export default function Layout({ children }: ComponentProps) {
 		() => translateItems(navItems, translate) as MenuGroup[],
 		[translate]
 	);
-	// const menuItems = translateItems(navItems, translate) as MenuGroup[]
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
@@ -101,20 +83,6 @@ export default function Layout({ children }: ComponentProps) {
 			router.events.off("routeChangeStart", handleRouteChange);
 		};
 	}, [router.events]);
-
-	// useMemo(() => {
-	// 	// debugger;
-	// 	getThemeFromCookie();
-	// 	// const storedTheme = (Cookies.get("theme") as Themes) || "light";
-	// }, []);
-
-	// useEffect(() => {
-	// 	// const storedTheme = (Cookies.get("theme") as Themes) || "light";
-	// 	if (theme === null) {
-	// 		console.log("setTheme", theme);
-	// 		setTheme(storedTheme || theme);
-	// 	}
-	// }, [setTheme, theme]);
 
 	return (
 		<>
@@ -134,7 +102,6 @@ export default function Layout({ children }: ComponentProps) {
 				className={st(classes.root, {
 					locale,
 					isMobile,
-					// theme,
 				})}
 				id="outer-container"
 			>
@@ -154,11 +121,11 @@ export default function Layout({ children }: ComponentProps) {
 									/>
 									<button onClick={() => setTheme("dark")}>dark</button>
 									<button onClick={() => setTheme("light")}>light</button>
-									{/* <ThemeSelector
-										theme={theme}
-										isDarkTheme={isDarkTheme}
-										toggleTheme={toggleTheme}
-									/> */}
+									<ThemeSelector
+									// theme={theme}
+									// isDarkTheme={isDarkTheme}
+									// toggleTheme={toggleTheme}
+									/>
 								</div>
 							)}
 						</div>

@@ -1,19 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { SunIcon } from "@radix-ui/react-icons";
+import { ReactThemeContext } from "../../contexts/theme-context";
 import { st, classes } from "./theme-selector.st.css";
 
-export interface IThemeSelectorProps extends ComponentProps {
-	isDarkTheme: boolean;
-	toggleTheme: () => void;
-	theme: string;
-}
-
-export const ThemeSelector = ({
-	toggleTheme,
-	// theme,
-	className,
-}: IThemeSelectorProps): JSX.Element => {
+export const ThemeSelector = ({ className }: ComponentProps): JSX.Element => {
+	const { theme, toggleTheme } = useContext(ReactThemeContext);
 	const label = `Toggle Theme`;
 	return (
 		<div
@@ -22,6 +14,7 @@ export const ThemeSelector = ({
 			aria-label={label}
 			onClick={toggleTheme}
 		>
+			{theme}
 			<SunIcon className={st(classes.icon)} />
 		</div>
 	);
