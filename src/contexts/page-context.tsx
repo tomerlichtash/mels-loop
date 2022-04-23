@@ -1,4 +1,4 @@
-import { Context, createContext } from "react";
+import React, { Context, createContext } from "react";
 import { IDynamicContentServer } from "../interfaces/dynamic-content";
 import { IPageContext } from "../interfaces/page-context";
 import { DynamicContentServer } from "../lib/dynamic-content-server";

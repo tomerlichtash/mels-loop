@@ -1,4 +1,4 @@
-import { Context, createContext } from "react";
+import React, { Context, createContext } from "react";
 import { IQueryContext } from "../interfaces/query-context";
 import { IQueryManager } from "../interfaces/query-manager";
 import { QueryManager } from "./query-manager";
