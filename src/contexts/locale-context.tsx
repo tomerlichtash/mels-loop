@@ -1,4 +1,4 @@
-import { Context, createContext } from "react";
+import React, { Context, createContext } from "react";
 import {
 	ILocaleContext,
 	ILocaleContextProps,
