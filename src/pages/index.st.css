@@ -1,5 +1,7 @@
 @namespace "Index";
 
+@st-import [level5] from "../theme/common.st.css"
+
 .root {}
 
 .title {}
@@ -7,5 +9,6 @@
 .moto {
 	font-size: 14px;
 	font-style: italic;
-	padding: 2rem 0;
+	color: value(level5);
+	padding: 1.8rem 0;
 }

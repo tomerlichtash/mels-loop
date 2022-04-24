@@ -23,6 +23,10 @@ const nextConfig = {
 		/* add the Stylable plugin to the webpack configuration */
 		config.plugins.push(
 			new StylableWebpackPlugin({
+				optimize: {
+					shortNamespaces: false,
+					classNameOptimizations: false,
+				},
 				/* let NextJS handle assets */
 				filterAssets: () => false,
 				/* output CSS to the correct location */

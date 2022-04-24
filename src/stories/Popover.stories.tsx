@@ -1,37 +1,34 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Popover } from "../components/popover/popover";
-import Layout from "../components/layout";
-import { ReactLayoutContext } from "../contexts/layout-context";
-import { ReactQueryContext } from "../contexts/query-context";
-import { ILayoutContext } from "../interfaces/layout-context";
-import { getLocaleInfo } from "../locales/locale-info";
-import { translateFunc } from "../locales/translate";
-import { ContentComponent } from "../components/content";
-import { PageContext, ReactPageContext } from "../contexts/page-context";
-import { DynamicContentServer } from "../lib/dynamic-content-server";
+// import React from "react";
+// import { ComponentStory, ComponentMeta } from "@storybook/react";
+// import { Popover } from "../components/popover/popover";
+// import Layout from "../components/layout";
+// import { ReactQueryContext } from "../contexts/query-context";
+// import { _translate } from "../locales/translate";
+// import { ContentComponent } from "../components/content";
+// import { PageContext, ReactPageContext } from "../contexts/page-context";
+// import { DynamicContentServer } from "../lib/dynamic-content-server";
 // import { st, classes } from "../components/popover/popover.st.css";
 
-const SampleComp = Popover;
-const contentContext = new PageContext(new DynamicContentServer());
+// const SampleComp = Popover;
+// const contentContext = new PageContext(new DynamicContentServer());
 
-const layoutContext = (locale: string): ILayoutContext => {
-	return {
-		locale,
-		compLocale: {},
-		localeInfo: getLocaleInfo(locale),
-		translate: translateFunc(locale),
-		getSiteTitle: () => "SiteTitle",
-		getSiteSubtitle: () => "SiteSubTitle",
-	};
-};
+// const layoutContext = (locale: string): ILayoutContext => {
+// 	return {
+// 		locale,
+// 		compLocale: {},
+// 		// localeInfo: getLocaleInfo(locale),
+// 		// translate: _translate(locale),
+// 		getSiteTitle: () => "SiteTitle",
+// 		getSiteSubtitle: () => "SiteSubTitle",
+// 	};
+// };
 
-export default {
-	title: "UI/Popover",
-	component: SampleComp,
-} as ComponentMeta<typeof SampleComp>;
+// export default {
+// 	title: "UI/Popover",
+// 	component: SampleComp,
+// } as ComponentMeta<typeof SampleComp>;
 
-const mockData = [
+export const mockData = [
 	{
 		type: "blockquote",
 		line: 2,
@@ -89,48 +86,48 @@ const mockData = [
 	},
 ];
 
-const Template: ComponentStory<typeof SampleComp> = (args) => (
-	<ReactQueryContext.Provider
-		value={{
-			query: {
-				getLine: 1,
-				registerNode: () => null,
-				getQueryUrl: () => "someQuery",
-			},
-		}}
-	>
-		<ReactLayoutContext.Provider value={layoutContext("en")}>
-			<ReactPageContext.Provider value={contentContext}>
-				<Layout>
-					{mockData.map((node) => {
-						return (
-							<ContentComponent
-								key={node.key}
-								// className={classes.contentComponent}
-								componentData={{ node }}
-							/>
-						);
-					})}
+// const Template: ComponentStory<typeof SampleComp> = (args) => (
+// 	<ReactQueryContext.Provider
+// 		value={{
+// 			query: {
+// 				getLine: 1,
+// 				registerNode: () => null,
+// 				getQueryUrl: () => "someQuery",
+// 			},
+// 		}}
+// 	>
+// 		<ReactLayoutContext.Provider value={layoutContext("en")}>
+// 			<ReactPageContext.Provider value={contentContext}>
+// 				<Layout>
+// 					{mockData.map((node) => {
+// 						return (
+// 							<ContentComponent
+// 								key={node.key}
+// 								// className={classes.contentComponent}
+// 								componentData={{ node }}
+// 							/>
+// 						);
+// 					})}
 
-					{/* <article className={classes.root}>
-					<p>
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit! Aenean
-						commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-						penatibus et magnis dis parturient montes, nascetur ridiculus mus;
-						&nbsp;<SampleComp {...args}>{content}</SampleComp>&nbsp; Donec quam
-						felis, ultricies nec, pellentesque eu, pretium quis, sem? Nulla
-						consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
-						nec, vulputate eget, arcu? In enim justo, rhoncus ut,
-					</p>
-				</article> */}
-				</Layout>
-			</ReactPageContext.Provider>
-		</ReactLayoutContext.Provider>
-	</ReactQueryContext.Provider>
-);
+// 					{/* <article className={classes.root}>
+// 					<p>
+// 						Lorem ipsum dolor sit amet, consectetuer adipiscing elit! Aenean
+// 						commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+// 						penatibus et magnis dis parturient montes, nascetur ridiculus mus;
+// 						&nbsp;<SampleComp {...args}>{content}</SampleComp>&nbsp; Donec quam
+// 						felis, ultricies nec, pellentesque eu, pretium quis, sem? Nulla
+// 						consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
+// 						nec, vulputate eget, arcu? In enim justo, rhoncus ut,
+// 					</p>
+// 				</article> */}
+// 				</Layout>
+// 			</ReactPageContext.Provider>
+// 		</ReactLayoutContext.Provider>
+// 	</ReactQueryContext.Provider>
+// );
 
 // export const Normal = Template.bind({});
-export const OpenLTR = Template.bind({});
+// export const OpenLTR = Template.bind({});
 // export const OpenRTL = Template.bind({});
 
 // const content = (
@@ -181,15 +178,15 @@ Normal.args = {
 /**
  * Open Popover English LTR
  */
-OpenLTR.args = {
-	type: "glossary",
-	id: "someId",
-	forcePopover: false,
-	query: "http://example.com/glossary/someTerm",
-	onExit: () => console.log("exit"),
-	side: "right",
-	trigger: "Popover Trigger",
-};
+// OpenLTR.args = {
+// 	type: "glossary",
+// 	id: "someId",
+// 	forcePopover: false,
+// 	query: "http://example.com/glossary/someTerm",
+// 	onExit: () => console.log("exit"),
+// 	side: "right",
+// 	trigger: "Popover Trigger",
+// };
 
 /**
  * Open Popover English RTL

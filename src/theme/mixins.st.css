@@ -13,3 +13,9 @@
     -ms-user-select: none;      /* IE 10+ */
     user-select: none;          /* Likely future */     
 }
+
+.verticalAlignSuper {
+    position: relative;
+    top: -6px;
+    font-size: 12px;
+}

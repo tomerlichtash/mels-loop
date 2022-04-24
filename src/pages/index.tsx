@@ -9,7 +9,7 @@ import {
 } from "../interfaces/models";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
-import { ReactLayoutContext } from "../contexts/layout-context";
+import { ReactLocaleContext } from "../contexts/locale-context";
 import {
 	LoadContentModes,
 	LoadFolderModes,
@@ -18,13 +18,11 @@ import {
 import { contentUtils } from "../lib/content-utils";
 import { usePageData } from "../components/usePageData";
 import { ContentComponent } from "../components/content";
-import { v4 as uuidv4 } from "uuid";
-import { classes } from "./index.st.css";
+import { mlUtils } from "../lib/ml-utils";
+import { st, classes } from "./index.st.css";
 
 export default function Index(props: IPageProps) {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, compLocale } = layoutContext;
-	const { siteTitle, pageName } = compLocale;
+	const { siteTitle, pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
@@ -36,7 +34,7 @@ export default function Index(props: IPageProps) {
 		<Layout>
 			<Head>
 				<title>
-					{translate(siteTitle)} - {translate(pageName)}
+					{siteTitle} - {pageName}
 				</title>
 			</Head>
 			<article className={classes.root}>
@@ -45,8 +43,8 @@ export default function Index(props: IPageProps) {
 				{elements.map((node) => {
 					return (
 						<ContentComponent
-							key={uuidv4()}
-							className={(classes.contentComponent, className)}
+							key={mlUtils.uniqueId()}
+							className={st(classes.contentComponent, className)}
 							componentData={{ node }}
 						/>
 					);
@@ -74,46 +72,3 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		}
 	);
 };
-
-// import React, { useContext } from "react";
-// import Head from "next/head";
-// import Layout from "../components/layout";
-// import Link from "next/link";
-// import IconComp from "./../assets/svg/source_icons_computer.svg";
-// import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
-// import { cloudName } from "../config/cloudinary/config";
-// import { ReactLayoutContext } from "../contexts/layout-context";
-// import { st, classes } from "./index.st.css";
-
-// export default function Home() {
-// 	const layoutContext = useContext(ReactLayoutContext);
-// 	const { translate, compLocale } = layoutContext;
-// 	const { siteTitle, pageName } = compLocale;
-
-// 	return (
-// 		<Layout>
-// 			<Head>
-// 				<title>
-// 					{translate(siteTitle)} - {translate(pageName)}
-// 				</title>
-// 			</Head>
-// 			<article className={st(classes.root)}>
-// 				<IconComp />
-// 				<CloudinaryContext cloudName={cloudName}>
-// 					<Image publicId={"cld-sample" as string}>
-// 						<Transformation width="570" crop="scale" />
-// 					</Image>
-// 				</CloudinaryContext>
-// 				<div>the story</div>
-// 				<div>
-// 					<Link href="/glossary">glossary</Link>
-// 				</div>
-// 				<div>
-// 					<h2>Bios</h2>
-// 					<div>about ed nather</div>
-// 					<div>about mel kaye</div>
-// 				</div>
-// 			</article>
-// 		</Layout>
-// 	);
-// }

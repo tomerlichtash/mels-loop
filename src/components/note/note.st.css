@@ -7,13 +7,9 @@
 
 .root {
 	-st-states: type(enum(note, ref));
-	/* margin: 2rem; */
 	overflow: hidden;
-	padding: 0 32px 22px 17px;
+	padding: 1rem;
 	position: relative;
-  /* top: -5px; */
-	/* -st-mixin: heading6, primary2; */
-	/* top: -20px; */
 }
 
 .header {}
@@ -22,36 +18,26 @@
 
 .title {}
 
-.content {}
+.content {
+	-st-mixin: bodyTextNormal;
+}
 
 .sourceList {}
 
 .root:type(ref)::topic {
+	-st-mixin: heading6;
 	padding: 0 6px;
 	border-radius: 4px;
-	/* font-weight: 300;
-	font-size: 1rem; */
 	background: value(level2);
 	display: inline-block;
-	/* padding: 0 0.5rem; */
-	margin-bottom: 10px;
-	-st-mixin: heading6;
+	margin-bottom: 1.5rem;
 	color: value(primary2);
 }
 
 .root:type(ref)::title {
 	font-weight: 300;
 	font-size: 2rem;
-	margin-bottom: 9px;
-}
-
-.root::header {
-	/* padding: 2rem 2rem 0; */
-}
-
-.root::content {
-	-st-mixin: bodyTextNormal;
-	/* padding: 35px 32px 26px 17px; */
+	margin-bottom: 1rem;
 }
 
 .bibliography {
@@ -60,6 +46,5 @@
 
 .scrollable {
   border: 2px solid red;
-  margin: 10px 0 0;
   overflow: hidden;
 }

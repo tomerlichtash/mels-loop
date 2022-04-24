@@ -49,3 +49,7 @@
 :vars {
 	PageWidth: value(width1);
 }
+
+:vars {
+	topLevelIndex: 2;
+}
