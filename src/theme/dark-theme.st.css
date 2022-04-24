@@ -23,10 +23,6 @@
 ] from './common.st.css';
 
 @st-scope .root {	
-	Page {
-		width: value(PageWidth);
-	}
-
 	ContentComponent {
 		-st-mixin: ContentComponentMixin;
 	}
@@ -50,51 +46,3 @@
 	}
 }
 
-/* Mobile */
-@media (min-width: 320px) and (max-width: 767px) {
-	:global(.mobileNavTrigger) {
-		display: block;
-	}
-	:global(img) {
-		width: 100%;
-	}
-	
-	@st-scope .root {	
-		Page {
-			width: 100%;
-			overflow: hidden;
-			margin: 0 auto;
-		}
-		Page::gutter {
-			padding: 0 3rem;
-		}
-	}
-}
-
-/*
----------------------------------
-DEBUG
----------------------------------
-*/
-/* Debug Media Queries */
-/* @st-import Responsive from "./responsive-mixin.st.css"; */
-/* .root {
-	-st-mixin: Responsive;
-} */
-
-/*
-	Debug Line Index
-*/
-/* @st-scope .root {	
-	ContentComponent:type(paragraph):hover::before {
-		color: red;
-	}
-	ContentComponent:type(paragraph)::before {
-		content: attr(data-line-index);
-		color: #c0c0c0;
-		width: 20px;
-		padding-right: 20px;
-		text-align: right;
-		display: inline-block;
-	}
-} */

@@ -17,10 +17,3 @@
 	accent3,
 	accent4
 ] from "./common.st.css";
-
-:vars {
-	HeaderBgColor: value(level7);
-	HeaderTitleColor: value(accent1);
-	HeaderSubtitleColor: value(accent2);
-	PrimaryNavBgColor: value(primary2);
-}

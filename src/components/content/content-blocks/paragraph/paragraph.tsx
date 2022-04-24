@@ -1,7 +1,7 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
 import { ContentComponent } from "../../index";
-import { classes } from "./paragraph.st.css";
+import { st, classes } from "./paragraph.st.css";
 
 export const Paragraph = ({
 	componentData,
@@ -19,7 +19,11 @@ export const Paragraph = ({
 
 	if (children.length === 1 && children[0].type === "text") {
 		return (
-			<p key={node.key} className={className} data-line-index={line + 1}>
+			<p
+				key={node.key}
+				className={st(classes.root, className)}
+				data-line-index={line + 1}
+			>
 				{anchor}
 				{node.children[0].text}
 			</p>
@@ -27,7 +31,11 @@ export const Paragraph = ({
 	}
 
 	return (
-		<p key={node.key} className={className} data-line-index={line + 1}>
+		<p
+			key={node.key}
+			className={st(classes.root, className)}
+			data-line-index={line + 1}
+		>
 			{anchor}
 			{children.map((node) => (
 				<ContentComponent

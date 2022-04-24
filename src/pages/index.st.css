@@ -1,6 +1,6 @@
 @namespace "Index";
 
-@st-import [level5] from "../theme/common.st.css"
+@st-import [level5] from "../theme/common.st.css";
 
 .root {}
 

@@ -47,7 +47,7 @@ export default function Layout({ children }: ComponentProps) {
 	const isMobile = size.width <= 970;
 
 	const { query } = useContext(ReactQueryContext);
-	const { getLine } = query;
+	const { isHome, getLine } = query;
 
 	const menuItems = useMemo(
 		() => translateItems(navItems, translate) as MenuGroup[],
@@ -107,10 +107,7 @@ export default function Layout({ children }: ComponentProps) {
 				<div id="page-wrap">
 					<div className={classes.topBar}>
 						<div className={classes.siteHeader}>
-							<Header
-								className={classes.header}
-								isHome={router.asPath === "/"}
-							/>
+							<Header className={classes.header} isHome={isHome} />
 							{!isMobile && (
 								<div className={classes.primaryNav}>
 									<NavMenu className={classes.nav} items={menuItems} />

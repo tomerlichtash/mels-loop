@@ -47,7 +47,6 @@
 }
 
 .pageContainer {
-  width: value(PageWidth);
   margin: 0 auto;
   padding: 4rem 0;
 }
