@@ -1,4 +1,5 @@
-import { ComponentKeyMap } from "../locales/types";
+import { IComponentKeyProps } from "../locales/keymap/types";
+import { ILanguageKeys } from "../locales/languages/types/locale";
 import { DynamicContentTypes } from "./dynamic-content";
 
 /**
@@ -218,7 +219,6 @@ export interface IContentComponentData {
 export interface IGenericPageProps {
 	content: string;
 	translate: (k: string) => string;
-	compLocale: Record<string, string>;
 }
 
 /**
@@ -239,7 +239,6 @@ export interface ContentComponentProps {
  * Base component props
  */
 export interface ComponentProps {
-	compKeys?: Record<string, string>;
 	children?: React.ReactNode;
 	className?: string;
 }
@@ -251,17 +250,11 @@ export interface SitePage {
 	id: string;
 	targetPathname: string;
 	menuNav: boolean;
-	locale: Record<string, string>;
+	locale: Partial<Record<keyof IComponentKeyProps, keyof ILanguageKeys>>;
 	children?: string[];
 }
 
-export interface SitePageRef {
-	id: string;
-	menuNav: boolean;
-}
-
 export interface IPageProps {
-	compLocale: ComponentKeyMap;
 	locale: string;
 	translate: (key: string) => string;
 	content: string;

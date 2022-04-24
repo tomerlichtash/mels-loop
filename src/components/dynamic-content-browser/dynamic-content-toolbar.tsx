@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IParsedPageData } from "../../interfaces/models";
 import { mlUtils } from "../../lib/ml-utils";
-import { ReactLayoutContext } from "../../contexts/layout-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ReactDynamicContentContext } from "../../contexts/dynamic-content-context";
 import { ReactPopoverContext } from "../../contexts/popover-context";
+import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { classes } from "./dynamic-content-browser.st.css";
 
 export interface IDynamicContentToolbarProps {
@@ -16,7 +17,7 @@ export default function DynamicContentToolbar({
 	pages,
 }: IDynamicContentToolbarProps): JSX.Element {
 	const [prevPageId, setPrevPageid] = useState("");
-	const { localeInfo, translate } = useContext(ReactLayoutContext);
+	const { textDirection, translate } = useContext(ReactLocaleContext);
 	const popoverCtx = useContext(ReactPopoverContext);
 	const dcCtx = useContext(ReactDynamicContentContext);
 
@@ -45,13 +46,13 @@ export default function DynamicContentToolbar({
 					title={title}
 					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}
 				>
-					{localeInfo.arrowLeft({})}
+					{textDirection === "ltr" ? <ArrowLeftIcon /> : <ArrowRightIcon />}
 				</button>
 			),
 			id: NAV_BUTTON_KEY,
 			enabled: true,
 		});
-	}, [pages, prevPageId, localeInfo, dcCtx, popoverCtx, translate]);
+	}, [pages, prevPageId, dcCtx, popoverCtx, translate, textDirection]);
 
 	return <></>;
 }

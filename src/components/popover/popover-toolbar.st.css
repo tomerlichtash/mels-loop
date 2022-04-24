@@ -1,19 +1,11 @@
 @namespace "PopoverToolbar";
 
-@st-import [color4] from "../../theme/common.st.css";
-@st-import [preventSelection] from "../../theme/mixins.st.css";
-
-:vars {
-  PopoverCloseIconColor: value(color4);
-  PopoverCloseIconColorHover: red;
-}
-
 .root {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	/* padding: 2px 5px; */
-  background: #f0f0f0;
+  border-bottom: 1px solid #c0c0c0;
+  padding: 0.5rem 0.25rem;
 }
 
 .toolbarContainer {
@@ -22,26 +14,3 @@
 	justify-content: flex-start;
 	flex-grow: 1;
 }
-
-.closeButton {
-  -st-mixin: preventSelection;
-  cursor: pointer;
-  border: none;
-  background: none;
-  flex-grow: 0;
-  /* width: 16px;
-  height: 16px;
-  border-radius: 50%;
-   */
-}
-
-/* .cross {
-  border-radius: 50%;
-}
-.cross path {
-  fill: value(PopoverCloseIconColor);
-}
-.cross:hover path {
-  fill: value(PopoverCloseIconColorHover);
-}
-*/

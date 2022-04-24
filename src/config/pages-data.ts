@@ -1,5 +1,5 @@
 import { SitePage } from "../interfaces/models";
-import LOCALE from "../locales/components";
+import LOCALE from "../locales/keymap/pages";
 
 const {
 	HOME_PAGE_LOCALE,

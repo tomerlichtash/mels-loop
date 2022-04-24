@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
-import { v4 as uuidv4 } from "uuid";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
@@ -10,30 +9,30 @@ import { IPageProps, IParsedPageData } from "../interfaces/models";
 import { usePageData } from "../components/usePageData";
 import { Button, TimeFormat } from "../components/ui";
 import { ContentComponent } from "../components/content";
-import { ReactLayoutContext } from "../contexts/layout-context";
+import { ReactLocaleContext } from "../contexts/locale-context";
 import orderBy from "lodash.orderby";
+import { mlUtils } from "../lib/ml-utils";
 import { classes } from "./posts.st.css";
 
 export default function Blog(props: IPageProps) {
-	const layoutContext = useContext(ReactLayoutContext);
-	const { translate, compLocale, locale } = layoutContext;
-	const { siteTitle, pageName, postsList } = compLocale;
+	const { locale, siteTitle, pageName, sectionName } =
+		useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	return (
 		<Layout>
 			<Head>
 				<title>
-					{translate(siteTitle)} - {translate(pageName)}
+					{siteTitle} - {pageName}
 				</title>
 			</Head>
 			<div className={classes.root}>
-				<h1 className={classes.sectionTitle}>{translate(postsList)}</h1>
+				<h1 className={classes.sectionTitle}>{sectionName}</h1>
 				{orderBy(pageData, ["metaData.date"], ["desc"]).map(
 					(page: IParsedPageData) => {
 						const { metaData, path } = page;
 						const { title, date } = metaData;
 						return (
-							<article className={classes.post} key={uuidv4()}>
+							<article className={classes.post} key={mlUtils.uniqueId()}>
 								<header className={classes.postHeader}>
 									<h3 className={classes.postHeading}>
 										<Button
@@ -54,7 +53,7 @@ export default function Blog(props: IPageProps) {
 									{page.parsed.map((node) => {
 										return (
 											<ContentComponent
-												key={uuidv4()}
+												key={mlUtils.uniqueId()}
 												className={classes.postContent}
 												componentData={{ node }}
 											/>

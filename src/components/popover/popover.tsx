@@ -1,12 +1,18 @@
 import React from "react";
-import * as RadixPopover from "@radix-ui/react-popover";
 import ScrollArea from "../scrollbar";
 import { PopoverToolbar } from "./popover-toolbar";
-import { Direction } from "../../locales/locale-info";
 import { IPopoverContext } from "../../interfaces/IPopoverContext";
+import { Direction } from "../../interfaces/locale-context";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 import { useToolbar } from "./useToolbar";
 import { st, classes } from "./popover.st.css";
+
+import {
+	PopoverRoot,
+	PopoverTrigger,
+	PopoverContent,
+	PopoverArrow,
+} from "../radix-primitives";
 
 export interface IPopoverProps {
 	id: string;
@@ -17,7 +23,9 @@ export interface IPopoverProps {
 	query: string;
 	onExit?: () => void;
 	side: Direction;
-	open?: boolean /* used for story simulation */;
+	portalled?: boolean;
+	portalStyles?: string;
+	contentClassName?: string;
 	className?: string;
 }
 
@@ -29,7 +37,9 @@ export const Popover = ({
 	forcePopover,
 	onExit,
 	query,
-	open,
+	portalled,
+	portalStyles,
+	contentClassName,
 }: IPopoverProps): JSX.Element => {
 	const toolbar = useToolbar();
 	const ctx: IPopoverContext = {
@@ -39,34 +49,39 @@ export const Popover = ({
 	};
 
 	const forcePopoverProp = forcePopover ? { "data-state": "open" } : {};
-
 	return (
 		<ReactPopoverContext.Provider value={ctx}>
-			<RadixPopover.Root open={open}>
-				<RadixPopover.Trigger asChild>
+			<PopoverRoot>
+				<PopoverTrigger asChild>
 					<span className={st(classes.root, { type })} {...forcePopoverProp}>
 						<span className={classes.trigger} tabIndex={1}>
 							<span className={st(classes.triggerWrapper)}>{trigger}</span>
 						</span>
 					</span>
-				</RadixPopover.Trigger>
-				<RadixPopover.Content
-					forceMount={forcePopover ? forcePopover : null}
+				</PopoverTrigger>
+				<PopoverContent
 					side={side}
-					align="center"
-					portalled={false}
-					sideOffset={5}
+					forceMount={forcePopover ? forcePopover : null}
 					avoidCollisions={true}
+					align="center"
+					sideOffset={5}
+					portalled={portalled}
+					className={portalStyles}
 				>
-					<div className={st(classes.content)}>
+					<div className={st(classes.content, contentClassName)}>
+						<PopoverToolbar
+							query={query}
+							items={toolbar.items}
+							onExit={onExit}
+							className={st(classes.toolbar, "popoverToolbar")}
+						/>
 						<div className={st(classes.scrollable)}>
 							<ScrollArea height="300px">{children}</ScrollArea>
 						</div>
 					</div>
-					<RadixPopover.Arrow />
-					<PopoverToolbar items={toolbar.items} query={query} onExit={onExit} />
-				</RadixPopover.Content>
-			</RadixPopover.Root>
+					<PopoverArrow />
+				</PopoverContent>
+			</PopoverRoot>
 		</ReactPopoverContext.Provider>
 	);
 };
