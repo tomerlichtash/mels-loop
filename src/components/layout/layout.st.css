@@ -96,7 +96,6 @@
 	display: flex;
 }
 
-
 .toggleGroup {
 	-st-extends: LocaleSelector;
 	-st-states: locale(string);
