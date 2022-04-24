@@ -3,9 +3,9 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { LocaleSelector } from "../components/locale-selector/locale-selector";
 import {
-	st,
+	// st,
 	classes,
-} from "../components/locale-selector/locale-selector-base-theme.st.css";
+} from "../components/locale-selector/locale-selector.st.css";
 
 export default {
 	title: "Composite/LocaleSelector",

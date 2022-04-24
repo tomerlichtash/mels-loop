@@ -53,7 +53,7 @@
 		"@storybook/builder-webpack5": "^6.4.21",
 		"@storybook/client-api": "^6.0.0",
 		"@storybook/manager-webpack5": "^6.4.21",
-		"@storybook/react": "^6.4.21",
+		"@storybook/react": "^6.4.22",
 		"@storybook/testing-library": "^0.0.9",
 		"@stylable/core": "^4.12.0",
 		"@stylable/dom-test-kit": "^4.12.0",
