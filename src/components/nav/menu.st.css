@@ -1,7 +1,7 @@
 @namespace "Menu";
 
-@st-import [primary1, primary3, level3, level6] from '../../theme/common.st.css';
-@st-import [preventSelection] from '../../theme/mixins.st.css';
+@st-import [primary1, primary3, level3, level6] from "../../theme/common.st.css";
+@st-import [preventSelection] from "../../theme/mixins.st.css";
 
 .root {
 	position: relative;

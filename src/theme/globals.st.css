@@ -1,7 +1,7 @@
 @namespace "Global";
 
 @st-import [boxSizing] from "./mixins.st.css";
-@st-import [heading1, heading2] from './typography.st.css'
+@st-import [heading1, heading2] from "./typography.st.css";
 
 :global(html) {
 	-st-mixin: boxSizing;

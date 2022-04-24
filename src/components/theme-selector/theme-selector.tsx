@@ -5,7 +5,7 @@ import { ReactThemeContext } from "../../contexts/theme-context";
 import { st, classes } from "./theme-selector.st.css";
 
 export const ThemeSelector = ({ className }: ComponentProps): JSX.Element => {
-	const { theme, toggleTheme } = useContext(ReactThemeContext);
+	const { toggleTheme } = useContext(ReactThemeContext);
 	const label = `Toggle Theme`;
 	return (
 		<div
@@ -14,7 +14,6 @@ export const ThemeSelector = ({ className }: ComponentProps): JSX.Element => {
 			aria-label={label}
 			onClick={toggleTheme}
 		>
-			{theme}
 			<SunIcon className={st(classes.icon)} />
 		</div>
 	);

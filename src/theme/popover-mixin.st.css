@@ -6,7 +6,7 @@
   level0,
 	accent1,
 	primary2
-] from './common.st.css';
+] from "./common.st.css";
 
 :vars {
 	linkColor: blue;

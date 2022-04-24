@@ -5,19 +5,7 @@
   level0,
 	accent1,
 	primary2
-] from './common.st.css';
-
-:vars {
-	linkColor: red;
-	linkHoverColor: blue;
-}
-
-.linkStyle {
-	color: value(linkColor);
-}
-.linkStyle:hover {
-	color: value(linkHoverColor);
-}
+] from "./common.st.css";
 
 .root {
   -st-extends: ContentComponent;
@@ -38,7 +26,10 @@
 }
 
 .root:type(link) {
-  -st-mixin: linkStyle;
+	color: value(accent1);
+}
+.root:type(link):hover {
+	color: value(primary2);
 }
 
 .root:type(link):hover {

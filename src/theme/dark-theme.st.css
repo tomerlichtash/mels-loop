@@ -20,7 +20,7 @@
 	PageWidth,
 	accent1,
 	primary2
-] from './common.st.css';
+] from "./common.st.css";
 
 @st-scope .root {	
 	ContentComponent {
