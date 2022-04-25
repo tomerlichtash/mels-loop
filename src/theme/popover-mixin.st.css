@@ -9,8 +9,8 @@
 ] from "./common.st.css";
 
 :vars {
-	linkColor: blue;
-	linkHoverColor: red;
+	LinkColor: blue;
+	LinkColorHover: red;
 }
 
 .root {
@@ -19,7 +19,7 @@
 
 .root:type(annotation)::trigger,
 .root:type(glossary)::trigger {
-  color: value(linkColor);
+  color: value(LinkColor);
 }
 
 .root:type(glossary)::triggerWrapper {
@@ -29,7 +29,7 @@
 .root:type(annotation)::trigger:hover,
 .root:type(glossary)[data-state="closed"]::trigger:hover,
 .root:type(glossary)[data-state="closed"]::trigger:hover::after {
-  color: value(linkHoverColor);
+  color: value(LinkColorHover);
 }
 
 .root:type(glossary)[data-state="open"]::triggerWrapper,

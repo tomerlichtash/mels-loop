@@ -1,11 +1,13 @@
 @namespace "ContentComponentMixin";
 
 @st-import ContentComponent from "../components/content/content-component.st.css";
-@st-import [
-  level0,
-	accent1,
-	primary2
-] from "./common.st.css";
+
+:vars {
+	LinkColor: blue;
+	LinkColorHover: red;
+  ErrorBgColor: red;
+  ErrorTextColor: white;
+}
 
 .root {
   -st-extends: ContentComponent;
@@ -26,12 +28,13 @@
 }
 
 .root:type(link) {
-	color: value(accent1);
+	color: value(LinkColor);
 }
 .root:type(link):hover {
-	color: value(primary2);
+	color: value(LinkColorHover);
 }
 
-.root:type(link):hover {
-  color: green;
+.root::error {
+	background: value(ErrorBgColor);
+	color: value(ErrorTextColor);
 }

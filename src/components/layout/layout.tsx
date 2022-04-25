@@ -106,19 +106,17 @@ export default function Layout({ children }: ComponentProps) {
 			>
 				<div id="page-wrap">
 					<div className={classes.topBar}>
-						<div className={classes.siteHeader}>
-							<Header className={classes.header} isHome={isHome} />
-							{!isMobile && (
-								<div className={classes.primaryNav}>
-									<NavMenu className={classes.nav} items={menuItems} />
-									<LocaleSelector
-										onLocaleChange={onLocaleChange}
-										className={st(classes.localeSelector, { locale })}
-									/>
-									<ThemeSelector />
-								</div>
-							)}
-						</div>
+						<Header className={classes.header} isHome={isHome} />
+						{!isMobile && (
+							<div className={classes.primaryNav}>
+								<NavMenu className={classes.nav} items={menuItems} />
+								<LocaleSelector
+									onLocaleChange={onLocaleChange}
+									className={st(classes.localeSelector, { locale })}
+								/>
+								<ThemeSelector />
+							</div>
+						)}
 					</div>
 					<div className={classes.scrollablePage}>
 						<ScrollArea>
@@ -133,6 +131,7 @@ export default function Layout({ children }: ComponentProps) {
 					<MobileNav
 						className={classes.mobileNav}
 						right={locale === "en"}
+						isHome={isHome}
 						onLocaleChange={onLocaleChange}
 					/>
 				)}

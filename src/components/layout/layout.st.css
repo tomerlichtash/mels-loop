@@ -2,71 +2,57 @@
 
 @st-import Page from "../../components/page/page.st.css";
 @st-import Header from "../../components/header/header.st.css";
-@st-import Nav from "../../components/nav/nav.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import MobileNav from "../../components/nav/nav-mobile.st.css";
-@st-import Scrollable from "../../components/scrollbar/scrollbar.st.css";
 @st-import Globals from "../../theme/globals.st.css";
-@st-import [PageWidth, level0, level1, level2, level5, level6, level4, primary2, accent1, primary2, topLevelIndex] from '../../theme/common.st.css';
-@st-import [heading6, bodyTextNormal, LatinText, HebrewText] from '../../theme/typography.st.css';
-@st-import [boxSizing, preventSelection] from "../../theme/mixins.st.css";
 
-:vars {
-	linkColor: value(accent1);
-	linkHoverColor: value(primary2);
-}
-.linkStyle {
-	color: value(linkColor);
-}
-.linkStyle:hover {
-	color: value(linkHoverColor);
-}
+@st-import [
+	level1,
+	level2,
+	topLevelIndex
+] from "../../theme/common.st.css";
+
+@st-import [
+	heading6,
+	bodyTextNormal,
+	LatinText,
+	HebrewText,
+] from "../../theme/typography.st.css";
+
+@st-import [
+	boxSizing,
+	preventSelection
+] from "../../theme/mixins.st.css";
 
 .root {
-	-st-states: locale(enum(en, he)), theme(enum(light, dark));
+	-st-states: locale(enum(en, he));
 	-st-mixin: Globals;
-	font-size: 16px;
-	background: value(level1);
 }
-
 .root:locale(en) {
-	font-family: "Roboto Slab", serif;
-	direction: ltr;
+	-st-mixin: LatinText;
 }
 .root:locale(he) {
-	font-family: "Assistant", serif;
-	direction: rtl;
+	-st-mixin: HebrewText;
 }
 
 .scrollablePage {
 	height: 100vh;
-}  
+}
+.scrollable {}
+
 .page {
 	-st-extends: Page;
 	padding-top: 80px;
 }
 
-.mobileNav {
-	-st-extends: MobileNav;
-}
-.mobileNav::burgerButton {
-		right: 1rem;
-}
-
 .topBar {
 	-st-mixin: boxSizing;
 	position: fixed;
-	width: 100%;
-	z-index: value(topLevelIndex);
-}
-
-.siteHeader {
-	padding: 0 1rem;
-	height: 48px;
-	background-color: value(level2);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	width: 100%;
+	z-index: value(topLevelIndex);
 }
 
 .header {
@@ -74,14 +60,9 @@
 }
 .header::siteTitle {
 	-st-mixin: heading6;
-	text-transform: uppercase;
-	letter-spacing: 1px;
 }
 .header::siteSubtitle {
 	-st-mixin: bodyTextNormal;
-}
-.header::siteTitle::icon img {
-	width: 24px;
 }
 .root:locale(en) .header::siteTitle::icon img {
 	margin-right: 0.5rem;
@@ -94,60 +75,39 @@
 	display: flex;
 }
 
-
-.toggleGroup {
-	-st-extends: LocaleSelector;
-	-st-states: locale(string);
-	border-radius: 6px;
-	border-color: value(level4);
-	overflow: hidden;
+.mobileNav {
+	-st-extends: MobileNav;
 }
-.toggleGroup::item:first-child {
-	border-top-left-radius: 6px;
-	border-bottom-left-radius: 6px;
-}
-.toggleGroup::item:last-child {
-	border-top-right-radius: 6px;
-	border-bottom-right-radius: 6px;
+.mobileNav::burgerButton {
+		right: 1rem;
 }
 
-.toggleItem {
-	-st-states: selected(boolean);
-	width: 30px;
-	text-align: center;
-	padding: 0.25rem 0.5rem;
-}
-.toggleItem:selected {
-	background-color: value(level4);
-}
-.toggleItem:hover {
-	background-color: value(level5);
-}
-
-.localeSelector {
-	-st-extends: LocaleSelector;
-	-st-states: locale(string);
-	-st-mixin: toggleGroup;
-}
-
-.localeSelector::item:locale(en) {
-	-st-mixin: LatinText;
-}
-.localeSelector::item:locale(he) {
-	-st-mixin: HebrewText;
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+		.header {
+			height: auto;
+			padding: 1rem 0;
+		}
+		Header::container {
+			display: block;
+		}
+		Header::siteSubtitle {
+			display: block;
+		}
+		Header::siteSubtitle::before {
+			content: '';
+		}
+		Page::gutter {
+			margin: 1rem;
+		}
+	}
 }
 
-.localeSelector::item {
-	-st-mixin: toggleItem;
-}
-.localeSelector::item:selected {
-	background-color: value(level4);
-}
+/* @media (min-width: 320px) and (max-width: 767px) {
+} */
 
 /* @media (min-width: 320px) and (max-width: 767px) {
 	.primaryNav {
 		display: none;
 	}
 } */
-
-.scrollable {}

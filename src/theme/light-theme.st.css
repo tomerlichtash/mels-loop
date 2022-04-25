@@ -1,52 +1,48 @@
 @namespace "LightTheme";
 
-/* @st-import Header from "../components/header/header.st.css"; */
-@st-import Footer from "../components/footer/footer.st.css";
-@st-import Menu from "../components/nav/menu.st.css";
-@st-import MobileNav from "../components/nav/nav-mobile.st.css";
-@st-import Page from "../components/page/page.st.css";
-@st-import LocaleSelector from "../components/locale-selector/locale-selector.st.css";
-
+@st-import Layout from "../components/layout/layout.st.css";
+@st-import LayoutMixin from "../components/layout/layout-mixin.st.css";
 @st-import Popover from "../components/popover/popover.st.css";
 @st-import PopoverMixin from "./popover-mixin.st.css";
-
 @st-import ContentComponent from "../components/content/content-component.st.css";
 @st-import ContentComponentMixin from "./content-component-mixin.st.css";
 
-@st-import [boxSizing, preventSelection, verticalAlignSuper] from "./mixins.st.css";
-@st-import [heading1] from "./typography.st.css";
+@st-import [
+	boxSizing,
+	preventSelection,
+	verticalAlignSuper
+] from "./mixins.st.css";
 
 @st-import [
-	PageWidth,
+	heading1
+] from "./typography.st.css";
+
+@st-import [
 	accent1,
+	level1,
+	level2,
 	primary2
 ] from "./common.st.css";
 
-:vars {
-	linkColor: green;
-	linkHoverColor: red;
-}
-
-@st-scope .root {	
-	ContentComponent {
-		-st-mixin: ContentComponentMixin;
-	}
-	Popover {
-		-st-mixin: PopoverMixin(
-				linkColor value(accent1),
-				linkHoverColor value(primary2)
+@st-scope .root {
+	Layout {
+		-st-mixin: LayoutMixin(
+			LayoutBgColor value(level1),
+			TopBarBgColor value(level2)
 		);
 	}
 
-	/* MOBILE NAV */
-	MobileNav::nav {
-		background-color: transparent;
-		text-align: left;
+	ContentComponent {
+		-st-mixin: ContentComponentMixin(
+			LinkColor value(accent1),
+			LinkColorHover value(primary2)
+		);
 	}
-	MobileNav::nav::button {
-		color: #fff;
-	}
-	MobileNav::nav::button:selected {
-		background-color: #c00;
+
+	Popover {
+		-st-mixin: PopoverMixin(
+			LinkColor value(accent1),
+			LinkColorHover value(primary2)
+		);
 	}
 }

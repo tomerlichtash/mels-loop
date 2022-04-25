@@ -1,0 +1,17 @@
+@namespace "LayoutMixin";
+
+@st-import Layout from "./layout.st.css";
+
+:vars {
+	LayoutBgColor: #fff;
+	TopBarBgColor: #000;
+}
+
+.root {
+	-st-extends: Layout;
+	background: value(LayoutBgColor);
+}
+
+.root::topBar {
+	background-color: value(TopBarBgColor);
+}

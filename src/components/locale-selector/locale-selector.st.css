@@ -2,6 +2,8 @@
 
 @st-import DropDown from "../dropdown/dropdown.st.css";
 @st-import [preventSelection, boxSizing] from "../../theme/mixins.st.css";
+@st-import [color4, level4, level5] from "../../theme/common.st.css";
+@st-import [LatinText, HebrewText] from "../../theme/typography.st.css";
 
 :vars {
 	buttonMargin: 38px;
@@ -17,7 +19,10 @@
 	cursor: pointer;
 	border: 1px solid black;
 	overflow: hidden;
+	border-radius: 6px;
+	border-color: value(level4);
 }
+
 .root:locale(en) {
 	direction: ltr;
 	text-align: left;
@@ -27,11 +32,17 @@
 	text-align: right;
 }
 
-.root:locale(en) .langsIcon {
-	left: -30px;
+.root:first-child {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
 }
-.root:locale(he) .langsIcon {
-	left: -30px;
+.root:last-child {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+.list {
+	display: flex;
 }
 
 .item {
@@ -40,8 +51,23 @@
 	padding: 0;
 	display: block;
 	cursor: pointer;
+	padding: 0.25rem 0.5rem;
+	text-align: center;
+	width: 30px;
 }
 
-.list {
-	display: flex;
+.item:hover {
+	background-color: value(level5);
+}
+.item:selected {
+	background-color: value(level4);
+}
+.item:locale(en) {
+	-st-mixin: LatinText;
+}
+.item:locale(he) {
+	-st-mixin: HebrewText;
+}
+.item:selected {
+	background-color: value(level4);
 }
