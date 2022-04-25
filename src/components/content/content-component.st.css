@@ -22,7 +22,4 @@
 	));
 }
 
-.error {
-	background: red;
-	color: #fff;
-}
+.error {}

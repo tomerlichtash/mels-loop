@@ -17,7 +17,6 @@
 	color13: #274F8C;
 	color14: #1A355F;
 	color15: #00173A;
-
 	color16: #E5E5E5;
 }
 
@@ -38,8 +37,6 @@
 	accent2: value(color13);
 	accent3: value(color14);
 	accent4: value(color15);
-
-	siteBgColor: value(level0);
 }
 
 :vars {
@@ -51,5 +48,5 @@
 }
 
 :vars {
-	topLevelIndex: 2;
+	topLevelIndex: 1;
 }

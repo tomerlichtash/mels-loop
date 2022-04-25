@@ -5,6 +5,11 @@
 
 .root {
 	-st-mixin: boxSizing;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 48px;
+	padding: 0 1rem;
 }
 
 .logo {}
@@ -16,6 +21,12 @@
 
 .siteTitle {
   -st-extends: Button;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.siteTitle::icon img {
+	width: 24px;
 }
 
 .siteSubtitle {
