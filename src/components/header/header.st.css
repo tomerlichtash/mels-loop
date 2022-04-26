@@ -24,7 +24,7 @@
 }
 
 .siteTitle {
-  -st-extends: Button;
+	-st-extends: Button;
 	-st-mixin: heading6;
 	text-transform: uppercase;
 	letter-spacing: 1px;

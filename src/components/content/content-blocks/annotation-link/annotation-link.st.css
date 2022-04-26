@@ -3,22 +3,22 @@
 @st-import [preventSelection, verticalAlignSuper] from "../../../../theme/mixins.st.css";
 
 .root {
-  -st-mixin: preventSelection, verticalAlignSuper;
-  font-weight: 600;
+	-st-mixin: preventSelection, verticalAlignSuper;
+	font-weight: 600;
 }
 
 .root::before,
 .root::after {
-  color: #000;
-  font-weight: 300;
+	color: #000;
+	font-weight: 300;
 }
 
 .root::before {
-  content: '[';
-  margin-right: 0.1rem;
+	content: '[';
+	margin-right: 0.1rem;
 }
 
 .root::after {
-  content: ']';
-  margin-left: 0.1rem;
+	content: ']';
+	margin-left: 0.1rem;
 }

@@ -5,5 +5,5 @@
 :vars {}
 
 .root {
-  -st-extends: LocaleSelector;
+	-st-extends: LocaleSelector;
 }

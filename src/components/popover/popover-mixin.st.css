@@ -3,7 +3,7 @@
 @st-import Popover from "./popover.st.css";
 @st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
 @st-import [
-  level0,
+	level0,
 	accent1,
 	primary2
 ] from "../../theme/common.st.css";
@@ -14,43 +14,43 @@
 }
 
 .root {
-  -st-extends: Popover;
+	-st-extends: Popover;
 }
 
 .root:type(annotation)::trigger,
 .root:type(glossary)::trigger {
-  color: value(LinkColor);
+	color: value(LinkColor);
 }
 
 .root:type(glossary)::triggerWrapper {
-  border-radius: 4px;
+	border-radius: 4px;
 }
 
 .root:type(annotation)::trigger:hover,
 .root:type(glossary)[data-state="closed"]::trigger:hover,
 .root:type(glossary)[data-state="closed"]::trigger:hover::after {
-  color: value(LinkColorHover);
+	color: value(LinkColorHover);
 }
 
 .root:type(glossary)[data-state="open"]::triggerWrapper,
 .root:type(glossary)[data-state="open"]::triggerWrapper:hover {
-  background-color: value(primary2);
-  color: value(level0);
+	background-color: value(primary2);
+	color: value(level0);
 }
 
 .root:type(glossary)::trigger::after {
-  -st-mixin: preventSelection, verticalAlignSuper;
-  content: "\203B";
+	-st-mixin: preventSelection, verticalAlignSuper;
+	content: "\203B";
 }
 
 .root:type(glossary)[data-state="open"]::trigger::after {
-  color: value(primary2);
+	color: value(primary2);
 }
 
 .root:type(glossary)[data-state="open"]::triggerWrapper::after {
-  color: value(level0);
+	color: value(level0);
 }
 
 .root::content {
-  margin-top: 20px;
+	margin-top: 20px;
 }

@@ -3,26 +3,26 @@
 @st-import Nav from "./nav.st.css";
 
 :vars {
-  NavBackgroundColor: #404040;
-  NavTextAlign: center;
+	NavBackgroundColor: #404040;
+	NavTextAlign: center;
 }
 
 .root {
-  -st-extends: Nav;
-  background-color: value(NavBackgroundColor);
-  text-align: value(NavTextAlign);
-  display: block;
+	-st-extends: Nav;
+	background-color: value(NavBackgroundColor);
+	text-align: value(NavTextAlign);
+	display: block;
 }
 
 .root::marker:isCurrent {
-  background-color: red;
+	background-color: red;
 }
 
 .root::button {
-  display: block;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  color: #303030;
+	display: block;
+	padding: 0.5rem 1rem;
+	text-decoration: none;
+	color: #303030;
 }
 
 .root::button:selected {

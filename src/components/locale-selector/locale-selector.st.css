@@ -14,7 +14,7 @@
 .root {
 	-st-states: locale(string), isOpen(boolean);
 	-st-mixin: boxSizing;
-  justify-content: right;
+	justify-content: right;
 	display: inline-block;
 	cursor: pointer;
 	border: 1px solid black;

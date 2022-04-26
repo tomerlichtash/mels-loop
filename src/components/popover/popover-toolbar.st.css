@@ -4,8 +4,8 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-  border-bottom: 1px solid #c0c0c0;
-  padding: 0.5rem 0.25rem;
+	border-bottom: 1px solid #c0c0c0;
+	padding: 0.5rem 0.25rem;
 }
 
 .toolbarContainer {

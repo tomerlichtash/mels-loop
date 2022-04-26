@@ -41,10 +41,10 @@
 }
 
 .bibliography {
-  -st-extends: Bibliography;
+	-st-extends: Bibliography;
 }
 
 .scrollable {
-  border: 2px solid red;
-  overflow: hidden;
+	border: 2px solid red;
+	overflow: hidden;
 }

@@ -5,26 +5,26 @@
 :vars {
 	LinkColor: blue;
 	LinkColorHover: red;
-  ErrorBgColor: red;
-  ErrorTextColor: white;
+	ErrorBgColor: red;
+	ErrorTextColor: white;
 }
 
 .root {
-  -st-extends: ContentComponent;
-}
+	-st-extends: ContentComponent;
+	}
 
 .root:type(section),
 .root:type(blockquote) {
-  margin-bottom: 1.8rem;
+	margin-bottom: 1.8rem;
 }
 
 .root:type(paragraph),
 .root:type(blockquote) {
-  line-height: 1.8rem;
+	line-height: 1.8rem;
 }
 
 .root:type(blockquote) {
-  padding: 0 1.8rem;
+	padding: 0 1.8rem;
 }
 
 .root:type(link) {

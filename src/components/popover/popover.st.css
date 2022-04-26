@@ -4,37 +4,37 @@
 @st-import [preventSelection] from "../../theme/mixins.st.css";
 
 :vars {
-  PopoverContentBorder: none;
-  PopoverContentRadius: 2px;
-  PopoverContentBgColor: #fff;
-  PopoverContentMaxWidth: 341px;
-  PopoverContentMaxHeight: 300px;
-  PopoverContentShadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+	PopoverContentBorder: none;
+	PopoverContentRadius: 2px;
+	PopoverContentBgColor: #fff;
+	PopoverContentMaxWidth: 341px;
+	PopoverContentMaxHeight: 300px;
+	PopoverContentShadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 
-  PopoverCloseBorder: none;
-  PopoverCloseMarginTop: 0;
-  PopoverCloseBorderRadius: 0;
-  PopoverCloseFontSize: 12px;
-  PopoverCloseSize: 30px;
-  PopoverCloseBgHover: red;
-  PopoverClosePosMargin: 8px;
-  PopoverCloseIconColor: value(color4);
-  PopoverCloseIconColorHover: red;
-  PopoverCloseCase: lowercase;
+	PopoverCloseBorder: none;
+	PopoverCloseMarginTop: 0;
+	PopoverCloseBorderRadius: 0;
+	PopoverCloseFontSize: 12px;
+	PopoverCloseSize: 30px;
+	PopoverCloseBgHover: red;
+	PopoverClosePosMargin: 8px;
+	PopoverCloseIconColor: value(color4);
+	PopoverCloseIconColorHover: red;
+	PopoverCloseCase: lowercase;
 }
 
 .root {
-  -st-states: type(string), locale(string);
+	-st-states: type(string), locale(string);
 }
 
 .trigger {
-  cursor: pointer;
-  padding: inherit;
-  line-height: inherit;
-  font-size: inherit;
-  font-family: inherit;
-  border: none;
-  background: inherit;
+	cursor: pointer;
+	padding: inherit;
+	line-height: inherit;
+	font-size: inherit;
+	font-family: inherit;
+	border: none;
+	background: inherit;
 }
 
 .triggerWrapper {}
@@ -44,32 +44,32 @@
 .toolbar {}
 
 .content {
-  overflow: hidden;
-  width: value(PopoverContentMaxWidth);
-  background: value(PopoverContentBgColor);
-  border-radius: value(PopoverContentRadius);
-  box-shadow: value(PopoverContentShadow);
-  animation: fadeIn 300ms ease-out forwards;
+	overflow: hidden;
+	width: value(PopoverContentMaxWidth);
+	background: value(PopoverContentBgColor);
+	border-radius: value(PopoverContentRadius);
+	box-shadow: value(PopoverContentShadow);
+	animation: fadeIn 300ms ease-out forwards;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 @keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }
 
 .scrollable {
-  position: relative;
-  margin-top: 0px;
+	position: relative;
+	margin-top: 0px;
 }

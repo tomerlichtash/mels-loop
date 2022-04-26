@@ -9,27 +9,27 @@
 .sectionTitle {}
 
 .post {
-  margin-bottom: 2rem;
-  border: 1px solid #e0e0e0;
-  padding: 4rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+	margin-bottom: 2rem;
+	border: 1px solid #e0e0e0;
+	padding: 4rem;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .postHeader {
-  margin-bottom: 2rem;
+	margin-bottom: 2rem;
 }
 
 .postMain {}
 
 .postHeading {
-  margin: 0;
+	margin: 0;
 }
 
 .postTitle {
-  -st-extends: Button;
-  font-size: 3rem;
-  font-weight: normal;
-  text-decoration: none;
+	-st-extends: Button;
+	font-size: 3rem;
+	font-weight: normal;
+	text-decoration: none;
 }
 
 .postTitle:hover {}
@@ -37,11 +37,11 @@
 .postDate {}
 
 .postContent {
-  -st-extends: ContentComponent;
+	-st-extends: ContentComponent;
 }
 
 /* .postContent:type(figure) {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  padding: 1rem;
-  margin-bottom: 2rem;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	padding: 1rem;
+	margin-bottom: 2rem;
 } */

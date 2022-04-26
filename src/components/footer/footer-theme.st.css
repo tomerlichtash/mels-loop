@@ -3,14 +3,14 @@
 @st-import Footer from "./footer.st.css";
 
 :vars {
-  FooterBackgroundColor: #f0f0f0;
-  FooterTextAlign: center;
-  FooterPadding: 0;
+	FooterBackgroundColor: #f0f0f0;
+	FooterTextAlign: center;
+	FooterPadding: 0;
 }
 
 .root {
-  -st-extends: Footer;
-  background-color: value(FooterBackgroundColor);
-  text-align: value(FooterTextAlign);
-  padding: value(FooterPadding);
+	-st-extends: Footer;
+	background-color: value(FooterBackgroundColor);
+	text-align: value(FooterTextAlign);
+	padding: value(FooterPadding);
 }

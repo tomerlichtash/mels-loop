@@ -3,10 +3,10 @@
 @st-import [boxSizing] from "../../../../theme/mixins.st.css";
 
 .root {
-  -st-mixin: boxSizing;
-  margin: 0;
+	-st-mixin: boxSizing;
+	margin: 0;
 }
 
 .img {
-  width: 100%;
+	width: 100%;
 }
