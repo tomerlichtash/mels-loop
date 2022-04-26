@@ -1,20 +1,17 @@
 import React from "react";
 import { ComponentProps } from "../../interfaces/models";
-import LocaleSelector from "../locale-selector";
-import Nav from "../nav";
 import { push as Menu } from "react-burger-menu";
-import { st, classes } from "./nav-mobile.st.css";
-import ThemeSelector from "../theme-selector";
 import Header from "../header";
+import ThemeSelector from "../theme-selector";
+import LocaleSelector from "../locale-selector";
+import { st, classes } from "./nav-mobile.st.css";
 
 export interface IMobileNavProps extends ComponentProps {
-	onLocaleChange: (id: string) => Promise<boolean>;
 	isHome: boolean;
 	right: boolean;
 }
 
 export const MobileNav = ({
-	onLocaleChange,
 	right,
 	isHome,
 	className,
@@ -46,12 +43,8 @@ export const MobileNav = ({
 			className={st(classes.root, className)}
 		>
 			<Header isHome={isHome} />
-			<LocaleSelector
-				onLocaleChange={onLocaleChange}
-				className={classes.localeSelector}
-			/>
-			<ThemeSelector />
-			<Nav className={st(classes.nav, { right })} />
+			<LocaleSelector className={classes.localeSelector} />
+			<ThemeSelector className={classes.themeSelector} />
 		</Menu>
 	);
 };

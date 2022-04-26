@@ -21,7 +21,7 @@ export interface IThemeContext {
 	isDarkTheme: boolean;
 }
 
-export interface ThemeCtxProps {
+export interface ThemeContextProps {
 	children: React.ReactChild;
 }
 
@@ -30,7 +30,7 @@ const themes = {
 	dark: [DarkTheme.root],
 };
 
-export function ThemeContextProvider({ children }: ThemeCtxProps) {
+export function ThemeContextProvider({ children }: ThemeContextProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	const styleRef = useRef<HTMLStyleElement>(null);
 	const [theme, setTheme, _ref] = useTheme(

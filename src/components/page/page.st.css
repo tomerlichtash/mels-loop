@@ -3,11 +3,26 @@
 @st-import [PageWidth] from "../../theme/common.st.css";
 @st-import [boxSizing] from "../../theme/mixins.st.css";
 
+:vars {
+	pageWidth: value(PageWidth);
+	PageTopMargin: 80px;
+	PageMobileGutter: 1rem;
+}
+
 .root {
 	-st-mixin: boxSizing;
-	max-width: value(PageWidth);
 	overflow: hidden;
 	margin: 0 auto;
+	max-width: value(pageWidth);
+	padding-top: value(PageTopMargin);
 }
 
 .gutter {}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+		.root::gutter {
+			margin: value(PageMobileGutter);
+		}
+	}
+}

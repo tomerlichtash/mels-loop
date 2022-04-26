@@ -1,113 +1,27 @@
 @namespace "Layout";
 
+@st-import TopBar from "../../components/top-bar/top-bar.st.css";
 @st-import Page from "../../components/page/page.st.css";
-@st-import Header from "../../components/header/header.st.css";
-@st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
-@st-import MobileNav from "../../components/nav/nav-mobile.st.css";
 @st-import Globals from "../../theme/globals.st.css";
-
-@st-import [
-	level1,
-	level2,
-	topLevelIndex
-] from "../../theme/common.st.css";
-
-@st-import [
-	heading6,
-	bodyTextNormal,
-	LatinText,
-	HebrewText,
-] from "../../theme/typography.st.css";
-
-@st-import [
-	boxSizing,
-	preventSelection
-] from "../../theme/mixins.st.css";
+@st-import [LatinText, HebrewText] from "../../theme/typography.st.css";
 
 .root {
 	-st-states: locale(enum(en, he));
 	-st-mixin: Globals;
 }
+
 .root:locale(en) {
 	-st-mixin: LatinText;
 }
+
 .root:locale(he) {
 	-st-mixin: HebrewText;
 }
 
-.scrollablePage {
-	height: 100vh;
+.topBar {
+	-st-extends: TopBar;
 }
-.scrollable {}
 
 .page {
 	-st-extends: Page;
-	padding-top: 80px;
 }
-
-.topBar {
-	-st-mixin: boxSizing;
-	position: fixed;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	z-index: value(topLevelIndex);
-}
-
-.header {
-	-st-extends: Header;
-}
-.header::siteTitle {
-	-st-mixin: heading6;
-}
-.header::siteSubtitle {
-	-st-mixin: bodyTextNormal;
-}
-.root:locale(en) .header::siteTitle::icon img {
-	margin-right: 0.5rem;
-}
-.root:locale(he) .header::siteTitle::icon img {
-	margin-left: 0.5rem;
-}
-
-.primaryNav {
-	display: flex;
-}
-
-.mobileNav {
-	-st-extends: MobileNav;
-}
-.mobileNav::burgerButton {
-		right: 1rem;
-}
-
-@media (min-width: 320px) and (max-width: 767px) {
-	@st-scope .root {
-		.header {
-			height: auto;
-			padding: 1rem 0;
-		}
-		Header::container {
-			display: block;
-		}
-		Header::siteSubtitle {
-			display: block;
-		}
-		Header::siteSubtitle::before {
-			content: '';
-		}
-		Page::gutter {
-			margin: 1rem;
-		}
-	}
-}
-
-/* @media (min-width: 320px) and (max-width: 767px) {
-} */
-
-/* @media (min-width: 320px) and (max-width: 767px) {
-	.primaryNav {
-		display: none;
-	}
-} */

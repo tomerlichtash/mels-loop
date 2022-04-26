@@ -1,6 +1,6 @@
 @namespace "ContentComponentMixin";
 
-@st-import ContentComponent from "../components/content/content-component.st.css";
+@st-import ContentComponent from "./content-component.st.css";
 
 :vars {
 	LinkColor: blue;

@@ -1,0 +1,69 @@
+@namespace "TopBar";
+
+@st-import Header from "../header/header.st.css";
+@st-import Menu from "../nav/menu.st.css";
+@st-import LocaleSelector from "../locale-selector/locale-selector.st.css";
+@st-import ThemeSelector from "../theme-selector/theme-selector.st.css";
+
+@st-import [
+	level3,
+	topLevelIndex
+] from "../../theme/common.st.css";
+
+@st-import [
+	boxSizing,
+] from "../../theme/mixins.st.css";
+
+:vars {
+	TopBarBgColor: blue;
+	TopBarIconMargin: 0.5rem;
+}
+
+.root {
+	-st-states: locale(enum(en, he));
+	-st-mixin: boxSizing;
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	background: value(TopBarBgColor);
+	z-index: value(topLevelIndex);
+}
+
+.items {
+	display: flex;
+}
+
+.header {
+	-st-extends: Header;
+}
+
+.nav {
+	-st-extends: Menu;
+}
+
+.localeSelector {
+	-st-extends: LocaleSelector;
+}
+
+.themeSelector {
+	-st-extends: ThemeSelector;
+}
+
+.root:locale(en)::header::siteTitle::icon img {
+	margin-right: value(TopBarIconMargin);
+}
+
+.root:locale(he)::header::siteTitle::icon img {
+	margin-left: value(TopBarIconMargin);
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+		.header {
+			height: auto;
+			padding: 1rem 0;
+		}
+	}
+}

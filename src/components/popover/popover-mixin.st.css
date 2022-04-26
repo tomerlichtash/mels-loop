@@ -1,12 +1,12 @@
 @namespace "PopoverMixin";
 
-@st-import Popover from "../components/popover/popover.st.css";
-@st-import [preventSelection, verticalAlignSuper] from "./mixins.st.css";
+@st-import Popover from "./popover.st.css";
+@st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
 @st-import [
   level0,
 	accent1,
 	primary2
-] from "./common.st.css";
+] from "../../theme/common.st.css";
 
 :vars {
 	LinkColor: blue;

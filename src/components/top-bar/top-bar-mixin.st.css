@@ -1,0 +1,12 @@
+@namespace "TopBarMixin";
+
+@st-import TopBar from "./top-bar.st.css";
+
+:vars {
+	TopBarBgColor: blue;
+}
+
+.root {
+	-st-mixin: TopBar;
+	background: value(TopBarBgColor);
+}
