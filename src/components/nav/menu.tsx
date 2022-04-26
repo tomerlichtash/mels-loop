@@ -22,7 +22,7 @@ export const NavMenu = ({ items, className }: NavMenuProps) => {
 				href={url}
 				className={classes.link}
 			>
-				<div className={classes.linkTitle}>{title as string}</div>
+				<div className={classes.linkTitle}>{title}</div>
 				<p className={classes.linkText}>
 					{type === "article" ? author : description}
 				</p>
