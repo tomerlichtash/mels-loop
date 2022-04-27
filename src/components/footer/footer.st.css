@@ -11,7 +11,7 @@
 .strip {
   height: 4px;
   background: rgb(78,74,122);
-  background: linear-gradient(90deg, value(primary1) 0%, value(primary3) 50%, value(primary4) 100%);  
+  background: linear-gradient(90deg, value(primary1) 0%, value(primary3) 50%, value(primary4) 100%);
 }
 
 .layout {
@@ -40,7 +40,6 @@
 .license {}
 
 .year {}
-
 
 .sitePages {
   flex: 1;

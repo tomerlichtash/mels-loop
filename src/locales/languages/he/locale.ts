@@ -54,5 +54,10 @@ export const Locale: Language = {
 	MENU_ITEM_ENTRY_DESC_LINK_WIKIPEDIA: "הסיפור על מל בויקיפדיה",
 	MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES: "רשימת מקורות מלאה",
 
-	POPOVER_BACK: "חזרה",
+	FOOTER_LINK_ABOUT: "אודות",
+	FOOTER_LINK_BLOG: "בלוג",
+	FOOTER_LINK_GITHUB: "גיטהב",
+	FOOTER_LINK_TWITTER: "@aboutmelsloop",
+	FOOTER_LINK_CONTACT: "צור קשר",
+	FOOTER_META_SHORT_DESCRIPTION: "[חסר תיאור בעברית]",
 };
