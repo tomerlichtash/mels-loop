@@ -20,6 +20,7 @@
 	color16: #E5E5E5;
 }
 
+/* TODO: This vars section should be deleted after refactor; don't import from it, rather - use theme */
 :vars {
 	level0: value(color0);
 	level1: value(color1);

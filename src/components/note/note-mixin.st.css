@@ -1,0 +1,34 @@
+@namespace "NoteMixin";
+
+@st-import Note from "./note.st.css";
+
+:vars {
+	NotePadding: 0;
+	TopicBgColor: blue;
+	TopicTextColor: red;
+	TopicRadius: 0;
+	TopicPadding: 0;
+	TopicMargin: 0;
+	TitleFontSize: 1rem;
+	TitleFontWeight: 500;
+	TitleMargin: 0;
+}
+
+.root {
+	-st-extends: Note;
+	padding: value(NotePadding);
+}
+
+.root:type(ref)::topic {
+	padding: 0 value(TopicPadding);
+	border-radius: value(TopicRadius);
+	background: value(TopicBgColor);
+	color: value(TopicTextColor);
+	margin-bottom: value(TopicMargin);
+}
+
+.root:type(ref)::title {
+	font-weight: value(TitleFontWeight);
+	font-size: value(TitleFontSize);
+	margin-bottom: value(TitleMargin);
+}

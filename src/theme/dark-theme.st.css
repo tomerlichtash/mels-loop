@@ -27,6 +27,9 @@
 @st-import Popover from "../components/popover/popover.st.css";
 @st-import PopoverMixin from "../components/popover/popover-mixin.st.css";
 
+@st-import Note from "../components/note/note.st.css";
+@st-import NoteMixin from "../components/note/note-mixin.st.css";
+
 @st-import ContentComponent from "../components/content/content-component.st.css";
 @st-import ContentComponentMixin from "../components/content/content-component-mixin.st.css";
 
@@ -121,6 +124,20 @@
 		-st-mixin: PopoverMixin(
 			LinkColor value(primary1),
 			LinkColorHover value(accent4)
+		);
+	}
+
+	Note {
+		-st-mixin: NoteMixin(
+			NotePadding 1rem,
+			TopicBgColor value(level2),
+			TopicTextColor value(primary3),
+			TopicRadius 4px,
+			TopicPadding 6px,
+			TopicMargin 1.5rem,
+			TitleFontSize 2rem,
+			TitleFontWeight 300,
+			TitleMargin 1rem
 		);
 	}
 }
