@@ -10,6 +10,6 @@
   -st-extends: Scrollbar;
 }
 
-.thumb {
+.root::thumb {
 	background: value(ScrollBarThumbColor);
 }

@@ -25,7 +25,3 @@
 .bibliography {
   -st-extends: Bibliography;
 }
-
-.scrollable {
-  overflow: hidden;
-}

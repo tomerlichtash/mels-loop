@@ -49,6 +49,7 @@ export const Popover = ({
 	};
 
 	const forcePopoverProp = forcePopover ? { "data-state": "open" } : {};
+
 	return (
 		<ReactPopoverContext.Provider value={ctx}>
 			<PopoverRoot>
