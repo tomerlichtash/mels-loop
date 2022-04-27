@@ -1,6 +1,6 @@
 @namespace "Footer";
 
-@st-import [primary1, primary3, primary4, level2, PageWidth] from "../../theme/common.st.css";
+@st-import [primary1, primary3, primary4, level2] from "../../theme/common.st.css";
 
 .root {
   background-color: value(level2);

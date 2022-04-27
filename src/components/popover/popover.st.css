@@ -1,8 +1,5 @@
 @namespace "Popover";
 
-@st-import [color4] from "../../theme/common.st.css";
-@st-import [preventSelection] from "../../theme/mixins.st.css";
-
 :vars {
   PopoverContentBorder: none;
   PopoverContentRadius: 2px;
@@ -10,7 +7,6 @@
   PopoverContentMaxWidth: 341px;
   PopoverContentMaxHeight: 300px;
   PopoverContentShadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-
   PopoverCloseBorder: none;
   PopoverCloseMarginTop: 0;
   PopoverCloseBorderRadius: 0;
@@ -18,7 +14,7 @@
   PopoverCloseSize: 30px;
   PopoverCloseBgHover: red;
   PopoverClosePosMargin: 8px;
-  PopoverCloseIconColor: value(color4);
+  PopoverCloseIconColor: blue;
   PopoverCloseIconColorHover: red;
   PopoverCloseCase: lowercase;
 }

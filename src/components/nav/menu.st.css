@@ -1,9 +1,9 @@
 @namespace "Menu";
 
-@st-import [primary1, primary3, level3, level6] from '../../theme/common.st.css';
-@st-import [preventSelection] from '../../theme/mixins.st.css';
+@st-import [preventSelection] from "../../theme/mixins.st.css";
 
 .root {
+	-st-mixin: preventSelection;
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -48,15 +48,6 @@
 	perspective: 2000px;
 }
 
-.linkTitle {
-	margin-bottom: 5px;
-	line-height: 1.2rem;
-}
-
-.linkText {
-	all: unset;
-}
-
 .arrow {
 	position: relative;
 	top: 70%;
@@ -66,9 +57,20 @@
 	border-top-left-radius: 2px;
 }
 
-.link {
+.menuLink {
 	display: block;
 	text-decoration: none;
+	cursor: pointer;
+}
+
+.title {
+	margin-bottom: 5px;
+	line-height: 1.2rem;
+	display: block;
+}
+
+.text {
+	all: unset;
 }
 
 @media only screen and (min-width: 600px) {
@@ -76,6 +78,7 @@
 		width: 400px;
 		grid-template-columns: ".75fr 1fr";
 	}
+
 	.menuContent:layout(two) {
 		width: 400px;
 		grid-auto-flow: column;

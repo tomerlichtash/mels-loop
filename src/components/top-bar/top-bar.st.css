@@ -4,18 +4,10 @@
 @st-import Menu from "../nav/menu.st.css";
 @st-import LocaleSelector from "../locale-selector/locale-selector.st.css";
 @st-import ThemeSelector from "../theme-selector/theme-selector.st.css";
-
-@st-import [
-	level3,
-	topLevelIndex
-] from "../../theme/common.st.css";
-
-@st-import [
-	boxSizing,
-] from "../../theme/mixins.st.css";
+@st-import [topLevelIndex] from "../../theme/common.st.css";
+@st-import [boxSizing] from "../../theme/mixins.st.css";
 
 :vars {
-	TopBarBgColor: blue;
 	TopBarIconMargin: 0.5rem;
 }
 
@@ -27,7 +19,7 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	background: value(TopBarBgColor);
+	/* background: value(TopBarBgColor); */
 	z-index: value(topLevelIndex);
 }
 

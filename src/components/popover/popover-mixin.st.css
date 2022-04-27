@@ -4,7 +4,6 @@
 @st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
 @st-import [
   level0,
-	accent1,
 	primary2
 ] from "../../theme/common.st.css";
 

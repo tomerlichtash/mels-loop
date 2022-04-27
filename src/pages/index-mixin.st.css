@@ -1,0 +1,21 @@
+@namespace "IndexMixin";
+
+@st-import Index from "./index.st.css";
+
+:vars {
+	MotoTextColor: blue;
+	MotoTextSize: 14px;
+	MotoTextStyle: italic;
+}
+
+.root {
+	-st-extends: Index;
+}
+
+.title {}
+
+.root::moto {
+	font-size: value(MotoTextSize);
+	font-style: value(MotoTextStyle);
+	color: value(MotoTextColor);
+}

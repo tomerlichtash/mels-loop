@@ -20,12 +20,14 @@ export const NavMenu = ({ items, className }: NavMenuProps) => {
 			<NavigationMenuLink
 				target={type === "link" ? "_blank" : ""}
 				href={url}
-				className={classes.link}
+				asChild
 			>
-				<div className={classes.linkTitle}>{title}</div>
-				<p className={classes.linkText}>
-					{type === "article" ? author : description}
-				</p>
+				<a href={url} className={classes.menuLink}>
+					<span className={classes.title}>{title}</span>
+					<p className={classes.text}>
+						{type === "article" ? author : description}
+					</p>
+				</a>
 			</NavigationMenuLink>
 		</li>
 	);

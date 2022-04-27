@@ -1,28 +1,24 @@
 @namespace "Menu";
 
 @st-import Menu from "./menu.st.css";
-@st-import [preventSelection] from "../../theme/mixins.st.css";
-@st-import [
-	primary1,
-	primary3,
-	level3,
-	level4,
-	level6
-] from "../../theme/common.st.css";
 
 :vars {
-	ItemLabelColor: red;	
 	MenuListBgColor: transparent;
 	MenuTriggerRadius: 6px;
-	MenuTriggerBgColorHover: value(level4);
+	MenuTriggerBgColorHover: #c0c0c0;
 	MenuItemTriggerPadding: 4px 1rem;
 	MenuContentPadding: 1rem;
-	MenuLinkTitleTextColor: value(primary3);
+	MenuLinkTitleTextColor: #000;
+	MenuLinkTitleTextColorHover: #888;
+	MenuLinkSubtitleTextColorHover: blue;
+	MenuLinkTextColorHover: #f00;
 	MenuLinkFontSize: 15px;
 	MenuLinkPadding: 12px;
 	MenuLinkRadius: 6px;
-	MenuLinkSubtitleTextColor: value(level6);
+	MenuLinkBgColorHover: #000;
+	MenuLinkSubtitleTextColor: #808080;
 	MenuArrowColor: #fff;
+	MenuItemFocusBorderColor: #808080;
 }
 
 .root {
@@ -46,24 +42,28 @@
 	padding: value(MenuContentPadding);
 }
 
-.root::linkTitle {
-	color: value(MenuLinkTitleTextColor);
-}
-
-.root::linkText {
-	color: value(MenuLinkSubtitleTextColor);
-}
-
-.root::arrow {
-	background-color: value(MenuArrowColor);
-}
-
-.root::link {
+.root::menuLink {
 	font-size: value(MenuLinkFontSize);
 	padding: value(MenuLinkPadding);
 	border-radius: value(MenuLinkRadius);
 }
 
-.root::link:hover {
-	background-color: value(level3);
+.root::menuLink:focus {
+	box-shadow: 0 0 0 2px value(MenuItemFocusBorderColor);
+}
+
+.root::menuLink:hover {
+	background-color: value(MenuLinkBgColorHover);
+}
+
+.root::title {
+	color: value(MenuLinkTitleTextColor);
+}
+
+.root::text {
+	color: value(MenuLinkSubtitleTextColor);
+}
+
+.root::arrow {
+	background-color: value(MenuArrowColor);
 }

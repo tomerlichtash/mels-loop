@@ -2,7 +2,7 @@
 
 @st-import DropDown from "../dropdown/dropdown.st.css";
 @st-import [preventSelection, boxSizing] from "../../theme/mixins.st.css";
-@st-import [color4, level4, level5] from "../../theme/common.st.css";
+@st-import [level4, level5] from "../../theme/common.st.css";
 @st-import [LatinText, HebrewText] from "../../theme/typography.st.css";
 
 :vars {
