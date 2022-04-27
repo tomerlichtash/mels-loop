@@ -1,0 +1,26 @@
+@namespace "FooterMixin";
+
+@st-import Footer from "./footer.st.css";
+
+:vars {
+  FooterBackgroundColor: #f0f0f0;
+  FooterTextAlign: center;
+  FooterPadding: 0;
+  FooterStripGradientStartColor: white;
+  FooterStripGradientMidColor: gray;
+  FooterStripGradientEndColor: black;
+}
+
+.root {
+  -st-extends: Footer;
+  background-color: value(FooterBackgroundColor);
+  text-align: value(FooterTextAlign);
+  padding: value(FooterPadding);
+}
+
+.root::strip {
+  background: linear-gradient(90deg,
+  value(FooterStripGradientStartColor) 0%,
+  value(FooterStripGradientMidColor) 50%,
+  value(FooterStripGradientEndColor) 100%);
+}

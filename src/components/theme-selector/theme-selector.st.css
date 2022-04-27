@@ -1,21 +1,38 @@
 @namespace "ThemeSelector";
 
+@st-import [preventSelection] from "../../theme/mixins.st.css";
+
 .root {
 	-st-states: theme(enum(light, dark));
+	-st-mixin: preventSelection;
 	width: 25px;
 	height: 25px;
 	line-height: 25px;
 	text-align: center;
 	cursor: pointer;
 	border-radius: 50%;
+	margin: 0 1rem;
 }
 
-.root:theme(light) {
-	border: 1px solid blue;
+/* .root:theme(light) {
+	background: #808080;
 }
-
+.root:theme(light):hover {
+	background: #c0c0c0;
+}
+.root:theme(light) .icon path {
+	fill: white;
+} */
+/* 
 .root:theme(dark) {
-	border: 1px solid red;
+	background: #c0c0c0;
 }
+.root:theme(dark):hover {
+	background: #808080;
+}
+.root:theme(dark) .icon path {
+	fill: black;
+} */
 
 .icon {}
+.icon path {}

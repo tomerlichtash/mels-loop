@@ -1,0 +1,23 @@
+@namespace "ThemeSelectorMixin";
+
+@st-import ThemeSelector from "./theme-selector.st.css";
+
+.root {
+	-st-mixin: ThemeSelector;
+	-st-states: theme(enum(light, dark));
+}
+
+:vars {
+	ThemeSelectorBgColor: red;
+	ThemeSelectorIconColor: green;
+}
+
+.root {
+	background: value(ThemeSelectorBgColor);
+}
+
+.root:hover {
+	background: value(ThemeSelectorIconColor);
+}
+
+.icon {}

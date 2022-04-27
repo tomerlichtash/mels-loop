@@ -1,8 +1,6 @@
 @namespace "LocaleSelector";
 
-@st-import DropDown from "../dropdown/dropdown.st.css";
-@st-import [preventSelection, boxSizing] from "../../theme/mixins.st.css";
-@st-import [level4, level5] from "../../theme/common.st.css";
+@st-import [boxSizing] from "../../theme/mixins.st.css";
 @st-import [LatinText, HebrewText] from "../../theme/typography.st.css";
 
 :vars {
@@ -19,8 +17,6 @@
 	cursor: pointer;
 	border: 1px solid black;
 	overflow: hidden;
-	border-radius: 6px;
-	border-color: value(level4);
 }
 
 .root:locale(en) {
@@ -30,15 +26,6 @@
 .root:locale(he) {
 	direction: rtl;
 	text-align: right;
-}
-
-.root:first-child {
-	border-top-left-radius: 6px;
-	border-bottom-left-radius: 6px;
-}
-.root:last-child {
-	border-top-right-radius: 6px;
-	border-bottom-right-radius: 6px;
 }
 
 .list {
@@ -56,18 +43,9 @@
 	width: 30px;
 }
 
-.item:hover {
-	background-color: value(level5);
-}
-.item:selected {
-	background-color: value(level4);
-}
 .item:locale(en) {
 	-st-mixin: LatinText;
 }
 .item:locale(he) {
 	-st-mixin: HebrewText;
-}
-.item:selected {
-	background-color: value(level4);
 }

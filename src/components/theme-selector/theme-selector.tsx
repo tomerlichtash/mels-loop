@@ -14,7 +14,7 @@ export const ThemeSelector = ({ className }: ComponentProps): JSX.Element => {
 			aria-label={label}
 			onClick={toggleTheme}
 		>
-			<SunIcon className={st(classes.icon)} />
+			<SunIcon className={classes.icon} />
 		</div>
 	);
 };

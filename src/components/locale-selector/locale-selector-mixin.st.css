@@ -1,0 +1,36 @@
+@namespace "LocaleSelectorMixin";
+
+@st-import LocaleSelector from "./locale-selector.st.css";
+
+:vars {
+	LocaleSelectorContainerRadius: 0;
+	LocaleSelectorSelectedItemTextColor: white;
+	LocaleSelectorContainerBorderColor: black;
+	LocaleSelectorItemBgColorHover: black;
+	LocaleSelectorSelectedItemBgColor: black;
+}
+
+.root {
+	-st-extends: LocaleSelector;
+	border-radius: value(LocaleSelectorContainerRadius);
+	border-color: value(LocaleSelectorContainerBorderColor);
+}
+
+.root:first-child {
+	border-top-left-radius: value(LocaleSelectorContainerRadius);
+	border-bottom-left-radius: value(LocaleSelectorContainerRadius);
+}
+
+.root:last-child {
+	border-top-right-radius: value(LocaleSelectorContainerRadius);
+	border-bottom-right-radius: value(LocaleSelectorContainerRadius);
+}
+
+.root::item:hover {
+	background-color: value(LocaleSelectorItemBgColorHover);
+}
+
+.root::item:selected {
+	color: value(LocaleSelectorSelectedItemTextColor);
+	background-color: value(LocaleSelectorSelectedItemBgColor);
+}
