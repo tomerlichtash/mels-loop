@@ -3,34 +3,34 @@
 @st-import LocaleSelector from "./locale-selector.st.css";
 
 :vars {
-	LocaleSelectorContainerRadius: 0;
-	LocaleSelectorSelectedItemTextColor: white;
-	LocaleSelectorContainerBorderColor: black;
-	LocaleSelectorItemBgColorHover: black;
-	LocaleSelectorSelectedItemBgColor: black;
+	ContainerRadius: 0;
+	SelectedItemTextColor: white;
+	ContainerBorderColor: black;
+	ItemBgColorHover: black;
+	SelectedItemBgColor: black;
 }
 
 .root {
 	-st-extends: LocaleSelector;
-	border-radius: value(LocaleSelectorContainerRadius);
-	border-color: value(LocaleSelectorContainerBorderColor);
+	border-radius: value(ContainerRadius);
+	border-color: value(ContainerBorderColor);
 }
 
 .root:first-child {
-	border-top-left-radius: value(LocaleSelectorContainerRadius);
-	border-bottom-left-radius: value(LocaleSelectorContainerRadius);
+	border-top-left-radius: value(ContainerRadius);
+	border-bottom-left-radius: value(ContainerRadius);
 }
 
 .root:last-child {
-	border-top-right-radius: value(LocaleSelectorContainerRadius);
-	border-bottom-right-radius: value(LocaleSelectorContainerRadius);
+	border-top-right-radius: value(ContainerRadius);
+	border-bottom-right-radius: value(ContainerRadius);
 }
 
 .root::item:hover {
-	background-color: value(LocaleSelectorItemBgColorHover);
+	background-color: value(ItemBgColorHover);
 }
 
 .root::item:selected {
-	color: value(LocaleSelectorSelectedItemTextColor);
-	background-color: value(LocaleSelectorSelectedItemBgColor);
+	color: value(SelectedItemTextColor);
+	background-color: value(SelectedItemBgColor);
 }

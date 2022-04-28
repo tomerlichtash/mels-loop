@@ -3,7 +3,7 @@
 @st-import Scrollbar from "./scrollbar.st.css";
 
 :vars {
-  ScrollBarThumbColor: blue;
+  ThumbColor: blue;
 }
 
 .root {
@@ -11,5 +11,5 @@
 }
 
 .root::thumb {
-	background: value(ScrollBarThumbColor);
+	background: value(ThumbColor);
 }

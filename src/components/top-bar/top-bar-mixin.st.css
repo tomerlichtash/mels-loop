@@ -3,10 +3,10 @@
 @st-import TopBar from "./top-bar.st.css";
 
 :vars {
-	TopBarBgColor: blue;
+	BgColor: blue;
 }
 
 .root {
 	-st-mixin: TopBar;
-	background: value(TopBarBgColor);
+	background: value(BgColor);
 }

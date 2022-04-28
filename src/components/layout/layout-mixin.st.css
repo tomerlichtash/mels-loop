@@ -3,15 +3,10 @@
 @st-import Layout from "./layout.st.css";
 
 :vars {
-	LayoutBgColor: #fff;
-	TopBarBgColor: #000;
+	BgColor: #fff;
 }
 
 .root {
 	-st-extends: Layout;
-	background: value(LayoutBgColor);
-}
-
-.root::topBar {
-	background-color: value(TopBarBgColor);
+	background: value(BgColor);
 }

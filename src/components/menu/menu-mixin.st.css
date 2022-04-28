@@ -3,22 +3,22 @@
 @st-import Menu from "./menu.st.css";
 
 :vars {
-	MenuListBgColor: transparent;
-	MenuTriggerRadius: 6px;
-	MenuTriggerBgColorHover: #c0c0c0;
-	MenuItemTriggerPadding: 4px 1rem;
-	MenuContentPadding: 1rem;
-	MenuLinkTitleTextColor: #000;
-	MenuLinkTitleTextColorHover: #888;
-	MenuLinkSubtitleTextColorHover: blue;
-	MenuLinkTextColorHover: #f00;
-	MenuLinkFontSize: 15px;
-	MenuLinkPadding: 12px;
-	MenuLinkRadius: 6px;
-	MenuLinkBgColorHover: #000;
-	MenuLinkSubtitleTextColor: #808080;
-	MenuArrowColor: #fff;
-	MenuItemFocusBorderColor: #808080;
+	ListBgColor: transparent;
+	TriggerRadius: 6px;
+	TriggerBgColorHover: #c0c0c0;
+	ItemTriggerPadding: 4px 1rem;
+	ContentPadding: 1rem;
+	LinkTitleTextColor: #000;
+	LinkTitleTextColorHover: #888;
+	LinkSubtitleTextColorHover: blue;
+	LinkTextColorHover: #f00;
+	LinkFontSize: 15px;
+	LinkPadding: 12px;
+	LinkRadius: 6px;
+	LinkBgColorHover: #000;
+	LinkSubtitleTextColor: #808080;
+	ArrowColor: #fff;
+	ItemFocusBorderColor: #808080;
 	ViewPortBgColor: #fff;
 }
 
@@ -27,46 +27,46 @@
 }
 
 .root::list {
-	background-color: value(MenuListBgColor);
+	background-color: value(ListBgColor);
 }
 
 .root::trigger {
-	padding: value(MenuItemTriggerPadding);
-	border-radius: value(MenuTriggerRadius);
+	padding: value(ItemTriggerPadding);
+	border-radius: value(TriggerRadius);
 }
 
 .root::trigger[data-state="open"] {
-	background-color: value(MenuTriggerBgColorHover);
+	background-color: value(TriggerBgColorHover);
 }
 
 .root::menuContent {
-	padding: value(MenuContentPadding);
+	padding: value(ContentPadding);
 }
 
 .root::menuLink {
-	font-size: value(MenuLinkFontSize);
-	padding: value(MenuLinkPadding);
-	border-radius: value(MenuLinkRadius);
+	font-size: value(LinkFontSize);
+	padding: value(LinkPadding);
+	border-radius: value(LinkRadius);
 }
 
 .root::menuLink:focus {
-	box-shadow: 0 0 0 2px value(MenuItemFocusBorderColor);
+	box-shadow: 0 0 0 2px value(ItemFocusBorderColor);
 }
 
 .root::menuLink:hover {
-	background-color: value(MenuLinkBgColorHover);
+	background-color: value(LinkBgColorHover);
 }
 
 .root::title {
-	color: value(MenuLinkTitleTextColor);
+	color: value(LinkTitleTextColor);
 }
 
 .root::text {
-	color: value(MenuLinkSubtitleTextColor);
+	color: value(LinkSubtitleTextColor);
 }
 
 .root::arrow {
-	background-color: value(MenuArrowColor);
+	background-color: value(ArrowColor);
 }
 
 .root::viewport {

@@ -8,16 +8,16 @@
 }
 
 :vars {
-	ThemeSelectorBgColor: red;
-	ThemeSelectorIconColor: green;
+	BgColor: red;
+	IconColor: green;
 }
 
 .root {
-	background: value(ThemeSelectorBgColor);
+	background: value(BgColor);
 }
 
 .root:hover {
-	background: value(ThemeSelectorIconColor);
+	background: value(IconColor);
 }
 
 .icon {}

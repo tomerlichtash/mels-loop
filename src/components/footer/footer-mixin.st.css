@@ -3,24 +3,24 @@
 @st-import Footer from "./footer.st.css";
 
 :vars {
-  FooterBackgroundColor: #f0f0f0;
-  FooterTextAlign: center;
-  FooterPadding: 0;
-  FooterStripGradientStartColor: white;
-  FooterStripGradientMidColor: gray;
-  FooterStripGradientEndColor: black;
+  BackgroundColor: #f0f0f0;
+  TextAlign: center;
+  Padding: 0;
+  StripGradientStartColor: white;
+  StripGradientMidColor: gray;
+  StripGradientEndColor: black;
 }
 
 .root {
   -st-extends: Footer;
-  background-color: value(FooterBackgroundColor);
-  text-align: value(FooterTextAlign);
-  padding: value(FooterPadding);
+  background-color: value(BackgroundColor);
+  text-align: value(TextAlign);
+  padding: value(Padding);
 }
 
 .root::strip {
   background: linear-gradient(90deg,
-  value(FooterStripGradientStartColor) 0%,
-  value(FooterStripGradientMidColor) 50%,
-  value(FooterStripGradientEndColor) 100%);
+  value(StripGradientStartColor) 0%,
+  value(StripGradientMidColor) 50%,
+  value(StripGradientEndColor) 100%);
 }
