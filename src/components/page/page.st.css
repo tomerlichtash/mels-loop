@@ -1,10 +1,9 @@
 @namespace "Page";
 
-@st-import [PageWidth] from "../../theme/common.st.css";
 @st-import [boxSizing] from "../../theme/mixins.st.css";
 
 :vars {
-	pageWidth: value(PageWidth);
+	pageWidth: 800px;
 	PageTopMargin: 80px;
 	PageMobileGutter: 1rem;
 }

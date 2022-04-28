@@ -28,7 +28,7 @@
 @st-import PopoverMixin from "../components/popover/popover-mixin.st.css";
 
 @st-import PopoverToolbar from "../components/popover/popover-toolbar.st.css";
-/* @st-import PopoverToolbarMixin from "../components/popover/popover-toolbar-mixin.st.css"; */
+@st-import PopoverToolbarMixin from "../components/popover/popover-toolbar-mixin.st.css";
 
 @st-import CopyUrlButtonContent from "../components/copy-button/copy-url-button-content.st.css";
 @st-import CopyUrlButtonContentMixin from "../components/copy-button/copy-url-button-content-mixin.st.css";

@@ -28,7 +28,7 @@
 @st-import PopoverMixin from "../components/popover/popover-mixin.st.css";
 
 @st-import PopoverToolbar from "../components/popover/popover-toolbar.st.css";
-/* @st-import PopoverToolbarMixin from "../components/popover/popover-toolbar-mixin.st.css"; */
+@st-import PopoverToolbarMixin from "../components/popover/popover-toolbar-mixin.st.css";
 
 @st-import CopyUrlButtonContent from "../components/copy-button/copy-url-button-content.st.css";
 @st-import CopyUrlButtonContentMixin from "../components/copy-button/copy-url-button-content-mixin.st.css";
@@ -136,7 +136,9 @@
 			LinkColorHover value(primary2),
 			PopoverCloseIconColor value(level4),
 			PopoverCloseIconColorHover value(level5),
-			TriggerOpenTextColor value(level0)
+			TriggerOpenTextColor value(level0),
+			TriggerOpenBgColor value(primary2),
+			GlossaryMarkerOpenColor value(primary2)
 		);
 	}
 

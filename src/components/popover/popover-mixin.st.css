@@ -2,15 +2,13 @@
 
 @st-import Popover from "./popover.st.css";
 @st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
-@st-import [
-  level0,
-	primary2
-] from "../../theme/common.st.css";
 
 :vars {
 	LinkColor: blue;
 	LinkColorHover: red;
   TriggerOpenTextColor: magenta;
+  TriggerOpenBgColor: magenta;
+  GlossaryMarkerOpenColor: blue;
 }
 
 .root {
@@ -34,7 +32,7 @@
 
 .root:type(glossary)[data-state="open"]::triggerWrapper,
 .root:type(glossary)[data-state="open"]::triggerWrapper:hover {
-  background-color: value(primary2);
+  background-color: value(TriggerOpenBgColor);
   color: value(TriggerOpenTextColor);
 }
 
@@ -44,11 +42,7 @@
 }
 
 .root:type(glossary)[data-state="open"]::trigger::after {
-  color: value(primary2);
-}
-
-.root:type(glossary)[data-state="open"]::triggerWrapper::after {
-  color: value(level0);
+  color: value(GlossaryMarkerOpenColor);
 }
 
 .root::content {

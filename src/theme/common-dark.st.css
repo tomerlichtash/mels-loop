@@ -18,7 +18,7 @@
 	color14,
 	color15,
 	color16
-] from "./common.st.css";
+] from "./common-colors.st.css";
 
 :vars {
 	level0: value(color0);
