@@ -54,6 +54,8 @@ export const Locale: Language = {
 	MENU_ITEM_ENTRY_DESC_LINK_WIKIPEDIA: "Story of Mel in Wikipedia",
 	MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES: "Web Resources for the Story of Mel",
 
+	COPY_BUTTON_TOOLTIP_CONTENT: "Copied!",
+
 	FOOTER_LINK_ABOUT: "About",
 	FOOTER_LINK_BLOG: "Blog",
 	FOOTER_LINK_GITHUB: "Github",

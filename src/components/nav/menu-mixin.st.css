@@ -19,6 +19,7 @@
 	MenuLinkSubtitleTextColor: #808080;
 	MenuArrowColor: #fff;
 	MenuItemFocusBorderColor: #808080;
+	ViewPortBgColor: #fff;
 }
 
 .root {
@@ -66,4 +67,8 @@
 
 .root::arrow {
 	background-color: value(MenuArrowColor);
+}
+
+.root::viewport {
+	background: value(ViewPortBgColor);
 }

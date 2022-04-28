@@ -10,6 +10,7 @@
 :vars {
 	LinkColor: blue;
 	LinkColorHover: red;
+  TriggerOpenTextColor: magenta;
 }
 
 .root {
@@ -34,7 +35,7 @@
 .root:type(glossary)[data-state="open"]::triggerWrapper,
 .root:type(glossary)[data-state="open"]::triggerWrapper:hover {
   background-color: value(primary2);
-  color: value(level0);
+  color: value(TriggerOpenTextColor);
 }
 
 .root:type(glossary)::trigger::after {

@@ -1,0 +1,12 @@
+@namespace "CopyUrlButtonContentMixin";
+
+@st-import CopyButtonContent from "./copy-url-button-content.st.css";
+
+:vars {
+  ContentBgColor: #808080;
+}
+
+.root {
+  -st-extends: CopyButtonContent;
+  background-color: value(ContentBgColor);
+}

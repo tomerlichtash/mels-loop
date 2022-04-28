@@ -1,12 +1,5 @@
 @namespace "CopyUrlButton";
 
-.root {
-}
+.root {}
 
-.trigger {
-  border: 2px solid red;
-}
-
-.content {
-  border: 2px solid magenta;
-}
+.trigger {}

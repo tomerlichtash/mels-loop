@@ -1,0 +1,7 @@
+@namespace "PopoverToolbar";
+
+@st-import PopoverToolbar from "./popover-toolbar.st.css";
+
+.root {
+	-st-extends: PopoverToolbar;
+}

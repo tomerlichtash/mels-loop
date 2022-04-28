@@ -27,6 +27,12 @@
 @st-import Popover from "../components/popover/popover.st.css";
 @st-import PopoverMixin from "../components/popover/popover-mixin.st.css";
 
+@st-import PopoverToolbar from "../components/popover/popover-toolbar.st.css";
+/* @st-import PopoverToolbarMixin from "../components/popover/popover-toolbar-mixin.st.css"; */
+
+@st-import CopyUrlButtonContent from "../components/copy-button/copy-url-button-content.st.css";
+@st-import CopyUrlButtonContentMixin from "../components/copy-button/copy-url-button-content-mixin.st.css";
+
 @st-import Note from "../components/note/note.st.css";
 @st-import NoteMixin from "../components/note/note-mixin.st.css";
 
@@ -67,7 +73,7 @@
 	TopBar {
 		-st-mixin: TopBarMixin(
 			TopBarBgColor value(level1)
-		)
+		);
 	}
 
 	LocaleSelector {
@@ -83,7 +89,7 @@
 	ThemeSelector {
 		-st-mixin: ThemeSelectorMixin(
 			ThemeSelectorBgColor value(level4),
-			ThemeSelectorIconColor value(level2),
+			ThemeSelectorIconColor value(level2)
 		);
 	}
 	ThemeSelector::icon path {
@@ -98,7 +104,8 @@
 			MenuTriggerBgColorHover value(level4),
 			MenuLinkTitleTextColor value(primary3),
 			MenuLinkSubtitleTextColor value(level6),
-			MenuArrowColor value(level0),
+			MenuArrowColor value(level2),
+			ViewPortBgColor value(level2)
 		);
 	}
 
@@ -109,7 +116,7 @@
 			FooterPadding 0,
 			FooterStripGradientStartColor value(primary1),
 			FooterStripGradientMidColor value(primary3),
-			FooterStripGradientEndColor value(primary1),
+			FooterStripGradientEndColor value(primary1)
 		);
 	}
 
@@ -123,8 +130,27 @@
 	Popover {
 		-st-mixin: PopoverMixin(
 			LinkColor value(primary1),
-			LinkColorHover value(accent4)
+			LinkColorHover value(accent4),
+			PopoverCloseIconColor value(level4),
+			PopoverCloseIconColorHover value(level6),
+			TriggerOpenTextColor value(level0)			
 		);
+	}
+
+	CopyUrlButtonContent {
+		-st-mixin: CopyUrlButtonContentMixin(
+			ContentBgColor magenta
+		);
+	}
+
+	PopoverToolbar::item path {
+		fill: magenta;
+	}
+	PopoverToolbar::item:hover path {
+		fill: cyan;
+	}
+	PopoverToolbar::item:active path {
+		fill: red;
 	}
 
 	Note {

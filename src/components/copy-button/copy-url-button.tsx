@@ -7,16 +7,24 @@ import {
 	TooltipTrigger,
 	TooltipContent,
 } from "../radix-primitives";
-import { classes } from "./copy-url-button.st.css";
+import Portalled from "../portalled";
+import { ComponentProps } from "../../interfaces/models";
+import {
+	st as contentStyle,
+	classes as contentClasses,
+} from "./copy-url-button-content.st.css";
+import { st, classes } from "./copy-url-button.st.css";
 
-export interface ICopyUrlButtonProps {
+export interface ICopyUrlButtonProps extends ComponentProps {
 	query: string;
-	className?: string;
 }
 
 const TOOLTIP_CLOSE_TIMEOUT = 1000;
 
-export const CopyUrlButton = ({ query }: ICopyUrlButtonProps): JSX.Element => {
+export const CopyUrlButton = ({
+	query,
+	className,
+}: ICopyUrlButtonProps): JSX.Element => {
 	const [toggleCopyIcon, setToggleCopyIcon] = useState(false);
 
 	const onCopy = () => {
@@ -28,16 +36,18 @@ export const CopyUrlButton = ({ query }: ICopyUrlButtonProps): JSX.Element => {
 		<Tooltip delayDuration={0} open={toggleCopyIcon}>
 			<CopyToClipboard text={query} onCopy={onCopy}>
 				<TooltipTrigger asChild>
-					<div className={classes.root}>
+					<div className={st(classes.root, className)}>
 						{toggleCopyIcon ? <CheckIcon /> : <Share1Icon />}
 					</div>
 				</TooltipTrigger>
 			</CopyToClipboard>
-			<TooltipContent asChild>
-				<div className={classes.content}>
-					Copied!
-					<StyledArrow />
-				</div>
+			<TooltipContent>
+				<Portalled>
+					<div className={contentStyle(contentClasses.root)}>
+						Copied!
+						<StyledArrow />
+					</div>
+				</Portalled>
 			</TooltipContent>
 		</Tooltip>
 	);

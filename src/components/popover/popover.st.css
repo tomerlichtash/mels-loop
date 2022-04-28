@@ -1,5 +1,7 @@
 @namespace "Popover";
 
+@st-import PopoverToolbar from "./popover-toolbar.st.css";
+
 :vars {
   PopoverContentBorder: none;
   PopoverContentRadius: 2px;
@@ -37,7 +39,9 @@
 
 .contentWrapper {}
 
-.toolbar {}
+.toolbar {
+  -st-extends: PopoverToolbar;
+}
 
 .content {
   overflow: hidden;
@@ -63,9 +67,4 @@
   to {
     opacity: 0;
   }
-}
-
-.scrollable {
-  position: relative;
-  margin-top: 0px;
 }

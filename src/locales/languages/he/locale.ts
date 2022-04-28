@@ -54,6 +54,8 @@ export const Locale: Language = {
 	MENU_ITEM_ENTRY_DESC_LINK_WIKIPEDIA: "הסיפור על מל בויקיפדיה",
 	MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES: "רשימת מקורות מלאה",
 
+	COPY_BUTTON_TOOLTIP_CONTENT: "הקישור הועתק",
+
 	FOOTER_LINK_ABOUT: "אודות",
 	FOOTER_LINK_BLOG: "בלוג",
 	FOOTER_LINK_GITHUB: "גיטהב",

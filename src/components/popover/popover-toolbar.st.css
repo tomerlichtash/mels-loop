@@ -1,5 +1,8 @@
 @namespace "PopoverToolbar";
 
+@st-import PopoverCloseButton from "./popover-close-button.st.css";
+@st-import CopyUrlButton from "../copy-button/copy-url-button.st.css";
+
 .root {
 	display: flex;
 	flex-direction: row;
@@ -13,4 +16,16 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	flex-grow: 1;
+}
+
+.item {
+	cursor: pointer;
+}
+
+.copy {
+	-st-extends: CopyUrlButton;
+}
+
+.close {
+	-st-extends: PopoverCloseButton;
 }

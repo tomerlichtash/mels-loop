@@ -1,12 +1,6 @@
 @namespace "PopoverCloseButton";
 
-@st-import [level4, primary3] from "../../theme/common.st.css";
 @st-import [preventSelection] from "../../theme/mixins.st.css";
-
-:vars {
-  PopoverCloseIconColor: value(level4);
-  PopoverCloseIconColorHover: value(primary3);
-}
 
 .root {
   -st-mixin: preventSelection;
@@ -16,12 +10,4 @@
   flex-grow: 0;
 }
 
-.cross {
-  border-radius: 50%;
-}
-.cross path {
-  fill: value(PopoverCloseIconColor);
-}
-.cross:hover path {
-  fill: value(PopoverCloseIconColorHover);
-}
+.cross {}

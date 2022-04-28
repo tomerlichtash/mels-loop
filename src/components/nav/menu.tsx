@@ -57,7 +57,7 @@ export const NavMenu = ({ items, className }: NavMenuProps) => {
 				</div>
 			</NavigationMenuList>
 			<div className={classes.viewportPosition}>
-				<NavigationMenuViewport />
+				<NavigationMenuViewport className={classes.viewport} />
 			</div>
 		</NavigationMenu>
 	);
