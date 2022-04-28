@@ -1,4 +1,4 @@
-@namespace "LightThemeColors";
+@namespace "DarkThemeVars";
 
 @st-import [
 	color0,
@@ -18,21 +18,21 @@
 	color14,
 	color15,
 	color16
-] from "./common-colors.st.css";
+] from "../common/colors.st.css";
 
 :vars {
 	level0: value(color0);
-	level1: value(color1);
-	level2: value(color2);
-	level3: value(color3);
+	level1: value(color7);
+	level2: value(color6);
+	level3: value(color5);
 	level4: value(color4);
-	level5: value(color5);
-	level6: value(color6);
-	level7: value(color7);
-	primary1: value(color8);
-	primary2: value(color9);
-	primary3: value(color10);
-	primary4: value(color11);
+	level5: value(color3);
+	level6: value(color2);
+	level7: value(color1);
+	primary4: value(color8);
+	primary3: value(color9);
+	primary2: value(color10);
+	primary1: value(color11);
 	accent1: value(color12);
 	accent2: value(color13);
 	accent3: value(color14);

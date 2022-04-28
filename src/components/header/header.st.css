@@ -5,7 +5,7 @@
 @st-import [
 	heading6,
 	bodyTextNormal,
-] from "../../theme/typography.st.css";
+] from "../../theme/common/typography.st.css";
 
 .root {
 	-st-mixin: boxSizing;

@@ -1,0 +1,77 @@
+@namespace "MobileMenu";
+
+@st-import Header from "../header/header.st.css";
+@st-import LocaleSelector from "../locale-selector/locale-selector.st.css";
+@st-import ThemeSelector from "../theme-selector/theme-selector.st.css";
+@st-import [preventSelection] from "./../../theme/mixins.st.css";
+
+.root {
+	-st-mixin: preventSelection;
+	margin: 0 auto;
+	position: relative;
+	height: 100%;
+}
+
+.burgerButton {
+	-st-states: right(boolean);
+	position: fixed;
+	width: 24px;
+	height: 20px;
+	top: 16px;
+}
+.burgerButton:right(true) {
+	right: 16px;
+}
+.burgerButton:not(:right) {
+	left: 16px;
+}
+
+.burgerMenu {
+	background: #373a47;
+	font-size: 1.15em;
+}
+
+.burgerBars {
+	background: #373a47;
+}
+
+.crossButton {
+	-st-states: right(boolean);
+	height: 24px;
+	width: 24px;
+}
+.crossButton:right {
+	top: 10px !important;
+	left: 10px;
+	right: auto !important;
+}
+.crossButton:not(:right) {
+	top: 10px !important;
+	left: auto !important;
+	right: 10px;
+}
+
+.burgerCross {
+	background: #bdc3c7;
+}
+
+.overlay {
+	top: 0;
+}
+
+.itemList {
+	color: #b8b7ad;
+	padding: 3rem 0 0;
+}
+
+.header {
+	-st-extends: Header;
+}
+
+.localeSelector {
+	-st-extends: LocaleSelector;
+}
+
+.themeSelector {
+	-st-extends: ThemeSelector;
+}

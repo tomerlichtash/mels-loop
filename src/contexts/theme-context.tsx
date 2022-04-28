@@ -1,10 +1,10 @@
 import React, { Context, createContext, useRef } from "react";
 import Cookies from "js-cookie";
 import { useTheme } from "../hooks/useTheme";
-import { classes as LightTheme } from "../theme/light-theme.st.css";
-import { classes as DarkTheme } from "../theme/dark-theme.st.css";
+import { classes as LightTheme } from "../theme/light/theme.st.css";
+import { classes as DarkTheme } from "../theme/dark/theme.st.css";
 
-export type Themes = "light" | "dark" | null;
+export type Themes = "base" | "light" | "dark" | null;
 
 export interface IThemeContextProps {
 	theme: Themes;
@@ -15,10 +15,10 @@ export interface IThemeContextProps {
 
 export interface IThemeContext {
 	theme: Themes;
-	setTheme: (theme: Themes) => void;
 	themeRef: string;
-	toggleTheme: () => void;
 	isDarkTheme: boolean;
+	setTheme: (theme: Themes) => void;
+	toggleTheme: () => void;
 }
 
 export interface ThemeContextProps {
@@ -28,6 +28,7 @@ export interface ThemeContextProps {
 const themes = {
 	light: [LightTheme.root],
 	dark: [DarkTheme.root],
+	base: [],
 };
 
 export function ThemeContextProvider({ children }: ThemeContextProps) {

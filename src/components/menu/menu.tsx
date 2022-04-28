@@ -14,7 +14,7 @@ import {
 import { mlUtils } from "../../lib/ml-utils";
 import { st, classes } from "./menu.st.css";
 
-export const NavMenu = ({ items, className }: NavMenuProps) => {
+export const Menu = ({ items, className }: NavMenuProps) => {
 	const listItem = ({ type, title, description, url, author }) => (
 		<li key={mlUtils.uniqueId()}>
 			<NavigationMenuLink
@@ -63,4 +63,4 @@ export const NavMenu = ({ items, className }: NavMenuProps) => {
 	);
 };
 
-export default NavMenu;
+export default Menu;

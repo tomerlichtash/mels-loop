@@ -1,7 +1,7 @@
 @namespace "TopBar";
 
 @st-import Header from "../header/header.st.css";
-@st-import Menu from "../nav/menu.st.css";
+@st-import Menu from "../menu/menu.st.css";
 @st-import LocaleSelector from "../locale-selector/locale-selector.st.css";
 @st-import ThemeSelector from "../theme-selector/theme-selector.st.css";
 @st-import [boxSizing] from "../../theme/mixins.st.css";

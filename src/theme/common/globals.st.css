@@ -1,6 +1,6 @@
 @namespace "Global";
 
-@st-import [boxSizing] from "./mixins.st.css";
+@st-import [boxSizing] from "../mixins.st.css";
 
 @st-import [
 	heading1,

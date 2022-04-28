@@ -9,7 +9,7 @@ import Footer from "../footer";
 import Page from "../page";
 import ScrollArea from "../scrollbar";
 import Analytics from "./analytics";
-import { MobileNav } from "../nav/nav-mobile";
+import { MobileMenu } from "../mobile-menu";
 import { ComponentProps } from "../../interfaces/models";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
@@ -84,14 +84,18 @@ export default function Layout({ children }: ComponentProps) {
 			>
 				<div id="page-wrap">
 					<ScrollArea>
-						<TopBar isHome={isHome} isMobile={isMobile} />
+						<TopBar
+							isHome={isHome}
+							isMobile={isMobile}
+							className={classes.header}
+						/>
 						<Page className={classes.page} nodes={children} />
 						<Footer className={classes.footer} />
 					</ScrollArea>
 				</div>
 				{isMobile && (
-					<MobileNav
-						className={classes.mobileNav}
+					<MobileMenu
+						className={classes.mobileMenu}
 						right={locale === "en"}
 						isHome={isHome}
 					/>
