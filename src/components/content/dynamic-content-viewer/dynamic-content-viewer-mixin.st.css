@@ -11,9 +11,6 @@
 	-st-extends: DynamicContentViewer;
 }
 
-.root::contentComponent {
-}
-
 .root::contentComponent:type(paragraph){
 	line-height: value(ParagraphLineHeight);
 	font-size: value(ParagraphTextSize);

@@ -12,3 +12,5 @@
 .contentComponent {
 	-st-extends: ContentComponent;
 }
+
+.error {}

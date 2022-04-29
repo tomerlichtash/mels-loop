@@ -1,0 +1,9 @@
+@namespace "DynamicContentToolbar";
+
+@st-import Button from "../ui/button/button.st.css";
+
+.root {}
+
+.backButton {
+	-st-extends: Button;
+}
