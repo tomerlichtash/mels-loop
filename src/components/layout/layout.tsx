@@ -23,6 +23,11 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	image: "/assets/ml-logo.png",
 };
 
+const SCROLL_VIEW_PROPS: ScrollIntoViewOptions = {
+	behavior: "smooth",
+	block: "center",
+};
+
 export default function Layout({ children }: ComponentProps) {
 	const router = useRouter();
 	const { query } = useContext(ReactQueryContext);
@@ -33,17 +38,14 @@ export default function Layout({ children }: ComponentProps) {
 	const isMobile = size.width <= 970;
 
 	useEffect(() => {
-		if (getLine > -1) {
-			const scrollProps: ScrollIntoViewOptions = {
-				behavior: "smooth",
-				block: "center",
-			};
-			setTimeout(() => {
-				const el = window.document.getElementById(`line${getLine}`);
-				el.scrollIntoView(scrollProps);
-			}, 200);
+		if (getLine === -1) {
+			return;
 		}
-	});
+		setTimeout(() => {
+			const el = window.document.getElementById(`line${getLine}`);
+			el?.scrollIntoView(SCROLL_VIEW_PROPS);
+		}, 200);
+	}, [getLine]);
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
