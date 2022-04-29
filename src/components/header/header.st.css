@@ -25,6 +25,7 @@
 
 .siteTitle {
   -st-extends: Button;
+	-st-states: link(boolean);
 	-st-mixin: heading6;
 	text-transform: uppercase;
 	letter-spacing: 1px;

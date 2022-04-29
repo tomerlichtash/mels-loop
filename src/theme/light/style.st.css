@@ -74,7 +74,8 @@
 
 	TopBar {
 		-st-mixin: TopBarMixin(
-			BgColor value(level3)
+			BgColor value(level3),
+			SiteTitleLinkTextColor value(level8)
 		);
 	}
 

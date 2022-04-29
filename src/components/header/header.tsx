@@ -20,7 +20,7 @@ export const Header = ({ isHome, className }: HeaderProps): JSX.Element => {
 					title={`${siteTitle} - ${siteSubtitle}`}
 					link={isHome ? "" : "/"}
 					callback={() => false}
-					className={classes.siteTitle}
+					className={st(classes.siteTitle, { link: !isHome })}
 				/>
 				<div className={classes.siteSubtitle}>{siteSubtitle}</div>
 			</div>

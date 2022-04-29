@@ -4,9 +4,14 @@
 
 :vars {
 	BgColor: blue;
+	SiteTitleLinkTextColor: black;
 }
 
 .root {
-	-st-mixin: TopBar;
+	-st-extends: TopBar;
 	background: value(BgColor);
+}
+
+.root::header::siteTitle:link {
+	color: value(SiteTitleLinkTextColor);
 }
