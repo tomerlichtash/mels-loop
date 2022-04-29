@@ -8,6 +8,7 @@ import { contentUtils } from "../../../lib/content-utils";
 import Note from "../../note";
 import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
 import { mlUtils } from "../../../lib/ml-utils";
+import { st, classes } from "./dynamic-content-viewer.st.css";
 
 export interface DynamicContentViewerProps extends ComponentProps {
 	url: string;
@@ -73,23 +74,30 @@ export const DynamicContentViewer = ({
 		const itemType =
 			itemData.type === DynamicContentTypes.Glossary ? "ref" : "note";
 		const contents = elements.map((node) => (
-			<ContentComponent key={mlUtils.uniqueId()} componentData={{ node }} />
+			<ContentComponent
+				key={mlUtils.uniqueId()}
+				componentData={{ node }}
+				className={classes.contentComponent}
+			/>
 		));
 
 		return (
-			<Note
-				type={itemType}
-				contents={contents}
-				label={label}
-				title={translate(glossary_key)}
-				term={locale === "en" ? "" : translate(glossary_key, "en")}
-				sources={[
-					{
-						name: source_name,
-						url: source_url,
-					},
-				]}
-			/>
+			<div className={classes.root}>
+				<Note
+					className={classes.root}
+					type={itemType}
+					contents={contents}
+					label={label}
+					title={translate(glossary_key)}
+					term={locale === "en" ? "" : translate(glossary_key, "en")}
+					sources={[
+						{
+							name: source_name,
+							url: source_url,
+						},
+					]}
+				/>
+			</div>
 		);
 	}
 

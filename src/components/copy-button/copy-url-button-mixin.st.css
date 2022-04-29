@@ -1,8 +1,0 @@
-@namespace "CopyUrlButton";
-
-@st-import CopyUrlButton from "./copy-url-button.st.css";
-
-.root {
-  -st-extends: CopyUrlButton;
-  -st-states: checked(boolean);
-}

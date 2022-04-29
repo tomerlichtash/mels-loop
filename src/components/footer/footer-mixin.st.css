@@ -1,6 +1,7 @@
 @namespace "FooterMixin";
 
 @st-import Footer from "./footer.st.css";
+@st-import [IconFill] from "../../theme/mixins.st.css";
 
 :vars {
   BackgroundColor: #f0f0f0;
@@ -8,6 +9,9 @@
   StripGradientStartColor: white;
   StripGradientMidColor: gray;
   StripGradientEndColor: black;
+  IconFill_Github: black;
+  IconFill_Twitter: black;
+  IconFill_Contact: black;
 }
 
 .root {
@@ -22,3 +26,7 @@
   value(StripGradientMidColor) 50%,
   value(StripGradientEndColor) 100%);
 }
+
+.root::item:icon(github)  { -st-mixin: IconFill(FillColor value(IconFill_Github)) }
+.root::item:icon(twitter) { -st-mixin: IconFill(FillColor value(IconFill_Twitter)) }
+.root::item:icon(contact) { -st-mixin: IconFill(FillColor value(IconFill_Contact)) }

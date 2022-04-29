@@ -1,7 +1,7 @@
 @namespace "PopoverToolbar";
 
 @st-import PopoverCloseButton from "./popover-close-button.st.css";
-@st-import CopyUrlButton from "../copy-button/copy-url-button.st.css";
+@st-import CopyUrlButtonTrigger from "../copy-button/copy-url-button-trigger.st.css";
 
 .root {
 	display: flex;
@@ -23,7 +23,7 @@
 }
 
 .copy {
-	-st-extends: CopyUrlButton;
+	-st-extends: CopyUrlButtonTrigger;
 }
 
 .close {

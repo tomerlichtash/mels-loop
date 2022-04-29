@@ -1,6 +1,7 @@
 @namespace "ThemeSelectorMixin";
 
 @st-import ThemeSelector from "./theme-selector.st.css";
+@st-import [IconFill] from "../../theme/mixins.st.css";
 
 .root {
 	-st-mixin: ThemeSelector;
@@ -10,9 +11,11 @@
 :vars {
 	BgColor: red;
 	IconColor: green;
+	IconFillColor: blue;
 }
 
 .root {
+	-st-extends: ThemeSelector;
 	background: value(BgColor);
 }
 
@@ -20,4 +23,6 @@
 	background: value(IconColor);
 }
 
-.icon {}
+.root::icon {
+	-st-mixin: IconFill(FillColor value(IconFillColor))
+}

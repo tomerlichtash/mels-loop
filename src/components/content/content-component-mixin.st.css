@@ -19,13 +19,13 @@
 }
 
 .root:type(blockquote) {
-  line-height: value(MarginBottom);
+  /* line-height: value(MarginBottom); */
   padding: 0 value(MarginBottom);
   margin: value(MarginBottom);
 }
 
 .root:type(paragraph) {
-  line-height: value(MarginBottom);
+  /* line-height: value(MarginBottom); */
 }
 
 .root:type(link) {

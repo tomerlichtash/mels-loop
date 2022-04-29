@@ -13,7 +13,10 @@ import {
 	st as contentStyle,
 	classes as contentClasses,
 } from "./copy-url-button-content.st.css";
-import { st, classes } from "./copy-url-button.st.css";
+import {
+	st as triggerStyle,
+	classes as triggerClasses,
+} from "./copy-url-button-trigger.st.css";
 
 export interface ICopyUrlButtonProps extends ComponentProps {
 	query: string;
@@ -37,7 +40,11 @@ export const CopyUrlButton = ({
 			<CopyToClipboard text={query} onCopy={onCopy}>
 				<TooltipTrigger asChild>
 					<div
-						className={st(classes.root, { checked: toggleCopyIcon }, className)}
+						className={triggerStyle(
+							triggerClasses.root,
+							{ checked: toggleCopyIcon },
+							className
+						)}
 					>
 						{toggleCopyIcon ? <CheckIcon /> : <Share1Icon />}
 					</div>
@@ -47,7 +54,7 @@ export const CopyUrlButton = ({
 				<Portalled>
 					<div className={contentStyle(contentClasses.root)}>
 						Copied!
-						<StyledArrow />
+						<StyledArrow className={contentClasses.tooltipArrow} />
 					</div>
 				</Portalled>
 			</TooltipContent>

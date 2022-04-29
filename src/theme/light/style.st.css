@@ -20,14 +20,18 @@
 @st-import PopoverMixin from "../../components/popover/popover-mixin.st.css";
 @st-import PopoverToolbar from "../../components/popover/popover-toolbar.st.css";
 @st-import PopoverToolbarMixin from "../../components/popover/popover-toolbar-mixin.st.css";
-@st-import CopyUrlButton from "../../components/copy-button/copy-url-button.st.css";
-@st-import CopyUrlButtonMixin from "../../components/copy-button/copy-url-button-mixin.st.css";
+@st-import CopyUrlButtonTrigger from "../../components/copy-button/copy-url-button-trigger.st.css";
+@st-import CopyUrlButtonTriggerMixin from "../../components/copy-button/copy-url-button-trigger-mixin.st.css";
 @st-import CopyUrlButtonContent from "../../components/copy-button/copy-url-button-content.st.css";
 @st-import CopyUrlButtonContentMixin from "../../components/copy-button/copy-url-button-content-mixin.st.css";
-@st-import Note from "../../components/note/note.st.css";
-@st-import NoteMixin from "../../components/note/note-mixin.st.css";
 @st-import ContentComponent from "../../components/content/content-component.st.css";
 @st-import ContentComponentMixin from "../../components/content/content-component-mixin.st.css";
+@st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
+@st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
+@st-import Note from "../../components/note/note.st.css";
+@st-import NoteMixin from "../../components/note/note-mixin.st.css";
+@st-import Bibliography from "../../components/bibliography/bibliography.st.css";
+@st-import BibliographyMixin from "../../components/bibliography/bibliography-mixin.st.css";
 
 @st-import [
 	level0,
@@ -49,12 +53,10 @@
 	accent4
 ] from "./vars.st.css";
 
-@st-import [IconFill] from "../mixins.st.css";
-
 @st-scope .root {
 	StoryPage {
 		-st-mixin: StoryPageMixin(
-			MotoTextColor value(level5)
+			MotoTextColor value(level5),
 		);
 	}
 
@@ -100,12 +102,8 @@
 	ThemeSelector {
 		-st-mixin: ThemeSelectorMixin(
 			BgColor value(level4),
-			IconColor value(level5)
-		);
-	}
-	ThemeSelector::icon {
-		-st-mixin: IconFill(
-			FillColor value(level8)
+			IconColor value(level5),
+			IconFillColor value(level8)
 		);
 	}
 
@@ -115,12 +113,12 @@
 			Padding 0,
 			StripGradientStartColor value(primary1),
 			StripGradientMidColor value(primary3),
-			StripGradientEndColor value(primary4)
+			StripGradientEndColor value(primary4),
+			IconFill_Github value(level7),
+			IconFill_Twitter value(accent1),
+			IconFill_Contact value(primary2),
 		);
 	}
-	SiteFooter::item:icon(github) {-st-mixin: IconFill(FillColor value(level7))}
-	SiteFooter::item:icon(twitter) {-st-mixin: IconFill(FillColor value(accent1))}
-	SiteFooter::item:icon(contact) {-st-mixin: IconFill(FillColor value(primary2))}
 
 	ContentComponent {
 		-st-mixin: ContentComponentMixin(
@@ -139,31 +137,45 @@
 		);
 	}
 
-	PopoverToolbar::item {
-		-st-mixin: IconFill(
-			FillColor value(level5),
-			FillColor_Hover value(level8),
-			FillColor_Active value(primary2)	
-		);
+	PopoverToolbar {
+		-st-mixin: PopoverToolbarMixin(
+			IconFill_Color value(level5),
+			IconFill_Hover value(level8),
+			IconFill_Active value(primary2)	
+		)
 	}
 
-	CopyUrlButton:checked {
-		-st-mixin: IconFill(
-			FillColor value(primary1)
-		);
-	}
-	CopyUrlButtonContent {
-		-st-mixin: CopyUrlButtonContentMixin(
-			ContentBgColor value(accent1)
+	DynamicContentViewer {
+		-st-mixin: DynamicContentViewerMixin(
+			ParagraphLineHeight 1.2rem,
+			ParagraphTextSize 0.9rem
 		);
 	}
 
 	Note {
 		-st-mixin: NoteMixin(
 			TopicBgColor value(level2),
-			TopicTextColor value(primary2),
-			TitleFontSize 2rem,
-			TitleFontWeight 300
+			TopicTextColor value(primary2)
+		);
+	}
+
+	Bibliography {
+		-st-mixin: BibliographyMixin(
+			/* todo */
+		);
+	}
+
+	CopyUrlButtonTrigger {
+		-st-mixin: CopyUrlButtonTriggerMixin(
+			IconFillColor value(primary1)
+		);
+	}
+
+	CopyUrlButtonContent {
+		-st-mixin: CopyUrlButtonContentMixin(
+			ContentBgColor value(accent1),
+			TextColor value(level1),
+			TooltipArrowColor value(accent1)
 		);
 	}
 }

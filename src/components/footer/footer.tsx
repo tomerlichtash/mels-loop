@@ -23,7 +23,13 @@ export const Footer = ({ className }: ComponentProps): JSX.Element => {
 						<div className={classes.footerTitle}>
 							<div className={classes.title}>
 								<time className={classes.year}>{licenseYears}</time>{" "}
-								<span className={classes.license}>({siteLicense})</span>{" "}
+								<span
+									title={siteLicense}
+									arial-label={siteLicense}
+									className={classes.license}
+								>
+									({siteLicense})
+								</span>{" "}
 								<span className={classes.title}>{siteTitle}</span>
 							</div>
 							<div className={classes.subtitle}>
@@ -34,49 +40,54 @@ export const Footer = ({ className }: ComponentProps): JSX.Element => {
 							{translate("FOOTER_META_SHORT_DESCRIPTION")}
 						</p>
 					</div>
-					<div className={st(classes.column, { size: 1 })}>
-						<div className={classes.sitePages}>
-							<ul>
-								<li>
-									{/* <InfoCircledIcon /> */}
+					<div className={classes.section}>
+						<div className={st(classes.column, { size: 1 })}>
+							<div className={classes.sitePages}>
+								<ul>
+									<li>
+										{/* <InfoCircledIcon /> */}
+										<Button
+											link="/about"
+											label={translate("FOOTER_LINK_ABOUT")}
+										/>
+									</li>
+									<li>
+										<Button
+											link="/posts"
+											label={translate("FOOTER_LINK_BLOG")}
+										/>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div className={st(classes.column, { size: 1 })}>
+							<ul className={classes.social}>
+								<li className={st(classes.item, { icon: "github" })}>
+									<GitHubLogoIcon />
 									<Button
-										link="/about"
-										label={translate("FOOTER_LINK_ABOUT")}
+										target="_blank"
+										link="https://github.com/tomerlichtash/mels-loop-nextjs"
+										label={translate("FOOTER_LINK_GITHUB")}
+										className={classes.button}
 									/>
 								</li>
-								<li>
-									<Button link="/posts" label={translate("FOOTER_LINK_BLOG")} />
+								<li className={st(classes.item, { icon: "twitter" })}>
+									<TwitterLogoIcon scale={230} />
+									<Button
+										target="_blank"
+										link="https://twitter.com/aboutmelsloop"
+										label={translate("FOOTER_LINK_TWITTER")}
+									/>
+								</li>
+								<li className={st(classes.item, { icon: "contact" })}>
+									<EnvelopeClosedIcon />
+									<Button
+										link="/contact"
+										label={translate("FOOTER_LINK_CONTACT")}
+									/>
 								</li>
 							</ul>
 						</div>
-					</div>
-					<div className={st(classes.column, { size: 1 })}>
-						<ul className={classes.social}>
-							<li className={st(classes.item, { icon: "github" })}>
-								<GitHubLogoIcon />
-								<Button
-									target="_blank"
-									link="https://github.com/tomerlichtash/mels-loop-nextjs"
-									label={translate("FOOTER_LINK_GITHUB")}
-									className={classes.button}
-								/>
-							</li>
-							<li className={st(classes.item, { icon: "twitter" })}>
-								<TwitterLogoIcon scale={230} />
-								<Button
-									target="_blank"
-									link="https://twitter.com/aboutmelsloop"
-									label={translate("FOOTER_LINK_TWITTER")}
-								/>
-							</li>
-							<li className={st(classes.item, { icon: "contact" })}>
-								<EnvelopeClosedIcon />
-								<Button
-									link="/contact"
-									label={translate("FOOTER_LINK_CONTACT")}
-								/>
-							</li>
-						</ul>
 					</div>
 				</div>
 			</div>

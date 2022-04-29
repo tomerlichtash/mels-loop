@@ -23,6 +23,7 @@
 
 .items {
 	display: flex;
+	align-items: center;
 }
 
 .header {
@@ -35,6 +36,10 @@
 
 .localeSelector {
 	-st-extends: LocaleSelector;
+}
+
+.themeSelectorWrapper {
+	height: 31px;
 }
 
 .themeSelector {

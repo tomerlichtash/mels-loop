@@ -22,4 +22,5 @@
 
 .root::contentComponent:type(paragraph) {
 	margin: 0;
+	line-height: 1.8rem;
 }

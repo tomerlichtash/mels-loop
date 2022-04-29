@@ -65,10 +65,16 @@
   -st-extends: Button;
 }
 
+.section {}
+
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {
     .layout {
       display: block;
+      padding: 0 2rem;
+    }
+    .section {
+      margin-top: 2rem;
     }
 	}
 }

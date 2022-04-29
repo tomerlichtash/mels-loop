@@ -26,12 +26,12 @@
   FillColor_Active: value(FillColor);
 }
 .IconFill {}
-.IconFill path {
-	fill: value(FillColor);
+.IconFill path { fill: value(FillColor) }
+.IconFill:hover path { fill: value(FillColor_Hover) }
+.IconFill:active path { fill: value(FillColor_Active) }
+
+:vars {
+	TooltipArrowColor: red;
 }
-.IconFill:hover path {
-	fill: value(FillColor_Hover);
-}
-.IconFill:active path {
-	fill: value(FillColor_Active);
-}
+.TooltipArrow {}
+.TooltipArrow polygon { fill: value(TooltipArrowColor) }
