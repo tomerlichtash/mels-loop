@@ -12,27 +12,11 @@
 	cursor: pointer;
 	border-radius: 50%;
 	margin: 0 1rem;
+	display: flex;
+	align-items: center;
+	align-content: center;
 }
 
-/* .root:theme(light) {
-	background: #808080;
+.icon {
+	flex: 1;
 }
-.root:theme(light):hover {
-	background: #c0c0c0;
-}
-.root:theme(light) .icon path {
-	fill: white;
-} */
-/* 
-.root:theme(dark) {
-	background: #c0c0c0;
-}
-.root:theme(dark):hover {
-	background: #808080;
-}
-.root:theme(dark) .icon path {
-	fill: black;
-} */
-
-.icon {}
-/* .icon path {} */
