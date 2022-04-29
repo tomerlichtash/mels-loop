@@ -7,24 +7,25 @@
 	LinkColorHover: red;
   ErrorBgColor: red;
   ErrorTextColor: white;
+  MarginBottom: 1.8rem;
 }
 
 .root {
   -st-extends: ContentComponent;
 }
 
-.root:type(section),
-.root:type(blockquote) {
-  margin-bottom: 1.8rem;
-}
-
-.root:type(paragraph),
-.root:type(blockquote) {
-  line-height: 1.8rem;
+.root:type(section) {
+  margin-bottom: value(MarginBottom);
 }
 
 .root:type(blockquote) {
-  padding: 0 1.8rem;
+  line-height: value(MarginBottom);
+  padding: 0 value(MarginBottom);
+  margin: value(MarginBottom);
+}
+
+.root:type(paragraph) {
+  line-height: value(MarginBottom);
 }
 
 .root:type(link) {

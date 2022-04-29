@@ -1,9 +1,15 @@
 @namespace "Index";
 
+@st-import ContentComponent from "../components/content/content-component.st.css";
+
 .root {}
 
 .title {}
 
 .moto {
 	padding: 1.8rem 0;
+}
+
+.contentComponent {
+	-st-extends: ContentComponent;
 }

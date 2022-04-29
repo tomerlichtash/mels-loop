@@ -12,14 +12,12 @@
 
 .layout {
   display: flex;
-  padding: 0 2rem;
-  max-width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .column {
   -st-states: size(number);
-  padding: 0 2rem;
 }
 .column:size(1) {
   flex: 1;
@@ -60,6 +58,7 @@
 
 .excerpt {
   font-size: 0.85rem;
+  margin: 0;
 }
 
 .button {

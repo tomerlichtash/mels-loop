@@ -5,7 +5,7 @@
 :vars {
 	pageWidth: 800px;
 	PageTopMargin: 80px;
-	PageMobileGutter: 1rem;
+	PageMobileGutter: 2rem;
 }
 
 .root {
@@ -20,8 +20,8 @@
 
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {
-		.root::gutter {
-			margin: value(PageMobileGutter);
+		.gutter {
+			padding: value(PageMobileGutter);
 		}
 	}
 }

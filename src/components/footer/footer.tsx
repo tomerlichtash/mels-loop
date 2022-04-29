@@ -27,12 +27,12 @@ export const Footer = ({ className }: ComponentProps): JSX.Element => {
 								<span className={classes.title}>{siteTitle}</span>
 							</div>
 							<div className={classes.subtitle}>
-								<p>{siteSubtitle}</p>
+								<span>{siteSubtitle}</span>
 							</div>
 						</div>
-						<div className={classes.excerpt}>
-							<p>{translate("FOOTER_META_SHORT_DESCRIPTION")}</p>
-						</div>
+						<p className={classes.excerpt}>
+							{translate("FOOTER_META_SHORT_DESCRIPTION")}
+						</p>
 					</div>
 					<div className={st(classes.column, { size: 1 })}>
 						<div className={classes.sitePages}>

@@ -26,7 +26,7 @@
 	-st-mixin: heading2;
 }
 
-:global(p),
+/* :global(p), */
 :global(blockquote),
 :global(h1),
 :global(h2),

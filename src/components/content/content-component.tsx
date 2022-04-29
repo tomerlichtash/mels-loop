@@ -18,10 +18,11 @@ import { st, classes } from "./content-component.st.css";
 
 export const ContentComponent = ({
 	componentData,
+	className,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { key, type } = node;
-	const stylableClassName = st(classes.root, { type });
+	const stylableClassName = st(classes.root, { type }, className);
 
 	if (!key) {
 		console.warn("missing key on", node);

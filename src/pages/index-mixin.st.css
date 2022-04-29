@@ -19,3 +19,7 @@
 	font-style: value(MotoTextStyle);
 	color: value(MotoTextColor);
 }
+
+.root::contentComponent:type(paragraph) {
+	margin: 0;
+}
