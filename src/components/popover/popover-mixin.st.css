@@ -4,11 +4,11 @@
 @st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
 
 :vars {
-	LinkColor: blue;
-	LinkColorHover: red;
-  TriggerOpenTextColor: magenta;
-  TriggerOpenBgColor: magenta;
-  GlossaryMarkerOpenColor: blue;
+	TriggerTextColor: blue;
+	TriggerTextColor_Hover: red;
+  TriggerTextColor_Open: magenta;
+  TriggerTextBgColor_Open: magenta;
+  TriggerMarkerColor_Open: blue;
 }
 
 .root {
@@ -17,7 +17,7 @@
 
 .root:type(annotation)::trigger,
 .root:type(glossary)::trigger {
-  color: value(LinkColor);
+  color: value(TriggerTextColor);
 }
 
 .root:type(glossary)::triggerWrapper {
@@ -27,13 +27,13 @@
 .root:type(annotation)::trigger:hover,
 .root:type(glossary)[data-state="closed"]::trigger:hover,
 .root:type(glossary)[data-state="closed"]::trigger:hover::after {
-  color: value(LinkColorHover);
+  color: value(TriggerTextColor_Hover);
 }
 
 .root:type(glossary)[data-state="open"]::triggerWrapper,
 .root:type(glossary)[data-state="open"]::triggerWrapper:hover {
-  background-color: value(TriggerOpenBgColor);
-  color: value(TriggerOpenTextColor);
+  background-color: value(TriggerTextBgColor_Open);
+  color: value(TriggerTextColor_Open);
 }
 
 .root:type(glossary)::trigger::after {
@@ -42,7 +42,7 @@
 }
 
 .root:type(glossary)[data-state="open"]::trigger::after {
-  color: value(GlossaryMarkerOpenColor);
+  color: value(TriggerMarkerColor_Open);
 }
 
 .root::content {

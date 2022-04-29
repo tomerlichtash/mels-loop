@@ -3,7 +3,7 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import {
-	InfoCircledIcon,
+	// InfoCircledIcon,
 	EnvelopeClosedIcon,
 	GitHubLogoIcon,
 	TwitterLogoIcon,
@@ -20,16 +20,16 @@ export const Footer = ({ className }: ComponentProps): JSX.Element => {
 			<div className={classes.pageContainer}>
 				<div className={classes.layout}>
 					<div className={st(classes.column, { size: 3 })}>
-						<div className={classes.title}>
-							<time className={classes.year}>{licenseYears}</time>{" "}
-							<span className={classes.license}>({siteLicense})</span>{" "}
-							<span className={classes.title}>{siteTitle}</span>
+						<div className={classes.footerTitle}>
+							<div className={classes.title}>
+								<time className={classes.year}>{licenseYears}</time>{" "}
+								<span className={classes.license}>({siteLicense})</span>{" "}
+								<span className={classes.title}>{siteTitle}</span>
+							</div>
+							<div className={classes.subtitle}>
+								<p>{siteSubtitle}</p>
+							</div>
 						</div>
-
-						<div className={classes.subtitle}>
-							<p>{siteSubtitle}</p>
-						</div>
-
 						<div className={classes.excerpt}>
 							<p>{translate("FOOTER_META_SHORT_DESCRIPTION")}</p>
 						</div>
@@ -38,7 +38,7 @@ export const Footer = ({ className }: ComponentProps): JSX.Element => {
 						<div className={classes.sitePages}>
 							<ul>
 								<li>
-									<InfoCircledIcon />
+									{/* <InfoCircledIcon /> */}
 									<Button
 										link="/about"
 										label={translate("FOOTER_LINK_ABOUT")}
@@ -52,7 +52,7 @@ export const Footer = ({ className }: ComponentProps): JSX.Element => {
 					</div>
 					<div className={st(classes.column, { size: 1 })}>
 						<ul className={classes.social}>
-							<li className={classes.item}>
+							<li className={st(classes.item, { icon: "github" })}>
 								<GitHubLogoIcon />
 								<Button
 									target="_blank"
@@ -61,7 +61,7 @@ export const Footer = ({ className }: ComponentProps): JSX.Element => {
 									className={classes.button}
 								/>
 							</li>
-							<li>
+							<li className={st(classes.item, { icon: "twitter" })}>
 								<TwitterLogoIcon scale={230} />
 								<Button
 									target="_blank"
@@ -69,7 +69,7 @@ export const Footer = ({ className }: ComponentProps): JSX.Element => {
 									label={translate("FOOTER_LINK_TWITTER")}
 								/>
 							</li>
-							<li>
+							<li className={st(classes.item, { icon: "contact" })}>
 								<EnvelopeClosedIcon />
 								<Button
 									link="/contact"

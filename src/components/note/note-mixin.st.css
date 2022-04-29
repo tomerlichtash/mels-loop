@@ -3,15 +3,15 @@
 @st-import Note from "./note.st.css";
 
 :vars {
-	NotePadding: 0;
+	NotePadding: 1rem;
 	TopicBgColor: blue;
 	TopicTextColor: red;
-	TopicRadius: 0;
-	TopicPadding: 0;
-	TopicMargin: 0;
+	TopicRadius: 4px;
+	TopicPadding: 6px;
+	TopicMargin: 1.5rem;
 	TitleFontSize: 1rem;
 	TitleFontWeight: 500;
-	TitleMargin: 0;
+	TitleMargin: 1rem;
 }
 
 .root {

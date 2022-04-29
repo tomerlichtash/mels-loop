@@ -1,8 +1,8 @@
 import React, { Context, createContext, useRef } from "react";
 import Cookies from "js-cookie";
 import { useTheme } from "../hooks/useTheme";
-import { classes as LightTheme } from "../theme/light/theme.st.css";
-import { classes as DarkTheme } from "../theme/dark/theme.st.css";
+import { classes as LightTheme } from "../theme/light/style.st.css";
+import { classes as DarkTheme } from "../theme/dark/style.st.css";
 
 export type Themes = "base" | "light" | "dark" | null;
 

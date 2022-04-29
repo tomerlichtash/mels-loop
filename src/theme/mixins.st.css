@@ -22,8 +22,8 @@
 
 :vars {
   FillColor: #000;
-  FillColor_Hover: #888;
-  FillColor_Active: #ccc;
+  FillColor_Hover: value(FillColor);
+  FillColor_Active: value(FillColor);
 }
 .IconFill {}
 .IconFill path {

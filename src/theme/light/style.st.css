@@ -20,6 +20,8 @@
 @st-import PopoverMixin from "../../components/popover/popover-mixin.st.css";
 @st-import PopoverToolbar from "../../components/popover/popover-toolbar.st.css";
 @st-import PopoverToolbarMixin from "../../components/popover/popover-toolbar-mixin.st.css";
+@st-import CopyUrlButton from "../../components/copy-button/copy-url-button.st.css";
+@st-import CopyUrlButtonMixin from "../../components/copy-button/copy-url-button-mixin.st.css";
 @st-import CopyUrlButtonContent from "../../components/copy-button/copy-url-button-content.st.css";
 @st-import CopyUrlButtonContentMixin from "../../components/copy-button/copy-url-button-content-mixin.st.css";
 @st-import Note from "../../components/note/note.st.css";
@@ -28,7 +30,6 @@
 @st-import ContentComponentMixin from "../../components/content/content-component-mixin.st.css";
 
 @st-import [
-	accent1,
 	level0,
 	level1,
 	level2,
@@ -36,10 +37,16 @@
 	level4,
 	level5,
 	level6,
-	primary1,
-	primary2,
+	level7,
+	level8,
+	primary4,
 	primary3,
-	primary4
+	primary2,
+	primary1,
+	accent1,
+	accent2,
+	accent3,
+	accent4
 ] from "./vars.st.css";
 
 @st-import [IconFill] from "../mixins.st.css";
@@ -71,10 +78,9 @@
 
 	TopBarMenu {
 		-st-mixin: TopBarMenuMixin(
-			ListBgColor transparent,
 			LinkTitleTextColor value(primary3),
 			LinkSubtitleTextColor value(level6),
-			LinkTextColorHover value(primary3)
+			LinkTextColorHover value(primary3),
 			LinkBgColorHover value(level3),
 			TriggerBgColorHover value(level4),
 			ArrowColor value(level0),
@@ -84,8 +90,7 @@
 
 	LocaleSelector {
 		-st-mixin: LocaleSelectorMixin(
-			ContainerRadius 6px,
-			SelectedItemTextColor black,
+			SelectedItemTextColor value(level8),
 			ContainerBorderColor value(level4),
 			ItemBgColorHover value(level5),
 			SelectedItemBgColor value(level4)
@@ -95,28 +100,27 @@
 	ThemeSelector {
 		-st-mixin: ThemeSelectorMixin(
 			BgColor value(level4),
-			IconColor value(level5),
-			IconFillColor red
+			IconColor value(level5)
 		);
 	}
 	ThemeSelector::icon {
 		-st-mixin: IconFill(
-			FillColor magenta,
-			FillColor_Hover cyan,
-			FillColor_Active red	
+			FillColor value(level8)
 		);
 	}
 
 	SiteFooter {
 		-st-mixin: SiteFooterMixin(
 			BackgroundColor value(level2),
-			TextAlign left,
 			Padding 0,
 			StripGradientStartColor value(primary1),
 			StripGradientMidColor value(primary3),
 			StripGradientEndColor value(primary4)
 		);
 	}
+	SiteFooter::item:icon(github) {-st-mixin: IconFill(FillColor value(level7))}
+	SiteFooter::item:icon(twitter) {-st-mixin: IconFill(FillColor value(accent1))}
+	SiteFooter::item:icon(contact) {-st-mixin: IconFill(FillColor value(primary2))}
 
 	ContentComponent {
 		-st-mixin: ContentComponentMixin(
@@ -127,39 +131,39 @@
 
 	Popover {
 		-st-mixin: PopoverMixin(
-			LinkColor value(accent1),
-			LinkColorHover value(primary2),
-			TriggerOpenTextColor value(level0),
-			TriggerOpenBgColor value(primary2),
-			GlossaryMarkerOpenColor value(primary2)
+			TriggerTextColor value(accent1),
+			TriggerTextColor_Hover value(primary2),
+			TriggerTextColor_Open value(level0),
+			TriggerTextBgColor_Open value(primary2),
+			TriggerMarkerColor_Open value(primary2)
 		);
 	}
 
 	PopoverToolbar::item {
 		-st-mixin: IconFill(
-			Color magenta,
-			Color_Hover cyan,
-			Color_Active red	
+			FillColor value(level5),
+			FillColor_Hover value(level8),
+			FillColor_Active value(primary2)	
 		);
 	}
 
+	CopyUrlButton:checked {
+		-st-mixin: IconFill(
+			FillColor value(primary1)
+		);
+	}
 	CopyUrlButtonContent {
 		-st-mixin: CopyUrlButtonContentMixin(
-			ContentBgColor magenta
+			ContentBgColor value(accent1)
 		);
 	}
 
 	Note {
 		-st-mixin: NoteMixin(
-			NotePadding 1rem,
 			TopicBgColor value(level2),
 			TopicTextColor value(primary2),
-			TopicRadius 4px,
-			TopicPadding 6px,
-			TopicMargin 1.5rem,
 			TitleFontSize 2rem,
-			TitleFontWeight 300,
-			TitleMargin 1rem
+			TitleFontWeight 300
 		);
 	}
 }

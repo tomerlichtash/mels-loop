@@ -1,5 +1,7 @@
 @namespace "Footer";
 
+@st-import Button from "../ui/button/button.st.css";
+
 .root {
   margin-top: 4rem;
 }
@@ -9,11 +11,15 @@
 }
 
 .layout {
-  display: inline-flex;
+  display: flex;
+  padding: 0 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .column {
   -st-states: size(number);
+  padding: 0 2rem;
 }
 .column:size(1) {
   flex: 1;
@@ -45,4 +51,25 @@
 }
 
 .item {
+  -st-states: icon(enum(twitter, github, contact));
+}
+
+.footerTitle {
+  margin-bottom: 2rem;
+}
+
+.excerpt {
+  font-size: 0.85rem;
+}
+
+.button {
+  -st-extends: Button;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+    .layout {
+      display: block;
+    }
+	}
 }

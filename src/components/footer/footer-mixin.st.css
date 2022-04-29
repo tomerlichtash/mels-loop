@@ -4,7 +4,6 @@
 
 :vars {
   BackgroundColor: #f0f0f0;
-  TextAlign: center;
   Padding: 0;
   StripGradientStartColor: white;
   StripGradientMidColor: gray;
@@ -14,7 +13,6 @@
 .root {
   -st-extends: Footer;
   background-color: value(BackgroundColor);
-  text-align: value(TextAlign);
   padding: value(Padding);
 }
 

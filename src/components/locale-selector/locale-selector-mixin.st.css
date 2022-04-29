@@ -3,7 +3,7 @@
 @st-import LocaleSelector from "./locale-selector.st.css";
 
 :vars {
-	ContainerRadius: 0;
+	ContainerRadius: 6px;
 	SelectedItemTextColor: white;
 	ContainerBorderColor: black;
 	ItemBgColorHover: black;

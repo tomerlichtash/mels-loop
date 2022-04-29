@@ -36,7 +36,9 @@ export const CopyUrlButton = ({
 		<Tooltip delayDuration={0} open={toggleCopyIcon}>
 			<CopyToClipboard text={query} onCopy={onCopy}>
 				<TooltipTrigger asChild>
-					<div className={st(classes.root, className)}>
+					<div
+						className={st(classes.root, { checked: toggleCopyIcon }, className)}
+					>
 						{toggleCopyIcon ? <CheckIcon /> : <Share1Icon />}
 					</div>
 				</TooltipTrigger>
