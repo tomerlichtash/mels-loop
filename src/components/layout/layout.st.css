@@ -40,9 +40,11 @@
 
 .scrollablePage {
 	height: 100vh;
-}  
+}
+
 .page {
 	-st-extends: Page;
+	width: value(PageWidth);
 	padding-top: 80px;
 }
 
@@ -93,7 +95,6 @@
 .primaryNav {
 	display: flex;
 }
-
 
 .toggleGroup {
 	-st-extends: LocaleSelector;

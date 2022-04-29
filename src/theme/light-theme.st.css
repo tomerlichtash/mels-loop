@@ -17,7 +17,6 @@
 @st-import [heading1] from "./typography.st.css";
 
 @st-import [
-	PageWidth,
 	accent1,
 	primary2
 ] from './common.st.css';
@@ -27,11 +26,7 @@
 	linkHoverColor: red;
 }
 
-@st-scope .root {	
-	Page {
-		width: value(PageWidth);
-	}
-
+@st-scope .root {
 	ContentComponent {
 		-st-mixin: ContentComponentMixin;
 	}
