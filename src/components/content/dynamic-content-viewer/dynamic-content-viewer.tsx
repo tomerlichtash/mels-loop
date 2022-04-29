@@ -8,7 +8,7 @@ import { contentUtils } from "../../../lib/content-utils";
 import Note from "../../note";
 import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
 import { mlUtils } from "../../../lib/ml-utils";
-import { st, classes } from "./dynamic-content-viewer.st.css";
+import { classes } from "./dynamic-content-viewer.st.css";
 
 export interface DynamicContentViewerProps extends ComponentProps {
 	url: string;
