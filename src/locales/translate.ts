@@ -7,10 +7,10 @@ export const _translate =
 			return;
 		}
 		const ref = lang || langRef;
-		if (!langs[ref]) {
+		if (!langs[ref] && !langs[ref]?.keys) {
 			return `%MISSING_LOCALE_${ref}_${key}%`;
-		} else if (!langs[ref][key]) {
+		} else if (!langs[ref].keys[key]) {
 			return `%MISSING_KEY_${key}%`;
 		}
-		return langs[ref][key] || `%${key}%`;
+		return langs[ref].keys[key] || `%${key}%`;
 	};

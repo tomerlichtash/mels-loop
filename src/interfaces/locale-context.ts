@@ -1,13 +1,12 @@
 import { NextRouter } from "next/router";
+import { LocaleId, TextDirection } from "../locales/languages/types/common";
 import type { ILocaleMetaContext } from "../contexts/locale-meta-context";
 import type { ILocalePageContext } from "../contexts/locale-page-context";
-
-export type LocaleId = "en" | "he";
 
 export interface ILocaleContext {
 	readonly locale: string;
 	readonly locales: string[];
-	readonly localeInfo: ILocaleInfo;
+	readonly localeInfo: Map<LocaleId, ILocaleInfo>;
 	readonly meta: ILocaleMetaContext;
 	readonly pages: ILocalePageContext;
 	translate: (s: string, lang?: string) => string;
@@ -24,17 +23,8 @@ export interface ILocaleContextProps {
 	readonly router: NextRouter;
 }
 
-export type TextDirection = "rtl" | "ltr";
-
-export type Direction = "right" | "left";
-
 export interface ILocaleInfo {
 	readonly direction: TextDirection;
 }
-
-export const LocaleInfo: Record<LocaleId, ILocaleInfo> = {
-	en: { direction: "ltr" },
-	he: { direction: "rtl" },
-};
 
 export const localeLabelPrefix = "LOCALE_LABEL";

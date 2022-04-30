@@ -3,21 +3,21 @@ import {
 	ILocaleContext,
 	ILocaleContextProps,
 	localeLabelPrefix,
-	LocaleId,
-	LocaleInfo,
 } from "../interfaces/locale-context";
 import { _translate } from "../locales/translate";
-import { Languages } from "../locales";
+import { Languages as langs } from "../locales";
 import LocaleMetaContext, { ILocaleMetaContext } from "./locale-meta-context";
 import LocalePageContext, { ILocalePageContext } from "./locale-page-context";
+import { ILocaleMetaProps, LocaleId } from "../locales/languages/types/common";
 
 const getLocaleLabel = (id: string) =>
 	[localeLabelPrefix, id].join("_").toUpperCase();
 
 export class LocaleContext implements ILocaleContext {
-	private _locale: string;
+	private _locale: LocaleId;
 	private _locales: string[];
 	private _translate: (s: string, lang?: LocaleId) => string;
+	public localeInfo: Map<LocaleId, ILocaleMetaProps>;
 	public meta: ILocaleMetaContext;
 	public pages: ILocalePageContext;
 	constructor(props: ILocaleContextProps) {
@@ -26,14 +26,21 @@ export class LocaleContext implements ILocaleContext {
 		}
 		const { router } = props;
 		const { locale, locales, route } = router;
-		this._locale = locale;
+		this._locale = locale as LocaleId;
 		this._locales = locales;
 		this.meta = new LocaleMetaContext();
 		this.pages = new LocalePageContext(route);
-		this._translate = _translate(locale, Languages);
+		this._translate = _translate(locale, langs);
+		this.localeInfo = new Map(
+			locales.map((id: LocaleId) => [id, langs[id].meta])
+		);
 	}
 
-	public get locale() {
+	private get localeMeta(): ILocaleMetaProps {
+		return this.localeInfo.get(this.locale);
+	}
+
+	public get locale(): LocaleId {
 		return this._locale;
 	}
 
@@ -46,12 +53,8 @@ export class LocaleContext implements ILocaleContext {
 
 	public getLocaleSymbol = (id: string) => this.translate(getLocaleLabel(id));
 
-	public get localeInfo() {
-		return LocaleInfo[this.locale];
-	}
-
 	public get textDirection() {
-		return this.localeInfo.direction;
+		return this.localeMeta.direction;
 	}
 
 	public get pageName() {
