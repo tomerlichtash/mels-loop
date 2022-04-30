@@ -10,8 +10,6 @@
 .root {
 	-st-mixin: boxSizing;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	height: 48px;
 	padding: 0 1rem;
 }
@@ -27,6 +25,8 @@
   -st-extends: Button;
 	-st-states: link(boolean);
 	-st-mixin: heading6;
+	align-items: center;
+	display: flex;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }

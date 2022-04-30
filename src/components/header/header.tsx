@@ -22,7 +22,9 @@ export const Header = ({ isHome, className }: HeaderProps): JSX.Element => {
 					callback={() => false}
 					className={st(classes.siteTitle, { link: !isHome })}
 				/>
-				<div className={classes.siteSubtitle}>{siteSubtitle}</div>
+				<div className={classes.siteSubtitle} aria-label={siteSubtitle}>
+					{siteSubtitle}
+				</div>
 			</div>
 		</header>
 	);
