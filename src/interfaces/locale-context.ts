@@ -3,6 +3,8 @@ import { LocaleId, TextDirection } from "../locales/languages/types/common";
 import type { ILocaleMetaContext } from "../contexts/locale-meta-context";
 import type { ILocalePageContext } from "../contexts/locale-page-context";
 
+export type Direction = "right" | "left";
+
 export interface ILocaleContext {
 	readonly locale: string;
 	readonly locales: string[];
