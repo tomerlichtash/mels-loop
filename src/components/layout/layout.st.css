@@ -8,15 +8,15 @@
 @st-import [LatinText, HebrewText] from "../../theme/common/typography.st.css";
 
 .root {
-	-st-states: locale(enum(en, he));
+	-st-states: textDirection(enum(ltr, rtl));
 	-st-mixin: Globals;
 }
 
-.root:locale(en) {
+.root:textDirection(ltr) {
 	-st-mixin: LatinText;
 }
 
-.root:locale(he) {
+.root:textDirection(rtl) {
 	-st-mixin: HebrewText;
 }
 
@@ -35,9 +35,9 @@
 .footer {
 	-st-extends: SiteFooter;
 }
-.root:locale(en) .footer::column {
+.root:textDirection(ltr) .footer::column {
 	padding-right: 2rem;
 }
-.root:locale(he) .footer::column {
+.root:textDirection(rtl) .footer::column {
 	padding-left: 2rem;
 }

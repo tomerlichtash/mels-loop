@@ -14,7 +14,7 @@ export interface ITopBarProps extends ComponentProps {
 }
 
 export default function TopBar({ isHome, isMobile, className }: ITopBarProps) {
-	const { locale, translate } = useContext(ReactLocaleContext);
+	const { locale, textDirection, translate } = useContext(ReactLocaleContext);
 
 	const menuItems = useMemo(
 		() => translateItems(navItems, translate) as MenuGroup[],
@@ -22,7 +22,7 @@ export default function TopBar({ isHome, isMobile, className }: ITopBarProps) {
 	);
 
 	return (
-		<div className={st(classes.root, { locale }, className)}>
+		<div className={st(classes.root, { textDirection }, className)}>
 			<Header className={classes.header} isHome={isHome} />
 			{!isMobile && (
 				<div className={classes.items}>

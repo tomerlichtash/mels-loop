@@ -81,7 +81,7 @@ export default function Layout({ children }: ComponentProps) {
 			<div
 				id="outer-container"
 				className={st(classes.root, {
-					locale,
+					textDirection,
 					isMobile,
 				})}
 			>
@@ -99,7 +99,7 @@ export default function Layout({ children }: ComponentProps) {
 				{isMobile && (
 					<MobileMenu
 						className={classes.mobileMenu}
-						right={locale === "en"}
+						right={textDirection === "ltr"}
 						isHome={isHome}
 					/>
 				)}

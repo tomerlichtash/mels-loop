@@ -11,7 +11,7 @@
 }
 
 .root {
-	-st-states: locale(enum(en, he));
+	-st-states: textDirection(enum(ltr, rtl));
 	-st-mixin: boxSizing;
 	position: fixed;
 	display: flex;
@@ -29,10 +29,10 @@
 
 .item {}
 
-.root:locale(en)::item {
+.root:textDirection(ltr)::item {
 	margin-left: 1rem;
 }
-.root:locale(he)::item {
+.root:textDirection(rtl)::item {
 	margin-right: 1rem;
 }
 
@@ -53,10 +53,10 @@
 	-st-extends: ThemeSelector;
 }
 
-.root:locale(en)::header::siteTitle::icon img {
+.root:textDirection(ltr)::header::siteTitle::icon img {
 	margin-right: value(TopBarIconMargin);
 }
-.root:locale(he)::header::siteTitle::icon img {
+.root:textDirection(rtl)::header::siteTitle::icon img {
 	margin-left: value(TopBarIconMargin);
 }
 

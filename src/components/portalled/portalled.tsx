@@ -5,10 +5,10 @@ import { st, classes } from "../layout/layout.st.css";
 
 export const Portalled = ({ children }): JSX.Element => {
 	const { themeRef } = useContext(ReactThemeContext);
-	const { locale } = useContext(ReactLocaleContext);
+	const { textDirection } = useContext(ReactLocaleContext);
 	return (
 		<div className={themeRef}>
-			<div className={st(classes.root, { locale })}>{children}</div>
+			<div className={st(classes.root, { textDirection })}>{children}</div>
 		</div>
 	);
 };

@@ -22,7 +22,7 @@
 }
 
 .root {
-  -st-states: type(string), locale(string);
+  -st-states: type(string);
 }
 
 .trigger {

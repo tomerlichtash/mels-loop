@@ -34,8 +34,8 @@ export interface ILocaleInfo {
 }
 
 export const LocaleInfo: Record<LocaleId, ILocaleInfo> = {
-	en: { direction: "rtl" },
-	he: { direction: "ltr" },
+	en: { direction: "ltr" },
+	he: { direction: "rtl" },
 };
 
 export const localeLabelPrefix = "LOCALE_LABEL";
