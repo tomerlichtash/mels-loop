@@ -65,6 +65,7 @@ export const Popover = ({
 					avoidCollisions={true}
 					align="center"
 					sideOffset={5}
+					onInteractOutside={onExit}
 					portalled={portalled}
 					className={portalStyles}
 				>
