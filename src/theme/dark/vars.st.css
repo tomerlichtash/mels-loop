@@ -17,24 +17,27 @@
 	color13,
 	color14,
 	color15,
-	color16
+	color16,
 ] from "../common/colors.st.css";
 
 :vars {
 	level0: value(color16);
-	level1: value(color7);
-	level2: value(color6);
-	level3: value(color5);
-	level4: value(color4);
-	level5: value(color3);
-	level6: value(color2);
-	level7: value(color1);
-	primary4: value(color8);
-	primary3: value(color9);
-	primary2: value(color10);
-	primary1: value(color11);
-	accent1: value(color12);
-	accent2: value(color13);
+	level1: value(color8);
+	level2: value(color7);
+	level3: value(color6);
+	level4: value(color5);
+	level5: value(color4);
+	level6: value(color3);
+	level7: value(color2);
+	level8: value(color1);
+
+	primary1: value(color12);
+	primary2: value(color11);
+	primary3: value(color10);
+	primary4: value(color9);
+
+	accent1: value(color16);
+	accent2: value(color15);
 	accent3: value(color14);
-	accent4: value(color15);
+	accent4: value(color13);
 }
