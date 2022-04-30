@@ -5,8 +5,8 @@ import LocaleSelector from "../locale-selector";
 import { Menu, MenuGroup } from "../menu";
 import ThemeSelector from "../theme-selector";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { st, classes } from "./top-bar.st.css";
 import { ComponentProps } from "../../interfaces/models";
+import { st, classes } from "./top-bar.st.css";
 
 export interface ITopBarProps extends ComponentProps {
 	isHome: boolean;
@@ -26,9 +26,11 @@ export default function TopBar({ isHome, isMobile, className }: ITopBarProps) {
 			<Header className={classes.header} isHome={isHome} />
 			{!isMobile && (
 				<div className={classes.items}>
-					<Menu className={classes.nav} items={menuItems} />
-					<LocaleSelector className={st(classes.localeSelector, { locale })} />
-					<ThemeSelector className={classes.themeSelector} />
+					<Menu className={st(classes.nav, classes.item)} items={menuItems} />
+					<LocaleSelector
+						className={st(classes.localeSelector, { locale }, classes.item)}
+					/>
+					<ThemeSelector className={st(classes.themeSelector, classes.item)} />
 				</div>
 			)}
 		</div>

@@ -19,12 +19,23 @@
 	align-items: center;
 	width: 100%;
 	z-index: 1;
+	padding: 0.5rem 1rem;
 }
 
 .items {
 	display: flex;
 	align-items: center;
 }
+
+.item {}
+
+.root:locale(en)::item {
+	margin-left: 1rem;
+}
+.root:locale(he)::item {
+	margin-right: 1rem;
+}
+
 
 .header {
 	-st-extends: Header;
@@ -38,10 +49,6 @@
 	-st-extends: LocaleSelector;
 }
 
-.themeSelectorWrapper {
-	height: 31px;
-}
-
 .themeSelector {
 	-st-extends: ThemeSelector;
 }
@@ -49,7 +56,6 @@
 .root:locale(en)::header::siteTitle::icon img {
 	margin-right: value(TopBarIconMargin);
 }
-
 .root:locale(he)::header::siteTitle::icon img {
 	margin-left: value(TopBarIconMargin);
 }
