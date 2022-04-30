@@ -19,7 +19,8 @@ export const Locale: Language = {
 	MOBILE_MENU_CLOSE_LABEL: "סגירה",
 	ERROR_404_FILE_NOT_FOUND: "404",
 	ERROR_GENERAL: "שגיאה",
-	FOOTER_LICENSE: "cc-by",
+	FOOTER_LICENSE: "cc",
+	FOOTER_FULL_LICENSE: "cc-by",
 	NO_PAGE_CONTENT: "דף ללא תוכן",
 	NOTE_LABEL_GLOSSARY: "מילון מונחים",
 	NOTE_LABEL_ANNOTATION: "הערה",
@@ -55,6 +56,9 @@ export const Locale: Language = {
 	MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES: "רשימת מקורות מלאה",
 
 	COPY_BUTTON_TOOLTIP_CONTENT: "הקישור הועתק",
+
+	FOOTER_COLUMN_TITLE_PAGES: "עמודים",
+	FOOTER_COLUMN_TITLE_LINKS: "קישורים",
 
 	FOOTER_LINK_ABOUT: "אודות",
 	FOOTER_LINK_BLOG: "בלוג",

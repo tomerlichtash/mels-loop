@@ -19,7 +19,8 @@ export const Locale: Language = {
 	MOBILE_MENU_CLOSE_LABEL: "Close",
 	ERROR_404_FILE_NOT_FOUND: "Page not found",
 	ERROR_GENERAL: "Error",
-	FOOTER_LICENSE: "cc-by",
+	FOOTER_LICENSE: "cc",
+	FOOTER_FULL_LICENSE: "cc-by",
 	NO_PAGE_CONTENT: "No page content",
 	NOTE_LABEL_GLOSSARY: "Glossary",
 	NOTE_LABEL_ANNOTATION: "Note",
@@ -55,6 +56,9 @@ export const Locale: Language = {
 	MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES: "Web Resources for the Story of Mel",
 
 	COPY_BUTTON_TOOLTIP_CONTENT: "Copied!",
+
+	FOOTER_COLUMN_TITLE_PAGES: "Pages",
+	FOOTER_COLUMN_TITLE_LINKS: "Links",
 
 	FOOTER_LINK_ABOUT: "About",
 	FOOTER_LINK_BLOG: "Blog",

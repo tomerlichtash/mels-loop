@@ -32,7 +32,8 @@ export default function Layout({ children }: ComponentProps) {
 	const router = useRouter();
 	const { query } = useContext(ReactQueryContext);
 	const size = useWindowSize();
-	const { siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
+	const { siteTitle, siteSubtitle, textDirection } =
+		useContext(ReactLocaleContext);
 	const { locale, asPath: currentUrl } = router;
 	const { isHome, getLine } = query;
 	const isMobile = size.width <= 970;
@@ -92,7 +93,7 @@ export default function Layout({ children }: ComponentProps) {
 							className={classes.header}
 						/>
 						<Page className={classes.page} nodes={children} />
-						<Footer className={classes.footer} />
+						<Footer className={classes.footer} direction={textDirection} />
 					</ScrollArea>
 				</div>
 				{isMobile && (

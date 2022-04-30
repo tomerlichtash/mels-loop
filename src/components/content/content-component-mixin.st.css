@@ -24,10 +24,6 @@
   margin: value(MarginBottom);
 }
 
-.root:type(paragraph) {
-  /* line-height: value(MarginBottom); */
-}
-
 .root:type(link) {
 	color: value(LinkColor);
 }

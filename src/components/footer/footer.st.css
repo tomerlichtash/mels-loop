@@ -3,7 +3,15 @@
 @st-import Button from "../ui/button/button.st.css";
 
 .root {
+  -st-states: direction(enum(ltr, rtl));
   margin-top: 4rem;
+}
+
+.root:direction(ltr) .button::icon {
+  margin-right: 0.25rem;
+}
+.root:direction(rtl) .button::icon {
+  margin-left: 0.25rem;
 }
 
 .strip {
@@ -28,12 +36,19 @@
 .column:size(3) {
   flex: 3;
 }
+.column:size(4) {
+  flex: 4;
+}
 
 .title {
   font-weight: 500;
 }
 
-.subtitle {}
+.subtitle {
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
 
 .license {}
 
@@ -48,12 +63,17 @@
   padding: 4rem 0;
 }
 
+.itemList {
+  line-height: 1.4rem;
+}
+
 .item {
   -st-states: icon(enum(twitter, github, contact));
+  font-size: 0.85rem;
 }
 
 .footerTitle {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .excerpt {
@@ -65,7 +85,11 @@
   -st-extends: Button;
 }
 
-.section {}
+.columnTitle {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
 
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {
@@ -73,8 +97,8 @@
       display: block;
       padding: 0 2rem;
     }
-    .section {
-      margin-top: 2rem;
+    .column {
+      margin-top: 1rem;
     }
 	}
 }

@@ -56,7 +56,7 @@
 @st-scope .root {
 	StoryPage {
 		-st-mixin: StoryPageMixin(
-			MotoTextColor value(level5),
+			MotoTextColor value(level5)
 		);
 	}
 
