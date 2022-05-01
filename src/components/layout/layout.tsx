@@ -35,7 +35,7 @@ export default function Layout({ children }: ComponentProps) {
 	const { siteTitle, siteSubtitle, textDirection } =
 		useContext(ReactLocaleContext);
 	const { locale, asPath: currentUrl } = router;
-	const { isHome, getLine } = query;
+	const { getLine } = query;
 	const isMobile = size.width <= 970;
 
 	useEffect(() => {
@@ -87,11 +87,7 @@ export default function Layout({ children }: ComponentProps) {
 			>
 				<div id="page-wrap">
 					<ScrollArea>
-						<TopBar
-							isHome={isHome}
-							isMobile={isMobile}
-							className={classes.header}
-						/>
+						<TopBar isMobile={isMobile} className={classes.header} />
 						<Page className={classes.page} nodes={children} />
 						<Footer className={classes.footer} direction={textDirection} />
 					</ScrollArea>
@@ -100,7 +96,6 @@ export default function Layout({ children }: ComponentProps) {
 					<MobileMenu
 						className={classes.mobileMenu}
 						right={textDirection === "ltr"}
-						isHome={isHome}
 					/>
 				)}
 			</div>

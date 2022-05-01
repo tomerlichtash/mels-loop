@@ -13,7 +13,6 @@ export interface IQueryManager {
 	readonly asPath?: string;
 	readonly asSplitPath?: string[];
 	readonly getPathParams?: URLSearchParams;
-	readonly isHome?: boolean;
 	onExit?: () => void;
 	registerNode?: (node: IMLParsedNode) => boolean;
 	getQueryUrl?: (node: IMLParsedNode) => string;

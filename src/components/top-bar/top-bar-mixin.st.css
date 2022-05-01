@@ -12,6 +12,6 @@
 	background: value(BgColor);
 }
 
-.root::header::siteTitle:link {
+.root::header::siteTitle {
 	color: value(SiteTitleLinkTextColor);
 }

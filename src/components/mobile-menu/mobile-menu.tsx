@@ -7,13 +7,11 @@ import LocaleSelector from "../locale-selector";
 import { st, classes } from "./mobile-menu.st.css";
 
 export interface IMobileNavProps extends ComponentProps {
-	isHome: boolean;
 	right: boolean;
 }
 
 export const MobileMenu = ({
 	right,
-	isHome,
 	className,
 }: IMobileNavProps): JSX.Element => {
 	return (
@@ -42,7 +40,7 @@ export const MobileMenu = ({
 			right={right}
 			className={st(classes.root, className)}
 		>
-			<Header isHome={isHome} className={classes.header} />
+			<Header className={classes.header} />
 			<LocaleSelector className={classes.localeSelector} />
 			<ThemeSelector className={classes.themeSelector} />
 		</Menu>

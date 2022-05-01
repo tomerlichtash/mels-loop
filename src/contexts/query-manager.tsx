@@ -37,10 +37,6 @@ export class QueryManager implements IQueryManager {
 		return this.asPath.split("?");
 	}
 
-	get isHome() {
-		return this.asPath === "/";
-	}
-
 	private get pathParams() {
 		if (!this.asSplitPath) return;
 		return new URLSearchParams(this.asSplitPath[1].toLowerCase());
