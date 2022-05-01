@@ -6,7 +6,6 @@ import { Menu, MenuGroup } from "../menu";
 import ThemeSelector from "../theme-selector";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
-import { MobileMenu } from "../mobile-menu";
 import { st, classes } from "./top-bar.st.css";
 
 export interface ITopBarProps extends ComponentProps {
