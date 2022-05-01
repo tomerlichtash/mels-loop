@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Share1Icon, CheckIcon } from "@radix-ui/react-icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import {
 	StyledArrow,
 	Tooltip,
@@ -30,11 +31,17 @@ export const CopyUrlButton = ({
 }: ICopyUrlButtonProps): JSX.Element => {
 	const [toggleCopyIcon, setToggleCopyIcon] = useState(false);
 
-	const onCopy = () => {
-		setToggleCopyIcon(true);
-		setTimeout(() => setToggleCopyIcon(false), TOOLTIP_CLOSE_TIMEOUT);
-	};
+	useEffect(() => {
+		const timer = setTimeout(
+			() => setToggleCopyIcon(false),
+			TOOLTIP_CLOSE_TIMEOUT
+		);
+		return () => clearInterval(timer);
+	}, [toggleCopyIcon]);
 
+	const onCopy = () => setToggleCopyIcon(true);
+
+	const { translate } = useContext(ReactLocaleContext);
 	return (
 		<Tooltip delayDuration={0} open={toggleCopyIcon}>
 			<CopyToClipboard text={query} onCopy={onCopy}>
@@ -53,7 +60,7 @@ export const CopyUrlButton = ({
 			<TooltipContent>
 				<Portalled>
 					<div className={contentStyle(contentClasses.root)}>
-						Copied!
+						{translate("COPY_BUTTON_TOOLTIP_CONTENT")}
 						<StyledArrow className={contentClasses.tooltipArrow} />
 					</div>
 				</Portalled>
