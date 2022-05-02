@@ -6,10 +6,14 @@
 @st-import [preventSelection] from "./../../theme/mixins.st.css";
 
 .root {
+	-st-states: side(enum(right, left));
 	-st-mixin: preventSelection;
 	margin: 0 auto;
 	position: relative;
 	height: 100%;
+}
+.root:side(left) {
+	left: 0;
 }
 
 .burgerButton {
@@ -26,13 +30,11 @@
 	left: 16px;
 }
 
-.burgerMenu {
-	background: #373a47;
-	font-size: 1.15em;
-}
+.burgerMenu {}
 
 .burgerBars {
 	background: #373a47;
+	position: absolute;
 }
 
 .crossButton {
@@ -51,18 +53,13 @@
 	right: 10px;
 }
 
-.burgerCross {
-	background: #bdc3c7;
-}
+.burgerCross {}
 
 .overlay {
 	top: 0;
 }
 
-.itemList {
-	color: #b8b7ad;
-	padding: 3rem 0 0;
-}
+.itemList {}
 
 .header {
 	-st-extends: Header;
@@ -75,3 +72,5 @@
 .themeSelector {
 	-st-extends: ThemeSelector;
 }
+
+.strip {}

@@ -18,6 +18,7 @@
 	padding: 0 12px;
 	transition: background 160ms ease-out;
 	cursor: pointer;
+  z-index: 1;
 }
 /* .scrollbar:hover {
   background: gray;

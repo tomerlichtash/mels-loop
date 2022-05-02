@@ -8,8 +8,8 @@ import TopBar from "../top-bar";
 import Footer from "../footer";
 import Page from "../page";
 import ScrollArea from "../scrollbar";
+import { MenuProvider } from "../menu-provider";
 import Analytics from "./analytics";
-import { MobileMenu } from "../mobile-menu";
 import { ComponentProps } from "../../interfaces/models";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
@@ -92,12 +92,7 @@ export default function Layout({ children }: ComponentProps) {
 						<Footer className={classes.footer} direction={textDirection} />
 					</ScrollArea>
 				</div>
-				{isMobile && (
-					<MobileMenu
-						className={classes.mobileMenu}
-						right={textDirection === "ltr"}
-					/>
-				)}
+				{isMobile && <MenuProvider isMobile />}
 			</div>
 			<Analytics />
 		</>

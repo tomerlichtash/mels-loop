@@ -1,0 +1,44 @@
+@namespace "MobileMenuMixin";
+
+@st-import MobileMenu from "./mobile-menu.st.css";
+@st-import [GradientStrip] from "../../theme/mixins.st.css";
+@st-import [preventSelection] from "./../../theme/mixins.st.css";
+
+:vars {
+	MenuBgColor: #373a47;
+	MenuBurgerBars: #373a47;
+	MenuBurgerCross: #bdc3c7;
+  StripGradientStartColor: white;
+  StripGradientMidColor: gray;
+  StripGradientEndColor: black;
+}
+
+.root {
+	-st-extends: MobileMenu;
+}
+
+.root::burgerMenu {
+	background: value(MenuBgColor);
+	font-size: 1.15em;
+}
+
+.root::burgerBars {
+	background: #fa9ad9;
+}
+
+.root::burgerCross {
+	background: value(MenuBurgerCross);
+}
+
+.root::itemList {
+	/* color: #b8b7ad; */
+	padding: 3rem 0 0;
+}
+
+.root::strip {
+  -st-mixin: GradientStrip(
+    StripGradientStartColor value(StripGradientStartColor),
+    StripGradientMidColor value(StripGradientMidColor),
+    StripGradientEndColor value(StripGradientEndColor)
+  );
+}

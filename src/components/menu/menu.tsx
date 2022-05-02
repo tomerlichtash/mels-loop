@@ -1,5 +1,5 @@
 import React from "react";
-import { NavMenuProps } from "./types";
+import { NavMenuProps } from "../../interfaces/menu";
 import {
 	NavigationMenu,
 	NavigationMenuList,
@@ -14,20 +14,20 @@ import Link from "next/link";
 import { mlUtils } from "../../lib/ml-utils";
 import { st, classes } from "./menu.st.css";
 
-export const Menu = ({ items, className }: NavMenuProps) => {
-	const listItem = ({ type, title, description, url, author }) => (
-		<li key={mlUtils.uniqueId()}>
-			<Link href={url}>
-				<a href={url} className={classes.menuLink}>
-					<span className={classes.title}>{title}</span>
-					<p className={classes.text}>
-						{type === "article" ? author : description}
-					</p>
-				</a>
-			</Link>
-		</li>
-	);
+const listItem = ({ type, title, description, url, author }) => (
+	<li key={mlUtils.uniqueId()}>
+		<Link href={url}>
+			<a href={url} className={classes.menuLink}>
+				<span className={classes.title}>{title}</span>
+				<p className={classes.text}>
+					{type === "article" ? author : description}
+				</p>
+			</a>
+		</Link>
+	</li>
+);
 
+export const Menu = ({ items, className }: NavMenuProps) => {
 	const menuItem = ({ title, content, layout }) => (
 		<NavigationMenuItem key={mlUtils.uniqueId()} className={classes.item}>
 			<NavigationTrigger className={classes.trigger}>

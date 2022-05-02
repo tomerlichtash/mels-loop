@@ -35,3 +35,16 @@
 }
 .TooltipArrow {}
 .TooltipArrow polygon { fill: value(TooltipArrowColor) }
+
+:vars {
+  StripGradientStartColor: white;
+  StripGradientMidColor: gray;
+  StripGradientEndColor: black;
+}
+.GradientStrip {
+  height: 4px;
+  background: linear-gradient(90deg,
+  value(StripGradientStartColor) 0%,
+  value(StripGradientMidColor) 50%,
+  value(StripGradientEndColor) 100%);
+}

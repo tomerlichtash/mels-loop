@@ -1,9 +1,9 @@
-import { ComponentProps } from "../../interfaces/models";
-import { IContentAuthors } from "../../locales/languages/types/authors";
+import { ComponentProps } from "./models";
+import { IContentAuthors } from "./../locales/languages/types/authors";
 
 type ItemType = "page" | "article" | "link";
 
-interface MenuItem {
+export interface MenuItem {
 	type: ItemType;
 	title: string;
 	description: string;

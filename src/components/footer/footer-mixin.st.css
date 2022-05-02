@@ -1,7 +1,7 @@
 @namespace "FooterMixin";
 
 @st-import Footer from "./footer.st.css";
-@st-import [IconFill] from "../../theme/mixins.st.css";
+@st-import [IconFill, GradientStrip] from "../../theme/mixins.st.css";
 
 :vars {
   BackgroundColor: #f0f0f0;
@@ -21,10 +21,11 @@
 }
 
 .root::strip {
-  background: linear-gradient(90deg,
-  value(StripGradientStartColor) 0%,
-  value(StripGradientMidColor) 50%,
-  value(StripGradientEndColor) 100%);
+  -st-mixin: GradientStrip(
+    StripGradientStartColor value(StripGradientStartColor),
+    StripGradientMidColor value(StripGradientMidColor),
+    StripGradientEndColor value(StripGradientEndColor)
+  );
 }
 
 .root::item:icon(github)  { -st-mixin: IconFill(FillColor value(IconFill_Github)) }
