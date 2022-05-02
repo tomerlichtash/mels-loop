@@ -4,31 +4,27 @@ import {
 	NavigationMenu,
 	NavigationMenuList,
 	NavigationMenuItem,
-	NavigationMenuLink,
 	NavigationMenuContent,
 	NavigationMenuViewport,
 	NavigationIndicator,
 	NavigationTrigger,
 	NavigationCaret,
 } from "../radix-primitives";
+import Link from "next/link";
 import { mlUtils } from "../../lib/ml-utils";
 import { st, classes } from "./menu.st.css";
 
 export const Menu = ({ items, className }: NavMenuProps) => {
 	const listItem = ({ type, title, description, url, author }) => (
 		<li key={mlUtils.uniqueId()}>
-			<NavigationMenuLink
-				target={type === "link" ? "_blank" : ""}
-				href={url}
-				asChild
-			>
+			<Link href={url}>
 				<a href={url} className={classes.menuLink}>
 					<span className={classes.title}>{title}</span>
 					<p className={classes.text}>
 						{type === "article" ? author : description}
 					</p>
 				</a>
-			</NavigationMenuLink>
+			</Link>
 		</li>
 	);
 

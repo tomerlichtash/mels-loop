@@ -52,9 +52,7 @@ export const Button = ({
 	if (link) {
 		return (
 			<Link href={`${link}`}>
-				<a target={target} {...btnProps}>
-					{btnContent}
-				</a>
+				<a {...btnProps}>{btnContent}</a>
 			</Link>
 		);
 	}
