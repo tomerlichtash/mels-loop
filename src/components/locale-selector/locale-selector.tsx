@@ -10,11 +10,7 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 	const { locale, locales, getLocaleSymbol, onLocaleChange } =
 		useContext(ReactLocaleContext);
 	return (
-		<div
-			className={st(classes.root, className)}
-			title={"Select Language"}
-			aria-label={"Select Language"}
-		>
+		<div className={st(classes.root, className)}>
 			<ToggleGroupRoot
 				type="single"
 				onValueChange={(localeId: LocaleId) => {
