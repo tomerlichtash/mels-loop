@@ -4,6 +4,7 @@ import { PopoverCloseButton } from "./popover-close-button";
 import CopyUrlButton from "../copy-button";
 import { st, classes } from "./popover-toolbar.st.css";
 import { ComponentProps } from "../../interfaces/models";
+import { mlUtils } from "../../lib/ml-utils";
 
 export interface IPopoverToolbarProps extends ComponentProps {
 	showClose?: boolean;
@@ -22,9 +23,9 @@ export const PopoverToolbar = ({
 		<div className={st(classes.root, className)}>
 			<div className={classes.toolbarContainer}>
 				{items.map((item) => (
-					<>
-						<span className={classes.item}>{item.element}</span>
-					</>
+					<span className={classes.item} key={mlUtils.uniqueId()}>
+						{item.element}
+					</span>
 				))}
 			</div>
 			{query && (
