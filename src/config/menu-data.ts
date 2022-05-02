@@ -1,4 +1,4 @@
-import { MenuGroup } from "../components/nav/types";
+import { MenuGroup } from "../components/menu";
 
 export const translateItems = (
 	items: MenuGroup[],

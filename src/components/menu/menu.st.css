@@ -1,0 +1,89 @@
+@namespace "Menu";
+
+@st-import [preventSelection] from "../../theme/mixins.st.css";
+
+.root {
+	-st-mixin: preventSelection;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 500px;
+}
+
+.list {
+	padding: 0;
+	all: unset;
+	display: flex;
+	justify-content: center;
+}
+
+.item {
+	list-style: none;
+}
+
+.trigger {
+	all: unset;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 2;
+	cursor: pointer;
+}
+
+.menuContent {
+	-st-states: layout(string);
+	display: grid;
+	margin: 0;
+	column-gap: 10;
+	list-style: none;
+}
+
+.viewportPosition {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	top: 100%;
+	left: 0;
+	perspective: 2000px;
+}
+
+.viewport {}
+
+.arrow {
+	position: relative;
+	top: 70%;
+	width: 10px;
+	height: 10px;
+	transform: rotate(45deg);
+	border-top-left-radius: 2px;
+}
+
+.menuLink {
+	display: block;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.title {
+	margin-bottom: 5px;
+	line-height: 1.2rem;
+	display: block;
+}
+
+.text {
+	all: unset;
+}
+
+@media only screen and (min-width: 600px) {
+	.menuContent:layout(one) {
+		width: 400px;
+		grid-template-columns: ".75fr 1fr";
+	}
+
+	.menuContent:layout(two) {
+		width: 400px;
+		grid-auto-flow: column;
+		grid-template-rows: repeat(3, 1fr);
+	}
+}

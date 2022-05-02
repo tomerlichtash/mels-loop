@@ -1,21 +1,27 @@
 @namespace "Footer";
 
-@st-import [primary1, primary3, primary4, level2, PageWidth] from "../../theme/common.st.css";
+@st-import Button from "../ui/button/button.st.css";
 
 .root {
-  background-color: value(level2);
+  -st-states: direction(enum(ltr, rtl));
   margin-top: 4rem;
 }
 
-/* https://cssgradient.io/ */
+.root:direction(ltr) .button::icon {
+  margin-right: 0.25rem;
+}
+.root:direction(rtl) .button::icon {
+  margin-left: 0.25rem;
+}
+
 .strip {
   height: 4px;
-  background: rgb(78,74,122);
-  background: linear-gradient(90deg, value(primary1) 0%, value(primary3) 50%, value(primary4) 100%);  
 }
 
 .layout {
-  display: inline-flex;
+  display: flex;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .column {
@@ -30,27 +36,69 @@
 .column:size(3) {
   flex: 3;
 }
+.column:size(4) {
+  flex: 4;
+}
 
 .title {
   font-weight: 500;
 }
 
-.subtitle {}
+.subtitle {
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
 
 .license {}
 
 .year {}
-
 
 .sitePages {
   flex: 1;
 }
 
 .pageContainer {
-  width: value(PageWidth);
   margin: 0 auto;
   padding: 4rem 0;
 }
 
+.itemList {
+  line-height: 1.4rem;
+}
+
 .item {
+  -st-states: icon(enum(twitter, github, contact));
+  font-size: 0.85rem;
+}
+
+.footerTitle {
+  margin-bottom: 1rem;
+}
+
+.excerpt {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.button {
+  -st-extends: Button;
+}
+
+.columnTitle {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+    .layout {
+      display: block;
+      padding: 0 2rem;
+    }
+    .column {
+      margin-top: 1rem;
+    }
+	}
 }

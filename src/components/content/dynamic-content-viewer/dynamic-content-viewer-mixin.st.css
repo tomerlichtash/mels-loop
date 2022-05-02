@@ -1,0 +1,17 @@
+@namespace "DynamicContentViewerMixin";
+
+@st-import DynamicContentViewer from "./dynamic-content-viewer.st.css";
+
+:vars {
+	ParagraphTextSize: 1rem;
+	ParagraphLineHeight: 1.8rem;
+}
+
+.root {
+	-st-extends: DynamicContentViewer;
+}
+
+.root::contentComponent:type(paragraph){
+	line-height: value(ParagraphLineHeight);
+	font-size: value(ParagraphTextSize);
+}

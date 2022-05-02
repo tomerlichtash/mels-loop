@@ -1,0 +1,17 @@
+@namespace "TopBarMixin";
+
+@st-import TopBar from "./top-bar.st.css";
+
+:vars {
+	BgColor: blue;
+	SiteTitleLinkTextColor: black;
+}
+
+.root {
+	-st-extends: TopBar;
+	background: value(BgColor);
+}
+
+.root::header::siteTitle {
+	color: value(SiteTitleLinkTextColor);
+}

@@ -1,16 +1,14 @@
 @namespace "PopoverMixin";
 
-@st-import Popover from "../components/popover/popover.st.css";
-@st-import [preventSelection, verticalAlignSuper] from "./mixins.st.css";
-@st-import [
-  level0,
-	accent1,
-	primary2
-] from './common.st.css';
+@st-import Popover from "./popover.st.css";
+@st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
 
 :vars {
-	linkColor: blue;
-	linkHoverColor: red;
+	TriggerTextColor: blue;
+	TriggerTextColor_Hover: red;
+  TriggerTextColor_Open: magenta;
+  TriggerTextBgColor_Open: magenta;
+  TriggerMarkerColor_Open: blue;
 }
 
 .root {
@@ -19,7 +17,7 @@
 
 .root:type(annotation)::trigger,
 .root:type(glossary)::trigger {
-  color: value(linkColor);
+  color: value(TriggerTextColor);
 }
 
 .root:type(glossary)::triggerWrapper {
@@ -29,13 +27,13 @@
 .root:type(annotation)::trigger:hover,
 .root:type(glossary)[data-state="closed"]::trigger:hover,
 .root:type(glossary)[data-state="closed"]::trigger:hover::after {
-  color: value(linkHoverColor);
+  color: value(TriggerTextColor_Hover);
 }
 
 .root:type(glossary)[data-state="open"]::triggerWrapper,
 .root:type(glossary)[data-state="open"]::triggerWrapper:hover {
-  background-color: value(primary2);
-  color: value(level0);
+  background-color: value(TriggerTextBgColor_Open);
+  color: value(TriggerTextColor_Open);
 }
 
 .root:type(glossary)::trigger::after {
@@ -44,13 +42,10 @@
 }
 
 .root:type(glossary)[data-state="open"]::trigger::after {
-  color: value(primary2);
-}
-
-.root:type(glossary)[data-state="open"]::triggerWrapper::after {
-  color: value(level0);
+  color: value(TriggerMarkerColor_Open);
 }
 
 .root::content {
   margin-top: 20px;
+  font-size: 0.5rem;
 }

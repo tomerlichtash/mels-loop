@@ -3,27 +3,18 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import { ToggleGroupRoot, ToggleGroupItem } from "../radix-primitives";
+import { LocaleId } from "../../interfaces/locale-context";
 import { st, classes } from "./locale-selector.st.css";
 
-export interface LocaleSelectorProps extends ComponentProps {
-	onLocaleChange: (localeId: string) => Promise<boolean>;
-}
-
-export const LocaleSelector = ({
-	onLocaleChange,
-	className,
-}: LocaleSelectorProps): JSX.Element => {
-	const { locale, locales, getLocaleSymbol } = useContext(ReactLocaleContext);
+export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
+	const { locale, locales, getLocaleSymbol, onLocaleChange } =
+		useContext(ReactLocaleContext);
 	return (
-		<div
-			className={st(classes.root, className)}
-			title={"Select Language"}
-			aria-label={"Select Language"}
-		>
+		<div className={st(classes.root, className)}>
 			<ToggleGroupRoot
 				type="single"
-				onValueChange={(localeId) => {
-					onLocaleChange(localeId as string).catch(() =>
+				onValueChange={(localeId: LocaleId) => {
+					onLocaleChange(localeId).catch(() =>
 						// TODO replace with logger call
 						console.error("onLocaleChange Error")
 					);

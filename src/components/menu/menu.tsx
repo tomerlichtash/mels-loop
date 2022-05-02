@@ -4,29 +4,27 @@ import {
 	NavigationMenu,
 	NavigationMenuList,
 	NavigationMenuItem,
-	NavigationMenuLink,
 	NavigationMenuContent,
 	NavigationMenuViewport,
 	NavigationIndicator,
 	NavigationTrigger,
 	NavigationCaret,
 } from "../radix-primitives";
+import Link from "next/link";
 import { mlUtils } from "../../lib/ml-utils";
 import { st, classes } from "./menu.st.css";
 
-export const NavMenu = ({ items, className }: NavMenuProps) => {
+export const Menu = ({ items, className }: NavMenuProps) => {
 	const listItem = ({ type, title, description, url, author }) => (
 		<li key={mlUtils.uniqueId()}>
-			<NavigationMenuLink
-				target={type === "link" ? "_blank" : ""}
-				href={url}
-				className={classes.link}
-			>
-				<div className={classes.linkTitle}>{title as string}</div>
-				<p className={classes.linkText}>
-					{type === "article" ? author : description}
-				</p>
-			</NavigationMenuLink>
+			<Link href={url}>
+				<a href={url} className={classes.menuLink}>
+					<span className={classes.title}>{title}</span>
+					<p className={classes.text}>
+						{type === "article" ? author : description}
+					</p>
+				</a>
+			</Link>
 		</li>
 	);
 
@@ -55,10 +53,10 @@ export const NavMenu = ({ items, className }: NavMenuProps) => {
 				</div>
 			</NavigationMenuList>
 			<div className={classes.viewportPosition}>
-				<NavigationMenuViewport />
+				<NavigationMenuViewport className={classes.viewport} />
 			</div>
 		</NavigationMenu>
 	);
 };
 
-export default NavMenu;
+export default Menu;

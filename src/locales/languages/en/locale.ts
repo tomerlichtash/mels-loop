@@ -19,7 +19,8 @@ export const Locale: Language = {
 	MOBILE_MENU_CLOSE_LABEL: "Close",
 	ERROR_404_FILE_NOT_FOUND: "Page not found",
 	ERROR_GENERAL: "Error",
-	FOOTER_LICENSE: "cc-by",
+	FOOTER_LICENSE: "cc",
+	FOOTER_FULL_LICENSE: "cc-by",
 	NO_PAGE_CONTENT: "No page content",
 	NOTE_LABEL_GLOSSARY: "Glossary",
 	NOTE_LABEL_ANNOTATION: "Note",
@@ -54,5 +55,16 @@ export const Locale: Language = {
 	MENU_ITEM_ENTRY_DESC_LINK_WIKIPEDIA: "Story of Mel in Wikipedia",
 	MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES: "Web Resources for the Story of Mel",
 
-	POPOVER_BACK: "Back",
+	COPY_BUTTON_TOOLTIP_CONTENT: "Copied!",
+
+	FOOTER_COLUMN_TITLE_PAGES: "Pages",
+	FOOTER_COLUMN_TITLE_LINKS: "Links",
+
+	FOOTER_LINK_ABOUT: "About",
+	FOOTER_LINK_BLOG: "Blog",
+	FOOTER_LINK_GITHUB: "Github",
+	FOOTER_LINK_TWITTER: "@aboutmelsloop",
+	FOOTER_LINK_CONTACT: "Contact",
+	FOOTER_META_SHORT_DESCRIPTION:
+		"Mel’s Loop is a guide the epic hacker folklore tale The Story of Mel. It also aims to collect the stories and of sub-stories around the story, its author, and its main charachters, early computing era stories and other related tales. The project is designed as an anthology of stories, annotations, poems and relics in the Hacker Folklore genre.",
 };

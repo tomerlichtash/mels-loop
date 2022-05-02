@@ -1,0 +1,12 @@
+@namespace "LayoutMixin";
+
+@st-import Layout from "./layout.st.css";
+
+:vars {
+	BgColor: #fff;
+}
+
+.root {
+	-st-extends: Layout;
+	background: value(BgColor);
+}

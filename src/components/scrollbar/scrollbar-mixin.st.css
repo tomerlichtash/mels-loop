@@ -1,0 +1,15 @@
+@namespace "ScrollbarMixin";
+
+@st-import Scrollbar from "./scrollbar.st.css";
+
+:vars {
+  ThumbColor: blue;
+}
+
+.root {
+  -st-extends: Scrollbar;
+}
+
+.root::thumb {
+	background: value(ThumbColor);
+}

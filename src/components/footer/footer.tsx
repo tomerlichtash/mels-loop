@@ -3,78 +3,100 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import {
-	InfoCircledIcon,
 	EnvelopeClosedIcon,
 	GitHubLogoIcon,
 	TwitterLogoIcon,
 } from "@radix-ui/react-icons";
+import { TextDirection } from "../../interfaces/locale-context";
 import { st, classes } from "./footer.st.css";
 
-export const Footer = ({ className }: ComponentProps): JSX.Element => {
-	const { siteTitle, siteLicense } = useContext(ReactLocaleContext);
+export interface IFooterProps extends ComponentProps {
+	direction: TextDirection;
+}
+
+export const Footer = ({ direction, className }: IFooterProps): JSX.Element => {
+	const { translate, siteTitle, siteSubtitle, siteLicense } =
+		useContext(ReactLocaleContext);
 	const licenseYears = `${new Date().getFullYear()}`;
 	return (
-		<footer className={st(classes.root, className)}>
+		<footer className={st(classes.root, { direction }, className)}>
 			<div className={classes.strip}></div>
 			<div className={classes.pageContainer}>
 				<div className={classes.layout}>
 					<div className={st(classes.column, { size: 3 })}>
-						<div className={classes.title}>
-							<time className={classes.year}>{licenseYears}</time>{" "}
-							<span className={classes.license}>({siteLicense})</span>{" "}
-							<span className={classes.title}>{siteTitle}</span>
+						<div className={classes.footerTitle}>
+							<div className={classes.title}>
+								<time className={classes.year}>{licenseYears}</time>{" "}
+								<span
+									title={translate("FOOTER_FULL_LICENSE")}
+									arial-label={translate("FOOTER_FULL_LICENSE")}
+									className={classes.license}
+								>
+									({siteLicense})
+								</span>{" "}
+								<span className={classes.title}>{siteTitle}</span>
+							</div>
+							<div className={classes.subtitle}>
+								<span>{siteSubtitle}</span>
+							</div>
 						</div>
-
-						<div className={classes.subtitle}>
-							<p>A Comprehensive Guide to The Story of Mel</p>
-						</div>
-
-						<div className={classes.excerpt}>
-							<p>
-								Mel’s Loop is a guide the epic hacker folklore tale The Story of
-								Mel. It also aims to collect the stories and of sub-stories
-								around the story, its author, and its main charachters, early
-								computing era stories and other related tales. The project is
-								designed as an anthology of stories, annotations, poems and
-								relics in the Hacker Folklore genre.
-							</p>
-						</div>
+						<p className={classes.excerpt}>
+							{translate("FOOTER_META_SHORT_DESCRIPTION")}
+						</p>
 					</div>
 					<div className={st(classes.column, { size: 1 })}>
+						<div className={classes.columnTitle}>
+							{translate("FOOTER_COLUMN_TITLE_PAGES")}
+						</div>
 						<div className={classes.sitePages}>
-							<ul>
-								<li>
-									<InfoCircledIcon />
-									<Button link="/about" label="About" />
+							<ul className={classes.itemList}>
+								<li className={classes.item}>
+									<Button
+										link="/about"
+										label={translate("FOOTER_LINK_ABOUT")}
+										className={classes.button}
+									/>
 								</li>
-								<li>
-									<Button link="/posts" label="Blog" />
+								<li className={classes.item}>
+									<Button
+										link="/posts"
+										label={translate("FOOTER_LINK_BLOG")}
+										className={classes.button}
+									/>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<div className={st(classes.column, { size: 1 })}>
-						<ul className={classes.social}>
-							<li className={classes.item}>
-								<GitHubLogoIcon />
+						<div className={classes.columnTitle}>
+							{translate("FOOTER_COLUMN_TITLE_LINKS")}
+						</div>
+						<ul className={classes.itemList}>
+							<li className={st(classes.item, { icon: "github" })}>
 								<Button
 									target="_blank"
+									icon={<GitHubLogoIcon />}
 									link="https://github.com/tomerlichtash/mels-loop-nextjs"
-									label="Github"
+									label={translate("FOOTER_LINK_GITHUB")}
 									className={classes.button}
 								/>
 							</li>
-							<li>
-								<TwitterLogoIcon scale={230} />
+							<li className={st(classes.item, { icon: "twitter" })}>
 								<Button
+									icon={<TwitterLogoIcon scale={230} />}
 									target="_blank"
 									link="https://twitter.com/aboutmelsloop"
-									label="@aboutmelsloop"
+									label={translate("FOOTER_LINK_TWITTER")}
+									className={classes.button}
 								/>
 							</li>
-							<li>
-								<EnvelopeClosedIcon />
-								<Button link="/contact" label="Contact" />
+							<li className={st(classes.item, { icon: "contact" })}>
+								<Button
+									icon={<EnvelopeClosedIcon />}
+									link="/contact"
+									label={translate("FOOTER_LINK_CONTACT")}
+									className={classes.button}
+								/>
 							</li>
 						</ul>
 					</div>

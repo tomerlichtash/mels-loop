@@ -1,0 +1,37 @@
+@namespace "ContentComponentMixin";
+
+@st-import ContentComponent from "./content-component.st.css";
+
+:vars {
+	LinkColor: blue;
+	LinkColorHover: red;
+  ErrorBgColor: red;
+  ErrorTextColor: white;
+  MarginBottom: 1.8rem;
+}
+
+.root {
+  -st-extends: ContentComponent;
+}
+
+.root:type(section) {
+  margin-bottom: value(MarginBottom);
+}
+
+.root:type(blockquote) {
+  /* line-height: value(MarginBottom); */
+  padding: 0 value(MarginBottom);
+  margin: value(MarginBottom);
+}
+
+.root:type(link) {
+	color: value(LinkColor);
+}
+.root:type(link):hover {
+	color: value(LinkColorHover);
+}
+
+.root::error {
+	background: value(ErrorBgColor);
+	color: value(ErrorTextColor);
+}
