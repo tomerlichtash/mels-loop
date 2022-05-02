@@ -4,6 +4,7 @@ import Layout from "../components/layout/layout";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
+import { mlUtils } from "../lib/ml-utils";
 import { usePageData } from "../components/usePageData";
 import {
 	IMLParsedNode,
@@ -32,11 +33,10 @@ export default function About(props: IPageProps) {
 			</Head>
 			<article className={classes.root}>
 				<h1>{metaData.title}</h1>
-				{elements.map((node, index) => {
+				{elements.map((node) => {
 					return (
 						<ContentComponent
-							key={`top-${index}`}
-							className={classes.contentComponent}
+							key={mlUtils.uniqueId()}
 							componentData={{ node }}
 						/>
 					);

@@ -1,7 +1,5 @@
 @namespace "Scrollbar";
 
-@st-import [color3] from "../../theme/common.st.css";
-
 :vars {
   full: 100%;
   scrollbarSize: 8px;
@@ -30,7 +28,6 @@
 
 .thumb {
   flex: 1;
-	background: value(color3);
 	border-radius: 0;
 	/* // background: '$background-neutral-strong',
 	// increase target size for touch devices https://www.w3.org/WAI/WCAG21/Understanding/target-size.html */

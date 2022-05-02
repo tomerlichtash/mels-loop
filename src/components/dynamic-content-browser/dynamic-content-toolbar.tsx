@@ -5,7 +5,8 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ReactDynamicContentContext } from "../../contexts/dynamic-content-context";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import { classes } from "./dynamic-content-browser.st.css";
+import { Button } from "../ui";
+import { classes } from "./dynamic-content-toolbar.st.css";
 
 export interface IDynamicContentToolbarProps {
 	pages: IParsedPageData[];
@@ -38,16 +39,15 @@ export default function DynamicContentToolbar({
 			prevPage.id;
 		popoverCtx.addToolbarItems({
 			element: (
-				<button
+				<Button
+					icon={
+						textDirection === "ltr" ? <ArrowLeftIcon /> : <ArrowRightIcon />
+					}
 					className={classes.backButton}
-					onClick={() => {
-						dcCtx.setPageIndex(pages.length - 2);
-					}}
+					callback={() => dcCtx.setPageIndex(pages.length - 2)}
 					title={title}
 					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}
-				>
-					{textDirection === "ltr" ? <ArrowLeftIcon /> : <ArrowRightIcon />}
-				</button>
+				/>
 			),
 			id: NAV_BUTTON_KEY,
 			enabled: true,

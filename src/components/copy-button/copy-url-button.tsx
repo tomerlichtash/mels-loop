@@ -1,43 +1,69 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Share1Icon, CheckIcon } from "@radix-ui/react-icons";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import {
 	StyledArrow,
 	Tooltip,
 	TooltipTrigger,
 	TooltipContent,
 } from "../radix-primitives";
-import { classes } from "./copy-url-button.st.css";
+import Portalled from "../portalled";
+import { ComponentProps } from "../../interfaces/models";
+import {
+	st as contentStyle,
+	classes as contentClasses,
+} from "./copy-url-button-content.st.css";
+import {
+	st as triggerStyle,
+	classes as triggerClasses,
+} from "./copy-url-button-trigger.st.css";
 
-export interface ICopyUrlButtonProps {
+export interface ICopyUrlButtonProps extends ComponentProps {
 	query: string;
-	className?: string;
 }
 
 const TOOLTIP_CLOSE_TIMEOUT = 1000;
 
-export const CopyUrlButton = ({ query }: ICopyUrlButtonProps): JSX.Element => {
+export const CopyUrlButton = ({
+	query,
+	className,
+}: ICopyUrlButtonProps): JSX.Element => {
 	const [toggleCopyIcon, setToggleCopyIcon] = useState(false);
 
-	const onCopy = () => {
-		setToggleCopyIcon(true);
-		setTimeout(() => setToggleCopyIcon(false), TOOLTIP_CLOSE_TIMEOUT);
-	};
+	useEffect(() => {
+		const timer = setTimeout(
+			() => setToggleCopyIcon(false),
+			TOOLTIP_CLOSE_TIMEOUT
+		);
+		return () => clearInterval(timer);
+	}, [toggleCopyIcon]);
 
+	const onCopy = () => setToggleCopyIcon(true);
+
+	const { translate } = useContext(ReactLocaleContext);
 	return (
 		<Tooltip delayDuration={0} open={toggleCopyIcon}>
 			<CopyToClipboard text={query} onCopy={onCopy}>
 				<TooltipTrigger asChild>
-					<div className={classes.root}>
+					<div
+						className={triggerStyle(
+							triggerClasses.root,
+							{ checked: toggleCopyIcon },
+							className
+						)}
+					>
 						{toggleCopyIcon ? <CheckIcon /> : <Share1Icon />}
 					</div>
 				</TooltipTrigger>
 			</CopyToClipboard>
-			<TooltipContent asChild>
-				<div className={classes.content}>
-					Copied!
-					<StyledArrow />
-				</div>
+			<TooltipContent>
+				<Portalled>
+					<div className={contentStyle(contentClasses.root)}>
+						{translate("COPY_BUTTON_TOOLTIP_CONTENT")}
+						<StyledArrow className={contentClasses.tooltipArrow} />
+					</div>
+				</Portalled>
 			</TooltipContent>
 		</Tooltip>
 	);

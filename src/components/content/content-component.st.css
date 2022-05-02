@@ -22,21 +22,4 @@
 	));
 }
 
-.root:type(section),
-.root:type(blockquote) {
-  margin-bottom: 1.8rem;
-}
-
-.root:type(paragraph),
-.root:type(blockquote) {
-  line-height: 1.8rem;
-}
-
-.root:type(blockquote) {
-  padding: 0 1.8rem;
-}
-
-.error {
-	background: red;
-	color: #fff;
-}
+.error {}

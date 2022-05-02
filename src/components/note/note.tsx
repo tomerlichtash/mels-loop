@@ -33,7 +33,7 @@ export const Note = ({
 					<div className={classes.term}>{term}</div>
 				</div>
 			)}
-			{contents}
+			<div className={classes.content}>{contents}</div>
 			<Bibliography sources={sources} />
 		</div>
 	);

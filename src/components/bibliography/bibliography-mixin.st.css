@@ -1,0 +1,7 @@
+@namespace "BibliographyMixin";
+
+@st-import Bibliography from "./bibliography.st.css";
+
+.root {
+  -st-extends: Bibliography;
+}

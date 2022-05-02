@@ -2,11 +2,26 @@
 
 @st-import [boxSizing] from "../../theme/mixins.st.css";
 
+:vars {
+	pageWidth: 800px;
+	PageTopMargin: 80px;
+	PageMobileGutter: 2rem;
+}
+
 .root {
 	-st-mixin: boxSizing;
-	width: 100%;
 	overflow: hidden;
 	margin: 0 auto;
+	max-width: value(pageWidth);
+	padding-top: value(PageTopMargin);
 }
 
 .gutter {}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+		.gutter {
+			padding: value(PageMobileGutter);
+		}
+	}
+}

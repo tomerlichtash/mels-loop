@@ -4,6 +4,7 @@ import {
 	IMLParsedNode,
 	ContentComponentProps,
 } from "../../../../interfaces/models";
+import { st, classes } from "./section.st.css";
 
 export const Section = ({
 	componentData,
@@ -14,7 +15,7 @@ export const Section = ({
 		? node.children
 		: [];
 	return (
-		<div className={className} key={node.key}>
+		<div className={st(classes.root, className)} key={node.key}>
 			{elements.map((node) => {
 				return (
 					<ContentComponent

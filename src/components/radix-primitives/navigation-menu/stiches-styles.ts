@@ -8,7 +8,6 @@ import {
 	fadeIn,
 	fadeOut,
 } from "./stiches-keyframes";
-import { stVars } from "../../../theme/common.st.css";
 
 export const styledContentStyle = {
 	position: "absolute",
@@ -30,12 +29,8 @@ export const styledViewportStyle = {
 	position: "relative",
 	transformOrigin: "top center",
 	marginTop: 10,
-	// width: "100%",
-	// width: "520px",
-	backgroundColor: stVars.level1 as string,
 	borderRadius: 6,
 	overflow: "hidden",
-	// border: "1px solid",
 	boxShadow:
 		"hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
 	height: "var(--radix-navigation-menu-viewport-height)",
