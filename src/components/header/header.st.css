@@ -44,17 +44,3 @@
 }
 
 .siteSubtitle {}
-
-@media (min-width: 320px) and (max-width: 767px) {
-	@st-scope .root {
-		.root::container {
-			display: block;
-		}
-		.root::siteSubtitle {
-			display: block;
-		}
-		.root::siteSubtitle::before {
-			content: '';
-		}
-	}
-}

@@ -21,9 +21,9 @@
 }
 
 :vars {
-  FillColor: #000;
-  FillColor_Hover: value(FillColor);
-  FillColor_Active: value(FillColor);
+	FillColor: #000;
+	FillColor_Hover: value(FillColor);
+	FillColor_Active: value(FillColor);
 }
 .IconFill {}
 .IconFill path { fill: value(FillColor) }
@@ -37,14 +37,14 @@
 .TooltipArrow polygon { fill: value(TooltipArrowColor) }
 
 :vars {
-  StripGradientStartColor: white;
-  StripGradientMidColor: gray;
-  StripGradientEndColor: black;
+	StripGradientStartColor: white;
+	StripGradientMidColor: gray;
+	StripGradientEndColor: black;
 }
 .GradientStrip {
-  height: 4px;
-  background: linear-gradient(90deg,
-  value(StripGradientStartColor) 0%,
-  value(StripGradientMidColor) 50%,
-  value(StripGradientEndColor) 100%);
+	height: 4px;
+	background: linear-gradient(90deg,
+	value(StripGradientStartColor) 0%,
+	value(StripGradientMidColor) 50%,
+	value(StripGradientEndColor) 100%);
 }

@@ -21,13 +21,13 @@
 	position: fixed;
 	width: 24px;
 	height: 20px;
-	top: 16px;
+	top: 20px;
 }
 .burgerButton:right(true) {
-	right: 16px;
+	right: 2rem;
 }
 .burgerButton:not(:right) {
-	left: 16px;
+	left: 2rem;
 }
 
 .burgerMenu {}

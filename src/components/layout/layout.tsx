@@ -31,12 +31,12 @@ const SCROLL_VIEW_PROPS: ScrollIntoViewOptions = {
 export default function Layout({ children }: ComponentProps) {
 	const router = useRouter();
 	const { query } = useContext(ReactQueryContext);
-	const size = useWindowSize();
 	const { siteTitle, siteSubtitle, textDirection } =
 		useContext(ReactLocaleContext);
 	const { locale, asPath: currentUrl } = router;
 	const { getLine } = query;
-	const isMobile = size.width <= 970;
+	const size = useWindowSize();
+	const isMobile = size.width <= 1024;
 
 	useEffect(() => {
 		if (getLine === -1) {
@@ -78,16 +78,10 @@ export default function Layout({ children }: ComponentProps) {
 				<meta name="og:title" content={siteTitle} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div
-				id="outer-container"
-				className={st(classes.root, {
-					textDirection,
-					isMobile,
-				})}
-			>
+			<div id="outer-container" className={st(classes.root, { textDirection })}>
 				<div id="page-wrap">
 					<ScrollArea>
-						<TopBar isMobile={isMobile} className={classes.header} />
+						<TopBar className={classes.header} />
 						<Page className={classes.page} nodes={children} />
 						<Footer className={classes.footer} direction={textDirection} />
 					</ScrollArea>
