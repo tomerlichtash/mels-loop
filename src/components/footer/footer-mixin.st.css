@@ -1,6 +1,7 @@
 @namespace "FooterMixin";
 
 @st-import Footer from "./footer.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 @st-import [IconFill, GradientStrip] from "../../theme/mixins.st.css";
 
 :vars {
@@ -12,6 +13,12 @@
   IconFill_Github: black;
   IconFill_Twitter: black;
   IconFill_Contact: black;
+  LabelColor: black;
+  LabelColor_Hover: black;
+  LabelColor_Active: black;
+  LabelBorderColor: magenta;
+  LabelBorderColor_Hover: black;
+  LabelBorderColor_Active: black;
 }
 
 .root {
@@ -27,7 +34,3 @@
     StripGradientEndColor value(StripGradientEndColor)
   );
 }
-
-.root::item:icon(github)  { -st-mixin: IconFill(FillColor value(IconFill_Github)) }
-.root::item:icon(twitter) { -st-mixin: IconFill(FillColor value(IconFill_Twitter)) }
-.root::item:icon(contact) { -st-mixin: IconFill(FillColor value(IconFill_Contact)) }

@@ -34,6 +34,8 @@
 @st-import NoteMixin from "../../components/note/note-mixin.st.css";
 @st-import Bibliography from "../../components/bibliography/bibliography.st.css";
 @st-import BibliographyMixin from "../../components/bibliography/bibliography-mixin.st.css";
+@st-import Button from "../../components/ui/button/button.st.css";
+@st-import ButtonMixin from "../../components/ui/button/button-mixin.st.css";
 
 @st-import [
 	level0,
@@ -124,10 +126,7 @@
 			Padding 0,
 			StripGradientStartColor value(primary1),
 			StripGradientMidColor value(primary3),
-			StripGradientEndColor value(primary4),
-			IconFill_Github value(level7),
-			IconFill_Twitter value(accent1),
-			IconFill_Contact value(primary2),
+			StripGradientEndColor value(primary4)
 		);
 	}
 
@@ -187,6 +186,14 @@
 			ContentBgColor value(accent1),
 			TextColor value(level1),
 			TooltipArrowColor value(accent1)
+		);
+	}
+
+	Button {
+		-st-mixin: ButtonMixin(
+			LabelColor value(accent1),
+			LabelColor_Hover value(primary2),
+			LabelColor_Active value(accent3)
 		);
 	}
 }

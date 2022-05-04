@@ -2,11 +2,6 @@ import React, { useContext } from "react";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
-import {
-	EnvelopeClosedIcon,
-	GitHubLogoIcon,
-	TwitterLogoIcon,
-} from "@radix-ui/react-icons";
 import { TextDirection } from "../../interfaces/locale-context";
 import { st, classes } from "./footer.st.css";
 
@@ -64,6 +59,13 @@ export const Footer = ({ direction, className }: IFooterProps): JSX.Element => {
 										className={classes.button}
 									/>
 								</li>
+								<li className={st(classes.item)}>
+									<Button
+										label={translate("FOOTER_LINK_CONTRIBUTE")}
+										link={"/contribute"}
+										className={classes.button}
+									/>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -72,29 +74,25 @@ export const Footer = ({ direction, className }: IFooterProps): JSX.Element => {
 							{translate("FOOTER_COLUMN_TITLE_LINKS")}
 						</div>
 						<ul className={classes.itemList}>
-							<li className={st(classes.item, { icon: "github" })}>
+							<li className={st(classes.item)}>
 								<Button
-									target="_blank"
-									icon={<GitHubLogoIcon />}
 									link="https://github.com/tomerlichtash/mels-loop-nextjs"
 									label={translate("FOOTER_LINK_GITHUB")}
 									className={classes.button}
 								/>
 							</li>
-							<li className={st(classes.item, { icon: "twitter" })}>
+							<li className={st(classes.item)}>
 								<Button
-									icon={<TwitterLogoIcon scale={230} />}
 									target="_blank"
 									link="https://twitter.com/aboutmelsloop"
 									label={translate("FOOTER_LINK_TWITTER")}
 									className={classes.button}
 								/>
 							</li>
-							<li className={st(classes.item, { icon: "contact" })}>
+							<li className={st(classes.item)}>
 								<Button
-									icon={<EnvelopeClosedIcon />}
-									link="/contact"
 									label={translate("FOOTER_LINK_CONTACT")}
+									link={"/contact"}
 									className={classes.button}
 								/>
 							</li>

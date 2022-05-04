@@ -7,13 +7,6 @@
   margin-top: 4rem;
 }
 
-.root:direction(ltr) .button::icon {
-  margin-right: 0.25rem;
-}
-.root:direction(rtl) .button::icon {
-  margin-left: 0.25rem;
-}
-
 .strip {
   height: 4px;
 }
@@ -68,7 +61,6 @@
 }
 
 .item {
-  -st-states: icon(enum(twitter, github, contact));
   font-size: 0.85rem;
 }
 

@@ -15,7 +15,6 @@
   justify-content: right;
 	display: inline-block;
 	cursor: pointer;
-	border: 1px solid black;
 	overflow: hidden;
 }
 
@@ -38,13 +37,14 @@
 	padding: 0;
 	display: block;
 	cursor: pointer;
-	padding: 0.25rem 0.5rem;
+	padding: 0.25rem 0.25rem;
 	text-align: center;
 	width: 30px;
 }
 
 .item:locale(en) {
 	-st-mixin: LatinText;
+	margin-right: 4px;
 }
 .item:locale(he) {
 	-st-mixin: HebrewText;

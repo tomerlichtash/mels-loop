@@ -26,7 +26,7 @@ export const Button = ({
 	className,
 }: ButtonProps): JSX.Element => {
 	const btnLabel = title || label;
-	const btnClassName = st(classes.root, { selected }, className);
+	const btnClassName = st(classes.root, { selected }, classes.aTag, className);
 	const btnProps = {
 		title: btnLabel,
 		"aria-label": btnLabel,

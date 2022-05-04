@@ -1,0 +1,28 @@
+@namespace "Button";
+
+@st-import Button from "./button.st.css";
+
+:vars {
+	LabelColor: magenta;
+	LabelColor_Hover: blue;
+	LabelColor_Active: red;
+	/* LabelBgColor: red;
+	LabelBgColor_Hover: magenta;
+	LabelBgColor_Active: blue;
+	LabelBorderColor: green;
+	LabelBorderColor_Hover: blue;
+	LabelBorderColor_Active: red; */
+}
+
+.root {
+	-st-extends: Button;
+	color: value(LabelColor);
+}
+
+.root:hover {
+	color: value(LabelColor_Hover);
+}
+
+.root:active {
+	color: value(LabelColor_Active);
+}
