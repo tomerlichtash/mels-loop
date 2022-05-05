@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { push as Menu } from "react-burger-menu";
 import Header from "../header";
 import ThemeSelector from "../theme-selector";
@@ -6,10 +6,10 @@ import LocaleSelector from "../locale-selector";
 import { mlUtils } from "../../lib/ml-utils";
 import Link from "next/link";
 import { renderMenuItem } from "../menu-provider";
-import { st, classes } from "./mobile-menu.st.css";
 import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
 import { IMenuData, IMenuItem } from "../../interfaces/menu";
+import { st, classes } from "./mobile-menu.st.css";
 
 export interface IMobileNavProps extends ComponentProps {
 	right: boolean;
@@ -21,14 +21,13 @@ const renderGroupSection = (items: IMenuData) => {
 	const { title } = keys;
 	const { layout } = meta;
 	return (
-		<div>
+		<div key={mlUtils.uniqueId()}>
 			{title}
-
 			<ul className={st(classes.menuContent, { layout })}>
 				{children.map((child) => {
-					const { meta: childMeta, keys: childKeys, type } = child;
-					const { url } = childMeta;
-					const { author, description } = childKeys;
+					const { meta, keys, type } = child;
+					const { url } = meta;
+					const { author, description } = keys;
 					return (
 						<li key={mlUtils.uniqueId()}>
 							<Link href={url}>
@@ -71,11 +70,20 @@ const renderSingleSection = (items: IMenuData) => {
 	const { keys, children } = items;
 	const { title } = keys;
 	return (
-		<div>
+		<div key={mlUtils.uniqueId()}>
 			<h3>{title}</h3>
 			{renderSingleItems(children)}
 		</div>
 	);
+};
+
+const menuStyles = {
+	bmMenuWrap: {
+		position: "fixed",
+		height: "100%",
+		width: "300px",
+		top: "0",
+	},
 };
 
 export const MobileMenu = ({
@@ -83,43 +91,36 @@ export const MobileMenu = ({
 	items,
 	className,
 }: IMobileNavProps): JSX.Element => {
+	const menuItems = useMemo(
+		() =>
+			items.map((item) =>
+				renderMenuItem(item)(renderGroupSection, renderSingleSection)
+			),
+		[items]
+	);
+
+	const side = right ? "right" : "left";
+
 	return (
 		<Menu
 			pageWrapId={"page-wrap"}
 			outerContainerId={"outer-container"}
-			burgerButtonClassName={st(
-				classes.burgerButton,
-				{ right }
-				// "mobileNavTrigger"
-			)}
+			burgerButtonClassName={st(classes.burgerButton, { side })}
 			menuClassName={classes.burgerMenu}
 			burgerBarClassName={classes.burgerBars}
-			crossButtonClassName={st(classes.crossButton, { right })}
+			crossButtonClassName={st(classes.crossButton, { side })}
 			crossClassName={classes.burgerCross}
 			overlayClassName={classes.overlay}
 			itemListClassName={classes.itemList}
-			styles={{
-				bmMenuWrap: {
-					position: "fixed",
-					height: "100%",
-					width: "300px",
-					top: "0",
-				},
-			}}
+			styles={menuStyles}
 			right={right}
-			className={st(
-				classes.root,
-				{ side: right ? "right" : "left" },
-				className
-			)}
+			className={st(classes.root, { side }, className)}
 		>
 			<Header className={classes.header} />
-			<div className={classes.strip}>xxx</div>
+			<div className={classes.strip}></div>
 			<LocaleSelector className={classes.localeSelector} />
 			<ThemeSelector className={classes.themeSelector} />
-			{items.map((item) =>
-				renderMenuItem(item)(renderGroupSection, renderSingleSection)
-			)}
+			{menuItems}
 		</Menu>
 	);
 };

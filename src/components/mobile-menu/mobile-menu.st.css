@@ -17,16 +17,16 @@
 }
 
 .burgerButton {
-	-st-states: right(boolean);
+	-st-states: side(enum(right, left));
 	position: fixed;
 	width: 24px;
 	height: 20px;
 	top: 20px;
 }
-.burgerButton:right(true) {
+.burgerButton:side(right) {
 	right: 2rem;
 }
-.burgerButton:not(:right) {
+.burgerButton:not(:side(right)) {
 	left: 2rem;
 }
 
@@ -38,16 +38,16 @@
 }
 
 .crossButton {
-	-st-states: right(boolean);
+	-st-states: side(enum(right, left));
 	height: 24px;
 	width: 24px;
 }
-.crossButton:right {
+.crossButton:side(right) {
 	top: 10px !important;
 	left: 10px;
 	right: auto !important;
 }
-.crossButton:not(:right) {
+.crossButton:not(:side(right)) {
 	top: 10px !important;
 	left: auto !important;
 	right: 10px;
