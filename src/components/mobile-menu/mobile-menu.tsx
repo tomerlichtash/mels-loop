@@ -3,36 +3,80 @@ import { push as Menu } from "react-burger-menu";
 import Header from "../header";
 import ThemeSelector from "../theme-selector";
 import LocaleSelector from "../locale-selector";
-import { NavMenuProps } from "../../interfaces/menu";
 import { mlUtils } from "../../lib/ml-utils";
 import Link from "next/link";
+import { renderMenuItem } from "../menu-provider";
 import { st, classes } from "./mobile-menu.st.css";
+import { Button } from "../ui";
+import { ComponentProps } from "../../interfaces/models";
+import { IMenuData, IMenuItem } from "../../interfaces/menu";
 
-export interface IMobileNavProps extends NavMenuProps {
+export interface IMobileNavProps extends ComponentProps {
 	right: boolean;
+	items: IMenuData[];
 }
 
-const listItem = ({ type, title, description, url, author }) => (
-	<li key={mlUtils.uniqueId()}>
-		<Link href={url}>
-			<a href={url} className={classes.menuLink}>
-				<span className={classes.title}>{title}</span>
-				<p className={classes.text}>
-					{type === "article" ? author : description}
-				</p>
-			</a>
-		</Link>
-	</li>
-);
+const renderGroupSection = (items: IMenuData) => {
+	const { meta, keys, children } = items;
+	const { title } = keys;
+	const { layout } = meta;
+	return (
+		<div>
+			{title}
 
-const menuItem = ({ title, content, layout }) => (
-	<div>
-		<h2>{title}</h2>
-		<ul className={st(classes.menuContent, { layout })}>
-			{content.map(listItem)}
-		</ul>
-	</div>
-);
+			<ul className={st(classes.menuContent, { layout })}>
+				{children.map((child) => {
+					const { meta: childMeta, keys: childKeys, type } = child;
+					const { url } = childMeta;
+					const { author, description } = childKeys;
+					return (
+						<li key={mlUtils.uniqueId()}>
+							<Link href={url}>
+								<a href={url}>
+									{/* {icon && MenuIcons[icon]} */}
+									<span className={classes.title}>{title}</span>
+									<p className={classes.text}>
+										{type === "article" ? author : description}
+									</p>
+								</a>
+							</Link>
+						</li>
+					);
+				})}
+			</ul>
+		</div>
+	);
+};
+
+const renderSingleItems = (items: IMenuItem[]) => {
+	return items.map((child) => {
+		const { title, description, cta_label } = child.keys;
+		const { url } = child.meta;
+
+		return (
+			<div key={mlUtils.uniqueId()}>
+				<Link href={url}>
+					<a href={url}>
+						<span className={classes.title}>{title}</span>
+					</a>
+				</Link>
+				<div>{description}</div>
+				<Button label={cta_label} />
+			</div>
+		);
+	});
+};
+
+const renderSingleSection = (items: IMenuData) => {
+	const { keys, children } = items;
+	const { title } = keys;
+	return (
+		<div>
+			<h3>{title}</h3>
+			{renderSingleItems(children)}
+		</div>
+	);
+};
 
 export const MobileMenu = ({
 	right,
@@ -73,7 +117,9 @@ export const MobileMenu = ({
 			<div className={classes.strip}>xxx</div>
 			<LocaleSelector className={classes.localeSelector} />
 			<ThemeSelector className={classes.themeSelector} />
-			{items.map(menuItem)}
+			{items.map((item) =>
+				renderMenuItem(item)(renderGroupSection, renderSingleSection)
+			)}
 		</Menu>
 	);
 };

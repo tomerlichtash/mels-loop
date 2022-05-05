@@ -1,22 +1,43 @@
-import { ComponentProps } from "./models";
-import { IContentAuthors } from "./../locales/languages/types/authors";
+import { IAuthors } from "../locales/languages/types/authors";
+import { ILanguageKeys } from "../locales/languages/types/locale";
 
-type ItemType = "page" | "article" | "link";
+export type MenuItemLayout = "one" | "two" | "three";
+export type MenuItemType = "group" | "single" | "child";
+export type MenuItemChildType = "article" | "page" | "link";
+export type MenuItemKey =
+	| "title"
+	| "description"
+	| "abstract"
+	| "cta_label"
+	| "author";
 
-export interface MenuItem {
-	type: ItemType;
-	title: string;
-	description: string;
-	url: string;
-	author?: keyof IContentAuthors;
+export type MenuItemKeys = Partial<
+	Record<MenuItemKey, keyof ILanguageKeys | keyof IAuthors>
+>;
+
+export interface IMenuItemBase {
+	id: string;
+	keys: MenuItemKeys;
 }
 
-export interface MenuGroup {
-	title: string;
-	layout: string;
-	content: MenuItem[];
+export interface IMenuSection extends IMenuItemBase {
+	type: MenuItemType;
+	meta: { layout: MenuItemLayout };
+	children: string[];
 }
 
-export interface NavMenuProps extends ComponentProps {
-	items: MenuGroup[];
+export interface IMenuItem extends IMenuItemBase {
+	type: MenuItemChildType;
+	meta: {
+		url?: string;
+		// icon?: MenuItemIcon;
+	};
+}
+
+export interface IMenuData {
+	id: string;
+	keys: MenuItemKeys;
+	type: MenuItemType;
+	meta: { layout: MenuItemLayout; url?: string };
+	children: IMenuItem[];
 }

@@ -46,7 +46,7 @@ export const Locale: Language = {
 	MENU_ITEM_ENTRY_TITLE_LINK_TWITTER: "טוויטר",
 	MENU_ITEM_ENTRY_TITLE_LINK_GITHUB: "גיטהאב",
 
-	MENU_ITEM_ENTRY_DESC_LINK_TWITTER: "@aboutmelsloop",
+	MENU_ITEM_ENTRY_DESC_LINK_TWITTER: "Twitter",
 	MENU_ITEM_ENTRY_DESC_LINK_GITHUB: "הקוד של הפרויקט בגיטהאב",
 
 	MENU_ITEM_ENTRY_TITLE_LINK_WIKIPEDIA: "ויקיפדיה",
@@ -63,7 +63,12 @@ export const Locale: Language = {
 	FOOTER_LINK_ABOUT: "אודות",
 	FOOTER_LINK_BLOG: "בלוג",
 	FOOTER_LINK_GITHUB: "גיטהב",
-	FOOTER_LINK_TWITTER: "@aboutmelsloop",
+	FOOTER_LINK_TWITTER: "Twitter",
 	FOOTER_LINK_CONTACT: "צור קשר",
+	FOOTER_LINK_CONTRIBUTE: "כיצד להשתתף",
 	FOOTER_META_SHORT_DESCRIPTION: "[חסר תיאור בעברית]",
+
+	LEARN_MORE: "קרא עוד",
+	ABSTRACT_ABOUT: "אבסטרקט אודות",
+	MENU_SECTION_CONTACT: "צור קשר",
 };

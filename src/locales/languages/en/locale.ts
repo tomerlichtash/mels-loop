@@ -46,7 +46,7 @@ export const Locale: Language = {
 	MENU_ITEM_ENTRY_TITLE_LINK_TWITTER: "Twitter",
 	MENU_ITEM_ENTRY_TITLE_LINK_GITHUB: "Github",
 
-	MENU_ITEM_ENTRY_DESC_LINK_TWITTER: "@aboutmelsloop",
+	MENU_ITEM_ENTRY_DESC_LINK_TWITTER: "Twitter",
 	MENU_ITEM_ENTRY_DESC_LINK_GITHUB: "Check out our repo on Github",
 
 	MENU_ITEM_ENTRY_TITLE_LINK_WIKIPEDIA: "Wikipedia",
@@ -63,8 +63,14 @@ export const Locale: Language = {
 	FOOTER_LINK_ABOUT: "About",
 	FOOTER_LINK_BLOG: "Blog",
 	FOOTER_LINK_GITHUB: "Github",
-	FOOTER_LINK_TWITTER: "@aboutmelsloop",
+	FOOTER_LINK_TWITTER: "Twitter",
 	FOOTER_LINK_CONTACT: "Contact",
+	FOOTER_LINK_CONTRIBUTE: "Contribute",
 	FOOTER_META_SHORT_DESCRIPTION:
 		"Mel’s Loop is a guide the epic hacker folklore tale The Story of Mel. It also aims to collect the stories and of sub-stories around the story, its author, and its main charachters, early computing era stories and other related tales. The project is designed as an anthology of stories, annotations, poems and relics in the Hacker Folklore genre.",
+
+	LEARN_MORE: "Learn More",
+	ABSTRACT_ABOUT: "About abstract",
+
+	MENU_SECTION_CONTACT: "Contact",
 };
