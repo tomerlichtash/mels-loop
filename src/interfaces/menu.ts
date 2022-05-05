@@ -30,7 +30,6 @@ export interface IMenuItem extends IMenuItemBase {
 	type: MenuItemChildType;
 	meta: {
 		url?: string;
-		// icon?: MenuItemIcon;
 	};
 }
 

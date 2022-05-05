@@ -12,17 +12,17 @@ import {
 	IMenuData,
 } from "../../interfaces/menu";
 import { ComponentProps } from "../../interfaces/models";
-import {
-	EnvelopeClosedIcon,
-	GitHubLogoIcon,
-	TwitterLogoIcon,
-	FileIcon,
-	FileTextIcon,
-	ListBulletIcon,
-	Pencil1Icon,
-	InfoCircledIcon,
-	ArchiveIcon,
-} from "@radix-ui/react-icons";
+// import {
+// 	EnvelopeClosedIcon,
+// 	GitHubLogoIcon,
+// 	TwitterLogoIcon,
+// 	FileIcon,
+// 	FileTextIcon,
+// 	ListBulletIcon,
+// 	Pencil1Icon,
+// 	InfoCircledIcon,
+// 	ArchiveIcon,
+// } from "@radix-ui/react-icons";
 import { Menu } from "../menu";
 import { st as menuStyle, classes as menuClasses } from "../menu/menu.st.css";
 import { MobileMenu } from "../mobile-menu";
@@ -35,18 +35,18 @@ export interface MenuProviderProps extends ComponentProps {
 	isMobile?: boolean;
 }
 
-export const MenuIcons = {
-	github: <GitHubLogoIcon />,
-	contact: <EnvelopeClosedIcon />,
-	twitter: <TwitterLogoIcon />,
-	file: <FileIcon />,
-	fileText: <FileTextIcon />,
-	list: <ListBulletIcon />,
-	pencil: <Pencil1Icon />,
-	info: <InfoCircledIcon />,
-	archive: <ArchiveIcon />,
-	envelope: <EnvelopeClosedIcon />,
-};
+// export const MenuIcons = {
+// 	github: <GitHubLogoIcon />,
+// 	contact: <EnvelopeClosedIcon />,
+// 	twitter: <TwitterLogoIcon />,
+// 	file: <FileIcon />,
+// 	fileText: <FileTextIcon />,
+// 	list: <ListBulletIcon />,
+// 	pencil: <Pencil1Icon />,
+// 	info: <InfoCircledIcon />,
+// 	archive: <ArchiveIcon />,
+// 	envelope: <EnvelopeClosedIcon />,
+// };
 
 const getSection = (section: string): IMenuSection => MenuSections[section];
 
@@ -67,6 +67,18 @@ const getSectionChildren = (section: IMenuSection): IMenuItem[] =>
 				(childId) => MenuItems.filter((child) => child.id === childId)[0]
 		  )
 		: null;
+
+const getMenuItems = (translate: (s: string) => string) =>
+	Object.keys(MenuSections).map((section) =>
+		Object.assign({}, MenuSections[section], {
+			keys: trKeys(getSection(section), translate),
+			children: getSectionChildren(getSection(section)).map((child) =>
+				Object.assign({}, child, {
+					keys: trKeys(child, translate),
+				})
+			),
+		})
+	);
 
 export const renderMenuItem =
 	(item: IMenuData) =>
@@ -89,35 +101,22 @@ export const renderMenuItem =
 export const MenuProvider = ({ isMobile, className }: MenuProviderProps) => {
 	const { textDirection, translate } = useContext(ReactLocaleContext);
 
-	const menuItems = useMemo(
-		() =>
-			Object.keys(MenuSections).map((section) =>
-				Object.assign({}, MenuSections[section], {
-					keys: trKeys(getSection(section), translate),
-					children: getSectionChildren(getSection(section)).map((child) =>
-						Object.assign({}, child, {
-							keys: trKeys(child, translate),
-						})
-					),
-				})
-			),
-		[translate]
-	);
+	const menuItems = useMemo(() => getMenuItems(translate), [translate]);
 
 	if (isMobile) {
 		return (
 			<MobileMenu
+				items={menuItems}
 				className={mobileStyle(mobileClasses.root, className)}
 				right={textDirection === "ltr"}
-				items={menuItems}
 			/>
 		);
 	}
 
 	return (
 		<Menu
-			className={menuStyle(menuClasses.root, className)}
 			items={menuItems}
+			className={menuStyle(menuClasses.root, className)}
 		/>
 	);
 };

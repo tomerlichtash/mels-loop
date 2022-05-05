@@ -60,10 +60,11 @@ const renderGroupSection = (items: IMenuData) => {
 };
 
 const renderSingleSection = (item: IMenuData) => {
-	const { children } = item;
+	const { children, meta } = item;
+	const { layout } = meta;
 	return children.map((child) => {
 		const { title, description, cta_label } = child.keys;
-		const { layout, url } = child.meta;
+		const { url } = child.meta;
 		return (
 			<NavigationMenuItem key={mlUtils.uniqueId()} className={classes.item}>
 				<NavigationTrigger className={classes.trigger}>
