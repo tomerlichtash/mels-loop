@@ -20,10 +20,6 @@ import {
 	TwitterLogoIcon,
 } from "@radix-ui/react-icons";
 import { st, classes } from "./menu.st.css";
-import {
-	st as triggerStyle,
-	classes as triggerClasses,
-} from "./menu-trigger.st.css";
 
 export interface MenuData {
 	items: IMenuData[];
@@ -50,17 +46,6 @@ const getButtonIcon = (type: string, icon: string) => {
 			break;
 	}
 };
-
-const MenuTrigger = ({ title, url, className }: MenuTriggerProps) => (
-	<NavigationTrigger className={triggerClasses.root}>
-		<Button
-			label={title}
-			link={url}
-			className={triggerStyle(triggerClasses.button, className)}
-			icon={<NavigationCaret aria-hidden />}
-		/>
-	</NavigationTrigger>
-);
 
 const MenuButton = ({ meta, keys, type }) => {
 	const { url, icon } = meta;
