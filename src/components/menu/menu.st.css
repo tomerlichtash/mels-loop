@@ -1,6 +1,6 @@
 @namespace "Menu";
 
-@st-import [preventSelection, MenuItemButtonMixin] from "../../theme/mixins.st.css";
+@st-import [preventSelection] from "../../theme/mixins.st.css";
 @st-import Button from "../ui/button/button.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 

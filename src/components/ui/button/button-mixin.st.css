@@ -30,6 +30,8 @@
 
 .root::contentWrapper {
 	border-radius: value(ButtonRadius);
+}
+.root:hover::contentWrapper {
 	background-color: value(ButtonBgColor_Hover);
 }
 

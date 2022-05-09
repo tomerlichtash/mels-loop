@@ -9,26 +9,24 @@
 	ArrowColor: #fff;
 	ViewPortBgColor: #fff;
 
-	MenuTriggerPadding: 0;
-	MenuTriggerTextSize: inherit;
-	MenuTriggerRadius: 0;
-	MenuTriggerBgColorHover: #c0c0c0;
-	MenuTriggerTextColor: inherit;
-	MenuTriggerTextColor_Hover: inherit;
-
-	MenuItemTextColor: inherit;
-	MenuItemTextColor_Hover: inherit;
-	
-	MenuItemPadding: 0;
-	MenuItemRadius: 0;
-	MenuItemLabelTextColor: inherit;
-	MenuItemLabelTextColor_Hover: inherit;
-	MenuItemBgColor_Hover: inherit;
-	MenuItemLabelTextSize: inherit;
-	MenuItemLabelLineHeight: inherit;
-	MenuItemLabelTextWeight: inherit;
-	MenuItemSubtitleLineHeight: inherit;
-	MenuItemSubtitleTextSize: inherit;
+	TriggerPadding: 0;
+	TriggerTextSize: inherit;
+	TriggerRadius: 0;
+	TriggerBgColorHover: #c0c0c0;
+	TriggerTextColor: inherit;
+	TriggerTextColor_Hover: inherit;
+	ItemTextColor: inherit;
+	ItemTextColor_Hover: inherit;
+	ItemPadding: 0;
+	ItemRadius: 0;
+	ItemLabelTextColor: inherit;
+	ItemLabelTextColor_Hover: inherit;
+	ItemBgColor_Hover: inherit;
+	ItemLabelTextSize: inherit;
+	ItemLabelLineHeight: inherit;
+	ItemLabelTextWeight: inherit;
+	ItemSubtitleLineHeight: inherit;
+	ItemSubtitleTextSize: inherit;
 }
 
 .root {
@@ -49,33 +47,33 @@
 }
 
 .root::menuTrigger {
-	border-radius: value(MenuTriggerRadius);
+	border-radius: value(TriggerRadius);
 }
 .root::menuTrigger[data-state="open"] {
-	background-color: value(MenuTriggerBgColorHover);
+	background-color: value(TriggerBgColorHover);
 }
 .root::triggerButton {
 	-st-mixin: ButtonMixin(
-		ButtonPadding value(MenuTriggerPadding),
-		ButtonLabelTextSize value(MenuTriggerTextSize),
-		ButtonTextColor value(MenuTriggerTextColor),
-		ButtonTextColor_Hover value(MenuTriggerTextColor_Hover),		
+		ButtonPadding value(TriggerPadding),
+		ButtonLabelTextSize value(TriggerTextSize),
+		ButtonTextColor value(TriggerTextColor),
+		ButtonTextColor_Hover value(TriggerTextColor_Hover),		
 	);
 }
 
 .root::menuItemButton {
 	-st-mixin: ButtonMixin(
-		ButtonPadding value(MenuItemPadding),
-		ButtonRadius value(MenuItemRadius),
-		ButtonTextColor value(MenuItemTextColor),
-		ButtonTextColor_Hover value(MenuItemTextColor_Hover),
-		ButtonLabelTextColor value(MenuItemLabelTextColor),
-		ButtonLabelTextColor_Hover value(MenuItemLabelTextColor_Hover),
-		ButtonBgColor_Hover value(MenuItemBgColor_Hover),
-		ButtonLabelTextSize value(MenuItemLabelTextSize),
-		ButtonLabelLineHeight value(MenuItemLabelLineHeight),
-		ButtonLabelTextWeight value(MenuItemLabelTextWeight),
-		ButtonSubtitleLineHeight value(MenuItemSubtitleLineHeight),
-		ButtonSubtitleTextSize value(MenuItemSubtitleTextSize)
+		ButtonPadding value(ItemPadding),
+		ButtonRadius value(ItemRadius),
+		ButtonTextColor value(ItemTextColor),
+		ButtonTextColor_Hover value(ItemTextColor_Hover),
+		ButtonLabelTextColor value(ItemLabelTextColor),
+		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover),
+		ButtonBgColor_Hover value(ItemBgColor_Hover),
+		ButtonLabelTextSize value(ItemLabelTextSize),
+		ButtonLabelLineHeight value(ItemLabelLineHeight),
+		ButtonLabelTextWeight value(ItemLabelTextWeight),
+		ButtonSubtitleLineHeight value(ItemSubtitleLineHeight),
+		ButtonSubtitleTextSize value(ItemSubtitleTextSize)
 	);
 }

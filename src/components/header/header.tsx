@@ -6,12 +6,15 @@ import { st, classes } from "./header.st.css";
 
 export const Header = ({ className }: ComponentProps): JSX.Element => {
 	const { siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
-	const logo = <img src="/favicon-temp.png" />;
+	// const logo = <img src="/favicon-temp.png" />;
+	// const icon = <div className={classes.siteLogo}>x</div>;
 	return (
 		<header className={st(classes.root, className)}>
 			<div className={classes.container}>
+				<div className={classes.siteLogo}></div>
 				<Button
-					icon={logo as React.ReactElement}
+					// icon={<div className={classes.siteLogo}>x</div>}
+					// icon={logo as React.ReactElement}
 					label={siteTitle}
 					title={`${siteTitle} - ${siteSubtitle}`}
 					link={"/"}

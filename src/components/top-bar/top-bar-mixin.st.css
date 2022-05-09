@@ -1,10 +1,12 @@
 @namespace "TopBarMixin";
 
 @st-import TopBar from "./top-bar.st.css";
+@st-import HeaderMixin from "../header/header-mixin.st.css";
 
 :vars {
 	BgColor: blue;
 	SiteTitleLinkTextColor: black;
+	SiteLogoBgProps: inherit;
 }
 
 .root {
@@ -12,6 +14,9 @@
 	background: value(BgColor);
 }
 
-.root::header::siteTitle {
-	color: value(SiteTitleLinkTextColor);
+.root::header {
+	-st-mixin: HeaderMixin(
+		HeaderSiteSubtitleColor value(SiteTitleLinkTextColor),
+		SiteLogoBgProps value(SiteLogoBgProps)
+	);
 }

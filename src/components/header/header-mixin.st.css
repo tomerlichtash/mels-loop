@@ -11,6 +11,7 @@
   HeaderSiteTitleFontWeight: 500;
   HeaderPadding: 0;
   HeaderTextAlign: left;
+  SiteLogoBgProps: black;
 }
 
 .root {
@@ -22,13 +23,18 @@
 
 .root::siteTitle {
   color: value(HeaderSiteTitleColor);
-  font-size: value(HeaderSiteTitleFontSize);
+  /* font-size: value(HeaderSiteTitleFontSize);
   font-family: value(HeaderSiteTitleFontFamily);
-  font-weight: value(HeaderSiteTitleFontWeight);
+  font-weight: value(HeaderSiteTitleFontWeight); */
 }
 
 .root::siteTitle {}
 
 .root::siteSubtitle {
   color: value(HeaderSiteSubtitleColor);
+}
+
+.root::siteLogo {
+  /* border: 2px solid red; */
+  background: value(SiteLogoBgProps);
 }

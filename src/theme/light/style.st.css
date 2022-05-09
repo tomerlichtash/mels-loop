@@ -34,8 +34,6 @@
 @st-import NoteMixin from "../../components/note/note-mixin.st.css";
 @st-import Bibliography from "../../components/bibliography/bibliography.st.css";
 @st-import BibliographyMixin from "../../components/bibliography/bibliography-mixin.st.css";
-@st-import Button from "../../components/ui/button/button.st.css";
-@st-import ButtonMixin from "../../components/ui/button/button-mixin.st.css";
 
 @st-import [
 	level0,
@@ -85,7 +83,8 @@
 	TopBar {
 		-st-mixin: TopBarMixin(
 			BgColor value(level3),
-			SiteTitleLinkTextColor value(level8)
+			SiteTitleLinkTextColor value(level8),
+			SiteLogoBgProps url(//public/favicon-temp.png)
 		);
 	}
 
@@ -93,43 +92,43 @@
 		-st-mixin: TopBarMenuMixin(
 			ArrowColor value(level0),
 			ViewPortBgColor value(level1),
-			MenuTriggerTextColor value(LINK_TEXT_COLOR),
-			MenuTriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
-			MenuTriggerBgColorHover value(level4),
-			MenuTriggerPadding 0.25rem 0rem,
-			MenuTriggerTextSize 1rem,
-			MenuTriggerRadius 6px,
-			MenuItemTextColor value(LINK_TEXT_COLOR),
-			MenuItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
-			MenuItemBgColor_Hover value(level3),
-			MenuItemPadding 0.5rem 0.5rem 1rem,
-			MenuItemRadius 6px,
-			MenuItemLabelTextSize 1rem,
-			MenuItemLabelLineHeight 2rem,
-			MenuItemLabelTextWeight 500,
-			MenuItemSubtitleLineHeight 1rem,
-			MenuItemSubtitleTextSize 0.85rem	
+			TriggerTextColor value(LINK_TEXT_COLOR),
+			TriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			TriggerBgColorHover value(level4),
+			TriggerPadding 0.25rem 0.5rem,
+			TriggerTextSize 1rem,
+			TriggerRadius 6px,
+			ItemTextColor value(LINK_TEXT_COLOR),
+			ItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			ItemBgColor_Hover value(level3),
+			ItemPadding 0.5rem 0.5rem 1rem,
+			ItemRadius 6px,
+			ItemLabelTextSize 1rem,
+			ItemLabelLineHeight 2rem,
+			ItemLabelTextWeight 500,
+			ItemSubtitleLineHeight 1rem,
+			ItemSubtitleTextSize 0.85rem	
 		);
 	}
 
 	MobileMenu {
 		-st-mixin: MobileMenuMixin(
+			BgColor value(level7),
+			ItemTextColor value(primary1_1),
+			ItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			ItemBgColor_Hover value(level3),
+			ItemPadding 1rem 1rem 0.5rem,
+			ItemLabelTextSize 1rem,
+			ItemLabelTextWeight 500,
+			ItemSubtitleLineHeight 1.5rem,
+			ItemSubtitleTextSize 0.75rem,
+			ItemBorderColor value(level6),
+			ItemSubtitleTextColor value(level0),
+			SectionTitleColor value(level5),
+			LocaleSelectorSelectedItemBgColor value(primary1),
 			StripGradientStartColor value(primary1),
 			StripGradientMidColor value(primary3),
-			StripGradientEndColor value(primary4),
-			MenuBgColor value(level7),
-			MenuItemTextColor value(primary1_1),
-			MenuItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
-			MenuItemBgColor_Hover value(level3),
-			MenuItemPadding 1rem 1rem 0.5rem,
-			MenuItemLabelTextSize 1rem,
-			MenuItemLabelTextWeight 500,
-			MenuItemSubtitleLineHeight 1.5rem,
-			MenuItemSubtitleTextSize 0.75rem,
-			MenuItemBorderColor value(level6),
-			MenuItemSubtitleTextColor value(level0),
-			MenuSectionTitleColor value(level5),
-			LocaleSelectorSelectedItemBgColor value(primary1)
+			StripGradientEndColor value(primary4)
 		);
 	}
 
@@ -218,12 +217,4 @@
 			TooltipArrowColor value(accent1)
 		);
 	}
-
-	/* Button {
-		-st-mixin: ButtonMixin(
-			LabelColor value(accent1),
-			LabelColor_Hover value(primary2),
-			LabelColor_Active value(accent3)
-		);
-	} */
 }
