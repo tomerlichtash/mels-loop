@@ -1,6 +1,6 @@
 import { IMenuItem, IMenuSection } from "../interfaces/menu";
 
-export const TopBarMenuSections: IMenuSection[] = [
+export const MenuSections: IMenuSection[] = [
 	{
 		id: "articles1",
 		type: "group",
@@ -8,19 +8,17 @@ export const TopBarMenuSections: IMenuSection[] = [
 			layout: "one",
 		},
 		keys: {
-			title: "MENU_ITEM_TITLE_ARTICLES",
+			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: ["preface", "melshack"],
+		children: ["preface", "melshack", "page1"],
 	},
 	{
-		id: "about",
+		id: "info",
 		type: "single",
 		meta: {
 			layout: "two",
 		},
-		keys: {
-			title: "MENU_SECTION_CONTACT",
-		},
+		keys: {},
 		children: ["about", "contribute"],
 	},
 	{
@@ -30,9 +28,45 @@ export const TopBarMenuSections: IMenuSection[] = [
 			layout: "one",
 		},
 		keys: {
-			title: "MENU_SECTION_CONTACT",
+			title: "MENU_SECTION_LABEL_CONTACT",
 		},
 		children: ["twitter", "github"],
+	},
+];
+
+export const MobileMenuSections: IMenuSection[] = [
+	{
+		id: "articles1",
+		type: "group",
+		meta: {
+			layout: "one",
+		},
+		keys: {
+			title: "MENU_SECTION_LABEL_ARTICLES",
+		},
+		children: ["preface", "melshack", "page1"],
+	},
+	{
+		id: "about",
+		type: "single",
+		meta: {
+			layout: "two",
+		},
+		keys: {
+			title: "MENU_SECTION_LABEL_INFO",
+		},
+		children: ["about-mobile", "blog", "contribute"],
+	},
+	{
+		id: "contact",
+		type: "group",
+		meta: {
+			layout: "one",
+		},
+		keys: {
+			title: "MENU_SECTION_LABEL_CONTACT",
+		},
+		children: ["twitter", "github", "contact"],
 	},
 ];
 
@@ -42,11 +76,10 @@ export const MenuItems: IMenuItem[] = [
 		type: "article",
 		meta: {
 			url: "/docs/preface",
-			// icon: "fileText",
 		},
 		keys: {
-			title: "MENU_ITEM_ENTRY_TITLE_ARTICLE_PREFACE",
-			description: "MENU_ITEM_ENTRY_DESC_ARTICLE_PREFACE",
+			title: "MENU_ITEM_LABEL_ID_PREFACE",
+			// description: "MENU_ITEM_DESC_ID_PREFACE",
 			author: "AUTHOR_TOMER_LICHTASH",
 		},
 	},
@@ -55,11 +88,10 @@ export const MenuItems: IMenuItem[] = [
 		type: "article",
 		meta: {
 			url: "/docs/mels-hack",
-			// icon: "fileText",
 		},
 		keys: {
-			title: "MENU_ITEM_ENTRY_TITLE_ARTICLE_ABOUT_THE_HACK",
-			description: "MENU_ITEM_ENTRY_DESC_ARTICLE_ABOUT_THE_HACK",
+			title: "MENU_ITEM_LABEL_ID_MELSHACK",
+			// description: "MENU_ITEM_DESC_ID_MELSHACK",
 			author: "AUTHOR_DAVID_FRANKIEL",
 		},
 	},
@@ -68,37 +100,47 @@ export const MenuItems: IMenuItem[] = [
 		type: "page",
 		meta: {
 			url: "/docs/resources",
-			// icon: "list",
+			icon: "list",
 		},
 		keys: {
-			title: "MENU_ITEM_ENTRY_TITLE_PAGE_RESOURCES",
-			description: "MENU_ITEM_ENTRY_DESC_PAGE_RESOURCES",
+			title: "MENU_ITEM_LABEL_ID_RESOURCES",
+			description: "MENU_ITEM_DESC_ID_RESOURCES",
 		},
 	},
 	{
 		id: "about",
 		type: "page",
 		meta: {
-			// layout: "two",
 			url: "/about",
 		},
 		keys: {
-			title: "MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_ABOUT",
-			description: "ABSTRACT_ABOUT",
-			cta_label: "LEARN_MORE",
+			title: "MENU_ITEM_LABEL_ID_ABOUT",
+			description: "MENU_ITEM_DESC_ID_ABOUT",
+			cta_label: "MENU_ITEM_LABEL_EXCERPT_SHOW_MORE",
+		},
+	},
+	{
+		id: "about-mobile",
+		type: "page",
+		meta: {
+			url: "/about",
+		},
+		keys: {
+			title: "MENU_ITEM_LABEL_ID_ABOUT",
+			description: "MENU_ITEM_DESC_SHORT_ID_ABOUT",
+			cta_label: "MENU_ITEM_LABEL_EXCERPT_SHOW_MORE",
 		},
 	},
 	{
 		id: "blog",
 		type: "page",
 		meta: {
-			// layout: "two",
 			url: "/posts",
 		},
 		keys: {
-			title: "MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_BLOG",
-			description: "ABSTRACT_ABOUT",
-			cta_label: "LEARN_MORE",
+			title: "MENU_ITEM_LABEL_ID_BLOG",
+			description: "MENU_ITEM_DESC_ID_BLOG",
+			cta_label: "MENU_ITEM_LABEL_EXCERPT_SHOW_MORE",
 		},
 	},
 	{
@@ -108,9 +150,21 @@ export const MenuItems: IMenuItem[] = [
 			url: "/contribute",
 		},
 		keys: {
-			title: "MENU_ITEM_ENTRY_TITLE_STATIC_PAGE_CONTRIBUTE",
-			description: "MENU_SECTION_CONTACT",
-			cta_label: "LEARN_MORE",
+			title: "MENU_ITEM_LABEL_ID_CONTRIBUTE",
+			description: "MENU_ITEM_DESC_ID_CONTRIBUTE",
+			cta_label: "MENU_ITEM_LABEL_EXCERPT_SHOW_MORE",
+		},
+	},
+	{
+		id: "contact",
+		type: "page",
+		meta: {
+			url: "/contact",
+			icon: "github",
+		},
+		keys: {
+			title: "MENU_ITEM_LABEL_ID_CONTACT",
+			description: "MENU_ITEM_DESC_ID_CONTACT",
 		},
 	},
 	{
@@ -118,11 +172,11 @@ export const MenuItems: IMenuItem[] = [
 		type: "link",
 		meta: {
 			url: "https://twitter.com/aboutmelsloop",
-			// icon: "twitter",
+			icon: "twitter",
 		},
 		keys: {
-			title: "MENU_ITEM_ENTRY_TITLE_LINK_TWITTER",
-			description: "MENU_ITEM_ENTRY_DESC_LINK_TWITTER",
+			title: "MENU_ITEM_LABEL_ID_TWITTER",
+			description: "MENU_ITEM_DESC_ID_TWITTER",
 		},
 	},
 	{
@@ -130,11 +184,11 @@ export const MenuItems: IMenuItem[] = [
 		type: "link",
 		meta: {
 			url: "https://github.com/tomerlichtash/mels-loop-nextjs",
-			// icon: "github",
+			icon: "github",
 		},
 		keys: {
-			title: "MENU_ITEM_ENTRY_TITLE_LINK_GITHUB",
-			description: "MENU_ITEM_ENTRY_DESC_LINK_GITHUB",
+			title: "MENU_ITEM_LABEL_ID_GITHUB",
+			description: "MENU_ITEM_DESC_ID_GITHUB",
 		},
 	},
 ];

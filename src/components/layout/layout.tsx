@@ -79,13 +79,13 @@ export default function Layout({ children }: ComponentProps) {
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
 			<div id="outer-container" className={st(classes.root, { textDirection })}>
-				<div id="page-wrap">
-					<ScrollArea>
+				<ScrollArea>
+					<div id="page-wrap">
 						<TopBar className={classes.header} />
 						<Page className={classes.page} nodes={children} />
 						<Footer className={classes.footer} direction={textDirection} />
-					</ScrollArea>
-				</div>
+					</div>
+				</ScrollArea>
 				{isMobile && <MenuProvider isMobile />}
 			</div>
 			<Analytics />

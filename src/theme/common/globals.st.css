@@ -37,8 +37,17 @@
 	margin: 0;
 }
 
-:global(ul) {
-	margin: 0;
+:global(button) {
+	border: none;
 	padding: 0;
+	background: none;
+	font-family: inherit;
+}
+
+:global(ul),
+:global(ol),
+:global(li) {
 	list-style: none;
+	margin: 0;
+	padding: 0;	
 }

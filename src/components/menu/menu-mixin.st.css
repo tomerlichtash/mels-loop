@@ -1,25 +1,34 @@
 @namespace "Menu";
 
 @st-import Menu from "./menu.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 
 :vars {
 	ListBgColor: transparent;
-	TriggerRadius: 6px;
-	TriggerBgColorHover: #c0c0c0;
-	ItemTriggerPadding: 4px 1rem;
 	ContentPadding: 1rem;
-	LinkTitleTextColor: #000;
-	LinkTitleTextColorHover: #888;
-	LinkSubtitleTextColorHover: blue;
-	LinkTextColorHover: #f00;
-	LinkFontSize: 15px;
-	LinkPadding: 12px;
-	LinkRadius: 6px;
-	LinkBgColorHover: #000;
-	LinkSubtitleTextColor: #808080;
 	ArrowColor: #fff;
-	ItemFocusBorderColor: #808080;
 	ViewPortBgColor: #fff;
+
+	MenuTriggerPadding: 0;
+	MenuTriggerTextSize: inherit;
+	MenuTriggerRadius: 0;
+	MenuTriggerBgColorHover: #c0c0c0;
+	MenuTriggerTextColor: inherit;
+	MenuTriggerTextColor_Hover: inherit;
+
+	MenuItemTextColor: inherit;
+	MenuItemTextColor_Hover: inherit;
+	
+	MenuItemPadding: 0;
+	MenuItemRadius: 0;
+	MenuItemLabelTextColor: inherit;
+	MenuItemLabelTextColor_Hover: inherit;
+	MenuItemBgColor_Hover: inherit;
+	MenuItemLabelTextSize: inherit;
+	MenuItemLabelLineHeight: inherit;
+	MenuItemLabelTextWeight: inherit;
+	MenuItemSubtitleLineHeight: inherit;
+	MenuItemSubtitleTextSize: inherit;
 }
 
 .root {
@@ -29,46 +38,44 @@
 .root::list {
 	background-color: value(ListBgColor);
 }
-
-.root::trigger {
-	padding: value(ItemTriggerPadding);
-	border-radius: value(TriggerRadius);
-}
-
-.root::trigger[data-state="open"] {
-	background-color: value(TriggerBgColorHover);
-}
-
 .root::menuContent {
 	padding: value(ContentPadding);
 }
-
-.root::menuLink {
-	font-size: value(LinkFontSize);
-	padding: value(LinkPadding);
-	border-radius: value(LinkRadius);
-}
-
-.root::menuLink:focus {
-	box-shadow: 0 0 0 2px value(ItemFocusBorderColor);
-}
-
-.root::menuLink:hover {
-	background-color: value(LinkBgColorHover);
-}
-
-.root::title {
-	color: value(LinkTitleTextColor);
-}
-
-.root::text {
-	color: value(LinkSubtitleTextColor);
-}
-
 .root::arrow {
 	background-color: value(ArrowColor);
 }
-
 .root::viewport {
 	background: value(ViewPortBgColor);
+}
+
+.root::menuTrigger {
+	border-radius: value(MenuTriggerRadius);
+}
+.root::menuTrigger[data-state="open"] {
+	background-color: value(MenuTriggerBgColorHover);
+}
+.root::triggerButton {
+	-st-mixin: ButtonMixin(
+		ButtonPadding value(MenuTriggerPadding),
+		ButtonLabelTextSize value(MenuTriggerTextSize),
+		ButtonTextColor value(MenuTriggerTextColor),
+		ButtonTextColor_Hover value(MenuTriggerTextColor_Hover),		
+	);
+}
+
+.root::menuItemButton {
+	-st-mixin: ButtonMixin(
+		ButtonPadding value(MenuItemPadding),
+		ButtonRadius value(MenuItemRadius),
+		ButtonTextColor value(MenuItemTextColor),
+		ButtonTextColor_Hover value(MenuItemTextColor_Hover),
+		ButtonLabelTextColor value(MenuItemLabelTextColor),
+		ButtonLabelTextColor_Hover value(MenuItemLabelTextColor_Hover),
+		ButtonBgColor_Hover value(MenuItemBgColor_Hover),
+		ButtonLabelTextSize value(MenuItemLabelTextSize),
+		ButtonLabelLineHeight value(MenuItemLabelLineHeight),
+		ButtonLabelTextWeight value(MenuItemLabelTextWeight),
+		ButtonSubtitleLineHeight value(MenuItemSubtitleLineHeight),
+		ButtonSubtitleTextSize value(MenuItemSubtitleTextSize)
+	);
 }

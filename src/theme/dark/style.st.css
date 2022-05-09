@@ -86,7 +86,7 @@
 			LinkSubtitleTextColor value(level6),
 			LinkTextColorHover value(primary3),
 			LinkBgColorHover value(level3),
-			TriggerBgColorHover value(level4),
+			MenuTriggerBgColorHover value(level4),
 			ArrowColor value(level0),
 			ViewPortBgColor value(level1)
 		);

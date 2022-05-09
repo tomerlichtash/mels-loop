@@ -1,5 +1,8 @@
 @namespace "Mixins";
 
+@st-import Header from "../components/header/header.st.css";
+@st-import Button from "../components/ui/button/button.st.css";
+
 .boxSizing {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -20,6 +23,7 @@
 	font-size: 12px;
 }
 
+/* IconFillMixin */
 :vars {
 	FillColor: #000;
 	FillColor_Hover: value(FillColor);
@@ -30,21 +34,31 @@
 .IconFill:hover path { fill: value(FillColor_Hover) }
 .IconFill:active path { fill: value(FillColor_Active) }
 
+/* ToolbarArrowMixin */
 :vars {
 	TooltipArrowColor: red;
 }
 .TooltipArrow {}
 .TooltipArrow polygon { fill: value(TooltipArrowColor) }
 
+/* GradientStripMixin */
 :vars {
 	StripGradientStartColor: white;
 	StripGradientMidColor: gray;
 	StripGradientEndColor: black;
+	StripGradientHeight: 4px;
 }
 .GradientStrip {
-	height: 4px;
+	height: value(StripGradientHeight);
 	background: linear-gradient(90deg,
 	value(StripGradientStartColor) 0%,
 	value(StripGradientMidColor) 50%,
 	value(StripGradientEndColor) 100%);
 }
+
+/* Mobile Header Mixin */
+.MobileHeader { -st-extends: Header }
+.MobileHeader::container { display: block }
+.MobileHeader::siteTitle { display: block }
+.MobileHeader::siteSubtitle { font-size: 0.85rem }
+.MobileHeader::siteSubtitle::before { margin: 0; content: "" }

@@ -3,6 +3,8 @@
 @st-import MobileMenu from "./mobile-menu.st.css";
 @st-import [GradientStrip] from "../../theme/mixins.st.css";
 @st-import [preventSelection] from "./../../theme/mixins.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
+@st-import LocaleSelectorMixin from "../locale-selector/locale-selector-mixin.st.css";
 
 :vars {
 	MenuBgColor: #373a47;
@@ -11,14 +13,42 @@
   StripGradientStartColor: white;
   StripGradientMidColor: gray;
   StripGradientEndColor: black;
+	MenuItemTextColor: inherit;
+	MenuItemTextColor_Hover: inherit;
+	MenuItemPadding: 0;
+	MenuItemRadius: 0;
+	MenuItemLabelTextColor: inherit;
+	MenuItemLabelTextColor_Hover: inherit;
+	MenuItemBgColor_Hover: inherit;
+	MenuItemLabelTextSize: inherit;
+	MenuItemLabelLineHeight: inherit;
+	MenuItemLabelTextWeight: inherit;
+	MenuItemSubtitleLineHeight: inherit;
+	MenuItemSubtitleTextSize: inherit;
+	MenuItemBorderColor: inherit;
+	MenuItemSubtitleTextColor: inherit;
+	MenuSectionTitleColor: inherit;
+	LocaleSelectorSelectedItemTextColor: inehrit;
+	LocaleSelectorSelectedItemBgColor: inehrit;	
 }
 
 .root {
 	-st-extends: MobileMenu;
+	background-color: value(MenuBgColor);
 }
 
+.root::header {
+	padding: 1rem;
+	color: white;
+}
+
+.root::header::siteTitle {
+	color: white;
+}
+
+.root::menu {}
+
 .root::burgerMenu {
-	background: value(MenuBgColor);
 	font-size: 1.15em;
 }
 
@@ -30,15 +60,53 @@
 	background: value(MenuBurgerCross);
 }
 
-.root::itemList {
-	/* color: #b8b7ad; */
-	padding: 3rem 0 0;
+.root::toolbar {
+	border-bottom: 1px solid value(MenuItemBorderColor);
+	padding: 1rem;
 }
 
 .root::strip {
   -st-mixin: GradientStrip(
     StripGradientStartColor value(StripGradientStartColor),
     StripGradientMidColor value(StripGradientMidColor),
-    StripGradientEndColor value(StripGradientEndColor)
+    StripGradientEndColor value(StripGradientEndColor),
+		StripGradientHeight 2px
   );
+}
+
+.root::section {
+	color: #c0c0c0;
+}
+
+.root::sectionTitle {
+	padding: 1rem;
+	color: value(MenuSectionTitleColor)
+}
+
+.root::menuItemButton {
+	-st-mixin: ButtonMixin(
+		ButtonPadding value(MenuItemPadding),
+		ButtonRadius value(MenuItemRadius),
+		ButtonTextColor value(MenuItemTextColor),
+		ButtonTextColor_Hover value(MenuItemTextColor_Hover),
+		ButtonLabelTextColor value(MenuItemLabelTextColor),
+		ButtonLabelTextColor_Hover value(MenuItemLabelTextColor_Hover),
+		ButtonBgColor_Hover value(MenuItemBgColor_Hover),
+		ButtonLabelTextSize value(MenuItemLabelTextSize),
+		ButtonLabelLineHeight value(MenuItemLabelLineHeight),
+		ButtonLabelTextWeight value(MenuItemLabelTextWeight),
+		ButtonSubtitleLineHeight value(MenuItemSubtitleLineHeight),
+		ButtonSubtitleTextSize value(MenuItemSubtitleTextSize),
+		ButtonChildrenTextColor value(MenuItemSubtitleTextColor)
+	);
+}
+.root::menuItemButton {
+	border-bottom: 1px solid value(MenuItemBorderColor);
+}
+
+.root::localeSelector {
+	-st-mixin: LocaleSelectorMixin(
+		SelectedItemTextColor value(LocaleSelectorSelectedItemTextColor),
+		SelectedItemBgColor value(LocaleSelectorSelectedItemBgColor)
+	);
 }

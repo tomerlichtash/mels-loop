@@ -2,7 +2,7 @@ import { IAuthors } from "../locales/languages/types/authors";
 import { ILanguageKeys } from "../locales/languages/types/locale";
 
 export type MenuItemLayout = "one" | "two" | "three";
-export type MenuItemType = "group" | "single" | "child";
+export type MenuSectionType = "group" | "single";
 export type MenuItemChildType = "article" | "page" | "link";
 export type MenuItemKey =
 	| "title"
@@ -21,22 +21,20 @@ export interface IMenuItemBase {
 }
 
 export interface IMenuSection extends IMenuItemBase {
-	type: MenuItemType;
+	type: MenuSectionType;
 	meta: { layout: MenuItemLayout };
 	children: string[];
 }
 
 export interface IMenuItem extends IMenuItemBase {
 	type: MenuItemChildType;
-	meta: {
-		url?: string;
-	};
+	meta: { url?: string; icon?: string };
 }
 
 export interface IMenuData {
 	id: string;
 	keys: MenuItemKeys;
-	type: MenuItemType;
+	type: MenuSectionType;
 	meta: { layout: MenuItemLayout; url?: string };
 	children: IMenuItem[];
 }

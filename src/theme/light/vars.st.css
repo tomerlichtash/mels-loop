@@ -11,6 +11,7 @@
 	color7,
 	color8,
 	color9,
+	color9_1,
 	color10,
 	color11,
 	color12,
@@ -32,6 +33,7 @@
 	level8: value(color8);
 
 	primary1: value(color9);
+	primary1_1: value(color9_1);
 	primary2: value(color10);
 	primary3: value(color11);
 	primary4: value(color12);

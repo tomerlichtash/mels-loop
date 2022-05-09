@@ -24,6 +24,7 @@ export const Button = ({
 	target,
 	callback,
 	className,
+	children,
 }: ButtonProps): JSX.Element => {
 	const btnLabel = title || label;
 	const btnClassName = st(classes.root, { selected }, classes.aTag, className);
@@ -33,14 +34,19 @@ export const Button = ({
 		className: btnClassName,
 	};
 	const btnContent = (
-		<span className={classes.content}>
+		<span className={classes.contentWrapper}>
 			{icon && (
 				<span className={classes.icon}>
 					<span className={classes.img}>{icon}</span>
 				</span>
 			)}
-			<span className={classes.label}>
-				<span className={classes.text}>{label}</span>
+			<span className={classes.content}>
+				{label && (
+					<span className={classes.label}>
+						<span className={classes.text}>{label}</span>
+					</span>
+				)}
+				{children && <span className={classes.children}>{children}</span>}
 			</span>
 		</span>
 	);

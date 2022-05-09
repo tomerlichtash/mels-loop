@@ -1,6 +1,8 @@
 @namespace "Menu";
 
-@st-import [preventSelection] from "../../theme/mixins.st.css";
+@st-import [preventSelection, MenuItemButtonMixin] from "../../theme/mixins.st.css";
+@st-import Button from "../ui/button/button.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 
 .root {
 	-st-mixin: preventSelection;
@@ -12,22 +14,7 @@
 
 .list {
 	padding: 0;
-	all: unset;
 	display: flex;
-	justify-content: center;
-}
-
-.item {
-	list-style: none;
-}
-
-.trigger {
-	all: unset;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 2;
-	cursor: pointer;
 }
 
 .menuContent {
@@ -35,7 +22,6 @@
 	display: grid;
 	margin: 0;
 	column-gap: 10;
-	list-style: none;
 }
 
 .viewportPosition {
@@ -48,7 +34,14 @@
 	perspective: 2000px;
 }
 
-.viewport {}
+.viewport {
+	position: relative;
+	margin-top: 10px;
+	border-radius: 6px;
+	box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+	overflow: hidden;
+	transform-origin: top center;
+}
 
 .arrow {
 	position: relative;
@@ -59,20 +52,44 @@
 	border-top-left-radius: 2px;
 }
 
-.menuLink {
-	display: block;
-	text-decoration: none;
-	cursor: pointer;
+.indicator {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	height: 10px;
+	top: 100%;
+	overflow: hidden;
+	z-index: 1;
 }
 
-.title {
-	margin-bottom: 5px;
-	line-height: 1.2rem;
-	display: block;
+.caret {
+	position: relative;
+	color: black;
+	top: 1;
 }
 
-.text {
-	all: unset;
+.menuItem {}
+
+.listItem {}
+
+.menuTrigger {}
+.triggerButton {
+	-st-extends: Button;
+}
+.triggerButton::icon {
+	order: 2;
+}
+.triggerButton::contentWrapper {
+	align-items: center;
+  justify-content: center;
+}
+
+.menuItemButton {
+	-st-extends: Button;
+}
+.menuItemButton::icon {
+	top: 1rem;
+	position: relative;
 }
 
 @media only screen and (min-width: 600px) {
@@ -80,7 +97,6 @@
 		width: 400px;
 		grid-template-columns: ".75fr 1fr";
 	}
-
 	.menuContent:layout(two) {
 		width: 400px;
 		grid-auto-flow: column;

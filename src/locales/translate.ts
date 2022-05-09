@@ -8,9 +8,9 @@ export const _translate =
 		}
 		const ref = lang || langRef;
 		if (!langs[ref]) {
-			return `%MISSING_LOCALE_${ref}_${key}%`;
+			return `%${ref}_${key}%`;
 		} else if (!langs[ref][key]) {
-			return `%MISSING_KEY_${key}%`;
+			return `%${key}%`;
 		}
 		return langs[ref][key] || `%${key}%`;
 	};

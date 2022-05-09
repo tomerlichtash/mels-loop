@@ -1,7 +1,8 @@
 import React, { useContext, useMemo } from "react";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import {
-	TopBarMenuSections as MenuSections,
+	MenuSections,
+	MobileMenuSections,
 	MenuItems,
 } from "../../config/menu-data";
 import {
@@ -12,17 +13,6 @@ import {
 	IMenuData,
 } from "../../interfaces/menu";
 import { ComponentProps } from "../../interfaces/models";
-// import {
-// 	EnvelopeClosedIcon,
-// 	GitHubLogoIcon,
-// 	TwitterLogoIcon,
-// 	FileIcon,
-// 	FileTextIcon,
-// 	ListBulletIcon,
-// 	Pencil1Icon,
-// 	InfoCircledIcon,
-// 	ArchiveIcon,
-// } from "@radix-ui/react-icons";
 import { Menu } from "../menu";
 import { st as menuStyle, classes as menuClasses } from "../menu/menu.st.css";
 import { MobileMenu } from "../mobile-menu";
@@ -35,21 +25,6 @@ export interface MenuProviderProps extends ComponentProps {
 	isMobile?: boolean;
 }
 
-// export const MenuIcons = {
-// 	github: <GitHubLogoIcon />,
-// 	contact: <EnvelopeClosedIcon />,
-// 	twitter: <TwitterLogoIcon />,
-// 	file: <FileIcon />,
-// 	fileText: <FileTextIcon />,
-// 	list: <ListBulletIcon />,
-// 	pencil: <Pencil1Icon />,
-// 	info: <InfoCircledIcon />,
-// 	archive: <ArchiveIcon />,
-// 	envelope: <EnvelopeClosedIcon />,
-// };
-
-const getSection = (section: string): IMenuSection => MenuSections[section];
-
 const trKeys = (
 	item: IMenuItemBase,
 	translate: (s: string) => string
@@ -61,24 +36,33 @@ const trKeys = (
 		])
 	);
 
-const getSectionChildren = (section: IMenuSection): IMenuItem[] =>
+const getSectionItems = (section: IMenuSection): IMenuItem[] =>
 	section.children
 		? section.children.map(
 				(childId) => MenuItems.filter((child) => child.id === childId)[0]
 		  )
 		: null;
 
-const getMenuItems = (translate: (s: string) => string) =>
-	Object.keys(MenuSections).map((section) =>
-		Object.assign({}, MenuSections[section], {
-			keys: trKeys(getSection(section), translate),
-			children: getSectionChildren(getSection(section)).map((child) =>
-				Object.assign({}, child, {
-					keys: trKeys(child, translate),
+const getMenuItems = (
+	sections: IMenuSection[],
+	translate: (s: string) => string
+) => {
+	return Object.keys(sections).map((section) => {
+		const currentSection = sections[section] as IMenuSection;
+		return Object.assign({}, currentSection, {
+			keys: trKeys(currentSection, translate),
+			children: getSectionItems(currentSection).map((item) =>
+				Object.assign({}, item, {
+					keys: trKeys(item, translate),
 				})
 			),
-		})
-	);
+		});
+	});
+};
+
+const getSectionData = (isMobile: boolean): IMenuSection[] => {
+	return isMobile ? MobileMenuSections : MenuSections;
+};
 
 export const renderMenuItem =
 	(item: IMenuData) =>
@@ -101,7 +85,10 @@ export const renderMenuItem =
 export const MenuProvider = ({ isMobile, className }: MenuProviderProps) => {
 	const { textDirection, translate } = useContext(ReactLocaleContext);
 
-	const menuItems = useMemo(() => getMenuItems(translate), [translate]);
+	const menuItems = useMemo(
+		() => getMenuItems(getSectionData(isMobile), translate),
+		[translate, isMobile]
+	);
 
 	if (isMobile) {
 		return (

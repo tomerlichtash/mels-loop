@@ -9,50 +9,100 @@ import {
 	NavigationTrigger,
 	NavigationCaret,
 } from "../radix-primitives";
-import Link from "next/link";
 import { mlUtils } from "../../lib/ml-utils";
 import { renderMenuItem } from "../menu-provider";
 import { Button } from "../ui";
 import { IMenuData } from "../../interfaces/menu";
+import {
+	FileIcon,
+	GitHubLogoIcon,
+	ListBulletIcon,
+	TwitterLogoIcon,
+} from "@radix-ui/react-icons";
 import { st, classes } from "./menu.st.css";
+import {
+	st as triggerStyle,
+	classes as triggerClasses,
+} from "./menu-trigger.st.css";
 
 export interface MenuData {
 	items: IMenuData[];
 	className?: string;
 }
 
-const renderGroupChild = (child) => {
-	const { meta, keys, type } = child;
-	const { url } = meta;
+export interface MenuTriggerProps {
+	title: string;
+	url?: string;
+	className?: string;
+}
+
+const getButtonIcon = (type: string, icon: string) => {
+	switch (icon || type) {
+		case "article":
+			return <FileIcon />;
+		case "list":
+			return <ListBulletIcon />;
+		case "twitter":
+			return <TwitterLogoIcon />;
+		case "github":
+			return <GitHubLogoIcon />;
+		default:
+			break;
+	}
+};
+
+const MenuTrigger = ({ title, url, className }: MenuTriggerProps) => (
+	<NavigationTrigger className={triggerClasses.root}>
+		<Button
+			label={title}
+			link={url}
+			className={triggerStyle(triggerClasses.button, className)}
+			icon={<NavigationCaret aria-hidden />}
+		/>
+	</NavigationTrigger>
+);
+
+const MenuButton = ({ meta, keys, type }) => {
+	const { url, icon } = meta;
 	const { title, author, description } = keys;
+	const subtitle = type === "article" ? author : description;
 	return (
-		<li key={mlUtils.uniqueId()}>
-			<Link href={url}>
-				<a href={url}>
-					{/* {icon && MenuIcons[icon]} */}
-					<span className={classes.title}>{title}</span>
-					<p className={classes.text}>
-						{type === "article" ? author : description}
-					</p>
-				</a>
-			</Link>
-		</li>
+		<Button
+			link={url}
+			label={title}
+			className={st(classes.button, classes.menuItemButton)}
+			icon={getButtonIcon(type as string, icon as string)}
+		>
+			<div className={classes.buttonSubtitle}>{subtitle}</div>
+		</Button>
 	);
 };
 
 const renderGroupSection = (items: IMenuData) => {
 	const { meta, keys, children } = items;
 	const { title } = keys;
-	const { layout } = meta;
+	const { layout, url } = meta;
 	return (
-		<NavigationMenuItem key={mlUtils.uniqueId()} className={classes.item}>
-			<NavigationTrigger className={classes.trigger}>
-				{title}
-				<NavigationCaret aria-hidden />
+		<NavigationMenuItem key={mlUtils.uniqueId()} className={classes.menuItem}>
+			{/* <MenuTrigger
+				title={title}
+				className={st(classes.button, classes.triggerButton)}
+			/> */}
+			<NavigationTrigger className={classes.menuTrigger}>
+				<Button
+					label={title}
+					link={url}
+					className={st(classes.button, classes.triggerButton)}
+					icon={<NavigationCaret aria-hidden />}
+				/>
 			</NavigationTrigger>
 			<NavigationMenuContent>
 				<ul className={st(classes.menuContent, { layout })}>
-					{children.map(renderGroupChild)}
+					{children.map((child) => (
+						<li key={mlUtils.uniqueId()} className={classes.listItem}>
+							<MenuButton {...child} />
+						</li>
+					))}
 				</ul>
 			</NavigationMenuContent>
 		</NavigationMenuItem>
@@ -60,24 +110,29 @@ const renderGroupSection = (items: IMenuData) => {
 };
 
 const renderSingleSection = (item: IMenuData) => {
-	const { children, meta } = item;
-	const { layout } = meta;
-	return children.map((child) => {
-		const { title, description, cta_label } = child.keys;
-		const { url } = child.meta;
+	const { layout } = item.meta;
+	return item.children.map((child) => {
+		const { keys, meta } = child;
+		const { url } = meta;
+		const { title, description, cta_label } = keys;
 		return (
-			<NavigationMenuItem key={mlUtils.uniqueId()} className={classes.item}>
-				<NavigationTrigger className={classes.trigger}>
-					<Link href={url}>
-						<a href={url}>
-							<span className={classes.title}>{title}</span>
-						</a>
-					</Link>
-					<NavigationCaret aria-hidden />
+			<NavigationMenuItem key={mlUtils.uniqueId()} className={classes.menuItem}>
+				{/* <MenuTrigger
+					title={title}
+					url={url}
+					className={st(classes.button, classes.triggerButton)}
+				/> */}
+				<NavigationTrigger className={classes.menuTrigger}>
+					<Button
+						label={title}
+						link={url}
+						className={st(classes.button, classes.triggerButton)}
+						icon={<NavigationCaret aria-hidden />}
+					/>
 				</NavigationTrigger>
 				<NavigationMenuContent className={st(classes.menuContent, { layout })}>
-					<div>{description}</div>
-					<Button label={cta_label} />
+					<p className={classes.abstract}>{description}</p>
+					<Button label={cta_label} link={url} />
 				</NavigationMenuContent>
 			</NavigationMenuItem>
 		);
@@ -98,7 +153,7 @@ export const Menu = ({ items, className }: MenuData) => {
 			<NavigationMenuList asChild>
 				<div className={classes.list}>
 					{menuItems}
-					<NavigationIndicator>
+					<NavigationIndicator className={classes.indicator}>
 						<div className={classes.arrow}></div>
 					</NavigationIndicator>
 				</div>

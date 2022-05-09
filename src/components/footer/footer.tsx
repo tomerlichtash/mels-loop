@@ -10,9 +10,11 @@ export interface IFooterProps extends ComponentProps {
 }
 
 export const Footer = ({ direction, className }: IFooterProps): JSX.Element => {
-	const { translate, siteTitle, siteSubtitle, siteLicense } =
-		useContext(ReactLocaleContext);
+	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 	const licenseYears = `${new Date().getFullYear()}`;
+	const fullLicense = `${translate("SITE_LICENSE_LABEL")}-${translate(
+		"SITE_LICENSE_ATTRS"
+	)}`;
 	return (
 		<footer className={st(classes.root, { direction }, className)}>
 			<div className={classes.strip}></div>
@@ -23,11 +25,11 @@ export const Footer = ({ direction, className }: IFooterProps): JSX.Element => {
 							<div className={classes.title}>
 								<time className={classes.year}>{licenseYears}</time>{" "}
 								<span
-									title={translate("FOOTER_FULL_LICENSE")}
-									arial-label={translate("FOOTER_FULL_LICENSE")}
+									title={fullLicense}
+									arial-label={fullLicense}
 									className={classes.license}
 								>
-									({siteLicense})
+									({translate("SITE_LICENSE_LABEL")})
 								</span>{" "}
 								<span className={classes.title}>{siteTitle}</span>
 							</div>
@@ -36,32 +38,32 @@ export const Footer = ({ direction, className }: IFooterProps): JSX.Element => {
 							</div>
 						</div>
 						<p className={classes.excerpt}>
-							{translate("FOOTER_META_SHORT_DESCRIPTION")}
+							{translate("MENU_ITEM_DESC_ID_ABOUT")}
 						</p>
 					</div>
 					<div className={st(classes.column, { size: 1 })}>
 						<div className={classes.columnTitle}>
-							{translate("FOOTER_COLUMN_TITLE_PAGES")}
+							{translate("SECTION_LABEL_PAGES")}
 						</div>
 						<div className={classes.sitePages}>
 							<ul className={classes.itemList}>
 								<li className={classes.item}>
 									<Button
 										link="/about"
-										label={translate("FOOTER_LINK_ABOUT")}
+										label={translate("MENU_ITEM_LABEL_ID_ABOUT")}
 										className={classes.button}
 									/>
 								</li>
 								<li className={classes.item}>
 									<Button
 										link="/posts"
-										label={translate("FOOTER_LINK_BLOG")}
+										label={translate("MENU_ITEM_LABEL_ID_BLOG")}
 										className={classes.button}
 									/>
 								</li>
 								<li className={st(classes.item)}>
 									<Button
-										label={translate("FOOTER_LINK_CONTRIBUTE")}
+										label={translate("MENU_ITEM_LABEL_ID_CONTRIBUTE")}
 										link={"/contribute"}
 										className={classes.button}
 									/>
@@ -71,13 +73,13 @@ export const Footer = ({ direction, className }: IFooterProps): JSX.Element => {
 					</div>
 					<div className={st(classes.column, { size: 1 })}>
 						<div className={classes.columnTitle}>
-							{translate("FOOTER_COLUMN_TITLE_LINKS")}
+							{translate("SECTION_LABEL_LINKS")}
 						</div>
 						<ul className={classes.itemList}>
 							<li className={st(classes.item)}>
 								<Button
 									link="https://github.com/tomerlichtash/mels-loop-nextjs"
-									label={translate("FOOTER_LINK_GITHUB")}
+									label={translate("MENU_ITEM_LABEL_ID_GITHUB")}
 									className={classes.button}
 								/>
 							</li>
@@ -85,13 +87,13 @@ export const Footer = ({ direction, className }: IFooterProps): JSX.Element => {
 								<Button
 									target="_blank"
 									link="https://twitter.com/aboutmelsloop"
-									label={translate("FOOTER_LINK_TWITTER")}
+									label={translate("MENU_ITEM_LABEL_ID_TWITTER")}
 									className={classes.button}
 								/>
 							</li>
 							<li className={st(classes.item)}>
 								<Button
-									label={translate("FOOTER_LINK_CONTACT")}
+									label={translate("MENU_ITEM_LABEL_ID_CONTACT")}
 									link={"/contact"}
 									className={classes.button}
 								/>

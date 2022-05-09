@@ -47,15 +47,21 @@
 	level6,
 	level7,
 	level8,
-	primary4,
-	primary3,
-	primary2,
 	primary1,
+	primary1_1,
+	primary2,
+	primary3,
+	primary4,
 	accent1,
 	accent2,
 	accent3,
 	accent4
 ] from "./vars.st.css";
+
+:vars {
+	LINK_TEXT_COLOR: value(accent1);
+	LINK_TEXT_COLOR_HOVER: value(primary2);
+}
 
 @st-scope .root {
 	StoryPage {
@@ -85,13 +91,24 @@
 
 	TopBarMenu {
 		-st-mixin: TopBarMenuMixin(
-			LinkTitleTextColor value(primary3),
-			LinkSubtitleTextColor value(level6),
-			LinkTextColorHover value(primary3),
-			LinkBgColorHover value(level3),
-			TriggerBgColorHover value(level4),
 			ArrowColor value(level0),
-			ViewPortBgColor value(level1)
+			ViewPortBgColor value(level1),
+			MenuTriggerTextColor value(LINK_TEXT_COLOR),
+			MenuTriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			MenuTriggerBgColorHover value(level4),
+			MenuTriggerPadding 0.25rem 0rem,
+			MenuTriggerTextSize 1rem,
+			MenuTriggerRadius 6px,
+			MenuItemTextColor value(LINK_TEXT_COLOR),
+			MenuItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			MenuItemBgColor_Hover value(level3),
+			MenuItemPadding 0.5rem 0.5rem 1rem,
+			MenuItemRadius 6px,
+			MenuItemLabelTextSize 1rem,
+			MenuItemLabelLineHeight 2rem,
+			MenuItemLabelTextWeight 500,
+			MenuItemSubtitleLineHeight 1rem,
+			MenuItemSubtitleTextSize 0.85rem	
 		);
 	}
 
@@ -99,7 +116,20 @@
 		-st-mixin: MobileMenuMixin(
 			StripGradientStartColor value(primary1),
 			StripGradientMidColor value(primary3),
-			StripGradientEndColor value(primary4)
+			StripGradientEndColor value(primary4),
+			MenuBgColor value(level7),
+			MenuItemTextColor value(primary1_1),
+			MenuItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			MenuItemBgColor_Hover value(level3),
+			MenuItemPadding 1rem 1rem 0.5rem,
+			MenuItemLabelTextSize 1rem,
+			MenuItemLabelTextWeight 500,
+			MenuItemSubtitleLineHeight 1.5rem,
+			MenuItemSubtitleTextSize 0.75rem,
+			MenuItemBorderColor value(level6),
+			MenuItemSubtitleTextColor value(level0),
+			MenuSectionTitleColor value(level5),
+			LocaleSelectorSelectedItemBgColor value(primary1)
 		);
 	}
 
@@ -132,14 +162,14 @@
 
 	ContentComponent {
 		-st-mixin: ContentComponentMixin(
-			LinkColor value(accent1),
+			LinkColor value(LINK_TEXT_COLOR),
 			LinkColorHover value(primary2)
 		);
 	}
 
 	Popover {
 		-st-mixin: PopoverMixin(
-			TriggerTextColor value(accent1),
+			TriggerTextColor value(LINK_TEXT_COLOR),
 			TriggerTextColor_Hover value(primary2),
 			TriggerTextColor_Open value(level0),
 			TriggerTextBgColor_Open value(primary2),
@@ -189,11 +219,11 @@
 		);
 	}
 
-	Button {
+	/* Button {
 		-st-mixin: ButtonMixin(
 			LabelColor value(accent1),
 			LabelColor_Hover value(primary2),
 			LabelColor_Active value(accent3)
 		);
-	}
+	} */
 }

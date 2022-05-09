@@ -3,7 +3,13 @@
 @st-import Header from "../header/header.st.css";
 @st-import LocaleSelector from "../locale-selector/locale-selector.st.css";
 @st-import ThemeSelector from "../theme-selector/theme-selector.st.css";
-@st-import [preventSelection] from "./../../theme/mixins.st.css";
+@st-import Button from "../ui/button/button.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
+@st-import [preventSelection, MobileHeader] from "./../../theme/mixins.st.css";
+
+:vars {
+	headerHeight: 140px;
+}
 
 .root {
 	-st-states: side(enum(right, left));
@@ -30,7 +36,9 @@
 	left: 2rem;
 }
 
-.burgerMenu {}
+.burgerMenu {
+	overflow: hidden;
+}
 
 .burgerBars {
 	background: #373a47;
@@ -41,13 +49,14 @@
 	-st-states: side(enum(right, left));
 	height: 24px;
 	width: 24px;
+	z-index: 2;
 }
-.crossButton:side(right) {
+.crossButton:side(left) {
 	top: 10px !important;
 	left: 10px;
 	right: auto !important;
 }
-.crossButton:not(:side(right)) {
+.crossButton:side(right) {
 	top: 10px !important;
 	left: auto !important;
 	right: 10px;
@@ -59,10 +68,21 @@
 	top: 0;
 }
 
-.itemList {}
+.itemList {
+	/* background: #303030; */
+
+}
 
 .header {
 	-st-extends: Header;
+	-st-mixin: MobileHeader;
+}
+
+.toolbar {
+	display: flex;
+	align-items: center;
+	align-content: space-between;
+	padding: 0.25rem 1rem;
 }
 
 .localeSelector {
@@ -74,3 +94,49 @@
 }
 
 .strip {}
+
+.section {
+	/* border-top: 1px solid #808080; */
+}
+
+.sectionTitle {
+	display: block;
+}
+
+.child {
+	border-bottom: 1px solid #808080;
+}
+
+.button {
+	-st-extends: Button;
+}
+.button::content {
+	padding: 1rem;
+}
+
+.menu {
+	overflow: hidden;
+}
+
+.menuHeader {
+	top: 0;
+	/* padding: 2rem 0; */
+	width: 100%;
+	position: absolute;
+	/* background: #303030; */
+	z-index: 1;
+	/* height: value(headerHeight); */
+}
+
+.content {
+	padding-top: value(headerHeight);
+}
+
+:global(.bm-menu) {
+	overflow: hidden;
+}
+
+.menuItemButton {
+	-st-extends: Button;
+	display: block;
+}

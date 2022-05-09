@@ -15,7 +15,6 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 				type="single"
 				onValueChange={(localeId: LocaleId) => {
 					onLocaleChange(localeId).catch(() =>
-						// TODO replace with logger call
 						console.error("onLocaleChange Error")
 					);
 				}}
@@ -31,13 +30,14 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 								title={localeLabel}
 								value={id}
 							>
-								<li
-									className={st(classes.item, {
-										locale: id,
-										selected: locale === id,
-									})}
-								>
-									<Button label={localeLabel} />
+								<li className={classes.item}>
+									<Button
+										label={localeLabel}
+										className={st(classes.button, {
+											locale: id,
+											selected: locale === id,
+										})}
+									/>
 								</li>
 							</ToggleGroupItem>
 						);

@@ -3,26 +3,48 @@
 @st-import Button from "./button.st.css";
 
 :vars {
-	LabelColor: magenta;
-	LabelColor_Hover: blue;
-	LabelColor_Active: red;
-	/* LabelBgColor: red;
-	LabelBgColor_Hover: magenta;
-	LabelBgColor_Active: blue;
-	LabelBorderColor: green;
-	LabelBorderColor_Hover: blue;
-	LabelBorderColor_Active: red; */
+	ButtonRadius: inherit;
+	ButtonPadding: inherit;
+	ButtonTextColor: inherit;
+	ButtonTextColor_Hover: inherit;
+	ButtonBgColor_Hover: inherit;
+	ButtonLabelTextColor: inherit;
+	ButtonLabelTextColor_Hover: inherit;
+	ButtonLabelTextWeight: inherit;
+	ButtonLabelLineHeight: inherit;
+	ButtonLabelTextSize: inherit;
+	ButtonSubtitleLineHeight: inherit;
+	ButtonSubtitleTextSize: inherit;
+	ButtonChildrenTextColor: inherit;
 }
 
 .root {
 	-st-extends: Button;
-	color: value(LabelColor);
+	color: value(ButtonTextColor);
+	text-decoration: none;
 }
 
 .root:hover {
-	color: value(LabelColor_Hover);
+	color: value(ButtonTextColor_Hover);
 }
 
-.root:active {
-	color: value(LabelColor_Active);
+.root::contentWrapper {
+	border-radius: value(ButtonRadius);
+	background-color: value(ButtonBgColor_Hover);
+}
+
+.root::content {
+	padding: value(ButtonPadding);
+}
+
+.root::label {
+	font-weight: value(ButtonLabelTextWeight);
+	line-height: value(ButtonLabelLineHeight);
+	font-size: value(ButtonLabelTextSize);
+}
+
+.root::children {
+	line-height: value(ButtonSubtitleLineHeight);
+	font-size: value(ButtonSubtitleTextSize);
+	color: value(ButtonChildrenTextColor);
 }
