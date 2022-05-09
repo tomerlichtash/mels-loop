@@ -22,6 +22,8 @@ export const Locale: Language = {
 	PAGE_LABEL_ABOUT: "About",
 	PAGE_LABEL_BLOG: "Blog",
 	PAGE_LABEL_RESOURCES: "Resources",
+	PAGE_LABEL_GLOSSARY: "Glossary",
+	PAGE_LABEL_DOCS: "Documents",
 
 	/**
 	 * PAGE SECTIONS

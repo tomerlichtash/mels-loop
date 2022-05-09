@@ -6,8 +6,8 @@ export const Locale: Language = {
 	 */
 	SITE_TITLE: "לולאת מל",
 	SITE_SUBTITLE: "מדריך מקיף לסיפור על מל",
-	SITE_LICENSE_SHORT: "cc",
-	SITE_LICENSE_FULL: "cc-by-sa",
+	SITE_LICENSE_LABEL: "cc",
+	SITE_LICENSE_ATTRS: "by-sa",
 
 	/**
 	 * ERRORS
@@ -18,10 +18,12 @@ export const Locale: Language = {
 	/**
 	 * PAGE NAME
 	 */
-	PAGE_NAME_HOME: "שער",
-	PAGE_NAME_ABOUT: "אודות",
-	PAGE_NAME_BLOG: "בלוג",
-	PAGE_NAME_RESOURCES: "משאבים",
+	PAGE_LABEL_HOME: "שער",
+	PAGE_LABEL_ABOUT: "אודות",
+	PAGE_LABEL_BLOG: "בלוג",
+	PAGE_LABEL_RESOURCES: "משאבים",
+	PAGE_LABEL_GLOSSARY: "Glossary",
+	PAGE_LABEL_DOCS: "Documents",
 
 	/**
 	 * PAGE SECTIONS
