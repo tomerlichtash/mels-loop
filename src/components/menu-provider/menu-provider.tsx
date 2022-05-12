@@ -99,6 +99,7 @@ export const MenuProvider = ({ isMobile, className }: MenuProviderProps) => {
 		return (
 			<MobileMenu
 				items={menuItems}
+				textDirection={textDirection}
 				className={mobileStyle(mobileClasses.root, className)}
 				right={textDirection === "ltr"}
 			/>

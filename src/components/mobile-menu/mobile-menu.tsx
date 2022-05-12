@@ -9,10 +9,12 @@ import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
 import { IMenuData, IMenuItem } from "../../interfaces/menu";
 import { st, classes } from "./mobile-menu.st.css";
+import { TextDirection } from "../../interfaces/locale-context";
 
 export interface IMobileNavProps extends ComponentProps {
 	right: boolean;
 	items: IMenuData[];
+	textDirection: TextDirection;
 }
 
 const groupChild = (child: IMenuItem) => {
@@ -86,14 +88,18 @@ const menuStyles = {
 export const MobileMenu = ({
 	right,
 	items,
+	textDirection,
 	className,
 }: IMobileNavProps): JSX.Element => {
 	const menuItems = useMemo(
 		() =>
 			items.map((item) =>
-				renderMenuItem(item)(renderGroupSection, renderSingleSection)
+				renderMenuItem(item, textDirection)(
+					renderGroupSection,
+					renderSingleSection
+				)
 			),
-		[items]
+		[items, textDirection]
 	);
 
 	const side = right ? "right" : "left";
