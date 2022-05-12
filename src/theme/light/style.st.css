@@ -101,10 +101,11 @@
 		-st-mixin: TopBarMenuMixin(
 			ArrowColor value(level0),
 			ViewPortBgColor value(level1),
-			TriggerTextColor value(LINK_TEXT_COLOR),
+			TriggerTextColor value(level8),
 			TriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
 			TriggerBgColorHover value(level4),
-			TriggerPadding 0.25rem 0.5rem,
+			TriggerPadding 0 6px,
+			TriggerLabelLineHeight 32px,
 			TriggerTextSize 1rem,
 			TriggerRadius 6px,
 			ItemTextColor value(LINK_TEXT_COLOR),

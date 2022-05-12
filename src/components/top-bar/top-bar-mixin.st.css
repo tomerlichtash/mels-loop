@@ -4,7 +4,7 @@
 @st-import HeaderMixin from "../header/header-mixin.st.css";
 
 :vars {
-	BgColor: blue;
+	BgColor: #808080;
 	SiteTitleLinkTextColor: black;
 	SiteLogoBgProps: inherit;
 }

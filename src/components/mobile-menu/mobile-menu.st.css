@@ -108,13 +108,6 @@
 	border-bottom: 1px solid #808080;
 }
 
-.button {
-	-st-extends: Button;
-}
-.button::content {
-	padding: 1rem;
-}
-
 .menu {
 	overflow: hidden;
 }

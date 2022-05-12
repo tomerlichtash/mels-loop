@@ -36,7 +36,7 @@ export const Button = ({
 		className: btnClassName,
 	};
 	const btnContent = (
-		<span className={classes.contentWrapper}>
+		<span className={st(classes.contentWrapper, { icon: !!icon })}>
 			{icon && (
 				<span className={st(classes.icon, { side: iconSide })}>
 					<span className={classes.img}>{icon}</span>
@@ -59,17 +59,15 @@ export const Button = ({
 
 	if (link) {
 		return (
-			<Link href={link}>
-				<a {...props}>{btnContent}</a>
+			<Link href={link} passHref>
+				<a href={link} {...props} target={target}>
+					{btnContent}
+				</a>
 			</Link>
 		);
 	}
 
-	return (
-		<span onClick={() => callback(id)} {...props}>
-			{btnContent}
-		</span>
-	);
+	return <span onClick={() => callback(id)}>{btnContent}</span>;
 };
 
 export default Button;

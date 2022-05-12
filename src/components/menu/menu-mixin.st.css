@@ -2,15 +2,15 @@
 
 @st-import Menu from "./menu.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
-@st-import [heading5, bodyTextNormal] from "../../theme/common/typography.st.css";
+@st-import [/*heading5,*/bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
 	ListBgColor: transparent;
 	ContentPadding: 1rem;
 	ArrowColor: #fff;
 	ViewPortBgColor: #fff;
-
 	TriggerPadding: 0;
+	TriggerLabelLineHeight: auto;
 	TriggerTextSize: inherit;
 	TriggerRadius: 0;
 	TriggerBgColorHover: #c0c0c0;
@@ -46,17 +46,8 @@
   -st-mixin: bodyTextNormal;
 }
 
-.root::abstractTitle {
-  -st-mixin: heading5(
-		HeadingColor value(ItemLabelTextColor)
-	);
-}
-
 .root::more {
-	margin-top: 1rem;
-	display: inline-flex;
-	-st-mixin: ButtonMixin(
-		ButtonPadding 0,
+	/* -st-mixin: ButtonMixin(
 		ButtonRadius value(ItemRadius),
 		ButtonTextColor value(ItemTextColor),
 		ButtonTextColor_Hover value(ItemTextColor_Hover),
@@ -66,11 +57,10 @@
 		ButtonLabelTextSize value(ItemLabelTextSize),
 		ButtonLabelLineHeight value(ItemLabelLineHeight),
 		ButtonLabelTextWeight value(ItemLabelTextWeight),
-		/* ButtonSubtitleLineHeight value(ItemSubtitleLineHeight), */
 		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
-		/* ButtonLabelIconMargin value(ItemLabelIconMargin), */
+		ButtonLabelIconMargin value(ItemLabelIconMargin),
 		ButtonChildrenTextColor value(ItemSubtitleColor)
-	);
+	); */
 }
 
 .root::arrow {
@@ -83,16 +73,24 @@
 
 .root::menuTrigger {
 	border-radius: value(TriggerRadius);
+	transition: all 25ms ease-in;
 }
 .root::menuTrigger[data-state="open"] {
+	color: value(TriggerTextColor_Hover);
 	background-color: value(TriggerBgColorHover);
 }
+
+.root::menuTrigger[data-state="open"] > * {
+	color: value(TriggerTextColor_Hover);
+}
+
 .root::triggerButton {
 	-st-mixin: ButtonMixin(
 		ButtonPadding value(TriggerPadding),
+		ButtonLabelLineHeight value(TriggerLabelLineHeight),
 		ButtonLabelTextSize value(TriggerTextSize),
 		ButtonTextColor value(TriggerTextColor),
-		ButtonTextColor_Hover value(TriggerTextColor_Hover),		
+		/* ButtonTextColor_Hover value(TriggerTextColor_Hover),		 */
 	);
 }
 
@@ -108,9 +106,16 @@
 		ButtonLabelTextSize value(ItemLabelTextSize),
 		ButtonLabelLineHeight value(ItemLabelLineHeight),
 		ButtonLabelTextWeight value(ItemLabelTextWeight),
-		/* ButtonSubtitleLineHeight value(ItemSubtitleLineHeight), */
 		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
 		ButtonLabelIconMargin value(ItemLabelIconMargin),
 		ButtonChildrenTextColor value(ItemSubtitleColor)
 	);
 }
+
+/* .root::more {
+	-st-mixin: ButtonMixin(
+		ItemBgColor_Hover red,
+		ButtonPadding 1rem,
+		ButtonBgColor_Hover blue
+	)
+} */

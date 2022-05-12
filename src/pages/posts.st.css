@@ -27,9 +27,6 @@
 
 .postTitle {
   -st-extends: Button;
-  font-size: 3rem;
-  font-weight: normal;
-  text-decoration: none;
 }
 
 .postTitle:hover {}
@@ -39,9 +36,3 @@
 .postContent {
   -st-extends: ContentComponent;
 }
-
-/* .postContent:type(figure) {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  padding: 1rem;
-  margin-bottom: 2rem;
-} */

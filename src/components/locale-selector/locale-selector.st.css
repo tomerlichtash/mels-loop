@@ -1,6 +1,6 @@
 @namespace "LocaleSelector";
 
-@st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [boxSizing, preventSelection, TextNode] from "../../theme/mixins.st.css";
 @st-import [LatinText, HebrewText] from "../../theme/common/typography.st.css";
 @st-import Button from "../ui/button/button.st.css"
 
@@ -41,9 +41,13 @@
 .button {
 	-st-extends: Button;
 	-st-states: locale(enum(en, he)), selected(boolean);
-	display: block;
-	align-items: center;
-	text-align: center;
+	-st-mixin: preventSelection, TextNode(
+		TextSize 14px,
+		TextLineHeight 32px,
+		TextWeight 400
+	);
+	height: 32px;
+	width: 32px;
 }
 .button:locale(en) {
 	-st-mixin: LatinText;
@@ -52,8 +56,7 @@
 .button:locale(he) {
 	-st-mixin: HebrewText;
 }
-.button::content {
-	height: 32px;
-	width: 32px;
-	line-height: 32px;
+.button:selected {
+	cursor: default;
+	font-weight: 500;
 }

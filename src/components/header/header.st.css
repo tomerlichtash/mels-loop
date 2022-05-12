@@ -22,9 +22,6 @@
 
 .siteTitle {
   -st-extends: Button;
-	-st-states: link(boolean);
-	display: flex;
-	align-items: center;
 }
 
 .siteSubtitle {

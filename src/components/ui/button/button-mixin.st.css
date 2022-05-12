@@ -13,7 +13,6 @@
 	ButtonLabelTextWeight: inherit;
 	ButtonLabelLineHeight: inherit;
 	ButtonLabelTextSize: inherit;
-	ButtonSubtitleLineHeight: inherit;
 	ButtonSubtitleTextSize: inherit;
 	ButtonChildrenTextColor: inherit;
 	ButtonBorderTopSize: 0;
@@ -28,29 +27,22 @@
 	color: value(ButtonTextColor);
 	border-top: value(ButtonBorderTopSize) solid value(ButtonBorderTopColor);
 	border-bottom: value(ButtonBorderBottomSize) solid value(ButtonBorderBottomColor);
+	padding: value(ButtonPadding);
 }
 
 .root:hover {
 	color: value(ButtonTextColor_Hover);
-}
-
-.root::contentWrapper {
-	border-radius: value(ButtonRadius);
-	padding: value(ButtonPadding);
-}
-.root:hover::contentWrapper {
 	background-color: value(ButtonBgColor_Hover);
+	border-radius: value(ButtonRadius);
 }
 
 .root::label {
-	/* line-height: value(ButtonLabelLineHeight); */
-	/* margin-bottom: value(ButtonLabelLineHeight); */
 	font-size: value(ButtonLabelTextSize);
 	font-weight: value(ButtonLabelTextWeight);
+	line-height: value(ButtonLabelLineHeight);
 }
 
 .root::children {
-	/* line-height: value(ButtonSubtitleLineHeight); */
 	font-size: value(ButtonSubtitleTextSize);
 	color: value(ButtonChildrenTextColor);
 }

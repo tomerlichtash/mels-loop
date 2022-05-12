@@ -116,23 +116,20 @@ const renderSingleSection = (item: IMenuData, textDirection: TextDirection) => {
 				<MenuTrigger title={title} url={url} />
 				<NavigationMenuContent asChild>
 					<div className={st(classes.menuContent, { layout })}>
-						<div className={classes.abstractTitle}>{title}</div>
-						<p className={classes.abstract}>
-							{description}
-							<Button
-								className={classes.more}
-								label={cta_label}
-								link={url}
-								iconSide={"left"}
-								icon={
-									textDirection === "ltr" ? (
-										<ChevronRightIcon />
-									) : (
-										<ChevronLeftIcon />
-									)
-								}
-							/>
-						</p>
+						<p className={classes.abstract}>{description}</p>
+						<Button
+							className={classes.more}
+							label={cta_label}
+							link={url}
+							iconSide={"left"}
+							icon={
+								textDirection === "ltr" ? (
+									<ChevronRightIcon />
+								) : (
+									<ChevronLeftIcon />
+								)
+							}
+						/>
 					</div>
 				</NavigationMenuContent>
 			</NavigationMenuItem>

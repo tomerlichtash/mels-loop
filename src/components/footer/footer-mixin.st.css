@@ -2,7 +2,8 @@
 
 @st-import Footer from "./footer.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
-@st-import [IconFill, GradientStrip] from "../../theme/mixins.st.css";
+@st-import [IconFill, GradientStrip, TextNode] from "../../theme/mixins.st.css";
+@st-import [heading6, bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
   BackgroundColor: #f0f0f0;
@@ -12,21 +13,15 @@
   StripGradientEndColor: black;
   ButtonTextColor: inherit;
   ButtonTextColor_Hover: inherit;
-}
-
-:vars {
   TitleFontSize: inherit;
   TitleFontWeight: inherit;
   TitleFontCase: inherit;
   TitleMargin: 1rem;
-
   SubtitleFontSize: inherit;
   SubtitleFontWeight: inherit;
   SubtitleFontCase: inherit;
-
   DescriptionFontSize: inherit;
   DescriptionFontWeight: inherit;
-
   LinkFontSize: inherit;  
   LinkFontWeight: inherit;  
 }
@@ -40,7 +35,8 @@
   -st-mixin: GradientStrip(
     StripGradientStartColor value(StripGradientStartColor),
     StripGradientMidColor value(StripGradientMidColor),
-    StripGradientEndColor value(StripGradientEndColor)
+    StripGradientEndColor value(StripGradientEndColor),
+    StripGradientHeight 4px
   );
 }
 
@@ -53,23 +49,8 @@
   );
 }
 
-.root::title {
-  font-weight: 500;
-}
-
-.root::subtitle {
-  font-size: 0.85rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-}
-
 .root::pageContainer {
   padding: value(Padding);
-}
-
-.root::item {
-  /* line-height: 1.4rem; */
-  /* font-size: 0.85rem; */
 }
 
 .root::footerTitle {
@@ -77,5 +58,28 @@
 }
 
 .root::excerpt {
-  /* font-size: 0.85rem; */
+  -st-mixin: bodyTextNormal
+}
+
+.root::title {
+  -st-mixin: TextNode(
+    TextSize 15px,
+    TextWeight 500,
+    TextCase uppercase
+  );
+}
+
+.root::subtitle {
+  -st-mixin: TextNode(
+    TextSize 14px,
+    TextWeight 400,
+  );
+}
+
+.root::columnTitle {
+  -st-mixin: TextNode(
+    TextWeight 500,
+    TextSize 16px,
+  );
+  margin-bottom: 1rem;
 }

@@ -8,7 +8,6 @@
 	fontSize5: 20px;
 	fontSize6: 14px;
 	fontSize7: 12px;
-
 	lineHeight1: 60px;
 	lineHeight2: 49px;
 	lineHeight3: 39px;
@@ -17,7 +16,6 @@
 	lineHeight6: 20px;
 	lineHeight7: 21px;
 	lineHeight8: 16px;
-
 	fontWeightBold: 700;
 	fontWeightMedium: 500;
 	fontWeightSemiBold: 600;
@@ -25,15 +23,44 @@
 }
 
 :vars {
+	h1_size: value(fontSize1);
+	h2_size: value(fontSize2);
+	h3_size: value(fontSize3);
+	h4_size: value(fontSize4);
+	h5_size: value(fontSize5);
+	h6_size: value(fontSize6);
+
+	h1_lineHeight: value(lineHeight1);
+	h2_lineHeight: value(lineHeight2);
+	h3_lineHeight: value(lineHeight3);
+	h4_lineHeight: value(lineHeight4);
+	h5_lineHeight: value(lineHeight5);
+	h6_lineHeight: value(lineHeight6);
+
+	h1_weight: value(fontWeightMedium);
+	h2_weight: value(fontWeightBold);
+	h3_weight: value(fontWeightBold);
+	h4_weight: value(fontWeightMedium);
+	h5_weight: value(fontWeightMedium);
+	h6_weight: value(fontWeightMedium);
+
+	h1_color: value(HeadingColor);
+	h2_color: value(HeadingColor);
+	h3_color: value(HeadingColor);
+	h4_color: value(HeadingColor);
+	h5_color: value(HeadingColor);
+	h6_color: value(HeadingColor);
+
+	h1_margin: value(BaseMargin);
+	h2_margin: value(BaseMargin);
+	h3_margin: value(BaseMargin);
+	h4_margin: value(BaseMargin);
+	h5_margin: value(BaseMargin);
+	h6_margin: value(BaseMargin);
+
 	HeadingColor: inherit;
 	BodyTextColor: inherit;
 	BaseMargin: 0;
-	Heading1Margin: value(BaseMargin);
-	Heading2Margin: value(BaseMargin);
-	Heading3Margin: value(BaseMargin);
-	Heading4Margin: value(BaseMargin);
-	Heading5Margin: value(BaseMargin);
-	Heading6Margin: value(BaseMargin);
 }
 
 .LatinText {
@@ -47,62 +74,62 @@
 
 .heading1 {
 	-st-mixin: TextNode(
-		TextSize value(fontSize1),
-		TextLineHeight value(lineHeight1),
-		TextWeight value(fontWeightMedium),
-		TextColor value(HeadingColor)
+		TextSize value(h1_size),
+		TextLineHeight value(h1_lineHeight),
+		TextWeight value(h1_weight),
+		TextColor value(h1_color)
 	);
-  margin-bottom: value(Heading1Margin);
+  margin-bottom: value(h1_margin);
 }
 
 .heading2 {
 	-st-mixin: TextNode(
-		TextSize value(fontSize2),
-		TextLineHeight value(lineHeight2),
-		TextWeight value(fontWeightBold),
-		TextColor value(HeadingColor)
+		TextSize value(h2_size),
+		TextLineHeight value(h2_lineHeight),
+		TextWeight value(h2_weight),
+		TextColor value(h2_color)
 	);
-  margin-bottom: value(Heading2Margin);
+  margin-bottom: value(h2_margin);
 }
 
 .heading3 {
 	-st-mixin: TextNode(
-		TextSize value(fontSize3),
-		TextLineHeight value(lineHeight3),
-		TextWeight value(fontWeightBold),
-		TextColor value(HeadingColor)
+		TextSize value(h3_size),
+		TextLineHeight value(h3_lineHeight),
+		TextWeight value(h3_weight),
+		TextColor value(h3_color)
 	);
-  margin-bottom: value(Heading3Margin);
+  margin-bottom: value(h3_margin);
 }
 
 .heading4 {
 	-st-mixin: TextNode(
-		TextSize value(fontSize4),
-		TextLineHeight value(lineHeight4),
-		TextWeight value(fontWeightMedium),
-		TextColor value(HeadingColor)
+		TextSize value(h4_size),
+		TextLineHeight value(h4_lineHeight),
+		TextWeight value(h4_weight),
+		TextColor value(h4_color)
 	);
-  margin-bottom: value(Heading4Margin);
+  margin-bottom: value(h4_margin);
 }
 
 .heading5 {
 	-st-mixin: TextNode(
-		TextSize value(fontSize5),
-		TextLineHeight value(lineHeight5),
-		TextWeight value(fontWeightMedium),
-		TextColor value(HeadingColor)
+		TextSize value(h5_size),
+		TextLineHeight value(h5_lineHeight),
+		TextWeight value(h5_weight),
+		TextColor value(h5_color)
 	);
-  margin-bottom: value(Heading5Margin);
+  margin-bottom: value(h5_margin);
 }
 
 .heading6 {
 	-st-mixin: TextNode(
-		TextSize value(fontSize6),
-		TextLineHeight value(lineHeight6)
-		TextWeight value(fontWeightMedium),
-		TextColor value(HeadingColor)
+		TextSize value(h6_size),
+		TextLineHeight value(h6_lineHeight)
+		TextWeight value(h6_weight),
+		TextColor value(h6_color)
 	);
-  margin-bottom: value(Heading6Margin);
+  margin-bottom: value(h6_margin);
 }
 
 .bodyTextNormal {

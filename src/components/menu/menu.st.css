@@ -73,26 +73,21 @@
 
 .listItem {}
 
-.abstractTitle {}
-
 .abstract {}
 
-.more {}
+.more {
+	-st-extends: Button;
+}
 
 .menuTrigger {}
 .triggerButton {
 	-st-extends: Button;
 }
-/* .triggerButton::icon {
-	order: 2;
-} */
-.triggerButton::contentWrapper {
-	align-items: center;
-  justify-content: center;
-}
 
 .menuItemButton {
 	-st-extends: Button;
+	display: block;
+	/* width: 100%; */
 }
 .menuItemButton::contentWrapper {
 	align-items: flex-start;

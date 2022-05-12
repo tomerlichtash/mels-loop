@@ -81,14 +81,15 @@ export const Footer = ({ direction, className }: IFooterProps): JSX.Element => {
 									link="https://github.com/tomerlichtash/mels-loop-nextjs"
 									label={translate("MENU_ITEM_LABEL_ID_GITHUB")}
 									className={classes.button}
+									target="_blank"
 								/>
 							</li>
 							<li className={st(classes.item)}>
 								<Button
-									target="_blank"
 									link="https://twitter.com/aboutmelsloop"
 									label={translate("MENU_ITEM_LABEL_ID_TWITTER")}
 									className={classes.button}
+									target="_blank"
 								/>
 							</li>
 							<li className={st(classes.item)}>

@@ -2,19 +2,18 @@
 
 @st-import Button from "../ui/button/button.st.css";
 @st-import [ResetListStyle] from "../../theme/mixins.st.css";
+@st-import [pageWidth] from "../page/page.st.css";
 
 .root {
   -st-states: direction(enum(ltr, rtl));
   margin-top: 2rem;
 }
 
-.strip {
-  height: 4px;
-}
+.strip {}
 
 .layout {
   display: flex;
-  max-width: 800px;
+  max-width: value(pageWidth);
   margin: 0 auto;
 }
 
@@ -50,19 +49,13 @@
 
 .footerTitle {}
 
-.excerpt {
-  margin: 0;
-}
+.excerpt {}
 
 .button {
   -st-extends: Button;
 }
 
-.columnTitle {
-  font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
+.columnTitle {}
 
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {

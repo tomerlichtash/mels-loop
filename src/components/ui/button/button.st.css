@@ -3,9 +3,14 @@
 .root {
 	-st-states: selected(boolean);
 	text-decoration: none;
+	display: inline-block;
 }
 
 .contentWrapper {
+	-st-states: icon(boolean);
+}
+
+.contentWrapper:icon {
 	display: flex;
 	align-items: center;
 }
