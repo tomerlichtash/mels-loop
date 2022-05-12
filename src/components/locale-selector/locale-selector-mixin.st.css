@@ -6,7 +6,7 @@
 	ContainerRadius: 6px;
 	SelectedItemTextColor: white;
 	ContainerBorderColor: black;
-	ItemTextColor: blue;
+	ItemTextColor: black;
 	ItemBgColorHover: black;
 	SelectedItemBgColor: black;
 }
@@ -19,7 +19,7 @@
 
 .root::button {
 	border-radius: value(ContainerRadius);
-	color: value(ItemTextColor)
+	color: value(ItemTextColor);
 }
 
 .root::button:hover {

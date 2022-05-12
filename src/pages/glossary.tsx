@@ -9,7 +9,7 @@ import { usePageData } from "../components/usePageData";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { Button } from "../components/ui";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import { st, classes } from "./glossary.st.css";
+import { st, classes } from "./page-base.st.css";
 
 export default function Glossary(props: IPageProps) {
 	const { translate, siteTitle, pageName } = useContext(ReactLocaleContext);

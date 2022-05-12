@@ -19,7 +19,7 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 					);
 				}}
 			>
-				<ul className={classes.list}>
+				<div className={classes.list}>
 					{locales.map((id) => {
 						const localeLabel = getLocaleSymbol(id);
 						return (
@@ -30,7 +30,7 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 								title={localeLabel}
 								value={id}
 							>
-								<li className={classes.item}>
+								<div className={classes.item}>
 									<Button
 										label={localeLabel}
 										className={st(classes.button, {
@@ -38,11 +38,11 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 											selected: locale === id,
 										})}
 									/>
-								</li>
+								</div>
 							</ToggleGroupItem>
 						);
 					})}
-				</ul>
+				</div>
 			</ToggleGroupRoot>
 		</div>
 	);

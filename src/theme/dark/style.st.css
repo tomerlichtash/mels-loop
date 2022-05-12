@@ -26,8 +26,6 @@
 @st-import CopyUrlButtonTriggerMixin from "../../components/copy-button/copy-url-button-trigger-mixin.st.css";
 @st-import CopyUrlButtonContent from "../../components/copy-button/copy-url-button-content.st.css";
 @st-import CopyUrlButtonContentMixin from "../../components/copy-button/copy-url-button-content-mixin.st.css";
-@st-import ContentComponent from "../../components/content/content-component.st.css";
-@st-import ContentComponentMixin from "../../components/content/content-component-mixin.st.css";
 @st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
 @st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 @st-import Note from "../../components/note/note.st.css";
@@ -127,13 +125,6 @@
 			IconFill_Github value(level7),
 			IconFill_Twitter value(accent1),
 			IconFill_Contact value(primary2),
-		);
-	}
-
-	ContentComponent {
-		-st-mixin: ContentComponentMixin(
-			LinkColor value(accent1),
-			LinkColorHover value(primary2)
 		);
 	}
 

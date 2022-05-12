@@ -1,5 +1,7 @@
 @namespace "LightTheme";
 
+@st-import PageBase from "../../pages/page-base.st.css";
+@st-import PageBaseMixin from "../../pages/page-base-mixin.st.css";
 @st-import StoryPage from "../../pages/index.st.css";
 @st-import StoryPageMixin from "../../pages/index-mixin.st.css";
 @st-import Scrollbar from "../../components/scrollbar/scrollbar.st.css";
@@ -26,8 +28,6 @@
 @st-import CopyUrlButtonTriggerMixin from "../../components/copy-button/copy-url-button-trigger-mixin.st.css";
 @st-import CopyUrlButtonContent from "../../components/copy-button/copy-url-button-content.st.css";
 @st-import CopyUrlButtonContentMixin from "../../components/copy-button/copy-url-button-content-mixin.st.css";
-@st-import ContentComponent from "../../components/content/content-component.st.css";
-@st-import ContentComponentMixin from "../../components/content/content-component-mixin.st.css";
 @st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
 @st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 @st-import Note from "../../components/note/note.st.css";
@@ -53,18 +53,27 @@
 	accent1,
 	accent2,
 	accent3,
-	accent4
+	accent4,
+	shadow1,
+	BODY_TEXT_COLOR,
+	LINK_TEXT_COLOR,
+	LINK_TEXT_COLOR_HOVER
 ] from "./vars.st.css";
 
-:vars {
-	LINK_TEXT_COLOR: value(accent1);
-	LINK_TEXT_COLOR_HOVER: value(primary2);
-}
-
 @st-scope .root {
+	PageBase {
+		-st-mixin: PageBaseMixin(
+			HeadingColor1 value(level7),
+			HeadingColor2 value(level6),
+			HeadingColor3 value(level6),
+			BodyTextColor value(BODY_TEXT_COLOR)
+		);
+	}
+
 	StoryPage {
 		-st-mixin: StoryPageMixin(
 			MotoTextColor value(level5),
+			TextColor value(BODY_TEXT_COLOR)
 		);
 	}
 
@@ -84,7 +93,7 @@
 		-st-mixin: TopBarMixin(
 			BgColor value(level3),
 			SiteTitleLinkTextColor value(level8),
-			SiteLogoBgProps url(//public/favicon-temp.png)
+			SiteLogoBgProps url(//public/favicon-temp.png),
 		);
 	}
 
@@ -101,13 +110,16 @@
 			ItemTextColor value(LINK_TEXT_COLOR),
 			ItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
 			ItemBgColor_Hover value(level3),
-			ItemPadding 0.5rem 0.5rem 1rem,
+			ItemPadding 1rem,
 			ItemRadius 6px,
 			ItemLabelTextSize 1rem,
-			ItemLabelLineHeight 2rem,
+			ItemLabelLineHeight 0.25rem,
 			ItemLabelTextWeight 500,
+			/* ItemSubtitleColor value(accent2), */
 			ItemSubtitleLineHeight 1rem,
-			ItemSubtitleTextSize 0.85rem	
+			ItemSubtitleTextSize 0.85rem,
+			ItemLabelIconMargin 0.35rem,
+			ViewPortShadow value(shadow1)
 		);
 	}
 
@@ -117,7 +129,7 @@
 			ItemTextColor value(primary1_1),
 			ItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
 			ItemBgColor_Hover value(level3),
-			ItemPadding 1rem 1rem 0.5rem,
+			ItemPadding 1rem,
 			ItemLabelTextSize 1rem,
 			ItemLabelTextWeight 500,
 			ItemSubtitleLineHeight 1.5rem,
@@ -125,15 +137,18 @@
 			ItemBorderColor value(level6),
 			ItemSubtitleTextColor value(level0),
 			SectionTitleColor value(level5),
+			LocaleSelectorItemTextColor value(level4),
 			LocaleSelectorSelectedItemBgColor value(primary1),
 			StripGradientStartColor value(primary1),
 			StripGradientMidColor value(primary3),
-			StripGradientEndColor value(primary4)
+			StripGradientEndColor value(primary4),
+			HeaderLogoProps url(//public/favicon-light-temp.png)
 		);
 	}
 
 	LocaleSelector {
 		-st-mixin: LocaleSelectorMixin(
+			ItemTextColor value(level7),
 			SelectedItemTextColor value(level8),
 			ContainerBorderColor value(level4),
 			ItemBgColorHover value(level5),
@@ -152,17 +167,11 @@
 	SiteFooter {
 		-st-mixin: SiteFooterMixin(
 			BackgroundColor value(level2),
-			Padding 0,
 			StripGradientStartColor value(primary1),
 			StripGradientMidColor value(primary3),
-			StripGradientEndColor value(primary4)
-		);
-	}
-
-	ContentComponent {
-		-st-mixin: ContentComponentMixin(
-			LinkColor value(LINK_TEXT_COLOR),
-			LinkColorHover value(primary2)
+			StripGradientEndColor value(primary4),
+			ButtonTextColor value(LINK_TEXT_COLOR),
+			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
 		);
 	}
 

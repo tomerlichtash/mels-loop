@@ -2,6 +2,7 @@
 
 @st-import Menu from "./menu.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
+@st-import [heading5, bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
 	ListBgColor: transparent;
@@ -25,8 +26,11 @@
 	ItemLabelTextSize: inherit;
 	ItemLabelLineHeight: inherit;
 	ItemLabelTextWeight: inherit;
-	ItemSubtitleLineHeight: inherit;
+	ItemSubtitleColor: inherit;
+	/* ItemSubtitleLineHeight: inherit; */
 	ItemSubtitleTextSize: inherit;
+	ItemLabelIconMargin: 0;
+	ViewPortShadow: none;
 }
 
 .root {
@@ -36,14 +40,45 @@
 .root::list {
 	background-color: value(ListBgColor);
 }
+
 .root::menuContent {
 	padding: value(ContentPadding);
+  -st-mixin: bodyTextNormal;
 }
+
+.root::abstractTitle {
+  -st-mixin: heading5(
+		HeadingColor value(ItemLabelTextColor)
+	);
+}
+
+.root::more {
+	margin-top: 1rem;
+	display: inline-flex;
+	-st-mixin: ButtonMixin(
+		ButtonPadding 0,
+		ButtonRadius value(ItemRadius),
+		ButtonTextColor value(ItemTextColor),
+		ButtonTextColor_Hover value(ItemTextColor_Hover),
+		ButtonLabelTextColor value(ItemLabelTextColor),
+		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover),
+		ButtonBgColor_Hover value(ItemBgColor_Hover),
+		ButtonLabelTextSize value(ItemLabelTextSize),
+		ButtonLabelLineHeight value(ItemLabelLineHeight),
+		ButtonLabelTextWeight value(ItemLabelTextWeight),
+		/* ButtonSubtitleLineHeight value(ItemSubtitleLineHeight), */
+		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
+		/* ButtonLabelIconMargin value(ItemLabelIconMargin), */
+		ButtonChildrenTextColor value(ItemSubtitleColor)
+	);
+}
+
 .root::arrow {
 	background-color: value(ArrowColor);
 }
 .root::viewport {
 	background: value(ViewPortBgColor);
+	box-shadow: value(ViewPortShadow);
 }
 
 .root::menuTrigger {
@@ -73,7 +108,9 @@
 		ButtonLabelTextSize value(ItemLabelTextSize),
 		ButtonLabelLineHeight value(ItemLabelLineHeight),
 		ButtonLabelTextWeight value(ItemLabelTextWeight),
-		ButtonSubtitleLineHeight value(ItemSubtitleLineHeight),
-		ButtonSubtitleTextSize value(ItemSubtitleTextSize)
+		/* ButtonSubtitleLineHeight value(ItemSubtitleLineHeight), */
+		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
+		ButtonLabelIconMargin value(ItemLabelIconMargin),
+		ButtonChildrenTextColor value(ItemSubtitleColor)
 	);
 }

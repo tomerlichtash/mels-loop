@@ -11,6 +11,10 @@
 	headerHeight: 140px;
 }
 
+:global(.bm-menu) {
+	overflow: hidden;
+}
+
 .root {
 	-st-states: side(enum(right, left));
 	-st-mixin: preventSelection;
@@ -68,10 +72,7 @@
 	top: 0;
 }
 
-.itemList {
-	/* background: #303030; */
-
-}
+.itemList {}
 
 .header {
 	-st-extends: Header;
@@ -81,9 +82,11 @@
 .toolbar {
 	display: flex;
 	align-items: center;
-	align-content: space-between;
-	padding: 0.25rem 1rem;
+	align-content: space-around;
+	justify-content: space-between;
 }
+
+.toolbarItem {}
 
 .localeSelector {
 	-st-extends: LocaleSelector;
@@ -95,9 +98,7 @@
 
 .strip {}
 
-.section {
-	/* border-top: 1px solid #808080; */
-}
+.section {}
 
 .sectionTitle {
 	display: block;
@@ -120,20 +121,13 @@
 
 .menuHeader {
 	top: 0;
-	/* padding: 2rem 0; */
 	width: 100%;
 	position: absolute;
-	/* background: #303030; */
 	z-index: 1;
-	/* height: value(headerHeight); */
 }
 
 .content {
 	padding-top: value(headerHeight);
-}
-
-:global(.bm-menu) {
-	overflow: hidden;
 }
 
 .menuItemButton {

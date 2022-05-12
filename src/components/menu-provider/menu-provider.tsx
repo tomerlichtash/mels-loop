@@ -20,6 +20,7 @@ import {
 	st as mobileStyle,
 	classes as mobileClasses,
 } from "../mobile-menu/mobile-menu.st.css";
+import { TextDirection } from "../../interfaces/locale-context";
 
 export interface MenuProviderProps extends ComponentProps {
 	isMobile?: boolean;
@@ -65,18 +66,22 @@ const getSectionData = (isMobile: boolean): IMenuSection[] => {
 };
 
 export const renderMenuItem =
-	(item: IMenuData) =>
+	(item: IMenuData, textDirection: TextDirection) =>
 	(
-		renderSection: (items: IMenuData) => React.ReactElement,
+		renderSection: (
+			items: IMenuData,
+			textDirection: TextDirection
+		) => React.ReactElement,
 		renderSingle: (
-			items: IMenuData
+			items: IMenuData,
+			textDirection: TextDirection
 		) => React.ReactElement | React.ReactElement[]
 	) => {
 		switch (item.type) {
 			case "group":
-				return renderSection(item);
+				return renderSection(item, textDirection);
 			case "single":
-				return renderSingle(item);
+				return renderSingle(item, textDirection);
 			default:
 				break;
 		}
@@ -103,6 +108,7 @@ export const MenuProvider = ({ isMobile, className }: MenuProviderProps) => {
 	return (
 		<Menu
 			items={menuItems}
+			textDirection={textDirection}
 			className={menuStyle(menuClasses.root, className)}
 		/>
 	);

@@ -55,16 +55,22 @@ export const Locale: Language = {
 	/**
 	 * MENU ITEMS - DESCRIPTION
 	 */
-
 	MENU_ITEM_DESC_ID_ABOUT:
-		"Mel’s Loop is a guide the epic hacker folklore tale The Story of Mel. It also aims to collect the stories and of sub-stories around the story, its author, and its main charachters, early computing era stories and other related tales. The project is designed as an anthology of stories, annotations, poems and relics in the Hacker Folklore genre.",
-	MENU_ITEM_DESC_SHORT_ID_ABOUT: "About Mel's Loop Project",
+		"Mel’s Loop is a guide the epic hacker folklore tale The Story of Mel. It also aims to collect the stories and of sub-stories around the story, its author, and its main charachters, early computing era stories and other related tales.",
 	MENU_ITEM_DESC_ID_BLOG: "News and Updates",
 	MENU_ITEM_DESC_ID_RESOURCES: "Web Resources for The Story of Mel",
-	MENU_ITEM_DESC_ID_CONTRIBUTE: "Contribute to the Project",
+	MENU_ITEM_DESC_ID_CONTRIBUTE:
+		"Mel’s Loop is a guide the epic hacker folklore tale The Story of Mel. It also aims to collect the stories and of sub-stories around the story",
 	MENU_ITEM_DESC_ID_CONTACT: "Drop us a line!",
 	MENU_ITEM_DESC_ID_TWITTER: "Follow us @aboutmelsloop",
 	MENU_ITEM_DESC_ID_GITHUB: "Project source code",
+
+	/**
+	 * MOBILE MENU ITEMS - SHORT DESCRIPTION
+	 */
+	MENU_ITEM_DESC_SHORT_ID_ABOUT: "About Mel's Loop Project",
+	MENU_ITEM_DESC_SHORT_ID_CONTRIBUTE:
+		"How to contribute content to Mel's Loop Project",
 
 	/**
 	 * MENU RELATED

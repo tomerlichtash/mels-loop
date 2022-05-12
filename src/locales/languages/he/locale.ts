@@ -55,15 +55,19 @@ export const Locale: Language = {
 	/**
 	 * MENU ITEMS - DESCRIPTION
 	 */
-
 	MENU_ITEM_DESC_ID_ABOUT: "TBD",
-	MENU_ITEM_DESC_SHORT_ID_ABOUT: "על פרויקט לולאת מל",
 	MENU_ITEM_DESC_ID_BLOG: "חדשות ועדכונים",
 	MENU_ITEM_DESC_ID_RESOURCES: "מידע נוסף ברשת על הסיפור על מל",
 	MENU_ITEM_DESC_ID_CONTRIBUTE: "כיצד להשתתף או לתרום לפרויקט",
 	MENU_ITEM_DESC_ID_CONTACT: "כתבו אלינו!",
 	MENU_ITEM_DESC_ID_TWITTER: "עקבו אחרינו ב-@aboutmelsloop",
 	MENU_ITEM_DESC_ID_GITHUB: "קוד המקור של הפרויקט",
+
+	/**
+	 * MOBILE MENU ITEMS - SHORT DESCRIPTION
+	 */
+	MENU_ITEM_DESC_SHORT_ID_ABOUT: "על פרויקט לולאת מל",
+	MENU_ITEM_DESC_SHORT_ID_CONTRIBUTE: "כיצד לתרום לפרויקט לולאת מל",
 
 	/**
 	 * MENU RELATED

@@ -35,6 +35,7 @@ export const ContentComponent = ({
 					key={key}
 					componentData={componentData}
 					className={stylableClassName}
+					// contentClassName={st(classes.root)}
 				/>
 			);
 		case MLNODE_TYPES.PARAGRAPH:
@@ -125,9 +126,13 @@ export const ContentComponent = ({
 					<Heading
 						key={key}
 						componentData={componentData}
-						className={st(classes.root, {
-							type: `heading_${componentData.node.level}`,
-						})}
+						className={st(
+							classes.root,
+							{
+								type: `heading_${componentData.node.level}`,
+							},
+							className
+						)}
 					/>
 				);
 			}

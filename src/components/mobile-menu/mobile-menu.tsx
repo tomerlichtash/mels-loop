@@ -34,7 +34,7 @@ const groupChild = (child: IMenuItem) => {
 
 const renderSingleItems = (children: IMenuItem[]) => {
 	return children.map((child) => {
-		const { title, description, cta_label } = child.keys;
+		const { title, description } = child.keys;
 		const { url } = child.meta;
 		return (
 			<Button
@@ -55,11 +55,9 @@ const renderGroupSection = (item: IMenuData) => {
 	return (
 		<div key={mlUtils.uniqueId()} className={classes.section}>
 			<div className={classes.sectionTitle}>{title}</div>
-			<ul>
-				{children.map((item) => (
-					<li key={mlUtils.uniqueId()}>{groupChild(item)}</li>
-				))}
-			</ul>
+			{children.map((item) => (
+				<div key={mlUtils.uniqueId()}>{groupChild(item)}</div>
+			))}
 		</div>
 	);
 };
@@ -120,8 +118,12 @@ export const MobileMenu = ({
 					<Header className={classes.header} />
 					<div className={classes.strip}></div>
 					<div className={classes.toolbar}>
-						<LocaleSelector className={classes.localeSelector} />
-						<ThemeSelector className={classes.themeSelector} />
+						<LocaleSelector
+							className={st(classes.toolbarItem, classes.localeSelector)}
+						/>
+						<ThemeSelector
+							className={st(classes.toolbarItem, classes.themeSelector)}
+						/>
 					</div>
 				</div>
 				<div className={classes.content}>{menuItems}</div>

@@ -55,7 +55,7 @@ export const MobileMenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_INFO",
 		},
-		children: ["about-mobile", "blog", "contribute"],
+		children: ["about-mobile", "blog", "contribute-mobile"],
 	},
 	{
 		id: "contact",
@@ -152,6 +152,18 @@ export const MenuItems: IMenuItem[] = [
 		keys: {
 			title: "MENU_ITEM_LABEL_ID_CONTRIBUTE",
 			description: "MENU_ITEM_DESC_ID_CONTRIBUTE",
+			cta_label: "MENU_ITEM_LABEL_EXCERPT_SHOW_MORE",
+		},
+	},
+	{
+		id: "contribute-mobile",
+		type: "page",
+		meta: {
+			url: "/contribute",
+		},
+		keys: {
+			title: "MENU_ITEM_LABEL_ID_CONTRIBUTE",
+			description: "MENU_ITEM_DESC_SHORT_ID_CONTRIBUTE",
 			cta_label: "MENU_ITEM_LABEL_EXCERPT_SHOW_MORE",
 		},
 	},

@@ -6,25 +6,34 @@
 
 :vars {
   BackgroundColor: #f0f0f0;
-  Padding: 0;
+  Padding: 4rem 0;
   StripGradientStartColor: white;
   StripGradientMidColor: gray;
   StripGradientEndColor: black;
-  IconFill_Github: black;
-  IconFill_Twitter: black;
-  IconFill_Contact: black;
-  LabelColor: black;
-  LabelColor_Hover: black;
-  LabelColor_Active: black;
-  LabelBorderColor: magenta;
-  LabelBorderColor_Hover: black;
-  LabelBorderColor_Active: black;
+  ButtonTextColor: inherit;
+  ButtonTextColor_Hover: inherit;
+}
+
+:vars {
+  TitleFontSize: inherit;
+  TitleFontWeight: inherit;
+  TitleFontCase: inherit;
+  TitleMargin: 1rem;
+
+  SubtitleFontSize: inherit;
+  SubtitleFontWeight: inherit;
+  SubtitleFontCase: inherit;
+
+  DescriptionFontSize: inherit;
+  DescriptionFontWeight: inherit;
+
+  LinkFontSize: inherit;  
+  LinkFontWeight: inherit;  
 }
 
 .root {
   -st-extends: Footer;
   background-color: value(BackgroundColor);
-  padding: value(Padding);
 }
 
 .root::strip {
@@ -33,4 +42,40 @@
     StripGradientMidColor value(StripGradientMidColor),
     StripGradientEndColor value(StripGradientEndColor)
   );
+}
+
+.root::button {
+  -st-mixin: ButtonMixin(
+    ButtonTextColor value(ButtonTextColor),
+    ButtonTextColor_Hover value(ButtonTextColor_Hover),
+    ButtonLabelLineHeight 21px,
+    ButtonLabelTextSize 14px
+  );
+}
+
+.root::title {
+  font-weight: 500;
+}
+
+.root::subtitle {
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.root::pageContainer {
+  padding: value(Padding);
+}
+
+.root::item {
+  /* line-height: 1.4rem; */
+  /* font-size: 0.85rem; */
+}
+
+.root::footerTitle {
+  margin-bottom: value(TitleMargin);
+}
+
+.root::excerpt {
+  /* font-size: 0.85rem; */
 }

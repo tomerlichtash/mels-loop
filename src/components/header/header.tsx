@@ -5,21 +5,18 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { st, classes } from "./header.st.css";
 
 export const Header = ({ className }: ComponentProps): JSX.Element => {
-	const { siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
-	// const logo = <img src="/favicon-temp.png" />;
-	// const icon = <div className={classes.siteLogo}>x</div>;
+	const { siteTitle, siteSubtitle, textDirection } =
+		useContext(ReactLocaleContext);
 	return (
-		<header className={st(classes.root, className)}>
+		<header className={st(classes.root, { textDirection }, className)}>
 			<div className={classes.container}>
-				<div className={classes.siteLogo}></div>
 				<Button
-					// icon={<div className={classes.siteLogo}>x</div>}
-					// icon={logo as React.ReactElement}
+					icon={<div className={classes.siteLogo}></div>}
 					label={siteTitle}
 					title={`${siteTitle} - ${siteSubtitle}`}
 					link={"/"}
 					callback={() => false}
-					className={st(classes.siteTitle)}
+					className={classes.siteTitle}
 				/>
 				<div className={classes.siteSubtitle} aria-label={siteSubtitle}>
 					{siteSubtitle}

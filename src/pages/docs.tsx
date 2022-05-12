@@ -9,7 +9,7 @@ import { usePageData } from "../components/usePageData";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { Button } from "../components/ui";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import { st, classes } from "./docs.st.css";
+import { st, classes } from "./page-base.st.css";
 
 export default function Docs(props: IPageProps) {
 	const { siteTitle, pageName } = useContext(ReactLocaleContext);

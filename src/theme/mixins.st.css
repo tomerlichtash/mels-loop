@@ -62,3 +62,26 @@
 .MobileHeader::siteTitle { display: block }
 .MobileHeader::siteSubtitle { font-size: 0.85rem }
 .MobileHeader::siteSubtitle::before { margin: 0; content: "" }
+
+/* TextNodeMixin */
+:vars {
+	TextSize: inherit;
+	TextWeight: inherit;
+	TextLineHeight: inherit;
+	TextCase: auto;
+	TextColor: inherit;
+}
+.TextNode {
+	font-size: value(TextSize);
+	font-weight: value(TextWeight);
+	line-height: value(TextLineHeight);
+	text-transform: value(TextCase);
+	color: value(TextColor);
+}
+
+/* ResetListStyleMixin */
+.ResetListStyle {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

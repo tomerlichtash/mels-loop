@@ -4,12 +4,13 @@
 @st-import [GradientStrip] from "../../theme/mixins.st.css";
 @st-import [preventSelection] from "./../../theme/mixins.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
+@st-import HeaderMixin from "../header/header-mixin.st.css";
 @st-import LocaleSelectorMixin from "../locale-selector/locale-selector-mixin.st.css";
 
 :vars {
 	BgColor: #373a47;
 	BurgerBars: #373a47;
-	BurgerCross: #bdc3c7;
+	BurgerCrossColor: #bdc3c7;
   StripGradientStartColor: white;
   StripGradientMidColor: gray;
   StripGradientEndColor: black;
@@ -27,9 +28,13 @@
 	ItemSubtitleTextSize: inherit;
 	ItemBorderColor: inherit;
 	ItemSubtitleTextColor: inherit;
+	ItemBorderSize: 1px;
 	SectionTitleColor: inherit;
+	LocaleSelectorItemTextColor: inherit;
 	LocaleSelectorSelectedItemTextColor: inehrit;
-	LocaleSelectorSelectedItemBgColor: inehrit;	
+	LocaleSelectorSelectedItemBgColor: inehrit;
+	HeaderLogoProps: none;
+	SiteTitleColor: white;
 }
 
 .root {
@@ -38,12 +43,15 @@
 }
 
 .root::header {
-	padding: 1rem;
-	color: white;
+	-st-mixin: HeaderMixin(
+		HeaderSiteSubtitleColor white,
+		HeaderPadding 1rem,
+		SiteLogoBgProps value(HeaderLogoProps)
+	);
 }
 
 .root::header::siteTitle {
-	color: white;
+	color: value(SiteTitleColor);
 }
 
 .root::menu {}
@@ -52,12 +60,8 @@
 	font-size: 1.15em;
 }
 
-.root::burgerBars {
-	background: #fa9ad9;
-}
-
 .root::burgerCross {
-	background: value(BurgerCross);
+	background: value(BurgerCrossColor);
 }
 
 .root::toolbar {
@@ -97,15 +101,15 @@
 		ButtonLabelTextWeight value(ItemLabelTextWeight),
 		ButtonSubtitleLineHeight value(ItemSubtitleLineHeight),
 		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
-		ButtonChildrenTextColor value(ItemSubtitleTextColor)
+		ButtonChildrenTextColor value(ItemSubtitleTextColor),
+		ButtonBorderBottomSize value(ItemBorderSize),
+		ButtonBorderBottomColor value(ItemBorderColor)
 	);
-}
-.root::menuItemButton {
-	border-bottom: 1px solid value(ItemBorderColor);
 }
 
 .root::localeSelector {
 	-st-mixin: LocaleSelectorMixin(
+		ItemTextColor value(LocaleSelectorItemTextColor),
 		SelectedItemTextColor value(LocaleSelectorSelectedItemTextColor),
 		SelectedItemBgColor value(LocaleSelectorSelectedItemBgColor)
 	);

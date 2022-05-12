@@ -17,13 +17,7 @@ export const Section = ({
 	return (
 		<div className={st(classes.root, className)} key={node.key}>
 			{elements.map((node) => {
-				return (
-					<ContentComponent
-						key={node.key}
-						componentData={{ node }}
-						className={className}
-					/>
-				);
+				return <ContentComponent key={node.key} componentData={{ node }} />;
 			})}
 		</div>
 	);
