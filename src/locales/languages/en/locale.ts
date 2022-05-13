@@ -82,4 +82,6 @@ export const Locale: Language = {
 	 */
 	NOTE_LABEL_GLOSSARY: "Glossary",
 	COPY_BUTTON_TOOLTIP_CONTENT: "Copied!",
+	COMPONENT_BIBLIOGRAPHY_LABEL_SINGLE: "Source",
+	COMPONENT_BIBLIOGRAPHY_LABEL_MULTIPLE: "Sources",
 };

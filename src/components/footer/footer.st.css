@@ -5,21 +5,25 @@
 @st-import [pageWidth] from "../page/page.st.css";
 
 .root {
-  -st-states: direction(enum(ltr, rtl));
+  -st-states: textDirection(enum(ltr, rtl));
   margin-top: 2rem;
+}
+.root:textDirection(ltr)::column {
+	padding-right: 2rem;
+}
+.root:textDirection(rtl)::column {
+	padding-left: 2rem;
 }
 
 .strip {}
 
 .layout {
   display: flex;
-  max-width: value(pageWidth);
+  max-width: 800px;
   margin: 0 auto;
 }
 
-.column {
-  -st-states: size(number);
-}
+.column { -st-states: size(number) }
 .column:size(1) { flex: 1 }
 .column:size(2) { flex: 2 }
 .column:size(3) { flex: 3 }

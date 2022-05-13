@@ -83,7 +83,7 @@ export default function Layout({ children }: ComponentProps) {
 					<div id="page-wrap">
 						<TopBar className={classes.header} />
 						<Page className={classes.page} nodes={children} />
-						<Footer className={classes.footer} direction={textDirection} />
+						<Footer className={classes.footer} textDirection={textDirection} />
 					</div>
 				</ScrollArea>
 				{isMobile && <MenuProvider isMobile />}

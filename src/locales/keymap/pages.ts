@@ -39,12 +39,3 @@ export default {
 	ERROR_404_PAGE_LOCALE: PageKeys.ERROR_404_PAGE,
 	ERROR_GENERAL_LOCALE: PageKeys.ERROR_GENERAL,
 };
-
-// STORY_PAGE_LOCALE: PageKeys.STORY_PAGE,
-
-// STORY_PAGE: {
-// 	pageName: "PAGE_NAME_STORY",
-// },
-// PREFACE_PAGE: {
-// 	pageName: "PREFACE_NAV_LABEL",
-// },

@@ -79,4 +79,6 @@ export const Locale: Language = {
 	 */
 	NOTE_LABEL_GLOSSARY: "מילון מונחים",
 	COPY_BUTTON_TOOLTIP_CONTENT: "הקישור העותק!",
+	COMPONENT_BIBLIOGRAPHY_LABEL_SINGLE: "מקור",
+	COMPONENT_BIBLIOGRAPHY_LABEL_MULTIPLE: "מקורות",
 };

@@ -12,18 +12,17 @@ export interface IBibliographySource {
 
 export interface IBibliographyProps extends ComponentProps {
 	sources?: IBibliographySource[];
+	label: string;
 }
 
 export const Bibliography = ({
 	sources,
+	label,
 	className,
 }: IBibliographyProps): JSX.Element => {
-	if (!sources) {
-		return;
-	}
-
 	return (
 		<div className={st(classes.root, className)}>
+			<div className={classes.title}>{label}</div>
 			<span className={classes.list}>
 				{sources.map(({ name, url }) => {
 					return (
@@ -32,6 +31,7 @@ export const Bibliography = ({
 							label={name}
 							link={url}
 							target="_blank"
+							className={classes.button}
 						/>
 					);
 				})}

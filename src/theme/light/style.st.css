@@ -2,6 +2,9 @@
 
 @st-import PageBase from "../../pages/page-base.st.css";
 @st-import PageBaseMixin from "../../pages/page-base-mixin.st.css";
+@st-import Posts from "../../pages/posts.st.css";
+@st-import PostsMixin from "../../pages/posts-mixin.st.css";
+
 @st-import StoryPage from "../../pages/index.st.css";
 @st-import StoryPageMixin from "../../pages/index-mixin.st.css";
 @st-import Scrollbar from "../../components/scrollbar/scrollbar.st.css";
@@ -28,8 +31,6 @@
 @st-import CopyUrlButtonTriggerMixin from "../../components/copy-button/copy-url-button-trigger-mixin.st.css";
 @st-import CopyUrlButtonContent from "../../components/copy-button/copy-url-button-content.st.css";
 @st-import CopyUrlButtonContentMixin from "../../components/copy-button/copy-url-button-content-mixin.st.css";
-@st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
-@st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 @st-import Note from "../../components/note/note.st.css";
 @st-import NoteMixin from "../../components/note/note-mixin.st.css";
 @st-import Bibliography from "../../components/bibliography/bibliography.st.css";
@@ -55,6 +56,7 @@
 	accent3,
 	accent4,
 	shadow1,
+	shadow3,
 	BODY_TEXT_COLOR,
 	LINK_TEXT_COLOR,
 	LINK_TEXT_COLOR_HOVER
@@ -77,9 +79,15 @@
 		);
 	}
 
+	Posts {
+		-st-mixin: PostsMixin(
+			BlogPostShadow value(shadow3)
+		);
+	}
+
 	Scrollbar {
 		-st-mixin: ScrollbarMixin(
-			ThumbColor value(level4)
+			ThumbColor value(level3)
 		);
 	}
 
@@ -91,7 +99,7 @@
 
 	TopBar {
 		-st-mixin: TopBarMixin(
-			BgColor value(level3),
+			BgColor value(level2),
 			SiteTitleLinkTextColor value(level8),
 			SiteLogoBgProps url(//public/favicon-temp.png),
 		);
@@ -116,7 +124,6 @@
 			ItemLabelTextSize 1rem,
 			ItemLabelLineHeight 0.25rem,
 			ItemLabelTextWeight 500,
-			/* ItemSubtitleColor value(accent2), */
 			ItemSubtitleLineHeight 1rem,
 			ItemSubtitleTextSize 0.85rem,
 			ItemLabelIconMargin 0.35rem,
@@ -128,8 +135,8 @@
 		-st-mixin: MobileMenuMixin(
 			BgColor value(level7),
 			ItemTextColor value(primary1_1),
-			ItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
-			ItemBgColor_Hover value(level3),
+			ItemTextColor_Hover value(primary1_1),
+			ItemBgColor_Hover value(level8),
 			ItemPadding 1rem,
 			ItemLabelTextSize 1rem,
 			ItemLabelTextWeight 500,
@@ -194,23 +201,21 @@
 		)
 	}
 
-	DynamicContentViewer {
-		-st-mixin: DynamicContentViewerMixin(
-			ParagraphLineHeight 1.2rem,
-			ParagraphTextSize 0.9rem
-		);
-	}
-
 	Note {
 		-st-mixin: NoteMixin(
 			TopicBgColor value(level2),
-			TopicTextColor value(primary2)
+			TopicTextColor value(primary2),
+			NoteTextColor value(level6),
+			NotePadding 1rem,
+			NoteScrollGutter 2.5rem
 		);
 	}
 
 	Bibliography {
 		-st-mixin: BibliographyMixin(
 			/* todo */
+			BibliographyBgColor value(level2),
+			BibliographyBorderColor value(level4)
 		);
 	}
 

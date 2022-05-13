@@ -125,5 +125,6 @@
 
 .menuItemButton {
 	-st-extends: Button;
+	transition: all 75ms ease-in;
 	display: block;
 }

@@ -6,17 +6,20 @@ import { TextDirection } from "../../interfaces/locale-context";
 import { st, classes } from "./footer.st.css";
 
 export interface IFooterProps extends ComponentProps {
-	direction: TextDirection;
+	textDirection: TextDirection;
 }
 
-export const Footer = ({ direction, className }: IFooterProps): JSX.Element => {
+export const Footer = ({
+	textDirection,
+	className,
+}: IFooterProps): JSX.Element => {
 	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 	const licenseYears = `${new Date().getFullYear()}`;
 	const fullLicense = `${translate("SITE_LICENSE_LABEL")}-${translate(
 		"SITE_LICENSE_ATTRS"
 	)}`;
 	return (
-		<footer className={st(classes.root, { direction }, className)}>
+		<footer className={st(classes.root, { textDirection }, className)}>
 			<div className={classes.strip}></div>
 			<div className={classes.pageContainer}>
 				<div className={classes.layout}>

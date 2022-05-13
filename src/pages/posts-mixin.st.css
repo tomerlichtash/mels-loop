@@ -1,0 +1,15 @@
+@namespace "PostsMixin";
+
+@st-import Posts from "./posts.st.css";
+
+:vars {
+  BlogPostShadow: none;
+}
+
+.root {
+  -st-extends: Posts;
+}
+
+.root::post {
+  box-shadow: value(BlogPostShadow);
+}
