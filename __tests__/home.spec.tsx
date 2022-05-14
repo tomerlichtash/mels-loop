@@ -24,7 +24,7 @@ describe("ContentComponent", () => {
 
 		const wrapper = render(<ContentComponent componentData={compData} />);
 
-		expect(wrapper.container.querySelector("p").textContent).toEqual(
+		expect(wrapper.container.querySelector("span").textContent).toEqual(
 			`sample line`
 		);
 	});
