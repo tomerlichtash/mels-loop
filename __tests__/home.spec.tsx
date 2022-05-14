@@ -7,7 +7,7 @@ describe("ContentComponent", () => {
 	it("should render sample line", () => {
 		const compData = {
 			node: {
-				type: "paragraph",
+				type: "line",
 				key: "key",
 				line: 1,
 				children: [

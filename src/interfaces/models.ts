@@ -39,8 +39,8 @@ export enum ASTNODE_TYPES {
 }
 
 export enum MLNODE_TYPES {
-	SECTION = "section",
 	PARAGRAPH = "paragraph",
+	LINE = "line",
 	DEL = "del",
 	INS = "ins",
 	STRONG = "strong",
