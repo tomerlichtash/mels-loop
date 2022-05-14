@@ -16,7 +16,6 @@ export interface ILocaleContext {
 	textDirection: TextDirection;
 	siteTitle: string;
 	siteSubtitle: string;
-	siteLicense: string;
 	pageName: string;
 	sectionName: string;
 }

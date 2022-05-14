@@ -1,3 +1,15 @@
 @namespace "Bibliography";
 
-.root {}
+@st-import Button from "../ui/button/button.st.css";
+
+.root {
+  margin-top: 2rem;
+}
+
+.title {}
+
+.list {}
+
+.button {
+  -st-extends: Button;
+}

@@ -11,6 +11,7 @@
 	color7,
 	color8,
 	color9,
+	color9_1,
 	color10,
 	color11,
 	color12,
@@ -32,6 +33,7 @@
 	level8: value(color8);
 
 	primary1: value(color9);
+	primary1_1: value(color9_1);
 	primary2: value(color10);
 	primary3: value(color11);
 	primary4: value(color12);
@@ -40,4 +42,14 @@
 	accent2: value(color14);
 	accent3: value(color15);
 	accent4: value(color16);
+
+	shadow1: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+	shadow2: 0px 0px 4px rgba(0, 0, 0, 0.25);
+	shadow3: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+:vars {
+	BODY_TEXT_COLOR: value(level6);
+	LINK_TEXT_COLOR: value(accent1);
+	LINK_TEXT_COLOR_HOVER: value(primary2);
 }

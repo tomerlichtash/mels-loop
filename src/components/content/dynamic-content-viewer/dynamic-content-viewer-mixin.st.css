@@ -10,8 +10,3 @@
 .root {
 	-st-extends: DynamicContentViewer;
 }
-
-.root::contentComponent:type(paragraph){
-	line-height: value(ParagraphLineHeight);
-	font-size: value(ParagraphTextSize);
-}

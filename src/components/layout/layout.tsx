@@ -8,8 +8,8 @@ import TopBar from "../top-bar";
 import Footer from "../footer";
 import Page from "../page";
 import ScrollArea from "../scrollbar";
+import { MenuProvider } from "../menu-provider";
 import Analytics from "./analytics";
-import { MobileMenu } from "../mobile-menu";
 import { ComponentProps } from "../../interfaces/models";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
@@ -31,12 +31,12 @@ const SCROLL_VIEW_PROPS: ScrollIntoViewOptions = {
 export default function Layout({ children }: ComponentProps) {
 	const router = useRouter();
 	const { query } = useContext(ReactQueryContext);
-	const size = useWindowSize();
 	const { siteTitle, siteSubtitle, textDirection } =
 		useContext(ReactLocaleContext);
 	const { locale, asPath: currentUrl } = router;
 	const { getLine } = query;
-	const isMobile = size.width <= 970;
+	const size = useWindowSize();
+	const isMobile = size.width <= 1024;
 
 	useEffect(() => {
 		if (getLine === -1) {
@@ -78,26 +78,15 @@ export default function Layout({ children }: ComponentProps) {
 				<meta name="og:title" content={siteTitle} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div
-				id="outer-container"
-				className={st(classes.root, {
-					textDirection,
-					isMobile,
-				})}
-			>
-				<div id="page-wrap">
-					<ScrollArea>
-						<TopBar isMobile={isMobile} className={classes.header} />
+			<div id="outer-container" className={st(classes.root, { textDirection })}>
+				<ScrollArea>
+					<div id="page-wrap">
+						<TopBar className={classes.header} />
 						<Page className={classes.page} nodes={children} />
-						<Footer className={classes.footer} direction={textDirection} />
-					</ScrollArea>
-				</div>
-				{isMobile && (
-					<MobileMenu
-						className={classes.mobileMenu}
-						right={textDirection === "ltr"}
-					/>
-				)}
+						<Footer className={classes.footer} textDirection={textDirection} />
+					</div>
+				</ScrollArea>
+				{isMobile && <MenuProvider isMobile />}
 			</div>
 			<Analytics />
 		</>

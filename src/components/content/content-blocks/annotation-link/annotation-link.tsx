@@ -10,8 +10,11 @@ export const AnnotationLink = ({
 	return (
 		<>
 			<span className={st(classes.root)}>
-				{annotationPrefix}
-				{node.sequence}
+				<span
+					className={classes.content}
+					data-prefix={annotationPrefix}
+					data-seq={node.sequence}
+				></span>
 			</span>
 		</>
 	);

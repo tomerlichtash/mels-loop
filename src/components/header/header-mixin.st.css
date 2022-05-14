@@ -11,6 +11,7 @@
   HeaderSiteTitleFontWeight: 500;
   HeaderPadding: 0;
   HeaderTextAlign: left;
+  SiteLogoBgProps: black;
 }
 
 .root {
@@ -22,13 +23,24 @@
 
 .root::siteTitle {
   color: value(HeaderSiteTitleColor);
-  font-size: value(HeaderSiteTitleFontSize);
-  font-family: value(HeaderSiteTitleFontFamily);
-  font-weight: value(HeaderSiteTitleFontWeight);
+	text-transform: uppercase;
+	letter-spacing: 1px;
 }
-
-.root::siteTitle {}
+.root::siteTitle::label {
+	font-weight: 500;
+	border-bottom: 3px solid transparent;
+}
+.root::siteTitle:hover::label {
+	border-bottom-color: inherit;
+}
 
 .root::siteSubtitle {
   color: value(HeaderSiteSubtitleColor);
+}
+
+.root::siteLogo {
+	width: 24px;
+	height: 24px;
+  background: value(SiteLogoBgProps);
+  background-size: 100%;
 }

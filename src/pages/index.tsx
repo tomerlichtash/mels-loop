@@ -19,6 +19,7 @@ import { contentUtils } from "../lib/content-utils";
 import { usePageData } from "../components/usePageData";
 import { ContentComponent } from "../components/content";
 import { mlUtils } from "../lib/ml-utils";
+import { classes as basePageClasses } from "../pages/page-base.st.css";
 import { st, classes } from "./index.st.css";
 
 export default function Index(props: IPageProps) {
@@ -37,18 +38,20 @@ export default function Index(props: IPageProps) {
 					{siteTitle} - {pageName}
 				</title>
 			</Head>
-			<article className={classes.root}>
-				<h1 className={classes.title}>{title}</h1>
-				<p className={classes.moto}>{moto}</p>
-				{elements.map((node) => {
-					return (
-						<ContentComponent
-							key={mlUtils.uniqueId()}
-							className={st(classes.contentComponent, className)}
-							componentData={{ node }}
-						/>
-					);
-				})}
+			<article className={basePageClasses.root}>
+				<h1 className={basePageClasses.title}>{title}</h1>
+				<div className={classes.root}>
+					<p className={classes.moto}>{moto}</p>
+					{elements.map((node) => {
+						return (
+							<ContentComponent
+								key={mlUtils.uniqueId()}
+								className={st(classes.contentComponent, className)}
+								componentData={{ node }}
+							/>
+						);
+					})}
+				</div>
 			</article>
 		</Layout>
 	);

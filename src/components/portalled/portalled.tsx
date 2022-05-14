@@ -7,7 +7,7 @@ export const Portalled = ({ children }): JSX.Element => {
 	const { themeRef } = useContext(ReactThemeContext);
 	const { textDirection } = useContext(ReactLocaleContext);
 	return (
-		<div className={themeRef}>
+		<div className={st(themeRef)}>
 			<div className={st(classes.root, { textDirection })}>{children}</div>
 		</div>
 	);

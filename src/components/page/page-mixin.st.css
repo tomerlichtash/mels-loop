@@ -1,3 +1,23 @@
-@namespace "PageTheme";
+@namespace "PageMixin";
 
-.root {}
+@st-import Page from "./page.st.css";
+
+:vars {
+	pageWidth: 800px;
+	PageTopMargin: 80px;
+	PageMobileGutter: 2rem;
+}
+
+.root {
+	-st-extends: Page;
+	max-width: value(pageWidth);
+	padding-top: value(PageTopMargin);
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+		.root::gutter {
+			padding: value(PageMobileGutter);
+		}
+	}
+}

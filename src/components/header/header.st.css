@@ -2,35 +2,26 @@
 
 @st-import Button from "../ui/button/button.st.css";
 @st-import [boxSizing] from "../../theme/mixins.st.css";
-@st-import [
-	heading6,
-	bodyTextNormal,
-] from "../../theme/common/typography.st.css";
+
+:vars {
+	iconMargin: 0.5rem;
+}
 
 .root {
+	-st-states: textDirection(enum(ltr, rtl));
 	-st-mixin: boxSizing;
 	display: flex;
 }
 
-.logo {}
-
 .container {
 	display: flex;
 	align-items: center;
+	align-content: center;
+	line-height: 1rem;
 }
 
 .siteTitle {
   -st-extends: Button;
-	-st-states: link(boolean);
-	-st-mixin: heading6;
-	align-items: center;
-	display: flex;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-}
-
-.siteTitle::icon img {
-	width: 24px;
 }
 
 .siteSubtitle {
@@ -43,18 +34,12 @@
 	content: '|';
 }
 
-.siteSubtitle {}
+.siteLogo {}
 
-@media (min-width: 320px) and (max-width: 767px) {
-	@st-scope .root {
-		.root::container {
-			display: block;
-		}
-		.root::siteSubtitle {
-			display: block;
-		}
-		.root::siteSubtitle::before {
-			content: '';
-		}
-	}
+
+.root:textDirection(rtl) .siteTitle::icon {
+	margin-left: value(iconMargin);
+}
+.root:textDirection(ltr) .siteTitle::icon {
+	margin-right: value(iconMargin);
 }

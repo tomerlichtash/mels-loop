@@ -8,7 +8,7 @@ import Layout from "../layout";
 import Head from "next/head";
 import { ContentIterator } from "./content-iterator";
 import { usePageData } from "../usePageData";
-import { classes } from "./generic-page.st.css";
+import { classes } from "../../pages/page-base.st.css";
 
 export default function GenericPage(props: IContentComponentData) {
 	const { pageData } = usePageData(props.pageProps);
@@ -28,7 +28,10 @@ export default function GenericPage(props: IContentComponentData) {
 			<article className={classes.root}>
 				<h1 className={classes.title}>{metaData?.title}</h1>
 				{node ? (
-					<ContentIterator componentData={{ node }} />
+					<ContentIterator
+						componentData={{ node }}
+						className={classes.contentComponent}
+					/>
 				) : (
 					<div className={classes.noContent}>(No page content)</div>
 				)}

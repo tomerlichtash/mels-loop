@@ -1,32 +1,85 @@
 @namespace "FooterMixin";
 
 @st-import Footer from "./footer.st.css";
-@st-import [IconFill] from "../../theme/mixins.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
+@st-import [IconFill, GradientStrip, TextNode] from "../../theme/mixins.st.css";
+@st-import [heading6, bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
   BackgroundColor: #f0f0f0;
-  Padding: 0;
+  Padding: 4rem 0;
   StripGradientStartColor: white;
   StripGradientMidColor: gray;
   StripGradientEndColor: black;
-  IconFill_Github: black;
-  IconFill_Twitter: black;
-  IconFill_Contact: black;
+  ButtonTextColor: inherit;
+  ButtonTextColor_Hover: inherit;
+  TitleFontSize: inherit;
+  TitleFontWeight: inherit;
+  TitleFontCase: inherit;
+  TitleMargin: 1rem;
+  SubtitleFontSize: inherit;
+  SubtitleFontWeight: inherit;
+  SubtitleFontCase: inherit;
+  DescriptionFontSize: inherit;
+  DescriptionFontWeight: inherit;
+  LinkFontSize: inherit;  
+  LinkFontWeight: inherit;  
 }
 
 .root {
   -st-extends: Footer;
   background-color: value(BackgroundColor);
-  padding: value(Padding);
 }
 
 .root::strip {
-  background: linear-gradient(90deg,
-  value(StripGradientStartColor) 0%,
-  value(StripGradientMidColor) 50%,
-  value(StripGradientEndColor) 100%);
+  -st-mixin: GradientStrip(
+    StripGradientStartColor value(StripGradientStartColor),
+    StripGradientMidColor value(StripGradientMidColor),
+    StripGradientEndColor value(StripGradientEndColor),
+    StripGradientHeight 4px
+  );
 }
 
-.root::item:icon(github)  { -st-mixin: IconFill(FillColor value(IconFill_Github)) }
-.root::item:icon(twitter) { -st-mixin: IconFill(FillColor value(IconFill_Twitter)) }
-.root::item:icon(contact) { -st-mixin: IconFill(FillColor value(IconFill_Contact)) }
+.root::button {
+  -st-mixin: ButtonMixin(
+    ButtonTextColor value(ButtonTextColor),
+    ButtonTextColor_Hover value(ButtonTextColor_Hover),
+    ButtonLabelLineHeight 21px,
+    ButtonLabelTextSize 14px
+  );
+}
+
+.root::pageContainer {
+  padding: value(Padding);
+}
+
+.root::footerTitle {
+  margin-bottom: value(TitleMargin);
+}
+
+.root::excerpt {
+  -st-mixin: bodyTextNormal
+}
+
+.root::title {
+  -st-mixin: TextNode(
+    TextSize 15px,
+    TextWeight 500,
+    TextCase uppercase
+  );
+}
+
+.root::subtitle {
+  -st-mixin: TextNode(
+    TextSize 14px,
+    TextWeight 400,
+  );
+}
+
+.root::columnTitle {
+  -st-mixin: TextNode(
+    TextWeight 500,
+    TextSize 16px,
+  );
+  margin-bottom: 1rem;
+}
