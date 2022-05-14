@@ -9,7 +9,7 @@ title: "Resources"
 
 ### Guides and References
 
-- [The 'Story of Mel' Explained - by James Sabel](https://jamesseibel.com/the-story-of-mel/)
+- [The 'Story of Mel' Explained - by James Seibel](https://jamesseibel.com/the-story-of-mel/)
 - [The Story of Mel, A Real Programmer, Annotated - by Erik Brunvand](https://www.cs.utah.edu/~elb/folklore/mel-annotated/mel-annotated.html)
 - [Macho programmers, drum memory and a forensic analysis of 1960s machine code](https://www.freecodecamp.org/news/macho-programmers-drum-memory-and-a-forensic-analysis-of-1960s-machine-code-6c5da6a40244/)
 - [The second decade of programming: Big Iron](https://hackernoon.com/https-medium-com-it-explained-for-normal-people-big-iron-6aee4e32ed51)
