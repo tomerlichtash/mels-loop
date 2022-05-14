@@ -7,9 +7,10 @@ import {
 import {
 	Heading,
 	ListItem,
+	Line,
 	Paragraph,
-	Section,
 	Figure,
+	BlockQuote,
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
@@ -29,17 +30,17 @@ export const ContentComponent = ({
 	}
 
 	switch (type) {
-		case MLNODE_TYPES.SECTION:
+		case MLNODE_TYPES.PARAGRAPH:
 			return (
-				<Section
+				<Paragraph
 					key={key}
 					componentData={componentData}
 					className={stylableClassName}
 				/>
 			);
-		case MLNODE_TYPES.PARAGRAPH:
+		case MLNODE_TYPES.LINE:
 			return (
-				<Paragraph
+				<Line
 					key={key}
 					componentData={componentData}
 					className={stylableClassName}
@@ -59,9 +60,9 @@ export const ContentComponent = ({
 			);
 		case MLNODE_TYPES.BLOCKQUOTE:
 			return (
-				<ContentIterator
+				<BlockQuote
 					key={key}
-					componentData={{ tag: type, ...componentData }}
+					componentData={componentData}
 					className={stylableClassName}
 				/>
 			);
