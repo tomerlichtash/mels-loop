@@ -18,7 +18,6 @@
 	margin: 0;
 }
 
-:global(blockquote),
 :global(h1),
 :global(h2),
 :global(h3),
@@ -33,11 +32,4 @@
 	padding: 0;
 	background: none;
 	font-family: inherit;
-}
-
-:global(br) {
-   display: block;
-   margin: 0;
-	 height: 0;
-	 content: "";
 }

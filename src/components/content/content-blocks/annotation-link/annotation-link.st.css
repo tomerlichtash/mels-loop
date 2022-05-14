@@ -2,6 +2,10 @@
 
 @st-import [preventSelection, verticalAlignSuper] from "../../../../theme/mixins.st.css";
 
+:vars {
+  paranthesisMargin: 0.05rem;
+}
+
 .root {
   -st-mixin: preventSelection, verticalAlignSuper;
   font-weight: 600;
@@ -15,10 +19,17 @@
 
 .root::before {
   content: '[';
-  margin-right: 0.1rem;
+  margin-right: value(paranthesisMargin);
 }
 
 .root::after {
   content: ']';
-  margin-left: 0.1rem;
+  margin-left: value(paranthesisMargin);
+}
+
+.content {}
+.content::after {
+  content: attr(data-prefix) attr(data-seq);
+  font-weight: 700;
+  font-size: 0.75rem;
 }

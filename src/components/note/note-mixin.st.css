@@ -19,6 +19,7 @@
 
 .root {
 	-st-extends: Note;
+	padding: value(NotePadding);
 }
 
 .root:type(ref)::topic {
@@ -49,9 +50,11 @@
 }
 
 .root::header,
-.root::content,
+.root::content {
+	/* padding: value(NotePadding); */
+}
 .root::bibliography {
-	padding: value(NotePadding);
+	/* padding: 0 value(NotePadding) value(NotePadding); */
 }
 
 .root::header,

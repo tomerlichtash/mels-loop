@@ -46,8 +46,13 @@
 	-st-mixin: HeaderMixin(
 		HeaderSiteSubtitleColor white,
 		HeaderPadding 1rem,
-		SiteLogoBgProps value(HeaderLogoProps)
+		SiteLogoBgProps value(HeaderLogoProps),
 	);
+}
+
+.root::header,
+.root::toolbar {
+	background-color: value(BgColor);
 }
 
 .root::header::siteTitle {

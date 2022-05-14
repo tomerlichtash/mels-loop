@@ -19,7 +19,6 @@ export const Section = ({
 			{elements.map((node) => {
 				return <ContentComponent key={node.key} componentData={{ node }} />;
 			})}
-			<br />
 		</div>
 	);
 };
