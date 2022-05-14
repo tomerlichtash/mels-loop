@@ -34,3 +34,10 @@
 	background: none;
 	font-family: inherit;
 }
+
+:global(br) {
+   display: block;
+   margin: 0;
+	 height: 0;
+	 content: "";
+}

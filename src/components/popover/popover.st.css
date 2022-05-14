@@ -69,4 +69,15 @@
   }
 }
 
-.test {}
+.portal {}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  [data-radix-popper-content-wrapper] {
+    transform: none !important;
+    top: auto !important;
+    bottom: -100vh !important;
+  }
+  .content {
+    width: 100vw;
+  }
+}
