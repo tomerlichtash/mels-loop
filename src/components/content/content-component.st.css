@@ -4,6 +4,7 @@
 	-st-states: type(enum(
 		section,
 		paragraph,
+		line,
 		del,
 		ins,
 		strong,
