@@ -4,11 +4,11 @@
 @st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
 
 :vars {
-	TriggerTextColor: blue;
-	TriggerTextColor_Hover: red;
+	TriggerTextColor: black;
+	TriggerTextColor_Hover: #808080;
   TriggerTextColor_Open: magenta;
-  TriggerTextBgColor_Open: magenta;
-  TriggerMarkerColor_Open: blue;
+  TriggerTextBgColor_Open: #c0c0c0;
+  TriggerMarkerColor_Open: magenta;
 }
 
 .root {

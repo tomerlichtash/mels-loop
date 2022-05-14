@@ -11,6 +11,7 @@ export interface ButtonProps extends ComponentProps {
 	id?: string;
 	target?: string;
 	selected?: boolean;
+	iconSide?: "right" | "left";
 	callback?: (id: string) => void;
 }
 
@@ -22,46 +23,51 @@ export const Button = ({
 	link,
 	selected,
 	target,
+	iconSide,
 	callback,
 	className,
+	children,
 }: ButtonProps): JSX.Element => {
 	const btnLabel = title || label;
-	const btnClassName = st(classes.root, { selected }, className);
-	const btnProps = {
+	const btnClassName = st(classes.root, { selected }, classes.aTag, className);
+	const props = {
 		title: btnLabel,
 		"aria-label": btnLabel,
 		className: btnClassName,
 	};
 	const btnContent = (
-		<span className={classes.content}>
+		<span className={st(classes.contentWrapper, { icon: !!icon })}>
 			{icon && (
-				<span className={classes.icon}>
+				<span className={st(classes.icon, { side: iconSide })}>
 					<span className={classes.img}>{icon}</span>
 				</span>
 			)}
-			<span className={classes.label}>
-				<span className={classes.text}>{label}</span>
+			<span className={st(classes.content, { addIconMargin: !!icon })}>
+				{label && (
+					<span className={classes.label}>
+						<span className={classes.text}>{label}</span>
+					</span>
+				)}
+				{children && <span className={classes.children}>{children}</span>}
 			</span>
 		</span>
 	);
 
 	if (!link && !target && !callback) {
-		return <span {...btnProps}>{btnContent}</span>;
+		return <span {...props}>{btnContent}</span>;
 	}
 
 	if (link) {
 		return (
-			<Link href={`${link}`}>
-				<a {...btnProps}>{btnContent}</a>
+			<Link href={link} passHref>
+				<a href={link} {...props} target={target}>
+					{btnContent}
+				</a>
 			</Link>
 		);
 	}
 
-	return (
-		<span onClick={() => callback(id)} {...btnProps}>
-			{btnContent}
-		</span>
-	);
+	return <span onClick={() => callback(id)}>{btnContent}</span>;
 };
 
 export default Button;

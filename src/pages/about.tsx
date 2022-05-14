@@ -14,7 +14,7 @@ import {
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { LoadFolderModes } from "../interfaces/parser";
 import { ContentComponent } from "../components/content";
-import { classes } from "./about.st.css";
+import { classes } from "./page-base.st.css";
 
 export default function About(props: IPageProps) {
 	const { siteTitle, pageName } = useContext(ReactLocaleContext);
@@ -32,12 +32,13 @@ export default function About(props: IPageProps) {
 				</title>
 			</Head>
 			<article className={classes.root}>
-				<h1>{metaData.title}</h1>
+				<h1 className={classes.title}>{metaData.title}</h1>
 				{elements.map((node) => {
 					return (
 						<ContentComponent
 							key={mlUtils.uniqueId()}
 							componentData={{ node }}
+							className={classes.contentComponent}
 						/>
 					);
 				})}

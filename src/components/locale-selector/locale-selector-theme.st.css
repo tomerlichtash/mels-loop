@@ -1,9 +1,0 @@
-@namespace "LocalSelectorTheme";
-
-@st-import LocaleSelector from "./locale-selector.st.css";
-
-:vars {}
-
-.root {
-  -st-extends: LocaleSelector;
-}

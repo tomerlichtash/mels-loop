@@ -1,25 +1,36 @@
 @namespace "Menu";
 
 @st-import Menu from "./menu.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
+@st-import [/*heading5,*/bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
 	ListBgColor: transparent;
-	TriggerRadius: 6px;
-	TriggerBgColorHover: #c0c0c0;
-	ItemTriggerPadding: 4px 1rem;
 	ContentPadding: 1rem;
-	LinkTitleTextColor: #000;
-	LinkTitleTextColorHover: #888;
-	LinkSubtitleTextColorHover: blue;
-	LinkTextColorHover: #f00;
-	LinkFontSize: 15px;
-	LinkPadding: 12px;
-	LinkRadius: 6px;
-	LinkBgColorHover: #000;
-	LinkSubtitleTextColor: #808080;
 	ArrowColor: #fff;
-	ItemFocusBorderColor: #808080;
 	ViewPortBgColor: #fff;
+	TriggerPadding: 0;
+	TriggerLabelLineHeight: auto;
+	TriggerTextSize: inherit;
+	TriggerRadius: 0;
+	TriggerBgColorHover: #c0c0c0;
+	TriggerTextColor: inherit;
+	TriggerTextColor_Hover: inherit;
+	ItemTextColor: inherit;
+	ItemTextColor_Hover: inherit;
+	ItemPadding: 0;
+	ItemRadius: 0;
+	ItemLabelTextColor: inherit;
+	ItemLabelTextColor_Hover: inherit;
+	ItemBgColor_Hover: inherit;
+	ItemLabelTextSize: inherit;
+	ItemLabelLineHeight: inherit;
+	ItemLabelTextWeight: inherit;
+	ItemSubtitleColor: inherit;
+	/* ItemSubtitleLineHeight: inherit; */
+	ItemSubtitleTextSize: inherit;
+	ItemLabelIconMargin: 0;
+	ViewPortShadow: none;
 }
 
 .root {
@@ -30,45 +41,81 @@
 	background-color: value(ListBgColor);
 }
 
-.root::trigger {
-	padding: value(ItemTriggerPadding);
-	border-radius: value(TriggerRadius);
-}
-
-.root::trigger[data-state="open"] {
-	background-color: value(TriggerBgColorHover);
-}
-
 .root::menuContent {
 	padding: value(ContentPadding);
+  -st-mixin: bodyTextNormal;
 }
 
-.root::menuLink {
-	font-size: value(LinkFontSize);
-	padding: value(LinkPadding);
-	border-radius: value(LinkRadius);
-}
-
-.root::menuLink:focus {
-	box-shadow: 0 0 0 2px value(ItemFocusBorderColor);
-}
-
-.root::menuLink:hover {
-	background-color: value(LinkBgColorHover);
-}
-
-.root::title {
-	color: value(LinkTitleTextColor);
-}
-
-.root::text {
-	color: value(LinkSubtitleTextColor);
+.root::more {
+	/* -st-mixin: ButtonMixin(
+		ButtonRadius value(ItemRadius),
+		ButtonTextColor value(ItemTextColor),
+		ButtonTextColor_Hover value(ItemTextColor_Hover),
+		ButtonLabelTextColor value(ItemLabelTextColor),
+		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover),
+		ButtonBgColor_Hover value(ItemBgColor_Hover),
+		ButtonLabelTextSize value(ItemLabelTextSize),
+		ButtonLabelLineHeight value(ItemLabelLineHeight),
+		ButtonLabelTextWeight value(ItemLabelTextWeight),
+		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
+		ButtonLabelIconMargin value(ItemLabelIconMargin),
+		ButtonChildrenTextColor value(ItemSubtitleColor)
+	); */
 }
 
 .root::arrow {
 	background-color: value(ArrowColor);
 }
-
 .root::viewport {
 	background: value(ViewPortBgColor);
+	box-shadow: value(ViewPortShadow);
 }
+
+.root::menuTrigger {
+	border-radius: value(TriggerRadius);
+	transition: all 25ms ease-in;
+}
+.root::menuTrigger[data-state="open"] {
+	color: value(TriggerTextColor_Hover);
+	background-color: value(TriggerBgColorHover);
+}
+
+.root::menuTrigger[data-state="open"] > * {
+	color: value(TriggerTextColor_Hover);
+}
+
+.root::triggerButton {
+	-st-mixin: ButtonMixin(
+		ButtonPadding value(TriggerPadding),
+		ButtonLabelLineHeight value(TriggerLabelLineHeight),
+		ButtonLabelTextSize value(TriggerTextSize),
+		ButtonTextColor value(TriggerTextColor),
+		/* ButtonTextColor_Hover value(TriggerTextColor_Hover),		 */
+	);
+}
+
+.root::menuItemButton {
+	-st-mixin: ButtonMixin(
+		ButtonPadding value(ItemPadding),
+		ButtonRadius value(ItemRadius),
+		ButtonTextColor value(ItemTextColor),
+		ButtonTextColor_Hover value(ItemTextColor_Hover),
+		ButtonLabelTextColor value(ItemLabelTextColor),
+		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover),
+		ButtonBgColor_Hover value(ItemBgColor_Hover),
+		ButtonLabelTextSize value(ItemLabelTextSize),
+		ButtonLabelLineHeight value(ItemLabelLineHeight),
+		ButtonLabelTextWeight value(ItemLabelTextWeight),
+		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
+		ButtonLabelIconMargin value(ItemLabelIconMargin),
+		ButtonChildrenTextColor value(ItemSubtitleColor)
+	);
+}
+
+/* .root::more {
+	-st-mixin: ButtonMixin(
+		ItemBgColor_Hover red,
+		ButtonPadding 1rem,
+		ButtonBgColor_Hover blue
+	)
+} */

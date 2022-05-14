@@ -1,0 +1,52 @@
+@namespace "Button";
+
+@st-import Button from "./button.st.css";
+
+:vars {
+	ButtonRadius: inherit;
+	ButtonPadding: inherit;
+	ButtonTextColor: inherit;
+	ButtonTextColor_Hover: inherit;
+	ButtonBgColor_Hover: inherit;
+	ButtonLabelTextColor: inherit;
+	ButtonLabelTextColor_Hover: inherit;
+	ButtonLabelTextWeight: inherit;
+	ButtonLabelLineHeight: inherit;
+	ButtonLabelTextSize: inherit;
+	ButtonSubtitleTextSize: inherit;
+	ButtonChildrenTextColor: inherit;
+	ButtonBorderTopSize: 0;
+	ButtonBorderTopColor: transparent;
+	ButtonBorderBottomSize: 0;
+	ButtonBorderBottomColor: transparent;
+	ButtonLabelIconMargin: 0;
+}
+
+.root {
+	-st-extends: Button;
+	color: value(ButtonTextColor);
+	border-top: value(ButtonBorderTopSize) solid value(ButtonBorderTopColor);
+	border-bottom: value(ButtonBorderBottomSize) solid value(ButtonBorderBottomColor);
+	padding: value(ButtonPadding);
+}
+
+.root:hover {
+	color: value(ButtonTextColor_Hover);
+	background-color: value(ButtonBgColor_Hover);
+	border-radius: value(ButtonRadius);
+}
+
+.root::label {
+	font-size: value(ButtonLabelTextSize);
+	font-weight: value(ButtonLabelTextWeight);
+	line-height: value(ButtonLabelLineHeight);
+}
+
+.root::children {
+	font-size: value(ButtonSubtitleTextSize);
+	color: value(ButtonChildrenTextColor);
+}
+
+.root::content:addIconMargin {
+	margin: 0 value(ButtonLabelIconMargin);
+}

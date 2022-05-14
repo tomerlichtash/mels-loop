@@ -22,7 +22,7 @@ export const DynamicContentViewer = ({
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
 	const [error, setError] = useState("");
-	const { translate, locale } = useContext(ReactLocaleContext);
+	const { translate, locale, textDirection } = useContext(ReactLocaleContext);
 	const dynamicContentContext = useContext(ReactDynamicContentContext);
 	const elements = item && item.parsed;
 
@@ -71,7 +71,20 @@ export const DynamicContentViewer = ({
 		);
 		const { metaData } = item;
 		const { source_name, source_url, glossary_key } = metaData;
+
+		// TODO: Support multiple sources - https://github.com/tomerlichtash/mels-loop-nextjs/issues/188
+		const sources = source_name && [
+			{
+				name: source_name,
+				url: source_url,
+			},
+		];
 		const label = translate(`NOTE_LABEL_${itemData.type.toUpperCase()}`);
+		const bibliographyLabel = translate(
+			`COMPONENT_BIBLIOGRAPHY_LABEL_${
+				sources.length > 1 ? "MULTIPLE" : "SINGLE"
+			}`
+		);
 		const itemType =
 			itemData.type === DynamicContentTypes.Glossary ? "ref" : "note";
 		const contents = elements.map((node) => (
@@ -89,14 +102,11 @@ export const DynamicContentViewer = ({
 					type={itemType}
 					contents={contents}
 					label={label}
+					biblgraphyLabel={bibliographyLabel}
 					title={translate(glossary_key)}
 					term={locale === "en" ? "" : translate(glossary_key, "en")}
-					sources={[
-						{
-							name: source_name,
-							url: source_url,
-						},
-					]}
+					textDirection={textDirection}
+					sources={sources}
 				/>
 			</div>
 		);

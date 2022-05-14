@@ -3,7 +3,7 @@
 @st-import Bibliography from "../bibliography/bibliography.st.css";
 
 .root {
-	-st-states: type(enum(note, ref));
+	-st-states: type(enum(note, ref)), textDirection(enum(ltr, rtl));
 	overflow: hidden;
 	position: relative;
 }

@@ -15,12 +15,11 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 				type="single"
 				onValueChange={(localeId: LocaleId) => {
 					onLocaleChange(localeId).catch(() =>
-						// TODO replace with logger call
 						console.error("onLocaleChange Error")
 					);
 				}}
 			>
-				<ul className={classes.list}>
+				<div className={classes.list}>
 					{locales.map((id) => {
 						const localeLabel = getLocaleSymbol(id);
 						return (
@@ -31,18 +30,19 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 								title={localeLabel}
 								value={id}
 							>
-								<li
-									className={st(classes.item, {
-										locale: id,
-										selected: locale === id,
-									})}
-								>
-									<Button label={localeLabel} />
-								</li>
+								<div className={classes.item}>
+									<Button
+										label={localeLabel}
+										className={st(classes.button, {
+											locale: id,
+											selected: locale === id,
+										})}
+									/>
+								</div>
 							</ToggleGroupItem>
 						);
 					})}
-				</ul>
+				</div>
 			</ToggleGroupRoot>
 		</div>
 	);

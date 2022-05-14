@@ -1,7 +1,19 @@
 @namespace "BibliographyMixin";
 
 @st-import Bibliography from "./bibliography.st.css";
+@st-import [heading6] from "../../theme/common/typography.st.css";
+
+:vars {
+  BibliographyBgColor: #c0c0c0;
+  BibliographyBorderColor: #d0d0d0;
+}
 
 .root {
   -st-extends: Bibliography;
+  /* border-top: 1px solid value(BibliographyBorderColor); */
+	/* background-color: value(BibliographyBgColor); */
+}
+
+.root::title {
+  -st-mixin: heading6;
 }

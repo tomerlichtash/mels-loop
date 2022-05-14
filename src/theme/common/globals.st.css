@@ -2,11 +2,6 @@
 
 @st-import [boxSizing] from "../mixins.st.css";
 
-@st-import [
-	heading1,
-	heading2
-] from "./typography.st.css";
-
 :global(html) {
 	-st-mixin: boxSizing;
 	margin: 0;
@@ -19,15 +14,10 @@
 	height: 100%;
 }
 
-:global(h1) {
-	-st-mixin: heading1;
-}
-:global(h2) {
-	-st-mixin: heading2;
+:global(p) {
+	margin: 0;
 }
 
-/* :global(p), */
-:global(blockquote),
 :global(h1),
 :global(h2),
 :global(h3),
@@ -37,8 +27,9 @@
 	margin: 0;
 }
 
-:global(ul) {
-	margin: 0;
+:global(button) {
+	border: none;
 	padding: 0;
-	list-style: none;
+	background: none;
+	font-family: inherit;
 }

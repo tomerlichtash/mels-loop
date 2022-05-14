@@ -1,22 +1,21 @@
 @namespace "Footer";
 
 @st-import Button from "../ui/button/button.st.css";
+@st-import [ResetListStyle] from "../../theme/mixins.st.css";
+@st-import [pageWidth] from "../page/page.st.css";
 
 .root {
-  -st-states: direction(enum(ltr, rtl));
-  margin-top: 4rem;
+  -st-states: textDirection(enum(ltr, rtl));
+  margin-top: 2rem;
+}
+.root:textDirection(ltr)::column {
+	padding-right: 2rem;
+}
+.root:textDirection(rtl)::column {
+	padding-left: 2rem;
 }
 
-.root:direction(ltr) .button::icon {
-  margin-right: 0.25rem;
-}
-.root:direction(rtl) .button::icon {
-  margin-left: 0.25rem;
-}
-
-.strip {
-  height: 4px;
-}
+.strip {}
 
 .layout {
   display: flex;
@@ -24,31 +23,15 @@
   margin: 0 auto;
 }
 
-.column {
-  -st-states: size(number);
-}
-.column:size(1) {
-  flex: 1;
-}
-.column:size(2) {
-  flex: 2;
-}
-.column:size(3) {
-  flex: 3;
-}
-.column:size(4) {
-  flex: 4;
-}
+.column { -st-states: size(number) }
+.column:size(1) { flex: 1 }
+.column:size(2) { flex: 2 }
+.column:size(3) { flex: 3 }
+.column:size(4) { flex: 4 }
 
-.title {
-  font-weight: 500;
-}
+.title {}
 
-.subtitle {
-  font-size: 0.85rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-}
+.subtitle {}
 
 .license {}
 
@@ -60,36 +43,23 @@
 
 .pageContainer {
   margin: 0 auto;
-  padding: 4rem 0;
 }
 
 .itemList {
-  line-height: 1.4rem;
+  -st-mixin: ResetListStyle;
 }
 
-.item {
-  -st-states: icon(enum(twitter, github, contact));
-  font-size: 0.85rem;
-}
+.item {}
 
-.footerTitle {
-  margin-bottom: 1rem;
-}
+.footerTitle {}
 
-.excerpt {
-  font-size: 0.85rem;
-  margin: 0;
-}
+.excerpt {}
 
 .button {
   -st-extends: Button;
 }
 
-.columnTitle {
-  font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
+.columnTitle {}
 
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {

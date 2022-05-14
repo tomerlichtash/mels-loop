@@ -1,0 +1,19 @@
+@namespace "PageBase";
+
+@st-import ContentComponent from "../components/content/content-component.st.css";
+
+.root {}
+
+.title {}
+
+.genericPage {
+  -st-states: type(string);
+}
+
+.contentComponent {
+	-st-extends: ContentComponent;
+}
+
+.error {}
+
+.noContent {}

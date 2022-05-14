@@ -76,10 +76,6 @@ export class LocaleContext implements ILocaleContext {
 		return this.translate(this.meta.siteSubtitle);
 	}
 
-	public get siteLicense() {
-		return this.translate(this.meta.siteLicense);
-	}
-
 	public getLocaleSymbol = (id: string) => this.translate(getLocaleLabel(id));
 
 	public translate = (key: string, lang?: LocaleId) =>

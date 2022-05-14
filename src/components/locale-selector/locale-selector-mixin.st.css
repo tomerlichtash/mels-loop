@@ -6,6 +6,7 @@
 	ContainerRadius: 6px;
 	SelectedItemTextColor: white;
 	ContainerBorderColor: black;
+	ItemTextColor: black;
 	ItemBgColorHover: black;
 	SelectedItemBgColor: black;
 }
@@ -16,21 +17,16 @@
 	border-color: value(ContainerBorderColor);
 }
 
-.root:first-child {
-	border-top-left-radius: value(ContainerRadius);
-	border-bottom-left-radius: value(ContainerRadius);
+.root::button {
+	border-radius: value(ContainerRadius);
+	color: value(ItemTextColor);
 }
 
-.root:last-child {
-	border-top-right-radius: value(ContainerRadius);
-	border-bottom-right-radius: value(ContainerRadius);
-}
-
-.root::item:hover {
+.root::button:hover {
 	background-color: value(ItemBgColorHover);
 }
 
-.root::item:selected {
+.root::button:selected {
 	color: value(SelectedItemTextColor);
 	background-color: value(SelectedItemBgColor);
 }

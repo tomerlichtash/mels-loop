@@ -125,9 +125,13 @@ export const ContentComponent = ({
 					<Heading
 						key={key}
 						componentData={componentData}
-						className={st(classes.root, {
-							type: `heading_${componentData.node.level}`,
-						})}
+						className={st(
+							classes.root,
+							{
+								type: `heading_${componentData.node.level}`,
+							},
+							className
+						)}
 					/>
 				);
 			}
