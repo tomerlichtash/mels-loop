@@ -21,7 +21,7 @@ export const BlockQuote = ({
 				{elements.map((node) => {
 					return <ContentComponent key={node.key} componentData={{ node }} />;
 				})}
-			</p>		
+			</p>
 		</blockquote>
 	);
 };

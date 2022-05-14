@@ -10,12 +10,12 @@ import {
 	Line,
 	Paragraph,
 	Figure,
+	BlockQuote,
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
 import LinkSelector from "./content-blocks/link-selector";
 import { st, classes } from "./content-component.st.css";
-import BlockQuote from "./content-blocks/block-quote";
 
 export const ContentComponent = ({
 	componentData,
@@ -62,7 +62,7 @@ export const ContentComponent = ({
 			return (
 				<BlockQuote
 					key={key}
-					componentData={componentData }
+					componentData={componentData}
 					className={stylableClassName}
 				/>
 			);
