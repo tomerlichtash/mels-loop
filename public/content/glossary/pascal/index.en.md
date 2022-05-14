@@ -1,6 +1,6 @@
 ---
 glossary_key: "PASCAL"
-# source_url: TBD
+source_url: https://en.wikipedia.org/wiki/Pascal_(programming_language)
 source_name: Wikipedia
 ---
 
