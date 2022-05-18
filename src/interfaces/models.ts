@@ -249,9 +249,7 @@ export interface ComponentProps {
 export interface SitePage {
 	id: string;
 	targetPathname: string;
-	menuNav: boolean;
 	locale: Partial<Record<keyof IComponentKeyProps, keyof ILanguageKeys>>;
-	children?: string[];
 }
 
 export interface IPageProps {

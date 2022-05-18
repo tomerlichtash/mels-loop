@@ -30,7 +30,7 @@ export const MenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_CONTACT",
 		},
-		children: ["twitter", "github"],
+		children: ["contact", "twitter", "github"],
 	},
 ];
 
@@ -172,7 +172,7 @@ export const MenuItems: IMenuItem[] = [
 		type: "page",
 		meta: {
 			url: "/contact",
-			icon: "github",
+			icon: "pencil",
 		},
 		keys: {
 			title: "MENU_ITEM_LABEL_ID_CONTACT",
