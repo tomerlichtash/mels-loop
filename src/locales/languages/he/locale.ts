@@ -24,6 +24,8 @@ export const Locale: Language = {
 	PAGE_LABEL_RESOURCES: "משאבים",
 	PAGE_LABEL_GLOSSARY: "Glossary",
 	PAGE_LABEL_DOCS: "Documents",
+	PAGE_LABEL_CONTACT: "Contact",
+	PAGE_LABEL_CONTRIBUTE: "Contribute",
 
 	/**
 	 * PAGE SECTIONS
