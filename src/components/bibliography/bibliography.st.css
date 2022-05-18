@@ -8,7 +8,10 @@
 
 .title {}
 
-.list {}
+.list {
+  margin: 0;
+  list-style: none;
+}
 
 .button {
   -st-extends: Button;

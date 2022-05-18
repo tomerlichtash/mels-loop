@@ -6,7 +6,7 @@
 
 :vars {
 	MotoTextColor: inehrit;
-	MotoTextSize: 14px;
+	MotoTextSize: inherit;
 	MotoTextStyle: italic;
 	TextColor: inherit;
 	TextSize: inherit;
@@ -20,9 +20,9 @@
 .title {}
 
 .root::moto {
-	font-size: value(MotoTextSize);
-	font-style: value(MotoTextStyle);
-	color: value(MotoTextColor);
+	-st-mixin: TextNode(
+		TextColor value(MotoTextColor)
+	);
 }
 
 .root::contentComponent {
@@ -40,7 +40,7 @@
 }
 
 .root::contentComponent:type(blockquote) {
-	margin: 1rem 1rem 2rem 2rem;
+	margin: 0 1rem 2rem;
 	font-weight: 500;
 	letter-spacing: 0.035rem;
 }

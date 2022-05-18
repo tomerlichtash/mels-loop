@@ -1,11 +1,15 @@
 @namespace "BibliographyMixin";
 
 @st-import Bibliography from "./bibliography.st.css";
-@st-import [heading6] from "../../theme/common/typography.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
+@st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
   BibliographyBgColor: #c0c0c0;
   BibliographyBorderColor: #d0d0d0;
+  ButtonTextSize: auto;
+  ButtonTextColor: inherit;
+  ButtonTextColor_Hover: inherit;
 }
 
 .root {
@@ -15,5 +19,13 @@
 }
 
 .root::title {
-  -st-mixin: heading6;
+  -st-mixin: bodyTextNormal;
+}
+
+.root::button {
+  -st-mixin: bodyTextNormal, ButtonMixin(
+		ButtonTextColor value(ButtonTextColor),
+		ButtonTextColor_Hover value(ButtonTextColor_Hover),
+		ButtonLabelTextSize value(ButtonTextSize),
+  );
 }

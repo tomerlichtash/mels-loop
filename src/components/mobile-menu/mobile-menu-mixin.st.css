@@ -61,10 +61,6 @@
 
 .root::menu {}
 
-.root::burgerMenu {
-	font-size: 1.15em;
-}
-
 .root::burgerCross {
 	background: value(BurgerCrossColor);
 }

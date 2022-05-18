@@ -5,8 +5,18 @@
 :vars {
 	ParagraphTextSize: 1rem;
 	ParagraphLineHeight: 1.8rem;
+	ButtonTextColor: inherit;
+	ButtonTextColor_Hover: inherit;
 }
 
 .root {
 	-st-extends: DynamicContentViewer;
+}
+
+.root::contentComponent:type(link) {
+	color: value(ButtonTextColor);
+}
+
+.root::contentComponent:type(link):hover {
+	color: value(ButtonTextColor_Hover);
 }

@@ -4,7 +4,6 @@
 @st-import PageBaseMixin from "../../pages/page-base-mixin.st.css";
 @st-import Posts from "../../pages/posts.st.css";
 @st-import PostsMixin from "../../pages/posts-mixin.st.css";
-
 @st-import StoryPage from "../../pages/index.st.css";
 @st-import StoryPageMixin from "../../pages/index-mixin.st.css";
 @st-import Scrollbar from "../../components/scrollbar/scrollbar.st.css";
@@ -35,6 +34,10 @@
 @st-import NoteMixin from "../../components/note/note-mixin.st.css";
 @st-import Bibliography from "../../components/bibliography/bibliography.st.css";
 @st-import BibliographyMixin from "../../components/bibliography/bibliography-mixin.st.css";
+@st-import AnnotationLink from "../../components/content/content-blocks/annotation-link/annotation-link.st.css";
+@st-import AnnotationLinkMixin from "../../components/content/content-blocks/annotation-link/annotation-link-mixin.st.css";
+@st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
+@st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 
 @st-import [
 	level0,
@@ -213,9 +216,11 @@
 
 	Bibliography {
 		-st-mixin: BibliographyMixin(
-			/* todo */
 			BibliographyBgColor value(level2),
-			BibliographyBorderColor value(level4)
+			BibliographyBorderColor value(level4),
+			/* ButtonTextSize 12px, */
+			ButtonTextColor value(LINK_TEXT_COLOR),
+			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
 		);
 	}
 
@@ -230,6 +235,21 @@
 			ContentBgColor value(accent1),
 			TextColor value(level1),
 			TooltipArrowColor value(accent1)
+		);
+	}
+
+	AnnotationLink {
+		-st-mixin: AnnotationLinkMixin(
+			AnnotationFontSize 0.75rem,
+			AnnotationFontWeight 700,
+			AnnotationParanthesisMargin 0.05rem
+		);
+	}
+
+	DynamicContentViewer {
+		-st-mixin: DynamicContentViewerMixin(
+			ButtonTextColor value(LINK_TEXT_COLOR),
+			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
 		);
 	}
 }
