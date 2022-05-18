@@ -31,11 +31,11 @@
 	);
 }
 
-.root::contentComponent:type(section) {
+.root::contentComponent:type(paragraph) {
 	margin-bottom: 2rem;
 }
 
-.root::contentComponent:type(paragraph) {
+.root::contentComponent:type(line) {
 	font-size: value(TextSize);
 }
 

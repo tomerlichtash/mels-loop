@@ -7,7 +7,7 @@ describe("ContentComponent", () => {
 	it("should render sample line", () => {
 		const compData = {
 			node: {
-				type: "paragraph",
+				type: "line",
 				key: "key",
 				line: 1,
 				children: [
@@ -24,7 +24,7 @@ describe("ContentComponent", () => {
 
 		const wrapper = render(<ContentComponent componentData={compData} />);
 
-		expect(wrapper.container.querySelector("p").textContent).toEqual(
+		expect(wrapper.container.querySelector("span").textContent).toEqual(
 			`sample line`
 		);
 	});
