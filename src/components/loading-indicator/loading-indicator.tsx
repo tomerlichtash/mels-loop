@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import Portalled from "../portalled";
 import { ComponentProps } from "../../interfaces/models";
 import {
 	st,

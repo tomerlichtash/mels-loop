@@ -1,3 +1,3 @@
-import { CopyUrlButton } from "./copy-url-button";
+import { LoadingIndicator } from "./loading-indicator";
 
-export default CopyUrlButton;
+export default LoadingIndicator;
