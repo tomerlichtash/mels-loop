@@ -29,7 +29,7 @@ I'll call him Mel,
 because that was his name.[^](annotations/mel-kaye-bio)
 
 I first met Mel when I went to work for Royal McBee Computer Corp.,[^](annotations/the-timeline-of-royal-mcbee)
-a now-defunct subsidiary of the typewriter company.[^](annotations/the-ghost-of-royal-mcbee) <!-- get rid of `ghost` -->
+a now-defunct subsidiary of the typewriter company.[^](annotations/now-defunct-subsidiary)
 The firm manufactured the [LGP-30](glossary/lgp-30),
 a small, cheap (by the standards of the day)
 [drum-memory](glossary/drum-memory) computer,
@@ -152,7 +152,7 @@ The Head Salesman talked to Mel,
 as did the Big Boss and, at the boss's urging,
 a few Fellow Programmers.
 Mel finally gave in and wrote the code,
-but he got the test backwards,
+but he got the [test](glossary/test-terminating-condition) backwards,
 and, when the sense switch was turned on,
 the program would cheat, winning every time.
 Mel was delighted with this,
@@ -161,7 +161,7 @@ and adamantly refused to fix it.
 
 After Mel had left the company for greener pa$ture$,
 the Big Boss asked me to look at the code
-and see if I could find the test and reverse it.
+and see if I could find the [test](glossary/test-terminating-condition) and reverse it.
 Somewhat reluctantly, I agreed to look.
 Tracking Mel's code was a real adventure.
 
@@ -177,8 +177,8 @@ even in [hexadecimal](glossary/hexadecimal).
 Mel was, I think, an unsung genius.
 
 Perhaps my greatest shock came
-when I found an innocent [loop](glossary/loop) that had no [test](glossary/terminating-condition) in it.
-No test. None.
+when I found an innocent [loop](glossary/loop) that had no [test](glossary/test-terminating-condition) in it.
+No [test](glossary/test-terminating-condition). None.
 Common sense said it had to be a closed [loop](glossary/loop),
 where the program would circle, forever, endlessly.
 Program control passed right through it, however,

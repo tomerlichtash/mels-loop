@@ -31,7 +31,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 כי זה היה שמו.[^](annotations/mel-kaye-bio)
 
 את מל פגשתי כשעבדתי בחברת המחשבים רוֹיאל-מֶק'בִּי[^](annotations/the-timeline-of-royal-mcbee),
-כיום ישות רפאים עסקית המייצרת מכונת כתיבה.[^](annotations/the-ghost-of-royal-mcbee)
+כיום ישות רפאים עסקית המייצרת מכונת כתיבה.[^](annotations/now-defunct-subsidiary)
 החברה ייצרה אז את ה-[30-LGP](glossary/lgp-30),
 מחשב קטן וזול (בסטנדרטים של היום)
 בעל [זיכרון תוף](glossary/drum-memory),

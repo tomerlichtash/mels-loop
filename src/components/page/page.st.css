@@ -12,6 +12,7 @@
 	-st-mixin: boxSizing;
 	overflow: hidden;
 	margin: 0 auto;
+	min-height: 75vh;
 	max-width: value(pageWidth);
 	padding-top: value(PageTopMargin);
 }

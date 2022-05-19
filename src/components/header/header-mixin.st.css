@@ -28,7 +28,7 @@
 }
 .root::siteTitle::label {
 	font-weight: 500;
-	border-bottom: 3px solid transparent;
+	border-bottom: 2px solid transparent;
 }
 .root::siteTitle:hover::label {
 	border-bottom-color: inherit;
