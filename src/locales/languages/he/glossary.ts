@@ -28,6 +28,7 @@ export const Glossary: GlossaryTerms = {
 	REGISTER: "אוֹגֵר",
 	RPC_4000: "RPC-4000",
 	TERMINATING_CONDITION: "תְּנַאי עֲצִירָה",
+	TEST_OR_TERMINATING_CONDITION: "טסט (תנאי עצירה)",
 	TIME_DELAY_LOOP: "לוּלְאַת הַשְׁהָיָה",
 	TOP_DOWN_DESIGN: "עיצוב מעלה-מטה",
 	VACUUM_TUBE: "שְׁפוֹפֶרֶת רִיק",
