@@ -36,7 +36,7 @@ export const CopyUrlButton = ({
 			() => setToggleCopyIcon(false),
 			TOOLTIP_CLOSE_TIMEOUT
 		);
-		return () => clearInterval(timer);
+		return () => clearTimeout(timer);
 	}, [toggleCopyIcon]);
 
 	const onCopy = () => setToggleCopyIcon(true);

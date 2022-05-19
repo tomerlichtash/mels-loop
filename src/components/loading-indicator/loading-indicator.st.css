@@ -1,0 +1,36 @@
+@namespace "LoadingIndicator";
+
+.root {}
+
+.loadingContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	padding: 1rem;
+	gap: 1rem;
+}
+
+.loadingContainer .loadingAnimation {
+	background-image: url("/public/assets/ml-logo.png");
+	background-size: cover;
+	width: 10rem;
+	height: 10rem;
+}
+
+.loadingContainer .loadingLabel {
+	font-size: 1.5rem;
+}
+
+.rotate {
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
