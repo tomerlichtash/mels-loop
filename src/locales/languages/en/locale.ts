@@ -33,6 +33,11 @@ export const Locale: Language = {
 	SECTION_LABEL_LINKS: "Links",
 
 	/**
+	 * POSTS
+	 */
+	POSTS_BACK_TO_POSTS_LIST: "Back",
+
+	/**
 	 * MENU SECTIONS
 	 */
 	MENU_SECTION_LABEL_ARTICLES: "Articles",

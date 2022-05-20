@@ -20,17 +20,17 @@ export default class LocalePageContext implements ILocalePageContext {
 		Record<keyof ComponentKeyMap, string>
 	> | null {
 		const pathData = this.getPathData(this.route);
-		if (!pathData.locale) {
+		if (!pathData?.locale) {
 			return null;
 		}
 		return pathData.locale;
 	}
 
 	public get pageName(): string {
-		return this.pathLocale.pageName;
+		return this.pathLocale?.pageName;
 	}
 
 	public get sectionName(): string {
-		return this.pathLocale.sectionName;
+		return this.pathLocale?.sectionName;
 	}
 }

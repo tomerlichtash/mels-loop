@@ -6,6 +6,8 @@
 @st-import PostsMixin from "../../pages/posts-mixin.st.css";
 @st-import StoryPage from "../../pages/index.st.css";
 @st-import StoryPageMixin from "../../pages/index-mixin.st.css";
+@st-import Post from "../../components/post/post.st.css";
+@st-import PostMixin from "../../components/post/post-mixin.st.css";
 @st-import Scrollbar from "../../components/scrollbar/scrollbar.st.css";
 @st-import ScrollbarMixin from "../../components/scrollbar/scrollbar-mixin.st.css";
 @st-import Layout from "../../components/layout/layout.st.css";
@@ -84,6 +86,14 @@
 
 	Posts {
 		-st-mixin: PostsMixin(
+		);
+	}
+	Post {
+		-st-mixin: PostMixin(
+			PostTitleColor value(LINK_TEXT_COLOR),
+			PostTitleColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			PostTitleBorderColor value(level3),
+			PostDateTextColor value(level6),
 			BlogPostShadow value(shadow3)
 		);
 	}

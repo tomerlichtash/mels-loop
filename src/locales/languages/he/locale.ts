@@ -33,6 +33,11 @@ export const Locale: Language = {
 	SECTION_LABEL_LINKS: "קישורים",
 
 	/**
+	 * POSTS
+	 */
+	POSTS_BACK_TO_POSTS_LIST: "חזרה לבלוג",
+
+	/**
 	 * MENU SECTIONS
 	 */
 	MENU_SECTION_LABEL_ARTICLES: "מאמרים",

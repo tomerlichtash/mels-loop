@@ -1,12 +1,48 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import { IPageProps } from "../../interfaces/models";
 import { CONTENT_TYPES } from "../../consts";
-import GenericPage from "../../components/content/generic-page";
 import { mlNextUtils } from "../../lib/next-utils";
 import { LoadFolderModes } from "../../interfaces/parser";
+import Layout from "../../components/layout";
+import Head from "next/head";
+import { usePageData } from "../../components/usePageData";
+import { Button } from "../../components/ui";
+import { mlUtils } from "../../lib/ml-utils";
+import { ReactLocaleContext } from "../../contexts/locale-context";
+import { useContext } from "react";
+import { ChevronLeftIcon } from "@radix-ui/react-icons";
+import Post from "../../components/post";
+import { classes } from "../../pages/page-base.st.css";
 
 export default function Doc(props: IPageProps) {
-	return <GenericPage pageProps={props} />;
+	const { pageData } = usePageData(props);
+	const page = pageData && pageData[0];
+	const { locale, siteTitle, translate } = useContext(ReactLocaleContext);
+	const { metaData, path } = page;
+	const { title, date } = metaData;
+
+	return (
+		<Layout>
+			<Head>
+				<title>
+					{siteTitle} - {metaData.title}
+				</title>
+			</Head>
+			<Button
+				label={translate("POSTS_BACK_TO_POSTS_LIST")}
+				icon={<ChevronLeftIcon />}
+				link={"/posts"}
+			/>
+			<Post
+				key={mlUtils.uniqueId()}
+				title={title}
+				date={date}
+				path={path}
+				locale={locale}
+				content={page}
+			/>
+		</Layout>
+	);
 }
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
