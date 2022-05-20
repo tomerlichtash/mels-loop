@@ -10,14 +10,14 @@ After porting it to the RPC-4000, Mel added a write-up in which he explained how
 
 As Mel mentions in his [write-up for the blackjack game](/docs/blackjack-writeup):
 
-"Before playing Blackjack, set 4 typewriter tab stops to provide for 4 columns of printing. The following is the suggested column lengths (left to right) and their content
+> "Before playing Blackjack, set 4 typewriter tab stops to provide for 4 columns of printing. The following is the suggested column lengths (left to right) and their content
 
-- 15 spaces. This column will contain alphabetic questions and the player's responses
-- 12 spaces. This column will contain the player's cards and their numeric total or an alphabetic comment
-- 12 spaces. This column will contain the dealer's (computer's) cards and their numeric total or an alphabetic comment
-- 12 spaces. This column will contain the score at the end of each hand.
+1. 15 spaces. This column will contain alphabetic questions and the player's responses
+2. 12 spaces. This column will contain the player's cards and their numeric total or an alphabetic comment
+3. 12 spaces. This column will contain the dealer's (computer's) cards and their numeric total or an alphabetic comment
+4. 12 spaces. This column will contain the score at the end of each hand.
 
-Secondly, the machine operator had to load the tape to the machine in 10 simple steps:
+> Secondly, the machine operator had to load the tape to the machine in 10 simple steps:
 
 1. Place tape in Reader
 2. Select Reader input
