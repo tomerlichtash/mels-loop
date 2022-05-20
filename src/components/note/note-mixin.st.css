@@ -32,7 +32,8 @@
 
 .root:type(ref)::title {
 	-st-mixin: heading4(
-		h4_margin 9px
+		h4_margin 1rem,
+		h4_size 1.56rem
 	);
 }
 
@@ -49,15 +50,16 @@
 	padding-left: value(NoteScrollGutter);
 }
 
-.root::header,
-.root::content {
-	/* padding: value(NotePadding); */
-}
-.root::bibliography {
-	/* padding: 0 value(NotePadding) value(NotePadding); */
+.root::bibliography::list {
+	padding: 0;
+	/* padding: 0 value(NotePadding); */
 }
 
 .root::header,
 .root::content {
 	padding-bottom: 0;
+}
+
+.root::contentComponent:type(link) {
+	color: red;
 }
