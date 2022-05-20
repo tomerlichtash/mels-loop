@@ -20,6 +20,7 @@ import {
 	TwitterLogoIcon,
 	ChevronRightIcon,
 	ChevronLeftIcon,
+	Pencil1Icon,
 } from "@radix-ui/react-icons";
 import { st, classes } from "./menu.st.css";
 import { TextDirection } from "../../interfaces/locale-context";
@@ -46,6 +47,8 @@ const getButtonIcon = (type: string, icon: string) => {
 			return <TwitterLogoIcon />;
 		case "github":
 			return <GitHubLogoIcon />;
+		case "pencil":
+			return <Pencil1Icon />;
 		default:
 			break;
 	}

@@ -24,11 +24,12 @@ export const Bibliography = ({
 		<div className={st(classes.root, className)}>
 			<div className={classes.title}>{label}:</div>
 			<ul className={classes.list}>
-				{sources.map(({ name, url }) => {
+				{sources.map(({ name, url, author }) => {
+					const authorSuffix = author ? ` / ${author}` : "";
 					return (
 						<li key={mlUtils.uniqueId()}>
 							<Button
-								label={name}
+								label={`${name}${authorSuffix}`}
 								link={url}
 								target="_blank"
 								className={classes.button}

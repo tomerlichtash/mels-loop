@@ -10,6 +10,8 @@
 	margin-bottom: 2rem;
 }
 
+.credits {}
+
 .contentComponent {
 	-st-extends: ContentComponent;
 }
