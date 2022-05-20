@@ -19,7 +19,7 @@ export const MenuSections: IMenuSection[] = [
 			layout: "two",
 		},
 		keys: {},
-		children: ["about", "contribute"],
+		children: ["about"],
 	},
 	{
 		id: "contact",
@@ -30,7 +30,7 @@ export const MenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_CONTACT",
 		},
-		children: ["twitter", "github"],
+		children: ["contact", "twitter", "github"],
 	},
 ];
 
@@ -55,7 +55,7 @@ export const MobileMenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_INFO",
 		},
-		children: ["about-mobile", "blog", "contribute-mobile"],
+		children: ["about-mobile", "blog"],
 	},
 	{
 		id: "contact",
@@ -79,7 +79,6 @@ export const MenuItems: IMenuItem[] = [
 		},
 		keys: {
 			title: "MENU_ITEM_LABEL_ID_PREFACE",
-			// description: "MENU_ITEM_DESC_ID_PREFACE",
 			author: "AUTHOR_TOMER_LICHTASH",
 		},
 	},
@@ -91,7 +90,6 @@ export const MenuItems: IMenuItem[] = [
 		},
 		keys: {
 			title: "MENU_ITEM_LABEL_ID_MELSHACK",
-			// description: "MENU_ITEM_DESC_ID_MELSHACK",
 			author: "AUTHOR_DAVID_FRANKIEL",
 		},
 	},
@@ -172,7 +170,7 @@ export const MenuItems: IMenuItem[] = [
 		type: "page",
 		meta: {
 			url: "/contact",
-			icon: "github",
+			icon: "pencil",
 		},
 		keys: {
 			title: "MENU_ITEM_LABEL_ID_CONTACT",

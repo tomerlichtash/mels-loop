@@ -1,6 +1,7 @@
 ---
 title: "The Story of Mel"
 moto: "This was posted to Usenet by its author, Ed Nather <nather@astro.as.utexas.edu>, on May 21, 1983."
+credits: "Annotations written and curated by Tomer Lichtash and David Frankiel"
 ---
 
 A recent article devoted to the _macho_ side of programming[^](annotations/recent-article)
@@ -29,7 +30,7 @@ I'll call him Mel,
 because that was his name.[^](annotations/mel-kaye-bio)
 
 I first met Mel when I went to work for Royal McBee Computer Corp.,[^](annotations/the-timeline-of-royal-mcbee)
-a now-defunct subsidiary of the typewriter company.[^](annotations/the-ghost-of-royal-mcbee) <!-- get rid of `ghost` -->
+a now-defunct subsidiary of the typewriter company.[^](annotations/now-defunct-subsidiary)
 The firm manufactured the [LGP-30](glossary/lgp-30),
 a small, cheap (by the standards of the day)
 [drum-memory](glossary/drum-memory) computer,
@@ -52,7 +53,7 @@ Mel had written,[^](annotations/handwritten-code)
 in [hexadecimal](glossary/hexadecimal),
 the most popular computer program the company owned.
 It ran on the [LGP-30](glossary/lgp-30)
-and played blackjack with potential customers[^](annotations/librazette-chicago-automation-show)
+and played blackjack[^](annotations/mels-blackjack-game) with potential customers[^](annotations/librazette-chicago-automation-show)
 at computer shows.
 Its effect was always dramatic.[^](annotations/librazette-quote-1)
 The [LGP-30](glossary/lgp-30) booth was packed at every show,[^](annotations/librazette-quote-2)
@@ -62,7 +63,7 @@ Whether or not this actually sold computers
 was a question we never discussed.
 
 Mel's job was to re-write
-the blackjack program for the [RPC-4000](glossary/rpc-4000).[^](annotations/mels-blackjack-game)
+the blackjack program for the [RPC-4000](glossary/rpc-4000)
 ([Port](glossary/port)? What does that mean?)
 The new computer had a one-plus-one
 [addressing scheme](glossary/addressing-scheme),[^](annotations/instruction1)
@@ -152,7 +153,7 @@ The Head Salesman talked to Mel,
 as did the Big Boss and, at the boss's urging,
 a few Fellow Programmers.
 Mel finally gave in and wrote the code,
-but he got the test backwards,
+but he got the [test](glossary/test-terminating-condition) backwards,
 and, when the sense switch was turned on,
 the program would cheat, winning every time.
 Mel was delighted with this,
@@ -161,7 +162,7 @@ and adamantly refused to fix it.
 
 After Mel had left the company for greener pa$ture$,
 the Big Boss asked me to look at the code
-and see if I could find the test and reverse it.
+and see if I could find the [test](glossary/test-terminating-condition) and reverse it.
 Somewhat reluctantly, I agreed to look.
 Tracking Mel's code was a real adventure.
 
@@ -177,8 +178,8 @@ even in [hexadecimal](glossary/hexadecimal).
 Mel was, I think, an unsung genius.
 
 Perhaps my greatest shock came
-when I found an innocent [loop](glossary/loop) that had no [test](glossary/terminating-condition) in it.
-No test. None.
+when I found an innocent [loop](glossary/loop) that had no [test](glossary/test-terminating-condition) in it.
+No [test](glossary/test-terminating-condition). None.
 Common sense said it had to be a closed [loop](glossary/loop),
 where the program would circle, forever, endlessly.
 Program control passed right through it, however,

@@ -20,3 +20,7 @@
 .root::contentComponent:type(link):hover {
 	color: value(ButtonTextColor_Hover);
 }
+
+.root::contentComponent:type(paragraph) {
+	margin-bottom: 1rem;
+}
