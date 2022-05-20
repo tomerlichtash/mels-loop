@@ -10,14 +10,15 @@ import { Button } from "../../components/ui";
 import { mlUtils } from "../../lib/ml-utils";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { useContext } from "react";
-import { ChevronLeftIcon } from "@radix-ui/react-icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Post from "../../components/post";
-import { classes } from "../../pages/page-base.st.css";
+// import { classes } from "../../pages/page-base.st.css";
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
-	const { locale, siteTitle, translate } = useContext(ReactLocaleContext);
+	const { locale, siteTitle, translate, textDirection } =
+		useContext(ReactLocaleContext);
 	const { metaData, path } = page;
 	const { title, date } = metaData;
 
@@ -30,7 +31,9 @@ export default function Doc(props: IPageProps) {
 			</Head>
 			<Button
 				label={translate("POSTS_BACK_TO_POSTS_LIST")}
-				icon={<ChevronLeftIcon />}
+				icon={
+					textDirection === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />
+				}
 				link={"/posts"}
 			/>
 			<Post

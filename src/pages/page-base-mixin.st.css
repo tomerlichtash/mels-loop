@@ -41,6 +41,10 @@
   );
 }
 
+.root::byline {
+  margin-bottom: 2rem;
+}
+
 .root::contentComponent:type(heading_2) {
   -st-mixin: heading2(
     HeadingColor value(HeadingColor2),

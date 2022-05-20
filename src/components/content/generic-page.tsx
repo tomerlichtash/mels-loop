@@ -14,6 +14,7 @@ export default function GenericPage(props: IContentComponentData) {
 	const { pageData } = usePageData(props.pageProps);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;
+	const { author } = metaData;
 	const node: IMLParsedNode = page && {
 		children: page.parsed,
 		key: page.id,
@@ -27,6 +28,7 @@ export default function GenericPage(props: IContentComponentData) {
 			</Head>
 			<article className={classes.root}>
 				<h1 className={classes.title}>{metaData?.title}</h1>
+				{author && <div className={classes.byline}>{author}</div>}
 				{node ? (
 					<ContentIterator
 						componentData={{ node }}

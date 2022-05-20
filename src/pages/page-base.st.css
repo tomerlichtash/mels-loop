@@ -6,6 +6,8 @@
 
 .title {}
 
+.byline {}
+
 .genericPage {
   -st-states: type(string);
 }
