@@ -22,10 +22,10 @@ export const Locale: Language = {
 	PAGE_LABEL_ABOUT: "אודות",
 	PAGE_LABEL_BLOG: "בלוג",
 	PAGE_LABEL_RESOURCES: "משאבים",
-	PAGE_LABEL_GLOSSARY: "Glossary",
-	PAGE_LABEL_DOCS: "Documents",
-	PAGE_LABEL_CONTACT: "Contact",
-	PAGE_LABEL_CONTRIBUTE: "Contribute",
+	PAGE_LABEL_GLOSSARY: "מילון מונחים",
+	PAGE_LABEL_DOCS: "מסמכים",
+	PAGE_LABEL_CONTACT: "יצירת קשר",
+	PAGE_LABEL_CONTRIBUTE: "תרומה והשתתפות",
 
 	/**
 	 * PAGE SECTIONS
@@ -57,7 +57,8 @@ export const Locale: Language = {
 	/**
 	 * MENU ITEMS - DESCRIPTION
 	 */
-	MENU_ITEM_DESC_ID_ABOUT: "TBD",
+	MENU_ITEM_DESC_ID_ABOUT:
+		"לולאת מל הוא מדריך לאפוס הפולקלור ההאקרי ״הסיפור על מל״. באתר זה נרכז את הסיפורים, המקורות, החומרים והדמויות אשר סובבים את ״הסיפור על מל״, כמו גם חומרים אחרים הנוגעים לפולקלור ההאקרים.",
 	MENU_ITEM_DESC_ID_BLOG: "חדשות ועדכונים",
 	MENU_ITEM_DESC_ID_RESOURCES: "מידע נוסף ברשת על הסיפור על מל",
 	MENU_ITEM_DESC_ID_CONTRIBUTE: "כיצד להשתתף או לתרום לפרויקט",
