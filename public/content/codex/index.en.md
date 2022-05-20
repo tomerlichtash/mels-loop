@@ -52,7 +52,7 @@ Mel had written,[^](annotations/handwritten-code)
 in [hexadecimal](glossary/hexadecimal),
 the most popular computer program the company owned.
 It ran on the [LGP-30](glossary/lgp-30)
-and played blackjack with potential customers[^](annotations/librazette-chicago-automation-show)
+and played blackjack[^](annotations/mels-blackjack-game) with potential customers[^](annotations/librazette-chicago-automation-show)
 at computer shows.
 Its effect was always dramatic.[^](annotations/librazette-quote-1)
 The [LGP-30](glossary/lgp-30) booth was packed at every show,[^](annotations/librazette-quote-2)
@@ -62,7 +62,7 @@ Whether or not this actually sold computers
 was a question we never discussed.
 
 Mel's job was to re-write
-the blackjack program for the [RPC-4000](glossary/rpc-4000).[^](annotations/mels-blackjack-game)
+the blackjack program for the [RPC-4000](glossary/rpc-4000)
 ([Port](glossary/port)? What does that mean?)
 The new computer had a one-plus-one
 [addressing scheme](glossary/addressing-scheme),[^](annotations/instruction1)
