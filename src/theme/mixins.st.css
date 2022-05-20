@@ -20,7 +20,6 @@
 .verticalAlignSuper {
 	position: relative;
 	top: -6px;
-	font-size: 12px;
 }
 
 /* IconFillMixin */
@@ -60,7 +59,7 @@
 .MobileHeader { -st-extends: Header }
 .MobileHeader::container { display: block }
 .MobileHeader::siteTitle { display: block }
-.MobileHeader::siteSubtitle { font-size: 0.85rem }
+/* .MobileHeader::siteSubtitle { font-size: 0.85rem } */
 .MobileHeader::siteSubtitle::before { margin: 0; content: "" }
 
 /* TextNodeMixin */
@@ -70,12 +69,14 @@
 	TextLineHeight: inherit;
 	TextCase: auto;
 	TextColor: inherit;
+	TextStyle: none;
 }
 .TextNode {
 	font-size: value(TextSize);
 	font-weight: value(TextWeight);
 	line-height: value(TextLineHeight);
 	text-transform: value(TextCase);
+	font-style: value(TextStyle);
 	color: value(TextColor);
 }
 

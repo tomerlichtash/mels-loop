@@ -10,7 +10,7 @@ export const MenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: ["preface", "melshack", "page1"],
+		children: ["preface", /*"melshack",*/ "page1"],
 	},
 	{
 		id: "info",
@@ -44,7 +44,7 @@ export const MobileMenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: ["preface", "melshack", "page1"],
+		children: ["preface", /*"melshack",*/ "page1"],
 	},
 	{
 		id: "about",

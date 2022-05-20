@@ -99,7 +99,7 @@ export const DynamicContentViewer = ({
 		return (
 			<div className={st(classes.root, className)}>
 				<Note
-					className={classes.root}
+					className={classes.note}
 					type={itemType}
 					contents={contents}
 					label={label}

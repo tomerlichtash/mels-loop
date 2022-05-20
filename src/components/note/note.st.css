@@ -1,6 +1,7 @@
 @namespace "Note";
 
 @st-import Bibliography from "../bibliography/bibliography.st.css";
+@st-import ContentComponent from "../content/content-component.st.css";
 
 .root {
 	-st-states: type(enum(note, ref)), textDirection(enum(ltr, rtl));
@@ -24,4 +25,8 @@
 
 .bibliography {
   -st-extends: Bibliography;
+}
+
+.contentComponent {
+	-st-extends: ContentComponent;
 }
