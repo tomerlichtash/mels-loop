@@ -70,13 +70,14 @@ export const DynamicContentViewer = ({
 			DynamicContentTypes.Glossary
 		);
 		const { metaData } = item;
-		const { source_name, source_url, glossary_key } = metaData;
+		const { source_name, source_url, source_author, glossary_key } = metaData;
 
 		// TODO: Support multiple sources - https://github.com/tomerlichtash/mels-loop-nextjs/issues/188
 		const sources = source_name && [
 			{
 				name: source_name,
 				url: source_url,
+				author: source_author,
 			},
 		];
 		const label = translate(`NOTE_LABEL_${itemData.type.toUpperCase()}`);

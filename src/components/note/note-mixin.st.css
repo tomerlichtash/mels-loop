@@ -59,7 +59,3 @@
 .root::content {
 	padding-bottom: 0;
 }
-
-.root::contentComponent:type(link) {
-	color: red;
-}

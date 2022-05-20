@@ -28,6 +28,7 @@ export const Glossary: GlossaryTerms = {
 	REGISTER: "Register",
 	RPC_4000: "RPC-4000",
 	TERMINATING_CONDITION: "Terminating Code",
+	TEST_OR_TERMINATING_CONDITION: "Test",
 	TIME_DELAY_LOOP: "Time Delay Loop",
 	TOP_DOWN_DESIGN: "Top Down Design",
 	VACUUM_TUBE: "Vacuum Tube",

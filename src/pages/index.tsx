@@ -28,7 +28,7 @@ export default function Index(props: IPageProps) {
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
 	const { metaData } = pageData[0];
-	const { title, moto } = metaData;
+	const { title, moto, credits } = metaData;
 	const elements: IMLParsedNode[] = page.parsed || [];
 
 	return (
@@ -51,6 +51,7 @@ export default function Index(props: IPageProps) {
 							/>
 						);
 					})}
+					<p className={classes.credits}>{credits}</p>
 				</div>
 			</article>
 		</Layout>

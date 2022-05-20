@@ -2,18 +2,9 @@
 title: "Resources"
 ---
 
-### Online resources
+### Story Source
 
-- [YCombinator discussion] claiming that the hack was pefromed on the LGP-30 emulator
-- A detailed attempt by David Nugent to [reconstruct] the hack, based on real rpc-4000 data
-
-### Story Sources
-
-[Jargon File](http://www.catb.org/jargon/)
-
-### Discussions
-
-[YCombinator discussion]
+- [Jargon File](http://www.catb.org/jargon/)
 
 ### Guides and References
 
@@ -44,7 +35,7 @@ title: "Resources"
 
 ### RPC-4000
 
-[RPC-4000 Manuals, Code Samples and Other Documents Archive](http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/)
+- [RPC-4000 Manuals, Code Samples and Other Documents Archive](http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/)
 
 ### Wikipedia
 
@@ -55,12 +46,21 @@ title: "Resources"
 
 ### Other
 
-[Vacuum Tube Blackjack](https://twitter.com/ewbarnard/status/1034892590003482626?ref_src=twsrc%5Etfw)
+- [Vacuum Tube Blackjack](https://twitter.com/ewbarnard/status/1034892590003482626?ref_src=twsrc%5Etfw)
 
-[Less Is More in the Fifties: Encounters between Logical Minimalism and Computer Design during the 1950s](https://hal.univ-lille.fr/hal-01345592v3/document)
+- [Less Is More in the Fifties: Encounters between Logical Minimalism and Computer Design during the 1950s](https://hal.univ-lille.fr/hal-01345592v3/document)
 
-[Awesome Computer History](https://github.com/watson/awesome-computer-history)
+- [Awesome Computer History](https://github.com/watson/awesome-computer-history)
 
 <!--- Global resources --->
 
 [ycombinator discussion]: https://news.ycombinator.com/item?id=20489273
+
+### Online resources
+
+- [YCombinator discussion] claiming that the hack was pefromed on the LGP-30 emulator
+- A detailed attempt by David Nugent to [reconstruct] the hack, based on real rpc-4000 data
+
+<!-- ### Discussions -->
+
+<!-- - [YCombinator discussion] -->
