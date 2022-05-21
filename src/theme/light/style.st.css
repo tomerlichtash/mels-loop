@@ -73,7 +73,10 @@
 			HeadingColor1 value(level7),
 			HeadingColor2 value(level6),
 			HeadingColor3 value(level6),
-			BodyTextColor value(BODY_TEXT_COLOR)
+			BodyTextColor value(BODY_TEXT_COLOR),
+			LinkColor value(LINK_TEXT_COLOR),
+			LinkColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			ContentHeaderMetaBorderColor value(level4)
 		);
 	}
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
 	IContentComponentData,
 	IMLParsedNode,
@@ -8,13 +8,16 @@ import Layout from "../layout";
 import Head from "next/head";
 import { ContentIterator } from "./content-iterator";
 import { usePageData } from "../usePageData";
+import { TimeFormat } from "../ui";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { classes } from "../../pages/page-base.st.css";
 
 export default function GenericPage(props: IContentComponentData) {
+	const { locale } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props.pageProps);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;
-	const { author } = metaData;
+	const { author, date, abstract } = metaData;
 	const node: IMLParsedNode = page && {
 		children: page.parsed,
 		key: page.id,
@@ -27,8 +30,20 @@ export default function GenericPage(props: IContentComponentData) {
 				<title>{metaData?.title}</title>
 			</Head>
 			<article className={classes.root}>
-				<h1 className={classes.title}>{metaData?.title}</h1>
-				{author && <div className={classes.byline}>{author}</div>}
+				<header className={classes.header}>
+					<h1 className={classes.title}>{metaData?.title}</h1>
+					{abstract && <div className={classes.abstract}>{abstract}</div>}
+					<div className={classes.meta}>
+						{author && <div className={classes.byline}>{author}</div>}
+						{date && (
+							<TimeFormat
+								dateStr={date}
+								locale={locale}
+								className={classes.date}
+							/>
+						)}
+					</div>
+				</header>
 				{node ? (
 					<ContentIterator
 						componentData={{ node }}

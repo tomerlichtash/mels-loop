@@ -1,5 +1,6 @@
 ---
-title: "Preface to The Story of Mel"
+title: "A Software Legend That Actually Existed"
+abstract: "A Preface to The Story of Mel"
 author: "Tomer Lichtash"
 date: Wed Apr 7 2021 13:45 GMT+0300
 ---

@@ -4,9 +4,30 @@
 
 .root {}
 
+/* Header Components */
+
+.header {
+  margin-bottom: 2rem;
+}
+
 .title {}
 
+.abstract {}
+
+.meta {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  padding: 1vmax 0;
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
 .byline {}
+.date {}
+
+/* ---------------- */
 
 .genericPage {
   -st-states: type(string);
