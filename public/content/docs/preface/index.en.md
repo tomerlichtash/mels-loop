@@ -1,13 +1,11 @@
 ---
-title: "A Software Legend That Actually Existed"
+title: "A Software Legend That Really Happened"
 abstract: "A Preface to The Story of Mel"
 author: "Tomer Lichtash"
 date: Wed Apr 7 2021 13:45 GMT+0300
 ---
 
 <!-- ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1643544201/mels-loop/mel-kaye/mel-kaye-yearbook-photo_xgoxpv.jpg) -->
-
-## Introduction
 
 If this is your first encounter with _The Story of Mel_, odds are you will not understand it. There are numerous barriers along the way: Most of the technologies and programming languages featured in the story have either gone extinct, or were relegated to esoteric niches in the software universe; a general understanding of digital computing hardware is required, but this is no longer part of the curriculum of CS students; Familiarity with early computing history can help, but that period is mostly undocumented. Thus, reading _The Story of Mel_ is likely to be an uncomfortable experience, but even so, one can hardly miss the sense of elation out of which the words were born. It is clearly the result of a noble encounter between man, machine and language. The cathartic experience hinges on rather complex technical understanding, but it is clearly the "desired outcome" of reading a story.
 
@@ -20,7 +18,7 @@ When Mel left the company, apparently due to an ongoing conflict of values, Ed w
 
 It's almost too easy to to view this story as a classic "good vs evil" conflict: a lone "genius" standing his ground against the "evil corporation", or a technological knight deflecting the moral depravity of the rising big business. However, it is also a story about collegial respect, shifting perspectives and the precedental mental encounter between first generation computers and coders. Beyond these perspectives, the story showcases the budding tension between mamangement and marketing on the one hand, and software engineers on the other. This atmosphere of plots, deviance and often stupidity is reminiscent of comics strips like xkcd and Dilbert that capture the awkward encounters between bureaucracy and technology.
 
-## The Story of Mel and Hacker Folklore
+## Hacker Folklore
 
 _The Story of Mel_ is an epic text in hacking folklore, an unofficial genre which includes an eclectic and rather substantial collection of relics from the early digital sphere; This period spans the first three decades of the computer era, from the first machines to the commercial production of personal computers and the birth of the global network (~1950-1983). Hacking folklore stories are anecdotal tales, written and published in what was then a budding ultra modern medium; they document various events and cases from the forefront of the computing revolution; they often showcase conflicts between the values of individuals, systems and the latest arrival to the global stage - the computer. Most importantly - they sometimes capture moments in which the border between logic and magic blurs away.
 
@@ -38,4 +36,4 @@ The translation of _The Story of Mel_ required a significant effort on my part, 
 
 ## Thanks
 
-I'm grateful to David Frenkiel, my partner in this project. Ten years ago, he (virtually) handed me a copy of the story, with a simple and assertive demand: "read". His contribution to deciphering archaic code and obsolete technology, as well as understanding the spirit of the "real programmer", enlightened me time and again both as a reader and as a translator of this epic.
+I'm grateful to **David Frenkiel**, my partner in this project. Ten years ago, he (virtually) handed me a copy of the story, with a simple and assertive demand: "read". His contribution to deciphering archaic code and obsolete technology, as well as understanding the spirit of the "real programmer", enlightened me time and again both as a reader and as a translator of this epic.
