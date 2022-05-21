@@ -29,8 +29,6 @@
   Heading6Margin: 0;
   SectionMargin: 2rem;
   ParagraphMargin: 2rem;
-  LinkColor: inherit;
-  LinkColor_Hover: inherit;
   ContentHeaderMetaBorderColor: #c0c0c0;
 }
 
@@ -80,24 +78,11 @@
   );
 }
 
-.root::contentComponent:type(list) {
-  -st-mixin: bodyTextNormal(
-    BodyTextColor value(BodyTextColor)
-  );
-}
-
 .root::contentComponent:type(paragraph) {
   -st-mixin: bodyTextNormal(
     BodyTextColor value(BodyTextColor)
   );
   margin-bottom: value(ParagraphMargin);
-}
-
-.root::contentComponent:type(link) {
-  color: value(LinkColor);
-}
-.root::contentComponent:type(link):hover {
-  color: value(LinkColor_Hover);
 }
 
 .root::abstract {

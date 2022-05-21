@@ -15,9 +15,12 @@
 .abstract {}
 
 .meta {
+  -st-states: hasContent(boolean);
+}
+.meta:hasContent {
+  padding: 1vmax 0;
   border-top: 2px solid;
   border-bottom: 2px solid;
-  padding: 1vmax 0;
   display: flex;
   align-items: center;
   align-content: space-between;

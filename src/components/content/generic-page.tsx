@@ -10,7 +10,7 @@ import { ContentIterator } from "./content-iterator";
 import { usePageData } from "../usePageData";
 import { TimeFormat } from "../ui";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { classes } from "../../pages/page-base.st.css";
+import { st, classes } from "../../pages/page-base.st.css";
 
 export default function GenericPage(props: IContentComponentData) {
 	const { locale } = useContext(ReactLocaleContext);
@@ -33,7 +33,7 @@ export default function GenericPage(props: IContentComponentData) {
 				<header className={classes.header}>
 					<h1 className={classes.title}>{metaData?.title}</h1>
 					{abstract && <div className={classes.abstract}>{abstract}</div>}
-					<div className={classes.meta}>
+					<div className={st(classes.meta, { hasContent: !!author || !!date })}>
 						{author && <div className={classes.byline}>{author}</div>}
 						{date && (
 							<TimeFormat

@@ -40,6 +40,8 @@
 @st-import AnnotationLinkMixin from "../../components/content/content-blocks/annotation-link/annotation-link-mixin.st.css";
 @st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
 @st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
+@st-import ContentComponent from "../../components/content/content-component.st.css";
+@st-import ContentComponentMixin from "../../components/content/content-component-mixin.st.css";
 
 @st-import [
 	level0,
@@ -68,14 +70,19 @@
 ] from "./vars.st.css";
 
 @st-scope .root {
+	ContentComponent {
+		-st-mixin: ContentComponentMixin(
+			LinkColor value(LINK_TEXT_COLOR),
+			LinkColor_Hover value(LINK_TEXT_COLOR_HOVER)
+		);
+	}
+
 	PageBase {
 		-st-mixin: PageBaseMixin(
 			HeadingColor1 value(level7),
 			HeadingColor2 value(level6),
 			HeadingColor3 value(level6),
 			BodyTextColor value(BODY_TEXT_COLOR),
-			LinkColor value(LINK_TEXT_COLOR),
-			LinkColor_Hover value(LINK_TEXT_COLOR_HOVER),
 			ContentHeaderMetaBorderColor value(level4)
 		);
 	}
@@ -96,7 +103,8 @@
 			PostTitleColor value(LINK_TEXT_COLOR),
 			PostTitleColor_Hover value(LINK_TEXT_COLOR_HOVER),
 			PostTitleBorderColor value(level3),
-			PostDateTextColor value(level6),
+			PostTextColor value(level6),
+			PostDateTextColor value(BODY_TEXT_COLOR),
 			BlogPostShadow value(shadow3)
 		);
 	}
@@ -143,7 +151,8 @@
 			ItemSubtitleLineHeight 1rem,
 			ItemSubtitleTextSize 0.85rem,
 			ItemLabelIconMargin 0.35rem,
-			ViewPortShadow value(shadow1)
+			ViewPortShadow value(shadow1),
+			AbstractTextColor value(level6)
 		);
 	}
 

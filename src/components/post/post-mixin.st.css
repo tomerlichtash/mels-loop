@@ -6,6 +6,7 @@
 :vars {
   PostTitleColor: inherit;
   PostTitleColor_Hover: inherit;
+  PostTextColor: inherit;
   BlogPostShadow: none;
   PostTitleBorderColor: inherit;
   PostDateTextColor: inherit;
@@ -16,8 +17,6 @@
 }
 
 .root::wrapper {
-  /* box-shadow: inset value(BlogPostShadow); */
-  /* padding: 2rem 0 0; */
   margin-top: 4rem;
 }
 
@@ -27,7 +26,6 @@
 }
 
 .root::title {
-  /* -st-mixin: heading3; */
   color: value(PostTitleColor);
   padding: 1rem 0 0;
 }
@@ -36,7 +34,9 @@
 }
 
 .root::contentComponent:type(paragraph) {
-  -st-mixin: bodyTextNormal;
+  -st-mixin: bodyTextNormal(
+    BodyTextColor value(PostTextColor)
+  );
   margin-bottom: 1rem;
 }
 
