@@ -11,7 +11,7 @@ date: Wed May 21 2021 12:0 GMT+0300
 
 Today we celebrate the 39th anniversary of the first publication of The Story of Mel by **Ed Nather**. The Story of Mel was written as a memoir about the era of early computing of the late 1950s, creating a fresh memory of the days when Hackership was first forged. It continued to live through the years as an epic hacker folklore.
 
-Little is known about the origins of The Story of Mel, its characters, and technical aspects. Over the past few years, We've spent a lot of time researching the story. We interviewed people who were related to it, and discovered some interesting details about the life and origins of Mel, Ed, and their stories, as well as the company where it all happened, and developed a deep perspective of Mel’s famous hack.
+Little is known about the origins of The Story of Mel, its characters, and technical aspects. Over the past few years, we've spent a lot of time researching the story. We interviewed people who were related to it, and discovered some interesting details about the life and origins of Mel, Ed, and their stories, as well as the company where it all happened, and developed a deep perspective of Mel’s famous hack.
 
 To celebrate this research, we launch today a new project: [Mel’s Loop](https://melsloop.com), which includes an annotated version of the story, along with articles and other materials that are soon to be added to this web companion – related to The Story of Mel, and to the Hacker Folklore genre in general.
 
