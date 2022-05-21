@@ -5,9 +5,9 @@ import {
 	IContentComponentInitData,
 	NODE_DISPLAY_TYPES,
 } from "../../../../interfaces/models";
-import { ContentIterator } from "../../content-iterator";
 import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
+import TermLink from "../term-link";
 import Popover from "../../../popover";
 import { ReactLocaleContext } from "../../../../contexts/locale-context";
 import { ReactQueryContext } from "../../../../contexts/query-context";
@@ -23,7 +23,7 @@ const getTriggerComp = (
 		case DynamicContentTypes.Annotation:
 			return <AnnotationLink className={className} componentData={data} />;
 		default:
-			return <ContentIterator className={className} componentData={data} />;
+			return <TermLink className={className} componentData={data} />;
 	}
 };
 

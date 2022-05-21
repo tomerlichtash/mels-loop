@@ -9,7 +9,7 @@
 	fontSize6: 0.833vmax;
 	fontSize7: 0.875rem;
 	fontSize8: 0.75rem;
-	lineHeight1: 60px;
+	lineHeight1: 3vmax;
 	lineHeight2: 49px;
 	lineHeight3: 39px;
 	lineHeight4: 31px;
@@ -78,7 +78,7 @@
 		TextWeight value(h1_weight),
 		TextColor value(h1_color)
 	);
-  margin-bottom: value(h1_margin);
+  margin-bottom: 1.302vmax;
 }
 
 .heading2 {

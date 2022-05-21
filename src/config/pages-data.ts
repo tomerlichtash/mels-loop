@@ -43,6 +43,11 @@ export const SITE_PAGES: SitePage[] = [
 		targetPathname: "/posts",
 	},
 	{
+		id: "post",
+		locale: BLOG_PAGE_LOCALE,
+		targetPathname: "/posts/[id]",
+	},
+	{
 		id: "error",
 		locale: ERROR_GENERAL_LOCALE,
 		targetPathname: "NONE",

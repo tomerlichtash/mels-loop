@@ -137,6 +137,10 @@ export interface IPageMetaData {
 	 */
 	readonly title: string;
 	/**
+	 * Abstract metadata, if present in the MD
+	 */
+	readonly abstract: string;
+	/**
 	 * Moto metadata, if present in the MD
 	 */
 	readonly moto: string;

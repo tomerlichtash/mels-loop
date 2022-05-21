@@ -15,7 +15,11 @@ const localeFormats = {
 
 const getLocaleFormat = (locale: string): string => localeFormats[locale];
 
-export const TimeFormat = ({ dateStr, locale }: DateProps): JSX.Element => {
+export const TimeFormat = ({
+	dateStr,
+	locale,
+	className,
+}: DateProps): JSX.Element => {
 	if (!dateStr) {
 		return null;
 	}
@@ -23,7 +27,7 @@ export const TimeFormat = ({ dateStr, locale }: DateProps): JSX.Element => {
 	const date = new Date(dateStr);
 
 	return (
-		<time dateTime={date.toString()} className={st(classes.root)}>
+		<time dateTime={date.toString()} className={st(classes.root, className)}>
 			{format(date, getLocaleFormat(locale))}
 		</time>
 	);
