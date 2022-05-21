@@ -42,6 +42,7 @@ export const ContentIterator = ({
 						<ContentComponent
 							key={mlUtils.uniqueId()}
 							componentData={{ node }}
+							className={className}
 						/>
 					);
 				})}

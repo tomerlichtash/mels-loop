@@ -15,7 +15,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 בירה לייט, מחשבוני כיס[^](annotations/calculators), ותוכנה "ידידותית-למשתמש"[^](annotations/user-friendly-quatations)
 אך בימים ההם[^](annotations/story-timeline-estimation),
 כשהמונח "תוכנה" עוד היה נשמע מצחיק,
-ומחשבים אמיתיים[^](annotations/real-computers) נבנו ב[תופים](glossary/drum-memory) וב[שפופרות](glossary/vaccum-tube),
+ומחשבים אמיתיים[^](annotations/real-computers) נבנו ב[תופים](glossary/drum-memory) וב[שפופרות](glossary/vacuum-tube),
 מתכנתים אמיתיים כתבו ב[שפת מכונה](glossary/assembly-language).
 לא [פוֹרְטְרַן](glossary/fortran). לא [ראטפוֹר](glossary/ratfor). אפילו לא [שפת סף](glossary/assembly-language).
 שפת מכונה.

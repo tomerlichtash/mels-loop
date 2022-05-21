@@ -7,12 +7,11 @@ import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps, IParsedPageData } from "../interfaces/models";
 import { usePageData } from "../components/usePageData";
-import { Button, TimeFormat } from "../components/ui";
-import { ContentComponent } from "../components/content";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import orderBy from "lodash.orderby";
 import { mlUtils } from "../lib/ml-utils";
 import { classes } from "./posts.st.css";
+import Post from "../components/post";
 
 export default function Blog(props: IPageProps) {
 	const { locale, siteTitle, pageName, sectionName } =
@@ -32,35 +31,15 @@ export default function Blog(props: IPageProps) {
 						const { metaData, path } = page;
 						const { title, date } = metaData;
 						return (
-							<article className={classes.post} key={mlUtils.uniqueId()}>
-								<header className={classes.postHeader}>
-									<h3 className={classes.postHeading}>
-										<Button
-											label={title}
-											link={`/${path}`}
-											className={classes.postTitle}
-										/>
-									</h3>
-									{date && (
-										<TimeFormat
-											dateStr={date}
-											locale={locale}
-											className={classes.postDate}
-										/>
-									)}
-								</header>
-								<main className={classes.postMain}>
-									{page.parsed.map((node) => {
-										return (
-											<ContentComponent
-												key={mlUtils.uniqueId()}
-												className={classes.postContent}
-												componentData={{ node }}
-											/>
-										);
-									})}
-								</main>
-							</article>
+							<Post
+								key={mlUtils.uniqueId()}
+								title={title}
+								date={date}
+								path={path}
+								locale={locale}
+								content={page}
+								className={classes.post}
+							/>
 						);
 					}
 				)}

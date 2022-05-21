@@ -2,6 +2,8 @@
 title: "BLACKJACK GAME By Mel Kaye of Librascope Inc. RPC 4000 Program W1-01.0"
 author: Mel Kaye
 # date: "2020-01-02"
+source_name: Mel's Writeup for the Blackjack Program
+source_url: http://bitsavers.trailing-edge.com/pdf/royalPrecision/RPC-4000/programWriteups/W1-01.0_Blackjack_Game.pdf
 ---
 
 This program is designed to simulate a game of Blackjack between one player (the machine operator) and a dealer a dealer (the computer). This write-up is intended to provide the player with the information necessary to play the game.
