@@ -10,4 +10,4 @@ Alongside _The Story of Mel_, Mel's Loop project is designed as an anthology for
 
 First example would be the Hebrew translation for _The Story of Mel_ (probably the first non-english version of the story in the world) which was published in the literary periodical Dehak (2021), and is presented here in its full annotated version.
 
-We'd like to thank **Lara Nather**, daughter of Ed Nather, **Carl Sorensen** from _Librascope_, **Anthony Cuzzo** and **Assaf Lichtash** for contributing their time and knowledge to help us get the stories behind _The Story of Mel_ and eventually achieving a full translation, and gain information about the events, atmospheres and under-currents of this epic.
+We'd like to thank **Lara Nather**, daughter of Ed Nather, **Carl Sorensen** from _Librascope_, **Anthony Cuozzo** and **Assaf Lichtash** for contributing their time and knowledge to help us get the stories behind _The Story of Mel_ and eventually achieving a full translation, and gain information about the events, atmospheres and under-currents of this epic.

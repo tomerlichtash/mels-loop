@@ -25,4 +25,4 @@ Here’s a short excerpt from the initial biography entry for Mel Kaye (or as I 
 
 --
 
-_Cover Photo: Left to right – Portraits of young **Mel Kaye** and **Ed Nather**, circa 1959. Illusration by **Nir Yaniv**, made according to photos and materials provided by Mel's Loop project._
+_Cover Photo: Left to right – Portraits of young **Mel Kaye** and **Ed Nather**, circa 1959. Illustration by **Nir Yaniv**, made according to photos and materials provided by Mel's Loop project._
