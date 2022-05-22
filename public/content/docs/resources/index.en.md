@@ -2,18 +2,10 @@
 title: "Resources"
 ---
 
-### Online resources
+### Story Source
 
-- [YCombinator discussion] claiming that the hack was pefromed on the LGP-30 emulator
-- A detailed attempt by David Nugent to [reconstruct] the hack, based on real rpc-4000 data
-
-### Story Sources
-
-[Jargon File](http://www.catb.org/jargon/)
-
-### Discussions
-
-[YCombinator discussion]
+- [The Story in the Jargon File](http://www.catb.org/jargon/html/story-of-mel.html)
+- [The Story of Mel in Wikipedia](https://en.wikipedia.org/wiki/The_Story_of_Mel)
 
 ### Guides and References
 
@@ -26,7 +18,6 @@ title: "Resources"
 ### Archives
 
 - [Librascope Memories](https://librascopememories.blogspot.com/)
-- [The Old Clculator Museum](https://www.oldcalculatormuseum.com/index.html])
 - [Vintage Computing](http://www.e-basteln.de/computing/)
 
 ### Mel
@@ -44,23 +35,24 @@ title: "Resources"
 
 ### RPC-4000
 
-[RPC-4000 Manuals, Code Samples and Other Documents Archive](http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/)
-
-### Wikipedia
-
-- [The Story of Mel](https://en.wikipedia.org/wiki/The_Story_of_Mel)
-- [Royal McBee](https://en.wikipedia.org/wiki/Royal_Typewriter_Company#Computers)
-- [Real Programmers Don't Use Pascal](https://en.wikipedia.org/wiki/Real_Programmers_Don%27t_Use_Pascal)
-- [Librascope](https://en.wikipedia.org/wiki/Librascope)
+- [RPC-4000 Manuals, Code Samples and Other Documents Archive](http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/)
 
 ### Other
 
-[Vacuum Tube Blackjack](https://twitter.com/ewbarnard/status/1034892590003482626?ref_src=twsrc%5Etfw)
+- [Vacuum Tube Blackjack](https://twitter.com/ewbarnard/status/1034892590003482626?ref_src=twsrc%5Etfw)
+- [Less Is More in the Fifties: Encounters between Logical Minimalism and Computer Design during the 1950s](https://hal.univ-lille.fr/hal-01345592v3/document)
+- [Awesome Computer History](https://github.com/watson/awesome-computer-history)
 
-[Less Is More in the Fifties: Encounters between Logical Minimalism and Computer Design during the 1950s](https://hal.univ-lille.fr/hal-01345592v3/document)
-
-[Awesome Computer History](https://github.com/watson/awesome-computer-history)
-
+<!-- TODO: Sort and Edit -->
 <!--- Global resources --->
-
-[ycombinator discussion]: https://news.ycombinator.com/item?id=20489273
+<!-- [ycombinator discussion]: https://news.ycombinator.com/item?id=20489273 -->
+<!-- ### Online resources -->
+<!-- - [YCombinator discussion] claiming that the hack was pefromed on the LGP-30 emulator -->
+<!-- - A detailed attempt by David Nugent to [reconstruct] the hack, based on real rpc-4000 data -->
+<!-- ### Discussions -->
+<!-- - [YCombinator discussion] -->
+<!-- ### Wikipedia -->
+<!-- - [Royal McBee](https://en.wikipedia.org/wiki/Royal_Typewriter_Company#Computers) -->
+<!-- - [Real Programmers Don't Use Pascal](https://en.wikipedia.org/wiki/Real_Programmers_Don%27t_Use_Pascal) -->
+<!-- - [Librascope](https://en.wikipedia.org/wiki/Librascope) -->
+<!-- - [The Old Clculator Museum](https://www.oldcalculatormuseum.com/index.html]) -->

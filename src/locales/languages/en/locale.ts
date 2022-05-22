@@ -24,6 +24,8 @@ export const Locale: Language = {
 	PAGE_LABEL_RESOURCES: "Resources",
 	PAGE_LABEL_GLOSSARY: "Glossary",
 	PAGE_LABEL_DOCS: "Documents",
+	PAGE_LABEL_CONTACT: "Contact",
+	PAGE_LABEL_CONTRIBUTE: "Contribute",
 
 	/**
 	 * PAGE SECTIONS
@@ -31,6 +33,11 @@ export const Locale: Language = {
 	SECTION_LABEL_POSTS: "Posts",
 	SECTION_LABEL_PAGES: "Pages",
 	SECTION_LABEL_LINKS: "Links",
+
+	/**
+	 * POSTS
+	 */
+	POSTS_BACK_TO_POSTS_LIST: "Back",
 
 	/**
 	 * MENU SECTIONS
@@ -56,11 +63,10 @@ export const Locale: Language = {
 	 * MENU ITEMS - DESCRIPTION
 	 */
 	MENU_ITEM_DESC_ID_ABOUT:
-		"Mel’s Loop is a guide the epic hacker folklore tale The Story of Mel. It also aims to collect the stories and of sub-stories around the story, its author, and its main charachters, early computing era stories and other related tales.",
+		"Mel’s Loop is a guide the epic hacker folklore tale, The Story of Mel. It also aims to collect the stories and sub-stories around the tale, its author, and its main charachters, as well as early computing era stories and other related tales.",
 	MENU_ITEM_DESC_ID_BLOG: "News and Updates",
 	MENU_ITEM_DESC_ID_RESOURCES: "Web Resources for The Story of Mel",
-	MENU_ITEM_DESC_ID_CONTRIBUTE:
-		"Mel’s Loop is a guide the epic hacker folklore tale The Story of Mel. It also aims to collect the stories and of sub-stories around the story",
+	MENU_ITEM_DESC_ID_CONTRIBUTE: "TBD",
 	MENU_ITEM_DESC_ID_CONTACT: "Drop us a line!",
 	MENU_ITEM_DESC_ID_TWITTER: "Follow us @aboutmelsloop",
 	MENU_ITEM_DESC_ID_GITHUB: "Project source code",

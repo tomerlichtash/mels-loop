@@ -15,7 +15,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 בירה לייט, מחשבוני כיס[^](annotations/calculators), ותוכנה "ידידותית-למשתמש"[^](annotations/user-friendly-quatations)
 אך בימים ההם[^](annotations/story-timeline-estimation),
 כשהמונח "תוכנה" עוד היה נשמע מצחיק,
-ומחשבים אמיתיים[^](annotations/real-computers) נבנו ב[תופים](glossary/drum-memory) וב[שפופרות](glossary/vaccum-tube),
+ומחשבים אמיתיים[^](annotations/real-computers) נבנו ב[תופים](glossary/drum-memory) וב[שפופרות](glossary/vacuum-tube),
 מתכנתים אמיתיים כתבו ב[שפת מכונה](glossary/assembly-language).
 לא [פוֹרְטְרַן](glossary/fortran). לא [ראטפוֹר](glossary/ratfor). אפילו לא [שפת סף](glossary/assembly-language).
 שפת מכונה.
@@ -31,7 +31,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 כי זה היה שמו.[^](annotations/mel-kaye-bio)
 
 את מל פגשתי כשעבדתי בחברת המחשבים רוֹיאל-מֶק'בִּי[^](annotations/the-timeline-of-royal-mcbee),
-כיום ישות רפאים עסקית המייצרת מכונת כתיבה.[^](annotations/the-ghost-of-royal-mcbee)
+כיום ישות רפאים עסקית המייצרת מכונת כתיבה.[^](annotations/now-defunct-subsidiary)
 החברה ייצרה אז את ה-[30-LGP](glossary/lgp-30),
 מחשב קטן וזול (בסטנדרטים של היום)
 בעל [זיכרון תוף](glossary/drum-memory),
@@ -64,7 +64,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 זו היתה שאלה שמעולם לא שאלנו.
 
 העבודה של מל היתה לשכתב
-את תוכנת הבלאק ג'ק עבור ה-4000-RPC.[^](annotations/mels-blackjack-game)
+את תוכנת הבלאק ג'ק[^](annotations/mels-blackjack-game) עבור ה-[4000-RPC](rpc-4000).
 (מי בכלל ידע אז מה זה [פּוֹרְט](glossary/port)?)
 [מִיעוּן הכְּתוֹבוֹת](glossary/addressing-scheme)[^](annotations/instruction1) במחשב החדש
 היה מסוג אחד-ועוד-אחד
@@ -246,4 +246,4 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 אם הפעלת את המתג הנכון,
 וטוב שכך.
 לא הרגשתי בנוח
-להתעס-האק בקוד של מתכנת אמיתי.
+להתעס-האק בקוד של [מתכנת אמיתי](glossary/real-programmer).

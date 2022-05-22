@@ -1,15 +1,13 @@
 @namespace "PostsMixin";
 
 @st-import Posts from "./posts.st.css";
+@st-import [heading2, heading3, bodyTextNormal] from "../theme/common/typography.st.css";
 
-:vars {
-  BlogPostShadow: none;
-}
 
 .root {
   -st-extends: Posts;
 }
 
-.root::post {
-  box-shadow: value(BlogPostShadow);
+.root::sectionTitle {
+  -st-mixin: heading2;
 }

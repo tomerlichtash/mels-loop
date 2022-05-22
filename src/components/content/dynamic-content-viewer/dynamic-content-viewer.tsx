@@ -131,7 +131,7 @@ export const DynamicContentViewer = ({
 		<div className={st(classes.root, className)}>
 			<ScrollArea height="300px">
 				<Note
-					className={classes.root}
+					className={classes.note}
 					type={itemType}
 					contents={contents}
 					label={label}

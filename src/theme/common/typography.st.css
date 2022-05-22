@@ -1,14 +1,15 @@
 @st-import [TextNode] from "../mixins.st.css";
 
 :vars {
-	fontSize1: 48px;
-	fontSize2: 39px;
-	fontSize3: 31px;
-	fontSize4: 25px;
-	fontSize5: 20px;
-	fontSize6: 14px;
-	fontSize7: 12px;
-	lineHeight1: 60px;
+	fontSize1: 2.5vmax;
+	fontSize2: 2.03vmax;
+	fontSize3: 1.614vmax;
+	fontSize4: 1.302vmax;
+	fontSize5: 1.041vmax;
+	fontSize6: 0.833vmax;
+	fontSize7: 0.875rem;
+	fontSize8: 0.75rem;
+	lineHeight1: 3vmax;
 	lineHeight2: 49px;
 	lineHeight3: 39px;
 	lineHeight4: 31px;
@@ -20,9 +21,7 @@
 	fontWeightMedium: 500;
 	fontWeightSemiBold: 600;
 	fontWeightRegular: 400;
-}
 
-:vars {
 	h1_size: value(fontSize1);
 	h2_size: value(fontSize2);
 	h3_size: value(fontSize3);
@@ -79,7 +78,7 @@
 		TextWeight value(h1_weight),
 		TextColor value(h1_color)
 	);
-  margin-bottom: value(h1_margin);
+  margin-bottom: 1.302vmax;
 }
 
 .heading2 {
@@ -134,7 +133,7 @@
 
 .bodyTextNormal {
 	-st-mixin: TextNode(
-		TextSize value(fontSize6),
+		TextSize value(fontSize7),
 		TextLineHeight value(lineHeight7),
 		TextWeight value(fontWeightRegular),
 		TextColor value(BodyTextColor)

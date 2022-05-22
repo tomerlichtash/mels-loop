@@ -1,6 +1,7 @@
 @namespace "PageBaseMixin";
 
 @st-import PageBase from "./page-base.st.css";
+@st-import [TextNode] from "../theme/mixins.st.css";
 @st-import [
   heading1,
   heading2,
@@ -23,11 +24,12 @@
   Heading1Margin: 2rem;
   Heading2Margin: 1rem;
   Heading3Margin: 1rem;
-  Heading4Margin: 0;
+  Heading4Margin: 2rem;
   Heading5Margin: 0;
   Heading6Margin: 0;
   SectionMargin: 2rem;
   ParagraphMargin: 2rem;
+  ContentHeaderMetaBorderColor: #c0c0c0;
 }
 
 .root {
@@ -76,15 +78,30 @@
   );
 }
 
-.root::contentComponent:type(list) {
-  -st-mixin: bodyTextNormal(
-    BodyTextColor value(BodyTextColor)
-  );
-}
-
 .root::contentComponent:type(paragraph) {
   -st-mixin: bodyTextNormal(
     BodyTextColor value(BodyTextColor)
   );
   margin-bottom: value(ParagraphMargin);
+}
+
+.root::abstract {
+  -st-mixin: heading3(
+    h3_color value(HeadingColor3)
+  );
+}
+
+.root::meta {
+  -st-mixin: TextNode(
+    TextSize 1.041vmax,
+    TextColor value(HeadingColor2)
+  );
+  margin: 2vmax 0 0;
+  border-color: value(ContentHeaderMetaBorderColor);
+}
+.root::byline {
+  text-transform: uppercase;
+}
+.root::date {
+  font-weight: 400;
 }

@@ -27,7 +27,7 @@
 	ItemLabelLineHeight: inherit;
 	ItemLabelTextWeight: inherit;
 	ItemSubtitleColor: inherit;
-	/* ItemSubtitleLineHeight: inherit; */
+	AbstractTextColor: inherit;
 	ItemSubtitleTextSize: inherit;
 	ItemLabelIconMargin: 0;
 	ViewPortShadow: none;
@@ -43,24 +43,19 @@
 
 .root::menuContent {
 	padding: value(ContentPadding);
-  -st-mixin: bodyTextNormal;
+  -st-mixin: bodyTextNormal(
+		BodyTextColor value(AbstractTextColor)
+	);
 }
 
 .root::more {
-	/* -st-mixin: ButtonMixin(
-		ButtonRadius value(ItemRadius),
+	-st-mixin: ButtonMixin(
 		ButtonTextColor value(ItemTextColor),
 		ButtonTextColor_Hover value(ItemTextColor_Hover),
-		ButtonLabelTextColor value(ItemLabelTextColor),
-		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover),
-		ButtonBgColor_Hover value(ItemBgColor_Hover),
-		ButtonLabelTextSize value(ItemLabelTextSize),
-		ButtonLabelLineHeight value(ItemLabelLineHeight),
-		ButtonLabelTextWeight value(ItemLabelTextWeight),
-		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
-		ButtonLabelIconMargin value(ItemLabelIconMargin),
-		ButtonChildrenTextColor value(ItemSubtitleColor)
-	); */
+		ButtonPadding 0
+	);
+	margin-top: 1rem;
+	display: inline !important;
 }
 
 .root::arrow {
@@ -111,11 +106,3 @@
 		ButtonChildrenTextColor value(ItemSubtitleColor)
 	);
 }
-
-/* .root::more {
-	-st-mixin: ButtonMixin(
-		ItemBgColor_Hover red,
-		ButtonPadding 1rem,
-		ButtonBgColor_Hover blue
-	)
-} */

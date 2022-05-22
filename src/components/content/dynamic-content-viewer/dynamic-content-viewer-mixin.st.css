@@ -5,6 +5,8 @@
 :vars {
 	ParagraphTextSize: 1rem;
 	ParagraphLineHeight: 1.8rem;
+	ButtonTextColor: inherit;
+	ButtonTextColor_Hover: inherit;
 }
 
 .root {

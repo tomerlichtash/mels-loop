@@ -10,6 +10,7 @@ export const ListItem = (props: ContentComponentProps): JSX.Element => {
 				componentData={{
 					...props.componentData,
 				}}
+				className={props.className}
 			/>
 		</li>
 	);

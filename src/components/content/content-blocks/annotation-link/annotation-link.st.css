@@ -8,7 +8,6 @@
 
 .root {
   -st-mixin: preventSelection, verticalAlignSuper;
-  font-weight: 600;
 }
 
 .root::before,
@@ -30,6 +29,4 @@
 .content {}
 .content::after {
   content: attr(data-prefix) attr(data-seq);
-  font-weight: 700;
-  font-size: 0.75rem;
 }

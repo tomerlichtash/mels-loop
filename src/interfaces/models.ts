@@ -137,6 +137,10 @@ export interface IPageMetaData {
 	 */
 	readonly title: string;
 	/**
+	 * Abstract metadata, if present in the MD
+	 */
+	readonly abstract: string;
+	/**
 	 * Moto metadata, if present in the MD
 	 */
 	readonly moto: string;
@@ -249,9 +253,7 @@ export interface ComponentProps {
 export interface SitePage {
 	id: string;
 	targetPathname: string;
-	menuNav: boolean;
 	locale: Partial<Record<keyof IComponentKeyProps, keyof ILanguageKeys>>;
-	children?: string[];
 }
 
 export interface IPageProps {

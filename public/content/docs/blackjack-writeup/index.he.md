@@ -1,6 +1,8 @@
 ---
 title: 'משחק בלאק ג׳ק מאת מל קיי מחברת ליברסקופ בע"מ, תוכנת RPC 4000 W1-01.0'
 author: מל קיי
+source_name: Mel's Writeup for the Blackjack Program
+source_url: http://bitsavers.trailing-edge.com/pdf/royalPrecision/RPC-4000/programWriteups/W1-01.0_Blackjack_Game.pdf
 ---
 
 תוכנה זו נועדה לדמות משחק בלאק ג׳ק בין שחקנ/ית אחד (מפעיל המחשב) לבין הדילר (המחשב). מסמך זה מבקש לספק לשחקנ/ית את המידע הדרוש כדי לשחק את המשחק.
