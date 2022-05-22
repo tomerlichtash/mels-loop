@@ -81,4 +81,5 @@ export const Locale: Language = {
 	COPY_BUTTON_TOOLTIP_CONTENT: "הקישור העותק!",
 	COMPONENT_BIBLIOGRAPHY_LABEL_SINGLE: "מקור",
 	COMPONENT_BIBLIOGRAPHY_LABEL_MULTIPLE: "מקורות",
+	PRELOADER_LABEL: "טוען...",
 };
