@@ -63,7 +63,6 @@ export default function Layout({ children }: ComponentProps) {
 			router.events.off("routeChangeStart", handleRouteChange);
 		};
 	}, [router.events]);
-
 	return (
 		<>
 			<Head>
