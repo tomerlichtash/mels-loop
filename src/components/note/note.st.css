@@ -1,14 +1,11 @@
 @namespace "Note";
 
 @st-import Bibliography from "../bibliography/bibliography.st.css";
-@st-import [heading6, bodyTextNormal] from "../../theme/typography.st.css";
-@st-import [primary2, level2] from "../../theme/common.st.css";
-
+@st-import ContentComponent from "../content/content-component.st.css";
 
 .root {
-	-st-states: type(enum(note, ref));
+	-st-states: type(enum(note, ref)), textDirection(enum(ltr, rtl));
 	overflow: hidden;
-	padding: 1rem;
 	position: relative;
 }
 
@@ -18,33 +15,18 @@
 
 .title {}
 
-.content {
-	-st-mixin: bodyTextNormal;
-}
+.content {}
 
 .sourceList {}
 
 .root:type(ref)::topic {
-	-st-mixin: heading6;
-	padding: 0 6px;
-	border-radius: 4px;
-	background: value(level2);
 	display: inline-block;
-	margin-bottom: 1.5rem;
-	color: value(primary2);
-}
-
-.root:type(ref)::title {
-	font-weight: 300;
-	font-size: 2rem;
-	margin-bottom: 1rem;
 }
 
 .bibliography {
   -st-extends: Bibliography;
 }
 
-.scrollable {
-  border: 2px solid red;
-  overflow: hidden;
+.contentComponent {
+	-st-extends: ContentComponent;
 }

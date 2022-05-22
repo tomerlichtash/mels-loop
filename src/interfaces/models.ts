@@ -39,8 +39,8 @@ export enum ASTNODE_TYPES {
 }
 
 export enum MLNODE_TYPES {
-	SECTION = "section",
 	PARAGRAPH = "paragraph",
+	LINE = "line",
 	DEL = "del",
 	INS = "ins",
 	STRONG = "strong",
@@ -136,6 +136,10 @@ export interface IPageMetaData {
 	 * Title metadata, if present in the MD
 	 */
 	readonly title: string;
+	/**
+	 * Abstract metadata, if present in the MD
+	 */
+	readonly abstract: string;
 	/**
 	 * Moto metadata, if present in the MD
 	 */
@@ -249,9 +253,7 @@ export interface ComponentProps {
 export interface SitePage {
 	id: string;
 	targetPathname: string;
-	menuNav: boolean;
 	locale: Partial<Record<keyof IComponentKeyProps, keyof ILanguageKeys>>;
-	children?: string[];
 }
 
 export interface IPageProps {

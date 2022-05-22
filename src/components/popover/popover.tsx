@@ -1,32 +1,29 @@
 import React from "react";
 import ScrollArea from "../scrollbar";
+import Portalled from "../portalled";
 import { PopoverToolbar } from "./popover-toolbar";
 import { IPopoverContext } from "../../interfaces/IPopoverContext";
 import { Direction } from "../../interfaces/locale-context";
 import { ReactPopoverContext } from "../../contexts/popover-context";
 import { useToolbar } from "./useToolbar";
-import { st, classes } from "./popover.st.css";
-
 import {
 	PopoverRoot,
 	PopoverTrigger,
 	PopoverContent,
 	PopoverArrow,
 } from "../radix-primitives";
+import { st, classes } from "./popover.st.css";
+import { ComponentProps } from "../../interfaces/models";
 
-export interface IPopoverProps {
+export interface IPopoverProps extends ComponentProps {
 	id: string;
 	type: string;
 	trigger: React.ReactNode;
-	children: React.ReactNode;
 	forcePopover?: boolean;
 	query: string;
 	onExit?: () => void;
 	side: Direction;
 	portalled?: boolean;
-	portalStyles?: string;
-	contentClassName?: string;
-	className?: string;
 }
 
 export const Popover = ({
@@ -38,8 +35,7 @@ export const Popover = ({
 	onExit,
 	query,
 	portalled,
-	portalStyles,
-	contentClassName,
+	className,
 }: IPopoverProps): JSX.Element => {
 	const toolbar = useToolbar();
 	const ctx: IPopoverContext = {
@@ -48,12 +44,13 @@ export const Popover = ({
 		removeToolbarItems: toolbar.removeItemsById,
 	};
 
-	const forcePopoverProp = forcePopover ? { "data-state": "open" } : {};
+	const forceMount = forcePopover ? { "data-state": "open" } : null;
+
 	return (
 		<ReactPopoverContext.Provider value={ctx}>
 			<PopoverRoot>
 				<PopoverTrigger asChild>
-					<span className={st(classes.root, { type })} {...forcePopoverProp}>
+					<span className={st(classes.root, { type })} {...forceMount}>
 						<span className={classes.trigger} tabIndex={1}>
 							<span className={st(classes.triggerWrapper)}>{trigger}</span>
 						</span>
@@ -61,25 +58,24 @@ export const Popover = ({
 				</PopoverTrigger>
 				<PopoverContent
 					side={side}
-					forceMount={forcePopover ? forcePopover : null}
+					forceMount={forceMount}
 					avoidCollisions={true}
 					align="center"
 					sideOffset={5}
 					portalled={portalled}
-					className={portalStyles}
 				>
-					<div className={st(classes.content, contentClassName)}>
-						<PopoverToolbar
-							query={query}
-							items={toolbar.items}
-							onExit={onExit}
-							className={st(classes.toolbar, "popoverToolbar")}
-						/>
-						<div className={st(classes.scrollable)}>
+					<Portalled>
+						<div className={classes.content}>
+							<PopoverToolbar
+								query={query}
+								items={toolbar.items}
+								onExit={onExit}
+								className={st(classes.toolbar, className)}
+							/>
 							<ScrollArea height="300px">{children}</ScrollArea>
 						</div>
-					</div>
-					<PopoverArrow />
+						<PopoverArrow />
+					</Portalled>
 				</PopoverContent>
 			</PopoverRoot>
 		</ReactPopoverContext.Provider>

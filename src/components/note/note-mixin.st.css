@@ -1,0 +1,61 @@
+@namespace "NoteMixin";
+
+@st-import Note from "./note.st.css";
+@st-import [heading4, bodyTextNormal] from "../../theme/common/typography.st.css";
+
+:vars {
+	NotePadding: 1rem;
+	TopicBgColor: blue;
+	TopicTextColor: red;
+	TopicRadius: 4px;
+	TopicPadding: 6px;
+	TopicMargin: 1.5rem;
+	TitleFontSize: 2rem;
+	TitleFontWeight: 300;
+	TitleMargin: 1rem;
+	NoteTextColor: inherit;
+	NoteScrollGutter: value(NotePadding);
+}
+
+.root {
+	-st-extends: Note;
+	padding: value(NotePadding);
+}
+
+.root:type(ref)::topic {
+	padding: 0 value(TopicPadding);
+	border-radius: value(TopicRadius);
+	background: value(TopicBgColor);
+	color: value(TopicTextColor);
+	margin-bottom: value(TopicMargin);
+}
+
+.root:type(ref)::title {
+	-st-mixin: heading4(
+		h4_margin 1rem,
+		h4_size 1.56rem
+	);
+}
+
+.root::content {
+	-st-mixin: bodyTextNormal(
+		BodyTextColor value(NoteTextColor)
+	);
+}
+
+.root:textDirection(ltr)::content {
+	padding-right: value(NoteScrollGutter);
+}
+.root:textDirection(rtl)::content {
+	padding-left: value(NoteScrollGutter);
+}
+
+.root::bibliography::list {
+	padding: 0;
+	/* padding: 0 value(NotePadding); */
+}
+
+.root::header,
+.root::content {
+	padding-bottom: 0;
+}

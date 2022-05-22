@@ -1,22 +1,17 @@
-import React, { useContext, useEffect, useMemo } from "react";
-import Script from "next/script";
-import Head from "next/head";
-import Header from "../header";
-import Footer from "../footer";
-import { MobileNav } from "../nav/nav-mobile";
-import Page from "../page";
-import LocaleSelector from "../locale-selector";
-import ThemeSelector from "../theme-selector";
+import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useWindowSize, ISize } from "./use-window-size";
-import { ComponentProps } from "../../interfaces/models";
+import { useWindowSize } from "./use-window-size";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ReactQueryContext } from "../../contexts/query-context";
-import { NavMenu } from "../nav/menu";
-import { navItems, translateItems } from "../../config/menu-data";
+import Head from "next/head";
+import TopBar from "../top-bar";
+import Footer from "../footer";
+import Page from "../page";
 import ScrollArea from "../scrollbar";
+import { MenuProvider } from "../menu-provider";
+import Analytics from "./analytics";
+import { ComponentProps } from "../../interfaces/models";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
-import { MenuGroup } from "../nav/types";
 import { st, classes } from "./layout.st.css";
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
@@ -28,44 +23,30 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	image: "/assets/ml-logo.png",
 };
 
+const SCROLL_VIEW_PROPS: ScrollIntoViewOptions = {
+	behavior: "smooth",
+	block: "center",
+};
+
 export default function Layout({ children }: ComponentProps) {
-	// const [_dimensions, setDimensions] = useState(getWindowDimensions());
-
-	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
-
 	const router = useRouter();
-	const { locale, asPath: currentUrl } = router;
-
-	function onLocaleChange(locale: string): Promise<boolean> {
-		return router.push(currentUrl, currentUrl, {
-			locale,
-			scroll: true,
-		});
-	}
-
-	const size: ISize = useWindowSize();
-	const isMobile = size.width <= 970;
-
 	const { query } = useContext(ReactQueryContext);
+	const { siteTitle, siteSubtitle, textDirection } =
+		useContext(ReactLocaleContext);
+	const { locale, asPath: currentUrl } = router;
 	const { getLine } = query;
-
-	const menuItems = useMemo(
-		() => translateItems(navItems, translate) as MenuGroup[],
-		[translate]
-	);
+	const size = useWindowSize();
+	const isMobile = size.width <= 1024;
 
 	useEffect(() => {
-		if (getLine > -1) {
-			const scrollProps: ScrollIntoViewOptions = {
-				behavior: "smooth",
-				block: "center",
-			};
-			setTimeout(() => {
-				const el = window.document.getElementById(`line${getLine}`);
-				el.scrollIntoView(scrollProps);
-			}, 200);
+		if (getLine === -1) {
+			return;
 		}
-	});
+		setTimeout(() => {
+			const el = window.document.getElementById(`line${getLine}`);
+			el?.scrollIntoView(SCROLL_VIEW_PROPS);
+		}, 200);
+	}, [getLine]);
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
@@ -96,61 +77,17 @@ export default function Layout({ children }: ComponentProps) {
 				<meta name="og:title" content={siteTitle} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div
-				className={st(classes.root, {
-					locale,
-					isMobile,
-				})}
-				id="outer-container"
-			>
-				<div id="page-wrap">
-					<div className={classes.topBar}>
-						<div className={classes.siteHeader}>
-							<Header
-								className={classes.header}
-								isHome={router.asPath === "/"}
-							/>
-							{!isMobile && (
-								<div className={classes.primaryNav}>
-									<NavMenu className={classes.nav} items={menuItems} />
-									<LocaleSelector
-										onLocaleChange={onLocaleChange}
-										className={st(classes.localeSelector, { locale })}
-									/>
-									<ThemeSelector />
-								</div>
-							)}
-						</div>
+			<div id="outer-container" className={st(classes.root, { textDirection })}>
+				<ScrollArea>
+					<div id="page-wrap">
+						<TopBar className={classes.header} />
+						<Page className={classes.page} nodes={children} />
+						<Footer className={classes.footer} textDirection={textDirection} />
 					</div>
-					<div className={classes.scrollablePage}>
-						<ScrollArea>
-							<div className={classes.scrollable}>
-								<Page className={classes.page} nodes={children} />
-								<Footer className={classes.footer} />
-							</div>
-						</ScrollArea>
-					</div>
-				</div>
-				{isMobile && (
-					<MobileNav
-						className={classes.mobileNav}
-						right={locale === "en"}
-						onLocaleChange={onLocaleChange}
-					/>
-				)}
+				</ScrollArea>
+				{isMobile && <MenuProvider isMobile />}
 			</div>
-			<Script
-				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"
-				strategy="afterInteractive"
-			/>
-			<Script id="google-analytics" strategy="afterInteractive">
-				{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-					gtag('config', 'G-XLWMW4QLVE');
-        `}
-			</Script>
+			<Analytics />
 		</>
 	);
 }

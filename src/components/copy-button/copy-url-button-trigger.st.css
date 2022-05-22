@@ -1,0 +1,9 @@
+@namespace "CopyUrlButton";
+
+.root {
+  -st-states: checked(boolean);
+}
+
+.root:checked {
+  cursor: default;
+}

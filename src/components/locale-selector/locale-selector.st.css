@@ -1,7 +1,8 @@
 @namespace "LocaleSelector";
 
-@st-import DropDown from "../dropdown/dropdown.st.css";
-@st-import [preventSelection, boxSizing] from "../../theme/mixins.st.css";
+@st-import [boxSizing, preventSelection, TextNode] from "../../theme/mixins.st.css";
+@st-import [LatinText, HebrewText] from "../../theme/common/typography.st.css";
+@st-import Button from "../ui/button/button.st.css"
 
 :vars {
 	buttonMargin: 38px;
@@ -15,9 +16,9 @@
   justify-content: right;
 	display: inline-block;
 	cursor: pointer;
-	border: 1px solid black;
 	overflow: hidden;
 }
+
 .root:locale(en) {
 	direction: ltr;
 	text-align: left;
@@ -27,21 +28,35 @@
 	text-align: right;
 }
 
-.root:locale(en) .langsIcon {
-	left: -30px;
-}
-.root:locale(he) .langsIcon {
-	left: -30px;
+.list {
+	display: flex;
 }
 
 .item {
-	-st-states: locale(enum(en, he)), selected(boolean);
-	border: none;
-	padding: 0;
 	display: block;
-	cursor: pointer;
+	align-items: center;
+	text-align: center;
 }
 
-.list {
-	display: flex;
+.button {
+	-st-extends: Button;
+	-st-states: locale(enum(en, he)), selected(boolean);
+	-st-mixin: preventSelection, TextNode(
+		TextSize 14px,
+		TextLineHeight 32px,
+		TextWeight 400
+	);
+	height: 32px;
+	width: 32px;
+}
+.button:locale(en) {
+	-st-mixin: LatinText;
+	margin-right: 4px;
+}
+.button:locale(he) {
+	-st-mixin: HebrewText;
+}
+.button:selected {
+	cursor: default;
+	font-weight: 500;
 }

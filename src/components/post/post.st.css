@@ -1,0 +1,36 @@
+@namespace "Post";
+
+@st-import Button from "../ui/button/button.st.css";
+@st-import ContentComponent from "../content/content-component.st.css";
+@st-import [boxSizing] from "../../theme/mixins.st.css";
+
+:vars {
+}
+
+.root {
+	-st-states: textDirection(enum(ltr, rtl));
+}
+
+.root img {
+	-st-mixin: boxSizing;
+  width: 100%;
+	border: 1px solid black;
+	margin-bottom: 2rem;
+	padding: 2px;
+}
+
+.wrapper {}
+
+.main {}
+
+.header {}
+
+.heading {}
+
+.title {}
+
+.date {}
+
+.contentComponent {
+	-st-extends: ContentComponent
+}

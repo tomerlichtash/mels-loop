@@ -1,12 +1,13 @@
 import React from "react";
 import { IToolbarItem } from "../../interfaces/IPopoverContext";
 import { PopoverCloseButton } from "./popover-close-button";
-import CopyUrlButton from "../copy-button";
+// import CopyUrlButton from "../copy-button";
 import { st, classes } from "./popover-toolbar.st.css";
+import { ComponentProps } from "../../interfaces/models";
+import { mlUtils } from "../../lib/ml-utils";
 
-export interface IPopoverToolbarProps {
+export interface IPopoverToolbarProps extends ComponentProps {
 	showClose?: boolean;
-	className?: string;
 	items: IToolbarItem[];
 	onExit: () => void;
 	query?: string;
@@ -15,16 +16,28 @@ export interface IPopoverToolbarProps {
 export const PopoverToolbar = ({
 	items,
 	onExit,
-	query,
+	// query,
 	className,
 }: IPopoverToolbarProps): JSX.Element => {
 	return (
 		<div className={st(classes.root, className)}>
 			<div className={classes.toolbarContainer}>
-				{items.map((item) => item.element)}
+				{items.map((item) => (
+					<span className={classes.item} key={mlUtils.uniqueId()}>
+						{item.element}
+					</span>
+				))}
 			</div>
-			{query && <CopyUrlButton query={query} />}
-			<PopoverCloseButton onExit={onExit} />
+			{/* {query && (
+				<CopyUrlButton
+					query={query}
+					className={st(classes.copy, classes.item)}
+				/>
+			)} */}
+			<PopoverCloseButton
+				onExit={onExit}
+				className={st(classes.item, classes.close)}
+			/>
 		</div>
 	);
 };

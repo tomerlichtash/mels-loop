@@ -4,25 +4,23 @@ import { Button } from "../ui";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { st, classes } from "./header.st.css";
 
-export interface HeaderProps extends ComponentProps {
-	isHome: boolean;
-}
-
-export const Header = ({ isHome, className }: HeaderProps): JSX.Element => {
-	const { siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
-	const logo = <img src="/favicon-temp.png" />;
+export const Header = ({ className }: ComponentProps): JSX.Element => {
+	const { siteTitle, siteSubtitle, textDirection } =
+		useContext(ReactLocaleContext);
 	return (
-		<header className={st(classes.root, className)}>
+		<header className={st(classes.root, { textDirection }, className)}>
 			<div className={classes.container}>
 				<Button
-					icon={logo as React.ReactElement}
+					icon={<div className={classes.siteLogo}></div>}
 					label={siteTitle}
 					title={`${siteTitle} - ${siteSubtitle}`}
-					link={isHome ? "" : "/"}
+					link={"/"}
 					callback={() => false}
 					className={classes.siteTitle}
 				/>
-				<div className={classes.siteSubtitle}>{siteSubtitle}</div>
+				<div className={classes.siteSubtitle} aria-label={siteSubtitle}>
+					{siteSubtitle}
+				</div>
 			</div>
 		</header>
 	);

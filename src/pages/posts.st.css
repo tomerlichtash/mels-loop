@@ -1,6 +1,7 @@
 @namespace "Posts";
 
 @st-import Button from "../components/ui/button/button.st.css";
+@st-import Post from "../components/post/post.st.css";
 @st-import ContentComponent from "../components/content/content-component.st.css";
 @st-import FigureBlock from "../components/content/content-blocks/figure/figure.st.css";
 
@@ -8,40 +9,10 @@
 
 .sectionTitle {}
 
-.post {
-  margin-bottom: 2rem;
-  border: 1px solid #e0e0e0;
-  padding: 4rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-
-.postHeader {
-  margin-bottom: 2rem;
-}
-
-.postMain {}
-
-.postHeading {
-  margin: 0;
-}
-
-.postTitle {
-  -st-extends: Button;
-  font-size: 3rem;
-  font-weight: normal;
-  text-decoration: none;
-}
-
-.postTitle:hover {}
-
-.postDate {}
-
-.postContent {
+.contentComponent {
   -st-extends: ContentComponent;
 }
 
-/* .postContent:type(figure) {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  padding: 1rem;
-  margin-bottom: 2rem;
-} */
+.post {
+  -st-extends: Post;
+}
