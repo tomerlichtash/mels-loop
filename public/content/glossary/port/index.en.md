@@ -1,6 +1,6 @@
 ---
 glossary_key: "PORT"
-# source_url: TBD
+source_url: https://en.wikipedia.org/wiki/Porting
 source_name: Wikipedia
 ---
 

@@ -1,0 +1,32 @@
+@namespace "LocaleSelectorMixin";
+
+@st-import LocaleSelector from "./locale-selector.st.css";
+
+:vars {
+	ContainerRadius: 6px;
+	SelectedItemTextColor: white;
+	ContainerBorderColor: black;
+	ItemTextColor: black;
+	ItemBgColorHover: black;
+	SelectedItemBgColor: black;
+}
+
+.root {
+	-st-extends: LocaleSelector;
+	border-radius: value(ContainerRadius);
+	border-color: value(ContainerBorderColor);
+}
+
+.root::button {
+	border-radius: value(ContainerRadius);
+	color: value(ItemTextColor);
+}
+
+.root::button:hover {
+	background-color: value(ItemBgColorHover);
+}
+
+.root::button:selected {
+	color: value(SelectedItemTextColor);
+	background-color: value(SelectedItemBgColor);
+}

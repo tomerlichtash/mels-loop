@@ -1,0 +1,108 @@
+@namespace "Menu";
+
+@st-import Menu from "./menu.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
+@st-import [/*heading5,*/bodyTextNormal] from "../../theme/common/typography.st.css";
+
+:vars {
+	ListBgColor: transparent;
+	ContentPadding: 1rem;
+	ArrowColor: #fff;
+	ViewPortBgColor: #fff;
+	TriggerPadding: 0;
+	TriggerLabelLineHeight: auto;
+	TriggerTextSize: inherit;
+	TriggerRadius: 0;
+	TriggerBgColorHover: #c0c0c0;
+	TriggerTextColor: inherit;
+	TriggerTextColor_Hover: inherit;
+	ItemTextColor: inherit;
+	ItemTextColor_Hover: inherit;
+	ItemPadding: 0;
+	ItemRadius: 0;
+	ItemLabelTextColor: inherit;
+	ItemLabelTextColor_Hover: inherit;
+	ItemBgColor_Hover: inherit;
+	ItemLabelTextSize: inherit;
+	ItemLabelLineHeight: inherit;
+	ItemLabelTextWeight: inherit;
+	ItemSubtitleColor: inherit;
+	AbstractTextColor: inherit;
+	ItemSubtitleTextSize: inherit;
+	ItemLabelIconMargin: 0;
+	ViewPortShadow: none;
+}
+
+.root {
+	-st-extends: Menu;
+}
+
+.root::list {
+	background-color: value(ListBgColor);
+}
+
+.root::menuContent {
+	padding: value(ContentPadding);
+  -st-mixin: bodyTextNormal(
+		BodyTextColor value(AbstractTextColor)
+	);
+}
+
+.root::more {
+	-st-mixin: ButtonMixin(
+		ButtonTextColor value(ItemTextColor),
+		ButtonTextColor_Hover value(ItemTextColor_Hover),
+		ButtonPadding 0
+	);
+	margin-top: 1rem;
+	display: inline !important;
+}
+
+.root::arrow {
+	background-color: value(ArrowColor);
+}
+.root::viewport {
+	background: value(ViewPortBgColor);
+	box-shadow: value(ViewPortShadow);
+}
+
+.root::menuTrigger {
+	border-radius: value(TriggerRadius);
+	transition: all 25ms ease-in;
+}
+.root::menuTrigger[data-state="open"] {
+	color: value(TriggerTextColor_Hover);
+	background-color: value(TriggerBgColorHover);
+}
+
+.root::menuTrigger[data-state="open"] > * {
+	color: value(TriggerTextColor_Hover);
+}
+
+.root::triggerButton {
+	-st-mixin: ButtonMixin(
+		ButtonPadding value(TriggerPadding),
+		ButtonLabelLineHeight value(TriggerLabelLineHeight),
+		ButtonLabelTextSize value(TriggerTextSize),
+		ButtonTextColor value(TriggerTextColor),
+		/* ButtonTextColor_Hover value(TriggerTextColor_Hover),		 */
+	);
+}
+
+.root::menuItemButton {
+	-st-mixin: ButtonMixin(
+		ButtonPadding value(ItemPadding),
+		ButtonRadius value(ItemRadius),
+		ButtonTextColor value(ItemTextColor),
+		ButtonTextColor_Hover value(ItemTextColor_Hover),
+		ButtonLabelTextColor value(ItemLabelTextColor),
+		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover),
+		ButtonBgColor_Hover value(ItemBgColor_Hover),
+		ButtonLabelTextSize value(ItemLabelTextSize),
+		ButtonLabelLineHeight value(ItemLabelLineHeight),
+		ButtonLabelTextWeight value(ItemLabelTextWeight),
+		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
+		ButtonLabelIconMargin value(ItemLabelIconMargin),
+		ButtonChildrenTextColor value(ItemSubtitleColor)
+	);
+}

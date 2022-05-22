@@ -1,0 +1,130 @@
+@namespace "MobileMenu";
+
+@st-import Header from "../header/header.st.css";
+@st-import LocaleSelector from "../locale-selector/locale-selector.st.css";
+@st-import ThemeSelector from "../theme-selector/theme-selector.st.css";
+@st-import Button from "../ui/button/button.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
+@st-import [preventSelection, MobileHeader] from "./../../theme/mixins.st.css";
+
+:vars {
+	headerHeight: 140px;
+}
+
+:global(.bm-menu) {
+	overflow: hidden;
+}
+
+.root {
+	-st-states: side(enum(right, left));
+	-st-mixin: preventSelection;
+	margin: 0 auto;
+	position: relative;
+	height: 100%;
+}
+.root:side(left) {
+	left: 0;
+}
+
+.burgerButton {
+	-st-states: side(enum(right, left));
+	position: fixed;
+	width: 24px;
+	height: 20px;
+	top: 20px;
+}
+.burgerButton:side(right) {
+	right: 2rem;
+}
+.burgerButton:not(:side(right)) {
+	left: 2rem;
+}
+
+.burgerMenu {
+	overflow: hidden;
+}
+
+.burgerBars {
+	background: #373a47;
+	position: absolute;
+}
+
+.crossButton {
+	-st-states: side(enum(right, left));
+	height: 24px;
+	width: 24px;
+	z-index: 2;
+}
+.crossButton:side(left) {
+	top: 10px !important;
+	left: 10px;
+	right: auto !important;
+}
+.crossButton:side(right) {
+	top: 10px !important;
+	left: auto !important;
+	right: 10px;
+}
+
+.burgerCross {}
+
+.overlay {
+	top: 0;
+}
+
+.itemList {}
+
+.header {
+	-st-extends: Header;
+	-st-mixin: MobileHeader;
+}
+
+.toolbar {
+	display: flex;
+	align-items: center;
+	align-content: space-around;
+	justify-content: space-between;
+}
+
+.toolbarItem {}
+
+.localeSelector {
+	-st-extends: LocaleSelector;
+}
+
+.themeSelector {
+	-st-extends: ThemeSelector;
+}
+
+.strip {}
+
+.section {}
+
+.sectionTitle {
+	display: block;
+}
+
+.child {
+	border-bottom: 1px solid #808080;
+}
+
+.menu {
+	overflow: hidden;
+}
+
+.menuHeader {
+	top: 0;
+	width: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+.content {
+	padding-top: value(headerHeight);
+}
+
+.menuItemButton {
+	-st-extends: Button;
+	transition: all 75ms ease-in;
+	display: block;
+}

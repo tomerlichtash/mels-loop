@@ -3,15 +3,21 @@
 @st-import Button from "../ui/button/button.st.css";
 @st-import [boxSizing] from "../../theme/mixins.st.css";
 
-.root {
-	-st-mixin: boxSizing;
+:vars {
+	iconMargin: 0.5rem;
 }
 
-.logo {}
+.root {
+	-st-states: textDirection(enum(ltr, rtl));
+	-st-mixin: boxSizing;
+	display: flex;
+}
 
 .container {
 	display: flex;
 	align-items: center;
+	align-content: center;
+	line-height: 1rem;
 }
 
 .siteTitle {
@@ -28,4 +34,12 @@
 	content: '|';
 }
 
-.siteSubtitle {}
+.siteLogo {}
+
+
+.root:textDirection(rtl) .siteTitle::icon {
+	margin-left: value(iconMargin);
+}
+.root:textDirection(ltr) .siteTitle::icon {
+	margin-right: value(iconMargin);
+}

@@ -4,6 +4,7 @@ import Layout from "../components/layout/layout";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
+import { mlUtils } from "../lib/ml-utils";
 import { usePageData } from "../components/usePageData";
 import {
 	IMLParsedNode,
@@ -13,7 +14,7 @@ import {
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { LoadFolderModes } from "../interfaces/parser";
 import { ContentComponent } from "../components/content";
-import { classes } from "./about.st.css";
+import { classes } from "./page-base.st.css";
 
 export default function About(props: IPageProps) {
 	const { siteTitle, pageName } = useContext(ReactLocaleContext);
@@ -31,13 +32,13 @@ export default function About(props: IPageProps) {
 				</title>
 			</Head>
 			<article className={classes.root}>
-				<h1>{metaData.title}</h1>
-				{elements.map((node, index) => {
+				<h1 className={classes.title}>{metaData.title}</h1>
+				{elements.map((node) => {
 					return (
 						<ContentComponent
-							key={`top-${index}`}
-							className={classes.contentComponent}
+							key={mlUtils.uniqueId()}
 							componentData={{ node }}
+							className={classes.contentComponent}
 						/>
 					);
 				})}

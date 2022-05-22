@@ -1,0 +1,58 @@
+@namespace "IndexMixin";
+
+@st-import Index from "./index.st.css";
+@st-import [TextNode] from "../theme/mixins.st.css";
+@st-import [bodyTextNormal] from "../theme/common/typography.st.css";
+
+:vars {
+	MotoTextColor: inehrit;
+	MotoTextSize: inherit;
+	MotoTextStyle: italic;
+	TextColor: inherit;
+	TextSize: inherit;
+	TextLineHeight: inherit;
+}
+
+.root {
+	-st-extends: Index;
+}
+
+.title {}
+
+.root::moto {
+	-st-mixin: TextNode(
+		TextColor value(MotoTextColor)
+	);
+}
+
+.root::contentComponent {
+  -st-mixin: bodyTextNormal(
+		BodyTextColor value(TextColor)
+	);
+}
+
+.root::contentComponent:type(paragraph) {
+	margin-bottom: 2rem;
+}
+
+.root::contentComponent:type(line) {
+	font-size: value(TextSize);
+}
+
+.root::contentComponent:type(blockquote) {
+	margin: 0 1rem 2rem;
+	font-weight: 500;
+	letter-spacing: 0.035rem;
+}
+
+.root::credits {
+	-st-mixin: TextNode(
+		TextSize 0.85rem,
+		TextColor value(MotoTextColor)
+	);
+}
+
+.root::credits {
+	padding-top: 1rem;
+	border-top: 1px solid #e0e0e0;
+}

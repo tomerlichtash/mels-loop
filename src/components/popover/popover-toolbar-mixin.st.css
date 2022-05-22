@@ -1,0 +1,23 @@
+@namespace "PopoverToolbar";
+
+@st-import PopoverToolbar from "./popover-toolbar.st.css";
+@st-import [IconFill] from "../../theme/mixins.st.css";
+
+:vars {
+	IconFill_Color: black;
+	IconFill_Hover: black;
+	IconFill_Active: black;
+}
+
+.root {
+	-st-extends: PopoverToolbar;
+}
+
+.root::item {
+	margin: 0 0.5rem;
+	-st-mixin: IconFill(
+		FillColor value(IconFill_Color),
+		FillColor_Hover value(IconFill_Hover),
+		FillColor_Active value(IconFill_Active)
+	)
+}

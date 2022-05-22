@@ -122,8 +122,8 @@ const NO_PARAGRAPH_TYPES: MLNodeTypeMap = new Map<MLNODE_TYPES, boolean>([
  * Node types that should be promoted to a figure if their only content is an image
  */
 const FIGURE_CONTAINER_TYPES: MLNodeTypeMap = new Map<MLNODE_TYPES, boolean>([
+	[MLNODE_TYPES.LINE, true],
 	[MLNODE_TYPES.PARAGRAPH, true],
-	[MLNODE_TYPES.SECTION, true],
 ]);
 
 function nodeTypeToMLType(
@@ -137,7 +137,7 @@ function nodeTypeToMLType(
 		context.mode.parseMode === MLParseModes.VERSE &&
 		nodeName === ASTNODE_TYPES.PARAGRAPH
 	) {
-		return MLNODE_TYPES.SECTION;
+		return MLNODE_TYPES.PARAGRAPH;
 	}
 	return (AST2MLTypeMap[nodeName] || nodeName).toLowerCase() as MLNODE_TYPES;
 }
@@ -351,7 +351,7 @@ class ContentUtils implements IContentUtils {
 						key: context.indexer.nextKey(),
 						line: context.indexer.nextLine(),
 						children: [],
-						type: MLNODE_TYPES.PARAGRAPH,
+						type: MLNODE_TYPES.LINE,
 					};
 					resultNode.children.push(currentLine);
 				}

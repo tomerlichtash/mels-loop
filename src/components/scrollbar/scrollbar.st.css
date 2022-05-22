@@ -1,7 +1,5 @@
 @namespace "Scrollbar";
 
-@st-import [color3] from "../../theme/common.st.css";
-
 :vars {
   full: 100%;
   scrollbarSize: 8px;
@@ -20,6 +18,7 @@
 	padding: 0 12px;
 	transition: background 160ms ease-out;
 	cursor: pointer;
+  z-index: 2;
 }
 /* .scrollbar:hover {
   background: gray;
@@ -30,11 +29,10 @@
 
 .thumb {
   flex: 1;
-	background: value(color3);
 	border-radius: 0;
-	/* // background: '$background-neutral-strong',
-	// increase target size for touch devices https://www.w3.org/WAI/WCAG21/Understanding/target-size.html */
 	position: relative;
+	/* increase target size for touch devices https://www.w3.org/WAI/WCAG21/Understanding/target-size.html */
+	/* background: '$background-neutral-strong' */
 }
 .thumb::before {
   content: "";

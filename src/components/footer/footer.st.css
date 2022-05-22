@@ -1,39 +1,35 @@
 @namespace "Footer";
 
-@st-import [primary1, primary3, primary4, level2, PageWidth] from "../../theme/common.st.css";
+@st-import Button from "../ui/button/button.st.css";
+@st-import [ResetListStyle] from "../../theme/mixins.st.css";
+@st-import [pageWidth] from "../page/page.st.css";
 
 .root {
-  background-color: value(level2);
-  margin-top: 4rem;
+  -st-states: textDirection(enum(ltr, rtl));
+  margin-top: 2rem;
+}
+.root:textDirection(ltr)::column {
+	padding-right: 2rem;
+}
+.root:textDirection(rtl)::column {
+	padding-left: 2rem;
 }
 
-/* https://cssgradient.io/ */
-.strip {
-  height: 4px;
-  background: rgb(78,74,122);
-  background: linear-gradient(90deg, value(primary1) 0%, value(primary3) 50%, value(primary4) 100%);  
-}
+.strip {}
 
 .layout {
-  display: inline-flex;
+  display: flex;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.column {
-  -st-states: size(number);
-}
-.column:size(1) {
-  flex: 1;
-}
-.column:size(2) {
-  flex: 2;
-}
-.column:size(3) {
-  flex: 3;
-}
+.column { -st-states: size(number) }
+.column:size(1) { flex: 1 }
+.column:size(2) { flex: 2 }
+.column:size(3) { flex: 3 }
+.column:size(4) { flex: 4 }
 
-.title {
-  font-weight: 500;
-}
+.title {}
 
 .subtitle {}
 
@@ -41,16 +37,38 @@
 
 .year {}
 
-
 .sitePages {
   flex: 1;
 }
 
 .pageContainer {
-  width: value(PageWidth);
   margin: 0 auto;
-  padding: 4rem 0;
 }
 
-.item {
+.itemList {
+  -st-mixin: ResetListStyle;
+}
+
+.item {}
+
+.footerTitle {}
+
+.excerpt {}
+
+.button {
+  -st-extends: Button;
+}
+
+.columnTitle {}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+    .layout {
+      display: block;
+      padding: 0 2rem;
+    }
+    .column {
+      margin-top: 1rem;
+    }
+	}
 }

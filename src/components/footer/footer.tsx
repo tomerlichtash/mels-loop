@@ -2,79 +2,105 @@ import React, { useContext } from "react";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
-import {
-	InfoCircledIcon,
-	EnvelopeClosedIcon,
-	GitHubLogoIcon,
-	TwitterLogoIcon,
-} from "@radix-ui/react-icons";
+import { TextDirection } from "../../interfaces/locale-context";
 import { st, classes } from "./footer.st.css";
 
-export const Footer = ({ className }: ComponentProps): JSX.Element => {
-	const { siteTitle, siteLicense } = useContext(ReactLocaleContext);
+export interface IFooterProps extends ComponentProps {
+	textDirection: TextDirection;
+}
+
+export const Footer = ({
+	textDirection,
+	className,
+}: IFooterProps): JSX.Element => {
+	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 	const licenseYears = `${new Date().getFullYear()}`;
+	const fullLicense = `${translate("SITE_LICENSE_LABEL")}-${translate(
+		"SITE_LICENSE_ATTRS"
+	)}`;
 	return (
-		<footer className={st(classes.root, className)}>
+		<footer className={st(classes.root, { textDirection }, className)}>
 			<div className={classes.strip}></div>
 			<div className={classes.pageContainer}>
 				<div className={classes.layout}>
 					<div className={st(classes.column, { size: 3 })}>
-						<div className={classes.title}>
-							<time className={classes.year}>{licenseYears}</time>{" "}
-							<span className={classes.license}>({siteLicense})</span>{" "}
-							<span className={classes.title}>{siteTitle}</span>
+						<div className={classes.footerTitle}>
+							<div className={classes.title}>
+								<time className={classes.year}>{licenseYears}</time>{" "}
+								<span
+									title={fullLicense}
+									arial-label={fullLicense}
+									className={classes.license}
+								>
+									({translate("SITE_LICENSE_LABEL")})
+								</span>{" "}
+								<span className={classes.title}>{siteTitle}</span>
+							</div>
+							<div className={classes.subtitle}>
+								<span>{siteSubtitle}</span>
+							</div>
 						</div>
-
-						<div className={classes.subtitle}>
-							<p>A Comprehensive Guide to The Story of Mel</p>
-						</div>
-
-						<div className={classes.excerpt}>
-							<p>
-								Mel’s Loop is a guide the epic hacker folklore tale The Story of
-								Mel. It also aims to collect the stories and of sub-stories
-								around the story, its author, and its main charachters, early
-								computing era stories and other related tales. The project is
-								designed as an anthology of stories, annotations, poems and
-								relics in the Hacker Folklore genre.
-							</p>
-						</div>
+						<p className={classes.excerpt}>
+							{translate("MENU_ITEM_DESC_ID_ABOUT")}
+						</p>
 					</div>
 					<div className={st(classes.column, { size: 1 })}>
+						<div className={classes.columnTitle}>
+							{translate("SECTION_LABEL_PAGES")}
+						</div>
 						<div className={classes.sitePages}>
-							<ul>
-								<li>
-									<InfoCircledIcon />
-									<Button link="/about" label="About" />
+							<ul className={classes.itemList}>
+								<li className={classes.item}>
+									<Button
+										link="/about"
+										label={translate("MENU_ITEM_LABEL_ID_ABOUT")}
+										className={classes.button}
+									/>
 								</li>
-								<li>
-									<Button link="/posts" label="Blog" />
+								<li className={classes.item}>
+									<Button
+										link="/posts"
+										label={translate("MENU_ITEM_LABEL_ID_BLOG")}
+										className={classes.button}
+									/>
+								</li>
+								<li className={st(classes.item)}>
+									<Button
+										label={translate("MENU_ITEM_LABEL_ID_CONTRIBUTE")}
+										link={"/contribute"}
+										className={classes.button}
+									/>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<div className={st(classes.column, { size: 1 })}>
-						<ul className={classes.social}>
-							<li className={classes.item}>
-								<GitHubLogoIcon />
+						<div className={classes.columnTitle}>
+							{translate("SECTION_LABEL_LINKS")}
+						</div>
+						<ul className={classes.itemList}>
+							<li className={st(classes.item)}>
 								<Button
-									target="_blank"
 									link="https://github.com/tomerlichtash/mels-loop-nextjs"
-									label="Github"
+									label={translate("MENU_ITEM_LABEL_ID_GITHUB")}
+									className={classes.button}
+									target="_blank"
+								/>
+							</li>
+							<li className={st(classes.item)}>
+								<Button
+									link="https://twitter.com/aboutmelsloop"
+									label={translate("MENU_ITEM_LABEL_ID_TWITTER")}
+									className={classes.button}
+									target="_blank"
+								/>
+							</li>
+							<li className={st(classes.item)}>
+								<Button
+									label={translate("MENU_ITEM_LABEL_ID_CONTACT")}
+									link={"/contact"}
 									className={classes.button}
 								/>
-							</li>
-							<li>
-								<TwitterLogoIcon scale={230} />
-								<Button
-									target="_blank"
-									link="https://twitter.com/aboutmelsloop"
-									label="@aboutmelsloop"
-								/>
-							</li>
-							<li>
-								<EnvelopeClosedIcon />
-								<Button link="/contact" label="Contact" />
 							</li>
 						</ul>
 					</div>

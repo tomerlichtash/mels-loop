@@ -1,0 +1,107 @@
+@namespace "PageBaseMixin";
+
+@st-import PageBase from "./page-base.st.css";
+@st-import [TextNode] from "../theme/mixins.st.css";
+@st-import [
+  heading1,
+  heading2,
+  heading3,
+  heading4,
+  heading5,
+  heading6,
+  bodyTextNormal,
+] from "../theme/common/typography.st.css";
+
+:vars {
+  BaseColor: black;
+  HeadingColor1: value(BaseColor);
+  HeadingColor2: value(BaseColor);
+  HeadingColor3: value(BaseColor);
+  HeadingColor4: value(BaseColor);
+  HeadingColor5: value(BaseColor);
+  HeadingColor6: value(BaseColor);
+  BodyTextColor: value(BaseColor);
+  Heading1Margin: 2rem;
+  Heading2Margin: 1rem;
+  Heading3Margin: 1rem;
+  Heading4Margin: 2rem;
+  Heading5Margin: 0;
+  Heading6Margin: 0;
+  SectionMargin: 2rem;
+  ParagraphMargin: 2rem;
+  ContentHeaderMetaBorderColor: #c0c0c0;
+}
+
+.root {
+  -st-extends: PageBase;
+}
+
+.root::title {
+  -st-mixin: heading1(
+    HeadingColor value(HeadingColor1),
+    h1_margin value(Heading1Margin)
+  );
+}
+
+.root::contentComponent:type(heading_2) {
+  -st-mixin: heading2(
+    HeadingColor value(HeadingColor2),
+    h2_margin value(Heading2Margin)
+  );
+}
+
+.root::contentComponent:type(heading_3) {
+  -st-mixin: heading3(
+    HeadingColor value(HeadingColor3),
+    h3_margin value(Heading3Margin)
+  );
+}
+
+.root::contentComponent:type(heading_4) {
+  -st-mixin: heading4(
+    HeadingColor value(HeadingColor4),
+    h4_margin value(Heading4Margin)
+  );
+}
+
+.root::contentComponent:type(heading_5) {
+  -st-mixin: heading5(
+    HeadingColor value(HeadingColor5),
+    h4_margin value(Heading5Margin)
+  );
+}
+
+.root::contentComponent:type(heading_6) {
+  -st-mixin: heading6(
+    HeadingColor value(HeadingColor6),
+    h5_margin value(Heading6Margin)
+  );
+}
+
+.root::contentComponent:type(paragraph) {
+  -st-mixin: bodyTextNormal(
+    BodyTextColor value(BodyTextColor)
+  );
+  margin-bottom: value(ParagraphMargin);
+}
+
+.root::abstract {
+  -st-mixin: heading3(
+    h3_color value(HeadingColor3)
+  );
+}
+
+.root::meta {
+  -st-mixin: TextNode(
+    TextSize 1.041vmax,
+    TextColor value(HeadingColor2)
+  );
+  margin: 2vmax 0 0;
+  border-color: value(ContentHeaderMetaBorderColor);
+}
+.root::byline {
+  text-transform: uppercase;
+}
+.root::date {
+  font-weight: 400;
+}

@@ -5,19 +5,14 @@ import {
 	IContentComponentInitData,
 	NODE_DISPLAY_TYPES,
 } from "../../../../interfaces/models";
-import { ContentIterator } from "../../content-iterator";
 import { Link } from "../link/link";
 import AnnotationLink from "../annotation-link";
+import TermLink from "../term-link";
 import Popover from "../../../popover";
-import { ReactThemeContext } from "../../../../contexts/theme-context";
 import { ReactLocaleContext } from "../../../../contexts/locale-context";
 import { ReactQueryContext } from "../../../../contexts/query-context";
 import DynamicContentBrowser from "../../../dynamic-content-browser";
 import { ReactDynamicContentContext } from "../../../../contexts/dynamic-content-context";
-import {
-	st as layoutStyle,
-	classes as layoutClasses,
-} from "../../../layout/layout.st.css";
 
 const getTriggerComp = (
 	type: DynamicContentTypes,
@@ -28,7 +23,7 @@ const getTriggerComp = (
 		case DynamicContentTypes.Annotation:
 			return <AnnotationLink className={className} componentData={data} />;
 		default:
-			return <ContentIterator className={className} componentData={data} />;
+			return <TermLink className={className} componentData={data} />;
 	}
 };
 
@@ -40,8 +35,7 @@ export const LinkSelector = ({
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
 	const queryContext = useContext(ReactQueryContext);
-	const { locale, textDirection } = useContext(ReactLocaleContext);
-	const { themeRef } = useContext(ReactThemeContext);
+	const { textDirection } = useContext(ReactLocaleContext);
 	const { query } = queryContext;
 	const { getQueryUrl, registerNode, onExit } = query;
 	const nodeWithQuery = registerNode(node);
@@ -79,8 +73,6 @@ export const LinkSelector = ({
 			side={textDirection === "ltr" ? "right" : "left"}
 			trigger={getTriggerComp(linkType, componentData, className)}
 			portalled={true}
-			portalStyles={layoutStyle(layoutClasses.root, { locale })}
-			contentClassName={themeRef}
 		>
 			<DynamicContentBrowser node={node} />
 		</Popover>

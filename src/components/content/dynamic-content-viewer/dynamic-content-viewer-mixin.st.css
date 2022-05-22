@@ -1,0 +1,14 @@
+@namespace "DynamicContentViewerMixin";
+
+@st-import DynamicContentViewer from "./dynamic-content-viewer.st.css";
+
+:vars {
+	ParagraphTextSize: 1rem;
+	ParagraphLineHeight: 1.8rem;
+	ButtonTextColor: inherit;
+	ButtonTextColor_Hover: inherit;
+}
+
+.root {
+	-st-extends: DynamicContentViewer;
+}

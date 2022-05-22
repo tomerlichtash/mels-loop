@@ -1,21 +1,88 @@
 @namespace "Mixins";
 
+@st-import Header from "../components/header/header.st.css";
+@st-import Button from "../components/ui/button/button.st.css";
+
 .boxSizing {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /* https://css-tricks.com/almanac/properties/u/user-select/ */
 .preventSelection {
-    -webkit-user-select: none;  /* Chrome all / Safari all */
-    -moz-user-select: none;     /* Firefox all */
-    -ms-user-select: none;      /* IE 10+ */
-    user-select: none;          /* Likely future */     
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;          /* Likely future */     
 }
 
 .verticalAlignSuper {
-    position: relative;
-    top: -6px;
-    font-size: 12px;
+	position: relative;
+	top: -6px;
+}
+
+/* IconFillMixin */
+:vars {
+	FillColor: #000;
+	FillColor_Hover: value(FillColor);
+	FillColor_Active: value(FillColor);
+}
+.IconFill {}
+.IconFill path { fill: value(FillColor) }
+.IconFill:hover path { fill: value(FillColor_Hover) }
+.IconFill:active path { fill: value(FillColor_Active) }
+
+/* ToolbarArrowMixin */
+:vars {
+	TooltipArrowColor: red;
+}
+.TooltipArrow {}
+.TooltipArrow polygon { fill: value(TooltipArrowColor) }
+
+/* GradientStripMixin */
+:vars {
+	StripGradientStartColor: white;
+	StripGradientMidColor: gray;
+	StripGradientEndColor: black;
+	StripGradientHeight: 4px;
+}
+.GradientStrip {
+	height: value(StripGradientHeight);
+	background: linear-gradient(90deg,
+	value(StripGradientStartColor) 0%,
+	value(StripGradientMidColor) 50%,
+	value(StripGradientEndColor) 100%);
+}
+
+/* Mobile Header Mixin */
+.MobileHeader { -st-extends: Header }
+.MobileHeader::container { display: block }
+.MobileHeader::siteTitle { display: block }
+/* .MobileHeader::siteSubtitle { font-size: 0.85rem } */
+.MobileHeader::siteSubtitle::before { margin: 0; content: "" }
+
+/* TextNodeMixin */
+:vars {
+	TextSize: inherit;
+	TextWeight: inherit;
+	TextLineHeight: inherit;
+	TextCase: auto;
+	TextColor: inherit;
+	TextStyle: none;
+}
+.TextNode {
+	font-size: value(TextSize);
+	font-weight: value(TextWeight);
+	line-height: value(TextLineHeight);
+	text-transform: value(TextCase);
+	font-style: value(TextStyle);
+	color: value(TextColor);
+}
+
+/* ResetListStyleMixin */
+.ResetListStyle {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

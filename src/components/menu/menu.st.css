@@ -1,0 +1,110 @@
+@namespace "Menu";
+
+@st-import [preventSelection] from "../../theme/mixins.st.css";
+@st-import Button from "../ui/button/button.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
+
+.root {
+	-st-mixin: preventSelection;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 500px;
+}
+
+.list {
+	padding: 0;
+	display: flex;
+}
+
+.menuContent {
+	-st-states: layout(string);
+	display: grid;
+	margin: 0;
+	column-gap: 10;
+}
+
+.viewportPosition {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	top: 100%;
+	left: 0;
+	perspective: 2000px;
+}
+
+.viewport {
+	position: relative;
+	margin-top: 10px;
+	border-radius: 6px;
+	overflow: hidden;
+	transform-origin: top center;
+}
+
+.arrow {
+	position: relative;
+	top: 70%;
+	width: 10px;
+	height: 10px;
+	transform: rotate(45deg);
+	border-top-left-radius: 2px;
+}
+
+.indicator {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	height: 10px;
+	top: 100%;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.caret {
+	position: relative;
+	color: black;
+	top: 1;
+}
+
+.menuItem {
+	list-style: none;
+}
+
+.listItem {}
+
+.abstract {}
+
+.more {
+	-st-extends: Button;
+}
+
+.menuTrigger {}
+.triggerButton {
+	-st-extends: Button;
+}
+
+.menuItemButton {
+	-st-extends: Button;
+	display: block;
+	/* width: 100%; */
+}
+.menuItemButton::contentWrapper {
+	align-items: flex-start;
+}
+.menuItemButton::icon {
+	position: relative;
+	top: 3px;
+}
+
+@media only screen and (min-width: 600px) {
+	.menuContent:layout(one) {
+		width: 400px;
+		grid-template-columns: ".75fr 1fr";
+	}
+	.menuContent:layout(two) {
+		width: 400px;
+		grid-auto-flow: column;
+		grid-template-rows: repeat(3, 1fr);
+	}
+}

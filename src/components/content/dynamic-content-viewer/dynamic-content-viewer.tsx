@@ -8,6 +8,7 @@ import { contentUtils } from "../../../lib/content-utils";
 import Note from "../../note";
 import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
 import { mlUtils } from "../../../lib/ml-utils";
+import { st, classes } from "./dynamic-content-viewer.st.css";
 
 export interface DynamicContentViewerProps extends ComponentProps {
 	url: string;
@@ -16,11 +17,12 @@ export interface DynamicContentViewerProps extends ComponentProps {
 
 export const DynamicContentViewer = ({
 	url,
+	className,
 }: DynamicContentViewerProps): JSX.Element => {
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const pageContext = useContext(ReactPageContext);
 	const [error, setError] = useState("");
-	const { translate, locale } = useContext(ReactLocaleContext);
+	const { translate, locale, textDirection } = useContext(ReactLocaleContext);
 	const dynamicContentContext = useContext(ReactDynamicContentContext);
 	const elements = item && item.parsed;
 
@@ -59,7 +61,7 @@ export const DynamicContentViewer = ({
 	}, [url, dynamicContentContext, pageContext, locale]);
 
 	if (error) {
-		return <div>{error}</div>;
+		return <div className={classes.error}>{error}</div>;
 	}
 
 	if (elements) {
@@ -68,28 +70,46 @@ export const DynamicContentViewer = ({
 			DynamicContentTypes.Glossary
 		);
 		const { metaData } = item;
-		const { source_name, source_url, glossary_key } = metaData;
+		const { source_name, source_url, source_author, glossary_key } = metaData;
+
+		// TODO: Support multiple sources - https://github.com/tomerlichtash/mels-loop-nextjs/issues/188
+		const sources = source_name && [
+			{
+				name: source_name,
+				url: source_url,
+				author: source_author,
+			},
+		];
 		const label = translate(`NOTE_LABEL_${itemData.type.toUpperCase()}`);
+		const bibliographyLabel = translate(
+			`COMPONENT_BIBLIOGRAPHY_LABEL_${
+				sources.length > 1 ? "MULTIPLE" : "SINGLE"
+			}`
+		);
 		const itemType =
 			itemData.type === DynamicContentTypes.Glossary ? "ref" : "note";
 		const contents = elements.map((node) => (
-			<ContentComponent key={mlUtils.uniqueId()} componentData={{ node }} />
+			<ContentComponent
+				key={mlUtils.uniqueId()}
+				componentData={{ node }}
+				className={classes.contentComponent}
+			/>
 		));
 
 		return (
-			<Note
-				type={itemType}
-				contents={contents}
-				label={label}
-				title={translate(glossary_key)}
-				term={locale === "en" ? "" : translate(glossary_key, "en")}
-				sources={[
-					{
-						name: source_name,
-						url: source_url,
-					},
-				]}
-			/>
+			<div className={st(classes.root, className)}>
+				<Note
+					className={classes.note}
+					type={itemType}
+					contents={contents}
+					label={label}
+					biblgraphyLabel={bibliographyLabel}
+					title={translate(glossary_key)}
+					term={locale === "en" ? "" : translate(glossary_key, "en")}
+					textDirection={textDirection}
+					sources={sources}
+				/>
+			</div>
 		);
 	}
 

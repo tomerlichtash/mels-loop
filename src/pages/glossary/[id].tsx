@@ -40,7 +40,6 @@ export default function GlossaryTerm(props: IPageProps) {
 					label={translate("GLOSSARY_NAV_LABEL")}
 					link={"/glossary"}
 				/>
-
 				<h1 className={classes.title}>{translate(metaData?.glossary_key)}</h1>
 				<p className={classes.term}>
 					{translate(metaData?.glossary_key, "en")}
@@ -52,6 +51,7 @@ export default function GlossaryTerm(props: IPageProps) {
 				)}
 				<Bibliography
 					className={classes.bibliography}
+					label={""}
 					sources={[
 						{
 							author: metaData.source_name,

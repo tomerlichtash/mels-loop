@@ -12,30 +12,32 @@ export interface IBibliographySource {
 
 export interface IBibliographyProps extends ComponentProps {
 	sources?: IBibliographySource[];
+	label: string;
 }
 
 export const Bibliography = ({
 	sources,
+	label,
 	className,
 }: IBibliographyProps): JSX.Element => {
-	if (!sources) {
-		return;
-	}
-
 	return (
 		<div className={st(classes.root, className)}>
-			<span className={classes.list}>
-				{sources.map(({ name, url }) => {
+			<div className={classes.title}>{label}:</div>
+			<ul className={classes.list}>
+				{sources.map(({ name, url, author }) => {
+					const authorSuffix = author ? ` / ${author}` : "";
 					return (
-						<Button
-							key={mlUtils.uniqueId()}
-							label={name}
-							link={url}
-							target="_blank"
-						/>
+						<li key={mlUtils.uniqueId()}>
+							<Button
+								label={`${name}${authorSuffix}`}
+								link={url}
+								target="_blank"
+								className={classes.button}
+							/>
+						</li>
 					);
 				})}
-			</span>
+			</ul>
 		</div>
 	);
 };

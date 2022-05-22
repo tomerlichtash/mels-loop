@@ -12,10 +12,10 @@ export interface ILocaleContext {
 	readonly pages: ILocalePageContext;
 	translate: (s: string, lang?: string) => string;
 	getLocaleSymbol: (id: string) => string;
+	onLocaleChange: (id: LocaleId) => Promise<boolean>;
 	textDirection: TextDirection;
 	siteTitle: string;
 	siteSubtitle: string;
-	siteLicense: string;
 	pageName: string;
 	sectionName: string;
 }
@@ -33,8 +33,8 @@ export interface ILocaleInfo {
 }
 
 export const LocaleInfo: Record<LocaleId, ILocaleInfo> = {
-	en: { direction: "rtl" },
-	he: { direction: "ltr" },
+	en: { direction: "ltr" },
+	he: { direction: "rtl" },
 };
 
 export const localeLabelPrefix = "LOCALE_LABEL";
