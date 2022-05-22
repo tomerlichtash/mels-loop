@@ -1,5 +1,4 @@
 import React from "react";
-import ScrollArea from "../scrollbar";
 import Portalled from "../portalled";
 import { PopoverToolbar } from "./popover-toolbar";
 import { IPopoverContext } from "../../interfaces/IPopoverContext";
@@ -72,7 +71,7 @@ export const Popover = ({
 								onExit={onExit}
 								className={st(classes.toolbar, className)}
 							/>
-							<ScrollArea height="300px">{children}</ScrollArea>
+							{children}
 						</div>
 						<PopoverArrow />
 					</Portalled>

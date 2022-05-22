@@ -8,8 +8,9 @@ import { contentUtils } from "../../../lib/content-utils";
 import Note from "../../note";
 import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
 import { mlUtils } from "../../../lib/ml-utils";
+import { LoadingIndicator } from "../../loading-indicator/loading-indicator";
+import ScrollArea from "../../scrollbar";
 import { st, classes } from "./dynamic-content-viewer.st.css";
-import LoadingIndicator from "../../loading-indicator/loading-indicator";
 
 /**
  * Show loading animation after this many msecs have elapsed without data
@@ -18,7 +19,7 @@ const LOADING_DELAY_MSEC = 50; // 40ms
 /**
  * Min # of msecs to display loading animation
  */
- const MIN_LOADING_TIME = 750;
+const MIN_LOADING_TIME = 750;
 
 export interface DynamicContentViewerProps extends ComponentProps {
 	url: string;
@@ -58,8 +59,10 @@ export const DynamicContentViewer = ({
 				const page = items && items[0];
 				if (page) {
 					const elapsed = Date.now() - queryTime;
-					const delay = elapsed <= LOADING_DELAY_MSEC ? 0
-						: Math.max(0, MIN_LOADING_TIME - elapsed)
+					const delay =
+						elapsed <= LOADING_DELAY_MSEC
+							? 0
+							: Math.max(0, MIN_LOADING_TIME - elapsed);
 					window.setTimeout(() => {
 						if (!removed) {
 							setIsLoading(false);
@@ -87,7 +90,9 @@ export const DynamicContentViewer = ({
 	}
 
 	if (isLoading) {
-		return <LoadingIndicator label="rabak" delay={LOADING_DELAY_MSEC} />
+		return (
+			<LoadingIndicator label="PRELOADER_LABEL" delay={LOADING_DELAY_MSEC} />
+		);
 	}
 
 	if (!elements || !elements.length) {
@@ -110,8 +115,7 @@ export const DynamicContentViewer = ({
 	];
 	const label = translate(`NOTE_LABEL_${itemData.type.toUpperCase()}`);
 	const bibliographyLabel = translate(
-		`COMPONENT_BIBLIOGRAPHY_LABEL_${sources.length > 1 ? "MULTIPLE" : "SINGLE"
-		}`
+		`COMPONENT_BIBLIOGRAPHY_LABEL_${sources.length > 1 ? "MULTIPLE" : "SINGLE"}`
 	);
 	const itemType =
 		itemData.type === DynamicContentTypes.Glossary ? "ref" : "note";
@@ -125,20 +129,21 @@ export const DynamicContentViewer = ({
 
 	return (
 		<div className={st(classes.root, className)}>
-			<Note
-				className={classes.root}
-				type={itemType}
-				contents={contents}
-				label={label}
-				biblgraphyLabel={bibliographyLabel}
-				title={translate(glossary_key)}
-				term={locale === "en" ? "" : translate(glossary_key, "en")}
-				textDirection={textDirection}
-				sources={sources}
-			/>
+			<ScrollArea height="300px">
+				<Note
+					className={classes.root}
+					type={itemType}
+					contents={contents}
+					label={label}
+					biblgraphyLabel={bibliographyLabel}
+					title={translate(glossary_key)}
+					term={locale === "en" ? "" : translate(glossary_key, "en")}
+					textDirection={textDirection}
+					sources={sources}
+				/>
+			</ScrollArea>
 		</div>
 	);
-
 };
 
 export default DynamicContentViewer;
