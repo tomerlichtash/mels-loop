@@ -90,4 +90,5 @@ export const Locale: Language = {
 	COPY_BUTTON_TOOLTIP_CONTENT: "Copied!",
 	COMPONENT_BIBLIOGRAPHY_LABEL_SINGLE: "Source",
 	COMPONENT_BIBLIOGRAPHY_LABEL_MULTIPLE: "Sources",
+	PRELOADER_LABEL: "Loading...",
 };
