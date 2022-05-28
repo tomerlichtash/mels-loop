@@ -28,6 +28,8 @@ const SCROLL_VIEW_PROPS: ScrollIntoViewOptions = {
 	block: "center",
 };
 
+const isDebug = process.env.NEXT_PUBLIC_ML_DEBUG;
+
 export default function Layout({ children }: ComponentProps) {
 	const router = useRouter();
 	const { query } = useContext(ReactQueryContext);
@@ -88,7 +90,7 @@ export default function Layout({ children }: ComponentProps) {
 				</ScrollArea>
 				{isMobile && <MenuProvider isMobile />}
 			</div>
-			<Analytics />
+			{!isDebug && <Analytics />}
 		</>
 	);
 }
