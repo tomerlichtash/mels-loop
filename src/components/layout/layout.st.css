@@ -3,15 +3,14 @@
 @st-import Globals from "../../theme/common/globals.st.css";
 @st-import [LatinText, HebrewText] from "../../theme/common/typography.st.css";
 
-
 .root {
 	-st-states: textDirection(enum(ltr, rtl));
-	-st-mixin: Globals, LatinText;
+	-st-mixin: Globals;
 }
 
-/* .root:textDirection(ltr) {
+.root:textDirection(ltr) {
 	-st-mixin: LatinText;
-} */
+}
 
 .root:textDirection(rtl) {
 	-st-mixin: HebrewText;
