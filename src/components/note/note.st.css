@@ -24,7 +24,7 @@
 }
 
 .bibliography {
-  -st-extends: Bibliography;
+	-st-extends: Bibliography;
 }
 
 .contentComponent {

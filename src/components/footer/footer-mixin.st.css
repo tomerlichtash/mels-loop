@@ -6,80 +6,80 @@
 @st-import [heading6, bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
-  BackgroundColor: #f0f0f0;
-  Padding: 4rem 0;
-  StripGradientStartColor: white;
-  StripGradientMidColor: gray;
-  StripGradientEndColor: black;
-  ButtonTextColor: inherit;
-  ButtonTextColor_Hover: inherit;
-  TitleFontSize: inherit;
-  TitleFontWeight: inherit;
-  TitleFontCase: inherit;
-  TitleMargin: 1rem;
-  SubtitleFontSize: inherit;
-  SubtitleFontWeight: inherit;
-  SubtitleFontCase: inherit;
-  DescriptionFontSize: inherit;
-  DescriptionFontWeight: inherit;
-  LinkFontSize: inherit;  
-  LinkFontWeight: inherit;  
+	BackgroundColor: #f0f0f0;
+	Padding: 4rem 0;
+	StripGradientStartColor: white;
+	StripGradientMidColor: gray;
+	StripGradientEndColor: black;
+	ButtonTextColor: inherit;
+	ButtonTextColor_Hover: inherit;
+	TitleFontSize: inherit;
+	TitleFontWeight: inherit;
+	TitleFontCase: inherit;
+	TitleMargin: 1rem;
+	SubtitleFontSize: inherit;
+	SubtitleFontWeight: inherit;
+	SubtitleFontCase: inherit;
+	DescriptionFontSize: inherit;
+	DescriptionFontWeight: inherit;
+	LinkFontSize: inherit;
+	LinkFontWeight: inherit;
 }
 
 .root {
-  -st-extends: Footer;
-  background-color: value(BackgroundColor);
+	-st-extends: Footer;
+	background-color: value(BackgroundColor);
 }
 
 .root::strip {
-  -st-mixin: GradientStrip(
-    StripGradientStartColor value(StripGradientStartColor),
-    StripGradientMidColor value(StripGradientMidColor),
-    StripGradientEndColor value(StripGradientEndColor),
-    StripGradientHeight 4px
-  );
+	-st-mixin: GradientStrip(
+		StripGradientStartColor value(StripGradientStartColor),
+		StripGradientMidColor value(StripGradientMidColor),
+		StripGradientEndColor value(StripGradientEndColor),
+		StripGradientHeight 4px
+	);
 }
 
 .root::button {
-  -st-mixin: ButtonMixin(
-    ButtonTextColor value(ButtonTextColor),
-    ButtonTextColor_Hover value(ButtonTextColor_Hover),
-    ButtonLabelLineHeight 21px,
-    ButtonLabelTextSize 14px
-  );
+	-st-mixin: ButtonMixin(
+		ButtonTextColor value(ButtonTextColor),
+		ButtonTextColor_Hover value(ButtonTextColor_Hover),
+		ButtonLabelLineHeight 21px,
+		ButtonLabelTextSize 14px
+	);
 }
 
 .root::pageContainer {
-  padding: value(Padding);
+	padding: value(Padding);
 }
 
 .root::footerTitle {
-  margin-bottom: value(TitleMargin);
+	margin-bottom: value(TitleMargin);
 }
 
 .root::excerpt {
-  -st-mixin: bodyTextNormal
+	-st-mixin: bodyTextNormal
 }
 
 .root::title {
-  -st-mixin: TextNode(
-    TextSize 15px,
-    TextWeight 500,
-    TextCase uppercase
-  );
+	-st-mixin: TextNode(
+		TextSize 15px,
+		TextWeight 500,
+		TextCase uppercase
+	);
 }
 
 .root::subtitle {
-  -st-mixin: TextNode(
-    TextSize 14px,
-    TextWeight 400,
-  );
+	-st-mixin: TextNode(
+		TextSize 14px,
+		TextWeight 400,
+	);
 }
 
 .root::columnTitle {
-  -st-mixin: TextNode(
-    TextWeight 500,
-    TextSize 16px,
-  );
-  margin-bottom: 1rem;
+	-st-mixin: TextNode(
+		TextWeight 500,
+		TextSize 16px,
+	);
+	margin-bottom: 1rem;
 }

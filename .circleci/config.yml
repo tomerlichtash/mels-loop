@@ -1,112 +1,112 @@
 version: 2.1
 
 jobs:
-  build:
-    docker:
-      - image: cimg/node:14.17
-    steps:
-      - checkout
-      - run: |
-          curl -o- -L https://yarnpkg.com/install.sh | bash
-          echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
-      - run:
-          name: Compute version number
-          command: echo "0.0.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" | tee version.txt
-      - restore_cache:
-          keys:
-            - yarn-deps-{{ checksum "yarn.lock" }}
-            - yarn-deps
-      - run:
-          name: yarn install
-          command: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
-      - store_artifacts:
-          path: yarn.lock
-      - run:
-          name: "Build"
-          command: "yarn build"
-      - run:
-          name: "Run Tests"
-          command: "yarn test:jest"
+	build:
+		docker:
+			- image: cimg/node:14.17
+		steps:
+			- checkout
+			- run: |
+					curl -o- -L https://yarnpkg.com/install.sh | bash
+					echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
+			- run:
+					name: Compute version number
+					command: echo "0.0.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" | tee version.txt
+			- restore_cache:
+					keys:
+						- yarn-deps-{{ checksum "yarn.lock" }}
+						- yarn-deps
+			- run:
+					name: yarn install
+					command: yarn install
+			- save_cache:
+					paths:
+						- node_modules
+					key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
+			- store_artifacts:
+					path: yarn.lock
+			- run:
+					name: "Build"
+					command: "yarn build"
+			- run:
+					name: "Run Tests"
+					command: "yarn test:jest"
 
-  "clean-code":
-    docker:
-      - image: cimg/node:14.17
-    steps:
-      - checkout
-      - run: |
-          curl -o- -L https://yarnpkg.com/install.sh | bash
-          echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
-      - run:
-          name: Compute version number
-          command: echo "0.0.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" | tee version.txt
-      - restore_cache:
-          keys:
-            - yarn-deps-{{ checksum "yarn.lock" }}
-            - yarn-deps
-      - run:
-          name: yarn install
-          command: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
-      - store_artifacts:
-          path: yarn.lock
-      - run:
-          name: "ESLint"
-          command: "yarn lint"
+	"clean-code":
+		docker:
+			- image: cimg/node:14.17
+		steps:
+			- checkout
+			- run: |
+					curl -o- -L https://yarnpkg.com/install.sh | bash
+					echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
+			- run:
+					name: Compute version number
+					command: echo "0.0.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" | tee version.txt
+			- restore_cache:
+					keys:
+						- yarn-deps-{{ checksum "yarn.lock" }}
+						- yarn-deps
+			- run:
+					name: yarn install
+					command: yarn install
+			- save_cache:
+					paths:
+						- node_modules
+					key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
+			- store_artifacts:
+					path: yarn.lock
+			- run:
+					name: "ESLint"
+					command: "yarn lint"
 
-  unit:
-    docker:
-      - image: cimg/node:14.17
-    steps:
-      - checkout
-      - run: |
-          curl -o- -L https://yarnpkg.com/install.sh | bash
-          echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
-      - restore_cache:
-          keys:
-            - yarn-deps-{{ checksum "yarn.lock" }}
-            - yarn-deps
-      - run:
-          name: yarn install
-          command: yarn install
-      - run:
-          name: "Run Tests"
-          command: "yarn test:jest"
+	unit:
+		docker:
+			- image: cimg/node:14.17
+		steps:
+			- checkout
+			- run: |
+					curl -o- -L https://yarnpkg.com/install.sh | bash
+					echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
+			- restore_cache:
+					keys:
+						- yarn-deps-{{ checksum "yarn.lock" }}
+						- yarn-deps
+			- run:
+					name: yarn install
+					command: yarn install
+			- run:
+					name: "Run Tests"
+					command: "yarn test:jest"
 
-  e2e:
-    docker:
-      - image: mcr.microsoft.com/playwright:focal
-    environment:
-      NODE_ENV: development
-    steps:
-      - checkout
-      - run: |
-          curl -o- -L https://yarnpkg.com/install.sh | bash
-          echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
-      - restore_cache:
-          keys:
-            - yarn-deps-{{ checksum "yarn.lock" }}
-            - yarn-deps
-      - run:
-          name: yarn install
-          command: yarn install
-      - run:
-          name: npx playwright
-          command: npx playwright install
-      - run:
-          name: "Run Tests"
-          command: "yarn test:e2e"
+	e2e:
+		docker:
+			- image: mcr.microsoft.com/playwright:focal
+		environment:
+			NODE_ENV: development
+		steps:
+			- checkout
+			- run: |
+					curl -o- -L https://yarnpkg.com/install.sh | bash
+					echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
+			- restore_cache:
+					keys:
+						- yarn-deps-{{ checksum "yarn.lock" }}
+						- yarn-deps
+			- run:
+					name: yarn install
+					command: yarn install
+			- run:
+					name: npx playwright
+					command: npx playwright install
+			- run:
+					name: "Run Tests"
+					command: "yarn test:e2e"
 
 workflows:
-  infra:
-    jobs:
-      - "build"
-      - "clean-code"
-      - "unit"
-      # - "e2e"
+	infra:
+		jobs:
+			- "build"
+			- "clean-code"
+			- "unit"
+			# - "e2e"

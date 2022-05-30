@@ -71,7 +71,7 @@ const config: PlaywrightTestConfig = {
 
 		// All available context options: https://playwright.dev/docs/api/class-browser#browser-new-context
 		// contextOptions: {
-		//   ignoreHTTPSErrors: true,
+		//	ignoreHTTPSErrors: true,
 		// },
 	},
 

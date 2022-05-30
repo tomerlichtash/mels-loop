@@ -11,9 +11,9 @@
 	BgColor: #373a47;
 	BurgerBars: #373a47;
 	BurgerCrossColor: #bdc3c7;
-  StripGradientStartColor: white;
-  StripGradientMidColor: gray;
-  StripGradientEndColor: black;
+	StripGradientStartColor: white;
+	StripGradientMidColor: gray;
+	StripGradientEndColor: black;
 	ItemTextColor: inherit;
 	ItemTextColor_Hover: inherit;
 	ItemPadding: 0;
@@ -71,12 +71,12 @@
 }
 
 .root::strip {
-  -st-mixin: GradientStrip(
-    StripGradientStartColor value(StripGradientStartColor),
-    StripGradientMidColor value(StripGradientMidColor),
-    StripGradientEndColor value(StripGradientEndColor),
+	-st-mixin: GradientStrip(
+		StripGradientStartColor value(StripGradientStartColor),
+		StripGradientMidColor value(StripGradientMidColor),
+		StripGradientEndColor value(StripGradientEndColor),
 		StripGradientHeight 2px
-  );
+	);
 }
 
 .root::section {

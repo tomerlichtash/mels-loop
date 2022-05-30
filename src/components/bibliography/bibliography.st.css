@@ -3,16 +3,16 @@
 @st-import Button from "../ui/button/button.st.css";
 
 .root {
-  margin-top: 2rem;
+	margin-top: 2rem;
 }
 
 .title {}
 
 .list {
-  margin: 0;
-  list-style: none;
+	margin: 0;
+	list-style: none;
 }
 
 .button {
-  -st-extends: Button;
+	-st-extends: Button;
 }

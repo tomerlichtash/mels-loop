@@ -3,30 +3,30 @@
 @st-import [preventSelection, verticalAlignSuper] from "../../../../theme/mixins.st.css";
 
 :vars {
-  paranthesisMargin: 0.05rem;
+	paranthesisMargin: 0.05rem;
 }
 
 .root {
-  -st-mixin: preventSelection, verticalAlignSuper;
+	-st-mixin: preventSelection, verticalAlignSuper;
 }
 
 .root::before,
 .root::after {
-  color: #000;
-  font-weight: 300;
+	color: #000;
+	font-weight: 300;
 }
 
 .root::before {
-  content: '[';
-  margin-right: value(paranthesisMargin);
+	content: '[';
+	margin-right: value(paranthesisMargin);
 }
 
 .root::after {
-  content: ']';
-  margin-left: value(paranthesisMargin);
+	content: ']';
+	margin-left: value(paranthesisMargin);
 }
 
 .content {}
 .content::after {
-  content: attr(data-prefix) attr(data-seq);
+	content: attr(data-prefix) attr(data-seq);
 }
