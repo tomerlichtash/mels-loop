@@ -5,9 +5,9 @@
 
 
 .root {
-  -st-extends: Posts;
+	-st-extends: Posts;
 }
 
 .root::sectionTitle {
-  -st-mixin: heading2;
+	-st-mixin: heading2;
 }

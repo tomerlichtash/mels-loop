@@ -3,11 +3,11 @@
 @st-import [preventSelection] from "../../theme/mixins.st.css";
 
 .root {
-  -st-mixin: preventSelection;
-  cursor: pointer;
-  border: none;
-  background: none;
-  flex-grow: 0;
+	-st-mixin: preventSelection;
+	cursor: pointer;
+	border: none;
+	background: none;
+	flex-grow: 0;
 }
 
 .cross {}

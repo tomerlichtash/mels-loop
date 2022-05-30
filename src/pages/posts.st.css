@@ -10,9 +10,9 @@
 .sectionTitle {}
 
 .contentComponent {
-  -st-extends: ContentComponent;
+	-st-extends: ContentComponent;
 }
 
 .post {
-  -st-extends: Post;
+	-st-extends: Post;
 }
