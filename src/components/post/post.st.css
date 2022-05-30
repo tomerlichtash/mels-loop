@@ -13,7 +13,7 @@
 
 .root img {
 	-st-mixin: boxSizing;
-  width: 100%;
+	width: 100%;
 	border: 1px solid black;
 	margin-bottom: 2rem;
 	padding: 2px;

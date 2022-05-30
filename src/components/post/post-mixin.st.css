@@ -4,43 +4,43 @@
 @st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
-  PostTitleColor: inherit;
-  PostTitleColor_Hover: inherit;
-  PostTextColor: inherit;
-  BlogPostShadow: none;
-  PostTitleBorderColor: inherit;
-  PostDateTextColor: inherit;
+	PostTitleColor: inherit;
+	PostTitleColor_Hover: inherit;
+	PostTextColor: inherit;
+	BlogPostShadow: none;
+	PostTitleBorderColor: inherit;
+	PostDateTextColor: inherit;
 }
 
 .root {
-  -st-extends: Post;
+	-st-extends: Post;
 }
 
 .root::wrapper {
-  margin-top: 4rem;
+	margin-top: 4rem;
 }
 
 .root::header {
-  border-top: 2px solid value(PostTitleBorderColor);
-  margin-bottom: 2rem;
+	border-top: 2px solid value(PostTitleBorderColor);
+	margin-bottom: 2rem;
 }
 
 .root::title {
-  color: value(PostTitleColor);
-  padding: 1rem 0 0;
+	color: value(PostTitleColor);
+	padding: 1rem 0 0;
 }
 .root::title:hover {
-  color: value(PostTitleColor_Hover);
+	color: value(PostTitleColor_Hover);
 }
 
 .root::contentComponent:type(paragraph) {
-  -st-mixin: bodyTextNormal(
-    BodyTextColor value(PostTextColor)
-  );
-  margin-bottom: 1rem;
+	-st-mixin: bodyTextNormal(
+		BodyTextColor value(PostTextColor)
+	);
+	margin-bottom: 1rem;
 }
 
 .root::date {
-  font-size: 12px;
-  color: value(PostDateTextColor)
+	font-size: 12px;
+	color: value(PostDateTextColor)
 }

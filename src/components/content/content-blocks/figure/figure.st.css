@@ -3,9 +3,9 @@
 @st-import [boxSizing] from "../../../../theme/mixins.st.css";
 
 .root {
-  -st-mixin: boxSizing;
-  text-align: center;
-  margin: 0;
+	-st-mixin: boxSizing;
+	text-align: center;
+	margin: 0;
 }
 
 .img {}

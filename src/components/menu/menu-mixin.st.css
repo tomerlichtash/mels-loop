@@ -43,7 +43,7 @@
 
 .root::menuContent {
 	padding: value(ContentPadding);
-  -st-mixin: bodyTextNormal(
+	-st-mixin: bodyTextNormal(
 		BodyTextColor value(AbstractTextColor)
 	);
 }

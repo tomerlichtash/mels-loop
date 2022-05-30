@@ -78,7 +78,7 @@
 		TextWeight value(h1_weight),
 		TextColor value(h1_color)
 	);
-  margin-bottom: 1.302vmax;
+	margin-bottom: 1.302vmax;
 }
 
 .heading2 {
@@ -88,7 +88,7 @@
 		TextWeight value(h2_weight),
 		TextColor value(h2_color)
 	);
-  margin-bottom: value(h2_margin);
+	margin-bottom: value(h2_margin);
 }
 
 .heading3 {
@@ -98,7 +98,7 @@
 		TextWeight value(h3_weight),
 		TextColor value(h3_color)
 	);
-  margin-bottom: value(h3_margin);
+	margin-bottom: value(h3_margin);
 }
 
 .heading4 {
@@ -108,7 +108,7 @@
 		TextWeight value(h4_weight),
 		TextColor value(h4_color)
 	);
-  margin-bottom: value(h4_margin);
+	margin-bottom: value(h4_margin);
 }
 
 .heading5 {
@@ -118,7 +118,7 @@
 		TextWeight value(h5_weight),
 		TextColor value(h5_color)
 	);
-  margin-bottom: value(h5_margin);
+	margin-bottom: value(h5_margin);
 }
 
 .heading6 {
@@ -128,7 +128,7 @@
 		TextWeight value(h6_weight),
 		TextColor value(h6_color)
 	);
-  margin-bottom: value(h6_margin);
+	margin-bottom: value(h6_margin);
 }
 
 .bodyTextNormal {

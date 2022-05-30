@@ -5,8 +5,8 @@
 @st-import [pageWidth] from "../page/page.st.css";
 
 .root {
-  -st-states: textDirection(enum(ltr, rtl));
-  margin-top: 2rem;
+	-st-states: textDirection(enum(ltr, rtl));
+	margin-top: 2rem;
 }
 .root:textDirection(ltr)::column {
 	padding-right: 2rem;
@@ -18,9 +18,9 @@
 .strip {}
 
 .layout {
-  display: flex;
-  max-width: 800px;
-  margin: 0 auto;
+	display: flex;
+	max-width: 800px;
+	margin: 0 auto;
 }
 
 .column { -st-states: size(number) }
@@ -38,15 +38,15 @@
 .year {}
 
 .sitePages {
-  flex: 1;
+	flex: 1;
 }
 
 .pageContainer {
-  margin: 0 auto;
+	margin: 0 auto;
 }
 
 .itemList {
-  -st-mixin: ResetListStyle;
+	-st-mixin: ResetListStyle;
 }
 
 .item {}
@@ -56,19 +56,19 @@
 .excerpt {}
 
 .button {
-  -st-extends: Button;
+	-st-extends: Button;
 }
 
 .columnTitle {}
 
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {
-    .layout {
-      display: block;
-      padding: 0 2rem;
-    }
-    .column {
-      margin-top: 1rem;
-    }
+		.layout {
+			display: block;
+			padding: 0 2rem;
+		}
+		.column {
+			margin-top: 1rem;
+		}
 	}
 }
