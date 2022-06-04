@@ -11,7 +11,7 @@ import { Button } from "../components/ui";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { st, classes } from "./page-base.st.css";
 
-export default function Glossary(props: IPageProps) {
+const Glossary: NextPage<IPageProps> = (props) => {
 	const { translate, siteTitle, pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { metaData } = usePageData(props);
@@ -49,7 +49,7 @@ export default function Glossary(props: IPageProps) {
 			</article>
 		</Layout>
 	);
-}
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
@@ -74,3 +74,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	};
 	return props;
 };
+
+export default Glossary;

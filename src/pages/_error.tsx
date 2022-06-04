@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
+import { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../components/layout";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { classes } from "./_error.st.css";
 
-export default function CustomError() {
+const CustomError: NextPage = () => {
 	const { siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 	return (
 		<Layout>
@@ -18,4 +19,6 @@ export default function CustomError() {
 			</div>
 		</Layout>
 	);
-}
+};
+
+export default CustomError;
