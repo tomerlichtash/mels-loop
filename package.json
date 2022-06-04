@@ -8,7 +8,7 @@
 		"clean": "rm -rf .next",
 		"dev": "next dev",
 		"build": "next build",
-		"postbuild": "next-sitemap",
+		"build:sitemap": "next-sitemap",
 		"start": "next start",
 		"lint": "eslint . -f codeframe",
 		"test:jest": "jest --setupFiles ./__tests__/test-setup.ts",
