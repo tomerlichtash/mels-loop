@@ -1,10 +1,10 @@
-module.exports.webpackPlugin = (defaultPluginOptions) => {
-	return {
-		...defaultPluginOptions,
-		stylableConfig(defaultStylableConfig) {
-			return {
-				...defaultStylableConfig,
-			};
-		},
-	};
-};
+// module.exports.webpackPlugin = (defaultPluginOptions) => {
+// 	return {
+// 		...defaultPluginOptions,
+// 		stylableConfig(defaultStylableConfig) {
+// 			return {
+// 				...defaultStylableConfig,
+// 			};
+// 		},
+// 	};
+// };
