@@ -11,6 +11,18 @@
 		"url": "https://github.com/tomerlichtash/mels-loop/issues",
 		"email": "aboutmelsloop@gmail.com"
 	},
+	"contributors": [
+		{
+			"name": "Tomer Lichtash",
+			"email": "tomerlichtash@gmail.com",
+			"url": "https://github.com/tomerlichtash"
+		},
+		{
+			"name": "(David *)Frenkiel",
+			"email": "dfl.github@gmail.com",
+			"url": "https://github.com/imdfl"
+		}
+	],
 	"private": true,
 	"scripts": {
 		"clean": "rm -rf .next",
