@@ -1,5 +1,16 @@
 {
-	"name": "mels-loop-nextjs",
+	"name": "mels-loop",
+	"description": "A Comprehensive Guide to The Story of Mel",
+	"keywords": [
+		"hacker",
+		"folklore",
+		"nextjs"
+	],
+	"homepage": "https://melsloop.com",
+	"bugs": {
+		"url": "https://github.com/tomerlichtash/mels-loop/issues",
+		"email": "aboutmelsloop@gmail.com"
+	},
 	"private": true,
 	"scripts": {
 		"clean": "rm -rf .next",
