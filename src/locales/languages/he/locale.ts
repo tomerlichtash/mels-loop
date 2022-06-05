@@ -83,6 +83,19 @@ export const Locale: Language = {
 	MENU_ITEM_LABEL_EXCERPT_SHOW_MORE: "עוד",
 
 	/**
+	 * CONTACT FORM
+	 */
+	CONTACT_FORM_TITLE: "צרו קשר",
+	CONTACT_FORM_LABEL_FULLNAME: "שם מלא",
+	CONTACT_FORM_LABEL_EMAIL: "אימייל",
+	CONTACT_FORM_LABEL_SUBJECT: "נושא",
+	CONTACT_FORM_LABEL_MESSAGE: "הודעה",
+	CONTACT_FORM_LABEL_SEND: "שליחה",
+	CONTACT_FORM_LABEL_SEND_ACTIVE: "שולח",
+	CONTACT_FORM_SUCCESS_MESSAGE: "הודעתך נשלחה בהצלחה!",
+	CONTACT_FORM_SUCCESS_FAIL: "אירעה תקלה והודעתך לא נשלחה :(",
+
+	/**
 	 * OTHER
 	 */
 	NOTE_LABEL_GLOSSARY: "מילון מונחים",

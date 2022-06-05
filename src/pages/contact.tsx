@@ -14,6 +14,7 @@ import {
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { LoadFolderModes } from "../interfaces/parser";
 import { ContentComponent } from "../components/content";
+import ContactForm from "../components/contact-form";
 import { classes } from "./page-base.st.css";
 
 export default function Contact(props: IPageProps) {
@@ -42,6 +43,7 @@ export default function Contact(props: IPageProps) {
 						/>
 					);
 				})}
+				<ContactForm />
 			</article>
 		</Layout>
 	);

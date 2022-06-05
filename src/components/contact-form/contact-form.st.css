@@ -1,0 +1,50 @@
+@namespace "Note";
+
+@st-import Bibliography from "../bibliography/bibliography.st.css";
+@st-import ContentComponent from "../content/content-component.st.css";
+
+@st-import [boxSizing] from "../../theme/mixins.st.css";
+
+.root {}
+
+.form {
+	border-top: 1px solid #000;
+	padding-top: 1rem;
+}
+
+.formTitle {
+	margin-bottom: 1rem;
+}
+
+.field {
+	margin-bottom: 1rem;
+}
+
+.label {}
+
+.input {
+	-st-states: textarea(boolean);
+	-st-mixin: boxSizing;
+	display: block;
+	width: 100%;
+	padding: 0.5rem;
+}
+
+.input:textarea {
+	height: 300px;
+	resize: none;
+}
+
+.caption {
+	-st-states: required(boolean);
+}
+
+.caption:required::after {
+	content: "*";
+	margin: 0 0.15rem;
+	opacity: 0.5;
+}
+
+.submit {}
+
+.button {}

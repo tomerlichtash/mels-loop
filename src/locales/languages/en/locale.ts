@@ -84,6 +84,20 @@ export const Locale: Language = {
 	MENU_ITEM_LABEL_EXCERPT_SHOW_MORE: "Learn More",
 
 	/**
+	 * CONTACT FORM
+	 */
+	CONTACT_FORM_TITLE: "Send a message",
+	CONTACT_FORM_LABEL_FULLNAME: "Full Name",
+	CONTACT_FORM_LABEL_EMAIL: "Email",
+	CONTACT_FORM_LABEL_SUBJECT: "Subject",
+	CONTACT_FORM_LABEL_MESSAGE: "Message",
+	CONTACT_FORM_LABEL_SEND: "Send",
+	CONTACT_FORM_LABEL_SEND_ACTIVE: "Sending",
+	CONTACT_FORM_SUCCESS_MESSAGE: "Your message was sent successfuly!",
+	CONTACT_FORM_SUCCESS_FAIL:
+		"Some error occured and your message was not sent :(",
+
+	/**
 	 * OTHER
 	 */
 	NOTE_LABEL_GLOSSARY: "Glossary",
