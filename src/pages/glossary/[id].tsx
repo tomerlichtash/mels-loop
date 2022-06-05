@@ -19,7 +19,7 @@ import { Button } from "../../components/ui";
 import Bibliography from "../../components/bibliography";
 
 export default function GlossaryTerm(props: IPageProps) {
-	const { translate } = useContext(ReactLocaleContext);
+	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;
@@ -32,7 +32,9 @@ export default function GlossaryTerm(props: IPageProps) {
 	return (
 		<Layout>
 			<Head>
-				<title>{metaData?.title}</title>
+				<title>
+					{siteTitle} - {siteSubtitle} - {metaData?.title}
+				</title>
 			</Head>
 			<article className={classes.root}>
 				<Button

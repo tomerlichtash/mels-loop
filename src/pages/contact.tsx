@@ -17,8 +17,7 @@ import { ContentComponent } from "../components/content";
 import { classes } from "./page-base.st.css";
 
 const Contact: NextPage<IPageProps> = (props) => {
-	const { siteTitle, pageName } = useContext(ReactLocaleContext);
-
+	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
@@ -28,7 +27,7 @@ const Contact: NextPage<IPageProps> = (props) => {
 		<Layout>
 			<Head>
 				<title>
-					{siteTitle} - {pageName}
+					{siteTitle} - {siteSubtitle} - {pageName}
 				</title>
 			</Head>
 			<article className={classes.root}>

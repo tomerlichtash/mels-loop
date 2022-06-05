@@ -12,7 +12,8 @@ import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { st, classes } from "./page-base.st.css";
 
 const Glossary: NextPage<IPageProps> = (props) => {
-	const { translate, siteTitle, pageName } = useContext(ReactLocaleContext);
+	const { translate, siteTitle, siteSubtitle, pageName } =
+		useContext(ReactLocaleContext);
 	const { className } = props;
 	const { metaData } = usePageData(props);
 	// If the props changed, due to locale change, reparse the content
@@ -20,7 +21,7 @@ const Glossary: NextPage<IPageProps> = (props) => {
 		<Layout>
 			<Head>
 				<title>
-					{siteTitle} - {pageName}
+					{siteTitle} - {siteSubtitle} - {pageName}
 				</title>
 			</Head>
 			<article className={st(classes.root, className)}>

@@ -17,7 +17,7 @@ import Post from "../../components/post";
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
-	const { locale, siteTitle, translate, textDirection } =
+	const { locale, siteTitle, siteSubtitle, translate, textDirection } =
 		useContext(ReactLocaleContext);
 	const { metaData, path } = page;
 	const { title, date } = metaData;
@@ -26,7 +26,7 @@ export default function Doc(props: IPageProps) {
 		<Layout>
 			<Head>
 				<title>
-					{siteTitle} - {metaData.title}
+					{siteTitle} - {siteSubtitle} - {metaData?.title}
 				</title>
 			</Head>
 			<Button

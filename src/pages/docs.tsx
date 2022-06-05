@@ -12,14 +12,14 @@ import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { st, classes } from "./page-base.st.css";
 
 const Docs: NextPage<IPageProps> = (props) => {
-	const { siteTitle, pageName } = useContext(ReactLocaleContext);
+	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { metaData } = usePageData(props);
 	return (
 		<Layout>
 			<Head>
 				<title>
-					{siteTitle} - {pageName}
+					{siteTitle} - {siteSubtitle} - {pageName}
 				</title>
 			</Head>
 			<article className={st(classes.root, className)}>
