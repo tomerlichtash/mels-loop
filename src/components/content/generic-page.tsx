@@ -13,7 +13,7 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { st, classes } from "../../pages/page-base.st.css";
 
 export default function GenericPage(props: IContentComponentData) {
-	const { locale } = useContext(ReactLocaleContext);
+	const { locale, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props.pageProps);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;
@@ -27,7 +27,7 @@ export default function GenericPage(props: IContentComponentData) {
 	return (
 		<Layout>
 			<Head>
-				<title>{metaData?.title}</title>
+				{siteTitle} - {siteSubtitle} - {metaData?.title}
 			</Head>
 			<article className={classes.root}>
 				<header className={classes.header}>

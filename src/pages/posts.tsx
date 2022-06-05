@@ -14,14 +14,14 @@ import { classes } from "./posts.st.css";
 import Post from "../components/post";
 
 export default function Blog(props: IPageProps) {
-	const { locale, siteTitle, pageName, sectionName } =
+	const { locale, siteTitle, siteSubtitle, pageName, sectionName } =
 		useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	return (
 		<Layout>
 			<Head>
 				<title>
-					{siteTitle} - {pageName}
+					{siteTitle} - {siteSubtitle} - {pageName}
 				</title>
 			</Head>
 			<div className={classes.root}>

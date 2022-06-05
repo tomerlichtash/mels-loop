@@ -28,6 +28,8 @@ const SCROLL_VIEW_PROPS: ScrollIntoViewOptions = {
 	block: "center",
 };
 
+const isDebug = process.env.NEXT_PUBLIC_ML_DEBUG;
+
 export default function Layout({ children }: ComponentProps) {
 	const router = useRouter();
 	const { query } = useContext(ReactQueryContext);
@@ -69,13 +71,15 @@ export default function Layout({ children }: ComponentProps) {
 			<Head>
 				<link rel="icon" type="image/png" href="/favicon-temp.png" />
 				<meta name="description" content={siteSubtitle} />
+				<meta itemProp="name" content={siteTitle} />
+				<meta itemProp="description" content={siteSubtitle} />
 				{/* <meta
 					property="og:image"
 					content={`https://og-image.vercel.app/${encodeURI(
 						title
 					)}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
 				/> */}
-				<meta name="og:title" content={siteTitle} />
+				<meta name="og:title" content={`${siteTitle} - ${siteSubtitle}`} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
 			<div id="outer-container" className={st(classes.root, { textDirection })}>
@@ -88,7 +92,7 @@ export default function Layout({ children }: ComponentProps) {
 				</ScrollArea>
 				{isMobile && <MenuProvider isMobile />}
 			</div>
-			<Analytics />
+			{!isDebug && <Analytics />}
 		</>
 	);
 }

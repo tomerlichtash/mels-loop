@@ -18,7 +18,7 @@ import ContactForm from "../components/contact-form";
 import { classes } from "./page-base.st.css";
 
 export default function Contact(props: IPageProps) {
-	const { siteTitle, pageName } = useContext(ReactLocaleContext);
+	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
 
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
@@ -29,7 +29,7 @@ export default function Contact(props: IPageProps) {
 		<Layout>
 			<Head>
 				<title>
-					{siteTitle} - {pageName}
+					{siteTitle} - {siteSubtitle} - {pageName}
 				</title>
 			</Head>
 			<article className={classes.root}>

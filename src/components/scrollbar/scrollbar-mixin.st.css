@@ -3,11 +3,11 @@
 @st-import Scrollbar from "./scrollbar.st.css";
 
 :vars {
-  ThumbColor: #404040;
+	ThumbColor: #404040;
 }
 
 .root {
-  -st-extends: Scrollbar;
+	-st-extends: Scrollbar;
 }
 
 .root::thumb {

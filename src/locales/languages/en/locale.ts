@@ -63,7 +63,7 @@ export const Locale: Language = {
 	 * MENU ITEMS - DESCRIPTION
 	 */
 	MENU_ITEM_DESC_ID_ABOUT:
-		"Mel’s Loop is a guide the epic hacker folklore tale, The Story of Mel. It also aims to collect the stories and sub-stories around the tale, its author, and its main charachters, as well as early computing era stories and other related tales.",
+		"Mel’s Loop is a guide the epic hacker folklore tale, The Story of Mel. It also aims to collect the stories and sub-stories around the tale, its author, and its main characters, as well as early computing era stories and other related tales.",
 	MENU_ITEM_DESC_ID_BLOG: "News and Updates",
 	MENU_ITEM_DESC_ID_RESOURCES: "Web Resources for The Story of Mel",
 	MENU_ITEM_DESC_ID_CONTRIBUTE: "TBD",

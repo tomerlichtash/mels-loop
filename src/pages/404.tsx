@@ -11,7 +11,7 @@ export default function Error404() {
 		<Layout>
 			<Head>
 				<title>
-					{siteTitle} - {siteSubtitle}
+					{siteTitle} - {siteSubtitle} - 404
 				</title>
 			</Head>
 			<div className={classes.root}>
@@ -20,11 +20,3 @@ export default function Error404() {
 		</Layout>
 	);
 }
-
-// export const getStaticProps: GetStaticProps = async ({ locale }) => {
-// 	return {
-// 		props: {
-// 			locale,
-// 		},
-// 	};
-// };

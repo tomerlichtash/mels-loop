@@ -10,11 +10,11 @@ export default function Analytics() {
 			/>
 			<Script id="google-analytics" strategy="afterInteractive">
 				{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){window.dataLayer.push(arguments);}
+					gtag('js', new Date());
 					gtag('config', 'G-XLWMW4QLVE');
-        `}
+				`}
 			</Script>
 		</>
 	);

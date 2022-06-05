@@ -4,23 +4,23 @@
 @st-import [TextNode] from "../../../../theme/mixins.st.css";
 
 :vars {
-  AnnotationFontSize: 12px;
-  AnnotationFontWeight: 12px;
-  AnnotationParanthesisMargin: 0;
+	AnnotationFontSize: 12px;
+	AnnotationFontWeight: 12px;
+	AnnotationParanthesisMargin: 0;
 }
 
 .root {
-  -st-extends: AnnotationLink;
-  -st-mixin: TextNode(
-    TextWeight value(AnnotationFontWeight),
-    TextSize value(AnnotationFontSize)
-  );
+	-st-extends: AnnotationLink;
+	-st-mixin: TextNode(
+		TextWeight value(AnnotationFontWeight),
+		TextSize value(AnnotationFontSize)
+	);
 }
 
 .root::before {
-  padding-right: value(AnnotationParanthesisMargin);
+	padding-right: value(AnnotationParanthesisMargin);
 }
 
 .root::after {
-  padding-left: value(AnnotationParanthesisMargin);
+	padding-left: value(AnnotationParanthesisMargin);
 }

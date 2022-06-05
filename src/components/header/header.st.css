@@ -21,7 +21,7 @@
 }
 
 .siteTitle {
-  -st-extends: Button;
+	-st-extends: Button;
 }
 
 .siteSubtitle {

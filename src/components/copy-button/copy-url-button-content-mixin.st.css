@@ -4,21 +4,21 @@
 @st-import [TooltipArrow] from "../../theme/mixins.st.css";
 
 :vars {
-  ContentBgColor: #808080;
-  ContentPadding: 0.25rem 0.5rem;
-  TooltipRadius: 6px;
-  TextColor: #fff;
-  TextSize: 0.85rem;
-  TooltipArrowColor: black;
+	ContentBgColor: #808080;
+	ContentPadding: 0.25rem 0.5rem;
+	TooltipRadius: 6px;
+	TextColor: #fff;
+	TextSize: 0.85rem;
+	TooltipArrowColor: black;
 }
 
 .root {
-  -st-extends: CopyButtonContent;
-  background-color: value(ContentBgColor);
-  padding: value(ContentPadding);
-  border-radius: value(TooltipRadius);
-  color: value(TextColor);
-  font-size: value(TextSize);
+	-st-extends: CopyButtonContent;
+	background-color: value(ContentBgColor);
+	padding: value(ContentPadding);
+	border-radius: value(TooltipRadius);
+	color: value(TextColor);
+	font-size: value(TextSize);
 }
 
 .root::tooltipArrow {
