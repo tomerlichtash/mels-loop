@@ -23,7 +23,7 @@ import { classes as basePageClasses } from "../pages/page-base.st.css";
 import { st, classes } from "./index.st.css";
 
 export default function Index(props: IPageProps) {
-	const { siteTitle, pageName } = useContext(ReactLocaleContext);
+	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
@@ -35,7 +35,7 @@ export default function Index(props: IPageProps) {
 		<Layout>
 			<Head>
 				<title>
-					{siteTitle} - {pageName}
+					{siteTitle} - {siteSubtitle} - {pageName}
 				</title>
 			</Head>
 			<article className={basePageClasses.root}>
