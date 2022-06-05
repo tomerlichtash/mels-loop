@@ -20,9 +20,3 @@ export default function Error404() {
 		</Layout>
 	);
 }
-
-export async function getStaticProps() {
-	return {
-		notFound: true, // triggers 404
-	};
-}
