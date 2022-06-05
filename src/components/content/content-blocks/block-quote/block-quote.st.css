@@ -1,3 +1,7 @@
 @namespace "BlockQuote";
 
 .root {}
+
+.code {
+	white-space: pre;
+}

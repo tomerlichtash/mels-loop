@@ -19,6 +19,9 @@ export type ParsedNode = {
 	[prop: string]: any;
 };
 
+/**
+ * Node names as assigned by the markdown parser
+ */
 export enum ASTNODE_TYPES {
 	NEWLINE = "newline",
 	PARAGRAPH = "paragraph",
@@ -31,7 +34,9 @@ export enum ASTNODE_TYPES {
 	INS = "ins",
 	DEL = "del",
 	LIST_ITEM = "list-item",
+	INLINECODE = "inlineCode",
 	CODE = "code",
+	CODEBLOCK = "codeBlock",
 	BLOCK_QUOTE = "blockQuote",
 	HEADING = "heading",
 	SUB = "sub",
@@ -46,6 +51,7 @@ export enum MLNODE_TYPES {
 	STRONG = "strong",
 	EM = "em",
 	CODE = "code",
+	CODEBLOCK = "codeblock",
 	BLOCKQUOTE = "blockquote",
 	TEXT = "text",
 	LIST = "list",

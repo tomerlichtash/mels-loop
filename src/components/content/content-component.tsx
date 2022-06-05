@@ -16,6 +16,7 @@ import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
 import LinkSelector from "./content-blocks/link-selector";
 import { st, classes } from "./content-component.st.css";
+import CodeBlock from "./content-blocks/code-block";
 
 export const ContentComponent = ({
 	componentData,
@@ -58,6 +59,11 @@ export const ContentComponent = ({
 					className={stylableClassName}
 				/>
 			);
+		case MLNODE_TYPES.CODEBLOCK:
+			return (
+				<CodeBlock key={key} componentData={componentData} className={stylableClassName} />
+			)
+			break;
 		case MLNODE_TYPES.BLOCKQUOTE:
 			return (
 				<BlockQuote
