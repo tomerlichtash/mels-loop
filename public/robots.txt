@@ -1,9 +1,10 @@
-# *
 User-agent: *
 Allow: /
 
-# Host
+User-agent: *
+Disallow: /glossary
+
 Host: https://melsloop.com
 
-# Sitemaps
 Sitemap: https://melsloop.com/sitemap.xml
+

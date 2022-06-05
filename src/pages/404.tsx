@@ -21,10 +21,8 @@ export default function Error404() {
 	);
 }
 
-// export const getStaticProps: GetStaticProps = async ({ locale }) => {
-// 	return {
-// 		props: {
-// 			locale,
-// 		},
-// 	};
-// };
+export async function getStaticProps() {
+	return {
+		notFound: true, // triggers 404
+	};
+}
