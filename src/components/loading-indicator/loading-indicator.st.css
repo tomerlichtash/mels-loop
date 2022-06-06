@@ -1,28 +1,27 @@
 @namespace "LoadingIndicator";
 
 .root {
-	display: table;
+	/* display: table;
 	width: 100%;
 	height: 300px;
-	text-align: center;
+	text-align: center; */
 }
 
-.loadingContainer {
-	display: table-cell;
+.container {
+	/* display: table-cell;
 	height: 100%;
-	vertical-align: middle;
+	vertical-align: middle; */
 }
 
-.loadingAnimation {
+.animation {
 	background-image: url("/public/assets/ml-logo.png");
 	width: 32px;
 	height: 32px;
-	animation: rotation 2s infinite linear;
-	margin: 0 auto;
+  animation: rotation 2s infinite linear;
 }
 
-.loadingLabel {
-	margin-top: 0.5rem;
+.label {
+	/* margin-top: 0.5rem; */
 }
 
 .rotate {

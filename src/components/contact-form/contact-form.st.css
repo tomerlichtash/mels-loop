@@ -1,15 +1,16 @@
-@namespace "Note";
-
-@st-import Bibliography from "../bibliography/bibliography.st.css";
-@st-import ContentComponent from "../content/content-component.st.css";
+@namespace "ContactForm";
 
 @st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
+@st-import LoadingIndicator from "./../loading-indicator/loading-indicator.st.css";
 
-.root {}
-
-.form {
+.root {
 	border-top: 1px solid #000;
 	padding-top: 1rem;
+	position: relative;
+}
+
+.form {
 }
 
 .formTitle {
@@ -20,23 +21,13 @@
 	margin-bottom: 1rem;
 }
 
-.label {}
-
-.input {
-	-st-states: textarea(boolean);
-	-st-mixin: boxSizing;
-	display: block;
-	width: 100%;
-	padding: 0.5rem;
-}
-
-.input:textarea {
-	height: 300px;
-	resize: none;
+.label {
 }
 
 .caption {
 	-st-states: required(boolean);
+	margin-bottom: 0.25rem;
+	display: inline-block;
 }
 
 .caption:required::after {
@@ -45,6 +36,64 @@
 	opacity: 0.5;
 }
 
+.text {
+	cursor: pointer;
+}
+
+.input {
+	-st-states: textarea(boolean), validation(enum(initial, valid, invalid, empty)), type(enum(name, email));
+	-st-mixin: boxSizing, bodyTextNormal;
+	display: block;
+	width: 100%;
+	padding: 0.5rem;
+	border-radius: 6px;
+	border: 2px solid #444;
+	cursor: pointer;
+}
+
+.input:type(name):validation(invalid),
+.input:type(email):validation(invalid) {
+	border: 2px solid #c00;
+}
+
+.input:hover {
+	background-color: #f0f0f0;
+	border-color: #808080;
+}
+
+.input:active,
+.input:focus {
+	background-color: #ffa;
+	border-color: #dd0;
+	outline: 0;
+	cursor: text;
+}
+
+.input:-webkit-autofill::first-line,
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0 30px #ffa inset !important;
+}
+
+.input:textarea {
+	height: 250px;
+	resize: none;
+}
+
 .submit {}
 
 .button {}
+
+.loadingIndicator {
+	-st-extends: LoadingIndicator;
+	/* position: absolute;
+	top: 0;
+	background: rgba(0, 0, 0, 0.1);
+	height: 100%; */
+}
+
+.error {
+	color: red;
+}

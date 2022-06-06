@@ -3,8 +3,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
-const tpl = (email: string, message: string) => {
-	return `<div><ul><li>Sender: ${email}</li><li>Message: ${message}</li></ul></div>`;
+const tpl = (fullName: string, email: string, message: string) => {
+	return `<div><ul><li>Name: <strong>${fullName}</strong></li><li>Sender: <em>${email}</em></li><li>Message: ${message}</li></ul></div>`;
 };
 
 async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
@@ -14,7 +14,11 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 			to: "aboutmelsloop@gmail.com",
 			from: "hello@melsloop.com",
 			subject: `New Message: ${req.body.subject as string}`,
-			html: tpl(req.body.email as string, req.body.message as string),
+			html: tpl(
+				req.body.fullname as string,
+				req.body.email as string,
+				req.body.message as string
+			),
 		});
 	} catch (error) {
 		// console.log(error);

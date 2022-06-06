@@ -91,7 +91,7 @@ export const Locale: Language = {
 	CONTACT_FORM_LABEL_SUBJECT: "נושא",
 	CONTACT_FORM_LABEL_MESSAGE: "הודעה",
 	CONTACT_FORM_LABEL_SEND: "שליחה",
-	CONTACT_FORM_LABEL_SEND_ACTIVE: "שולח",
+	CONTACT_FORM_LABEL_SEND_ACTIVE: "שולח...",
 	CONTACT_FORM_SUCCESS_MESSAGE: "הודעתך נשלחה בהצלחה!",
 	CONTACT_FORM_SUCCESS_FAIL: "אירעה תקלה והודעתך לא נשלחה :(",
 

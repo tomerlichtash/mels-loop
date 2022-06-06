@@ -92,7 +92,7 @@ export const Locale: Language = {
 	CONTACT_FORM_LABEL_SUBJECT: "Subject",
 	CONTACT_FORM_LABEL_MESSAGE: "Message",
 	CONTACT_FORM_LABEL_SEND: "Send",
-	CONTACT_FORM_LABEL_SEND_ACTIVE: "Sending",
+	CONTACT_FORM_LABEL_SEND_ACTIVE: "Sending...",
 	CONTACT_FORM_SUCCESS_MESSAGE: "Your message was sent successfuly!",
 	CONTACT_FORM_SUCCESS_FAIL:
 		"Some error occured and your message was not sent :(",
