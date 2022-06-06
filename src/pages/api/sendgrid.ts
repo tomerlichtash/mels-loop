@@ -9,7 +9,6 @@ const tpl = (fullName: string, email: string, message: string) => {
 
 async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 	try {
-		// console.log("REQ.BODY", req.body);
 		await sendgrid.send({
 			to: "aboutmelsloop@gmail.com",
 			from: "hello@melsloop.com",

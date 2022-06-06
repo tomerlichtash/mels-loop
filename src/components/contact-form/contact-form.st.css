@@ -89,10 +89,6 @@
 
 .loadingIndicator {
 	-st-extends: LoadingIndicator;
-	/* position: absolute;
-	top: 0;
-	background: rgba(0, 0, 0, 0.1);
-	height: 100%; */
 }
 
 .error {

@@ -113,6 +113,14 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 		else setFieldStateMessage(FormFieldState.VALID);
 	};
 
+	const invalidateField = (state: FormFieldState, message: string) => {
+		return (
+			state === FormFieldState.INVALID && (
+				<p className={classes.error}>{translate(message)}</p>
+			)
+		);
+	};
+
 	return (
 		<div className={st(classes.root, className)}>
 			{showSuccessMessage && (
@@ -161,11 +169,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 									validation: fieldStateName,
 								})}
 							/>
-							{fieldStateName === FormFieldState.INVALID && (
-								<p className={classes.error}>
-									{translate("CONTACT_FORM_INVALID_NAME")}
-								</p>
-							)}
+							{invalidateField(fieldStateName, "CONTACT_FORM_INVALID_NAME")}
 						</label>
 					</div>
 					<div className={classes.field}>
@@ -189,11 +193,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 									validation: fieldStateEmail,
 								})}
 							/>
-							{fieldStateEmail === FormFieldState.INVALID && (
-								<p className={classes.error}>
-									{translate("CONTACT_FORM_INVALID_EMAIL")}
-								</p>
-							)}
+							{invalidateField(fieldStateEmail, "CONTACT_FORM_INVALID_EMAIL")}
 						</label>
 					</div>
 					<div className={classes.field}>
@@ -218,10 +218,9 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 									validation: fieldStateMessage,
 								})}
 							></textarea>
-							{fieldStateMessage === FormFieldState.INVALID && (
-								<p className={classes.error}>
-									{translate("CONTACT_FORM_INVALID_MESSAGE")}
-								</p>
+							{invalidateField(
+								fieldStateMessage,
+								"CONTACT_FORM_INVALID_MESSAGE"
 							)}
 						</label>
 					</div>
@@ -245,25 +244,3 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 };
 
 export default ContactForm;
-
-{
-	/* <div className={classes.field}>
-	<label htmlFor="subject" className={classes.label}>
-		<span className={st(classes.caption, { required: true })}>
-			<span className={classes.text}>
-				<Pencil2Icon />
-				{translate("CONTACT_FORM_LABEL_SUBJECT")}
-			</span>
-		</span>
-		<input
-			type="text"
-			name="subject"
-			id="subject"
-			value={subject}
-			onChange={(e) => setSubject(e.target.value)}
-			placeholder="Enter message subject"
-			className={classes.input}
-		/>
-	</label>
-</div> */
-}
