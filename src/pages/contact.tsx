@@ -15,10 +15,11 @@ import { ReactLocaleContext } from "../contexts/locale-context";
 import { LoadFolderModes } from "../interfaces/parser";
 import { ContentComponent } from "../components/content";
 import ContactForm from "../components/contact-form";
-import { classes } from "./page-base.st.css";
+import { st, classes } from "./page-base.st.css";
 
 export default function Contact(props: IPageProps) {
-	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
+	const { siteTitle, siteSubtitle, pageName, textDirection } =
+		useContext(ReactLocaleContext);
 
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
@@ -32,7 +33,7 @@ export default function Contact(props: IPageProps) {
 					{siteTitle} - {siteSubtitle} - {pageName}
 				</title>
 			</Head>
-			<article className={classes.root}>
+			<article className={st(classes.root, { textDirection })}>
 				<h1 className={classes.title}>{metaData.title}</h1>
 				{elements.map((node) => {
 					return (

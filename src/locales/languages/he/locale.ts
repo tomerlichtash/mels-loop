@@ -90,10 +90,17 @@ export const Locale: Language = {
 	CONTACT_FORM_LABEL_EMAIL: "אימייל",
 	CONTACT_FORM_LABEL_SUBJECT: "נושא",
 	CONTACT_FORM_LABEL_MESSAGE: "הודעה",
+	CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER: "יש להזין כאן את השם שלך",
+	CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER: "כתובת המייל שלך",
+	CONTACT_FORM_LABEL_SUBJECT_PLACEHOLDER: "נושא ההודעה",
+	CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER: "תוכן ההודעה",
 	CONTACT_FORM_LABEL_SEND: "שליחה",
 	CONTACT_FORM_LABEL_SEND_ACTIVE: "שולח...",
 	CONTACT_FORM_SUCCESS_MESSAGE: "הודעתך נשלחה בהצלחה!",
 	CONTACT_FORM_SUCCESS_FAIL: "אירעה תקלה והודעתך לא נשלחה :(",
+	CONTACT_FORM_INVALID_NAME: "יש להזין שם מלא",
+	CONTACT_FORM_INVALID_EMAIL: "יש להזין כתובת אימייל תקינה",
+	CONTACT_FORM_INVALID_MESSAGE: "יש לכתוב הודעה",
 
 	/**
 	 * OTHER

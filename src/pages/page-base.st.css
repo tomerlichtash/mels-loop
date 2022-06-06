@@ -2,7 +2,13 @@
 
 @st-import ContentComponent from "../components/content/content-component.st.css";
 
-.root {}
+.root {
+	-st-states: textDirection(enum(ltr, rtl));
+}
+
+.root:textDirection(rtl) {
+	direction: rtl;
+}
 
 /* Header Components */
 

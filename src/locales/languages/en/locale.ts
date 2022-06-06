@@ -91,11 +91,18 @@ export const Locale: Language = {
 	CONTACT_FORM_LABEL_EMAIL: "Email",
 	CONTACT_FORM_LABEL_SUBJECT: "Subject",
 	CONTACT_FORM_LABEL_MESSAGE: "Message",
+	CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER: "Your full name here",
+	CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER: "A valid e-mail address",
+	CONTACT_FORM_LABEL_SUBJECT_PLACEHOLDER: "Message subject",
+	CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER: "Type your message here",
 	CONTACT_FORM_LABEL_SEND: "Send",
 	CONTACT_FORM_LABEL_SEND_ACTIVE: "Sending...",
 	CONTACT_FORM_SUCCESS_MESSAGE: "Your message was sent successfuly!",
 	CONTACT_FORM_SUCCESS_FAIL:
 		"Some error occured and your message was not sent :(",
+	CONTACT_FORM_INVALID_NAME: "Invalid Name",
+	CONTACT_FORM_INVALID_EMAIL: "Invalid Email",
+	CONTACT_FORM_INVALID_MESSAGE: "Invalid Message",
 
 	/**
 	 * OTHER

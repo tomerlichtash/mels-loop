@@ -10,8 +10,7 @@
 	position: relative;
 }
 
-.form {
-}
+.form {}
 
 .formTitle {
 	margin-bottom: 1rem;
@@ -41,7 +40,7 @@
 }
 
 .input {
-	-st-states: textarea(boolean), validation(enum(initial, valid, invalid, empty)), type(enum(name, email));
+	-st-states: validation(enum(initial, valid, invalid, empty)), type(enum(name, email, textarea));
 	-st-mixin: boxSizing, bodyTextNormal;
 	display: block;
 	width: 100%;
@@ -52,7 +51,8 @@
 }
 
 .input:type(name):validation(invalid),
-.input:type(email):validation(invalid) {
+.input:type(email):validation(invalid),
+.input:type(textarea):validation(invalid) {
 	border: 2px solid #c00;
 }
 
@@ -74,10 +74,11 @@
 .input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
+	box-shadow: 0 0 0 30px #ffa inset !important;
 	-webkit-box-shadow: 0 0 0 30px #ffa inset !important;
 }
 
-.input:textarea {
+.input:type(textarea) {
 	height: 250px;
 	resize: none;
 }

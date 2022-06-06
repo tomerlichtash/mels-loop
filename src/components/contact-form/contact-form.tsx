@@ -11,7 +11,13 @@ import {
 } from "@radix-ui/react-icons";
 import LoadingIndicator from "../loading-indicator";
 import { st, classes } from "./contact-form.st.css";
-// export interface ContactFormProps extends ComponentProps {}
+
+export enum FormFieldState {
+	INITIAL = "initial",
+	EMPTY = "empty",
+	VALID = "valid",
+	INVALID = "invalid",
+}
 
 export enum FormFieldStates {
 	INITIAL = "initial",
@@ -29,88 +35,82 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 	const [fullname, setFullname] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
-	const [errors, setErrors] = useState({});
+	const [fieldStateName, setFieldStateName] = useState<FormFieldState>(
+		FormFieldState.INITIAL
+	);
+	const [fieldStateEmail, setFieldStateEmail] = useState<FormFieldState>(
+		FormFieldState.INITIAL
+	);
+	const [fieldStateMessage, setFieldStateMessage] = useState<FormFieldState>(
+		FormFieldState.INITIAL
+	);
 	const [loadingIndicator, toggleloadingIndicator] = useState(false);
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 	const [showFailureMessage, setShowFailureMessage] = useState(false);
-	const [fieldStateName, setFieldStateName] = useState<FormFieldStates>(
-		FormFieldStates.INITIAL
-	);
-	const [fieldStateEmail, setFieldStateEmail] = useState<FormFieldStates>(
-		FormFieldStates.INITIAL
-	);
-	const [buttonText, setButtonText] = useState(
-		translate("CONTACT_FORM_LABEL_SEND")
-	);
 
 	const handleValidation = () => {
-		let tempErrors = {};
 		let isValid = true;
 		if (fullname.length <= 0) {
-			tempErrors["fullname"] = true;
 			isValid = false;
-			setFieldStateName(FormFieldStates.INVALID);
+			setFieldStateName(FormFieldState.INVALID);
 		}
 		if (email.length <= 0) {
-			tempErrors["email"] = true;
 			isValid = false;
-			setFieldStateEmail(FormFieldStates.INVALID);
+			setFieldStateEmail(FormFieldState.INVALID);
 		}
 		if (message.length <= 0) {
-			tempErrors["message"] = true;
 			isValid = false;
+			setFieldStateMessage(FormFieldState.INVALID);
 		}
-		setErrors({ ...tempErrors });
 		return isValid;
 	};
 
 	const onFetchError = () => {
-		// console.log(error);
 		setShowSuccessMessage(false);
 		setShowFailureMessage(true);
-		setButtonText(translate("CONTACT_FORM_LABEL_SEND"));
 		toggleloadingIndicator(false);
 	};
 
 	const onFetchSuccess = () => {
 		setShowSuccessMessage(true);
 		setShowFailureMessage(false);
-		setButtonText(translate("CONTACT_FORM_LABEL_SEND"));
 		toggleloadingIndicator(false);
 	};
+
+	const sendMail = () =>
+		fetch("/api/sendgrid", {
+			body: JSON.stringify({ email, fullname, message }),
+			headers: { "Content-Type": "application/json" },
+			method: "POST",
+		});
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		let isValidForm = handleValidation();
-
-		if (isValidForm) {
-			// setButtonText(translate("CONTACT_FORM_LABEL_SEND_ACTIVE"));
+		if (handleValidation()) {
 			toggleloadingIndicator(true);
-
-			const res = await fetch("/api/sendgrid", {
-				body: JSON.stringify({ email, fullname, message }),
-				headers: { "Content-Type": "application/json" },
-				method: "POST",
-			});
-
+			const res = await sendMail();
 			const { error } = await res.json();
-
 			if (error) onFetchError();
 			else onFetchSuccess();
 		}
 	};
 
 	const validateName = (value: string) => {
-		if (!value) setFieldStateName(FormFieldStates.EMPTY);
-		else setFieldStateName(FormFieldStates.VALID);
+		if (!value) setFieldStateName(FormFieldState.EMPTY);
+		else setFieldStateName(FormFieldState.VALID);
 	};
 
 	const validateEmail = (value: string) => {
-		if (!value) setFieldStateEmail(FormFieldStates.EMPTY);
+		if (!value) setFieldStateEmail(FormFieldState.EMPTY);
 		else if (!email.match(RegExpEmail))
-			setFieldStateEmail(FormFieldStates.INVALID);
-		else setFieldStateEmail(FormFieldStates.VALID);
+			setFieldStateEmail(FormFieldState.INVALID);
+		else setFieldStateEmail(FormFieldState.VALID);
+	};
+
+	const validateMessage = (value: string) => {
+		if (!value) setFieldStateMessage(FormFieldState.EMPTY);
+		else setFieldStateMessage(FormFieldState.VALID);
 	};
 
 	return (
@@ -128,7 +128,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 					<ExclamationTriangleIcon />
 					<p>{translate("CONTACT_FORM_SUCCESS_FAIL")}</p>
 					<button>try again</button>
-					<div>use email</div>
+					<div>report problem or use email</div>
 				</div>
 			)}
 			{!showSuccessMessage && !showFailureMessage && (
@@ -153,14 +153,18 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 								onChange={(e) => setFullname(e.target.value)}
 								onBlur={(e) => validateName(e.target.value)}
 								name="fullname"
-								placeholder="Enter your full name"
+								placeholder={translate(
+									"CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER"
+								)}
 								className={st(classes.input, {
 									type: "name",
 									validation: fieldStateName,
 								})}
 							/>
-							{fieldStateName === FormFieldStates.INVALID && (
-								<p className={classes.error}>invalid name</p>
+							{fieldStateName === FormFieldState.INVALID && (
+								<p className={classes.error}>
+									{translate("CONTACT_FORM_INVALID_NAME")}
+								</p>
 							)}
 						</label>
 					</div>
@@ -179,14 +183,16 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								onBlur={(e) => validateEmail(e.target.value)}
-								placeholder="Enter your e-mail address"
+								placeholder={translate("CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER")}
 								className={st(classes.input, {
 									type: "email",
 									validation: fieldStateEmail,
 								})}
 							/>
-							{fieldStateEmail === FormFieldStates.INVALID && (
-								<p className={classes.error}>invalid email address</p>
+							{fieldStateEmail === FormFieldState.INVALID && (
+								<p className={classes.error}>
+									{translate("CONTACT_FORM_INVALID_EMAIL")}
+								</p>
 							)}
 						</label>
 					</div>
@@ -203,9 +209,20 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 								id="message"
 								value={message}
 								onChange={(e) => setMessage(e.target.value)}
-								placeholder="Type your message here"
-								className={st(classes.input, { textarea: true })}
+								onBlur={(e) => validateMessage(e.target.value)}
+								placeholder={translate(
+									"CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER"
+								)}
+								className={st(classes.input, {
+									type: "textarea",
+									validation: fieldStateMessage,
+								})}
 							></textarea>
+							{fieldStateMessage === FormFieldState.INVALID && (
+								<p className={classes.error}>
+									{translate("CONTACT_FORM_INVALID_MESSAGE")}
+								</p>
+							)}
 						</label>
 					</div>
 					<div className={classes.submit}>
@@ -217,7 +234,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 									className={classes.loadingIndicator}
 								/>
 							) : (
-								buttonText
+								translate("CONTACT_FORM_LABEL_SEND")
 							)}
 						</button>
 					</div>
