@@ -7,19 +7,13 @@ import {
 	EnvelopeClosedIcon,
 	ExclamationTriangleIcon,
 	GlobeIcon,
+	PaperPlaneIcon,
 	PersonIcon,
 } from "@radix-ui/react-icons";
 import LoadingIndicator from "../loading-indicator";
 import { st, classes } from "./contact-form.st.css";
 
 export enum FormFieldState {
-	INITIAL = "initial",
-	EMPTY = "empty",
-	VALID = "valid",
-	INVALID = "invalid",
-}
-
-export enum FormFieldStates {
 	INITIAL = "initial",
 	EMPTY = "empty",
 	VALID = "valid",
@@ -50,15 +44,15 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 
 	const handleValidation = () => {
 		let isValid = true;
-		if (fullname.length <= 0) {
+		if (!fullname.length) {
 			isValid = false;
 			setFieldStateName(FormFieldState.INVALID);
 		}
-		if (email.length <= 0) {
+		if (!email.length || !email.match(RegExpEmail)) {
 			isValid = false;
 			setFieldStateEmail(FormFieldState.INVALID);
 		}
-		if (message.length <= 0) {
+		if (!message.length) {
 			isValid = false;
 			setFieldStateMessage(FormFieldState.INVALID);
 		}
@@ -152,6 +146,9 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 								<span className={classes.text}>
 									<PersonIcon />
 									{translate("CONTACT_FORM_LABEL_FULLNAME")}
+									{fieldStateName === FormFieldState.VALID && (
+										<CheckIcon className={classes.checkMark} />
+									)}
 								</span>
 							</span>
 							<input
@@ -178,6 +175,9 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 								<span className={classes.text}>
 									<GlobeIcon />
 									{translate("CONTACT_FORM_LABEL_EMAIL")}
+									{fieldStateEmail === FormFieldState.VALID && (
+										<CheckIcon className={classes.checkMark} />
+									)}
 								</span>
 							</span>
 							<input
@@ -202,6 +202,9 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 								<span className={classes.text}>
 									<ChatBubbleIcon />
 									{translate("CONTACT_FORM_LABEL_MESSAGE")}
+									{fieldStateMessage === FormFieldState.VALID && (
+										<CheckIcon className={classes.checkMark} />
+									)}
 								</span>
 							</span>
 							<textarea
@@ -225,17 +228,18 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 						</label>
 					</div>
 					<div className={classes.submit}>
-						<button className={classes.button} type="submit">
-							{loadingIndicator ? (
-								<LoadingIndicator
-									label="CONTACT_FORM_LABEL_SEND_ACTIVE"
-									delay={0}
-									className={classes.loadingIndicator}
-								/>
-							) : (
-								translate("CONTACT_FORM_LABEL_SEND")
-							)}
-						</button>
+						{loadingIndicator ? (
+							<LoadingIndicator
+								label="CONTACT_FORM_LABEL_SEND_ACTIVE"
+								delay={0}
+								className={classes.loadingIndicator}
+							/>
+						) : (
+							<button className={classes.button} type="submit">
+								<PaperPlaneIcon />
+								{translate("CONTACT_FORM_LABEL_SEND")}
+							</button>
+						)}
 					</div>
 				</form>
 			)}
