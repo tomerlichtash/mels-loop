@@ -11,12 +11,12 @@ import {
 	Paragraph,
 	Figure,
 	BlockQuote,
+	CodeBlock,
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
 import LinkSelector from "./content-blocks/link-selector";
 import { st, classes } from "./content-component.st.css";
-import CodeBlock from "./content-blocks/code-block";
 
 export const ContentComponent = ({
 	componentData,
