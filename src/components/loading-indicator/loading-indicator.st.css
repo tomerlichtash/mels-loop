@@ -8,7 +8,7 @@
 	background-image: url("/public/assets/ml-logo.png");
 	width: 32px;
 	height: 32px;
-  animation: rotation 2s infinite linear;
+	animation: rotation 2s infinite linear;
 }
 
 .label {}
