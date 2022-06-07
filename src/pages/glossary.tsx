@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
-import { GetStaticProps } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
@@ -11,7 +11,7 @@ import { Button } from "../components/ui";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { st, classes } from "./page-base.st.css";
 
-export default function Glossary(props: IPageProps) {
+const Glossary: NextPage<IPageProps> = (props) => {
 	const { translate, siteTitle, siteSubtitle, pageName } =
 		useContext(ReactLocaleContext);
 	const { className } = props;
@@ -50,7 +50,7 @@ export default function Glossary(props: IPageProps) {
 			</article>
 		</Layout>
 	);
-}
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
@@ -75,3 +75,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	};
 	return props;
 };
+
+export default Glossary;
