@@ -72,7 +72,7 @@ type ParsedNodeProcessor = (
 	node: ParsedNode,
 	context: MLParseContext
 ) => IMLParsedNode;
-type ASTNodeTypeMap = Map<ASTNODE_TYPES, boolean>;
+
 type MLNodeTypeMap = Map<MLNODE_TYPES, boolean>;
 
 const AST2MLTypeMap: Map<ASTNODE_TYPES, MLNODE_TYPES> = new Map<
@@ -88,6 +88,8 @@ const AST2MLTypeMap: Map<ASTNODE_TYPES, MLNODE_TYPES> = new Map<
 	[ASTNODE_TYPES.LIST, MLNODE_TYPES.LIST],
 	[ASTNODE_TYPES.LIST_ITEM, MLNODE_TYPES.LIST_ITEM],
 	[ASTNODE_TYPES.CODE, MLNODE_TYPES.CODE],
+	[ASTNODE_TYPES.INLINECODE, MLNODE_TYPES.CODE],
+	[ASTNODE_TYPES.CODEBLOCK, MLNODE_TYPES.CODEBLOCK],
 	[ASTNODE_TYPES.BLOCK_QUOTE, MLNODE_TYPES.BLOCKQUOTE],
 ]);
 
@@ -95,6 +97,7 @@ const INLINE_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
 	ASTNODE_TYPES.TEXT,
 	ASTNODE_TYPES.LINK,
 	ASTNODE_TYPES.EM,
+	ASTNODE_TYPES.INLINECODE,
 	ASTNODE_TYPES.STRONG,
 	ASTNODE_TYPES.IMAGE,
 	ASTNODE_TYPES.INS,
@@ -104,19 +107,25 @@ const INLINE_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
 ]);
 
 /**
+ * Elements that contain only text
+ */
+ const TEXT_NODE_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
+	MLNODE_TYPES.TEXT, MLNODE_TYPES.CODE,
+]);
+
+/**
  * Elements that should contain text directly, without an enclosing paragraph
  */
 const TEXT_CONTAINER_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
 	ASTNODE_TYPES.HEADING,
 ]);
 
-const IGNORED_TYPES: ASTNodeTypeMap = new Map<ASTNODE_TYPES, boolean>([
-	[ASTNODE_TYPES.NEWLINE, true],
-]);
+const IGNORED_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>(
+	[ASTNODE_TYPES.NEWLINE]);
 
-const NO_PARAGRAPH_TYPES: MLNodeTypeMap = new Map<MLNODE_TYPES, boolean>([
-	[MLNODE_TYPES.BLOCKQUOTE, true],
-]);
+const NO_PARAGRAPH_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>(
+	[MLNODE_TYPES.BLOCKQUOTE]
+);
 
 /**
  * Node types that should be promoted to a figure if their only content is an image
@@ -130,16 +139,13 @@ function nodeTypeToMLType(
 	nodeName: ASTNODE_TYPES,
 	context: MLParseContext
 ): MLNODE_TYPES {
+	void context;
 	if (!nodeName) {
 		return MLNODE_TYPES.UNKNOWN;
 	}
-	if (
-		context.mode.parseMode === MLParseModes.VERSE &&
-		nodeName === ASTNODE_TYPES.PARAGRAPH
-	) {
-		return MLNODE_TYPES.PARAGRAPH;
-	}
-	return (AST2MLTypeMap[nodeName] || nodeName).toLowerCase() as MLNODE_TYPES;
+	return (AST2MLTypeMap.get(nodeName) || 
+		nodeName)
+		.toLowerCase() as MLNODE_TYPES;
 }
 
 const ANNOTATION_RE = /annotations?\//i;
@@ -257,10 +263,10 @@ class ContentUtils implements IContentUtils {
 		return this.applyNodeProcessors(result, parseContext);
 	}
 
-	private isTextContainer(nodeOrType: ParsedNode | string): boolean {
-		const type: string =
+	private isTextContainer(nodeOrType: ParsedNode | ASTNODE_TYPES): boolean {
+		const type: ASTNODE_TYPES =
 			typeof nodeOrType === "string" ? nodeOrType : nodeOrType.type;
-		return TEXT_CONTAINER_TYPES.has(type as ASTNODE_TYPES);
+		return TEXT_CONTAINER_TYPES.has(type);
 	}
 
 	private isInline(nodeOrType: ParsedNode | string): boolean {
@@ -308,9 +314,10 @@ class ContentUtils implements IContentUtils {
 		if (this.isIgnored(node)) {
 			return null;
 		}
-		if (node.type === ASTNODE_TYPES.TEXT) {
+		const mlType = nodeTypeToMLType(node.type, context);
+		if (TEXT_NODE_TYPES.has(mlType)) {
 			return {
-				type: MLNODE_TYPES.TEXT,
+				type: mlType,
 				key: context.indexer.nextKey(),
 				line: context.indexer.currentLine(),
 				text: node.content,
@@ -321,15 +328,17 @@ class ContentUtils implements IContentUtils {
 		if (processor) {
 			return processor(node, context);
 		}
-		const verseMode = context.mode.parseMode === MLParseModes.VERSE;
+		const verseMode = context.mode.parseMode === MLParseModes.VERSE
+			|| node.type === ASTNODE_TYPES.CODEBLOCK;
 		const resultNode: IMLParsedNode = {
-			type: nodeTypeToMLType(node.type, context),
+			type: mlType,
 			line: context.indexer.currentLine(),
 			key: context.indexer.nextKey(),
 			children: [] as Array<IMLParsedNode>,
 			ordered: node.ordered,
 			target: node.target,
 			level: node.level,
+			text: typeof node.content === "string" ? node.content: undefined,
 		};
 		const children = this.findArrayPart(node);
 		if (!Array.isArray(children)) {
@@ -424,7 +433,7 @@ class ContentUtils implements IContentUtils {
 
 	private processTextChildren(
 		node: ParsedNode,
-		context: MLParseContext
+		context: MLParseContext,
 	): ParsedNode {
 		if (!node) {
 			return node;
@@ -433,8 +442,10 @@ class ContentUtils implements IContentUtils {
 		if (!children) {
 			return node;
 		}
+		const verseMode = context.mode.parseMode === MLParseModes.VERSE
+			|| node.type === ASTNODE_TYPES.CODEBLOCK
 		const processText =
-			context.mode.parseMode === MLParseModes.VERSE
+			verseMode
 				? (texts: string[]) => this.breakTextToLines(texts)
 				: (texts: string[]) => this.mergeTextElements(texts);
 

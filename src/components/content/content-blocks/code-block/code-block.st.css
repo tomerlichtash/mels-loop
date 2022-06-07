@@ -1,0 +1,5 @@
+@namespace "CodeBlock";
+
+.root {
+	white-space: pre-wrap;
+}
