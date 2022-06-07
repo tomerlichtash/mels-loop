@@ -4,6 +4,12 @@ import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
 import { mlUtils } from "../../lib/ml-utils";
 import { st, classes } from "./content-iterator.st.css";
 
+/**
+ * Displays the content of a Content Node, optionally wrapping
+ * them with a provided tag. Handles the case of a node with text
+ * content.
+ * @returns 
+ */
 export const ContentIterator = ({
 	componentData,
 	className,
@@ -19,7 +25,7 @@ export const ContentIterator = ({
 		Array.isArray(node.children) && node.children;
 	const Tag = componentData.tag as keyof JSX.IntrinsicElements;
 
-	if (!elements) {
+	if (!elements?.length) {
 		if (node.text) {
 			if (Tag) {
 				return (

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
-import { GetStaticProps } from "next";
+import { GetStaticProps, NextPage } from "next";
 import {
 	IMLParsedNode,
 	IPageProps,
@@ -22,7 +22,7 @@ import { mlUtils } from "../lib/ml-utils";
 import { classes as basePageClasses } from "../pages/page-base.st.css";
 import { st, classes } from "./index.st.css";
 
-export default function Index(props: IPageProps) {
+const Index: NextPage<IPageProps> = (props) => {
 	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { pageData } = usePageData(props);
@@ -56,7 +56,7 @@ export default function Index(props: IPageProps) {
 			</article>
 		</Layout>
 	);
-}
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	/**
@@ -76,3 +76,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		}
 	);
 };
+
+export default Index;
