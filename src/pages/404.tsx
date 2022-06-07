@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
+import { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../components/layout";
-// import { GetStaticProps } from "next";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { classes } from "./_error.st.css";
 
-export default function Error404() {
+const Error404: NextPage = () => {
 	const { siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
 	return (
 		<Layout>
@@ -19,4 +19,6 @@ export default function Error404() {
 			</div>
 		</Layout>
 	);
-}
+};
+
+export default Error404;

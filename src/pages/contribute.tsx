@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
-import { GetStaticProps } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { mlUtils } from "../lib/ml-utils";
@@ -16,9 +16,8 @@ import { LoadFolderModes } from "../interfaces/parser";
 import { ContentComponent } from "../components/content";
 import { classes } from "./page-base.st.css";
 
-export default function About(props: IPageProps) {
+const Contribute: NextPage<IPageProps> = (props) => {
 	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
-
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
@@ -45,7 +44,7 @@ export default function About(props: IPageProps) {
 			</article>
 		</Layout>
 	);
-}
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	return mlNextUtils.getFolderStaticProps(
@@ -54,3 +53,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		LoadFolderModes.FOLDER
 	);
 };
+
+export default Contribute;
