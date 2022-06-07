@@ -7,9 +7,10 @@ import {
 import { st, classes } from "./block-quote.st.css";
 import { mlUtils } from "../../../../lib/ml-utils";
 
+
 export const BlockQuote = ({
 	componentData,
-	className,
+	className
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const elements: IMLParsedNode[] = Array.isArray(node.children)
