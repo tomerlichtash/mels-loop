@@ -2,15 +2,9 @@
 
 @st-import ContentComponent from "../components/content/content-component.st.css";
 
-.root {
-	-st-states: textDirection(enum(ltr, rtl));
-}
+.root {}
 
-.root:textDirection(rtl) {
-	direction: rtl;
-}
 
-/* Header Components */
 
 .header {
 	margin-bottom: 2rem;
@@ -35,6 +29,7 @@
 
 .byline {}
 .date {}
+.section {}
 
 /* ---------------- */
 
@@ -49,3 +44,11 @@
 .error {}
 
 .noContent {}
+
+.paragraph {}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {}

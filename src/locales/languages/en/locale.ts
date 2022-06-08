@@ -84,6 +84,16 @@ export const Locale: Language = {
 	MENU_ITEM_LABEL_EXCERPT_SHOW_MORE: "Learn More",
 
 	/**
+	 * CONTACT PAGE
+	 */
+	CONTACT_PAGE_TITLE: "Contact Us",
+	CONTACT_BY_MAIL_TEXT:
+		"For any question, suggestion, correction or, well, anything, please contact us via email at aboutmelsloop [dot] gmail [dot] com",
+	CONTACT_BY_TWITTER_TEXT: "Follow us over [Twitter](@aboutmelsloop).",
+	CONTACT_BY_GITHUB_TEXT:
+		"Find this website source code and its entire content over at Github",
+
+	/**
 	 * CONTACT FORM
 	 */
 	CONTACT_FORM_TITLE: "Send a message",
@@ -95,14 +105,29 @@ export const Locale: Language = {
 	CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER: "A valid e-mail address",
 	CONTACT_FORM_LABEL_SUBJECT_PLACEHOLDER: "Message subject",
 	CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER: "Type your message here",
-	CONTACT_FORM_LABEL_SEND: "Send",
-	CONTACT_FORM_LABEL_SEND_ACTIVE: "Sending...",
-	CONTACT_FORM_SUCCESS_MESSAGE: "Your message was sent successfuly!",
-	CONTACT_FORM_SUCCESS_FAIL:
-		"Some error occured and your message was not sent :(",
+	CONTACT_FORM_ON_SUCCESS_MESSAGE_SEND_ANOTHER: "send another?",
+	CONTACT_FORM_ON_SUCCESS_MESSAGE_BACK_HOME: "back home?",
+	CONTACT_FORM_ON_FAIL_MESSAGE_TRY_AGAIN: "Send another?",
+	CONTACT_FORM_ON_FAIL_MESSAGE_REPORT_PROBLEM: "Report problem",
 	CONTACT_FORM_INVALID_NAME: "Invalid Name",
 	CONTACT_FORM_INVALID_EMAIL: "Invalid Email",
 	CONTACT_FORM_INVALID_MESSAGE: "Invalid Message",
+	CONTACT_FORM_SUCCESS_MESSAGE: "Your message was sent successfuly!",
+	CONTACT_FORM_SUCCESS_FAIL:
+		"Some error occured and your message was not sent :(",
+	CONTACT_FORM_LABEL_SEND: "Send",
+	CONTACT_FORM_LABEL_SEND_ACTIVE: "Sending...",
+
+	/**
+	 * CAPTCHA
+	 */
+	CAPTCHA_SUBMIT_BUTTON_TOOLTIP_TEXT: "before sending please validate",
+
+	// TWITTER_URL: "https://twitter.com/",
+	// GITHUB_URL: "https://github.com/",
+	// EMAIL_URL: "aboutmelsloop@gmail.com",
+	// TWITTER_ACCOUNT_NAME: "aboutmelsloop",
+	// GITHUB_ACCOUNT_NAME: "tomerlichtash/mels-loop",
 
 	/**
 	 * OTHER

@@ -2,6 +2,8 @@
 
 @st-import PageBase from "../../pages/page-base.st.css";
 @st-import PageBaseMixin from "../../pages/page-base-mixin.st.css";
+@st-import StaticPage from "../../pages/static-page.st.css";
+@st-import StaticPageMixin from "../../pages/static-page-mixin.st.css";
 @st-import Posts from "../../pages/posts.st.css";
 @st-import PostsMixin from "../../pages/posts-mixin.st.css";
 @st-import StoryPage from "../../pages/index.st.css";
@@ -84,6 +86,11 @@
 			HeadingColor3 value(level6),
 			BodyTextColor value(BODY_TEXT_COLOR),
 			ContentHeaderMetaBorderColor value(level4)
+		);
+	}
+
+	StaticPage {
+		-st-mixin: StaticPageMixin(
 		);
 	}
 

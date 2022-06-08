@@ -1,0 +1,48 @@
+@namespace "StaticPageMixin";
+
+@st-import StaticPage from "./static-page.st.css";
+@st-import [
+	heading1,
+	heading2,
+	heading3,
+	heading4,
+	heading5,
+	heading6,
+	bodyTextNormal,
+] from "../theme/common/typography.st.css";
+
+.root {
+	-st-extends: StaticPage;
+}
+
+.root::title {
+	-st-mixin: heading1;
+}
+
+.root::heading:type(h1) {
+	-st-mixin: heading1;
+}
+
+.root::heading:type(h2) {
+	-st-mixin: heading2;
+}
+
+.root::heading:type(h3) {
+	-st-mixin: heading3;
+}
+
+.root::heading:type(h4) {
+	-st-mixin: heading4;
+}
+
+.root::heading:type(h5) {
+	-st-mixin: heading5;
+}
+
+.root::heading:type(h6) {
+	-st-mixin: heading6;
+}
+
+.root::section {
+	margin-bottom: 2rem;
+}

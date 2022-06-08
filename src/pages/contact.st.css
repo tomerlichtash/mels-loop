@@ -1,0 +1,9 @@
+@namespace "ContactPage";
+
+@st-import ContactForm from "../components/contact-form/contact-form.st.css";
+
+.root {}
+
+.contactForm {
+	-st-extends: ContactForm;
+}

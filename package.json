@@ -51,6 +51,7 @@
 		"react-burger-menu": "^3.0.8",
 		"react-copy-to-clipboard": "^5.1.0",
 		"react-dom": "18.1.0",
+		"react-google-recaptcha": "^2.1.0",
 		"tmp": "^0.2.1"
 	},
 	"devDependencies": {
@@ -62,6 +63,7 @@
 		"@types/js-cookie": "^3.0.2",
 		"@types/lodash.orderby": "^4.6.7",
 		"@types/react": "^18.0.12",
+		"@types/react-google-recaptcha": "^2.1.5",
 		"@types/tmp": "^0.2.3",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",

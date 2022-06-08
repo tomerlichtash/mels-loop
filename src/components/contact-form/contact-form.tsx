@@ -1,27 +1,15 @@
 import React, { useContext, useState } from "react";
-import { ComponentProps } from "../../interfaces/models";
 import { ReactLocaleContext } from "../../contexts/locale-context";
+import { ComponentProps } from "../../interfaces/models";
 import {
 	ChatBubbleIcon,
 	CheckIcon,
 	EnvelopeClosedIcon,
 	ExclamationTriangleIcon,
-	GlobeIcon,
-	PaperPlaneIcon,
 	PersonIcon,
 } from "@radix-ui/react-icons";
-import LoadingIndicator from "../loading-indicator";
+import { Form, FormFieldState, IFieldProps, RegExpEmail } from "../form";
 import { st, classes } from "./contact-form.st.css";
-
-export enum FormFieldState {
-	INITIAL = "initial",
-	EMPTY = "empty",
-	VALID = "valid",
-	INVALID = "invalid",
-}
-
-const RegExpEmail =
-	/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 	const { translate } = useContext(ReactLocaleContext);
@@ -29,6 +17,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 	const [fullname, setFullname] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
+
 	const [fieldStateName, setFieldStateName] = useState<FormFieldState>(
 		FormFieldState.INITIAL
 	);
@@ -38,212 +27,83 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 	const [fieldStateMessage, setFieldStateMessage] = useState<FormFieldState>(
 		FormFieldState.INITIAL
 	);
-	const [loadingIndicator, toggleloadingIndicator] = useState(false);
-	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-	const [showFailureMessage, setShowFailureMessage] = useState(false);
 
-	const handleValidation = () => {
-		let isValid = true;
-		if (!fullname.length) {
-			isValid = false;
-			setFieldStateName(FormFieldState.INVALID);
-		}
-		if (!email.length || !email.match(RegExpEmail)) {
-			isValid = false;
-			setFieldStateEmail(FormFieldState.INVALID);
-		}
-		if (!message.length) {
-			isValid = false;
-			setFieldStateMessage(FormFieldState.INVALID);
-		}
-		return isValid;
-	};
+	const fields: IFieldProps[] = [
+		{
+			tag: "input",
+			id: "fullname",
+			type: "text",
+			required: true,
+			label: translate("CONTACT_FORM_LABEL_FULLNAME"),
+			placeholder: translate("CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER"),
+			errorMsg: translate("CONTACT_FORM_INVALID_NAME"),
+			icon: <PersonIcon />,
+			value: fullname,
+			validation: fieldStateName,
+			setValidation: (state: FormFieldState) => setFieldStateName(state),
+			validate: (value: string) => value.length > 0,
+			onChange: setFullname,
+		},
+		{
+			tag: "input",
+			id: "email",
+			type: "email",
+			required: true,
+			label: translate("CONTACT_FORM_LABEL_EMAIL"),
+			placeholder: translate("CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER"),
+			errorMsg: translate("CONTACT_FORM_INVALID_EMAIL"),
+			icon: <EnvelopeClosedIcon />,
+			value: email,
+			validation: fieldStateEmail,
+			setValidation: setFieldStateEmail,
+			validate: (value) => !!(value.length > 0 && email.match(RegExpEmail)),
+			onChange: setEmail,
+		},
+		{
+			tag: "textarea",
+			id: "message",
+			type: "text",
+			value: message,
+			validation: fieldStateMessage,
+			setValidation: setFieldStateMessage,
+			validate: (value) => value.length > 0,
+			required: true,
+			label: translate("CONTACT_FORM_LABEL_MESSAGE"),
+			placeholder: translate("CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER"),
+			errorMsg: translate("CONTACT_FORM_INVALID_MESSAGE"),
+			icon: <ChatBubbleIcon />,
+			onChange: setMessage,
+		},
+	];
 
-	const onFetchError = () => {
-		setShowSuccessMessage(false);
-		setShowFailureMessage(true);
-		toggleloadingIndicator(false);
-	};
+	const onSuccessMessage = (
+		<div className={classes.info}>
+			<CheckIcon />
+			<p>{translate("CONTACT_FORM_SUCCESS_MESSAGE")}</p>
+			<button>
+				{translate("CONTACT_FORM_ON_SUCCESS_MESSAGE_SEND_ANOTHER")}
+			</button>
+			<button>{translate("CONTACT_FORM_ON_SUCCESS_MESSAGE_BACK_HOME")}</button>
+		</div>
+	);
 
-	const onFetchSuccess = () => {
-		setShowSuccessMessage(true);
-		setShowFailureMessage(false);
-		toggleloadingIndicator(false);
-	};
-
-	const sendMail = () =>
-		fetch("/api/sendgrid", {
-			body: JSON.stringify({ email, fullname, message }),
-			headers: { "Content-Type": "application/json" },
-			method: "POST",
-		});
-
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		if (handleValidation()) {
-			toggleloadingIndicator(true);
-			const res = await sendMail();
-			const { error } = await res.json();
-			if (error) onFetchError();
-			else onFetchSuccess();
-		}
-	};
-
-	const validateName = (value: string) => {
-		if (!value) setFieldStateName(FormFieldState.EMPTY);
-		else setFieldStateName(FormFieldState.VALID);
-	};
-
-	const validateEmail = (value: string) => {
-		if (!value) setFieldStateEmail(FormFieldState.EMPTY);
-		else if (!email.match(RegExpEmail))
-			setFieldStateEmail(FormFieldState.INVALID);
-		else setFieldStateEmail(FormFieldState.VALID);
-	};
-
-	const validateMessage = (value: string) => {
-		if (!value) setFieldStateMessage(FormFieldState.EMPTY);
-		else setFieldStateMessage(FormFieldState.VALID);
-	};
-
-	const invalidateField = (state: FormFieldState, message: string) => {
-		return (
-			state === FormFieldState.INVALID && (
-				<p className={classes.error}>{translate(message)}</p>
-			)
-		);
-	};
+	const onFailMessage = (
+		<div className={classes.info}>
+			<ExclamationTriangleIcon />
+			<p>{translate("CONTACT_FORM_SUCCESS_FAIL")}</p>
+			<button>{translate("CONTACT_FORM_ON_FAIL_MESSAGE_TRY_AGAIN")}</button>
+			<div>{translate("CONTACT_FORM_ON_FAIL_MESSAGE_REPORT_PROBLEM")}</div>
+		</div>
+	);
 
 	return (
-		<div className={st(classes.root, className)}>
-			{showSuccessMessage && (
-				<div className={classes.info}>
-					<CheckIcon />
-					<p>{translate("CONTACT_FORM_SUCCESS_MESSAGE")}</p>
-					<button>send another?</button>
-					<button>back to home</button>
-				</div>
-			)}
-			{showFailureMessage && (
-				<div className={classes.info}>
-					<ExclamationTriangleIcon />
-					<p>{translate("CONTACT_FORM_SUCCESS_FAIL")}</p>
-					<button>try again</button>
-					<div>report problem or use email</div>
-				</div>
-			)}
-			{!showSuccessMessage && !showFailureMessage && (
-				// eslint-disable-next-line @typescript-eslint/no-misused-promises
-				<form onSubmit={handleSubmit} className={classes.form}>
-					<h2 className={classes.formTitle}>
-						<EnvelopeClosedIcon />
-						{translate("CONTACT_FORM_TITLE")}
-					</h2>
-					<div className={classes.field}>
-						<label htmlFor="fullname" className={classes.label}>
-							<span className={st(classes.caption, { required: true })}>
-								<span className={classes.text}>
-									<PersonIcon />
-									{translate("CONTACT_FORM_LABEL_FULLNAME")}
-									{fieldStateName === FormFieldState.VALID && (
-										<CheckIcon className={classes.checkMark} />
-									)}
-								</span>
-							</span>
-							<input
-								type="text"
-								value={fullname}
-								id="fullname"
-								onChange={(e) => setFullname(e.target.value)}
-								onBlur={(e) => validateName(e.target.value)}
-								name="fullname"
-								placeholder={translate(
-									"CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER"
-								)}
-								className={st(classes.input, {
-									type: "name",
-									validation: fieldStateName,
-								})}
-							/>
-							{invalidateField(fieldStateName, "CONTACT_FORM_INVALID_NAME")}
-						</label>
-					</div>
-					<div className={classes.field}>
-						<label htmlFor="email" className={classes.label}>
-							<span className={st(classes.caption, { required: true })}>
-								<span className={classes.text}>
-									<GlobeIcon />
-									{translate("CONTACT_FORM_LABEL_EMAIL")}
-									{fieldStateEmail === FormFieldState.VALID && (
-										<CheckIcon className={classes.checkMark} />
-									)}
-								</span>
-							</span>
-							<input
-								type="email"
-								name="email"
-								id="email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								onBlur={(e) => validateEmail(e.target.value)}
-								placeholder={translate("CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER")}
-								className={st(classes.input, {
-									type: "email",
-									validation: fieldStateEmail,
-								})}
-							/>
-							{invalidateField(fieldStateEmail, "CONTACT_FORM_INVALID_EMAIL")}
-						</label>
-					</div>
-					<div className={classes.field}>
-						<label htmlFor="message" className={classes.label}>
-							<span className={st(classes.caption, { required: true })}>
-								<span className={classes.text}>
-									<ChatBubbleIcon />
-									{translate("CONTACT_FORM_LABEL_MESSAGE")}
-									{fieldStateMessage === FormFieldState.VALID && (
-										<CheckIcon className={classes.checkMark} />
-									)}
-								</span>
-							</span>
-							<textarea
-								name="message"
-								id="message"
-								value={message}
-								onChange={(e) => setMessage(e.target.value)}
-								onBlur={(e) => validateMessage(e.target.value)}
-								placeholder={translate(
-									"CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER"
-								)}
-								className={st(classes.input, {
-									type: "textarea",
-									validation: fieldStateMessage,
-								})}
-							></textarea>
-							{invalidateField(
-								fieldStateMessage,
-								"CONTACT_FORM_INVALID_MESSAGE"
-							)}
-						</label>
-					</div>
-					<div className={classes.submit}>
-						{loadingIndicator ? (
-							<LoadingIndicator
-								label="CONTACT_FORM_LABEL_SEND_ACTIVE"
-								delay={0}
-								className={classes.loadingIndicator}
-							/>
-						) : (
-							<button className={classes.button} type="submit">
-								<PaperPlaneIcon />
-								{translate("CONTACT_FORM_LABEL_SEND")}
-							</button>
-						)}
-					</div>
-				</form>
-			)}
-		</div>
+		<Form
+			fields={fields}
+			onSuccessMessage={onSuccessMessage}
+			onFailMessage={onFailMessage}
+			submitButtonLabel={translate("CONTACT_FORM_LABEL_SEND")}
+			className={st(classes.root, className)}
+		/>
 	);
 };
 

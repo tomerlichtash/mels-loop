@@ -1,0 +1,58 @@
+@namespace "Field";
+
+@st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
+
+.root {}
+
+.label {}
+
+.caption {
+	-st-states: required(boolean);
+}
+
+.icon {}
+
+.text {
+	cursor: pointer;
+	padding: 0 10px;
+}
+
+.inputContainer {}
+
+.input {
+	-st-states: validation(enum(initial, valid, invalid, empty)), type(enum(name, email, textarea));
+	-st-mixin: boxSizing, bodyTextNormal;
+	display: block;
+	cursor: pointer;
+	background: none;
+}
+.input:hover {
+	background-color: #f0f0f0;
+	border-color: #808080;
+}
+.input:active,
+.input:focus {
+	background-color: #ffa;
+	border-color: #e0e0e0;
+	outline: 0;
+	cursor: text;
+}
+
+.input:-webkit-autofill::first-line,
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+	background-color: none !important;
+	box-shadow: 0 0 0 30px #ffa inset !important;
+	-webkit-box-shadow: 0 0 0 30px #ffa inset !important;
+}
+
+.error {
+	color: #c00;
+}
+
+.checkMark path {
+	fill: green;
+}

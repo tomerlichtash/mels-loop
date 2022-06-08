@@ -1,0 +1,74 @@
+@namespace "Form";
+
+@st-import Field from "./field.st.css";
+@st-import LoadingIndicator from "./../loading-indicator/loading-indicator.st.css";
+
+:vars {
+	fail: #c00;
+	success: #0a0;
+}
+
+.root {
+	position: relative;
+}
+
+.form {}
+
+.formTitle {}
+
+.captcha {
+	display: inline-flex;
+}
+
+.submit {}
+
+.submitButton {
+	position: relative;
+}
+
+.buttonTooltip {
+	border: 1px solid red;
+	position: absolute;
+	top: 40px;
+}
+
+.button {
+	-st-states: disabled(boolean);
+	background-color: #da0;
+	padding: 0.5rem 2rem;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.button:hover {
+	background-color: #0af;
+	color: #fff;
+}
+.button[disabled] {
+	cursor: no-drop;
+	background-color: #808080;
+	color: #303030;
+}
+
+.error {
+	color: value(fail);
+}
+
+.checkMark path {
+	fill: value(success);
+}
+
+.loadingIndicator {
+	-st-extends: LoadingIndicator;
+}
+
+.field {
+	-st-extends: Field;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+		.field::label {
+			display: block;
+		}
+	}
+}

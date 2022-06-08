@@ -2,8 +2,7 @@
 
 @st-import ContactForm from "./contact-form.st.css";
 
-:vars {
-}
+:vars {}
 
 .root {
 	-st-extends: ContactForm;
