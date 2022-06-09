@@ -53,6 +53,10 @@
 	color: #c00;
 }
 
+.errorIcon path {
+	color: #c00;
+}
+
 .checkMark path {
 	fill: green;
 }

@@ -17,13 +17,20 @@
 .formTitle {}
 
 .captcha {
-	display: inline-flex;
+	-st-states: highlight(boolean);
+}
+.captcha:highlight {
+	border: 2px solid red;
+    animation: flickerAnimation 1s infinite;}
+
+.submit {
+	/* display: flex;
+	align-items: center;
+	justify-content: space-between; */
 }
 
-.submit {}
-
 .submitButton {
-	position: relative;
+	/* position: relative; */
 }
 
 .buttonTooltip {
@@ -65,10 +72,26 @@
 	-st-extends: Field;
 }
 
-@media (min-width: 320px) and (max-width: 767px) {
-	@st-scope .root {
-		.field::label {
-			display: block;
-		}
-	}
+
+
+@keyframes flickerAnimation {
+  0%   { border-color: rgba(255, 0, 0, 0.2); }
+  50%  { border-color: rgba(255, 0, 0, 1); }
+  100% { border-color: rgba(255, 0, 0, 0.2); }
 }
+/* @-o-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-moz-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-webkit-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+} */
+

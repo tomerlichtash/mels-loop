@@ -5,6 +5,7 @@ import { NextPage } from "next";
 import { IPageProps } from "../interfaces/models";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import ContactForm from "../components/contact-form";
+// import ContactForm from "../components/simple-form/form";
 import { st, classes } from "./static-page.st.css";
 import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 

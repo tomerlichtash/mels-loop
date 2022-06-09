@@ -1,6 +1,6 @@
 import React from "react";
 import { FormFieldState, IFieldProps } from "./types";
-import { CheckIcon } from "@radix-ui/react-icons";
+import { CheckIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { st, classes } from "./field.st.css";
 
 export const Field = ({
@@ -62,8 +62,13 @@ export const Field = ({
 							className={st(classes.input, { type: "textarea", validation })}
 						/>
 					)}
-					{validation === FormFieldState.INVALID && (
-						<p className={classes.error}>{errorMsg}</p>
+					{validation && validation === FormFieldState.INVALID && (
+						<p className={classes.error}>
+							<span className={classes.errorIcon}>
+								<ExclamationTriangleIcon className={classes.errorIcon} />
+							</span>
+							<span className={classes.errorText}>{errorMsg}</span>
+						</p>
 					)}
 				</div>
 			</label>

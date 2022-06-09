@@ -1,6 +1,7 @@
 /* eslint-disable import/no-named-as-default */
 import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { ICaptchaProps } from "./types";
 
 export const fetchCaptcha = (value: string) =>
 	fetch("/api/captcha", {
@@ -22,19 +23,20 @@ export const onCaptchaChange = async (value: string, onSuccess: () => void) => {
 	return false;
 };
 
-export interface ICaptchaProps {
-	onChange: (value) => void;
-	locale: string;
-	theme: "light" | "dark";
-}
-export const Captcha = ({ onChange, locale, theme }: ICaptchaProps) => (
+export const Captcha = ({
+	onChange,
+	onExpired,
+	locale,
+	theme,
+}: ICaptchaProps) => (
 	<ReCAPTCHA
 		sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
 		// eslint-disable-next-line @typescript-eslint/no-misused-promises
 		onChange={(value) => onCaptchaChange(value, () => onChange(value))}
+		onExpired={onExpired}
 		size="normal"
 		hl={locale}
 		theme={theme}
-		// tabIndex={4}
+		// tabIndex
 	/>
 );

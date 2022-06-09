@@ -8,16 +8,24 @@ import {
 	ExclamationTriangleIcon,
 	PersonIcon,
 } from "@radix-ui/react-icons";
-import { Form, FormFieldState, IFieldProps, RegExpEmail } from "../form";
+import { Form, FormFieldState, IFieldProps } from "../form";
 import { st, classes } from "./contact-form.st.css";
 
-export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
-	const { translate } = useContext(ReactLocaleContext);
+import { VALUE_NOT_EMPTY, VALUE_VALID_EMAIL } from "../form/validations";
 
+export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
+	const { translate, locale } = useContext(ReactLocaleContext);
+
+	/**
+	 * Form Fields
+	 */
 	const [fullname, setFullname] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
 
+	/**
+	 * Fields Validation States
+	 */
 	const [fieldStateName, setFieldStateName] = useState<FormFieldState>(
 		FormFieldState.INITIAL
 	);
@@ -28,53 +36,66 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 		FormFieldState.INITIAL
 	);
 
+	/**
+	 * Fields Configuration
+	 */
 	const fields: IFieldProps[] = [
 		{
-			tag: "input",
 			id: "fullname",
 			type: "text",
+			tag: "input",
+			value: fullname,
+			onChange: setFullname,
+			validation: fieldStateName,
+			setValidation: setFieldStateName,
+			validate: VALUE_NOT_EMPTY,
 			required: true,
 			label: translate("CONTACT_FORM_LABEL_FULLNAME"),
 			placeholder: translate("CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER"),
 			errorMsg: translate("CONTACT_FORM_INVALID_NAME"),
 			icon: <PersonIcon />,
-			value: fullname,
-			validation: fieldStateName,
-			setValidation: (state: FormFieldState) => setFieldStateName(state),
-			validate: (value: string) => value.length > 0,
-			onChange: setFullname,
 		},
 		{
-			tag: "input",
 			id: "email",
 			type: "email",
+			tag: "input",
+			value: email,
+			onChange: setEmail,
+			validation: fieldStateEmail,
+			setValidation: setFieldStateEmail,
+			validate: VALUE_NOT_EMPTY && VALUE_VALID_EMAIL,
 			required: true,
 			label: translate("CONTACT_FORM_LABEL_EMAIL"),
 			placeholder: translate("CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER"),
 			errorMsg: translate("CONTACT_FORM_INVALID_EMAIL"),
 			icon: <EnvelopeClosedIcon />,
-			value: email,
-			validation: fieldStateEmail,
-			setValidation: setFieldStateEmail,
-			validate: (value) => !!(value.length > 0 && email.match(RegExpEmail)),
-			onChange: setEmail,
 		},
 		{
-			tag: "textarea",
 			id: "message",
 			type: "text",
+			tag: "textarea",
 			value: message,
+			onChange: setMessage,
 			validation: fieldStateMessage,
 			setValidation: setFieldStateMessage,
-			validate: (value) => value.length > 0,
+			validate: VALUE_NOT_EMPTY,
 			required: true,
 			label: translate("CONTACT_FORM_LABEL_MESSAGE"),
 			placeholder: translate("CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER"),
 			errorMsg: translate("CONTACT_FORM_INVALID_MESSAGE"),
 			icon: <ChatBubbleIcon />,
-			onChange: setMessage,
 		},
 	];
+
+	const onSubmit = () => {
+		return fetch("/api/sendgrid", {
+			body: JSON.stringify(
+				Object.fromEntries(fields.map((field) => [field.id, field.value]))
+			),
+			headers: { "Content-Type": "application/json" },
+			method: "POST",
+		});
+	};
 
 	const onSuccessMessage = (
 		<div className={classes.info}>
@@ -99,9 +120,11 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 	return (
 		<Form
 			fields={fields}
+			onSubmit={onSubmit}
 			onSuccessMessage={onSuccessMessage}
 			onFailMessage={onFailMessage}
 			submitButtonLabel={translate("CONTACT_FORM_LABEL_SEND")}
+			locale={locale}
 			className={st(classes.root, className)}
 		/>
 	);

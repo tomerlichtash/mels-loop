@@ -23,6 +23,10 @@
 	align-items:flex-start;
 	align-content: center;
 }
+.root::field::inputContainer {
+	/* width: 100%; */
+	flex: 1;
+}
 
 .root::field::input {
 	width: 100%;
@@ -47,7 +51,22 @@
 	resize: none;
 }
 
-.root::field::inputContainer {
-	width: 100%;
-	flex: 1;
+
+.root::captcha {
+	/* margin-left: 150px; */
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+		::field::label {
+			display: block !important;
+		}
+		::field::inputContainer {
+			/* width: 100%; */
+		}
+		::field::input {
+			/* width: 100%; */
+		}
+	}
+}
+
