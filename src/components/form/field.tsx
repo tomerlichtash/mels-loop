@@ -37,6 +37,7 @@ export const Field = ({
 				<span className={st(classes.caption, { required })}>
 					<span className={classes.icon}>{icon}</span>
 					<span className={classes.text} aria-label={label}>
+						{label}
 						{validation === VALID && (
 							<span className={classes.checkMark}>
 								<CheckIcon className={classes.checkMark} />
