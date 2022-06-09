@@ -33,9 +33,7 @@ export const Captcha = ({
 	<ReCAPTCHA
 		sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
 		// eslint-disable-next-line @typescript-eslint/no-misused-promises
-		onChange={(value) =>
-			onCaptchaChange(value as string, () => onChange(value as string))
-		}
+		onChange={(value: string) => onCaptchaChange(value, () => onChange(value))}
 		onExpired={onExpired}
 		size="normal"
 		hl={locale}
