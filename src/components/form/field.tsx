@@ -9,12 +9,13 @@ export const Field = ({
 	tabIndex,
 	value,
 	id,
-	label,
-	placeholder,
-	errorMsg,
+	// label,
+	// placeholder,
+	// errorMsg,
 	required,
 	icon,
 	validation,
+	locale,
 	onChange,
 	validate,
 	setValidation,
@@ -32,6 +33,8 @@ export const Field = ({
 	const onInputBlur = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	) => setValidation(validate(e.target.value) ? VALID : INVALID);
+
+	const { label, placeholder, errorMsg } = locale;
 
 	return (
 		<div className={st(classes.root, className)}>

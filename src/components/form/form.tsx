@@ -1,14 +1,13 @@
 import React, { useContext, useState } from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactThemeContext } from "../../contexts/theme-context";
-import { Field } from "./field";
-import { FormFieldState, IFieldProps } from "./types";
+import { FormFieldState } from "./types";
 import { Captcha } from "./captcha";
 import LoadingIndicator from "../loading-indicator";
 import { st, classes } from "./form.st.css";
 
 export interface IFormProps extends ComponentProps {
-	fields: IFieldProps[];
+	fields: JSX.Element[];
 	onSuccessMessage: React.ReactNode;
 	onFailMessage: React.ReactNode;
 	submitButtonLabel: string;
@@ -23,8 +22,8 @@ export const Form = ({
 	onFailMessage,
 	submitButtonLabel,
 	// submitButtonLabelActive,
-	onSubmit,
 	locale,
+	onSubmit,
 	className,
 }: IFormProps): JSX.Element => {
 	const { theme } = useContext(ReactThemeContext);
@@ -44,15 +43,18 @@ export const Form = ({
 	// 	else setButtonTooltipVisibility(false);
 	// };
 
-	const handleValidation = () =>
-		fields
-			.map((field) => {
-				if (!field.validate(field.value)) {
-					field.setValidation(FormFieldState.INVALID);
-					return FormFieldState.INVALID;
-				}
-			})
-			.indexOf(FormFieldState.INVALID) === -1;
+	const handleValidation = () => {
+		return (
+			fields
+				.map((field) => {
+					if (!field.props.validate(field.props.value)) {
+						field.props.setValidation(FormFieldState.INVALID);
+						return FormFieldState.INVALID;
+					}
+				})
+				.indexOf(FormFieldState.INVALID) === -1
+		);
+	};
 
 	const onFetchError = () => {
 		setSuccessMessage(false);
@@ -91,14 +93,6 @@ export const Form = ({
 		setHighlightCaptcha(false);
 	};
 
-	const formFields = fields.map((field) => (
-		<Field
-			className={classes.field}
-			key={`ml-form-field-${field.id}`}
-			{...field}
-		/>
-	));
-
 	return (
 		<div className={st(classes.root, className)}>
 			{successMessage && onSuccessMessage}
@@ -106,7 +100,8 @@ export const Form = ({
 			{!successMessage && !failureMessage && (
 				// eslint-disable-next-line @typescript-eslint/no-misused-promises
 				<form onSubmit={handleSubmit} className={classes.form}>
-					{formFields}
+					{/* {formFields} */}
+					{fields}
 					<div className={classes.submit}>
 						<div className={st(classes.captcha, { highlightCaptcha })}>
 							<Captcha
