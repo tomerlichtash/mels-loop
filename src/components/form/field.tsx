@@ -1,5 +1,5 @@
 import React from "react";
-import { FormFieldState, IFieldProps, InputTag } from "./types";
+import { FormFieldState, IFieldProps } from "./types";
 import { CheckIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { st, classes } from "./field.st.css";
 

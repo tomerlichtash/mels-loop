@@ -82,25 +82,37 @@ export const Locale: Language = {
 	 */
 	MENU_ITEM_LABEL_EXCERPT_SHOW_MORE: "עוד",
 
+	CONTACT_PAGE_TITLE: "צרו קשר",
+	CONTACT_BY_MAIL_TEXT:
+		"בכל שאלה או בעיה ניתן לפנות אלינו גם באימייל aboutmelsloop [at] gmail [dot] com",
+	CONTACT_PAGE_BY_TWITTER_TEXT: "עקבו אחרינו בטוויטר",
+	CONTACT_PAGE_BY_GITHUB_TEXT: "",
+
 	/**
 	 * CONTACT FORM
 	 */
-	CONTACT_FORM_TITLE: "צרו קשר",
 	CONTACT_FORM_LABEL_FULLNAME: "שם מלא",
 	CONTACT_FORM_LABEL_EMAIL: "אימייל",
-	CONTACT_FORM_LABEL_SUBJECT: "נושא",
 	CONTACT_FORM_LABEL_MESSAGE: "הודעה",
-	CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER: "יש להזין כאן את השם שלך",
-	CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER: "כתובת המייל שלך",
-	CONTACT_FORM_LABEL_SUBJECT_PLACEHOLDER: "נושא ההודעה",
-	CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER: "תוכן ההודעה",
+	CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER: "יש להזין שם מלא כאן",
+	CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER: "יש להזין כתובת מייל תקינה כאן",
+	CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER: "יש לכתוב את הודעתך כאן",
+	CONTACT_FORM_ON_SUCCESS_MESSAGE_SEND_ANOTHER: "בחזרה לטופס",
+	CONTACT_FORM_ON_SUCCESS_MESSAGE_BACK_HOME: "בחזרה לעמוד הראשי",
+	CONTACT_FORM_ON_FAIL_MESSAGE_TRY_AGAIN: "נסיון נוסף?",
+	CONTACT_FORM_ON_FAIL_MESSAGE_REPORT_PROBLEM: "דיווח על בעיה",
+	CONTACT_FORM_INVALID_NAME: "השם לא יכול להיות ריק",
+	CONTACT_FORM_INVALID_EMAIL: "כתובת המייל חייבת להיות תקינה",
+	CONTACT_FORM_INVALID_MESSAGE: "ההודעה לא יכולה להיות ריקה",
+	CONTACT_FORM_SUCCESS_MESSAGE: "הודעתך נשלחה בהצלחה!",
+	CONTACT_FORM_SUCCESS_FAIL: "אירעה שגיאה :(",
 	CONTACT_FORM_LABEL_SEND: "שליחה",
 	CONTACT_FORM_LABEL_SEND_ACTIVE: "שולח...",
-	CONTACT_FORM_SUCCESS_MESSAGE: "הודעתך נשלחה בהצלחה!",
-	CONTACT_FORM_SUCCESS_FAIL: "אירעה תקלה והודעתך לא נשלחה :(",
-	CONTACT_FORM_INVALID_NAME: "יש להזין שם מלא",
-	CONTACT_FORM_INVALID_EMAIL: "יש להזין כתובת אימייל תקינה",
-	CONTACT_FORM_INVALID_MESSAGE: "יש לכתוב הודעה",
+
+	/**
+	 * CAPTCHA
+	 */
+	CAPTCHA_SUBMIT_BUTTON_TOOLTIP_TEXT: "לא לשכוח לאמת שאינך רובוט/ית",
 
 	/**
 	 * OTHER

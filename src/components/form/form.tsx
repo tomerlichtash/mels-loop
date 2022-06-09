@@ -12,6 +12,7 @@ export interface IFormProps extends ComponentProps {
 	onSuccessMessage: React.ReactNode;
 	onFailMessage: React.ReactNode;
 	submitButtonLabel: string;
+	submitButtonLabelActive: string;
 	locale: string;
 	onSubmit: () => Promise<Response>;
 }
@@ -21,6 +22,7 @@ export const Form = ({
 	onSuccessMessage,
 	onFailMessage,
 	submitButtonLabel,
+	// submitButtonLabelActive,
 	onSubmit,
 	locale,
 	className,

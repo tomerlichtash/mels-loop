@@ -89,21 +89,18 @@ export const Locale: Language = {
 	CONTACT_PAGE_TITLE: "Contact Us",
 	CONTACT_BY_MAIL_TEXT:
 		"For any question, suggestion, correction or, well, anything, please contact us via email at aboutmelsloop [dot] gmail [dot] com",
-	CONTACT_BY_TWITTER_TEXT: "Follow us over [Twitter](@aboutmelsloop).",
-	CONTACT_BY_GITHUB_TEXT:
+	CONTACT_PAGE_BY_TWITTER_TEXT: "Follow us over [Twitter](@aboutmelsloop).",
+	CONTACT_PAGE_BY_GITHUB_TEXT:
 		"Find this website source code and its entire content over at Github",
 
 	/**
 	 * CONTACT FORM
 	 */
-	CONTACT_FORM_TITLE: "Send a message",
 	CONTACT_FORM_LABEL_FULLNAME: "Your Name",
 	CONTACT_FORM_LABEL_EMAIL: "Your Email",
-	CONTACT_FORM_LABEL_SUBJECT: "Subject",
 	CONTACT_FORM_LABEL_MESSAGE: "Message",
 	CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER: "Enter your full name here",
 	CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER: "Enter a valid e-mail address",
-	CONTACT_FORM_LABEL_SUBJECT_PLACEHOLDER: "Message subject",
 	CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER: "Type your message here",
 	CONTACT_FORM_ON_SUCCESS_MESSAGE_SEND_ANOTHER: "send another?",
 	CONTACT_FORM_ON_SUCCESS_MESSAGE_BACK_HOME: "back home?",

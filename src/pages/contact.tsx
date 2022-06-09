@@ -41,13 +41,13 @@ const Contact: NextPage<IPageProps> = () => {
 						</li>
 						<li>
 							<p className={classes.paragraph}>
-								{translate("CONTACT_BY_TWITTER_TEXT")}
+								{translate("CONTACT_PAGE_BY_TWITTER_TEXT")}
 							</p>
 							<TwitterLogoIcon />
 						</li>
 						<li>
 							<p className={classes.paragraph}>
-								{translate("CONTACT_BY_GITHUB_TEXT")}
+								{translate("CONTACT_PAGE_BY_GITHUB_TEXT")}
 							</p>
 							<GitHubLogoIcon />
 						</li>

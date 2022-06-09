@@ -58,6 +58,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 		},
 		ui: {
 			buttonLabel: "CONTACT_FORM_LABEL_SEND",
+			buttonLabelActive: "CONTACT_FORM_LABEL_SEND_ACTIVE",
 			success: "CONTACT_FORM_SUCCESS_MESSAGE",
 			fail: "CONTACT_FORM_SUCCESS_FAIL",
 			/* -- */
@@ -142,10 +143,8 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 		<div className={classes.info}>
 			<CheckIcon />
 			<p>{translate(lang.ui.success)}</p>
-			<button>
-				{translate("CONTACT_FORM_ON_SUCCESS_MESSAGE_SEND_ANOTHER")}
-			</button>
-			<button>{translate("CONTACT_FORM_ON_SUCCESS_MESSAGE_BACK_HOME")}</button>
+			<button>{translate(lang.ui.useAgain)}</button>
+			<button>{translate(lang.ui.backHome)}</button>
 		</div>
 	);
 
@@ -153,8 +152,8 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 		<div className={classes.info}>
 			<ExclamationTriangleIcon />
 			<p>{translate(lang.ui.fail)}</p>
-			<button>{translate("CONTACT_FORM_ON_FAIL_MESSAGE_TRY_AGAIN")}</button>
-			<div>{translate("CONTACT_FORM_ON_FAIL_MESSAGE_REPORT_PROBLEM")}</div>
+			<button>{translate(lang.ui.tryAgain)}</button>
+			<div>{translate(lang.ui.reportProblem)}</div>
 		</div>
 	);
 
@@ -165,6 +164,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 			onSuccessMessage={onSuccessMessage}
 			onFailMessage={onFailMessage}
 			submitButtonLabel={translate(lang.ui.buttonLabel)}
+			submitButtonLabelActive={translate(lang.ui.buttonLabelActive)}
 			locale={locale}
 			className={st(classes.root, className)}
 		/>
