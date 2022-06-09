@@ -1,5 +1,5 @@
 import React from "react";
-import type { IFieldDef, IFieldLocale } from "../form/types";
+import type { IFieldDef } from "../form/types";
 import { VALUE_NOT_EMPTY, VALUE_VALID_EMAIL } from "../form";
 import {
 	ChatBubbleIcon,
@@ -48,24 +48,6 @@ export const formFields: Record<FieldName, IFieldDef> = {
 			placeholder: "CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER",
 			errorMsg: "CONTACT_FORM_INVALID_MESSAGE",
 		},
-	},
-};
-
-export const formLocale: Record<FieldName, IFieldLocale> = {
-	fullname: {
-		label: "CONTACT_FORM_LABEL_FULLNAME",
-		placeholder: "CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER",
-		errorMsg: "CONTACT_FORM_INVALID_NAME",
-	},
-	email: {
-		label: "CONTACT_FORM_LABEL_EMAIL",
-		placeholder: "CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER",
-		errorMsg: "CONTACT_FORM_INVALID_EMAIL",
-	},
-	message: {
-		label: "CONTACT_FORM_LABEL_MESSAGE",
-		placeholder: "CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER",
-		errorMsg: "CONTACT_FORM_INVALID_MESSAGE",
 	},
 };
 

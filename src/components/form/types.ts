@@ -26,7 +26,7 @@ export interface IFieldDef {
 }
 
 export interface IFieldHooks {
-	value: string;
+	value: string | number;
 	onChange: Dispatch<SetStateAction<string>>;
 	validation?: FormFieldState;
 	setValidation?: (state: FormFieldState) => void;

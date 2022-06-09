@@ -100,7 +100,6 @@ export const Form = ({
 			{!successMessage && !failureMessage && (
 				// eslint-disable-next-line @typescript-eslint/no-misused-promises
 				<form onSubmit={handleSubmit} className={classes.form}>
-					{/* {formFields} */}
 					{fields}
 					<div className={classes.submit}>
 						<div className={st(classes.captcha, { highlightCaptcha })}>

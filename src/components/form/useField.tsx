@@ -13,7 +13,17 @@ export const useFormField = ({
 	locale,
 	className,
 }: IFieldDef) => {
-	const [state, setState] = useState("");
+	let initialValue: string | number;
+	switch (type) {
+		case "number":
+			initialValue = 0;
+			break;
+		default:
+			initialValue = "";
+			break;
+	}
+
+	const [state, setState] = useState(initialValue);
 
 	const [fieldValidation, setFieldValidation] = useState<FormFieldState>(
 		FormFieldState.INITIAL
