@@ -25,11 +25,13 @@ export const Field = ({
 	const Tag: InputTag = tag; // as keyof JSX.IntrinsicElements;
 	const inputType = tag === "input" ? { type } : null;
 
-	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-		onChange(e.target.value);
+	const onInputChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => onChange(e.target.value);
 
-	const onInputBlur = (e: React.ChangeEvent<HTMLInputElement>) =>
-		setValidation(validate(e.target.value) ? VALID : INVALID);
+	const onInputBlur = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => setValidation(validate(e.target.value) ? VALID : INVALID);
 
 	return (
 		<div className={st(classes.root, className)}>
@@ -52,40 +54,11 @@ export const Field = ({
 						value={value}
 						tabIndex={tabIndex}
 						placeholder={placeholder}
-						className={st(classes.input, { type: tag, validation })}
+						className={st(classes.input, { tag, validation })}
 						onChange={onInputChange}
 						onBlur={onInputBlur}
 						{...inputType}
 					/>
-					{/* {tag === "input" && (
-						<input
-							tabIndex={tabIndex}
-							type={type}
-							value={value}
-							id={id}
-							onChange={(e) => onChange(e.target.value)}
-							onBlur={(e) =>
-								setValidation(validate(e.target.value) ? VALID : INVALID)
-							}
-							name={id}
-							placeholder={placeholder}
-							className={st(classes.input, { type, validation })}
-						/>
-					)}
-					{tag === "textarea" && (
-						<textarea
-							tabIndex={tabIndex}
-							value={value}
-							id={id}
-							onChange={(e) => onChange(e.target.value)}
-							onBlur={(e) =>
-								setValidation(validate(e.target.value) ? VALID : INVALID)
-							}
-							name={id}
-							placeholder={placeholder}
-							className={st(classes.input, { type: "textarea", validation })}
-						/>
-					)} */}
 					{validation === INVALID && (
 						<p className={classes.error}>
 							<span className={classes.errorIcon}>

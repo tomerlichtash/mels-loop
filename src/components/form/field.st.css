@@ -21,7 +21,7 @@
 .inputContainer {}
 
 .input {
-	-st-states: validation(enum(initial, valid, invalid, empty)), type(enum(name, email, textarea));
+	-st-states: validation(enum(initial, valid, invalid, empty)), tag(enum(input, textarea));
 	-st-mixin: boxSizing, bodyTextNormal;
 	display: block;
 	cursor: pointer;
