@@ -27,6 +27,7 @@ export const Captcha = ({
 	onChange,
 	onExpired,
 	locale,
+	tabIndex,
 	theme,
 }: ICaptchaProps) => (
 	<ReCAPTCHA
@@ -37,6 +38,6 @@ export const Captcha = ({
 		size="normal"
 		hl={locale}
 		theme={theme}
-		// tabIndex
+		tabIndex={tabIndex}
 	/>
 );

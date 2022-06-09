@@ -17,9 +17,9 @@
 .formTitle {}
 
 .captcha {
-	-st-states: highlight(boolean);
+	-st-states: highlightCaptcha(boolean);
 }
-.captcha:highlight {
+.captcha:highlightCaptcha {
 	border: 2px solid red;
     animation: flickerAnimation 1s infinite;}
 

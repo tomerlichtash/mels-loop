@@ -7,10 +7,12 @@ export enum FormFieldState {
 	INVALID = "invalid",
 }
 
+export type InputTag = "input" | "textarea";
+
 export interface IFieldProps {
 	id: string;
 	type: "text" | "email" | "number";
-	tag: "input" | "textarea";
+	tag: InputTag;
 	value: string;
 	onChange: Dispatch<SetStateAction<string>>;
 	label: string;
@@ -33,4 +35,5 @@ export interface ICaptchaProps {
 	onExpired: () => void;
 	locale: string;
 	theme: "light" | "dark";
+	tabIndex: number;
 }

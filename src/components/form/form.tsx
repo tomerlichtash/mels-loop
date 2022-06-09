@@ -27,13 +27,16 @@ export const Form = ({
 }: IFormProps): JSX.Element => {
 	const { theme } = useContext(ReactThemeContext);
 
-	const [loadingIndicator, toggleLoadingIndicator] = useState(false);
-	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-	const [showFailureMessage, setShowFailureMessage] = useState(false);
+	const [loadingIndicator, setLoadingIndicator] = useState(false);
+	const [successMessage, setSuccessMessage] = useState(false);
+	const [failureMessage, setFailureMessage] = useState(false);
 	const [sendButtonState, setSendButtonState] = useState(false);
-	// const [buttonTooltipVisibility, setButtonTooltipVisibility] = useState(false);
 	const [highlightCaptcha, setHighlightCaptcha] = useState(false);
 
+	const captchaTabIndex = fields.length + 1;
+	const captchaTheme = theme === "dark" ? "dark" : "light";
+
+	// const [buttonTooltipVisibility, setButtonTooltipVisibility] = useState(false);
 	// const toggleButtonTooltip = () => {
 	// 	if (!sendButtonState) setButtonTooltipVisibility(!buttonTooltipVisibility);
 	// 	else setButtonTooltipVisibility(false);
@@ -50,15 +53,15 @@ export const Form = ({
 			.indexOf(FormFieldState.INVALID) === -1;
 
 	const onFetchError = () => {
-		setShowSuccessMessage(false);
-		setShowFailureMessage(true);
-		toggleLoadingIndicator(false);
+		setSuccessMessage(false);
+		setFailureMessage(true);
+		setLoadingIndicator(false);
 	};
 
 	const onFetchSuccess = () => {
-		setShowSuccessMessage(true);
-		setShowFailureMessage(false);
-		toggleLoadingIndicator(false);
+		setSuccessMessage(true);
+		setFailureMessage(false);
+		setLoadingIndicator(false);
 	};
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,7 +71,7 @@ export const Form = ({
 				setHighlightCaptcha(true);
 				return;
 			}
-			toggleLoadingIndicator(true);
+			setLoadingIndicator(true);
 			const res = await onSubmit();
 			const { error } = await res.json();
 			if (error) onFetchError();
@@ -76,44 +79,47 @@ export const Form = ({
 		}
 	};
 
+	const onCaptchaChange = () => {
+		setSendButtonState(true);
+		setHighlightCaptcha(false);
+	};
+
+	const onCaptchaExpired = () => {
+		setSendButtonState(false);
+		setHighlightCaptcha(false);
+	};
+
+	const formFields = fields.map((field) => (
+		<Field
+			className={classes.field}
+			key={`ml-form-field-${field.id}`}
+			{...field}
+		/>
+	));
+
 	return (
 		<div className={st(classes.root, className)}>
-			{showSuccessMessage && onSuccessMessage}
-			{showFailureMessage && onFailMessage}
-			{!showSuccessMessage && !showFailureMessage && (
+			{successMessage && onSuccessMessage}
+			{failureMessage && onFailMessage}
+			{!successMessage && !failureMessage && (
 				// eslint-disable-next-line @typescript-eslint/no-misused-promises
 				<form onSubmit={handleSubmit} className={classes.form}>
-					{fields.map((fieldProps, index) => (
-						<Field
-							key={`ml-form-${fieldProps.id}`}
-							{...Object.assign({}, fieldProps, {
-								className: classes.field,
-								tabIndex: index + 1,
-							})}
-						/>
-					))}
+					{formFields}
 					<div className={classes.submit}>
-						<div
-							className={st(classes.captcha, { highlight: highlightCaptcha })}
-						>
+						<div className={st(classes.captcha, { highlightCaptcha })}>
 							<Captcha
 								locale={locale}
-								theme={theme === "dark" ? "dark" : "light"}
-								onChange={() => {
-									setSendButtonState(true);
-									setHighlightCaptcha(false);
-								}}
-								onExpired={() => {
-									setSendButtonState(false);
-									setHighlightCaptcha(false);
-								}}
+								theme={captchaTheme}
+								tabIndex={captchaTabIndex}
+								onChange={onCaptchaChange}
+								onExpired={onCaptchaExpired}
 							/>
 						</div>
 						<div className={classes.submitButton}>
 							<button
 								className={classes.button}
 								type="submit"
-								tabIndex={4}
+								tabIndex={captchaTabIndex + 1}
 								// onMouseOver={toggleButtonTooltip}
 								// onMouseLeave={toggleButtonTooltip}
 							>

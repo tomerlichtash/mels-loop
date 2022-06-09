@@ -36,6 +36,36 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 		FormFieldState.INITIAL
 	);
 
+	const lang = {
+		fields: {
+			fullName: {
+				label: "CONTACT_FORM_LABEL_FULLNAME",
+				placeholder: "CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER",
+				error: "CONTACT_FORM_INVALID_NAME",
+			},
+			email: {
+				label: "CONTACT_FORM_LABEL_EMAIL",
+				placeholder: "CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER",
+				error: "CONTACT_FORM_INVALID_EMAIL",
+			},
+			message: {
+				label: "CONTACT_FORM_LABEL_MESSAGE",
+				placeholder: "CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER",
+				error: "CONTACT_FORM_INVALID_MESSAGE",
+			},
+		},
+		ui: {
+			buttonLabel: "CONTACT_FORM_LABEL_SEND",
+			success: "CONTACT_FORM_SUCCESS_MESSAGE",
+			fail: "CONTACT_FORM_SUCCESS_FAIL",
+			/* -- */
+			backHome: "CONTACT_FORM_ON_SUCCESS_MESSAGE_BACK_HOME",
+			tryAgain: "CONTACT_FORM_ON_FAIL_MESSAGE_TRY_AGAIN",
+			useAgain: "CONTACT_FORM_ON_SUCCESS_MESSAGE_SEND_ANOTHER",
+			reportProblem: "CONTACT_FORM_ON_FAIL_MESSAGE_REPORT_PROBLEM",
+		},
+	};
+
 	/**
 	 * Fields Configuration
 	 */
@@ -50,9 +80,10 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 			setValidation: setFieldStateName,
 			validate: VALUE_NOT_EMPTY,
 			required: true,
-			label: translate("CONTACT_FORM_LABEL_FULLNAME"),
-			placeholder: translate("CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER"),
-			errorMsg: translate("CONTACT_FORM_INVALID_NAME"),
+			tabIndex: 1,
+			label: translate(lang.fields.fullName.label),
+			placeholder: translate(lang.fields.fullName.placeholder),
+			errorMsg: translate(lang.fields.fullName.error),
 			icon: <PersonIcon />,
 		},
 		{
@@ -65,9 +96,10 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 			setValidation: setFieldStateEmail,
 			validate: VALUE_NOT_EMPTY && VALUE_VALID_EMAIL,
 			required: true,
-			label: translate("CONTACT_FORM_LABEL_EMAIL"),
-			placeholder: translate("CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER"),
-			errorMsg: translate("CONTACT_FORM_INVALID_EMAIL"),
+			tabIndex: 2,
+			label: translate(lang.fields.email.label),
+			placeholder: translate(lang.fields.email.placeholder),
+			errorMsg: translate(lang.fields.email.error),
 			icon: <EnvelopeClosedIcon />,
 		},
 		{
@@ -80,9 +112,10 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 			setValidation: setFieldStateMessage,
 			validate: VALUE_NOT_EMPTY,
 			required: true,
-			label: translate("CONTACT_FORM_LABEL_MESSAGE"),
-			placeholder: translate("CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER"),
-			errorMsg: translate("CONTACT_FORM_INVALID_MESSAGE"),
+			tabIndex: 3,
+			label: translate(lang.fields.message.label),
+			placeholder: translate(lang.fields.message.placeholder),
+			errorMsg: translate(lang.fields.message.error),
 			icon: <ChatBubbleIcon />,
 		},
 	];
@@ -100,7 +133,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 	const onSuccessMessage = (
 		<div className={classes.info}>
 			<CheckIcon />
-			<p>{translate("CONTACT_FORM_SUCCESS_MESSAGE")}</p>
+			<p>{translate(lang.ui.success)}</p>
 			<button>
 				{translate("CONTACT_FORM_ON_SUCCESS_MESSAGE_SEND_ANOTHER")}
 			</button>
@@ -111,7 +144,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 	const onFailMessage = (
 		<div className={classes.info}>
 			<ExclamationTriangleIcon />
-			<p>{translate("CONTACT_FORM_SUCCESS_FAIL")}</p>
+			<p>{translate(lang.ui.fail)}</p>
 			<button>{translate("CONTACT_FORM_ON_FAIL_MESSAGE_TRY_AGAIN")}</button>
 			<div>{translate("CONTACT_FORM_ON_FAIL_MESSAGE_REPORT_PROBLEM")}</div>
 		</div>
@@ -123,7 +156,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 			onSubmit={onSubmit}
 			onSuccessMessage={onSuccessMessage}
 			onFailMessage={onFailMessage}
-			submitButtonLabel={translate("CONTACT_FORM_LABEL_SEND")}
+			submitButtonLabel={translate(lang.ui.buttonLabel)}
 			locale={locale}
 			className={st(classes.root, className)}
 		/>
