@@ -1,9 +1,11 @@
 @namespace "ContactFormMixin";
 
 @st-import ContactForm from "./contact-form.st.css";
+@st-import FormMixin from "../form/form-mixin.st.css";
 
 :vars {}
 
 .root {
 	-st-extends: ContactForm;
+	-st-mixin: FormMixin;
 }

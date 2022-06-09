@@ -24,7 +24,6 @@
 	align-content: center;
 }
 .root::field::inputContainer {
-	/* width: 100%; */
 	flex: 1;
 }
 
@@ -45,16 +44,13 @@
 	background: none;
 }
 
-.root::field::input:type(textarea) {
+.root::field::input:tag(textarea) {
 	height: 250px;
 	line-height: 20px;
 	resize: none;
 }
 
-
-.root::captcha {
-	/* margin-left: 150px; */
-}
+.root::captcha {}
 
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {

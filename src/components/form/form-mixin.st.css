@@ -1,0 +1,16 @@
+@namespace "FormMixin";
+
+@st-import Form from "./form.st.css";
+
+.root {
+	-st-extends: Form;
+}
+
+.root::button {
+	background-color: #808080;
+	color: #f0f0f0;
+}
+.root::button:hover {
+	background-color: #303030;
+	color: #fff;
+}

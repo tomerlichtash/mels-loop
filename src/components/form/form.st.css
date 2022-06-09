@@ -21,17 +21,12 @@
 }
 .captcha:highlightCaptcha {
 	border: 2px solid red;
-    animation: flickerAnimation 1s infinite;}
-
-.submit {
-	/* display: flex;
-	align-items: center;
-	justify-content: space-between; */
+    animation: flickerAnimation 1s infinite;
 }
 
-.submitButton {
-	/* position: relative; */
-}
+.submit {}
+
+.submitButton {}
 
 .buttonTooltip {
 	border: 1px solid red;
@@ -41,15 +36,11 @@
 
 .button {
 	-st-states: disabled(boolean);
-	background-color: #da0;
 	padding: 0.5rem 2rem;
 	border-radius: 4px;
 	cursor: pointer;
 }
-.button:hover {
-	background-color: #0af;
-	color: #fff;
-}
+.button:hover {}
 .button[disabled] {
 	cursor: no-drop;
 	background-color: #808080;
@@ -71,8 +62,6 @@
 .field {
 	-st-extends: Field;
 }
-
-
 
 @keyframes flickerAnimation {
   0%   { border-color: rgba(255, 0, 0, 0.2); }

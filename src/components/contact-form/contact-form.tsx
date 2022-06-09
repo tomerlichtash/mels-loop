@@ -8,10 +8,9 @@ import {
 	ExclamationTriangleIcon,
 	PersonIcon,
 } from "@radix-ui/react-icons";
-import { Form, FormFieldState, IFieldProps } from "../form";
-import { st, classes } from "./contact-form.st.css";
-
+import { Form, FormFieldState, IBaseField, IFieldProps } from "../form";
 import { VALUE_NOT_EMPTY, VALUE_VALID_EMAIL } from "../form/validations";
+import { st, classes } from "./contact-form.st.css";
 
 export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 	const { translate, locale } = useContext(ReactLocaleContext);
@@ -36,22 +35,25 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 		FormFieldState.INITIAL
 	);
 
+	/**
+	 * Form Locale
+	 */
 	const lang = {
 		fields: {
-			fullName: {
+			fullname: {
 				label: "CONTACT_FORM_LABEL_FULLNAME",
 				placeholder: "CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER",
-				error: "CONTACT_FORM_INVALID_NAME",
+				errorMsg: "CONTACT_FORM_INVALID_NAME",
 			},
 			email: {
 				label: "CONTACT_FORM_LABEL_EMAIL",
 				placeholder: "CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER",
-				error: "CONTACT_FORM_INVALID_EMAIL",
+				errorMsg: "CONTACT_FORM_INVALID_EMAIL",
 			},
 			message: {
 				label: "CONTACT_FORM_LABEL_MESSAGE",
 				placeholder: "CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER",
-				error: "CONTACT_FORM_INVALID_MESSAGE",
+				errorMsg: "CONTACT_FORM_INVALID_MESSAGE",
 			},
 		},
 		ui: {
@@ -67,9 +69,18 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 	};
 
 	/**
+	 * Field Icons
+	 */
+	const icons = {
+		fullname: <PersonIcon />,
+		email: <EnvelopeClosedIcon />,
+		message: <ChatBubbleIcon />,
+	};
+
+	/**
 	 * Fields Configuration
 	 */
-	const fields: IFieldProps[] = [
+	const fields: IBaseField[] = [
 		{
 			id: "fullname",
 			type: "text",
@@ -79,12 +90,6 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 			validation: fieldStateName,
 			setValidation: setFieldStateName,
 			validate: VALUE_NOT_EMPTY,
-			required: true,
-			tabIndex: 1,
-			label: translate(lang.fields.fullName.label),
-			placeholder: translate(lang.fields.fullName.placeholder),
-			errorMsg: translate(lang.fields.fullName.error),
-			icon: <PersonIcon />,
 		},
 		{
 			id: "email",
@@ -95,12 +100,6 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 			validation: fieldStateEmail,
 			setValidation: setFieldStateEmail,
 			validate: VALUE_NOT_EMPTY && VALUE_VALID_EMAIL,
-			required: true,
-			tabIndex: 2,
-			label: translate(lang.fields.email.label),
-			placeholder: translate(lang.fields.email.placeholder),
-			errorMsg: translate(lang.fields.email.error),
-			icon: <EnvelopeClosedIcon />,
 		},
 		{
 			id: "message",
@@ -111,14 +110,23 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 			validation: fieldStateMessage,
 			setValidation: setFieldStateMessage,
 			validate: VALUE_NOT_EMPTY,
-			required: true,
-			tabIndex: 3,
-			label: translate(lang.fields.message.label),
-			placeholder: translate(lang.fields.message.placeholder),
-			errorMsg: translate(lang.fields.message.error),
-			icon: <ChatBubbleIcon />,
 		},
 	];
+
+	const setFields = (fields: IBaseField[]) =>
+		fields.map((field, index) =>
+			Object.assign({}, field, {
+				required: true,
+				tabIndex: index + 1,
+				icon: icons[field.id],
+				...Object.fromEntries(
+					Object.keys(lang.fields[field.id] as string).map((key) => [
+						key,
+						translate(lang.fields[field.id][key] as string),
+					])
+				),
+			})
+		) as IFieldProps[];
 
 	const onSubmit = () => {
 		return fetch("/api/sendgrid", {
@@ -152,7 +160,7 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 
 	return (
 		<Form
-			fields={fields}
+			fields={setFields(fields)}
 			onSubmit={onSubmit}
 			onSuccessMessage={onSuccessMessage}
 			onFailMessage={onFailMessage}

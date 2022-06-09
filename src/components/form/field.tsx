@@ -22,7 +22,7 @@ export const Field = ({
 }: IFieldProps) => {
 	const { VALID, INVALID } = FormFieldState;
 
-	const Tag: InputTag = tag; // as keyof JSX.IntrinsicElements;
+	const Tag = tag;
 	const inputType = tag === "input" ? { type } : null;
 
 	const onInputChange = (

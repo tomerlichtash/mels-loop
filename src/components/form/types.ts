@@ -7,24 +7,25 @@ export enum FormFieldState {
 	INVALID = "invalid",
 }
 
-export type InputTag = "input" | "textarea";
-
-export interface IFieldProps {
+export interface IBaseField {
 	id: string;
 	type: "text" | "email" | "number";
-	tag: InputTag;
+	tag: "input" | "textarea";
 	value: string;
 	onChange: Dispatch<SetStateAction<string>>;
-	label: string;
 	validation?: FormFieldState;
 	setValidation?: (state: FormFieldState) => void;
 	validate?: (value: string) => boolean;
+	tabIndex?: number;
 	required?: boolean;
+	icon?: React.ReactNode;
+	className?: string;
+}
+
+export interface IFieldProps extends IBaseField {
+	label: string;
 	placeholder?: string;
 	errorMsg?: string;
-	icon?: React.ReactNode;
-	tabIndex?: number;
-	className?: string;
 }
 
 export interface ICaptchaProps {

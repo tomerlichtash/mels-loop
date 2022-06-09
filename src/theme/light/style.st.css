@@ -45,6 +45,10 @@
 @st-import ContentComponent from "../../components/content/content-component.st.css";
 @st-import ContentComponentMixin from "../../components/content/content-component-mixin.st.css";
 
+@st-import ContactForm from "../../components/contact-form/contact-form.st.css";
+@st-import ContactFormMixin from "../../components/contact-form/contact-form-mixin.st.css";
+
+
 @st-import [
 	level0,
 	level1,
@@ -91,6 +95,11 @@
 
 	StaticPage {
 		-st-mixin: StaticPageMixin(
+		);
+	}
+
+	ContactForm {
+		-st-mixin: ContactFormMixin(
 		);
 	}
 
