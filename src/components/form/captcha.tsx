@@ -27,8 +27,8 @@ export const Captcha = ({
 	onChange,
 	onExpired,
 	locale,
-	tabIndex,
 	theme,
+	tabIndex,
 }: ICaptchaProps) => (
 	<ReCAPTCHA
 		sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
@@ -37,7 +37,7 @@ export const Captcha = ({
 		onExpired={onExpired}
 		size="normal"
 		hl={locale}
-		theme={theme}
+		theme={theme === "dark" ? "dark" : "light"}
 		tabIndex={tabIndex}
 	/>
 );

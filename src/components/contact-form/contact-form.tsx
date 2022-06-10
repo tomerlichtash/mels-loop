@@ -1,47 +1,25 @@
-import React, { useContext } from "react";
-import { ReactLocaleContext } from "../../contexts/locale-context";
-import { ComponentProps } from "../../interfaces/models";
-import type { IFieldDef } from "../form/types";
-import { Form, useFormField } from "../form";
-import { CheckIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
+import React from "react";
+import {
+	Form,
+	useFormField,
+	trField,
+	IFormInstance,
+	onValuesSubmit,
+} from "../form";
 import { formFields, compLocale } from "./contact-form-data";
+import { CheckIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { st, classes } from "./contact-form.st.css";
 
-export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
-	const { translate, locale } = useContext(ReactLocaleContext);
-
-	const trField = (field: IFieldDef) => {
-		return Object.assign({}, field, {
-			locale: Object.fromEntries(
-				Object.keys(field.locale).map((key) => [
-					key,
-					translate(field.locale[key] as string),
-				])
-			),
-		});
-	};
-
-	const [fullname] = useFormField(trField(formFields.fullname));
-	const [email] = useFormField(trField(formFields.email));
-	const [message] = useFormField(trField(formFields.message));
-
+export const ContactForm = ({
+	translate,
+	locale,
+	theme,
+	className,
+}: IFormInstance): JSX.Element => {
+	const [fullname] = useFormField(trField(formFields.fullname, translate));
+	const [email] = useFormField(trField(formFields.email, translate));
+	const [message] = useFormField(trField(formFields.message, translate));
 	const values = [fullname, email, message];
-
-	const onSubmit = () => {
-		return fetch("/api/sendgrid", {
-			body: JSON.stringify(
-				Object.fromEntries(
-					values.map((field) => {
-						const { props } = field;
-						const { id, value } = props;
-						return [id, value];
-					})
-				)
-			),
-			headers: { "Content-Type": "application/json" },
-			method: "POST",
-		});
-	};
 
 	const onSuccessMessage = (
 		<div className={classes.info}>
@@ -57,19 +35,21 @@ export const ContactForm = ({ className }: ComponentProps): JSX.Element => {
 			<ExclamationTriangleIcon />
 			<p>{translate(compLocale.fail)}</p>
 			<button>{translate(compLocale.tryAgain)}</button>
-			<div>{translate(compLocale.reportProblem)}</div>
+			<button>{translate(compLocale.reportProblem)}</button>
+			<button>{translate(compLocale.backHome)}</button>
 		</div>
 	);
 
 	return (
 		<Form
 			fields={values}
-			onSubmit={onSubmit}
+			onSubmit={() => onValuesSubmit(values)}
 			onSuccessMessage={onSuccessMessage}
 			onFailMessage={onFailMessage}
 			submitButtonLabel={translate(compLocale.buttonLabel)}
 			submitButtonLabelActive={translate(compLocale.buttonLabelActive)}
 			locale={locale}
+			theme={theme}
 			className={st(classes.root, className)}
 		/>
 	);

@@ -1,6 +1,6 @@
 import React from "react";
 import type { IFieldDef } from "../form/types";
-import { VALUE_NOT_EMPTY, VALUE_VALID_EMAIL } from "../form";
+import { VALUE_NOT_EMPTY, VALUE_VALID_EMAIL } from "../form/validations";
 import {
 	ChatBubbleIcon,
 	EnvelopeClosedIcon,
@@ -15,6 +15,7 @@ export const formFields: Record<FieldName, IFieldDef> = {
 		type: "text",
 		tag: "input",
 		required: true,
+		tabIndex: 1,
 		icon: <PersonIcon />,
 		validate: VALUE_NOT_EMPTY,
 		locale: {
@@ -28,6 +29,7 @@ export const formFields: Record<FieldName, IFieldDef> = {
 		type: "email",
 		tag: "input",
 		required: true,
+		tabIndex: 2,
 		icon: <EnvelopeClosedIcon />,
 		validate: VALUE_NOT_EMPTY && VALUE_VALID_EMAIL,
 		locale: {
@@ -41,6 +43,7 @@ export const formFields: Record<FieldName, IFieldDef> = {
 		type: "text",
 		tag: "textarea",
 		required: true,
+		tabIndex: 3,
 		icon: <ChatBubbleIcon />,
 		validate: VALUE_NOT_EMPTY,
 		locale: {

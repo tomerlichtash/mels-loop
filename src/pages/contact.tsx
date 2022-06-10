@@ -5,13 +5,22 @@ import { NextPage } from "next";
 import { IPageProps } from "../interfaces/models";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import ContactForm from "../components/contact-form";
-// import ContactForm from "../components/simple-form/form";
 import { st, classes } from "./static-page.st.css";
-import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
+// import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
+import { ReactThemeContext } from "../contexts/theme-context";
 
 const Contact: NextPage<IPageProps> = () => {
-	const { translate, siteTitle, siteSubtitle, pageName, textDirection } =
-		useContext(ReactLocaleContext);
+	const {
+		translate,
+		locale,
+		textDirection,
+		siteTitle,
+		siteSubtitle,
+		pageName,
+	} = useContext(ReactLocaleContext);
+
+	const { theme } = useContext(ReactThemeContext);
+
 	return (
 		<Layout>
 			<Head>
@@ -24,10 +33,12 @@ const Contact: NextPage<IPageProps> = () => {
 					{translate("CONTACT_PAGE_TITLE")}
 				</h1>
 				<div className={classes.section}>
-					{/* <h2 className={st(classes.heading, { type: "h2" })}>
-						{translate("CONTACT_BY_FORM")}
-					</h2> */}
-					<ContactForm className={classes.contactForm} />
+					<ContactForm
+						className={classes.contactForm}
+						translate={translate}
+						locale={locale}
+						theme={theme}
+					/>
 				</div>
 				<div className={classes.section}>
 					{/* <h2 className={st(classes.heading, { type: "h2" })}>
@@ -43,13 +54,14 @@ const Contact: NextPage<IPageProps> = () => {
 							<p className={classes.paragraph}>
 								{translate("CONTACT_PAGE_BY_TWITTER_TEXT")}
 							</p>
-							<TwitterLogoIcon />
+							{/* <TwitterLogoIcon /> */}
 						</li>
 						<li>
 							<p className={classes.paragraph}>
-								{translate("CONTACT_PAGE_BY_GITHUB_TEXT")}
+								{/* {translate("CONTACT_PAGE_BY_GITHUB_TEXT")} */}
+								Found a problem? Open an issue.
 							</p>
-							<GitHubLogoIcon />
+							{/* <GitHubLogoIcon /> */}
 						</li>
 					</ul>
 				</div>

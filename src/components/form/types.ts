@@ -1,7 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
+import { ComponentProps } from "../../interfaces/models";
 
 export enum FormFieldState {
 	INITIAL = "initial",
+	EDITED = "edited",
 	EMPTY = "empty",
 	VALID = "valid",
 	INVALID = "invalid",
@@ -13,9 +15,11 @@ export interface IFieldLocale {
 	errorMsg?: string;
 }
 
+export type FieldType = "text" | "email" | "number";
+
 export interface IFieldDef {
 	id: string;
-	type: "text" | "email" | "number";
+	type: FieldType;
 	tag: "input" | "textarea";
 	icon?: React.ReactNode;
 	required?: boolean;
@@ -38,6 +42,12 @@ export interface ICaptchaProps {
 	onChange: (value: string) => void;
 	onExpired: () => void;
 	locale: string;
-	theme: "light" | "dark";
+	theme: string;
 	tabIndex: number;
+}
+
+export interface IFormInstance extends ComponentProps {
+	locale: string;
+	theme: string;
+	translate: (s: string) => string;
 }

@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { ComponentProps } from "../../interfaces/models";
-import { ReactThemeContext } from "../../contexts/theme-context";
 import { FormFieldState } from "./types";
 import { Captcha } from "./captcha";
 import LoadingIndicator from "../loading-indicator";
@@ -12,7 +11,8 @@ export interface IFormProps extends ComponentProps {
 	onFailMessage: React.ReactNode;
 	submitButtonLabel: string;
 	submitButtonLabelActive: string;
-	locale: string;
+	locale?: string;
+	theme?: string;
 	onSubmit: () => Promise<Response>;
 }
 
@@ -23,11 +23,10 @@ export const Form = ({
 	submitButtonLabel,
 	// submitButtonLabelActive,
 	locale,
+	theme,
 	onSubmit,
 	className,
 }: IFormProps): JSX.Element => {
-	const { theme } = useContext(ReactThemeContext);
-
 	const [loadingIndicator, setLoadingIndicator] = useState(false);
 	const [successMessage, setSuccessMessage] = useState(false);
 	const [failureMessage, setFailureMessage] = useState(false);
@@ -35,13 +34,28 @@ export const Form = ({
 	const [highlightCaptcha, setHighlightCaptcha] = useState(false);
 
 	const captchaTabIndex = fields.length + 1;
-	const captchaTheme = theme === "dark" ? "dark" : "light";
 
-	// const [buttonTooltipVisibility, setButtonTooltipVisibility] = useState(false);
-	// const toggleButtonTooltip = () => {
-	// 	if (!sendButtonState) setButtonTooltipVisibility(!buttonTooltipVisibility);
-	// 	else setButtonTooltipVisibility(false);
-	// };
+	const onFetchError = () => {
+		setSuccessMessage(false);
+		setFailureMessage(true);
+		setLoadingIndicator(false);
+	};
+
+	const onFetchSuccess = () => {
+		setSuccessMessage(true);
+		setFailureMessage(false);
+		setLoadingIndicator(false);
+	};
+
+	const onCaptchaChange = () => {
+		setSendButtonState(true);
+		setHighlightCaptcha(false);
+	};
+
+	const onCaptchaExpired = () => {
+		setSendButtonState(false);
+		setHighlightCaptcha(false);
+	};
 
 	const handleValidation = () => {
 		return (
@@ -54,18 +68,6 @@ export const Form = ({
 				})
 				.indexOf(FormFieldState.INVALID) === -1
 		);
-	};
-
-	const onFetchError = () => {
-		setSuccessMessage(false);
-		setFailureMessage(true);
-		setLoadingIndicator(false);
-	};
-
-	const onFetchSuccess = () => {
-		setSuccessMessage(true);
-		setFailureMessage(false);
-		setLoadingIndicator(false);
 	};
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -83,16 +85,6 @@ export const Form = ({
 		}
 	};
 
-	const onCaptchaChange = () => {
-		setSendButtonState(true);
-		setHighlightCaptcha(false);
-	};
-
-	const onCaptchaExpired = () => {
-		setSendButtonState(false);
-		setHighlightCaptcha(false);
-	};
-
 	return (
 		<div className={st(classes.root, className)}>
 			{successMessage && onSuccessMessage}
@@ -104,11 +96,11 @@ export const Form = ({
 					<div className={classes.submit}>
 						<div className={st(classes.captcha, { highlightCaptcha })}>
 							<Captcha
-								locale={locale}
-								theme={captchaTheme}
-								tabIndex={captchaTabIndex}
 								onChange={onCaptchaChange}
 								onExpired={onCaptchaExpired}
+								tabIndex={captchaTabIndex}
+								locale={locale}
+								theme={theme}
 							/>
 						</div>
 						<div className={classes.submitButton}>
@@ -116,8 +108,6 @@ export const Form = ({
 								className={classes.button}
 								type="submit"
 								tabIndex={captchaTabIndex + 1}
-								// onMouseOver={toggleButtonTooltip}
-								// onMouseLeave={toggleButtonTooltip}
 							>
 								{loadingIndicator ? (
 									<LoadingIndicator
@@ -129,11 +119,6 @@ export const Form = ({
 									submitButtonLabel
 								)}
 							</button>
-							{/* {buttonTooltipVisibility && (
-								<div className={classes.buttonTooltip}>
-									{translate("CAPTCHA_SUBMIT_BUTTON_TOOLTIP_TEXT")}
-								</div>
-							)} */}
 						</div>
 					</div>
 				</form>

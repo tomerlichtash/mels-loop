@@ -18,18 +18,34 @@ export const Field = ({
 	setValidation,
 	className,
 }: IFieldProps) => {
-	const { VALID, INVALID } = FormFieldState;
+	const { INITIAL, VALID, INVALID, EDITED } = FormFieldState;
 
 	const Tag = tag;
 	const inputType = tag === "input" ? { type } : null;
 
 	const onInputChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => onChange(e.target.value);
+	) => {
+		if (validation === INITIAL) setValidation(FormFieldState.EDITED);
+		onChange(e.target.value);
+	};
 
 	const onInputBlur = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => setValidation(validate(e.target.value) ? VALID : INVALID);
+	) => {
+		if (!e.target.value && validation == VALID) {
+			return setValidation(INITIAL);
+		} else if (!e.target.value && validation !== EDITED) {
+			return;
+		} else if (!e.target.value) {
+			return setValidation(INITIAL);
+		}
+		const isValid = validate(e.target.value) ? VALID : INVALID;
+		setValidation(isValid);
+		if (isValid) {
+			onChange(e.target.value.toString().trim());
+		}
+	};
 
 	const { label, placeholder, errorMsg } = locale;
 
