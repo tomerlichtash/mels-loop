@@ -3,8 +3,17 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
-const tpl = (fullName: string, email: string, message: string) => {
-	return `<div><ul><li>Name: <strong>${fullName}</strong></li><li>Sender: <em>${email}</em></li><li>Message: ${message}</li></ul></div>`;
+export interface IEmailTemplate extends NextApiRequest {
+	fullname: string;
+	email: string;
+	message: string;
+}
+
+const tpl = ({ fullname, email, message }: IEmailTemplate) => {
+	return `<div><ul><li>Name:<br/><strong>${fullname}</strong></li><li>Email:<br/><em>${email}</em></li></ul>${message.replace(
+		/\n/g,
+		"<br/>"
+	)}</div>`;
 };
 
 async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
@@ -12,12 +21,8 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 		await sendgrid.send({
 			to: "aboutmelsloop@gmail.com",
 			from: "hello@melsloop.com",
-			subject: `New Message: ${req.body.subject as string}`,
-			html: tpl(
-				req.body.fullname as string,
-				req.body.email as string,
-				req.body.message as string
-			),
+			subject: `[New Message] From: ${req.body.fullname as string}`,
+			html: tpl(req.body as IEmailTemplate),
 		});
 	} catch (error) {
 		return res
