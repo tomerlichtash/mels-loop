@@ -52,6 +52,6 @@ export interface IFormInstance extends ComponentProps {
 	translate: (s: string) => string;
 }
 
-export type FieldChangeEvent = React.ChangeEvent<
-	HTMLInputElement | HTMLTextAreaElement
->;
+export type FieldHTMLType = HTMLInputElement | HTMLTextAreaElement;
+
+export type FieldChangeEvent = React.ChangeEvent<FieldHTMLType>;

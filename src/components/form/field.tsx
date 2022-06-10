@@ -24,7 +24,7 @@ export const Field = ({
 	const inputType = tag === "input" ? { type } : null;
 
 	const validateField = (value: string) => {
-		if (!value && validation == VALID) setValidation(INITIAL);
+		if (!value && validation == VALID) return setValidation(INITIAL);
 		else if (!value && validation !== EDITED) return;
 		else if (!value) return setValidation(INITIAL);
 		const isValid = validate(value) ? VALID : INVALID;
