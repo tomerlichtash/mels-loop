@@ -1,5 +1,5 @@
 ---
-title: "Preface to The Story of Mel"
+title: "Mel's hack - the missing bits"
 author: "(David *)Frenkiel"
 date: Wed Apr 7 2022 13:45 GMT+0300
 ---
@@ -15,11 +15,12 @@ It was only while proofing Tomer's annotations to the story, that I started gett
 Let's briefly go over Ed Nather's now-mythological description of the overflow that modified the code, created a JUMP instruction and allowed the program to magically leap out of an endless loop. 
 
 
-    The vital clue came when I noticed
-    the index register bit,
-    the bit that lay between the address
-    and the operation code in the instruction word,
-    was turned on
+        The vital clue came when I noticed
+        the index register bit,
+        the bit that lay between the address
+        and the operation code in the instruction word,
+        was turned on
+
 
 We start with a partial layout of the machine instruction, with a span of bits that represents the data address (A), an index register bit (X) and a span that represents the operation code (C). Something like
          AAAXCCC
@@ -29,13 +30,14 @@ The number of bits in each span does not matter. The diagrams here use 1 bit for
 
 This layout is missing a part described earlier in the story:
 
-    The new computer had a one-plus-one
-    addressing scheme
-    in which each machine instruction,
-    in addition to the operation code
-    and the address of the needed operand,
-    had a second address that indicated where, on the revolving drum,
-    the next instruction was located.
+        The new computer had a one-plus-one
+        addressing scheme
+        in which each machine instruction,
+        in addition to the operation code
+        and the address of the needed operand,
+        had a second address that indicated where, on the revolving drum,
+        the next instruction was located.
+
 
 Thus, the bit layout of the instruction needs an additional component for the next address (N). Its location doesn't affect the hack, as described in the story, but let's place it on the least significant bits, to be on the safe side:
 
@@ -45,41 +47,32 @@ Thus, the bit layout of the instruction needs an additional component for the ne
     
 We know that the A span is in the lower bits, because Nather later describes the overflow that Mel hijacked:
 
-    Instead, he would pull the instruction into a machine register,
-    add one to its address,
-    and store it back
-    ...
-    He had located the data he was working on
-    near the top of memory —
-    the largest locations the instructions could address —
-    so, after the last datum was handled,
-    incrementing the instruction address
-    would make it overflow.
-    The carry would add one to the
-    operation code, changing it to the next one in the instruction set:
+        Instead, he would pull the instruction into a machine register,
+        add one to its address,
+        and store it back
+        ...
+        He had located the data he was working on
+        near the top of memory —
+        the largest locations the instructions could address —
+        so, after the last datum was handled,
+        incrementing the instruction address
+        would make it overflow.
+        The carry would add one to the
+        operation code, changing it to the next one in the instruction set:
+
 
 If incrementing the address span overflowed into the opcode span, then the bit order between them is established.
 If the index register bit (X) is indeed between the two and turned on, then overflowing the (A) span will carry through X into the (O) span, incrementing it by one. The result:
 
-    a jump instruction.
-    Sure enough, the next program instruction was
-    in address location zero,
-    and the program went happily on its way.
+        a jump instruction.
+        Sure enough, the next program instruction was
+        in address location zero,
+        and the program went happily on its way.
 
-All this is possible, but we still don't know where the JUMP instruction takes its operand from. We know that the operand's value must be 0 and it should be ready. The address span (A) indeed contains 0, but in the part of the story that describes the architecture of RPC-4000, does the author mention an option of the address field doubling as a constant. The JUMP instruction could take its value from some register, but that 0 would have to be stored there beforehand, giving Nather a screaming clue that some operation was being set up. No such clue is mentioned in the story. Even more baffling was the need for a JUMP instruction, in a machine that implements a rather unusual addressing scheme:
+All this is possible, but we still don't know where the JUMP instruction takes its operand from. We know that the operand's value must be 0 and it should be ready. The address span (A) indeed contains 0, but in the part of the story that describes the architecture of RPC-4000, does the author mention an option of the address field doubling as a constant. The JUMP instruction could take its value from some register, but that 0 would have to be stored there beforehand, giving Nather a screaming clue that some operation was being set up. No such clue is mentioned in the story.
 
-    The new computer had a one-plus-one
-    addressing scheme,
-    in which each machine instruction,
-    in addition to the operation code
-    and the address of the needed operand,
-    had a second address that indicated where, on the revolving drum,
-    the next instruction was located.
-    In modern parlance,
-    every single instruction was followed by a GO TO!
-
-
-What is the use of a JUMP instruction, on a machine that has a jump in virtually every instruction?
+Another mini-mystery related to the absence from this part of the story, of the unique addressing mode that included the next instruciton address in every instruction(!).
+Was that part of the instruction affected too? What is the use of a JUMP opcode, on a machine that has a jump in virtually every instruction?
 
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
 _The RPC-4000 instruction layout_
