@@ -6,6 +6,7 @@ import { st, classes } from "./form.st.css";
 const initValue = (type: FieldType) => {
 	switch (type) {
 		case "text":
+		case "email":
 			return "";
 		case "number":
 			return 0;

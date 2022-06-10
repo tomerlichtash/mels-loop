@@ -1,5 +1,5 @@
 import React from "react";
-import { FormFieldState, IFieldProps } from "./types";
+import { FieldChangeEvent, FormFieldState, IFieldProps } from "./types";
 import { CheckIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { st, classes } from "./field.st.css";
 
@@ -23,29 +23,22 @@ export const Field = ({
 	const Tag = tag;
 	const inputType = tag === "input" ? { type } : null;
 
-	const onInputChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => {
+	const validateField = (value: string) => {
+		if (!value && validation == VALID) setValidation(INITIAL);
+		else if (!value && validation !== EDITED) return;
+		else if (!value) return setValidation(INITIAL);
+		const isValid = validate(value) ? VALID : INVALID;
+		setValidation(isValid);
+		return isValid === VALID;
+	};
+
+	const onInputChange = (e: FieldChangeEvent) => {
 		if (validation === INITIAL) setValidation(FormFieldState.EDITED);
 		onChange(e.target.value);
 	};
 
-	const onInputBlur = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => {
-		if (!e.target.value && validation == VALID) {
-			return setValidation(INITIAL);
-		} else if (!e.target.value && validation !== EDITED) {
-			return;
-		} else if (!e.target.value) {
-			return setValidation(INITIAL);
-		}
-		const isValid = validate(e.target.value) ? VALID : INVALID;
-		setValidation(isValid);
-		if (isValid) {
-			onChange(e.target.value.toString().trim());
-		}
-	};
+	const onInputBlur = (e: FieldChangeEvent) =>
+		validateField(e.target.value) && onChange(e.target.value.trim());
 
 	const { label, placeholder, errorMsg } = locale;
 
