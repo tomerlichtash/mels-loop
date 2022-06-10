@@ -66,7 +66,25 @@ If the index register bit (X) is indeed between the two and turned on, then over
     in address location zero,
     and the program went happily on its way.
 
-All this is possible, but we still don't know where the JUMP instruction takes its operand from. We know that this operand's value must be 0 and it should be ready , according to the instruction's protocol. It seemed that the number would have to come either from a register - but then Nather would have spotted the code that set up this register - or from the instruction itself. It couldn't take its operand from _address_ 0, because by Nather's own account, the program _jumped_ to address 0, which had to contain valid code. 
+All this is possible, but we still don't know where the JUMP instruction takes its operand from. We know that the operand's value must be 0 and it should be ready. The address span (A) indeed contains 0, but in the part of the story that describes the architecture of RPC-4000, does the author mention an option of the address field doubling as a constant. The JUMP instruction could take its value from some register, but that 0 would have to be stored there beforehand, giving Nather a screaming clue that some operation was being set up. No such clue is mentioned in the story. Even more baffling was the need for a JUMP instruction, in a machine that implements a rather unusual addressing scheme:
+
+    The new computer had a one-plus-one
+    addressing scheme,
+    in which each machine instruction,
+    in addition to the operation code
+    and the address of the needed operand,
+    had a second address that indicated where, on the revolving drum,
+    the next instruction was located.
+    In modern parlance,
+    every single instruction was followed by a GO TO!
+
+
+What is the use of a JUMP instruction, on a machine that has a jump in virtually every instruction?
+
+![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
+_The RPC-4000 instruction layout_
+
+according to the instruction's protocol. It seemed that the number would have to come either from a register - but then Nather would have spotted the code that set up this register - or from the instruction itself. It couldn't take its operand from _address_ 0, because by Nather's own account, the program _jumped_ to address 0, which had to contain valid code. 
 
 
 
