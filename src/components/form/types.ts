@@ -9,13 +9,14 @@ export enum FormFieldState {
 	INVALID = "invalid",
 }
 
+export type FieldType = "text" | "email" | "number";
+
+export type ValidationRule = (value: string) => boolean;
 export interface IFieldLocale {
 	label: string;
 	placeholder?: string;
 	errorMsg?: string;
 }
-
-export type FieldType = "text" | "email" | "number";
 
 export interface IFieldDef {
 	id: string;
@@ -23,10 +24,11 @@ export interface IFieldDef {
 	tag: "input" | "textarea";
 	icon?: React.ReactNode;
 	required?: boolean;
-	validate?: (value: string) => boolean;
+	rules?: ValidationRule[];
 	tabIndex?: number;
 	className?: string;
 	locale: IFieldLocale;
+	autoFocus?: boolean;
 }
 
 export interface IFieldHooks {
@@ -34,6 +36,9 @@ export interface IFieldHooks {
 	onChange: Dispatch<SetStateAction<string>>;
 	validation?: FormFieldState;
 	setValidation?: (state: FormFieldState) => void;
+	validateRules: (value: string) => boolean;
+	focus: boolean;
+	setFocus: (state: boolean) => void;
 }
 
 export type IFieldProps = IFieldDef & IFieldHooks;

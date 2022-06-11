@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Field } from "./field";
 import { FormFieldState, IFieldDef, FieldType } from "./types";
 import { st, classes } from "./form.st.css";
@@ -23,14 +23,18 @@ export const useFormField = ({
 	icon,
 	locale,
 	tabIndex,
-	validate,
+	rules,
+	autoFocus,
 	className,
 }: IFieldDef) => {
-	const [value, setValue] = useState(initValue(type));
+	const { INITIAL } = FormFieldState;
 
-	const [validation, setValidation] = useState<FormFieldState>(
-		FormFieldState.INITIAL
-	);
+	const [value, setValue] = useState(initValue(type));
+	const [validation, setValidation] = useState<FormFieldState>(INITIAL);
+	const [focus, setFocus] = useState(false);
+
+	const validateRules = (value: string) =>
+		rules.map((rule) => rule(value)).indexOf(false) === -1;
 
 	const field = (
 		<Field
@@ -38,7 +42,10 @@ export const useFormField = ({
 			value={value}
 			onChange={setValue}
 			validation={validation}
+			validateRules={validateRules}
 			setValidation={setValidation}
+			focus={focus}
+			setFocus={setFocus}
 			id={id}
 			type={type}
 			tag={tag}
@@ -46,7 +53,7 @@ export const useFormField = ({
 			icon={icon}
 			locale={locale}
 			tabIndex={tabIndex}
-			validate={validate}
+			autoFocus={autoFocus}
 			className={st(classes.field, className)}
 		/>
 	);

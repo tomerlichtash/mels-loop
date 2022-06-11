@@ -17,7 +17,8 @@ export const formFields: Record<FieldName, IFieldDef> = {
 		required: true,
 		tabIndex: 1,
 		icon: <PersonIcon />,
-		validate: VALUE_NOT_EMPTY,
+		rules: [VALUE_NOT_EMPTY],
+		autoFocus: true,
 		locale: {
 			label: "CONTACT_FORM_LABEL_FULLNAME",
 			placeholder: "CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER",
@@ -31,7 +32,7 @@ export const formFields: Record<FieldName, IFieldDef> = {
 		required: true,
 		tabIndex: 2,
 		icon: <EnvelopeClosedIcon />,
-		validate: VALUE_NOT_EMPTY && VALUE_VALID_EMAIL,
+		rules: [VALUE_NOT_EMPTY, VALUE_VALID_EMAIL],
 		locale: {
 			label: "CONTACT_FORM_LABEL_EMAIL",
 			placeholder: "CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER",
@@ -45,7 +46,7 @@ export const formFields: Record<FieldName, IFieldDef> = {
 		required: true,
 		tabIndex: 3,
 		icon: <ChatBubbleIcon />,
-		validate: VALUE_NOT_EMPTY,
+		rules: [VALUE_NOT_EMPTY],
 		locale: {
 			label: "CONTACT_FORM_LABEL_MESSAGE",
 			placeholder: "CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER",

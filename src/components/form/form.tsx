@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { FormFieldState } from "./types";
 import { Captcha } from "./captcha";
@@ -57,21 +57,32 @@ export const Form = ({
 		setHighlightCaptcha(false);
 	};
 
+	const { INVALID } = FormFieldState;
+
 	const handleValidation = () => {
 		return (
 			fields
 				.map((field) => {
-					if (!field.props.validate(field.props.value)) {
-						field.props.setValidation(FormFieldState.INVALID);
-						return FormFieldState.INVALID;
+					if (!field.props.validateRules(field.props.value)) {
+						field.props.setValidation(INVALID);
+						return INVALID;
 					}
 				})
-				.indexOf(FormFieldState.INVALID) === -1
+				.indexOf(INVALID) === -1
 		);
 	};
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+	const isFocused = () =>
+		fields.map((field) => field.props.focus).indexOf(true) > -1;
+
+	const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		if (handleValidation()) {
+			return handleSubmit();
+		}
+	};
+
+	async function handleSubmit() {
 		if (handleValidation()) {
 			if (!sendButtonState) {
 				setHighlightCaptcha(true);
@@ -83,7 +94,26 @@ export const Form = ({
 			if (error) onFetchError();
 			else onFetchSuccess();
 		}
-	};
+	}
+
+	useEffect(() => {
+		const keyDownHandler = (e: KeyboardEvent) => {
+			if (!isFocused()) {
+				return;
+			}
+			if (
+				(e.key === "Enter" && e.metaKey) ||
+				(e.key === "Enter" && e.ctrlKey)
+			) {
+				e.preventDefault();
+				return handleSubmit();
+			}
+		};
+		// eslint-disable-next-line @typescript-eslint/no-misused-promises
+		document.addEventListener("keydown", keyDownHandler);
+		// eslint-disable-next-line @typescript-eslint/no-misused-promises
+		return () => document.removeEventListener("keydown", keyDownHandler);
+	});
 
 	return (
 		<div className={st(classes.root, className)}>
@@ -91,7 +121,7 @@ export const Form = ({
 			{failureMessage && onFailMessage}
 			{!successMessage && !failureMessage && (
 				// eslint-disable-next-line @typescript-eslint/no-misused-promises
-				<form onSubmit={handleSubmit} className={classes.form}>
+				<form onSubmit={onFormSubmit} className={classes.form}>
 					{fields}
 					<div className={classes.submit}>
 						<div className={st(classes.captcha, { highlightCaptcha })}>

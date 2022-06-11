@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FieldChangeEvent, FormFieldState, IFieldProps } from "./types";
 import { CheckIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { st, classes } from "./field.st.css";
@@ -12,35 +12,51 @@ export const Field = ({
 	required,
 	icon,
 	validation,
+	validateRules,
 	locale,
 	onChange,
-	validate,
 	setValidation,
+	setFocus,
+	autoFocus,
 	className,
 }: IFieldProps) => {
 	const { INITIAL, VALID, INVALID, EDITED } = FormFieldState;
 
 	const Tag = tag;
 	const inputType = tag === "input" ? { type } : null;
+	const ref = useRef(null);
 
 	const validateField = (value: string) => {
 		if (!value && validation == VALID) return setValidation(INITIAL);
 		else if (!value && validation !== EDITED) return;
 		else if (!value) return setValidation(INITIAL);
-		const isValid = validate(value) ? VALID : INVALID;
-		setValidation(isValid);
-		return isValid === VALID;
+		const isValid = validateRules(value);
+		setValidation(isValid ? VALID : INVALID);
+		return isValid;
 	};
 
 	const onInputChange = (e: FieldChangeEvent) => {
-		if (validation === INITIAL) setValidation(FormFieldState.EDITED);
+		if (validation === INITIAL) setValidation(EDITED);
 		onChange(e.target.value);
 	};
 
-	const onInputBlur = (e: FieldChangeEvent) =>
-		validateField(e.target.value) && onChange(e.target.value.trim());
+	const onInputFocus = () => setFocus(true);
+
+	const onInputBlur = (e: FieldChangeEvent) => {
+		validateField(e.target.value);
+		onChange(e.target.value.trim());
+		setFocus(false);
+	};
 
 	const { label, placeholder, errorMsg } = locale;
+
+	const preventWhiteSpace = (e) => {
+		if (e.target.value.trim() === "" && e.keyCode === 32) {
+			e.preventDefault();
+		}
+	};
+
+	useEffect(() => autoFocus && ref.current.focus(), [autoFocus]);
 
 	return (
 		<div className={st(classes.root, className)}>
@@ -62,10 +78,14 @@ export const Field = ({
 						name={id}
 						value={value}
 						tabIndex={tabIndex}
+						ref={ref}
 						placeholder={placeholder}
 						className={st(classes.input, { tag, validation })}
 						onChange={onInputChange}
+						onFocus={onInputFocus}
 						onBlur={onInputBlur}
+						onKeyDown={preventWhiteSpace}
+						autoFocus={autoFocus}
 						{...inputType}
 					/>
 					{validation === INVALID && (
