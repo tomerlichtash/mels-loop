@@ -35,6 +35,10 @@
 	margin-bottom: 2rem;
 }
 
+.root::contentComponent:type(codeblock) {
+	margin-bottom: 2rem;
+}
+
 .root::contentComponent:type(line) {
 	font-size: value(TextSize);
 }
