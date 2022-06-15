@@ -6,7 +6,9 @@ date: Wed Apr 7 2022 13:45 GMT+0300
 
 ### A private _Mel moment_
 
-"When the light went on it nearly blinded me". This line, in The Story of Mel, precedes the author's description of Mel's hack, the almost criminally resourceful implementation of a finite loop with no exit condition. These words never fail to give me goose bumps. They reflect a rare "Ah!" moment, where a seemingly random collection of facts suddenly fall into a coherent logical structure.
+        When the light went on it nearly blinded me. 
+
+This line, in The Story of Mel, precedes the author's description of Mel's hack, the almost criminally resourceful implementation of a finite loop with no exit condition. These words never fail to give me goose bumps. They reflect a rare "Ah!" moment, where a seemingly random collection of facts suddenly fall into a coherent logical structure.
 
 Intellectual satisfaction notwithstanding, I suspect that a considerable part of my pleasure has been derived from a sense of belonging to an elite handful of people that *really* got it. Sure, many developers loved the story and cherished it as part of their digital sphere, but I could go into detail and describe the hack without a refresher. I knew about the index register bit, the trick of storing the modified instruction in its original location and the magical appearance of a JUMP instruction in the right place, at the right time.
 
@@ -14,7 +16,7 @@ It was only while proofing Tomer's annotations to the story, that a certain unea
 
 ### Ed Nather's version
 
-Let's briefly go over Ed Nather's now-mythological description of the overflow that modified the code, created a JUMP instruction and allowed the program to magically leap out of an endless loop. 
+Let's briefly go over Ed Nather's now-mythological description of the overflow that modified the code, created a `JUMP` instruction and allowed the program to magically leap out of an endless loop. 
 
 
         The vital clue came when I noticed
@@ -29,7 +31,7 @@ We start with a partial layout of the machine instruction, with a span of bits t
          AAAXCCC
     MSB <--------> LSB
 
-The number of bits in each span does not matter. The diagrams here use 1 bit for the index register flag and 3 bits for other components.)
+The number of bits in each span does not matter. The diagrams here use 1 bit for the index register flag and 3 bits for other components.
 
 This layout is missing a part described earlier in the story:
 
@@ -48,7 +50,7 @@ Thus, the bit layout of the instruction needs an additional component for the ne
     MSB <----------> LSB
    
     
-We know that the A span is in the lower bits, because Nather later describes the overflow that Mel hijacked:
+We know that the `(A)` span is in the lower bits, because Nather later describes the overflow that Mel hijacked:
 
         Instead, he would pull the instruction into a machine register,
         add one to its address,
