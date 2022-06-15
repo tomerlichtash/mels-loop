@@ -1,6 +1,7 @@
 @namespace "ContactForm";
 
 @st-import Form from "../form/form.st.css";
+@st-import [preventSelection] from "../../theme/mixins.st.css";
 
 .root {
 	-st-extends: Form;
@@ -8,11 +9,12 @@
 
 .root::field {
 	margin-bottom: 1rem;
+	display: flex;
 }
 
 .root::field::label {
-	display: flex;
 	align-content: center;
+	-st-mixin: preventSelection;
 }
 
 .root::field::caption {
@@ -23,6 +25,7 @@
 	align-items:flex-start;
 	align-content: center;
 }
+
 .root::field::inputContainer {
 	flex: 1;
 }
@@ -33,6 +36,7 @@
 	height: 40px;
 	line-height: 40px;
 	border: 1px solid #444;
+	border-radius: 3px;
 }
 
 .root::field::input:validation(invalid) {
@@ -41,7 +45,7 @@
 
 .root::field::input:validation(valid) {
 	border-color: #0a0;
-	background: none;
+	/* background: none; */
 }
 
 .root::field::input:tag(textarea) {
@@ -50,12 +54,25 @@
 	resize: none;
 }
 
+.root::field::error {
+	padding: 0.25rem 0;
+	display: flex;
+}
+.root::field::errorIcon {
+	margin: 0 0.25rem;
+	position: relative;
+	top: 1px;
+}
+.root::field::error {
+	font-size: 0.8rem;
+}
+
 .root::captcha {}
 
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {
-		::field::label {
-			display: block !important;
+		::field {
+			display: block;
 		}
 		::field::inputContainer {
 			/* width: 100%; */

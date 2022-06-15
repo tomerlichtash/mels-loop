@@ -1,7 +1,7 @@
 @namespace "PostsMixin";
 
 @st-import Posts from "./posts.st.css";
-@st-import [heading2, heading3, bodyTextNormal] from "../theme/common/typography.st.css";
+@st-import [heading2] from "../theme/common/typography.st.css";
 
 
 .root {

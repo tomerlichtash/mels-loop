@@ -4,19 +4,46 @@
 
 .root {}
 
+/**
+	Common Styles
+*/
 
+.title {}
+.heading2 {}
+.heading3 {}
+.heading4 {}
+.heading5 {}
+.heading6 {}
+
+.link {}
+.code {}
+
+.section {
+	-st-states: seperator(boolean);
+	margin-bottom: 2rem;
+}
+.section:seperator {
+	border-top: 2px solid black;
+	margin: 2rem 0;
+	padding-top: 2rem;
+}
+
+.paragraph {}
+
+/**
+	Dynamic Page
+*/
 
 .header {
 	margin-bottom: 2rem;
 }
-
-.title {}
 
 .abstract {}
 
 .meta {
 	-st-states: hasContent(boolean);
 }
+
 .meta:hasContent {
 	padding: 1vmax 0;
 	border-top: 2px solid;
@@ -28,27 +55,23 @@
 }
 
 .byline {}
+
 .date {}
+
 .section {}
-
-/* ---------------- */
-
-.genericPage {
-	-st-states: type(string);
-}
 
 .contentComponent {
 	-st-extends: ContentComponent;
 }
 
-.error {}
-
 .noContent {}
 
-.paragraph {}
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {}
+.error {}
+
+.info {
+	/* margin: 2rem 0; */
+	/* background: #f0f0f0; */
+	/* border: 1px solid #c0c0c0; */
+	/* padding: 2rem 2rem 0; */
+	/* border-radius: 4px; */
+}

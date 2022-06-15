@@ -89,7 +89,8 @@ export const Locale: Language = {
 	CONTACT_PAGE_TITLE: "Contact Us",
 	CONTACT_BY_MAIL_TEXT:
 		"For any question, suggestion, correction or, well, anything, please contact us via email at aboutmelsloop [dot] gmail [dot] com",
-	CONTACT_PAGE_BY_TWITTER_TEXT: "Follow us over [Twitter](@aboutmelsloop).",
+	CONTACT_PAGE_BY_TWITTER_TEXT:
+		"Send a direct message over [Twitter](@aboutmelsloop).",
 	CONTACT_PAGE_BY_GITHUB_TEXT:
 		"Find this website source code and its entire content over at Github",
 
@@ -107,7 +108,7 @@ export const Locale: Language = {
 	CONTACT_FORM_ON_FAIL_MESSAGE_TRY_AGAIN: "Send another?",
 	CONTACT_FORM_ON_FAIL_MESSAGE_REPORT_PROBLEM: "Report problem",
 	CONTACT_FORM_INVALID_NAME: "Name cannot be blank",
-	CONTACT_FORM_INVALID_EMAIL: "Invalid e-mail address",
+	CONTACT_FORM_INVALID_EMAIL: "Please enter a valid e-mail address",
 	CONTACT_FORM_INVALID_MESSAGE: "Message cannot be empty. What's on your mind?",
 	CONTACT_FORM_SUCCESS_MESSAGE: "Your message was sent successfuly!",
 	CONTACT_FORM_SUCCESS_FAIL:

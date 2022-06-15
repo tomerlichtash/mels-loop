@@ -1,39 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { ComponentProps } from "../../interfaces/models";
-import { FormFieldState } from "./types";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { FormFieldState, FormValues, IFormProps } from "./types";
+import { useFormField as createField } from "./useFormField";
 import { Captcha } from "./captcha";
 import LoadingIndicator from "../loading-indicator";
+import { ReactThemeContext } from "../../contexts/theme-context";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { st, classes } from "./form.st.css";
 
-export interface IFormProps extends ComponentProps {
-	fields: JSX.Element[];
-	onSuccessMessage: React.ReactNode;
-	onFailMessage: React.ReactNode;
-	submitButtonLabel: string;
-	submitButtonLabelActive: string;
-	locale?: string;
-	theme?: string;
-	onSubmit: () => Promise<Response>;
-}
-
 export const Form = ({
-	fields,
+	entries,
 	onSuccessMessage,
 	onFailMessage,
 	submitButtonLabel,
 	// submitButtonLabelActive,
-	locale,
-	theme,
 	onSubmit,
 	className,
 }: IFormProps): JSX.Element => {
+	const { theme } = useContext(ReactThemeContext);
+	const { locale } = useContext(ReactLocaleContext);
+
+	const { VALID, INVALID } = FormFieldState;
+
 	const [loadingIndicator, setLoadingIndicator] = useState(false);
 	const [successMessage, setSuccessMessage] = useState(false);
 	const [failureMessage, setFailureMessage] = useState(false);
 	const [sendButtonState, setSendButtonState] = useState(false);
 	const [highlightCaptcha, setHighlightCaptcha] = useState(false);
 
-	const captchaTabIndex = fields.length + 1;
+	const fields = Object.keys(entries).map(
+		(key) => createField(entries[key])[0]
+	);
+
+	const captchaRef = useRef(null);
+	const captchaTabIndex = Object.keys(entries).length + 1;
 
 	const onFetchError = () => {
 		setSuccessMessage(false);
@@ -57,61 +56,75 @@ export const Form = ({
 		setHighlightCaptcha(false);
 	};
 
-	const { INVALID } = FormFieldState;
-
-	const handleValidation = () => {
-		return (
-			fields
-				.map((field) => {
-					if (!field.props.validateRules(field.props.value)) {
-						field.props.setValidation(INVALID);
-						return INVALID;
-					}
-				})
-				.indexOf(INVALID) === -1
-		);
-	};
-
-	const isFocused = () =>
-		fields.map((field) => field.props.focus).indexOf(true) > -1;
-
-	const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		if (handleValidation()) {
-			return handleSubmit();
+	const validateField = (field: JSX.Element) => {
+		const { props } = field;
+		const { setValidation, validateRules, value } = props;
+		const isValid = validateRules(value);
+		if (isValid) {
+			setValidation(VALID);
+			return VALID;
 		}
+		setValidation(INVALID);
+		return INVALID;
 	};
 
-	async function handleSubmit() {
-		if (handleValidation()) {
+	const validateAllFields = () =>
+		fields.map((field) => validateField(field)).indexOf(INVALID) === -1;
+
+	const onSubmitClick = (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+	) => {
+		e.preventDefault();
+		if (validateAllFields()) async () => handleSubmit();
+	};
+
+	const handleSubmit = () => {
+		if (validateAllFields()) {
 			if (!sendButtonState) {
 				setHighlightCaptcha(true);
+				captchaRef.current.focus();
 				return;
 			}
-			setLoadingIndicator(true);
-			const res = await onSubmit();
-			const { error } = await res.json();
-			if (error) onFetchError();
-			else onFetchSuccess();
+			return async () => submitForm();
 		}
+	};
+
+	async function submitForm() {
+		setLoadingIndicator(true);
+		const values = Object.fromEntries(
+			fields.map((field) => [field.props.id, field.props.value])
+		) as FormValues;
+		const res = await onSubmit(values);
+		const { error } = await res.json();
+		if (error) onFetchError();
+		else onFetchSuccess();
 	}
 
 	useEffect(() => {
 		const keyDownHandler = (e: KeyboardEvent) => {
-			if (!isFocused()) {
-				return;
-			}
-			if (
-				(e.key === "Enter" && e.metaKey) ||
-				(e.key === "Enter" && e.ctrlKey)
-			) {
+			const focusedFields = fields.map((field) => field.props.focus);
+
+			if (focusedFields.indexOf(true) === -1) return;
+
+			const field = fields[focusedFields.indexOf(true)];
+			const enterWithoutMeta =
+				e.key === "Enter" &&
+				!e.metaKey &&
+				!e.ctrlKey &&
+				field.props.tag !== "textarea";
+
+			const enterWithMeta =
+				(e.key === "Enter" && e.metaKey) || (e.key === "Enter" && e.ctrlKey);
+
+			if (enterWithoutMeta) {
 				e.preventDefault();
-				return handleSubmit();
+				validateField(field);
+			} else if (enterWithMeta) {
+				e.preventDefault();
+				handleSubmit();
 			}
 		};
-		// eslint-disable-next-line @typescript-eslint/no-misused-promises
 		document.addEventListener("keydown", keyDownHandler);
-		// eslint-disable-next-line @typescript-eslint/no-misused-promises
 		return () => document.removeEventListener("keydown", keyDownHandler);
 	});
 
@@ -120,39 +133,41 @@ export const Form = ({
 			{successMessage && onSuccessMessage}
 			{failureMessage && onFailMessage}
 			{!successMessage && !failureMessage && (
-				// eslint-disable-next-line @typescript-eslint/no-misused-promises
-				<form onSubmit={onFormSubmit} className={classes.form}>
+				<form className={classes.form} noValidate>
 					{fields}
-					<div className={classes.submit}>
-						<div className={st(classes.captcha, { highlightCaptcha })}>
-							<Captcha
-								onChange={onCaptchaChange}
-								onExpired={onCaptchaExpired}
-								tabIndex={captchaTabIndex}
-								locale={locale}
-								theme={theme}
-							/>
-						</div>
-						<div className={classes.submitButton}>
-							<button
-								className={classes.button}
-								type="submit"
-								tabIndex={captchaTabIndex + 1}
-							>
-								{loadingIndicator ? (
-									<LoadingIndicator
-										// label="CONTACT_FORM_LABEL_SEND_ACTIVE"
-										delay={0}
-										className={classes.loadingIndicator}
-									/>
-								) : (
-									submitButtonLabel
-								)}
-							</button>
-						</div>
-					</div>
 				</form>
 			)}
+			<div className={classes.formFooter}>
+				<div className={classes.captchaContainer}>
+					<Captcha
+						onChange={onCaptchaChange}
+						onExpired={onCaptchaExpired}
+						tabIndex={captchaTabIndex}
+						locale={locale}
+						theme={theme}
+						highlight={highlightCaptcha}
+						className={classes.captcha}
+					/>
+				</div>
+				<div className={classes.buttonContainer}>
+					<button
+						className={classes.button}
+						tabIndex={captchaTabIndex + 1}
+						ref={captchaRef}
+						onClick={(e) => onSubmitClick(e)}
+					>
+						{loadingIndicator ? (
+							<LoadingIndicator
+								// label={submitButtonLabelActive}
+								delay={0}
+								className={classes.loadingIndicator}
+							/>
+						) : (
+							submitButtonLabel
+						)}
+					</button>
+				</div>
+			</div>
 		</div>
 	);
 };

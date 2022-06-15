@@ -1,5 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import { FieldChangeEvent, FormFieldState, IFieldProps } from "./types";
+import {
+	FieldChangeEvent,
+	FieldKeyboardEvent,
+	FormFieldState,
+	IFieldProps,
+} from "./types";
 import { CheckIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { st, classes } from "./field.st.css";
 
@@ -12,12 +17,12 @@ export const Field = ({
 	required,
 	icon,
 	validation,
-	validateRules,
 	locale,
+	autoFocus,
+	validateRules,
 	onChange,
 	setValidation,
 	setFocus,
-	autoFocus,
 	className,
 }: IFieldProps) => {
 	const { INITIAL, VALID, INVALID, EDITED } = FormFieldState;
@@ -50,13 +55,15 @@ export const Field = ({
 
 	const { label, placeholder, errorMsg } = locale;
 
-	const preventWhiteSpace = (e) => {
-		if (e.target.value.trim() === "" && e.keyCode === 32) {
+	const preventWhiteSpace = (e: FieldKeyboardEvent) => {
+		if (e.currentTarget.value.trim() === "" && e.keyCode === 32) {
 			e.preventDefault();
 		}
 	};
 
-	useEffect(() => autoFocus && ref.current.focus(), [autoFocus]);
+	useEffect(() => {
+		if (autoFocus) ref.current.focus();
+	}, [autoFocus]);
 
 	return (
 		<div className={st(classes.root, className)}>
@@ -72,32 +79,33 @@ export const Field = ({
 						)}
 					</span>
 				</span>
-				<div className={classes.inputContainer}>
-					<Tag
-						id={id}
-						name={id}
-						value={value}
-						tabIndex={tabIndex}
-						ref={ref}
-						placeholder={placeholder}
-						className={st(classes.input, { tag, validation })}
-						onChange={onInputChange}
-						onFocus={onInputFocus}
-						onBlur={onInputBlur}
-						onKeyDown={preventWhiteSpace}
-						autoFocus={autoFocus}
-						{...inputType}
-					/>
-					{validation === INVALID && (
-						<p className={classes.error}>
-							<span className={classes.errorIcon}>
-								<ExclamationTriangleIcon className={classes.errorIcon} />
-							</span>
-							<span className={classes.errorText}>{errorMsg}</span>
-						</p>
-					)}
-				</div>
 			</label>
+			<div className={classes.inputContainer}>
+				<Tag
+					id={id}
+					name={id}
+					value={value}
+					tabIndex={tabIndex}
+					autoFocus={autoFocus}
+					ref={ref}
+					placeholder={placeholder}
+					className={st(classes.input, { tag, validation })}
+					onChange={onInputChange}
+					onFocus={onInputFocus}
+					onBlur={onInputBlur}
+					onKeyDown={preventWhiteSpace}
+					spellCheck={false}
+					{...inputType}
+				/>
+				{validation === INVALID && (
+					<p className={classes.error}>
+						<span className={classes.errorIcon}>
+							<ExclamationTriangleIcon className={classes.icon} />
+						</span>
+						<span className={classes.errorText}>{errorMsg}</span>
+					</p>
+				)}
+			</div>
 		</div>
 	);
 };

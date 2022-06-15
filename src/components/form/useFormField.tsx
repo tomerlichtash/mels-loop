@@ -36,7 +36,7 @@ export const useFormField = ({
 	const validateRules = (value: string) =>
 		rules.map((rule) => rule(value)).indexOf(false) === -1;
 
-	const field = (
+	const element = (
 		<Field
 			key={`ml-field-${type}-${id}`}
 			value={value}
@@ -58,5 +58,5 @@ export const useFormField = ({
 		/>
 	);
 
-	return [field];
+	return [element];
 };

@@ -1,16 +1,56 @@
 @namespace "FormMixin";
 
 @st-import Form from "./form.st.css";
+@st-import FieldMixin from "./field-mixin.st.css";
+
+:vars {
+	FormSubmitButtonBgColor: #808080;
+	FormSubmitButtonTextColor: #fff;
+	FormSubmitButtonBgColor_Hover: #404040;
+	FormSubmitButtonTextColor_Hover: #e0e0e0;
+	FormSubmitButtonRadius: 0;
+	FieldLabelTextColor: black;
+	FieldLabelIconColor: black;
+	FieldLabelBorderColor: black;
+	FieldLabelBorderColor_Success: black;
+	FieldLabelBorderColor_Error: black;
+	FieldLabelBorderColor_Focus: black;
+	FieldLabelBorderRadius: 0;
+	FieldInputBgColor_Focus: #fff;
+	FieldInputIconColor: black;
+	FieldInputBgColor_Hover: #f0f0f0;
+	FieldInputPlaceholderTextColor: #808080;
+	FieldInputErrorTextColor: #808080;
+	FieldInputSuccessTextColor: #808080;
+}
 
 .root {
 	-st-extends: Form;
 }
 
 .root::button {
-	background-color: #808080;
-	color: #f0f0f0;
+	border-radius: value(FormSubmitButtonRadius);
+	background-color: value(FormSubmitButtonBgColor);
+	color: value(FormSubmitButtonTextColor);
 }
 .root::button:hover {
-	background-color: #303030;
-	color: #fff;
+	background-color: value(FormSubmitButtonBgColor_Hover);
+	color: value(FormSubmitButtonTextColor_Hover);
+}
+
+.root::field {
+	-st-mixin: FieldMixin(
+		LabelTextColor value(FieldLabelTextColor),
+		LabelIconColor value(FieldLabelIconColor),
+		LabelBorderColor value(FieldLabelBorderColor),
+		LabelBorderColor_Focus value(FieldLabelBorderColor_Focus),
+		FieldLabelBorderColor_Success value(FieldLabelBorderColor_Success),
+		LabelBorderColor_Error value(FieldLabelBorderColor_Error),
+		LabelBorderRadius value(FieldLabelBorderRadius),
+		InputBgColor_Hover value(FieldInputBgColor_Hover),
+		InputBgColor_Focus value(FieldInputBgColor_Focus),
+		InputPlaceholderTextColor value(FieldInputPlaceholderTextColor),
+		FieldInputErrorTextColor value(FieldInputErrorTextColor),
+		FieldInputSuccessTextColor value(FieldInputSuccessTextColor),
+	);
 }

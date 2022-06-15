@@ -2,8 +2,6 @@
 
 @st-import PageBase from "../../pages/page-base.st.css";
 @st-import PageBaseMixin from "../../pages/page-base-mixin.st.css";
-@st-import StaticPage from "../../pages/static-page.st.css";
-@st-import StaticPageMixin from "../../pages/static-page-mixin.st.css";
 @st-import Posts from "../../pages/posts.st.css";
 @st-import PostsMixin from "../../pages/posts-mixin.st.css";
 @st-import StoryPage from "../../pages/index.st.css";
@@ -90,16 +88,6 @@
 			HeadingColor3 value(level6),
 			BodyTextColor value(BODY_TEXT_COLOR),
 			ContentHeaderMetaBorderColor value(level4)
-		);
-	}
-
-	StaticPage {
-		-st-mixin: StaticPageMixin(
-		);
-	}
-
-	ContactForm {
-		-st-mixin: ContactFormMixin(
 		);
 	}
 
@@ -288,6 +276,28 @@
 		-st-mixin: DynamicContentViewerMixin(
 			ButtonTextColor value(LINK_TEXT_COLOR),
 			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
+		);
+	}
+
+	ContactForm {
+		-st-mixin: ContactFormMixin(
+			FormSubmitButtonBgColor value(accent1),
+			FormSubmitButtonTextColor value(level1),
+			FormSubmitButtonBgColor_Hover value(accent2),
+			FormSubmitButtonTextColor_Hover value(level1),
+			FormSubmitButtonRadius 4px,
+			FieldLabelTextColor value(level6),
+			FieldLabelIconColor value(level6),
+			FieldLabelBorderRadius 3px,
+			FieldLabelBorderColor value(level4),
+			FieldLabelBorderColor_Focus value(accent1),
+			FieldLabelBorderColor_Success #0a0,
+			FieldLabelBorderColor_Error #c00,
+			FieldInputBgColor_Hover value(level2),
+			/* FieldInputBgColor_Focus value(level3), */
+			FieldInputPlaceholderTextColor value(level5),
+			FieldInputErrorTextColor #c00,
+			FieldInputSuccessTextColor #0a0,
 		);
 	}
 }

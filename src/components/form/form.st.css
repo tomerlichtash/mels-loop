@@ -1,6 +1,7 @@
 @namespace "Form";
 
 @st-import Field from "./field.st.css";
+@st-import Captcha from "./captcha.st.css";
 @st-import LoadingIndicator from "./../loading-indicator/loading-indicator.st.css";
 
 :vars {
@@ -8,36 +9,23 @@
 	success: #0a0;
 }
 
-.root {
-	position: relative;
-}
+.root {}
 
 .form {}
 
 .formTitle {}
 
-.captcha {
-	-st-states: highlightCaptcha(boolean);
-}
-.captcha:highlightCaptcha {
-	border: 2px solid red;
-    animation: flickerAnimation 1s infinite;
-}
-
-.submit {}
-
-.submitButton {}
-
-.buttonTooltip {
-	border: 1px solid red;
-	position: absolute;
-	top: 40px;
+.formFooter {
+	/* text-align: right; */
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	align-items: center;
 }
 
 .button {
 	-st-states: disabled(boolean);
 	padding: 0.5rem 2rem;
-	border-radius: 4px;
 	cursor: pointer;
 }
 .button:hover {}
@@ -47,12 +35,13 @@
 	color: #303030;
 }
 
-.error {
-	color: value(fail);
+.captchaContainer {
+	width: 304px;
+	height: 76px;
+	margin: 0 9.5rem;
 }
-
-.checkMark path {
-	fill: value(success);
+.captcha {
+	-st-extends: Captcha;
 }
 
 .loadingIndicator {
@@ -63,24 +52,14 @@
 	-st-extends: Field;
 }
 
-@keyframes flickerAnimation {
-  0%   { border-color: rgba(255, 0, 0, 0.2); }
-  50%  { border-color: rgba(255, 0, 0, 1); }
-  100% { border-color: rgba(255, 0, 0, 0.2); }
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+		.captchaContainer {
+			margin: 0 0 1rem;
+		}
+		.formFooter {
+			display: block;
+		}
+	}
 }
-/* @-o-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-@-moz-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-@-webkit-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-} */
 

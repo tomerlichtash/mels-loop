@@ -1,9 +1,30 @@
 @namespace "ContactPage";
 
+@st-import PageBase from "./page-base.st.css";
+@st-import PageBaseMixin from "./page-base-mixin.st.css";
+
 @st-import ContactForm from "../components/contact-form/contact-form.st.css";
 
 .root {}
 
+.layout {
+	display: flex;
+}
+
+.pageBase {
+	-st-extends: PageBase;
+	-st-Mixin: PageBaseMixin;
+}
+
 .contactForm {
+	border: 1px solid #808080;
+}
+
+.form {
 	-st-extends: ContactForm;
+}
+
+.info {
+	flex: 1;
+	width: 200px;
 }
