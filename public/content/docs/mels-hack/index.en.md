@@ -76,11 +76,11 @@ If the index register bit `(X)` is indeed between the two and turned on, then ov
 
 All this is possible, but we still don't know where the JUMP instruction takes its operand from. We know that the operand's value must be 0 and it should be ready. The address span `(A)` indeed contains 0, but in the part of the story that describes the architecture of RPC-4000, does the author mention an option of the data address field doubling as an instruction address. The JUMP instruction could take its value from some register, but that 0 would have to be stored there beforehand, giving Nather a screaming clue that some operation was being set up.
 
-Not only did I gloss over this part of the process for 30 years - I also ignored the absence from this part of the story, of the unique addressing mode described above. You know, the one that included the next instruciton address in every instruction(!). Was that part of the instruction affected in the overflow? Was there any relationship between the JUMP opcode and the `(A)` or `(N)` fields?
+Not only did I gloss over this part of the process for 30 years - I also ignored the absence from this part of the story, of the unique addressing mode described above. You know, the one that included the next instruction address in every instruction(!). Was that part of affected in the overflow? Was there any relationship between the JUMP opcode and the `(A)` or `(N)` fields?
 
 ### The Unpleasant Truth
 
-After demoting myself from 'computer guy' to 'guy who likes computers', I took the basic step required to understand Mel's hack: I looked up the [RPC-4000 manual](http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/RPC-4000_Programming_Manual.pdf). It didn't take much browsing to hit a figure that disspelled all my doubts.
+After demoting myself from 'computer guy' to 'guy who likes computers', I took the basic step required to understand Mel's hack: looking up the [RPC-4000 manual](http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/RPC-4000_Programming_Manual.pdf). It didn't take much browsing to hit a figure that disspelled all my doubts.
 
 ![RPC 4000 Instruction format](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
 
@@ -96,20 +96,20 @@ Further browsing through the sources that Tomer had collected for the project, r
 
 ### Reconstructing the Hack...
 
-Obviously, once we rule out Nather's code flow, all options are on the table, including the possiblity that the whole thing is made up. However, it's interesting to speculate about possible scenarios that resemble the one described in The Story of Mel. The article and discussion linked above provide some ideas, but they all fail to comply with some constraint we've established.
+Obviously, once we rule out Nather's code flow, all options are on the table, including the possiblity that the whole thing is made up. However, it's interesting to speculate about possible scenarios that resemble the one described in The Story of Mel. The article and discussion linked above provide some ideas, but they all fail to comply with the constraints we've established.
 
-It turns out that the architecture of the RPC-4000 does provide for one code layout which would accomplish the feat by using an overflow. Using our simplified bit layout, let's assume that the instruction, at some point, reaches the value:
+It turns out that the architecture of the RPC-4000 does provide for a code layout which would accomplish the feat by using an overflow. Using our simplified bit layout, let's assume that the instruction, at some point, reaches the value:
 
             0111111CCC
         MSB <----------> LSB
 
-In this diagram, the opcode doesn't matter, it can be any part of the program logic. The address of the next instruction is 111, so that's where the next step of the loop is located. The data address is also 111, which doesn't pose a problem: The instruction may not even need an operand, or the value in the 111 address is commensurate with the program logic. Now, when we try to increment the data address by 1 (adding 1000), the "overflow" of the field zeroes out the `(A)` and `(N)` fields, yielding:
+In this diagram, the opcode doesn't matter, it can be any part of the program logic. The address of the next instruction is `111`, so that's where the next step of the loop is located. The data address is also `111`, which doesn't pose a problem: The instruction may not even need an operand, or the value in the `111` address is commensurate with the program logic. Now, when we try to increment the data address by `1` (adding `1000`), the "overflow" of the field zeroes out the `(A)` and `(N)` fields, yielding:
 
             1000000CCC
         MSB <----------> LSB
 
 
-Which would make the program jump to address 0, just as Ed Nather wrote. In this scenario, I set the index register bit to 0, so that it would toggle to 1 following the address overflow. This toggle may be the origin of Nather's recollection of seeing the bit on.
+Which would make the program jump to address 0, just as Ed Nather wrote. In this scenario, I the index register bit is set to `0`, so that it would toggle to `1` following the address overflow. This toggle may be the origin of Nather's recollection of seeing the bit turned on for no apparent reason.
 
 
 ### ...A Less Romantic Alternative
