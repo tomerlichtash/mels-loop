@@ -4,13 +4,15 @@ author: "(David *)Frenkiel"
 date: Wed Apr 7 2022 13:45 GMT+0300
 ---
 
+### A private _Mel moment_
 
-"When the light went on it nearly blinded me". This line, in The Story of Mel, precedes the author's description of Mel's hack, the almost criminally resourceful implementation of a finite loop with no exit condition. These words never fails to give me goose bumps. They constitute a rare account of a real "Ah!" moment, where a seemingly random collection of facts suddenly fall into a coherent logical structure.
+"When the light went on it nearly blinded me". This line, in The Story of Mel, precedes the author's description of Mel's hack, the almost criminally resourceful implementation of a finite loop with no exit condition. These words never fail to give me goose bumps. They reflect a rare "Ah!" moment, where a seemingly random collection of facts suddenly fall into a coherent logical structure.
 
-Intellectual satisfaction notwithstanding, I suspect that a considerable part of my pleasure has been derived from the sense of belonging to an elite handful that *really* got it. Sure, many developers loved the story and cherished it as part of their digital heritage, but I could go into detail and describe the hack without a refresher. I knew about index register bit did, the trick of storing the modified instruction in its original location and the magical appearance of a JUMP instruction in the right place, at the right time.
+Intellectual satisfaction notwithstanding, I suspect that a considerable part of my pleasure has been derived from a sense of belonging to an elite handful of people that *really* got it. Sure, many developers loved the story and cherished it as part of their digital sphere, but I could go into detail and describe the hack without a refresher. I knew about the index register bit, the trick of storing the modified instruction in its original location and the magical appearance of a JUMP instruction in the right place, at the right time.
 
-It was only while proofing Tomer's annotations to the story, that I started getting annoying vibes, around that self-image of a *real* computer guy, who knows all about registers, addressing modes and overflows. Those vibes soon evolved into my own inverse Mel moment. Instead of a light shining suddenly and brightly, I experienced a slow dimming of the clear picture that I had of Mel's hack. Rather than being blinded, the darkness allowed me to see just how sloppy my reading had been.
+It was only while proofing Tomer's annotations to the story, that a certain unease started growing around that self-image of a *real* computer guy, who knows all about registers, addressing modes and overflows. This vague sensation soon evolved into my own inverse "Mel moment". Unlike Ed Nather's moment, which was sudden and gratifying, mine was tedious and annoying. Instead of a light shining suddenly and brightly, I experienced a slow dimming of the clear picture that I had of Mel's hack. Rather than being blinded, the darkness allowed me to see clearly just how sloppy my reading had been.
 
+### Ed Nather's version
 
 Let's briefly go over Ed Nather's now-mythological description of the overflow that modified the code, created a JUMP instruction and allowed the program to magically leap out of an endless loop. 
 
@@ -22,7 +24,8 @@ Let's briefly go over Ed Nather's now-mythological description of the overflow t
         was turned on
 
 
-We start with a partial layout of the machine instruction, with a span of bits that represents the data address (A), an index register bit (X) and a span that represents the operation code (C). Something like
+We start with a partial layout of the machine instruction, with a span of bits that represents the data address `(A)`, an index register bit `(X)` and a span that represents the operation code `(C)`. Something like
+
          AAAXCCC
     MSB <--------> LSB
 
@@ -39,7 +42,7 @@ This layout is missing a part described earlier in the story:
         the next instruction was located.
 
 
-Thus, the bit layout of the instruction needs an additional component for the next address (N). Its location doesn't affect the hack, as described in the story, but let's place it on the least significant bits, to be on the safe side:
+Thus, the bit layout of the instruction needs an additional component for the next address `(N)`. Its location doesn't affect the hack, as described in the story, but let's place it on the least significant bits, to be on the safe side:
 
          AAAXCCCNNN
     MSB <----------> LSB
@@ -62,105 +65,75 @@ We know that the A span is in the lower bits, because Nather later describes the
 
 
 If incrementing the address span overflowed into the opcode span, then the bit order between them is established.
-If the index register bit (X) is indeed between the two and turned on, then overflowing the (A) span will carry through X into the (C) span, incrementing it by one. The result:
+If the index register bit `(X)` is indeed between the two and turned on, then overflowing the `(A)` span will carry through X into the `(C)` span, incrementing it by one. The result:
 
         a jump instruction.
         Sure enough, the next program instruction was
         in address location zero,
         and the program went happily on its way.
 
-All this is possible, but we still don't know where the JUMP instruction takes its operand from. We know that the operand's value must be 0 and it should be ready. The address span (A) indeed contains 0, but in the part of the story that describes the architecture of RPC-4000, does the author mention an option of the data address field doubling as an instruction address. The JUMP instruction could take its value from some register, but that 0 would have to be stored there beforehand, giving Nather a screaming clue that some operation was being set up.
+All this is possible, but we still don't know where the JUMP instruction takes its operand from. We know that the operand's value must be 0 and it should be ready. The address span `(A)` indeed contains 0, but in the part of the story that describes the architecture of RPC-4000, does the author mention an option of the data address field doubling as an instruction address. The JUMP instruction could take its value from some register, but that 0 would have to be stored there beforehand, giving Nather a screaming clue that some operation was being set up.
 
-Not only did I gloss over this part of the process for 30 years - I also ignored the absence from this part of the story, of the unique addressing mode described above. You know, the one that included the next instruciton address in every instruction(!). Was that part of the instruction affected in the overflow? Was there any relationship between the JUMP opcode and the (A) or (N) fields?
+Not only did I gloss over this part of the process for 30 years - I also ignored the absence from this part of the story, of the unique addressing mode described above. You know, the one that included the next instruciton address in every instruction(!). Was that part of the instruction affected in the overflow? Was there any relationship between the JUMP opcode and the `(A)` or `(N)` fields?
+
+### The Unpleasant Truth
 
 After demoting myself from 'computer guy' to 'guy who likes computers', I took the basic step required to understand Mel's hack: I looked up the [RPC-4000 manual](http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/RPC-4000_Programming_Manual.pdf). It didn't take much browsing to hit a figure that disspelled all my doubts.
 
-![Test Title](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
+![RPC 4000 Instruction format](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
 
-Quite simply, the hack, as described in Ed Nather's account, is impossible on the RPC-4000. The opcode (C) field, supposedly modified by the overflow, is in the least significant bits of the instruction. In the terms used above:
+Quite simply, the hack, as described in Ed Nather's account, is impossible on the RPC-4000. The opcode `(C)` field, supposedly modified by the overflow, is in the least significant bits of the instruction. In the terms used above:
 
             XNNNAAACCC
         MSB <----------> LSB
 
 
-Thus, any overflow (which progresses toward the MSB) in the bits above the opcode, would not affect the latter. Other interesting specs followed:
-
-- opcode 0 was not "A Jump instruction", but rather one of two operations - HLT or SNS - the specifics of which are beyond the scope of this analysis. Thus, even a different bit arrangement would not have redeemed the described hack.
-- RPC-4000's JUMP instruction, called TBC (Transfer on Branch Control), indeed took its operand from the data address field:
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654922031/mels-hack/transfer-branch-control_gc2xg2.png)
+Thus, any overflow (which progresses toward the MSB) in the bits above the opcode, would not affect the latter. Furthermore, opcode `0` was not "A Jump instruction", but rather one of two operations - `HLT` or `SNS` - the specifics of which are beyond the scope of this analysis. Thus, even a different bit arrangement would not have redeemed the described hack.
 
 Further browsing through the sources that Tomer had collected for the project, revealed that the discrepancy between the story and the machine specs did not escape other Mel enthusiasts. The [YCombinatory discussion](https://news.ycombinator.com/item?id=20489273) and David Nugent's [Excellent Writeup](https://www.freecodecamp.org/news/macho-programmers-drum-memory-and-a-forensic-analysis-of-1960s-machine-code-6c5da6a40244/) both denote the problem and speculate about the real mechanism of the hack.
 
-Obviously, once we rule out Nather's code flow, all options are on the table, including the possiblity that the whole thing is made up. However, it's interesting to speculate about possible scenarios that resemble the one described in The Story of Mel. The article and discussion linked above provide some ideas, but they all fail to comply with some known constraint.
+### Reconstructing the Hack...
+
+Obviously, once we rule out Nather's code flow, all options are on the table, including the possiblity that the whole thing is made up. However, it's interesting to speculate about possible scenarios that resemble the one described in The Story of Mel. The article and discussion linked above provide some ideas, but they all fail to comply with some constraint we've established.
 
 It turns out that the architecture of the RPC-4000 does provide for one code layout which would accomplish the feat by using an overflow. Using our simplified bit layout, let's assume that the instruction, at some point, reaches the value:
 
             0111111CCC
         MSB <----------> LSB
 
-In this diagram, the opcode doesn't matter, it can be any part of the program logic. The address of the next instruction is 111, so that's where the next step of the loop is located. The data address is also 111, which doesn't pose a problem: The instruction may not even need an operand, or the value in the 111 address is commensurate with the program logic. Now, when we try to increment the data address by 1 (adding 1000), the "overflow" of the field zeroes out the (A) and (N) fields, yielding:
+In this diagram, the opcode doesn't matter, it can be any part of the program logic. The address of the next instruction is 111, so that's where the next step of the loop is located. The data address is also 111, which doesn't pose a problem: The instruction may not even need an operand, or the value in the 111 address is commensurate with the program logic. Now, when we try to increment the data address by 1 (adding 1000), the "overflow" of the field zeroes out the `(A)` and `(N)` fields, yielding:
 
             1000000CCC
         MSB <----------> LSB
 
 
-Which would make the program jump to address 0, just as Ed Nather wrote.
+Which would make the program jump to address 0, just as Ed Nather wrote. In this scenario, I set the index register bit to 0, so that it would toggle to 1 following the address overflow. This toggle may be the origin of Nather's recollection of seeing the bit on.
 
 
+### ...A Less Romantic Alternative
+
+There's another possible scenario, even more compatible with the story and in line with with the RPC-4000 specs. This flow hinges on Ed Nather's partial understanding of the machine's internals. It relies on two properties of the RPC-4000:
+
+
+- Opcode `23 (10111)` was the machine's _conditional_ `JUMP` instruction, called `TBC` (*T*ransfer on *B*ranch *C*ontrol). This opcode transfered control the the address in the `(A)` field when an internal switch called the `Branch Control Unit (BCU)` was on. If it was off, the next instruction would default to the address in the `(N)` field.
+
+![RPC-4000 TBC instruction](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654922031/mels-hack/transfer-branch-control_gc2xg2.png)
+
+- What could switch the `BCU` on? According to the manual - either when a successful comparison had just been made, or - more relevant to our story - following _an overflow_.
 
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1655241687/mels-hack/branch-control_xd0vqd.png)
 
-Somewhat ironically, it was during the proofing of Tomer's annotations for this part of the story, that I had an inverse "Mel moment" of my own. The light didn't go on abruptly, but rather dimmed slowly for several hours, at the end of which , alas in a less gratifying way. When the light went on, I could see how sloppy my reading had been all these years. The hack, as described in The Story of Mel, was either impossible or very unlikely.
+Thus, it's safe to assume that the standard conditional branch on the RPC-4000 consisted of a test (e.g. compare a loop index to a limit) followed by a `TBC` instruction that would jump to the address in the `(A)` field. Nather saw this `TBC` instruction, but failed to find a preceding test - because Mel never put it there. Instead, the increment of the `(A)` field eventually led to an overflow, which would be real this time, if the index register bit `(X)` was initally on. Using 101 as the TBC opcode yields the following sequence:
 
+            1111111101             +     1000   ===>                 0000000101
+        MSB <----------> LSB                                    MSB <----------> LSB
 
-ever since tsom apppeared on my vt100 terminal, it became part of my social arsenal. In each new project or company, sharing the story with the developers that loved computers and computer culture guaranteed a warm welcome. When the story was met with indifference or a blank stare, I dialed down my expectations.
+The overflow would toggle the `BCU` on, causing the heretofore ineffective `TBC` to transfer control to the address in the (A) field, which was `0`. However, if Ed Nather was not familiar with the overflow aspect of the `BCU`, then his reading of the code would indeed lead to the conclusion that the loop had no test. The standard conditional jump consisted of some test, followed by a `TBC` instruction, which would `JUMP` out of the loop if the test had succeeded. Being familiar only with this flavor of the instruction, it was natural for Nather to observe...
 
-Naturally, I counted myself among the privileged minority that really "got it". Not only did I understand the story, I could describe Mel's hack in detail, with no need for a refresher, using 'computer guy' words like register, bit and overflow.
+        But the loop had no test in it.
 
-When Tomer began his monumental translation and documentation project, I was proud to support him in the role of that 'computer guy'. Ironically enough, it was only during my work on this project, some 30 years after my first reading of the story, that I came to realize I had never really understood it.
+This scenario seems closer to the original story: The `JUMP` is there, as well as the overflow and the seemingly unecessary `1` in the index register bit. There are only two deviations from the original account:
 
-In "The Story of Mel", the author describes the moment in which he figured out Mel's hack: "When the light went on it nearly blinded me.". He follows with the now-mythological description of the overflow that modified the code, created a JUMP instruction and allowed the program to magically leap out of an endless loop. Somewhat ironically, it was during the proofing of Tomer's annotations for this part of the story, that I had an inverse "Mel moment" of my own. The light didn't go on abruptly, but rather dimmed slowly for several hours, at the end of which , alas in a less gratifying way. When the light went on, I could see how sloppy my reading had been all these years. The hack, as described in The Story of Mel, was either impossible or very unlikely.
+1. The opcode is never modified.
+2. The magical nature of the hack is due not only to Mel's prowess, but also to Ed Nather's incomplete understanding. Had he known that the `TBC` instruction was influenced by an overflow, he would have cracked the mystery right away. In this case, the story would be about a cryptic optimization, not unlike those that we find in the code of some "_Rock Star_" programmers who always look for an impressive coup, regardless of the toll this takes from the rest of the team.
 
-The vital clue came when I noticed
-the index register bit,
-the bit that lay between the address
-and the operation code in the instruction word,
-was turned on
-
-We start with a partial layout of the machine instruction, with a span of bits that represents the data address (A), an index register bit (X) and a span that represents the operation code (O). Something like
-    OOOXAAA
-
-(the number of bits in each span does not matter)
-We know that the A span is in the lower bits, because Nather later describes the overflow that Mel hijacked:
-
-Instead, he would pull the instruction into a machine register,
-add one to its address,
-and store it back
-...
-He had located the data he was working on
-near the top of memory —
-the largest locations the instructions could address —
-so, after the last datum was handled,
-incrementing the instruction address
-would make it overflow.
-The carry would add one to the
-operation code, changing it to the next one in the instruction set:
-
-If incrementing the address span overflowed into the opcode span, then the bit order between them is established.
-If the index register bit (X) is indeed between the two and turned on, then overflowing the (A) span will carry through X into the (O) span, incrementing it by one. The result:
-
-a jump instruction.
-Sure enough, the next program instruction was
-in address location zero,
-and the program went happily on its way.
-
-All this is possible, but we still need to understand where the JUMP instruction takes its operand from. The numbers have to be set up so that address 0 will be ready, according to the instruction's protocol. It seemed that the number would have to come either from a register - but then Nather would have spotted the code that set up this register - or from the instruction itself. It couldn't take its operand from _address_ 0, because by Nather's own account, the program _jumped_ to address 0, which had to contain valid code. 
-
-
-
-Or would it?
-
-
-when the light went on, it tore my eyes open. I could see that I never really understood the hack. My grasp of the flow was like that of a math student who "proves" an equation by developing both sides and sticking an equal sign in the middle.
-At first, the problem seemd to reside in my understanding of Ed Nather's text. However, it didn't take long for us to realize that the data flow, as described in tsom, was either impossible or highly unlikely. The bits didn't add up and the overflow mechanism would have to be rather awkward, to support that single index bit in the middle of the instruction.
-Searching the web, we found two posts that addressed
