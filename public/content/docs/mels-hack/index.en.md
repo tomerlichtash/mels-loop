@@ -71,7 +71,7 @@ If incrementing the address span overflowed into the opcode span, then the bit o
             CCCXAAANNN
         MSB <----------> LSB
 
-If the index register bit `(X)` is indeed between the two and turned on, then overflowing the `(A)` span will carry through X into the `(C)` span, incrementing it by one. The result:
+If the index register bit `(X)` is indeed between the two and turned on, then overflowing the `(A)` span will carry through `(X)` into the `(C)` span, incrementing it by one. The result:
 
         a jump instruction.
         Sure enough, the next program instruction was
@@ -80,9 +80,9 @@ If the index register bit `(X)` is indeed between the two and turned on, then ov
 
 ### The Unpleasant Truth
 
-All this is possible in theory, but we still don't know where the `JUMP` instruction takes its operand from. We know that the operand's value must be `0` and it should be ready. The address span `(A)` indeed contains `0`, but in the part of the story that describes the architecture of RPC-4000, does the author mention an option of the data address field doubling as an instruction address. The `JUMP` instruction could take its value from some register, but that `0` would have to be stored there beforehand, giving Nather a screaming clue that some operation was being set up.
+All this is possible in theory, but we still don't know where the `JUMP` instruction takes its operand from. We know that the operand's value must be `0` and it should be ready. The address span `(A)` indeed contains `0`, but nowhere in the description of RPC-4000's architecture, does Nather mention an option of the data address field doubling as an instruction address. The `JUMP` instruction could take its value from some register, but that `0` would have to be stored there beforehand, providing a screaming clue that some operation was being set up.
 
-Not only did I gloss over this part of the process for 30 years - I also ignored the absence from this part of the story, of the unique addressing mode described above. The one that included the next instruction address in every instruction(!). Was that part of affected in the overflow? Was there any relationship between the `JUMP` opcode and the `(A)` or `(N)` fields?
+Not only did I gloss over this crucial step for 30 years - I also ignored the absence from this part of the story, of the unique addressing mode described above. The one that included the next instruction address in every instruction(!). Was that part of affected in the overflow? Was there any relationship between the `JUMP` opcode and the `(A)` or `(N)` fields?
 
 After demoting myself from 'computer guy' to 'A guy who likes to think of himself as such', I took the basic step required to understand Mel's hack: looking up the [RPC-4000 manual](http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/RPC-4000_Programming_Manual.pdf). It didn't take much browsing to hit a figure that disspelled all my doubts.
 
@@ -90,7 +90,7 @@ After demoting myself from 'computer guy' to 'A guy who likes to think of himsel
 
 Quite simply, the hack, as described in Ed Nather's account, is impossible on the RPC-4000. The opcode `(C)` field, supposedly modified by the overflow, is in the least significant bits of the instruction. In the terms used above:
 
-            XNNNAAACCC
+             XNNNAAACCC
         MSB <----------> LSB
 
 
@@ -118,10 +118,10 @@ Which would execute opcode `CCC` and then jump to address 0, just as Ed Nather w
 
 ### ...A Less Romantic Alternative
 
-There's another possible scenario, even more compatible with the story and in line with with the RPC-4000 specs. This flow hinges on Ed Nather's partial understanding of the machine's internals. It relies on two properties of the RPC-4000:
+There's another possible scenario, even more compatible with the story and in line with the RPC-4000 specs. This flow hinges on Ed Nather's partial understanding of the machine's internals. It relies on two properties of the RPC-4000:
 
 
-- Opcode `23 (10111)` was the machine's _conditional_ `JUMP` instruction, called `TBC` (**T**ransfer on **B**ranch **C**ontrol). This opcode transferred control the the address in the `(A)` field, _If_ an internal switch called the `Branch Control Unit (BCU)` was on. If it was off, the next instruction address would default to the `(N)` field.
+- Opcode `23 (10111)` was the machine's _conditional_ `JUMP` instruction, called `TBC` (**T**ransfer on **B**ranch **C**ontrol). This opcode transferred control to the address in the `(A)` field, _If_ an internal switch called the `Branch Control Unit (BCU)` was on. If it was off, the next instruction address would default to the `(N)` field.
 
 ![RPC-4000 TBC instruction](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654922031/mels-hack/transfer-branch-control_gc2xg2.png)
 
@@ -129,10 +129,25 @@ There's another possible scenario, even more compatible with the story and in li
 
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1655241687/mels-hack/branch-control_xd0vqd.png)
 
-Thus, it's safe to assume that the standard conditional branch on the RPC-4000 consisted of a test (e.g. compare a loop index to a limit) followed by a `TBC` instruction that would jump to the address in the `(A)` field _if_ the test was successful. Nather saw this `TBC` instruction, but failed to find a preceding test - because Mel never put it there. Instead, the increment of the `(A)` field eventually led to an overflow, which would be real this time, if the index register bit `(X)` was initally on. Using `101` as the TBC opcode yields the following sequence:
+Simply put, conditional branching (e.g. if..else or looping until an index reaches a limit) on the RPC-4000 were implemented with two steps:
 
-            1111111101             +     1000    ===>            0000000101
-        MSB <----------> LSB                                MSB <----------> LSB
+1. A test, like comparing two numbers, followed immediately by...
+2. ...The `TBC` instruction, which would transfer control to the instruction in address `(A)` if the test was successful
+3. If the test failed (`else`), the program would proceed as usual to the next address in field `(N)`. 
+
+It's reasonable to assume that standard training on the RPC-4000 included only this variant of the `TBC` usage, being an essential part of computer programming. Thus, it's also reasonable to assume that Ed Nather was surprised to find a `TBC` instruction without the necessary preceding test.
+
+Instead of running a test, Mel kept incrementing the value of the `(A)` field, as described in the story. This eventually led to an overflow of the entire register, provided the index register bit `(X)` was on - exactlly as written in the story. Using `101` as the `TBC` opcode yields the following sequence:
+
+             1111111101             
+        MSB <----------> LSB                                
+
+        +    0000001000  
+        ====================
+             0000000101
+        MSB <----------> LSB 
+
+        +     OVERFLOW
 
 The overflow would toggle the `BCU` on, causing the heretofore ineffective `TBC` to transfer control to the address in the (A) field, which was `0`. If Ed Nather was not familiar with the overflow aspect of the `BCU`, then his reading of the code would indeed lead to the diagnosis of a loop without a test. A standard conditional jump consisted of some test, followed by a `TBC` instruction, which would `JUMP` out of the loop only if the test had succeeded. It was quite natural, then, for a RPC-4000 programmer to come across a "free floating" `TBC` instruction, with no preceding test and conclude:
 
