@@ -1,17 +1,16 @@
 {
 	"compilerOptions": {
 		"module": "esnext",
-		"target": "esnext",
+		"target": "es5",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": false,
 		"forceConsistentCasingInFileNames": true,
-		"noEmit": true,
+		"noEmit": false,
 		"esModuleInterop": true,
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
-		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
 		"sourceMap": true
@@ -22,5 +21,5 @@
 		"@theme/*": ["src/theme/*"]
 	},
 	"include": ["next-env.d.ts", "**/**/*.ts", "**/**/*.tsx", "globals.d.ts"],
-	"exclude": ["node_modules", "**/snippets/**", "**/build/**"]
+	"exclude": ["node_modules", "**/snippets/**"]
 }

@@ -26,7 +26,7 @@
 	"private": true,
 	"scripts": {
 		"clean": "rm -rf .next",
-		"dev": "next dev",
+		"dev": "node src/build/prebuild.js && next dev",
 		"build": "next build",
 		"build:sitemap": "next-sitemap",
 		"start": "next start",
