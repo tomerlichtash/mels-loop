@@ -1,10 +1,10 @@
 ---
-title: "Mel's hack - the missing bits"
+title: "Mel's Hack - the Missing Bits"
 author: "(David *)Frenkiel"
 date: Thu Jun 23 2022 01:14:31 GMT+0300
 ---
 
-### A private _Mel moment_
+## A Private _Mel Moment_
 
         When the light went on it nearly blinded me. 
 
@@ -14,7 +14,7 @@ Intellectual satisfaction notwithstanding, I suspect that a considerable part of
 
 It was only while proofing Tomer's annotations to the story, that a certain unease started forming around that self-image of a *real* computer guy, who knows all about registers, addressing modes and overflows. This vague sensation soon evolved into my own "Mel moment", an almost perfect inverse of the original one. Unlike Ed Nather's revelation, which was sudden and gratifying, mine was tedious and annoying. Instead of a light shining suddenly and brightly, I experienced a slow dimming of the mental picture that I had of Mel's hack. Rather than being blinded, the darkness allowed me to see clearly just how sloppy my reading had been. I was so enamoured with with the story, that it never occurred to me to cast any doubt on its feasibility.
 
-### Ed Nather's version
+## Ed Nather's version
 
 Let's briefly go over Ed Nather's now-mythological description of the overflow that modified the code, created a `JUMP` instruction and allowed the program to magically leap out of an endless loop. 
 
@@ -78,7 +78,7 @@ If the index register bit `(X)` is indeed between the two and turned on, then ov
         in address location zero,
         and the program went happily on its way.
 
-### The Unpleasant Truth
+## The Unpleasant Truth
 
 All this is possible in theory, but we still don't know where the `JUMP` instruction takes its operand from. We know that the operand's value must be `0` and it should be ready. The address span `(A)` indeed contains `0`, but nowhere in the description of RPC-4000's architecture, does Nather mention an option of the data address field doubling as an instruction address. The `JUMP` instruction could take its value from some register, but that `0` would have to be stored there beforehand, providing a screaming clue that some operation was being set up.
 
@@ -98,11 +98,11 @@ Thus, any overflow (which progresses toward the MSB) in the bits above the opcod
 
 
 
-### Reconstructing the Hack...
+## Reconstructing the Hack...
 
 Obviously, once we rule out Nather's code flow, all options are on the table, including the possibility that the whole thing is made up. However, it's interesting to speculate about scenarios that resemble the one described in The Story of Mel. Further browsing through the sources that Tomer had collected, revealed that the discrepancy between the story and the machine specs did not escape other Mel enthusiasts. David Nugent's [Excellent Writeup](https://www.freecodecamp.org/news/macho-programmers-drum-memory-and-a-forensic-analysis-of-1960s-machine-code-6c5da6a40244/) discusses the problem, but still suggests a flow with the impossible opcode overflow. The [YCombinator discussion](https://news.ycombinator.com/item?id=20489273) contains an excellent analysis of the problem by "YeGoblynQueenne" \([Stassa Patsantzis](https://github.com/stassa)\), including a brief outline of a mechanism described below.
 
-### A Pure Overflow scenario
+## A Pure Overflow Scenario
 
 It turns out that the architecture of the RPC-4000 does provide for a code layout which would accomplish the feat by using an overflow. Using our simplified bit layout, let's assume that the instruction, at some point, reaches the value:
 
@@ -118,7 +118,7 @@ In this diagram, the opcode doesn't matter, it can be any part of the program lo
 Which would execute opcode `CCC` and then jump to address 0, just as Ed Nather wrote. In the above diagram, the index register bit is set to `0`, so that it would toggle to `1` following the address overflow. This toggle may be the origin of Nather's recollection of seeing the bit turned on for no apparent reason.
 
 
-### ...A Less Romantic Alternative
+## A Less Romantic Alternative
 
 There's another possible scenario, even more compatible with the story and in line with the RPC-4000 specs. This flow is mentioned in [Stassa Patsantzis](https://news.ycombinator.com/item?id=20489273)'s post. It hinges on Ed Nather's partial understanding of the machine's internals. Specifically, two properties of RPC-4000:
 
@@ -161,7 +161,7 @@ This scenario seems closer to the original story: The `JUMP` is there, as well a
 
 Anyone who likes coding can imagine Mel Kaye's reaction, when he read about the path of an overflow triggering a jump. The challenge was immediately obvious. Having run a trivial POC, he naturally proceeded to the next level, causing the overflow at the end of an iterative process, after the data had been drained. This way, he could avoid the standard test at the end of the loop. The stroke of genius was completed when he managed to usefully incorporate this structure into a real-world program. 
 
-### So What You're Saying is...
+## So What You're Saying is...
 
 
 Whichever version you prefer - the number juggling trick or the deviously elegant `TBC` manipulation - it is clear that Ed Nather's account was rooted in faulty memory (and probably a faulty understanding of RPC-4000). This finding does not diminish the story's charm. Most developers can identify with the laborious excavation through another programmer's "impossible" code. The charm of a self-modifying program is still there and the hack, in both implementations, is impressive. 
