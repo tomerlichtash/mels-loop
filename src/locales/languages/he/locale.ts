@@ -82,15 +82,20 @@ export const Locale: Language = {
 	 */
 	MENU_ITEM_LABEL_EXCERPT_SHOW_MORE: "עוד",
 
+	/**
+	 * CONTACT PAGE
+	 */
 	CONTACT_PAGE_TITLE: "צרו קשר",
-	CONTACT_BY_MAIL_TEXT:
-		"בכל שאלה או בעיה ניתן לפנות אלינו גם באימייל aboutmelsloop [at] gmail [dot] com",
-	CONTACT_PAGE_BY_TWITTER_TEXT: "עקבו אחרינו בטוויטר",
-	CONTACT_PAGE_BY_GITHUB_TEXT: "",
+	CONTACT_PAGE_SUBTITLE: "נשמח לשמוע ממך בכל עניין!",
+	CONTACT_PAGE_TEXT1:
+		"קהילת ההאקינג של לולאת מל אט אט גדלה ונשמח לשמוע ממך רעיונות, הצעות, מחשבות ופידבקים. יש להשתמש בטופס כדי ליצור עמנו קשר, ונחזור אליך דרך אימייל. ניתן גם לכתוב לנו ישירות דרך האימייל about@melsloop.com.",
 
 	/**
 	 * CONTACT FORM
 	 */
+	CONTACT_FORM_FORM_TITLE: "טופס יצירת קשר",
+	CONTACT_FORM_FORM_SUBTITLE:
+		"יש למלא את הטופס, בכל עניין, ונחזור אליך בהקדם האפשרי.",
 	CONTACT_FORM_LABEL_FULLNAME: "שם מלא",
 	CONTACT_FORM_LABEL_EMAIL: "אימייל",
 	CONTACT_FORM_LABEL_MESSAGE: "הודעה",

@@ -87,16 +87,17 @@ export const Locale: Language = {
 	 * CONTACT PAGE
 	 */
 	CONTACT_PAGE_TITLE: "Contact Us",
-	CONTACT_BY_MAIL_TEXT:
-		"For any question, suggestion, correction or, well, anything, please contact us via email at aboutmelsloop [dot] gmail [dot] com",
-	CONTACT_PAGE_BY_TWITTER_TEXT:
-		"Send a direct message over [Twitter](@aboutmelsloop).",
-	CONTACT_PAGE_BY_GITHUB_TEXT:
-		"Find this website source code and its entire content over at Github",
+	CONTACT_PAGE_SUBTITLE:
+		"We’d love to hear from you about anything and everything!",
+	CONTACT_PAGE_TEXT1:
+		"As our community of developers and hackers is growing we'd love to hear your thoguhts, ideas, recommendations and feedbacks. Use this contact form to deliver your message directly to us, and we will get back to you shortly via e-mail. You're also welcome to e-mail us at about@melsloop.com.",
 
 	/**
 	 * CONTACT FORM
 	 */
+	CONTACT_FORM_FORM_TITLE: "Contact Form",
+	CONTACT_FORM_FORM_SUBTITLE:
+		"Please fill in this form and we will get back to you regarding any issue.",
 	CONTACT_FORM_LABEL_FULLNAME: "Your Name",
 	CONTACT_FORM_LABEL_EMAIL: "Your Email",
 	CONTACT_FORM_LABEL_MESSAGE: "Message",
@@ -119,13 +120,7 @@ export const Locale: Language = {
 	/**
 	 * CAPTCHA
 	 */
-	CAPTCHA_SUBMIT_BUTTON_TOOLTIP_TEXT: "before sending please validate",
-
-	// TWITTER_URL: "https://twitter.com/",
-	// GITHUB_URL: "https://github.com/",
-	// EMAIL_URL: "aboutmelsloop@gmail.com",
-	// TWITTER_ACCOUNT_NAME: "aboutmelsloop",
-	// GITHUB_ACCOUNT_NAME: "tomerlichtash/mels-loop",
+	CAPTCHA_SUBMIT_BUTTON_TOOLTIP_TEXT: "Please validate you're not a robot",
 
 	/**
 	 * OTHER
