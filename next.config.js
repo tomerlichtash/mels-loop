@@ -5,7 +5,7 @@ const {
 	applyWebpackConfigStylableExcludes,
 } = require("@stylable/webpack-plugin");
 
-const StylableOptimizer = require("@stylable/optimizer");
+const StylableOptimizer = require("@stylable/optimizer").StylableOptimizer;
 const stylableOptimizer = new StylableOptimizer();
 
 const nextConfig = {
@@ -27,10 +27,6 @@ const nextConfig = {
 		config.plugins.push(
 			new StylableWebpackPlugin({
 				optimizer: stylableOptimizer,
-				// optimize: {
-				// 	shortNamespaces: false,
-				// 	classNameOptimizations: false,
-				// },
 				/* let NextJS handle assets */
 				filterAssets: () => false,
 				/* output CSS to the correct location */
