@@ -33,3 +33,47 @@
 	background: none;
 	font-family: inherit;
 }
+
+@font-face {
+	font-family: 'Roboto Slab';
+	src: url('../../../public/assets/fonts/roboto-slab/RobotoSlab-Regular.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Roboto Slab';
+	src: url('../../../public/assets/fonts/roboto-slab/RobotoSlab-Medium.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Roboto Slab';
+	src: url('../../../public/assets/fonts/roboto-slab/RobotoSlab-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Assistant';
+	src: url('../../../public/assets/fonts/assistant/Assistant-Regular.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Assistant';
+	src: url('../../../public/assets/fonts/assistant/Assistant-SemiBold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Assistant';
+	src: url('../../../public/assets/fonts/assistant/Assistant-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
