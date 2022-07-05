@@ -1672,6 +1672,27 @@
     postcss-safe-parser "^6.0.0"
     postcss-value-parser "^4.2.0"
 
+"@stylable/core@^4.13.3":
+  version "4.13.3"
+  resolved "https://registry.yarnpkg.com/@stylable/core/-/core-4.13.3.tgz#0eac816dfaf513ea813421fc907699277e666e7e"
+  integrity sha512-+IzFx3fW2nkR04YoBiNKwvL9Ndr2Bt/64Wzc+iclJsWk2V2q4Row1xmRNU5tsiXfUYmcc0fFjSrpvVXZZfrJjA==
+  dependencies:
+    "@tokey/css-selector-parser" "^0.6.0"
+    "@tokey/imports-parser" "^0.1.0"
+    balanced-match "^2.0.0"
+    css-selector-tokenizer "^0.8.0"
+    cssesc "^3.0.0"
+    deindent "^0.1.0"
+    enhanced-resolve "^5.9.3"
+    is-vendor-prefixed "^4.0.0"
+    lodash.clonedeep "^4.5.0"
+    lodash.clonedeepwith "^4.5.0"
+    postcss "^8.4.14"
+    postcss-js "^4.0.0"
+    postcss-nested "^5.0.6"
+    postcss-safe-parser "^6.0.0"
+    postcss-value-parser "^4.2.0"
+
 "@stylable/module-utils@^4.13.2":
   version "4.13.2"
   resolved "https://registry.yarnpkg.com/@stylable/module-utils/-/module-utils-4.13.2.tgz#ac4e611ac955ad7fffa2f885d0d92a8b4ebc92b3"
@@ -1699,6 +1720,16 @@
     "@tokey/css-selector-parser" "^0.6.0"
     csso "^5.0.3"
     postcss "^8.4.13"
+
+"@stylable/optimizer@^4.13.3":
+  version "4.13.3"
+  resolved "https://registry.yarnpkg.com/@stylable/optimizer/-/optimizer-4.13.3.tgz#4d15393c83fd442582a5a2b9c49aed43e45d4d0f"
+  integrity sha512-6NtkUceiFarUolGeqwuQTKmYcz4YoKJ1GMkAoakyjgAycAcJE1teuO0JUmrotbMMgNDNH6bQIcQe9dXcTJDoDQ==
+  dependencies:
+    "@stylable/core" "^4.13.3"
+    "@tokey/css-selector-parser" "^0.6.0"
+    csso "^5.0.3"
+    postcss "^8.4.14"
 
 "@stylable/runtime@^4.13.2":
   version "4.13.2"
@@ -3970,7 +4001,7 @@ postcss@8.4.5:
     picocolors "^1.0.0"
     source-map-js "^1.0.1"
 
-postcss@^8.4.13:
+postcss@^8.4.13, postcss@^8.4.14:
   version "8.4.14"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.14.tgz#ee9274d5622b4858c1007a74d76e42e56fd21caf"
   integrity sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==
