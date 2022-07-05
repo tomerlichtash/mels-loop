@@ -34,6 +34,9 @@
 	font-family: inherit;
 }
 
+/**
+	Roboto Slab
+*/
 @font-face {
 	font-family: 'Roboto Slab';
 	src: url('../../../public/assets/fonts/roboto-slab/RobotoSlab-Regular.woff2') format('woff2');
@@ -56,6 +59,9 @@
 	font-display: swap;
 }
 
+/**
+	Assistant
+*/
 @font-face {
 	font-family: 'Assistant';
 	src: url('../../../public/assets/fonts/assistant/Assistant-Regular.woff2') format('woff2');
