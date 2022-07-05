@@ -75,3 +75,8 @@
 	/* padding: 2rem 2rem 0; */
 	/* border-radius: 4px; */
 }
+
+/* .scrambleEmailAddress {
+	unicode-bidi: bidi-override;
+	direction: rtl;
+} */

@@ -5,11 +5,8 @@ import { NextPage } from "next";
 import { IPageProps } from "../interfaces/models";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import ContactForm from "../components/contact-form";
-import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
-import { st, classes } from "./page-base.st.css";
-import Link from "next/link";
+import { classes } from "./page-base.st.css";
 import { Button } from "../components/ui";
-// import { st, classes } from "./contact.st.css";
 
 const Contact: NextPage<IPageProps> = () => {
 	const { translate, siteTitle, siteSubtitle, pageName } =
@@ -26,41 +23,41 @@ const Contact: NextPage<IPageProps> = () => {
 				<h1 className={classes.heading3}>{translate("CONTACT_PAGE_TITLE")}</h1>
 
 				<h2 className={classes.title}>
-					We’d love to hear from you about anything and everything
+					We’d love to hear from you about anything and everything!
 				</h2>
 				<p className={classes.paragraph}>
-					Use this contact form to deliver your message straight to us, and we
-					will get back to you shortly via email. We haven’t missed a single
-					message yet!
-					{/* Or maybe the answer to your question is on our FAQ and
-					useful information Page. */}
+					As our community of developers and hackers is growing we'd love to
+					hear your thoguhts, ideas, recommendations and feedbacks. Use this
+					contact form to deliver your message directly to us, and we will get
+					back to you shortly via e-mail.
 				</p>
 
 				<div className={classes.section}>
 					<h3 className={classes.heading3}>Contact Form</h3>
 					<p className={classes.paragraph}>
 						Please fill in this form and we will get back to you regarding any
-						issue. Alternately, you can e-mail us at{" "}
-						<code className={classes.code}>
-							<strong>aboutmelsloop</strong>[at]<strong>gmail</strong>[dot]
-							<strong>com</strong>
-						</code>
-						, or message us over Twitter at{" "}
+						issue.
+						{/* You're also welcome to e-mail us at{" "}
+						<code className={classes.scrambleEmailAddress}>
+							<em>about&#64;melsloop.com</em>
+						</code>{" "}
+						or{" "}
 						<Button
 							link="https://twitter.com/aboutmelsoop"
 							target="_blank"
 							className={classes.button}
 						>
-							@aboutmelsloop
+							message us on Twitter
 						</Button>
+						. */}
 					</p>
 					<ContactForm className={classes.form} translate={translate} />
 				</div>
 
-				<p className={classes.paragraph}>
-					Found a bug? A typo? A problem? Please <GitHubLogoIcon />
-					<a href="#">open an issue on Github</a>.
-				</p>
+				{/* <p className={classes.paragraph}>
+					Found a bug? A typo? Want to report a problem? You're most invited to
+					participate now and <a href="#">open an issue on Github</a>.
+				</p> */}
 			</article>
 		</Layout>
 	);
