@@ -1,27 +1,15 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
-import { GetStaticProps, NextPage } from "next";
-import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
-import { mlUtils } from "../lib/ml-utils";
-import { usePageData } from "../components/usePageData";
-import {
-	IMLParsedNode,
-	IPageProps,
-	IParsedPageData,
-} from "../interfaces/models";
+import { NextPage } from "next";
+import { IPageProps } from "../interfaces/models";
 import { ReactLocaleContext } from "../contexts/locale-context";
-import { LoadFolderModes } from "../interfaces/parser";
-import { ContentComponent } from "../components/content";
+import ContactForm from "../components/contact-form";
 import { classes } from "./page-base.st.css";
 
-const Contact: NextPage<IPageProps> = (props) => {
-	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
-	const { pageData } = usePageData(props);
-	const page = pageData[0] || ({} as IParsedPageData);
-	const elements: IMLParsedNode[] = page.parsed || [];
-	const { metaData } = pageData[0];
+const Contact: NextPage<IPageProps> = () => {
+	const { translate, siteTitle, siteSubtitle, pageName } =
+		useContext(ReactLocaleContext);
 
 	return (
 		<Layout>
@@ -31,26 +19,20 @@ const Contact: NextPage<IPageProps> = (props) => {
 				</title>
 			</Head>
 			<article className={classes.root}>
-				<h1 className={classes.title}>{metaData.title}</h1>
-				{elements.map((node) => {
-					return (
-						<ContentComponent
-							key={mlUtils.uniqueId()}
-							componentData={{ node }}
-							className={classes.contentComponent}
-						/>
-					);
-				})}
+				<h1 className={classes.heading3}>{translate("CONTACT_PAGE_TITLE")}</h1>
+				<h2 className={classes.title}>{translate("CONTACT_PAGE_SUBTITLE")}</h2>
+				<p className={classes.paragraph}>{translate("CONTACT_PAGE_TEXT1")}</p>
+				<div className={classes.section}>
+					<h3 className={classes.heading3}>
+						{translate("CONTACT_FORM_FORM_TITLE")}
+					</h3>
+					<p className={classes.paragraph}>
+						{translate("CONTACT_FORM_FORM_SUBTITLE")}
+					</p>
+					<ContactForm className={classes.form} translate={translate} />
+				</div>
 			</article>
 		</Layout>
-	);
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-	return mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.CONTACT,
-		context.locale,
-		LoadFolderModes.FOLDER
 	);
 };
 

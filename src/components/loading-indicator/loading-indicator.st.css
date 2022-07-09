@@ -1,29 +1,17 @@
 @namespace "LoadingIndicator";
 
-.root {
-	display: table;
-	width: 100%;
-	height: 300px;
-	text-align: center;
-}
+.root {}
 
-.loadingContainer {
-	display: table-cell;
-	height: 100%;
-	vertical-align: middle;
-}
+.container {}
 
-.loadingAnimation {
+.animation {
 	background-image: url("/public/assets/ml-logo.png");
 	width: 32px;
 	height: 32px;
 	animation: rotation 2s infinite linear;
-	margin: 0 auto;
 }
 
-.loadingLabel {
-	margin-top: 0.5rem;
-}
+.label {}
 
 .rotate {
 	animation: rotation 2s infinite linear;
