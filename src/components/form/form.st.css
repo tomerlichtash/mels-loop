@@ -1,0 +1,65 @@
+@namespace "Form";
+
+@st-import Field from "./field.st.css";
+@st-import Captcha from "./captcha.st.css";
+@st-import LoadingIndicator from "./../loading-indicator/loading-indicator.st.css";
+
+:vars {
+	fail: #c00;
+	success: #0a0;
+}
+
+.root {}
+
+.form {}
+
+.formTitle {}
+
+.formFooter {
+	/* text-align: right; */
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	align-items: center;
+}
+
+.button {
+	-st-states: disabled(boolean);
+	padding: 0.5rem 2rem;
+	cursor: pointer;
+}
+.button:hover {}
+.button[disabled] {
+	cursor: no-drop;
+	background-color: #808080;
+	color: #303030;
+}
+
+.captchaContainer {
+	width: 304px;
+	height: 76px;
+	margin: 0 9.5rem;
+}
+.captcha {
+	-st-extends: Captcha;
+}
+
+.loadingIndicator {
+	-st-extends: LoadingIndicator;
+}
+
+.field {
+	-st-extends: Field;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+		.captchaContainer {
+			margin: 0 0 1rem;
+		}
+		.formFooter {
+			display: block;
+		}
+	}
+}
+

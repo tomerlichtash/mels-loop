@@ -34,13 +34,9 @@ export const LoadingIndicator = ({
 	}
 	return (
 		<div className={st(classes.root, className)}>
-			<div className={classes.loadingContainer}>
-				<div className={classes.loadingAnimation}></div>
-				{label && (
-					<div className={st(classes.loadingLabel, className)}>
-						{translate(label)}
-					</div>
-				)}
+			<div className={classes.container}>
+				<div className={classes.animation}></div>
+				{label && <div className={classes.label}>{translate(label)}</div>}
 			</div>
 		</div>
 	);
