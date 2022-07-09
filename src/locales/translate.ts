@@ -9,7 +9,7 @@ export const _translate =
 		const ref = lang || langRef;
 		if (!langs[ref]) {
 			return `%${ref}_${key}%`;
-		} else if (!langs[ref][key]) {
+		} else if (!langs[ref][key] || !langs[ref][key].length) {
 			return `%${key}%`;
 		}
 		return langs[ref][key] || `%${key}%`;

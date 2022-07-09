@@ -84,6 +84,45 @@ export const Locale: Language = {
 	MENU_ITEM_LABEL_EXCERPT_SHOW_MORE: "Learn More",
 
 	/**
+	 * CONTACT PAGE
+	 */
+	CONTACT_PAGE_TITLE: "Contact Us",
+	CONTACT_PAGE_SUBTITLE:
+		"We’d love to hear from you about anything and everything!",
+	CONTACT_PAGE_TEXT1:
+		"As our community of developers and hackers is growing we'd love to hear your thoguhts, ideas, recommendations and feedbacks. Use this contact form to deliver your message directly to us, and we will get back to you shortly via e-mail. You're also welcome to e-mail us at about@melsloop.com.",
+
+	/**
+	 * CONTACT FORM
+	 */
+	CONTACT_FORM_FORM_TITLE: "Contact Form",
+	CONTACT_FORM_FORM_SUBTITLE:
+		"Please fill in this form and we will get back to you regarding any issue.",
+	CONTACT_FORM_LABEL_FULLNAME: "Your Name",
+	CONTACT_FORM_LABEL_EMAIL: "Your Email",
+	CONTACT_FORM_LABEL_MESSAGE: "Message",
+	CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER: "Enter your full name here",
+	CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER: "Enter a valid e-mail address",
+	CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER: "Type your message here",
+	CONTACT_FORM_ON_SUCCESS_MESSAGE_SEND_ANOTHER: "send another?",
+	CONTACT_FORM_ON_SUCCESS_MESSAGE_BACK_HOME: "back home?",
+	CONTACT_FORM_ON_FAIL_MESSAGE_TRY_AGAIN: "Send another?",
+	CONTACT_FORM_ON_FAIL_MESSAGE_REPORT_PROBLEM: "Report problem",
+	CONTACT_FORM_INVALID_NAME: "Name cannot be blank",
+	CONTACT_FORM_INVALID_EMAIL: "Please enter a valid e-mail address",
+	CONTACT_FORM_INVALID_MESSAGE: "Message cannot be empty. What's on your mind?",
+	CONTACT_FORM_SUCCESS_MESSAGE: "Your message was sent successfuly!",
+	CONTACT_FORM_SUCCESS_FAIL:
+		"Some error occured and your message was not sent :(",
+	CONTACT_FORM_LABEL_SEND: "Send",
+	CONTACT_FORM_LABEL_SEND_ACTIVE: "Sending...",
+
+	/**
+	 * CAPTCHA
+	 */
+	CAPTCHA_SUBMIT_BUTTON_TOOLTIP_TEXT: "Please validate you're not a robot",
+
+	/**
 	 * OTHER
 	 */
 	NOTE_LABEL_GLOSSARY: "Glossary",

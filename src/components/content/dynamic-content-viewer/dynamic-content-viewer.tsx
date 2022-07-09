@@ -91,7 +91,11 @@ export const DynamicContentViewer = ({
 
 	if (isLoading) {
 		return (
-			<LoadingIndicator label="PRELOADER_LABEL" delay={LOADING_DELAY_MSEC} />
+			<LoadingIndicator
+				label="PRELOADER_LABEL"
+				delay={LOADING_DELAY_MSEC}
+				className={classes.loadingIndicator}
+			/>
 		);
 	}
 

@@ -34,6 +34,7 @@
 
 .root {
 	-st-extends: PageBase;
+	-st-states: type;
 }
 
 .root::title {
@@ -43,6 +44,7 @@
 	);
 }
 
+.root::heading2,
 .root::contentComponent:type(heading_2) {
 	-st-mixin: heading2(
 		HeadingColor value(HeadingColor2),
@@ -50,6 +52,7 @@
 	);
 }
 
+.root::heading3,
 .root::contentComponent:type(heading_3) {
 	-st-mixin: heading3(
 		HeadingColor value(HeadingColor3),
@@ -57,6 +60,7 @@
 	);
 }
 
+.root::heading4,
 .root::contentComponent:type(heading_4) {
 	-st-mixin: heading4(
 		HeadingColor value(HeadingColor4),
@@ -64,6 +68,7 @@
 	);
 }
 
+.root::heading5,
 .root::contentComponent:type(heading_5) {
 	-st-mixin: heading5(
 		HeadingColor value(HeadingColor5),
@@ -71,6 +76,7 @@
 	);
 }
 
+.root::heading6,
 .root::contentComponent:type(heading_6) {
 	-st-mixin: heading6(
 		HeadingColor value(HeadingColor6),
@@ -78,6 +84,7 @@
 	);
 }
 
+.root::paragraph,
 .root::contentComponent:type(paragraph) {
 	-st-mixin: bodyTextNormal(
 		BodyTextColor value(BodyTextColor)
@@ -85,12 +92,26 @@
 	margin-bottom: value(ParagraphMargin);
 }
 
+.root::link,
+.root::link:visited,
+.root::contentComponent:type(link) {
+	color: red;
+}
+.root::link:hover,
+.root::contentComponent:type(link):hover {
+	color: green;
+}
+
+.root::code {
+	color: #303030;
+}
+
+/* Dynamic Parts */
 .root::abstract {
 	-st-mixin: heading3(
 		h3_color value(HeadingColor3)
 	);
 }
-
 .root::meta {
 	-st-mixin: TextNode(
 		TextSize 1.041vmax,
@@ -104,4 +125,12 @@
 }
 .root::date {
 	font-weight: 400;
+}
+
+.root::section {
+	/* border: 1px solid #c0c0c0; */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	padding: 2rem;
+	/* margin: 10px; */
 }

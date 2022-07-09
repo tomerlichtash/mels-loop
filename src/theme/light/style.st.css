@@ -42,6 +42,8 @@
 @st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 @st-import ContentComponent from "../../components/content/content-component.st.css";
 @st-import ContentComponentMixin from "../../components/content/content-component-mixin.st.css";
+@st-import ContactForm from "../../components/contact-form/contact-form.st.css";
+@st-import ContactFormMixin from "../../components/contact-form/contact-form-mixin.st.css";
 
 @st-import [
 	level0,
@@ -272,6 +274,28 @@
 		-st-mixin: DynamicContentViewerMixin(
 			ButtonTextColor value(LINK_TEXT_COLOR),
 			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
+		);
+	}
+
+	ContactForm {
+		-st-mixin: ContactFormMixin(
+			FormSubmitButtonBgColor value(accent1),
+			FormSubmitButtonTextColor value(level1),
+			FormSubmitButtonBgColor_Hover value(accent2),
+			FormSubmitButtonTextColor_Hover value(level1),
+			FormSubmitButtonRadius 4px,
+			FieldLabelTextColor value(level6),
+			FieldLabelIconColor value(level6),
+			FieldLabelBorderRadius 3px,
+			FieldLabelBorderColor value(level4),
+			FieldLabelBorderColor_Focus value(accent1),
+			FieldLabelBorderColor_Success #0a0,
+			FieldLabelBorderColor_Error #c00,
+			FieldInputBgColor_Hover value(level2),
+			/* FieldInputBgColor_Focus value(level3), */
+			FieldInputPlaceholderTextColor value(level5),
+			FieldInputErrorTextColor #c00,
+			FieldInputSuccessTextColor #0a0,
 		);
 	}
 }

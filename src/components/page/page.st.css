@@ -10,7 +10,7 @@
 
 .root {
 	-st-mixin: boxSizing;
-	overflow: hidden;
+	/* overflow: hidden; */
 	margin: 0 auto;
 	min-height: 75vh;
 	max-width: value(pageWidth);
