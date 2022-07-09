@@ -1,0 +1,43 @@
+@namespace "Field";
+
+@st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
+
+.root {}
+
+.label {}
+
+.caption {
+	-st-states: required(boolean);
+}
+
+.icon {}
+
+.text {
+	cursor: pointer;
+	padding: 0 10px;
+}
+
+.inputContainer {}
+
+.input {
+	-st-states: validation(enum(initial, valid, invalid, empty)), tag(enum(input, textarea));
+	-st-mixin: boxSizing, bodyTextNormal;
+	display: block;
+	cursor: pointer;
+	background: none;
+	outline: 1;
+}
+
+.input:active,
+.input:focus {
+	cursor: text;
+}
+
+.error {}
+
+.errorText {}
+
+.errorIcon {}
+
+.checkMark {}

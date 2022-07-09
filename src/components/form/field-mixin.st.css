@@ -1,0 +1,73 @@
+@namespace "Field";
+
+@st-import Field from "./field.st.css";
+
+:vars {
+	LabelTextColor: blue;
+	LabelIconColor: black;
+	LabelBorderColor: black;
+	LabelBorderColor_Focus: black;
+	FieldLabelBorderColor_Success: black;
+	LabelBorderColor_Error: black;
+	LabelBorderRadius: 0;
+	InputBgColor_Hover: #f0f0f0;
+	InputBgColor_Focus: #fff;
+	InputPlaceholderTextColor: #808080;
+	FieldInputErrorTextColor: black;
+	FieldInputSuccessTextColor: black;
+}
+
+.root {
+	-st-extends: Field;
+}
+
+.root::text {
+	color: value(LabelTextColor);
+}
+
+.root::input {
+	border-color: value(LabelBorderColor);
+	border-radius: value(LabelBorderRadius);
+}
+
+.root::input::placeholder {
+	color: value(InputPlaceholderTextColor);
+}
+
+.root::input:hover {
+	background-color: value(InputBgColor_Hover);
+}
+
+.root::input:validation(valid) {
+	border-color: value(FieldLabelBorderColor_Success);
+}
+
+.root::input:validation(invalid) {
+	border-color: value(LabelBorderColor_Error);
+}
+
+.root::input:focus {
+	outline-color: value(LabelBorderColor_Focus);
+	border-color: value(LabelBorderColor_Focus);
+	background-color: value(InputBgColor_Focus);
+}
+
+.root::icon path {
+	color: value(LabelIconColor);
+}
+
+.root::input:-webkit-autofill {
+	background: none;
+}
+
+.root::error {
+	color: value(FieldInputErrorTextColor);
+}
+
+.root::errorIcon path {
+	fill: value(FieldInputErrorTextColor);
+}
+
+.root::checkMark path {
+	fill: value(FieldInputSuccessTextColor);
+}

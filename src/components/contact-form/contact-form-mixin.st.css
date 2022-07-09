@@ -1,0 +1,47 @@
+@namespace "ContactFormMixin";
+
+@st-import ContactForm from "./contact-form.st.css";
+@st-import FormMixin from "../form/form-mixin.st.css";
+
+:vars {
+	FormSubmitButtonBgColor: black;
+	FormSubmitButtonTextColor: white;
+	FormSubmitButtonBgColor_Hover: gray;
+	FormSubmitButtonTextColor_Hover: white;
+	FormSubmitButtonRadius: 0;
+	FieldLabelTextColor: black;
+	FieldLabelIconColor: black;
+	FieldLabelBorderColor: black;
+	FieldLabelBorderColor_Focus: black;
+	FieldLabelBorderColor_Success: black;
+	FieldLabelBorderColor_Error: black;
+	FieldLabelBorderRadius: 0;
+	FieldInputBgColor_Hover: #f0f0f0;
+	FieldInputBgColor_Focus: inherit;
+	FieldInputPlaceholderTextColor: #c0c0c0;
+	FieldInputErrorTextColor: #808080;
+	FieldInputSuccessTextColor: #808080;
+}
+
+.root {
+	-st-extends: ContactForm;
+	-st-mixin: FormMixin(
+		FormSubmitButtonBgColor value(FormSubmitButtonBgColor),
+		FormSubmitButtonTextColor value(FormSubmitButtonTextColor),
+		FormSubmitButtonBgColor_Hover value(FormSubmitButtonBgColor_Hover),
+		FormSubmitButtonTextColor_Hover value(FormSubmitButtonTextColor_Hover),
+		FormSubmitButtonRadius value(FormSubmitButtonRadius),
+		FieldLabelTextColor value(FieldLabelTextColor),
+		FieldLabelIconColor value(FieldLabelIconColor),
+		FieldLabelBorderColor value(FieldLabelBorderColor),
+		FieldLabelBorderColor_Focus value(FieldLabelBorderColor_Focus),
+		FieldLabelBorderColor_Success value(FieldLabelBorderColor_Success),
+		FieldLabelBorderColor_Error value(FieldLabelBorderColor_Error),
+		FieldLabelBorderRadius value(FieldLabelBorderRadius),
+		FieldInputBgColor_Hover value(FieldInputBgColor_Hover),
+		FieldInputBgColor_Focus value(FieldInputBgColor_Focus),
+		FieldInputPlaceholderTextColor value(FieldInputPlaceholderTextColor),
+		FieldInputErrorTextColor value(FieldInputErrorTextColor),
+		FieldInputSuccessTextColor value(FieldInputSuccessTextColor),
+	);
+}

@@ -139,3 +139,14 @@
 		TextColor value(BodyTextColor)
 	);
 }
+
+
+.heading1mixin {
+	-st-mixin: TextNode(
+		TextSize value(h1_size),
+		TextLineHeight value(h1_lineHeight),
+		TextWeight value(h1_weight),
+		TextColor value(h1_color)
+	);
+	margin-bottom: 1.302vmax;
+}
