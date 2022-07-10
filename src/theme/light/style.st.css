@@ -42,10 +42,8 @@
 @st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 @st-import ContentComponent from "../../components/content/content-component.st.css";
 @st-import ContentComponentMixin from "../../components/content/content-component-mixin.st.css";
-
 @st-import ContactForm from "../../components/contact-form/contact-form.st.css";
 @st-import ContactFormMixin from "../../components/contact-form/contact-form-mixin.st.css";
-
 
 @st-import [
 	level0,

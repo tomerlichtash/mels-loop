@@ -27,7 +27,7 @@
 	"scripts": {
 		"clean": "rm -rf .next",
 		"dev": "next dev",
-		"build": "next build",
+		"build": "yarn clean && next build",
 		"build:sitemap": "next-sitemap",
 		"start": "next start",
 		"lint": "eslint . -f codeframe",
@@ -55,9 +55,10 @@
 		"tmp": "^0.2.1"
 	},
 	"devDependencies": {
-		"@next/env": "^12.2.1",
-		"@next/eslint-plugin-next": "^12.2.1",
+		"@next/env": "^12.1.6",
+		"@next/eslint-plugin-next": "^12.1.6",
 		"@stylable/core": "^4.13.3",
+		"@stylable/optimizer": "^4.13.3",
 		"@stylable/webpack-plugin": "^4.13.3",
 		"@svgr/webpack": "^6.2.1",
 		"@types/js-cookie": "^3.0.2",
