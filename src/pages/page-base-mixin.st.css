@@ -30,6 +30,8 @@
 	SectionMargin: 2rem;
 	ParagraphMargin: 2rem;
 	ContentHeaderMetaBorderColor: #c0c0c0;
+	LinkColor: red;
+	LinkColor_Hover: green;
 }
 
 .root {
@@ -95,11 +97,11 @@
 .root::link,
 .root::link:visited,
 .root::contentComponent:type(link) {
-	color: red;
+	color: value(LinkColor);
 }
 .root::link:hover,
 .root::contentComponent:type(link):hover {
-	color: green;
+	color: value(LinkColor_Hover);
 }
 
 .root::code {
