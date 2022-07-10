@@ -33,8 +33,3 @@
 	background: none;
 	font-family: inherit;
 }
-
-:global(input),
-:global(textarea) {
-	font-family: inherit;
-}
