@@ -7,12 +7,11 @@ import { classes } from "./_error.st.css";
 
 const CustomError: NextPage = () => {
 	const { siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
+	const pageTitle = `${siteTitle} - ${siteSubtitle}`;
 	return (
 		<Layout>
 			<Head>
-				<title>
-					{siteTitle} - ${siteSubtitle}
-				</title>
+				<title>{pageTitle}</title>
 			</Head>
 			<div className={classes.root}>
 				<h1>Error</h1>

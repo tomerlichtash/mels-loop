@@ -29,12 +29,11 @@ export default function GlossaryTerm(props: IPageProps) {
 		line: -1,
 		type: MLNODE_TYPES.UNKNOWN,
 	};
+	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${metaData?.title}`;
 	return (
 		<Layout>
 			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {metaData?.title}
-				</title>
+				<title>{pageTitle}</title>
 			</Head>
 			<article className={classes.root}>
 				<Button
