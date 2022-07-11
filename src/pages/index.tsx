@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import Head from "next/head";
+import React from "react";
 import Layout from "../components/layout";
 import { GetStaticProps, NextPage } from "next";
 import {
@@ -9,7 +8,6 @@ import {
 } from "../interfaces/models";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
-import { ReactLocaleContext } from "../contexts/locale-context";
 import {
 	LoadContentModes,
 	LoadFolderModes,
@@ -20,23 +18,20 @@ import { usePageData } from "../components/usePageData";
 import { ContentComponent } from "../components/content";
 import { mlUtils } from "../lib/ml-utils";
 import { classes as basePageClasses } from "../pages/page-base.st.css";
+import PageSEO from "../components/page-seo";
 import { st, classes } from "./index.st.css";
 
 const Index: NextPage<IPageProps> = (props) => {
-	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
 	const { metaData } = pageData[0];
 	const { title, moto, credits } = metaData;
 	const elements: IMLParsedNode[] = page.parsed || [];
-	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${pageName}`;
 
 	return (
 		<Layout>
-			<Head>
-				<title>{pageTitle}</title>
-			</Head>
+			<PageSEO />
 			<article className={basePageClasses.root}>
 				<h1 className={basePageClasses.title}>{title}</h1>
 				<div className={classes.root}>

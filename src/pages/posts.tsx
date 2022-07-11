@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Head from "next/head";
 import Layout from "../components/layout/layout";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { GetStaticProps } from "next";
@@ -11,18 +10,15 @@ import { ReactLocaleContext } from "../contexts/locale-context";
 import orderBy from "lodash.orderby";
 import { mlUtils } from "../lib/ml-utils";
 import { classes } from "./posts.st.css";
+import PageSEO from "../components/page-seo";
 import Post from "../components/post";
 
 export default function Blog(props: IPageProps) {
-	const { locale, siteTitle, siteSubtitle, pageName, sectionName } =
-		useContext(ReactLocaleContext);
+	const { locale, sectionName } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
-	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${pageName}`;
 	return (
 		<Layout>
-			<Head>
-				<title>{pageTitle}</title>
-			</Head>
+			<PageSEO />
 			<div className={classes.root}>
 				<h1 className={classes.sectionTitle}>{sectionName}</h1>
 				{orderBy(pageData, ["metaData.date"], ["desc"]).map(

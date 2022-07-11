@@ -4,7 +4,6 @@ import { CONTENT_TYPES } from "../../consts";
 import { mlNextUtils } from "../../lib/next-utils";
 import { LoadFolderModes } from "../../interfaces/parser";
 import Layout from "../../components/layout";
-import Head from "next/head";
 import { usePageData } from "../../components/usePageData";
 import { Button } from "../../components/ui";
 import { mlUtils } from "../../lib/ml-utils";
@@ -12,21 +11,18 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { useContext } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Post from "../../components/post";
+import PageSEO from "../../components/page-seo";
 // import { classes } from "../../pages/page-base.st.css";
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
-	const { locale, siteTitle, siteSubtitle, translate, textDirection } =
-		useContext(ReactLocaleContext);
+	const { locale, translate, textDirection } = useContext(ReactLocaleContext);
 	const { metaData, path } = page;
 	const { title, date } = metaData;
-	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${metaData?.title}`;
 	return (
 		<Layout>
-			<Head>
-				<title>{pageTitle}</title>
-			</Head>
+			<PageSEO title={metaData?.title} />
 			<Button
 				label={translate("POSTS_BACK_TO_POSTS_LIST")}
 				icon={

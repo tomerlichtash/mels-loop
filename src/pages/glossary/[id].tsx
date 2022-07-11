@@ -10,16 +10,16 @@ import {
 	MLNODE_TYPES,
 } from "../../interfaces/models";
 import Layout from "../../components/layout";
-import Head from "next/head";
 import { ContentIterator } from "../../components/content/content-iterator";
 import { usePageData } from "../../components/usePageData";
 import { classes } from "./glossary-item.st.css";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { Button } from "../../components/ui";
+import PageSEO from "../../components/page-seo";
 import Bibliography from "../../components/bibliography";
 
 export default function GlossaryTerm(props: IPageProps) {
-	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
+	const { translate } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;
@@ -29,12 +29,9 @@ export default function GlossaryTerm(props: IPageProps) {
 		line: -1,
 		type: MLNODE_TYPES.UNKNOWN,
 	};
-	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${metaData?.title}`;
 	return (
 		<Layout>
-			<Head>
-				<title>{pageTitle}</title>
-			</Head>
+			<PageSEO title={metaData?.title} />
 			<article className={classes.root}>
 				<Button
 					className={classes.title}
