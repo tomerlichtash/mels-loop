@@ -15,12 +15,11 @@ const Docs: NextPage<IPageProps> = (props) => {
 	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { metaData } = usePageData(props);
+	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${pageName}`;
 	return (
 		<Layout>
 			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {pageName}
-				</title>
+				<title>{pageTitle}</title>
 			</Head>
 			<article className={st(classes.root, className)}>
 				<h1 className={classes.title}>{pageName}</h1>

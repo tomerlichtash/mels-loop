@@ -17,12 +17,11 @@ export default function Blog(props: IPageProps) {
 	const { locale, siteTitle, siteSubtitle, pageName, sectionName } =
 		useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
+	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${pageName}`;
 	return (
 		<Layout>
 			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {pageName}
-				</title>
+				<title>{pageTitle}</title>
 			</Head>
 			<div className={classes.root}>
 				<h1 className={classes.sectionTitle}>{sectionName}</h1>

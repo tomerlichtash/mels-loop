@@ -16,13 +16,11 @@ const Glossary: NextPage<IPageProps> = (props) => {
 		useContext(ReactLocaleContext);
 	const { className } = props;
 	const { metaData } = usePageData(props);
-	// If the props changed, due to locale change, reparse the content
+	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${pageName}`;
 	return (
 		<Layout>
 			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {pageName}
-				</title>
+				<title>{pageTitle}</title>
 			</Head>
 			<article className={st(classes.root, className)}>
 				<h1 className={classes.title}>{pageName}</h1>

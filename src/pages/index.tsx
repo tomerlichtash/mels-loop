@@ -30,13 +30,12 @@ const Index: NextPage<IPageProps> = (props) => {
 	const { metaData } = pageData[0];
 	const { title, moto, credits } = metaData;
 	const elements: IMLParsedNode[] = page.parsed || [];
+	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${pageName}`;
 
 	return (
 		<Layout>
 			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {pageName}
-				</title>
+				<title>{pageTitle}</title>
 			</Head>
 			<article className={basePageClasses.root}>
 				<h1 className={basePageClasses.title}>{title}</h1>
