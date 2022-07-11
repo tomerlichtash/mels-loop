@@ -21,13 +21,11 @@ export default function Doc(props: IPageProps) {
 		useContext(ReactLocaleContext);
 	const { metaData, path } = page;
 	const { title, date } = metaData;
-
+	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${metaData?.title}`;
 	return (
 		<Layout>
 			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {metaData?.title}
-				</title>
+				<title>{pageTitle}</title>
 			</Head>
 			<Button
 				label={translate("POSTS_BACK_TO_POSTS_LIST")}

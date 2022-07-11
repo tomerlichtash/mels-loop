@@ -18,18 +18,15 @@ import { classes } from "./page-base.st.css";
 
 const About: NextPage<IPageProps> = (props) => {
 	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
-
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
 	const { metaData } = pageData[0];
-
+	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${pageName}`;
 	return (
 		<Layout>
 			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {pageName}
-				</title>
+				<title>{pageTitle}</title>
 			</Head>
 			<article className={classes.root}>
 				<h1 className={classes.title}>{metaData.title}</h1>

@@ -10,13 +10,11 @@ import { classes } from "./page-base.st.css";
 const Contact: NextPage<IPageProps> = () => {
 	const { translate, siteTitle, siteSubtitle, pageName } =
 		useContext(ReactLocaleContext);
-
+	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${pageName}`;
 	return (
 		<Layout>
 			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {pageName}
-				</title>
+				<title>{pageTitle}</title>
 			</Head>
 			<article className={classes.root}>
 				<h1 className={classes.heading3}>{translate("CONTACT_PAGE_TITLE")}</h1>
