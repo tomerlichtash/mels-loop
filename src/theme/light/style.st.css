@@ -109,7 +109,7 @@
 			PostTitleBorderColor value(level3),
 			PostTextColor value(level6),
 			PostDateTextColor value(BODY_TEXT_COLOR),
-			BlogPostShadow value(shadow3)
+			/* BlogPostShadow value(shadow3) */
 		);
 	}
 
@@ -152,7 +152,7 @@
 			ItemLabelTextSize 1rem,
 			ItemLabelLineHeight 0.25rem,
 			ItemLabelTextWeight 500,
-			ItemSubtitleLineHeight 1rem,
+			/* ItemSubtitleLineHeight 1rem, */
 			ItemSubtitleTextSize 0.85rem,
 			ItemLabelIconMargin 0.35rem,
 			ViewPortShadow value(shadow1),
@@ -169,7 +169,7 @@
 			ItemPadding 1rem,
 			ItemLabelTextSize 1rem,
 			ItemLabelTextWeight 500,
-			ItemSubtitleLineHeight 1.5rem,
+			/* ItemSubtitleLineHeight 1.5rem, */
 			ItemSubtitleTextSize 0.75rem,
 			ItemBorderColor value(level6),
 			ItemSubtitleTextColor value(level0),
@@ -242,8 +242,8 @@
 
 	Bibliography {
 		-st-mixin: BibliographyMixin(
-			BibliographyBgColor value(level2),
-			BibliographyBorderColor value(level4),
+			/* BibliographyBgColor value(level2),
+			BibliographyBorderColor value(level4), */
 			/* ButtonTextSize 12px, */
 			ButtonTextColor value(LINK_TEXT_COLOR),
 			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
@@ -273,10 +273,7 @@
 	}
 
 	DynamicContentViewer {
-		-st-mixin: DynamicContentViewerMixin(
-			ButtonTextColor value(LINK_TEXT_COLOR),
-			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
-		);
+		-st-mixin: DynamicContentViewerMixin;
 	}
 
 	ContactForm {

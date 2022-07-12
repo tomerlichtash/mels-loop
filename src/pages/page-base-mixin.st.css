@@ -42,7 +42,7 @@
 .root::title {
 	-st-mixin: heading1(
 		HeadingColor value(HeadingColor1),
-		h1_margin value(Heading1Margin)
+		/* h1_margin value(Heading1Margin) */
 	);
 }
 
@@ -74,7 +74,7 @@
 .root::contentComponent:type(heading_5) {
 	-st-mixin: heading5(
 		HeadingColor value(HeadingColor5),
-		h4_margin value(Heading5Margin)
+		/* h4_margin value(Heading5Margin) */
 	);
 }
 
@@ -82,7 +82,7 @@
 .root::contentComponent:type(heading_6) {
 	-st-mixin: heading6(
 		HeadingColor value(HeadingColor6),
-		h5_margin value(Heading6Margin)
+		/* h5_margin value(Heading6Margin) */
 	);
 }
 
