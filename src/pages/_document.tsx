@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { fontFacesLinks } from "../site-fonts";
+import { fontFaceLinks } from "../site-fonts";
 import { classes as LightTheme } from "../theme/light/style.st.css";
 
 const themes = {
@@ -10,7 +10,7 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html>
-				<Head>{fontFacesLinks}</Head>
+				<Head>{fontFaceLinks}</Head>
 				<body className={themes.light[0]}>
 					<Main />
 					<NextScript />
