@@ -1,7 +1,13 @@
 @namespace "LightTheme";
 
+@st-import PageBase from "../../pages/page-base.st.css";
+@st-import PageBaseMixin from "../../pages/page-base-mixin.st.css";
+@st-import Posts from "../../pages/posts.st.css";
+@st-import PostsMixin from "../../pages/posts-mixin.st.css";
 @st-import StoryPage from "../../pages/index.st.css";
 @st-import StoryPageMixin from "../../pages/index-mixin.st.css";
+@st-import Post from "../../components/post/post.st.css";
+@st-import PostMixin from "../../components/post/post-mixin.st.css";
 @st-import Scrollbar from "../../components/scrollbar/scrollbar.st.css";
 @st-import ScrollbarMixin from "../../components/scrollbar/scrollbar-mixin.st.css";
 @st-import Layout from "../../components/layout/layout.st.css";
@@ -26,12 +32,18 @@
 @st-import CopyUrlButtonTriggerMixin from "../../components/copy-button/copy-url-button-trigger-mixin.st.css";
 @st-import CopyUrlButtonContent from "../../components/copy-button/copy-url-button-content.st.css";
 @st-import CopyUrlButtonContentMixin from "../../components/copy-button/copy-url-button-content-mixin.st.css";
-@st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
-@st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 @st-import Note from "../../components/note/note.st.css";
 @st-import NoteMixin from "../../components/note/note-mixin.st.css";
 @st-import Bibliography from "../../components/bibliography/bibliography.st.css";
 @st-import BibliographyMixin from "../../components/bibliography/bibliography-mixin.st.css";
+@st-import AnnotationLink from "../../components/content/content-blocks/annotation-link/annotation-link.st.css";
+@st-import AnnotationLinkMixin from "../../components/content/content-blocks/annotation-link/annotation-link-mixin.st.css";
+@st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
+@st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
+@st-import ContentComponent from "../../components/content/content-component.st.css";
+@st-import ContentComponentMixin from "../../components/content/content-component-mixin.st.css";
+@st-import ContactForm from "../../components/contact-form/contact-form.st.css";
+@st-import ContactFormMixin from "../../components/contact-form/contact-form-mixin.st.css";
 
 @st-import [
 	level0,
@@ -43,20 +55,61 @@
 	level6,
 	level7,
 	level8,
-	primary4,
-	primary3,
-	primary2,
 	primary1,
+	primary1_1,
+	primary2,
+	primary3,
+	primary4,
 	accent1,
 	accent2,
 	accent3,
-	accent4
+	accent4,
+	shadow1,
+	shadow3,
+	BODY_TEXT_COLOR,
+	LINK_TEXT_COLOR,
+	LINK_TEXT_COLOR_HOVER
 ] from "./vars.st.css";
 
 @st-scope .root {
+	ContentComponent {
+		-st-mixin: ContentComponentMixin(
+			LinkColor value(LINK_TEXT_COLOR),
+			LinkColor_Hover value(LINK_TEXT_COLOR_HOVER)
+		);
+	}
+
+	PageBase {
+		-st-mixin: PageBaseMixin(
+			HeadingColor1 value(level7),
+			HeadingColor2 value(level6),
+			HeadingColor3 value(level6),
+			BodyTextColor value(BODY_TEXT_COLOR),
+			ContentHeaderMetaBorderColor value(level4),
+			LinkColor value(LINK_TEXT_COLOR),
+			LinkColor_Hover value(LINK_TEXT_COLOR_HOVER)
+		);
+	}
+
 	StoryPage {
 		-st-mixin: StoryPageMixin(
-			MotoTextColor value(level5)
+			MotoTextColor value(level5),
+			TextColor value(BODY_TEXT_COLOR)
+		);
+	}
+
+	Posts {
+		-st-mixin: PostsMixin(
+		);
+	}
+	Post {
+		-st-mixin: PostMixin(
+			PostTitleColor value(LINK_TEXT_COLOR),
+			PostTitleColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			PostTitleBorderColor value(level3),
+			PostTextColor value(level6),
+			PostDateTextColor value(BODY_TEXT_COLOR),
+			/* BlogPostShadow value(shadow3) */
 		);
 	}
 
@@ -74,32 +127,65 @@
 
 	TopBar {
 		-st-mixin: TopBarMixin(
-			BgColor value(level3)
+			BgColor value(level2),
+			SiteTitleLinkTextColor value(level8),
+			SiteLogoBgProps url(//public/favicon-temp.png),
 		);
 	}
 
 	TopBarMenu {
 		-st-mixin: TopBarMenuMixin(
-			LinkTitleTextColor value(primary3),
-			LinkSubtitleTextColor value(level6),
-			LinkTextColorHover value(primary3),
-			LinkBgColorHover value(level3),
-			MenuTriggerBgColorHover value(level4),
 			ArrowColor value(level0),
-			ViewPortBgColor value(level1)
+			ViewPortBgColor value(level1),
+			TriggerTextColor value(level8),
+			TriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			TriggerBgColorHover value(level4),
+			TriggerPadding 0 6px,
+			TriggerLabelLineHeight 32px,
+			TriggerTextSize 1rem,
+			TriggerRadius 6px,
+			ItemTextColor value(LINK_TEXT_COLOR),
+			ItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			ItemBgColor_Hover value(level3),
+			ItemPadding 1rem,
+			ItemRadius 6px,
+			ItemLabelTextSize 1rem,
+			ItemLabelLineHeight 0.25rem,
+			ItemLabelTextWeight 500,
+			/* ItemSubtitleLineHeight 1rem, */
+			ItemSubtitleTextSize 0.85rem,
+			ItemLabelIconMargin 0.35rem,
+			ViewPortShadow value(shadow1),
+			AbstractTextColor value(level6)
 		);
 	}
 
 	MobileMenu {
 		-st-mixin: MobileMenuMixin(
+			BgColor value(level7),
+			ItemTextColor value(primary1_1),
+			ItemTextColor_Hover value(primary1_1),
+			ItemBgColor_Hover value(level8),
+			ItemPadding 1rem,
+			ItemLabelTextSize 1rem,
+			ItemLabelTextWeight 500,
+			/* ItemSubtitleLineHeight 1.5rem, */
+			ItemSubtitleTextSize 0.75rem,
+			ItemBorderColor value(level6),
+			ItemSubtitleTextColor value(level0),
+			SectionTitleColor value(level5),
+			LocaleSelectorItemTextColor value(level4),
+			LocaleSelectorSelectedItemBgColor value(primary1),
 			StripGradientStartColor value(primary1),
 			StripGradientMidColor value(primary3),
-			StripGradientEndColor value(primary4)
+			StripGradientEndColor value(primary4),
+			HeaderLogoProps url(//public/favicon-light-temp.png)
 		);
 	}
 
 	LocaleSelector {
 		-st-mixin: LocaleSelectorMixin(
+			ItemTextColor value(level7),
 			SelectedItemTextColor value(level8),
 			ContainerBorderColor value(level4),
 			ItemBgColorHover value(level5),
@@ -118,19 +204,17 @@
 	SiteFooter {
 		-st-mixin: SiteFooterMixin(
 			BackgroundColor value(level2),
-			Padding 0,
 			StripGradientStartColor value(primary1),
 			StripGradientMidColor value(primary3),
 			StripGradientEndColor value(primary4),
-			IconFill_Github value(level7),
-			IconFill_Twitter value(accent1),
-			IconFill_Contact value(primary2),
+			ButtonTextColor value(LINK_TEXT_COLOR),
+			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
 		);
 	}
 
 	Popover {
 		-st-mixin: PopoverMixin(
-			TriggerTextColor value(accent1),
+			TriggerTextColor value(LINK_TEXT_COLOR),
 			TriggerTextColor_Hover value(primary2),
 			TriggerTextColor_Open value(level0),
 			TriggerTextBgColor_Open value(primary2),
@@ -146,23 +230,23 @@
 		)
 	}
 
-	DynamicContentViewer {
-		-st-mixin: DynamicContentViewerMixin(
-			ParagraphLineHeight 1.2rem,
-			ParagraphTextSize 0.9rem
-		);
-	}
-
 	Note {
 		-st-mixin: NoteMixin(
 			TopicBgColor value(level2),
-			TopicTextColor value(primary2)
+			TopicTextColor value(primary2),
+			NoteTextColor value(level6),
+			NotePadding 1rem,
+			NoteScrollGutter 2.5rem
 		);
 	}
 
 	Bibliography {
 		-st-mixin: BibliographyMixin(
-			/* todo */
+			/* BibliographyBgColor value(level2),
+			BibliographyBorderColor value(level4), */
+			/* ButtonTextSize 12px, */
+			ButtonTextColor value(LINK_TEXT_COLOR),
+			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
 		);
 	}
 
@@ -177,6 +261,40 @@
 			ContentBgColor value(accent1),
 			TextColor value(level1),
 			TooltipArrowColor value(accent1)
+		);
+	}
+
+	AnnotationLink {
+		-st-mixin: AnnotationLinkMixin(
+			AnnotationFontSize 0.75rem,
+			AnnotationFontWeight 700,
+			AnnotationParanthesisMargin 0.05rem
+		);
+	}
+
+	DynamicContentViewer {
+		-st-mixin: DynamicContentViewerMixin;
+	}
+
+	ContactForm {
+		-st-mixin: ContactFormMixin(
+			FormSubmitButtonBgColor value(accent1),
+			FormSubmitButtonTextColor value(level1),
+			FormSubmitButtonBgColor_Hover value(accent2),
+			FormSubmitButtonTextColor_Hover value(level1),
+			FormSubmitButtonRadius 4px,
+			FieldLabelTextColor value(level6),
+			FieldLabelIconColor value(level6),
+			FieldLabelBorderRadius 3px,
+			FieldLabelBorderColor value(level4),
+			FieldLabelBorderColor_Focus value(accent1),
+			FieldLabelBorderColor_Success #0a0,
+			FieldLabelBorderColor_Error #c00,
+			FieldInputBgColor_Hover value(level2),
+			/* FieldInputBgColor_Focus value(level3), */
+			FieldInputPlaceholderTextColor value(level5),
+			FieldInputErrorTextColor #c00,
+			FieldInputSuccessTextColor #0a0,
 		);
 	}
 }
