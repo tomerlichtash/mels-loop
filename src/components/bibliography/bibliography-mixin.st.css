@@ -5,8 +5,8 @@
 @st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
-	BibliographyBgColor: #c0c0c0;
-	BibliographyBorderColor: #d0d0d0;
+	/* BibliographyBgColor: #c0c0c0;
+	BibliographyBorderColor: #d0d0d0; */
 	ButtonTextSize: auto;
 	ButtonTextColor: inherit;
 	ButtonTextColor_Hover: inherit;

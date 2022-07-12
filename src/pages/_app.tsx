@@ -2,7 +2,6 @@ import React from "react";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { AppContext } from "../contexts";
-// import "../../public/assets/fonts/fonts.css";
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const router = useRouter();

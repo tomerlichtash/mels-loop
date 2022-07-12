@@ -8,8 +8,8 @@
 	ButtonTextColor: inherit;
 	ButtonTextColor_Hover: inherit;
 	ButtonBgColor_Hover: inherit;
-	ButtonLabelTextColor: inherit;
-	ButtonLabelTextColor_Hover: inherit;
+	/* ButtonLabelTextColor: inherit;
+	ButtonLabelTextColor_Hover: inherit; */
 	ButtonLabelTextWeight: inherit;
 	ButtonLabelLineHeight: inherit;
 	ButtonLabelTextSize: inherit;
