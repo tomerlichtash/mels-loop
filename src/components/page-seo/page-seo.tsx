@@ -8,7 +8,10 @@ export interface IPageTitleProps {
 
 export const PageSEO = ({ title }: IPageTitleProps): JSX.Element => {
 	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
-	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${title || pageName}`;
+	const pageTitle = [siteTitle, siteSubtitle, title || pageName]
+		.map((s) => s && s.trim())
+		.filter(Boolean)
+		.join(" - ");
 	return (
 		<Head>
 			<title>{pageTitle}</title>
