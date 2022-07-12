@@ -1,40 +1,19 @@
 import React from "react";
+import css from "styled-jsx/css";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { AppContext } from "../contexts";
-// import "../../public/assets/fonts/fonts.css";
+import { fontFacesDecls } from "../site-fonts";
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const router = useRouter();
+	const fontStyles = css`
+		${fontFacesDecls}
+	`;
 	return (
 		<AppContext router={router}>
 			<style jsx global>
-				{`
-					@font-face {
-						font-family: "Roboto Slab";
-						src: url("./assets/fonts/roboto-slab/RobotoSlab-Regular.woff2")
-							format("woff2");
-						font-style: normal;
-						font-weight: 400;
-						font-display: swap;
-					}
-					@font-face {
-						font-family: "Roboto Slab";
-						src: url("/assets/fonts/roboto-slab/RobotoSlab-Medium.woff2")
-							format("woff2");
-						font-style: normal;
-						font-weight: 500;
-						font-display: swap;
-					}
-					@font-face {
-						font-family: "Roboto Slab";
-						src: url("/assets/fonts/roboto-slab/RobotoSlab-Bold.woff2")
-							format("woff2");
-						font-style: normal;
-						font-weight: 700;
-						font-display: swap;
-					}
-				`}
+				{fontStyles}
 			</style>
 			<Component {...pageProps} />
 		</AppContext>
