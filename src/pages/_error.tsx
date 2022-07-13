@@ -1,18 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NextPage } from "next";
-import Head from "next/head";
 import Layout from "../components/layout";
-import { ReactLocaleContext } from "../contexts/locale-context";
 import { classes } from "./_error.st.css";
 
 const CustomError: NextPage = () => {
-	const { siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
-	const pageTitle = `${siteTitle} - ${siteSubtitle}`;
 	return (
-		<Layout>
-			<Head>
-				<title>{pageTitle}</title>
-			</Head>
+		<Layout title="Error">
 			<div className={classes.root}>
 				<h1>Error</h1>
 			</div>
