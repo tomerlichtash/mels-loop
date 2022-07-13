@@ -11,7 +11,6 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { useContext } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Post from "../../components/post";
-import PageSEO from "../../components/page-seo";
 // import { classes } from "../../pages/page-base.st.css";
 
 export default function Doc(props: IPageProps) {
@@ -21,8 +20,7 @@ export default function Doc(props: IPageProps) {
 	const { metaData, path } = page;
 	const { title, date } = metaData;
 	return (
-		<Layout>
-			<PageSEO title={metaData?.title} />
+		<Layout title={metaData?.title}>
 			<Button
 				label={translate("POSTS_BACK_TO_POSTS_LIST")}
 				icon={

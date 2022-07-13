@@ -8,7 +8,6 @@ import { usePageData } from "../components/usePageData";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { Button } from "../components/ui";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import PageSEO from "../components/page-seo";
 import { st, classes } from "./page-base.st.css";
 
 const Docs: NextPage<IPageProps> = (props) => {
@@ -17,7 +16,6 @@ const Docs: NextPage<IPageProps> = (props) => {
 	const { metaData } = usePageData(props);
 	return (
 		<Layout>
-			<PageSEO />
 			<article className={st(classes.root, className)}>
 				<h1 className={classes.title}>{pageName}</h1>
 				{metaData.length && (

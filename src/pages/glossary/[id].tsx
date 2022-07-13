@@ -15,7 +15,6 @@ import { usePageData } from "../../components/usePageData";
 import { classes } from "./glossary-item.st.css";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { Button } from "../../components/ui";
-import PageSEO from "../../components/page-seo";
 import Bibliography from "../../components/bibliography";
 
 export default function GlossaryTerm(props: IPageProps) {
@@ -30,8 +29,7 @@ export default function GlossaryTerm(props: IPageProps) {
 		type: MLNODE_TYPES.UNKNOWN,
 	};
 	return (
-		<Layout>
-			<PageSEO title={metaData?.title} />
+		<Layout title={metaData?.title}>
 			<article className={classes.root}>
 				<Button
 					className={classes.title}

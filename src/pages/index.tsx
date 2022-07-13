@@ -18,7 +18,6 @@ import { usePageData } from "../components/usePageData";
 import { ContentComponent } from "../components/content";
 import { mlUtils } from "../lib/ml-utils";
 import { classes as basePageClasses } from "../pages/page-base.st.css";
-import PageSEO from "../components/page-seo";
 import { st, classes } from "./index.st.css";
 
 const Index: NextPage<IPageProps> = (props) => {
@@ -31,7 +30,6 @@ const Index: NextPage<IPageProps> = (props) => {
 
 	return (
 		<Layout>
-			<PageSEO />
 			<article className={basePageClasses.root}>
 				<h1 className={basePageClasses.title}>{title}</h1>
 				<div className={classes.root}>

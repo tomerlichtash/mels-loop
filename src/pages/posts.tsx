@@ -10,7 +10,6 @@ import { ReactLocaleContext } from "../contexts/locale-context";
 import orderBy from "lodash.orderby";
 import { mlUtils } from "../lib/ml-utils";
 import { classes } from "./posts.st.css";
-import PageSEO from "../components/page-seo";
 import Post from "../components/post";
 
 export default function Blog(props: IPageProps) {
@@ -18,7 +17,6 @@ export default function Blog(props: IPageProps) {
 	const { pageData } = usePageData(props);
 	return (
 		<Layout>
-			<PageSEO />
 			<div className={classes.root}>
 				<h1 className={classes.sectionTitle}>{sectionName}</h1>
 				{orderBy(pageData, ["metaData.date"], ["desc"]).map(

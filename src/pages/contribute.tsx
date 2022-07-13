@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Layout from "../components/layout/layout";
 import { GetStaticProps, NextPage } from "next";
 import { CONTENT_TYPES } from "../consts";
@@ -12,7 +12,6 @@ import {
 } from "../interfaces/models";
 import { LoadFolderModes } from "../interfaces/parser";
 import { ContentComponent } from "../components/content";
-import PageSEO from "../components/page-seo";
 import { classes } from "./page-base.st.css";
 
 const Contribute: NextPage<IPageProps> = (props) => {
@@ -22,7 +21,6 @@ const Contribute: NextPage<IPageProps> = (props) => {
 	const { metaData } = pageData[0];
 	return (
 		<Layout>
-			<PageSEO />
 			<article className={classes.root}>
 				<h1 className={classes.title}>{metaData.title}</h1>
 				{elements.map((node) => {

@@ -12,7 +12,6 @@ import {
 } from "../interfaces/models";
 import { LoadFolderModes } from "../interfaces/parser";
 import { ContentComponent } from "../components/content";
-import PageSEO from "../components/page-seo";
 import { classes } from "./page-base.st.css";
 
 const About: NextPage<IPageProps> = (props) => {
@@ -22,7 +21,6 @@ const About: NextPage<IPageProps> = (props) => {
 	const { metaData } = pageData[0];
 	return (
 		<Layout>
-			<PageSEO />
 			<article className={classes.root}>
 				<h1 className={classes.title}>{metaData.title}</h1>
 				{elements.map((node) => {
