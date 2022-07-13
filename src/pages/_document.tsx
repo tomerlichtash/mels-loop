@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { fontFaceLinks } from "../site-fonts";
 import { classes as LightTheme } from "../theme/light/style.st.css";
 
 const themes = {
@@ -9,36 +10,7 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html>
-				<Head>
-					<link
-						rel="preload"
-						href="./assets/fonts/roboto-slab/RobotoSlab-Regular.woff2"
-						as="font"
-						type="font/woff2"
-						crossOrigin="anonymous"
-					/>
-					<link
-						rel="preload"
-						href="./assets/fonts/roboto-slab/RobotoSlab-Medium.woff2"
-						as="font"
-						type="font/woff2"
-						crossOrigin="anonymous"
-					/>
-					<link
-						rel="preload"
-						href="./assets/fonts/roboto-slab/RobotoSlab-SemiBold.woff2"
-						as="font"
-						type="font/woff2"
-						crossOrigin="anonymous"
-					/>
-					<link
-						rel="preload"
-						href="./assets/fonts/roboto-slab/RobotoSlab-Bold.woff2"
-						as="font"
-						type="font/woff2"
-						crossOrigin="anonymous"
-					/>
-				</Head>
+				<Head>{fontFaceLinks}</Head>
 				<body className={themes.light[0]}>
 					<Main />
 					<NextScript />
