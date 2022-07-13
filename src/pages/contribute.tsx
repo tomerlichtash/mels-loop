@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import Head from "next/head";
+import React from "react";
 import Layout from "../components/layout/layout";
 import { GetStaticProps, NextPage } from "next";
 import { CONTENT_TYPES } from "../consts";
@@ -11,23 +10,17 @@ import {
 	IPageProps,
 	IParsedPageData,
 } from "../interfaces/models";
-import { ReactLocaleContext } from "../contexts/locale-context";
 import { LoadFolderModes } from "../interfaces/parser";
 import { ContentComponent } from "../components/content";
 import { classes } from "./page-base.st.css";
 
 const Contribute: NextPage<IPageProps> = (props) => {
-	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed || [];
 	const { metaData } = pageData[0];
-	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${pageName}`;
 	return (
 		<Layout>
-			<Head>
-				<title>{pageTitle}</title>
-			</Head>
 			<article className={classes.root}>
 				<h1 className={classes.title}>{metaData.title}</h1>
 				{elements.map((node) => {

@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Head from "next/head";
 import Layout from "../components/layout/layout";
 import { GetStaticProps, NextPage } from "next";
 import { CONTENT_TYPES } from "../consts";
@@ -12,15 +11,11 @@ import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { st, classes } from "./page-base.st.css";
 
 const Docs: NextPage<IPageProps> = (props) => {
-	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
+	const { pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { metaData } = usePageData(props);
-	const pageTitle = `${siteTitle} - ${siteSubtitle} - ${pageName}`;
 	return (
 		<Layout>
-			<Head>
-				<title>{pageTitle}</title>
-			</Head>
 			<article className={st(classes.root, className)}>
 				<h1 className={classes.title}>{pageName}</h1>
 				{metaData.length && (
