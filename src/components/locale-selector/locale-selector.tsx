@@ -37,6 +37,7 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 											locale: id,
 											selected: locale === id,
 										})}
+										testId={`LocaleSelector_${id}`}
 									/>
 								</div>
 							</ToggleGroupItem>

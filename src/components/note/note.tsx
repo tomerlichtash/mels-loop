@@ -33,12 +33,20 @@ export const Note = ({
 		<div className={st(classes.root, { type, textDirection }, className)}>
 			{type === "ref" && (
 				<div className={classes.header}>
-					<div className={classes.topic}>{label}</div>
-					<div className={classes.title}>{title}</div>
-					<div className={classes.term}>{term}</div>
+					<div className={classes.topic} data-test-id="note_label">
+						{label}
+					</div>
+					<div className={classes.title} data-test-id="note_title">
+						{title}
+					</div>
+					<div className={classes.term} data-test-id="note_term">
+						{term}
+					</div>
 				</div>
 			)}
-			<div className={classes.content}>{contents}</div>
+			<div className={classes.content} data-test-id="note_contents">
+				{contents}
+			</div>
 			{sources && (
 				<Bibliography
 					sources={sources}

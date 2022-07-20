@@ -18,7 +18,7 @@ export interface IMobileNavProps extends ComponentProps {
 }
 
 const groupChild = (child: IMenuItem) => {
-	const { meta, keys, type } = child;
+	const { id, meta, keys, type } = child;
 	const { url } = meta;
 	const { title, author, description } = keys;
 	const subtitle = type === "article" ? author : description;
@@ -28,6 +28,7 @@ const groupChild = (child: IMenuItem) => {
 			label={title}
 			key={mlUtils.uniqueId()}
 			className={classes.menuItemButton}
+			testId={`MobileMenuButton-${id}`}
 		>
 			<div className={classes.subtitle}>{subtitle}</div>
 		</Button>
@@ -36,6 +37,7 @@ const groupChild = (child: IMenuItem) => {
 
 const renderSingleItems = (children: IMenuItem[]) => {
 	return children.map((child) => {
+		const { id } = child;
 		const { title, description } = child.keys;
 		const { url } = child.meta;
 		return (
@@ -44,6 +46,7 @@ const renderSingleItems = (children: IMenuItem[]) => {
 				label={title}
 				key={mlUtils.uniqueId()}
 				className={classes.menuItemButton}
+				testId={`MobileMenuButton-${id}`}
 			>
 				<div>{description}</div>
 			</Button>

@@ -55,6 +55,7 @@ const getMenuItems = (
 			children: getSectionItems(currentSection).map((item) =>
 				Object.assign({}, item, {
 					keys: trKeys(item, translate),
+					testId: `TOP_MenuItem_${item.id}`,
 				})
 			),
 		});

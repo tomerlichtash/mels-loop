@@ -31,7 +31,8 @@
 		"build:sitemap": "next-sitemap",
 		"start": "next start",
 		"lint": "eslint . -f codeframe",
-		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src"
+		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src",
+		"test:e2e": "playwright test"
 	},
 	"dependencies": {
 		"@radix-ui/react-icons": "^1.1.1",
@@ -57,6 +58,7 @@
 	"devDependencies": {
 		"@next/env": "^12.1.6",
 		"@next/eslint-plugin-next": "^12.1.6",
+		"@playwright/test": "^1.23.4",
 		"@stylable/core": "^4.13.3",
 		"@stylable/optimizer": "^4.13.3",
 		"@stylable/webpack-plugin": "^4.13.3",

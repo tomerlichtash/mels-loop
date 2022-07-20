@@ -25,6 +25,7 @@ export const Button = ({
 	target,
 	iconSide,
 	callback,
+	testId,
 	className,
 	children,
 }: ButtonProps): JSX.Element => {
@@ -36,7 +37,10 @@ export const Button = ({
 		className: btnClassName,
 	};
 	const btnContent = (
-		<span className={st(classes.contentWrapper, { icon: !!icon })}>
+		<span
+			className={st(classes.contentWrapper, { icon: !!icon })}
+			data-test-id={`Button_${testId}`}
+		>
 			{icon && (
 				<span className={st(classes.icon, { side: iconSide })}>
 					<span className={classes.img}>{icon}</span>
