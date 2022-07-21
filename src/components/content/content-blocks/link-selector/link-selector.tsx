@@ -65,9 +65,9 @@ export const LinkSelector = ({
 	}
 	return (
 		<span
-			data-test-type={node.linkType}
+			data-test-annotation-type={node.linkType}
+			data-test-target={node.target.split(`/`)[1]}
 			data-test-seq={node.sequence}
-			data-test-target={node.target.split(`${node.linkType}/`)[1]}
 		>
 			<Popover
 				type={linkType}

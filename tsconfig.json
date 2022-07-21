@@ -21,6 +21,12 @@
 		"@/pages/*": ["src/pages/*"],
 		"@theme/*": ["src/theme/*"]
 	},
-	"include": ["next-env.d.ts", "**/**/*.ts", "**/**/*.tsx", "globals.d.ts"],
+	"include": [
+		"next-env.d.ts",
+		"**/**/*.ts",
+		"**/**/*.tsx",
+		"globals.d.ts",
+		"e2e/mock/get-terms.js"
+	],
 	"exclude": ["node_modules", "**/snippets/**"]
 }

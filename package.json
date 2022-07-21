@@ -32,7 +32,8 @@
 		"start": "next start",
 		"lint": "eslint . -f codeframe",
 		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src",
-		"test:e2e": "playwright test"
+		"test:e2e": "playwright test",
+		"mock:annotations": "node ./e2e/mock/get-terms.js"
 	},
 	"dependencies": {
 		"@radix-ui/react-icons": "^1.1.1",
