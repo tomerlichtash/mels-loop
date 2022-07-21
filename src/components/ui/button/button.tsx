@@ -13,6 +13,7 @@ export interface ButtonProps extends ComponentProps {
 	selected?: boolean;
 	iconSide?: "right" | "left";
 	callback?: (id: string) => void;
+	testId?: string;
 }
 
 export const Button = ({
