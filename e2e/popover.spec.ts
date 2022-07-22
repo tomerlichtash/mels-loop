@@ -9,6 +9,40 @@ const getAnnotationSelector = ({ type, key }: ITermTestData) =>
 	`[data-test-annotation-type="${type}"][data-test-target="${key}"]`;
 
 test.describe("Popover", () => {
+	test.fixme(
+		"should show loading animation during content fetching",
+		async ({ page }) => {
+			await page.goto("http://localhost:3000/");
+			await page
+				.locator(`[data-test-annotation-type="annotation"][data-test-seq="1"]`)
+				.first()
+				.click();
+			await page.$$(PORTAL_SELECTOR);
+
+			await page.$$(`[data-test-id="loading_indictator"]`).then(async () => {
+				await expect(page.locator(`[data-test-id="loading_indictator"]`))
+					.toHaveText("Loading...")
+					.then(async () => {
+						await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
+							TEXT_NOT_EMPTY
+						);
+					});
+			});
+		}
+	);
+
+	test.fixme("should show error if term is not found", async ({ page }) => {
+		await page.goto("http://localhost:3000/");
+		await page
+			.locator(
+				getAnnotationSelector({ type: "annotation", key: "some_unknown_key" })
+			)
+			.first()
+			.click();
+		await page.$$(PORTAL_SELECTOR);
+		await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText("not found");
+	});
+
 	test("[en] should open a specific Annotation Term", async ({ page }) => {
 		await page.goto("http://localhost:3000/");
 		await page
@@ -31,17 +65,5 @@ test.describe("Popover", () => {
 		await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
 			TEXT_NOT_EMPTY
 		);
-	});
-
-	test.fixme("should show error if term is not found", async ({ page }) => {
-		await page.goto("http://localhost:3000/");
-		await page
-			.locator(
-				getAnnotationSelector({ type: "annotation", key: "some_unknown_key" })
-			)
-			.first()
-			.click();
-		await page.$$(PORTAL_SELECTOR);
-		await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText("not found");
 	});
 });

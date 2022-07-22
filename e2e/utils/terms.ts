@@ -1,6 +1,14 @@
-import { getFrontMatter, isValidTerm } from "./test-utils";
+import { getFrontMatter } from "./test-utils";
+import type { ITermTestData } from "./types";
 
 const fs = require("fs");
+
+const invalidTerms = ["index.en.md", "index.he.md", ".DS_Store"];
+
+export const isValidTerm = (term: string) => invalidTerms.indexOf(term) === -1;
+
+export const getTermSelector = ({ type, key }: ITermTestData) =>
+	`[data-test-annotation-type="${type}"][data-test-target="${key}"]`;
 
 export const getAnnotationsData = (locale: string) => {
 	const annotations = fs.readdirSync("./public/content/annotations", {

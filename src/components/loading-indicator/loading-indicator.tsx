@@ -33,7 +33,10 @@ export const LoadingIndicator = ({
 		return <></>;
 	}
 	return (
-		<div className={st(classes.root, className)}>
+		<div
+			className={st(classes.root, className)}
+			data-test-id="loading_indictator"
+		>
 			<div className={classes.container}>
 				<div className={classes.animation}></div>
 				{label && <div className={classes.label}>{translate(label)}</div>}

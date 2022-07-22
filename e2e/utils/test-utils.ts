@@ -1,11 +1,8 @@
 import { Languages } from "../../src/locales";
 import { _translate } from "../../src/locales/translate";
-import type { ITermTestData } from "./types";
 
 const fs = require("fs");
 const matter = require("gray-matter");
-
-const invalidTerms = ["index.en.md", "index.he.md", ".DS_Store"];
 
 export const baseDir = "http://localhost:3000";
 
@@ -30,12 +27,6 @@ export const getLocalePath = (locale: string, path?: string) => {
 };
 
 /**
- * Selectors
- */
-export const getTermSelector = ({ type, key }: ITermTestData) =>
-	`[data-test-annotation-type="${type}"][data-test-target="${key}"]`;
-
-/**
  * MarkDown
  */
 export const getFrontMatter = (path: string, locale: string) => {
@@ -44,10 +35,4 @@ export const getFrontMatter = (path: string, locale: string) => {
 		"utf-8"
 	);
 	return matter(testMdFile);
-	// return data;
 };
-
-/**
- * Annotations
- */
-export const isValidTerm = (term: string) => invalidTerms.indexOf(term) === -1;

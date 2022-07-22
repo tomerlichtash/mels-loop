@@ -1,18 +1,15 @@
 import { test, expect } from "@playwright/test";
-import {
-	getTermSelector,
-	getLocalePath,
-	locales,
-	translate,
-} from "./utils/test-utils";
+import { getLocalePath, locales, translate } from "./utils/test-utils";
 import {
 	PORTAL_SELECTOR,
 	NOTE_LABEL_SELECTOR,
 	NOTE_TITLE_SELECTOR,
 	NOTE_CONTENT_SELECTOR,
 } from "./utils/locators";
-import { getGlossaryData } from "./utils/terms";
+import { getGlossaryData, getTermSelector } from "./utils/terms";
 import type { ITermTestData } from "./utils/types";
+
+const STRIP_MD = /(?:__|[*#])|\[(.*?)\]\(.*?\)/gm;
 
 test.describe("Glossary", () => {
 	return locales.map((locale) => {
@@ -35,7 +32,9 @@ test.describe("Glossary", () => {
 					translate(locale, term_key)
 				);
 
-				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(content);
+				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
+					content.replace(STRIP_MD, "$1")
+				);
 			});
 		});
 	});

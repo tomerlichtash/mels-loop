@@ -13,7 +13,7 @@ test.describe("Articles", () => {
 		}) => {
 			const path = "docs/preface";
 			const filename = "index";
-			const data = getFrontMatter(`${path}/${filename}`, locale);
+			const { data } = getFrontMatter(`${path}/${filename}`, locale);
 
 			await page.goto(getLocalePath(locale));
 			await page.hover(

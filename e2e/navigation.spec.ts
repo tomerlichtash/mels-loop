@@ -53,7 +53,7 @@ test.describe("Dynamic Pages", () => {
 		test(`${locale} > should navigate to the About page`, async ({ page }) => {
 			const path = "about";
 			const filename = "index";
-			const data = getFrontMatter(`${path}/${filename}`, locale);
+			const { data } = getFrontMatter(`${path}/${filename}`, locale);
 			const localePath = getLocalePath(locale, path);
 
 			await page.goto(localePath);
@@ -68,7 +68,7 @@ test.describe("Dynamic Pages", () => {
 		}) => {
 			const path = "about";
 			const filename = "index";
-			const data = getFrontMatter(`${path}/${filename}`, locale);
+			const { data } = getFrontMatter(`${path}/${filename}`, locale);
 			const localePath = getLocalePath(locale, path);
 
 			await page.goto(localePath);
@@ -86,7 +86,7 @@ test.describe("Dynamic Pages", () => {
 		}) => {
 			const path = "docs/resources";
 			const filename = "index";
-			const data = getFrontMatter(`${path}/${filename}`, locale);
+			const { data } = getFrontMatter(`${path}/${filename}`, locale);
 			const localePath = getLocalePath(locale, path);
 
 			await page.goto(localePath);
