@@ -9,7 +9,7 @@ export const Header = ({ className }: ComponentProps): JSX.Element => {
 		useContext(ReactLocaleContext);
 	return (
 		<header className={st(classes.root, { textDirection }, className)}>
-			<div className={classes.container} data-test-id="site_name">
+			<div className={classes.container}>
 				<Button
 					icon={<div className={classes.siteLogo}></div>}
 					label={siteTitle}

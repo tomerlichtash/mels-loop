@@ -1,42 +1,94 @@
 import { test, expect } from "@playwright/test";
+import {
+	getLocalePath,
+	locales,
+	getFrontMatter,
+	translate,
+} from "./utils/test-utils";
 
-test("should navigate home from site name in top bar", async ({ page }) => {
-	await page.goto("http://localhost:3000/");
-	await page.click("text=About");
-	await expect(page).toHaveURL("http://localhost:3000/about");
-	await page.locator(`[data-test-id="site_name"]`).click();
-	await expect(page).toHaveURL("http://localhost:3000");
-});
+test.describe("Pages", () => {
+	locales.map((locale) => {
+		test.fixme(
+			`[${locale}] should navigate to Homepage from Site Name button`,
+			async ({ page }) => {
+				const SITE_NAME_LOCATOR = `[data-test-id="site_name"]`;
 
-test("should navigate to the about page", async ({ page }) => {
-	await page.goto("http://localhost:3000/");
-	await page.click("text=About");
-	await expect(page).toHaveURL("http://localhost:3000/about");
-	await expect(page.locator("h1")).toHaveText("About Mel's Loop Project");
-});
+				await page.goto(getLocalePath(locale, "about"));
+				await page.locator(SITE_NAME_LOCATOR).click();
 
-test("should navigate to the contact page", async ({ page }) => {
-	await page.goto("http://localhost:3000/");
-	await page.hover("text=Contact");
-	await page.click("text=Drop us a line");
-	await expect(page).toHaveURL("http://localhost:3000/contact");
-	await expect(page.locator("h1")).toHaveText("Contact Us");
-});
+				await expect(page).toHaveURL(getLocalePath(locale));
+				await expect(page.locator(SITE_NAME_LOCATOR)).toHaveText(
+					translate(locale, "SITE_TITLE")
+				);
+			}
+		);
 
-test("should navigate to the resources page", async ({ page }) => {
-	await page.goto("http://localhost:3000/");
-	await page.hover("text=Articles");
-	await page.click("text=Resources");
-	await expect(page).toHaveURL("http://localhost:3000/docs/resources");
-	await expect(page.locator("h1")).toHaveText("Resources");
-});
+		test(`[${locale}] should navigate to the contact page`, async ({
+			page,
+		}) => {
+			const path = "contact";
 
-test("should navigate to the preface page", async ({ page }) => {
-	await page.goto("http://localhost:3000/");
-	await page.hover("text=Articles");
-	await page.click("text=Preface");
-	await expect(page).toHaveURL("http://localhost:3000/docs/preface");
-	await expect(page.locator("h1")).toHaveText(
-		"A Software Legend That Really Happened"
-	);
+			await page.goto(getLocalePath(locale));
+			await page.hover(
+				`text=${translate(locale, "MENU_ITEM_LABEL_ID_CONTACT")}`
+			);
+			await page.click(
+				`text=${translate(locale, "MENU_ITEM_DESC_ID_CONTACT")}`
+			);
+
+			await expect(page).toHaveURL(getLocalePath(locale, path));
+			await expect(page.locator("h1")).toHaveText(
+				translate(locale, "CONTACT_PAGE_TITLE")
+			);
+		});
+
+		test(`[${locale}] should navigate to the About page`, async ({ page }) => {
+			const path = "about";
+			const filename = "index";
+			const data = getFrontMatter(`${path}/${filename}`, locale);
+
+			await page.goto(getLocalePath(locale));
+			await page.click(`text=${translate(locale, "MENU_ITEM_LABEL_ID_ABOUT")}`);
+
+			await expect(page).toHaveURL(getLocalePath(locale, path));
+			await expect(page.locator("h1")).toHaveText(data.title as string);
+		});
+
+		test(`[${locale}] should navigate to the About page from Learn More link`, async ({
+			page,
+		}) => {
+			const path = "about";
+			const filename = "index";
+			const data = getFrontMatter(`${path}/${filename}`, locale);
+
+			await page.goto(getLocalePath(locale));
+			await page.hover(`text=${translate(locale, "MENU_ITEM_LABEL_ID_ABOUT")}`);
+			await page.click(
+				`text=${translate(locale, "MENU_ITEM_LABEL_EXCERPT_SHOW_MORE")}`
+			);
+
+			await expect(page).toHaveURL(getLocalePath(locale, path));
+			await expect(page.locator("h1")).toHaveText(data.title as string);
+		});
+
+		test(`[${locale}] should navigate to the Resources page`, async ({
+			page,
+		}) => {
+			const path = "docs/resources";
+			const filename = "index";
+			const data = getFrontMatter(`${path}/${filename}`, locale);
+			const localePath = getLocalePath(locale, path);
+
+			await page.goto(localePath);
+			await page.hover(
+				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
+			);
+			await page.click(
+				`text=${translate(locale, "MENU_ITEM_LABEL_ID_RESOURCES")}`
+			);
+
+			await expect(page).toHaveURL(getLocalePath(locale, path));
+			await expect(page.locator("h1")).toHaveText(data.title as string);
+		});
+	});
 });
