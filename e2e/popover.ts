@@ -8,8 +8,6 @@ const NOTE_CONTENT_SELECTOR = `[data-test-id="note_contents"]`;
 const getAnnotationSelector = ({ type, key }: ITermTestData) =>
 	`[data-test-annotation-type="${type}"][data-test-target="${key}"]`;
 
-test.describe.configure({ mode: "parallel" });
-
 test.describe("Popover", () => {
 	test("[en] should open a specific Annotation Term", async ({ page }) => {
 		await page.goto("http://localhost:3000/");

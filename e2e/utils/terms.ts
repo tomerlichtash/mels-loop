@@ -2,7 +2,7 @@ import { getFrontMatter, isValidTerm } from "./test-utils";
 
 const fs = require("fs");
 
-export const getAnnotationsData = () => {
+export const getAnnotationsData = (locale: string) => {
 	const annotations = fs.readdirSync("./public/content/annotations", {
 		withFileTypes: false,
 	});
@@ -12,15 +12,19 @@ export const getAnnotationsData = () => {
 			if (!isValidTerm(term)) {
 				return;
 			}
+
+			const { content } = getFrontMatter(`annotations/${term}/index`, locale);
+
 			return {
-				type: "annotation",
+				// type: "annotation",
 				key: term,
+				content,
 			};
 		})
 		.filter(Boolean);
 };
 
-export const getGlossaryData = () => {
+export const getGlossaryData = (locale: string) => {
 	const glossary = fs.readdirSync("./public/content/glossary", {
 		withFileTypes: false,
 	});
@@ -31,12 +35,16 @@ export const getGlossaryData = () => {
 				return;
 			}
 
-			const data = getFrontMatter(`glossary/${term}/index`, "en");
+			const { data, content } = getFrontMatter(
+				`glossary/${term}/index`,
+				locale
+			);
 
 			return {
-				type: "glossary",
+				// type: "glossary",
 				key: term,
 				term_key: data.glossary_key,
+				content,
 			};
 		})
 		.filter(Boolean);

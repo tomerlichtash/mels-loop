@@ -32,7 +32,7 @@ export const getLocalePath = (locale: string, path?: string) => {
 /**
  * Selectors
  */
-export const getAnnotationSelector = ({ type, key }: ITermTestData) =>
+export const getTermSelector = ({ type, key }: ITermTestData) =>
 	`[data-test-annotation-type="${type}"][data-test-target="${key}"]`;
 
 /**
@@ -43,8 +43,8 @@ export const getFrontMatter = (path: string, locale: string) => {
 		`./public/content/${path}.${locale}.md`,
 		"utf-8"
 	);
-	const { data } = matter(testMdFile);
-	return data;
+	return matter(testMdFile);
+	// return data;
 };
 
 /**

@@ -1,3 +1,4 @@
 - Contact Form specs
 - Blog specs
 - Footer Specs
+- Terms bibliography

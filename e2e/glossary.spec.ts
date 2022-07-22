@@ -1,53 +1,42 @@
 import { test, expect } from "@playwright/test";
-import { _translate } from "../src/locales/translate";
-import { Languages } from "../src/locales";
-import { getAnnotationSelector } from "./utils/test-utils";
+import {
+	getTermSelector,
+	getLocalePath,
+	locales,
+	translate,
+} from "./utils/test-utils";
 import {
 	PORTAL_SELECTOR,
 	NOTE_LABEL_SELECTOR,
 	NOTE_TITLE_SELECTOR,
+	NOTE_CONTENT_SELECTOR,
 } from "./utils/locators";
 import { getGlossaryData } from "./utils/terms";
 import type { ITermTestData } from "./utils/types";
 
-export const GLOSSARY_LABEL_KEY = "NOTE_LABEL_GLOSSARY";
-
-const glossaryData = getGlossaryData();
-
-test.describe.configure({ mode: "parallel" });
-
 test.describe("Glossary", () => {
-	glossaryData.map((term: ITermTestData) => {
-		const { type, key } = term;
-		const translate = _translate("en", Languages);
-		test(`[en] should open ${type} "${key}"`, async ({ page }) => {
-			await page.goto("http://localhost:3000/");
-			await page.locator(getAnnotationSelector({ type, key })).first().click();
-			await page.$$(PORTAL_SELECTOR);
-			const { term_key } = term;
-			await expect(page.locator(NOTE_LABEL_SELECTOR)).toHaveText(
-				translate(GLOSSARY_LABEL_KEY)
-			);
-			await expect(page.locator(NOTE_TITLE_SELECTOR)).toHaveText(
-				translate(term_key)
-			);
-		});
-	});
+	return locales.map((locale) => {
+		return getGlossaryData(locale).map((term: ITermTestData) => {
+			const { key, content } = term;
+			test(`${locale} > should open term: ${key}`, async ({ page }) => {
+				await page.goto(getLocalePath(locale));
+				await page
+					.locator(getTermSelector({ type: "glossary", key }))
+					.first()
+					.click();
+				await page.$$(PORTAL_SELECTOR);
 
-	glossaryData.map((term: ITermTestData) => {
-		const { type, key } = term;
-		const translate = _translate("he", Languages);
-		test(`[he] should open ${type} "${key}"`, async ({ page }) => {
-			await page.goto("http://localhost:3000/he");
-			await page.locator(getAnnotationSelector({ type, key })).first().click();
-			await page.$$(PORTAL_SELECTOR);
-			const { term_key } = term;
-			await expect(page.locator(NOTE_LABEL_SELECTOR)).toHaveText(
-				translate(GLOSSARY_LABEL_KEY)
-			);
-			await expect(page.locator(NOTE_TITLE_SELECTOR)).toHaveText(
-				translate(term_key)
-			);
+				const { term_key } = term;
+
+				await expect(page.locator(NOTE_LABEL_SELECTOR)).toHaveText(
+					translate(locale, "NOTE_LABEL_GLOSSARY")
+				);
+				await expect(page.locator(NOTE_TITLE_SELECTOR)).toHaveText(
+					translate(locale, term_key)
+				);
+
+				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(content);
+			});
 		});
 	});
 });

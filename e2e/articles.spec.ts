@@ -8,7 +8,7 @@ import {
 
 test.describe("Articles", () => {
 	locales.map((locale) => {
-		test(`[${locale}] should navigate to the Preface article`, async ({
+		test(`${locale} > should navigate to the Preface article`, async ({
 			page,
 		}) => {
 			const path = "docs/preface";
