@@ -84,7 +84,7 @@ so that just as one finished its job,
 the next would be just arriving at the "read head"
 and available for immediate execution.
 There was a program to do that job,
-an "optimizing assembler",[^](annotations/ref1) <!-- consider removal -->
+an "optimizing assembler",
 but Mel refused to use it.
 
 "You never know where it's going to put things",
