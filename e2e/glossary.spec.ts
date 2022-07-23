@@ -11,7 +11,7 @@ import {
 	NOTE_TITLE_SELECTOR,
 	NOTE_CONTENT_SELECTOR,
 } from "./utils/locators";
-import { STRIP_MD, STRIP_MD_LINK, TEXT_NOT_EMPTY } from "./utils/validators";
+import { TEXT_NOT_EMPTY } from "./utils/validators";
 import { getGlossaryData, getTermSelector } from "./utils/terms";
 import type { ITermTestData } from "./utils/types";
 
@@ -35,11 +35,9 @@ test.describe("Glossary", () => {
 				await expect(page.locator(NOTE_TITLE_SELECTOR)).toHaveText(
 					translate(locale, term_key)
 				);
-
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
 					TEXT_NOT_EMPTY
 				);
-
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
 					stripMarkdown(content)
 				);

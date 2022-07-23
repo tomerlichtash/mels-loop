@@ -21,7 +21,6 @@ test.describe("Annotations", () => {
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
 					TEXT_NOT_EMPTY
 				);
-
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
 					stripMarkdown(content)
 				);
