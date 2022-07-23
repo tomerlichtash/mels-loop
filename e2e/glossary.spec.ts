@@ -1,15 +1,19 @@
 import { test, expect } from "@playwright/test";
-import { getLocalePath, locales, translate } from "./utils/test-utils";
+import {
+	getLocalePath,
+	locales,
+	stripMarkdown,
+	translate,
+} from "./utils/test-utils";
 import {
 	PORTAL_SELECTOR,
 	NOTE_LABEL_SELECTOR,
 	NOTE_TITLE_SELECTOR,
 	NOTE_CONTENT_SELECTOR,
 } from "./utils/locators";
+import { STRIP_MD, STRIP_MD_LINK, TEXT_NOT_EMPTY } from "./utils/validators";
 import { getGlossaryData, getTermSelector } from "./utils/terms";
 import type { ITermTestData } from "./utils/types";
-
-const STRIP_MD = /(?:__|[*#])|\[(.*?)\]\(.*?\)/gm;
 
 test.describe("Glossary", () => {
 	return locales.map((locale) => {
@@ -33,7 +37,11 @@ test.describe("Glossary", () => {
 				);
 
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
-					content.replace(STRIP_MD, "$1")
+					TEXT_NOT_EMPTY
+				);
+
+				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
+					stripMarkdown(content)
 				);
 			});
 		});

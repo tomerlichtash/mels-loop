@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { getLocalePath, locales } from "./utils/test-utils";
+import { getLocalePath, locales, stripMarkdown } from "./utils/test-utils";
 import { PORTAL_SELECTOR, NOTE_CONTENT_SELECTOR } from "./utils/locators";
-import { STRIP_MD, TEXT_NOT_EMPTY } from "./utils/validators";
+import { TEXT_NOT_EMPTY } from "./utils/validators";
 import { getAnnotationsData, getTermSelector } from "./utils/terms";
 import type { ITermTestData } from "./utils/types";
 
@@ -23,7 +23,7 @@ test.describe("Annotations", () => {
 				);
 
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
-					content.replace(STRIP_MD, "$1")
+					stripMarkdown(content)
 				);
 			});
 		});

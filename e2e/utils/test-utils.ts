@@ -1,5 +1,6 @@
 import { Languages } from "../../src/locales";
 import { _translate } from "../../src/locales/translate";
+import { STRIP_MD, STRIP_MD_LINK } from "./validators";
 
 const fs = require("fs");
 const matter = require("gray-matter");
@@ -36,3 +37,10 @@ export const getFrontMatter = (path: string, locale: string) => {
 	);
 	return matter(testMdFile);
 };
+
+export const stripMarkdown = (content: string) =>
+	content
+		.replace("\n", "")
+		.replace(STRIP_MD, "$2")
+		.replace(STRIP_MD_LINK, "$1")
+		.trim();

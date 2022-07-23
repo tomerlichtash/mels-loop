@@ -40,7 +40,7 @@ export const Button = ({
 	const btnContent = (
 		<span
 			className={st(classes.contentWrapper, { icon: !!icon })}
-			data-test-id={`Button_${testId}`}
+			data-test-id={testId && `Button_${testId}`}
 		>
 			{icon && (
 				<span className={st(classes.icon, { side: iconSide })}>
