@@ -33,3 +33,7 @@
 	background: none;
 	font-family: inherit;
 }
+
+[data-radix-popper-content-wrapper] {
+	z-index: 1 !important;
+}
