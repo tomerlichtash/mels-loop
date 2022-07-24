@@ -48,6 +48,7 @@ const config: PlaywrightTestConfig = {
 	projects: [
 		{
 			name: "Desktop Chrome",
+			testIgnore: [/.mobile.spec.ts/],
 			use: {
 				...devices["Desktop Chrome"],
 			},
