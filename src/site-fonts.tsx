@@ -1,3 +1,4 @@
+import { mlUtils } from "./lib/ml-utils";
 import { siteFontData } from "./site-fonts-data";
 
 export interface IFontFace {
@@ -40,6 +41,7 @@ const FontFaceDecl = ({ name, id, href, weight, format }: IFontFaceDecl) => {
 const FontFaceLink = ({ id, href, format }: IFontFaceLink) => {
 	return (
 		<link
+			key={mlUtils.uniqueId()}
 			rel="preload"
 			href={`${fontBasePath}/${id}/${href}`}
 			as="font"
