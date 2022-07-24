@@ -13,32 +13,30 @@ import {
 } from "./utils/locators";
 import { TEXT_NOT_EMPTY } from "./utils/validators";
 import {
+	getAnnotationsData,
 	getGlossaryData,
 	getMarkdownLinks,
 	getTermSelector,
 } from "./utils/terms";
 import type { ITermTestData } from "./utils/types";
 
-test.describe.skip("Glossary", () => {
+test.describe("Codex", () => {
+	const delim = "glossary";
 	locales.map((locale) => {
+		const codexTerms = getMarkdownLinks("codex/index", delim, locale);
 		const terms = getGlossaryData(locale);
-		const codexTerms = getMarkdownLinks(
-			"codex/index",
-			// "[^](annotations/",
-			"](glossary/",
-			locale
-		);
 
-		codexTerms.map((key: string) => {
-			// const { key, content } = term;
-			const { term_key, content } = terms.filter((t) => t.key === key);
+		return codexTerms.map((key: string) => {
+			const { term_key, content } = terms.filter(
+				(t: ITermTestData) => t.key === key
+			)[0];
 
-			test.only(`${locale} > should open codex term: ${key}`, async ({
+			return test(`${locale} > should open glossary: ${key}`, async ({
 				page,
 			}) => {
 				await page.goto(getLocalePath(locale));
 				await page
-					.locator(getTermSelector({ type: "glossary", key }))
+					.locator(getTermSelector({ type: delim, key }))
 					.first()
 					.click();
 				await page.$$(PORTAL_SELECTOR);
@@ -57,30 +55,30 @@ test.describe.skip("Glossary", () => {
 				);
 			});
 		});
+	});
 
-		terms.map((term: ITermTestData) => {
-			const { key, content } = term;
-			test(`${locale} > should open term: ${key}`, async ({ page }) => {
+	locales.map((locale) => {
+		const delim = "annotations";
+		const codexTerms = getMarkdownLinks("codex/index", delim, locale);
+		const terms = getAnnotationsData(locale);
+
+		return codexTerms.map((key: string) => {
+			const { content } = terms.filter((t: ITermTestData) => t.key === key)[0];
+			return test(`${locale} > should open annotation: ${key}`, async ({
+				page,
+			}) => {
 				await page.goto(getLocalePath(locale));
 				await page
-					.locator(getTermSelector({ type: "glossary", key }))
+					.locator(getTermSelector({ type: "annotation", key }))
 					.first()
 					.click();
 				await page.$$(PORTAL_SELECTOR);
 
-				const { term_key } = term;
-
-				await expect(page.locator(NOTE_LABEL_SELECTOR)).toHaveText(
-					translate(locale, "NOTE_LABEL_GLOSSARY")
-				);
-				await expect(page.locator(NOTE_TITLE_SELECTOR)).toHaveText(
-					translate(locale, term_key)
-				);
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
 					TEXT_NOT_EMPTY
 				);
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
-					stripMarkdown(content)
+					stripMarkdown(content as string)
 				);
 			});
 		});

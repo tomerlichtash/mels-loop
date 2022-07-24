@@ -5,7 +5,7 @@ import { TEXT_NOT_EMPTY } from "./utils/validators";
 import { getAnnotationsData, getTermSelector } from "./utils/terms";
 import type { ITermTestData } from "./utils/types";
 
-test.describe("Annotations", () => {
+test.describe.skip("Annotations", () => {
 	return locales.map((locale) => {
 		return getAnnotationsData(locale).map((term: ITermTestData) => {
 			const { key, content } = term;

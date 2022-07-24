@@ -2,3 +2,5 @@
 - Blog specs
 - Footer Specs
 - Terms bibliography
+- query
+- theme
