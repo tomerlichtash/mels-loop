@@ -280,16 +280,17 @@ const HTML_RE = /\s*<([a-z]+)([^>]+)*>([\s\S]+)?<\/\1>/ig;
  * HTML nodes include the type HTML and a tag field with the HTML tag
  * @returns 
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const createHtmlMDParser = () => {
 	const rules = {
 		...mdParser.defaultRules,
 		// Triple slash comments
 		comment: {
-			match: function (source) {
+			match: function (source: string) {
 				return /^\s*\/\/\/([^\n\r]*)/.exec(source);
 			},
 
-			parse: function (capture, recurseParse, state) {
+			parse: function (capture: RegExpExecArray /*, recurseParse, state */) {
 				return {
 					content: capture[1]
 				};
@@ -298,12 +299,14 @@ const createHtmlMDParser = () => {
 		},
 		// html parser
 		HTML: {
-			match: function (source /*, state, lookbehind */) {
+			match: function (source: string /*, state, lookbehind */) {
 				const res = HTML_RE.exec(source);
 				return res;
 			},
 
-			parse: function (capture, recurseParse, state) {
+			parse: function (capture: RegExpExecArray, 
+				recurseParse: (content: string, state: object) => Array<object>, 
+				state: object) {
 				return {
 					tag: capture[1],
 					attributes: parseAttributes(capture[2]),
@@ -330,7 +333,7 @@ const parseAttributes = (attrStr: string): Map<string, string> => {
 	}
 	const re = /\s*([a-z]+)="([^"]*)"/ig;
 	let match: RegExpExecArray;
-	while (match = re.exec(attrStr)) {
+	while ((match = re.exec(attrStr)) != null) {
 		attrMap.set(match[1], match[2]);
 	}
 	return attrMap;
