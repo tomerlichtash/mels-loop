@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import {
 	getLocalePath,
 	locales,
-	stripMarkdown,
+	sanitizeContent,
 	translate,
 } from "./utils/test-utils";
 import {
@@ -50,8 +50,9 @@ test.describe("Codex", () => {
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
 					TEXT_NOT_EMPTY
 				);
+
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
-					stripMarkdown(content as string)
+					sanitizeContent(content as string)
 				);
 			});
 		});
@@ -78,7 +79,7 @@ test.describe("Codex", () => {
 					TEXT_NOT_EMPTY
 				);
 				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
-					stripMarkdown(content as string)
+					sanitizeContent(content as string)
 				);
 			});
 		});

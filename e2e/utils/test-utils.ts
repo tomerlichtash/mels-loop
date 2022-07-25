@@ -44,3 +44,6 @@ export const stripMarkdown = (content: string) =>
 		.replace(STRIP_MD, "$2")
 		.replace(STRIP_MD_LINK, "$1")
 		.trim();
+
+export const sanitizeContent = (content: string) =>
+	stripMarkdown(content).split("\n").filter(Boolean).join("");
