@@ -99,19 +99,6 @@ test.describe("Codex", () => {
 					await page.locator(NOTE_CONTENT_SELECTOR).textContent()
 				);
 
-				// console.log(
-				// 	"raw",
-				// 	sanitizedRawContent.length,
-				// 	"\n",
-				// 	sanitizedRawContent
-				// );
-				// console.log(
-				// 	"textContent",
-				// 	sanitizedTextContent.length,
-				// 	"\n",
-				// 	sanitizedTextContent
-				// );
-
 				expect(
 					sanitizedTextContent,
 					"term content should be equal to source"

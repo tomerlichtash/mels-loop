@@ -7,9 +7,16 @@ test.describe("Markdown Test Utils", () => {
 		expect(sanitizeContent(content)).toEqual("Some markdown");
 	});
 
-	test("it should remove italics", () => {
-		const content = "Some _markdown_";
-		expect(sanitizeContent(content)).toEqual("Some markdown");
+	test("Italics", () => {
+		test("it should remove italics", () => {
+			const content = "Some _markdown_";
+			expect(sanitizeContent(content)).toEqual("Some markdown");
+		});
+
+		test.fixme("it should not remove underscores", () => {
+			const content = "Some __markdown__";
+			expect(sanitizeContent(content)).toEqual("Some __markdown__");
+		});
 	});
 
 	test("it should remove blockquote", () => {
