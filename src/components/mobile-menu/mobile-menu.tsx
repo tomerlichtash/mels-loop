@@ -129,6 +129,7 @@ export const MobileMenu = ({
 					<div className={classes.toolbar}>
 						<LocaleSelector
 							className={st(classes.toolbarItem, classes.localeSelector)}
+							testId={`MobileMenuLocaleSelector`}
 						/>
 						{/* <ThemeSelector
 							className={st(classes.toolbarItem, classes.themeSelector)}

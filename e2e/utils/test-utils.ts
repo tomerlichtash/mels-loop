@@ -17,10 +17,10 @@ export const translate = (locale: string, key: string) =>
 
 export const getLocalePath = (locale: string, path?: string) => {
 	let params = [baseDir];
-
 	if (locale !== "en") {
 		params.push(locale);
-	} else if (path && path !== baseDir) {
+	}
+	if (path && path !== baseDir) {
 		params.push(path);
 	}
 

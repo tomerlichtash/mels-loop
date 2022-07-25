@@ -6,7 +6,14 @@ import { ToggleGroupRoot, ToggleGroupItem } from "../radix-primitives";
 import { LocaleId } from "../../interfaces/locale-context";
 import { st, classes } from "./locale-selector.st.css";
 
-export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
+export interface ILocaleSelectorProps extends ComponentProps {
+	testId?: string;
+}
+
+export const LocaleSelector = ({
+	className,
+	testId,
+}: ILocaleSelectorProps): JSX.Element => {
 	const { locale, locales, getLocaleSymbol, onLocaleChange } =
 		useContext(ReactLocaleContext);
 	return (
@@ -37,7 +44,7 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 											locale: id,
 											selected: locale === id,
 										})}
-										testId={`LocaleSelector_${id}`}
+										testId={`${testId}_LocaleSelector_${id}`}
 									/>
 								</div>
 							</ToggleGroupItem>

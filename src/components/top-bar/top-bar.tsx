@@ -16,6 +16,7 @@ export default function TopBar({ className }: ComponentProps) {
 				<MenuProvider />
 				<LocaleSelector
 					className={st(classes.localeSelector, { locale }, classes.item)}
+					testId="TopBarLocaleSelector"
 				/>
 				{/* <ThemeSelector className={st(classes.themeSelector, classes.item)} /> */}
 			</div>
