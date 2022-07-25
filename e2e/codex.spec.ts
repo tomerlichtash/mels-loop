@@ -11,7 +11,6 @@ import {
 	NOTE_TITLE_SELECTOR,
 	NOTE_CONTENT_SELECTOR,
 } from "./utils/locators";
-import { TEXT_NOT_EMPTY } from "./utils/validators";
 import {
 	getAnnotationsData,
 	getGlossaryData,
@@ -25,7 +24,6 @@ test.describe("Codex", () => {
 	locales.map((locale) => {
 		const codexTerms = getMarkdownLinks("codex/index", delim, locale);
 		const terms = getGlossaryData(locale);
-
 		return codexTerms.map((key: string) => {
 			const { term_key, content } = terms.filter(
 				(t: ITermTestData) => t.key === key
@@ -47,13 +45,23 @@ test.describe("Codex", () => {
 				await expect(page.locator(NOTE_TITLE_SELECTOR)).toHaveText(
 					translate(locale, term_key as string)
 				);
-				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
-					TEXT_NOT_EMPTY
-				);
 
-				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
-					sanitizeContent(content as string)
-				);
+				const textContent = await page
+					.locator(NOTE_CONTENT_SELECTOR)
+					.textContent();
+
+				expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
+				expect(
+					textContent.split(" ").length,
+					"minimum words per term"
+				).toBeGreaterThan(0);
+
+				const sanitizedContent = sanitizeContent(content as string);
+
+				await expect(
+					page.locator(NOTE_CONTENT_SELECTOR),
+					"term content equal to source"
+				).toHaveText(sanitizedContent);
 			});
 		});
 	});
@@ -62,9 +70,7 @@ test.describe("Codex", () => {
 		const delim = "annotations";
 		const codexTerms = getMarkdownLinks("codex/index", delim, locale);
 		const terms = getAnnotationsData(locale);
-
 		return codexTerms.map((key: string) => {
-			const { content } = terms.filter((t: ITermTestData) => t.key === key)[0];
 			return test(`${locale} > should open annotation: ${key}`, async ({
 				page,
 			}) => {
@@ -75,12 +81,41 @@ test.describe("Codex", () => {
 					.click();
 				await page.$$(PORTAL_SELECTOR);
 
-				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
-					TEXT_NOT_EMPTY
+				const textContent = await page
+					.locator(NOTE_CONTENT_SELECTOR)
+					.textContent();
+
+				expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
+				expect(
+					textContent.split(" ").length,
+					"minimum words per term"
+				).toBeGreaterThan(0);
+
+				const { content } = terms.filter(
+					(t: ITermTestData) => t.key === key
+				)[0];
+				const sanitizedRawContent = sanitizeContent(content as string);
+				const sanitizedTextContent = sanitizeContent(
+					await page.locator(NOTE_CONTENT_SELECTOR).textContent()
 				);
-				await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
-					sanitizeContent(content as string)
-				);
+
+				// console.log(
+				// 	"raw",
+				// 	sanitizedRawContent.length,
+				// 	"\n",
+				// 	sanitizedRawContent
+				// );
+				// console.log(
+				// 	"textContent",
+				// 	sanitizedTextContent.length,
+				// 	"\n",
+				// 	sanitizedTextContent
+				// );
+
+				expect(
+					sanitizedTextContent,
+					"term content should be equal to source"
+				).toEqual(sanitizedRawContent);
 			});
 		});
 	});
