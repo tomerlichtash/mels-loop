@@ -10,10 +10,12 @@ import {
 	STRIP_MD,
 	MD_DOUBLE_ASTRIEK,
 	MD_MID_ASTRIEK,
-	MD_CODEBLOCK,
+	// MD_CODEBLOCK,
 	SINGLE_WHITE_SPACE,
 	EMPTY_STRING,
 	ASTRIEK_MOCK,
+	MD_SINGLE_ASTRIEK,
+	MD_CODEBLOCK_INLINE,
 } from "./patterns";
 
 const fs = require("fs");
@@ -37,7 +39,6 @@ export const getLocalePath = (locale: string, path?: string) => {
 	if (path && path !== baseDir) {
 		params.push(path);
 	}
-
 	return params.join("/");
 };
 
@@ -61,13 +62,15 @@ export const stripMarkdown = (content: string) =>
 		)
 		.replace(STRIP_MD, "$2")
 		.replace(MD_COMMENT, EMPTY_STRING)
-		.replace(MD_DOUBLE_ASTRIEK, "$1")
 		.replace(MD_BLOCKQUOTE, EMPTY_STRING)
 		.replace(MD_ORDERED_LIST, EMPTY_STRING)
 		.replace(MD_UNORDERED_LIST_DASH, EMPTY_STRING)
 		.replace(MD_UNORDERED_LIST_ASTRIEK, EMPTY_STRING)
+		.replace(MD_DOUBLE_ASTRIEK, "$1")
+		.replace(MD_SINGLE_ASTRIEK, ASTRIEK_MOCK)
 		.replace(MD_LINK, "$1")
-		.replace(MD_CODEBLOCK, "$1")
+		// .replace(MD_CODEBLOCK, "$1")
+		.replace(MD_CODEBLOCK_INLINE, "$2")
 		.trim()
 		.split("\n")
 		.filter(Boolean)

@@ -96,20 +96,17 @@ test.describe("Codex", () => {
 				const { content } = terms.filter(
 					(t: ITermTestData) => t.key === key
 				)[0];
-				const sanitizedRawContent = stripMarkdown(content as string);
-				const sanitizedTextContent = stripMarkdown(
+				const raw = stripMarkdown(content as string);
+				const sample = stripMarkdown(
 					await page.locator(NOTE_CONTENT_SELECTOR).textContent()
 				);
 
 				expect(
-					sanitizedTextContent.length,
+					sample.length,
 					"sanitized content samples should have equal length"
-				).toEqual(sanitizedRawContent.length);
+				).toEqual(sample.length);
 
-				expect(
-					sanitizedTextContent,
-					"term content should be equal to source"
-				).toEqual(sanitizedRawContent);
+				expect(sample, "term content should be equal to source").toEqual(raw);
 			});
 		});
 	});

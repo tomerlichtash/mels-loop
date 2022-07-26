@@ -58,12 +58,19 @@ test.describe("stripMarkdown", () => {
 			expect(stripMarkdown(content)).toEqual("Some markdown");
 		});
 
-		test("it should convert single astrieks to literals", () => {
+		test("it should convert single astriek to literals", () => {
 			const content = "Some markdown * can have a single astriek";
 			expect(
 				stripMarkdown(content),
 				"it should replace mid-astrick with mock"
 			).toEqual(`Some markdown ${ASTRIEK_MOCK} can have a single astriek`);
+		});
+
+		test("it should replace multiple instances of single astriek in a line", () => {
+			const content = `After porting (e.g. "150* - bets $1.50"). Permissible affirmative answers are: yes*, ok*, si*, ja*, oui*. Permissible negative answers are: no*, non*, nein*, nope*, or only the astriek stop.`;
+			expect(stripMarkdown(content)).toEqual(
+				`After porting (e.g. "150${ASTRIEK_MOCK} - bets $1.50"). Permissible affirmative answers are: yes${ASTRIEK_MOCK}, ok${ASTRIEK_MOCK}, si${ASTRIEK_MOCK}, ja${ASTRIEK_MOCK}, oui${ASTRIEK_MOCK}. Permissible negative answers are: no${ASTRIEK_MOCK}, non${ASTRIEK_MOCK}, nein${ASTRIEK_MOCK}, nope${ASTRIEK_MOCK}, or only the astriek stop.`
+			);
 		});
 	});
 
