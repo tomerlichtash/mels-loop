@@ -13,6 +13,7 @@ export const NOTE_TITLE_SELECTOR = `[data-test-id="note_title"]`;
 /**
  * TopBar
  */
+export const SITE_NAME_LOCATOR = `[data-test-id="Button_site_name"]`;
 
 // LocaleSelector
 export const TOPBAR_MENU_LOCALE_SELECTOR_EN = `[data-test-id="Button_TopBarLocaleSelector_LocaleSelector_en"]`;
@@ -22,6 +23,7 @@ export const TOPBAR_MENU_LOCALE_SELECTOR_HE = `[data-test-id="Button_TopBarLocal
  * Mobile Menu
  */
 export const MOBILE_MENU_BUTTON_BURGER_ICON = `.bm-burger-button`;
+export const MOBILE_MENU_SITE_NAME_LOCATOR = `[data-test-id="Button_MobileMenu_site_name"]`;
 // Articles
 export const MOBILE_MENU_BUTTON_PREFACE = `.data-burgers-bar`;
 // Pages

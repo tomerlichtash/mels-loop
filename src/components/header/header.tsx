@@ -4,7 +4,11 @@ import { Button } from "../ui";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { st, classes } from "./header.st.css";
 
-export const Header = ({ className }: ComponentProps): JSX.Element => {
+export interface IHeaderProps extends ComponentProps {
+	siteNameTestId?: string;
+}
+
+export const Header = ({ className, siteNameTestId }: IHeaderProps): JSX.Element => {
 	const { siteTitle, siteSubtitle, textDirection } =
 		useContext(ReactLocaleContext);
 	return (
@@ -17,6 +21,7 @@ export const Header = ({ className }: ComponentProps): JSX.Element => {
 					link={"/"}
 					callback={() => false}
 					className={classes.siteTitle}
+					testId={siteNameTestId}
 				/>
 				<div className={classes.siteSubtitle} aria-label={siteSubtitle}>
 					{siteSubtitle}

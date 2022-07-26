@@ -6,6 +6,8 @@ import {
 	MOBILE_MENU_BUTTON_RESOURCES,
 	MOBILE_MENU_LOCALE_SELECTOR_HE,
 	MOBILE_MENU_LOCALE_SELECTOR_EN,
+	SITE_NAME_LOCATOR,
+	MOBILE_MENU_SITE_NAME_LOCATOR,
 } from "./utils/locators";
 import {
 	getLocalePath,
@@ -17,20 +19,30 @@ import {
 test.describe("Mobile Menu", () => {
 	test.describe("TopBar Navigation", () => {
 		locales.map((locale) => {
-			test.fixme(
-				`${locale} > should navigate to Homepage from Site Name button`,
-				async ({ page }) => {
-					const SITE_NAME_LOCATOR = `[data-test-id="site_name"]`;
+			test(`${locale} > should navigate to Homepage from Top Bar Site Name button`, async ({
+				page,
+			}) => {
+				await page.goto(getLocalePath(locale, "about"));
+				await page.locator(SITE_NAME_LOCATOR).click();
 
-					await page.goto(getLocalePath(locale, "about"));
-					await page.locator(SITE_NAME_LOCATOR).click();
+				await expect(page).toHaveURL(getLocalePath(locale));
+				await expect(page.locator(SITE_NAME_LOCATOR)).toHaveText(
+					translate(locale, "SITE_TITLE")
+				);
+			});
 
-					await expect(page).toHaveURL(getLocalePath(locale));
-					await expect(page.locator(SITE_NAME_LOCATOR)).toHaveText(
-						translate(locale, "SITE_TITLE")
-					);
-				}
-			);
+			test(`${locale} > should navigate to Homepage from Mobile Menu Site Name button`, async ({
+				page,
+			}) => {
+				await page.goto(getLocalePath(locale, "about"));
+				await page.locator(MOBILE_MENU_BUTTON_BURGER_ICON).click();
+				await page.locator(MOBILE_MENU_SITE_NAME_LOCATOR).click();
+
+				await expect(page).toHaveURL(getLocalePath(locale));
+				await expect(page.locator(MOBILE_MENU_SITE_NAME_LOCATOR)).toHaveText(
+					translate(locale, "SITE_TITLE")
+				);
+			});
 		});
 	});
 

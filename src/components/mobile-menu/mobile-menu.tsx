@@ -124,7 +124,10 @@ export const MobileMenu = ({
 		>
 			<div className={classes.menu}>
 				<div className={classes.menuHeader}>
-					<Header className={classes.header} />
+					<Header
+						className={classes.header}
+						siteNameTestId="MobileMenu_site_name"
+					/>
 					<div className={classes.strip}></div>
 					<div className={classes.toolbar}>
 						<LocaleSelector

@@ -5,6 +5,8 @@ import {
 } from "./utils/locators";
 
 test.describe("Locale Selector", () => {
+	// TODO: validate selected lang
+
 	test("should switch language to LTR", async ({ page }) => {
 		await page.goto("http://localhost:3000/he");
 		await page.click(TOPBAR_MENU_LOCALE_SELECTOR_EN);

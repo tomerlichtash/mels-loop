@@ -1,8 +1,9 @@
 import { test, expect } from "@playwright/test";
 import {
+	getFrontMatter,
 	getLocalePath,
 	locales,
-	sanitizeContent,
+	stripMarkdown,
 	translate,
 } from "./utils/test-utils";
 import {
@@ -20,9 +21,9 @@ import {
 import type { ITermTestData } from "./utils/types";
 
 test.describe("Codex", () => {
-	const delim = "glossary";
 	locales.map((locale) => {
-		const codexTerms = getMarkdownLinks("codex/index", delim, locale);
+		const { content } = getFrontMatter("codex/index", locale);
+		const codexTerms = getMarkdownLinks(content as string, "glossary");
 		const terms = getGlossaryData(locale);
 		return codexTerms.map((key: string) => {
 			const { term_key, content } = terms.filter(
@@ -34,7 +35,7 @@ test.describe("Codex", () => {
 			}) => {
 				await page.goto(getLocalePath(locale));
 				await page
-					.locator(getTermSelector({ type: delim, key }))
+					.locator(getTermSelector({ type: "glossary", key }))
 					.first()
 					.click();
 				await page.$$(PORTAL_SELECTOR);
@@ -56,7 +57,7 @@ test.describe("Codex", () => {
 					"minimum words per term"
 				).toBeGreaterThan(0);
 
-				const sanitizedContent = sanitizeContent(content as string);
+				const sanitizedContent = stripMarkdown(content as string);
 
 				await expect(
 					page.locator(NOTE_CONTENT_SELECTOR),
@@ -67,11 +68,11 @@ test.describe("Codex", () => {
 	});
 
 	locales.map((locale) => {
-		const delim = "annotations";
-		const codexTerms = getMarkdownLinks("codex/index", delim, locale);
+		const { content } = getFrontMatter("codex/index", locale);
+		const codexTerms = getMarkdownLinks(content as string, "annotations");
 		const terms = getAnnotationsData(locale);
 		return codexTerms.map((key: string) => {
-			return test(`${locale} > should open annotation: ${key}`, async ({
+			return test(`${locale} > should	 open annotation: ${key}`, async ({
 				page,
 			}) => {
 				await page.goto(getLocalePath(locale));
@@ -94,10 +95,15 @@ test.describe("Codex", () => {
 				const { content } = terms.filter(
 					(t: ITermTestData) => t.key === key
 				)[0];
-				const sanitizedRawContent = sanitizeContent(content as string);
-				const sanitizedTextContent = sanitizeContent(
+				const sanitizedRawContent = stripMarkdown(content as string);
+				const sanitizedTextContent = stripMarkdown(
 					await page.locator(NOTE_CONTENT_SELECTOR).textContent()
 				);
+
+				expect(
+					sanitizedTextContent.length,
+					"sanitized content samples should have equal length"
+				).toEqual(sanitizedRawContent.length);
 
 				expect(
 					sanitizedTextContent,

@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { SITE_NAME_LOCATOR } from "./utils/locators";
 import {
 	getLocalePath,
 	locales,
@@ -8,20 +9,17 @@ import {
 
 test.describe("TopBar Navigation", () => {
 	locales.map((locale) => {
-		test.fixme(
-			`${locale} > should navigate to Homepage from Site Name button`,
-			async ({ page }) => {
-				const SITE_NAME_LOCATOR = `[data-test-id="site_name"]`;
+		test(`${locale} > should navigate to Homepage from Site Name button`, async ({
+			page,
+		}) => {
+			await page.goto(getLocalePath(locale, "about"));
+			await page.locator(SITE_NAME_LOCATOR).click();
 
-				await page.goto(getLocalePath(locale, "about"));
-				await page.locator(SITE_NAME_LOCATOR).click();
-
-				await expect(page).toHaveURL(getLocalePath(locale));
-				await expect(page.locator(SITE_NAME_LOCATOR)).toHaveText(
-					translate(locale, "SITE_TITLE")
-				);
-			}
-		);
+			await expect(page).toHaveURL(getLocalePath(locale));
+			await expect(page.locator(SITE_NAME_LOCATOR)).toHaveText(
+				translate(locale, "SITE_TITLE")
+			);
+		});
 	});
 });
 
