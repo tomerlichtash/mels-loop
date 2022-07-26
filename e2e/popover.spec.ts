@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { TEXT_NOT_EMPTY } from "./utils/validators";
+import { TEXT_NOT_EMPTY } from "./utils/patterns";
 import type { ITermTestData } from "./utils/types";
 
 const PORTAL_SELECTOR = `[data-radix-portal]`;

@@ -14,3 +14,6 @@ export const MD_LINK = /\[([^[\]]*)\]\((.*?)\)/gm;
 export const MD_CODEBLOCK = /^```\n([\s\S]*?)```$/gm;
 
 // export const STRIP_MD_LINK = /(?:__|[*#])|\[(.*?)\]\(.*?\)/g;
+export const SINGLE_WHITE_SPACE = " ";
+export const EMPTY_STRING = "";
+export const ASTRIEK_MOCK = "%astriek%";

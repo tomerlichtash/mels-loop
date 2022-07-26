@@ -19,6 +19,7 @@ import {
 	getTermSelector,
 } from "./utils/terms";
 import type { ITermTestData } from "./utils/types";
+import { SINGLE_WHITE_SPACE } from "./utils/patterns";
 
 test.describe("Codex", () => {
 	locales.map((locale) => {
@@ -53,7 +54,7 @@ test.describe("Codex", () => {
 
 				expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
 				expect(
-					textContent.split(" ").length,
+					textContent.split(SINGLE_WHITE_SPACE).length,
 					"minimum words per term"
 				).toBeGreaterThan(0);
 
@@ -88,7 +89,7 @@ test.describe("Codex", () => {
 
 				expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
 				expect(
-					textContent.split(" ").length,
+					textContent.split(SINGLE_WHITE_SPACE).length,
 					"minimum words per term"
 				).toBeGreaterThan(0);
 

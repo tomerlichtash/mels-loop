@@ -1,6 +1,6 @@
 import { getFrontMatter } from "./test-utils";
 import type { ITermTestData } from "./types";
-import { MD_LINK } from "./validators";
+import { EMPTY_STRING, MD_LINK } from "./patterns";
 
 const fs = require("fs");
 
@@ -60,7 +60,10 @@ export const getMarkdownLinks = (content: string, delim: string) => {
 	let sample = "";
 	matches.map((term: string) => {
 		if (term.indexOf(_delim) > -1) {
-			sample = term.split(_delim)[1].replace(_delim, "").replace(")", "");
+			sample = term
+				.split(_delim)[1]
+				.replace(_delim, EMPTY_STRING)
+				.replace(")", EMPTY_STRING);
 			if (pool.indexOf(sample) === -1) {
 				pool.push(sample);
 			}

@@ -11,7 +11,10 @@ import {
 	MD_DOUBLE_ASTRIEK,
 	MD_MID_ASTRIEK,
 	MD_CODEBLOCK,
-} from "./validators";
+	SINGLE_WHITE_SPACE,
+	EMPTY_STRING,
+	ASTRIEK_MOCK,
+} from "./patterns";
 
 const fs = require("fs");
 const matter = require("gray-matter");
@@ -51,18 +54,21 @@ export const getFrontMatter = (path: string, locale: string) => {
 
 export const stripMarkdown = (content: string) =>
 	content
-		.replace("\n", "")
-		.replace(MD_MID_ASTRIEK, ["", "%astriek%", ""].join(" "))
+		.replace("\n", EMPTY_STRING)
+		.replace(
+			MD_MID_ASTRIEK,
+			[EMPTY_STRING, ASTRIEK_MOCK, EMPTY_STRING].join(SINGLE_WHITE_SPACE)
+		)
 		.replace(STRIP_MD, "$2")
-		.replace(MD_COMMENT, "")
+		.replace(MD_COMMENT, EMPTY_STRING)
 		.replace(MD_DOUBLE_ASTRIEK, "$1")
-		.replace(MD_BLOCKQUOTE, "")
-		.replace(MD_ORDERED_LIST, "")
-		.replace(MD_UNORDERED_LIST_DASH, "")
-		.replace(MD_UNORDERED_LIST_ASTRIEK, "")
+		.replace(MD_BLOCKQUOTE, EMPTY_STRING)
+		.replace(MD_ORDERED_LIST, EMPTY_STRING)
+		.replace(MD_UNORDERED_LIST_DASH, EMPTY_STRING)
+		.replace(MD_UNORDERED_LIST_ASTRIEK, EMPTY_STRING)
 		.replace(MD_LINK, "$1")
 		.replace(MD_CODEBLOCK, "$1")
 		.trim()
 		.split("\n")
 		.filter(Boolean)
-		.join("");
+		.join(EMPTY_STRING);

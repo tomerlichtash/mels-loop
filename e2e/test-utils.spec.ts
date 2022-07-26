@@ -6,18 +6,19 @@ import {
 	getLocalePath,
 	stripMarkdown,
 } from "./utils/test-utils";
+import { ASTRIEK_MOCK, EMPTY_STRING } from "./utils/patterns";
 const whitespace = "    ";
 
 test("getMarkdownLinks", () => {
 	const mdMock =
-		"some text with [link](delim1/someValue1) and [another link](delim2/someValue2) of other type";
+		"some text with [link](delim1/someValue) and [another link](delim2/anotherValue) of other type";
 	const delim1val = getMarkdownLinks(mdMock, "delim1");
 	const delim2val = getMarkdownLinks(mdMock, "delim2");
 	expect(delim1val, "it should return values for delim type").toEqual([
-		"someValue1",
+		"someValue",
 	]);
 	expect(delim2val, "it should return values for delim type").toEqual([
-		"someValue2",
+		"anotherValue",
 	]);
 });
 
@@ -59,9 +60,10 @@ test.describe("stripMarkdown", () => {
 
 		test("it should convert single astrieks to literals", () => {
 			const content = "Some markdown * can have a single astriek";
-			expect(stripMarkdown(content), "astriek should not be sanitized").toEqual(
-				"Some markdown %astriek% can have a single astriek"
-			);
+			expect(
+				stripMarkdown(content),
+				"it should replace mid-astrick with mock"
+			).toEqual(`Some markdown ${ASTRIEK_MOCK} can have a single astriek`);
 		});
 	});
 
@@ -114,37 +116,53 @@ test.describe("stripMarkdown", () => {
 	test.describe("Whitespace", () => {
 		test("it should trim spaces for single lines", () => {
 			const content = [
-				"",
+				EMPTY_STRING,
 				"Some",
 				"markdown",
-				"",
+				EMPTY_STRING,
 				"and",
-				"",
+				EMPTY_STRING,
 				"some",
 				"more",
-				"",
+				EMPTY_STRING,
 			].join(whitespace);
 			expect(stripMarkdown(content)).toEqual(
-				["Some", "markdown", "", "and", "", "some", "more"].join(whitespace)
+				[
+					"Some",
+					"markdown",
+					EMPTY_STRING,
+					"and",
+					EMPTY_STRING,
+					"some",
+					"more",
+				].join(whitespace)
 			);
 		});
 
 		test("it should trim spaces for paragraphs", () => {
 			const content = [
-				"",
+				EMPTY_STRING,
 				"\n",
 				"Some",
 				"markdown",
-				"",
+				EMPTY_STRING,
 				"and",
-				"",
+				EMPTY_STRING,
 				"some",
 				"more",
-				"",
+				EMPTY_STRING,
 				"\n",
 			].join(whitespace);
 			expect(stripMarkdown(content)).toEqual(
-				["Some", "markdown", "", "and", "", "some", "more"].join(whitespace)
+				[
+					"Some",
+					"markdown",
+					EMPTY_STRING,
+					"and",
+					EMPTY_STRING,
+					"some",
+					"more",
+				].join(whitespace)
 			);
 		});
 	});
