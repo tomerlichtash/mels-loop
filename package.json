@@ -46,7 +46,7 @@
 		"gray-matter": "^4.0.3",
 		"js-cookie": "^3.0.1",
 		"lodash.orderby": "^4.6.0",
-		"next": "12.2.2",
+		"next": "12.2.3",
 		"react": "18.2.0",
 		"react-burger-menu": "^3.0.8",
 		"react-copy-to-clipboard": "^5.1.0",
@@ -66,8 +66,8 @@
 		"@types/react": "^18.0.15",
 		"@types/react-google-recaptcha": "^2.1.5",
 		"@types/tmp": "^0.2.3",
-		"@typescript-eslint/eslint-plugin": "^5.30.7",
-		"@typescript-eslint/parser": "^5.30.7",
+		"@typescript-eslint/eslint-plugin": "^5.31.0",
+		"@typescript-eslint/parser": "^5.31.0",
 		"chalk": "^5.0.1",
 		"create-temp-directory": "^1.1.1",
 		"eslint": "^8.20.0",
@@ -78,12 +78,12 @@
 		"eslint-plugin-react": "^7.30.1",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"lodash": "^4.17.21",
-		"next-sitemap": "^3.1.11",
+		"next-sitemap": "^3.1.13",
 		"path": "^0.12.7",
 		"prettier": "^2.7.1",
 		"simple-markdown": "^0.7.3",
 		"tslog": "^3.3.3",
 		"typescript": "^4.7.4",
-		"webpack": "^5.30.0"
+		"webpack": "^5.74.0"
 	}
 }
