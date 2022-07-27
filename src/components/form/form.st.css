@@ -53,10 +53,6 @@
 	-st-states: id(string);
 }
 
-.field::error {
-	border: 2px solid purple;
-}
-
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {
 		.captchaContainer {
