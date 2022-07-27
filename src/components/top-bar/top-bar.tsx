@@ -11,12 +11,11 @@ export default function TopBar({ className }: ComponentProps) {
 	const { locale, textDirection } = useContext(ReactLocaleContext);
 	return (
 		<div className={st(classes.root, { textDirection }, className)}>
-			<Header className={classes.header} siteNameTestId="site_name" />
+			<Header className={classes.header} />
 			<div className={classes.items}>
 				<MenuProvider />
 				<LocaleSelector
 					className={st(classes.localeSelector, { locale }, classes.item)}
-					testId="TopBarLocaleSelector"
 				/>
 				{/* <ThemeSelector className={st(classes.themeSelector, classes.item)} /> */}
 			</div>
