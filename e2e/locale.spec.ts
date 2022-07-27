@@ -5,7 +5,7 @@ import {
 } from "./utils/locators";
 
 import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as stylesheet from "./../src/components/locale-selector/locale-selector.st.css";
+import * as stylesheet from "./sample.st.css";
 // const domUtil = new StylableDOMUtil(stylesheet, document.body);
 // const partElement = domUtil.select(".button");
 
