@@ -10,11 +10,11 @@ import {
 	STRIP_MD,
 	MD_DOUBLE_ASTRIEK,
 	MD_MID_ASTRIEK,
-	// MD_CODEBLOCK,
 	SINGLE_WHITE_SPACE,
 	EMPTY_STRING,
 	ASTRIEK_MOCK,
 	MD_SINGLE_ASTRIEK,
+	MD_CODEBLOCK,
 	MD_CODEBLOCK_INLINE,
 } from "./patterns";
 
@@ -69,7 +69,7 @@ export const stripMarkdown = (content: string) =>
 		.replace(MD_DOUBLE_ASTRIEK, "$1")
 		.replace(MD_SINGLE_ASTRIEK, ASTRIEK_MOCK)
 		.replace(MD_LINK, "$1")
-		// .replace(MD_CODEBLOCK, "$1")
+		.replace(MD_CODEBLOCK, "$1")
 		.replace(MD_CODEBLOCK_INLINE, "$2")
 		.trim()
 		.split("\n")

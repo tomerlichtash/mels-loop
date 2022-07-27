@@ -33,3 +33,5 @@ export const MOBILE_MENU_BUTTON_RESOURCES = `[data-test-id="Button_MobileMenuBut
 // LocaleSelector
 export const MOBILE_MENU_LOCALE_SELECTOR_EN = `[data-test-id="Button_MobileMenuLocaleSelector_LocaleSelector_en"]`;
 export const MOBILE_MENU_LOCALE_SELECTOR_HE = `[data-test-id="Button_MobileMenuLocaleSelector_LocaleSelector_he"]`;
+
+export const POPOVER_LOADING_INDICATOR = `[data-test-id="loading_indictator"]`;

@@ -12,7 +12,7 @@ export const MD_UNORDERED_LIST_DASH = /(^-\x20)/gm;
 export const MD_UNORDERED_LIST_ASTRIEK = /(^\*\x20)/gm;
 export const MD_MID_ASTRIEK = /(\x20\*\x20)/gm;
 export const MD_LINK = /\[([^[\]]*)\]\((.*?)\)/gm;
-// export const MD_CODEBLOCK = /^```\n([\s\S]*?)```$/gm;
+export const MD_CODEBLOCK = /^```(?:js|javascript)\n([\s\S]*?)```$/gm;
 export const MD_CODEBLOCK_INLINE =
 	/<code(?:\s[^>]*)?>[\s\S]*?<\/code>|`{3}([\S\s]*?)`{3}|`([^`]*)`|~~([\S\s]*?)~~|\*{2}([\s\S]*?)\*{2}(?!\*)|\*([^*]*)\*|__([\s\S]*?)__/gm;
 

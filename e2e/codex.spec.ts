@@ -73,7 +73,7 @@ test.describe("Codex", () => {
 		const codexTerms = getMarkdownLinks(content as string, "annotations");
 		const terms = getAnnotationsData(locale);
 		return codexTerms.map((key: string) => {
-			return test(`${locale} > should	open annotation: ${key}`, async ({
+			return test(`${locale} > should open annotation: ${key}`, async ({
 				page,
 			}) => {
 				await page.goto(getLocalePath(locale));

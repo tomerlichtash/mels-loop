@@ -1,12 +1,10 @@
 import { test, expect } from "@playwright/test";
+import { POPOVER_LOADING_INDICATOR } from "./utils/locators";
 import { TEXT_NOT_EMPTY } from "./utils/patterns";
-import type { ITermTestData } from "./utils/types";
+import { translate } from "./utils/test-utils";
 
 const PORTAL_SELECTOR = `[data-radix-portal]`;
 const NOTE_CONTENT_SELECTOR = `[data-test-id="note_contents"]`;
-
-const getAnnotationSelector = ({ type, key }: ITermTestData) =>
-	`[data-test-annotation-type="${type}"][data-test-target="${key}"]`;
 
 test.describe("Popover", () => {
 	test.fixme(
@@ -17,31 +15,29 @@ test.describe("Popover", () => {
 				.locator(`[data-test-annotation-type="annotation"][data-test-seq="1"]`)
 				.first()
 				.click();
+			await page.pause();
 			await page.$$(PORTAL_SELECTOR);
 
-			await page.$$(`[data-test-id="loading_indictator"]`).then(async () => {
-				await expect(page.locator(`[data-test-id="loading_indictator"]`))
-					.toHaveText("Loading...")
-					.then(async () => {
-						await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText(
-							TEXT_NOT_EMPTY
-						);
-					});
-			});
+			await page.$$(POPOVER_LOADING_INDICATOR);
+
+			await expect(
+				page.locator(`[data-test-id="loading_indictator"]`)
+			).toHaveText(translate("en", "PRELOADER_LABEL"));
 		}
 	);
 
-	test.fixme("should show error if term is not found", async ({ page }) => {
-		await page.goto("http://localhost:3000/");
-		await page
-			.locator(
-				getAnnotationSelector({ type: "annotation", key: "some_unknown_key" })
-			)
-			.first()
-			.click();
-		await page.$$(PORTAL_SELECTOR);
-		await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText("not found");
-	});
+	// TODO: Should be a part of the API spec, not E2E
+	// test.fixme("should show error if term is not found", async ({ page }) => {
+	// 	await page.goto("http://localhost:3000/");
+	// 	await page
+	// 		.locator(
+	// 			getAnnotationSelector({ type: "annotation", key: "some_unknown_key" })
+	// 		)
+	// 		.first()
+	// 		.click();
+	// 	await page.$$(PORTAL_SELECTOR);
+	// 	await expect(page.locator(NOTE_CONTENT_SELECTOR)).toHaveText("not found");
+	// });
 
 	test("[en] should open a specific Annotation Term", async ({ page }) => {
 		await page.goto("http://localhost:3000/");

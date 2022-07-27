@@ -128,22 +128,21 @@ test.describe("Mobile Menu", () => {
 				await expect(page.locator("h1")).toHaveText(data.title as string);
 			});
 
-			test.fixme(
-				`${locale} > should navigate to the Resources page`,
-				async ({ page }) => {
-					const path = "docs/resources";
-					const filename = "index";
-					const { data } = getFrontMatter(`${path}/${filename}`, locale);
-					const localePath = getLocalePath(locale, path);
+			test(`${locale} > should navigate to the Resources page`, async ({
+				page,
+			}) => {
+				const path = "docs/resources";
+				const filename = "index";
+				const { data } = getFrontMatter(`${path}/${filename}`, locale);
+				const localePath = getLocalePath(locale);
 
-					await page.goto(localePath);
-					await page.click(MOBILE_MENU_BUTTON_BURGER_ICON);
-					await page.click(MOBILE_MENU_BUTTON_RESOURCES);
+				await page.goto(localePath);
+				await page.click(MOBILE_MENU_BUTTON_BURGER_ICON);
+				await page.click(MOBILE_MENU_BUTTON_RESOURCES);
 
-					await expect(page).toHaveURL(localePath);
-					await expect(page.locator("h1")).toHaveText(data.title as string);
-				}
-			);
+				await expect(page).toHaveURL(getLocalePath(locale, path));
+				await expect(page.locator("h1")).toHaveText(data.title as string);
+			});
 		});
 	});
 });
