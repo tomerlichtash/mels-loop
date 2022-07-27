@@ -27,8 +27,7 @@ const groupChild = (child: IMenuItem) => {
 			link={url}
 			label={title}
 			key={mlUtils.uniqueId()}
-			className={classes.menuItemButton}
-			testId={`MobileMenuButton-${id}`}
+			className={st(classes.menuItemButton, { id })}
 		>
 			<div className={classes.subtitle}>{subtitle}</div>
 		</Button>
@@ -45,8 +44,7 @@ const renderSingleItems = (children: IMenuItem[]) => {
 				link={url}
 				label={title}
 				key={mlUtils.uniqueId()}
-				className={classes.menuItemButton}
-				testId={`MobileMenuButton-${id}`}
+				className={st(classes.menuItemButton, { id })}
 			>
 				<div>{description}</div>
 			</Button>

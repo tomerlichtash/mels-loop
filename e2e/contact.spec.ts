@@ -1,13 +1,20 @@
 import { test, expect } from "@playwright/test";
-import {
-	CONTACT_FORM_INPUT_FULLNAME_SELECTOR,
-	CONTACT_FORM_INPUT_EMAIL_SELECTOR,
-	CONTACT_FORM_INPUT_MESSAGE_SELECTOR,
-	CONTACT_FORM_INPUT_EMAIL_ERROR_SELECTOR,
-	CONTACT_FORM_INPUT_FULLNAME_ERROR_SELECTOR,
-	CONTACT_FORM_INPUT_MESSAGE_ERROR_SELECTOR,
-} from "./utils/locators";
+import { StylableDOMUtil } from "@stylable/dom-test-kit";
+import * as formStylesheet from "../src/components/form/form.st.css";
 import { getLocalePath, locales, translate } from "./utils/test-utils";
+
+const domUtil = new StylableDOMUtil(formStylesheet);
+
+const nameSelector = domUtil.scopeSelector(".field:id(fullname)");
+const emailSelector = domUtil.scopeSelector(".field:id(email)");
+const messageSelector = domUtil.scopeSelector(".field:id(message)");
+
+const nameErrSelector = (locale: string) =>
+	`text=${translate(locale, "CONTACT_FORM_INVALID_NAME")}`;
+const emailErrSelector = (locale: string) =>
+	`text=${translate(locale, "CONTACT_FORM_INVALID_EMAIL")}`;
+const messageErrSelector = (locale: string) =>
+	`text=${translate(locale, "CONTACT_FORM_INVALID_MESSAGE")}`;
 
 test.describe("Contact Page", () => {
 	locales.map((locale) => {
@@ -42,31 +49,18 @@ test.describe("Contact Form", () => {
 				.click();
 
 			await expect(
-				page.locator(CONTACT_FORM_INPUT_FULLNAME_ERROR_SELECTOR)
+				page.locator(`text=${translate(locale, "CONTACT_FORM_INVALID_NAME")}`)
 			).toHaveCount(1);
 
 			await expect(
-				page.locator(CONTACT_FORM_INPUT_EMAIL_ERROR_SELECTOR)
+				page.locator(`text=${translate(locale, "CONTACT_FORM_INVALID_EMAIL")}`)
 			).toHaveCount(1);
 
 			await expect(
-				page.locator(CONTACT_FORM_INPUT_MESSAGE_ERROR_SELECTOR)
+				page.locator(
+					`text=${translate(locale, "CONTACT_FORM_INVALID_MESSAGE")}`
+				)
 			).toHaveCount(1);
-
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_FULLNAME_ERROR_SELECTOR),
-				"should display warning for Name Input"
-			).toHaveText(translate(locale, "CONTACT_FORM_INVALID_NAME"));
-
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_EMAIL_ERROR_SELECTOR),
-				"should display warning for Email Input"
-			).toHaveText(translate(locale, "CONTACT_FORM_INVALID_EMAIL"));
-
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_MESSAGE_ERROR_SELECTOR),
-				"should display warning for Message Input"
-			).toHaveText(translate(locale, "CONTACT_FORM_INVALID_MESSAGE"));
 		});
 
 		test(`${locale} > should yield individual error messages for missing content`, async ({
@@ -74,31 +68,18 @@ test.describe("Contact Form", () => {
 		}) => {
 			await page.goto(getLocalePath(locale, "contact"));
 
-			await page
-				.locator(CONTACT_FORM_INPUT_FULLNAME_SELECTOR)
-				.fill("Ed Nather");
-			await page
-				.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR)
-				.fill("nather@astro.as.utexas.edu");
+			await page.locator(`#fullname`).fill("Ed Nather");
+			await page.locator(`#email`).fill("nather@astro.as.utexas.edu");
 
 			await page
 				.locator(`text=${translate(locale, "CONTACT_FORM_LABEL_SEND")}`)
 				.click();
 
+			await expect(page.locator(nameErrSelector(locale))).toHaveCount(0);
+			await expect(page.locator(emailErrSelector(locale))).toHaveCount(0);
+			await expect(page.locator(messageErrSelector(locale))).toHaveCount(1);
 			await expect(
-				page.locator(CONTACT_FORM_INPUT_FULLNAME_ERROR_SELECTOR)
-			).toHaveCount(0);
-
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_EMAIL_ERROR_SELECTOR)
-			).toHaveCount(0);
-
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_MESSAGE_ERROR_SELECTOR)
-			).toHaveCount(1);
-
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_MESSAGE_ERROR_SELECTOR),
+				page.locator(messageErrSelector(locale)),
 				"should display warning for Message Input"
 			).toHaveText(translate(locale, "CONTACT_FORM_INVALID_MESSAGE"));
 		});
@@ -109,60 +90,37 @@ test.describe("Contact Form", () => {
 			await page.goto(getLocalePath(locale, "contact"));
 
 			// valid population
-			await page.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR).focus();
-			await page
-				.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR)
-				.fill("lorem@ipsum.com");
-			await page.locator(CONTACT_FORM_INPUT_MESSAGE_SELECTOR).focus();
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_EMAIL_ERROR_SELECTOR)
-			).toHaveCount(0);
+			await page.locator(`#email`).focus();
+			await page.locator(`#email`).fill("lorem@ipsum.com");
+			await page.locator(`#message`).focus();
+			await expect(page.locator(emailErrSelector(locale))).toHaveCount(0);
 
 			// invalid population
-			await page.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR).focus();
-			await page
-				.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR)
-				.fill("invalid email address");
-			await page.locator(CONTACT_FORM_INPUT_MESSAGE_SELECTOR).focus();
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_EMAIL_ERROR_SELECTOR)
-			).toHaveCount(1);
+			await page.locator(`#email`).focus();
+			await page.locator(`#email`).fill("invalid email address");
+			await page.locator(`#message`).focus();
+			await expect(page.locator(emailErrSelector(locale))).toHaveCount(1);
 
 			// valid re-population
-			await page.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR).focus();
-			await page
-				.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR)
-				.fill("valid@mail.address");
-			await page.locator(CONTACT_FORM_INPUT_MESSAGE_SELECTOR).focus();
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_EMAIL_ERROR_SELECTOR)
-			).toHaveCount(0);
+			await page.locator(`#email`).focus();
+			await page.locator(`#email`).fill("valid@mail.address");
+			await page.locator(`#message`).focus();
+			await expect(page.locator(emailErrSelector(locale))).toHaveCount(0);
 		});
 
 		test(`${locale} > should accept only valid e-mails`, async ({ page }) => {
 			await page.goto(getLocalePath(locale, "contact"));
 
-			await page
-				.locator(CONTACT_FORM_INPUT_FULLNAME_SELECTOR)
-				.fill("Ed Nather");
+			await page.locator(`#fullname`).fill("Ed Nather");
 
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_EMAIL_ERROR_SELECTOR)
-			).toHaveCount(0);
+			await expect(page.locator(emailErrSelector(locale))).toHaveCount(0);
 
-			await page.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR).focus();
+			await page.locator(`#email`).focus();
+			await page.locator(`#email`).fill("@astro.as.utexas.edu");
+			await page.locator(`#email`).fill("");
+			await page.locator(`#message`).focus();
 
-			await page
-				.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR)
-				.fill("@astro.as.utexas.edu");
-
-			await page.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR).fill("");
-
-			await page.locator(CONTACT_FORM_INPUT_MESSAGE_SELECTOR).focus();
-
-			await expect(
-				page.locator(CONTACT_FORM_INPUT_EMAIL_ERROR_SELECTOR)
-			).toHaveCount(0);
+			await expect(page.locator(emailErrSelector(locale))).toHaveCount(0);
 		});
 
 		test.fixme(
@@ -170,14 +128,10 @@ test.describe("Contact Form", () => {
 			async ({ page }) => {
 				await page.goto(getLocalePath(locale, "contact"));
 
+				await page.locator(`#fullname`).fill("Ed Nather");
+				await page.locator(`#email`).fill("nather@astro.as.utexas.edu");
 				await page
-					.locator(CONTACT_FORM_INPUT_FULLNAME_SELECTOR)
-					.fill("Ed Nather");
-				await page
-					.locator(CONTACT_FORM_INPUT_EMAIL_SELECTOR)
-					.fill("nather@astro.as.utexas.edu");
-				await page
-					.locator(CONTACT_FORM_INPUT_MESSAGE_SELECTOR)
+					.locator(messageSelector)
 					.fill("Real Programmers write in FORTRAN");
 
 				await page
@@ -185,7 +139,7 @@ test.describe("Contact Form", () => {
 					.click();
 
 				await expect(
-					page.locator(CONTACT_FORM_INPUT_MESSAGE_ERROR_SELECTOR),
+					page.locator(messageErrSelector(locale)),
 					"should display warning for Message Input"
 				).toHaveText(translate(locale, "CONTACT_FORM_INVALID_MESSAGE"));
 			}

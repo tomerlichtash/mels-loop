@@ -66,7 +66,7 @@ export const Field = ({
 	}, [autoFocus]);
 
 	return (
-		<div className={st(classes.root, className)}>
+		<div className={st(classes.root, { id }, className)}>
 			<label htmlFor={id} className={classes.label}>
 				<span className={st(classes.caption, { required })}>
 					<span className={classes.icon}>{icon}</span>
@@ -102,9 +102,7 @@ export const Field = ({
 						<span className={classes.errorIcon}>
 							<ExclamationTriangleIcon className={classes.icon} />
 						</span>
-						<span className={classes.errorText} data-test-id={`error-${id}`}>
-							{errorMsg}
-						</span>
+						<span className={classes.errorText}>{errorMsg}</span>
 					</p>
 				)}
 			</div>

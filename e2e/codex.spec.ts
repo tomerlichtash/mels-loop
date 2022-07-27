@@ -1,4 +1,6 @@
 import { test, expect } from "@playwright/test";
+import { StylableDOMUtil } from "@stylable/dom-test-kit";
+import * as stylesheet from "../src/components/note/note.st.css";
 import {
 	getFrontMatter,
 	getLocalePath,
@@ -22,6 +24,13 @@ import {
 import type { ITermTestData } from "./utils/types";
 import { SINGLE_WHITE_SPACE } from "./utils/patterns";
 
+const domUtil = new StylableDOMUtil(stylesheet);
+
+const contentSelector = domUtil.scopeSelector(NOTE_CONTENT_SELECTOR);
+const labelSelector = domUtil.scopeSelector(NOTE_LABEL_SELECTOR);
+const titleSelector = domUtil.scopeSelector(NOTE_TITLE_SELECTOR);
+const termSelector = domUtil.scopeSelector(NOTE_TITLE_TERM_ORIGIN);
+
 test.describe("Codex", () => {
 	locales.map((locale) => {
 		const { content } = getFrontMatter("codex/index", locale);
@@ -42,24 +51,22 @@ test.describe("Codex", () => {
 					.click();
 				await page.$$(PORTAL_SELECTOR);
 
-				await expect(page.locator(NOTE_LABEL_SELECTOR)).toHaveText(
+				await expect(page.locator(labelSelector)).toHaveText(
 					translate(locale, "NOTE_LABEL_GLOSSARY")
 				);
 
-				await expect(page.locator(NOTE_TITLE_SELECTOR)).toHaveText(
+				await expect(page.locator(titleSelector)).toHaveText(
 					translate(locale, term_key as string)
 				);
 
 				if (locale !== "en") {
 					await expect(
-						page.locator(NOTE_TITLE_TERM_ORIGIN),
+						page.locator(termSelector),
 						"Non-English glossary entries should show original term in English"
 					).toHaveText(translate("en", term_key as string));
 				}
 
-				const textContent = await page
-					.locator(NOTE_CONTENT_SELECTOR)
-					.textContent();
+				const textContent = await page.locator(contentSelector).textContent();
 
 				expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
 				expect(
@@ -70,7 +77,7 @@ test.describe("Codex", () => {
 				const sanitizedContent = stripMarkdown(content as string);
 
 				await expect(
-					page.locator(NOTE_CONTENT_SELECTOR),
+					page.locator(contentSelector),
 					"term content equal to source"
 				).toHaveText(sanitizedContent);
 			});
@@ -92,9 +99,7 @@ test.describe("Codex", () => {
 					.click();
 				await page.$$(PORTAL_SELECTOR);
 
-				const textContent = await page
-					.locator(NOTE_CONTENT_SELECTOR)
-					.textContent();
+				const textContent = await page.locator(contentSelector).textContent();
 
 				expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
 				expect(
@@ -107,7 +112,7 @@ test.describe("Codex", () => {
 				)[0];
 				const raw = stripMarkdown(content as string);
 				const sample = stripMarkdown(
-					await page.locator(NOTE_CONTENT_SELECTOR).textContent()
+					await page.locator(contentSelector).textContent()
 				);
 
 				expect(

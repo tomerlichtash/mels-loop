@@ -13,7 +13,6 @@ export interface ButtonProps extends ComponentProps {
 	selected?: boolean;
 	iconSide?: "right" | "left";
 	callback?: (id: string) => void;
-	testId?: string;
 }
 
 export const Button = ({
@@ -26,7 +25,6 @@ export const Button = ({
 	target,
 	iconSide,
 	callback,
-	testId,
 	className,
 	children,
 }: ButtonProps): JSX.Element => {
@@ -38,10 +36,7 @@ export const Button = ({
 		className: btnClassName,
 	};
 	const btnContent = (
-		<span
-			className={st(classes.contentWrapper, { icon: !!icon })}
-			data-test-id={testId && `Button_${testId}`}
-		>
+		<span className={st(classes.contentWrapper, { icon: !!icon })}>
 			{icon && (
 				<span className={st(classes.icon, { side: iconSide })}>
 					<span className={classes.img}>{icon}</span>

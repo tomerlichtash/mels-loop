@@ -3,7 +3,9 @@
 @st-import [boxSizing] from "../../theme/mixins.st.css";
 @st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
 
-.root {}
+.root {
+	-st-states: id(string);
+}
 
 .label {}
 
