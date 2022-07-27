@@ -1,10 +1,11 @@
 import { test, expect } from "@playwright/test";
-import { POPOVER_LOADING_INDICATOR } from "./utils/locators";
+import {
+	NOTE_CONTENT_SELECTOR,
+	POPOVER_LOADING_INDICATOR,
+	PORTAL_SELECTOR,
+} from "./utils/locators";
 import { TEXT_NOT_EMPTY } from "./utils/patterns";
 import { translate } from "./utils/test-utils";
-
-const PORTAL_SELECTOR = `[data-radix-portal]`;
-const NOTE_CONTENT_SELECTOR = `[data-test-id="note_contents"]`;
 
 test.describe("Popover", () => {
 	test.fixme(
@@ -20,9 +21,9 @@ test.describe("Popover", () => {
 
 			await page.$$(POPOVER_LOADING_INDICATOR);
 
-			await expect(
-				page.locator(`[data-test-id="loading_indictator"]`)
-			).toHaveText(translate("en", "PRELOADER_LABEL"));
+			await expect(page.locator(POPOVER_LOADING_INDICATOR)).toHaveText(
+				translate("en", "PRELOADER_LABEL")
+			);
 		}
 	);
 

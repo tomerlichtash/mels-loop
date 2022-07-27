@@ -44,7 +44,7 @@ export const LocaleSelector = ({
 											locale: id,
 											selected: locale === id,
 										})}
-										testId={`${testId}_LocaleSelector_${id}`}
+										// testId={`${testId}_LocaleSelector_${id}`}
 									/>
 								</div>
 							</ToggleGroupItem>
