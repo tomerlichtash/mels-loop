@@ -23,28 +23,29 @@ test.describe("TopBar Navigation", () => {
 	});
 });
 
-test.describe("Static Pages", () => {
-	locales.map((locale) => {
-		test(`${locale} > should navigate to the contact page`, async ({
-			page,
-		}) => {
-			const path = "contact";
+// MOVED TO CONTACT SPEC
+// test.describe.skip("Static Pages", () => {
+// 	locales.map((locale) => {
+// 		test(`${locale} > should navigate to the contact page`, async ({
+// 			page,
+// 		}) => {
+// 			const path = "contact";
 
-			await page.goto(getLocalePath(locale));
-			await page.hover(
-				`text=${translate(locale, "MENU_ITEM_LABEL_ID_CONTACT")}`
-			);
-			await page.click(
-				`text=${translate(locale, "MENU_ITEM_DESC_ID_CONTACT")}`
-			);
+// 			await page.goto(getLocalePath(locale));
+// 			await page.hover(
+// 				`text=${translate(locale, "MENU_ITEM_LABEL_ID_CONTACT")}`
+// 			);
+// 			await page.click(
+// 				`text=${translate(locale, "MENU_ITEM_DESC_ID_CONTACT")}`
+// 			);
 
-			await expect(page).toHaveURL(getLocalePath(locale, path));
-			await expect(page.locator("h1")).toHaveText(
-				translate(locale, "CONTACT_PAGE_TITLE")
-			);
-		});
-	});
-});
+// 			await expect(page).toHaveURL(getLocalePath(locale, path));
+// 			await expect(page.locator("h1")).toHaveText(
+// 				translate(locale, "CONTACT_PAGE_TITLE")
+// 			);
+// 		});
+// 	});
+// });
 
 test.describe("Dynamic Pages", () => {
 	locales.map((locale) => {

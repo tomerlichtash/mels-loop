@@ -11,6 +11,7 @@ import {
 	NOTE_LABEL_SELECTOR,
 	NOTE_TITLE_SELECTOR,
 	NOTE_CONTENT_SELECTOR,
+	NOTE_TITLE_TERM_ORIGIN,
 } from "./utils/locators";
 import {
 	getAnnotationsData,
@@ -44,9 +45,17 @@ test.describe("Codex", () => {
 				await expect(page.locator(NOTE_LABEL_SELECTOR)).toHaveText(
 					translate(locale, "NOTE_LABEL_GLOSSARY")
 				);
+
 				await expect(page.locator(NOTE_TITLE_SELECTOR)).toHaveText(
 					translate(locale, term_key as string)
 				);
+
+				if (locale !== "en") {
+					await expect(
+						page.locator(NOTE_TITLE_TERM_ORIGIN),
+						"Non-English glossary entries should show original term in English"
+					).toHaveText(translate("en", term_key as string));
+				}
 
 				const textContent = await page
 					.locator(NOTE_CONTENT_SELECTOR)

@@ -102,7 +102,9 @@ export const Field = ({
 						<span className={classes.errorIcon}>
 							<ExclamationTriangleIcon className={classes.icon} />
 						</span>
-						<span className={classes.errorText}>{errorMsg}</span>
+						<span className={classes.errorText} data-test-id={`error-${id}`}>
+							{errorMsg}
+						</span>
 					</p>
 				)}
 			</div>
