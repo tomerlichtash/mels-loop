@@ -19,7 +19,7 @@ const headerDomUtil = new StylableDOMUtil(headerStylesheet);
 const mobileMenu = domUtil.scopeSelector(".root");
 const siteTitle = headerDomUtil.scopeSelector(".siteTitle");
 
-test.describe("Mobile Menu", () => {
+test.describe.skip("Mobile Menu", () => {
 	test.describe("TopBar Navigation", () => {
 		locales.map((locale) => {
 			test(`${locale} > should navigate to Homepage from Mobile Menu Site Name button`, async ({
@@ -93,7 +93,7 @@ test.describe("Mobile Menu", () => {
 		});
 	});
 
-	test.describe.skip("Static Pages", () => {
+	test.describe("Static Pages", () => {
 		locales.map((locale) => {
 			test(`${locale} > should navigate to Contact page`, async ({ page }) => {
 				// const buttonTitle = translate(locale, "MENU_ITEM_LABEL_ID_CONTACT");
