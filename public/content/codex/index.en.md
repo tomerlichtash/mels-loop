@@ -84,7 +84,7 @@ so that just as one finished its job,
 the next would be just arriving at the "read head"
 and available for immediate execution.
 There was a program to do that job,
-an "optimizing assembler",[^](annotations/ref1) <!-- consider removal -->
+an "optimizing assembler",
 but Mel refused to use it.
 
 "You never know where it's going to put things",
@@ -179,7 +179,7 @@ Mel was, I think, an unsung genius.
 
 Perhaps my greatest shock came
 when I found an innocent [loop](glossary/loop) that had no [test](glossary/test-terminating-condition) in it.
-No [test](glossary/test-terminating-condition). None.
+No [test](glossary/terminating-condition). None.
 Common sense said it had to be a closed [loop](glossary/loop),
 where the program would circle, forever, endlessly.
 Program control passed right through it, however,

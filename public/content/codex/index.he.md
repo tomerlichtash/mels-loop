@@ -18,7 +18,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 ומחשבים אמיתיים[^](annotations/real-computers) נבנו ב[תופים](glossary/drum-memory) וב[שפופרות](glossary/vacuum-tube),
 מתכנתים אמיתיים כתבו ב[שפת מכונה](glossary/assembly-language).
 לא [פוֹרְטְרַן](glossary/fortran). לא [ראטפוֹר](glossary/ratfor). אפילו לא [שפת סף](glossary/assembly-language).
-שפת מכונה.
+[שפת מכונה](glossary/machine-code).
 מספרים גולמיים ויפים ב[בסיס הקסדצימלי](glossary/hexadecimal).
 ישירות.
 
@@ -85,7 +85,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 הבאה כבר הגיעה אל "הראש הקורא"
 נגישה ליישום מיידי.
 הייתה תוכנה שנועדה לעשות את הדבר הזה בדיוק,
-"[אָסֶמְבְּלֶר](glossary/assembly-language) מייעל",[^](annotations/ref1)
+"[אָסֶמְבְּלֶר](glossary/assembly-language) מייעל",
 אך מל סירב להשתמש בה.
 
 "לך תדע איפה זה יניח את הדברים",
