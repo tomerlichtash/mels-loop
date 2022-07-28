@@ -13,10 +13,15 @@ export function ScrollArea({
 	children,
 	orientation = "vertical",
 	height = "100vh",
+	dir,
 	className,
 }: ScrollAreaProps) {
 	return (
-		<StyledScrollArea className={st(classes.root, className)} type="always">
+		<StyledScrollArea
+			className={st(classes.root, className)}
+			type="always"
+			dir={dir}
+		>
 			<ScrollViewport style={{ height: `${height}` }}>
 				{children}
 			</ScrollViewport>
