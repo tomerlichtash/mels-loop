@@ -71,25 +71,3 @@ export const getMarkdownLinks = (content: string, delim: string) => {
 	});
 	return pool;
 };
-
-// export const getCodexAnnotationTerms = () => {
-// 	const { content } = getFrontMatter("codex/index", "en");
-// 	const matches = content.match(MD_LINK);
-// 	let glossary = [];
-// 	let annotations = [];
-// 	let sample = "";
-// 	matches.map((term: string) => {
-// 		if (term.indexOf("[^](annotations/") === 0) {
-// 			sample = term.replace("[^](annotations/", "").replace(")", "");
-// 			if (annotations.indexOf(sample) === -1) {
-// 				annotations.push(sample);
-// 			}
-// 		} else {
-// 			sample = term.split("](glossary/")[1].replace(")", "");
-// 			if (glossary.indexOf(sample) === -1) {
-// 				glossary.push(sample);
-// 			}
-// 		}
-// 	});
-// 	return { annotations, glossary };
-// };
