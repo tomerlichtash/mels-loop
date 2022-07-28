@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import Head from "next/head";
+import React from "react";
 import Layout from "../components/layout";
 import { GetStaticProps, NextPage } from "next";
 import {
@@ -9,7 +8,6 @@ import {
 } from "../interfaces/models";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
-import { ReactLocaleContext } from "../contexts/locale-context";
 import {
 	LoadContentModes,
 	LoadFolderModes,
@@ -23,7 +21,6 @@ import { classes as basePageClasses } from "../pages/page-base.st.css";
 import { st, classes } from "./index.st.css";
 
 const Index: NextPage<IPageProps> = (props) => {
-	const { siteTitle, siteSubtitle, pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
@@ -33,11 +30,6 @@ const Index: NextPage<IPageProps> = (props) => {
 
 	return (
 		<Layout>
-			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {pageName}
-				</title>
-			</Head>
 			<article className={basePageClasses.root}>
 				<h1 className={basePageClasses.title}>{title}</h1>
 				<div className={classes.root}>

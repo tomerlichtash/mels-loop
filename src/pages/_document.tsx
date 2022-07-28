@@ -1,23 +1,17 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { fontFaceLinks } from "../site-fonts";
+import { classes as LightTheme } from "../theme/light/style.st.css";
+
+const themes = {
+	light: [LightTheme.root],
+};
 
 class MyDocument extends Document {
 	render() {
 		return (
 			<Html>
-				<Head>
-					<link rel="preconnect" href="https://fonts.googleapis.com" />
-					<link
-						rel="preconnect"
-						href="https://fonts.gstatic.com"
-						crossOrigin="anonymous"
-					/>
-					<link
-						href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap"
-						rel="stylesheet"
-						crossOrigin="anonymous"
-					/>
-				</Head>
-				<body>
+				<Head>{fontFaceLinks}</Head>
+				<body className={themes.light[0]}>
 					<Main />
 					<NextScript />
 				</body>

@@ -14,6 +14,10 @@ import { ComponentProps } from "../../interfaces/models";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
 
+export interface ILayoutProps extends ComponentProps {
+	title?: string;
+}
+
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
 	durationSeconds: 2,
@@ -30,10 +34,10 @@ const SCROLL_VIEW_PROPS: ScrollIntoViewOptions = {
 
 const isDebug = process.env.NEXT_PUBLIC_ML_DEBUG;
 
-export default function Layout({ children }: ComponentProps) {
+export default function Layout({ children, title }: ILayoutProps) {
 	const router = useRouter();
 	const { query } = useContext(ReactQueryContext);
-	const { siteTitle, siteSubtitle, textDirection } =
+	const { siteTitle, siteSubtitle, textDirection, pageName } =
 		useContext(ReactLocaleContext);
 	const { locale, asPath: currentUrl } = router;
 	const { getLine } = query;
@@ -66,9 +70,15 @@ export default function Layout({ children }: ComponentProps) {
 		};
 	}, [router.events]);
 
+	const pageTitle = [siteTitle, siteSubtitle, title || pageName]
+		.map((s) => s && s.trim())
+		.filter(Boolean)
+		.join(" - ");
+
 	return (
 		<>
 			<Head>
+				<title>{pageTitle}</title>
 				<link rel="icon" type="image/png" href="/favicon-temp.png" />
 				<meta name="description" content={siteSubtitle} />
 				<meta itemProp="name" content={siteTitle} />

@@ -10,7 +10,6 @@ import {
 	MLNODE_TYPES,
 } from "../../interfaces/models";
 import Layout from "../../components/layout";
-import Head from "next/head";
 import { ContentIterator } from "../../components/content/content-iterator";
 import { usePageData } from "../../components/usePageData";
 import { classes } from "./glossary-item.st.css";
@@ -19,7 +18,7 @@ import { Button } from "../../components/ui";
 import Bibliography from "../../components/bibliography";
 
 export default function GlossaryTerm(props: IPageProps) {
-	const { translate, siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
+	const { translate } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;
@@ -30,12 +29,7 @@ export default function GlossaryTerm(props: IPageProps) {
 		type: MLNODE_TYPES.UNKNOWN,
 	};
 	return (
-		<Layout>
-			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {metaData?.title}
-				</title>
-			</Head>
+		<Layout title={metaData?.title}>
 			<article className={classes.root}>
 				<Button
 					className={classes.title}

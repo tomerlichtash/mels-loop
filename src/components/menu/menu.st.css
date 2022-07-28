@@ -2,7 +2,6 @@
 
 @st-import [preventSelection] from "../../theme/mixins.st.css";
 @st-import Button from "../ui/button/button.st.css";
-@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 
 .root {
 	-st-mixin: preventSelection;

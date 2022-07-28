@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Head from "next/head";
 import Layout from "../components/layout/layout";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { GetStaticProps } from "next";
@@ -14,16 +13,10 @@ import { classes } from "./posts.st.css";
 import Post from "../components/post";
 
 export default function Blog(props: IPageProps) {
-	const { locale, siteTitle, siteSubtitle, pageName, sectionName } =
-		useContext(ReactLocaleContext);
+	const { locale, sectionName } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	return (
 		<Layout>
-			<Head>
-				<title>
-					{siteTitle} - {siteSubtitle} - {pageName}
-				</title>
-			</Head>
 			<div className={classes.root}>
 				<h1 className={classes.sectionTitle}>{sectionName}</h1>
 				{orderBy(pageData, ["metaData.date"], ["desc"]).map(

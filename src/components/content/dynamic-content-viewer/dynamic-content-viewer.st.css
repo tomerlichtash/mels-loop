@@ -2,11 +2,13 @@
 
 @st-import Note from "../../note/note.st.css";
 @st-import ContentComponent from "../content-component.st.css";
+@st-import LoadingIndicator from "../../loading-indicator/loading-indicator.st.css";
 
 .root {}
 
 .note {
 	-st-extends: Note;
+	z-index: 2;
 }
 
 .contentComponent {
@@ -14,3 +16,22 @@
 }
 
 .error {}
+
+.loadingIndicator {
+	-st-extends: LoadingIndicator;
+	display: table;
+	width: 100%;
+	height: 300px;
+	text-align: center;
+}
+.loadingIndicator::container {
+	display: table-cell;
+	height: 100%;
+	vertical-align: middle;
+}
+.loadingIndicator::animation {
+	margin: 0 auto;
+}
+.loadingIndicator::label {
+	margin-top: 0.5rem;
+}

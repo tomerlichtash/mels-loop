@@ -83,6 +83,43 @@ export const Locale: Language = {
 	MENU_ITEM_LABEL_EXCERPT_SHOW_MORE: "עוד",
 
 	/**
+	 * CONTACT PAGE
+	 */
+	CONTACT_PAGE_TITLE: "צרו קשר",
+	CONTACT_PAGE_SUBTITLE: "נשמח לשמוע ממך בכל עניין!",
+	CONTACT_PAGE_TEXT1:
+		"קהילת ההאקינג של לולאת מל אט אט גדלה ונשמח לשמוע ממך רעיונות, הצעות, מחשבות ופידבקים. יש להשתמש בטופס כדי ליצור עמנו קשר, ונחזור אליך דרך אימייל. ניתן גם לכתוב לנו ישירות דרך האימייל about@melsloop.com.",
+
+	/**
+	 * CONTACT FORM
+	 */
+	CONTACT_FORM_FORM_TITLE: "טופס יצירת קשר",
+	CONTACT_FORM_FORM_SUBTITLE:
+		"יש למלא את הטופס, בכל עניין, ונחזור אליך בהקדם האפשרי.",
+	CONTACT_FORM_LABEL_FULLNAME: "שם מלא",
+	CONTACT_FORM_LABEL_EMAIL: "אימייל",
+	CONTACT_FORM_LABEL_MESSAGE: "הודעה",
+	CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER: "יש להזין שם מלא כאן",
+	CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER: "יש להזין כתובת מייל תקינה כאן",
+	CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER: "יש לכתוב את הודעתך כאן",
+	CONTACT_FORM_ON_SUCCESS_MESSAGE_SEND_ANOTHER: "בחזרה לטופס",
+	CONTACT_FORM_ON_SUCCESS_MESSAGE_BACK_HOME: "בחזרה לעמוד הראשי",
+	CONTACT_FORM_ON_FAIL_MESSAGE_TRY_AGAIN: "נסיון נוסף?",
+	CONTACT_FORM_ON_FAIL_MESSAGE_REPORT_PROBLEM: "דיווח על בעיה",
+	CONTACT_FORM_INVALID_NAME: "השם לא יכול להיות ריק",
+	CONTACT_FORM_INVALID_EMAIL: "כתובת המייל חייבת להיות תקינה",
+	CONTACT_FORM_INVALID_MESSAGE: "ההודעה לא יכולה להיות ריקה",
+	CONTACT_FORM_SUCCESS_MESSAGE: "הודעתך נשלחה בהצלחה!",
+	CONTACT_FORM_SUCCESS_FAIL: "אירעה שגיאה :(",
+	CONTACT_FORM_LABEL_SEND: "שליחה",
+	CONTACT_FORM_LABEL_SEND_ACTIVE: "שולח...",
+
+	/**
+	 * CAPTCHA
+	 */
+	CAPTCHA_SUBMIT_BUTTON_TOOLTIP_TEXT: "לא לשכוח לאמת שאינך רובוט/ית",
+
+	/**
 	 * OTHER
 	 */
 	NOTE_LABEL_GLOSSARY: "מילון מונחים",

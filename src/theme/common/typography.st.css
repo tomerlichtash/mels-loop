@@ -20,7 +20,7 @@
 	fontWeightBold: 700;
 	fontWeightMedium: 500;
 	fontWeightSemiBold: 600;
-	fontWeightRegular: 400;
+	fontWeightRegular: 300;
 
 	h1_size: value(fontSize1);
 	h2_size: value(fontSize2);
@@ -64,10 +64,12 @@
 
 .LatinText {
 	font-family: "Roboto Slab", serif;
+	font-weight: 300;
 	direction: ltr;
 }
 .HebrewText {
 	font-family: "Assistant", sans-serif;
+	font-weight: 300;
 	direction: rtl;
 }
 
@@ -138,4 +140,15 @@
 		TextWeight value(fontWeightRegular),
 		TextColor value(BodyTextColor)
 	);
+}
+
+
+.heading1mixin {
+	-st-mixin: TextNode(
+		TextSize value(h1_size),
+		TextLineHeight value(h1_lineHeight),
+		TextWeight value(h1_weight),
+		TextColor value(h1_color)
+	);
+	margin-bottom: 1.302vmax;
 }

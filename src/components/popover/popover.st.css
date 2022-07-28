@@ -75,7 +75,7 @@
 	[data-radix-popper-content-wrapper] {
 		transform: none !important;
 		top: auto !important;
-		bottom: -100vh !important;
+		bottom: 0;
 	}
 	.content {
 		width: 100vw;
