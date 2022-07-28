@@ -1,5 +1,5 @@
 ---
-title: "Mel's Hack - the Missing Bits"
+title: "Mel's Hack – The Missing Bits"
 author: "(David *)Frenkiel"
 date: Tue Jul 23 2022 01:14:31 GMT+0300
 ---
@@ -7,7 +7,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 ## A Private _Mel Moment_
 
     When the light went on it nearly blinded me.
-                                     (Line #193)
+    (Line 193)
 
 This line in The Story of Mel precedes the author's description of Mel's hack, the almost criminally resourceful implementation of a finite loop with no exit condition. These words never fail to give me goosebumps. They reflect a rare "Ah!" moment, where a seemingly random collection of facts suddenly falls into a coherent logical structure.
 
@@ -19,26 +19,23 @@ It was only while proofing this project’s annotations to the story, that a cer
 
 Let's briefly go over **Ed Nather**'s now-mythological description of the overflow that modified the code, created a `JUMP` instruction and allowed the program to magically leap out of an endless loop, as described in the story text:
 
-
         The vital clue came when I noticed
         the index register bit,
         the bit that lay between the address
         and the operation code in the instruction word,
         was turned on
-                                       (Lines 185-190)
-
+        (Lines 185-190)
 
 For brevity and clarity, we will use a mock instruction layout in which each component (except for single bit fields) includes 3 bits. We'll start with an instruction that includes three parts:
 
-`(A)` – Data Address
-`(X)` – Index register
-`(C)` – Operation code 
+- `(A)` – Data Address
+- `(X)` – Index register
+- `(C)` – Operation code
 
 Something like:
 
          AAAXCCC
     MSB <--------> LSB
-
 
 This layout is missing a part described earlier in the story:
 
@@ -49,15 +46,13 @@ This layout is missing a part described earlier in the story:
         and the address of the needed operand,
         had a second address that indicated where, on the revolving drum,
         the next instruction was located.
-                           (Lines 54-60)
-
+        (Lines 54-60)
 
 Thus, the bit layout of the instruction needs an additional component for the next address `(N)`. Its location doesn't affect the hack, as described in the story, but let's place it on the least significant bits, to be on the safe side:
 
-            AAAXCCCNNN
+             AAAXCCCNNN
         MSB <----------> LSB
-   
-    
+
 We know that the `(A)` bits are lower than the `(C)` bits, because **Ed Nather** later describes the overflow that Mel hijacked:
 
         Instead, he would pull the instruction into a machine register,
@@ -72,13 +67,11 @@ We know that the `(A)` bits are lower than the `(C)` bits, because **Ed Nather**
         would make it overflow.
         The carry would add one to the
         operation code, changing it to the next one in the instruction set:
-                        (Lines 175-177, 194-201)
-
-
+        (Lines 175-177, 194-201)
 
 If incrementing the address span overflows into the opcode span, then the bit order between them is established:
 
-            CCCXAAANNN
+             CCCXAAANNN
         MSB <----------> LSB
 
 If the index register bit `(X)` is indeed between the two and turned on, then overflowing the `(A)` span will carry through `(X)` into the `(C)` span, incrementing it by one. The result:
@@ -97,7 +90,6 @@ Not only did I gloss over this crucial step for 30 years – I also ignored the 
 
 After recovering from this blow to my computer ego, I took the basic step required to understand Mel's hack: looking up the RPC-4000 manual. It didn't take much browsing to hit a figure that dispelled all my doubts.
 
-
 ![RPC 4000 Instruction format](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
 
 Quite simply, the hack, as described in **Ed Nather**'s account, is impossible on the RPC-4000. The opcode `(C)` field, supposedly modified by the overflow, is in the least significant bits of the instruction. In the terms used above:
@@ -105,9 +97,7 @@ Quite simply, the hack, as described in **Ed Nather**'s account, is impossible o
              XNNNAAACCC
         MSB <----------> LSB
 
-
-Thus, any overflow (which progresses toward the MSB) in the bits above the opcode, would not affect the latter. Furthermore, opcode `0` was not "A Jump instruction", but a different operation altogether,  the specifics of which are beyond the scope of this analysis. Thus, even a different bit arrangement would not have redeemed the described hack.
-
+Thus, any overflow (which progresses toward the MSB) in the bits above the opcode, would not affect the latter. Furthermore, opcode `0` was not "A Jump instruction", but a different operation altogether, the specifics of which are beyond the scope of this analysis. Thus, even a different bit arrangement would not have redeemed the described hack.
 
 ## Reconstructing the Hack
 
@@ -117,14 +107,13 @@ Obviously, once we rule out **Ed Nather**'s code flow, all options are on the ta
 
 It turns out that the architecture of the RPC-4000 does provide for a code layout which would accomplish the feat by using an overflow. Using our simplified bit layout, let's assume that the instruction, at some point, reaches the value:
 
-            0111111CCC
+             0111111CCC
         MSB <----------> LSB
 
 In this diagram, the opcode doesn't matter, it can be any part of the program logic. The address of the next instruction is `111`, so that's where the next step of the loop is located. The data address is also `111`, which doesn't pose a problem: The instruction may not even need an operand, or the value in the `111` address may be commensurate with the program logic. Normally, the program would proceed to the instruction in location 111. Now, when we try to increment the data address by `1` (adding `1000`), the "overflow" of the field zeroes out the `(A)` and `(N)` fields, yielding this instruction:
 
-            1000000CCC
+             1000000CCC
         MSB <----------> LSB
-
 
 Which would execute opcode CCC and then jump to address 0, just as **Ed Nather** wrote. In the above diagram, the index register bit is set to 0, so that it would toggle to 1 following the address overflow. This toggle may be the origin of Nather's recollection of seeing the bit turned on for no apparent reason.
 
@@ -145,19 +134,19 @@ Simply put, conditional branching (e.g. if..else or looping until an index reach
 1. A test, like comparing two numbers, followed immediately by -
 2. The `TBC` instruction, which would transfer control to the instruction in address `(A)` if the test was successful
 
-If the test failed (`else`), the program would proceed as usual to the next address in field `(N)`. 
+If the test failed (`else`), the program would proceed as usual to the next address in field `(N)`.
 
 It's reasonable to assume that standard training on the RPC-4000 included only this variant of the `TBC` usage, being an essential part of computer programming. Thus, it's also reasonable to assume that **Ed Nather** was surprised to find a `TBC` instruction without the necessary preceding test.
 
 Instead of running a test, Mel kept incrementing the value of the `(A)` field, as described in the story. This eventually led to an overflow of the entire register, provided the index register bit (X) was on – exactly as Nather remembered. Using 101 as the `TBC` opcode yields the following sequence:
 
-             1111111101             
-        MSB <----------> LSB                                
+             1111111101
+        MSB <----------> LSB
 
-        +    0000001000  
+        +    0000001000
         ====================
              0000000101
-        MSB <----------> LSB 
+        MSB <----------> LSB
 
         +     OVERFLOW
 
@@ -168,13 +157,11 @@ The overflow would toggle the `BCU` on, causing the heretofore ineffective `TBC`
 This scenario seems closer to the original story: The `JUMP` is there, as well as the overflow and the seemingly unnecessary `1` in the index register bit. There are only two deviations from the original account:
 
 1. The opcode is never modified.
-2. The magical nature of the hack is due not only to Mel's prowess, but also – perhaps mostly – to * Ed Nather**'s incomplete understanding of the machine. Had he known that the `TBC` instruction was influenced by an overflow, he would have cracked the problem right away, leaving no story for posterity.
-
+2. The magical nature of the hack is due not only to Mel's prowess, but also – perhaps mostly – to \* Ed Nather\*\*'s incomplete understanding of the machine. Had he known that the `TBC` instruction was influenced by an overflow, he would have cracked the problem right away, leaving no story for posterity.
 
 Anyone who likes coding can imagine **Mel Kaye**'s reaction, when he read about the path of an overflow triggering a jump. The challenge was immediately obvious. Having run a trivial POC, he naturally proceeded to the next level, causing the overflow at the end of an iterative process, after the data had been drained. This way, he could avoid the standard test at the end of the loop. The stroke of genius was completed when he managed to usefully incorporate this structure into a real-world program.
 
 ## So What You're Saying is
-
 
 Whichever version you prefer – the number juggling trick or the deviously elegant `TBC` manipulation – it’s clear that **Ed Nather**'s account was rooted in faulty memory (and probably a faulty understanding of RPC-4000). This finding does not diminish the story's charm. Most developers can identify with the laborious excavation through another programmer's "impossible" code. The charm of a self-modifying program is still there and the hack, in both implementations, is impressive.
 
