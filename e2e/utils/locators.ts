@@ -1,5 +1,4 @@
 export const SITE_NAME_LOCATOR = `text="Mel's Loop"`;
-export const MOBILE_MENU_BUTTON_BURGER_ICON = `.bm-burger-button`;
 export const PORTAL_SELECTOR = `[data-radix-portal]`;
 
 /**

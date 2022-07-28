@@ -1,13 +1,12 @@
 import { test, expect } from "@playwright/test";
-import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as formStylesheet from "../src/components/form/form.st.css";
+// import { StylableDOMUtil } from "@stylable/dom-test-kit";
+// import * as formStylesheet from "../src/components/form/form.st.css";
 import { getLocalePath, locales, translate } from "./utils/test-utils";
 
-const domUtil = new StylableDOMUtil(formStylesheet);
-
-const nameSelector = domUtil.scopeSelector(".field:id(fullname)");
-const emailSelector = domUtil.scopeSelector(".field:id(email)");
-const messageSelector = domUtil.scopeSelector(".field:id(message)");
+// const domUtil = new StylableDOMUtil(formStylesheet);
+// const nameSelector = domUtil.scopeSelector(".field:id(fullname)");
+// const emailSelector = domUtil.scopeSelector(".field:id(email)");
+// const messageSelector = domUtil.scopeSelector(".field:id(message)");
 
 const nameErrSelector = (locale: string) =>
 	`text=${translate(locale, "CONTACT_FORM_INVALID_NAME")}`;
@@ -131,7 +130,7 @@ test.describe("Contact Form", () => {
 				await page.locator(`#fullname`).fill("Ed Nather");
 				await page.locator(`#email`).fill("nather@astro.as.utexas.edu");
 				await page
-					.locator(messageSelector)
+					.locator(`#message`)
 					.fill("Real Programmers write in FORTRAN");
 
 				await page

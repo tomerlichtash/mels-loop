@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { SITE_NAME_LOCATOR } from "./utils/locators";
+import { StylableDOMUtil } from "@stylable/dom-test-kit";
+import * as stylesheet from "../src/components/top-bar/top-bar.st.css";
+import * as headerStylesheet from "../src/components/header/header.st.css";
 import {
 	getLocalePath,
 	locales,
@@ -7,45 +9,23 @@ import {
 	translate,
 } from "./utils/test-utils";
 
+const domUtil = new StylableDOMUtil(stylesheet);
+const headerDomUtil = new StylableDOMUtil(headerStylesheet);
+
+const topBar = domUtil.scopeSelector(".root");
+const siteTitle = headerDomUtil.scopeSelector(".siteTitle");
+
 test.describe("TopBar Navigation", () => {
 	locales.map((locale) => {
 		test(`${locale} > should navigate to Homepage from Site Name button`, async ({
 			page,
 		}) => {
 			await page.goto(getLocalePath(locale, "about"));
-			await page.locator(SITE_NAME_LOCATOR).click();
-
+			await page.locator(`${topBar} ${siteTitle}`).click();
 			await expect(page).toHaveURL(getLocalePath(locale));
-			await expect(page.locator(SITE_NAME_LOCATOR)).toHaveText(
-				translate(locale, "SITE_TITLE")
-			);
 		});
 	});
 });
-
-// MOVED TO CONTACT SPEC
-// test.describe.skip("Static Pages", () => {
-// 	locales.map((locale) => {
-// 		test(`${locale} > should navigate to the contact page`, async ({
-// 			page,
-// 		}) => {
-// 			const path = "contact";
-
-// 			await page.goto(getLocalePath(locale));
-// 			await page.hover(
-// 				`text=${translate(locale, "MENU_ITEM_LABEL_ID_CONTACT")}`
-// 			);
-// 			await page.click(
-// 				`text=${translate(locale, "MENU_ITEM_DESC_ID_CONTACT")}`
-// 			);
-
-// 			await expect(page).toHaveURL(getLocalePath(locale, path));
-// 			await expect(page.locator("h1")).toHaveText(
-// 				translate(locale, "CONTACT_PAGE_TITLE")
-// 			);
-// 		});
-// 	});
-// });
 
 test.describe("Dynamic Pages", () => {
 	locales.map((locale) => {

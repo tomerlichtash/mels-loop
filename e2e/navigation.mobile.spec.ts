@@ -1,10 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { StylableDOMUtil } from "@stylable/dom-test-kit";
 import * as stylesheet from "../src/components/mobile-menu/mobile-menu.st.css";
-import {
-	MOBILE_MENU_BUTTON_BURGER_ICON,
-	SITE_NAME_LOCATOR,
-} from "./utils/locators";
+import * as headerStylesheet from "../src/components/header/header.st.css";
 import { LocaleSymbols } from "./../src/locales/languages/common/locale_common";
 import {
 	getLocalePath,
@@ -14,44 +11,24 @@ import {
 } from "./utils/test-utils";
 
 const { LOCALE_LABEL_EN, LOCALE_LABEL_HE } = LocaleSymbols;
+export const MOBILE_MENU_BUTTON_BURGER_ICON = `.bm-burger-button`;
 
 const domUtil = new StylableDOMUtil(stylesheet);
-const mobileMenuSelector = domUtil.scopeSelector(".root");
-const mobileMenuHeaderSelector = domUtil.scopeSelector(".header");
+const headerDomUtil = new StylableDOMUtil(headerStylesheet);
+
+const mobileMenu = domUtil.scopeSelector(".root");
+const siteTitle = headerDomUtil.scopeSelector(".siteTitle");
 
 test.describe("Mobile Menu", () => {
 	test.describe("TopBar Navigation", () => {
 		locales.map((locale) => {
-			test(`${locale} > should navigate to Homepage from Top Bar Site Name button`, async ({
-				page,
-			}) => {
-				await page.goto(getLocalePath(locale, "about"));
-				await page.locator(SITE_NAME_LOCATOR).click();
-
-				await expect(page).toHaveURL(getLocalePath(locale));
-				await expect(page.locator(SITE_NAME_LOCATOR)).toHaveText(
-					translate(locale, "SITE_TITLE")
-				);
-			});
-
 			test(`${locale} > should navigate to Homepage from Mobile Menu Site Name button`, async ({
 				page,
 			}) => {
 				await page.goto(getLocalePath(locale, "about"));
 				await page.locator(MOBILE_MENU_BUTTON_BURGER_ICON).click();
-				await page
-					.locator(`${mobileMenuHeaderSelector} div`, {
-						hasText: translate(locale, "SITE_TITLE"),
-					})
-					.click();
-
+				await page.locator(`${mobileMenu} ${siteTitle}`).click();
 				await expect(page).toHaveURL(getLocalePath(locale));
-
-				await expect(
-					page.locator(`${mobileMenuSelector} ${mobileMenuHeaderSelector}`, {
-						hasText: translate(locale, "SITE_TITLE"),
-					})
-				).toHaveText(translate(locale, "SITE_TITLE"));
 			});
 		});
 	});

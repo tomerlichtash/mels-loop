@@ -50,7 +50,10 @@ export const Popover = ({
 			<PopoverRoot>
 				<PopoverTrigger asChild>
 					<span className={st(classes.root, { type })} {...forceMount}>
-						<span className={classes.trigger} tabIndex={1}>
+						<span
+							className={classes.trigger}
+							tabIndex={1}
+						>
 							<span className={st(classes.triggerWrapper)}>{trigger}</span>
 						</span>
 					</span>

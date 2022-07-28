@@ -9,7 +9,7 @@ export const invalidTerms = ["index.en.md", "index.he.md", ".DS_Store"];
 export const isValidTerm = (term: string) => invalidTerms.indexOf(term) === -1;
 
 export const getTermSelector = ({ type, key }: ITermTestData) =>
-	`[data-test-annotation-type="${type}"][data-test-target="${key}"]`;
+	`[data-link-type="${type}"][data-link-target="${key}"]`;
 
 export const getAnnotationsData = (locale: string) => {
 	const annotations = fs.readdirSync("./public/content/annotations", {
