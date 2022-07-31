@@ -14,9 +14,11 @@ export const CodeBlock = ({
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	return (
-		<code className={st(classes.root, className)} key={node.key}>
-			{node.text}
-		</code>
+		<p className={st(classes.root)} key={node.key}>
+			<code className={st(classes.root, className)}>
+				{node.text}
+			</code>
+		</p>
 	);
 };
 

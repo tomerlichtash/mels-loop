@@ -184,7 +184,7 @@ export function loadContentFolder(
 			folderContentData.pages.push(parsedPageData);
 			if (mode.contentMode === LoadContentModes.FULL) {
 				// parse markdown and process
-				const mdParse = mdParser.defaultBlockParse;
+				const mdParse = /*createHtmlMDParser() */mdParser.defaultBlockParse;
 				const tree = contentUtils.processParseTree(
 					mdParse(contentUtils.stripComments(content)) as ParsedNode[],
 					mode
@@ -270,4 +270,71 @@ class FolderContent implements IFolderContent {
 		const key = String(field);
 		return this.pages.slice().sort((a, b) => (a[key] < b[key] ? 1 : -1));
 	}
+}
+
+// matches basic html strings <tag [attributes]>...</tag> including newlines
+const HTML_RE = /\s*<([a-z]+)([^>]+)*>([\s\S]+)?<\/\1>/ig;
+
+/**
+ * Creates an simple-markdown parser that supports simple html and 
+ * HTML nodes include the type HTML and a tag field with the HTML tag
+ * @returns 
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const createHtmlMDParser = () => {
+	const rules = {
+		...mdParser.defaultRules,
+		// Triple slash comments
+		comment: {
+			match: function (source: string) {
+				return /^\s*\/\/\/([^\n\r]*)/.exec(source);
+			},
+
+			parse: function (capture: RegExpExecArray /*, recurseParse, state */) {
+				return {
+					content: capture[1]
+				};
+			},
+			order: 0
+		},
+		// html parser
+		HTML: {
+			match: function (source: string /*, state, lookbehind */) {
+				const res = HTML_RE.exec(source);
+				return res;
+			},
+
+			parse: function (capture: RegExpExecArray, 
+				recurseParse: (content: string, state: object) => Array<object>, 
+				state: object) {
+				return {
+					tag: capture[1],
+					attributes: parseAttributes(capture[2]),
+					content: recurseParse(capture[3], state)
+				};
+			},
+			order: 0
+		}
+	};
+	return mdParser.parserFor(rules);
+
+}
+
+/**
+ * Parses an HTML attribute string
+ * Supports only double quotes for attribute value
+ * @param attrStr 
+ * @returns 
+ */
+const parseAttributes = (attrStr: string): Map<string, string> => {
+	const attrMap = new Map<string, string>;
+	if (!attrStr) {
+		return attrMap;
+	}
+	const re = /\s*([a-z]+)="([^"]*)"/ig;
+	let match: RegExpExecArray;
+	while ((match = re.exec(attrStr)) != null) {
+		attrMap.set(match[1], match[2]);
+	}
+	return attrMap;
 }
