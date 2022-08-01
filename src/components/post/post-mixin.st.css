@@ -33,13 +33,6 @@
 	color: value(PostTitleColor_Hover);
 }
 
-.root::contentComponent:type(paragraph) {
-	-st-mixin: bodyTextNormal(
-		BodyTextColor value(PostTextColor)
-	);
-	margin-bottom: 1rem;
-}
-
 .root::date {
 	font-size: 12px;
 	color: value(PostDateTextColor)

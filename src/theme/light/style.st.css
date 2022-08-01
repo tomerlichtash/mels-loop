@@ -2,48 +2,46 @@
 
 @st-import PageBase from "../../pages/page-base.st.css";
 @st-import PageBaseMixin from "../../pages/page-base-mixin.st.css";
-@st-import Posts from "../../pages/posts.st.css";
-@st-import PostsMixin from "../../pages/posts-mixin.st.css";
-@st-import StoryPage from "../../pages/index.st.css";
-@st-import StoryPageMixin from "../../pages/index-mixin.st.css";
-@st-import Post from "../../components/post/post.st.css";
-@st-import PostMixin from "../../components/post/post-mixin.st.css";
+
 @st-import Scrollbar from "../../components/scrollbar/scrollbar.st.css";
 @st-import ScrollbarMixin from "../../components/scrollbar/scrollbar-mixin.st.css";
 @st-import Layout from "../../components/layout/layout.st.css";
 @st-import LayoutMixin from "../../components/layout/layout-mixin.st.css";
-@st-import SiteFooter from "../../components/footer/footer.st.css";
-@st-import SiteFooterMixin from "../../components/footer/footer-mixin.st.css";
-@st-import MobileMenu from "../../components/mobile-menu/mobile-menu.st.css";
-@st-import MobileMenuMixin from "../../components/mobile-menu/mobile-menu-mixin.st.css";
+
 @st-import TopBar from "../../components/top-bar/top-bar.st.css";
 @st-import TopBarMixin from "../../components/top-bar/top-bar-mixin.st.css";
 @st-import TopBarMenu from "../../components/menu/menu.st.css";
 @st-import TopBarMenuMixin from "../../components/menu/menu-mixin.st.css";
-@st-import ThemeSelector from "../../components/theme-selector/theme-selector.st.css";
-@st-import ThemeSelectorMixin from "../../components/theme-selector/theme-selector-mixin.st.css";
+@st-import SiteFooter from "../../components/footer/footer.st.css";
+@st-import SiteFooterMixin from "../../components/footer/footer-mixin.st.css";
+@st-import MobileMenu from "../../components/mobile-menu/mobile-menu.st.css";
+@st-import MobileMenuMixin from "../../components/mobile-menu/mobile-menu-mixin.st.css";
+
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import LocaleSelectorMixin from "../../components/locale-selector/locale-selector-mixin.st.css";
+
+@st-import AnnotationLink from "../../components/content/content-blocks/annotation-link/annotation-link.st.css";
+@st-import AnnotationLinkMixin from "../../components/content/content-blocks/annotation-link/annotation-link-mixin.st.css";
+
+@st-import ContactForm from "../../components/contact-form/contact-form.st.css";
+@st-import ContactFormMixin from "../../components/contact-form/contact-form-mixin.st.css";
+
 @st-import Popover from "../../components/popover/popover.st.css";
 @st-import PopoverMixin from "../../components/popover/popover-mixin.st.css";
 @st-import PopoverToolbar from "../../components/popover/popover-toolbar.st.css";
 @st-import PopoverToolbarMixin from "../../components/popover/popover-toolbar-mixin.st.css";
-@st-import CopyUrlButtonTrigger from "../../components/copy-button/copy-url-button-trigger.st.css";
-@st-import CopyUrlButtonTriggerMixin from "../../components/copy-button/copy-url-button-trigger-mixin.st.css";
-@st-import CopyUrlButtonContent from "../../components/copy-button/copy-url-button-content.st.css";
-@st-import CopyUrlButtonContentMixin from "../../components/copy-button/copy-url-button-content-mixin.st.css";
+
 @st-import Note from "../../components/note/note.st.css";
 @st-import NoteMixin from "../../components/note/note-mixin.st.css";
 @st-import Bibliography from "../../components/bibliography/bibliography.st.css";
 @st-import BibliographyMixin from "../../components/bibliography/bibliography-mixin.st.css";
-@st-import AnnotationLink from "../../components/content/content-blocks/annotation-link/annotation-link.st.css";
-@st-import AnnotationLinkMixin from "../../components/content/content-blocks/annotation-link/annotation-link-mixin.st.css";
-@st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
-@st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
-@st-import ContentComponent from "../../components/content/content-component.st.css";
-@st-import ContentComponentMixin from "../../components/content/content-component-mixin.st.css";
-@st-import ContactForm from "../../components/contact-form/contact-form.st.css";
-@st-import ContactFormMixin from "../../components/contact-form/contact-form-mixin.st.css";
+/* @st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
+@st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css"; */
+
+@st-import Posts from "../../pages/posts.st.css";
+@st-import PostsMixin from "../../pages/posts-mixin.st.css";
+@st-import Post from "../../components/post/post.st.css";
+@st-import PostMixin from "../../components/post/post-mixin.st.css";
 
 @st-import [
 	level0,
@@ -66,53 +64,17 @@
 	accent4,
 	shadow1,
 	shadow3,
+	shadow4,
+
+	TITLE_COLOR,
+	BORDER_COLOR,
 	BODY_TEXT_COLOR,
 	LINK_TEXT_COLOR,
-	LINK_TEXT_COLOR_HOVER
+	LINK_TEXT_COLOR_HOVER,
+	LIGHT_BG_COLOR
 ] from "./vars.st.css";
 
 @st-scope .root {
-	ContentComponent {
-		-st-mixin: ContentComponentMixin(
-			LinkColor value(LINK_TEXT_COLOR),
-			LinkColor_Hover value(LINK_TEXT_COLOR_HOVER)
-		);
-	}
-
-	PageBase {
-		-st-mixin: PageBaseMixin(
-			HeadingColor1 value(level7),
-			HeadingColor2 value(level6),
-			HeadingColor3 value(level6),
-			BodyTextColor value(BODY_TEXT_COLOR),
-			ContentHeaderMetaBorderColor value(level4),
-			LinkColor value(LINK_TEXT_COLOR),
-			LinkColor_Hover value(LINK_TEXT_COLOR_HOVER)
-		);
-	}
-
-	StoryPage {
-		-st-mixin: StoryPageMixin(
-			MotoTextColor value(level5),
-			TextColor value(BODY_TEXT_COLOR)
-		);
-	}
-
-	Posts {
-		-st-mixin: PostsMixin(
-		);
-	}
-	Post {
-		-st-mixin: PostMixin(
-			PostTitleColor value(LINK_TEXT_COLOR),
-			PostTitleColor_Hover value(LINK_TEXT_COLOR_HOVER),
-			PostTitleBorderColor value(level3),
-			PostTextColor value(level6),
-			PostDateTextColor value(BODY_TEXT_COLOR),
-			BlogPostShadow value(shadow3)
-		);
-	}
-
 	Scrollbar {
 		-st-mixin: ScrollbarMixin(
 			ThumbColor value(level3)
@@ -123,6 +85,22 @@
 		-st-mixin: LayoutMixin(
 			BgColor value(level1)
 		);
+	}
+
+	PageBase {
+		-st-mixin: PageBaseMixin(
+			LinkColor value(LINK_TEXT_COLOR),
+			LinkColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			TopicTextColor value(level6),
+			TitleTextColor value(TITLE_COLOR),
+			SubtitleTextColor value(TITLE_COLOR),
+			ParagraphTextColor value(BODY_TEXT_COLOR),
+			InlineCodeBgColor value(LIGHT_BG_COLOR), /* TODO: Use a clearer prop name */
+			InlineCodeBorderColor value(BORDER_COLOR),
+			ContentHeaderMetaBorderColor value(BORDER_COLOR), /* TODO: Use a clearer prop name */
+			ImageBorderColor value(BORDER_COLOR),
+			SectionBoxShadowColor value(shadow4),
+		)
 	}
 
 	TopBar {
@@ -136,27 +114,32 @@
 	TopBarMenu {
 		-st-mixin: TopBarMenuMixin(
 			ArrowColor value(level0),
+
 			ViewPortBgColor value(level1),
+			ViewPortShadow value(shadow1),
+			
 			TriggerTextColor value(level8),
 			TriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			TriggerTextSize 1rem,
+			TriggerRadius 6px,
 			TriggerBgColorHover value(level4),
 			TriggerPadding 0 6px,
 			TriggerLabelLineHeight 32px,
-			TriggerTextSize 1rem,
-			TriggerRadius 6px,
+
 			ItemTextColor value(LINK_TEXT_COLOR),
 			ItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
 			ItemBgColor_Hover value(level3),
 			ItemPadding 1rem,
 			ItemRadius 6px,
+
 			ItemLabelTextSize 1rem,
 			ItemLabelLineHeight 0.25rem,
 			ItemLabelTextWeight 500,
-			ItemSubtitleLineHeight 1rem,
 			ItemSubtitleTextSize 0.85rem,
 			ItemLabelIconMargin 0.35rem,
-			ViewPortShadow value(shadow1),
-			AbstractTextColor value(level6)
+			
+			/* ItemSubtitleLineHeight 1rem, */
+			/* AbstractTextColor value(level6) */
 		);
 	}
 
@@ -169,7 +152,6 @@
 			ItemPadding 1rem,
 			ItemLabelTextSize 1rem,
 			ItemLabelTextWeight 500,
-			ItemSubtitleLineHeight 1.5rem,
 			ItemSubtitleTextSize 0.75rem,
 			ItemBorderColor value(level6),
 			ItemSubtitleTextColor value(level0),
@@ -185,19 +167,11 @@
 
 	LocaleSelector {
 		-st-mixin: LocaleSelectorMixin(
+			/* ContainerBorderColor value(level4), */
 			ItemTextColor value(level7),
-			SelectedItemTextColor value(level8),
-			ContainerBorderColor value(level4),
 			ItemBgColorHover value(level5),
+			SelectedItemTextColor value(level8),
 			SelectedItemBgColor value(level4)
-		);
-	}
-
-	ThemeSelector {
-		-st-mixin: ThemeSelectorMixin(
-			BgColor value(level4),
-			IconColor value(level5),
-			IconFillColor value(level8)
 		);
 	}
 
@@ -209,6 +183,17 @@
 			StripGradientEndColor value(primary4),
 			ButtonTextColor value(LINK_TEXT_COLOR),
 			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
+		);
+	}
+
+	Post {
+		-st-mixin: PostMixin(
+			/* PostTitleColor value(LINK_TEXT_COLOR),
+			PostTitleColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			PostTitleBorderColor value(level3), */
+			/* PostTextColor value(level6), */
+			/* PostDateTextColor value(BODY_TEXT_COLOR), */
+			/* BlogPostShadow value(shadow3) */
 		);
 	}
 
@@ -230,40 +215,6 @@
 		)
 	}
 
-	Note {
-		-st-mixin: NoteMixin(
-			TopicBgColor value(level2),
-			TopicTextColor value(primary2),
-			NoteTextColor value(level6),
-			NotePadding 1rem,
-			NoteScrollGutter 2.5rem
-		);
-	}
-
-	Bibliography {
-		-st-mixin: BibliographyMixin(
-			BibliographyBgColor value(level2),
-			BibliographyBorderColor value(level4),
-			/* ButtonTextSize 12px, */
-			ButtonTextColor value(LINK_TEXT_COLOR),
-			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
-		);
-	}
-
-	CopyUrlButtonTrigger {
-		-st-mixin: CopyUrlButtonTriggerMixin(
-			IconFillColor value(primary1)
-		);
-	}
-
-	CopyUrlButtonContent {
-		-st-mixin: CopyUrlButtonContentMixin(
-			ContentBgColor value(accent1),
-			TextColor value(level1),
-			TooltipArrowColor value(accent1)
-		);
-	}
-
 	AnnotationLink {
 		-st-mixin: AnnotationLinkMixin(
 			AnnotationFontSize 0.75rem,
@@ -272,14 +223,44 @@
 		);
 	}
 
-	DynamicContentViewer {
-		-st-mixin: DynamicContentViewerMixin(
+	Note {
+		-st-mixin: NoteMixin(
+			TopicBgColor value(level2),
+			TopicTextColor value(primary2),
+			/* NoteTextColor value(level6), */
+			NotePadding 1rem,
+			NoteScrollGutter 2.5rem
+		);
+	}
+
+	Bibliography {
+		-st-mixin: BibliographyMixin(
+			/* BibliographyBgColor value(level2),
+			BibliographyBorderColor value(level4), */
+			/* ButtonTextSize 12px, */
 			ButtonTextColor value(LINK_TEXT_COLOR),
 			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
 		);
 	}
 
-	ContactForm {
+	/* DynamicContentViewer {
+		-st-mixin: DynamicContentViewerMixin(
+			ButtonTextColor value(LINK_TEXT_COLOR),
+			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
+		);
+	} */
+
+	/* StoryPage {
+		-st-mixin: StoryPageMixin(
+		);
+	} */
+
+	/* Posts {
+		-st-mixin: PostsMixin(
+		);
+	} */
+
+	/* ContactForm {
 		-st-mixin: ContactFormMixin(
 			FormSubmitButtonBgColor value(accent1),
 			FormSubmitButtonTextColor value(level1),
@@ -294,10 +275,43 @@
 			FieldLabelBorderColor_Success #0a0,
 			FieldLabelBorderColor_Error #c00,
 			FieldInputBgColor_Hover value(level2),
-			/* FieldInputBgColor_Focus value(level3), */
 			FieldInputPlaceholderTextColor value(level5),
 			FieldInputErrorTextColor #c00,
 			FieldInputSuccessTextColor #0a0,
 		);
-	}
+	} */
 }
+
+/* Unpublished features: */
+
+/* @st-import CopyUrlButtonTrigger from "../../components/copy-button/copy-url-button-trigger.st.css";
+@st-import CopyUrlButtonTriggerMixin from "../../components/copy-button/copy-url-button-trigger-mixin.st.css";
+@st-import CopyUrlButtonContent from "../../components/copy-button/copy-url-button-content.st.css";
+@st-import CopyUrlButtonContentMixin from "../../components/copy-button/copy-url-button-content-mixin.st.css"; */
+
+
+	/* CopyUrlButtonTrigger {
+		-st-mixin: CopyUrlButtonTriggerMixin(
+			IconFillColor value(primary1)
+		);
+	}
+
+	CopyUrlButtonContent {
+		-st-mixin: CopyUrlButtonContentMixin(
+			ContentBgColor value(accent1),
+			TextColor value(level1),
+			TooltipArrowColor value(accent1)
+		);
+	} */
+
+/* @st-import ThemeSelector from "../../components/theme-selector/theme-selector.st.css";
+@st-import ThemeSelectorMixin from "../../components/theme-selector/theme-selector-mixin.st.css"; */
+
+/* ThemeSelector {
+		-st-mixin: ThemeSelectorMixin(
+			BgColor value(level4),
+			IconColor value(level5),
+			IconFillColor value(level8)
+		);
+	} */
+

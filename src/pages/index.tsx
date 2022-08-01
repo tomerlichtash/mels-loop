@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Layout from "../components/layout";
 import { GetStaticProps, NextPage } from "next";
 import {
@@ -17,34 +17,34 @@ import { contentUtils } from "../lib/content-utils";
 import { usePageData } from "../components/usePageData";
 import { ContentComponent } from "../components/content";
 import { mlUtils } from "../lib/ml-utils";
-import { classes as basePageClasses } from "../pages/page-base.st.css";
-import { st, classes } from "./index.st.css";
+import { ReactLocaleContext } from "../contexts/locale-context";
+import { st, classes } from "../pages/page-base.st.css";
+// import { st, classes } from "./index.st.css";
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { className } = props;
+	const { textDirection } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
 	const { metaData } = pageData[0];
 	const { title, moto, credits } = metaData;
-	const elements: IMLParsedNode[] = page.parsed || [];
+	const elements: IMLParsedNode[] = page.parsed;
 
 	return (
 		<Layout>
-			<article className={basePageClasses.root}>
-				<h1 className={basePageClasses.title}>{title}</h1>
-				<div className={classes.root}>
-					<p className={classes.moto}>{moto}</p>
-					{elements.map((node) => {
-						return (
-							<ContentComponent
-								key={mlUtils.uniqueId()}
-								className={st(classes.contentComponent, className)}
-								componentData={{ node }}
-							/>
-						);
-					})}
-					<p className={classes.credits}>{credits}</p>
-				</div>
+			<article className={st(classes.root, { textDirection })}>
+				<h1 className={classes.title}>{title}</h1>
+				<p className={classes.moto}>{moto}</p>
+				{elements.map((node) => {
+					return (
+						<ContentComponent
+							key={mlUtils.uniqueId()}
+							className={st(classes.contentComponent, className)}
+							componentData={{ node }}
+						/>
+					);
+				})}
+				<p className={classes.credits}>{credits}</p>
 			</article>
 		</Layout>
 	);

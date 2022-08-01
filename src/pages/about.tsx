@@ -22,7 +22,9 @@ const About: NextPage<IPageProps> = (props) => {
 	return (
 		<Layout>
 			<article className={classes.root}>
-				<h1 className={classes.title}>{metaData.title}</h1>
+				<h1 className={classes.topic}>{metaData.title}</h1>
+				<p className={classes.title}>{metaData.abstract}</p>
+
 				{elements.map((node) => {
 					return (
 						<ContentComponent

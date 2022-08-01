@@ -3,7 +3,7 @@ import {
 	FieldChangeEvent,
 	FieldKeyboardEvent,
 	FormFieldState,
-	IFieldProps,
+	IFormField,
 } from "./types";
 import { CheckIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { st, classes } from "./field.st.css";
@@ -23,8 +23,9 @@ export const Field = ({
 	onChange,
 	setValidation,
 	setFocus,
+	translate,
 	className,
-}: IFieldProps) => {
+}: IFormField) => {
 	const { INITIAL, VALID, INVALID, EDITED } = FormFieldState;
 
 	const Tag = tag;
@@ -70,8 +71,8 @@ export const Field = ({
 			<label htmlFor={id} className={classes.label}>
 				<span className={st(classes.caption, { required })}>
 					<span className={classes.icon}>{icon}</span>
-					<span className={classes.text} aria-label={label}>
-						{label}
+					<span className={classes.text} aria-label={translate(label)}>
+						{translate(label)}
 						{validation === VALID && (
 							<span className={classes.checkMark}>
 								<CheckIcon className={classes.checkMark} />
@@ -88,7 +89,7 @@ export const Field = ({
 					tabIndex={tabIndex}
 					autoFocus={autoFocus}
 					ref={ref}
-					placeholder={placeholder}
+					placeholder={translate(placeholder)}
 					className={st(classes.input, { tag, validation })}
 					onChange={onInputChange}
 					onFocus={onInputFocus}
@@ -102,7 +103,7 @@ export const Field = ({
 						<span className={classes.errorIcon}>
 							<ExclamationTriangleIcon className={classes.icon} />
 						</span>
-						<span className={classes.errorText}>{errorMsg}</span>
+						<span className={classes.errorText}>{translate(errorMsg)}</span>
 					</p>
 				)}
 			</div>

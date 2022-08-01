@@ -3,7 +3,7 @@
 @st-import Footer from "./footer.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 @st-import [IconFill, GradientStrip, TextNode] from "../../theme/mixins.st.css";
-@st-import [heading6, bodyTextNormal] from "../../theme/common/typography.st.css";
+/* @st-import [bodyTextNormal] from "../../theme/common/typography.st.css"; */
 
 :vars {
 	BackgroundColor: #f0f0f0;
@@ -58,7 +58,7 @@
 }
 
 .root::excerpt {
-	-st-mixin: bodyTextNormal
+	/* -st-mixin: bodyTextNormal */
 }
 
 .root::title {

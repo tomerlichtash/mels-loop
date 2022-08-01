@@ -1,7 +1,7 @@
 @namespace "NoteMixin";
 
 @st-import Note from "./note.st.css";
-@st-import [heading4, bodyTextNormal] from "../../theme/common/typography.st.css";
+@st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
 	NotePadding: 1rem;
@@ -31,16 +31,16 @@
 }
 
 .root:type(ref)::title {
-	-st-mixin: heading4(
+	/* -st-mixin: heading4(
 		h4_margin 1rem,
 		h4_size 1.56rem
-	);
+	); */
 }
 
 .root::content {
-	-st-mixin: bodyTextNormal(
+	/* -st-mixin: bodyTextNormal(
 		BodyTextColor value(NoteTextColor)
-	);
+	); */
 }
 
 .root:textDirection(ltr)::content {

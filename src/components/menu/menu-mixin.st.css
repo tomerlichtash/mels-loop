@@ -2,7 +2,7 @@
 
 @st-import Menu from "./menu.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
-@st-import [/*heading5,*/bodyTextNormal] from "../../theme/common/typography.st.css";
+/* @st-import [bodyTextNormal] from "../../theme/common/typography.st.css"; */
 
 :vars {
 	ListBgColor: transparent;
@@ -43,9 +43,9 @@
 
 .root::menuContent {
 	padding: value(ContentPadding);
-	-st-mixin: bodyTextNormal(
+	/* -st-mixin: bodyTextNormal(
 		BodyTextColor value(AbstractTextColor)
-	);
+	); */
 }
 
 .root::more {
@@ -95,8 +95,8 @@
 		ButtonRadius value(ItemRadius),
 		ButtonTextColor value(ItemTextColor),
 		ButtonTextColor_Hover value(ItemTextColor_Hover),
-		ButtonLabelTextColor value(ItemLabelTextColor),
-		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover),
+		/* ButtonLabelTextColor value(ItemLabelTextColor),
+		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover), */
 		ButtonBgColor_Hover value(ItemBgColor_Hover),
 		ButtonLabelTextSize value(ItemLabelTextSize),
 		ButtonLabelLineHeight value(ItemLabelLineHeight),

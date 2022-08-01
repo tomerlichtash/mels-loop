@@ -1,7 +1,6 @@
 @namespace "Field";
 
 @st-import [boxSizing] from "../../theme/mixins.st.css";
-@st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
 
 .root {}
 
@@ -22,11 +21,15 @@
 
 .input {
 	-st-states: validation(enum(initial, valid, invalid, empty)), tag(enum(input, textarea));
-	-st-mixin: boxSizing, bodyTextNormal;
+	-st-mixin: boxSizing;
 	display: block;
 	cursor: pointer;
 	background: none;
 	outline: 1;
+}
+
+.input:tag(textarea) {
+	resize: none;
 }
 
 .input:active,

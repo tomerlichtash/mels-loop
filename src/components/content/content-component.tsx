@@ -61,8 +61,12 @@ export const ContentComponent = ({
 			);
 		case MLNODE_TYPES.CODEBLOCK:
 			return (
-				<CodeBlock key={key} componentData={componentData} className={stylableClassName} />
-			)
+				<CodeBlock
+					key={key}
+					componentData={componentData}
+					className={stylableClassName}
+				/>
+			);
 			break;
 		case MLNODE_TYPES.BLOCKQUOTE:
 			return (
@@ -87,7 +91,7 @@ export const ContentComponent = ({
 			return (
 				<ContentIterator
 					key={key}
-					className={stylableClassName}
+					className={st(classes.root, { type, listType }, className)}
 					componentData={{
 						tag: listType,
 						...componentData,
@@ -126,6 +130,8 @@ export const ContentComponent = ({
 					className={stylableClassName}
 				/>
 			);
+		case MLNODE_TYPES.HR:
+			return <hr />;
 		default:
 			if (/heading/i.test(type)) {
 				return (

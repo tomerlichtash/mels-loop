@@ -3,82 +3,96 @@
 @st-import Form from "../form/form.st.css";
 @st-import [preventSelection] from "../../theme/mixins.st.css";
 
-.root {
+.root {}
+
+.form {
 	-st-extends: Form;
 }
 
-.root::field {
+.form::field {
 	margin-bottom: 1rem;
 	display: flex;
 }
 
-.root::field::label {
+.form::field::label {
 	align-content: center;
 	-st-mixin: preventSelection;
 }
 
-.root::field::caption {
+.form::field::caption {
 	width: 150px;
 	font-weight: 500;
 	line-height: 40px;
 	display: flex;
-	align-items:flex-start;
+	align-items: flex-start;
 	align-content: center;
 }
 
-.root::field::inputContainer {
+.form::field::inputContainer {
 	flex: 1;
 }
 
-.root::field::input {
+.form::field::input {
 	width: 100%;
 	padding: 0.5rem;
 	height: 40px;
 	line-height: 40px;
 	border: 1px solid #444;
 	border-radius: 3px;
+	font-family: inherit;
+	font-weight: 300;
 }
 
-.root::field::input:validation(invalid) {
+.form::field::input:validation(invalid) {
 	border-color: #c00;
 }
-
-.root::field::input:validation(valid) {
-	border-color: #0a0;
-	/* background: none; */
+.form::field::error {
+	color: #c00;
 }
 
-.root::field::input:tag(textarea) {
+.form::field::input:validation(valid) {
+	border-color: #0a0;
+}
+
+.form::field::input:tag(textarea) {
 	height: 250px;
 	line-height: 20px;
-	resize: none;
 }
 
-.root::field::error {
+.form::field::error {
 	padding: 0.25rem 0;
 	display: flex;
 }
-.root::field::errorIcon {
+.form::field::errorIcon {
 	margin: 0 0.25rem;
 	position: relative;
 	top: 1px;
 }
-.root::field::error {
+.form::field::error {
 	font-size: 0.8rem;
 }
 
-.root::captcha {}
+@media (min-width: 320px) and (max-width: 767px) {
+	@st-scope .root {
+		::form::field {
+			display: block;
+		}
+		::form::field::inputContainer {
+		}
+		::form::field::input {
+		}
+	}
+}
+
 
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {
-		::field {
+		::form::field {
 			display: block;
 		}
-		::field::inputContainer {
-			/* width: 100%; */
+		::form::field::inputContainer {
 		}
-		::field::input {
-			/* width: 100%; */
+		::form::field::input {
 		}
 	}
 }
