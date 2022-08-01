@@ -1,9 +1,8 @@
 @namespace "FooterMixin";
 
 @st-import Footer from "./footer.st.css";
-@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 @st-import [IconFill, GradientStrip, TextNode] from "../../theme/mixins.st.css";
-/* @st-import [bodyTextNormal] from "../../theme/common/typography.st.css"; */
+@st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
 	BackgroundColor: #f0f0f0;
@@ -41,12 +40,8 @@
 }
 
 .root::button {
-	-st-mixin: ButtonMixin(
-		ButtonTextColor value(ButtonTextColor),
-		ButtonTextColor_Hover value(ButtonTextColor_Hover),
-		ButtonLabelLineHeight 21px,
-		ButtonLabelTextSize 14px
-	);
+	font-size: 14px;
+	line-height: 21px;
 }
 
 .root::pageContainer {
@@ -58,7 +53,7 @@
 }
 
 .root::excerpt {
-	/* -st-mixin: bodyTextNormal */
+	-st-mixin: bodyTextNormal;
 }
 
 .root::title {

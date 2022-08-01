@@ -26,6 +26,10 @@
 @st-import ContactForm from "../../components/contact-form/contact-form.st.css";
 @st-import ContactFormMixin from "../../components/contact-form/contact-form-mixin.st.css";
 
+@st-import Button from "../../components/ui/button/button.st.css";
+@st-import ButtonMixin from "../../components/ui/button/button-mixin.st.css";
+
+
 @st-import Popover from "../../components/popover/popover.st.css";
 @st-import PopoverMixin from "../../components/popover/popover-mixin.st.css";
 @st-import PopoverToolbar from "../../components/popover/popover-toolbar.st.css";
@@ -89,8 +93,8 @@
 
 	PageBase {
 		-st-mixin: PageBaseMixin(
-			LinkColor value(LINK_TEXT_COLOR),
-			LinkColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			/* LinkColor value(LINK_TEXT_COLOR),
+			LinkColor_Hover value(LINK_TEXT_COLOR_HOVER), */
 			TopicTextColor value(level6),
 			TitleTextColor value(TITLE_COLOR),
 			SubtitleTextColor value(TITLE_COLOR),
@@ -168,7 +172,7 @@
 	LocaleSelector {
 		-st-mixin: LocaleSelectorMixin(
 			/* ContainerBorderColor value(level4), */
-			ItemTextColor value(level7),
+			ItemTextColor red,
 			ItemBgColorHover value(level5),
 			SelectedItemTextColor value(level8),
 			SelectedItemBgColor value(level4)
@@ -181,9 +185,14 @@
 			StripGradientStartColor value(primary1),
 			StripGradientMidColor value(primary3),
 			StripGradientEndColor value(primary4),
+		);
+	}
+
+	Footer Button {
+		-st-mixin: ButtonMixin(
 			ButtonTextColor value(LINK_TEXT_COLOR),
 			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
-		);
+		)
 	}
 
 	Post {
@@ -200,13 +209,13 @@
 	Popover {
 		-st-mixin: PopoverMixin(
 			TriggerTextColor value(LINK_TEXT_COLOR),
-			TriggerTextColor_Hover value(primary2),
+			TriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
+
 			TriggerTextColor_Open value(level0),
 			TriggerTextBgColor_Open value(primary2),
 			TriggerMarkerColor_Open value(primary2)
 		);
 	}
-
 	PopoverToolbar {
 		-st-mixin: PopoverToolbarMixin(
 			IconFill_Color value(level5),
@@ -214,7 +223,6 @@
 			IconFill_Active value(primary2)	
 		)
 	}
-
 	AnnotationLink {
 		-st-mixin: AnnotationLinkMixin(
 			AnnotationFontSize 0.75rem,
@@ -232,7 +240,6 @@
 			NoteScrollGutter 2.5rem
 		);
 	}
-
 	Bibliography {
 		-st-mixin: BibliographyMixin(
 			/* BibliographyBgColor value(level2),
@@ -260,7 +267,7 @@
 		);
 	} */
 
-	/* ContactForm {
+	ContactForm {
 		-st-mixin: ContactFormMixin(
 			FormSubmitButtonBgColor value(accent1),
 			FormSubmitButtonTextColor value(level1),
@@ -279,7 +286,7 @@
 			FieldInputErrorTextColor #c00,
 			FieldInputSuccessTextColor #0a0,
 		);
-	} */
+	}
 }
 
 /* Unpublished features: */

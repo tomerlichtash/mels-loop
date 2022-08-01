@@ -24,19 +24,23 @@
 
 .root {
 	-st-extends: Button;
-	color: value(ButtonTextColor);
 	border-top: value(ButtonBorderTopSize) solid value(ButtonBorderTopColor);
 	border-bottom: value(ButtonBorderBottomSize) solid value(ButtonBorderBottomColor);
 	padding: value(ButtonPadding);
+	color: value(ButtonTextColor);
 }
 
 .root:hover {
-	color: value(ButtonTextColor_Hover);
 	background-color: value(ButtonBgColor_Hover);
 	border-radius: value(ButtonRadius);
 }
 
+.root:hover::label {
+	color: value(ButtonTextColor_Hover);
+}
+
 .root::label {
+	color: value(ButtonTextColor);
 	font-size: value(ButtonLabelTextSize);
 	font-weight: value(ButtonLabelTextWeight);
 	line-height: value(ButtonLabelLineHeight);
