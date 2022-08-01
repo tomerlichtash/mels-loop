@@ -14,18 +14,4 @@
 
 .root {
 	-st-extends: Bibliography;
-	/* border-top: 1px solid value(BibliographyBorderColor); */
-	/* background-color: value(BibliographyBgColor); */
-}
-
-.root::title {
-	-st-mixin: bodyTextNormal;
-}
-
-.root::button {
-	-st-mixin: bodyTextNormal, ButtonMixin(
-		ButtonTextColor value(ButtonTextColor),
-		ButtonTextColor_Hover value(ButtonTextColor_Hover),
-		ButtonLabelTextSize value(ButtonTextSize),
-	);
 }

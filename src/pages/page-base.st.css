@@ -62,9 +62,12 @@
 .blockquote {}
 .root::contentComponent:type(blockquote) {
 	border-left: value(BlockQuoteBorder);
+	margin-left: 1rem;
 }
 .root:textDirection(rtl)::contentComponent:type(blockquote) {
+	margin-left: auto;
 	border-left: none;
+	margin-right: 1rem;
 	border-right: value(BlockQuoteBorder);
 }
 
@@ -85,10 +88,6 @@
 .root code,
 .root::contentComponent:type(code) {
 	-st-mixin: InlineCode;
-	font-family: monospace;
-	font-size: 0.8rem;
-	font-weight: 500;
-	color: #000;
 }
 .root CodeBlock::pre {
 	-st-mixin: CodeBlockStyle;
@@ -123,13 +122,10 @@
 	font-style: italic;
 }
 
-/**
-	Dynamic Page
-*/
 .header {
 	margin-bottom: 2rem;
 }
-/* .abstract {} */
+
 .meta {
 	-st-states: hasContent(boolean);
 	margin: 1.302vmax 0 0;

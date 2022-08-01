@@ -1,6 +1,7 @@
 @namespace "Popover";
 
 @st-import PopoverToolbar from "./popover-toolbar.st.css";
+@st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
 
 :vars {
 	PopoverContentBorder: none;
@@ -27,12 +28,6 @@
 
 .trigger {
 	cursor: pointer;
-	padding: inherit;
-	line-height: inherit;
-	font-size: inherit;
-	font-family: inherit;
-	border: none;
-	background: inherit;
 }
 
 .triggerWrapper {}
@@ -50,6 +45,11 @@
 	border-radius: value(PopoverContentRadius);
 	box-shadow: value(PopoverContentShadow);
 	animation: fadeIn 300ms ease-out forwards;
+}
+
+.root:type(glossary)::trigger::after {
+	-st-mixin: preventSelection, verticalAlignSuper;
+	content: "\203B";
 }
 
 @keyframes fadeIn {

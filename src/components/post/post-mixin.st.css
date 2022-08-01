@@ -1,7 +1,7 @@
 @namespace "PostMixin";
 
 @st-import Post from "./post.st.css";
-@st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
+@st-import [bodyTextNormal, Date] from "../../theme/common/typography.st.css";
 
 :vars {
 	PostTitleColor: inherit;
@@ -40,6 +40,6 @@
 }
 
 .root::date {
-	font-size: 12px;
+	-st-mixin: Date;
 	color: value(PostDateTextColor)
 }

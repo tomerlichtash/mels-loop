@@ -40,7 +40,7 @@
 .root::header {
 	-st-mixin: HeaderMixin(
 		HeaderSiteSubtitleColor white,
-		HeaderPadding 1rem,
+		/* HeaderPadding 1rem, */
 		SiteLogoBgProps value(HeaderLogoProps),
 	);
 }
@@ -54,15 +54,12 @@
 	color: value(SiteTitleColor);
 }
 
-.root::menu {}
-
 .root::burgerCross {
 	background: value(BurgerCrossColor);
 }
 
 .root::toolbar {
 	border-bottom: 1px solid value(ItemBorderColor);
-	padding: 1rem;
 }
 
 .root::strip {
@@ -79,7 +76,6 @@
 }
 
 .root::sectionTitle {
-	padding: 1rem;
 	color: value(SectionTitleColor)
 }
 
@@ -90,9 +86,9 @@
 		ButtonTextColor value(ItemTextColor),
 		ButtonTextColor_Hover value(ItemTextColor_Hover),
 		ButtonBgColor_Hover value(ItemBgColor_Hover),
-		ButtonLabelTextSize value(ItemLabelTextSize),
 		ButtonLabelLineHeight value(ItemLabelLineHeight),
-		ButtonLabelTextWeight value(ItemLabelTextWeight),
+		/* ButtonLabelTextSize value(ItemLabelTextSize),
+		ButtonLabelTextWeight value(ItemLabelTextWeight), */
 		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
 		ButtonChildrenTextColor value(ItemSubtitleTextColor),
 		ButtonBorderBottomSize value(ItemBorderSize),

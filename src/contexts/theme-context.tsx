@@ -1,6 +1,6 @@
-import React, { Context, createContext, useRef } from "react";
+import React, { Context, createContext /*, useRef*/ } from "react";
 import Cookies from "js-cookie";
-import { useTheme } from "../hooks/useTheme";
+// import { useTheme } from "../hooks/useTheme";
 import { classes as LightTheme } from "../theme/light/style.st.css";
 import { classes as DarkTheme } from "../theme/dark/style.st.css";
 
@@ -32,28 +32,29 @@ const themes = {
 };
 
 export function ThemeContextProvider({ children }: ThemeContextProps) {
-	const ref = useRef<HTMLDivElement>(null);
-	const styleRef = useRef<HTMLStyleElement>(null);
-	const [theme, setTheme, _ref] = useTheme(
-		themes,
-		ref,
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		styleRef as React.MutableRefObject<any>
-	);
-	const themeContext: IThemeContext = new ThemeContext({
-		theme,
-		setTheme,
-		ref: _ref,
-	});
+	return children;
+	// const ref = useRef<HTMLDivElement>(null);
+	// const styleRef = useRef<HTMLStyleElement>(null);
+	// const [theme, setTheme, _ref] = useTheme(
+	// 	themes,
+	// 	ref,
+	// 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	// 	styleRef as React.MutableRefObject<any>
+	// );
+	// const themeContext: IThemeContext = new ThemeContext({
+	// 	theme,
+	// 	setTheme,
+	// 	ref: _ref,
+	// });
 
-	return (
-		<ReactThemeContext.Provider value={themeContext}>
-			<div ref={ref}>
-				<style ref={styleRef}></style>
-				{children}
-			</div>
-		</ReactThemeContext.Provider>
-	);
+	// return (
+	// 	<ReactThemeContext.Provider value={themeContext}>
+	// 		<div ref={ref}>
+	// 			<style ref={styleRef}></style>
+	// 			{children}
+	// 		</div>
+	// 	</ReactThemeContext.Provider>
+	// );
 }
 
 export class ThemeContext implements IThemeContext {

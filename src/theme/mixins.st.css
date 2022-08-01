@@ -59,7 +59,7 @@
 .MobileHeader { -st-extends: Header }
 .MobileHeader::container { display: block }
 .MobileHeader::siteTitle { display: block }
-/* .MobileHeader::siteSubtitle { font-size: 0.85rem } */
+.MobileHeader::siteSubtitle { font-size: 0.85rem }
 .MobileHeader::siteSubtitle::before { margin: 0; content: "" }
 
 /* ResetListStyleMixin */

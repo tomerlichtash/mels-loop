@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Layout from "../components/layout/layout";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { GetStaticProps } from "next";

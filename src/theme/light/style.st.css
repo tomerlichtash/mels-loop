@@ -27,7 +27,7 @@
 @st-import Note from "../../components/note/note.st.css";
 @st-import NoteMixin from "../../components/note/note-mixin.st.css";
 @st-import Bibliography from "../../components/bibliography/bibliography.st.css";
-@st-import BibliographyMixin from "../../components/bibliography/bibliography-mixin.st.css";
+/* @st-import BibliographyMixin from "../../components/bibliography/bibliography-mixin.st.css"; */
 @st-import Posts from "../../pages/posts.st.css";
 @st-import PostsMixin from "../../pages/posts-mixin.st.css";
 @st-import Post from "../../components/post/post.st.css";
@@ -103,6 +103,7 @@
 			ContentHeaderMetaBorderColor value(BORDER_COLOR),
 			ImageBorderColor value(BORDER_COLOR),
 			SectionBoxShadowColor value(shadow4),
+			CodeSyntaxColor value(level8)
 		)
 	}
 
@@ -154,7 +155,7 @@
 	MobileMenu LocaleSelector {
 		-st-mixin: LocaleSelectorMixin(
 			ItemTextColor value(level1),
-			ItemBgColorHover value(level5),
+			ItemBgColorHover value(level8),
 			SelectedItemTextColor value(level0),
 			SelectedItemBgColor value(primary1)
 		);
@@ -212,8 +213,8 @@
 		-st-mixin: NoteMixin(
 			TopicBgColor value(level2),
 			TopicTextColor value(primary2),
-			NotePadding 1rem,
-			NoteScrollGutter 2.5rem,
+			/* NotePadding 1rem,
+			NoteScrollGutter 2.5rem, */
 		);
 	}
 

@@ -5,7 +5,6 @@
 
 :vars {
 	ListBgColor: transparent;
-	ContentPadding: 1rem;
 	ArrowColor: #fff;
 	ViewPortBgColor: #fff;
 	TriggerPadding: 0 6px;
@@ -15,14 +14,11 @@
 	TriggerBgColorHover: #c0c0c0;
 	TriggerTextColor: inherit;
 	TriggerTextColor_Hover: inherit;
-}
-:vars {
 	ItemTextColor: inherit;
 	ItemTextColor_Hover: inherit;
 	ItemPadding: 1rem;
 	ItemRadius: 6px;
 	ItemBgColor_Hover: inherit;
-
 	ItemLabelTextColor: inherit;
 	ItemLabelTextColor_Hover: inherit;
 	ItemLabelTextSize: inherit;
@@ -54,10 +50,6 @@
 	background-color: value(ListBgColor);
 }
 
-.root::menuContent {
-	padding: value(ContentPadding);
-}
-
 .root::more {
 	-st-mixin: ButtonMixin(
 		ButtonTextColor value(ItemTextColor),
@@ -71,7 +63,6 @@
 
 .root::menuTrigger {
 	border-radius: value(TriggerRadius);
-	transition: all 25ms ease-in;
 }
 .root::menuTrigger[data-state="open"] {
 	color: value(TriggerTextColor_Hover);
@@ -85,35 +76,22 @@
 .root::triggerButton {
 	-st-mixin: ButtonMixin(
 		ButtonPadding value(TriggerPadding),
-		ButtonLabelLineHeight value(TriggerLabelLineHeight),
-		ButtonLabelTextSize value(TriggerTextSize),
+		/* ButtonLabelLineHeight value(TriggerLabelLineHeight), */
 		ButtonTextColor value(TriggerTextColor),
-		/* ButtonTextColor_Hover value(TriggerTextColor_Hover),		 */
 	);
 }
 
 .root::menuItemButton {
-	-st-mixin: ButtonMixin(
-		ButtonPadding value(ItemPadding),
-		ButtonRadius value(ItemRadius),
-		ButtonTextColor value(ItemTextColor),
-		ButtonTextColor_Hover value(ItemTextColor_Hover),
-		/* ButtonLabelTextColor value(ItemLabelTextColor),
-		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover), */
-		ButtonBgColor_Hover value(ItemBgColor_Hover),
-		ButtonLabelTextSize value(ItemLabelTextSize),
-		ButtonLabelLineHeight value(ItemLabelLineHeight),
-		ButtonLabelTextWeight value(ItemLabelTextWeight),
-		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
-		ButtonLabelIconMargin value(ItemLabelIconMargin),
-		ButtonChildrenTextColor value(ItemSubtitleColor)
-	);
+	border-radius: value(ItemRadius);
 }
-
-.root::menuItemButton::label {
-	font-weight: 700;
-	text-transform: uppercase;
+.root::menuItemButton {
+	color: value(ItemTextColor);
+	line-height: value(ItemLabelLineHeight);
 }
-
-.root::abstract {
+.root::menuItemButton:hover {
+	background-color: value(ItemBgColor_Hover);
+	color: value(ItemTextColor_Hover);
+}
+.root::menuItemButton::children{
+	font-size: 0.85rem;
 }

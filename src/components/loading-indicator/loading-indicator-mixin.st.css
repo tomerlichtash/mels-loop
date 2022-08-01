@@ -1,0 +1,15 @@
+@namespace "LoadingIndicator";
+
+@st-import LoadingIndicator from "./loading-indicator.st.css";
+
+:vars {
+	image: url("/public/assets/ml-logo.png");
+}
+
+.root {
+	-st-extends: LoadingIndicator;
+}
+
+.animation {
+	background-image: value(image);
+}

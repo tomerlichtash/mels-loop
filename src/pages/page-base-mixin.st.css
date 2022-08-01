@@ -17,6 +17,7 @@
 	SectionBoxShadowColor: rgba(0, 0, 0, 0.5);
 	ContentHeaderMetaBorderColor: #c0c0c0;
 	ImageBorderColor: #000000;
+	CodeSyntaxColor: #000000;
 }
 
 .root {
@@ -66,10 +67,12 @@
 .root code,
 .root::contentComponent:type(code) {
 	border-color: value(InlineCodeBorderColor);
+	color: value(CodeSyntaxColor);
 }
 .root code,
 .root::contentComponent:type(code),
 .root CodeBlock::pre {
+	color: value(CodeSyntaxColor);
 	background-color: value(InlineCodeBgColor);
 }
 

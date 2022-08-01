@@ -2,34 +2,13 @@
 
 @st-import Footer from "./footer.st.css";
 @st-import [IconFill, GradientStrip] from "../../theme/mixins.st.css";
-@st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
 	BgColor: #f0f0f0;
-
-	Padding: 4rem 0;
-
+	TextColor: #000000;
 	StripGradientStartColor: white;
 	StripGradientMidColor: gray;
 	StripGradientEndColor: black;
-
-	TextColor: #000000;
-
-	ButtonTextColor: inherit;
-	ButtonTextColor_Hover: inherit;
-	TitleFontSize: inherit;
-	TitleFontWeight: inherit;
-	TitleFontCase: inherit;
-	TitleMargin: 1rem;
-
-	SubtitleFontSize: inherit;
-	SubtitleFontWeight: inherit;
-	SubtitleFontCase: inherit;
-
-	DescriptionFontSize: inherit;
-	DescriptionFontWeight: inherit;
-	LinkFontSize: inherit;
-	LinkFontWeight: inherit;
 }
 
 .root {
@@ -45,38 +24,4 @@
 		StripGradientEndColor value(StripGradientEndColor),
 		StripGradientHeight 4px
 	);
-}
-
-.root::button {
-	font-size: 14px;
-	line-height: 21px;
-}
-
-.root::pageContainer {
-	padding: value(Padding);
-}
-
-.root::footerTitle {
-	margin-bottom: value(TitleMargin);
-}
-
-.root::excerpt {
-	-st-mixin: bodyTextNormal;
-}
-
-.root::title {
-	font-size: 15px;
-	font-weight: 500;
-	text-transform: uppercase;
-}
-
-.root::subtitle {
-	font-size: 14px;
-	font-weight: 400;
-}
-
-.root::columnTitle {
-	font-weight: 500;
-	font-size: 16px;
-	margin-bottom: 1rem;
 }

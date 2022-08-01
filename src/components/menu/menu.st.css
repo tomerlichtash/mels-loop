@@ -3,6 +3,7 @@
 @st-import [preventSelection] from "../../theme/mixins.st.css";
 @st-import [bodyTextNormal, TopMenuTriggerLabel, TopMenuItemTitle, Paragraph] from "../../theme/common/typography.st.css";
 @st-import Button from "../ui/button/button.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 
 .root {
 	-st-mixin: preventSelection;
@@ -29,6 +30,7 @@
 	display: grid;
 	margin: 0;
 	column-gap: 10;
+	padding: 1rem;
 }
 
 .viewportPosition {
@@ -88,17 +90,44 @@
 	-st-extends: Button;
 }
 
-.menuTrigger {}
+.menuTrigger {
+	transition: all 25ms ease-in;
+}
+
 .triggerButton {
 	-st-extends: Button;
 	-st-mixin: TopMenuTriggerLabel;
+	/* line-height: value(TriggerLabelLineHeight), */
 }
 
 .menuItemButton {
 	-st-extends: Button;
 	display: block;
+	-st-mixin: ButtonMixin(
+		ButtonPadding 1rem,
+		/* ButtonRadius value(ItemRadius), */
+		/* ButtonTextColor value(ItemTextColor), */
+		/* ButtonTextColor_Hover value(ItemTextColor_Hover), */
+		/* ButtonLabelTextColor value(ItemLabelTextColor),
+		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover), */
+		/* ButtonBgColor_Hover value(ItemBgColor_Hover), */
+		/* ButtonLabelLineHeight value(ItemLabelLineHeight), */
+		/* ButtonLabelTextSize value(ItemLabelTextSize),
+		ButtonLabelTextWeight value(ItemLabelTextWeight), */
+		ButtonLabelIconMargin 0.25rem,
+		ButtonSubtitleTextSize 1rem,
+		ButtonLabelIconMargin 0.25rem,
+		/* ButtonChildrenTextColor value(ItemSubtitleColor) */
+	);
+
 	/* width: 100%; */
 }
+
+.menuItemButton::label {
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
 .menuItemButton::contentWrapper {
 	align-items: flex-start;
 }

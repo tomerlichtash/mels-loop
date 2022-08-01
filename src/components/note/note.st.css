@@ -8,11 +8,20 @@
 	-st-states: type(enum(note, ref)), textDirection(enum(ltr, rtl));
 	overflow: hidden;
 	position: relative;
+	padding: 1rem;
 }
 
 .root:textDirection(rtl) {
 	direction: rtl;
 }
+
+.root:textDirection(ltr)::content {
+	padding-right: 1rem;
+}
+.root:textDirection(rtl)::content {
+	padding-left: 1rem;
+}
+
 
 .root:type(ref)::title {
 	-st-mixin: Topic;
@@ -32,6 +41,8 @@
 .root:type(ref)::topic {
 	display: inline-block;
 	font-weight: 700;
+	padding: 0 6px;
+	margin-bottom: 1.5rem;
 }
 
 .bibliography {

@@ -42,8 +42,8 @@
 
 .root::label {
 	color: value(ButtonTextColor);
-	font-size: value(ButtonLabelTextSize);
-	font-weight: value(ButtonLabelTextWeight);
+	/* font-size: value(ButtonLabelTextSize);
+	font-weight: value(ButtonLabelTextWeight); */
 	line-height: value(ButtonLabelLineHeight);
 }
 
