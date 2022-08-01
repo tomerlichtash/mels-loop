@@ -22,8 +22,8 @@ import {
 	ChevronLeftIcon,
 	Pencil1Icon,
 } from "@radix-ui/react-icons";
-import { st, classes } from "./menu.st.css";
 import { TextDirection } from "../../interfaces/locale-context";
+import { st, classes } from "./menu.st.css";
 
 export interface MenuData {
 	items: IMenuData[];
@@ -153,7 +153,7 @@ export const Menu = ({ items, textDirection, className }: MenuData) => {
 	);
 
 	return (
-		<NavigationMenu className={st(classes.root, className)}>
+		<NavigationMenu className={st(classes.root, { textDirection }, className)}>
 			<NavigationMenuList asChild>
 				<div className={classes.list}>
 					{menuItems}
