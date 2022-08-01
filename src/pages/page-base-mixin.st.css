@@ -3,8 +3,8 @@
 @st-import PageBase from "./page-base.st.css";
 @st-import Link from "../components/content/content-blocks/link/link.st.css";
 @st-import CodeBlock from "../components/content/content-blocks/code-block/code-block.st.css";
-@st-import CustomImage from "../components/content/content-blocks/custom-image/custom-image.st.css";
 @st-import Figure from "../components/content/content-blocks/figure/figure.st.css";
+@st-import [BlockQuoteBorder] from "../theme/common/typography.st.css";
 
 :vars {
 	LinkColor: #808080;
@@ -20,83 +20,35 @@
 	ImageBorderColor: #000000;
 }
 
-@st-import [
-	h3,
-
-	SectionBox,
-	Topic,
-	Title,
-	Subtitle,
-	Paragraph,
-	Blockquote,
-	InlineCode,
-	CodeBlockStyle,
-
-	ParagraphMargin,
-	SubtitleMargin1,
-	SubtitleMargin2,
-
-	ListBullet,
-	BlockQuoteBorder,
-] from "../theme/common/typography.st.css";
-
 .root {
 	-st-extends: PageBase;
 }
 
 .root::section {
-	-st-mixin: SectionBox;
 	box-shadow: 0 0 10px value(SectionBoxShadowColor);
 }
 
 .root::topic {
-	-st-mixin: Topic;
 	color: value(TopicTextColor);
 }
 
 .root::title,
 .root::contentComponent:type(heading_1) {
-	-st-mixin: Title;
 	color: value(TitleTextColor);
 }
 
 .root::subtitle,
 .root::contentComponent:type(heading_2) {
-	-st-mixin: Subtitle;
 	color: value(SubtitleTextColor);
 }
 
-.root::contentComponent:type(heading_2) {
-	-st-mixin: SubtitleMargin1;
-}
-
-.root::contentComponent:type(heading_3) {
-	-st-mixin: h3, SubtitleMargin2;
-}
-
+.root::moto,
 .root::paragraph,
-.root::contentComponent:type(paragraph) {
-	-st-mixin: Paragraph, ParagraphMargin;
-	color: value(ParagraphTextColor);
-}
-
-.root::contentComponent:type(blockquote) {
-	-st-mixin: Blockquote;
-	color: value(ParagraphTextColor);
-	border-left: value(BlockQuoteBorder);
-}
-.root:textDirection(rtl)::contentComponent:type(blockquote) {
-	border-left: none;
-	border-right: value(BlockQuoteBorder);
-}
-
+.root::contentComponent:type(paragraph),
+.root::contentComponent:type(blockquote),
 .root::contentComponent:listType(ul),
-.root::contentComponent:listType(ol) {
-	-st-mixin: ListBullet;
-	color: value(ParagraphTextColor);
-}
+.root::contentComponent:listType(ol),
 .root::contentComponent:type(list-item)  {
-	-st-mixin: Paragraph, ParagraphMargin;
 	color: value(ParagraphTextColor);
 }
 
@@ -114,78 +66,26 @@
 
 .root code,
 .root::contentComponent:type(code) {
-	-st-mixin: InlineCode;
-	font-family: monospace;
-	background-color: value(InlineCodeBgColor);
 	border-color: value(InlineCodeBorderColor);
-	font-size: 0.8rem;
-	font-weight: 500;
-	color: #000;
 }
+.root code,
+.root::contentComponent:type(code),
 .root CodeBlock::pre {
-	-st-mixin: CodeBlockStyle;
-	background: value(InlineCodeBgColor);
-	padding: 1rem;
-}
-.root CodeBlock::code {
-	background: none;
-	border: none;
-	background: none;
-	padding: 0;
-	border-radius: 0;
+	background-color: value(InlineCodeBgColor);
 }
 
 .root::contentComponent:type(figure) {
-	border: 1px solid value(ImageBorderColor);
-	padding: 2rem 0;
-	box-sizing: border-box;
-	margin: 2rem 0;
+	border-color: value(ImageBorderColor);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Docs */
-.root::abstract {
-	/* -st-mixin: heading3(
-		h3_color value(HeadingColor3)
-	); */
-}
-.root::meta {
-	/* font-size: 1.041vmax; */
-	/* color: value(HeadingColor2); */
-	margin: 1.302vmax 0 0;
+.root::meta:hasContent {
 	border-color: value(ContentHeaderMetaBorderColor);
-	/* -st-mixin: TextNode(
-		TextSize 1.041vmax,
-		TextColor value(HeadingColor2)
-	); */
-}
-.root::byline {
-	-st-mixin: Paragraph;
-	text-transform: uppercase;
-}
-.root::date {
-	-st-mixin: Paragraph;
 }
 
-.credits {
-}
-
-.root::moto {
+/* .root::credits {
 	-st-mixin: Paragraph;
-	margin-bottom: 4rem;
-	font-style: italic;
-	/* COLOR */
+	border-top: 1px solid value(ContentHeaderMetaBorderColor);
 	color: value(ParagraphTextColor);
-}
+	padding-top: 1rem;
+	margin-top: 8rem;
+} */

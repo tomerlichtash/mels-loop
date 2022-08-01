@@ -19,7 +19,6 @@ import { ContentComponent } from "../components/content";
 import { mlUtils } from "../lib/ml-utils";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { st, classes } from "../pages/page-base.st.css";
-// import { st, classes } from "./index.st.css";
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { className } = props;
@@ -27,7 +26,7 @@ const Index: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
 	const { metaData } = pageData[0];
-	const { title, moto, credits } = metaData;
+	const { title, moto } = metaData;
 	const elements: IMLParsedNode[] = page.parsed;
 
 	return (
@@ -44,7 +43,7 @@ const Index: NextPage<IPageProps> = (props) => {
 						/>
 					);
 				})}
-				<p className={classes.credits}>{credits}</p>
+				{/* <p className={classes.credits}>{credits}</p> */}
 			</article>
 		</Layout>
 	);

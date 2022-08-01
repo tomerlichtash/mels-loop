@@ -62,24 +62,6 @@
 /* .MobileHeader::siteSubtitle { font-size: 0.85rem } */
 .MobileHeader::siteSubtitle::before { margin: 0; content: "" }
 
-/* TextNodeMixin */
-:vars {
-	TextSize: inherit;
-	TextWeight: inherit;
-	TextLineHeight: inherit;
-	TextCase: auto;
-	TextColor: inherit;
-	TextStyle: none;
-}
-.TextNode {
-	font-size: value(TextSize);
-	font-weight: value(TextWeight);
-	line-height: value(TextLineHeight);
-	text-transform: value(TextCase);
-	font-style: value(TextStyle);
-	color: value(TextColor);
-}
-
 /* ResetListStyleMixin */
 .ResetListStyle {
 	list-style: none;

@@ -1,6 +1,29 @@
 @namespace "PageBase";
 
 @st-import ContentComponent from "../components/content/content-component.st.css";
+@st-import Link from "../components/content/content-blocks/link/link.st.css";
+@st-import CodeBlock from "../components/content/content-blocks/code-block/code-block.st.css";
+@st-import Figure from "../components/content/content-blocks/figure/figure.st.css";
+
+@st-import [
+	h3,
+
+	SectionBox,
+	Topic,
+	Title,
+	Subtitle,
+	Paragraph,
+	Blockquote,
+	InlineCode,
+	CodeBlockStyle,
+
+	ParagraphMargin,
+	SubtitleMargin1,
+	SubtitleMargin2,
+
+	ListBullet,
+	BlockQuoteBorder,
+] from "../theme/common/typography.st.css";
 
 .root {
 	-st-states: textDirection(enum(ltr, rtl));
@@ -10,20 +33,96 @@
 	-st-extends: ContentComponent;
 }
 
-.topic {}
-.title {}
-.subtitle {}
-.paragraph {}
+.topic {
+	-st-mixin: Topic;
+}
+
+.title,
+.root::contentComponent:type(heading_1) {
+	-st-mixin: Title;
+}
+
+.subtitle,
+.root::contentComponent:type(heading_2) {
+	-st-mixin: Subtitle;
+}
+
+.root::contentComponent:type(heading_2) {
+	-st-mixin: SubtitleMargin1;
+}
+
+.root::contentComponent:type(heading_3) {
+	-st-mixin: h3, SubtitleMargin2;
+}
+
+.paragraph,
+.root::contentComponent:type(paragraph) {
+	-st-mixin: Paragraph, ParagraphMargin;
+}
+
 .blockquote {}
+.root::contentComponent:type(blockquote) {
+	border-left: value(BlockQuoteBorder);
+}
+.root:textDirection(rtl)::contentComponent:type(blockquote) {
+	border-left: none;
+	border-right: value(BlockQuoteBorder);
+}
+
+.root::contentComponent:type(blockquote) {
+	-st-mixin: Blockquote;
+}
+
+.root::contentComponent:listType(ul),
+.root::contentComponent:listType(ol) {
+	-st-mixin: ListBullet;
+}
+
+.root::contentComponent:type(list-item)  {
+	-st-mixin: Paragraph, ParagraphMargin;
+}
+
+.root code,
+.root::contentComponent:type(code) {
+	-st-mixin: InlineCode;
+	font-family: monospace;
+	font-size: 0.8rem;
+	font-weight: 500;
+	color: #000;
+}
+.root CodeBlock::pre {
+	-st-mixin: CodeBlockStyle;
+	padding: 1rem;
+}
+.root CodeBlock::code {
+	background: none;
+	border: none;
+	background: none;
+	padding: 0;
+	border-radius: 0;
+}
+
+.root::contentComponent:type(figure) {
+	border: 1px solid;
+	padding: 2rem 0;
+	box-sizing: border-box;
+	margin: 2rem 0;
+}
+
 .link {}
 .code {}
 
 .section {
+	-st-mixin: SectionBox;
 	-st-states: seperator(boolean);
 	margin-bottom: 2rem;
 }
 
-.moto {}
+.moto {
+	-st-mixin: Paragraph;
+	margin-bottom: 4rem;
+	font-style: italic;
+}
 
 /**
 	Dynamic Page
@@ -31,10 +130,12 @@
 .header {
 	margin-bottom: 2rem;
 }
-.abstract {}
+/* .abstract {} */
 .meta {
 	-st-states: hasContent(boolean);
+	margin: 1.302vmax 0 0;
 }
+
 .meta:hasContent {
 	padding: 0.5rem 0;
 	border-top: 1px solid;
@@ -43,47 +144,18 @@
 	align-content: space-between;
 	justify-content: space-between;
 }
-.byline {}
-.date {}
 
-
-
-/**
-	Common Styles
-
-.heading1 {
-	color: red;
+.byline {
+	-st-mixin: Paragraph;
+	text-transform: uppercase;
 }
-.heading2 {}
-.heading3 {}
-.heading4 {}
-.heading5 {}
-.heading6 {}
-
-*/
-
-/* .section:seperator {
-	border-top: 2px solid black;
-	margin: 2rem 0;
-	padding-top: 2rem;
-} */
-
-
+.date {
+	-st-mixin: Paragraph;
+}
 
 .noContent {}
 .error {}
 
-.info {
-	/* margin: 2rem 0; */
-	/* background: #f0f0f0; */
-	/* border: 1px solid #c0c0c0; */
-	/* padding: 2rem 2rem 0; */
-	/* border-radius: 4px; */
-}
-
-/* .scrambleEmailAddress {
-	unicode-bidi: bidi-override;
-	direction: rtl;
-} */
-
 .form {}
+
+.credits {}

@@ -115,3 +115,18 @@
 	font-weight: 700;
 	padding: 0rem 1rem;
 }
+
+/* Top Bar Menu */
+.TopMenuTriggerLabel {
+	font-size: 1rem;
+	line-height: 32px;
+}
+.TopMenuItemTitle {
+	font-size: 1rem;
+	line-height: 0.25rem;
+	font-weight: 500;
+}
+.TopMenuItemSubtitle {
+	font-size: 0.85rem;
+	/* ItemLabelIconMargin 0.35rem, */
+}

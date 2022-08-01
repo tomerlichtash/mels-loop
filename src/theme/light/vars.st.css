@@ -19,6 +19,8 @@
 	color14,
 	color15,
 	color16,
+	color17,
+	color18,
 ] from "../common/colors.st.css";
 
 :vars {
@@ -43,17 +45,32 @@
 	accent3: value(color15);
 	accent4: value(color16);
 
+	success1: value(color17);
+	fail1: value(color18);
+
 	shadow1: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 	shadow2: 0px 0px 4px rgba(0, 0, 0, 0.25);
 	shadow3: 0 0 10px rgba(0, 0, 0, 0.15);
 	shadow4: rgba(0, 0, 0, 0.2);
+
+	radius1: 6px;
+	radius2: 4px;
+	radius3: 3px;
 }
 
 :vars {
+	HEADER_FOOTER_BG_COLOR: value(level2);
+	LAYOUT_BG_COLOR: value(level1);
+	SCROLLBAR_BG_COLOR: value(level3);
 	TITLE_COLOR: value(level8);
+	TITLE_ALT_COLOR: value(level6);
 	BORDER_COLOR: value(level4);
+	HEADER_FOOTER_TEXT_COLOR: value(level8);
 	LIGHT_BG_COLOR: value(level2);
 	BODY_TEXT_COLOR: value(level6);
 	LINK_TEXT_COLOR: value(accent1);
 	LINK_TEXT_COLOR_HOVER: value(primary2);
+	GRADIENT_START: value(primary1);
+	GRADIENT_MID: value(primary3);
+	GRADIENT_END: value(primary4);
 }

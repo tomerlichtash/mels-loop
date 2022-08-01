@@ -8,6 +8,8 @@
 
 .root {
 	-st-mixin: preventSelection, verticalAlignSuper;
+	font-size: 0.75rem;
+	font-weight: 700;
 }
 
 .root::before,

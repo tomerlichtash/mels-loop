@@ -2,39 +2,53 @@
 
 @st-import Menu from "./menu.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
-/* @st-import [bodyTextNormal] from "../../theme/common/typography.st.css"; */
+@st-import [bodyTextNormal, TopMenuTriggerLabel, TopMenuItemTitle] from "../../theme/common/typography.st.css";
 
 :vars {
 	ListBgColor: transparent;
 	ContentPadding: 1rem;
 	ArrowColor: #fff;
 	ViewPortBgColor: #fff;
-	TriggerPadding: 0;
+	TriggerPadding: 0 6px;
 	TriggerLabelLineHeight: auto;
 	TriggerTextSize: inherit;
 	TriggerRadius: 0;
 	TriggerBgColorHover: #c0c0c0;
 	TriggerTextColor: inherit;
 	TriggerTextColor_Hover: inherit;
+}
+:vars {
 	ItemTextColor: inherit;
 	ItemTextColor_Hover: inherit;
 	ItemPadding: 0;
 	ItemRadius: 0;
+	ItemBgColor_Hover: inherit;
+
 	ItemLabelTextColor: inherit;
 	ItemLabelTextColor_Hover: inherit;
-	ItemBgColor_Hover: inherit;
 	ItemLabelTextSize: inherit;
 	ItemLabelLineHeight: inherit;
 	ItemLabelTextWeight: inherit;
 	ItemSubtitleColor: inherit;
-	AbstractTextColor: inherit;
 	ItemSubtitleTextSize: inherit;
 	ItemLabelIconMargin: 0;
+}
+
+:vars {
 	ViewPortShadow: none;
 }
 
 .root {
 	-st-extends: Menu;
+}
+
+.root::arrow {
+	background-color: value(ArrowColor);
+}
+
+.root::viewport {
+	background: value(ViewPortBgColor);
+	box-shadow: value(ViewPortShadow);
 }
 
 .root::list {
@@ -43,9 +57,7 @@
 
 .root::menuContent {
 	padding: value(ContentPadding);
-	/* -st-mixin: bodyTextNormal(
-		BodyTextColor value(AbstractTextColor)
-	); */
+	-st-mixin: bodyTextNormal;
 }
 
 .root::more {
@@ -58,13 +70,6 @@
 	display: inline !important;
 }
 
-.root::arrow {
-	background-color: value(ArrowColor);
-}
-.root::viewport {
-	background: value(ViewPortBgColor);
-	box-shadow: value(ViewPortShadow);
-}
 
 .root::menuTrigger {
 	border-radius: value(TriggerRadius);
@@ -80,7 +85,7 @@
 }
 
 .root::triggerButton {
-	-st-mixin: ButtonMixin(
+	-st-mixin: TopMenuTriggerLabel, ButtonMixin(
 		ButtonPadding value(TriggerPadding),
 		ButtonLabelLineHeight value(TriggerLabelLineHeight),
 		ButtonLabelTextSize value(TriggerTextSize),
@@ -94,7 +99,7 @@
 		ButtonPadding value(ItemPadding),
 		ButtonRadius value(ItemRadius),
 		ButtonTextColor value(ItemTextColor),
-		ButtonTextColor_Hover value(ItemTextColor_Hover),
+		/* ButtonTextColor_Hover value(ItemTextColor_Hover), */
 		/* ButtonLabelTextColor value(ItemLabelTextColor),
 		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover), */
 		ButtonBgColor_Hover value(ItemBgColor_Hover),

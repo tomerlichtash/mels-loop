@@ -1,11 +1,9 @@
 @namespace "MobileMenuMixin";
 
 @st-import MobileMenu from "./mobile-menu.st.css";
-@st-import [GradientStrip] from "../../theme/mixins.st.css";
-@st-import [preventSelection] from "./../../theme/mixins.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 @st-import HeaderMixin from "../header/header-mixin.st.css";
-@st-import LocaleSelectorMixin from "../locale-selector/locale-selector-mixin.st.css";
+@st-import [GradientStrip, preventSelection] from "../../theme/mixins.st.css";
 
 :vars {
 	BgColor: #373a47;
@@ -16,23 +14,20 @@
 	StripGradientEndColor: black;
 	ItemTextColor: inherit;
 	ItemTextColor_Hover: inherit;
-	ItemPadding: 0;
+	ItemPadding: 1rem;
 	ItemRadius: 0;
 	ItemLabelTextColor: inherit;
 	ItemLabelTextColor_Hover: inherit;
 	ItemBgColor_Hover: inherit;
-	ItemLabelTextSize: inherit;
+	ItemLabelTextSize: 1rem;
 	ItemLabelLineHeight: inherit;
-	ItemLabelTextWeight: inherit;
+	ItemLabelTextWeight: 500;
 	ItemSubtitleLineHeight: inherit;
-	ItemSubtitleTextSize: inherit;
+	ItemSubtitleTextSize: 0.75rem;
 	ItemBorderColor: inherit;
 	ItemSubtitleTextColor: inherit;
 	ItemBorderSize: 1px;
 	SectionTitleColor: inherit;
-	LocaleSelectorItemTextColor: inherit;
-	LocaleSelectorSelectedItemTextColor: inehrit;
-	LocaleSelectorSelectedItemBgColor: inehrit;
 	HeaderLogoProps: none;
 	SiteTitleColor: white;
 }
@@ -94,8 +89,6 @@
 		ButtonRadius value(ItemRadius),
 		ButtonTextColor value(ItemTextColor),
 		ButtonTextColor_Hover value(ItemTextColor_Hover),
-		/* ButtonLabelTextColor value(ItemLabelTextColor),
-		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover), */
 		ButtonBgColor_Hover value(ItemBgColor_Hover),
 		ButtonLabelTextSize value(ItemLabelTextSize),
 		ButtonLabelLineHeight value(ItemLabelLineHeight),
@@ -104,13 +97,5 @@
 		ButtonChildrenTextColor value(ItemSubtitleTextColor),
 		ButtonBorderBottomSize value(ItemBorderSize),
 		ButtonBorderBottomColor value(ItemBorderColor)
-	);
-}
-
-.root::localeSelector {
-	-st-mixin: LocaleSelectorMixin(
-		ItemTextColor value(LocaleSelectorItemTextColor),
-		SelectedItemTextColor value(LocaleSelectorSelectedItemTextColor),
-		SelectedItemBgColor value(LocaleSelectorSelectedItemBgColor)
 	);
 }

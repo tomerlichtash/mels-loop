@@ -35,6 +35,7 @@
 	border-radius: value(ButtonRadius);
 }
 
+.root:hover,
 .root:hover::label {
 	color: value(ButtonTextColor_Hover);
 }
