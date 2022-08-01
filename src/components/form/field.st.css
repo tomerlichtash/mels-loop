@@ -1,10 +1,12 @@
 @namespace "Field";
 
-@st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [boxSizing, preventSelection] from "../../theme/mixins.st.css";
 
 .root {}
 
-.label {}
+.label {
+	-st-mixin: preventSelection;
+}
 
 .caption {
 	-st-states: required(boolean);

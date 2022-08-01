@@ -73,4 +73,7 @@
 	GRADIENT_START: value(primary1);
 	GRADIENT_MID: value(primary3);
 	GRADIENT_END: value(primary4);
+	ICON_FILL_COLOR: value(level5);
+	ICON_FILL_HOVER_COLOR: value(level8);
+	ICON_FILL_ACTIVE_COLOR: value(primary2);
 }

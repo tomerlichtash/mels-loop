@@ -2,6 +2,7 @@
 
 @st-import Button from "../ui/button/button.st.css";
 @st-import ContentComponent from "../content/content-component.st.css";
+@st-import [bodyTextNormal, Title, Subtitle, Topic, Date] from "../../theme/common/typography.st.css";
 @st-import [boxSizing] from "../../theme/mixins.st.css";
 
 :vars {
@@ -27,9 +28,13 @@
 
 .heading {}
 
-.title {}
+.title {
+	-st-extends: Topic;
+}
 
-.date {}
+.date {
+	/* -st-extends: Date; */
+}
 
 .contentComponent {
 	-st-extends: ContentComponent

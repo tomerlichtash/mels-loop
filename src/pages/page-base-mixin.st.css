@@ -4,7 +4,6 @@
 @st-import Link from "../components/content/content-blocks/link/link.st.css";
 @st-import CodeBlock from "../components/content/content-blocks/code-block/code-block.st.css";
 @st-import Figure from "../components/content/content-blocks/figure/figure.st.css";
-@st-import [BlockQuoteBorder] from "../theme/common/typography.st.css";
 
 :vars {
 	LinkColor: #808080;
@@ -81,11 +80,3 @@
 .root::meta:hasContent {
 	border-color: value(ContentHeaderMetaBorderColor);
 }
-
-/* .root::credits {
-	-st-mixin: Paragraph;
-	border-top: 1px solid value(ContentHeaderMetaBorderColor);
-	color: value(ParagraphTextColor);
-	padding-top: 1rem;
-	margin-top: 8rem;
-} */

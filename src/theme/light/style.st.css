@@ -48,6 +48,7 @@
 	primary2,
 	accent1,
 	accent2,
+
 	success1,
 	fail1,
 
@@ -63,24 +64,26 @@
 	radius1,
 	radius2,
 	radius3,
+] from "./vars.st.css";
 
+@st-import [
 	BORDER_COLOR,
-
 	TITLE_COLOR,
 	TITLE_ALT_COLOR,
 	BODY_TEXT_COLOR,
 	LINK_TEXT_COLOR,
 	LINK_TEXT_COLOR_HOVER,
 	HEADER_FOOTER_TEXT_COLOR,
-
 	LIGHT_BG_COLOR,
 	LAYOUT_BG_COLOR,
 	HEADER_FOOTER_BG_COLOR,
 	SCROLLBAR_BG_COLOR,
-
 	GRADIENT_START,
 	GRADIENT_MID,
 	GRADIENT_END,
+	ICON_FILL_COLOR,
+	ICON_FILL_HOVER_COLOR,
+	ICON_FILL_ACTIVE_COLOR,
 ] from "./vars.st.css";
 
 @st-scope .root {
@@ -107,7 +110,6 @@
 		-st-mixin: TopBarMixin(
 			BgColor value(HEADER_FOOTER_BG_COLOR),
 			SiteLogoBgProps url(//public/favicon-temp.png),
-			/* SiteTitleLinkTextColor value(HEADER_FOOTER_TEXT_COLOR), */
 		);
 	}
 
@@ -116,27 +118,11 @@
 			ArrowColor value(level0),
 			ViewPortBgColor value(level1),
 			ViewPortShadow value(shadow1),
-			
 			TriggerTextColor value(HEADER_FOOTER_TEXT_COLOR),
-			TriggerRadius value(radius1),
 			TriggerBgColorHover value(level4),
-
 			ItemTextColor value(LINK_TEXT_COLOR),
 			ItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
 			ItemBgColor_Hover value(level3),
-			ItemPadding 1rem,
-			ItemRadius value(radius1),
-
-			/* TriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER), */
-			/* TriggerTextSize 1rem, */
-			/* TriggerLabelLineHeight 32px, */
-
-			/* ItemLabelTextSize 1rem,
-			ItemLabelLineHeight 0.25rem,
-			ItemLabelTextWeight 500,
-			ItemSubtitleTextSize 0.85rem,
-			ItemLabelIconMargin 0.35rem, */
-			/* ItemSubtitleLineHeight 1rem, */
 		);
 	}
 
@@ -152,22 +138,16 @@
 	MobileMenu {
 		-st-mixin: MobileMenuMixin(
 			BgColor value(level7),
-
 			ItemTextColor value(primary1_1),
 			ItemTextColor_Hover value(primary1_1),
 			ItemBgColor_Hover value(level8),
 			ItemSubtitleTextColor value(level0),
 			ItemBorderColor value(level6),
-
 			SectionTitleColor value(level5),
-
 			StripGradientStartColor value(GRADIENT_START),
 			StripGradientMidColor value(GRADIENT_MID),
 			StripGradientEndColor value(GRADIENT_END),
-
 			HeaderLogoProps url(//public/favicon-light-temp.png)
-			/* LocaleSelectorItemTextColor value(level4),
-			LocaleSelectorSelectedItemBgColor value(primary1), */
 		);
 	}
 
@@ -189,23 +169,6 @@
 			StripGradientEndColor value(GRADIENT_END),
 		);
 	}
-	Footer Button {
-		-st-mixin: ButtonMixin(
-			ButtonTextColor value(LINK_TEXT_COLOR),
-			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
-		)
-	}
-
-	/* Post {
-		-st-mixin: PostMixin(
-			PostTitleColor value(LINK_TEXT_COLOR),
-			PostTitleColor_Hover value(LINK_TEXT_COLOR_HOVER),
-			PostTitleBorderColor value(level3),
-			PostTextColor value(level6),
-			PostDateTextColor value(BODY_TEXT_COLOR),
-			BlogPostShadow value(shadow3)
-		);
-	} */
 
 	ContactForm {
 		-st-mixin: ContactFormMixin(
@@ -232,7 +195,6 @@
 		-st-mixin: PopoverMixin(
 			TriggerTextColor value(LINK_TEXT_COLOR),
 			TriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
-
 			TriggerTextColor_Open value(level0),
 			TriggerTextBgColor_Open value(primary2),
 			TriggerMarkerColor_Open value(primary2)
@@ -240,9 +202,9 @@
 	}
 	PopoverToolbar {
 		-st-mixin: PopoverToolbarMixin(
-			IconFill_Color value(level5),
-			IconFill_Hover value(level8),
-			IconFill_Active value(primary2)	
+			IconFill_Color value(ICON_FILL_COLOR),
+			IconFill_Hover value(ICON_FILL_HOVER_COLOR),
+			IconFill_Active value(ICON_FILL_ACTIVE_COLOR)	
 		)
 	}
 
@@ -251,17 +213,26 @@
 			TopicBgColor value(level2),
 			TopicTextColor value(primary2),
 			NotePadding 1rem,
-			NoteScrollGutter 2.5rem
-			/* NoteTextColor value(level6), */
+			NoteScrollGutter 2.5rem,
 		);
 	}
-	Bibliography {
-		-st-mixin: BibliographyMixin(
+
+	Bibliography Button,
+	Footer Button {
+		-st-mixin: ButtonMixin(
 			ButtonTextColor value(LINK_TEXT_COLOR),
 			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
-			/* BibliographyBgColor value(level2),
-			BibliographyBorderColor value(level4), */
-			/* ButtonTextSize 12px, */
+		)
+	}
+
+	Post {
+		-st-mixin: PostMixin(
+			/* PostTitleColor value(LINK_TEXT_COLOR),
+			PostTitleColor_Hover value(LINK_TEXT_COLOR_HOVER),
+			PostTitleBorderColor value(level3),
+			PostTextColor value(level6),
+			PostDateTextColor value(BODY_TEXT_COLOR),
+			BlogPostShadow value(shadow3) */
 		);
 	}
 }
@@ -318,5 +289,12 @@
 
 	/* Posts {
 		-st-mixin: PostsMixin(
+		);
+	} */
+
+		/* Bibliography {
+		-st-mixin: BibliographyMixin(
+			ButtonTextColor value(LINK_TEXT_COLOR),
+			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
 		);
 	} */

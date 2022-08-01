@@ -1,6 +1,7 @@
 @namespace "Menu";
 
 @st-import [preventSelection] from "../../theme/mixins.st.css";
+@st-import [bodyTextNormal, TopMenuTriggerLabel, TopMenuItemTitle, Paragraph] from "../../theme/common/typography.st.css";
 @st-import Button from "../ui/button/button.st.css";
 
 .root {
@@ -23,6 +24,7 @@
 }
 
 .menuContent {
+	-st-mixin: bodyTextNormal;
 	-st-states: layout(string);
 	display: grid;
 	margin: 0;
@@ -78,7 +80,9 @@
 
 .listItem {}
 
-.abstract {}
+.abstract {
+	-st-mixin: Paragraph;
+}
 
 .more {
 	-st-extends: Button;
@@ -87,6 +91,7 @@
 .menuTrigger {}
 .triggerButton {
 	-st-extends: Button;
+	-st-mixin: TopMenuTriggerLabel;
 }
 
 .menuItemButton {

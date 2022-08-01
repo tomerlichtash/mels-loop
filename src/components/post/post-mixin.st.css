@@ -14,20 +14,26 @@
 
 .root {
 	-st-extends: Post;
+	border: 1px solid red;
+	margin-bottom: 2rem;
+	padding: 2rem;
 }
 
 .root::wrapper {
-	margin-top: 4rem;
+	/* margin-top: 4rem; */
+}
+
+.root::heading {
 }
 
 .root::header {
-	border-top: 2px solid value(PostTitleBorderColor);
-	margin-bottom: 2rem;
+	/* border-top: 2px solid value(PostTitleBorderColor);
+	margin-bottom: 2rem; */
 }
 
 .root::title {
-	color: value(PostTitleColor);
-	padding: 1rem 0 0;
+	/* color: value(PostTitleColor);
+	padding: 1rem 0 0; */
 }
 .root::title:hover {
 	color: value(PostTitleColor_Hover);

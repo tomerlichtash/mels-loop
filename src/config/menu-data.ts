@@ -179,7 +179,7 @@ export const MenuItems: IMenuItem[] = [
 	},
 	{
 		id: "twitter",
-		type: "link",
+		type: "external",
 		meta: {
 			url: "https://twitter.com/aboutmelsloop",
 			icon: "twitter",
@@ -191,7 +191,7 @@ export const MenuItems: IMenuItem[] = [
 	},
 	{
 		id: "github",
-		type: "link",
+		type: "external",
 		meta: {
 			url: "https://github.com/tomerlichtash/mels-loop-nextjs",
 			icon: "github",

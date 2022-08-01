@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Layout from "../components/layout/layout";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { GetStaticProps } from "next";
@@ -9,7 +9,7 @@ import { usePageData } from "../components/usePageData";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import orderBy from "lodash.orderby";
 import { mlUtils } from "../lib/ml-utils";
-import { classes } from "./posts.st.css";
+import { classes } from "./page-base.st.css";
 import Post from "../components/post";
 
 export default function Blog(props: IPageProps) {
@@ -18,7 +18,7 @@ export default function Blog(props: IPageProps) {
 	return (
 		<Layout>
 			<div className={classes.root}>
-				<h1 className={classes.sectionTitle}>{sectionName}</h1>
+				<h1 className={classes.title}>{sectionName}</h1>
 				{orderBy(pageData, ["metaData.date"], ["desc"]).map(
 					(page: IParsedPageData) => {
 						const { metaData, path } = page;

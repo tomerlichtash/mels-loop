@@ -13,7 +13,7 @@
 	StripGradientMidColor: gray;
 	StripGradientEndColor: black;
 
-	TextColor: red;
+	TextColor: #000000;
 
 	ButtonTextColor: inherit;
 	ButtonTextColor_Hover: inherit;

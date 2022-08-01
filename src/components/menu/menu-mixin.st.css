@@ -2,7 +2,6 @@
 
 @st-import Menu from "./menu.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
-@st-import [bodyTextNormal, TopMenuTriggerLabel, TopMenuItemTitle] from "../../theme/common/typography.st.css";
 
 :vars {
 	ListBgColor: transparent;
@@ -12,7 +11,7 @@
 	TriggerPadding: 0 6px;
 	TriggerLabelLineHeight: auto;
 	TriggerTextSize: inherit;
-	TriggerRadius: 0;
+	TriggerRadius: 6px;
 	TriggerBgColorHover: #c0c0c0;
 	TriggerTextColor: inherit;
 	TriggerTextColor_Hover: inherit;
@@ -20,8 +19,8 @@
 :vars {
 	ItemTextColor: inherit;
 	ItemTextColor_Hover: inherit;
-	ItemPadding: 0;
-	ItemRadius: 0;
+	ItemPadding: 1rem;
+	ItemRadius: 6px;
 	ItemBgColor_Hover: inherit;
 
 	ItemLabelTextColor: inherit;
@@ -31,7 +30,7 @@
 	ItemLabelTextWeight: inherit;
 	ItemSubtitleColor: inherit;
 	ItemSubtitleTextSize: inherit;
-	ItemLabelIconMargin: 0;
+	ItemLabelIconMargin: 0.25rem;
 }
 
 :vars {
@@ -57,7 +56,6 @@
 
 .root::menuContent {
 	padding: value(ContentPadding);
-	-st-mixin: bodyTextNormal;
 }
 
 .root::more {
@@ -85,7 +83,7 @@
 }
 
 .root::triggerButton {
-	-st-mixin: TopMenuTriggerLabel, ButtonMixin(
+	-st-mixin: ButtonMixin(
 		ButtonPadding value(TriggerPadding),
 		ButtonLabelLineHeight value(TriggerLabelLineHeight),
 		ButtonLabelTextSize value(TriggerTextSize),
@@ -99,7 +97,7 @@
 		ButtonPadding value(ItemPadding),
 		ButtonRadius value(ItemRadius),
 		ButtonTextColor value(ItemTextColor),
-		/* ButtonTextColor_Hover value(ItemTextColor_Hover), */
+		ButtonTextColor_Hover value(ItemTextColor_Hover),
 		/* ButtonLabelTextColor value(ItemLabelTextColor),
 		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover), */
 		ButtonBgColor_Hover value(ItemBgColor_Hover),
@@ -110,4 +108,12 @@
 		ButtonLabelIconMargin value(ItemLabelIconMargin),
 		ButtonChildrenTextColor value(ItemSubtitleColor)
 	);
+}
+
+.root::menuItemButton::label {
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.root::abstract {
 }

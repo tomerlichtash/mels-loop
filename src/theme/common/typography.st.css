@@ -52,16 +52,6 @@
 	font-weight: 300;
 }
 
-/* .p {
-	margin-bottom: 1.302vmax;
-	line-height: 21px;
-	font-size: 0.875rem;
-} */
-
-:vars {
-	BlockQuoteBorder: 3px solid;
-}
-
 .SectionBox {
 	border-radius: 4px;
 	padding: 2rem;
@@ -77,6 +67,11 @@
 
 .Subtitle {
 	-st-mixin: h2;
+}
+
+.Date {
+	-st-mixin: h3;
+	color: red;
 }
 
 .InlineCode {

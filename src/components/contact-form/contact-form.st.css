@@ -1,7 +1,6 @@
 @namespace "ContactForm";
 
 @st-import Form from "../form/form.st.css";
-@st-import [preventSelection] from "../../theme/mixins.st.css";
 
 .root {}
 
@@ -16,7 +15,6 @@
 
 .form::field::label {
 	align-content: center;
-	-st-mixin: preventSelection;
 }
 
 .form::field::caption {

@@ -4,10 +4,8 @@
 @st-import Link from "../components/content/content-blocks/link/link.st.css";
 @st-import CodeBlock from "../components/content/content-blocks/code-block/code-block.st.css";
 @st-import Figure from "../components/content/content-blocks/figure/figure.st.css";
-
 @st-import [
 	h3,
-
 	SectionBox,
 	Topic,
 	Title,
@@ -16,14 +14,15 @@
 	Blockquote,
 	InlineCode,
 	CodeBlockStyle,
-
 	ParagraphMargin,
 	SubtitleMargin1,
 	SubtitleMargin2,
-
 	ListBullet,
-	BlockQuoteBorder,
 ] from "../theme/common/typography.st.css";
+
+:vars {
+	BlockQuoteBorder: 3px solid;
+}
 
 .root {
 	-st-states: textDirection(enum(ltr, rtl));
@@ -82,6 +81,7 @@
 	-st-mixin: Paragraph, ParagraphMargin;
 }
 
+.code {}
 .root code,
 .root::contentComponent:type(code) {
 	-st-mixin: InlineCode;
@@ -110,7 +110,6 @@
 }
 
 .link {}
-.code {}
 
 .section {
 	-st-mixin: SectionBox;
@@ -120,7 +119,7 @@
 
 .moto {
 	-st-mixin: Paragraph;
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 	font-style: italic;
 }
 
@@ -154,6 +153,7 @@
 }
 
 .noContent {}
+
 .error {}
 
 .form {}

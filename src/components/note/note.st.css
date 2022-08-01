@@ -2,11 +2,21 @@
 
 @st-import Bibliography from "../bibliography/bibliography.st.css";
 @st-import ContentComponent from "../content/content-component.st.css";
+@st-import [Title, Topic] from "../../theme/common/typography.st.css";
 
 .root {
 	-st-states: type(enum(note, ref)), textDirection(enum(ltr, rtl));
 	overflow: hidden;
 	position: relative;
+}
+
+.root:textDirection(rtl) {
+	direction: rtl;
+}
+
+.root:type(ref)::title {
+	-st-mixin: Topic;
+	margin-bottom: 1rem;
 }
 
 .header {}
@@ -21,6 +31,7 @@
 
 .root:type(ref)::topic {
 	display: inline-block;
+	font-weight: 700;
 }
 
 .bibliography {
