@@ -4,13 +4,12 @@ import {
 	IMLParsedNode,
 	ContentComponentProps,
 } from "../../../../interfaces/models";
-import { st, classes } from "./block-quote.st.css";
 import { mlUtils } from "../../../../lib/ml-utils";
-
+import { st, classes } from "./block-quote.st.css";
 
 export const BlockQuote = ({
 	componentData,
-	className
+	className,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const elements: IMLParsedNode[] = Array.isArray(node.children)

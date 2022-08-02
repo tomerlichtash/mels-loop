@@ -11,5 +11,5 @@
 }
 
 .root::thumb {
-	background: value(ThumbColor);
+	background-color: value(ThumbColor);
 }

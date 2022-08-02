@@ -40,7 +40,6 @@
 .root::header {
 	-st-mixin: HeaderMixin(
 		HeaderSiteSubtitleColor white,
-		/* HeaderPadding 1rem, */
 		SiteLogoBgProps value(HeaderLogoProps),
 	);
 }
@@ -55,7 +54,7 @@
 }
 
 .root::burgerCross {
-	background: value(BurgerCrossColor);
+	background-color: value(BurgerCrossColor);
 }
 
 .root::toolbar {

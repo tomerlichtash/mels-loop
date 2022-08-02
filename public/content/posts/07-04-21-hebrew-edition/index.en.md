@@ -1,5 +1,5 @@
 ---
-title: New Website Launch
+title: New Hebrew Translation
 author: Tomer Lichtash
 date: Wed Apr 7 2021 13:45 GMT+0300
 ---

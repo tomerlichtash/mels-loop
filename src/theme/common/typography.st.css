@@ -111,7 +111,7 @@
 
 .Blockquote {
 	-st-mixin: bodyTextNormal;
-	font-weight: 700;
+	font-weight: 300;
 	padding: 0rem 1rem;
 }
 

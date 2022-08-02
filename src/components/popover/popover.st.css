@@ -41,7 +41,7 @@
 .content {
 	overflow: hidden;
 	width: value(PopoverContentMaxWidth);
-	background: value(PopoverContentBgColor);
+	background-color: value(PopoverContentBgColor);
 	border-radius: value(PopoverContentRadius);
 	box-shadow: value(PopoverContentShadow);
 	animation: fadeIn 300ms ease-out forwards;

@@ -7,7 +7,7 @@ credits: "Annotations written and curated by Tomer Lichtash and David Frankiel"
 A recent article devoted to the _macho_ side of programming[^](annotations/recent-article)
 made the bold and unvarnished statement:
 
-> [Real Programmers](glossary/real-programmer) write in [FORTRAN](glossary/fortran).
+> _[Real Programmers](glossary/real-programmer) write in [FORTRAN](glossary/fortran)._
 
 Maybe they do now,
 in this decadent era of

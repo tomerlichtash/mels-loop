@@ -8,5 +8,5 @@
 
 .root {
 	-st-extends: Layout;
-	background: value(BgColor);
+	background-color: value(BgColor);
 }

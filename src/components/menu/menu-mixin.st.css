@@ -42,7 +42,7 @@
 }
 
 .root::viewport {
-	background: value(ViewPortBgColor);
+	background-color: value(ViewPortBgColor);
 	box-shadow: value(ViewPortShadow);
 }
 
@@ -59,7 +59,6 @@
 	margin-top: 1rem;
 	display: inline !important;
 }
-
 
 .root::menuTrigger {
 	border-radius: value(TriggerRadius);

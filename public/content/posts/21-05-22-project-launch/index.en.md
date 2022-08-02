@@ -23,6 +23,6 @@ Here’s a short excerpt from the initial biography entry for Mel Kaye (or as I 
 
 > When the RPC-4000 was launched, Mel re-wrote (or 'ported') the Blackjack program to be compatible with the RPC-4000, for which he also wrote parts of the Assembly. As we know from The Story of Mel, Mel also helped **Ed Nather** with the task of writing a Fortran Compiler to that machine. Due to some differences of opinion with the company's management, Mel left Royal-McBee in the early 1960s. Some relics remained of his work, including a few hand-written code sheets and a usage guide to the Blackjack program for the RPC-4000.
 
---
+---
 
-_Cover Photo: Left to right – Portraits of young **Mel Kaye** and **Ed Nather**, circa 1959. Illustration by **Nir Yaniv**, made according to photos and materials provided by Mel's Loop project._
+Cover Photo: Left to right – Portraits of young **Mel Kaye** and **Ed Nather**, circa 1959. Illustration by **Nir Yaniv**, made according to photos and materials provided by Mel's Loop project.

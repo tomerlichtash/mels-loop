@@ -70,7 +70,7 @@ const formFields: Record<string, IFieldRef> = {
 
 export const ContactForm = ({ className }: IFormInstance): JSX.Element => {
 	const onSuccessMessage = (
-		<div className={"dada"}>
+		<div>
 			<CheckIcon />
 			<p>{compLocale.success}</p>
 			{/* <button>{compLocale.useAgain}</button>
@@ -79,7 +79,7 @@ export const ContactForm = ({ className }: IFormInstance): JSX.Element => {
 	);
 
 	const onFailMessage = (
-		<div className={"dada"}>
+		<div>
 			<ExclamationTriangleIcon />
 			<p>{compLocale.fail}</p>
 			{/* <button>{compLocale.tryAgain}</button>

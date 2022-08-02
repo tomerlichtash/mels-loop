@@ -11,6 +11,7 @@
 	color7,
 	color8,
 	color9,
+	color9_1,
 	color10,
 	color11,
 	color12,
@@ -18,26 +19,61 @@
 	color14,
 	color15,
 	color16,
+	color17,
+	color18,
 ] from "../common/colors.st.css";
 
 :vars {
-	level0: value(color16);
-	level1: value(color8);
-	level2: value(color7);
-	level3: value(color6);
-	level4: value(color5);
-	level5: value(color4);
-	level6: value(color3);
-	level7: value(color2);
-	level8: value(color1);
+	level0: value(color0);
+	level1: value(color1);
+	level2: value(color2);
+	level3: value(color3);
+	level4: value(color4);
+	level5: value(color5);
+	level6: value(color6);
+	level7: value(color7);
+	level8: value(color8);
 
-	primary1: value(color12);
-	primary2: value(color11);
-	primary3: value(color10);
-	primary4: value(color9);
+	primary1: value(color9);
+	primary1_1: value(color9_1);
+	primary2: value(color10);
+	primary3: value(color11);
+	primary4: value(color12);
 
-	accent1: value(color16);
-	accent2: value(color15);
-	accent3: value(color14);
-	accent4: value(color13);
+	accent1: value(color13);
+	accent2: value(color14);
+	accent3: value(color15);
+	accent4: value(color16);
+
+	success1: value(color17);
+	fail1: value(color18);
+
+	shadow1: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+	shadow2: 0px 0px 4px rgba(0, 0, 0, 0.25);
+	shadow3: 0 0 10px rgba(0, 0, 0, 0.15);
+	shadow4: rgba(0, 0, 0, 0.2);
+
+	radius1: 6px;
+	radius2: 4px;
+	radius3: 3px;
+}
+
+:vars {
+	HEADER_FOOTER_BG_COLOR: value(level8);
+	LAYOUT_BG_COLOR: value(level7);
+	SCROLLBAR_BG_COLOR: value(level3);
+	TITLE_COLOR: value(level1);
+	TITLE_ALT_COLOR: value(level6);
+	BORDER_COLOR: value(level4);
+	HEADER_FOOTER_TEXT_COLOR: value(level3);
+	LIGHT_BG_COLOR: value(level2);
+	BODY_TEXT_COLOR: value(level3);
+	LINK_TEXT_COLOR: value(primary1);
+	LINK_TEXT_COLOR_HOVER: value(color13);
+	GRADIENT_START: value(primary4);
+	GRADIENT_MID: value(primary3);
+	GRADIENT_END: value(primary1);
+	ICON_FILL_COLOR: value(level5);
+	ICON_FILL_HOVER_COLOR: value(level8);
+	ICON_FILL_ACTIVE_COLOR: value(primary2);
 }

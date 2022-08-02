@@ -18,6 +18,7 @@
 	ContentHeaderMetaBorderColor: #c0c0c0;
 	ImageBorderColor: #000000;
 	CodeSyntaxColor: #000000;
+	ArticleMetaTextColor: #000000;
 }
 
 .root {
@@ -80,6 +81,9 @@
 	border-color: value(ImageBorderColor);
 }
 
+.root::meta {
+	color: value(ArticleMetaTextColor);
+}
 .root::meta:hasContent {
 	border-color: value(ContentHeaderMetaBorderColor);
 }

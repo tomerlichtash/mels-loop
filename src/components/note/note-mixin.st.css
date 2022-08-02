@@ -3,16 +3,9 @@
 @st-import Note from "./note.st.css";
 
 :vars {
-	NotePadding: 1rem;
 	TopicBgColor: blue;
 	TopicTextColor: red;
 	TopicRadius: 4px;
-	TopicPadding: 6px;
-	TopicMargin: 1.5rem;
-	TitleFontSize: 2rem;
-	TitleFontWeight: 300;
-	TitleMargin: 1rem;
-	NoteTextColor: inherit;
 }
 
 .root {
@@ -21,15 +14,10 @@
 
 .root:type(ref)::topic {
 	border-radius: value(TopicRadius);
-	background: value(TopicBgColor);
+	background-color: value(TopicBgColor);
 	color: value(TopicTextColor);
 }
 
-.root::bibliography::list {
+/* .root::bibliography::list {
 	padding: 0;
-}
-
-/* .root::header,
-.root::content {
-	padding-bottom: 0;
 } */

@@ -102,25 +102,13 @@
 
 .menuItemButton {
 	-st-extends: Button;
-	display: block;
 	-st-mixin: ButtonMixin(
 		ButtonPadding 1rem,
-		/* ButtonRadius value(ItemRadius), */
-		/* ButtonTextColor value(ItemTextColor), */
-		/* ButtonTextColor_Hover value(ItemTextColor_Hover), */
-		/* ButtonLabelTextColor value(ItemLabelTextColor),
-		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover), */
-		/* ButtonBgColor_Hover value(ItemBgColor_Hover), */
-		/* ButtonLabelLineHeight value(ItemLabelLineHeight), */
-		/* ButtonLabelTextSize value(ItemLabelTextSize),
-		ButtonLabelTextWeight value(ItemLabelTextWeight), */
 		ButtonLabelIconMargin 0.25rem,
 		ButtonSubtitleTextSize 1rem,
 		ButtonLabelIconMargin 0.25rem,
-		/* ButtonChildrenTextColor value(ItemSubtitleColor) */
 	);
-
-	/* width: 100%; */
+	display: block;
 }
 
 .menuItemButton::label {

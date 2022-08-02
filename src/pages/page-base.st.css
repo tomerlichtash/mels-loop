@@ -70,6 +70,8 @@
 	margin-right: 1rem;
 	border-right: value(BlockQuoteBorder);
 }
+.root::contentComponent:type(blockquote) strong {
+}
 
 .root::contentComponent:type(blockquote) {
 	-st-mixin: Blockquote;

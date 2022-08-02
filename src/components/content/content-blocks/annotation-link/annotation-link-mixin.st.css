@@ -1,0 +1,16 @@
+@namespace "AnnotationLinkMixin";
+
+@st-import AnnotationLink from "./annotation-link.st.css";
+
+:vars {
+	ParanthesisColor: 0.05rem;
+}
+
+.root {
+	-st-extends: AnnotationLink;
+}
+
+.root::before,
+.root::after {
+	color: value(ParanthesisColor);
+}

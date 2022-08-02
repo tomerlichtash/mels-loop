@@ -11,7 +11,7 @@
 
 .root {
 	-st-extends: TopBar;
-	background: value(BgColor);
+	background-color: value(BgColor);
 }
 
 .root::header {
