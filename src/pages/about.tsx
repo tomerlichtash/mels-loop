@@ -22,16 +22,19 @@ const About: NextPage<IPageProps> = (props) => {
 	return (
 		<Layout>
 			<article className={classes.root}>
-				<h1 className={classes.title}>{metaData.title}</h1>
-				{elements.map((node) => {
-					return (
-						<ContentComponent
-							key={mlUtils.uniqueId()}
-							componentData={{ node }}
-							className={classes.contentComponent}
-						/>
-					);
-				})}
+				<h1 className={classes.topic}>{metaData.title}</h1>
+				<p className={classes.title}>{metaData.abstract}</p>
+				<div className={classes.section}>
+					{elements.map((node) => {
+						return (
+							<ContentComponent
+								key={mlUtils.uniqueId()}
+								componentData={{ node }}
+								className={classes.contentComponent}
+							/>
+						);
+					})}
+				</div>
 			</article>
 		</Layout>
 	);

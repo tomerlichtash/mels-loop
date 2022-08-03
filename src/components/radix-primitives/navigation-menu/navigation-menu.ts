@@ -7,7 +7,7 @@ import {
 	styledCaretStyle,
 	styledIndicatorStyle,
 } from "./stiches-styles";
-import { createCompRef } from "../../create-ref";
+import { createCompRef } from "../create-ref";
 
 const StyledMenu = createCompRef(NavigationMenuPrimitive.Root);
 const StyledList = createCompRef(NavigationMenuPrimitive.List);

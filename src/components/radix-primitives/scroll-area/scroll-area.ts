@@ -1,6 +1,6 @@
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 import { ScrollAreaScrollbarVisibleProps } from "@radix-ui/react-scroll-area";
-import { createCompRef } from "../../create-ref";
+import { createCompRef } from "../create-ref";
 
 export interface ScrollAreaProps extends ScrollAreaScrollbarVisibleProps {
 	height?: string;

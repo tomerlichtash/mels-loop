@@ -61,6 +61,7 @@ const MenuButton = ({ meta, keys, type }: IMenuItem) => {
 	return (
 		<Button
 			link={url}
+			target={type === "external" ? "_blank" : undefined}
 			label={title}
 			className={st(classes.button, classes.menuItemButton)}
 			icon={getButtonIcon(type, icon)}

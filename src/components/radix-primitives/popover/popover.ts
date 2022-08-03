@@ -1,5 +1,5 @@
 import * as RadixPopover from "@radix-ui/react-popover";
-import { createCompRef } from "../../create-ref";
+import { createCompRef } from "../create-ref";
 
 export const PopoverRoot = createCompRef(RadixPopover.Root);
 export const PopoverTrigger = createCompRef(RadixPopover.Trigger);

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { IParsedPageData } from "../../interfaces/models";
-import { mlUtils } from "../../lib/ml-utils";
-import { ReactLocaleContext } from "../../contexts/locale-context";
-import { ReactDynamicContentContext } from "../../contexts/dynamic-content-context";
-import { ReactPopoverContext } from "../../contexts/popover-context";
+import { IParsedPageData } from "../../../interfaces/models";
+import { mlUtils } from "../../../lib/ml-utils";
+import { ReactLocaleContext } from "../../../contexts/locale-context";
+import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
+import { ReactPopoverContext } from "../../../contexts/popover-context";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import { Button } from "../ui";
+import { Button } from "../../ui";
 import { classes } from "./dynamic-content-toolbar.st.css";
 
 export interface IDynamicContentToolbarProps {

@@ -4,18 +4,19 @@
 @st-import HeaderMixin from "../header/header-mixin.st.css";
 
 :vars {
-	BgColor: #808080;
+	BgColor: #ffffff;
 	SiteTitleLinkTextColor: black;
 	SiteLogoBgProps: inherit;
 }
 
 .root {
 	-st-extends: TopBar;
-	background: value(BgColor);
+	background-color: value(BgColor);
 }
 
 .root::header {
 	-st-mixin: HeaderMixin(
+		HeaderSiteTitleColor value(SiteTitleLinkTextColor),
 		HeaderSiteSubtitleColor value(SiteTitleLinkTextColor),
 		SiteLogoBgProps value(SiteLogoBgProps)
 	);

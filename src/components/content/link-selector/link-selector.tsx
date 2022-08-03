@@ -1,18 +1,16 @@
 import React, { useContext } from "react";
-import { DynamicContentTypes } from "../../../../interfaces/dynamic-content";
+import { DynamicContentTypes } from "../../../interfaces/dynamic-content";
 import {
 	ContentComponentProps,
 	IContentComponentInitData,
 	NODE_DISPLAY_TYPES,
-} from "../../../../interfaces/models";
-import { Link } from "../link/link";
-import AnnotationLink from "../annotation-link";
-import TermLink from "../term-link";
-import Popover from "../../../popover";
-import { ReactLocaleContext } from "../../../../contexts/locale-context";
-import { ReactQueryContext } from "../../../../contexts/query-context";
-import DynamicContentBrowser from "../../../dynamic-content-browser";
-import { ReactDynamicContentContext } from "../../../../contexts/dynamic-content-context";
+} from "../../../interfaces/models";
+import { Link, AnnotationLink, TermLink } from "../content-blocks";
+import Popover from "../../popover";
+import { ReactLocaleContext } from "../../../contexts/locale-context";
+import { ReactQueryContext } from "../../../contexts/query-context";
+import DynamicContentBrowser from "../dynamic-content-browser";
+import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
 
 const getTriggerComp = (
 	type: DynamicContentTypes,

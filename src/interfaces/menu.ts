@@ -3,7 +3,7 @@ import { ILanguageKeys } from "../locales/languages/types/locale";
 
 export type MenuItemLayout = "one" | "two" | "three";
 export type MenuSectionType = "group" | "single";
-export type MenuItemChildType = "article" | "page" | "link";
+export type MenuItemChildType = "article" | "page" | "link" | "external";
 export type MenuItemKey =
 	| "title"
 	| "description"

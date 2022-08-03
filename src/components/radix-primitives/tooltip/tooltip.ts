@@ -1,6 +1,6 @@
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { styled } from "@stitches/react";
-import { createCompRef } from "../../create-ref";
+import { createCompRef } from "../create-ref";
 
 // const StyledContent = styled(TooltipPrimitive.Content);
 

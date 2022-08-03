@@ -3,6 +3,7 @@
 @st-import Button from "../ui/button/button.st.css";
 @st-import [ResetListStyle] from "../../theme/mixins.st.css";
 @st-import [pageWidth] from "../page/page.st.css";
+@st-import [bodyTextNormal, FooterTitle, FooterButton, FooterSectionTitle] from "../../theme/common/typography.st.css";
 
 .root {
 	-st-states: textDirection(enum(ltr, rtl));
@@ -29,9 +30,13 @@
 .column:size(3) { flex: 3 }
 .column:size(4) { flex: 4 }
 
-.title {}
+.title {
+	-st-mixin: FooterTitle;
+}
 
-.subtitle {}
+.subtitle {
+	-st-mixin: FooterButton;
+}
 
 .license {}
 
@@ -43,6 +48,7 @@
 
 .pageContainer {
 	margin: 0 auto;
+	padding: 4rem 0;
 }
 
 .itemList {
@@ -51,15 +57,23 @@
 
 .item {}
 
-.footerTitle {}
+.footerTitle {
+	margin-bottom: 1rem;
+}
 
-.excerpt {}
+.excerpt {
+	-st-mixin: bodyTextNormal;
+}
 
 .button {
 	-st-extends: Button;
+	-st-mixin: FooterButton;
 }
 
-.columnTitle {}
+.columnTitle {
+	-st-mixin: FooterSectionTitle;
+	margin-bottom: 1rem;
+}
 
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {

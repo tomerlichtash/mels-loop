@@ -6,32 +6,19 @@
 	HeaderBackgroundColor: transparent;
 	HeaderSiteTitleColor: #000;
 	HeaderSiteSubtitleColor: #000;
-	HeaderSiteTitleFontFamily: Arial, sans-serif;
-	HeaderSiteTitleFontSize: 12px;
-	HeaderSiteTitleFontWeight: 500;
-	HeaderPadding: 0;
-	HeaderTextAlign: left;
 	SiteLogoBgProps: black;
 }
 
 .root {
 	-st-extends: Header;
 	background-color: value(HeaderBackgroundColor);
-	padding: value(HeaderPadding);
-	text-align: value(HeaderTextAlign);
 }
 
 .root::siteTitle {
 	color: value(HeaderSiteTitleColor);
-	text-transform: uppercase;
-	letter-spacing: 1px;
 }
 .root::siteTitle::label {
 	font-weight: 500;
-	border-bottom: 2px solid transparent;
-}
-.root::siteTitle:hover::label {
-	border-bottom-color: inherit;
 }
 
 .root::siteSubtitle {
@@ -39,8 +26,5 @@
 }
 
 .root::siteLogo {
-	width: 24px;
-	height: 24px;
-	background: value(SiteLogoBgProps);
-	background-size: 100%;
+	background-image: value(SiteLogoBgProps);
 }

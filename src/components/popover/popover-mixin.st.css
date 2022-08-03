@@ -1,7 +1,6 @@
 @namespace "PopoverMixin";
 
 @st-import Popover from "./popover.st.css";
-@st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
 
 :vars {
 	TriggerTextColor: black;
@@ -37,14 +36,8 @@
 }
 
 .root:type(glossary)::trigger::after {
-	-st-mixin: preventSelection, verticalAlignSuper;
-	content: "\203B";
 }
 
 .root:type(glossary)[data-state="open"]::trigger::after {
 	color: value(TriggerMarkerColor_Open);
 }
-
-/* .root::content {
-	margin-top: 20px;
-} */

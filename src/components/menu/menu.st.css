@@ -1,7 +1,9 @@
 @namespace "Menu";
 
 @st-import [preventSelection] from "../../theme/mixins.st.css";
+@st-import [bodyTextNormal, TopMenuTriggerLabel, TopMenuItemTitle, Paragraph] from "../../theme/common/typography.st.css";
 @st-import Button from "../ui/button/button.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 
 .root {
 	-st-mixin: preventSelection;
@@ -23,10 +25,12 @@
 }
 
 .menuContent {
+	-st-mixin: bodyTextNormal;
 	-st-states: layout(string);
 	display: grid;
 	margin: 0;
 	column-gap: 10;
+	padding: 1rem;
 }
 
 .viewportPosition {
@@ -78,22 +82,40 @@
 
 .listItem {}
 
-.abstract {}
+.abstract {
+	-st-mixin: Paragraph;
+}
 
 .more {
 	-st-extends: Button;
 }
 
-.menuTrigger {}
+.menuTrigger {
+	transition: all 25ms ease-in;
+}
+
 .triggerButton {
 	-st-extends: Button;
+	-st-mixin: TopMenuTriggerLabel;
+	/* line-height: value(TriggerLabelLineHeight), */
 }
 
 .menuItemButton {
 	-st-extends: Button;
+	-st-mixin: ButtonMixin(
+		ButtonPadding 1rem,
+		ButtonLabelIconMargin 0.25rem,
+		ButtonSubtitleTextSize 1rem,
+		ButtonLabelIconMargin 0.25rem,
+	);
 	display: block;
-	/* width: 100%; */
 }
+
+.menuItemButton::label {
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
 .menuItemButton::contentWrapper {
 	align-items: flex-start;
 }

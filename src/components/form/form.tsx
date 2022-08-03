@@ -17,7 +17,7 @@ export const Form = ({
 	className,
 }: IFormProps): JSX.Element => {
 	const { theme } = useContext(ReactThemeContext);
-	const { locale } = useContext(ReactLocaleContext);
+	const { locale, translate } = useContext(ReactLocaleContext);
 
 	const { VALID, INVALID } = FormFieldState;
 
@@ -28,7 +28,7 @@ export const Form = ({
 	const [highlightCaptcha, setHighlightCaptcha] = useState(false);
 
 	const fields = Object.keys(entries).map(
-		(key) => createField(entries[key])[0]
+		(key) => createField({ translate, ...entries[key] })[0]
 	);
 
 	const captchaRef = useRef(null);
@@ -137,7 +137,7 @@ export const Form = ({
 					{fields}
 				</form>
 			)}
-			<div className={classes.formFooter}>
+			<div className={classes.footer}>
 				<div className={classes.captchaContainer}>
 					<Captcha
 						onChange={onCaptchaChange}
@@ -163,7 +163,7 @@ export const Form = ({
 								className={classes.loadingIndicator}
 							/>
 						) : (
-							submitButtonLabel
+							translate(submitButtonLabel)
 						)}
 					</button>
 				</div>

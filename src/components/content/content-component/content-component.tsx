@@ -3,7 +3,7 @@ import {
 	ContentComponentProps,
 	MLNODE_TYPES,
 	NODE_LIST_TYPES,
-} from "../../interfaces/models";
+} from "../../../interfaces/models";
 import {
 	Heading,
 	ListItem,
@@ -12,10 +12,10 @@ import {
 	Figure,
 	BlockQuote,
 	CodeBlock,
-} from "./content-blocks";
-import { ContentIterator } from "./content-iterator";
-import CustomImage from "./content-blocks/custom-image";
-import LinkSelector from "./content-blocks/link-selector";
+	CustomImage,
+} from "../content-blocks";
+import ContentIterator from "../content-iterator";
+import LinkSelector from "../link-selector";
 import { st, classes } from "./content-component.st.css";
 
 export const ContentComponent = ({
@@ -61,8 +61,12 @@ export const ContentComponent = ({
 			);
 		case MLNODE_TYPES.CODEBLOCK:
 			return (
-				<CodeBlock key={key} componentData={componentData} className={stylableClassName} />
-			)
+				<CodeBlock
+					key={key}
+					componentData={componentData}
+					className={stylableClassName}
+				/>
+			);
 			break;
 		case MLNODE_TYPES.BLOCKQUOTE:
 			return (
@@ -87,7 +91,7 @@ export const ContentComponent = ({
 			return (
 				<ContentIterator
 					key={key}
-					className={stylableClassName}
+					className={st(classes.root, { type, listType }, className)}
 					componentData={{
 						tag: listType,
 						...componentData,
@@ -126,6 +130,8 @@ export const ContentComponent = ({
 					className={stylableClassName}
 				/>
 			);
+		case MLNODE_TYPES.HR:
+			return <hr />;
 		default:
 			if (/heading/i.test(type)) {
 				return (

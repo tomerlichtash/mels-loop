@@ -10,7 +10,7 @@ import { ComponentProps } from "../../interfaces/models";
 export type FormValues = Record<string, string>;
 
 export interface IFormProps extends ComponentProps {
-	entries: Record<string, IFieldDef>;
+	entries: Record<string, IFieldRef>;
 	onSuccessMessage: React.ReactNode;
 	onFailMessage: React.ReactNode;
 	submitButtonLabel: string;
@@ -38,7 +38,7 @@ export interface IFieldLocale {
 	errorMsg?: string;
 }
 
-export interface IFieldDef {
+export interface IFieldRef {
 	id: string;
 	type: FieldType;
 	tag: "input" | "textarea";
@@ -49,6 +49,10 @@ export interface IFieldDef {
 	className?: string;
 	locale: IFieldLocale;
 	autoFocus?: boolean;
+}
+
+export interface IFieldDef extends IFieldRef {
+	translate: (s: string, lang?: string) => string;
 }
 
 export interface IFieldHooks {
@@ -62,6 +66,10 @@ export interface IFieldHooks {
 }
 
 export type IFieldProps = IFieldDef & IFieldHooks;
+
+export interface IFormField extends IFieldProps {
+	translate: (s: string, lang?: string) => string;
+}
 
 export interface ICaptchaProps {
 	onChange: (value: string) => void;

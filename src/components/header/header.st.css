@@ -10,7 +10,9 @@
 .root {
 	-st-states: textDirection(enum(ltr, rtl));
 	-st-mixin: boxSizing;
+	padding: 0;
 	display: flex;
+	text-align: left;	
 }
 
 .container {
@@ -22,6 +24,11 @@
 
 .siteTitle {
 	-st-extends: Button;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+.siteTitle::label {
+	border-bottom: 2px solid transparent;
 }
 
 .siteSubtitle {
@@ -34,7 +41,11 @@
 	content: '|';
 }
 
-.siteLogo {}
+.siteLogo {
+	width: 24px;
+	height: 24px;
+	background-size: contain;
+}
 
 
 .root:textDirection(rtl) .siteTitle::icon {

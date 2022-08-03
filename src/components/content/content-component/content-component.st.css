@@ -27,7 +27,8 @@
 		heading_4,
 		heading_5,
 		heading_6
-	));
+	)),
+	listType(enum(ul, ol));
 }
 
 .error {}

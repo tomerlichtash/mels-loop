@@ -57,9 +57,10 @@
 	"devDependencies": {
 		"@next/env": "^12.2.2",
 		"@next/eslint-plugin-next": "^12.2.2",
-		"@stylable/core": "^4.13.3",
-		"@stylable/optimizer": "^4.13.3",
-		"@stylable/webpack-plugin": "^4.13.3",
+		"@stylable/core": "^5.0.1",
+		"@stylable/optimizer": "^5.0.1",
+		"@stylable/runtime": "^5.0.1",
+		"@stylable/webpack-plugin": "^5.0.1",
 		"@svgr/webpack": "^6.3.1",
 		"@types/js-cookie": "^3.0.2",
 		"@types/lodash.orderby": "^4.6.7",
