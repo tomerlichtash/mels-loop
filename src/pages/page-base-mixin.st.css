@@ -14,6 +14,7 @@
 	ParagraphTextColor: #000000;
 	InlineCodeBgColor: #f0f0f0;
 	InlineCodeBorderColor: #c0c0c0;
+	SectionBgColor: #ffffff;
 	SectionBoxShadowColor: rgba(0, 0, 0, 0.5);
 	ContentHeaderMetaBorderColor: #c0c0c0;
 	ImageBorderColor: #000000;
@@ -27,6 +28,7 @@
 
 .root::section {
 	box-shadow: 0 0 10px value(SectionBoxShadowColor);
+	background: value(SectionBgColor);
 }
 
 .root::topic {

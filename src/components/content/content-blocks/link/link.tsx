@@ -1,6 +1,6 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
-import { ContentIterator } from "../../content-iterator";
+import ContentIterator from "../../content-iterator";
 import { st, classes } from "./link.st.css";
 
 export interface ILinkProps extends ContentComponentProps {

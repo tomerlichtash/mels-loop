@@ -16,6 +16,7 @@
 
 .root::header {
 	-st-mixin: HeaderMixin(
+		HeaderSiteTitleColor value(SiteTitleLinkTextColor),
 		HeaderSiteSubtitleColor value(SiteTitleLinkTextColor),
 		SiteLogoBgProps value(SiteLogoBgProps)
 	);

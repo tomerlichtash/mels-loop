@@ -16,6 +16,8 @@
 @st-import SiteFooterMixin from "../../components/footer/footer-mixin.st.css";
 @st-import LocaleSelector from "../../components/locale-selector/locale-selector.st.css";
 @st-import LocaleSelectorMixin from "../../components/locale-selector/locale-selector-mixin.st.css";
+@st-import ThemeSelector from "../../components/theme-selector/theme-selector.st.css";
+@st-import ThemeSelectorMixin from "../../components/theme-selector/theme-selector-mixin.st.css";
 @st-import ContactForm from "../../components/contact-form/contact-form.st.css";
 @st-import ContactFormMixin from "../../components/contact-form/contact-form-mixin.st.css";
 @st-import Button from "../../components/ui/button/button.st.css";
@@ -24,17 +26,15 @@
 @st-import PopoverMixin from "../../components/popover/popover-mixin.st.css";
 @st-import PopoverToolbar from "../../components/popover/popover-toolbar.st.css";
 @st-import PopoverToolbarMixin from "../../components/popover/popover-toolbar-mixin.st.css";
-@st-import Note from "../../components/note/note.st.css";
-@st-import NoteMixin from "../../components/note/note-mixin.st.css";
 @st-import Bibliography from "../../components/bibliography/bibliography.st.css";
 @st-import Posts from "../../pages/posts.st.css";
 @st-import PostsMixin from "../../pages/posts-mixin.st.css";
 @st-import Post from "../../components/post/post.st.css";
 @st-import PostMixin from "../../components/post/post-mixin.st.css";
+@st-import DynamicContentViewer from "../../components/content/dynamic-content-viewer/dynamic-content-viewer.st.css";
+@st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 @st-import AnnotationLink from "../../components/content/content-blocks/annotation-link/annotation-link.st.css";
 @st-import AnnotationLinkMixin from "../../components/content/content-blocks/annotation-link/annotation-link-mixin.st.css";
-@st-import ThemeSelector from "../../components/theme-selector/theme-selector.st.css";
-@st-import ThemeSelectorMixin from "../../components/theme-selector/theme-selector-mixin.st.css";
 
 @st-import [
 	level0,
@@ -86,6 +86,7 @@
 	ICON_FILL_COLOR,
 	ICON_FILL_HOVER_COLOR,
 	ICON_FILL_ACTIVE_COLOR,
+	POPOVER_BG_COLOR
 ] from "./vars.st.css";
 
 @st-scope .root {
@@ -104,6 +105,7 @@
 			InlineCodeBorderColor value(BORDER_COLOR),
 			ContentHeaderMetaBorderColor value(BORDER_COLOR),
 			ImageBorderColor value(BORDER_COLOR),
+			SectionBgColor value(level0),
 			SectionBoxShadowColor value(shadow4),
 			CodeSyntaxColor value(level8)
 		)
@@ -214,28 +216,27 @@
 			TriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
 			TriggerTextColor_Open value(level0),
 			TriggerTextBgColor_Open value(primary2),
-			TriggerMarkerColor_Open value(primary2)
+			TriggerMarkerColor_Open value(primary2),
 		);
 	}
 	PopoverToolbar {
 		-st-mixin: PopoverToolbarMixin(
+			PopoverToolbarBgColor value(POPOVER_BG_COLOR),
 			IconFill_Color value(ICON_FILL_COLOR),
 			IconFill_Hover value(ICON_FILL_HOVER_COLOR),
-			IconFill_Active value(ICON_FILL_ACTIVE_COLOR)	
+			IconFill_Active value(ICON_FILL_ACTIVE_COLOR),
 		)
+	}
+	DynamicContentViewer {
+		-st-mixin: DynamicContentViewerMixin(
+			ViewerBgColor value(level0),
+			NoteTopicBgColor value(level2),
+			NoteTopicTextColor value(primary2),
+		);
 	}
 	AnnotationLink {
 		-st-mixin: AnnotationLinkMixin(
 			ParanthesisColor value(level5)
-		);
-	}
-
-	Note {
-		-st-mixin: NoteMixin(
-			TopicBgColor value(level2),
-			TopicTextColor value(primary2),
-			/* NotePadding 1rem,
-			NoteScrollGutter 2.5rem, */
 		);
 	}
 

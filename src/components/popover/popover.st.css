@@ -4,27 +4,15 @@
 @st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
 
 :vars {
-	PopoverContentBorder: none;
-	PopoverContentRadius: 2px;
-	PopoverContentBgColor: #fff;
 	PopoverContentMaxWidth: 414px;
-	PopoverContentMaxHeight: 300px;
 	PopoverContentShadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-	PopoverCloseBorder: none;
-	PopoverCloseMarginTop: 0;
-	PopoverCloseBorderRadius: 0;
-	PopoverCloseFontSize: 12px;
-	PopoverCloseSize: 30px;
-	PopoverCloseBgHover: red;
-	PopoverClosePosMargin: 8px;
-	PopoverCloseIconColor: blue;
-	PopoverCloseIconColorHover: red;
-	PopoverCloseCase: lowercase;
 }
 
 .root {
 	-st-states: type(string);
 }
+
+.popoverWrapper {}
 
 .trigger {
 	cursor: pointer;
@@ -38,11 +26,12 @@
 	-st-extends: PopoverToolbar;
 }
 
+.portal {}
+
 .content {
 	overflow: hidden;
 	width: value(PopoverContentMaxWidth);
-	background-color: value(PopoverContentBgColor);
-	border-radius: value(PopoverContentRadius);
+	/* border-radius: value(PopoverContentRadius); */
 	box-shadow: value(PopoverContentShadow);
 	animation: fadeIn 300ms ease-out forwards;
 }
@@ -68,8 +57,6 @@
 		opacity: 0;
 	}
 }
-
-.portal {}
 
 @media (min-width: 320px) and (max-width: 767px) {
 	[data-radix-popper-content-wrapper] {

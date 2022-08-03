@@ -3,7 +3,7 @@ import {
 	ContentComponentProps,
 	MLNODE_TYPES,
 	NODE_LIST_TYPES,
-} from "../../interfaces/models";
+} from "../../../interfaces/models";
 import {
 	Heading,
 	ListItem,
@@ -12,10 +12,10 @@ import {
 	Figure,
 	BlockQuote,
 	CodeBlock,
-} from "./content-blocks";
-import { ContentIterator } from "./content-iterator";
-import CustomImage from "./content-blocks/custom-image";
-import LinkSelector from "./content-blocks/link-selector";
+	CustomImage,
+} from "../content-blocks";
+import ContentIterator from "../content-iterator";
+import LinkSelector from "../link-selector";
 import { st, classes } from "./content-component.st.css";
 
 export const ContentComponent = ({

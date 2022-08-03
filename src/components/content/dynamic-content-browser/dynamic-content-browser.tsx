@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ReactDynamicContentContext } from "../../contexts/dynamic-content-context";
-import { IDynamicContentContext } from "../../interfaces/dynamic-content-context";
-import { IMLParsedNode, IParsedPageData } from "../../interfaces/models";
-import { ContentStack } from "../../lib/content-stack";
-import DynamicContentViewer from "../content/dynamic-content-viewer";
-import DynamicContentToolbar from "./dynamic-content-toolbar";
+import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
+import { IDynamicContentContext } from "../../../interfaces/dynamic-content-context";
+import { IMLParsedNode, IParsedPageData } from "../../../interfaces/models";
+import { ContentStack } from "../../../lib/content-stack";
+import DynamicContentViewer from "../dynamic-content-viewer";
+import DynamicContentToolbar from "../dynamic-content-toolbar";
 import { classes } from "./dynamic-content-browser.st.css";
 
 export interface IStackBrowserProps {

@@ -17,7 +17,3 @@
 	background-color: value(TopicBgColor);
 	color: value(TopicTextColor);
 }
-
-/* .root::bibliography::list {
-	padding: 0;
-} */

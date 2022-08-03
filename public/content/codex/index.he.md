@@ -8,7 +8,7 @@ credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ �
 מאמר מן הזמן האחרון על צד _מצ'ואיסטי_ בתכנות[^](annotations/recent-article)
 יצא בהכרזה נועזת וחסרת בסיס:
 
-> "[מתכנתים אמיתיים](glossary/real-programmer) כותבים ב[פוֹרְטְרַן](glossary/fortran)"
+> "[_מתכנתים אמיתיים_](glossary/real-programmer) _כותבים ב_[_פוֹרְטְרַן_](glossary/fortran)"
 
 אולי כיום,
 בתקופה דקדנטית זו של

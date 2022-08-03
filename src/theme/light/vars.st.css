@@ -62,7 +62,7 @@
 	HEADER_FOOTER_BG_COLOR: value(level2);
 	LAYOUT_BG_COLOR: value(level1);
 	SCROLLBAR_BG_COLOR: value(level3);
-	TITLE_COLOR: value(level8);
+	TITLE_COLOR: value(level7);
 	TITLE_ALT_COLOR: value(level6);
 	BORDER_COLOR: value(level4);
 	HEADER_FOOTER_TEXT_COLOR: value(level8);
@@ -76,4 +76,5 @@
 	ICON_FILL_COLOR: value(level5);
 	ICON_FILL_HOVER_COLOR: value(level8);
 	ICON_FILL_ACTIVE_COLOR: value(primary2);
+	POPOVER_BG_COLOR: value(level2);
 }

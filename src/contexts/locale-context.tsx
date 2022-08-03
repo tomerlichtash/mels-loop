@@ -81,11 +81,6 @@ export class LocaleContext implements ILocaleContext {
 	public translate = (key: string, lang?: LocaleId) =>
 		this._translate(key, lang);
 
-	// public translateKeyMap = (keyMap: Record<string, string>) =>
-	// 	Object.fromEntries(
-	// 		Object.keys(keyMap).map((key) => [key, this.translate(keyMap[key])])
-	// 	);
-
 	public onLocaleChange = (locale: LocaleId) =>
 		this.router.push(this.asPath, this.asPath, {
 			locale,

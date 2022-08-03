@@ -1,5 +1,5 @@
 import { mlUtils } from "./lib/ml-utils";
-import { siteFontData } from "./site-fonts-data";
+import { siteFontData } from "./config/site-fonts-data";
 
 export interface IFontFace {
 	id: string;

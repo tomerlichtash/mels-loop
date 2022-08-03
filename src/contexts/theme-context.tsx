@@ -1,6 +1,6 @@
 import React, { Context, createContext, useRef } from "react";
 import Cookies from "js-cookie";
-import { useTheme } from "../hooks/useTheme";
+import { useTheme } from "./useTheme";
 import { classes as LightTheme } from "../theme/light/style.st.css";
 import { classes as DarkTheme } from "../theme/dark/style.st.css";
 

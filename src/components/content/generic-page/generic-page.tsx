@@ -3,14 +3,14 @@ import {
 	IContentComponentData,
 	IMLParsedNode,
 	MLNODE_TYPES,
-} from "../../interfaces/models";
-import Layout from "../layout";
+} from "../../../interfaces/models";
+import Layout from "../../layout";
 import Head from "next/head";
-import { ContentIterator } from "./content-iterator";
-import { usePageData } from "../usePageData";
-import { TimeFormat } from "../ui";
-import { ReactLocaleContext } from "../../contexts/locale-context";
-import { st, classes } from "./../../pages/page-base.st.css";
+import ContentIterator from "../content-iterator";
+import { usePageData } from "../../usePageData";
+import { TimeFormat } from "../../ui";
+import { ReactLocaleContext } from "../../../contexts/locale-context";
+import { st, classes } from "./../../../pages/page-base.st.css";
 
 export default function GenericPage(props: IContentComponentData) {
 	const { locale, textDirection, siteTitle, siteSubtitle } =

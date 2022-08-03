@@ -8,9 +8,10 @@ import { IPageProps, IParsedPageData } from "../interfaces/models";
 import { usePageData } from "../components/usePageData";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import orderBy from "lodash.orderby";
+import Post from "../components/post";
+import PostHeader from "../components/post/post-header";
 import { mlUtils } from "../lib/ml-utils";
 import { classes } from "./page-base.st.css";
-import Post from "../components/post";
 
 export default function Blog(props: IPageProps) {
 	const { locale, sectionName } = useContext(ReactLocaleContext);
@@ -22,15 +23,15 @@ export default function Blog(props: IPageProps) {
 				{orderBy(pageData, ["metaData.date"], ["desc"]).map(
 					(page: IParsedPageData) => {
 						const { metaData, path } = page;
-						const { title, date } = metaData;
+						const { title, date, author } = metaData;
 						return (
-							<Post
+							<PostHeader
 								key={mlUtils.uniqueId()}
 								title={title}
 								date={date}
 								path={path}
 								locale={locale}
-								content={page}
+								author={author}
 								className={classes.post}
 							/>
 						);

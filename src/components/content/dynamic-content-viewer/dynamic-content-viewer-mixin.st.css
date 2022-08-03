@@ -1,0 +1,22 @@
+@namespace "DynamicContentViewerMixin";
+
+@st-import DynamicContentViewer from "../dynamic-content-viewer/dynamic-content-viewer.st.css";
+@st-import NoteMixin from "../../note/note-mixin.st.css";
+
+:vars {
+	ViewerBgColor: #fff;
+	NoteTopicBgColor: #000;
+	NoteTopicTextColor: #fff;
+}
+
+.root {
+	-st-extends: DynamicContentViewer;
+	background: value(ViewerBgColor);
+}
+
+.root::note {
+	-st-mixin: NoteMixin(
+			TopicBgColor value(NoteTopicBgColor),
+			TopicTextColor value(NoteTopicTextColor),
+	)
+}

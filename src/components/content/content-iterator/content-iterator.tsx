@@ -1,7 +1,10 @@
 import React from "react";
-import { ContentComponent } from "./index";
-import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
-import { mlUtils } from "../../lib/ml-utils";
+import ContentComponent from "../content-component";
+import {
+	ContentComponentProps,
+	IMLParsedNode,
+} from "../../../interfaces/models";
+import { mlUtils } from "../../../lib/ml-utils";
 import { st, classes } from "./content-iterator.st.css";
 
 /**

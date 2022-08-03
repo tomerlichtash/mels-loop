@@ -1,7 +1,7 @@
 @namespace "Note";
 
 @st-import Bibliography from "../bibliography/bibliography.st.css";
-@st-import ContentComponent from "../content/content-component.st.css";
+@st-import ContentComponent from "../content/content-component/content-component.st.css";
 @st-import [Title, Topic] from "../../theme/common/typography.st.css";
 
 .root {

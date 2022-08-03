@@ -55,10 +55,10 @@
 	success1,
 	fail1,
 
-	/* primary3, */
-	/* primary4, */
-	/* accent3, */
-	/* accent4, */
+	primary3,
+	primary4,
+	accent3,
+	accent4,
 
 	shadow1,
 	shadow3,
@@ -87,6 +87,7 @@
 	ICON_FILL_COLOR,
 	ICON_FILL_HOVER_COLOR,
 	ICON_FILL_ACTIVE_COLOR,
+	POPOVER_BG_COLOR,
 ] from "./vars.st.css";
 
 @st-scope .root {
@@ -105,6 +106,7 @@
 			InlineCodeBorderColor value(BORDER_COLOR),
 			ContentHeaderMetaBorderColor value(BORDER_COLOR),
 			ImageBorderColor value(BORDER_COLOR),
+			SectionBgColor value(level8),
 			SectionBoxShadowColor value(shadow4),
 			CodeSyntaxColor value(level8)
 		)
@@ -113,7 +115,8 @@
 	TopBar {
 		-st-mixin: TopBarMixin(
 			BgColor value(HEADER_FOOTER_BG_COLOR),
-			SiteLogoBgProps url(//public/favicon-temp.png),
+			SiteTitleLinkTextColor value(HEADER_FOOTER_TEXT_COLOR),
+			SiteLogoBgProps url(//public/assets/ml-logo-light.png),
 		);
 	}
 
@@ -215,6 +218,7 @@
 	}
 	PopoverToolbar {
 		-st-mixin: PopoverToolbarMixin(
+			PopoverToolbarBgColor value(POPOVER_BG_COLOR),
 			IconFill_Color value(ICON_FILL_COLOR),
 			IconFill_Hover value(ICON_FILL_HOVER_COLOR),
 			IconFill_Active value(ICON_FILL_ACTIVE_COLOR)	
@@ -228,8 +232,9 @@
 
 	Note {
 		-st-mixin: NoteMixin(
-			TopicTextColor value(primary2),
-			TopicBgColor value(level2),
+			/* NoteBgColor value(POPOVER_BG_COLOR), */
+			TopicTextColor value(level0),
+			TopicBgColor value(primary3),
 			/* NotePadding 1rem,
 			NoteScrollGutter 2.5rem, */
 		);
