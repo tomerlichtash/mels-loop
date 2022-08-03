@@ -89,3 +89,10 @@
 .root::meta:hasContent {
 	border-color: value(ContentHeaderMetaBorderColor);
 }
+
+.root::smallButton {
+	color: value(LinkColor);
+}
+.root::smallButton:hover {
+	color: value(LinkColor_Hover);
+}

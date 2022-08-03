@@ -66,6 +66,7 @@
 	TITLE_ALT_COLOR: value(level6);
 	BORDER_COLOR: value(level4);
 	HEADER_FOOTER_TEXT_COLOR: value(level8);
+	HEADER_FOOTER_TEXT_COLOR_ALT: value(level4);
 	LIGHT_BG_COLOR: value(level2);
 	BODY_TEXT_COLOR: value(level6);
 	LINK_TEXT_COLOR: value(accent1);
@@ -77,4 +78,12 @@
 	ICON_FILL_HOVER_COLOR: value(level8);
 	ICON_FILL_ACTIVE_COLOR: value(primary2);
 	POPOVER_BG_COLOR: value(level2);
+	SECTION_BG_COLOR: value(level0);
+	CODE_SYNTAX_COLOR: value(level8);
+	MENU_VIEWPORT_BG_COLOR: value(level1);
+	MENU_ITEM_BG_COLOR_HOVER: value(level3);
+
+	POPOVER_TEXT_COLOR_OPEN: value(level0);
+	POPOVER_TEXT_BG_COLOR_OPEN: value(primary2);
+
 }

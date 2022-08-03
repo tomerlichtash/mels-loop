@@ -76,6 +76,7 @@
 	LINK_TEXT_COLOR,
 	LINK_TEXT_COLOR_HOVER,
 	HEADER_FOOTER_TEXT_COLOR,
+	HEADER_FOOTER_TEXT_COLOR_ALT,
 	LIGHT_BG_COLOR,
 	LAYOUT_BG_COLOR,
 	HEADER_FOOTER_BG_COLOR,
@@ -86,7 +87,13 @@
 	ICON_FILL_COLOR,
 	ICON_FILL_HOVER_COLOR,
 	ICON_FILL_ACTIVE_COLOR,
-	POPOVER_BG_COLOR
+	POPOVER_BG_COLOR,
+	SECTION_BG_COLOR,
+	CODE_SYNTAX_COLOR,
+	MENU_VIEWPORT_BG_COLOR,
+	MENU_ITEM_BG_COLOR_HOVER,
+	POPOVER_TEXT_COLOR_OPEN,
+	POPOVER_TEXT_BG_COLOR_OPEN	
 ] from "./vars.st.css";
 
 @st-scope .root {
@@ -103,11 +110,11 @@
 			ParagraphTextColor value(BODY_TEXT_COLOR),
 			InlineCodeBgColor value(LIGHT_BG_COLOR),
 			InlineCodeBorderColor value(BORDER_COLOR),
+			CodeSyntaxColor value(CODE_SYNTAX_COLOR),
 			ContentHeaderMetaBorderColor value(BORDER_COLOR),
 			ImageBorderColor value(BORDER_COLOR),
-			SectionBgColor value(level0),
+			SectionBgColor value(SECTION_BG_COLOR),
 			SectionBoxShadowColor value(shadow4),
-			CodeSyntaxColor value(level8)
 		)
 	}
 
@@ -123,13 +130,15 @@
 		-st-mixin: TopBarMenuMixin(
 			ArrowColor value(level0),
 
-			ViewPortBgColor value(level1),
+			ViewPortBgColor value(MENU_VIEWPORT_BG_COLOR),
 			ViewPortShadow value(shadow1),
+
 			TriggerTextColor value(HEADER_FOOTER_TEXT_COLOR),
-			TriggerBgColorHover value(level4),
+			TriggerBgColorHover value(HEADER_FOOTER_TEXT_COLOR_ALT),
+
 			ItemTextColor value(LINK_TEXT_COLOR),
 			ItemTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
-			ItemBgColor_Hover value(level3),
+			ItemBgColor_Hover value(MENU_ITEM_BG_COLOR_HOVER),
 		);
 	}
 
@@ -137,8 +146,8 @@
 		-st-mixin: LocaleSelectorMixin(
 			ItemTextColor value(HEADER_FOOTER_TEXT_COLOR),
 			ItemBgColorHover value(level5),
-			SelectedItemTextColor value(level8),
-			SelectedItemBgColor value(level4)
+			SelectedItemTextColor value(HEADER_FOOTER_TEXT_COLOR),
+			SelectedItemBgColor value(HEADER_FOOTER_TEXT_COLOR_ALT)
 		);
 	}
 
@@ -214,9 +223,9 @@
 		-st-mixin: PopoverMixin(
 			TriggerTextColor value(LINK_TEXT_COLOR),
 			TriggerTextColor_Hover value(LINK_TEXT_COLOR_HOVER),
-			TriggerTextColor_Open value(level0),
-			TriggerTextBgColor_Open value(primary2),
-			TriggerMarkerColor_Open value(primary2),
+			TriggerTextColor_Open value(POPOVER_TEXT_COLOR_OPEN),
+			TriggerTextBgColor_Open value(POPOVER_TEXT_BG_COLOR_OPEN),
+			TriggerMarkerColor_Open value(POPOVER_TEXT_BG_COLOR_OPEN),
 		);
 	}
 	PopoverToolbar {
@@ -240,22 +249,18 @@
 		);
 	}
 
+	Posts {
+		-st-mixin: PostsMixin(
+			PostTitleColor value(LINK_TEXT_COLOR),
+			PostTitleColor_Hover value(LINK_TEXT_COLOR_HOVER),
+		);
+	}
+
 	Bibliography Button,
 	Footer Button {
 		-st-mixin: ButtonMixin(
 			ButtonTextColor value(LINK_TEXT_COLOR),
 			ButtonTextColor_Hover value(LINK_TEXT_COLOR_HOVER)
 		)
-	}
-
-	Post {
-		-st-mixin: PostMixin(
-			/* PostTitleColor value(LINK_TEXT_COLOR),
-			PostTitleColor_Hover value(LINK_TEXT_COLOR_HOVER),
-			PostTitleBorderColor value(level3),
-			PostTextColor value(level6),
-			PostDateTextColor value(BODY_TEXT_COLOR),
-			BlogPostShadow value(shadow3) */
-		);
 	}
 }

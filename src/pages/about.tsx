@@ -24,16 +24,17 @@ const About: NextPage<IPageProps> = (props) => {
 			<article className={classes.root}>
 				<h1 className={classes.topic}>{metaData.title}</h1>
 				<p className={classes.title}>{metaData.abstract}</p>
-
-				{elements.map((node) => {
-					return (
-						<ContentComponent
-							key={mlUtils.uniqueId()}
-							componentData={{ node }}
-							className={classes.contentComponent}
-						/>
-					);
-				})}
+				<div className={classes.section}>
+					{elements.map((node) => {
+						return (
+							<ContentComponent
+								key={mlUtils.uniqueId()}
+								componentData={{ node }}
+								className={classes.contentComponent}
+							/>
+						);
+					})}
+				</div>
 			</article>
 		</Layout>
 	);

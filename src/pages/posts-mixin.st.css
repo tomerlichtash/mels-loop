@@ -1,7 +1,20 @@
 @namespace "PostsMixin";
 
 @st-import Posts from "./posts.st.css";
+@st-import PostMixin from "../components/post/post-mixin.st.css";
+
+:vars {
+	PostTitleColor: #000000;
+	PostTitleColor_Hover: #c0c0c0;
+}
 
 .root {
 	-st-extends: Posts;
+}
+
+.root::post {
+	-st-mixin: PostMixin(
+		PostTitleColor value(PostTitleColor),
+		PostTitleColor_Hover value(PostTitleColor_Hover),
+	)
 }

@@ -160,3 +160,7 @@
 .form {}
 
 .credits {}
+
+.smallButton {
+	-st-mixin: Paragraph, ParagraphMargin;
+}

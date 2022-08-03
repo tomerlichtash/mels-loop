@@ -4,29 +4,21 @@
 @st-import [bodyTextNormal, Date] from "../../theme/common/typography.st.css";
 
 :vars {
-	PostTitleColor: inherit;
-	PostTitleColor_Hover: inherit;
-	PostTextColor: inherit;
-	BlogPostShadow: none;
-	PostTitleBorderColor: inherit;
-	PostDateTextColor: inherit;
+	PostTitleColor: #000000;
+	PostTitleColor_Hover: #c0c0c0;
+	PostDateTextColor: #000000;
 }
 
 .root {
 	-st-extends: Post;
 }
 
-.root::wrapper {}
-
-.root::heading {}
-
-.root::header {}
-
+.root::button,
 .root::title {
-	/* color: value(PostTitleColor) */
-	/* color: value(PostTitleColor);
-	padding: 1rem 0 0; */
+	color: value(PostTitleColor);
+	padding: 1rem 0 0;
 }
+.root::button:hover,
 .root::title:hover {
 	color: value(PostTitleColor_Hover);
 }
