@@ -10,6 +10,7 @@
 	color8: #20201E;
 	color9: #FD658A;
 	color9_1: #F178B6;
+	color9_2: #F178B6;
 	color10: #BD5E91;
 	color11: #70538A;
 	color12: #4E4A7A;
@@ -17,7 +18,15 @@
 	color14: #274F8C;
 	color15: #1A355F;
 	color16: #00173A;
-
 	color17: #0a0;
 	color18: #c00;
+}
+
+:vars {
+	hsl1: hsl(206 22% 7% / 35%) 0px 10px 38px -10px;
+	hsl2: hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+}
+
+:vars {
+	shadow0: value(hsl1), value(hsl2);
 }

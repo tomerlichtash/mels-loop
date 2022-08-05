@@ -1,6 +1,7 @@
 @namespace "AnnotationLinkMixin";
 
 @st-import AnnotationLink from "./annotation-link.st.css";
+@st-import [InlineAnnotation] from "../../../../theme/common/typography.st.css";
 
 :vars {
 	ParanthesisColor: 0.05rem;
@@ -8,6 +9,7 @@
 
 .root {
 	-st-extends: AnnotationLink;
+	-st-mixin: InlineAnnotation;
 }
 
 .root::before,

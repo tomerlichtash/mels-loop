@@ -4,8 +4,8 @@
 @st-import PostMixin from "../components/post/post-mixin.st.css";
 
 :vars {
-	PostTitleColor: #000000;
-	PostTitleColor_Hover: #c0c0c0;
+	LinkColor: #000;
+	LinkColor_Hover: #c0c0c0;
 }
 
 .root {
@@ -14,7 +14,7 @@
 
 .root::post {
 	-st-mixin: PostMixin(
-		PostTitleColor value(PostTitleColor),
-		PostTitleColor_Hover value(PostTitleColor_Hover),
+		LinkColor value(LinkColor),
+		LinkColor_Hover value(LinkColor_Hover),
 	)
 }

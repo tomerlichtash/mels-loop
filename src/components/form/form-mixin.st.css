@@ -4,11 +4,11 @@
 @st-import FieldMixin from "./field-mixin.st.css";
 
 :vars {
-	FormSubmitButtonBgColor: #808080;
-	FormSubmitButtonTextColor: #fff;
-	FormSubmitButtonBgColor_Hover: #404040;
-	FormSubmitButtonTextColor_Hover: #e0e0e0;
-	FormSubmitButtonRadius: 0;
+	SubmitButtonBgColor: #808080;
+	SubmitButtonTextColor: #fff;
+	SubmitButtonBgColor_Hover: #404040;
+	SubmitButtonTextColor_Hover: #e0e0e0;
+	SubmitButtonRadius: 0;
 	FieldLabelTextColor: black;
 	FieldLabelIconColor: black;
 	FieldLabelBorderColor: black;
@@ -29,13 +29,13 @@
 }
 
 .root::button {
-	border-radius: value(FormSubmitButtonRadius);
-	background-color: value(FormSubmitButtonBgColor);
-	color: value(FormSubmitButtonTextColor);
+	border-radius: value(SubmitButtonRadius);
+	background-color: value(SubmitButtonBgColor);
+	color: value(SubmitButtonTextColor);
 }
 .root::button:hover {
-	background-color: value(FormSubmitButtonBgColor_Hover);
-	color: value(FormSubmitButtonTextColor_Hover);
+	background-color: value(SubmitButtonBgColor_Hover);
+	color: value(SubmitButtonTextColor_Hover);
 }
 
 .root::field {

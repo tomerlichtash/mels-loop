@@ -2,6 +2,12 @@
 
 @st-import Header from "../components/header/header.st.css";
 @st-import Button from "../components/ui/button/button.st.css";
+@st-import [ButtonSubtitleSmall] from "../theme/common/typography.st.css";
+
+:vars {
+	SITE_LOGO_DARK: url(//public/favicon-temp.png);
+	SITE_LOGO_BRIGHT: url(//public/favicon-light-temp.png);
+}
 
 .boxSizing {
 	-webkit-box-sizing: border-box;
@@ -59,7 +65,7 @@
 .MobileHeader { -st-extends: Header }
 .MobileHeader::container { display: block }
 .MobileHeader::siteTitle { display: block }
-.MobileHeader::siteSubtitle { font-size: 0.85rem }
+.MobileHeader::siteSubtitle { -st-mixin: ButtonSubtitleSmall }
 .MobileHeader::siteSubtitle::before { margin: 0; content: "" }
 
 /* ResetListStyleMixin */
@@ -67,4 +73,9 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
+}
+
+.SectionBox {
+	border-radius: 4px;
+	padding: 2rem;
 }

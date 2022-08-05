@@ -1,72 +1,123 @@
+:vars {
+	FONT_SIZE_1: 2.5vmax;
+	FONT_SIZE_2: 2.03vmax;
+	FONT_SIZE_3: 1.614vmax;
+	FONT_SIZE_4: 1.302vmax;
+	FONT_SIZE_5: 1.041vmax;
+	FONT_SIZE_6: 0.833vmax;
+	FONT_SIZE_7: 0.875rem;
+	FONT_SIZE_8: 12px;
+	FONT_SIZE_10: 14px;
+	FONT_SIZE_11: 1rem;
+	FONT_SIZE_12: 1rem;
+	FONT_SIZE_13: 0.85rem;
+	FONT_SIZE_9: 0.8rem;
+	FONT_SIZE_14: 0.7rem;
+}
+
+:vars {
+	LINE_HEIGHT_1: 3vmax;
+	LINE_HEIGHT_2: 2vmax;
+	LINE_HEIGHT_3: 0.25rem;
+	LINE_HEIGHT_4: 40px;
+	LINE_HEIGHT_5: 32px;
+	LINE_HEIGHT_6: 31px;
+	LINE_HEIGHT_7: 25px;
+	LINE_HEIGHT_8: 21px;
+	LINE_HEIGHT_9: 21px;
+	LINE_HEIGHT_10: 20px;
+}
+
+:vars {
+	FONT_WEIGHT_REGULAR: 300;
+	FONT_WEIGHT_MEDIUM: 500;
+	FONT_WEIGHT_BOLD: 700;
+}
+
+/* margin-bottom: 1.302vmax;
+margin-bottom: 0;
+margin-bottom: 0;
+margin-bottom: 0;
+margin-bottom: 0;
+margin-bottom: 0;
+margin-top: 4rem;
+margin-bottom: 1.302vmax;
+margin: 2rem 0 1rem
+margin-bottom: 1rem;
+margin-bottom: 1.302vmax */
+
 .LatinText {
 	font-family: "Roboto Slab", serif;
-	font-weight: 300;
+	font-weight: value(FONT_WEIGHT_REGULAR);
 	direction: ltr;
 }
 .HebrewText {
 	font-family: "Assistant", sans-serif;
-	font-weight: 300;
+	font-weight: value(FONT_WEIGHT_REGULAR);
 	direction: rtl;
 }
 
 .h1 {
 	font-size: 2.5vmax;
 	line-height: 3vmax;
-	font-weight: 500;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
 	margin-bottom: 1.302vmax;
 }
 .h2 {
 	font-size: 2.03vmax;
 	line-height: 3vmax;
-	font-weight: 500;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
 	margin-bottom: 0;
 }
 .h3 {
 	font-size: 1.614vmax;
 	line-height: 2vmax;
-	font-weight: 500;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
 	margin-bottom: 0;
 }
-/* .h4 {
+.h4 {
 	font-size: 1.302vmax;
 	line-height: 31px;
-	font-weight: 400;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
 	margin-bottom: 0;
 }
 .h5 {
 	font-size: 1.041vmax;
 	line-height: 25px;
-	font-weight: 700;
+	font-weight: value(FONT_WEIGHT_BOLD);
 	margin-bottom: 0;
 }
 .h6 {
 	font-size: 0.833vmax;
 	line-height: 20px;
-	font-weight: 700;
+	font-weight: value(FONT_WEIGHT_BOLD);
 	margin-bottom: 0;
-} */
+}
 
 .bodyTextNormal {
 	font-size: 0.875rem;
 	line-height: 21px;
-	font-weight: 300;
-}
-
-.SectionBox {
-	border-radius: 4px;
-	padding: 2rem;
+	font-weight: value(FONT_WEIGHT_REGULAR);
 }
 
 .Topic {
 	-st-mixin: h3;
+}
+.Term {
+	-st-mixin: h5;
+	margin-bottom: 2rem;
 }
 
 .Title {
 	-st-mixin: h1;
 }
 
-.Subtitle {
-	-st-mixin: h2;
+.SubtitleMargin1 {
+	margin-top: 4rem;
+	margin-bottom: 1.302vmax;
+}
+.SubtitleMargin2 {
+	margin: 2rem 0 1rem	
 }
 
 .Date {
@@ -76,7 +127,7 @@
 .InlineCode {
 	font-family: monospace;
 	font-size: 0.8rem;
-	font-weight: 500;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
 	border-radius: 6px;
 	border: 1px solid;
 	padding: 0 0.25rem;
@@ -91,25 +142,16 @@
 	font-size: 14px;
 }
 
-.ParagraphMargin {
-	margin-bottom: 1.302vmax	
-}
-.SubtitleMargin1 {
-	margin-top: 4rem;
-	margin-bottom: 1.302vmax;
-}
-.SubtitleMargin2 {
-	margin: 2rem 0 1rem	
-}
-
-
 .Paragraph {
 	-st-mixin: bodyTextNormal;
+}
+.ParagraphMargin {
+	margin-bottom: 1.302vmax	
 }
 
 .Blockquote {
 	-st-mixin: bodyTextNormal;
-	font-weight: 300;
+	font-weight: value(FONT_WEIGHT_REGULAR);
 	padding: 0rem 1rem;
 }
 
@@ -121,23 +163,78 @@
 .TopMenuItemTitle {
 	font-size: 1rem;
 	line-height: 0.25rem;
-	font-weight: 500;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
 }
 .TopMenuItemSubtitle {
 	font-size: 0.85rem;
-	/* ItemLabelIconMargin 0.35rem, */
 }
 
 .FooterTitle {
-	font-size: 15px;
-	font-weight: 500;
-	text-transform: uppercase;	
+	font-size: 0.85rem;
+	font-weight: value(FONT_WEIGHT_BOLD);
+	text-transform: uppercase;
 }
 .FooterButton {
 	font-size: 14px;
 	line-height: 21px;
 }
 .FooterSectionTitle {
-	font-weight: 500;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+	font-size: 0.85rem;
+}
+
+.SmallCaption {
+	font-size: 0.8rem;
+}
+
+.InlineAnnotation {
+	font-size: 0.7rem;
+	font-weight: value(FONT_WEIGHT_BOLD);
+}
+.InlineAnnotation::before,
+.InlineAnnotation::after {
+	font-weight: value(FONT_WEIGHT_REGULAR);
+}
+
+.ButtonSubtitleSmall {
+	font-size: 0.85rem;	
+}
+
+.ToggleButton {
 	font-size: 14px;
+	line-height: 32px;
+	font-weight: 400;
+}
+.ToggleButtonSelected {
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+}
+
+.MenuItemLabel {
+	font-weight: value(FONT_WEIGHT_BOLD);
+	text-transform: uppercase;
+}
+
+.InputLabel {
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+	line-height: 40px;
+}
+
+.InputText {
+	font-family: inherit;
+	font-weight: value(FONT_WEIGHT_REGULAR);
+}
+
+.SiteTitle {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+}
+
+.SiteSubtitle {
+	text-transform: lowercase;
+}
+
+.ArticleByline {
+	-st-mixin: Paragraph;
+	text-transform: uppercase;
 }

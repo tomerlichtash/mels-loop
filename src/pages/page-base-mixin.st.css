@@ -1,25 +1,29 @@
 @namespace "PageBaseMixin";
 
 @st-import PageBase from "./page-base.st.css";
+@st-import ButtonMixin from "../components/ui/button/button-mixin.st.css";
 @st-import Link from "../components/content/content-blocks/link/link.st.css";
 @st-import CodeBlock from "../components/content/content-blocks/code-block/code-block.st.css";
-@st-import Figure from "../components/content/content-blocks/figure/figure.st.css";
 
 :vars {
 	LinkColor: #808080;
-	LinkColor_Hover: #000000;
-	TopicTextColor: #000000;
-	TitleTextColor: #000000;
-	SubtitleTextColor: #000000;
-	ParagraphTextColor: #000000;
+	LinkColor_Hover: #000;
+	TopicTextColor: #000;
+	Heading1TextColor: #000;
+	Heading2TextColor: value(Heading1TextColor);
+	Heading3TextColor: value(Heading2TextColor);
+	Heading4TextColor: value(Heading3TextColor);
+	Heading5TextColor: value(Heading4TextColor);
+	Heading6TextColor: value(Heading5TextColor);
+	ParagraphTextColor: #000;
 	InlineCodeBgColor: #f0f0f0;
 	InlineCodeBorderColor: #c0c0c0;
-	SectionBgColor: #ffffff;
+	SectionBgColor: #fff;
 	SectionBoxShadowColor: rgba(0, 0, 0, 0.5);
 	ContentHeaderMetaBorderColor: #c0c0c0;
-	ImageBorderColor: #000000;
-	CodeSyntaxColor: #000000;
-	ArticleMetaTextColor: #000000;
+	ImageBorderColor: #000;
+	CodeSyntaxColor: #000;
+	ArticleMetaTextColor: #000;
 }
 
 .root {
@@ -27,8 +31,15 @@
 }
 
 .root::section {
-	box-shadow: 0 0 10px value(SectionBoxShadowColor);
+	box-shadow: value(SectionBoxShadowColor);
 	background: value(SectionBgColor);
+}
+@media (min-width: 320px) and (max-width: 767px) {
+	.root::section {
+		padding: 0;
+		box-shadow: none;
+		background: none;
+	}
 }
 
 .root::topic {
@@ -37,12 +48,23 @@
 
 .root::title,
 .root::contentComponent:type(heading_1) {
-	color: value(TitleTextColor);
+	color: value(Heading1TextColor);
 }
-
 .root::subtitle,
 .root::contentComponent:type(heading_2) {
-	color: value(SubtitleTextColor);
+	color: value(Heading2TextColor);
+}
+.root::contentComponent:type(heading_3) {
+	color: value(Heading3TextColor);
+}
+.root::contentComponent:type(heading_4) {
+	color: value(Heading4TextColor);
+}
+.root::contentComponent:type(heading_5) {
+	color: value(Heading5TextColor);
+}
+.root::contentComponent:type(heading_6) {
+	color: value(Heading6TextColor);
 }
 
 .root::moto,
@@ -95,4 +117,11 @@
 }
 .root::smallButton:hover {
 	color: value(LinkColor_Hover);
+}
+
+.root::button {
+	-st-mixin: ButtonMixin(
+		ButtonTextColor value(LinkColor),
+		ButtonTextColor_Hover value(LinkColor_Hover)
+	);
 }

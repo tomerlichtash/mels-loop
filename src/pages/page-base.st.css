@@ -1,15 +1,20 @@
 @namespace "PageBase";
 
+@st-import Button from "../components/ui/button/button.st.css";
 @st-import ContentComponent from "../components/content/content-component/content-component.st.css";
 @st-import Link from "../components/content/content-blocks/link/link.st.css";
 @st-import CodeBlock from "../components/content/content-blocks/code-block/code-block.st.css";
 @st-import Figure from "../components/content/content-blocks/figure/figure.st.css";
 @st-import [
+	h1,
+	h2,
 	h3,
-	SectionBox,
+	h4,
+	h5,
+	h6,
 	Topic,
-	Title,
-	Subtitle,
+	/* Title,
+	Subtitle, */
 	Paragraph,
 	Blockquote,
 	InlineCode,
@@ -18,7 +23,9 @@
 	SubtitleMargin1,
 	SubtitleMargin2,
 	ListBullet,
+	ArticleByline,
 ] from "../theme/common/typography.st.css";
+@st-import [SectionBox] from "../theme/mixins.st.css";
 
 :vars {
 	BlockQuoteBorder: 3px solid;
@@ -38,20 +45,31 @@
 
 .title,
 .root::contentComponent:type(heading_1) {
-	-st-mixin: Title;
+	-st-mixin: h1;
 }
 
 .subtitle,
 .root::contentComponent:type(heading_2) {
-	-st-mixin: Subtitle;
+	-st-mixin: h2;
 }
-
 .root::contentComponent:type(heading_2) {
 	-st-mixin: SubtitleMargin1;
 }
 
 .root::contentComponent:type(heading_3) {
 	-st-mixin: h3, SubtitleMargin2;
+}
+
+.root::contentComponent:type(heading_4) {
+	-st-mixin: h4, SubtitleMargin2;
+}
+
+.root::contentComponent:type(heading_5) {
+	-st-mixin: h5, SubtitleMargin2;
+}
+
+.root::contentComponent:type(heading_6) {
+	-st-mixin: h6, SubtitleMargin2;
 }
 
 .paragraph,
@@ -146,8 +164,7 @@
 }
 
 .byline {
-	-st-mixin: Paragraph;
-	text-transform: uppercase;
+	-st-mixin: ArticleByline;
 }
 .date {
 	-st-mixin: Paragraph;
@@ -163,4 +180,8 @@
 
 .smallButton {
 	-st-mixin: Paragraph, ParagraphMargin;
+}
+
+.button {
+	-st-extends: Button;	
 }

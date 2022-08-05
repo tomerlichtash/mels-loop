@@ -1,6 +1,7 @@
 @namespace "Header";
 
 @st-import Button from "../ui/button/button.st.css";
+@st-import [SiteTitle, SiteSubtitle] from "../../theme/common/typography.st.css";
 @st-import [boxSizing] from "../../theme/mixins.st.css";
 
 :vars {
@@ -19,20 +20,19 @@
 	display: flex;
 	align-items: center;
 	align-content: center;
-	line-height: 1rem;
+	/* line-height: 1rem; */
 }
 
 .siteTitle {
 	-st-extends: Button;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+	-st-mixin: SiteTitle;
 }
 .siteTitle::label {
 	border-bottom: 2px solid transparent;
 }
 
 .siteSubtitle {
-	text-transform: lowercase;
+	-st-mixin: SiteSubtitle;
 }
 
 .siteSubtitle::before {
@@ -46,7 +46,6 @@
 	height: 24px;
 	background-size: contain;
 }
-
 
 .root:textDirection(rtl) .siteTitle::icon {
 	margin-left: value(iconMargin);

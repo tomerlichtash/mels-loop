@@ -9,7 +9,7 @@ export const ThemeSelector = ({ className }: ComponentProps): JSX.Element => {
 	const label = `Toggle Theme`;
 	return (
 		<div
-			className={st(classes.root, { theme }, className)}
+			className={st(classes.root, { theme })}
 			title={label}
 			aria-label={label}
 			onClick={toggleTheme}

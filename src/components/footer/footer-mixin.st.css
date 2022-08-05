@@ -1,11 +1,14 @@
 @namespace "FooterMixin";
 
 @st-import Footer from "./footer.st.css";
+@st-import ButtonMixin from "../../components/ui/button/button-mixin.st.css";
 @st-import [IconFill, GradientStrip] from "../../theme/mixins.st.css";
 
 :vars {
 	BgColor: #f0f0f0;
-	TextColor: #000000;
+	LinkColor: #000;
+	LinkColor_Hover: #c0c0c0;
+	TextColor: #000;
 	StripGradientStartColor: white;
 	StripGradientMidColor: gray;
 	StripGradientEndColor: black;
@@ -23,5 +26,12 @@
 		StripGradientMidColor value(StripGradientMidColor),
 		StripGradientEndColor value(StripGradientEndColor),
 		StripGradientHeight 4px
+	);
+}
+
+.root::button {
+	-st-mixin: ButtonMixin(
+		ButtonTextColor value(LinkColor),
+		ButtonTextColor_Hover value(LinkColor_Hover)
 	);
 }

@@ -1,9 +1,9 @@
 import React from "react";
 import { ComponentProps } from "../../interfaces/models";
+import { TextDirection } from "../../interfaces/locale-context";
 import { IBibliographySource } from "../bibliography/bibliography";
 import Bibliography from "../bibliography";
 import { st, classes } from "./note.st.css";
-import { TextDirection } from "../../interfaces/locale-context";
 
 export type NoteViews = "note" | "ref";
 

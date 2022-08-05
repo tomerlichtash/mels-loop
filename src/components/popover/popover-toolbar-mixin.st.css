@@ -4,15 +4,17 @@
 @st-import [IconFill] from "../../theme/mixins.st.css";
 
 :vars {
-	PopoverToolbarBgColor: #ffffff;
+	PopoverToolbarBgColor: #fff;
 	IconFill_Color: black;
 	IconFill_Hover: #808080;
 	IconFill_Active: #c0c0c0;
+	SeperatorColor: #000;
 }
 
 .root {
 	-st-extends: PopoverToolbar;
 	background-color: value(PopoverToolbarBgColor);
+	border-bottom-color: value(SeperatorColor);
 }
 
 .root::item {

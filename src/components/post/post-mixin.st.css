@@ -4,9 +4,9 @@
 @st-import [bodyTextNormal, Date] from "../../theme/common/typography.st.css";
 
 :vars {
-	PostTitleColor: #000000;
-	PostTitleColor_Hover: #c0c0c0;
-	PostDateTextColor: #000000;
+	LinkColor: #000;
+	LinkColor_Hover: #c0c0c0;
+	PostDateTextColor: #000;
 }
 
 .root {
@@ -15,12 +15,12 @@
 
 .root::button,
 .root::title {
-	color: value(PostTitleColor);
+	color: value(LinkColor);
 	padding: 1rem 0 0;
 }
 .root::button:hover,
 .root::title:hover {
-	color: value(PostTitleColor_Hover);
+	color: value(LinkColor_Hover);
 }
 
 .root::date {

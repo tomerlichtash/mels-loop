@@ -2,7 +2,7 @@
 
 @st-import Bibliography from "../bibliography/bibliography.st.css";
 @st-import ContentComponent from "../content/content-component/content-component.st.css";
-@st-import [Title, Topic] from "../../theme/common/typography.st.css";
+@st-import [Title, Topic, Term] from "../../theme/common/typography.st.css";
 
 .root {
 	-st-states: type(enum(note, ref)), textDirection(enum(ltr, rtl));
@@ -32,6 +32,10 @@
 
 .topic {}
 
+.term {
+	-st-mixin: Term;
+}
+
 .title {}
 
 .content {}
@@ -40,7 +44,6 @@
 
 .root:type(ref)::topic {
 	display: inline-block;
-	font-weight: 700;
 	padding: 0 6px;
 	margin-bottom: 1.5rem;
 }

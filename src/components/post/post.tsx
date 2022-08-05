@@ -33,7 +33,7 @@ export const Post = ({
 							<Button
 								label={title}
 								link={`/${path}`}
-								className={postClasses.button}
+								className={classes.button}
 							/>
 						) : (
 							<span className={postClasses.title}>{title}</span>

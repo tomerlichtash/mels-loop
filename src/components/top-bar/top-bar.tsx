@@ -13,7 +13,7 @@ export default function TopBar({ className }: ComponentProps) {
 		<div className={st(classes.root, { textDirection }, className)}>
 			<Header className={classes.header} />
 			<div className={classes.items}>
-				<MenuProvider />
+				<MenuProvider className={classes.nav} />
 				<LocaleSelector
 					className={st(classes.localeSelector, { locale }, classes.item)}
 				/>

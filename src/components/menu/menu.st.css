@@ -1,7 +1,14 @@
 @namespace "Menu";
 
 @st-import [preventSelection] from "../../theme/mixins.st.css";
-@st-import [bodyTextNormal, TopMenuTriggerLabel, TopMenuItemTitle, Paragraph] from "../../theme/common/typography.st.css";
+@st-import [
+	bodyTextNormal,
+	TopMenuTriggerLabel,
+	TopMenuItemTitle,
+	Paragraph,
+	MenuItemLabel,
+	ButtonSubtitleSmall
+] from "../../theme/common/typography.st.css";
 @st-import Button from "../ui/button/button.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 
@@ -97,7 +104,6 @@
 .triggerButton {
 	-st-extends: Button;
 	-st-mixin: TopMenuTriggerLabel;
-	/* line-height: value(TriggerLabelLineHeight), */
 }
 
 .menuItemButton {
@@ -112,8 +118,7 @@
 }
 
 .menuItemButton::label {
-	font-weight: 700;
-	text-transform: uppercase;
+	-st-mixin: MenuItemLabel;
 }
 
 .menuItemButton::contentWrapper {
@@ -122,6 +127,10 @@
 .menuItemButton::icon {
 	position: relative;
 	top: 3px;
+}
+
+.menuItemButton::children {
+	-st-mixin: ButtonSubtitleSmall;
 }
 
 @media only screen and (min-width: 600px) {

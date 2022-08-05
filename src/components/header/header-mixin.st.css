@@ -6,7 +6,7 @@
 	HeaderBackgroundColor: transparent;
 	HeaderSiteTitleColor: #000;
 	HeaderSiteSubtitleColor: #000;
-	SiteLogoBgProps: black;
+	SiteLogoBgProps: #000;
 }
 
 .root {
@@ -16,9 +16,6 @@
 
 .root::siteTitle {
 	color: value(HeaderSiteTitleColor);
-}
-.root::siteTitle::label {
-	font-weight: 500;
 }
 
 .root::siteSubtitle {

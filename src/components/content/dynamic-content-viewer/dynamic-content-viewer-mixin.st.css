@@ -4,19 +4,23 @@
 @st-import NoteMixin from "../../note/note-mixin.st.css";
 
 :vars {
-	ViewerBgColor: #fff;
+	BgColor: #fff;
 	NoteTopicBgColor: #000;
 	NoteTopicTextColor: #fff;
+	LinkColor: #000;
+	LinkColor_Hover: #000;
 }
 
 .root {
 	-st-extends: DynamicContentViewer;
-	background: value(ViewerBgColor);
+	background: value(BgColor);
 }
 
 .root::note {
 	-st-mixin: NoteMixin(
 			TopicBgColor value(NoteTopicBgColor),
 			TopicTextColor value(NoteTopicTextColor),
+			BibliographyLinkTextColor value(LinkColor),
+			BibliographyLinkTextColor_Hover value(LinkColor_Hover)
 	)
 }

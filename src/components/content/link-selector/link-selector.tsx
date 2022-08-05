@@ -70,7 +70,7 @@ export const LinkSelector = ({
 			onExit={() => onExit()}
 			side={textDirection === "ltr" ? "right" : "left"}
 			trigger={getTriggerComp(linkType, componentData, className)}
-			portalled={true}
+			// portalled={true}
 		>
 			<DynamicContentBrowser node={node} />
 		</Popover>

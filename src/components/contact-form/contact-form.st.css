@@ -1,6 +1,7 @@
 @namespace "ContactForm";
 
 @st-import Form from "../form/form.st.css";
+@st-import [SmallCaption, InputLabel, InputText] from "../../theme/common/typography.st.css";
 
 .root {}
 
@@ -18,9 +19,8 @@
 }
 
 .form::field::caption {
+	-st-mixin: InputLabel;
 	width: 150px;
-	font-weight: 500;
-	line-height: 40px;
 	display: flex;
 	align-items: flex-start;
 	align-content: center;
@@ -31,30 +31,16 @@
 }
 
 .form::field::input {
+	-st-mixin: InputText;
 	width: 100%;
 	padding: 0.5rem;
 	height: 40px;
-	line-height: 40px;
-	border: 1px solid #444;
-	border-radius: 3px;
-	font-family: inherit;
-	font-weight: 300;
-}
-
-.form::field::input:validation(invalid) {
-	border-color: #c00;
-}
-.form::field::error {
-	color: #c00;
-}
-
-.form::field::input:validation(valid) {
-	border-color: #0a0;
+	border: 1px solid;
 }
 
 .form::field::input:tag(textarea) {
 	height: 250px;
-	line-height: 20px;
+	/* line-height: 20px; */
 }
 
 .form::field::error {
@@ -66,8 +52,9 @@
 	position: relative;
 	top: 1px;
 }
+
 .form::field::error {
-	font-size: 0.8rem;
+	-st-mixin: SmallCaption;
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -75,23 +62,9 @@
 		::form::field {
 			display: block;
 		}
-		::form::field::inputContainer {
+		/* ::form::field::inputContainer {
 		}
 		::form::field::input {
-		}
+		} */
 	}
 }
-
-
-@media (min-width: 320px) and (max-width: 767px) {
-	@st-scope .root {
-		::form::field {
-			display: block;
-		}
-		::form::field::inputContainer {
-		}
-		::form::field::input {
-		}
-	}
-}
-

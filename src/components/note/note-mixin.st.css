@@ -1,11 +1,14 @@
 @namespace "NoteMixin";
 
 @st-import Note from "./note.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 
 :vars {
-	TopicBgColor: blue;
-	TopicTextColor: red;
+	TopicBgColor: #000;
+	TopicTextColor: #fff;
 	TopicRadius: 4px;
+	BibliographyLinkTextColor: #000;
+	BibliographyLinkTextColor_Hover: #000;
 }
 
 .root {
@@ -16,4 +19,11 @@
 	border-radius: value(TopicRadius);
 	background-color: value(TopicBgColor);
 	color: value(TopicTextColor);
+}
+
+.root::bibliography::button {
+	-st-mixin: ButtonMixin(
+		ButtonTextColor value(BibliographyLinkTextColor),
+		ButtonTextColor_Hover value(BibliographyLinkTextColor_Hover)
+	)	
 }

@@ -5,14 +5,11 @@
 
 :vars {
 	PopoverContentMaxWidth: 414px;
-	PopoverContentShadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 
 .root {
 	-st-states: type(string);
 }
-
-.popoverWrapper {}
 
 .trigger {
 	cursor: pointer;
@@ -20,19 +17,13 @@
 
 .triggerWrapper {}
 
-.contentWrapper {}
-
 .toolbar {
 	-st-extends: PopoverToolbar;
 }
 
-.portal {}
-
 .content {
 	overflow: hidden;
 	width: value(PopoverContentMaxWidth);
-	/* border-radius: value(PopoverContentRadius); */
-	box-shadow: value(PopoverContentShadow);
 	animation: fadeIn 300ms ease-out forwards;
 }
 
