@@ -27,6 +27,8 @@
 @st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 @st-import AnnotationLink from "../../components/content/content-blocks/annotation-link/annotation-link.st.css";
 @st-import AnnotationLinkMixin from "../../components/content/content-blocks/annotation-link/annotation-link-mixin.st.css";
+@st-import LoadingIndicator from "../../components/loading-indicator/loading-indicator.st.css";
+@st-import LoadingIndicatorMixin from "../../components/loading-indicator/loading-indicator-mixin.st.css";
 
 @st-import [
 	SITE_LOGO_DARK,
@@ -66,7 +68,8 @@
 	DIALOG_TRIGGER_DECORATION_COLOR,
 	DIALOG_TOPIC_BG_COLOR,
 	DIALOG_TOPIC_TEXT_COLOR,
-	DIALOG_BOX_SHADOW,
+	DIALOG_TITLE_TEXT_COLOR,
+	/* DIALOG_BOX_SHADOW, */
 	FORM_SUBMIT_BG_COLOR,
 	FORM_SUBMIT_BG_COLOR_HOVER,
 	FORM_SUBMIT_TEXT_COLOR,
@@ -225,7 +228,7 @@
 			TriggerTextColor_Open value(HIGHLIGHT_OPEN_TEXT_COLOR),
 			TriggerTextBgColor_Open value(HIGHLIGHT_OPEN_BG_COLOR),
 			TriggerMarkerColor_Open value(HIGHLIGHT_OPEN_BG_COLOR),
-			PopoverContentShadow value(DIALOG_BOX_SHADOW),
+			PopoverContentShadow value(LAYOUT_SECTION_SHADOW),
 		);
 	}
 	PopoverToolbar {
@@ -244,11 +247,17 @@
 			BgColor value(DIALOG_BG_COLOR),
 			NoteTopicBgColor value(DIALOG_TOPIC_BG_COLOR),
 			NoteTopicTextColor value(DIALOG_TOPIC_TEXT_COLOR),
+			NoteTitleTextColor value(DIALOG_TITLE_TEXT_COLOR),
 		);
 	}
 	AnnotationLink {
 		-st-mixin: AnnotationLinkMixin(
 			ParanthesisColor value(DIALOG_TRIGGER_DECORATION_COLOR)
+		);
+	}
+	LoadingIndicator {
+		-st-mixin: LoadingIndicatorMixin(
+			IndicatorImage value(SITE_LOGO_BRIGHT),
 		);
 	}
 }

@@ -21,6 +21,7 @@
 	box-shadow: value(PopoverContentShadow);
 	border-radius: 10px;
 	border: 1px solid value(BgColor);
+	background-color: value(BgColor);
 }
 
 .root:type(annotation)::trigger,

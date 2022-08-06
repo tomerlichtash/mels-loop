@@ -21,8 +21,7 @@
 	/* color16, */
 	color17,
 	color18,
-	hsl1,
-	hsl2,
+	shadow0,
 ] from "../common/colors.st.css";
 
 :vars {
@@ -46,10 +45,6 @@
 	/* accent4: value(color16); */
 	success1: value(color17);
 	fail1: value(color18);
-}
-
-:vars {
-	shadow0: value(hsl1), value(hsl2);
 }
 
 :vars {
@@ -88,8 +83,8 @@
 	HIGHLIGHT_OPEN_BG_COLOR: value(primary2);
 
 	/* DIALOG */
-	DIALOG_BG_COLOR: value(level0);
-	DIALOG_TOOLBAR_BG_COLOR: value(level0);
+	/* DIALOG_BG_COLOR: value(LAYOUT_BG_COLOR); */
+	/* DIALOG_TOOLBAR_BG_COLOR: value(LAYOUT_BG_COLOR); */
 	DIALOG_TOOLBAR_ICON_FILL_COLOR: value(level5);
 	DIALOG_TOOLBAR_ICON_FILL_HOVER_COLOR: value(level8);
 	DIALOG_TOOLBAR_ICON_FILL_BG_HOVER_COLOR: value(level5);
@@ -98,7 +93,8 @@
 	DIALOG_TRIGGER_DECORATION_COLOR: value(level5);
 	DIALOG_TOPIC_BG_COLOR: value(level2);
 	DIALOG_TOPIC_TEXT_COLOR: value(primary2);
-	DIALOG_BOX_SHADOW: value(shadow0);
+	DIALOG_TITLE_TEXT_COLOR: value(level7);
+	/* DIALOG_BOX_SHADOW: value(shadow0); */
 
 	/* INPUT */
 	INPUT_LABEL_TEXT_COLOR: value(level6);
@@ -116,8 +112,8 @@
 	FORM_SUBMIT_TEXT_COLOR_HOVER: value(level1);
 
 	/* TOP BAR MENU */
-	MENU_VIEWPORT_BG_COLOR: value(level1);
-	MENU_VIEWPORT_SHADOW: value(shadow0);
+	/* MENU_VIEWPORT_BG_COLOR: value(level1); */
+	/* MENU_VIEWPORT_SHADOW: value(shadow0); */
 	MENU_ITEM_HOVER_BG_COLOR: value(level3);
 
 	/* MOBILE MENU */

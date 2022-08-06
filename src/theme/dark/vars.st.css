@@ -95,7 +95,8 @@
 	DIALOG_TRIGGER_DECORATION_COLOR: value(level5);
 	DIALOG_TOPIC_BG_COLOR: value(primary1);
 	DIALOG_TOPIC_TEXT_COLOR: value(level2);
-	DIALOG_BOX_SHADOW: value(shadow0);
+	DIALOG_TITLE_TEXT_COLOR: value(level1);
+	/* DIALOG_BOX_SHADOW: value(shadow0); */
 
 	/* INPUT */
 	INPUT_LABEL_TEXT_COLOR: value(level3);

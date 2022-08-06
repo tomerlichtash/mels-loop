@@ -7,12 +7,17 @@
 	TopicBgColor: #000;
 	TopicTextColor: #fff;
 	TopicRadius: 4px;
+	NoteTitleTextColor: #000;
 	BibliographyLinkTextColor: #000;
 	BibliographyLinkTextColor_Hover: #000;
 }
 
 .root {
 	-st-extends: Note;
+}
+
+.root::title {
+	color: value(NoteTitleTextColor);
 }
 
 .root:type(ref)::topic {

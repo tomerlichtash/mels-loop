@@ -27,6 +27,8 @@
 @st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 @st-import AnnotationLink from "../../components/content/content-blocks/annotation-link/annotation-link.st.css";
 @st-import AnnotationLinkMixin from "../../components/content/content-blocks/annotation-link/annotation-link-mixin.st.css";
+@st-import LoadingIndicator from "../../components/loading-indicator/loading-indicator.st.css";
+@st-import LoadingIndicatorMixin from "../../components/loading-indicator/loading-indicator-mixin.st.css";
 
 @st-import [
 	SITE_LOGO_DARK,
@@ -56,8 +58,6 @@
 	CODE_INLINE_BORDER_COLOR,
 	HIGHLIGHT_OPEN_TEXT_COLOR,
 	HIGHLIGHT_OPEN_BG_COLOR,
-	DIALOG_BG_COLOR,
-	DIALOG_TOOLBAR_BG_COLOR,
 	DIALOG_TOOLBAR_ICON_FILL_COLOR,
 	DIALOG_TOOLBAR_ICON_FILL_HOVER_COLOR,
 	DIALOG_TOOLBAR_ICON_FILL_BG_HOVER_COLOR,
@@ -66,7 +66,8 @@
 	DIALOG_TRIGGER_DECORATION_COLOR,
 	DIALOG_TOPIC_BG_COLOR,
 	DIALOG_TOPIC_TEXT_COLOR,
-	DIALOG_BOX_SHADOW,
+	DIALOG_TITLE_TEXT_COLOR,
+	/* DIALOG_BOX_SHADOW, */
 	FORM_SUBMIT_BG_COLOR,
 	FORM_SUBMIT_BG_COLOR_HOVER,
 	FORM_SUBMIT_TEXT_COLOR,
@@ -78,8 +79,6 @@
 	INPUT_PLACEHOLDER_TEXT_COLOR,
 	INPUT_VALIDATION_SUCCESS_COLOR,
 	INPUT_VALIDATION_FAIL_COLOR,
-	MENU_VIEWPORT_BG_COLOR,
-	MENU_VIEWPORT_SHADOW,
 	MENU_ITEM_HOVER_BG_COLOR,
 	MOBILE_MENU_BG_COLOR,
 	MOBILE_MENU_ITEM_TEXT_COLOR,
@@ -96,6 +95,12 @@
 	GRADIENT1_START,
 	GRADIENT1_MID,
 	GRADIENT1_END,
+
+	/* DIALOG_BG_COLOR, */
+	/* DIALOG_TOOLBAR_BG_COLOR, */
+	/* DIALOG_BOX_SHADOW, */
+	/* MENU_VIEWPORT_BG_COLOR, */
+	/* MENU_VIEWPORT_SHADOW, */
 ] from "./vars.st.css";
 
 @st-scope .root {
@@ -140,8 +145,8 @@
 			BgColor value(LAYOUT_ALT_BG_COLOR),
 			SiteTitleLinkTextColor value(LAYOUT_TEXT_COLOR),
 			SiteLogoBgProps value(SITE_LOGO_DARK),
-			MenuViewPortBgColor value(MENU_VIEWPORT_BG_COLOR),
-			MenuViewPortShadow value(MENU_VIEWPORT_SHADOW),
+			MenuViewPortBgColor value(LAYOUT_BG_COLOR),
+			MenuViewPortShadow value(LAYOUT_SECTION_SHADOW),
 			MenuTriggerTextColor value(LAYOUT_TEXT_COLOR),
 			MenuTriggerBgColorHover value(LAYOUT_TEXT_COLOR_ALT),
 			MenuItemBgColor_Hover value(MENU_ITEM_HOVER_BG_COLOR),			
@@ -219,18 +224,18 @@
 
 	Popover {
 		-st-mixin: PopoverMixin(
-			BgColor value(DIALOG_BG_COLOR),
+			BgColor value(LAYOUT_BG_COLOR),
 			TriggerTextColor value(LINK_TEXT_COLOR),
 			TriggerTextColor_Hover value(LINK_HOVER_TEXT_COLOR),
 			TriggerTextColor_Open value(HIGHLIGHT_OPEN_TEXT_COLOR),
 			TriggerTextBgColor_Open value(HIGHLIGHT_OPEN_BG_COLOR),
 			TriggerMarkerColor_Open value(HIGHLIGHT_OPEN_BG_COLOR),
-			PopoverContentShadow value(DIALOG_BOX_SHADOW),
+			PopoverContentShadow value(LAYOUT_SECTION_SHADOW),
 		);
 	}
 	PopoverToolbar {
 		-st-mixin: PopoverToolbarMixin(
-			PopoverToolbarBgColor value(DIALOG_TOOLBAR_BG_COLOR),
+			PopoverToolbarBgColor value(LAYOUT_BG_COLOR),
 			SeperatorColor value(DIALOG_TOOLBAR_SEPERATOR),
 			IconFill_Color value(DIALOG_TOOLBAR_ICON_FILL_COLOR),
 			IconFill_Hover value(DIALOG_TOOLBAR_ICON_FILL_HOVER_COLOR),
@@ -241,14 +246,20 @@
 		-st-mixin: DynamicContentViewerMixin(
 			LinkColor value(LINK_TEXT_COLOR),
 			LinkColor_Hover value(LINK_HOVER_TEXT_COLOR),
-			BgColor value(DIALOG_BG_COLOR),
+			/* BgColor value(LAYOUT_BG_COLOR), */
 			NoteTopicBgColor value(DIALOG_TOPIC_BG_COLOR),
 			NoteTopicTextColor value(DIALOG_TOPIC_TEXT_COLOR),
+			NoteTitleTextColor value(DIALOG_TITLE_TEXT_COLOR),
 		);
 	}
 	AnnotationLink {
 		-st-mixin: AnnotationLinkMixin(
 			ParanthesisColor value(DIALOG_TRIGGER_DECORATION_COLOR)
+		);
+	}
+	LoadingIndicator {
+		-st-mixin: LoadingIndicatorMixin(
+			IndicatorImage value(SITE_LOGO_DARK),
 		);
 	}
 }

@@ -7,6 +7,7 @@
 	BgColor: #fff;
 	NoteTopicBgColor: #000;
 	NoteTopicTextColor: #fff;
+	NoteTitleTextColor: #000;
 	LinkColor: #000;
 	LinkColor_Hover: #000;
 }
@@ -20,6 +21,7 @@
 	-st-mixin: NoteMixin(
 			TopicBgColor value(NoteTopicBgColor),
 			TopicTextColor value(NoteTopicTextColor),
+			NoteTitleTextColor value(NoteTitleTextColor),
 			BibliographyLinkTextColor value(LinkColor),
 			BibliographyLinkTextColor_Hover value(LinkColor_Hover)
 	)
