@@ -5,7 +5,7 @@
 @st-import ThemeSelector from "../theme-selector/theme-selector.st.css";
 @st-import Button from "../ui/button/button.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
-@st-import [preventSelection, MobileHeader] from "./../../theme/mixins.st.css";
+@st-import [preventSelection, MobileHeader] from "./../../theme/common/mixins.st.css";
 
 :vars {
 	headerHeight: 140px;

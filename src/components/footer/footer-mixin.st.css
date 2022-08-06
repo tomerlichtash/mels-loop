@@ -2,7 +2,7 @@
 
 @st-import Footer from "./footer.st.css";
 @st-import ButtonMixin from "../../components/ui/button/button-mixin.st.css";
-@st-import [IconFill, GradientStrip] from "../../theme/mixins.st.css";
+@st-import [IconFill, GradientStrip] from "../../theme/common/mixins.st.css";
 
 :vars {
 	BgColor: #f0f0f0;

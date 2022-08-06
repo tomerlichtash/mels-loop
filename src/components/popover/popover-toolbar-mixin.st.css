@@ -1,7 +1,7 @@
 @namespace "PopoverToolbar";
 
 @st-import PopoverToolbar from "./popover-toolbar.st.css";
-@st-import [IconFill] from "../../theme/mixins.st.css";
+@st-import [IconFill] from "../../theme/common/mixins.st.css";
 
 :vars {
 	PopoverToolbarBgColor: #fff;

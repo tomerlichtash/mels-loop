@@ -1,13 +1,7 @@
 @namespace "Mixins";
 
-@st-import Header from "../components/header/header.st.css";
-@st-import Button from "../components/ui/button/button.st.css";
-@st-import [ButtonSubtitleSmall] from "../theme/common/typography.st.css";
-
-:vars {
-	SITE_LOGO_DARK: url(//public/favicon-temp.png);
-	SITE_LOGO_BRIGHT: url(//public/favicon-light-temp.png);
-}
+@st-import Header from "../../components/header/header.st.css";
+@st-import [ButtonSubtitleSmall] from "./typography.st.css";
 
 .boxSizing {
 	-webkit-box-sizing: border-box;
@@ -23,9 +17,20 @@
 	user-select: none; /* Likely future */
 }
 
+.ResetListStyle {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
 .verticalAlignSuper {
 	position: relative;
 	top: -6px;
+}
+
+.SectionBox {
+	border-radius: 4px;
+	padding: 2rem;
 }
 
 /* IconFillMixin */
@@ -67,15 +72,3 @@
 .MobileHeader::siteTitle { display: block }
 .MobileHeader::siteSubtitle { -st-mixin: ButtonSubtitleSmall }
 .MobileHeader::siteSubtitle::before { margin: 0; content: "" }
-
-/* ResetListStyleMixin */
-.ResetListStyle {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.SectionBox {
-	border-radius: 4px;
-	padding: 2rem;
-}

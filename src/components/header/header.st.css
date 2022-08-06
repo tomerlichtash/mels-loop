@@ -2,7 +2,7 @@
 
 @st-import Button from "../ui/button/button.st.css";
 @st-import [SiteTitle, SiteSubtitle] from "../../theme/common/typography.st.css";
-@st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [boxSizing] from "../../theme/common/mixins.st.css";
 
 :vars {
 	iconMargin: 0.5rem;

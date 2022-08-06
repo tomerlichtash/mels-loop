@@ -1,6 +1,6 @@
 @namespace "LocaleSelector";
 
-@st-import [boxSizing, preventSelection] from "../../theme/mixins.st.css";
+@st-import [boxSizing, preventSelection] from "../../theme/common/mixins.st.css";
 @st-import [LatinText, HebrewText, ToggleButton, ToggleButtonSelected] from "../../theme/common/typography.st.css";
 @st-import Button from "../ui/button/button.st.css";
 

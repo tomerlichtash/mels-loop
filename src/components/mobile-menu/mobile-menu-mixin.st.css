@@ -3,7 +3,7 @@
 @st-import MobileMenu from "./mobile-menu.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 @st-import HeaderMixin from "../header/header-mixin.st.css";
-@st-import [GradientStrip, preventSelection] from "../../theme/mixins.st.css";
+@st-import [GradientStrip, preventSelection] from "../../theme/common/mixins.st.css";
 
 :vars {
 	BgColor: #373a47;

@@ -1,7 +1,7 @@
 @namespace "Footer";
 
 @st-import Button from "../ui/button/button.st.css";
-@st-import [ResetListStyle] from "../../theme/mixins.st.css";
+@st-import [ResetListStyle] from "../../theme/common/mixins.st.css";
 @st-import [pageWidth] from "../page/page.st.css";
 @st-import [bodyTextNormal, FooterTitle, FooterButton, FooterSectionTitle] from "../../theme/common/typography.st.css";
 

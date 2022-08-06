@@ -1,7 +1,7 @@
 @namespace "CopyUrlButtonContentMixin";
 
 @st-import CopyButtonContent from "./copy-url-button-content.st.css";
-@st-import [TooltipArrow] from "../../theme/mixins.st.css";
+@st-import [TooltipArrow] from "../../theme/common/mixins.st.css";
 
 :vars {
 	ContentBgColor: #808080;

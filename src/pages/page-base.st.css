@@ -13,8 +13,6 @@
 	h5,
 	h6,
 	Topic,
-	/* Title,
-	Subtitle, */
 	Paragraph,
 	Blockquote,
 	InlineCode,
@@ -25,7 +23,7 @@
 	ListBullet,
 	ArticleByline,
 ] from "../theme/common/typography.st.css";
-@st-import [SectionBox] from "../theme/mixins.st.css";
+@st-import [SectionBox] from "../theme/common/mixins.st.css";
 
 :vars {
 	BlockQuoteBorder: 3px solid;

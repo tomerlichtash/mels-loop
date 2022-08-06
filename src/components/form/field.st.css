@@ -1,6 +1,6 @@
 @namespace "Field";
 
-@st-import [boxSizing, preventSelection] from "../../theme/mixins.st.css";
+@st-import [boxSizing, preventSelection] from "../../theme/common/mixins.st.css";
 
 .root {}
 

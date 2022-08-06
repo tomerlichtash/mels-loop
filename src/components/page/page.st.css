@@ -1,6 +1,6 @@
 @namespace "Page";
 
-@st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [boxSizing] from "../../theme/common/mixins.st.css";
 
 :vars {
 	pageWidth: 800px;

@@ -1,7 +1,7 @@
 @namespace "Popover";
 
 @st-import PopoverToolbar from "./popover-toolbar.st.css";
-@st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
+@st-import [preventSelection, verticalAlignSuper] from "../../theme/common/mixins.st.css";
 
 :vars {
 	PopoverContentMaxWidth: 414px;

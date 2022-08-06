@@ -1,7 +1,7 @@
 @namespace "CopyUrlButtonTriggerMixin";
 
 @st-import CopyUrlButtonTrigger from "./copy-url-button-trigger.st.css";
-@st-import [IconFill] from "../../theme/mixins.st.css";
+@st-import [IconFill] from "../../theme/common/mixins.st.css";
 
 :vars {
 	IconFillColor: black;

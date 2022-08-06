@@ -2,7 +2,7 @@
 
 @st-import DynamicContentViewer from "../../content/dynamic-content-viewer/dynamic-content-viewer.st.css";
 @st-import DynamicContentToolbar from "../dynamic-content-toolbar/dynamic-content-toolbar.st.css";
-@st-import [boxSizing] from "../../../theme/mixins.st.css";
+@st-import [boxSizing] from "../../../theme/common/mixins.st.css";
 
 .root {
 	-st-mixin: boxSizing;

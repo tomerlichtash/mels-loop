@@ -1,6 +1,6 @@
 @namespace "AnnotationLink";
 
-@st-import [preventSelection, verticalAlignSuper] from "../../../../theme/mixins.st.css";
+@st-import [preventSelection, verticalAlignSuper] from "../../../../theme/common/mixins.st.css";
 
 :vars {
 	paranthesisMargin: 0.05rem;
@@ -8,7 +8,6 @@
 
 .root {
 	-st-mixin: preventSelection, verticalAlignSuper;
-
 }
 
 .root::before {

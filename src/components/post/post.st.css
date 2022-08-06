@@ -2,7 +2,7 @@
 
 @st-import Button from "../ui/button/button.st.css";
 @st-import ContentComponent from "../content/content-component/content-component.st.css";
-@st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [boxSizing] from "../../theme/common/mixins.st.css";
 
 .root {
 	-st-states: textDirection(enum(ltr, rtl));
