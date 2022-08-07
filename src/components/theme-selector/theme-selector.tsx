@@ -5,11 +5,11 @@ import { ReactThemeContext } from "../../contexts/theme-context";
 import { st, classes } from "./theme-selector.st.css";
 
 export const ThemeSelector = ({ className }: ComponentProps): JSX.Element => {
-	const { theme, toggleTheme } = useContext(ReactThemeContext);
-	const label = `Toggle Theme`;
+	const { toggleTheme } = useContext(ReactThemeContext);
+	const label = `Toggle Theme`; // TODO: translate
 	return (
 		<div
-			className={st(classes.root, { theme })}
+			className={st(classes.root, className)}
 			title={label}
 			aria-label={label}
 			onClick={toggleTheme}

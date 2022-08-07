@@ -22,7 +22,7 @@ export interface IPopoverProps extends ComponentProps {
 	query: string;
 	onExit?: () => void;
 	side: Direction;
-	portalled?: boolean;
+	// portalled?: boolean;
 }
 
 export const Popover = ({
@@ -33,7 +33,7 @@ export const Popover = ({
 	forcePopover,
 	onExit,
 	query,
-	portalled,
+	// portalled,
 	className,
 }: IPopoverProps): JSX.Element => {
 	const toolbar = useToolbar();

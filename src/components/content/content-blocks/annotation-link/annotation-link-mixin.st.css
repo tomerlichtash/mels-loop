@@ -9,7 +9,6 @@
 
 .root {
 	-st-extends: AnnotationLink;
-	-st-mixin: InlineAnnotation;
 }
 
 .root::before,

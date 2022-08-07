@@ -1,78 +1,50 @@
-import React, { Context, createContext, useRef } from "react";
+import React, { Context, createContext } from "react";
 import Cookies from "js-cookie";
-import { useTheme } from "./useTheme";
-import { classes as LightTheme } from "../theme/light/style.st.css";
-import { classes as DarkTheme } from "../theme/dark/style.st.css";
+import { Themes, themes } from "../themes";
 
-export type Themes = "base" | "light" | "dark" | null;
+const storedTheme = Cookies.get("theme");
 
 export interface IThemeContextProps {
 	theme: Themes;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	ref: React.MutableRefObject<any>;
-	setTheme: (theme: Themes) => void;
 }
 
 export interface IThemeContext {
 	theme: Themes;
-	themeRef: string;
 	isDarkTheme: boolean;
 	setTheme: (theme: Themes) => void;
 	toggleTheme: () => void;
 }
 
 export interface ThemeContextProps {
-	children: React.ReactChild;
+	children: React.ReactNode;
 }
 
-const themes = {
-	light: [LightTheme.root],
-	dark: [DarkTheme.root],
-	base: [],
-};
-
 export function ThemeContextProvider({ children }: ThemeContextProps) {
-	const ref = useRef<HTMLDivElement>(null);
-	const styleRef = useRef<HTMLStyleElement>(null);
-	const [theme, setTheme, _ref] = useTheme(
-		themes,
-		ref,
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		styleRef as React.MutableRefObject<any>
-	);
 	const themeContext: IThemeContext = new ThemeContext({
-		theme,
-		setTheme,
-		ref: _ref,
+		theme: (storedTheme || "light") as Themes,
 	});
 
 	return (
 		<ReactThemeContext.Provider value={themeContext}>
-			<div ref={ref}>
-				<style ref={styleRef}></style>
-				{children}
-			</div>
+			{children}
 		</ReactThemeContext.Provider>
 	);
 }
 
 export class ThemeContext implements IThemeContext {
 	private _theme: Themes;
-	private _setState: (theme: Themes) => void;
-	constructor(props: IThemeContextProps) {
-		const { theme, setTheme } = props;
-		this._setState = setTheme;
+	constructor({ theme }: IThemeContextProps) {
 		this._theme = theme;
-	}
-
-	public get themeRef() {
-		return themes[this.theme][0];
 	}
 
 	public setTheme = (theme: Themes) => {
 		this._theme = theme;
-		this._setState(theme);
 		Cookies.set("theme", theme);
+		const ref = window.document.querySelectorAll(
+			"[data-theme]"
+		)[0] as HTMLElement;
+		ref.classList.remove(ref.classList[0]);
+		ref.classList.add(themes[theme][0]);
 	};
 
 	public get theme(): Themes {
@@ -88,12 +60,6 @@ export class ThemeContext implements IThemeContext {
 	};
 }
 
-const ctx = createContext<IThemeContext>(
-	new ThemeContext({
-		theme: null,
-		ref: null,
-		setTheme: () => null,
-	})
-);
+const ctx = createContext<IThemeContext>(new ThemeContext({ theme: null }));
 
 export const ReactThemeContext: Context<IThemeContext> = ctx;

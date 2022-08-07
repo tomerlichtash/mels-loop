@@ -25,6 +25,7 @@
 	overflow: hidden;
 	width: value(PopoverContentMaxWidth);
 	animation: fadeIn 300ms ease-out forwards;
+	border: 1px solid;
 }
 
 .root:type(glossary)::trigger::after {

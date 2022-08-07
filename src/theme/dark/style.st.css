@@ -93,6 +93,8 @@
 	GRADIENT1_START,
 	GRADIENT1_MID,
 	GRADIENT1_END,
+
+	DIALOG_BG_COLOR,	
 ] from "./vars.st.css";
 
 @st-scope .root {
@@ -138,7 +140,7 @@
 			SiteTitleLinkTextColor value(LAYOUT_TEXT_COLOR),
 			SiteLogoBgProps value(SITE_LOGO_BRIGHT),
 			MenuViewPortBgColor value(LAYOUT_BG_COLOR),
-			MenuViewPortShadow value(LAYOUT_BG_COLOR),
+			MenuViewPortShadow value(LAYOUT_SECTION_SHADOW),
 			MenuTriggerTextColor value(LAYOUT_TEXT_COLOR),
 			MenuTriggerBgColorHover value(LAYOUT_TEXT_COLOR_ALT),
 			MenuItemBgColor_Hover value(MENU_ITEM_HOVER_BG_COLOR),			
@@ -216,7 +218,7 @@
 
 	Popover {
 		-st-mixin: PopoverMixin(
-			BgColor value(LAYOUT_BG_COLOR),
+			BgColor value(DIALOG_BG_COLOR),
 			TriggerTextColor value(LINK_TEXT_COLOR),
 			TriggerTextColor_Hover value(LINK_HOVER_TEXT_COLOR),
 			TriggerTextColor_Open value(HIGHLIGHT_OPEN_TEXT_COLOR),
@@ -227,7 +229,7 @@
 	}
 	PopoverToolbar {
 		-st-mixin: PopoverToolbarMixin(
-			PopoverToolbarBgColor value(LAYOUT_BG_COLOR),
+			PopoverToolbarBgColor value(DIALOG_BG_COLOR),
 			SeperatorColor value(DIALOG_TOOLBAR_SEPERATOR),
 			IconFill_Color value(DIALOG_TOOLBAR_ICON_FILL_COLOR),
 			IconFill_Hover value(DIALOG_TOOLBAR_ICON_FILL_HOVER_COLOR),
@@ -238,7 +240,7 @@
 		-st-mixin: DynamicContentViewerMixin(
 			LinkColor value(LINK_TEXT_COLOR),
 			LinkColor_Hover value(LINK_HOVER_TEXT_COLOR),
-			BgColor value(LAYOUT_BG_COLOR),
+			BgColor value(DIALOG_BG_COLOR),
 			NoteTopicBgColor value(DIALOG_TOPIC_BG_COLOR),
 			NoteTopicTextColor value(DIALOG_TOPIC_TEXT_COLOR),
 			NoteTitleTextColor value(HEADING1_TEXT_COLOR),

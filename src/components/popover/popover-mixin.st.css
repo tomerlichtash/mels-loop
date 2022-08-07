@@ -4,6 +4,8 @@
 
 :vars {
 	BgColor: #000;
+	BorderColor: rgba(0, 0, 0, 0.2);
+	BorderRadius: 4px;
 	TriggerTextColor: black;
 	TriggerTextColor_Hover: #808080;
 	TriggerTextColor_Open: magenta;
@@ -19,8 +21,8 @@
 
 .root::content {
 	box-shadow: value(PopoverContentShadow);
-	border-radius: 10px;
-	border: 1px solid value(BgColor);
+	border-radius: value(BorderRadius);
+	border-color: value(BorderColor);
 	background-color: value(BgColor);
 }
 

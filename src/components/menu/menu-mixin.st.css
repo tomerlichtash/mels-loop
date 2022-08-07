@@ -6,10 +6,9 @@
 :vars {
 	LinkColor: inherit;
 	LinkColor_Hover: inherit;
-
 	ListBgColor: transparent;
 	ArrowColor: #fff;
-	ViewPortShadow: none;
+	ViewPortShadow: 0 0 0 transparent;
 	ViewPortBgColor: #fff;
 	TriggerPadding: 0 6px;
 	TriggerLabelLineHeight: auto;
@@ -24,7 +23,6 @@
 	ItemLabelTextColor: inherit;
 	ItemLabelTextColor_Hover: inherit;
 	ItemLabelTextSize: inherit;
-	/* ItemLabelLineHeight: inherit; */
 	ItemLabelTextWeight: inherit;
 	ItemSubtitleColor: inherit;
 	ItemSubtitleTextSize: inherit;
@@ -82,7 +80,6 @@
 }
 .root::menuItemButton {
 	color: value(LinkColor);
-	/* line-height: value(ItemLabelLineHeight); */
 }
 .root::menuItemButton:hover {
 	background-color: value(ItemBgColor_Hover);

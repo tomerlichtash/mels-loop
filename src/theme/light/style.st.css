@@ -238,7 +238,6 @@
 		-st-mixin: DynamicContentViewerMixin(
 			LinkColor value(LINK_TEXT_COLOR),
 			LinkColor_Hover value(LINK_HOVER_TEXT_COLOR),
-			/* BgColor value(LAYOUT_BG_COLOR), */
 			NoteTopicBgColor value(DIALOG_TOPIC_BG_COLOR),
 			NoteTopicTextColor value(DIALOG_TOPIC_TEXT_COLOR),
 			NoteTitleTextColor value(HEADING1_TEXT_COLOR),

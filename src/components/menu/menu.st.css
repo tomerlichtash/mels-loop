@@ -36,8 +36,15 @@
 	-st-states: layout(string);
 	display: grid;
 	margin: 0;
-	column-gap: 10;
+	column-gap: 10px;
 	padding: 1rem;
+	width: 400px;
+}
+
+.menuContent:layout(two) {
+	width: 400px;
+	grid-auto-flow: column;
+	grid-template-rows: repeat(3, 1fr);
 }
 
 .viewportPosition {
@@ -80,7 +87,7 @@
 .caret {
 	position: relative;
 	color: black;
-	top: 1;
+	top: 1px;
 }
 
 .menuItem {
@@ -95,6 +102,8 @@
 
 .more {
 	-st-extends: Button;
+	padding: 0 !important;
+	display: inline !important;
 }
 
 .menuTrigger {
@@ -133,7 +142,7 @@
 	-st-mixin: ButtonSubtitleSmall;
 }
 
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
 	.menuContent:layout(one) {
 		width: 400px;
 		grid-template-columns: ".75fr 1fr";
@@ -143,4 +152,4 @@
 		grid-auto-flow: column;
 		grid-template-rows: repeat(3, 1fr);
 	}
-}
+} */

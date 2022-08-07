@@ -1,21 +1,34 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, {
+	Html,
+	Head,
+	Main,
+	NextScript,
+	DocumentContext,
+	DocumentInitialProps,
+} from "next/document";
 import { fontFaceLinks } from "../site-fonts";
-// import { classes as LightTheme } from "../theme/light/style.st.css";
-// import { classes as DarkTheme } from "../theme/dark/style.st.css";
-// const themes = {
-// 	light: [LightTheme.root][0],
-// 	dark: [DarkTheme.root][0],
-// 	none: [][0],
-// };
+import { themes } from "../themes";
+
+let theme = "";
 
 class CustomDocument extends Document {
+	static async getInitialProps(
+		ctx: DocumentContext
+	): Promise<DocumentInitialProps> {
+		const props = await Document.getInitialProps(ctx);
+		// @ts-expect-error Unknown: Property 'req' does not exist on type 'DocumentContext'.
+		theme = ctx.req.cookies.theme || themes[0];
+		return { ...props };
+	}
 	render() {
 		return (
 			<Html>
 				<Head>{fontFaceLinks}</Head>
 				<body>
-					<Main />
-					<NextScript />
+					<div data-theme={true} className={themes[theme][0]}>
+						<Main />
+						<NextScript />
+					</div>
 				</body>
 			</Html>
 		);
