@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useWindowSize } from "./use-window-size";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { ReactQueryContext } from "../../contexts/query-context";
+// import { ReactQueryContext } from "../../contexts/query-context";
 import Head from "next/head";
 import TopBar from "../top-bar";
 import Footer from "../footer";
@@ -27,32 +27,32 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	image: "/assets/ml-logo.png",
 };
 
-const SCROLL_VIEW_PROPS: ScrollIntoViewOptions = {
-	behavior: "smooth",
-	block: "center",
-};
+// const SCROLL_VIEW_PROPS: ScrollIntoViewOptions = {
+// 	behavior: "smooth",
+// 	block: "center",
+// };
 
 const isDebug = process.env.NEXT_PUBLIC_ML_DEBUG;
 
 export default function Layout({ children, title }: ILayoutProps) {
 	const router = useRouter();
-	const { query } = useContext(ReactQueryContext);
+	// const { query } = useContext(ReactQueryContext);
 	const { siteTitle, siteSubtitle, textDirection, pageName } =
 		useContext(ReactLocaleContext);
 	const { locale, asPath: currentUrl } = router;
-	const { getLine } = query;
+	// const { getLine } = query;
 	const size = useWindowSize();
 	const isMobile = size.width <= 1024;
 
-	useEffect(() => {
-		if (getLine === -1) {
-			return;
-		}
-		setTimeout(() => {
-			const el = window.document.getElementById(`line${getLine}`);
-			el?.scrollIntoView(SCROLL_VIEW_PROPS);
-		}, 200);
-	}, [getLine]);
+	// useEffect(() => {
+	// 	if (getLine === -1) {
+	// 		return;
+	// 	}
+	// 	setTimeout(() => {
+	// 		const el = window.document.getElementById(`line${getLine}`);
+	// 		el?.scrollIntoView(SCROLL_VIEW_PROPS);
+	// 	}, 200);
+	// }, [getLine]);
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
@@ -106,4 +106,3 @@ export default function Layout({ children, title }: ILayoutProps) {
 		</>
 	);
 }
-

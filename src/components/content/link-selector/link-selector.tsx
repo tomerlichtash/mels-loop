@@ -8,7 +8,6 @@ import {
 import { Link, AnnotationLink, TermLink } from "../content-blocks";
 import Popover from "../../popover";
 import { ReactLocaleContext } from "../../../contexts/locale-context";
-import { ReactQueryContext } from "../../../contexts/query-context";
 import DynamicContentBrowser from "../dynamic-content-browser";
 import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
 
@@ -32,11 +31,7 @@ export const LinkSelector = ({
 	const { node } = componentData;
 	const { displayType, key } = node;
 	const dcContext = useContext(ReactDynamicContentContext);
-	const queryContext = useContext(ReactQueryContext);
 	const { textDirection } = useContext(ReactLocaleContext);
-	const { query } = queryContext;
-	const { getQueryUrl, registerNode, onExit } = query;
-	const nodeWithQuery = registerNode(node);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return (
@@ -65,12 +60,8 @@ export const LinkSelector = ({
 		<Popover
 			type={linkType}
 			id={node.target}
-			forcePopover={nodeWithQuery}
-			query={getQueryUrl(node)}
-			onExit={() => onExit()}
 			side={textDirection === "ltr" ? "right" : "left"}
 			trigger={getTriggerComp(linkType, componentData, className)}
-			// portalled={true}
 		>
 			<DynamicContentBrowser node={node} />
 		</Popover>

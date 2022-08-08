@@ -17,9 +17,6 @@ export interface IPopoverProps extends ComponentProps {
 	id: string;
 	type: string;
 	trigger: React.ReactNode;
-	forcePopover?: boolean;
-	query: string;
-	onExit?: () => void;
 	side: Direction;
 }
 
@@ -28,9 +25,6 @@ export const Popover = ({
 	trigger,
 	children,
 	side,
-	forcePopover,
-	onExit,
-	query,
 	className,
 }: IPopoverProps): JSX.Element => {
 	const toolbar = useToolbar();
@@ -40,11 +34,9 @@ export const Popover = ({
 		removeToolbarItems: toolbar.removeItemsById,
 	};
 
-	const forceMount = forcePopover ? { "data-state": "open" } : null;
-
 	return (
 		<ReactPopoverContext.Provider value={ctx}>
-			<span className={st(classes.root, { type })} {...forceMount}>
+			<span className={st(classes.root, { type })}>
 				<PopoverRoot>
 					<PopoverTrigger asChild>
 						<span className={classes.trigger} tabIndex={1}>
@@ -53,16 +45,13 @@ export const Popover = ({
 					</PopoverTrigger>
 					<PopoverContent
 						side={side}
-						forceMount={forceMount}
 						avoidCollisions={true}
 						align="center"
 						sideOffset={5}
 					>
 						<div className={st(classes.content, className)}>
 							<PopoverToolbar
-								query={query}
 								items={toolbar.items}
-								onExit={onExit}
 								className={st(classes.toolbar, className)}
 							/>
 							{children}
