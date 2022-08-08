@@ -4,6 +4,7 @@ import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import { TextDirection } from "../../interfaces/locale-context";
 import { st, classes } from "./footer.st.css";
+import { PUBLIC_PROJECT_GITHUB_ADDRESS } from "../../consts";
 
 export interface IFooterProps extends ComponentProps {
 	textDirection: TextDirection;
@@ -82,7 +83,7 @@ export const Footer = ({
 							<ul className={classes.itemList}>
 								<li className={st(classes.item)}>
 									<Button
-										link="https://github.com/tomerlichtash/mels-loop-nextjs"
+										link={PUBLIC_PROJECT_GITHUB_ADDRESS}
 										label={translate("MENU_ITEM_LABEL_ID_GITHUB")}
 										className={classes.button}
 										target="_blank"

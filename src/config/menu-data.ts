@@ -1,4 +1,5 @@
 import { IMenuItem, IMenuSection } from "../interfaces/menu";
+import { PUBLIC_PROJECT_GITHUB_ADDRESS } from "../consts";
 
 export const MenuSections: IMenuSection[] = [
 	{
@@ -193,7 +194,7 @@ export const MenuItems: IMenuItem[] = [
 		id: "github",
 		type: "external",
 		meta: {
-			url: "https://github.com/tomerlichtash/mels-loop-nextjs",
+			url: PUBLIC_PROJECT_GITHUB_ADDRESS,
 			icon: "github",
 		},
 		keys: {
