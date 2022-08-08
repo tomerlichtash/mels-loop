@@ -9,3 +9,5 @@ export enum CONTENT_TYPES {
 	GLOSSARY = "glossary",
 	ANNOTATION = "annotations",
 }
+
+export const PUBLIC_ML_CONFIG = "__MLCONFIG__";

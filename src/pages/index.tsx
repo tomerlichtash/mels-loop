@@ -32,7 +32,6 @@ const Index: NextPage<IPageProps> = (props) => {
 	return (
 		<Layout>
 			<article className={st(classes.root, { textDirection })}>
-				{/* <div className={classes.section}> */}
 				<h1 className={classes.title}>{title}</h1>
 				<p className={classes.moto}>{moto}</p>
 				{elements.map((node) => {
@@ -44,8 +43,6 @@ const Index: NextPage<IPageProps> = (props) => {
 						/>
 					);
 				})}
-				{/* <p className={classes.credits}>{credits}</p> */}
-				{/* </div> */}
 			</article>
 		</Layout>
 	);
@@ -53,7 +50,6 @@ const Index: NextPage<IPageProps> = (props) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	/**
-	 *
 	 * @param node Guaranteed link node
 	 * @param mode
 	 * @returns

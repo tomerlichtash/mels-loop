@@ -127,4 +127,5 @@ export const Locale: Language = {
 	COMPONENT_BIBLIOGRAPHY_LABEL_SINGLE: "מקור",
 	COMPONENT_BIBLIOGRAPHY_LABEL_MULTIPLE: "מקורות",
 	PRELOADER_LABEL: "טוען...",
+	TOGGLE_THEME: "החלפת צבע אתר",
 };

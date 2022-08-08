@@ -15,7 +15,7 @@ export interface IFontFaceDecl extends IFontFaceLink {
 	weight: number;
 }
 
-const fontBasePath = "/assets/fonts"; // e.g. /public/assets/fonts
+const fontBasePath = "/assets/fonts";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function flatten(arr: any[]) {

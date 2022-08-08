@@ -129,4 +129,5 @@ export const Locale: Language = {
 	COMPONENT_BIBLIOGRAPHY_LABEL_SINGLE: "Source",
 	COMPONENT_BIBLIOGRAPHY_LABEL_MULTIPLE: "Sources",
 	PRELOADER_LABEL: "Loading...",
+	TOGGLE_THEME: "Toggle Theme",
 };

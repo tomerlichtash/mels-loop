@@ -1,8 +1,11 @@
 import React, { Context, createContext } from "react";
 import Cookies from "js-cookie";
-import { Themes, themes } from "../themes";
+import { Themes, themes } from "../config/themes";
+import { PUBLIC_ML_CONFIG } from "../consts";
 
-const storedTheme = Cookies.get("theme");
+const initTheme =
+	typeof window !== "undefined" && window[PUBLIC_ML_CONFIG]["themeName"];
+// const storedTheme = (Cookies.get("theme") || "light") as Themes;
 
 export interface IThemeContextProps {
 	theme: Themes;
@@ -20,16 +23,21 @@ export interface ThemeContextProps {
 }
 
 export function ThemeContextProvider({ children }: ThemeContextProps) {
-	const themeContext: IThemeContext = new ThemeContext({
-		theme: (storedTheme || "light") as Themes,
-	});
-
+	const themeContext: IThemeContext = new ThemeContext({ theme: initTheme });
 	return (
 		<ReactThemeContext.Provider value={themeContext}>
 			{children}
 		</ReactThemeContext.Provider>
 	);
 }
+
+const updateSelector = (theme: string) => {
+	const ref = window.document.querySelectorAll(
+		"[data-theme]"
+	)[0] as HTMLElement;
+	ref.classList.remove(ref.classList[0]);
+	ref.classList.add(themes[theme][0]);
+};
 
 export class ThemeContext implements IThemeContext {
 	private _theme: Themes;
@@ -39,12 +47,8 @@ export class ThemeContext implements IThemeContext {
 
 	public setTheme = (theme: Themes) => {
 		this._theme = theme;
+		updateSelector(theme);
 		Cookies.set("theme", theme);
-		const ref = window.document.querySelectorAll(
-			"[data-theme]"
-		)[0] as HTMLElement;
-		ref.classList.remove(ref.classList[0]);
-		ref.classList.add(themes[theme][0]);
 	};
 
 	public get theme(): Themes {

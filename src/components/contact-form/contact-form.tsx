@@ -89,7 +89,7 @@ export const ContactForm = ({ className }: IFormInstance): JSX.Element => {
 	);
 
 	return (
-		<div className={classes.root}>
+		<div className={st(classes.root, className)}>
 			<Form
 				entries={formFields}
 				onSubmit={onValuesSubmit}

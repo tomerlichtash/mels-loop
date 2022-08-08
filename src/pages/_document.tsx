@@ -7,27 +7,47 @@ import Document, {
 	DocumentInitialProps,
 } from "next/document";
 import { fontFaceLinks } from "../site-fonts";
-import { themes } from "../themes";
+import { Themes, themes } from "../config/themes";
+import { PUBLIC_ML_CONFIG } from "../consts";
 
-let theme = "";
+let themeName: Themes = "light";
+let themeSelector = "";
+
+const setPublicConfig = (
+	themeName: Themes = "light",
+	themeSelector: string
+) => {
+	return `${PUBLIC_ML_CONFIG} = ${JSON.stringify({
+		themeName,
+		themeSelector,
+	})}`;
+};
 
 class CustomDocument extends Document {
 	static async getInitialProps(
 		ctx: DocumentContext
 	): Promise<DocumentInitialProps> {
 		const props = await Document.getInitialProps(ctx);
-		// @ts-expect-error Unknown: Property 'req' does not exist on type 'DocumentContext'.
-		theme = ctx.req.cookies.theme || themes[0];
+		// @ts-expect-error Weird NextJS issue doesn't declare `cookies` in request
+		const { cookies } = ctx.req;
+		themeName = (cookies && cookies["theme"]) || themeName;
+		themeSelector = themes[themeName][0];
 		return { ...props };
 	}
+
 	render() {
 		return (
 			<Html>
 				<Head>{fontFaceLinks}</Head>
 				<body>
-					<div data-theme={true} className={themes[theme][0]}>
+					<div data-theme="" className={themeSelector}>
 						<Main />
 						<NextScript />
+						<script
+							dangerouslySetInnerHTML={{
+								__html: setPublicConfig(themeName, themeSelector),
+							}}
+						/>
 					</div>
 				</body>
 			</Html>
