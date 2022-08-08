@@ -1,44 +1,8 @@
 :vars {
-	FONT_SIZE_1: 2.5vmax;
-	FONT_SIZE_2: 2.03vmax;
-	FONT_SIZE_3: 1.614vmax;
-	FONT_SIZE_4: 1.302vmax;
-	FONT_SIZE_5: 1.041vmax;
-	FONT_SIZE_6: 0.875rem;
-	FONT_SIZE_7: 0.833vmax;
-	FONT_SIZE_8: 1rem;
-	FONT_SIZE_9: 0.85rem;
-	FONT_SIZE_10: 0.8rem;
-	FONT_SIZE_11: 0.7rem;
-	FONT_SIZE_12: 12px;
-	FONT_SIZE_13: 14px;
-}
-
-:vars {
-	LINE_HEIGHT_1: 3vmax;
-	LINE_HEIGHT_2: 2vmax;
-	LINE_HEIGHT_3: 0.25rem;
-	LINE_HEIGHT_4: 40px;
-	LINE_HEIGHT_5: 32px;
-	LINE_HEIGHT_6: 31px;
-	LINE_HEIGHT_7: 25px;
-	LINE_HEIGHT_8: 21px;
-	LINE_HEIGHT_9: 20px;
-}
-
-:vars {
 	FONT_WEIGHT_REGULAR: 300;
 	FONT_WEIGHT_MEDIUM: 500;
 	FONT_WEIGHT_BOLD: 700;
 }
-
-/*
-	MARGIN_1: margin-bottom: 1.302vmax;
-	MARGIN_2: margin-bottom: 0;
-	MARGIN_3: margin-top: 4rem;
-	MARGIN_4: margin: 2rem 0 1rem
-	MARGIN_5: margin-bottom: 1rem;
-*/
 
 .LatinText {
 	font-family: "Roboto Slab", serif;
@@ -87,7 +51,6 @@
 	font-weight: value(FONT_WEIGHT_BOLD);
 	margin-bottom: 0;
 }
-
 .bodyTextNormal {
 	font-size: 0.875rem;
 	line-height: 21px;
@@ -114,9 +77,9 @@
 	margin: 2rem 0 1rem	
 }
 
-.Date {
+/* .Date {
 	font-size: 12px;
-}
+} */
 
 .InlineCode {
 	font-family: monospace;
@@ -140,7 +103,7 @@
 	-st-mixin: bodyTextNormal;
 }
 .ParagraphMargin {
-	margin-bottom: 1.302vmax	
+	margin-bottom: 1.302vmax;
 }
 
 .Blockquote {
@@ -154,25 +117,15 @@
 	font-size: 1rem;
 	line-height: 32px;
 }
-.TopMenuItemTitle {
-	font-size: 1rem;
-	line-height: 0.25rem;
-	font-weight: value(FONT_WEIGHT_MEDIUM);
-}
-.TopMenuItemSubtitle {
-	font-size: 0.85rem;
-}
 
 .SiteTitle {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: value(FONT_WEIGHT_MEDIUM);
 }
-
 .SiteSubtitle {
 	text-transform: lowercase;
 }
-
 
 /* Footer */
 .FooterTitle {

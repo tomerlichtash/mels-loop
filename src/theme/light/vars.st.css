@@ -17,8 +17,6 @@
 	color12,
 	color13,
 	color14,
-	/* color15, */
-	/* color16, */
 	color17,
 	color18,
 	shadow0,
@@ -41,8 +39,6 @@
 	primary4: value(color12);
 	accent1: value(color13);
 	accent2: value(color14);
-	/* accent3: value(color15); */
-	/* accent4: value(color16); */
 	success1: value(color17);
 	fail1: value(color18);
 }
@@ -83,6 +79,7 @@
 	HIGHLIGHT_OPEN_BG_COLOR: value(primary2);
 
 	/* DIALOG */
+	DIALOG_BG_COLOR: value(level1);
 	DIALOG_TOOLBAR_ICON_FILL_COLOR: value(level5);
 	DIALOG_TOOLBAR_ICON_FILL_HOVER_COLOR: value(level8);
 	DIALOG_TOOLBAR_ICON_FILL_HOVER_BG_COLOR: value(level5);
@@ -105,7 +102,6 @@
 	FORM_SUBMIT_BG_COLOR: value(accent1);
 	FORM_SUBMIT_BG_COLOR_HOVER: value(accent2);
 	FORM_SUBMIT_TEXT_COLOR: value(level1);
-	FORM_SUBMIT_TEXT_COLOR_HOVER: value(level1);
 
 	/* TOP BAR MENU */
 	MENU_ITEM_HOVER_BG_COLOR: value(level3);

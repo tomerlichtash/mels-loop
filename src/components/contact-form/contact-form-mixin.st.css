@@ -4,23 +4,21 @@
 @st-import FormMixin from "../form/form-mixin.st.css";
 
 :vars {
-	SubmitButtonBgColor: black;
-	SubmitButtonTextColor: white;
-	SubmitButtonBgColor_Hover: gray;
-	SubmitButtonTextColor_Hover: white;
+	SubmitButtonBgColor: #000;
+	SubmitButtonTextColor: #fff;
+	SubmitButtonBgColor_Hover: #c0c0c0;
+	SubmitButtonTextColor_Hover: value(SubmitButtonTextColor);
 	SubmitButtonRadius: 4px;
-	FieldLabelTextColor: black;
+	FieldLabelTextColor: #000;
 	FieldLabelIconColor: value(FieldLabelTextColor);
-	FieldLabelBorderColor: black;
-	FieldLabelBorderColor_Focus: black;
+	FieldLabelBorderColor: #000;
+	FieldLabelBorderColor_Focus: #000;
 	FieldLabelBorderRadius: 3px;
 	FieldInputBgColor_Hover: #f0f0f0;
 	FieldInputBgColor_Focus: inherit;
 	FieldInputPlaceholderTextColor: #c0c0c0;
-
 	FieldInputSuccessTextColor: #808080;
 	FieldLabelBorderColor_Success: value(FieldInputSuccessTextColor);
-	
 	FieldInputErrorTextColor: #808080;
 	FieldLabelBorderColor_Error: value(FieldInputErrorTextColor);
 }
