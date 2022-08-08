@@ -20,7 +20,6 @@
 	ItemLabelTextColor_Hover: inherit;
 	ItemBgColor_Hover: inherit;
 	ItemLabelTextSize: 1rem;
-	/* ItemLabelLineHeight: inherit; */
 	ItemLabelTextWeight: 500;
 	ItemSubtitleLineHeight: inherit;
 	ItemSubtitleTextSize: 0.75rem;
@@ -85,9 +84,6 @@
 		ButtonTextColor value(ItemTextColor),
 		ButtonTextColor_Hover value(ItemTextColor_Hover),
 		ButtonBgColor_Hover value(ItemBgColor_Hover),
-		/* ButtonLabelLineHeight value(ItemLabelLineHeight), */
-		/* ButtonLabelTextSize value(ItemLabelTextSize),
-		ButtonLabelTextWeight value(ItemLabelTextWeight), */
 		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
 		ButtonChildrenTextColor value(ItemSubtitleTextColor),
 		ButtonBorderBottomSize value(ItemBorderSize),

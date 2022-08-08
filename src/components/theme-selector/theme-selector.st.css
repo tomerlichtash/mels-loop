@@ -7,8 +7,6 @@
 	-st-mixin: preventSelection;
 	width: 25px;
 	height: 25px;
-	/* line-height: 25px; */
-	/* text-align: center; */
 	cursor: pointer;
 	border-radius: 50%;
 	display: flex;

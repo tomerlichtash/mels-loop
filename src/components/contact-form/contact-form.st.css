@@ -40,7 +40,6 @@
 
 .form::field::input:tag(textarea) {
 	height: 250px;
-	/* line-height: 20px; */
 }
 
 .form::field::error {
@@ -62,9 +61,5 @@
 		::form::field {
 			display: block;
 		}
-		/* ::form::field::inputContainer {
-		}
-		::form::field::input {
-		} */
 	}
 }

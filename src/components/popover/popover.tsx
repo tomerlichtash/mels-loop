@@ -1,5 +1,4 @@
 import React from "react";
-// import Portalled from "../portalled";
 import { PopoverToolbar } from "./popover-toolbar";
 import { IPopoverContext } from "../../interfaces/IPopoverContext";
 import { Direction } from "../../interfaces/locale-context";
@@ -22,7 +21,6 @@ export interface IPopoverProps extends ComponentProps {
 	query: string;
 	onExit?: () => void;
 	side: Direction;
-	// portalled?: boolean;
 }
 
 export const Popover = ({
@@ -33,7 +31,6 @@ export const Popover = ({
 	forcePopover,
 	onExit,
 	query,
-	// portalled,
 	className,
 }: IPopoverProps): JSX.Element => {
 	const toolbar = useToolbar();
@@ -60,9 +57,7 @@ export const Popover = ({
 						avoidCollisions={true}
 						align="center"
 						sideOffset={5}
-						// portalled={portalled}
 					>
-						{/* <Portalled> */}
 						<div className={st(classes.content, className)}>
 							<PopoverToolbar
 								query={query}
@@ -73,7 +68,6 @@ export const Popover = ({
 							{children}
 						</div>
 						<PopoverArrow />
-						{/* </Portalled> */}
 					</PopoverContent>
 				</PopoverRoot>
 			</span>
