@@ -9,9 +9,9 @@
 	LinkColor: #000;
 	LinkColor_Hover: #c0c0c0;
 	TextColor: #000;
-	StripGradientStartColor: white;
-	StripGradientMidColor: gray;
-	StripGradientEndColor: black;
+	StripGradientStartColor: #fff;
+	StripGradientMidColor: #c0c0c0;
+	StripGradientEndColor: #000;
 }
 
 .root {

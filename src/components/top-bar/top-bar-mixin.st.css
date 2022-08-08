@@ -6,7 +6,7 @@
 
 :vars {
 	BgColor: #fff;
-	SiteTitleLinkTextColor: black;
+	SiteTitleLinkTextColor: #000;
 	SiteLogoBgProps: inherit;
 	LinkColor: #000;
 	LinkColor_Hover: #c0c0c0;

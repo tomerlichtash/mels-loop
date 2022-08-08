@@ -3,18 +3,18 @@
 @st-import Field from "./field.st.css";
 
 :vars {
-	LabelTextColor: blue;
-	LabelIconColor: black;
-	LabelBorderColor: black;
-	LabelBorderColor_Focus: black;
-	FieldLabelBorderColor_Success: black;
-	LabelBorderColor_Error: black;
+	LabelTextColor: #000;
+	LabelIconColor: #000;
+	LabelBorderColor: #000;
+	LabelBorderColor_Focus: #000;
+	FieldLabelBorderColor_Success: #000;
+	LabelBorderColor_Error: #000;
 	LabelBorderRadius: 0;
 	InputBgColor_Hover: #f0f0f0;
 	InputBgColor_Focus: #fff;
 	InputPlaceholderTextColor: #808080;
-	FieldInputErrorTextColor: black;
-	FieldInputSuccessTextColor: black;
+	FieldInputErrorTextColor: #000;
+	FieldInputSuccessTextColor: #000;
 }
 
 .root {

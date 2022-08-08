@@ -6,7 +6,7 @@
 	BgColor: #000;
 	BorderColor: rgba(0, 0, 0, 0.2);
 	BorderRadius: 4px;
-	TriggerTextColor: black;
+	TriggerTextColor: #000;
 	TriggerTextColor_Hover: #808080;
 	TriggerTextColor_Open: magenta;
 	TriggerTextBgColor_Open: #c0c0c0;

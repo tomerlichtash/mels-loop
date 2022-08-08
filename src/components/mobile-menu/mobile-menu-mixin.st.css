@@ -9,9 +9,9 @@
 	BgColor: #373a47;
 	BurgerBars: #373a47;
 	BurgerCrossColor: #bdc3c7;
-	StripGradientStartColor: white;
-	StripGradientMidColor: gray;
-	StripGradientEndColor: black;
+	StripGradientStartColor: #fff;
+	StripGradientMidColor: #c0c0c0;
+	StripGradientEndColor: #000;
 	ItemTextColor: inherit;
 	ItemTextColor_Hover: inherit;
 	ItemPadding: 1rem;
@@ -28,7 +28,7 @@
 	ItemBorderSize: 1px;
 	SectionTitleColor: inherit;
 	HeaderLogoProps: none;
-	SiteTitleColor: white;
+	SiteTitleColor: #fff;
 }
 
 .root {

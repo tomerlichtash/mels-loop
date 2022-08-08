@@ -46,16 +46,16 @@
 
 /* ToolbarArrowMixin */
 :vars {
-	TooltipArrowColor: red;
+	TooltipArrowColor: #000;
 }
 .TooltipArrow {}
 .TooltipArrow polygon { fill: value(TooltipArrowColor) }
 
 /* GradientStripMixin */
 :vars {
-	StripGradientStartColor: white;
-	StripGradientMidColor: gray;
-	StripGradientEndColor: black;
+	StripGradientStartColor: #fff;
+	StripGradientMidColor: #c0c0c0;
+	StripGradientEndColor: #000;
 	StripGradientHeight: 4px;
 }
 .GradientStrip {
