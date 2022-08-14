@@ -54,6 +54,7 @@
 .root::contentComponent:type(heading_2) {
 	color: value(Heading2TextColor);
 }
+.root::sectionTitle,
 .root::contentComponent:type(heading_3) {
 	color: value(Heading3TextColor);
 }

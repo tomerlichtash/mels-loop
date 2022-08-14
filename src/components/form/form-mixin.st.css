@@ -16,9 +16,11 @@
 	FieldLabelBorderColor_Error: #000;
 	FieldLabelBorderColor_Focus: #000;
 	FieldLabelBorderRadius: 0;
-	FieldInputBgColor_Focus: #fff;
 	FieldInputIconColor: #000;
+	FieldInputTextColor: #fff;
+	FieldInputBgColor: #f0f0f0;
 	FieldInputBgColor_Hover: #f0f0f0;
+	FieldInputBgColor_Focus: #fff;
 	FieldInputPlaceholderTextColor: #808080;
 	FieldInputErrorTextColor: #808080;
 	FieldInputSuccessTextColor: #808080;
@@ -47,6 +49,8 @@
 		FieldLabelBorderColor_Success value(FieldLabelBorderColor_Success),
 		LabelBorderColor_Error value(FieldLabelBorderColor_Error),
 		LabelBorderRadius value(FieldLabelBorderRadius),
+		InputTextColor value(FieldInputTextColor),
+		InputBgColor value(FieldInputBgColor),
 		InputBgColor_Hover value(FieldInputBgColor_Hover),
 		InputBgColor_Focus value(FieldInputBgColor_Focus),
 		InputPlaceholderTextColor value(FieldInputPlaceholderTextColor),

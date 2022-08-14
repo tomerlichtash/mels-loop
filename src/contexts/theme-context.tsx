@@ -1,11 +1,10 @@
 import React, { Context, createContext } from "react";
 import Cookies from "js-cookie";
 import { Themes, themes } from "../config/themes";
-import { PUBLIC_ML_CONFIG } from "../consts";
+import { PUBLIC_ML_CONFIG_VAR } from "../consts";
 
 const initTheme =
-	typeof window !== "undefined" && window[PUBLIC_ML_CONFIG]["themeName"];
-// const storedTheme = (Cookies.get("theme") || "light") as Themes;
+	typeof window !== "undefined" && window[PUBLIC_ML_CONFIG_VAR]["themeName"];
 
 export interface IThemeContextProps {
 	theme: Themes;
@@ -23,7 +22,9 @@ export interface ThemeContextProps {
 }
 
 export function ThemeContextProvider({ children }: ThemeContextProps) {
-	const themeContext: IThemeContext = new ThemeContext({ theme: initTheme });
+	const themeContext: IThemeContext = new ThemeContext({
+		theme: initTheme,
+	});
 	return (
 		<ReactThemeContext.Provider value={themeContext}>
 			{children}
@@ -31,7 +32,7 @@ export function ThemeContextProvider({ children }: ThemeContextProps) {
 	);
 }
 
-const updateSelector = (theme: string) => {
+const updateClassName = (theme: string) => {
 	const ref = window.document.querySelectorAll(
 		"[data-theme]"
 	)[0] as HTMLElement;
@@ -47,7 +48,7 @@ export class ThemeContext implements IThemeContext {
 
 	public setTheme = (theme: Themes) => {
 		this._theme = theme;
-		updateSelector(theme);
+		updateClassName(theme);
 		Cookies.set("theme", theme);
 	};
 

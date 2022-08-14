@@ -7,9 +7,11 @@
 	LabelIconColor: #000;
 	LabelBorderColor: #000;
 	LabelBorderColor_Focus: #000;
-	FieldLabelBorderColor_Success: #000;
-	LabelBorderColor_Error: #000;
+	FieldLabelBorderColor_Success: #0f0;
+	LabelBorderColor_Error: #f00;
 	LabelBorderRadius: 0;
+	InputTextColor: #000;
+	InputBgColor: #fff;
 	InputBgColor_Hover: #f0f0f0;
 	InputBgColor_Focus: #fff;
 	InputPlaceholderTextColor: #808080;
@@ -28,6 +30,8 @@
 .root::input {
 	border-color: value(LabelBorderColor);
 	border-radius: value(LabelBorderRadius);
+	background-color: value(InputBgColor);
+	color: value(InputTextColor);
 }
 
 .root::input::placeholder {

@@ -54,6 +54,7 @@
 	-st-mixin: SubtitleMargin1;
 }
 
+.sectionTitle,
 .root::contentComponent:type(heading_3) {
 	-st-mixin: h3, SubtitleMargin2;
 }

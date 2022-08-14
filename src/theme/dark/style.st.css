@@ -93,6 +93,14 @@
 	GRADIENT1_MID,
 	GRADIENT1_END,
 
+	MENU_BG_COLOR,
+	MENU_ITEM_TEXT_COLOR,
+	MENU_ITEM_HOVER_TEXT_COLOR,
+	INPUT_TEXT_COLOR,
+
+	INPUT_BG_COLOR,
+	INPUT_LABEL_FOCUS_BG_COLOR,
+
 	DIALOG_BG_COLOR,	
 ] from "./vars.st.css";
 
@@ -133,12 +141,13 @@
 
 	TopBar {
 		-st-mixin: TopBarMixin(
-			LinkColor value(LINK_TEXT_COLOR),
-			LinkColor_Hover value(LINK_HOVER_TEXT_COLOR),
+			LinkColor value(MENU_ITEM_TEXT_COLOR),
+			LinkColor_Hover value(MENU_ITEM_HOVER_TEXT_COLOR),
 			BgColor value(LAYOUT_ALT_BG_COLOR),
 			SiteTitleLinkTextColor value(LAYOUT_TEXT_COLOR),
 			SiteLogoBgProps value(SITE_LOGO_BRIGHT),
-			MenuViewPortBgColor value(LAYOUT_BG_COLOR),
+			MenuArrowColor value(MENU_BG_COLOR),
+			MenuViewPortBgColor value(MENU_BG_COLOR),
 			MenuViewPortShadow value(LAYOUT_SECTION_SHADOW),
 			MenuTriggerTextColor value(LAYOUT_TEXT_COLOR),
 			MenuTriggerBgColorHover value(LAYOUT_TEXT_COLOR_ALT),
@@ -205,7 +214,10 @@
 			SubmitButtonBgColor_Hover value(FORM_SUBMIT_BG_COLOR_HOVER),
 			SubmitButtonTextColor value(FORM_SUBMIT_TEXT_COLOR),
 			FieldLabelTextColor value(INPUT_LABEL_TEXT_COLOR),
+			FieldInputTextColor value(INPUT_TEXT_COLOR),
+			FieldInputBgColor value(INPUT_BG_COLOR),
 			FieldInputBgColor_Hover value(INPUT_LABEL_HOVER_BG_COLOR),
+			FieldInputBgColor_Focus value(INPUT_LABEL_FOCUS_BG_COLOR),
 			FieldLabelBorderColor value(INPUT_BORDER_COLOR),
 			FieldLabelBorderColor_Focus value(INPUT_BORDER_COLOR_FOCUS),
 			FieldInputPlaceholderTextColor value(INPUT_PLACEHOLDER_TEXT_COLOR),

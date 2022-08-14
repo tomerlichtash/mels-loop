@@ -1,3 +1,5 @@
+export const fontBasePath = "/assets/fonts";
+
 export const siteFontData = [
 	{
 		id: "roboto-slab",

@@ -1,7 +1,11 @@
 @namespace "ContactForm";
 
 @st-import Form from "../form/form.st.css";
-@st-import [SmallCaption, InputLabel, InputText] from "../../theme/common/typography.st.css";
+@st-import [
+	SmallCaption,
+	InputLabel,
+	InputText
+] from "../../theme/common/typography.st.css";
 
 .root {}
 
@@ -14,16 +18,11 @@
 	display: flex;
 }
 
-.form::field::label {
-	align-content: center;
-}
-
 .form::field::caption {
 	-st-mixin: InputLabel;
 	width: 150px;
 	display: flex;
 	align-items: flex-start;
-	align-content: center;
 }
 
 .form::field::inputContainer {

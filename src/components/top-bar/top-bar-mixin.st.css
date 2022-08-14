@@ -15,7 +15,7 @@
 	MenuTriggerTextColor: #000;
 	MenuTriggerBgColorHover: #f0f0f0;
 	MenuItemBgColor_Hover: #c0c0c0;
-
+	MenuArrowColor: #000;
 }
 
 .root {
@@ -35,6 +35,7 @@
 	-st-mixin: MenuMixin(
 		LinkColor value(LinkColor),
 		LinkColor_Hover value(LinkColor_Hover),
+		ArrowColor value(MenuArrowColor),
 		ViewPortBgColor value(MenuViewPortBgColor),
 		ViewPortShadow value(MenuViewPortShadow),
 		TriggerTextColor value(MenuTriggerTextColor),

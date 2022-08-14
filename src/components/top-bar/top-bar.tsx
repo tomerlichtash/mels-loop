@@ -6,6 +6,7 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { MenuProvider } from "../menu-provider/menu-provider";
 import { ComponentProps } from "../../interfaces/models";
 import { st, classes } from "./top-bar.st.css";
+import { isExperimentEnabled } from "../../config";
 
 export default function TopBar({ className }: ComponentProps) {
 	const { locale, textDirection } = useContext(ReactLocaleContext);
@@ -17,7 +18,9 @@ export default function TopBar({ className }: ComponentProps) {
 				<LocaleSelector
 					className={st(classes.localeSelector, { locale }, classes.item)}
 				/>
-				<ThemeSelector className={st(classes.themeSelector, classes.item)} />
+				{isExperimentEnabled("DarkTheme") && (
+					<ThemeSelector className={st(classes.themeSelector, classes.item)} />
+				)}
 			</div>
 		</div>
 	);

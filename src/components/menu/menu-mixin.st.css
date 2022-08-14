@@ -64,6 +64,7 @@
 }
 
 .root::menuTrigger[data-state="open"] > * {
+	border-radius: value(TriggerRadius);
 	color: value(TriggerTextColor_Hover);
 }
 

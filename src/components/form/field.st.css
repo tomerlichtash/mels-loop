@@ -27,7 +27,11 @@
 	display: block;
 	cursor: pointer;
 	background: none;
-	outline: 1;
+	outline: 0;
+}
+
+.input:focus {
+	outline: 2px solid blue;
 }
 
 .input:tag(textarea) {

@@ -6,6 +6,7 @@
 	ButtonTextColor: inherit;
 	ButtonTextColor_Hover: inherit;
 	ButtonBgColor_Hover: inherit;
+	ButtonBgColor: inherit;
 
 	ButtonLabelLineHeight: inherit;
 	ButtonRadius: inherit;
@@ -27,6 +28,7 @@
 	border-bottom: value(ButtonBorderBottomSize) solid value(ButtonBorderBottomColor);
 	padding: value(ButtonPadding);
 	color: value(ButtonTextColor);
+	background-color: value(ButtonBgColor);
 }
 
 .root:hover {

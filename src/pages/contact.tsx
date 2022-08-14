@@ -15,7 +15,9 @@ const Contact: NextPage<IPageProps> = () => {
 				<p className={classes.title}>{translate("CONTACT_PAGE_SUBTITLE")}</p>
 				<div className={classes.section}>
 					<p className={classes.paragraph}>{translate("CONTACT_PAGE_TEXT1")}</p>
-					<h3>{translate("CONTACT_FORM_FORM_TITLE")}</h3>
+					<h3 className={classes.sectionTitle}>
+						{translate("CONTACT_FORM_FORM_TITLE")}
+					</h3>
 					<p className={classes.paragraph}>
 						{translate("CONTACT_FORM_FORM_SUBTITLE")}
 					</p>

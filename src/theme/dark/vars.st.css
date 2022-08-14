@@ -58,7 +58,7 @@
 	/* HEADINGS */
 	HEADING1_TEXT_COLOR: value(level1);
 	HEADING2_TEXT_COLOR: value(level2);
-	HEADING3_TEXT_COLOR: value(level4);
+	HEADING3_TEXT_COLOR: value(level3);
 	HEADING4_TEXT_COLOR: value(level5);
 	HEADING5_TEXT_COLOR: value(level5);
 	HEADING6_TEXT_COLOR: value(level5);
@@ -98,7 +98,10 @@
 	INPUT_BORDER_COLOR_FOCUS: value(accent1);
 	INPUT_PLACEHOLDER_TEXT_COLOR: value(level5);
 	INPUT_VALIDATION_SUCCESS_COLOR: value(success1);
-	INPUT_VALIDATION_FAIL_COLOR: #f00;
+	INPUT_VALIDATION_FAIL_COLOR: #f44;
+	INPUT_BG_COLOR: value(level4);
+	INPUT_TEXT_COLOR: value(level8);
+	INPUT_LABEL_FOCUS_BG_COLOR: value(level2);
 
 	/* FORM SUBMIT BUTTON */
 	FORM_SUBMIT_BG_COLOR: value(primary1);
@@ -106,6 +109,9 @@
 	FORM_SUBMIT_TEXT_COLOR: value(level1);
 
 	/* TOP BAR MENU */
+	MENU_BG_COLOR: value(level3);
+	MENU_ITEM_TEXT_COLOR: value(level7);
+	MENU_ITEM_HOVER_TEXT_COLOR: value(level1);
 	MENU_ITEM_HOVER_BG_COLOR: value(primary1);
 
 	/* MOBILE MENU */
