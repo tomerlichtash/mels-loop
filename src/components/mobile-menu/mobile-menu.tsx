@@ -18,7 +18,7 @@ export interface IMobileNavProps extends ComponentProps {
 }
 
 const groupChild = (child: IMenuItem) => {
-	const { meta, keys, type } = child;
+	const { id, meta, keys, type } = child;
 	const { url } = meta;
 	const { title, author, description } = keys;
 	const subtitle = type === "article" ? author : description;
@@ -27,7 +27,7 @@ const groupChild = (child: IMenuItem) => {
 			link={url}
 			label={title}
 			key={mlUtils.uniqueId()}
-			className={classes.menuItemButton}
+			className={st(classes.menuItemButton, { id })}
 		>
 			<div className={classes.subtitle}>{subtitle}</div>
 		</Button>
@@ -36,6 +36,7 @@ const groupChild = (child: IMenuItem) => {
 
 const renderSingleItems = (children: IMenuItem[]) => {
 	return children.map((child) => {
+		const { id } = child;
 		const { title, description } = child.keys;
 		const { url } = child.meta;
 		return (
@@ -43,7 +44,7 @@ const renderSingleItems = (children: IMenuItem[]) => {
 				link={url}
 				label={title}
 				key={mlUtils.uniqueId()}
-				className={classes.menuItemButton}
+				className={st(classes.menuItemButton, { id })}
 			>
 				<div>{description}</div>
 			</Button>
@@ -110,7 +111,7 @@ export const MobileMenu = ({
 			outerContainerId={"outer-container"}
 			burgerButtonClassName={st(classes.burgerButton, { side })}
 			menuClassName={classes.burgerMenu}
-			burgerBarClassName={classes.burgerBars}
+			burgerBarClassName={st(classes.burgerBars, "data-burger-bars")}
 			crossButtonClassName={st(classes.crossButton, { side })}
 			crossClassName={classes.burgerCross}
 			overlayClassName={classes.overlay}
