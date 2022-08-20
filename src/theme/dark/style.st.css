@@ -101,7 +101,7 @@
 	INPUT_BG_COLOR,
 	INPUT_LABEL_FOCUS_BG_COLOR,
 
-	DIALOG_BG_COLOR,	
+	DIALOG_BG_COLOR,
 ] from "./vars.st.css";
 
 @st-scope .root {

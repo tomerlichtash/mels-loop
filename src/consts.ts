@@ -10,7 +10,5 @@ export enum CONTENT_TYPES {
 	ANNOTATION = "annotations",
 }
 
-export const PUBLIC_ML_CONFIG_VAR = "__MLCONFIG__";
-
 export const PUBLIC_PROJECT_GITHUB_ADDRESS =
 	"https://github.com/tomerlichtash/mels-loop";

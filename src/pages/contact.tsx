@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import Layout from "../components/layout/layout";
 import { GetStaticProps, NextPage } from "next";
-import { IPageProps } from "../interfaces/models";
+import type { IPageProps } from "../interfaces/models";
 import { ReactLocaleContext } from "../contexts/locale-context";
-import { ContactForm } from "../components/contact-form/contact-form";
+import ContactForm from "../components/contact-form";
 import { classes } from "./page-base.st.css";
 
 const Contact: NextPage<IPageProps> = () => {

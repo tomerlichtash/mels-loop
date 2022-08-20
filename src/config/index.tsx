@@ -1,26 +1,36 @@
-import experiments from "../config/experiments.json";
 import { Themes, themes } from "../config/themes";
-import { PUBLIC_ML_CONFIG_VAR } from "../consts";
 
-type ExperimentEnv = "development" | "production" | "disabled";
+const PUBLIC_ML_CONFIG_VAR = "__MLCONFIG__";
 
-const env = process.env.NODE_ENV;
-
-export interface IPublicConfig {
+export interface IMLConfig {
 	themeName: Themes;
-	themeId: string;
-	debug: boolean;
-	experiments: Record<string, ExperimentEnv>;
+	themeClassName: string;
+}
+export class MLConfig {
+	private config: IMLConfig;
+
+	constructor({ theme }: { theme: Themes }) {
+		this.setTheme(theme);
+	}
+
+	public getConfig(prop?: string) {
+		if (prop && this.config[prop]) return this.config[prop];
+		return this.config;
+	}
+
+	public getThemeClassName() {
+		return this.config.themeClassName;
+	}
+
+	public setTheme(themeName: Themes) {
+		this.config = {
+			themeName: themeName,
+			themeClassName: themes[themeName][0],
+		};
+	}
 }
 
-let config: IPublicConfig = {
-	themeName: null,
-	themeId: "",
-	debug: !!process.env.NEXT_PUBLIC_ML_DEBUG,
-	experiments: JSON.parse(JSON.stringify(experiments)),
-};
-
-export const addConfigScript = () => {
+export const addConfigScript = (config) => {
 	return (
 		<script
 			dangerouslySetInnerHTML={{
@@ -30,22 +40,5 @@ export const addConfigScript = () => {
 	);
 };
 
-export const getConfig = () => {
-	return config;
-};
-
-export const setTheme = (themeName: Themes) => {
-	config.themeName = themeName;
-	config.themeId = themes[themeName][0];
-};
-
-export const getThemeId = () => {
-	return config.themeId;
-};
-
-export const isExperimentEnabled = (experimentName: string) => {
-	const experiment = config.experiments[experimentName];
-	if (!experiment || experiment === "disabled") return false;
-	if (experiment === "production") return true;
-	return experiment === env;
-};
+export const getWindowConfig = () =>
+	typeof window !== "undefined" && window[PUBLIC_ML_CONFIG_VAR];

@@ -23,6 +23,7 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	height: 32,
 	width: 32,
 	debug: true,
+	// TODO: Use light logo when dark mode is enabled
 	image: "/assets/ml-logo.png",
 };
 

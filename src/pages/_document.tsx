@@ -7,29 +7,37 @@ import Document, {
 	DocumentInitialProps,
 } from "next/document";
 import { fontFaceLinks } from "../site-fonts";
-import { setTheme, addConfigScript, getThemeId } from "../config";
+import { MLConfig, addConfigScript } from "../config";
 import type { Themes } from "../config/themes";
 
-class CustomDocument extends Document<DocumentInitialProps> {
+type CustomDocumentProps = DocumentInitialProps & {
+	mlConfig: MLConfig;
+};
+
+class CustomDocument extends Document<CustomDocumentProps> {
 	static async getInitialProps(
 		ctx: DocumentContext
-	): Promise<DocumentInitialProps> {
+	): Promise<CustomDocumentProps> {
+		const mlConfig = new MLConfig({ theme: "light" });
 		const props = await Document.getInitialProps(ctx);
 		// @ts-expect-error Weird NextJS issue doesn't declare `cookies` in request
 		const { cookies } = ctx.req;
-		setTheme((cookies && (cookies["theme"] as Themes)) || "light");
-		return { ...props };
+		cookies &&
+			cookies["theme"] &&
+			mlConfig.setTheme((cookies["theme"] || "light") as Themes);
+		return { ...props, mlConfig };
 	}
 
 	render() {
+		const { mlConfig } = this.props;
 		return (
 			<Html>
 				<Head>{fontFaceLinks}</Head>
 				<body>
-					<div data-theme className={getThemeId()}>
+					<div data-theme className={mlConfig.getThemeClassName()}>
 						<Main />
 						<NextScript />
-						{addConfigScript()}
+						{addConfigScript(mlConfig.getConfig())}
 					</div>
 				</body>
 			</Html>

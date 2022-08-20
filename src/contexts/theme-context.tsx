@@ -1,10 +1,7 @@
 import React, { Context, createContext } from "react";
 import Cookies from "js-cookie";
 import { Themes, themes } from "../config/themes";
-import { PUBLIC_ML_CONFIG_VAR } from "../consts";
-
-const initTheme =
-	typeof window !== "undefined" && window[PUBLIC_ML_CONFIG_VAR]["themeName"];
+import { getWindowConfig } from "../config";
 
 export interface IThemeContextProps {
 	theme: Themes;
@@ -22,9 +19,8 @@ export interface ThemeContextProps {
 }
 
 export function ThemeContextProvider({ children }: ThemeContextProps) {
-	const themeContext: IThemeContext = new ThemeContext({
-		theme: initTheme,
-	});
+	const { themeName: theme } = getWindowConfig();
+	const themeContext: IThemeContext = new ThemeContext({ theme });
 	return (
 		<ReactThemeContext.Provider value={themeContext}>
 			{children}
