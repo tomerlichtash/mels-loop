@@ -57,14 +57,19 @@ export const LinkSelector = ({
 		);
 	}
 	return (
-		<Popover
-			type={linkType}
-			id={node.target}
-			side={textDirection === "ltr" ? "right" : "left"}
-			trigger={getTriggerComp(linkType, componentData, className)}
+		<span
+			data-link-type={node.linkType}
+			data-link-target={node.target.split(`/`)[1]}
 		>
-			<DynamicContentBrowser node={node} />
-		</Popover>
+			<Popover
+				type={linkType}
+				id={node.target}
+				side={textDirection === "ltr" ? "right" : "left"}
+				trigger={getTriggerComp(linkType, componentData, className)}
+			>
+				<DynamicContentBrowser node={node} />
+			</Popover>
+		</span>
 	);
 };
 

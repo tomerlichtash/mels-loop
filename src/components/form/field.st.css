@@ -2,7 +2,9 @@
 
 @st-import [boxSizing, preventSelection] from "../../theme/common/mixins.st.css";
 
-.root {}
+.root {
+	-st-states: id(string);
+}
 
 .label {
 	-st-mixin: preventSelection;

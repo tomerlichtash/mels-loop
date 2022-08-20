@@ -128,6 +128,7 @@
 
 .menuItemButton {
 	-st-extends: Button;
+	-st-states: id(string);
 	transition: all 75ms ease-in;
 	display: block;
 }

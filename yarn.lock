@@ -1400,6 +1400,14 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@playwright/test@^1.23.4":
+  version "1.23.4"
+  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.23.4.tgz#d742ed34fc3eb09e29c2e652c2a646ba1e3c6b08"
+  integrity sha512-iIsoMJDS/lyuhw82FtcV/B3PXikgVD3hNe5hyvOpRM0uRr1OIpN3LgPeRbBjhzBWmyf6RgRg5fqK5sVcpA03yA==
+  dependencies:
+    "@types/node" "*"
+    playwright-core "1.23.4"
+
 "@radix-ui/number@1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@radix-ui/number/-/number-1.0.0.tgz"
@@ -1814,6 +1822,15 @@
     postcss-nested "^5.0.6"
     postcss-safe-parser "^6.0.0"
     postcss-value-parser "^4.2.0"
+
+"@stylable/dom-test-kit@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@stylable/dom-test-kit/-/dom-test-kit-5.2.0.tgz#900ebd6b1fb3c3dc7144c0ec1eb6a1cd64cfc375"
+  integrity sha512-Q8E8hElcKenVv+fKCGWcPYs/XrCaZp0PBetxKjy1zL7nXuxYZS+BPY8nbxtYO7pNHdfa9IiFNluqpCkejJoj+Q==
+  dependencies:
+    "@stylable/core" "^5.2.0"
+    "@stylable/runtime" "^5.2.0"
+    "@tokey/css-selector-parser" "^0.6.0"
 
 "@stylable/module-utils@^5.2.0":
   version "5.2.0"
@@ -4268,6 +4285,11 @@ picocolors@^1.0.0:
 picomatch@^2.2.3:
   version "2.3.1"
   resolved "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
+
+playwright-core@1.23.4:
+  version "1.23.4"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.23.4.tgz#e8a45e549faf6bfad24a0e9998e451979514d41e"
+  integrity sha512-h5V2yw7d8xIwotjyNrkLF13nV9RiiZLHdXeHo+nVJIYGVlZ8U2qV0pMxNJKNTvfQVT0N8/A4CW6/4EW2cOcTiA==
 
 postcss-js@^4.0.0:
   version "4.0.0"
