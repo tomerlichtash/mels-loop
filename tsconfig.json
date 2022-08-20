@@ -16,11 +16,6 @@
 		"incremental": true,
 		"sourceMap": true
 	},
-	"paths": {
-		"@/components/*": ["src/components/*"],
-		"@/pages/*": ["src/pages/*"],
-		"@theme/*": ["src/theme/*"]
-	},
-	"include": ["next-env.d.ts", "**/**/*.ts", "**/**/*.tsx", "globals.d.ts"],
+	"include": ["next-env.d.ts", "globals.d.ts", "**/**/*.ts", "**/**/*.tsx"],
 	"exclude": ["node_modules", "**/snippets/**"]
 }

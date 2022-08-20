@@ -64,18 +64,23 @@ export const LinkSelector = ({
 		);
 	}
 	return (
-		<Popover
-			type={linkType}
-			id={node.target}
-			forcePopover={nodeWithQuery}
-			query={getQueryUrl(node)}
-			onExit={() => onExit()}
-			side={textDirection === "ltr" ? "right" : "left"}
-			trigger={getTriggerComp(linkType, componentData, className)}
-			portalled={true}
+		<span
+			data-link-type={node.linkType}
+			data-link-target={node.target.split(`/`)[1]}
 		>
-			<DynamicContentBrowser node={node} />
-		</Popover>
+			<Popover
+				type={linkType}
+				id={node.target}
+				forcePopover={nodeWithQuery}
+				query={getQueryUrl(node)}
+				onExit={() => onExit()}
+				side={textDirection === "ltr" ? "right" : "left"}
+				trigger={getTriggerComp(linkType, componentData, className)}
+				portalled={true}
+			>
+				<DynamicContentBrowser node={node} />
+			</Popover>
+		</span>
 	);
 };
 

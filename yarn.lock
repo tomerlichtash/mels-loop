@@ -1394,6 +1394,14 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@playwright/test@^1.23.4":
+  version "1.23.4"
+  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.23.4.tgz#d742ed34fc3eb09e29c2e652c2a646ba1e3c6b08"
+  integrity sha512-iIsoMJDS/lyuhw82FtcV/B3PXikgVD3hNe5hyvOpRM0uRr1OIpN3LgPeRbBjhzBWmyf6RgRg5fqK5sVcpA03yA==
+  dependencies:
+    "@types/node" "*"
+    playwright-core "1.23.4"
+
 "@radix-ui/number@1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@radix-ui/number/-/number-1.0.0.tgz"
@@ -1788,9 +1796,9 @@
     "@stylable/core" "^4.13.3"
     js-beautify "^1.14.3"
 
-"@stylable/core@^4.13.3":
+"@stylable/core@4.13.3", "@stylable/core@^4.13.3":
   version "4.13.3"
-  resolved "https://registry.npmjs.org/@stylable/core/-/core-4.13.3.tgz"
+  resolved "https://registry.yarnpkg.com/@stylable/core/-/core-4.13.3.tgz#0eac816dfaf513ea813421fc907699277e666e7e"
   integrity sha512-+IzFx3fW2nkR04YoBiNKwvL9Ndr2Bt/64Wzc+iclJsWk2V2q4Row1xmRNU5tsiXfUYmcc0fFjSrpvVXZZfrJjA==
   dependencies:
     "@tokey/css-selector-parser" "^0.6.0"
@@ -1808,6 +1816,15 @@
     postcss-nested "^5.0.6"
     postcss-safe-parser "^6.0.0"
     postcss-value-parser "^4.2.0"
+
+"@stylable/dom-test-kit@4.13.3":
+  version "4.13.3"
+  resolved "https://registry.yarnpkg.com/@stylable/dom-test-kit/-/dom-test-kit-4.13.3.tgz#63261cb507e5e752d5cc60f9643bcec8e2b8bd2f"
+  integrity sha512-MkqW6kIxklZfssgiMC0Y4YTIJxop90bb0gTTqncZPabthyPXOx1O9lM5DWvi1cPNvUJ6Zku3l0QFLAwV+Cm3XA==
+  dependencies:
+    "@stylable/core" "^4.13.3"
+    "@stylable/runtime" "^4.13.3"
+    "@tokey/css-selector-parser" "^0.6.0"
 
 "@stylable/module-utils@^4.13.3":
   version "4.13.3"
@@ -1827,9 +1844,9 @@
     "@stylable/module-utils" "^4.13.3"
     find-config "^1.0.0"
 
-"@stylable/optimizer@^4.13.3":
+"@stylable/optimizer@4.13.3", "@stylable/optimizer@^4.13.3":
   version "4.13.3"
-  resolved "https://registry.npmjs.org/@stylable/optimizer/-/optimizer-4.13.3.tgz"
+  resolved "https://registry.yarnpkg.com/@stylable/optimizer/-/optimizer-4.13.3.tgz#4d15393c83fd442582a5a2b9c49aed43e45d4d0f"
   integrity sha512-6NtkUceiFarUolGeqwuQTKmYcz4YoKJ1GMkAoakyjgAycAcJE1teuO0JUmrotbMMgNDNH6bQIcQe9dXcTJDoDQ==
   dependencies:
     "@stylable/core" "^4.13.3"
@@ -1837,14 +1854,14 @@
     csso "^5.0.3"
     postcss "^8.4.14"
 
-"@stylable/runtime@^4.13.3":
+"@stylable/runtime@4.13.3", "@stylable/runtime@^4.13.3":
   version "4.13.3"
   resolved "https://registry.npmjs.org/@stylable/runtime/-/runtime-4.13.3.tgz"
   integrity sha512-2pkLs+JZmwUTLlor8ljoLMeFeU7VnkGU0N/9zAAs4OIoIP+C/PuzAX7f1+i0JCeMCQ6MrjwOPhGtQsfSHbKbKA==
 
-"@stylable/webpack-plugin@^4.13.3":
+"@stylable/webpack-plugin@4.13.3":
   version "4.13.3"
-  resolved "https://registry.npmjs.org/@stylable/webpack-plugin/-/webpack-plugin-4.13.3.tgz"
+  resolved "https://registry.yarnpkg.com/@stylable/webpack-plugin/-/webpack-plugin-4.13.3.tgz#d5dcc134af4df10335faa79586e893027afcb8b4"
   integrity sha512-bdr3hw++t0LtvBvNFzRjBMNuW9ieo6Zn127wIIA14jV+PmmyUJH/PUXF6WLSQ8GQgidG8Mus910l91/ymKBNIQ==
   dependencies:
     "@stylable/build-tools" "^4.13.3"
@@ -4169,6 +4186,11 @@ picocolors@^1.0.0:
 picomatch@^2.2.3:
   version "2.3.1"
   resolved "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
+
+playwright-core@1.23.4:
+  version "1.23.4"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.23.4.tgz#e8a45e549faf6bfad24a0e9998e451979514d41e"
+  integrity sha512-h5V2yw7d8xIwotjyNrkLF13nV9RiiZLHdXeHo+nVJIYGVlZ8U2qV0pMxNJKNTvfQVT0N8/A4CW6/4EW2cOcTiA==
 
 postcss-js@^4.0.0:
   version "4.0.0"

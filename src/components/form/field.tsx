@@ -66,7 +66,7 @@ export const Field = ({
 	}, [autoFocus]);
 
 	return (
-		<div className={st(classes.root, className)}>
+		<div className={st(classes.root, { id }, className)}>
 			<label htmlFor={id} className={classes.label}>
 				<span className={st(classes.caption, { required })}>
 					<span className={classes.icon}>{icon}</span>
