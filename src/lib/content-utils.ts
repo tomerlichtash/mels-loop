@@ -148,6 +148,33 @@ function nodeTypeToMLType(
 		.toLowerCase() as MLNODE_TYPES;
 }
 
+function extractParseMode(node: ParsedNode, context: MLParseContext): MLParseModes {
+	if (node.attributes) {
+		const attr = node.attributes.get("data-parse-mode");
+		if (attr && /^verse$/.test(attr)) {
+			return MLParseModes.VERSE;
+		}
+	}
+	if (node.type === ASTNODE_TYPES.CODEBLOCK) {
+		return MLParseModes.VERSE;
+	}
+	return context.mode.parseMode;
+}
+
+/**
+ * @param node 
+ * @param newChildren 
+ */
+function removeNullChildren(node: IMLParsedNode): IMLParsedNode {
+	if (!(node?.children)) {
+		return node;
+	}
+	const validNodes = node.children.filter(Boolean);
+	node.children.length = 0;
+	node.children.push(...validNodes);
+	return node;
+}
+
 const ANNOTATION_RE = /annotations?\//i;
 const GLOSSARY_RE = /glossary\//i;
 
@@ -183,6 +210,7 @@ class ContentUtils implements IContentUtils {
 		this.nodeProcessorMap = {
 			list: this.processListNode.bind(this),
 			def: this.processLinkDefinition.bind(this),
+			HTML: this.processHtmlNode.bind(this)
 		};
 	}
 
@@ -288,6 +316,7 @@ class ContentUtils implements IContentUtils {
 		if (this.isIgnored(node)) {
 			return null;
 		}
+		
 		if (Array.isArray(node.items || node.content)) {
 			return this.parsedNodeToMLNode(
 				this.processTextChildren(node, context),
@@ -328,8 +357,9 @@ class ContentUtils implements IContentUtils {
 		if (processor) {
 			return processor(node, context);
 		}
-		const verseMode = context.mode.parseMode === MLParseModes.VERSE
-			|| node.type === ASTNODE_TYPES.CODEBLOCK;
+		const parseMode = extractParseMode(node, context);
+		const newContext = parseMode !== context.mode.parseMode ?
+			context.clone({ parseMode }) : context;
 		const resultNode: IMLParsedNode = {
 			type: mlType,
 			line: context.indexer.currentLine(),
@@ -344,7 +374,7 @@ class ContentUtils implements IContentUtils {
 		if (!Array.isArray(children)) {
 			return resultNode;
 		}
-		let currentLine: IMLParsedNode = verseMode ? null : resultNode;
+		let currentLine: IMLParsedNode = parseMode === MLParseModes.VERSE ? null : resultNode;
 		const isInlineContainer = this.isInline(node) || this.isTextContainer(node);
 
 		for (let i = 0, len = children.length; i < len; ++i) {
@@ -352,7 +382,7 @@ class ContentUtils implements IContentUtils {
 			const type = child.type;
 			if (this.isInline(type)) {
 				if (isInlineContainer) {
-					resultNode.children.push(this.parsedNodeToMLNode(child, context));
+					resultNode.children.push(this.parsedNodeToMLNode(child, newContext));
 					continue;
 				}
 				if (!currentLine) {
@@ -364,17 +394,18 @@ class ContentUtils implements IContentUtils {
 					};
 					resultNode.children.push(currentLine);
 				}
-				currentLine.children.push(this.parsedNodeToMLNode(child, context));
+				currentLine.children.push(this.parsedNodeToMLNode(child, newContext));
 			} else {
-				if (currentLine != resultNode) {
+				if (currentLine !== resultNode) {
+					removeNullChildren(currentLine)
 					currentLine = null;
 				}
 				if (!this.isIgnored(type)) {
-					resultNode.children.push(this.parsedNodeToMLNode(child, context));
+					resultNode.children.push(this.parsedNodeToMLNode(child, newContext));
 				}
 			}
 		}
-		return resultNode;
+		return removeNullChildren(resultNode);
 	}
 
 	private processListNode(
@@ -383,7 +414,7 @@ class ContentUtils implements IContentUtils {
 	): IMLParsedNode {
 		const resultNode: IMLParsedNode = {
 			type: nodeTypeToMLType(node.type, context),
-			ordered: node.ordered,
+			ordered: Boolean(node.ordered),
 			key: context.indexer.nextKey(),
 			line: -1,
 			children: [],
@@ -407,6 +438,24 @@ class ContentUtils implements IContentUtils {
 			}
 		});
 		return resultNode;
+	}
+
+	private processHtmlNode(node: ParsedNode,
+		context: MLParseContext
+	): IMLParsedNode {
+		const items =this.findArrayPart(node) || [];
+		const parseMode = extractParseMode(node, context);
+		const newContext: MLParseContext = 
+			parseMode !== context.mode.parseMode ? 
+				context.clone({ parseMode })
+				: context;
+		const resultNode: IMLParsedNode = {
+			type: node.tag.toLowerCase(),
+			key: context.indexer.nextKey(),
+			line: -1,
+			children: items.map(item => this.parsedNodeToMLNode(item, newContext)).filter(Boolean)
+		};
+		return resultNode;	
 	}
 
 	/**
@@ -442,10 +491,13 @@ class ContentUtils implements IContentUtils {
 		if (!children) {
 			return node;
 		}
-		const verseMode = context.mode.parseMode === MLParseModes.VERSE
-			|| node.type === ASTNODE_TYPES.CODEBLOCK
+		const parseMode = extractParseMode(node, context);
+		const newContext: MLParseContext = 
+			parseMode !== context.mode.parseMode ? 
+				context.clone({ parseMode })
+				: context;
 		const processText =
-			verseMode
+		parseMode === MLParseModes.VERSE
 				? (texts: string[]) => this.breakTextToLines(texts)
 				: (texts: string[]) => this.mergeTextElements(texts);
 
@@ -461,7 +513,7 @@ class ContentUtils implements IContentUtils {
 					newChildren.push(...processText(texts));
 					texts.length = 0;
 				}
-				newChildren.push(this.processTextChildren(child, context));
+				newChildren.push(this.processTextChildren(child, newContext));
 			}
 		}
 		if (texts.length) {
@@ -479,7 +531,13 @@ class ContentUtils implements IContentUtils {
 	): void {
 		nodes.forEach((node) => this.promoteFiguresInNode(node, context));
 	}
-
+	/**
+	 * Apply the optional node processors in the `context.mode` field, to the nodes in the provided
+	 * array and to their subtrees. Example processors can be found in createPopoverLinksMappingFilter
+	 * @param nodes 
+	 * @param context 
+	 * @returns 
+	 */
 	private applyNodeProcessors(
 		nodes: IMLParsedNode[],
 		context: MLParseContext
@@ -703,11 +761,16 @@ class ContentUtils implements IContentUtils {
 		return null;
 	}
 
+	/**
+	 * Removes newline characters from the combined text of all the provided nodes
+	 * @param strings 
+	 * @returns 
+	 */
 	private mergeTextElements(strings: Array<string>): ParsedNode[] {
 		const text = strings
 			.join("") // to string
 			.replace(/\r/g, "") // remove windows CR
-			.replace(/\n/g, " "); // remove windows CR
+			.replace(/\n/g, " "); // remove LF
 		return [
 			{
 				content: text,
@@ -762,9 +825,25 @@ class NodeIndexer {
 }
 
 class MLParseContext {
+	private _linkDefs: { [key: string]: IMLParsedNode } = {};
+	private _indexer: NodeIndexer = new NodeIndexer();
+
 	constructor(public readonly mode: IContentParseOptions) {}
-	public readonly linkDefs: { [key: string]: IMLParsedNode } = {};
-	public readonly indexer: NodeIndexer = new NodeIndexer();
+	public clone(mode: Partial<IContentParseOptions>): MLParseContext {
+		const newMode: IContentParseOptions = Object.assign(
+			Object.assign({}, this.mode), mode);
+		const ret = new MLParseContext(newMode);
+		ret._indexer = this.indexer;
+		ret._linkDefs = this._linkDefs;
+		return ret;
+	}
+
+	public get linkDefs(): { [key: string]: IMLParsedNode } {
+		return this._linkDefs;
+	}
+	public get indexer(): NodeIndexer {
+		return this._indexer;
+	};
 }
 
 class NodeProcessorContext implements INodeProcessorContext {

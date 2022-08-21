@@ -184,7 +184,7 @@ export function loadContentFolder(
 			folderContentData.pages.push(parsedPageData);
 			if (mode.contentMode === LoadContentModes.FULL) {
 				// parse markdown and process
-				const mdParse = /*createHtmlMDParser() */mdParser.defaultBlockParse;
+				const mdParse = createHtmlMDParser(); //mdParser.defaultBlockParse;
 				const tree = contentUtils.processParseTree(
 					mdParse(contentUtils.stripComments(content)) as ParsedNode[],
 					mode
@@ -273,7 +273,8 @@ class FolderContent implements IFolderContent {
 }
 
 // matches basic html strings <tag [attributes]>...</tag> including newlines
-const HTML_RE = /\s*<([a-z]+)([^>]+)*>([\s\S]+)?<\/\1>/ig;
+// not perfect, in case an attribute value contains /, 
+// but the performance would degrade significantly with the alternative
 
 /**
  * Creates an simple-markdown parser that supports simple html and 
@@ -282,6 +283,8 @@ const HTML_RE = /\s*<([a-z]+)([^>]+)*>([\s\S]+)?<\/\1>/ig;
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const createHtmlMDParser = () => {
+	const HTML_RE = /^\s*<([a-z]+)([^>]+)*>([\s\S]+?)?<\/\1>/i;
+	const HTML_SELFCLOSE_RE = /^\s*<([a-z]+)([^\/>]+)*\/>/i;
 	const rules = {
 		...mdParser.defaultRules,
 		// Triple slash comments
@@ -300,21 +303,43 @@ const createHtmlMDParser = () => {
 		// html parser
 		HTML: {
 			match: function (source: string /*, state, lookbehind */) {
-				const res = HTML_RE.exec(source);
+				const res = HTML_RE.exec(source)
+					|| HTML_SELFCLOSE_RE.exec(source);
+
 				return res;
 			},
 
-			parse: function (capture: RegExpExecArray, 
-				recurseParse: (content: string, state: object) => Array<object>, 
+			parse: function (capture: RegExpExecArray,
+				recurseParse: (content: string, state: object) => Array<object>,
 				state: object) {
 				return {
 					tag: capture[1],
 					attributes: parseAttributes(capture[2]),
-					content: recurseParse(capture[3], state)
+					content: (capture[3] && recurseParse(capture[3], state)) || undefined
 				};
 			},
 			order: 0
-		}
+		},
+		// html parser
+		//HTML_SELFCLOSE: {
+		//	match: function (source: string /*, state, lookbehind */) {
+		//		const res = HTML_SELFCLOSE_RE.exec(source)
+		//		//|| HTML_SELFCLOSE_RE.exec(source);
+
+		//		return res;
+		//	},
+
+		//	parse: function (capture: RegExpExecArray,
+		//		recurseParse: (content: string, state: object) => Array<object>,
+		//		state: object) {
+		//		return {
+		//			type: "HTML",
+		//			tag: capture[1],
+		//			attributes: parseAttributes(capture[2])
+		//		};
+		//	},
+		//	order: 0
+		//}
 	};
 	return mdParser.parserFor(rules);
 
@@ -331,7 +356,7 @@ const parseAttributes = (attrStr: string): Map<string, string> => {
 	if (!attrStr) {
 		return attrMap;
 	}
-	const re = /\s*([a-z]+)="([^"]*)"/ig;
+	const re = /\s*([a-z0-9\-_\.]+)="([^"]*)"/ig;
 	let match: RegExpExecArray;
 	while ((match = re.exec(attrStr)) != null) {
 		attrMap.set(match[1], match[2]);

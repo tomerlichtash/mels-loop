@@ -13,7 +13,9 @@ export interface IPlainObject {
  * A single node in a parsed markdown AST
  */
 export type ParsedNode = {
-	type: ASTNODE_TYPES;
+	readonly type: ASTNODE_TYPES;
+
+	readonly attributes?: Map<string, string>;
 
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	[prop: string]: any;
@@ -41,6 +43,9 @@ export enum ASTNODE_TYPES {
 	HEADING = "heading",
 	SUB = "sub",
 	SUP = "sup",
+	/* Custom type */
+	HTML = "HTML",
+	comment = "comment"
 }
 
 export enum MLNODE_TYPES {
