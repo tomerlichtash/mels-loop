@@ -5,10 +5,16 @@
 
 .root {
 	-st-mixin: preventSelection;
+	-st-states: textDirection(enum(ltr, rtl));
 	position: relative;
 	display: flex;
 	justify-content: center;
 	width: 500px;
+}
+
+.root:textDirection(rtl)::list,
+.root:textDirection(rtl)::menuContent{
+	direction: rtl;
 }
 
 .list {
