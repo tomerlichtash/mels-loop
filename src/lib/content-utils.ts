@@ -344,7 +344,7 @@ class ContentUtils implements IContentUtils {
 			return null;
 		}
 		const isHTML = node.type === ASTNODE_TYPES.HTML,
-			mlType = isHTML?
+			mlType: MLNODE_TYPES = isHTML?
 				node.tag?.toLowerCase()
 				: nodeTypeToMLType(node.type, context);
 		if (!mlType) {
@@ -851,7 +851,7 @@ class MLParseContext {
 	}
 	public get indexer(): NodeIndexer {
 		return this._indexer;
-	};
+	}
 }
 
 class NodeProcessorContext implements INodeProcessorContext {

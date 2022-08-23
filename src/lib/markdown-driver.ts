@@ -284,7 +284,7 @@ class FolderContent implements IFolderContent {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const createHtmlMDParser = () => {
 	const HTML_RE = /^\s*<([a-z]+)([^>]+)*>([\s\S]+?)?<\/\1>/i;
-	const HTML_SELFCLOSE_RE = /^\s*<([a-z]+)([^\/>]+)*\/>/i;
+	const HTML_SELFCLOSE_RE = /^\s*<([a-z]+)([^/>]+)*\/>/i;
 	const rules = {
 		...mdParser.defaultRules,
 		// Triple slash comments
@@ -356,7 +356,7 @@ const parseAttributes = (attrStr: string): Map<string, string> => {
 	if (!attrStr) {
 		return attrMap;
 	}
-	const re = /\s*([a-z0-9\-_\.]+)="([^"]*)"/ig;
+	const re = /\s*([a-z0-9\-_.]+)="([^"]*)"/ig;
 	let match: RegExpExecArray;
 	while ((match = re.exec(attrStr)) != null) {
 		attrMap.set(match[1], match[2]);
