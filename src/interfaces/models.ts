@@ -67,6 +67,10 @@ export enum MLNODE_TYPES {
 	UNKNOWN = "unknown",
 	SUB = "sub",
 	SUP = "sup",
+	TR = "tr",
+	TD = "td",
+	TABLE = "table",
+	TH = "th"
 }
 
 export enum NODE_LIST_TYPES {

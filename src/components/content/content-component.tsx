@@ -52,7 +52,12 @@ export const ContentComponent = ({
 		case MLNODE_TYPES.STRONG:
 		case MLNODE_TYPES.EM:
 		case MLNODE_TYPES.CODE:
-			return (
+		case MLNODE_TYPES.TABLE:
+		case MLNODE_TYPES.TR:
+		case MLNODE_TYPES.TD:
+		case MLNODE_TYPES.TH:
+		case MLNODE_TYPES.BLOCKQUOTE:
+				return (
 				<ContentIterator
 					key={key}
 					componentData={{ tag: type, ...componentData }}
@@ -63,15 +68,14 @@ export const ContentComponent = ({
 			return (
 				<CodeBlock key={key} componentData={componentData} className={stylableClassName} />
 			)
-			break;
-		case MLNODE_TYPES.BLOCKQUOTE:
-			return (
-				<BlockQuote
-					key={key}
-					componentData={componentData}
-					className={stylableClassName}
-				/>
-			);
+		//case MLNODE_TYPES.BLOCKQUOTE:
+		//	return (
+		//		<BlockQuote
+		//			key={key}
+		//			componentData={componentData}
+		//			className={stylableClassName}
+		//		/>
+		//	);
 		case MLNODE_TYPES.TEXT:
 			const { text } = node;
 			return (
