@@ -124,7 +124,7 @@ const IGNORED_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>(
 	[ASTNODE_TYPES.NEWLINE]);
 
 const NO_PARAGRAPH_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>(
-	[MLNODE_TYPES.BLOCKQUOTE]
+	//[MLNODE_TYPES.BLOCKQUOTE]
 );
 
 /**
@@ -210,7 +210,7 @@ class ContentUtils implements IContentUtils {
 		this.nodeProcessorMap = {
 			list: this.processListNode.bind(this),
 			def: this.processLinkDefinition.bind(this),
-			HTML: this.processHtmlNode.bind(this)
+			//HTML: this.processHtmlNode.bind(this)
 		};
 	}
 
@@ -343,7 +343,14 @@ class ContentUtils implements IContentUtils {
 		if (this.isIgnored(node)) {
 			return null;
 		}
-		const mlType = nodeTypeToMLType(node.type, context);
+		const isHTML = node.type === ASTNODE_TYPES.HTML,
+			mlType = isHTML?
+				node.tag?.toLowerCase()
+				: nodeTypeToMLType(node.type, context);
+		if (!mlType) {
+			console.error(`Bad node data ${node.type}`);
+			return null;
+		}
 		if (TEXT_NODE_TYPES.has(mlType)) {
 			return {
 				type: mlType,
@@ -369,6 +376,7 @@ class ContentUtils implements IContentUtils {
 			target: node.target,
 			level: node.level,
 			text: typeof node.content === "string" ? node.content: undefined,
+			attributes: (isHTML && node.attributes && Object.fromEntries(node.attributes)) || undefined
 		};
 		const children = this.findArrayPart(node);
 		if (!Array.isArray(children)) {

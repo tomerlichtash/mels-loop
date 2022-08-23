@@ -136,6 +136,8 @@ export interface IMLParsedNode {
 	 * The type of link
 	 */
 	readonly linkType?: DynamicContentTypes;
+
+	readonly attributes?: { [name: string]: string };
 }
 
 export interface IPageMetaData {
