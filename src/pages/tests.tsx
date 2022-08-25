@@ -14,6 +14,7 @@ const TestsPage: NextPage<IPageProps> = (props) => {
 	const { pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { metaData } = usePageData(props);
+
 	return (
 		<Layout>
 			<article className={st(classes.root, className)}>

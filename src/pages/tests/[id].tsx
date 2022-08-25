@@ -3,22 +3,22 @@ import { IPageProps } from "../../interfaces/models";
 import GenericPage from "../../components/content/generic-page";
 import { mlNextUtils } from "../../lib/next-utils";
 import { LoadFolderModes } from "../../interfaces/parser";
+import { useEffect, useState } from "react";
 
-const attrs = {
-	"data-x": "X",
-	"data-y": "Y"
-};
 export default function TestDoc(props: IPageProps) {
+	const [now, setNow] = useState<string>("");
+	useEffect(() => {
+		setNow((new Date()).toString().replace(/(GMT|\().*/, ""));
+	}, []);
+
 	return <>
 		<span style={{
 			position: "absolute", bottom: "10px", right: "50px", zIndex: 10,
 			backgroundColor: "#333", color: "white", borderRadius: "5px", overflow: "hidden",
 			padding: "3px", fontSize: "9pt", fontFamily: "monospace", opacity: "0.7"
-		}}
-			{...attrs}
-		>
+		}}>
 			Rendered: {
-				(new Date()).toString().replace(/(GMT|\().*/, "")
+				now
 			}
 		</span>
 		<GenericPage pageProps={props} />;
