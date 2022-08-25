@@ -73,8 +73,6 @@ type ParsedNodeProcessor = (
 	context: MLParseContext
 ) => IMLParsedNode;
 
-type MLNodeTypeMap = Map<MLNODE_TYPES, boolean>;
-
 const AST2MLTypeMap: Map<ASTNODE_TYPES, MLNODE_TYPES> = new Map<
 	ASTNODE_TYPES,
 	MLNODE_TYPES
@@ -127,10 +125,19 @@ const NO_PARAGRAPH_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>(
 	//[MLNODE_TYPES.BLOCKQUOTE]
 );
 
+const HTML_VALIDATION_MAP = {
+	TR: {
+		valid: ["TD", "TH"]
+	},
+	TABLE: {
+		valid: ["TBODY", "TR"]
+	}
+};
+
 /**
  * Node types that should be promoted to a figure if their only content is an image
  */
-const FIGURE_CONTAINER_TYPES: MLNodeTypeMap = new Map<MLNODE_TYPES, boolean>([
+const FIGURE_CONTAINER_TYPES: Map<MLNODE_TYPES, boolean> = new Map<MLNODE_TYPES, boolean>([
 	[MLNODE_TYPES.LINE, true],
 	[MLNODE_TYPES.PARAGRAPH, true],
 ]);
@@ -148,6 +155,13 @@ function nodeTypeToMLType(
 		.toLowerCase() as MLNODE_TYPES;
 }
 
+/**
+ * Returns the parse mode set in the node's attributes, otherwise VERSE if
+ * the node is a codeblock, otherwise the mode set in the provided context.
+ * @param node 
+ * @param context 
+ * @returns 
+ */
 function extractParseMode(node: ParsedNode, context: MLParseContext): MLParseModes {
 	if (node.attributes) {
 		const attr = node.attributes.get("data-parse-mode");
@@ -163,7 +177,6 @@ function extractParseMode(node: ParsedNode, context: MLParseContext): MLParseMod
 
 /**
  * @param node 
- * @param newChildren 
  */
 function removeNullChildren(node: IMLParsedNode): IMLParsedNode {
 	if (!(node?.children)) {
@@ -202,6 +215,47 @@ const urlToContentId = (url: string) => {
 	const id = parts[parts.length - 1];
 	return (id && id.replace("#", "")) || "";
 };
+
+const findArrayPart = (node: ParsedNode): Array<ParsedNode> | null => {
+	if (Array.isArray(node.items)) {
+		return node.items;
+	}
+	if (Array.isArray(node.content)) {
+		return node.content;
+	}
+	if (Array.isArray(node)) {
+		return node;
+	}
+	return null;
+}
+
+const validateHTMLNode = (node: ParsedNode): ParsedNode => {
+	const tag: string = (node.tag as string || "").toUpperCase();
+	const children: Array<ParsedNode> = node.content;
+	const rec = Array.isArray(children) && HTML_VALIDATION_MAP[tag];
+	if (rec && rec.valid) {
+		const filtered = children.filter(child => {
+			return rec.valid.includes((child.tag || child.type).toUpperCase());
+		});
+		if (filtered.length !== children.length) {
+			node.content.length = 0;
+			node.content.push(...filtered);
+		}
+	}
+
+	return node;
+}
+
+const sanitizeHTML = (node: ParsedNode): ParsedNode => {
+	if (node.type === ASTNODE_TYPES.HTML) {
+		validateHTMLNode(node);
+	}
+	
+	const children = findArrayPart(node);
+	children && children.forEach(child => sanitizeHTML(child));
+
+	return node;
+}
 
 class ContentUtils implements IContentUtils {
 	private readonly nodeProcessorMap: { [name: string]: ParsedNodeProcessor };
@@ -281,7 +335,6 @@ class ContentUtils implements IContentUtils {
 			return [];
 		}
 		const parseContext = new MLParseContext(mode);
-
 		const result = nodes
 			.map((node) => this.processOneASTNode(node, parseContext))
 			.filter(Boolean);
@@ -316,7 +369,7 @@ class ContentUtils implements IContentUtils {
 		if (this.isIgnored(node)) {
 			return null;
 		}
-		
+		node = sanitizeHTML(node);
 		if (Array.isArray(node.items || node.content)) {
 			return this.parsedNodeToMLNode(
 				this.processTextChildren(node, context),
@@ -378,7 +431,7 @@ class ContentUtils implements IContentUtils {
 			text: typeof node.content === "string" ? node.content: undefined,
 			attributes: (isHTML && node.attributes && Object.fromEntries(node.attributes)) || undefined
 		};
-		const children = this.findArrayPart(node);
+		const children = findArrayPart(node);
 		if (!Array.isArray(children)) {
 			return resultNode;
 		}
@@ -451,7 +504,7 @@ class ContentUtils implements IContentUtils {
 	private processHtmlNode(node: ParsedNode,
 		context: MLParseContext
 	): IMLParsedNode {
-		const items =this.findArrayPart(node) || [];
+		const items = findArrayPart(node) || [];
 		const parseMode = extractParseMode(node, context);
 		const newContext: MLParseContext = 
 			parseMode !== context.mode.parseMode ? 
@@ -495,7 +548,7 @@ class ContentUtils implements IContentUtils {
 		if (!node) {
 			return node;
 		}
-		const children = this.findArrayPart(node);
+		const children = findArrayPart(node);
 		if (!children) {
 			return node;
 		}
@@ -754,19 +807,6 @@ class ContentUtils implements IContentUtils {
 		}
 
 		return parts.length > 0 ? parts : node;
-	}
-
-	private findArrayPart(node: ParsedNode): Array<ParsedNode> {
-		if (Array.isArray(node.items)) {
-			return node.items;
-		}
-		if (Array.isArray(node.content)) {
-			return node.content;
-		}
-		if (Array.isArray(node)) {
-			return node;
-		}
-		return null;
 	}
 
 	/**

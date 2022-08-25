@@ -6,7 +6,6 @@ import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
 import { usePageData } from "../components/usePageData";
 import { ReactLocaleContext } from "../contexts/locale-context";
-import { Button } from "../components/ui";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { st, classes } from "./page-base.st.css";
 import Link from "next/link";
@@ -27,11 +26,11 @@ const TestsPage: NextPage<IPageProps> = (props) => {
 							return (
 								<li className={classes.term} key={key}>
 									<Link
-										title={term.abstract || ""}
+										title={term?.abstract || ""}
 										href={page.path}
 										target="_blank"
 									>
-										{term.title || page.path}
+										{term?.title || page.path}
 									</Link>
 								</li>
 							);

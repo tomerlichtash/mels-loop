@@ -356,7 +356,7 @@ const parseAttributes = (attrStr: string): Map<string, string> => {
 	if (!attrStr) {
 		return attrMap;
 	}
-	const re = /\s*([a-z0-9\-_.]+)="([^"]*)"/ig;
+	const re = /\s*([a-z][a-z0-9\-_.]+)="([^"]*)"/ig;
 	let match: RegExpExecArray;
 	while ((match = re.exec(attrStr)) != null) {
 		attrMap.set(match[1], match[2]);

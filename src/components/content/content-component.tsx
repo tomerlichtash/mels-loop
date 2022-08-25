@@ -10,7 +10,7 @@ import {
 	Line,
 	Paragraph,
 	Figure,
-	BlockQuote,
+	//BlockQuote,
 	CodeBlock,
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
