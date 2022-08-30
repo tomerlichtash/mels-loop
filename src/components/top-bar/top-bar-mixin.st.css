@@ -16,6 +16,7 @@
 	MenuTriggerBgColorHover: #f0f0f0;
 	MenuItemBgColor_Hover: #c0c0c0;
 	MenuArrowColor: #000;
+	ArrowColor: #000;
 }
 
 .root {
@@ -40,6 +41,7 @@
 		ViewPortShadow value(MenuViewPortShadow),
 		TriggerTextColor value(MenuTriggerTextColor),
 		TriggerBgColorHover value(MenuTriggerBgColorHover),
-		ItemBgColor_Hover value(MenuItemBgColor_Hover),				
+		ItemBgColor_Hover value(MenuItemBgColor_Hover),
+		ArrowColor value(ArrowColor)
 	);
 }
