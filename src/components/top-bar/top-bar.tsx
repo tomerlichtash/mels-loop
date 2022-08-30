@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Header from "../header";
 import LocaleSelector from "../locale-selector";
-import ThemeSelector from "../theme-selector";
+// import ThemeSelector from "../theme-selector";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { MenuProvider } from "../menu-provider/menu-provider";
 import { ComponentProps } from "../../interfaces/models";
@@ -17,7 +17,7 @@ export default function TopBar({ className }: ComponentProps) {
 				<LocaleSelector
 					className={st(classes.localeSelector, { locale }, classes.item)}
 				/>
-				<ThemeSelector className={st(classes.themeSelector, classes.item)} />
+				{/* <ThemeSelector className={st(classes.themeSelector, classes.item)} /> */}
 			</div>
 		</div>
 	);
