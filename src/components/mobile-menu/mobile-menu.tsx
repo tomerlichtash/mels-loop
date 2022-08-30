@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { push as Menu } from "react-burger-menu";
 import Header from "../header";
-import ThemeSelector from "../theme-selector";
+// import ThemeSelector from "../theme-selector";
 import LocaleSelector from "../locale-selector";
 import { mlUtils } from "../../lib/ml-utils";
 import { renderMenuItem } from "../menu-provider";
@@ -128,9 +128,9 @@ export const MobileMenu = ({
 						<LocaleSelector
 							className={st(classes.toolbarItem, classes.localeSelector)}
 						/>
-						<ThemeSelector
+						{/* <ThemeSelector
 							className={st(classes.toolbarItem, classes.themeSelector)}
-						/>
+						/> */}
 					</div>
 				</div>
 				<div className={classes.content}>{menuItems}</div>
