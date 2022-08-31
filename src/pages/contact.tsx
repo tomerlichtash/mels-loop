@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Layout from "../components/layout/layout";
-import { NextPage } from "next";
-import { IPageProps } from "../interfaces/models";
+import { GetStaticProps, NextPage } from "next";
+import type { IPageProps } from "../interfaces/models";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import ContactForm from "../components/contact-form";
 import { classes } from "./page-base.st.css";
@@ -11,11 +11,11 @@ const Contact: NextPage<IPageProps> = () => {
 	return (
 		<Layout>
 			<article className={classes.root}>
-				<h1 className={classes.heading3}>{translate("CONTACT_PAGE_TITLE")}</h1>
-				<h2 className={classes.title}>{translate("CONTACT_PAGE_SUBTITLE")}</h2>
-				<p className={classes.paragraph}>{translate("CONTACT_PAGE_TEXT1")}</p>
+				<h1 className={classes.topic}>{translate("CONTACT_PAGE_TITLE")}</h1>
+				<p className={classes.title}>{translate("CONTACT_PAGE_SUBTITLE")}</p>
 				<div className={classes.section}>
-					<h3 className={classes.heading3}>
+					<p className={classes.paragraph}>{translate("CONTACT_PAGE_TEXT1")}</p>
+					<h3 className={classes.sectionTitle}>
 						{translate("CONTACT_FORM_FORM_TITLE")}
 					</h3>
 					<p className={classes.paragraph}>
@@ -26,6 +26,10 @@ const Contact: NextPage<IPageProps> = () => {
 			</article>
 		</Layout>
 	);
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+	return { props: {} };
 };
 
 export default Contact;

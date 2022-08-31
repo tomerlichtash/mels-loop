@@ -1,10 +1,12 @@
 @namespace "DynamicContentViewer";
 
 @st-import Note from "../../note/note.st.css";
-@st-import ContentComponent from "../content-component.st.css";
+@st-import ContentComponent from "../content-component/content-component.st.css";
 @st-import LoadingIndicator from "../../loading-indicator/loading-indicator.st.css";
 
-.root {}
+.root {
+	height: 100%;
+}
 
 .note {
 	-st-extends: Note;

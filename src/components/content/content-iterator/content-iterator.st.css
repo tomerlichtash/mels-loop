@@ -1,0 +1,7 @@
+@namespace "ContentIterator";
+
+.root {
+	-st-states: type(string);
+}
+
+.noData {}

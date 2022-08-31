@@ -11,31 +11,34 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { useContext } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Post from "../../components/post";
-// import { classes } from "../../pages/page-base.st.css";
+import { classes } from "../../pages/page-base.st.css";
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
 	const { locale, translate, textDirection } = useContext(ReactLocaleContext);
-	const { metaData, path } = page;
-	const { title, date } = metaData;
+	const { metaData } = page;
+	const { title, date, author } = metaData;
+	const backIcon =
+		textDirection === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />;
 	return (
-		<Layout title={metaData?.title}>
-			<Button
-				label={translate("POSTS_BACK_TO_POSTS_LIST")}
-				icon={
-					textDirection === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />
-				}
-				link={"/posts"}
-			/>
-			<Post
-				key={mlUtils.uniqueId()}
-				title={title}
-				date={date}
-				path={path}
-				locale={locale}
-				content={page}
-			/>
+		<Layout title={title}>
+			<div className={classes.root}>
+				<Button
+					label={translate("POSTS_BACK_TO_POSTS_LIST")}
+					className={classes.smallButton}
+					icon={backIcon}
+					link={"/posts"}
+				/>
+				<Post
+					key={mlUtils.uniqueId()}
+					title={title}
+					date={date}
+					author={author}
+					locale={locale}
+					content={page}
+				/>
+			</div>
 		</Layout>
 	);
 }

@@ -1,5 +1,5 @@
 import { mlUtils } from "./lib/ml-utils";
-import { siteFontData } from "./site-fonts-data";
+import { fontBasePath, siteFontData } from "./config/site-fonts-data";
 
 export interface IFontFace {
 	id: string;
@@ -13,17 +13,6 @@ export interface IFontFaceLink extends IFontFace {
 export interface IFontFaceDecl extends IFontFaceLink {
 	name: string;
 	weight: number;
-}
-
-const fontBasePath = "/assets/fonts"; // e.g. /public/assets/fonts
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function flatten(arr: any[]) {
-	return arr.reduce((flat, toFlatten) => {
-		return flat.concat(
-			Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten
-		);
-	}, []);
 }
 
 const FontFaceDecl = ({ name, id, href, weight, format }: IFontFaceDecl) => {
@@ -61,7 +50,7 @@ export const fontFaceDecls = siteFontData
 	})
 	.join("");
 
-export const fontFaceLinks = flatten(
+export const fontFaceLinks = mlUtils.flattenArray(
 	siteFontData.map(({ id, family }) => {
 		return family.map(({ href, format }) => {
 			return FontFaceLink({ id, href, format });

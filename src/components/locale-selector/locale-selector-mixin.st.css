@@ -4,11 +4,11 @@
 
 :vars {
 	ContainerRadius: 6px;
-	SelectedItemTextColor: white;
-	ContainerBorderColor: black;
-	ItemTextColor: black;
-	ItemBgColorHover: black;
-	SelectedItemBgColor: black;
+	SelectedItemTextColor: #fff;
+	ContainerBorderColor: #000;
+	ItemTextColor: #000;
+	ItemBgColorHover: #000;
+	SelectedItemBgColor: #000;
 }
 
 .root {

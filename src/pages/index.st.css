@@ -1,6 +1,6 @@
 @namespace "Index";
 
-@st-import ContentComponent from "../components/content/content-component.st.css";
+@st-import ContentComponent from "../components/content/content-component/content-component.st.css";
 
 .root {}
 

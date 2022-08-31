@@ -10,6 +10,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 	const fontStyles = css`
 		${fontFaceDecls}
 	`;
+
 	return (
 		<AppContext router={router}>
 			<style jsx global>

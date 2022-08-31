@@ -110,7 +110,7 @@ export const DynamicContentViewer = ({
 	const { metaData } = item;
 	const { source_name, source_url, glossary_key } = metaData;
 
-	// TODO: Support multiple sources - https://github.com/tomerlichtash/mels-loop-nextjs/issues/188
+	// TODO: Support multiple sources - https://github.com/tomerlichtash/mels-loop/issues/188
 	const sources = source_name && [
 		{
 			name: source_name,

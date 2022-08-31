@@ -1,40 +1,34 @@
 @namespace "MobileMenuMixin";
 
 @st-import MobileMenu from "./mobile-menu.st.css";
-@st-import [GradientStrip] from "../../theme/mixins.st.css";
-@st-import [preventSelection] from "./../../theme/mixins.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 @st-import HeaderMixin from "../header/header-mixin.st.css";
-@st-import LocaleSelectorMixin from "../locale-selector/locale-selector-mixin.st.css";
+@st-import [GradientStrip, preventSelection] from "../../theme/common/mixins.st.css";
 
 :vars {
 	BgColor: #373a47;
 	BurgerBars: #373a47;
 	BurgerCrossColor: #bdc3c7;
-	StripGradientStartColor: white;
-	StripGradientMidColor: gray;
-	StripGradientEndColor: black;
+	StripGradientStartColor: #fff;
+	StripGradientMidColor: #c0c0c0;
+	StripGradientEndColor: #000;
 	ItemTextColor: inherit;
 	ItemTextColor_Hover: inherit;
-	ItemPadding: 0;
+	ItemPadding: 1rem;
 	ItemRadius: 0;
 	ItemLabelTextColor: inherit;
 	ItemLabelTextColor_Hover: inherit;
 	ItemBgColor_Hover: inherit;
-	ItemLabelTextSize: inherit;
-	ItemLabelLineHeight: inherit;
-	ItemLabelTextWeight: inherit;
+	ItemLabelTextSize: 1rem;
+	ItemLabelTextWeight: 500;
 	ItemSubtitleLineHeight: inherit;
-	ItemSubtitleTextSize: inherit;
+	ItemSubtitleTextSize: 0.75rem;
 	ItemBorderColor: inherit;
 	ItemSubtitleTextColor: inherit;
 	ItemBorderSize: 1px;
 	SectionTitleColor: inherit;
-	LocaleSelectorItemTextColor: inherit;
-	LocaleSelectorSelectedItemTextColor: inehrit;
-	LocaleSelectorSelectedItemBgColor: inehrit;
 	HeaderLogoProps: none;
-	SiteTitleColor: white;
+	SiteTitleColor: #fff;
 }
 
 .root {
@@ -45,7 +39,6 @@
 .root::header {
 	-st-mixin: HeaderMixin(
 		HeaderSiteSubtitleColor white,
-		HeaderPadding 1rem,
 		SiteLogoBgProps value(HeaderLogoProps),
 	);
 }
@@ -59,15 +52,12 @@
 	color: value(SiteTitleColor);
 }
 
-.root::menu {}
-
 .root::burgerCross {
-	background: value(BurgerCrossColor);
+	background-color: value(BurgerCrossColor);
 }
 
 .root::toolbar {
 	border-bottom: 1px solid value(ItemBorderColor);
-	padding: 1rem;
 }
 
 .root::strip {
@@ -84,7 +74,6 @@
 }
 
 .root::sectionTitle {
-	padding: 1rem;
 	color: value(SectionTitleColor)
 }
 
@@ -94,23 +83,10 @@
 		ButtonRadius value(ItemRadius),
 		ButtonTextColor value(ItemTextColor),
 		ButtonTextColor_Hover value(ItemTextColor_Hover),
-		ButtonLabelTextColor value(ItemLabelTextColor),
-		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover),
 		ButtonBgColor_Hover value(ItemBgColor_Hover),
-		ButtonLabelTextSize value(ItemLabelTextSize),
-		ButtonLabelLineHeight value(ItemLabelLineHeight),
-		ButtonLabelTextWeight value(ItemLabelTextWeight),
 		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
 		ButtonChildrenTextColor value(ItemSubtitleTextColor),
 		ButtonBorderBottomSize value(ItemBorderSize),
 		ButtonBorderBottomColor value(ItemBorderColor)
-	);
-}
-
-.root::localeSelector {
-	-st-mixin: LocaleSelectorMixin(
-		ItemTextColor value(LocaleSelectorItemTextColor),
-		SelectedItemTextColor value(LocaleSelectorSelectedItemTextColor),
-		SelectedItemBgColor value(LocaleSelectorSelectedItemBgColor)
 	);
 }
