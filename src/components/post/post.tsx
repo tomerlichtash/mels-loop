@@ -3,43 +3,54 @@ import { ComponentProps, IParsedPageData } from "../../interfaces/models";
 import { mlUtils } from "../../lib/ml-utils";
 import { ContentComponent } from "../content";
 import { Button, TimeFormat } from "../ui";
-// import { ReactLocaleContext } from "../../contexts/locale-context";
-import { st, classes } from "./post.st.css";
+import { st, classes } from "../../pages/page-base.st.css";
+import { classes as postClasses } from "./post.st.css";
 
 export interface IBlogPostProps extends ComponentProps {
 	title: string;
 	date: Date;
 	locale: string;
-	path: string;
+	author: string;
 	content: IParsedPageData;
+	path?: string;
 }
 
 export const Post = ({
 	title,
 	date,
 	locale,
+	author,
 	path,
 	content,
 	className,
 }: IBlogPostProps): JSX.Element => {
-	// const { siteTitle, siteSubtitle, textDirection } =
-	// 	useContext(ReactLocaleContext);
 	return (
-		<div className={st(classes.root, className)}>
-			<article className={classes.wrapper}>
-				<header className={classes.header}>
-					<h2 className={classes.heading}>
-						<Button label={title} link={`/${path}`} className={classes.title} />
+		<article className={st(classes.root, postClasses.root, className)}>
+			<div className={classes.section}>
+				<header className={classes.header} aria-label={title} title={title}>
+					<h2 className={classes.topic}>
+						{path ? (
+							<Button
+								label={title}
+								link={`/${path}`}
+								className={classes.button}
+							/>
+						) : (
+							<span className={postClasses.title}>{title}</span>
+						)}
 					</h2>
-					{date && (
-						<TimeFormat
-							dateStr={date}
-							locale={locale}
-							className={classes.date}
-						/>
-					)}
+					<div className={classes.paragraph}>
+						{date && (
+							<TimeFormat
+								dateStr={date}
+								locale={locale}
+								className={classes.date}
+							/>
+						)}{" "}
+						&bull; {author}
+					</div>
 				</header>
-				<main className={classes.main}>
+				<main>
 					{content.parsed.map((node) => {
 						return (
 							<ContentComponent
@@ -50,8 +61,8 @@ export const Post = ({
 						);
 					})}
 				</main>
-			</article>
-		</div>
+			</div>
+		</article>
 	);
 };
 

@@ -7,6 +7,9 @@ export interface IMLUtils {
 	arrayToMap<T>(array: Array<T>, field: string): { [key: string]: T };
 
 	stringArrayToMap(array: Array<string>): { [key: string]: 1 };
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	flattenArray(arr: Array<any>): [];
 }
 
 class MLUtils implements IMLUtils {
@@ -33,6 +36,15 @@ class MLUtils implements IMLUtils {
 			acc[str] = 1;
 			return acc;
 		}, {});
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	public flattenArray(arr: Array<any>) {
+		return arr.reduce((flat, toFlatten) => {
+			return flat.concat(
+				Array.isArray(toFlatten) ? this.flattenArray(toFlatten) : toFlatten
+			);
+		}, []);
 	}
 }
 

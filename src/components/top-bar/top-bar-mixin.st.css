@@ -2,21 +2,46 @@
 
 @st-import TopBar from "./top-bar.st.css";
 @st-import HeaderMixin from "../header/header-mixin.st.css";
+@st-import MenuMixin from "../menu/menu-mixin.st.css";
 
 :vars {
-	BgColor: #808080;
-	SiteTitleLinkTextColor: black;
+	BgColor: #fff;
+	SiteTitleLinkTextColor: #000;
 	SiteLogoBgProps: inherit;
+	LinkColor: #000;
+	LinkColor_Hover: #c0c0c0;
+	MenuViewPortBgColor: #fff;
+	MenuViewPortShadow: none;
+	MenuTriggerTextColor: #000;
+	MenuTriggerBgColorHover: #f0f0f0;
+	MenuItemBgColor_Hover: #c0c0c0;
+	MenuArrowColor: #000;
+	ArrowColor: #000;
 }
 
 .root {
 	-st-extends: TopBar;
-	background: value(BgColor);
+	background-color: value(BgColor);
 }
 
 .root::header {
 	-st-mixin: HeaderMixin(
+		HeaderSiteTitleColor value(SiteTitleLinkTextColor),
 		HeaderSiteSubtitleColor value(SiteTitleLinkTextColor),
 		SiteLogoBgProps value(SiteLogoBgProps)
+	);
+}
+
+.root::nav {
+	-st-mixin: MenuMixin(
+		LinkColor value(LinkColor),
+		LinkColor_Hover value(LinkColor_Hover),
+		ArrowColor value(MenuArrowColor),
+		ViewPortBgColor value(MenuViewPortBgColor),
+		ViewPortShadow value(MenuViewPortShadow),
+		TriggerTextColor value(MenuTriggerTextColor),
+		TriggerBgColorHover value(MenuTriggerBgColorHover),
+		ItemBgColor_Hover value(MenuItemBgColor_Hover),
+		ArrowColor value(ArrowColor)
 	);
 }

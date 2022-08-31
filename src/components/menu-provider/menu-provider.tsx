@@ -14,12 +14,12 @@ import {
 } from "../../interfaces/menu";
 import { ComponentProps } from "../../interfaces/models";
 import { Menu } from "../menu";
-import { st as menuStyle, classes as menuClasses } from "../menu/menu.st.css";
 import { MobileMenu } from "../mobile-menu";
 import {
 	st as mobileStyle,
 	classes as mobileClasses,
 } from "../mobile-menu/mobile-menu.st.css";
+import { st as menuStyle, classes as menuClasses } from "../menu/menu.st.css";
 import { TextDirection } from "../../interfaces/locale-context";
 
 export interface MenuProviderProps extends ComponentProps {

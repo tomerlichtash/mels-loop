@@ -1,13 +1,12 @@
 @namespace "LocaleSelector";
 
-@st-import [boxSizing, preventSelection, TextNode] from "../../theme/mixins.st.css";
-@st-import [LatinText, HebrewText] from "../../theme/common/typography.st.css";
-@st-import Button from "../ui/button/button.st.css"
+@st-import [boxSizing, preventSelection] from "../../theme/common/mixins.st.css";
+@st-import [LatinText, HebrewText, ToggleButton, ToggleButtonSelected] from "../../theme/common/typography.st.css";
+@st-import Button from "../ui/button/button.st.css";
 
 :vars {
 	buttonMargin: 38px;
 	triggerIconMargin: 10px;
-	height: 40px;
 }
 
 .root {
@@ -41,11 +40,7 @@
 .button {
 	-st-extends: Button;
 	-st-states: locale(enum(en, he)), selected(boolean);
-	-st-mixin: preventSelection, TextNode(
-		TextSize 14px,
-		TextLineHeight 32px,
-		TextWeight 400
-	);
+	-st-mixin: preventSelection, ToggleButton;
 	height: 32px;
 	width: 32px;
 }
@@ -57,6 +52,6 @@
 	-st-mixin: HebrewText;
 }
 .button:selected {
+	-st-mixin: ToggleButtonSelected;
 	cursor: default;
-	font-weight: 500;
 }

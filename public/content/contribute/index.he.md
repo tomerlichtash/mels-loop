@@ -9,4 +9,4 @@ title: תרומה והשתתפות
 - הצעות לפיצ׳רים שעשויים לתרום לחוויית הקריאה באתר
 - דיווח על תקלות
 
-ןלתרומה ולהשתתפות בפרויקט ניתן ליצור קשר [באימייל](/contact), או דרך פתיחת Issue או Pull Request [בדף הפרויקט בגיטהב](https://github.com/tomerlichtash/mels-loop/).
+ןלתרומה ולהשתתפות בפרויקט ניתן ליצור קשר [בטופס ההתקשרות באתר](/contact), או דרך [פתיחת Issue](https://github.com/tomerlichtash/mels-loop/issues/new) או Pull Request [בדף הפרויקט בגיטהב](https://github.com/tomerlichtash/mels-loop/).

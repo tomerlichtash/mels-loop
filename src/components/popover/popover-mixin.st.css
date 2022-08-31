@@ -1,18 +1,29 @@
 @namespace "PopoverMixin";
 
 @st-import Popover from "./popover.st.css";
-@st-import [preventSelection, verticalAlignSuper] from "../../theme/mixins.st.css";
 
 :vars {
-	TriggerTextColor: black;
+	BgColor: #000;
+	BorderColor: rgba(0, 0, 0, 0.2);
+	BorderRadius: 4px;
+	TriggerTextColor: #000;
 	TriggerTextColor_Hover: #808080;
 	TriggerTextColor_Open: magenta;
 	TriggerTextBgColor_Open: #c0c0c0;
 	TriggerMarkerColor_Open: magenta;
+	TriggerRadius: 4px;
+	PopoverContentShadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
 }
 
 .root {
 	-st-extends: Popover;
+}
+
+.root::content {
+	box-shadow: value(PopoverContentShadow);
+	border-radius: value(BorderRadius);
+	border-color: value(BorderColor);
+	background-color: value(BgColor);
 }
 
 .root:type(annotation)::trigger,
@@ -21,10 +32,10 @@
 }
 
 .root:type(glossary)::triggerWrapper {
-	border-radius: 4px;
+	border-radius: value(TriggerRadius);
 }
 
-.root:type(annotation)::trigger:hover,
+.root::trigger:hover,
 .root:type(glossary)[data-state="closed"]::trigger:hover,
 .root:type(glossary)[data-state="closed"]::trigger:hover::after {
 	color: value(TriggerTextColor_Hover);
@@ -36,15 +47,6 @@
 	color: value(TriggerTextColor_Open);
 }
 
-.root:type(glossary)::trigger::after {
-	-st-mixin: preventSelection, verticalAlignSuper;
-	content: "\203B";
-}
-
 .root:type(glossary)[data-state="open"]::trigger::after {
 	color: value(TriggerMarkerColor_Open);
 }
-
-/* .root::content {
-	margin-top: 20px;
-} */

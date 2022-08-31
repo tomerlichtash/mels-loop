@@ -1,13 +1,14 @@
 @namespace "Field";
 
-@st-import [boxSizing] from "../../theme/mixins.st.css";
-@st-import [bodyTextNormal] from "../../theme/common/typography.st.css";
+@st-import [boxSizing, preventSelection] from "../../theme/common/mixins.st.css";
 
 .root {
 	-st-states: id(string);
 }
 
-.label {}
+.label {
+	-st-mixin: preventSelection;
+}
 
 .caption {
 	-st-states: required(boolean);
@@ -24,11 +25,19 @@
 
 .input {
 	-st-states: validation(enum(initial, valid, invalid, empty)), tag(enum(input, textarea));
-	-st-mixin: boxSizing, bodyTextNormal;
+	-st-mixin: boxSizing;
 	display: block;
 	cursor: pointer;
 	background: none;
-	outline: 1;
+	outline: 0;
+}
+
+.input:focus {
+	outline: 2px solid blue;
+}
+
+.input:tag(textarea) {
+	resize: none;
 }
 
 .input:active,

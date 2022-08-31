@@ -11,33 +11,129 @@
 	color7,
 	color8,
 	color9,
+	color9_1,
+	color9_2,
 	color10,
 	color11,
 	color12,
 	color13,
 	color14,
-	color15,
-	color16,
+	color17,
+	color18,
+	shadow0
 ] from "../common/colors.st.css";
 
 :vars {
-	level0: value(color16);
-	level1: value(color8);
-	level2: value(color7);
-	level3: value(color6);
-	level4: value(color5);
-	level5: value(color4);
-	level6: value(color3);
-	level7: value(color2);
-	level8: value(color1);
+	level0: value(color0);
+	level1: value(color1);
+	level2: value(color2);
+	level3: value(color3);
+	level4: value(color4);
+	level5: value(color5);
+	level6: value(color6);
+	level7: value(color7);
+	level8: value(color8);
+	primary1: value(color9);
+	primary1_1: value(color9_1);
+	primary1_2: value(color9_2);
+	primary2: value(color10);
+	primary3: value(color11);
+	primary4: value(color12);
+	accent1: value(color13);
+	accent2: value(color14);
+	success1: value(color17);
+	fail1: value(color18);
+}
 
-	primary1: value(color12);
-	primary2: value(color11);
-	primary3: value(color10);
-	primary4: value(color9);
+:vars {
+	/* LAYOUT */
+	LAYOUT_SCROLLBAR_COLOR: value(level6);
+	LAYOUT_BG_COLOR: value(level7);
+	LAYOUT_TEXT_COLOR: value(level2);
+	LAYOUT_ALT_BG_COLOR: value(level8);
+	LAYOUT_TEXT_COLOR_ALT: value(level5);
+	LAYOUT_SECTION_BG_COLOR: value(level8);
+	LAYOUT_SECTION_SHADOW: value(shadow0);
 
-	accent1: value(color16);
-	accent2: value(color15);
-	accent3: value(color14);
-	accent4: value(color13);
+	/* HEADINGS */
+	HEADING1_TEXT_COLOR: value(level1);
+	HEADING2_TEXT_COLOR: value(level2);
+	HEADING3_TEXT_COLOR: value(level3);
+	HEADING4_TEXT_COLOR: value(level5);
+	HEADING5_TEXT_COLOR: value(level5);
+	HEADING6_TEXT_COLOR: value(level5);
+	HEADING1_TEXT_ALT_COLOR: value(level4);
+
+	/* RUNNING TEXT */
+	BODY_TEXT_COLOR: value(level1);
+
+	/* LINK */
+	LINK_TEXT_COLOR: value(primary1_2);
+	LINK_HOVER_TEXT_COLOR: value(accent1);
+
+	/* CODE */
+	CODE_TEXT_COLOR: value(level2);
+	CODE_BLOCK_BG_COLOR: value(level7);
+	CODE_INLINE_BORDER_COLOR: value(level6);
+
+	/* HIGHLIGHT */
+	HIGHLIGHT_OPEN_TEXT_COLOR: value(level0);
+	HIGHLIGHT_OPEN_BG_COLOR: value(accent1);
+
+	/* DIALOG */
+	DIALOG_BG_COLOR: value(level8);
+	DIALOG_TOOLBAR_ICON_FILL_COLOR: value(level2);
+	DIALOG_TOOLBAR_ICON_FILL_HOVER_COLOR: value(level8);
+	DIALOG_TOOLBAR_ICON_FILL_HOVER_BG_COLOR: value(level5);
+	DIALOG_TOOLBAR_ICON_FILL_ACTIVE_COLOR: value(primary2);
+	DIALOG_TOOLBAR_SEPERATOR: value(level7);
+	DIALOG_TRIGGER_DECORATION_COLOR: value(level4);
+	DIALOG_TOPIC_BG_COLOR: value(primary1);
+	DIALOG_TOPIC_TEXT_COLOR: value(level2);
+
+	/* INPUT */
+	INPUT_LABEL_TEXT_COLOR: value(level3);
+	INPUT_LABEL_HOVER_BG_COLOR: value(level2);
+	INPUT_BORDER_COLOR: value(primary1);
+	INPUT_BORDER_COLOR_FOCUS: value(accent1);
+	INPUT_PLACEHOLDER_TEXT_COLOR: value(level5);
+	INPUT_VALIDATION_SUCCESS_COLOR: value(success1);
+	INPUT_VALIDATION_FAIL_COLOR: #f44;
+	INPUT_BG_COLOR: value(level4);
+	INPUT_TEXT_COLOR: value(level8);
+	INPUT_LABEL_FOCUS_BG_COLOR: value(level2);
+
+	/* FORM SUBMIT BUTTON */
+	FORM_SUBMIT_BG_COLOR: value(primary1);
+	FORM_SUBMIT_BG_COLOR_HOVER: value(accent2);
+	FORM_SUBMIT_TEXT_COLOR: value(level1);
+
+	/* TOP BAR MENU */
+	MENU_BG_COLOR: value(level3);
+	MENU_ITEM_TEXT_COLOR: value(level7);
+	MENU_ITEM_HOVER_TEXT_COLOR: value(level1);
+	MENU_ITEM_HOVER_BG_COLOR: value(primary1);
+
+	/* MOBILE MENU */
+	MOBILE_MENU_BG_COLOR: value(level7);
+	MOBILE_MENU_ITEM_TEXT_COLOR: value(primary1_1);
+	MOBILE_MENU_ITEM_SUBTITLE_TEXT_COLOR: value(level0);
+	MOBILE_MENU_ITEM_HOVER_TEXT_COLOR: value(primary1);
+	MOBILE_MENU_ITEM_HOVER_BG_COLOR: value(level8);
+	MOBILE_MENU_ITEM_BORDER_COLOR: value(level6);
+	MOBILE_MENU_SECTION_TITLE_TEXT_COLOR: value(level5);
+
+	/* DARK LOCALE SELECTOR */
+	DARK_LOCALE_SELECTOR_TEXT_COLOR: value(level1);
+	DARK_LOCALE_SELECTOR_HOVER_BG_COLOR: value(level5);
+	DARK_LOCALE_SELECTOR_ITEM_SELECTED_TEXT_COLOR: value(level0);
+	DARK_LOCALE_SELECTOR_ITEM_SELECTED_BG_COLOR: value(primary1);
+
+	/* BORDER */
+	CONTENT_BORDER_COLOR: value(level4);
+
+	/* GRADIENT */
+	GRADIENT1_START: value(primary4);
+	GRADIENT1_MID: value(primary3);
+	GRADIENT1_END: value(primary1);
 }

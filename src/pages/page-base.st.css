@@ -1,82 +1,186 @@
 @namespace "PageBase";
 
-@st-import ContentComponent from "../components/content/content-component.st.css";
+@st-import Button from "../components/ui/button/button.st.css";
+@st-import ContentComponent from "../components/content/content-component/content-component.st.css";
+@st-import Link from "../components/content/content-blocks/link/link.st.css";
+@st-import CodeBlock from "../components/content/content-blocks/code-block/code-block.st.css";
+@st-import Figure from "../components/content/content-blocks/figure/figure.st.css";
+@st-import [
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	Topic,
+	Paragraph,
+	Blockquote,
+	InlineCode,
+	CodeBlockStyle,
+	ParagraphMargin,
+	SubtitleMargin1,
+	SubtitleMargin2,
+	ListBullet,
+	ArticleByline,
+] from "../theme/common/typography.st.css";
+@st-import [SectionBox] from "../theme/common/mixins.st.css";
 
-.root {}
+:vars {
+	BlockQuoteBorder: 3px solid;
+}
 
-/**
-	Common Styles
-*/
+.root {
+	-st-states: textDirection(enum(ltr, rtl));
+}
 
-.title {}
-.heading2 {}
-.heading3 {}
-.heading4 {}
-.heading5 {}
-.heading6 {}
+.contentComponent {
+	-st-extends: ContentComponent;
+}
+
+.topic {
+	-st-mixin: Topic;
+}
+
+.title,
+.root::contentComponent:type(heading_1) {
+	-st-mixin: h1;
+}
+
+.subtitle,
+.root::contentComponent:type(heading_2) {
+	-st-mixin: h2;
+}
+.root::contentComponent:type(heading_2) {
+	-st-mixin: SubtitleMargin1;
+}
+
+.sectionTitle,
+.root::contentComponent:type(heading_3) {
+	-st-mixin: h3, SubtitleMargin2;
+}
+
+.root::contentComponent:type(heading_4) {
+	-st-mixin: h4, SubtitleMargin2;
+}
+
+.root::contentComponent:type(heading_5) {
+	-st-mixin: h5, SubtitleMargin2;
+}
+
+.root::contentComponent:type(heading_6) {
+	-st-mixin: h6, SubtitleMargin2;
+}
+
+.paragraph,
+.root::contentComponent:type(paragraph) {
+	-st-mixin: Paragraph, ParagraphMargin;
+}
+
+.blockquote {}
+.root::contentComponent:type(blockquote) {
+	border-left: value(BlockQuoteBorder);
+	margin-left: 1rem;
+}
+.root:textDirection(rtl)::contentComponent:type(blockquote) {
+	margin-left: auto;
+	border-left: none;
+	margin-right: 1rem;
+	border-right: value(BlockQuoteBorder);
+}
+.root::contentComponent:type(blockquote) strong {
+}
+
+.root::contentComponent:type(blockquote) {
+	-st-mixin: Blockquote;
+}
+
+.root::contentComponent:listType(ul),
+.root::contentComponent:listType(ol) {
+	-st-mixin: ListBullet;
+}
+
+.root::contentComponent:type(list-item)  {
+	-st-mixin: Paragraph, ParagraphMargin;
+}
+
+.code {}
+.root code,
+.root::contentComponent:type(code) {
+	-st-mixin: InlineCode;
+}
+.root CodeBlock::pre {
+	-st-mixin: CodeBlockStyle;
+	padding: 1rem;
+}
+.root CodeBlock::code {
+	background: none;
+	border: none;
+	background: none;
+	padding: 0;
+	border-radius: 0;
+}
+
+.root::contentComponent:type(figure) {
+	border: 1px solid;
+	padding: 0;
+	box-sizing: border-box;
+	margin: 2rem 0;
+}
+.root::contentComponent:type(figure) img {
+	display: block;
+}
 
 .link {}
-.code {}
 
 .section {
+	-st-mixin: SectionBox;
 	-st-states: seperator(boolean);
 	margin-bottom: 2rem;
 }
-.section:seperator {
-	border-top: 2px solid black;
-	margin: 2rem 0;
-	padding-top: 2rem;
+
+.moto {
+	-st-mixin: Paragraph;
+	margin-bottom: 2rem;
+	font-style: italic;
 }
-
-.paragraph {}
-
-/**
-	Dynamic Page
-*/
 
 .header {
 	margin-bottom: 2rem;
 }
 
-.abstract {}
-
 .meta {
 	-st-states: hasContent(boolean);
+	margin: 1.302vmax 0 0;
 }
 
 .meta:hasContent {
-	padding: 1vmax 0;
-	border-top: 2px solid;
-	border-bottom: 2px solid;
+	padding: 0.5rem 0;
+	border-top: 1px solid;
 	display: flex;
 	align-items: center;
 	align-content: space-between;
 	justify-content: space-between;
 }
 
-.byline {}
-
-.date {}
-
-.section {}
-
-.contentComponent {
-	-st-extends: ContentComponent;
+.byline {
+	-st-mixin: ArticleByline;
+}
+.date {
+	-st-mixin: Paragraph;
 }
 
 .noContent {}
 
 .error {}
 
-.info {
-	/* margin: 2rem 0; */
-	/* background: #f0f0f0; */
-	/* border: 1px solid #c0c0c0; */
-	/* padding: 2rem 2rem 0; */
-	/* border-radius: 4px; */
+.form {}
+
+.credits {}
+
+.smallButton {
+	-st-mixin: Paragraph, ParagraphMargin;
 }
 
-/* .scrambleEmailAddress {
-	unicode-bidi: bidi-override;
-	direction: rtl;
-} */
+.button {
+	-st-extends: Button;	
+}
