@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { AppContext } from "../contexts";
 import { fontFaceDecls } from "../site-fonts";
 
+export { reportWebVitals } from "next-axiom";
+
 const App = ({ Component, pageProps }: AppProps) => {
 	const router = useRouter();
 	const fontStyles = css`

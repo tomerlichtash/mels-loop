@@ -6,6 +6,7 @@ import LoadingIndicator from "../loading-indicator";
 import { ReactThemeContext } from "../../contexts/theme-context";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { st, classes } from "./form.st.css";
+import { log } from "next-axiom";
 
 export const Form = ({
 	entries,
@@ -127,6 +128,8 @@ export const Form = ({
 		document.addEventListener("keydown", keyDownHandler);
 		return () => document.removeEventListener("keydown", keyDownHandler);
 	});
+
+	log.debug("Contact form loaded", entries);
 
 	return (
 		<div className={st(classes.root, className)}>
