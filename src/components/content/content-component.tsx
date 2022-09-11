@@ -12,11 +12,16 @@ import {
 	Figure,
 	//BlockQuote,
 	CodeBlock,
+	BlockQuote,
 } from "./content-blocks";
 import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
 import LinkSelector from "./content-blocks/link-selector";
 import { st, classes } from "./content-component.st.css";
+
+const ROOT_CLASS_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
+	MLNODE_TYPES.TR
+])
 
 export const ContentComponent = ({
 	componentData,
@@ -24,7 +29,9 @@ export const ContentComponent = ({
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { key, type } = node;
-	const stylableClassName = st(classes.root, { type }, className);
+	const useClassname = !ROOT_CLASS_TYPES.has(type);
+	const stylableClassName =  st(classes.root, { type }, 
+		useClassname? className : "");
 
 	if (!key) {
 		console.warn("missing key on", node);
@@ -56,8 +63,10 @@ export const ContentComponent = ({
 		case MLNODE_TYPES.TR:
 		case MLNODE_TYPES.TD:
 		case MLNODE_TYPES.TH:
-		case MLNODE_TYPES.BLOCKQUOTE:
-				return (
+		case MLNODE_TYPES.SUB:
+		case MLNODE_TYPES.SUP:
+			//case MLNODE_TYPES.BLOCKQUOTE:
+			return (
 				<ContentIterator
 					key={key}
 					componentData={{ tag: type, ...componentData }}
@@ -68,14 +77,14 @@ export const ContentComponent = ({
 			return (
 				<CodeBlock key={key} componentData={componentData} className={stylableClassName} />
 			)
-		//case MLNODE_TYPES.BLOCKQUOTE:
-		//	return (
-		//		<BlockQuote
-		//			key={key}
-		//			componentData={componentData}
-		//			className={stylableClassName}
-		//		/>
-		//	);
+		case MLNODE_TYPES.BLOCKQUOTE:
+			return (
+				<BlockQuote
+					key={key}
+					componentData={componentData}
+					className={stylableClassName}
+				/>
+			);
 		case MLNODE_TYPES.TEXT:
 			const { text } = node;
 			return (
