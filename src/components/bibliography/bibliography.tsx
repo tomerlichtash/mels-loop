@@ -22,7 +22,7 @@ export const Bibliography = ({
 }: IBibliographyProps): JSX.Element => {
 	return (
 		<div className={st(classes.root, className)}>
-			<div className={classes.title}>{label}:</div>
+			{label ? <div className={classes.title}>{label}:</div> : null}
 			<ul className={classes.list}>
 				{sources.map(({ name, url, author }) => {
 					const authorSuffix = author ? ` / ${author}` : "";
