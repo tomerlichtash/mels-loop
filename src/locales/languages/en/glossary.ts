@@ -8,6 +8,7 @@ export const Glossary: GlossaryTerms = {
 	DRUM_MEMORY: "Drum Memory",
 	FORTRAN: "Fortran",
 	FRIDEN_FLEXOWRITER: "Friden Flexowriter",
+	GLOSSARY_NAV_LABEL: "Glossary",
 	GOTO: "GOTO",
 	HEXADECIMAL: "Hexadecimal",
 	INFINITE_LOOP: "Infinite Loop",

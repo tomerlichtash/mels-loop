@@ -8,6 +8,7 @@ export const Glossary: GlossaryTerms = {
 	DRUM_MEMORY: "זִכְרוֹן תֹּף",
 	FORTRAN: "פוֹרְטְרַן",
 	FRIDEN_FLEXOWRITER: "פרידן פלקסורייטר",
+	GLOSSARY_NAV_LABEL: "מילון",
 	GOTO: "פְּקֻדָּת GOTO",
 	HEXADECIMAL: "בְּסִיס הֶקְסָדֵּצִימָלִי",
 	INFINITE_LOOP: "לוּלָאָה אֵינְסוֹפִית",
