@@ -91,7 +91,7 @@ const AST2MLTypeMap: Map<ASTNODE_TYPES, MLNODE_TYPES> = new Map<
 	[ASTNODE_TYPES.BLOCK_QUOTE, MLNODE_TYPES.BLOCKQUOTE],
 ]);
 
-const INLINE_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
+const INLINE_AST_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
 	ASTNODE_TYPES.TEXT,
 	ASTNODE_TYPES.LINK,
 	ASTNODE_TYPES.EM,
@@ -102,6 +102,20 @@ const INLINE_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
 	ASTNODE_TYPES.DEL,
 	ASTNODE_TYPES.SUB,
 	ASTNODE_TYPES.SUP,
+]);
+
+const INLINE_MLNODE_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
+	MLNODE_TYPES.TEXT,
+	MLNODE_TYPES.LINK,
+	MLNODE_TYPES.EM,
+	MLNODE_TYPES.CODE,
+	MLNODE_TYPES.STRONG,
+	MLNODE_TYPES.IMAGE,
+	MLNODE_TYPES.INS,
+	MLNODE_TYPES.DEL,
+	MLNODE_TYPES.SUB,
+	MLNODE_TYPES.SUP,
+	MLNODE_TYPES.LINE
 ]);
 
 /**
@@ -118,7 +132,7 @@ const TEXT_CONTAINER_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
 	ASTNODE_TYPES.HEADING,
 ]);
 
-const IGNORED_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>(
+const IGNORED_AST_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>(
 	[ASTNODE_TYPES.NEWLINE]);
 
 const NO_PARAGRAPH_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>(
@@ -350,23 +364,23 @@ class ContentUtils implements IContentUtils {
 		return TEXT_CONTAINER_TYPES.has(type);
 	}
 
-	private isInline(nodeOrType: ParsedNode | string): boolean {
-		const type: string =
-			typeof nodeOrType === "string" ? nodeOrType : nodeOrType.type;
-		return INLINE_TYPES.has(type as ASTNODE_TYPES); // hack, we rely on the identity between inline types in both enumerations
+	private isInlineParsedNode(node: ParsedNode): boolean {
+		return INLINE_AST_TYPES.has(node?.type);
 	}
 
-	private isIgnored(nodeOrType: ParsedNode | string): boolean {
-		const type: string =
-			typeof nodeOrType === "string" ? nodeOrType : nodeOrType.type;
-		return IGNORED_TYPES.has(type as ASTNODE_TYPES);
+	private isInlineMLNode(node: IMLParsedNode): boolean {
+		return INLINE_MLNODE_TYPES.has(node?.type);
+	}
+
+	private isIgnoredASTNode(node: ParsedNode): boolean {
+		return IGNORED_AST_TYPES.has(node?.type);
 	}
 
 	private processOneASTNode(
 		node: ParsedNode,
 		context: MLParseContext
 	): IMLParsedNode {
-		if (this.isIgnored(node)) {
+		if (this.isIgnoredASTNode(node)) {
 			return null;
 		}
 		node = sanitizeHTML(node);
@@ -393,7 +407,7 @@ class ContentUtils implements IContentUtils {
 		node: ParsedNode,
 		context: MLParseContext
 	): IMLParsedNode {
-		if (this.isIgnored(node)) {
+		if (this.isIgnoredASTNode(node)) {
 			return null;
 		}
 		const isHTML = node.type === ASTNODE_TYPES.HTML,
@@ -436,12 +450,11 @@ class ContentUtils implements IContentUtils {
 			return resultNode;
 		}
 		let currentLine: IMLParsedNode = parseMode === MLParseModes.VERSE ? null : resultNode;
-		const isInlineContainer = this.isInline(node) || this.isTextContainer(node);
+		const isInlineContainer = this.isInlineParsedNode(node) || this.isTextContainer(node);
 
 		for (let i = 0, len = children.length; i < len; ++i) {
 			const child = children[i];
-			const type = child.type;
-			if (this.isInline(type)) {
+			if (this.isInlineParsedNode(child)) {
 				if (isInlineContainer) {
 					resultNode.children.push(this.parsedNodeToMLNode(child, newContext));
 					continue;
@@ -461,7 +474,7 @@ class ContentUtils implements IContentUtils {
 					removeNullChildren(currentLine)
 					currentLine = null;
 				}
-				if (!this.isIgnored(type)) {
+				if (!this.isIgnoredASTNode(child)) {
 					resultNode.children.push(this.parsedNodeToMLNode(child, newContext));
 				}
 			}
@@ -658,7 +671,7 @@ class ContentUtils implements IContentUtils {
 			}
 		}
 		for (const child of children) {
-			if (!this.isInline(child.type)) {
+			if (!this.isInlineMLNode(child)) {
 				this.promoteFiguresInNode(child, context);
 			}
 		}
@@ -690,7 +703,7 @@ class ContentUtils implements IContentUtils {
 			this.promoteParagraphContent(node, context);
 		} else {
 			for (const child of children) {
-				if (!this.isInline(child.type)) {
+				if (!this.isInlineMLNode(child)) {
 					this.promoteInlinesInNode(child, context);
 				}
 			}
@@ -716,7 +729,7 @@ class ContentUtils implements IContentUtils {
 	private collectInlines(node: IMLParsedNode): IMLParsedNode[] {
 		const inlines: IMLParsedNode[] = [];
 		for (const child of node.children) {
-			if (this.isInline(child.type)) {
+			if (this.isInlineMLNode(child)) {
 				inlines.push(child);
 			} else {
 				inlines.push(...this.collectInlines(child));

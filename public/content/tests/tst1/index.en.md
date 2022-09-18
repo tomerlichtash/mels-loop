@@ -6,30 +6,54 @@ date: Sat Jun 25 2022 21:07:06 GMT+0300 (Israel Daylight Time)
 
 <!-- Begin figure -->
 
-<blockQuote data-parse-mode="verse">
+<blockQuote !data-parse-mode="verse" onclick="alert('click')" data-rabak="not">
 This is what verse mode looks like:
 The fool on the hill
 ringing the bell
 and sitting still
 </blockQuote>
 
+
+<table data-type="bit-layout">
+<tr>
+<td>MSB<</td>
+<th>X</th>
+<th>N</th>
+<th>N</th>
+<th>N</th>
+<th>A</th>
+<th>A</th>
+<th>A</th>
+<th>C</th>
+<th>C</th>
+<th>C</th>
+<td>>LSB</td>
+</tr>
+<tr>
+<td></td>
+<td>Index</td>
+<td colspan="3">Next</td>
+<td colspan="3">Data</td>
+<td colspan="3">Opcode</td>
+<td></td>
+</tr>
+</table>
+
 >BlockQuote in MD
+
 
 <table>
 	<tr>
-		<td>First</td>
-		<td>Second</td>
-		<td>Third</td>
+		<td rowspan="2">Normal</td>
+		<td>Table</td>
+		<td>Style</td>
+	</tr>
+	<tr>
+		<td>Fourth</td>
+		<td>Fifth</td>
 	</tr>
 </table>
 
-<table data-type="bit-layout">
-	<tr>
-		<td>First</td>
-		<td>Second</td>
-		<td>Third</td>
-	</tr>
-</table>
 
 <figure data-order="1" caption="not ehre">
 This thing

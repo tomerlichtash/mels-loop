@@ -30,18 +30,15 @@ export const ContentIterator = ({
 	const Tag = componentData.tag as keyof JSX.IntrinsicElements;
 
 	if (!elements?.length) {
-		if (node.text) {
-			if (Tag) {
-				return (
-					<Tag className={className} key={mlUtils.uniqueId()} {...attributes}>
-						{node.text}
-					</Tag>
-				);
-			}
-
-			return <span className={className}>{node.text}</span>;
+		if (Tag) {
+			return (
+				<Tag className={className} key={mlUtils.uniqueId()} {...attributes}>
+					{node.text || ""}
+				</Tag>
+			);
 		}
-		return <span></span>;
+
+		return <span className={className} key={mlUtils.uniqueId()}>{node.text || ""}</span>;
 	}
 
 	if (Tag) {

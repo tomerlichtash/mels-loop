@@ -1,10 +1,10 @@
 @namespace "Table";
 
 .root {
-	border: 2px dashed orange;
+	border-spacing: 0;
 }
 
-.root[data-type='bit-layout'] td {
+.root[data-type='bit-layout'] td, .root[data-type='bit-layout'] th {
 	border: 1px solid black;
 	border-top: none;
 }

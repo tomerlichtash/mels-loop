@@ -283,7 +283,7 @@ class FolderContent implements IFolderContent {
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const createHtmlMDParser = () => {
-	const HTML_RE = /^\s*<([a-z]+)([^>]+)*>([\s\S]+?)?<\/\1>/i;
+	const HTML_RE = /^\s*<([a-z]+)([^>]+)*>([\s\S]*?)<\/\1>/i;
 	const HTML_SELFCLOSE_RE = /^\s*<([a-z]+)([^/>]+)*\/>/i;
 	const rules = {
 		...mdParser.defaultRules,

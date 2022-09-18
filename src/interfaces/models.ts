@@ -221,6 +221,8 @@ export interface ILocaleMap {
 	locale: string;
 }
 
+export type NodeAttributeMap = { readonly [rekey: string]: string };
+
 export type PageSortField = Omit<keyof IParsedPageData, "parsed" | "error">;
 
 export interface IFolderContent {

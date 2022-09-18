@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { IMLParsedNode } from "../interfaces/models";
+import { IMLParsedNode, NodeAttributeMap } from "../interfaces/models";
 import { mlNextBrowserUtils } from "../lib/next-browser-utils";
 
-type AttributeMap = { [key: string]: string };
 export interface IComponentAttributeData {
-	attributes: AttributeMap
+	attributes: NodeAttributeMap
 }
 /**
  * Returns an object with the sanitized attribute map of the node
@@ -16,7 +15,7 @@ export interface IComponentAttributeData {
 export const useComponentAttributes = (
 	node: IMLParsedNode
 ): IComponentAttributeData => {
-	const [attributes, setAttributes] = useState<AttributeMap>(
+	const [attributes, setAttributes] = useState<NodeAttributeMap>(
 		{}
 	);
 
