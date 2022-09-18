@@ -23,6 +23,14 @@ and sitting still
 	</tr>
 </table>
 
+<table data-type="bit-layout">
+	<tr>
+		<td>First</td>
+		<td>Second</td>
+		<td>Third</td>
+	</tr>
+</table>
+
 <figure data-order="1" caption="not ehre">
 This thing
 </figure>

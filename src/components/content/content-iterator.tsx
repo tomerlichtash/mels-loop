@@ -3,6 +3,7 @@ import { ContentComponent } from "./index";
 import { ContentComponentProps, IMLParsedNode } from "../../interfaces/models";
 import { mlUtils } from "../../lib/ml-utils";
 import { st, classes } from "./content-iterator.st.css";
+import { useComponentAttributes } from "../use-component-attributes";
 
 /**
  * Displays the content of a Content Node, optionally wrapping
@@ -16,10 +17,13 @@ export const ContentIterator = ({
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 
+	const { attributes } = useComponentAttributes(node);
+
 	if (!node) {
 		console.warn("Content Iterator: no input node");
 		return <div className={classes.noData}></div>;
 	}
+
 
 	const elements: IMLParsedNode[] =
 		Array.isArray(node.children) && node.children;
@@ -29,7 +33,7 @@ export const ContentIterator = ({
 		if (node.text) {
 			if (Tag) {
 				return (
-					<Tag className={className} key={mlUtils.uniqueId()}>
+					<Tag className={className} key={mlUtils.uniqueId()} {...attributes}>
 						{node.text}
 					</Tag>
 				);
@@ -42,7 +46,7 @@ export const ContentIterator = ({
 
 	if (Tag) {
 		return (
-			<Tag className={st(classes[Tag], className)} key={mlUtils.uniqueId()}>
+			<Tag className={st(classes[Tag], className)} key={mlUtils.uniqueId()} {...attributes}>
 				{elements.map((node) => {
 					return (
 						<ContentComponent

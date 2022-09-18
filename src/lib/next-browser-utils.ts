@@ -32,13 +32,13 @@ class MLNextBrowserUtils implements IMLNextBrowserUtils {
 
 	public extractNodeAttributes(node: IMLParsedNode): { [name: string]: string } {
 		const attrs: { [name: string]: string } = {};
-		const rec = ALLOWED_HTML_ATTRIBUTES[node.type];
+		const rec = ALLOWED_HTML_ATTRIBUTES[node.type?.toUpperCase()];
 		const nodeAttrs = node.attributes;
-		if (!rec || !nodeAttrs) {
+		if (!rec || !nodeAttrs || !rec.valid?.length) {
 			return attrs;
 		}
 		Object.keys(nodeAttrs).forEach(key => {
-			if (rec.valid.includes(key)) {
+			if (key && rec.valid.includes(key.toLowerCase())) {
 				attrs[key] = nodeAttrs[key];
 			}
 		});

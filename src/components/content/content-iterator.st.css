@@ -6,11 +6,3 @@
 
 .noData {}
 
-table {
-	border: 2px dashed orange;
-}
-
-table[data-type='bits'] td {
-	border: 1px solid black;
-	border-top: none;
-}

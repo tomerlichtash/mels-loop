@@ -18,6 +18,7 @@ import { ContentIterator } from "./content-iterator";
 import CustomImage from "./content-blocks/custom-image";
 import LinkSelector from "./content-blocks/link-selector";
 import { st, classes } from "./content-component.st.css";
+import Table from "./content-blocks/table";
 
 const ROOT_CLASS_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
 	MLNODE_TYPES.TR
@@ -59,7 +60,6 @@ export const ContentComponent = ({
 		case MLNODE_TYPES.STRONG:
 		case MLNODE_TYPES.EM:
 		case MLNODE_TYPES.CODE:
-		case MLNODE_TYPES.TABLE:
 		case MLNODE_TYPES.TR:
 		case MLNODE_TYPES.TD:
 		case MLNODE_TYPES.TH:
@@ -139,6 +139,16 @@ export const ContentComponent = ({
 					className={stylableClassName}
 				/>
 			);
+		case MLNODE_TYPES.TABLE:
+			return (
+				<Table
+					key={key}
+					componentData={componentData}
+					className={stylableClassName}
+				/>
+			);
+
+
 		default:
 			if (/heading/i.test(type)) {
 				return (
