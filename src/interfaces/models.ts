@@ -70,7 +70,8 @@ export enum MLNODE_TYPES {
 	TR = "tr",
 	TD = "td",
 	TABLE = "table",
-	TH = "th"
+	TH = "th",
+	CITE = "cite",
 }
 
 export enum NODE_LIST_TYPES {

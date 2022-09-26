@@ -6,7 +6,7 @@ date: Sat Jun 25 2022 21:07:06 GMT+0300 (Israel Daylight Time)
 
 <!-- Begin figure -->
 
-<blockQuote !data-parse-mode="verse" onclick="alert('click')" data-rabak="not">
+<blockQuote data-parse-mode="verse" onclick="alert('click')" data-rabak="not">
 This is what verse mode looks like:
 The fool on the hill
 ringing the bell

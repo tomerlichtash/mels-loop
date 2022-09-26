@@ -9,7 +9,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
     When the light went on it nearly blinded me.
     (Line 193)
 
-This line in The Story of Mel precedes the author's description of Mel's hack, the almost criminally resourceful implementation of a finite loop with no exit condition. These words never fail to give me goosebumps. They reflect a rare "Ah!" moment, where a seemingly random collection of facts suddenly falls into a coherent logical structure.
+This line in The Story of Mel precedes the author's description of Mel's hack, the almost criminally resourceful implementation of a finite loop with no exit condition.. These words never fail to give me goosebumps. They reflect a rare "Ah!" moment, where a seemingly random collection of facts suddenly falls into a coherent logical structure.
 
 Intellectual satisfaction notwithstanding, I suspect that a considerable part of my pleasure has been derived from a sense of belonging to an elite handful of people that really got it. Sure, many developers loved the story and cherished it as part of their digital sphere, but I could go into detail and describe the hack without a refresher. I knew about the index register bit, the trick of storing the modified instruction in its original location and the magical appearance of a `JUMP` instruction in the right place, at the right time.
 
@@ -19,13 +19,14 @@ It was only while proofing this project’s annotations to the story, that a cer
 
 Let's briefly go over **Ed Nather**'s now-mythological description of the overflow that modified the code, created a `JUMP` instruction and allowed the program to magically leap out of an endless loop, as described in the story text:
 
-        The vital clue came when I noticed
-        the index register bit,
-        the bit that lay between the address
-        and the operation code in the instruction word,
-        was turned on
-        (Lines 185-190)
-
+<blockQuote data-parse-mode="verse" data-type="quote">
+	The vital clue came when I noticed
+	the index register bit,
+	the bit that lay between the address
+	and the operation code in the instruction word,
+	was turned on
+	<cite>(Lines 185-190)</cite>
+</blockQuote>
 For brevity and clarity, we will use a mock instruction layout in which each component (except for single bit fields) includes 3 bits. We'll start with an instruction that includes three parts:
 
 - `(A)` – Data Address

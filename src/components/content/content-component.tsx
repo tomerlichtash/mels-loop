@@ -65,7 +65,7 @@ export const ContentComponent = ({
 		case MLNODE_TYPES.TH:
 		case MLNODE_TYPES.SUB:
 		case MLNODE_TYPES.SUP:
-			//case MLNODE_TYPES.BLOCKQUOTE:
+		case MLNODE_TYPES.CITE:
 			return (
 				<ContentIterator
 					key={key}

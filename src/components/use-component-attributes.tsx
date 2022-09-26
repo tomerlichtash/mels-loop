@@ -9,7 +9,7 @@ export interface IComponentAttributeData {
  * Returns an object with the sanitized attribute map of the node
  *
  * Guaranteed not null
- * @param props
+ * @param node
  * @returns
  */
 export const useComponentAttributes = (
@@ -19,7 +19,7 @@ export const useComponentAttributes = (
 		{}
 	);
 
-	// If the props changed, due to locale change, reparse the content
+	// If the changed, reparse the attributes
 	useEffect(() => {
 		setAttributes(mlNextBrowserUtils.extractNodeAttributes(node));
 	}, [node]);
