@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import * as mdParser from "simple-markdown";
 import {
+	IFigureConfiguration,
 	IFolderContent,
 	ILocaleMap,
 	IMLParsedNode,
@@ -22,6 +23,7 @@ import {
 } from "../interfaces/parser";
 
 import getConfig from "next/config";
+import { mlUtils } from "./ml-utils";
 const { serverRuntimeConfig } = getConfig();
 
 const log: Logger = new Logger({
@@ -94,11 +96,10 @@ const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 export function loadContentFolder(
 	options: ILoadContentOptions
 ): IFolderContent {
-	const mode: IContentParseOptions = Object.assign(
-		{},
-		DEFAULT_PARSE_OPTIONS,
-		options.mode
-	);
+	const mode: IContentParseOptions = {
+		...DEFAULT_PARSE_OPTIONS,
+		...options.mode
+	};
 	const contentDir = path.join(
 		getContentRootDir(options.rootFolder),
 		options.relativePath
@@ -187,6 +188,7 @@ export function loadContentFolder(
 				const mdParse = createHtmlMDParser(); //mdParser.defaultBlockParse;
 				const tree = contentUtils.processParseTree(
 					mdParse(contentUtils.stripComments(content)) as ParsedNode[],
+					metaData,
 					mode
 				);
 
@@ -204,17 +206,6 @@ export function loadContentFolder(
 	// Sort posts by date
 }
 
-function parseDate(dateString: string | null | undefined): Date {
-	if (dateString) {
-		try {
-			const t = Date.parse(dateString);
-			return new Date(t);
-		} catch (e) {
-			log.error(`Error parsing date ${dateString}`);
-		}
-	}
-	return new Date();
-}
 
 class ParsedPageData implements IParsedPageData {
 	/* eslint-disable @typescript-eslint/no-explicit-any */
@@ -234,16 +225,12 @@ class ParsedPageData implements IParsedPageData {
 	public error?: string = "";
 }
 
+
 class PageMetaData implements IPageMetaData {
 	constructor(data: Partial<IParsedPageData> | string) {
-		const realData = typeof data === "string" ? JSON.parse(data) : data;
-		Object.keys(this).forEach((key) => {
-			if (realData[key] !== undefined) {
-				this[key] = realData[key];
-			}
-		});
+		mlUtils.safeMerge(this, data);
 		if (this.date && typeof this.date === "string") {
-			this.date = parseDate(this.date);
+			this.date = mlUtils.parseDate(this.date);
 		}
 	}
 	public glossary_key = "";
@@ -256,6 +243,11 @@ class PageMetaData implements IPageMetaData {
 	public source_url = "";
 	public source_name = "";
 	public source_author = "";
+	public figures: IFigureConfiguration = {
+		auto: true,
+		base: 1,
+		template: "Fig. %index%"
+	}
 }
 
 class FolderContent implements IFolderContent {

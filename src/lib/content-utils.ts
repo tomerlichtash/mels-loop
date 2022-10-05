@@ -5,6 +5,7 @@ import {
 import {
 	ASTNODE_TYPES,
 	IMLParsedNode,
+	IPageMetaData,
 	MLNODE_TYPES,
 	NODE_DISPLAY_TYPES,
 	ParsedNode,
@@ -28,6 +29,7 @@ export interface IContentUtils {
 	 */
 	processParseTree(
 		nodes: ParsedNode[],
+		metaData: IPageMetaData,
 		mode: IContentParseOptions
 	): IMLParsedNode[];
 
@@ -72,6 +74,14 @@ type ParsedNodeProcessor = (
 	node: ParsedNode,
 	context: MLParseContext
 ) => IMLParsedNode;
+
+interface IFigureInfo {
+	readonly index: number;
+	readonly realIndex: number;
+	readonly id: string;
+}
+
+const INDEX_RE = /%index%/i;
 
 const AST2MLTypeMap: Map<ASTNODE_TYPES, MLNODE_TYPES> = new Map<
 	ASTNODE_TYPES,
@@ -122,7 +132,7 @@ const INLINE_MLNODE_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
 /**
  * Elements that contain only text
  */
- const TEXT_NODE_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
+const TEXT_NODE_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
 	MLNODE_TYPES.TEXT, MLNODE_TYPES.CODE,
 ]);
 
@@ -157,6 +167,23 @@ const FIGURE_CONTAINER_TYPES: Map<MLNODE_TYPES, boolean> = new Map<MLNODE_TYPES,
 	[MLNODE_TYPES.PARAGRAPH, true],
 ]);
 
+function collectText(content: string | ParsedNode): string {
+	if (!content) {
+		return "";
+	}
+	if (typeof content === "string") {
+		return content;
+	}
+	if (content.type === ASTNODE_TYPES.TEXT) {
+		return content.content;
+	}
+	const children = findArrayPart(content);
+	if (children) {
+		return children.map(child => collectText(child)).join('');
+	}
+	return "";
+}
+
 function nodeTypeToMLType(
 	nodeName: ASTNODE_TYPES,
 	context: MLParseContext
@@ -165,7 +192,7 @@ function nodeTypeToMLType(
 	if (!nodeName) {
 		return MLNODE_TYPES.UNKNOWN;
 	}
-	return (AST2MLTypeMap.get(nodeName) || 
+	return (AST2MLTypeMap.get(nodeName) ||
 		nodeName)
 		.toLowerCase() as MLNODE_TYPES;
 }
@@ -265,7 +292,7 @@ const sanitizeHTML = (node: ParsedNode): ParsedNode => {
 	if (node.type === ASTNODE_TYPES.HTML) {
 		validateHTMLNode(node);
 	}
-	
+
 	const children = findArrayPart(node);
 	children && children.forEach(child => sanitizeHTML(child));
 
@@ -344,18 +371,20 @@ class ContentUtils implements IContentUtils {
 
 	public processParseTree(
 		nodes: ParsedNode[],
+		metaData: IPageMetaData,
 		mode: IContentParseOptions
 	): IMLParsedNode[] {
 		if (!nodes || !nodes.length) {
 			return [];
 		}
-		const parseContext = new MLParseContext(mode);
+		const parseContext = new MLParseContext(mode, metaData);
 		const result = nodes
 			.map((node) => this.processOneASTNode(node, parseContext))
 			.filter(Boolean);
 		this.updateLinks(result, parseContext);
 		this.promoteInlines(result, parseContext);
-		this.promoteFigures(result, parseContext);
+		//this.promoteFigures(result, parseContext);
+		this.processFigures(result, parseContext);
 		return this.applyNodeProcessors(result, parseContext);
 	}
 
@@ -412,7 +441,7 @@ class ContentUtils implements IContentUtils {
 			return null;
 		}
 		const isHTML = node.type === ASTNODE_TYPES.HTML,
-			mlType: MLNODE_TYPES = isHTML?
+			mlType: MLNODE_TYPES = isHTML ?
 				node.tag?.toLowerCase()
 				: nodeTypeToMLType(node.type, context);
 		if (!mlType) {
@@ -424,7 +453,7 @@ class ContentUtils implements IContentUtils {
 				type: mlType,
 				key: context.indexer.nextKey(),
 				line: context.indexer.currentLine(),
-				text: node.content,
+				text: collectText(node.content as string), // actually it can be a node
 			};
 		}
 
@@ -443,7 +472,7 @@ class ContentUtils implements IContentUtils {
 			ordered: node.ordered,
 			target: node.target,
 			level: node.level,
-			text: typeof node.content === "string" ? node.content: undefined,
+			text: typeof node.content === "string" ? node.content : undefined,
 			attributes: (isHTML && node.attributes && Object.fromEntries(node.attributes)) || undefined
 		};
 		const children = findArrayPart(node);
@@ -520,8 +549,8 @@ class ContentUtils implements IContentUtils {
 	): IMLParsedNode {
 		const items = findArrayPart(node) || [];
 		const parseMode = extractParseMode(node, context);
-		const newContext: MLParseContext = 
-			parseMode !== context.mode.parseMode ? 
+		const newContext: MLParseContext =
+			parseMode !== context.mode.parseMode ?
 				context.clone({ parseMode })
 				: context;
 		const resultNode: IMLParsedNode = {
@@ -530,7 +559,7 @@ class ContentUtils implements IContentUtils {
 			line: -1,
 			children: items.map(item => this.parsedNodeToMLNode(item, newContext)).filter(Boolean)
 		};
-		return resultNode;	
+		return resultNode;
 	}
 
 	/**
@@ -567,12 +596,12 @@ class ContentUtils implements IContentUtils {
 			return node;
 		}
 		const parseMode = extractParseMode(node, context);
-		const newContext: MLParseContext = 
-			parseMode !== context.mode.parseMode ? 
+		const newContext: MLParseContext =
+			parseMode !== context.mode.parseMode ?
 				context.clone({ parseMode })
 				: context;
 		const processText =
-		parseMode === MLParseModes.VERSE
+			parseMode === MLParseModes.VERSE
 				? (texts: string[]) => this.breakTextToLines(texts)
 				: (texts: string[]) => this.mergeTextElements(texts);
 
@@ -598,6 +627,13 @@ class ContentUtils implements IContentUtils {
 		children.push(...newChildren);
 
 		return node;
+	}
+
+	private processFigures(
+		nodes: IMLParsedNode[],
+		context: MLParseContext
+	): void {
+		nodes.forEach((node) => this.tryProcessFigure(node, context));
 	}
 
 	private promoteFigures(
@@ -665,6 +701,10 @@ class ContentUtils implements IContentUtils {
 		if (!Array.isArray(children) || children.length < 1) {
 			return;
 		}
+		// don't recurse under figures
+		if (node.type === MLNODE_TYPES.FIGURE) {
+			return;
+		}
 		if (FIGURE_CONTAINER_TYPES.has(node.type)) {
 			if (children.length === 1 && children[0].type === MLNODE_TYPES.IMAGE) {
 				Object.assign(node, children[0], { type: MLNODE_TYPES.FIGURE });
@@ -676,6 +716,100 @@ class ContentUtils implements IContentUtils {
 				this.promoteFiguresInNode(child, context);
 			}
 		}
+	}
+
+	/**
+	 * If the node is a figure, validate it, update its caption etc.
+	 * @param node 
+	 * @param context 
+	 */
+	private tryProcessFigure(
+		node: IMLParsedNode,
+		context: MLParseContext
+	): void {
+		if (node.type === MLNODE_TYPES.FIGURE) {
+			this.processOneFigure(node, context);
+		}
+		else {
+			const children = node.children;
+			if (Array.isArray(children)) {
+				children.forEach(child => this.tryProcessFigure(child, context));
+			}
+		}
+	}
+
+	/**
+	 * No validation, node is guaranteed figure
+	 * @param node 
+	 * @param context 
+	 */
+	private processOneFigure(
+		node: IMLParsedNode,
+		context: MLParseContext
+	): IFigureInfo {
+		const config = context.metaData.figures;
+		const attributes = node.attributes || {},
+			customCaption = attributes.caption,
+			tmpl = customCaption || config.template;
+		// 0. Find a caption child
+		const captionNodes = node.children?.filter(c => c.type === MLNODE_TYPES.CAPTION),
+			nCaptions = captionNodes?.length;
+		// 2. If more than one, throw
+		if (nCaptions > 1) {
+			throw new Error("Figure node contains more than one caption")
+		}
+
+		// 1. If there's a caption attribute
+		// 1.1 ...and a caption child, throw
+		if (nCaptions === 1 && customCaption) {
+			throw new Error(`Figure contains both a caption child and a caption attribute "${customCaption}"`);
+		}
+
+		// generate if no caption child and either a custom caption has been set or auto captions is on
+		const generateCaption = nCaptions === 0 && (customCaption || config.auto);
+		let captionNode: IMLParsedNode;
+		if (generateCaption) {
+			captionNode = 			{
+				type: MLNODE_TYPES.CAPTION,
+				key: context.indexer.nextKey(),
+				text: tmpl,
+				line: context.indexer.currentLine()
+			};
+			node.children.push(captionNode);
+		}
+		else {
+			captionNode = nCaptions === 1 && captionNodes[0];
+		}
+		const figIndex = context.indexer.nextIndex("figure");
+		this.processCaptionNode(captionNode, context);
+		// 1.2 otherwise Create a caption child and append to node1
+		return {
+			id: node.attributes?.id,
+			index: figIndex + config.base,
+			realIndex: figIndex
+		}
+
+	}
+
+	/**
+	 * The "figure" index in the context indexer is assumed to be the current
+	 * @param node 
+	 * @param context 
+	 * @returns 
+	 */
+	private processCaptionNode(node: IMLParsedNode, context: MLParseContext): IMLParsedNode {
+		if (!node) {
+			return node;
+		}
+		if (node.text) {
+			const ind = context.indexer.currentIndex("figure") + context.metaData.figures.base;
+			const newText = node.text.replace(INDEX_RE, ind.toString())
+			Object.assign(node, { text: newText });
+		}
+		else if (node.children?.length) {
+			node.children.forEach(child => this.processCaptionNode(child, context));
+		}
+		return node;
 	}
 
 	/**
@@ -774,6 +908,12 @@ class ContentUtils implements IContentUtils {
 		node.children.push(...processed);
 	}
 
+	/**
+	 * Finds links with no target, which have a matching linkdef, and replaces them with the full link
+	 * @param node 
+	 * @param context 
+	 * @returns 
+	 */
 	private replaceLinkDefs(
 		node: IMLParsedNode,
 		context: MLParseContext
@@ -872,32 +1012,55 @@ class ContentUtils implements IContentUtils {
 class NodeIndexer {
 	// static - insure multiple pages get different keys
 	private static keyIndex = 0;
-	private lineIndex = 0;
+	private readonly indices: Map<string, number> = new Map<string, number>();
+
 	public nextKey(): string {
 		return `ast-${NodeIndexer.keyIndex++}`;
 	}
 
 	public nextLine(): number {
-		return this.lineIndex++;
+		return this.nextIndex("line");
+	}
+
+	public nextIndex(key: string): number {
+		if (!this.indices.has(key)) {
+			this.indices.set(key, -1);
+		}
+		const ind = this.indices.get(key) + 1;
+		this.indices.set(key, ind);
+		return ind;
+	}
+
+	public currentIndex(key: string): number {
+		return this.indices.has(key)?
+			this.indices.get(key) : 0;
 	}
 
 	public currentLine(): number {
-		return this.lineIndex;
+		return this.currentIndex("line");
 	}
 }
 
 class MLParseContext {
 	private _linkDefs: { [key: string]: IMLParsedNode } = {};
 	private _indexer: NodeIndexer = new NodeIndexer();
+	private readonly _metaData: IPageMetaData;
 
-	constructor(public readonly mode: IContentParseOptions) {}
+	constructor(public readonly mode: IContentParseOptions, metaData: IPageMetaData) { 
+		this._metaData = mlUtils.clonePlainObject(metaData);
+	}
+
 	public clone(mode: Partial<IContentParseOptions>): MLParseContext {
 		const newMode: IContentParseOptions = Object.assign(
 			Object.assign({}, this.mode), mode);
-		const ret = new MLParseContext(newMode);
+		const ret = new MLParseContext(newMode, this._metaData);
 		ret._indexer = this.indexer;
 		ret._linkDefs = this._linkDefs;
 		return ret;
+	}
+
+	public get metaData(): IPageMetaData {
+		return this._metaData;
 	}
 
 	public get linkDefs(): { [key: string]: IMLParsedNode } {
@@ -909,7 +1072,7 @@ class MLParseContext {
 }
 
 class NodeProcessorContext implements INodeProcessorContext {
-	constructor(private readonly context: MLParseContext) {}
+	constructor(private readonly context: MLParseContext) { }
 
 	public get mode(): IContentParseOptions {
 		return this.context.mode;

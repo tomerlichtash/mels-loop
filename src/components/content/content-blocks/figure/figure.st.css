@@ -4,8 +4,25 @@
 
 .root {
 	-st-mixin: boxSizing;
-	text-align: center;
-	margin: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 0 auto;
 }
 
+.figureContent {
+	flex-grow: 0;
+}
+
+.root caption>p {
+	margin: 0;
+	padding: 0;
+}
+
+.root caption {
+	display: block;
+	text-align: center;
+	font-style: italic;
+	font-size: 0.8em;
+}
 .img {}

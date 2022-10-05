@@ -66,6 +66,7 @@ export const ContentComponent = ({
 		case MLNODE_TYPES.SUB:
 		case MLNODE_TYPES.SUP:
 		case MLNODE_TYPES.CITE:
+		case MLNODE_TYPES.CAPTION:
 			return (
 				<ContentIterator
 					key={key}

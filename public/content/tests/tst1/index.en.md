@@ -2,6 +2,12 @@
 title: "Test page tst2"
 author: "Bot"
 date: Sat Jun 25 2022 21:07:06 GMT+0300 (Israel Daylight Time)
+
+figures: 
+   base: 2
+   auto: false
+   template: "Figure %d of %f"
+
 ---
 
 <!-- Begin figure -->
@@ -32,9 +38,9 @@ and sitting still
 <tr>
 <td></td>
 <td>Index</td>
-<td colspan="3">Next</td>
-<td colspan="3">Data</td>
-<td colspan="3">Opcode</td>
+<td colSpan="3">Next</td>
+<td colSpan="3">Data</td>
+<td colSpan="3">Opcode</td>
 <td></td>
 </tr>
 </table>
@@ -44,7 +50,7 @@ and sitting still
 
 <table>
 	<tr>
-		<td rowspan="2">Normal</td>
+		<td rowSpan="2">Normal</td>
 		<td>Table</td>
 		<td>Style</td>
 	</tr>

@@ -72,6 +72,7 @@ export enum MLNODE_TYPES {
 	TABLE = "table",
 	TH = "th",
 	CITE = "cite",
+	CAPTION = "caption"
 }
 
 export enum NODE_LIST_TYPES {
@@ -145,6 +146,12 @@ export interface IMLParsedNode {
 	readonly attributes?: { [name: string]: string };
 }
 
+export interface IFigureConfiguration {
+	auto: boolean;
+	base: number;
+	template: string;
+}
+
 export interface IPageMetaData {
 	/**
 	 * Date metadata, if present in the MD
@@ -187,6 +194,12 @@ export interface IPageMetaData {
 	 * Display source author of glossary item
 	 */
 	readonly source_author: string;
+
+	/**
+	 * Guaranteed not null. Each metadata object is created with at least the default
+	 * figures configuration, which may be overridden by the document metadata
+	 */
+	readonly figures: IFigureConfiguration;
 }
 
 /**
