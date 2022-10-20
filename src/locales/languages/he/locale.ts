@@ -21,7 +21,7 @@ export const Locale: Language = {
 	PAGE_LABEL_HOME: "שער",
 	PAGE_LABEL_ABOUT: "אודות",
 	PAGE_LABEL_BLOG: "בלוג",
-	PAGE_LABEL_RESOURCES: "משאבים",
+	PAGE_LABEL_RESOURCES: "מקורות",
 	PAGE_LABEL_GLOSSARY: "מילון מונחים",
 	PAGE_LABEL_DOCS: "מסמכים",
 	PAGE_LABEL_CONTACT: "יצירת קשר",
@@ -53,7 +53,7 @@ export const Locale: Language = {
 	MENU_ITEM_LABEL_ID_MELSHACK: "ההאק של מל",
 	MENU_ITEM_LABEL_ID_ABOUT: "אודות",
 	MENU_ITEM_LABEL_ID_BLOG: "בלוג",
-	MENU_ITEM_LABEL_ID_RESOURCES: "משאבים",
+	MENU_ITEM_LABEL_ID_RESOURCES: "מקורות",
 	MENU_ITEM_LABEL_ID_CONTRIBUTE: "השתתפות",
 	MENU_ITEM_LABEL_ID_CONTACT: "יצירת קשר",
 	MENU_ITEM_LABEL_ID_TWITTER: "טוויטר",
@@ -63,7 +63,7 @@ export const Locale: Language = {
 	 * MENU ITEMS - DESCRIPTION
 	 */
 	MENU_ITEM_DESC_ID_ABOUT:
-		"לולאת מל הוא מדריך לאפוס הפולקלור ההאקרי ״הסיפור על מל״. באתר זה נרכז את הסיפורים, המקורות, החומרים והדמויות אשר סובבים את ״הסיפור על מל״, כמו גם חומרים אחרים הנוגעים לפולקלור ההאקרים.",
+		"לולאת מל הוא מדריך לאפוס הפולקלור ההאקרים ״הסיפור על מל״. באתר זה נרכז את הסיפורים, המקורות, החומרים והדמויות אשר סובבים את ״הסיפור על מל״, כמו גם חומרים אחרים הנוגעים לפולקלור ההאקרים.",
 	MENU_ITEM_DESC_ID_BLOG: "חדשות ועדכונים",
 	MENU_ITEM_DESC_ID_RESOURCES: "מידע נוסף ברשת על הסיפור על מל",
 	MENU_ITEM_DESC_ID_CONTRIBUTE: "כיצד להשתתף או לתרום לפרויקט",
@@ -127,4 +127,5 @@ export const Locale: Language = {
 	COMPONENT_BIBLIOGRAPHY_LABEL_SINGLE: "מקור",
 	COMPONENT_BIBLIOGRAPHY_LABEL_MULTIPLE: "מקורות",
 	PRELOADER_LABEL: "טוען...",
+	TOGGLE_THEME: "החלפת צבע אתר",
 };

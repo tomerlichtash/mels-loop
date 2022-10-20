@@ -1,85 +1,64 @@
 @namespace "ContactForm";
 
 @st-import Form from "../form/form.st.css";
-@st-import [preventSelection] from "../../theme/mixins.st.css";
+@st-import [
+	SmallCaption,
+	InputLabel,
+	InputText
+] from "../../theme/common/typography.st.css";
 
-.root {
+.root {}
+
+.form {
 	-st-extends: Form;
 }
 
-.root::field {
+.form::field {
 	margin-bottom: 1rem;
 	display: flex;
 }
 
-.root::field::label {
-	align-content: center;
-	-st-mixin: preventSelection;
-}
-
-.root::field::caption {
+.form::field::caption {
+	-st-mixin: InputLabel;
 	width: 150px;
-	font-weight: 500;
-	line-height: 40px;
 	display: flex;
-	align-items:flex-start;
-	align-content: center;
+	align-items: flex-start;
 }
 
-.root::field::inputContainer {
+.form::field::inputContainer {
 	flex: 1;
 }
 
-.root::field::input {
+.form::field::input {
+	-st-mixin: InputText;
 	width: 100%;
 	padding: 0.5rem;
 	height: 40px;
-	line-height: 40px;
-	border: 1px solid #444;
-	border-radius: 3px;
+	border: 1px solid;
 }
 
-.root::field::input:validation(invalid) {
-	border-color: #c00;
-}
-
-.root::field::input:validation(valid) {
-	border-color: #0a0;
-	/* background: none; */
-}
-
-.root::field::input:tag(textarea) {
+.form::field::input:tag(textarea) {
 	height: 250px;
-	line-height: 20px;
-	resize: none;
 }
 
-.root::field::error {
+.form::field::error {
 	padding: 0.25rem 0;
 	display: flex;
 }
-.root::field::errorIcon {
+.form::field::errorIcon {
 	margin: 0 0.25rem;
 	position: relative;
 	top: 1px;
 }
-.root::field::error {
-	font-size: 0.8rem;
-}
 
-.root::captcha {}
+.form::field::error {
+	-st-mixin: SmallCaption;
+}
 
 @media (min-width: 320px) and (max-width: 767px) {
 	@st-scope .root {
-		::field {
+		::form::field {
 			display: block;
-		}
-		::field::inputContainer {
-			/* width: 100%; */
-		}
-		::field::input {
-			/* width: 100%; */
 		}
 	}
 }
-

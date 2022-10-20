@@ -1,5 +1,5 @@
 import React from "react";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import Layout from "../components/layout";
 import { classes } from "./_error.st.css";
 
@@ -11,6 +11,10 @@ const Error404: NextPage = () => {
 			</div>
 		</Layout>
 	);
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+	return { props: {} };
 };
 
 export default Error404;

@@ -10,12 +10,12 @@ import {
 	MLNODE_TYPES,
 } from "../../interfaces/models";
 import Layout from "../../components/layout";
-import { ContentIterator } from "../../components/content/content-iterator";
+import ContentIterator from "../../components/content/content-iterator";
 import { usePageData } from "../../components/usePageData";
-import { classes } from "./glossary-item.st.css";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { Button } from "../../components/ui";
 import Bibliography from "../../components/bibliography";
+import { classes } from "./glossary-item.st.css";
 
 export default function GlossaryTerm(props: IPageProps) {
 	const { translate } = useContext(ReactLocaleContext);

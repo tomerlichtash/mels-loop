@@ -4,21 +4,23 @@
 @st-import FieldMixin from "./field-mixin.st.css";
 
 :vars {
-	FormSubmitButtonBgColor: #808080;
-	FormSubmitButtonTextColor: #fff;
-	FormSubmitButtonBgColor_Hover: #404040;
-	FormSubmitButtonTextColor_Hover: #e0e0e0;
-	FormSubmitButtonRadius: 0;
-	FieldLabelTextColor: black;
-	FieldLabelIconColor: black;
-	FieldLabelBorderColor: black;
-	FieldLabelBorderColor_Success: black;
-	FieldLabelBorderColor_Error: black;
-	FieldLabelBorderColor_Focus: black;
+	SubmitButtonBgColor: #808080;
+	SubmitButtonTextColor: #fff;
+	SubmitButtonBgColor_Hover: #404040;
+	SubmitButtonTextColor_Hover: #e0e0e0;
+	SubmitButtonRadius: 0;
+	FieldLabelTextColor: #000;
+	FieldLabelIconColor: #000;
+	FieldLabelBorderColor: #000;
+	FieldLabelBorderColor_Success: #000;
+	FieldLabelBorderColor_Error: #000;
+	FieldLabelBorderColor_Focus: #000;
 	FieldLabelBorderRadius: 0;
-	FieldInputBgColor_Focus: #fff;
-	FieldInputIconColor: black;
+	FieldInputIconColor: #000;
+	FieldInputTextColor: #fff;
+	FieldInputBgColor: #f0f0f0;
 	FieldInputBgColor_Hover: #f0f0f0;
+	FieldInputBgColor_Focus: #fff;
 	FieldInputPlaceholderTextColor: #808080;
 	FieldInputErrorTextColor: #808080;
 	FieldInputSuccessTextColor: #808080;
@@ -29,13 +31,13 @@
 }
 
 .root::button {
-	border-radius: value(FormSubmitButtonRadius);
-	background-color: value(FormSubmitButtonBgColor);
-	color: value(FormSubmitButtonTextColor);
+	border-radius: value(SubmitButtonRadius);
+	background-color: value(SubmitButtonBgColor);
+	color: value(SubmitButtonTextColor);
 }
 .root::button:hover {
-	background-color: value(FormSubmitButtonBgColor_Hover);
-	color: value(FormSubmitButtonTextColor_Hover);
+	background-color: value(SubmitButtonBgColor_Hover);
+	color: value(SubmitButtonTextColor_Hover);
 }
 
 .root::field {
@@ -47,6 +49,8 @@
 		FieldLabelBorderColor_Success value(FieldLabelBorderColor_Success),
 		LabelBorderColor_Error value(FieldLabelBorderColor_Error),
 		LabelBorderRadius value(FieldLabelBorderRadius),
+		InputTextColor value(FieldInputTextColor),
+		InputBgColor value(FieldInputBgColor),
 		InputBgColor_Hover value(FieldInputBgColor_Hover),
 		InputBgColor_Focus value(FieldInputBgColor_Focus),
 		InputPlaceholderTextColor value(FieldInputPlaceholderTextColor),

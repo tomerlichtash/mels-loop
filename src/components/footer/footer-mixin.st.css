@@ -1,34 +1,23 @@
 @namespace "FooterMixin";
 
 @st-import Footer from "./footer.st.css";
-@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
-@st-import [IconFill, GradientStrip, TextNode] from "../../theme/mixins.st.css";
-@st-import [heading6, bodyTextNormal] from "../../theme/common/typography.st.css";
+@st-import ButtonMixin from "../../components/ui/button/button-mixin.st.css";
+@st-import [IconFill, GradientStrip] from "../../theme/common/mixins.st.css";
 
 :vars {
-	BackgroundColor: #f0f0f0;
-	Padding: 4rem 0;
-	StripGradientStartColor: white;
-	StripGradientMidColor: gray;
-	StripGradientEndColor: black;
-	ButtonTextColor: inherit;
-	ButtonTextColor_Hover: inherit;
-	TitleFontSize: inherit;
-	TitleFontWeight: inherit;
-	TitleFontCase: inherit;
-	TitleMargin: 1rem;
-	SubtitleFontSize: inherit;
-	SubtitleFontWeight: inherit;
-	SubtitleFontCase: inherit;
-	DescriptionFontSize: inherit;
-	DescriptionFontWeight: inherit;
-	LinkFontSize: inherit;
-	LinkFontWeight: inherit;
+	BgColor: #f0f0f0;
+	LinkColor: #000;
+	LinkColor_Hover: #c0c0c0;
+	TextColor: #000;
+	StripGradientStartColor: #fff;
+	StripGradientMidColor: #c0c0c0;
+	StripGradientEndColor: #000;
 }
 
 .root {
 	-st-extends: Footer;
-	background-color: value(BackgroundColor);
+	background-color: value(BgColor);
+	color: value(TextColor);
 }
 
 .root::strip {
@@ -42,44 +31,7 @@
 
 .root::button {
 	-st-mixin: ButtonMixin(
-		ButtonTextColor value(ButtonTextColor),
-		ButtonTextColor_Hover value(ButtonTextColor_Hover),
-		ButtonLabelLineHeight 21px,
-		ButtonLabelTextSize 14px
+		ButtonTextColor value(LinkColor),
+		ButtonTextColor_Hover value(LinkColor_Hover)
 	);
-}
-
-.root::pageContainer {
-	padding: value(Padding);
-}
-
-.root::footerTitle {
-	margin-bottom: value(TitleMargin);
-}
-
-.root::excerpt {
-	-st-mixin: bodyTextNormal
-}
-
-.root::title {
-	-st-mixin: TextNode(
-		TextSize 15px,
-		TextWeight 500,
-		TextCase uppercase
-	);
-}
-
-.root::subtitle {
-	-st-mixin: TextNode(
-		TextSize 14px,
-		TextWeight 400,
-	);
-}
-
-.root::columnTitle {
-	-st-mixin: TextNode(
-		TextWeight 500,
-		TextSize 16px,
-	);
-	margin-bottom: 1rem;
 }

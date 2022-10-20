@@ -13,6 +13,9 @@ export interface IMLUtils {
 	parseDate(dateString: string | number | null | undefined): Date;
 
 	clonePlainObject<T extends object>(source: object) : T;
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	flattenArray(arr: Array<any>): [];
 }
 
 const ALLOWED_MERGE_TYPES: Array<string> = ["object", "string", "number", "boolean"];
@@ -116,7 +119,14 @@ class MLUtils implements IMLUtils {
 		return JSON.parse(JSON.stringify(source));
 	}
 
-	
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	public flattenArray(arr: Array<any>) {
+		return arr.reduce((flat, toFlatten) => {
+			return flat.concat(
+				Array.isArray(toFlatten) ? this.flattenArray(toFlatten) : toFlatten
+			);
+		}, []);
+	}
 }
 
 export const mlUtils: IMLUtils = new MLUtils();

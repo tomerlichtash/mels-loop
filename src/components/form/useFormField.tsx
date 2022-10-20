@@ -25,6 +25,7 @@ export const useFormField = ({
 	tabIndex,
 	rules,
 	autoFocus,
+	translate,
 	className,
 }: IFieldDef) => {
 	const { INITIAL } = FormFieldState;
@@ -54,6 +55,7 @@ export const useFormField = ({
 			locale={locale}
 			tabIndex={tabIndex}
 			autoFocus={autoFocus}
+			translate={translate}
 			className={st(classes.field, className)}
 		/>
 	);

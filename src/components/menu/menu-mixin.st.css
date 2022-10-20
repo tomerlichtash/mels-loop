@@ -2,73 +2,61 @@
 
 @st-import Menu from "./menu.st.css";
 @st-import ButtonMixin from "../ui/button/button-mixin.st.css";
-@st-import [/*heading5,*/bodyTextNormal] from "../../theme/common/typography.st.css";
 
 :vars {
+	LinkColor: inherit;
+	LinkColor_Hover: inherit;
 	ListBgColor: transparent;
-	ContentPadding: 1rem;
 	ArrowColor: #fff;
+	ViewPortShadow: 0 0 0 transparent;
 	ViewPortBgColor: #fff;
-	TriggerPadding: 0;
+	TriggerPadding: 0 6px;
 	TriggerLabelLineHeight: auto;
 	TriggerTextSize: inherit;
-	TriggerRadius: 0;
+	TriggerRadius: 6px;
 	TriggerBgColorHover: #c0c0c0;
 	TriggerTextColor: inherit;
 	TriggerTextColor_Hover: inherit;
-	ItemTextColor: inherit;
-	ItemTextColor_Hover: inherit;
-	ItemPadding: 0;
-	ItemRadius: 0;
+	ItemPadding: 1rem;
+	ItemRadius: 6px;
+	ItemBgColor_Hover: inherit;
 	ItemLabelTextColor: inherit;
 	ItemLabelTextColor_Hover: inherit;
-	ItemBgColor_Hover: inherit;
 	ItemLabelTextSize: inherit;
-	ItemLabelLineHeight: inherit;
 	ItemLabelTextWeight: inherit;
 	ItemSubtitleColor: inherit;
-	AbstractTextColor: inherit;
 	ItemSubtitleTextSize: inherit;
-	ItemLabelIconMargin: 0;
-	ViewPortShadow: none;
+	ItemLabelIconMargin: 0.25rem;
 }
 
 .root {
 	-st-extends: Menu;
 }
 
+.root::arrow {
+	background-color: value(ArrowColor);
+}
+
+.root::viewport {
+	background-color: value(ViewPortBgColor);
+	box-shadow: value(ViewPortShadow);
+}
+
 .root::list {
 	background-color: value(ListBgColor);
 }
 
-.root::menuContent {
-	padding: value(ContentPadding);
-	-st-mixin: bodyTextNormal(
-		BodyTextColor value(AbstractTextColor)
-	);
-}
-
 .root::more {
 	-st-mixin: ButtonMixin(
-		ButtonTextColor value(ItemTextColor),
-		ButtonTextColor_Hover value(ItemTextColor_Hover),
-		ButtonPadding 0
+		ButtonTextColor value(LinkColor),
+		ButtonTextColor_Hover value(LinkColor_Hover),
 	);
 	margin-top: 1rem;
 	display: inline !important;
 }
 
-.root::arrow {
-	background-color: value(ArrowColor);
-}
-.root::viewport {
-	background: value(ViewPortBgColor);
-	box-shadow: value(ViewPortShadow);
-}
-
 .root::menuTrigger {
 	border-radius: value(TriggerRadius);
-	transition: all 25ms ease-in;
 }
 .root::menuTrigger[data-state="open"] {
 	color: value(TriggerTextColor_Hover);
@@ -76,33 +64,24 @@
 }
 
 .root::menuTrigger[data-state="open"] > * {
+	border-radius: value(TriggerRadius);
 	color: value(TriggerTextColor_Hover);
 }
 
 .root::triggerButton {
 	-st-mixin: ButtonMixin(
 		ButtonPadding value(TriggerPadding),
-		ButtonLabelLineHeight value(TriggerLabelLineHeight),
-		ButtonLabelTextSize value(TriggerTextSize),
 		ButtonTextColor value(TriggerTextColor),
-		/* ButtonTextColor_Hover value(TriggerTextColor_Hover),		 */
 	);
 }
 
 .root::menuItemButton {
-	-st-mixin: ButtonMixin(
-		ButtonPadding value(ItemPadding),
-		ButtonRadius value(ItemRadius),
-		ButtonTextColor value(ItemTextColor),
-		ButtonTextColor_Hover value(ItemTextColor_Hover),
-		ButtonLabelTextColor value(ItemLabelTextColor),
-		ButtonLabelTextColor_Hover value(ItemLabelTextColor_Hover),
-		ButtonBgColor_Hover value(ItemBgColor_Hover),
-		ButtonLabelTextSize value(ItemLabelTextSize),
-		ButtonLabelLineHeight value(ItemLabelLineHeight),
-		ButtonLabelTextWeight value(ItemLabelTextWeight),
-		ButtonSubtitleTextSize value(ItemSubtitleTextSize),
-		ButtonLabelIconMargin value(ItemLabelIconMargin),
-		ButtonChildrenTextColor value(ItemSubtitleColor)
-	);
+	border-radius: value(ItemRadius);
+}
+.root::menuItemButton {
+	color: value(LinkColor);
+}
+.root::menuItemButton:hover {
+	background-color: value(ItemBgColor_Hover);
+	color: value(LinkColor_Hover);
 }

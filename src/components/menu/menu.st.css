@@ -1,7 +1,15 @@
 @namespace "Menu";
 
-@st-import [preventSelection] from "../../theme/mixins.st.css";
+@st-import [preventSelection] from "../../theme/common/mixins.st.css";
+@st-import [
+	bodyTextNormal,
+	TopMenuTriggerLabel,
+	Paragraph,
+	MenuItemLabel,
+	ButtonSubtitleSmall
+] from "../../theme/common/typography.st.css";
 @st-import Button from "../ui/button/button.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 
 .root {
 	-st-mixin: preventSelection;
@@ -23,10 +31,19 @@
 }
 
 .menuContent {
+	-st-mixin: bodyTextNormal;
 	-st-states: layout(string);
 	display: grid;
 	margin: 0;
-	column-gap: 10;
+	column-gap: 10px;
+	padding: 1rem;
+	width: 400px;
+}
+
+.menuContent:layout(two) {
+	width: 400px;
+	grid-auto-flow: column;
+	grid-template-rows: repeat(3, 1fr);
 }
 
 .viewportPosition {
@@ -68,8 +85,8 @@
 
 .caret {
 	position: relative;
-	color: black;
-	top: 1;
+	color: #000;
+	top: 1px;
 }
 
 .menuItem {
@@ -78,22 +95,40 @@
 
 .listItem {}
 
-.abstract {}
+.abstract {
+	-st-mixin: Paragraph;
+}
 
 .more {
 	-st-extends: Button;
+	padding: 0 !important;
+	display: inline !important;
 }
 
-.menuTrigger {}
+.menuTrigger {
+	transition: all 25ms ease-in;
+}
+
 .triggerButton {
 	-st-extends: Button;
+	-st-mixin: TopMenuTriggerLabel;
 }
 
 .menuItemButton {
 	-st-extends: Button;
+	-st-mixin: ButtonMixin(
+		ButtonPadding 1rem,
+		ButtonLabelIconMargin 0.25rem,
+		ButtonSubtitleTextSize 1rem,
+		ButtonLabelIconMargin 0.25rem,
+	);
 	display: block;
-	/* width: 100%; */
 }
+
+.menuItemButton::label {
+	-st-mixin: MenuItemLabel;
+}
+
 .menuItemButton::contentWrapper {
 	align-items: flex-start;
 }
@@ -102,7 +137,11 @@
 	top: 3px;
 }
 
-@media only screen and (min-width: 600px) {
+.menuItemButton::children {
+	-st-mixin: ButtonSubtitleSmall;
+}
+
+/* @media only screen and (min-width: 600px) {
 	.menuContent:layout(one) {
 		width: 400px;
 		grid-template-columns: ".75fr 1fr";
@@ -112,4 +151,4 @@
 		grid-auto-flow: column;
 		grid-template-rows: repeat(3, 1fr);
 	}
-}
+} */

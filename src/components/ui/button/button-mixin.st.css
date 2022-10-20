@@ -3,42 +3,46 @@
 @st-import Button from "./button.st.css";
 
 :vars {
-	ButtonRadius: inherit;
-	ButtonPadding: inherit;
 	ButtonTextColor: inherit;
 	ButtonTextColor_Hover: inherit;
 	ButtonBgColor_Hover: inherit;
-	ButtonLabelTextColor: inherit;
-	ButtonLabelTextColor_Hover: inherit;
-	ButtonLabelTextWeight: inherit;
+	ButtonBgColor: inherit;
+
 	ButtonLabelLineHeight: inherit;
-	ButtonLabelTextSize: inherit;
+	ButtonRadius: inherit;
+	ButtonPadding: inherit;
 	ButtonSubtitleTextSize: inherit;
 	ButtonChildrenTextColor: inherit;
+
 	ButtonBorderTopSize: 0;
 	ButtonBorderTopColor: transparent;
 	ButtonBorderBottomSize: 0;
 	ButtonBorderBottomColor: transparent;
+
 	ButtonLabelIconMargin: 0;
 }
 
 .root {
 	-st-extends: Button;
-	color: value(ButtonTextColor);
 	border-top: value(ButtonBorderTopSize) solid value(ButtonBorderTopColor);
 	border-bottom: value(ButtonBorderBottomSize) solid value(ButtonBorderBottomColor);
 	padding: value(ButtonPadding);
+	color: value(ButtonTextColor);
+	background-color: value(ButtonBgColor);
 }
 
 .root:hover {
-	color: value(ButtonTextColor_Hover);
 	background-color: value(ButtonBgColor_Hover);
 	border-radius: value(ButtonRadius);
 }
 
+.root:hover,
+.root:hover::label {
+	color: value(ButtonTextColor_Hover);
+}
+
 .root::label {
-	font-size: value(ButtonLabelTextSize);
-	font-weight: value(ButtonLabelTextWeight);
+	color: value(ButtonTextColor);
 	line-height: value(ButtonLabelLineHeight);
 }
 

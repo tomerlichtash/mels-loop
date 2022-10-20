@@ -1,14 +1,12 @@
 @namespace "ThemeSelector";
 
-@st-import [preventSelection] from "../../theme/mixins.st.css";
+@st-import [preventSelection] from "../../theme/common/mixins.st.css";
 
 .root {
 	-st-states: theme(enum(light, dark));
 	-st-mixin: preventSelection;
 	width: 25px;
 	height: 25px;
-	line-height: 25px;
-	text-align: center;
 	cursor: pointer;
 	border-radius: 50%;
 	display: flex;

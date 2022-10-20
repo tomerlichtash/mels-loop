@@ -1,7 +1,8 @@
 @namespace "Header";
 
 @st-import Button from "../ui/button/button.st.css";
-@st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [SiteTitle, SiteSubtitle] from "../../theme/common/typography.st.css";
+@st-import [boxSizing] from "../../theme/common/mixins.st.css";
 
 :vars {
 	iconMargin: 0.5rem;
@@ -10,22 +11,27 @@
 .root {
 	-st-states: textDirection(enum(ltr, rtl));
 	-st-mixin: boxSizing;
+	padding: 0;
 	display: flex;
+	text-align: left;	
 }
 
 .container {
 	display: flex;
 	align-items: center;
 	align-content: center;
-	line-height: 1rem;
 }
 
 .siteTitle {
 	-st-extends: Button;
+	-st-mixin: SiteTitle;
+}
+.siteTitle::label {
+	border-bottom: 2px solid transparent;
 }
 
 .siteSubtitle {
-	text-transform: lowercase;
+	-st-mixin: SiteSubtitle;
 }
 
 .siteSubtitle::before {
@@ -34,8 +40,11 @@
 	content: '|';
 }
 
-.siteLogo {}
-
+.siteLogo {
+	width: 24px;
+	height: 24px;
+	background-size: contain;
+}
 
 .root:textDirection(rtl) .siteTitle::icon {
 	margin-left: value(iconMargin);

@@ -9,3 +9,6 @@ export enum CONTENT_TYPES {
 	GLOSSARY = "glossary",
 	ANNOTATION = "annotations",
 }
+
+export const PUBLIC_PROJECT_GITHUB_ADDRESS =
+	"https://github.com/tomerlichtash/mels-loop";

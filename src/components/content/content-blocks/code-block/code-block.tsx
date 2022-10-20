@@ -1,24 +1,24 @@
 import React from "react";
-import {
-	ContentComponentProps,
-} from "../../../../interfaces/models";
+import { ContentComponentProps } from "../../../../interfaces/models";
 import { st, classes } from "./code-block.st.css";
 
 /**
  * Displays a code block (preformatted code)
- * @returns 
+ * @returns
  */
 export const CodeBlock = ({
 	componentData,
-	className
+	className,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	return (
-		<p className={st(classes.root)} key={node.key}>
-			<code className={st(classes.root, className)}>
-				{node.text}
-			</code>
-		</p>
+		<div className={st(classes.root, className)}>
+			<pre className={classes.pre}>
+				<code className={classes.code} key={node.key}>
+					{node.text}
+				</code>
+			</pre>
+		</div>
 	);
 };
 
