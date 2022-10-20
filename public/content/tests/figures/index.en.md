@@ -4,21 +4,21 @@ author: "Bot"
 date: Sat Jun 25 2022 21:07:06 GMT+0300 (Israel Daylight Time)
 
 figures: 
-   base: -2
+   base1: 14
    auto: true
-   template1: "Look! Fig. %index%"
+   template: "Look! Fig. %index%"
 
 ---
 
 <!-- Begin figure -->
-<figure id="quote1">
-<blockQuote data-parse-mode="verse" onclick="alert('click')" data-rabak="not">
+<figure id="quote1" data-type="red-figure">
+<blockQuote data-parse-mode="verse" onclick="alert('click')" >
 This is what verse mode looks like:
 The fool on the hill
 ringing the bell
 and sitting still
 </blockQuote>
-<caption>Caption Element for figure %index%</caption>
+<caption data-type="wide-caption">Caption Element for figure %index%</caption>
 </figure>
 
 <figure caption="table %index%">
