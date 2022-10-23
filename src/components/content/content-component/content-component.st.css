@@ -27,9 +27,23 @@
 		heading_3,
 		heading_4,
 		heading_5,
-		heading_6
+		heading_6,
+		figcaption,
+		cite
 	)),
 	listType(enum(ul, ol));
 }
 
 .error {}
+
+.root:type(figcaption) {
+	background: red;
+}
+
+.root:type(figcaption) .root:type(cite) {
+	background: blue;
+}
+
+.root:type(blockquote) .root:type(cite) {
+	background: green;
+}

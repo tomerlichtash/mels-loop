@@ -72,7 +72,8 @@ export enum MLNODE_TYPES {
 	TABLE = "table",
 	TH = "th",
 	CITE = "cite",
-	CAPTION = "caption",
+	CAPTION = "cite",
+	FIGCAPTION = "figcaption",
 	HR = "hr",
 }
 

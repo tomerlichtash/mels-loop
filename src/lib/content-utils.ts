@@ -775,7 +775,7 @@ class ContentUtils implements IContentUtils {
 				text: tmpl,
 				line: context.indexer.currentLine()
 			};
-			node.children.push(captionNode);
+			node.children[1].children.push(captionNode);
 		}
 		else {
 			captionNode = nCaptions === 1 && captionNodes[0];

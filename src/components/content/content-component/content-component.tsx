@@ -65,12 +65,24 @@ export const ContentComponent = ({
 		case MLNODE_TYPES.SUB:
 		case MLNODE_TYPES.SUP:
 		case MLNODE_TYPES.CITE:
-		case MLNODE_TYPES.CAPTION:
+		case MLNODE_TYPES.FIGCAPTION:
 			return (
 				<ContentIterator
 					key={key}
 					componentData={{ tag: type, ...componentData }}
 					className={stylableClassName}
+				/>
+			);
+		case MLNODE_TYPES.CAPTION:
+			return (
+				<ContentIterator
+					key={key}
+					componentData={{ tag: type, ...componentData }}
+					className={st(
+						classes.root,
+						{ type, customFigCaption: true },
+						useClassname ? className : ""
+					)}
 				/>
 			);
 		case MLNODE_TYPES.CODEBLOCK:
