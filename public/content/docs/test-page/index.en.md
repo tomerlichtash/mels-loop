@@ -4,16 +4,17 @@ abstract: "Figure and Blockquote Samples"
 ---
 
 <figure>
-Figure Content
-<figcaption>
-test caption
-another cap
-</figcaption>
+Figure With auto generated caption
+</figure>
+
+
+<figure caption="Custom caption %index%">
+Figure With a custom caption
 </figure>
 
 <blockquote>
-Figure Content
-<caption>
+Blockquote Content
+<cite>
 dada
-</caption>
+</cite>
 </blockquote>

@@ -40,10 +40,10 @@
 	background: red;
 }
 
-.root:type(figcaption) .root:type(cite) {
+.root:type(figcaption) :type(cite) {
 	background: blue;
 }
 
-.root:type(blockquote) .root:type(cite) {
+.root:type(blockquote) :type(cite) {
 	background: green;
 }

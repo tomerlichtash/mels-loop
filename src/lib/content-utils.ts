@@ -306,7 +306,6 @@ class ContentUtils implements IContentUtils {
 		this.nodeProcessorMap = {
 			list: this.processListNode.bind(this),
 			def: this.processLinkDefinition.bind(this),
-			//HTML: this.processHtmlNode.bind(this)
 		};
 	}
 
@@ -544,24 +543,6 @@ class ContentUtils implements IContentUtils {
 		return resultNode;
 	}
 
-	private processHtmlNode(node: ParsedNode,
-		context: MLParseContext
-	): IMLParsedNode {
-		const items = findArrayPart(node) || [];
-		const parseMode = extractParseMode(node, context);
-		const newContext: MLParseContext =
-			parseMode !== context.mode.parseMode ?
-				context.clone({ parseMode })
-				: context;
-		const resultNode: IMLParsedNode = {
-			type: node.tag.toLowerCase(),
-			key: context.indexer.nextKey(),
-			line: -1,
-			children: items.map(item => this.parsedNodeToMLNode(item, newContext)).filter(Boolean)
-		};
-		return resultNode;
-	}
-
 	/**
 	 * Store the link definition, return null (will be filtered out of the result)
 	 * @param node
@@ -752,7 +733,7 @@ class ContentUtils implements IContentUtils {
 			customCaption = attributes.caption,
 			tmpl = customCaption || config.template;
 		// 0. Find a caption child
-		const captionNodes = node.children?.filter(c => c.type === MLNODE_TYPES.CAPTION),
+		const captionNodes = node.children?.filter(c => c.type === MLNODE_TYPES.FIGCAPTION),
 			nCaptions = captionNodes?.length;
 		// 2. If more than one, throw
 		if (nCaptions > 1) {
@@ -770,12 +751,12 @@ class ContentUtils implements IContentUtils {
 		let captionNode: IMLParsedNode;
 		if (generateCaption) {
 			captionNode = 			{
-				type: MLNODE_TYPES.CAPTION,
+				type: MLNODE_TYPES.FIGCAPTION,
 				key: context.indexer.nextKey(),
 				text: tmpl,
 				line: context.indexer.currentLine()
 			};
-			node.children[1].children.push(captionNode);
+			node.children.push(captionNode);
 		}
 		else {
 			captionNode = nCaptions === 1 && captionNodes[0];

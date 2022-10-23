@@ -12,4 +12,5 @@
 	font-size: 0.85em;
 	font-weight: normal;
 	font-style: italic;
+	display: table-cell;
 }

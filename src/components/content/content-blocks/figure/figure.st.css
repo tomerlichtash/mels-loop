@@ -14,12 +14,12 @@
 	flex-grow: 0;
 }
 
-.root caption>p {
+.root figcaption>p {
 	margin: 0;
 	padding: 0;
 }
 
-.root caption {
+.root figcaption {
 	display: block;
 	text-align: center;
 	font-style: italic;
