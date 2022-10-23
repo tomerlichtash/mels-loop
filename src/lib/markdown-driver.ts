@@ -337,6 +337,7 @@ const createHtmlMDParser = () => {
 
 }
 
+
 /**
  * Parses an HTML attribute string
  * Supports only double quotes for attribute value

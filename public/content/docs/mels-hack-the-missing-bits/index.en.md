@@ -6,8 +6,10 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 ## A Private _Mel Moment_
 
+<blockQuote data-parse-mode="verse" data-type="quote">
     When the light went on it nearly blinded me.
-    (Line 193)
+	<cite>(Line 193)</cite>
+</blockQuote>
 
 This line in The Story of Mel precedes the author's description of Mel's hack, the almost criminally resourceful implementation of a finite loop with no exit condition.. These words never fail to give me goosebumps. They reflect a rare "Ah!" moment, where a seemingly random collection of facts suddenly falls into a coherent logical structure.
 
@@ -35,53 +37,113 @@ For brevity and clarity, we will use a mock instruction layout in which each com
 
 Something like:
 
-         AAAXCCC
-    MSB <--------> LSB
+<figure>
+<table data-type="bit-layout">
+<tr>
+<td>MSB<</td>
+<th>AAA</th>
+<th>X</th>
+<th>CCC</th>
+<td>>LSB</td>
+</tr>
+<tr>
+<td></td>
+<td>Data</td>
+<td>Index</td>
+<td>Opcode</td>
+<td></td>
+</tr>
+</table>
+</figure>
+
 
 This layout is missing a part described earlier in the story:
 
-        The new computer had a one-plus-one
-        addressing scheme
-        in which each machine instruction,
-        in addition to the operation code
-        and the address of the needed operand,
-        had a second address that indicated where, on the revolving drum,
-        the next instruction was located.
-        (Lines 54-60)
+<blockQuote data-parse-mode="verse" data-type="quote">
+	The new computer had a one-plus-one
+	addressing scheme
+	in which each machine instruction,
+	in addition to the operation code
+	and the address of the needed operand,
+	had a second address that indicated where, on the revolving drum,
+	the next instruction was located.
+    <cite>(Lines 54-60)</cite>
+</blockQuote>
 
 Thus, the bit layout of the instruction needs an additional component for the next address `(N)`. Its location doesn't affect the hack, as described in the story, but let's place it on the least significant bits, to be on the safe side:
 
-             AAAXCCCNNN
-        MSB <----------> LSB
+<figure>
+<table data-type="bit-layout">
+<tr>
+<td>MSB<</td>
+<th>AAA</th>
+<th>X</th>
+<th>CCC</th>
+<th>NNN</th>
+<td>>LSB</td>
+</tr>
+<tr>
+<td></td>
+<td>Data</td>
+<td>Index</td>
+<td>Opcode</td>
+<td>Next</td>
+<td></td>
+</tr>
+</table>
+</figure>
+
 
 We know that the `(A)` bits are lower than the `(C)` bits, because **Ed Nather** later describes the overflow that Mel hijacked:
 
-        Instead, he would pull the instruction into a machine register,
-        add one to its address,
-        and store it back
-        [...]
-        He had located the data he was working on
-        near the top of memory —
-        the largest locations the instructions could address —
-        so, after the last datum was handled,
-        incrementing the instruction address
-        would make it overflow.
-        The carry would add one to the
-        operation code, changing it to the next one in the instruction set:
-        (Lines 175-177, 194-201)
+<blockQuote data-parse-mode="verse" data-type="quote">
+	Instead, he would pull the instruction into a machine register,
+	add one to its address,
+	and store it back
+	[...]
+	He had located the data he was working on
+	near the top of memory —
+	the largest locations the instructions could address —
+	so, after the last datum was handled,
+	incrementing the instruction address
+	would make it overflow.
+	The carry would add one to the
+	operation code, changing it to the next one in the instruction set:
+    <cite>(Lines 175-177, 194-201)</cite>
+</blockQuote>
 
 If incrementing the address span overflows into the opcode span, then the bit order between them is established:
 
-             CCCXAAANNN
-        MSB <----------> LSB
+<figure>
+<table data-type="bit-layout">
+<tr>
+<td>MSB<</td>
+<th>CCC</th>
+<th>X</th>
+<th>AAA</th>
+<th>NNN</th>
+<td>>LSB</td>
+</tr>
+<tr>
+<td></td>
+<td>Opcode</td>
+<td>Index</td>
+<td>Data</td>
+<td>Next</td>
+<td></td>
+</tr>
+</table>
+</figure>
 
 If the index register bit `(X)` is indeed between the two and turned on, then overflowing the `(A)` span will carry through `(X)` into the `(C)` span, incrementing it by one. The result:
 
+<blockQuote data-parse-mode="verse" data-type="quote">
         a jump instruction.
         Sure enough, the next program instruction was
         in address location zero,
         and the program went happily on its way.
-        (Lines 202-205)
+        <cite>(Lines 202-205)</cite>
+</blockQuote>
 
 ## The Unpleasant Truth
 
@@ -95,8 +157,26 @@ After recovering from this blow to my computer ego, I took the basic step requir
 
 Quite simply, the hack, as described in **Ed Nather**'s account, is impossible on the RPC-4000. The opcode `(C)` field, supposedly modified by the overflow, is in the least significant bits of the instruction. In the terms used above:
 
-             XNNNAAACCC
-        MSB <----------> LSB
+<figure>
+<table data-type="bit-layout">
+<tr>
+<td>MSB<</td>
+<th>X</th>
+<th>NNN</th>
+<th>AAA</th>
+<th>CCC</th>
+<td>>LSB</td>
+</tr>
+<tr>
+<td></td>
+<td>Index</td>
+<td>Next</td>
+<td>Data</td>
+<td>Opcode</td>
+<td></td>
+</tr>
+</table>
+</figure>
 
 Thus, any overflow (which progresses toward the MSB) in the bits above the opcode, would not affect the latter. Furthermore, opcode `0` was not "A Jump instruction", but a different operation altogether, the specifics of which are beyond the scope of this analysis. Thus, even a different bit arrangement would not have redeemed the described hack.
 
@@ -108,13 +188,50 @@ Obviously, once we rule out **Ed Nather**'s code flow, all options are on the ta
 
 It turns out that the architecture of the RPC-4000 does provide for a code layout which would accomplish the feat by using an overflow. Using our simplified bit layout, let's assume that the instruction, at some point, reaches the value:
 
-             0111111CCC
-        MSB <----------> LSB
+<figure>
+<table data-type="bit-layout">
+<tr>
+<td>MSB<</td>
+<th>0</th>
+<th>111</th>
+<th>111</th>
+<th>CCC</th>
+<td>>LSB</td>
+</tr>
+<tr>
+<td></td>
+<td>Index</td>
+<td>Next</td>
+<td>Data</td>
+<td>Opcode</td>
+<td></td>
+</tr>
+</table>
+</figure>
+
 
 In this diagram, the opcode doesn't matter, it can be any part of the program logic. The address of the next instruction is `111`, so that's where the next step of the loop is located. The data address is also `111`, which doesn't pose a problem: The instruction may not even need an operand, or the value in the `111` address may be commensurate with the program logic. Normally, the program would proceed to the instruction in location 111. Now, when we try to increment the data address by `1` (adding `1000`), the "overflow" of the field zeroes out the `(A)` and `(N)` fields, yielding this instruction:
 
-             1000000CCC
-        MSB <----------> LSB
+  <figure>
+<table data-type="bit-layout">
+<tr>
+<td>MSB<</td>
+<th>1</th>
+<th>000</th>
+<th>000</th>
+<th>CCC</th>
+<td>>LSB</td>
+</tr>
+<tr>
+<td></td>
+<td>Index</td>
+<td>Next</td>
+<td>Data</td>
+<td>Opcode</td>
+<td></td>
+</tr>
+</table>
+</figure>
 
 Which would execute opcode CCC and then jump to address 0, just as **Ed Nather** wrote. In the above diagram, the index register bit is set to 0, so that it would toggle to 1 following the address overflow. This toggle may be the origin of Nather's recollection of seeing the bit turned on for no apparent reason.
 
@@ -124,11 +241,15 @@ There's another possible scenario, even more compatible with the story and in li
 
 - Opcode `23 (10111)` was the machine's _conditional_ `JUMP` instruction, called `TBC` (**T**ransfer on **B**ranch **C**ontrol). This opcode transferred control to the address in the `(A)` field, _If_ an internal switch called the `Branch Control Unit (BCU)` was on. If it was off, the next instruction address would default to the `(N)` field.
 
+<figure>
 ![RPC-4000 TBC instruction](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654922031/mels-hack/transfer-branch-control_gc2xg2.png)
+</figure>
 
 - What could switch the `BCU` on? According to the manual - either when a successful comparison had just been made, or - more relevant to our story - following _an overflow_.
 
+<figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1655241687/mels-hack/branch-control_xd0vqd.png)
+</figure>
 
 Simply put, conditional branching (e.g. if..else or looping until an index reaches a limit) on the RPC-4000 was implemented with two steps:
 
@@ -153,7 +274,7 @@ Instead of running a test, Mel kept incrementing the value of the `(A)` field, a
 
 The overflow would toggle the `BCU` on, causing the heretofore ineffective `TBC` to transfer control to the address in the `(A)` field, which was 0. If Ed Nather was not familiar with the overflow aspect of the `BCU`, then his reading of the code would indeed lead to the diagnosis of a loop without a test. A standard conditional jump consisted of some test, followed by a `TBC` instruction, which would `JUMP` out of the loop only if the test had succeeded. It was quite natural, then, for a RPC-4000 programmer to come across a "free floating" `TBC` instruction, with no preceding test and conclude:
 
-        But the loop had no test in it.
+>But the loop had no test in it.
 
 This scenario seems closer to the original story: The `JUMP` is there, as well as the overflow and the seemingly unnecessary `1` in the index register bit. There are only two deviations from the original account:
 
