@@ -43,7 +43,7 @@ export enum ASTNODE_TYPES {
 	HEADING = "heading",
 	SUB = "sub",
 	SUP = "sup",
-	/* Custom type */
+	/* Custom types */
 	HTML = "HTML",
 	comment = "comment"
 }

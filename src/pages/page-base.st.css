@@ -79,8 +79,12 @@
 
 .blockquote {}
 .root::contentComponent:type(blockquote) {
+	-st-mixin: Blockquote;
 	border-left: value(BlockQuoteBorder);
 	margin-left: 1rem;
+}
+.root::contentComponent:type(blockquote) :type(cite) {
+	display: block;
 }
 
 .root::contentComponent:type(figure) :type(figcaption),
@@ -98,9 +102,6 @@
 	border-right: value(BlockQuoteBorder);
 }
 
-.root::contentComponent:type(blockquote) {
-	-st-mixin: Blockquote;
-}
 
 .root::contentComponent:listType(ul),
 .root::contentComponent:listType(ol) {
