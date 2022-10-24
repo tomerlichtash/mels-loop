@@ -35,15 +35,3 @@
 }
 
 .error {}
-
-.root:type(figcaption) {
-	background: red;
-}
-
-.root:type(figcaption) :type(cite) {
-	background: blue;
-}
-
-.root:type(blockquote) :type(cite) {
-	background: green;
-}

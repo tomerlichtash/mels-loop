@@ -73,18 +73,6 @@ export const ContentComponent = ({
 					className={stylableClassName}
 				/>
 			);
-		//case MLNODE_TYPES.CAPTION:
-		//	return (
-		//		<ContentIterator
-		//			key={key}
-		//			componentData={{ tag: type, ...componentData }}
-		//			className={st(
-		//				classes.root,
-		//				{ type, customFigCaption: true },
-		//				useClassname ? className : ""
-		//			)}
-		//		/>
-		//	);
 		case MLNODE_TYPES.CODEBLOCK:
 			return (
 				<CodeBlock key={key} componentData={componentData} className={stylableClassName} />

@@ -184,3 +184,10 @@
 	-st-mixin: Paragraph;
 	text-transform: uppercase;
 }
+
+.Caption {
+	-st-mixin: bodyTextNormal;
+	display: block;
+	margin-top: 0.5rem;
+	font-style: italic;
+}

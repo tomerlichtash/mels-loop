@@ -74,7 +74,9 @@
 .root::contentComponent:type(blockquote),
 .root::contentComponent:listType(ul),
 .root::contentComponent:listType(ol),
-.root::contentComponent:type(list-item)  {
+.root::contentComponent:type(list-item),
+.root::contentComponent:type(figure) :type(figcaption),
+.root::contentComponent:type(blockquote) :type(cite) {
 	color: value(ParagraphTextColor);
 }
 

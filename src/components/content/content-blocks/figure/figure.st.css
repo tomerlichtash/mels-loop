@@ -10,19 +10,5 @@
 	margin: 0 auto;
 }
 
-.figureContent {
-	flex-grow: 0;
-}
 
-.root figcaption>p {
-	margin: 0;
-	padding: 0;
-}
-
-.root figcaption {
-	display: block;
-	text-align: center;
-	font-style: italic;
-	font-size: 0.8em;
-}
 .img {}

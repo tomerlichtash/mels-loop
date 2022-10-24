@@ -8,9 +8,6 @@ import { mlUtils } from "../../../../lib/ml-utils";
 import { useComponentAttributes } from "../../../use-component-attributes";
 import { st, classes } from "./figure.st.css";
 
-
-
-
 export const Figure = ({
 	componentData,
 	className,
