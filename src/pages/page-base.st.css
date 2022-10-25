@@ -22,6 +22,7 @@
 	SubtitleMargin2,
 	ListBullet,
 	ArticleByline,
+	Caption,
 ] from "../theme/common/typography.st.css";
 @st-import [SectionBox] from "../theme/common/mixins.st.css";
 
@@ -78,21 +79,29 @@
 
 .blockquote {}
 .root::contentComponent:type(blockquote) {
+	-st-mixin: Blockquote;
 	border-left: value(BlockQuoteBorder);
 	margin-left: 1rem;
 }
+.root::contentComponent:type(blockquote) :type(cite) {
+	display: block;
+}
+
+.root::contentComponent:type(figure) :type(figcaption),
+.root::contentComponent:type(blockquote) :type(cite) {
+	-st-mixin: Caption;
+}
+.root::contentComponent:type(figure) :type(figcaption) {
+	text-align: center;
+}
+
 .root:textDirection(rtl)::contentComponent:type(blockquote) {
 	margin-left: auto;
 	border-left: none;
 	margin-right: 1rem;
 	border-right: value(BlockQuoteBorder);
 }
-.root::contentComponent:type(blockquote) strong {
-}
 
-.root::contentComponent:type(blockquote) {
-	-st-mixin: Blockquote;
-}
 
 .root::contentComponent:listType(ul),
 .root::contentComponent:listType(ol) {

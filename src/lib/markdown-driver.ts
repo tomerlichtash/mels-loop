@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import * as mdParser from "simple-markdown";
 import {
+	IFigureConfiguration,
 	IFolderContent,
 	ILocaleMap,
 	IMLParsedNode,
@@ -22,6 +23,7 @@ import {
 } from "../interfaces/parser";
 
 import getConfig from "next/config";
+import { mlUtils } from "./ml-utils";
 const { serverRuntimeConfig } = getConfig();
 
 const log: Logger = new Logger({
@@ -94,11 +96,10 @@ const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 export function loadContentFolder(
 	options: ILoadContentOptions
 ): IFolderContent {
-	const mode: IContentParseOptions = Object.assign(
-		{},
-		DEFAULT_PARSE_OPTIONS,
-		options.mode
-	);
+	const mode: IContentParseOptions = {
+		...DEFAULT_PARSE_OPTIONS,
+		...options.mode
+	};
 	const contentDir = path.join(
 		getContentRootDir(options.rootFolder),
 		options.relativePath
@@ -184,9 +185,10 @@ export function loadContentFolder(
 			folderContentData.pages.push(parsedPageData);
 			if (mode.contentMode === LoadContentModes.FULL) {
 				// parse markdown and process
-				const mdParse = mdParser.defaultBlockParse;
+				const mdParse = createHtmlMDParser(); //mdParser.defaultBlockParse;
 				const tree = contentUtils.processParseTree(
 					mdParse(contentUtils.stripComments(content)) as ParsedNode[],
+					metaData,
 					mode
 				);
 
@@ -204,17 +206,6 @@ export function loadContentFolder(
 	// Sort posts by date
 }
 
-function parseDate(dateString: string | null | undefined): Date {
-	if (dateString) {
-		try {
-			const t = Date.parse(dateString);
-			return new Date(t);
-		} catch (e) {
-			log.error(`Error parsing date ${dateString}`);
-		}
-	}
-	return new Date();
-}
 
 class ParsedPageData implements IParsedPageData {
 	/* eslint-disable @typescript-eslint/no-explicit-any */
@@ -233,16 +224,12 @@ class ParsedPageData implements IParsedPageData {
 	public error?: string = "";
 }
 
+
 class PageMetaData implements IPageMetaData {
 	constructor(data: Partial<IParsedPageData> | string) {
-		const realData = typeof data === "string" ? JSON.parse(data) : data;
-		Object.keys(this).forEach((key) => {
-			if (realData[key] !== undefined) {
-				this[key] = realData[key];
-			}
-		});
+		mlUtils.safeMerge(this, data);
 		if (this.date && typeof this.date === "string") {
-			this.date = parseDate(this.date);
+			this.date = mlUtils.parseDate(this.date);
 		}
 	}
 	public glossary_key = "";
@@ -255,6 +242,11 @@ class PageMetaData implements IPageMetaData {
 	public source_url = "";
 	public source_name = "";
 	public source_author = "";
+	public figures: IFigureConfiguration = {
+		auto: true,
+		base: 1,
+		template: "Fig. %index%"
+	}
 }
 
 class FolderContent implements IFolderContent {
@@ -269,4 +261,96 @@ class FolderContent implements IFolderContent {
 		const key = String(field);
 		return this.pages.slice().sort((a, b) => (a[key] < b[key] ? 1 : -1));
 	}
+}
+
+// matches basic html strings <tag [attributes]>...</tag> including newlines
+// not perfect, in case an attribute value contains /, 
+// but the performance would degrade significantly with the alternative
+
+/**
+ * Creates an simple-markdown parser that supports simple html and 
+ * HTML nodes include the type HTML and a tag field with the HTML tag
+ * @returns 
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const createHtmlMDParser = () => {
+	const HTML_RE = /^\s*<([a-z]+)([^>]+)*>([\s\S]*?)<\/\1>/i;
+	const HTML_SELFCLOSE_RE = /^\s*<([a-z]+)([^/>]+)*\/>/i;
+	const rules = {
+		...mdParser.defaultRules,
+		// Triple slash comments
+		comment: {
+			match: function (source: string) {
+				return /^\s*\/\/\/([^\n\r]*)/.exec(source);
+			},
+
+			parse: function (capture: RegExpExecArray /*, recurseParse, state */) {
+				return {
+					content: capture[1]
+				};
+			},
+			order: 0
+		},
+		// html parser
+		HTML: {
+			match: function (source: string /*, state, lookbehind */) {
+				const res = HTML_RE.exec(source)
+					|| HTML_SELFCLOSE_RE.exec(source);
+
+				return res;
+			},
+
+			parse: function (capture: RegExpExecArray,
+				recurseParse: (content: string, state: object) => Array<object>,
+				state: object) {
+				return {
+					tag: capture[1],
+					attributes: parseAttributes(capture[2]),
+					content: (capture[3] && recurseParse(capture[3], state)) || undefined
+				};
+			},
+			order: 0
+		},
+		// html parser
+		//HTML_SELFCLOSE: {
+		//	match: function (source: string /*, state, lookbehind */) {
+		//		const res = HTML_SELFCLOSE_RE.exec(source)
+		//		//|| HTML_SELFCLOSE_RE.exec(source);
+
+		//		return res;
+		//	},
+
+		//	parse: function (capture: RegExpExecArray,
+		//		recurseParse: (content: string, state: object) => Array<object>,
+		//		state: object) {
+		//		return {
+		//			type: "HTML",
+		//			tag: capture[1],
+		//			attributes: parseAttributes(capture[2])
+		//		};
+		//	},
+		//	order: 0
+		//}
+	};
+	return mdParser.parserFor(rules);
+
+}
+
+/**
+ * Parses an HTML attribute string
+ * Supports only double quotes for attribute value
+ * @param attrStr 
+ * @returns 
+ */
+const parseAttributes = (attrStr: string): Map<string, string> => {
+	const attrMap = new Map<string, string>;
+	if (!attrStr) {
+		return attrMap;
+	}
+	const re = /\s*([a-z][a-z0-9\-_.]+)="([^"]*)"/ig;
+	let match: RegExpExecArray;
+	while ((match = re.exec(attrStr)) != null) {
+		attrMap.set(match[1], match[2]);
+	}
+	return attrMap;
 }

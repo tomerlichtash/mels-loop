@@ -27,6 +27,10 @@
 	margin: 0;
 }
 
+:global(cite) {
+	font-style: normal;
+}
+
 :global(button) {
 	border: none;
 	padding: 0;
