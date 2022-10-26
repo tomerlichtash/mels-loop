@@ -52,7 +52,7 @@ test.describe("Codex", () => {
 				(t: ITermTestData) => t.key === key
 			)[0];
 
-			return test.only(`${locale} > should open glossary: ${key}`, async ({
+			return test(`${locale} > should open glossary: ${key}`, async ({
 				page,
 			}) => {
 				await page.goto(getLocalePath(locale));
