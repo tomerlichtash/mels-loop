@@ -153,7 +153,10 @@ Not only did I gloss over this crucial step for 30 years – I also ignored the 
 
 After recovering from this blow to my computer ego, I took the basic step required to understand Mel's hack: looking up the RPC-4000 manual. It didn't take much browsing to hit a figure that dispelled all my doubts.
 
+<figure>
 ![RPC 4000 Instruction format](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
+
+</figure>
 
 Quite simply, the hack, as described in **Ed Nather**'s account, is impossible on the RPC-4000. The opcode `(C)` field, supposedly modified by the overflow, is in the least significant bits of the instruction. In the terms used above:
 
@@ -233,7 +236,7 @@ In this diagram, the opcode doesn't matter, it can be any part of the program lo
 </table>
 </figure>
 
-Which would execute opcode CCC and then jump to address 0, just as **Ed Nather** wrote. In the above diagram, the index register bit is set to 0, so that it would toggle to 1 following the address overflow. This toggle may be the origin of Nather's recollection of seeing the bit turned on for no apparent reason.
+Which would execute opcode `CCC` and then jump to address `0`, just as **Ed Nather** wrote. In the above diagram, the index register bit is set to 0, so that it would toggle to 1 following the address overflow. This toggle may be the origin of Nather's recollection of seeing the bit turned on for no apparent reason.
 
 ## A Less Romantic Alternative
 
@@ -243,12 +246,15 @@ There's another possible scenario, even more compatible with the story and in li
 
 <figure>
 ![RPC-4000 TBC instruction](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654922031/mels-hack/transfer-branch-control_gc2xg2.png)
+
 </figure>
 
 - What could switch the `BCU` on? According to the manual - either when a successful comparison had just been made, or - more relevant to our story - following _an overflow_.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1655241687/mels-hack/branch-control_xd0vqd.png)
+
+<figcaption>Fig. %index%. Source: RPC-4000 manual</figcaption>
 </figure>
 
 Simply put, conditional branching (e.g. if..else or looping until an index reaches a limit) on the RPC-4000 was implemented with two steps:
@@ -262,6 +268,7 @@ It's reasonable to assume that standard training on the RPC-4000 included only t
 
 Instead of running a test, Mel kept incrementing the value of the `(A)` field, as described in the story. This eventually led to an overflow of the entire register, provided the index register bit (X) was on – exactly as Nather remembered. Using 101 as the `TBC` opcode yields the following sequence:
 
+<figure>
              1111111101
         MSB <----------> LSB
 
@@ -272,6 +279,8 @@ Instead of running a test, Mel kept incrementing the value of the `(A)` field, a
 
         +     OVERFLOW
 
+</figure>
+
 The overflow would toggle the `BCU` on, causing the heretofore ineffective `TBC` to transfer control to the address in the `(A)` field, which was 0. If Ed Nather was not familiar with the overflow aspect of the `BCU`, then his reading of the code would indeed lead to the diagnosis of a loop without a test. A standard conditional jump consisted of some test, followed by a `TBC` instruction, which would `JUMP` out of the loop only if the test had succeeded. It was quite natural, then, for a RPC-4000 programmer to come across a "free floating" `TBC` instruction, with no preceding test and conclude:
 
 >But the loop had no test in it.
@@ -279,15 +288,15 @@ The overflow would toggle the `BCU` on, causing the heretofore ineffective `TBC`
 This scenario seems closer to the original story: The `JUMP` is there, as well as the overflow and the seemingly unnecessary `1` in the index register bit. There are only two deviations from the original account:
 
 1. The opcode is never modified.
-2. The magical nature of the hack is due not only to Mel's prowess, but also – perhaps mostly – to \* Ed Nather\*\*'s incomplete understanding of the machine. Had he known that the `TBC` instruction was influenced by an overflow, he would have cracked the problem right away, leaving no story for posterity.
+2. The magical nature of the hack is due not only to Mel's prowess, but also – perhaps mostly – to **Ed Nather**'s incomplete understanding of the machine. Had he known that the `TBC` instruction was influenced by an overflow, he would have cracked the problem right away, leaving no story for posterity.
 
-Anyone who likes coding can imagine **Mel Kaye**'s reaction, when he read about the path of an overflow triggering a jump. The challenge was immediately obvious. Having run a trivial POC, he naturally proceeded to the next level, causing the overflow at the end of an iterative process, after the data had been drained. This way, he could avoid the standard test at the end of the loop. The stroke of genius was completed when he managed to usefully incorporate this structure into a real-world program.
+Anyone who likes coding can imagine **Mel Kaye**'s reaction, when he discovered the path of an overflow triggering a jump. The challenge was immediately obvious. Having run a trivial POC, he naturally proceeded to the next level, causing the overflow at the end of an iterative process, after the data had been drained. This way, he could avoid the standard test at the end of the loop. The stroke of genius was completed when he managed to usefully incorporate this structure into a real-world program.
 
 ## So What You're Saying is
 
 Whichever version you prefer – the number juggling trick or the deviously elegant `TBC` manipulation – it’s clear that **Ed Nather**'s account was rooted in faulty memory (and probably a faulty understanding of RPC-4000). This finding does not diminish the story's charm. Most developers can identify with the laborious excavation through another programmer's "impossible" code. The charm of a self-modifying program is still there and the hack, in both implementations, is impressive.
 
-If this analysis can cast a shadow on the myth of **Mel Kaye**, it is not related to **Ed Nather**'s credibility, nor to Mel's undeniable skill. Rather, it stems from the obvious lack of real value that the hack added to the program. It's very unlikely that a standard loop would have degraded the program's performance in any noticeable way. Mel's testless loop was clearly a vain addition of complexity, in an environment that was very complex on its own.
+If this analysis can cast a shadow on the myth of **Mel Kaye**, it is not related to **Ed Nather**'s credibility, nor to Mel's undeniable skill. Rather, it stems from the obvious lack of real value that the hack added to the program. It's very unlikely that a standard loop would have degraded the program's performance in any noticeable way. Mel's testless loop was clearly a vain addition of complexity.
 
 This approach to coding is far from extinct. One often finds it in software teams, among some highly regarded – though less valued – members. If you've spent several years in the industry or in Computer Science academia, you surely know this subspecies: the developer that replaces a straightforward loop with a series of auto-resolving promises, capped by a cryptic reducer, then revels in their teammates' bewilderment at the sight of the new code. Hardly the personality that you'd select for a coding legend.
 
