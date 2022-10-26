@@ -31,6 +31,17 @@ const labelSelector = domUtil.scopeSelector(NOTE_LABEL_SELECTOR);
 const titleSelector = domUtil.scopeSelector(NOTE_TITLE_SELECTOR);
 const termSelector = domUtil.scopeSelector(NOTE_TITLE_TERM_ORIGIN);
 
+function validateStringTranslation(str: string) {
+	const indexRegExp = "^.{0}[%]";
+	const firstChar = new RegExp(indexRegExp);
+	const lastChar = new RegExp(indexRegExp.replace("{0}", `{${str.length - 1}}`));
+	return expect(
+		firstChar.test(str) && lastChar.test(str),
+		"Non-English glossary entries should be properply translated to English"
+	)
+
+}
+
 test.describe("Codex", () => {
 	locales.map((locale) => {
 		const { content } = getFrontMatter("codex/index", locale);
@@ -41,7 +52,7 @@ test.describe("Codex", () => {
 				(t: ITermTestData) => t.key === key
 			)[0];
 
-			return test(`${locale} > should open glossary: ${key}`, async ({
+			return test.only(`${locale} > should open glossary: ${key}`, async ({
 				page,
 			}) => {
 				await page.goto(getLocalePath(locale));
@@ -51,19 +62,24 @@ test.describe("Codex", () => {
 					.click();
 				await page.$$(PORTAL_SELECTOR);
 
-				await expect(page.locator(labelSelector)).toHaveText(
-					translate(locale, "NOTE_LABEL_GLOSSARY")
-				);
+				const glossaryLabel = await page.locator(labelSelector).textContent();
+				validateStringTranslation(glossaryLabel).toBeFalsy();
+				expect(glossaryLabel).toEqual(translate(locale, "NOTE_LABEL_GLOSSARY"));
 
 				await expect(page.locator(titleSelector)).toHaveText(
 					translate(locale, term_key as string)
 				);
 
 				if (locale !== "en") {
+					const originTerm = translate("en", term_key as string);
+					const translatedTerm = await page.locator(termSelector).textContent();
+
+					validateStringTranslation(translatedTerm).toBeFalsy();
+
 					await expect(
 						page.locator(termSelector),
 						"Non-English glossary entries should show original term in English"
-					).toHaveText(translate("en", term_key as string));
+					).toHaveText(originTerm);
 				}
 
 				const textContent = await page.locator(contentSelector).textContent();
