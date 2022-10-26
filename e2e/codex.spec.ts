@@ -36,7 +36,7 @@ function validateStringTranslation(str: string) {
 	const firstChar = new RegExp(indexRegExp);
 	const lastChar = new RegExp(indexRegExp.replace("{0}", `{${str.length - 1}}`));
 	return expect(
-		firstChar.test(str) && lastChar.test(str),
+		!firstChar.test(str) && !lastChar.test(str),
 		"Non-English glossary entries should be properply translated to English"
 	)
 
@@ -63,7 +63,7 @@ test.describe("Codex", () => {
 				await page.$$(PORTAL_SELECTOR);
 
 				const glossaryLabel = await page.locator(labelSelector).textContent();
-				validateStringTranslation(glossaryLabel).toBeFalsy();
+				validateStringTranslation(glossaryLabel).toBeTruthy();
 				expect(glossaryLabel).toEqual(translate(locale, "NOTE_LABEL_GLOSSARY"));
 
 				await expect(page.locator(titleSelector)).toHaveText(
@@ -74,7 +74,7 @@ test.describe("Codex", () => {
 					const originTerm = translate("en", term_key as string);
 					const translatedTerm = await page.locator(termSelector).textContent();
 
-					validateStringTranslation(translatedTerm).toBeFalsy();
+					validateStringTranslation(translatedTerm).toBeTruthy();
 
 					await expect(
 						page.locator(termSelector),
