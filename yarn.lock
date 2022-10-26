@@ -1310,20 +1310,15 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@next/env@13.0.0":
+"@next/env@13.0.0", "@next/env@^13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-13.0.0.tgz#38527956680693c90b4522ab4ab9a2fbe3a17f67"
   integrity sha512-65v9BVuah2Mplohm4+efsKEnoEuhmlGm8B2w6vD1geeEP2wXtlSJCvR/cCRJ3fD8wzCQBV41VcMBQeYET6MRkg==
 
-"@next/env@^12.2.5":
-  version "12.2.5"
-  resolved "https://registry.yarnpkg.com/@next/env/-/env-12.2.5.tgz#d908c57b35262b94db3e431e869b72ac3e1ad3e3"
-  integrity sha512-vLPLV3cpPGjUPT3PjgRj7e3nio9t6USkuew3JE/jMeon/9Mvp1WyR18v3iwnCuX7eUAm1HmAbJHHLAbcu/EJcw==
-
-"@next/eslint-plugin-next@^12.2.5":
-  version "12.2.5"
-  resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.2.5.tgz#4f3acccd2ed4f9300fbf9fd480cc8a0b261889a8"
-  integrity sha512-VBjVbmqEzGiOTBq4+wpeVXt/KgknnGB6ahvC/AxiIGnN93/RCSyXhFRI4uSfftM2Ba3w7ZO7076bfKasZsA0fw==
+"@next/eslint-plugin-next@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-13.0.0.tgz#cf3d799b21671554c1f5889c01d2513afb9973cd"
+  integrity sha512-z+gnX4Zizatqatc6f4CQrcC9oN8Us3Vrq/OLyc98h7K/eWctrnV91zFZodmJHUjx0cITY8uYM7LXD7IdYkg3kg==
   dependencies:
     glob "7.1.7"
 
@@ -2798,11 +2793,12 @@ cosmiconfig@^7.0.1:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-create-temp-directory@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/create-temp-directory/-/create-temp-directory-1.1.1.tgz"
+create-temp-directory@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/create-temp-directory/-/create-temp-directory-2.0.0.tgz#e877038c1e4abf60f457e0d224d12ff9cd1e7e1d"
+  integrity sha512-xknNJwYaW3W58615hs6+hejY6ym5GDI5ddbsyxmitmKoEpV8jPoBuVO2nkGrQuvZtcR6dyMEVzD5F+y7twedPA==
   dependencies:
-    rimraf "^3.0.0"
+    rimraf "^3.0.2"
 
 cross-spawn@^7.0.2:
   version "7.0.3"
