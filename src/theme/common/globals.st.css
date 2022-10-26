@@ -1,6 +1,6 @@
 @namespace "Global";
 
-@st-import [boxSizing] from "../mixins.st.css";
+@st-import [boxSizing] from "../common/mixins.st.css";
 
 :global(html) {
 	-st-mixin: boxSizing;
@@ -25,6 +25,10 @@
 :global(h5),
 :global(h6) {
 	margin: 0;
+}
+
+:global(cite) {
+	font-style: normal;
 }
 
 :global(button) {

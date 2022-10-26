@@ -1,19 +1,14 @@
 @namespace "AnnotationLink";
 
-@st-import [preventSelection, verticalAlignSuper] from "../../../../theme/mixins.st.css";
+@st-import [preventSelection, verticalAlignSuper] from "../../../../theme/common/mixins.st.css";
+@st-import [InlineAnnotation] from "../../../../theme/common/typography.st.css";
 
 :vars {
 	paranthesisMargin: 0.05rem;
 }
 
 .root {
-	-st-mixin: preventSelection, verticalAlignSuper;
-}
-
-.root::before,
-.root::after {
-	color: #000;
-	font-weight: 300;
+	-st-mixin: InlineAnnotation, verticalAlignSuper, preventSelection;
 }
 
 .root::before {
@@ -26,7 +21,6 @@
 	margin-left: value(paranthesisMargin);
 }
 
-.content {}
 .content::after {
 	content: attr(data-prefix) attr(data-seq);
 }

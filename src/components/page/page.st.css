@@ -1,6 +1,6 @@
 @namespace "Page";
 
-@st-import [boxSizing] from "../../theme/mixins.st.css";
+@st-import [boxSizing] from "../../theme/common/mixins.st.css";
 
 :vars {
 	pageWidth: 800px;
@@ -10,7 +10,6 @@
 
 .root {
 	-st-mixin: boxSizing;
-	/* overflow: hidden; */
 	margin: 0 auto;
 	min-height: 75vh;
 	max-width: value(pageWidth);

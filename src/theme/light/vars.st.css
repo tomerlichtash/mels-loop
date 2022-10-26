@@ -17,8 +17,9 @@
 	color12,
 	color13,
 	color14,
-	color15,
-	color16,
+	color17,
+	color18,
+	shadow0,
 ] from "../common/colors.st.css";
 
 :vars {
@@ -31,25 +32,100 @@
 	level6: value(color6);
 	level7: value(color7);
 	level8: value(color8);
-
 	primary1: value(color9);
 	primary1_1: value(color9_1);
 	primary2: value(color10);
 	primary3: value(color11);
 	primary4: value(color12);
-
 	accent1: value(color13);
 	accent2: value(color14);
-	accent3: value(color15);
-	accent4: value(color16);
-
-	shadow1: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-	shadow2: 0px 0px 4px rgba(0, 0, 0, 0.25);
-	shadow3: 0 0 10px rgba(0, 0, 0, 0.15);
+	success1: value(color17);
+	fail1: value(color18);
 }
 
 :vars {
+	/* LAYOUT */
+	LAYOUT_SCROLLBAR_COLOR: value(level3);
+	LAYOUT_BG_COLOR: value(level1);
+	LAYOUT_TEXT_COLOR: value(level8);
+	LAYOUT_ALT_BG_COLOR: value(level2);
+	LAYOUT_TEXT_COLOR_ALT: value(level4);
+	LAYOUT_SECTION_BG_COLOR: value(level0);
+	LAYOUT_SECTION_SHADOW: value(shadow0);
+
+	/* HEADINGS */
+	HEADING1_TEXT_COLOR: value(level8);
+	HEADING2_TEXT_COLOR: value(level6);
+	HEADING3_TEXT_COLOR: value(level6);
+	HEADING4_TEXT_COLOR: value(level5);
+	HEADING5_TEXT_COLOR: value(level5);
+	HEADING6_TEXT_COLOR: value(level5);
+	HEADING1_TEXT_ALT_COLOR: value(level6);
+
+	/* RUNNING TEXT */
 	BODY_TEXT_COLOR: value(level6);
+
+	/* LINK */
 	LINK_TEXT_COLOR: value(accent1);
-	LINK_TEXT_COLOR_HOVER: value(primary2);
+	LINK_HOVER_TEXT_COLOR: value(primary2);
+
+	/* CODE */
+	CODE_TEXT_COLOR: value(level8);
+	CODE_BLOCK_BG_COLOR: value(level3);
+	CODE_INLINE_BORDER_COLOR: value(level4);
+
+	/* HIGHLIGHT */
+	HIGHLIGHT_OPEN_TEXT_COLOR: value(level0);
+	HIGHLIGHT_OPEN_BG_COLOR: value(primary2);
+
+	/* DIALOG */
+	DIALOG_BG_COLOR: value(level1);
+	DIALOG_TOOLBAR_ICON_FILL_COLOR: value(level5);
+	DIALOG_TOOLBAR_ICON_FILL_HOVER_COLOR: value(level8);
+	DIALOG_TOOLBAR_ICON_FILL_HOVER_BG_COLOR: value(level5);
+	DIALOG_TOOLBAR_ICON_FILL_ACTIVE_COLOR: value(primary2);
+	DIALOG_TOOLBAR_SEPERATOR: value(level4);
+	DIALOG_TRIGGER_DECORATION_COLOR: value(level5);
+	DIALOG_TOPIC_BG_COLOR: value(level2);
+	DIALOG_TOPIC_TEXT_COLOR: value(primary2);
+
+	/* INPUT */
+	INPUT_LABEL_TEXT_COLOR: value(level6);
+	INPUT_LABEL_HOVER_BG_COLOR: value(level2);
+	INPUT_BORDER_COLOR: value(level4);
+	INPUT_BORDER_COLOR_FOCUS: value(accent1);
+	INPUT_PLACEHOLDER_TEXT_COLOR: value(level5);
+	INPUT_VALIDATION_SUCCESS_COLOR: value(success1);
+	INPUT_VALIDATION_FAIL_COLOR: value(fail1);
+
+	/* FORM SUBMIT BUTTON */
+	FORM_SUBMIT_BG_COLOR: value(accent1);
+	FORM_SUBMIT_BG_COLOR_HOVER: value(accent2);
+	FORM_SUBMIT_TEXT_COLOR: value(level1);
+
+	/* TOP BAR MENU */
+	MENU_ITEM_HOVER_BG_COLOR: value(level3);
+
+	/* MOBILE MENU */
+	MOBILE_MENU_BG_COLOR: value(level7);
+	MOBILE_MENU_ITEM_TEXT_COLOR: value(primary1_1);
+	MOBILE_MENU_ITEM_SUBTITLE_TEXT_COLOR: value(level0);
+	MOBILE_MENU_ITEM_HOVER_TEXT_COLOR: value(primary1);
+	MOBILE_MENU_ITEM_HOVER_BG_COLOR: value(level8);
+	MOBILE_MENU_ITEM_BORDER_COLOR: value(level6);
+	MOBILE_MENU_SECTION_TITLE_TEXT_COLOR: value(level5);
+
+	/* DARK LOCALE SELECTOR */
+	DARK_LOCALE_SELECTOR_TEXT_COLOR: value(level1);
+	DARK_LOCALE_SELECTOR_HOVER_BG_COLOR: value(level8);
+	DARK_LOCALE_SELECTOR_ITEM_SELECTED_TEXT_COLOR: value(level0);
+	DARK_LOCALE_SELECTOR_ITEM_SELECTED_BG_COLOR: value(primary1);
+
+	/* BORDER */
+	CONTENT_BORDER_COLOR: value(level4);
+
+	/* GRADIENT */
+	GRADIENT1_START: value(primary1);
+	GRADIENT1_MID: value(primary3);
+	GRADIENT1_END: value(primary4);
 }

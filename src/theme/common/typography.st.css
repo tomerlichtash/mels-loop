@@ -1,154 +1,192 @@
-@st-import [TextNode] from "../mixins.st.css";
-
 :vars {
-	fontSize1: 2.5vmax;
-	fontSize2: 2.03vmax;
-	fontSize3: 1.614vmax;
-	fontSize4: 1.302vmax;
-	fontSize5: 1.041vmax;
-	fontSize6: 0.833vmax;
-	fontSize7: 0.875rem;
-	fontSize8: 0.75rem;
-	lineHeight1: 3vmax;
-	lineHeight2: 49px;
-	lineHeight3: 39px;
-	lineHeight4: 31px;
-	lineHeight5: 25px;
-	lineHeight6: 20px;
-	lineHeight7: 21px;
-	lineHeight8: 16px;
-	fontWeightBold: 700;
-	fontWeightMedium: 500;
-	fontWeightSemiBold: 600;
-	fontWeightRegular: 300;
-
-	h1_size: value(fontSize1);
-	h2_size: value(fontSize2);
-	h3_size: value(fontSize3);
-	h4_size: value(fontSize4);
-	h5_size: value(fontSize5);
-	h6_size: value(fontSize6);
-
-	h1_lineHeight: value(lineHeight1);
-	h2_lineHeight: value(lineHeight2);
-	h3_lineHeight: value(lineHeight3);
-	h4_lineHeight: value(lineHeight4);
-	h5_lineHeight: value(lineHeight5);
-	h6_lineHeight: value(lineHeight6);
-
-	h1_weight: value(fontWeightMedium);
-	h2_weight: value(fontWeightBold);
-	h3_weight: value(fontWeightBold);
-	h4_weight: value(fontWeightMedium);
-	h5_weight: value(fontWeightMedium);
-	h6_weight: value(fontWeightMedium);
-
-	h1_color: value(HeadingColor);
-	h2_color: value(HeadingColor);
-	h3_color: value(HeadingColor);
-	h4_color: value(HeadingColor);
-	h5_color: value(HeadingColor);
-	h6_color: value(HeadingColor);
-
-	h1_margin: value(BaseMargin);
-	h2_margin: value(BaseMargin);
-	h3_margin: value(BaseMargin);
-	h4_margin: value(BaseMargin);
-	h5_margin: value(BaseMargin);
-	h6_margin: value(BaseMargin);
-
-	HeadingColor: inherit;
-	BodyTextColor: inherit;
-	BaseMargin: 0;
+	FONT_WEIGHT_REGULAR: 300;
+	FONT_WEIGHT_MEDIUM: 500;
+	FONT_WEIGHT_BOLD: 700;
 }
 
 .LatinText {
 	font-family: "Roboto Slab", serif;
-	font-weight: 300;
+	font-weight: value(FONT_WEIGHT_REGULAR);
 	direction: ltr;
 }
 .HebrewText {
 	font-family: "Assistant", sans-serif;
-	font-weight: 300;
+	font-weight: value(FONT_WEIGHT_REGULAR);
 	direction: rtl;
 }
 
-.heading1 {
-	-st-mixin: TextNode(
-		TextSize value(h1_size),
-		TextLineHeight value(h1_lineHeight),
-		TextWeight value(h1_weight),
-		TextColor value(h1_color)
-	);
+.h1 {
+	font-size: 2.5vmax;
+	line-height: 3vmax;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
 	margin-bottom: 1.302vmax;
 }
-
-.heading2 {
-	-st-mixin: TextNode(
-		TextSize value(h2_size),
-		TextLineHeight value(h2_lineHeight),
-		TextWeight value(h2_weight),
-		TextColor value(h2_color)
-	);
-	margin-bottom: value(h2_margin);
+.h2 {
+	font-size: 2.03vmax;
+	line-height: 3vmax;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+	margin-bottom: 0;
 }
-
-.heading3 {
-	-st-mixin: TextNode(
-		TextSize value(h3_size),
-		TextLineHeight value(h3_lineHeight),
-		TextWeight value(h3_weight),
-		TextColor value(h3_color)
-	);
-	margin-bottom: value(h3_margin);
+.h3 {
+	font-size: 1.614vmax;
+	line-height: 2vmax;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+	margin-bottom: 0;
 }
-
-.heading4 {
-	-st-mixin: TextNode(
-		TextSize value(h4_size),
-		TextLineHeight value(h4_lineHeight),
-		TextWeight value(h4_weight),
-		TextColor value(h4_color)
-	);
-	margin-bottom: value(h4_margin);
+.h4 {
+	font-size: 1.302vmax;
+	line-height: 31px;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+	margin-bottom: 0;
 }
-
-.heading5 {
-	-st-mixin: TextNode(
-		TextSize value(h5_size),
-		TextLineHeight value(h5_lineHeight),
-		TextWeight value(h5_weight),
-		TextColor value(h5_color)
-	);
-	margin-bottom: value(h5_margin);
+.h5 {
+	font-size: 1.041vmax;
+	line-height: 25px;
+	font-weight: value(FONT_WEIGHT_BOLD);
+	margin-bottom: 0;
 }
-
-.heading6 {
-	-st-mixin: TextNode(
-		TextSize value(h6_size),
-		TextLineHeight value(h6_lineHeight)
-		TextWeight value(h6_weight),
-		TextColor value(h6_color)
-	);
-	margin-bottom: value(h6_margin);
+.h6 {
+	font-size: 0.833vmax;
+	line-height: 20px;
+	font-weight: value(FONT_WEIGHT_BOLD);
+	margin-bottom: 0;
 }
-
 .bodyTextNormal {
-	-st-mixin: TextNode(
-		TextSize value(fontSize7),
-		TextLineHeight value(lineHeight7),
-		TextWeight value(fontWeightRegular),
-		TextColor value(BodyTextColor)
-	);
+	font-size: 0.875rem;
+	line-height: 21px;
+	font-weight: value(FONT_WEIGHT_REGULAR);
 }
 
+.Topic {
+	-st-mixin: h3;
+}
+.Term {
+	-st-mixin: h5;
+	margin-bottom: 2rem;
+}
 
-.heading1mixin {
-	-st-mixin: TextNode(
-		TextSize value(h1_size),
-		TextLineHeight value(h1_lineHeight),
-		TextWeight value(h1_weight),
-		TextColor value(h1_color)
-	);
+.Title {
+	-st-mixin: h1;
+}
+
+.SubtitleMargin1 {
+	margin-top: 4rem;
 	margin-bottom: 1.302vmax;
+}
+.SubtitleMargin2 {
+	margin: 2rem 0 1rem	
+}
+
+.InlineCode {
+	font-family: monospace;
+	font-size: 0.8rem;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+	border-radius: 6px;
+	border: 1px solid;
+	padding: 0 0.25rem;
+}
+.CodeBlockStyle {
+	border-radius: 6px;
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.ListBullet {
+	font-size: 14px;
+}
+
+.Paragraph {
+	-st-mixin: bodyTextNormal;
+}
+.ParagraphMargin {
+	margin-bottom: 1.302vmax;
+}
+
+.Blockquote {
+	-st-mixin: bodyTextNormal;
+	font-weight: value(FONT_WEIGHT_REGULAR);
+	padding: 0rem 1rem;
+}
+
+/* Top Bar Menu */
+.TopMenuTriggerLabel {
+	font-size: 1rem;
+	line-height: 32px;
+}
+
+.SiteTitle {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+}
+.SiteSubtitle {
+	text-transform: lowercase;
+}
+
+/* Footer */
+.FooterTitle {
+	font-size: 0.85rem;
+	font-weight: value(FONT_WEIGHT_BOLD);
+	text-transform: uppercase;
+}
+.FooterButton {
+	font-size: 14px;
+	line-height: 21px;
+}
+.FooterSectionTitle {
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+	font-size: 0.85rem;
+}
+
+.SmallCaption {
+	font-size: 0.8rem;
+}
+
+.InlineAnnotation {
+	font-size: 0.7rem;
+	font-weight: value(FONT_WEIGHT_BOLD);
+}
+.InlineAnnotation::before,
+.InlineAnnotation::after {
+	font-weight: value(FONT_WEIGHT_REGULAR);
+}
+
+.ButtonSubtitleSmall {
+	font-size: 0.85rem;	
+}
+
+.ToggleButton {
+	font-size: 14px;
+	line-height: 32px;
+	font-weight: 400;
+}
+.ToggleButtonSelected {
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+}
+
+.MenuItemLabel {
+	font-weight: value(FONT_WEIGHT_BOLD);
+	text-transform: uppercase;
+}
+
+/* INPUT */
+.InputLabel {
+	font-weight: value(FONT_WEIGHT_MEDIUM);
+	line-height: 40px;
+}
+
+.InputText {
+	font-family: inherit;
+	font-weight: value(FONT_WEIGHT_REGULAR);
+}
+
+.ArticleByline {
+	-st-mixin: Paragraph;
+	text-transform: uppercase;
+}
+
+.Caption {
+	-st-mixin: bodyTextNormal;
+	margin-top: 0.5rem;
+	font-style: italic;
 }

@@ -1,26 +1,17 @@
 @namespace "AnnotationLinkMixin";
 
 @st-import AnnotationLink from "./annotation-link.st.css";
-@st-import [TextNode] from "../../../../theme/mixins.st.css";
+@st-import [InlineAnnotation] from "../../../../theme/common/typography.st.css";
 
 :vars {
-	AnnotationFontSize: 12px;
-	AnnotationFontWeight: 12px;
-	AnnotationParanthesisMargin: 0;
+	ParanthesisColor: 0.05rem;
 }
 
 .root {
 	-st-extends: AnnotationLink;
-	-st-mixin: TextNode(
-		TextWeight value(AnnotationFontWeight),
-		TextSize value(AnnotationFontSize)
-	);
 }
 
-.root::before {
-	padding-right: value(AnnotationParanthesisMargin);
-}
-
+.root::before,
 .root::after {
-	padding-left: value(AnnotationParanthesisMargin);
+	color: value(ParanthesisColor);
 }

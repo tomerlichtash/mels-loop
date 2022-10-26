@@ -220,7 +220,6 @@ class ParsedPageData implements IParsedPageData {
 	public metaData: IPageMetaData = null;
 	public id = "";
 	public path = "";
-	//public content = "";
 	public parsed: IMLParsedNode[] = [];
 	public error?: string = "";
 }
@@ -336,7 +335,6 @@ const createHtmlMDParser = () => {
 	return mdParser.parserFor(rules);
 
 }
-
 
 /**
  * Parses an HTML attribute string

@@ -160,6 +160,24 @@ const HTML_VALIDATION_MAP = {
 };
 
 /**
+ * Node types in which we enforce verse mode
+ */
+const VERSE_MODE_AST_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
+	ASTNODE_TYPES.CODEBLOCK
+]);
+
+/**
+ * Node types in which we enforce normal (non-verse) parse mode
+ */
+const NORMAL_MODE_AST_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
+	ASTNODE_TYPES.HEADING
+]);
+
+const NORMAL_MODE_MLTYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
+	MLNODE_TYPES.CITE, MLNODE_TYPES.FIGCAPTION
+])
+
+/**
  * Node types that should be promoted to a figure if their only content is an image
  */
 const FIGURE_CONTAINER_TYPES: Map<MLNODE_TYPES, boolean> = new Map<MLNODE_TYPES, boolean>([
@@ -198,8 +216,8 @@ function nodeTypeToMLType(
 }
 
 /**
- * Returns the parse mode set in the node's attributes, otherwise VERSE if
- * the node is a codeblock, otherwise the mode set in the provided context.
+ * Returns the parse mode set in the node's attributes, otherwise if there's a mapping
+ * for the node's type, its value, otherwise the mode set in the provided context.
  * @param node 
  * @param context 
  * @returns 
@@ -211,8 +229,14 @@ function extractParseMode(node: ParsedNode, context: MLParseContext): MLParseMod
 			return MLParseModes.VERSE;
 		}
 	}
-	if (node.type === ASTNODE_TYPES.CODEBLOCK) {
+	if (VERSE_MODE_AST_TYPES.has(node.type)) {
 		return MLParseModes.VERSE;
+	}
+	if (NORMAL_MODE_AST_TYPES.has(node.type)) {
+		return MLParseModes.NORMAL;
+	}
+	if (node.type === ASTNODE_TYPES.HTML && NORMAL_MODE_MLTYPES.has(node.tag as MLNODE_TYPES)) {
+		return MLParseModes.NORMAL;
 	}
 	return context.mode.parseMode;
 }
@@ -306,7 +330,6 @@ class ContentUtils implements IContentUtils {
 		this.nodeProcessorMap = {
 			list: this.processListNode.bind(this),
 			def: this.processLinkDefinition.bind(this),
-			//HTML: this.processHtmlNode.bind(this)
 		};
 	}
 
@@ -544,24 +567,6 @@ class ContentUtils implements IContentUtils {
 		return resultNode;
 	}
 
-	private processHtmlNode(node: ParsedNode,
-		context: MLParseContext
-	): IMLParsedNode {
-		const items = findArrayPart(node) || [];
-		const parseMode = extractParseMode(node, context);
-		const newContext: MLParseContext =
-			parseMode !== context.mode.parseMode ?
-				context.clone({ parseMode })
-				: context;
-		const resultNode: IMLParsedNode = {
-			type: node.tag.toLowerCase(),
-			key: context.indexer.nextKey(),
-			line: -1,
-			children: items.map(item => this.parsedNodeToMLNode(item, newContext)).filter(Boolean)
-		};
-		return resultNode;
-	}
-
 	/**
 	 * Store the link definition, return null (will be filtered out of the result)
 	 * @param node
@@ -752,7 +757,7 @@ class ContentUtils implements IContentUtils {
 			customCaption = attributes.caption,
 			tmpl = customCaption || config.template;
 		// 0. Find a caption child
-		const captionNodes = node.children?.filter(c => c.type === MLNODE_TYPES.CAPTION),
+		const captionNodes = node.children?.filter(c => c.type === MLNODE_TYPES.FIGCAPTION),
 			nCaptions = captionNodes?.length;
 		// 2. If more than one, throw
 		if (nCaptions > 1) {
@@ -770,7 +775,7 @@ class ContentUtils implements IContentUtils {
 		let captionNode: IMLParsedNode;
 		if (generateCaption) {
 			captionNode = 			{
-				type: MLNODE_TYPES.CAPTION,
+				type: MLNODE_TYPES.FIGCAPTION,
 				key: context.indexer.nextKey(),
 				text: tmpl,
 				line: context.indexer.currentLine()

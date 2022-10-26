@@ -12,9 +12,6 @@ import LocaleMetaContext, { ILocaleMetaContext } from "./locale-meta-context";
 import LocalePageContext, { ILocalePageContext } from "./locale-page-context";
 import { NextRouter } from "next/router";
 
-const getLocaleLabel = (id: string) =>
-	[localeLabelPrefix, id].join("_").toUpperCase();
-
 export class LocaleContext implements ILocaleContext {
 	private _locale: string;
 	private _locales: string[];
@@ -76,15 +73,14 @@ export class LocaleContext implements ILocaleContext {
 		return this.translate(this.meta.siteSubtitle);
 	}
 
-	public getLocaleSymbol = (id: string) => this.translate(getLocaleLabel(id));
+	public getLocaleLabel = (id: string) =>
+		[localeLabelPrefix, id].join("_").toUpperCase();
+
+	public getLocaleSymbol = (id: string) =>
+		this.translate(this.getLocaleLabel(id));
 
 	public translate = (key: string, lang?: LocaleId) =>
 		this._translate(key, lang);
-
-	// public translateKeyMap = (keyMap: Record<string, string>) =>
-	// 	Object.fromEntries(
-	// 		Object.keys(keyMap).map((key) => [key, this.translate(keyMap[key])])
-	// 	);
 
 	public onLocaleChange = (locale: LocaleId) =>
 		this.router.push(this.asPath, this.asPath, {

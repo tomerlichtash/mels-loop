@@ -1,7 +1,6 @@
 import React from "react";
 import { IToolbarItem } from "../../interfaces/IPopoverContext";
 import { PopoverCloseButton } from "./popover-close-button";
-// import CopyUrlButton from "../copy-button";
 import { st, classes } from "./popover-toolbar.st.css";
 import { ComponentProps } from "../../interfaces/models";
 import { mlUtils } from "../../lib/ml-utils";
@@ -9,14 +8,10 @@ import { mlUtils } from "../../lib/ml-utils";
 export interface IPopoverToolbarProps extends ComponentProps {
 	showClose?: boolean;
 	items: IToolbarItem[];
-	onExit: () => void;
-	query?: string;
 }
 
 export const PopoverToolbar = ({
 	items,
-	onExit,
-	// query,
 	className,
 }: IPopoverToolbarProps): JSX.Element => {
 	return (
@@ -28,16 +23,7 @@ export const PopoverToolbar = ({
 					</span>
 				))}
 			</div>
-			{/* {query && (
-				<CopyUrlButton
-					query={query}
-					className={st(classes.copy, classes.item)}
-				/>
-			)} */}
-			<PopoverCloseButton
-				onExit={onExit}
-				className={st(classes.item, classes.close)}
-			/>
+			<PopoverCloseButton className={st(classes.item, classes.close)} />
 		</div>
 	);
 };

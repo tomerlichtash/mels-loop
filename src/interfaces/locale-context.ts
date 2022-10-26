@@ -12,6 +12,7 @@ export interface ILocaleContext {
 	readonly pages: ILocalePageContext;
 	translate: (s: string, lang?: string) => string;
 	getLocaleSymbol: (id: string) => string;
+	getLocaleLabel: (id: string) => string;
 	onLocaleChange: (id: LocaleId) => Promise<boolean>;
 	textDirection: TextDirection;
 	siteTitle: string;

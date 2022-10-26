@@ -43,7 +43,7 @@ export enum ASTNODE_TYPES {
 	HEADING = "heading",
 	SUB = "sub",
 	SUP = "sup",
-	/* Custom type */
+	/* Custom types */
 	HTML = "HTML",
 	comment = "comment"
 }
@@ -72,7 +72,8 @@ export enum MLNODE_TYPES {
 	TABLE = "table",
 	TH = "th",
 	CITE = "cite",
-	CAPTION = "caption"
+	FIGCAPTION = "figcaption",
+	HR = "hr",
 }
 
 export enum NODE_LIST_TYPES {

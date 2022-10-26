@@ -6,6 +6,10 @@ export enum CONTENT_TYPES {
 	POSTS = "posts",
 	TESTS = "tests",
 	DOCS = "docs",
+	DEMO = "demo",
 	GLOSSARY = "glossary",
 	ANNOTATION = "annotations",
 }
+
+export const PUBLIC_PROJECT_GITHUB_ADDRESS =
+	"https://github.com/tomerlichtash/mels-loop";

@@ -1,61 +1,34 @@
 @namespace "NoteMixin";
 
 @st-import Note from "./note.st.css";
-@st-import [heading4, bodyTextNormal] from "../../theme/common/typography.st.css";
+@st-import ButtonMixin from "../ui/button/button-mixin.st.css";
 
 :vars {
-	NotePadding: 1rem;
-	TopicBgColor: blue;
-	TopicTextColor: red;
+	TopicBgColor: #000;
+	TopicTextColor: #fff;
 	TopicRadius: 4px;
-	TopicPadding: 6px;
-	TopicMargin: 1.5rem;
-	TitleFontSize: 2rem;
-	TitleFontWeight: 300;
-	TitleMargin: 1rem;
-	NoteTextColor: inherit;
-	NoteScrollGutter: value(NotePadding);
+	NoteTitleTextColor: #000;
+	BibliographyLinkTextColor: #000;
+	BibliographyLinkTextColor_Hover: #000;
 }
 
 .root {
 	-st-extends: Note;
-	padding: value(NotePadding);
+}
+
+.root::title {
+	color: value(NoteTitleTextColor);
 }
 
 .root:type(ref)::topic {
-	padding: 0 value(TopicPadding);
 	border-radius: value(TopicRadius);
-	background: value(TopicBgColor);
+	background-color: value(TopicBgColor);
 	color: value(TopicTextColor);
-	margin-bottom: value(TopicMargin);
 }
 
-.root:type(ref)::title {
-	-st-mixin: heading4(
-		h4_margin 1rem,
-		h4_size 1.56rem
-	);
-}
-
-.root::content {
-	-st-mixin: bodyTextNormal(
-		BodyTextColor value(NoteTextColor)
-	);
-}
-
-.root:textDirection(ltr)::content {
-	padding-right: value(NoteScrollGutter);
-}
-.root:textDirection(rtl)::content {
-	padding-left: value(NoteScrollGutter);
-}
-
-.root::bibliography::list {
-	padding: 0;
-	/* padding: 0 value(NotePadding); */
-}
-
-.root::header,
-.root::content {
-	padding-bottom: 0;
+.root::bibliography::button {
+	-st-mixin: ButtonMixin(
+		ButtonTextColor value(BibliographyLinkTextColor),
+		ButtonTextColor_Hover value(BibliographyLinkTextColor_Hover)
+	)	
 }

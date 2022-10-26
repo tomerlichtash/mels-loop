@@ -4,7 +4,7 @@
 @st-import Menu from "../menu/menu.st.css";
 @st-import LocaleSelector from "../locale-selector/locale-selector.st.css";
 @st-import ThemeSelector from "../theme-selector/theme-selector.st.css";
-@st-import [boxSizing, MobileHeader] from "../../theme/mixins.st.css";
+@st-import [boxSizing, MobileHeader] from "../../theme/common/mixins.st.css";
 
 :vars {
 	TopBarIconMargin: 0.5rem;

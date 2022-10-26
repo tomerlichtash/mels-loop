@@ -1,6 +1,6 @@
 @namespace "PopoverCloseButton";
 
-@st-import [preventSelection] from "../../theme/mixins.st.css";
+@st-import [preventSelection] from "../../theme/common/mixins.st.css";
 
 .root {
 	-st-mixin: preventSelection;
