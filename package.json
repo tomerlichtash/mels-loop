@@ -59,7 +59,7 @@
 	"devDependencies": {
 		"@next/env": "^12.2.5",
 		"@next/eslint-plugin-next": "^12.2.5",
-		"@playwright/test": "^1.23.4",
+		"@playwright/test": "^1.27.1",
 		"@stylable/core": "^5.2.0",
 		"@stylable/dom-test-kit": "5.2.0",
 		"@stylable/node": "^5.2.0",
