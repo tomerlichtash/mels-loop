@@ -4,10 +4,8 @@ author: "(David *)Frenkiel"
 date: Tue Jul 23 2022 01:14:31 GMT+0300
 ---
 
-## A Private _Mel Moment_
-
 <blockQuote data-parse-mode="verse" data-type="quote">
-    When the light went on it nearly blinded me.
+	When the light went on it nearly blinded me.
 	<cite>(Line 193)</cite>
 </blockQuote>
 
@@ -29,6 +27,7 @@ Let's briefly go over **Ed Nather**'s now-mythological description of the overfl
 	was turned on
 	<cite>(Lines 185-190)</cite>
 </blockQuote>
+
 For brevity and clarity, we will use a mock instruction layout in which each component (except for single bit fields) includes 3 bits. We'll start with an instruction that includes three parts:
 
 - `(A)` – Data Address
@@ -56,7 +55,6 @@ Something like:
 </table>
 </figure>
 
-
 This layout is missing a part described earlier in the story:
 
 <blockQuote data-parse-mode="verse" data-type="quote">
@@ -67,7 +65,7 @@ This layout is missing a part described earlier in the story:
 	and the address of the needed operand,
 	had a second address that indicated where, on the revolving drum,
 	the next instruction was located.
-    <cite>(Lines 54-60)</cite>
+	<cite>(Lines 54-60)</cite>
 </blockQuote>
 
 Thus, the bit layout of the instruction needs an additional component for the next address `(N)`. Its location doesn't affect the hack, as described in the story, but let's place it on the least significant bits, to be on the safe side:
@@ -93,7 +91,6 @@ Thus, the bit layout of the instruction needs an additional component for the ne
 </table>
 </figure>
 
-
 We know that the `(A)` bits are lower than the `(C)` bits, because **Ed Nather** later describes the overflow that Mel hijacked:
 
 <blockQuote data-parse-mode="verse" data-type="quote">
@@ -109,7 +106,7 @@ We know that the `(A)` bits are lower than the `(C)` bits, because **Ed Nather**
 	would make it overflow.
 	The carry would add one to the
 	operation code, changing it to the next one in the instruction set:
-    <cite>(Lines 175-177, 194-201)</cite>
+	<cite>(Lines 175-177, 194-201)</cite>
 </blockQuote>
 
 If incrementing the address span overflows into the opcode span, then the bit order between them is established:
@@ -138,11 +135,11 @@ If incrementing the address span overflows into the opcode span, then the bit or
 If the index register bit `(X)` is indeed between the two and turned on, then overflowing the `(A)` span will carry through `(X)` into the `(C)` span, incrementing it by one. The result:
 
 <blockQuote data-parse-mode="verse" data-type="quote">
-        a jump instruction.
-        Sure enough, the next program instruction was
-        in address location zero,
-        and the program went happily on its way.
-        <cite>(Lines 202-205)</cite>
+	a jump instruction.
+	Sure enough, the next program instruction was
+	in address location zero,
+	and the program went happily on its way.
+	<cite>(Lines 202-205)</cite>
 </blockQuote>
 
 ## The Unpleasant Truth
@@ -155,7 +152,6 @@ After recovering from this blow to my computer ego, I took the basic step requir
 
 <figure>
 ![RPC 4000 Instruction format](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
-
 </figure>
 
 Quite simply, the hack, as described in **Ed Nather**'s account, is impossible on the RPC-4000. The opcode `(C)` field, supposedly modified by the overflow, is in the least significant bits of the instruction. In the terms used above:
@@ -212,10 +208,9 @@ It turns out that the architecture of the RPC-4000 does provide for a code layou
 </table>
 </figure>
 
-
 In this diagram, the opcode doesn't matter, it can be any part of the program logic. The address of the next instruction is `111`, so that's where the next step of the loop is located. The data address is also `111`, which doesn't pose a problem: The instruction may not even need an operand, or the value in the `111` address may be commensurate with the program logic. Normally, the program would proceed to the instruction in location 111. Now, when we try to increment the data address by `1` (adding `1000`), the "overflow" of the field zeroes out the `(A)` and `(N)` fields, yielding this instruction:
 
-  <figure>
+<figure>
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -257,7 +252,7 @@ There's another possible scenario, even more compatible with the story and in li
 <figcaption>Fig. %index%. Source: RPC-4000 manual</figcaption>
 </figure>
 
-Simply put, conditional branching (e.g. if..else or looping until an index reaches a limit) on the RPC-4000 was implemented with two steps:
+Simply put, conditional branching (e.g. `if..else` or looping until an index reaches a limit) on the RPC-4000 was implemented with two steps:
 
 1. A test, like comparing two numbers, followed immediately by -
 2. The `TBC` instruction, which would transfer control to the instruction in address `(A)` if the test was successful
@@ -266,7 +261,7 @@ If the test failed (`else`), the program would proceed as usual to the next addr
 
 It's reasonable to assume that standard training on the RPC-4000 included only this variant of the `TBC` usage, being an essential part of computer programming. Thus, it's also reasonable to assume that **Ed Nather** was surprised to find a `TBC` instruction without the necessary preceding test.
 
-Instead of running a test, Mel kept incrementing the value of the `(A)` field, as described in the story. This eventually led to an overflow of the entire register, provided the index register bit (X) was on – exactly as Nather remembered. Using 101 as the `TBC` opcode yields the following sequence:
+Instead of running a test, Mel kept incrementing the value of the `(A)` field, as described in the story. This eventually led to an overflow of the entire register, provided the index register bit `(X)` was on – exactly as Nather remembered. Using 101 as the `TBC` opcode yields the following sequence:
 
 <figure>
              1111111101
@@ -283,7 +278,7 @@ Instead of running a test, Mel kept incrementing the value of the `(A)` field, a
 
 The overflow would toggle the `BCU` on, causing the heretofore ineffective `TBC` to transfer control to the address in the `(A)` field, which was 0. If Ed Nather was not familiar with the overflow aspect of the `BCU`, then his reading of the code would indeed lead to the diagnosis of a loop without a test. A standard conditional jump consisted of some test, followed by a `TBC` instruction, which would `JUMP` out of the loop only if the test had succeeded. It was quite natural, then, for a RPC-4000 programmer to come across a "free floating" `TBC` instruction, with no preceding test and conclude:
 
->But the loop had no test in it.
+> But the loop had no test in it.
 
 This scenario seems closer to the original story: The `JUMP` is there, as well as the overflow and the seemingly unnecessary `1` in the index register bit. There are only two deviations from the original account:
 
