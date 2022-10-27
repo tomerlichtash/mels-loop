@@ -2,14 +2,3 @@
 
 .root {}
 
-.root[data-type='quote'] {
-	font-weight: bold; 	
-	font-style: italic;
-}
-
-
-.root cite {
-	font-size: 0.85em;
-	font-weight: normal;
-	font-style: italic;
-}
