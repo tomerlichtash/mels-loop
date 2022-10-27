@@ -286,7 +286,7 @@ export interface ComponentProps {
 export interface SitePage {
 	id: string;
 	targetPathname: string;
-	locale: Partial<Record<keyof IComponentKeyProps, Record<string, string>>>;
+	locale: Partial<Record<keyof IComponentKeyProps, string>>;
 }
 
 export interface IPageProps {
