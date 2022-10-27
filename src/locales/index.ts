@@ -1,9 +1,8 @@
-import type { AvailableLocales } from "./languages/types/common";
-import COMMON from "./languages/common";
-import EN_US from "./languages/en";
-import HE_IL from "./languages/he";
+import * as COMMON from "./common.json";
+import * as EN_US from "./en.json";
+import * as HE_IL from "./he.json";
 
-export const Languages: AvailableLocales = {
+export const Languages = {
 	en: Object.assign({}, COMMON, EN_US),
 	he: Object.assign({}, COMMON, HE_IL),
 };

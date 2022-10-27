@@ -1,5 +1,4 @@
-import { LocaleId } from "../../../interfaces/locale-context";
-import { Language } from "./locale";
+import { LocaleId } from "../../interfaces/locale-context";
 
 export type LocaleLabels = Record<keyof ILocaleKeys, string>;
 
@@ -10,4 +9,4 @@ export interface ILocaleKeys {
 	LOCALE_LABEL_HE_LABEL: "LOCALE_LABEL_HE_LABEL";
 }
 
-export type AvailableLocales = Record<LocaleId, Language & LocaleLabels>;
+export type AvailableLocales = Record<LocaleId, Record<string, string>>;
