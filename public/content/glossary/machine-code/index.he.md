@@ -1,5 +1,5 @@
 ---
-glossary_key: "MACHINE_CODE"
+glossary_key: "GLOSSARY_TERM_MACHINE_CODE"
 source_url: https://he.wikipedia.org/wiki/%D7%A9%D7%A4%D7%AA_%D7%9E%D7%9B%D7%95%D7%A0%D7%94
 source_name: Wikipedia
 ---

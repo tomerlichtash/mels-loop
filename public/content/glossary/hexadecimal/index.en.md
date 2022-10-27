@@ -1,5 +1,5 @@
 ---
-glossary_key: "HEXADECIMAL"
+glossary_key: "GLOSSARY_TERM_HEXADECIMAL"
 source_url: https://en.wikipedia.org/wiki/Hexadecimal
 source_name: Wikipedia
 ---

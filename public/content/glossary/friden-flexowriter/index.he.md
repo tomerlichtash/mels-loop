@@ -1,5 +1,5 @@
 ---
-glossary_key: "FRIDEN_FLEXOWRITER"
+glossary_key: "GLOSSARY_TERM_FRIDEN_FLEXOWRITER"
 ---
 
 מכונת כתיבה מכנית (טלפרינטר) של חברת פרידן, המשמשת לקריאה ולניקוב של סרט רץ ולהדפסת פלט אלפנוּמרי, בעלת אפשרות חיבור למחשב. שימשה כרכיב הקלט/פלט ב-30-LGP.

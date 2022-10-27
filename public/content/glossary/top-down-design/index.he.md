@@ -1,5 +1,5 @@
 ---
-glossary_key: "TOP_DOWN_DESIGN"
+glossary_key: "GLOSSARY_TERM_TOP_DOWN_DESIGN"
 source_url: https://he.wikipedia.org/wiki/%D7%A2%D7%99%D7%A6%D7%95%D7%91_%D7%9E%D7%A2%D7%9C%D7%94-%D7%9E%D7%98%D7%94_%D7%95%D7%9E%D7%98%D7%94-%D7%9E%D7%A2%D7%9C%D7%94
 source_name: ויקיפדיה
 ---
