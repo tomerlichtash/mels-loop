@@ -10,6 +10,10 @@
 	margin: 0 auto;
 }
 
+.root img {
+	width: 100%;
+}
+
 .figureContent {
 	flex-grow: 0;
 }
@@ -26,10 +30,4 @@
 	font-size: 0.8em;
 }
 
-.root img {
-	width: 100%;
-}
-
-.img {
-
-}
+.img {}
