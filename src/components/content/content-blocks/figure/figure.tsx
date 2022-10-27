@@ -18,7 +18,11 @@ export const Figure = ({
 		? node.children
 		: [];
 	return (
-		<figure className={st(classes.root, className)} key={node.key} {...attributes}>
+		<figure
+			className={st(classes.root, className)}
+			key={node.key}
+			{...attributes}
+		>
 			<div className={classes.figureContent} key={mlUtils.uniqueId()}>
 				{elements.map((node) => {
 					return <ContentComponent key={node.key} componentData={{ node }} />;
@@ -26,7 +30,6 @@ export const Figure = ({
 			</div>
 		</figure>
 	);
-
 };
 
 export default Figure;
