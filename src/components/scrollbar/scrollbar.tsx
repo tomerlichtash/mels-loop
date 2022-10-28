@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ReactLocaleContext } from "../../contexts/locale-context";
 import { st, classes } from "./scrollbar.st.css";
 
 import {
@@ -13,14 +14,14 @@ export function ScrollArea({
 	children,
 	orientation = "vertical",
 	height = "100vh",
-	dir,
 	className,
 }: ScrollAreaProps) {
+	const { textDirection } = useContext(ReactLocaleContext);
 	return (
 		<StyledScrollArea
 			className={st(classes.root, className)}
 			type="always"
-			dir={dir}
+			dir={textDirection}
 		>
 			<ScrollViewport style={{ height: `${height}` }}>
 				{children}
