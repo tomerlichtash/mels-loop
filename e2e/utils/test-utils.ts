@@ -1,5 +1,5 @@
 import { Languages } from "../../src/locales";
-import { _translate } from "../../src/locales/translate";
+import { _translate, wrapStr } from "../../src/locales/translate";
 import {
 	MD_LINK,
 	MD_BLOCKQUOTE,
@@ -16,6 +16,7 @@ import {
 	MD_SINGLE_ASTRIEK,
 	MD_CODEBLOCK,
 	MD_CODEBLOCK_INLINE,
+	UNTRANSLATED_STRING,
 } from "./patterns";
 
 const fs = require("fs");
@@ -75,3 +76,5 @@ export const stripMarkdown = (content: string) =>
 		.split("\n")
 		.filter(Boolean)
 		.join(EMPTY_STRING);
+
+export const validateStringTranslation = (str: string) => !UNTRANSLATED_STRING.test(str) && str !== wrapStr(EMPTY_STRING);
