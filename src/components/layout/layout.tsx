@@ -76,7 +76,7 @@ export default function Layout({ children, title }: ILayoutProps) {
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
 			<div id="outer-container" className={st(classes.root, { textDirection })}>
-				<ScrollArea dir={textDirection}>
+				<ScrollArea>
 					<div id="page-wrap">
 						<TopBar className={classes.header} />
 						<Page className={classes.page} nodes={children} />
