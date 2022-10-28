@@ -7,6 +7,7 @@ import {
 	locales,
 	stripMarkdown,
 	translate,
+	validateStringTranslation,
 } from "./utils/test-utils";
 import {
 	PORTAL_SELECTOR,
@@ -31,17 +32,6 @@ const labelSelector = domUtil.scopeSelector(NOTE_LABEL_SELECTOR);
 const titleSelector = domUtil.scopeSelector(NOTE_TITLE_SELECTOR);
 const termSelector = domUtil.scopeSelector(NOTE_TITLE_TERM_ORIGIN);
 
-function validateStringTranslation(str: string) {
-	const indexRegExp = "^.{0}[%]";
-	const firstChar = new RegExp(indexRegExp);
-	const lastChar = new RegExp(indexRegExp.replace("{0}", `{${str.length - 1}}`));
-	return expect(
-		!firstChar.test(str) && !lastChar.test(str),
-		"Non-English glossary entries should be properply translated to English"
-	)
-
-}
-
 test.describe("Codex", () => {
 	locales.map((locale) => {
 		const { content } = getFrontMatter("codex/index", locale);
@@ -63,7 +53,7 @@ test.describe("Codex", () => {
 				await page.$$(PORTAL_SELECTOR);
 
 				const glossaryLabel = await page.locator(labelSelector).textContent();
-				validateStringTranslation(glossaryLabel).toBeTruthy();
+				expect(validateStringTranslation(glossaryLabel)).toBeTruthy();
 				expect(glossaryLabel).toEqual(translate(locale, "NOTE_LABEL_GLOSSARY"));
 
 				await expect(page.locator(titleSelector)).toHaveText(
@@ -74,7 +64,7 @@ test.describe("Codex", () => {
 					const originTerm = translate("en", term_key as string);
 					const translatedTerm = await page.locator(termSelector).textContent();
 
-					validateStringTranslation(translatedTerm).toBeTruthy();
+					expect(validateStringTranslation(translatedTerm)).toBeTruthy();
 
 					await expect(
 						page.locator(termSelector),
