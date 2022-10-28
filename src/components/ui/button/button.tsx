@@ -59,7 +59,7 @@ export const Button = ({
 
 	if (link) {
 		return (
-			<Link href={link} passHref>
+			<Link href={link} passHref legacyBehavior>
 				<a href={link} {...props} target={target}>
 					{btnContent}
 				</a>

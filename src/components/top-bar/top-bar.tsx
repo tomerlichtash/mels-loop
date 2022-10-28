@@ -3,7 +3,7 @@ import Header from "../header";
 import LocaleSelector from "../locale-selector";
 // import ThemeSelector from "../theme-selector";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { MenuProvider } from "../menu-provider/menu-provider";
+import { MenuProvider } from "../menu-provider";
 import { ComponentProps } from "../../interfaces/models";
 import { st, classes } from "./top-bar.st.css";
 

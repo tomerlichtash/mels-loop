@@ -21,7 +21,16 @@
 	},
 	"rules": {
 		"react/react-in-jsx-scope": "off",
-		"react/prop-types": "off"
+		"react/prop-types": "off",
+		"react/no-unknown-property": [
+			2,
+			{
+				"ignore": [
+					"jsx",
+					"global"
+				]
+			}
+		]
 	},
 	"parser": "@typescript-eslint/parser",
 	"overrides": [
