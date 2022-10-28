@@ -1,6 +1,6 @@
 import * as COMMON from "./common.json";
-import * as EN_US from "./en.json";
-import * as HE_IL from "./he.json";
+import EN_US from "./en";
+import HE_IL from "./he";
 
 export const Languages = {
 	en: Object.assign({}, COMMON, EN_US),
