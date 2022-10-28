@@ -1,4 +1,4 @@
-import * as COMMON from "./common.json";
+import COMMON from "./common";
 import EN_US from "./en";
 import HE_IL from "./he";
 

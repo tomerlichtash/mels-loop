@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { StylableDOMUtil } from "@stylable/dom-test-kit";
 import * as stylesheet from "../src/components/mobile-menu/mobile-menu.st.css";
 import * as headerStylesheet from "../src/components/header/header.st.css";
-import * as LocaleSymbols from "./../src/locales/common.json";
+import * as LocaleSymbols from "./../src/locales/common/locales.json";
 import {
 	getLocalePath,
 	locales,
