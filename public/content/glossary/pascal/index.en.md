@@ -1,5 +1,5 @@
 ---
-glossary_key: "GLOSSARY_TERM_PASCAL"
+glossary_key: "PASCAL"
 source_url: https://en.wikipedia.org/wiki/Pascal_(programming_language)
 source_name: Wikipedia
 ---

@@ -1,5 +1,5 @@
 ---
-glossary_key: "GLOSSARY_TERM_PASCAL"
+glossary_key: "PASCAL"
 source_url: https://he.wikipedia.org/wiki/%D7%A9%D7%A4%D7%AA_%D7%A1%D7%A3
 source_name: ויקיפדיה
 ---

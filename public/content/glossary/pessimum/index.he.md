@@ -1,5 +1,5 @@
 ---
-glossary_key: "GLOSSARY_TERM_PESSIMUM"
+glossary_key: "PESSIMUM"
 ---
 
 שיא שלילי במשך זמן הגישה לזיכרון.

@@ -1,5 +1,5 @@
 ---
-glossary_key: "GLOSSARY_TERM_REGISTER"
+glossary_key: "REGISTER"
 ---
 
 תא זכרון אשר בנוי בתוך מעבד המחשב (CPU) או סמוך אליו. רוב פעולות המעבד מתבצעות על נתונים אשר הועתקו לתוך אוגרים.

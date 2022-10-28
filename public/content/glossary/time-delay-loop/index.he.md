@@ -1,5 +1,5 @@
 ---
-glossary_key: "GLOSSARY_TERM_TIME_DELAY_LOOP"
+glossary_key: "TIME_DELAY_LOOP"
 ---
 
 קוד שמטרתו להשהות במכוון את ריצת התוכנה, בדרך כלל בשל תלות בגורם חיצוני אשר נדרש לזמן עודף לביצוע משימה.

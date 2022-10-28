@@ -1,5 +1,5 @@
 ---
-glossary_key: "GLOSSARY_TERM_MAGNETIC_CORE_MEMORY"
+glossary_key: "MAGNETIC_CORE_MEMORY"
 ---
 
 רכיב שכיח במימוש זיכרון גישה אקראית בשנים 1975-1955. יחידת הזיכרון הבסיסית מומשה על ידי טבעת הניתנת למִגְנוּט.

@@ -1,5 +1,5 @@
 ---
-glossary_key: "GLOSSARY_TERM_BIT"
+glossary_key: "BIT"
 source_url: https://he.wikipedia.org/wiki/%D7%A1%D7%99%D7%91%D7%99%D7%AA
 source_name: ויקיפדיה
 ---
