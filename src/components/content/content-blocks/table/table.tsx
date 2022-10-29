@@ -8,7 +8,6 @@ import { st, classes } from "./table.st.css";
 import { mlUtils } from "../../../../lib/ml-utils";
 import { useComponentAttributes } from "../../../use-component-attributes";
 
-
 export const Table = ({
 	componentData,
 	className
