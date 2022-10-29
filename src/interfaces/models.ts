@@ -1,5 +1,4 @@
 import { IComponentKeyProps } from "../locales/keymap/types";
-import { ILanguageKeys } from "../locales/languages/types/locale";
 import { DynamicContentTypes } from "./dynamic-content";
 
 /**
@@ -287,7 +286,7 @@ export interface ComponentProps {
 export interface SitePage {
 	id: string;
 	targetPathname: string;
-	locale: Partial<Record<keyof IComponentKeyProps, keyof ILanguageKeys>>;
+	locale: Partial<Record<keyof IComponentKeyProps, string>>;
 }
 
 export interface IPageProps {
