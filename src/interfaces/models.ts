@@ -44,7 +44,7 @@ export enum ASTNODE_TYPES {
 	SUP = "sup",
 	/* Custom types */
 	HTML = "HTML",
-	comment = "comment"
+	comment = "comment",
 }
 
 export enum MLNODE_TYPES {

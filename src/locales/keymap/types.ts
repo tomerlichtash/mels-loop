@@ -5,6 +5,4 @@ export interface IComponentKeyProps {
 	sectionName: "sectionName";
 }
 
-export type ComponentKeyMap = Partial<
-	Record<keyof IComponentKeyProps, string>
->;
+export type ComponentKeyMap = Partial<Record<keyof IComponentKeyProps, string>>;

@@ -8,9 +8,7 @@ export type MenuItemKey =
 	| "cta_label"
 	| "author";
 
-export type MenuItemKeys = Partial<
-	Record<MenuItemKey, string>
->;
+export type MenuItemKeys = Partial<Record<MenuItemKey, string>>;
 
 export interface IMenuItemBase {
 	id: string;

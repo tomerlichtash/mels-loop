@@ -27,12 +27,12 @@ export const Footer = ({
 					<div className={classes.layout}>
 						<div className={st(classes.column, { size: 3 })}>
 							<div className={classes.footerTitle}>
-								<div className={classes.title} aria-label={`${licenseYears} ${fullLicense} ${siteTitle}`}>
+								<div
+									className={classes.title}
+									aria-label={`${licenseYears} ${fullLicense} ${siteTitle}`}
+								>
 									<time className={classes.year}>{licenseYears}</time>{" "}
-									<span
-										title={fullLicense}
-										className={classes.license}
-									>
+									<span title={fullLicense} className={classes.license}>
 										({translate("SITE_LICENSE_LABEL")})
 									</span>{" "}
 									<span className={classes.title}>{siteTitle}</span>

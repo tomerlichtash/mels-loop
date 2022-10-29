@@ -25,10 +25,7 @@
 		"react/no-unknown-property": [
 			2,
 			{
-				"ignore": [
-					"jsx",
-					"global"
-				]
+				"ignore": ["jsx", "global"]
 			}
 		]
 	},

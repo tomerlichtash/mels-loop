@@ -16,9 +16,9 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 export const getStaticProps: GetStaticProps = async (
 	context: GetStaticPropsContext
 ) => {
-  if (process.env.NODE_ENV === "production") {
-    return { notFound: true };
-  }
+	if (process.env.NODE_ENV === "production") {
+		return { notFound: true };
+	}
 	return mlNextUtils.getFolderStaticProps(
 		`${CONTENT_TYPES.DEMO}/${context.params.id as string}`,
 		context.locale,

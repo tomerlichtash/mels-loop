@@ -7,7 +7,6 @@ abstract: "Figure and Blockquote Samples"
 Figure With auto generated caption
 </figure>
 
-
 <figure caption="Custom caption %index%">
 Figure With a custom caption
 </figure>

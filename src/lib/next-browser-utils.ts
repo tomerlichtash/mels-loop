@@ -15,7 +15,7 @@ export interface IMLNextBrowserUtils {
 	/**
 	 * Returns an object with key-value entries for attributes that are valid for
 	 * the provided node
-	 * @param node 
+	 * @param node
 	 */
 	extractNodeAttributes(node: IMLParsedNode): NodeAttributeMap;
 }
@@ -33,7 +33,6 @@ class MLNextBrowserUtils implements IMLNextBrowserUtils {
 	public extractNodeAttributes(node: IMLParsedNode): NodeAttributeMap {
 		return htmlValidator.filterAttributesFor(node?.type, node?.attributes);
 	}
-
 }
 
 export const mlNextBrowserUtils: IMLNextBrowserUtils = new MLNextBrowserUtils();

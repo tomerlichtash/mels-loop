@@ -18,7 +18,11 @@ export const BlockQuote = ({
 		? node.children
 		: [];
 	return (
-		<blockquote className={st(classes.root, className)} key={node.key} {...attributes}>
+		<blockquote
+			className={st(classes.root, className)}
+			key={node.key}
+			{...attributes}
+		>
 			<p key={mlUtils.uniqueId()}>
 				{elements.map((node) => {
 					return <ContentComponent key={node.key} componentData={{ node }} />;

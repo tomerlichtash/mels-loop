@@ -98,7 +98,7 @@ export function loadContentFolder(
 ): IFolderContent {
 	const mode: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
-		...options.mode
+		...options.mode,
 	};
 	const contentDir = path.join(
 		getContentRootDir(options.rootFolder),
@@ -206,7 +206,6 @@ export function loadContentFolder(
 	// Sort posts by date
 }
 
-
 class ParsedPageData implements IParsedPageData {
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	constructor(data: any) {
@@ -223,7 +222,6 @@ class ParsedPageData implements IParsedPageData {
 	public parsed: IMLParsedNode[] = [];
 	public error?: string = "";
 }
-
 
 class PageMetaData implements IPageMetaData {
 	constructor(data: Partial<IParsedPageData> | string) {
@@ -245,8 +243,8 @@ class PageMetaData implements IPageMetaData {
 	public figures: IFigureConfiguration = {
 		auto: true,
 		base: 1,
-		template: "Fig. %index%"
-	}
+		template: "Fig. %index%",
+	};
 }
 
 class FolderContent implements IFolderContent {
@@ -264,13 +262,13 @@ class FolderContent implements IFolderContent {
 }
 
 // matches basic html strings <tag [attributes]>...</tag> including newlines
-// not perfect, in case an attribute value contains /, 
+// not perfect, in case an attribute value contains /,
 // but the performance would degrade significantly with the alternative
 
 /**
- * Creates an simple-markdown parser that supports simple html and 
+ * Creates an simple-markdown parser that supports simple html and
  * HTML nodes include the type HTML and a tag field with the HTML tag
- * @returns 
+ * @returns
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const createHtmlMDParser = () => {
@@ -286,30 +284,31 @@ const createHtmlMDParser = () => {
 
 			parse: function (capture: RegExpExecArray /*, recurseParse, state */) {
 				return {
-					content: capture[1]
+					content: capture[1],
 				};
 			},
-			order: 0
+			order: 0,
 		},
 		// html parser
 		HTML: {
 			match: function (source: string /*, state, lookbehind */) {
-				const res = HTML_RE.exec(source)
-					|| HTML_SELFCLOSE_RE.exec(source);
+				const res = HTML_RE.exec(source) || HTML_SELFCLOSE_RE.exec(source);
 
 				return res;
 			},
 
-			parse: function (capture: RegExpExecArray,
+			parse: function (
+				capture: RegExpExecArray,
 				recurseParse: (content: string, state: object) => Array<object>,
-				state: object) {
+				state: object
+			) {
 				return {
 					tag: capture[1],
 					attributes: parseAttributes(capture[2]),
-					content: (capture[3] && recurseParse(capture[3], state)) || undefined
+					content: (capture[3] && recurseParse(capture[3], state)) || undefined,
 				};
 			},
-			order: 0
+			order: 0,
 		},
 		// html parser
 		//HTML_SELFCLOSE: {
@@ -333,24 +332,23 @@ const createHtmlMDParser = () => {
 		//}
 	};
 	return mdParser.parserFor(rules);
-
-}
+};
 
 /**
  * Parses an HTML attribute string
  * Supports only double quotes for attribute value
- * @param attrStr 
- * @returns 
+ * @param attrStr
+ * @returns
  */
 const parseAttributes = (attrStr: string): Map<string, string> => {
-	const attrMap = new Map<string, string>;
+	const attrMap = new Map<string, string>();
 	if (!attrStr) {
 		return attrMap;
 	}
-	const re = /\s*([a-z][a-z0-9\-_.]+)="([^"]*)"/ig;
+	const re = /\s*([a-z][a-z0-9\-_.]+)="([^"]*)"/gi;
 	let match: RegExpExecArray;
 	while ((match = re.exec(attrStr)) != null) {
 		attrMap.set(match[1], match[2]);
 	}
 	return attrMap;
-}
+};
