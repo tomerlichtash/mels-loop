@@ -108,6 +108,11 @@
 	border-color: value(ImageBorderColor);
 }
 
+.root::contentComponent:type(figure) Table th,
+.root::contentComponent:type(figure) Table td {
+	border-color: value(ImageBorderColor);
+}
+
 .root::meta {
 	color: value(ArticleMetaTextColor);
 }
