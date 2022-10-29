@@ -99,7 +99,7 @@ export const MenuItems: IMenuItem[] = [
 		},
 		keys: {
 			title: "MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS",
-			author: "AUTHOR_DAVID_FRANKIEL",
+			author: "AUTHOR_DAVID_FRENKIEL",
 		},
 	},
 	{

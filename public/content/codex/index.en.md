@@ -1,7 +1,7 @@
 ---
 title: "The Story of Mel"
 moto: "This was posted to Usenet by its author, Ed Nather <nather@astro.as.utexas.edu>, on May 21, 1983:"
-credits: "Annotations written and curated by Tomer Lichtash and David Frankiel"
+credits: "Annotations written and curated by Tomer Lichtash and David Frenkiel"
 ---
 
 A recent article devoted to the _macho_ side of programming[^](annotations/recent-article)
