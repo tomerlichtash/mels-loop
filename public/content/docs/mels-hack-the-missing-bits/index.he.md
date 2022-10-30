@@ -37,7 +37,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 משהו כמו:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -71,7 +71,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 עולה שמערך הביטים שלנו צריך רכיב נוסף שבו שמורה כתובת ההוראה הבאה (`N`). על פי הסיפור, רכיב זה לא משחק תפקיד בהאק. ליתר בטחון, נציב אותו בביטים הנמוכים ביותר:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -112,7 +112,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 אם הגדלת המספר ברכיב הכתובת גלשה אל תוך רכיב ההוראה, אזי סדר הביטים ביניהם ברור:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -153,11 +153,12 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 <figure>
 ![RPC 4000 Instruction format](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
+
 </figure>
 
 בלשון בני אדם, ההאק – כפי שתואר על ידי אד ניית'ר – לא היה אפשרי על RPC-4000. שדה `(C)` , שלכאורה הושפע מהגלישה, שכן בביטים הנמוכים ביותר של ההוראה. במודל הפשוט שלנו:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -190,7 +191,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 מסתבר שארכיטקטורת ה-RPC-4000 מאפשרת קידוד שיחולל את הפלא בעזרת גלישה. נדגים על ההוראה המפושטת שלנו ונניח שברגע מסויים, היא מחזיקה את הערך:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -215,7 +216,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 במערך הביטים הזה, התכנית תמשיך להוראה בכתובת `111` אחרי ביצוע ההוראה הנוכחית, אלא שאם נוסיף כעת `1` לשדה `(A)`, על ידי חיבור המספר הבינארי `1000` להוראה, ה"גלישה" הפנימית בתוך הרגיסטר תאפס את רכיבי `(A)` ו-`(N)` ותניב את ההוראה הזו:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -246,11 +247,12 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 <figure>
 ![RPC-4000 TBC instruction](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654922031/mels-hack/transfer-branch-control_gc2xg2.png)
+
 </figure>
 
 על פי התעוד, מתג ה-`BCU` נדלק (קיבל את הערך `1`) בשני מקרים: פעולת השוואה שהצליחה (למשל, בדיקה אם מספר מסויים גדול/שווה למספר אחר), או – רלוונטי יותר לענייננו – _גלישה_ ברגיסטר של המכונה.
 
-<figure>
+<figure data-type="no-border">
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1655241687/mels-hack/branch-control_xd0vqd.png)
 
 <figcaption>תרשים %index%, מקור: המדריך ל-RPC-4000</figcaption>
@@ -267,7 +269,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 במקום לבצע בדיקה כזו, מל חזר והגדיל ב-1 את ערכו של רכיב `(A)`, כמתואר בסיפור. הפעולה הזו הובילה, במרוצת התכנית, לגלישה של הרגיסטר כולו – בתנאי שהביט `(X)` היה דלוק, בדיוק כפי שזכר **אד ניית'ר**. נדגים בעזרת המודל הפשוט שלנו, כשרכיב ה-`(C)` מכיל את הערך השרירותי `101`:
 
-<figure>
+<figure data-type="codeblock">
              1111111101
         MSB <----------> LSB
 
