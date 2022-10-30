@@ -11,11 +11,7 @@ export const MenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: [
-			"preface",
-			"mels-hack-the-missing-bits",
-			"resources"
-		],
+		children: ["preface", "mels-hack-the-missing-bits", "resources"],
 	},
 	{
 		id: "info",
@@ -49,11 +45,7 @@ export const MobileMenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: [
-			"preface",
-			"mels-hack-the-missing-bits",
-			"resources"
-		],
+		children: ["preface", "mels-hack-the-missing-bits", "resources"],
 	},
 	{
 		id: "about",

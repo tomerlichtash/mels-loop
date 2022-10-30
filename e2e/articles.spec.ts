@@ -39,7 +39,10 @@ test.describe("Articles", () => {
 				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
 			);
 			await page.click(
-				`text=${translate(locale, "MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS")}`
+				`text=${translate(
+					locale,
+					"MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS"
+				)}`
 			);
 
 			await expect(page).toHaveURL(getLocalePath(locale, path));
