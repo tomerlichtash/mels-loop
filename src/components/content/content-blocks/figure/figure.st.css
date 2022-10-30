@@ -4,6 +4,7 @@
 
 .root {
 	-st-mixin: boxSizing;
+	-st-states: skin(string);
 	display: flex;
 	flex-direction: row;
 	justify-content: center;

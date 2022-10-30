@@ -1,0 +1,15 @@
+@namespace "Figure";
+
+@st-import Figure from "./figure.st.css";
+
+:vars {
+	skin1color: red;
+}
+
+.root {
+	-st-extends: Figure;
+}
+
+.root:skin(skin1) {
+	box-shadow: 0 0 10px value(skin1color);
+}

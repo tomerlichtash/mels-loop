@@ -36,7 +36,7 @@ For brevity and clarity, we will use a mock instruction layout in which each com
 
 Something like:
 
-<figure data-type="no-border">
+<figure skin="skin1">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>

@@ -27,6 +27,8 @@
 @st-import DynamicContentViewerMixin from "../../components/content/dynamic-content-viewer/dynamic-content-viewer-mixin.st.css";
 @st-import AnnotationLink from "../../components/content/content-blocks/annotation-link/annotation-link.st.css";
 @st-import AnnotationLinkMixin from "../../components/content/content-blocks/annotation-link/annotation-link-mixin.st.css";
+@st-import Figure from "../../components/content/content-blocks/figure/figure.st.css";
+@st-import FigureMixin from "../../components/content/content-blocks/figure/figure-mixin.st.css";
 @st-import LoadingIndicator from "../../components/loading-indicator/loading-indicator.st.css";
 @st-import LoadingIndicatorMixin from "../../components/loading-indicator/loading-indicator-mixin.st.css";
 
@@ -253,6 +255,11 @@
 	LoadingIndicator {
 		-st-mixin: LoadingIndicatorMixin(
 			IndicatorImage value(SITE_LOGO_DARK),
+		);
+	}
+	Figure {
+		-st-mixin: FigureMixin(
+			skin1color blue,
 		);
 	}
 }

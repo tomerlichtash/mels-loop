@@ -146,9 +146,9 @@
 	display: block;
 }
 
-.root::contentComponent:type(figure)[data-type="no-border"] {
+/* .root::contentComponent:type(figure):skin(skin1) {
 	border: none;
-}
+} */
 .root::contentComponent:type(figure)[data-type="codeblock"] {
 	border: none;
 	display: block;
