@@ -6,6 +6,5 @@
 
 .root[data-type='bit-layout'] td,
 .root[data-type='bit-layout'] th {
-	border: 1px solid black;
-	border-top: none;
+	padding: 0.25rem 0.5rem;
 }
