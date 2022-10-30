@@ -153,6 +153,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 <figure>
 ![RPC 4000 Instruction format](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
+
 </figure>
 
 בלשון בני אדם, ההאק – כפי שתואר על ידי אד ניית'ר – לא היה אפשרי על RPC-4000. שדה `(C)` , שלכאורה הושפע מהגלישה, שכן בביטים הנמוכים ביותר של ההוראה. במודל הפשוט שלנו:
@@ -246,6 +247,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 
 <figure>
 ![RPC-4000 TBC instruction](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654922031/mels-hack/transfer-branch-control_gc2xg2.png)
+
 </figure>
 
 על פי התעוד, מתג ה-`BCU` נדלק (קיבל את הערך `1`) בשני מקרים: פעולת השוואה שהצליחה (למשל, בדיקה אם מספר מסויים גדול/שווה למספר אחר), או – רלוונטי יותר לענייננו – _גלישה_ ברגיסטר של המכונה.
