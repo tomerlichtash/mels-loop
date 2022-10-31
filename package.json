@@ -1,6 +1,9 @@
 {
 	"name": "mels-loop",
 	"description": "A Comprehensive Guide to The Story of Mel",
+	"engines": {
+		"node": ">=15.0.0"
+	},
 	"keywords": [
 		"hacker",
 		"folklore",
