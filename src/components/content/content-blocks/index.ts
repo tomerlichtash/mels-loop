@@ -9,6 +9,7 @@ import Paragraph from "./paragraph";
 import Figure from "./figure";
 import CodeBlock from "./code-block";
 import CustomImage from "./custom-image";
+import Table from "./table";
 
 export {
 	Link,
@@ -22,4 +23,5 @@ export {
 	CustomImage,
 	TermLink,
 	AnnotationLink,
+	Table,
 };

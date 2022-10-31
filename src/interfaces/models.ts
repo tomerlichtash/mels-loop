@@ -1,5 +1,4 @@
 import { IComponentKeyProps } from "../locales/keymap/types";
-import { ILanguageKeys } from "../locales/languages/types/locale";
 import { DynamicContentTypes } from "./dynamic-content";
 
 /**
@@ -13,7 +12,9 @@ export interface IPlainObject {
  * A single node in a parsed markdown AST
  */
 export type ParsedNode = {
-	type: ASTNODE_TYPES;
+	readonly type: ASTNODE_TYPES;
+
+	readonly attributes?: Map<string, string>;
 
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	[prop: string]: any;
@@ -41,6 +42,9 @@ export enum ASTNODE_TYPES {
 	HEADING = "heading",
 	SUB = "sub",
 	SUP = "sup",
+	/* Custom types */
+	HTML = "HTML",
+	comment = "comment"
 }
 
 export enum MLNODE_TYPES {
@@ -62,6 +66,12 @@ export enum MLNODE_TYPES {
 	UNKNOWN = "unknown",
 	SUB = "sub",
 	SUP = "sup",
+	TR = "tr",
+	TD = "td",
+	TABLE = "table",
+	TH = "th",
+	CITE = "cite",
+	FIGCAPTION = "figcaption",
 	HR = "hr",
 }
 
@@ -132,6 +142,14 @@ export interface IMLParsedNode {
 	 * The type of link
 	 */
 	readonly linkType?: DynamicContentTypes;
+
+	readonly attributes?: { [name: string]: string };
+}
+
+export interface IFigureConfiguration {
+	auto: boolean;
+	base: number;
+	template: string;
 }
 
 export interface IPageMetaData {
@@ -176,6 +194,12 @@ export interface IPageMetaData {
 	 * Display source author of glossary item
 	 */
 	readonly source_author: string;
+
+	/**
+	 * Guaranteed not null. Each metadata object is created with at least the default
+	 * figures configuration, which may be overridden by the document metadata
+	 */
+	readonly figures: IFigureConfiguration;
 }
 
 /**
@@ -210,6 +234,8 @@ export interface ILocaleMap {
 	readonly params: { id: string };
 	locale: string;
 }
+
+export type NodeAttributeMap = { readonly [rekey: string]: string };
 
 export type PageSortField = Omit<keyof IParsedPageData, "parsed" | "error">;
 
@@ -260,7 +286,7 @@ export interface ComponentProps {
 export interface SitePage {
 	id: string;
 	targetPathname: string;
-	locale: Partial<Record<keyof IComponentKeyProps, keyof ILanguageKeys>>;
+	locale: Partial<Record<keyof IComponentKeyProps, string>>;
 }
 
 export interface IPageProps {

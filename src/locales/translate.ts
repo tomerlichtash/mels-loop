@@ -1,7 +1,7 @@
-import { AvailableLocales } from "./languages/types/common";
+import { LocaleId } from "../interfaces/locale-context";
 
 export const _translate =
-	(langRef: string, langs: AvailableLocales) =>
+	(langRef: string, langs: Record<LocaleId, Record<string, string>>) =>
 	(key: string, lang?: string): string => {
 		if (!key) {
 			return;

@@ -4,6 +4,7 @@
 @st-import ContentComponent from "../components/content/content-component/content-component.st.css";
 @st-import Link from "../components/content/content-blocks/link/link.st.css";
 @st-import CodeBlock from "../components/content/content-blocks/code-block/code-block.st.css";
+@st-import Table from "../components/content/content-blocks/table/table.st.css";
 @st-import Figure from "../components/content/content-blocks/figure/figure.st.css";
 @st-import [
 	h1,
@@ -22,6 +23,7 @@
 	SubtitleMargin2,
 	ListBullet,
 	ArticleByline,
+	Caption,
 ] from "../theme/common/typography.st.css";
 @st-import [SectionBox] from "../theme/common/mixins.st.css";
 
@@ -78,20 +80,34 @@
 
 .blockquote {}
 .root::contentComponent:type(blockquote) {
+	-st-mixin: Blockquote;
 	border-left: value(BlockQuoteBorder);
 	margin-left: 1rem;
 }
+.root::contentComponent:type(blockquote) :type(cite) {
+	display: block;
+}
+
+.root::contentComponent:type(figure) :type(figcaption),
+.root::contentComponent:type(blockquote) :type(cite) {
+	-st-mixin: Caption;
+}
+.root::contentComponent:type(figure) :type(figcaption) {
+	text-align: center;
+	padding: 1rem 0;
+}
+
 .root:textDirection(rtl)::contentComponent:type(blockquote) {
 	margin-left: auto;
 	border-left: none;
 	margin-right: 1rem;
 	border-right: value(BlockQuoteBorder);
 }
-.root::contentComponent:type(blockquote) strong {
-}
 
-.root::contentComponent:type(blockquote) {
-	-st-mixin: Blockquote;
+/* .root::contentComponent:type(table) .root::contentComponent:type(th), */
+.root::contentComponent:type(figure) Table th,
+.root::contentComponent:type(figure) Table td {
+	border: 1px solid;
 }
 
 .root::contentComponent:listType(ul),
@@ -127,6 +143,14 @@
 	margin: 2rem 0;
 }
 .root::contentComponent:type(figure) img {
+	display: block;
+}
+
+.root::contentComponent:type(figure)[data-type="no-border"] {
+	border: none;
+}
+.root::contentComponent:type(figure)[data-type="codeblock"] {
+	border: none;
 	display: block;
 }
 

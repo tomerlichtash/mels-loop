@@ -5,7 +5,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"type": "pwa-node",
+			"type": "node",
 			"request": "launch",
 			"name": "Launch Program",
 			"skipFiles": ["<node_internals>/**"],
@@ -33,7 +33,6 @@
 			"type": "node-terminal",
 			"request": "launch",
 			"command": "yarn dev",
-			"console": "integratedTerminal",
 			"serverReadyAction": {
 				"pattern": "started server on .+, url: (https?://.+)",
 				"uriFormat": "%s",

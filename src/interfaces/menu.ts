@@ -1,6 +1,3 @@
-import { IAuthors } from "../locales/languages/types/authors";
-import { ILanguageKeys } from "../locales/languages/types/locale";
-
 export type MenuItemLayout = "one" | "two" | "three";
 export type MenuSectionType = "group" | "single";
 export type MenuItemChildType = "article" | "page" | "link" | "external";
@@ -12,7 +9,7 @@ export type MenuItemKey =
 	| "author";
 
 export type MenuItemKeys = Partial<
-	Record<MenuItemKey, keyof ILanguageKeys | keyof IAuthors>
+	Record<MenuItemKey, string>
 >;
 
 export interface IMenuItemBase {
