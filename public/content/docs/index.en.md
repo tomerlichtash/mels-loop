@@ -1,5 +1,5 @@
 ---
-title: "MAIN DOCS"
+title: "Docs"
 ---
 
 Main Docs
