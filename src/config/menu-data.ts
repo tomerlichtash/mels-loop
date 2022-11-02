@@ -3,6 +3,20 @@ import { PUBLIC_PROJECT_GITHUB_ADDRESS } from "../consts";
 
 export const MenuSections: IMenuSection[] = [
 	{
+		id: "codex",
+		type: "group",
+		meta: {
+			layout: "one",
+		},
+		keys: {
+			title: "Codex",
+		},
+		children: [
+			"the-story-of-mel",
+			"unix-koans",
+		],
+	},
+	{
 		id: "articles1",
 		type: "group",
 		meta: {
@@ -80,6 +94,28 @@ export const MobileMenuSections: IMenuSection[] = [
 ];
 
 export const MenuItems: IMenuItem[] = [
+	{
+		id: "the-story-of-mel",
+		type: "codex",
+		meta: {
+			url: "/docs/the-story-of-mel",
+		},
+		keys: {
+			title: "THE_STORY_OF_MEL",
+			author: "ED_NATHER",
+		},
+	},
+	{
+		id: "unix-koans",
+		type: "codex",
+		meta: {
+			url: "/docs/unix-koans",
+		},
+		keys: {
+			title: "UNIX_KOANS",
+			author: "ERIC_STEVEN_RAYMOND",
+		},
+	},
 	{
 		id: "preface",
 		type: "article",

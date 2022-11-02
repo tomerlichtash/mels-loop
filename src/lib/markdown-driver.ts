@@ -14,7 +14,7 @@ import {
 } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
 import { Logger } from "tslog";
-// import chalk from "chalk";
+import chalk from "chalk";
 import {
 	IContentParseOptions,
 	LoadContentModes,
@@ -125,17 +125,17 @@ export function loadContentFolder(
 	});
 	const folderContentData = new FolderContent();
 
-	// log.info(
-	// 	`${chalk.blueBright(
-	// 		"collect"
-	// 	)} - sorted content in "${contentDir}" for locale "${options.locale}"`
-	// );
+	log.info(
+		`${chalk.blueBright(
+			"collect"
+		)} - sorted content in "${contentDir}" for locale "${options.locale}"`
+	);
 
 	const targetFileName = getIndexFileName(options.locale);
 
 	contentNames.forEach((rec: Dirent) => {
 		const name = rec.name;
-		// log.info(`${chalk.magenta("process")} - content ID "${name}"`);
+		log.info(`${chalk.magenta("process")} - content ID "${name}"`);
 
 		let fullPath: string;
 
@@ -161,7 +161,7 @@ export function loadContentFolder(
 				);
 			}
 			folderContentData.ids.push({
-				params: { id: name },
+				params: { id: name, chapterId: "koan1" },
 				locale: options.locale,
 			});
 		}
@@ -172,14 +172,16 @@ export function loadContentFolder(
 
 		try {
 			const fileContents = fs.readFileSync(fullPath, "utf8");
-			// log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
+			log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
 
 			// Use gray-matter to parse the post metadata section
 			const { data: matterData, content } = matter(fileContents);
 			const metaData = new PageMetaData(matterData);
+			const chapterId = "koan1"
 			const parsedPageData = new ParsedPageData({
 				metaData,
 				id: name,
+				chapterId,
 				path: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
 			});
 			folderContentData.pages.push(parsedPageData);
@@ -219,6 +221,7 @@ class ParsedPageData implements IParsedPageData {
 
 	public metaData: IPageMetaData = null;
 	public id = "";
+	public chapterId = "";
 	public path = "";
 	public parsed: IMLParsedNode[] = [];
 	public error?: string = "";

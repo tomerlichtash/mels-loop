@@ -101,6 +101,7 @@ class MLNextUtils implements IMLNextUtils {
 					parseMode: MLParseModes.NORMAL,
 				},
 			});
+			console.log('getFolderStaticPaths', JSON.stringify(folderData))
 			paths.push(...folderData.ids);
 		});
 		return {
