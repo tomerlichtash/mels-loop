@@ -29,10 +29,6 @@ jobs:
     executor: e2e-tester
     steps:
       - checkout
-      # - persist_to_workspace:
-      #   root: /
-      #   paths:
-      #     - ./
       - *cache_restore
       - *install_dependencies
       - *cache_save
