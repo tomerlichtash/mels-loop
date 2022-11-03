@@ -82,9 +82,10 @@ jobs:
           name: yarn install
           command: yarn install
       - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
-          key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
+            - ./node_modules
+            - ./.next/cache      
       - store_artifacts:
           path: yarn.lock
       - run:
