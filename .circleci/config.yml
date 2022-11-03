@@ -161,7 +161,7 @@ jobs:
           command: "yarn lint"
 
 workflows:
-  test:
+  E2E:
     jobs:
       # - "build"
       # - "clean-code"
