@@ -77,6 +77,11 @@ jobs:
       - *cache_save
 
       - run:
+          name: Disable Telemetry
+          command: |
+            yarn next telemetry disable
+
+      - run:
           name: Build
           command: |
             yarn build
