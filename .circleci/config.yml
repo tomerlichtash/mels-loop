@@ -18,7 +18,7 @@ aliases:
       paths:
         - node_modules
         - ~/.cache/yarn
-        - ./.next/cache      
+        - ~/.next/cache      
       key: v2-dependencies-{{ checksum "yarn.lock" }}
 
   - &install_dependencies
@@ -27,9 +27,13 @@ aliases:
 jobs:
   e2e-codex:
     executor: e2e-tester
-    parallelism: 2
+    # parallelism: 2
     steps:
       - checkout
+      # - persist_to_workspace:
+      #   root: /
+      #   paths:
+      #     - ./
       - *cache_restore
       - *install_dependencies
       - *cache_save
@@ -52,7 +56,7 @@ jobs:
       - run:
           name: Run Codex E2E tests
           command: |
-            yarn test:e2e codex --project='Desktop Chrome' --retries=2 --workers=16
+            yarn test:e2e codex --project='Desktop Chrome' --retries=2
           # environment:
           #   PLAYWRIGHT_JUNIT_OUTPUT_DIR: ~/repo/apps/plugin/e2e/reports/junit/
           #   PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
@@ -66,7 +70,7 @@ jobs:
 
   e2e-articles:
     executor: e2e-tester
-    parallelism: 2
+    # parallelism: 2
     steps:
       - checkout
       - *cache_restore
