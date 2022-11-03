@@ -85,6 +85,11 @@ jobs:
           command: |
             yarn build
 
+      - save_cache:
+          paths:
+            - ~/repo/.next/cache      
+          key: v2-dependencies-{{ checksum "./.next/cache" }}
+
       - run:
           name: Install playwright
           command: |
