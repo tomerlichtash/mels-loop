@@ -115,8 +115,7 @@ jobs:
           command: "yarn lint"
 
 workflows:
-  infra:
-    jobs:
-      # - "build"
-      # - "clean-code"
-      - e2e
+  jobs:
+    # - "build"
+    # - "clean-code"
+    - e2e
