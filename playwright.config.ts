@@ -12,6 +12,7 @@ const baseURL = `http://localhost:${PORT}`;
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
+  reporter: 'line',
 	// Timeout per test
 	timeout: 30 * 1000,
 	// Test directory
