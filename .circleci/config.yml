@@ -47,7 +47,6 @@ jobs:
             - ~/repo/.next/cache      
           key: v2-build-{{ checksum "yarn.lock" }}
 
-
       - run:
           name: Install playwright
           command: |
@@ -89,7 +88,7 @@ jobs:
       - save_cache:
           paths:
             - ~/repo/.next/cache      
-          key: v2-dependencies-{{ checksum "./.next/cache" }}
+          key: v2-build-{{ checksum "yarn.lock" }}
 
       - run:
           name: Install playwright
