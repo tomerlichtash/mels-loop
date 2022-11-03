@@ -1,6 +1,63 @@
 version: 2.1
 
+executors:
+  e2e-tester:
+    docker:
+      - image: cimg/node:14.15.0-browsers
+    working_directory: ~/repo
+    resource_class: medium+
+
+aliases:
+  - &cache_restore
+    restore_cache:
+      keys:
+        - v2-dependencies-{{ checksum "yarn.lock" }}
+
+  - &cache_save
+    save_cache:
+      paths:
+        - node_modules
+        - ~/.cache/yarn
+      key: v2-dependencies-{{ checksum "yarn.lock" }}
+
+  - &install_dependencies
+    run: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+
 jobs:
+  e2e:
+    executor: e2e-tester
+    parallelism: 1
+    steps:
+      - checkout
+      - *cache_restore
+      - *install_dependencies
+      - *cache_save
+
+      - run:
+          name: Build
+          command: |
+            yarn build     
+
+      - run:
+          name: Install playwright
+          command: |
+            npx playwright install --with-deps chromium
+
+      - run:
+          name: Run E2E tests
+          command: |
+            yarn test:e2e
+          # environment:
+          #   PLAYWRIGHT_JUNIT_OUTPUT_DIR: ~/repo/apps/plugin/e2e/reports/junit/
+          #   PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
+
+      # - store_test_results:
+      #     path: ~/repo/apps/plugin/e2e/reports/junit
+
+      # - store_artifacts:
+      #     path: ~/repo/apps/plugin/e2e/recordings
+      #     destination: artifacts
+
   build:
     docker:
       - image: cimg/node:14.18
@@ -60,5 +117,6 @@ jobs:
 workflows:
   infra:
     jobs:
-      - "build"
-      - "clean-code"
+      # - "build"
+      # - "clean-code"
+      - e2e
