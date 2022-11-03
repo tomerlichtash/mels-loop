@@ -75,7 +75,6 @@ jobs:
 
   e2e-articles:
     executor: e2e-tester
-    # parallelism: 2
     steps:
       - checkout
       - *cache_restore
