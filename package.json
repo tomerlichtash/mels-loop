@@ -27,7 +27,7 @@
 	"scripts": {
 		"clean": "rm -rf .next",
 		"dev": "next dev",
-		"build": "yarn clean && next build",
+		"build": "next build",
 		"build:sitemap": "next-sitemap",
 		"start": "next start",
 		"lint": "eslint . -f codeframe",
