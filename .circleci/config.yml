@@ -52,7 +52,7 @@ jobs:
           #   PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
 
       - store_test_results:
-        path: test-results
+          path: test-results
 
       # - store_artifacts:
       #     path: ~/repo/apps/plugin/e2e/recordings
