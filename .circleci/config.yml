@@ -27,7 +27,6 @@ aliases:
 jobs:
   e2e-codex:
     executor: e2e-tester
-    # parallelism: 2
     steps:
       - checkout
       # - persist_to_workspace:
