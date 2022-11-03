@@ -3,7 +3,7 @@ version: 2.1
 executors:
   e2e-tester:
     docker:
-      - image: cimg/node:14.15.0-browsers
+      - image: mcr.microsoft.com/playwright:v1.23.1-focal
     working_directory: ~/repo
     resource_class: medium+
 
