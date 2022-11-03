@@ -56,6 +56,14 @@ jobs:
           #   PLAYWRIGHT_JUNIT_OUTPUT_DIR: ~/repo/apps/plugin/e2e/reports/junit/
           #   PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
 
+      - run:
+          name: Run E2E tests
+          command: |
+            yarn test:e2e articles --project='Desktop Chrome' --retries=2
+          # environment:
+          #   PLAYWRIGHT_JUNIT_OUTPUT_DIR: ~/repo/apps/plugin/e2e/reports/junit/
+          #   PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
+  
       - store_test_results:
           path: ~/test-results
 
