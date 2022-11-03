@@ -82,6 +82,9 @@ jobs:
           command: |
             yarn build     
 
+      steps:
+        - *cache_save
+
       - run:
           name: Install playwright
           command: |
@@ -169,5 +172,5 @@ workflows:
     jobs:
       # - "build"
       # - "clean-code"
-      - e2e-codex
+      # - e2e-codex
       - e2e-articles
