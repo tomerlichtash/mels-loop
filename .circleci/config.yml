@@ -45,7 +45,7 @@ jobs:
 
       - save_cache:
           paths:
-            - ~/.next/cache      
+            - ~/repo/.next/cache      
           key: v2-dependencies-{{ checksum "yarn.lock" }}
 
       - run:
