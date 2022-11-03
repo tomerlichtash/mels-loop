@@ -43,10 +43,11 @@ jobs:
           command: |
             npx playwright install --with-deps chromium
 
-      -run:
-        name: Prepare logs directory
-        command: |
-          mkdir ~/test-results
+      - run:
+          name: Prepare logs directory
+          command: |
+            mkdir ~/test-results
+
       - run:
           name: Run E2E tests
           command: |
