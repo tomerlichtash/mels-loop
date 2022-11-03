@@ -82,8 +82,8 @@ jobs:
           command: |
             yarn build     
 
-      steps:
-        - *cache_save
+    steps:
+      - *cache_save
 
       - run:
           name: Install playwright
