@@ -16,9 +16,9 @@ aliases:
   - &cache_save
     save_cache:
       paths:
-        - node_modules
+        - ./node_modules
         - ~/.cache/yarn
-        - ~/.next/cache      
+        - ./.next/cache      
       key: v2-dependencies-{{ checksum "yarn.lock" }}
 
   - &install_dependencies
@@ -46,7 +46,7 @@ jobs:
       - save_cache:
           paths:
             - ~/repo/.next/cache      
-          key: v2-dependencies-{{ checksum "~/repo/.next/cache" }}
+          key: v2-dependencies-{{ checksum "./.next/cache" }}
 
       - run:
           name: Install playwright
