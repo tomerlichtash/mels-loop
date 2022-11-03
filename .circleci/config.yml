@@ -26,7 +26,7 @@ aliases:
 jobs:
   e2e:
     executor: e2e-tester
-    parallelism: 1
+    parallelism: 2
     steps:
       - checkout
       - *cache_restore
