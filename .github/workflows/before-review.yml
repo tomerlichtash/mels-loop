@@ -1,8 +1,8 @@
-name: "E2E"
+name: "e2e"
 on: [pull_request]
 jobs:
   desktop-codex:
-    name: desktop/codex
+    name: desktop / codex
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,10 +33,10 @@ jobs:
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       - name: Run E2E tests
-        run: yarn test:e2e codex --project="Desktop Chrome" --workers=16
+        run: yarn test:e2e codex --project="Desktop Chrome"
 
   mobile-codex:
-    name: mobile/codex
+    name: mobile / codex
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
