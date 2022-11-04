@@ -1,6 +1,6 @@
 name: "BaseWF"
 on:
-  workflow_call:
+  pull_request:
     inputs:
       test_name:
         required: true
