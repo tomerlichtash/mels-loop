@@ -21,15 +21,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
 
+      - name: Cache playwright binaries
+        uses: actions/cache@v2
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: cache-playwright-linux-1.19.2
+          
       - name: install dependencies
         run: yarn install
 
       - name: next build
         run: yarn build
 
-#      - name: install playwright browsers
-#        run: npx playwright install --with-deps
-#      - name: yarn test:e2e
-#        run: yarn test:e2e articles
-#
-#
+      - name: install playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: yarn test:e2e
+        run: yarn test:e2e articles
