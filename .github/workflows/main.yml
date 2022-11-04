@@ -1,15 +1,15 @@
-name: "Caller 1"
+name: "Desktop"
 on: [push]
 jobs:
-  desktop_articles:
-    name: Desktop / Articles
+  articles:
+    name: Articles
     uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
     with:
       test_name: articles
       device_type: "Desktop Chrome"
-  mobile_articles:
-    name: Desktop / Articles
+  codex:
+    name: Codex
     uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
     with:
-      test_name: articles
-      device_type: "Mobile Chrome"
+      test_name: codex
+      device_type: "Desktop Chrome"
