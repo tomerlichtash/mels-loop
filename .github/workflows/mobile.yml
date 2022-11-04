@@ -1,0 +1,15 @@
+name: "Mobile"
+on: [push]
+jobs:
+  articles:
+    name: Articles
+    uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
+    with:
+      test_name: articles
+      device_type: "Mobile Chrome"
+  codex:
+    name: Codex
+    uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
+    with:
+      test_name: codex
+      device_type: "Mobile Chrome"
