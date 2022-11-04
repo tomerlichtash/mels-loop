@@ -1,6 +1,6 @@
 name: "BaseWF"
 on:
-  pull_request:
+  workflow_call:
     inputs:
       test_name:
         required: true
@@ -8,7 +8,7 @@ on:
       device_type:
         required: true
         type: string
-workflow_call:
+jobs:
   main:
     runs-on: ubuntu-latest
     steps:
