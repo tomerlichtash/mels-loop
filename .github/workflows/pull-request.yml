@@ -1,5 +1,8 @@
 name: "Browser"
-on: [push]
+on:
+  pull-request:
+    types:
+      - ready_for_review
 jobs:
   articles:
     name: Desktop Chrome
