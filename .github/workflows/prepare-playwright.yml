@@ -40,4 +40,4 @@ jobs:
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       - name: Run E2E tests
-        run: yarn test:ci ${{inputs.testName}} --project="${{deviceType}}"
+        run: yarn test:ci ${{inputs.testName}} --project="${{inputs.deviceType}}"
