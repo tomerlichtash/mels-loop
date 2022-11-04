@@ -9,15 +9,20 @@ jobs:
       - uses: actions/setup-node@v3
       - name: install dependencies
         run: yarn install
-      - name: build
-        run: yarn build
-      - name: Cache Build
-        uses: actions/cache@v2
+      - uses: actions/cache@v2
         with:
-          path: ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+#      - name: build
+#        run: yarn build
+#      - name: Cache Build
+#        uses: actions/cache@v2
+#        with:
+#          path: ${{ github.workspace }}/.next/cache
+#          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+#          restore-keys: |
+#            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
 #      - name: install playwright browsers
 #        run: npx playwright install --with-deps
 #      - name: yarn test:e2e
