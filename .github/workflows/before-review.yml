@@ -1,4 +1,4 @@
-name: "[E2E:Desktop] Multiple Jobs"
+name: "E2E"
 on: [pull_request]
 jobs:
   desktop-codex:
@@ -33,7 +33,7 @@ jobs:
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       - name: Run E2E tests
-        run: yarn test:e2e codex --project="Desktop Chrome"
+        run: yarn test:e2e codex --project="Desktop Chrome" --workers=16
 
   mobile-codex:
     name: mobile/codex
@@ -67,4 +67,4 @@ jobs:
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       - name: Run E2E tests
-        run: yarn test:e2e codex --project="Mobile Chrome"
+        run: yarn test:e2e codex --project="Desktop Chrome"
