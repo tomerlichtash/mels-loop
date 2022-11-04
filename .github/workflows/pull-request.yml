@@ -9,7 +9,7 @@ jobs:
       device_type: "Desktop Chrome"
   codex:
     name: Mobile Chrome
-    uses: tomerlichtash/mels-loop/.github/workflows/e2e.yml@github-actions-pw-e2e
+    uses: tomerlichtash/mels-loop/.github/workflows/e2e.  yml@github-actions-pw-e2e
     with:
       test_name: navigation.mobile codex
       device_type: "Mobile Chrome"
