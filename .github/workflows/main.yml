@@ -1,9 +1,9 @@
 name: "Tests:E2E"
 on: [pull_request]
 jobs:
-  uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
   desktop_codex:
     name: Run end-to-end tests
+    uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
     runs-on: ubuntu-latest
     steps:
       - name: Run E2E tests
