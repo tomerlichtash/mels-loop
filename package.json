@@ -32,8 +32,9 @@
 		"start": "next start",
 		"lint": "eslint . -f codeframe",
 		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src",
-		"test": "playwright test",
-		"test:ci": "playwright test --workers=1"
+		"test:e2e": "playwright test",
+		"test:e2e:ci": "playwright test --workers=1",
+		"test:unit": "vitest __tests__"
 	},
 	"dependencies": {
 		"@radix-ui/react-icons": "^1.1.1",
@@ -91,6 +92,7 @@
 		"simple-markdown": "^0.7.3",
 		"tslog": "^3.3.4",
 		"typescript": "^4.8.4",
+		"vitest": "^0.24.5",
 		"webpack": "^5.74.0"
 	}
 }
