@@ -1,8 +1,8 @@
 name: "Caller"
-on: pull_request
+on: [pull_request]
 jobs:
   desktop_codex:
-    name: Run end-to-end tests
+    name: Run Base Workflow
     uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
     with:
       test_name: articles
