@@ -2,7 +2,7 @@ name: "Caller 1"
 on: [push]
 jobs:
   desktop_codex:
-    name: Run Base Workflow 1
+    name: Desktop / Articles
     uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
     with:
       test_name: articles

@@ -9,7 +9,7 @@ on:
         required: true
         type: string
 jobs:
-  main:
+  E2E:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
