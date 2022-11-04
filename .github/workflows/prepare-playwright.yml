@@ -8,7 +8,7 @@ on:
       device_type:
         required: true
         type: string
-jobs:
+workflow_call:
   main:
     runs-on: ubuntu-latest
     steps:

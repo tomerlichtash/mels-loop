@@ -1,5 +1,5 @@
 name: "Caller"
-on: [pull_request]
+on: [push]
 jobs:
   desktop_codex:
     name: Run Base Workflow
