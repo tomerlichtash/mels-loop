@@ -1,5 +1,5 @@
 name: "Caller"
-on: [pull_request]
+on: pull_request
 jobs:
   desktop_codex:
     name: Run end-to-end tests
