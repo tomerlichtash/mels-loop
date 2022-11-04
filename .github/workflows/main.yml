@@ -1,5 +1,5 @@
 name: "Tests:E2E"
-on: [push]
+on: [pull_reuqest]
 jobs:
   desktop_codex:
     name: Run end-to-end tests
