@@ -4,10 +4,10 @@ on:
     inputs:
       testName:
         required: true
-        type: string;
+        type: string
       deviceType:
         required: true
-        type: string;
+        type: string
 jobs:
   main:
     runs-on: ubuntu-latest
