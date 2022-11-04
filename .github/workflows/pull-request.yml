@@ -1,6 +1,6 @@
 name: "Browser"
 on:
-  pull-request:
+  pull_request:
     types:
       - ready_for_review
 jobs:
