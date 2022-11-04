@@ -1,6 +1,13 @@
 name: "Prepare Playwright"
 on:
   workflow_call:
+    inputs:
+      testName:
+        required: true
+        type: string;
+      deviceType:
+        required: true
+        type: string;
 jobs:
   main:
     runs-on: ubuntu-latest
