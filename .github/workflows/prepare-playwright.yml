@@ -2,10 +2,10 @@ name: "BaseWF"
 on:
   workflow_call:
     inputs:
-      testName:
+      test_name:
         required: true
         type: string
-      deviceType:
+      device_type:
         required: true
         type: string
 jobs:
