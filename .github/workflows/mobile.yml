@@ -2,10 +2,10 @@ name: "Mobile"
 on: [push]
 jobs:
   articles:
-    name: Articles
+    name: Navigation
     uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
     with:
-      test_name: articles
+      test_name: navigation.mobile
       device_type: "Mobile Chrome"
   codex:
     name: Codex
