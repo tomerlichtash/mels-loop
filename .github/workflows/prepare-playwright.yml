@@ -1,13 +1,13 @@
-name: "Prepare Playwright"
-on: [workflow_call]
-workflow_call:
-  inputs:
-    testName:
-      required: true
-      type: string
-    deviceType:
-      required: true
-      type: string
+name: "BaseWF"
+on:
+  workflow_call:
+    inputs:
+      testName:
+        required: true
+        type: string
+      deviceType:
+        required: true
+        type: string
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -42,4 +42,4 @@ jobs:
       # - name: Run E2E tests
       #   run: yarn test:ci ${{inputs.test_name}} --project="${{inputs.device_type}}"
       - name: Run E2E tests
-        run: echo ${{inputs.test_name}} --project="${{inputs.device_type}}"      
+        run: echo ${{inputs.test_name}} --project="${{inputs.device_type}}"

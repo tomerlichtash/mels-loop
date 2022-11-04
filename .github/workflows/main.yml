@@ -1,4 +1,4 @@
-name: "Tests:E2E"
+name: "Caller"
 on: [pull_request]
 jobs:
   desktop_codex:
