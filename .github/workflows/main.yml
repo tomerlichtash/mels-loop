@@ -6,15 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-node@v3
- 
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
       - name: Cache build
         uses: actions/cache@v2
         with:
@@ -22,7 +19,6 @@ jobs:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]sx?') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
-
       - name: Cache playwright binaries
         uses: actions/cache@v2
         id: playwright-cache
@@ -30,15 +26,11 @@ jobs:
           path: |
             ~/.cache/ms-playwright
           key: cache-playwright-linux-1.19.2
-          
       - name: Install dependencies
         run: yarn install
-
       - name: Next build
         run: yarn build
-
       - name: Install playwright browsers
         run: npx playwright install --with-deps
-
       - name: Run E2E tests
-        run: yarn test:e2e --project="Chrome Desktop"
+        run: yarn test:e2e articles --project='Chrome Desktop'
