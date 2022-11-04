@@ -6,13 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
-      - name: install dependencies
-        run: yarn install
+ 
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: install dependencies
+        run: yarn install
 
 #      - name: build
 #        run: yarn build
