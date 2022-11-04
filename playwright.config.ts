@@ -21,7 +21,7 @@ const config: PlaywrightTestConfig = {
 	// Artifacts folder where screenshots, videos, and traces are stored.
 	outputDir: "test-results/",
 
-	workers: 1,
+	workers: 8,
 	fullyParallel: true,
 
 	// Run your local dev server before starting the tests:
