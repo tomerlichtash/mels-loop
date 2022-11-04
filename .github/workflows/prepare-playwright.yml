@@ -1,4 +1,5 @@
 name: "Prepare Playwright"
+on: [push]
 jobs:
   main:
     runs-on: ubuntu-latest
