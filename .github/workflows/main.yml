@@ -4,7 +4,7 @@ jobs:
   desktop_codex:
     name: Run end-to-end tests
     runs-on: ubuntu-latest
-    uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@main
+    uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
     steps:
       - name: Run E2E tests
         run: yarn test:ci codex --project="Desktop Chrome"
