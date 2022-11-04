@@ -1,15 +1,15 @@
-name: "Desktop"
+name: "Browser"
 on: [push]
 jobs:
   articles:
-    name: Articles
+    name: Desktop Chrome
     uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
     with:
-      test_name: articles
+      test_name: articles codex navigation
       device_type: "Desktop Chrome"
   codex:
-    name: Codex
+    name: Mobile Chrome
     uses: tomerlichtash/mels-loop/.github/workflows/prepare-playwright.yml@github-actions-pw-e2e
     with:
-      test_name: codex
-      device_type: "Desktop Chrome"
+      test_name: navigation.mobile codex
+      device_type: "Mobile Chrome"
