@@ -3,7 +3,7 @@ name: "Unit Tests"
 on: [push]
 
 jobs:
-  E2E:
+  run_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

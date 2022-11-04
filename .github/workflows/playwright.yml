@@ -1,13 +1,14 @@
 name: "Browser"
 
-on:
-  pull_request:
-    types:
-      - ready_for_review
+on: [pull_request]
+  # pull_request:
+  #   types:
+  #     - ready_for_review
 
 jobs:
   e2e_desktop:
     name: Desktop Chrome
+    if: !github.event.pull_request.draft
     uses: tomerlichtash/mels-loop/.github/workflows/e2e.yml@github-actions-pw-e2e
     with:
       test_name: articles codex navigation
@@ -15,6 +16,7 @@ jobs:
 
   e2e_mobile:
     name: Mobile Chrome
+    if: !github.event.pull_request.draft
     uses: tomerlichtash/mels-loop/.github/workflows/e2e.yml@github-actions-pw-e2e
     with:
       test_name: navigation.mobile codex
