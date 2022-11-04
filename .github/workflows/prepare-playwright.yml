@@ -1,4 +1,4 @@
-name: "BaseWF"
+name: "Setup E2E Env"
 on:
   workflow_call:
     inputs:
@@ -39,7 +39,5 @@ jobs:
         run: yarn build
       - name: Install playwright browsers
         run: npx playwright install --with-deps
-      - name: Run E2E tests
+      - name: Run E2E tests: ${{inputs.test_name}} (${{inputs.device_type}})
         run: yarn test:ci ${{inputs.test_name}} --project="${{inputs.device_type}}"
-      # - name: Run E2E tests
-      #   run: echo ${{inputs.test_name}} --project="${{inputs.device_type}}"

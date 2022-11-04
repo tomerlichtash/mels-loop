@@ -7,6 +7,3 @@ jobs:
     with:
       test_name: articles
       device_type: "Desktop Chrome"
-    # steps:
-    #   - name: Run E2E tests
-    #     run: yarn test:ci codex --project="Desktop Chrome"
