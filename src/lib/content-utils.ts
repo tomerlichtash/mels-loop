@@ -185,6 +185,11 @@ const FIGURE_CONTAINER_TYPES: Map<MLNODE_TYPES, boolean> = new Map<MLNODE_TYPES,
 	[MLNODE_TYPES.PARAGRAPH, true],
 ]);
 
+
+function toValue<T>(val: T, defaultValue: T | null): T | null {
+	return val === undefined ? defaultValue : val;
+}
+
 function collectText(content: string | ParsedNode): string {
 	if (!content) {
 		return "";
@@ -492,11 +497,11 @@ class ContentUtils implements IContentUtils {
 			line: context.indexer.currentLine(),
 			key: context.indexer.nextKey(),
 			children: [] as Array<IMLParsedNode>,
-			ordered: node.ordered,
-			target: node.target,
-			level: node.level,
-			text: typeof node.content === "string" ? node.content : undefined,
-			attributes: (isHTML && node.attributes && Object.fromEntries(node.attributes)) || undefined
+			ordered: toValue(node.ordered, false),
+			target: toValue(node.target, null),
+			level: toValue(node.level, null),
+			text: typeof node.content === "string" ? node.content : null,
+			attributes: (isHTML && node.attributes && Object.fromEntries(node.attributes)) || null
 		};
 		const children = findArrayPart(node);
 		if (!Array.isArray(children)) {

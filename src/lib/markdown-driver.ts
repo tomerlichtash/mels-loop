@@ -184,7 +184,6 @@ export function loadContentFolder(
 				chapterId,
 				path: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
 			});
-			folderContentData.pages.push(parsedPageData.toObject());
 			if (mode.contentMode === LoadContentModes.FULL) {
 				// parse markdown and process
 				const mdParse = createHtmlMDParser(); //mdParser.defaultBlockParse;
@@ -197,7 +196,9 @@ export function loadContentFolder(
 				// Combine the data with the id
 				parsedPageData.parsed = tree;
 			}
-		} catch (e) {
+			folderContentData.pages.push(parsedPageData.toObject());
+		} 
+		catch (e) {
 			log.error(`Error processing ${fullPath}`, e);
 			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
 		}

@@ -15,7 +15,6 @@ import { loadContentFolder } from "./markdown-driver";
  **************************************************/
 interface FolderStaticProps {
 	content: string | object;
-	locale: string;
 }
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
@@ -90,8 +89,7 @@ class MLNextUtils implements IMLNextUtils {
 		});
 		return {
 			props: {
-				content: JSON.stringify(docData.pages),
-				locale,
+				content: docData.pages
 			},
 		};
 	}
