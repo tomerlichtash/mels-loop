@@ -81,7 +81,7 @@ export interface ILoadContentOptions {
 	/**
 	 * If not empty, use this as the top level folder in which the content folder can be found
 	 */
-	readonly rootFolder?: string;
+	// readonly rootFolder?: string;
 }
 
 /**
@@ -101,7 +101,7 @@ export function loadContentFolder(
 		...options.mode
 	};
 	const contentDir = path.join(
-		getContentRootDir(options.rootFolder),
+		getContentRootDir(/*options.rootFolder */),
 		options.relativePath
 	);
 
@@ -115,7 +115,7 @@ export function loadContentFolder(
 			.map((p) => [p, String(fs.existsSync(p))].join(" ->"))
 			.join("\n");
 		throw new Error(
-			`Cannot read files in ${options.rootFolder} (mapped to ${contentDir}),\ntry ${diags}`
+			`Cannot read files in ${/* options.rootFolder */getContentRootDir()} (mapped to ${contentDir}),\ntry ${diags}`
 		);
 	}
 
@@ -161,7 +161,7 @@ export function loadContentFolder(
 				);
 			}
 			folderContentData.ids.push({
-				params: { id: name, chapterId: "koan1" },
+				params: { id: name },
 				locale: options.locale,
 			});
 		}
@@ -179,12 +179,12 @@ export function loadContentFolder(
 			const metaData = new PageMetaData(matterData);
 			const chapterId = "koan1"
 			const parsedPageData = new ParsedPageData({
-				metaData,
+				metaData: metaData.toObject(),
 				id: name,
 				chapterId,
 				path: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
 			});
-			folderContentData.pages.push(parsedPageData);
+			folderContentData.pages.push(parsedPageData.toObject());
 			if (mode.contentMode === LoadContentModes.FULL) {
 				// parse markdown and process
 				const mdParse = createHtmlMDParser(); //mdParser.defaultBlockParse;
@@ -219,6 +219,12 @@ class ParsedPageData implements IParsedPageData {
 		});
 	}
 
+	public toObject(): IParsedPageData {
+		return {
+			...this
+		}
+	}
+
 	public metaData: IPageMetaData = null;
 	public id = "";
 	public chapterId = "";
@@ -233,6 +239,11 @@ class PageMetaData implements IPageMetaData {
 		mlUtils.safeMerge(this, data);
 		if (this.date && typeof this.date === "string") {
 			this.date = mlUtils.parseDate(this.date);
+		}
+	}
+	public toObject(): IPageMetaData {
+		return {
+			...this
 		}
 	}
 	public glossary_key = "";

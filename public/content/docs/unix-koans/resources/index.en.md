@@ -3,7 +3,7 @@ title: "Resources"
 abstract: "Web Resources, Guides, Discussions and More"
 ---
 
-### Story Source
+### Unix Koans Resources
 
 - [The Story in the Jargon File](http://www.catb.org/jargon/html/story-of-mel.html)
 - [The Story of Mel in Wikipedia](https://en.wikipedia.org/wiki/The_Story_of_Mel)

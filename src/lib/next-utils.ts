@@ -1,5 +1,6 @@
 import { GetStaticPathsResult, GetStaticPropsResult } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { locales } from "../../e2e/utils/test-utils";
 import { ILocaleMap } from "../interfaces/models";
 import {
 	IContentParseOptions,
@@ -13,7 +14,7 @@ import { loadContentFolder } from "./markdown-driver";
  * Extended Next.js types
  **************************************************/
 interface FolderStaticProps {
-	content: string;
+	content: string | object;
 	locale: string;
 }
 /**
@@ -40,6 +41,13 @@ type MLGetStaticPaths = (
 	| Promise<GetStaticPathsResult<ParsedUrlQuery>>
 	| GetStaticPathsResult<ParsedUrlQuery>;
 
+
+export interface IStaticPathsParameters {
+	readonly folderPath: string;
+	readonly subPath?: string;
+	readonly locales: string[];
+}
+
 /**
  * SERVER SIDE Streamlined generation of content, suitable as props for ML component props
  */
@@ -59,6 +67,8 @@ export interface IMLNextUtils {
 	 * Same as Next's GetStaticPaths, parameterized by a content folder relative path
 	 */
 	getFolderStaticPaths: MLGetStaticPaths;
+
+	getNestedStaticPaths(params: IStaticPathsParameters): Promise<GetStaticPathsResult<ParsedUrlQuery>>;
 }
 
 /**
@@ -108,6 +118,28 @@ class MLNextUtils implements IMLNextUtils {
 			paths,
 			fallback: false,
 		};
+	}
+
+	public async getNestedStaticPaths(params: IStaticPathsParameters): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
+		const paths: ILocaleMap[] = [];
+		locales.forEach(locale => {
+			const folderData = loadContentFolder({
+				locale,
+				relativePath: params.folderPath,
+				loadMode: LoadFolderModes.CHILDREN,
+				mode: {
+					contentMode: LoadContentModes.NONE,
+					parseMode: MLParseModes.NORMAL,
+				},
+			});
+			console.log('getFolderStaticPaths', JSON.stringify(folderData))
+			paths.push(...folderData.ids);
+		});
+		return Promise.resolve({
+			paths,
+			fallback: false,
+		});
+
 	}
 }
 
