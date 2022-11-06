@@ -117,8 +117,8 @@ async function _collectPaths(params: { parts: string[], root: string, paths?: IC
 			return allPaths;
 		}
 		catch (e) {
-			console.error(`Error reading ${topFolder}: ${String(e)}`);
-			return [];
+			// probably enoent, folder doesn't exist, which is ok
+			void 0;
 		}
 	}
 	else {
