@@ -1,6 +1,5 @@
 import { GetStaticPathsResult, GetStaticPropsResult } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { locales } from "../../e2e/utils/test-utils";
 import { ILocaleMap } from "../interfaces/models";
 import {
 	IContentParseOptions,
@@ -261,7 +260,7 @@ class MLNextUtils implements IMLNextUtils {
 		const paths: ILocaleMap[] = [];
 		const allPaths = await collectPathsIn(options.contentFolder);
 		for (let rec of allPaths) {
-			for (let locale of locales) {
+			for (let locale of options.locales) {
 
 				const folderData = loadContentFolder({
 					locale,
