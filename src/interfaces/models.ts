@@ -231,7 +231,7 @@ export interface IParsedPageData {
 }
 
 export interface ILocaleMap {
-	readonly params: { id: string };
+	readonly params: { [key: string]: string };
 	locale: string;
 }
 

@@ -21,7 +21,7 @@ import { ReactLocaleContext } from "../contexts/locale-context";
 import { st, classes } from "../pages/page-base.st.css";
 import Link from "next/link";
 
-const Index: NextPage<IPageProps> = (props) => {
+const Index: NextPage<IPageProps> = () => {
 	// const { className } = props;
 	const { textDirection } = useContext(ReactLocaleContext);
 	// const { pageData } = usePageData(props);

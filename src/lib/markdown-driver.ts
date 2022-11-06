@@ -35,13 +35,6 @@ const log: Logger = new Logger({
 	displayInstanceName: false,
 	displayFunctionName: false,
 	displayFilePath: "hidden",
-	// printLogMessageInNewLine: true,
-	// dateTimePattern: "hour:minute:second",
-	// displayTypes: true,
-	// colorizePrettyLogs: true,
-	// exposeErrorCodeFrame: true,
-	// exposeStack: true,
-	// setCallerAsLoggerName: true,
 });
 
 const CONTENT_PATH = "public/content/";
@@ -54,7 +47,7 @@ function setContentRootDir(root: string): void {
 	rootDir = path.join(root, CONTENT_PATH);
 }
 
-function getContentRootDir(root?: string): string {
+export function getContentRootDir(root?: string): string {
 	return root ? path.join(root, CONTENT_PATH) : rootDir;
 }
 
@@ -77,11 +70,7 @@ export interface ILoadContentOptions {
 	 */
 	readonly locale: string;
 	readonly mode?: Partial<IContentParseOptions>;
-
-	/**
-	 * If not empty, use this as the top level folder in which the content folder can be found
-	 */
-	// readonly rootFolder?: string;
+	readonly rootFolder?: string;
 }
 
 /**
@@ -101,7 +90,7 @@ export function loadContentFolder(
 		...options.mode
 	};
 	const contentDir = path.join(
-		getContentRootDir(/*options.rootFolder */),
+		getContentRootDir(options.rootFolder),
 		options.relativePath
 	);
 
@@ -115,7 +104,7 @@ export function loadContentFolder(
 			.map((p) => [p, String(fs.existsSync(p))].join(" ->"))
 			.join("\n");
 		throw new Error(
-			`Cannot read files in ${/* options.rootFolder */getContentRootDir()} (mapped to ${contentDir}),\ntry ${diags}`
+			`Cannot read files in ${contentDir} (mapped to ${contentDir}),\ntry ${diags}`
 		);
 	}
 
@@ -144,27 +133,29 @@ export function loadContentFolder(
 				return;
 			}
 			fullPath = path.join(contentDir, name);
-		} else {
+		}
+		else {
 			if (!rec.isDirectory()) {
 				return;
 			}
 
 			fullPath = path.join(contentDir, name, targetFileName);
-
-			if (!fs.existsSync(fullPath)) {
-				log.warn(`error - Path not found: "${fullPath}"`);
-				// return error without disclosing OS path
-				return folderContentData.pages.push(
-					new ParsedPageData({
-						error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
-					})
-				);
-			}
-			folderContentData.ids.push({
-				params: { id: name },
-				locale: options.locale,
-			});
 		}
+
+		if (!fs.existsSync(fullPath)) {
+			log.warn(`error - Path not found: "${fullPath}"`);
+			// return error without disclosing OS path
+			return folderContentData.pages.push(
+				new ParsedPageData({
+					error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
+				})
+			);
+		}
+		folderContentData.ids.push({
+			params: { id: name },
+			locale: options.locale,
+		});
+
 
 		if (mode.contentMode === LoadContentModes.NONE) {
 			return;
@@ -197,7 +188,7 @@ export function loadContentFolder(
 				parsedPageData.parsed = tree;
 			}
 			folderContentData.pages.push(parsedPageData.toObject());
-		} 
+		}
 		catch (e) {
 			log.error(`Error processing ${fullPath}`, e);
 			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
