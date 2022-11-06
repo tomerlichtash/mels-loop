@@ -5,7 +5,7 @@ on: [push]
 jobs:
   e2e_desktop:
     name: Desktop Chrome
-    if: !github.event.pull_request.draft
+    if: ! github.event.pull_request.draft
     uses: tomerlichtash/mels-loop/.github/workflows/e2e.yml@github-actions-pw-e2e
     with:
       test_name: articles codex navigation
