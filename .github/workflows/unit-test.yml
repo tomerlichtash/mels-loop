@@ -3,7 +3,7 @@ name: "Unit Tests"
 on: [push]
 
 jobs:
-  run_tests:
+  run_unit_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,5 +15,5 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Install dependencies
         run: yarn install
-      - name: Run E2E tests
+      - name: Run unit tests
         run: yarn test:unit
