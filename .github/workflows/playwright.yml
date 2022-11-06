@@ -1,9 +1,9 @@
 name: "Browser"
 
 on: [pull_request]
-  # pull_request:
-  #   types:
-  #     - ready_for_review
+  pull_request:
+    types:
+      - ready_for_review
 
 jobs:
   e2e_desktop:
@@ -21,3 +21,5 @@ jobs:
     with:
       test_name: navigation.mobile codex
       device_type: "Mobile Chrome"
+
+#
