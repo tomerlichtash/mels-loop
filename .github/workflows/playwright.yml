@@ -1,9 +1,6 @@
 name: "Browser"
 
 on: [push]
-  pull_request:
-    types:
-      - ready_for_review
 
 jobs:
   e2e_desktop:
