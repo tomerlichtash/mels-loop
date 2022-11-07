@@ -368,7 +368,11 @@ class ContentUtils implements IContentUtils {
 		const contentData = {
 			type: urlToContentType(url, defaultType),
 			id: urlToContentId(url),
+			isRelative: false
 		};
+		if (contentData.type !== DynamicContentTypes.None) {
+			contentData.isRelative = url[0] !== '/';
+		}
 		return contentData;
 	}
 

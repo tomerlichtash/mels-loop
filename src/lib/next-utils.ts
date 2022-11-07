@@ -162,10 +162,6 @@ async function pathToRelativePath(path: string): Promise<string> {
 async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 	try {
 		const relativePath = await pathToRelativePath(topFolder)
-		// const stat = await fs.promises.lstat(topFolder);
-		// const contentFolder = stat.isDirectory() ?
-		// 	topFolder
-		// 	: fsPath.join(fsPath.dirname(topFolder), fsPath.basename(topFolder, ".js"));
 		const parts = relativePath.split('/');
 
 		const root = getContentRootDir();
@@ -194,10 +190,6 @@ async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 		return [];
 	}
 }
-
-/**
- * Load the index file of the folder, or the children in the folder?
- */
 
 class MLNextUtils implements IMLNextUtils {
 
@@ -278,11 +270,6 @@ class MLNextUtils implements IMLNextUtils {
 						locale
 					})
 				}
-				// console.log('getFolderStaticPaths', JSON.stringify(folderData))
-				// paths.push(...folderData.ids.map(id => ({
-				// 	...id,
-				// 	params: { ...id.params, ...options.extraIds }
-				// })));
 			}
 		}
 		return Promise.resolve({

@@ -6,7 +6,7 @@ import {
 	MLParseModes,
 	LoadFolderModes,
 } from "../../interfaces/parser";
-import { loadContentFolder } from "../../lib/markdown-driver";
+import { getContentRootDir, loadContentFolder } from "../../lib/markdown-driver";
 import {
 	IMLApiResponse,
 	IMLDynamicContentParams,
@@ -20,9 +20,51 @@ const TypeMap: { [key: string]: CONTENT_TYPES } = {
 	glossary: CONTENT_TYPES.GLOSSARY,
 };
 
+import * as fsPath from "path";
+import * as fileSystem from "fs";
+import { DynamicContentTypes } from "../../interfaces/dynamic-content";
+
 const noop = function () {
 	void 0;
 };
+
+
+/**
+ * returns the first folder in the provided hierarchy (`relativePath`) that contains a folder
+ * named `contentPath`. Useful if you have annotations that are common to several subpages
+ * @param relativePath 
+ * @param contentPath 
+ * @returns 
+ */
+const findFirstFolder = async (relativePath: string, contentPath: string): Promise<string | null> => {
+	if (!relativePath || !contentPath) {
+		return null;
+	}
+	const parts = relativePath.split('/').filter(Boolean); // in case there was a / prefix
+	const root = getContentRootDir(process.cwd());
+
+	while (parts.length >= 2) { // at least docs/xxx, posts/yyy
+		const folderPath = [...parts, contentPath].join('/'),
+			path = fsPath.join(root, folderPath);
+		try {
+			const stat = await fileSystem.promises.lstat(path);
+			if (stat?.isDirectory()) {
+				return folderPath;
+			}
+		}
+		catch {
+			void 0;
+		}
+		finally {
+			parts.pop();
+		}
+	}
+
+	return null;
+
+
+}
+
 
 /**
  *
@@ -54,14 +96,26 @@ async function loadContent(
 (expected one of ${Object.keys(TypeMap).toString()})`,
 		};
 	}
-	const cacheKey = `dc-${contentType}-${params.locale}`;
+	const clientPath = params.document || "";
+	const cacheKey = `dc-${contentType}-${clientPath}${clientPath && '-'}${params.locale}`;
 	try {
 		const payload = await mlApiUtils.getFromCache(cacheKey);
 		if (payload) {
 			return JSON.parse(payload);
 		}
+		const docPath = (clientPath && contentType === CONTENT_TYPES.ANNOTATION)? 
+			await findFirstFolder(clientPath, contentType) 
+			: contentType;
+		if (!docPath) {
+			throw new Error(`No ${contentType} for ${clientPath}, or globally`)
+		}
+		// = path
+		// 	.split('/')
+		// 	.filter(Boolean)
+		// 	.concat([contentType])
+		// 	.join('/');
 		const docData = loadContentFolder({
-			relativePath: contentType,
+			relativePath: docPath,
 			locale: params.locale,
 			loadMode: LoadFolderModes.CHILDREN,
 			mode: {
