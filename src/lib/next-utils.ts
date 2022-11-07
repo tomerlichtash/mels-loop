@@ -136,6 +136,7 @@ async function _collectPaths(params: { parts: string[], root: string, paths?: IC
 			paths: newPaths
 		})
 	}
+	return [];
 }
 
 /**
