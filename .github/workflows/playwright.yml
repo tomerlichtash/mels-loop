@@ -5,7 +5,7 @@ on: [push]
 jobs:
   e2e_desktop:
     name: Desktop Chrome
-    uses: tomerlichtash/mels-loop/.github/workflows/e2e.yml@github-actions-pw-e2e
+    uses: tomerlichtash/mels-loop/.github/workflows/e2e.yml@${GITHUB_REF##*/}
     with:
       test_name: articles codex navigation
       device_type: "Desktop Chrome"
