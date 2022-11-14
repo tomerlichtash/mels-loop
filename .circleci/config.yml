@@ -60,5 +60,5 @@ jobs:
 workflows:
   infra:
     jobs:
-      # - "build"
+      - "build"
       - "clean-code"
