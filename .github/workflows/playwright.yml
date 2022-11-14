@@ -12,7 +12,7 @@ jobs:
 
   e2e_mobile:
     name: Mobile Chrome
-    uses: tomerlichtash/mels-loop/.github/workflows/e2e.yml@github-actions-pw-e2e
+    uses: ./.github/workflows/e2e.yml
     with:
       test_name: navigation.mobile codex
       device_type: "Mobile Chrome"
