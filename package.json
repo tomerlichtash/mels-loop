@@ -1,6 +1,9 @@
 {
 	"name": "mels-loop",
 	"description": "A Comprehensive Guide to The Story of Mel",
+	"engines": {
+		"node": ">=15.0.0"
+	},
 	"keywords": [
 		"hacker",
 		"folklore",
@@ -48,6 +51,7 @@
 		"gray-matter": "^4.0.3",
 		"js-cookie": "^3.0.1",
 		"lodash.orderby": "^4.6.0",
+		"next-axiom": "^0.15.0",
 		"next": "13.0.0",
 		"react": "18.2.0",
 		"react-burger-menu": "^3.0.8",
