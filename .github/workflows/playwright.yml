@@ -7,7 +7,14 @@ jobs:
     name: Desktop Chrome
     uses: ./.github/workflows/e2e.yml
     with:
-      test_name: articles codex navigation
+      test_name: articles navigation
+      device_type: "Desktop Chrome"
+
+  e2e_desktop:
+    name: Desktop Chrome - Codex
+    uses: ./.github/workflows/e2e.yml
+    with:
+      test_name: Codex
       device_type: "Desktop Chrome"
 
   e2e_mobile:
