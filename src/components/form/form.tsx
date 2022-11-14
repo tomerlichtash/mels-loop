@@ -129,8 +129,6 @@ export const Form = ({
 		return () => document.removeEventListener("keydown", keyDownHandler);
 	});
 
-	log.debug("Contact form loaded", entries);
-
 	return (
 		<div className={st(classes.root, className)}>
 			{successMessage && onSuccessMessage}
