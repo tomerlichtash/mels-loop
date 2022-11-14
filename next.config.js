@@ -46,6 +46,4 @@ const nextConfig = {
 	},
 };
 
-// module.exports = nextConfig;
-
 module.exports = withAxiom(nextConfig);
