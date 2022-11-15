@@ -16,7 +16,7 @@ export const useComponentAttributes = (
 	node: IMLParsedNode
 ): IComponentAttributeData => {
 	const [attributes, setAttributes] = useState<NodeAttributeMap>(
-		{}
+		{ }
 	);
 
 	// If the changed, reparse the attributes

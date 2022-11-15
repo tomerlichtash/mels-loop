@@ -23,6 +23,9 @@ export const Figure = ({
 			key={node.key}
 			{...attributes}
 		>
+			{node.elementId && (
+				<a id={node.elementId}></a>
+			)}
 			<div className={classes.figureContent} key={mlUtils.uniqueId()}>
 				{elements.map((node) => {
 					return <ContentComponent key={node.key} componentData={{ node }} />;

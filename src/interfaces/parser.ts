@@ -78,4 +78,9 @@ export interface IContentParseOptions {
 	 * an optional function that may return a new node
 	 */
 	readonly nodeProcessors?: Array<MLNodeProcessorFunction>;
+
+	/**
+	 * The locale for which this content is parsed
+	 */
+	readonly locale: string;
 }

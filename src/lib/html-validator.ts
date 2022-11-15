@@ -1,5 +1,6 @@
-import { NodeAttributeMap } from "../interfaces/models";
+import { StringMap } from "../interfaces/models";
 import { CaseInsensitiveMap, CaseInsensitiveSet } from "./case-insensitive-collections";
+
 
 /**
  * Provides utility functions for App Specific validating html content
@@ -17,7 +18,7 @@ export interface IHTMLValidator {
 	 * @param tag 
 	 * @param attributes 
 	 */
-	filterAttributesFor(tag: string, attributes: NodeAttributeMap): NodeAttributeMap;
+	filterAttributesFor(tag: string, attributes: StringMap): StringMap;
 }
 
 const ALLOWED_HTML_ATTRIBUTES = {
@@ -60,7 +61,7 @@ class HTMLValidator implements IHTMLValidator {
 			||this.attributeMap.get(tag)?.valid.has(key);
 	}
 
-	filterAttributesFor(tag: string, attributes: NodeAttributeMap): NodeAttributeMap {
+	filterAttributesFor(tag: string, attributes: StringMap): StringMap {
 		if (!tag || !attributes) {
 			return {};
 		}
