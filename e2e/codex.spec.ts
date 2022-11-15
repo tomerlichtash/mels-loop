@@ -7,6 +7,7 @@ import {
 	locales,
 	stripMarkdown,
 	translate,
+	validateStringTranslation,
 } from "./utils/test-utils";
 import {
 	PORTAL_SELECTOR,
@@ -51,19 +52,24 @@ test.describe("Codex", () => {
 					.click();
 				await page.$$(PORTAL_SELECTOR);
 
-				await expect(page.locator(labelSelector)).toHaveText(
-					translate(locale, "NOTE_LABEL_GLOSSARY")
-				);
+				const glossaryLabel = await page.locator(labelSelector).textContent();
+				expect(validateStringTranslation(glossaryLabel)).toBeTruthy();
+				expect(glossaryLabel).toEqual(translate(locale, "NOTE_LABEL_GLOSSARY"));
 
 				await expect(page.locator(titleSelector)).toHaveText(
 					translate(locale, term_key as string)
 				);
 
 				if (locale !== "en") {
+					const originTerm = translate("en", term_key as string);
+					const translatedTerm = await page.locator(termSelector).textContent();
+
+					expect(validateStringTranslation(translatedTerm)).toBeTruthy();
+
 					await expect(
 						page.locator(termSelector),
 						"Non-English glossary entries should show original term in English"
-					).toHaveText(translate("en", term_key as string));
+					).toHaveText(originTerm);
 				}
 
 				const textContent = await page.locator(contentSelector).textContent();

@@ -20,3 +20,4 @@ export const MD_CODEBLOCK_INLINE =
 export const SINGLE_WHITE_SPACE = " ";
 export const EMPTY_STRING = "";
 export const ASTRIEK_MOCK = "%astriek%";
+export const UNTRANSLATED_STRING = /^[%].+[%]$/m;

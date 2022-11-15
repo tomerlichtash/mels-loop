@@ -5,6 +5,7 @@ import {
 	getFrontMatter,
 	getLocalePath,
 	stripMarkdown,
+	validateStringTranslation,
 } from "../e2e/utils/test-utils";
 import { ASTRIEK_MOCK, EMPTY_STRING } from "../e2e/utils/patterns";
 const whitespace = "    ";
@@ -213,4 +214,13 @@ describe("stripMarkdown", () => {
 			expect(stripMarkdown(content)).toEqual("Some markdown");
 		});
 	});
+});
+
+it("it should validate string was translated properly", () => {
+	expect(validateStringTranslation("%somestr%"), "missing translations not allowed").toBeFalsy();
+	expect(validateStringTranslation("%%"), "empty translations not allowed").toBeFalsy();
+	expect(validateStringTranslation("some%str%"), "should be valid").toBeTruthy();
+	expect(validateStringTranslation("%some%str"), "should be valid").toBeTruthy();
+	expect(validateStringTranslation("some%str"), "should be valid").toBeTruthy();
+	expect(validateStringTranslation("some%%str"), "should be valid").toBeTruthy();
 });
