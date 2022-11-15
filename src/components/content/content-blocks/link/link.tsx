@@ -13,13 +13,17 @@ export const Link = ({
 	className,
 }: ILinkProps): JSX.Element => {
 	const { node } = componentData;
+	const isHash = node.target && node.target[0] === '#';
+	const targetAttrs = isHash ? {} : {
+		target: "_blank",
+		rel: "noreferrer"
+	};
 	return (
 		<a
 			className={st(classes.root, className)}
 			href={node.target}
-			target="_blank"
-			rel="noreferrer"
 			onClick={onClick}
+			{...targetAttrs}
 		>
 			<ContentIterator componentData={componentData} className={classes.href} />
 		</a>

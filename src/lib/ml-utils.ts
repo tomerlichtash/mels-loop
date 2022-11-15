@@ -24,8 +24,8 @@ class MLUtils implements IMLUtils {
 	private readonly seed = `mlid-${String(Date.now() % 1000)}`;
 	private nextNumber = Math.round(Date.now() % 1000);
 
-	public uniqueId(prefix?: string): string {
-		return `${prefix || this.seed}-${this.nextNumber++}`;
+	public uniqueId(prefix: string = this.seed): string {
+		return `${prefix}-${this.nextNumber++}`;
 	}
 
 	public arrayToMap<T>(array: Array<T>, field: string): { [key: string]: T } {

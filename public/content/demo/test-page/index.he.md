@@ -12,12 +12,14 @@ Figure With auto generated caption
 Figure With a custom caption
 </figure>
 
-<figure data-parse-mode="verse">
-Figure With a figcaption element
-In verse mode
-No less
-<figcaption>This is <strong>figure</strong> %index%</figcaption>
+<figure data-parse-mode="verse" id="verse-figure">
+שלוש שורות
+צרצר דרוס
+ודי
+<figcaption>זותי <strong>תמונה</strong> %index%</figcaption>
 </figure>
+
+סתכל גם על [](#verse-figure) For more details
 
 <blockquote>
 Blockquote Content
