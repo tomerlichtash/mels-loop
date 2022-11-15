@@ -11,7 +11,11 @@ export const MenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: ["preface", /*"melshack",*/ "resources"],
+		children: [
+			"preface",
+			"mels-hack-the-missing-bits",
+			"resources"
+		],
 	},
 	{
 		id: "info",
@@ -45,7 +49,11 @@ export const MobileMenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: ["preface", /*"melshack",*/ "resources"],
+		children: [
+			"preface",
+			"mels-hack-the-missing-bits",
+			"resources"
+		],
 	},
 	{
 		id: "about",
@@ -84,14 +92,14 @@ export const MenuItems: IMenuItem[] = [
 		},
 	},
 	{
-		id: "melshack",
+		id: "mels-hack-the-missing-bits",
 		type: "article",
 		meta: {
-			url: "/docs/mels-hack",
+			url: "/docs/mels-hack-the-missing-bits",
 		},
 		keys: {
-			title: "MENU_ITEM_LABEL_ID_MELSHACK",
-			author: "AUTHOR_DAVID_FRANKIEL",
+			title: "MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS",
+			author: "AUTHOR_DAVID_FRENKIEL",
 		},
 	},
 	{

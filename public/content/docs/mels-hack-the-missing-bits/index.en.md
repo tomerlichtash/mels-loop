@@ -36,7 +36,7 @@ For brevity and clarity, we will use a mock instruction layout in which each com
 
 Something like:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -70,7 +70,7 @@ This layout is missing a part described earlier in the story:
 
 Thus, the bit layout of the instruction needs an additional component for the next address `(N)`. Its location doesn't affect the hack, as described in the story, but let's place it on the least significant bits, to be on the safe side:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -111,7 +111,7 @@ We know that the `(A)` bits are lower than the `(C)` bits, because **Ed Nather**
 
 If incrementing the address span overflows into the opcode span, then the bit order between them is established:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -157,7 +157,7 @@ After recovering from this blow to my computer ego, I took the basic step requir
 
 Quite simply, the hack, as described in **Ed Nather**'s account, is impossible on the RPC-4000. The opcode `(C)` field, supposedly modified by the overflow, is in the least significant bits of the instruction. In the terms used above:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -188,7 +188,7 @@ Obviously, once we rule out **Ed Nather**'s code flow, all options are on the ta
 
 It turns out that the architecture of the RPC-4000 does provide for a code layout which would accomplish the feat by using an overflow. Using our simplified bit layout, let's assume that the instruction, at some point, reaches the value:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -211,7 +211,7 @@ It turns out that the architecture of the RPC-4000 does provide for a code layou
 
 In this diagram, the opcode doesn't matter, it can be any part of the program logic. The address of the next instruction is `111`, so that's where the next step of the loop is located. The data address is also `111`, which doesn't pose a problem: The instruction may not even need an operand, or the value in the `111` address may be commensurate with the program logic. Normally, the program would proceed to the instruction in location 111. Now, when we try to increment the data address by `1` (adding `1000`), the "overflow" of the field zeroes out the `(A)` and `(N)` fields, yielding this instruction:
 
-<figure>
+<figure data-type="no-border">
 <table data-type="bit-layout">
 <tr>
 <td>MSB<</td>
@@ -264,7 +264,7 @@ It's reasonable to assume that standard training on the RPC-4000 included only t
 
 Instead of running a test, Mel kept incrementing the value of the `(A)` field, as described in the story. This eventually led to an overflow of the entire register, provided the index register bit `(X)` was on – exactly as Nather remembered. Using 101 as the `TBC` opcode yields the following sequence:
 
-<figure>
+<figure data-type="codeblock">
              1111111101
         MSB <----------> LSB
 

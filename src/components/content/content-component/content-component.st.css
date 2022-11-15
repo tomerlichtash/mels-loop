@@ -29,7 +29,11 @@
 		heading_5,
 		heading_6,
 		figcaption,
-		cite
+		cite,
+		table,
+		tr,
+		td,
+		th,
 	)),
 	listType(enum(ul, ol));
 }

@@ -1,10 +1,10 @@
-import { AvailableLocales } from "./languages/types/common";
+import { LocaleId } from "../interfaces/locale-context";
 
 export const TRANS_DELIM = "%";
 export const wrapStr = (str: string) => `${TRANS_DELIM}${str}${TRANS_DELIM}`;
 
 export const _translate =
-	(langRef: string, langs: AvailableLocales) =>
+	(langRef: string, langs: Record<LocaleId, Record<string, string>>) =>
 	(key: string, lang?: string): string => {
 		if (!key) {
 			return;
