@@ -25,7 +25,7 @@ jobs:
       device_type: "Mobile Chrome"
 
   e2e_mobile_codex:
-    name: Mobile Chrome
+    name: Mobile Chrome - Codex
     uses: ./.github/workflows/e2e.yml
     with:
       test_name: codex
