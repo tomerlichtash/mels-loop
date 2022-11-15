@@ -16,7 +16,11 @@ import {
 	MLNodeProcessorFunction,
 	MLParseModes,
 } from "../interfaces/parser";
+import { CaseInsensitiveMap } from "./case-insensitive-collections";
 import { mlUtils } from "./ml-utils";
+
+import { Languages } from "../locales";
+import { _translate } from "../locales/translate";
 
 /**
  * Functions for processing parsed markdown nodes and maybe more
@@ -185,6 +189,10 @@ const FIGURE_CONTAINER_TYPES: Map<MLNODE_TYPES, boolean> = new Map<MLNODE_TYPES,
 	[MLNODE_TYPES.PARAGRAPH, true],
 ]);
 
+const MLTYPE_TO_LINK_TEXT_MAP = new Map<MLNODE_TYPES, string>([
+	[MLNODE_TYPES.FIGURE, "[[FIGURE_ABBR]] %index%"]
+])
+
 function collectText(content: string | ParsedNode): string {
 	if (!content) {
 		return "";
@@ -198,6 +206,22 @@ function collectText(content: string | ParsedNode): string {
 	const children = findArrayPart(content);
 	if (children) {
 		return children.map(child => collectText(child)).join('');
+	}
+	return "";
+}
+
+function collectMLNodeText(node: IMLParsedNode): string {
+	if (!node) {
+		return "";
+	}
+	if (typeof node === "string") {
+		return node;
+	}
+	if (node.type === MLNODE_TYPES.TEXT) {
+		return node.text;
+	}
+	if (node.children) {
+		return node.children.map(child => collectMLNodeText(child)).join('');
 	}
 	return "";
 }
@@ -252,6 +276,15 @@ function removeNullChildren(node: IMLParsedNode): IMLParsedNode {
 	node.children.length = 0;
 	node.children.push(...validNodes);
 	return node;
+}
+
+function translateString(str: string, locale: string): string {
+	if (!str) {
+		return "";
+	}
+	return str.replace(/\[\[(.+?)\]\]/g, function (m, key: string) {
+		return _translate(locale, Languages)(key);
+	});
 }
 
 const ANNOTATION_RE = /annotations?\//i;
@@ -404,10 +437,12 @@ class ContentUtils implements IContentUtils {
 		const result = nodes
 			.map((node) => this.processOneASTNode(node, parseContext))
 			.filter(Boolean);
-		this.updateLinks(result, parseContext);
+		result.forEach(r => this.updateLinksInNode(r, parseContext));
 		this.promoteInlines(result, parseContext);
-		//this.promoteFigures(result, parseContext);
-		this.processFigures(result, parseContext);
+		result.forEach(r => this.tryProcessFigure(r, parseContext));
+		const nodesIdMap = new CaseInsensitiveMap<IMLParsedNode>();
+		result.forEach(r => this.processElementIds(r, parseContext, nodesIdMap));
+		result.forEach(r => this.processIdLinks(r, parseContext, nodesIdMap));
 		return this.applyNodeProcessors(result, parseContext);
 	}
 
@@ -634,19 +669,56 @@ class ContentUtils implements IContentUtils {
 		return node;
 	}
 
-	private processFigures(
-		nodes: IMLParsedNode[],
-		context: MLParseContext
-	): void {
-		nodes.forEach((node) => this.tryProcessFigure(node, context));
+
+	private processElementIds(node: IMLParsedNode,
+		context: MLParseContext, map: Map<string, IMLParsedNode>): void {
+		const id = node.attributes?.id;
+		if (id) {
+			Object.assign(node, { elementId: `${node.type}-${id}` });
+			if (map.has(id)) {
+				console.warn(`Document contains more than one element with id ${id}, 
+previous: ${map.get(id).type} current ${node.type}`);
+			}
+			map.set(id, node);
+		}
+		(node.children || []).forEach(n => this.processElementIds(n, context, map));
 	}
 
-	private promoteFigures(
-		nodes: IMLParsedNode[],
-		context: MLParseContext
-	): void {
-		nodes.forEach((node) => this.promoteFiguresInNode(node, context));
+	private processIdLinks(node: IMLParsedNode,
+		context: MLParseContext, map: Map<string, IMLParsedNode>) {
+		if (node.type === MLNODE_TYPES.LINK && node.target) {
+			const match = node.target.match(/^#(.+)$/);
+			if (match) {
+				const target = map.get(match[1]);
+				if (target) {
+					Object.assign(node, { target: `#${target.elementId}` });
+					this.processAnchorLinkText(node, target, context);
+				}
+			}
+		}
+		else {
+			(node.children || []).forEach(n => this.processIdLinks(n, context, map));
+		}
 	}
+
+	private processAnchorLinkText(node: IMLParsedNode, target: IMLParsedNode, context: MLParseContext) {
+		const current = collectMLNodeText(node);
+		if (current) {
+			return;
+		}
+		const tmpl = MLTYPE_TO_LINK_TEXT_MAP.get(target.type);
+		const text = tmpl ?
+			translateString(tmpl.replace(INDEX_RE, String(target.sequence)), context.mode.locale)
+			: String(target.sequence);
+		node.children.length = 0;
+		node.children.push({
+			type: MLNODE_TYPES.TEXT,
+			text: text,
+			key: context.indexer.nextKey(),
+			line: 0
+		});
+	}
+
 	/**
 	 * Apply the optional node processors in the `context.mode` field, to the nodes in the provided
 	 * array and to their subtrees. Example processors can be found in createPopoverLinksMappingFilter
@@ -745,6 +817,7 @@ class ContentUtils implements IContentUtils {
 
 	/**
 	 * No validation, node is guaranteed figure
+	 * Sets the figure node's `sequence` field to the current figure index
 	 * @param node 
 	 * @param context 
 	 */
@@ -774,7 +847,7 @@ class ContentUtils implements IContentUtils {
 		const generateCaption = nCaptions === 0 && (customCaption || config.auto);
 		let captionNode: IMLParsedNode;
 		if (generateCaption) {
-			captionNode = 			{
+			captionNode = {
 				type: MLNODE_TYPES.FIGCAPTION,
 				key: context.indexer.nextKey(),
 				text: tmpl,
@@ -786,6 +859,7 @@ class ContentUtils implements IContentUtils {
 			captionNode = nCaptions === 1 && captionNodes[0];
 		}
 		const figIndex = context.indexer.nextIndex("figure");
+		Object.assign(node, { sequence: figIndex + context.metaData.figures.base });
 		this.processCaptionNode(captionNode, context);
 		// 1.2 otherwise Create a caption child and append to node1
 		return {
@@ -808,7 +882,7 @@ class ContentUtils implements IContentUtils {
 		}
 		if (node.text) {
 			const ind = context.indexer.currentIndex("figure") + context.metaData.figures.base;
-			const newText = node.text.replace(INDEX_RE, ind.toString())
+			const newText = translateString(node.text.replace(INDEX_RE, ind.toString()), context.mode.locale);
 			Object.assign(node, { text: newText });
 		}
 		else if (node.children?.length) {
@@ -877,16 +951,13 @@ class ContentUtils implements IContentUtils {
 		}
 		return inlines;
 	}
+
 	/**
 	 * replace [XXX] text runs that match a XXX def, with links based on the defs
 	 * collected in the creation of the nodeProcessorMap
-	 * @param nodes
+	 * @param node
 	 * @param context
 	 */
-	private updateLinks(nodes: IMLParsedNode[], context: MLParseContext): void {
-		nodes.forEach((node) => this.updateLinksInNode(node, context));
-	}
-
 	private updateLinksInNode(
 		node: IMLParsedNode,
 		context: MLParseContext
@@ -1037,7 +1108,7 @@ class NodeIndexer {
 	}
 
 	public currentIndex(key: string): number {
-		return this.indices.has(key)?
+		return this.indices.has(key) ?
 			this.indices.get(key) : 0;
 	}
 
@@ -1051,7 +1122,7 @@ class MLParseContext {
 	private _indexer: NodeIndexer = new NodeIndexer();
 	private readonly _metaData: IPageMetaData;
 
-	constructor(public readonly mode: IContentParseOptions, metaData: IPageMetaData) { 
+	constructor(public readonly mode: IContentParseOptions, metaData: IPageMetaData) {
 		this._metaData = mlUtils.clonePlainObject(metaData);
 	}
 

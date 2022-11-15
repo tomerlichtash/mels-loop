@@ -144,6 +144,11 @@ export interface IMLParsedNode {
 	readonly linkType?: DynamicContentTypes;
 
 	readonly attributes?: { [name: string]: string };
+
+	/**
+	 * If present, other nodes may refer to this node through the ID
+	 */
+	readonly elementId?: string;
 }
 
 export interface IFigureConfiguration {
@@ -235,6 +240,7 @@ export interface ILocaleMap {
 	locale: string;
 }
 
+export type StringMap = {[key: string]: string};
 export type NodeAttributeMap = { readonly [rekey: string]: string };
 
 export type PageSortField = Omit<keyof IParsedPageData, "parsed" | "error">;
