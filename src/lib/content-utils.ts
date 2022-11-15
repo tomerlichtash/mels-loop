@@ -883,7 +883,7 @@ previous: ${map.get(id).type} current ${node.type}`);
 		}
 		if (node.text) {
 			const ind = context.indexer.currentIndex("figure") + context.metaData.figures.base;
-			const newText = node.text.replace(INDEX_RE, ind.toString())
+			const newText = translateString(node.text.replace(INDEX_RE, ind.toString()), context.mode.locale);
 			Object.assign(node, { text: newText });
 		}
 		else if (node.children?.length) {

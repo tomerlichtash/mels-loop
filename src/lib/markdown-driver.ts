@@ -247,7 +247,7 @@ class PageMetaData implements IPageMetaData {
 	public figures: IFigureConfiguration = {
 		auto: true,
 		base: 1,
-		template: "Fig. %index%"
+		template: "[[FIGURE_ABBR]] %index%"
 	}
 }
 
