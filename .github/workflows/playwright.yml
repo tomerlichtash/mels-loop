@@ -1,0 +1,32 @@
+name: "Browser"
+
+on: [push]
+
+jobs:
+  e2e_desktop:
+    name: Desktop Chrome
+    uses: ./.github/workflows/e2e.yml
+    with:
+      test_name: articles navigation
+      device_type: "Desktop Chrome"
+
+  e2e_desktop_codex:
+    name: Desktop Chrome - Codex
+    uses: ./.github/workflows/e2e.yml
+    with:
+      test_name: Codex
+      device_type: "Desktop Chrome"
+
+  e2e_mobile:
+    name: Mobile Chrome
+    uses: ./.github/workflows/e2e.yml
+    with:
+      test_name: navigation.mobile
+      device_type: "Mobile Chrome"
+
+  e2e_mobile_codex:
+    name: Mobile Chrome - Codex
+    uses: ./.github/workflows/e2e.yml
+    with:
+      test_name: codex
+      device_type: "Mobile Chrome"
