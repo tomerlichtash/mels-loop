@@ -16,7 +16,7 @@ export const Link = ({
 	const isHash = node.target && node.target[0] === '#';
 	const targetAttrs = isHash ? {} : {
 		target: "_blank",
-		rel:"noreferrer"
+		rel: "noreferrer"
 	};
 	return (
 		<a

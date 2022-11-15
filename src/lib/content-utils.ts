@@ -439,7 +439,6 @@ class ContentUtils implements IContentUtils {
 			.filter(Boolean);
 		result.forEach(r => this.updateLinksInNode(r, parseContext));
 		this.promoteInlines(result, parseContext);
-		//this.promoteFigures(result, parseContext);
 		result.forEach(r => this.tryProcessFigure(r, parseContext));
 		const nodesIdMap = new CaseInsensitiveMap<IMLParsedNode>();
 		result.forEach(r => this.processElementIds(r, parseContext, nodesIdMap));
