@@ -13,8 +13,6 @@ import {
 	ParsedNode,
 } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
-import { Logger } from "tslog";
-// import chalk from "chalk";
 import {
 	IContentParseOptions,
 	LoadContentModes,
@@ -25,24 +23,6 @@ import {
 import getConfig from "next/config";
 import { mlUtils } from "./ml-utils";
 const { serverRuntimeConfig } = getConfig();
-
-const log: Logger = new Logger({
-	// name: "logger",
-	// instanceName: "MarkdownDriver",
-	displayLogLevel: false,
-	displayDateTime: false,
-	displayRequestId: false,
-	displayInstanceName: false,
-	displayFunctionName: false,
-	displayFilePath: "hidden",
-	// printLogMessageInNewLine: true,
-	// dateTimePattern: "hour:minute:second",
-	// displayTypes: true,
-	// colorizePrettyLogs: true,
-	// exposeErrorCodeFrame: true,
-	// exposeStack: true,
-	// setCallerAsLoggerName: true,
-});
 
 const CONTENT_PATH = "public/content/";
 
@@ -152,7 +132,7 @@ export function loadContentFolder(
 			fullPath = path.join(contentDir, name, targetFileName);
 
 			if (!fs.existsSync(fullPath)) {
-				log.warn(`error - Path not found: "${fullPath}"`);
+				console.log(`error - Path not found: "${fullPath}"`);
 				// return error without disclosing OS path
 				return folderContentData.pages.push(
 					new ParsedPageData({
@@ -196,7 +176,7 @@ export function loadContentFolder(
 				parsedPageData.parsed = tree;
 			}
 		} catch (e) {
-			log.error(`Error processing ${fullPath}`, e);
+			console.log(`Error processing ${fullPath}`, e);
 			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
 		}
 	});
