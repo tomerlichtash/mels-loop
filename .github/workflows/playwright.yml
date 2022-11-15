@@ -21,5 +21,12 @@ jobs:
     name: Mobile Chrome
     uses: ./.github/workflows/e2e.yml
     with:
-      test_name: navigation.mobile codex
+      test_name: navigation.mobile
+      device_type: "Mobile Chrome"
+
+  e2e_mobile_codex:
+    name: Mobile Chrome
+    uses: ./.github/workflows/e2e.yml
+    with:
+      test_name: codex
       device_type: "Mobile Chrome"
