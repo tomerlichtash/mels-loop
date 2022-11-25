@@ -89,7 +89,7 @@ export const DynamicContentViewer = ({
 		return () => {
 			removed = true;
 		};
-	}, [url, dynamicContentContext, pageContext, locale]);
+	}, [url, dynamicContentContext, pageContext, locale, router.asPath]);
 
 	if (error) {
 		return <div className={classes.error}>{error}</div>;

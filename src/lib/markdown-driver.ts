@@ -13,8 +13,6 @@ import {
 	ParsedNode,
 } from "../interfaces/models";
 import { contentUtils } from "./content-utils";
-import { Logger } from "tslog";
-import chalk from "chalk";
 import {
 	IContentParseOptions,
 	LoadContentModes,
@@ -26,16 +24,6 @@ import getConfig from "next/config";
 import { mlUtils } from "./ml-utils";
 const { serverRuntimeConfig } = getConfig();
 
-const log: Logger = new Logger({
-	// name: "logger",
-	// instanceName: "MarkdownDriver",
-	displayLogLevel: false,
-	displayDateTime: false,
-	displayRequestId: false,
-	displayInstanceName: false,
-	displayFunctionName: false,
-	displayFilePath: "hidden",
-});
 
 const CONTENT_PATH = "public/content/";
 
@@ -80,6 +68,7 @@ const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	contentMode: LoadContentModes.FULL,
 	parseMode: MLParseModes.NORMAL,
 	nodeProcessors: undefined,
+	locale: undefined
 };
 
 export function loadContentFolder(
@@ -94,37 +83,30 @@ export function loadContentFolder(
 		options.relativePath
 	);
 
+	const folderContentData = new FolderContent();
 	if (!fs.existsSync(contentDir)) {
-		const paths = [
-			path.resolve("./public/content"),
-			path.resolve("/public"),
-			process.cwd(),
-		];
-		const diags = paths
-			.map((p) => [p, String(fs.existsSync(p))].join(" ->"))
-			.join("\n");
-		throw new Error(
-			`Cannot read files in ${contentDir} (mapped to ${contentDir}),\ntry ${diags}`
+		console.warn(
+			`Cannot read files in ${options.relativePath} (mapped to ${contentDir}). In dynamic paths, this is not an error`
 		);
+		return folderContentData;
 	}
 
 	// Get file names under /posts
 	const contentNames: Dirent[] = fs.readdirSync(contentDir, {
 		withFileTypes: true,
 	});
-	const folderContentData = new FolderContent();
 
-	log.info(
-		`${chalk.blueBright(
-			"collect"
-		)} - sorted content in "${contentDir}" for locale "${options.locale}"`
-	);
+	//log.info(
+	//	`${chalk.blueBright(
+	//		"collect"
+	//	)} - sorted content in "${contentDir}" for locale "${options.locale}"`
+	//);
 
 	const targetFileName = getIndexFileName(options.locale);
 
 	contentNames.forEach((rec: Dirent) => {
 		const name = rec.name;
-		log.info(`${chalk.magenta("process")} - content ID "${name}"`);
+		//log.info(`${chalk.magenta("process")} - content ID "${name}"`);
 
 		let fullPath: string;
 
@@ -143,7 +125,7 @@ export function loadContentFolder(
 		}
 
 		if (!fs.existsSync(fullPath)) {
-			log.warn(`error - Path not found: "${fullPath}"`);
+			//log.warn(`error - Path not found: "${fullPath}"`);
 			// return error without disclosing OS path
 			return folderContentData.pages.push(
 				new ParsedPageData({
@@ -163,7 +145,7 @@ export function loadContentFolder(
 
 		try {
 			const fileContents = fs.readFileSync(fullPath, "utf8");
-			log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
+			//log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
 
 			// Use gray-matter to parse the post metadata section
 			const { data: matterData, content } = matter(fileContents);
@@ -190,7 +172,7 @@ export function loadContentFolder(
 			folderContentData.pages.push(parsedPageData.toObject());
 		}
 		catch (e) {
-			log.error(`Error processing ${fullPath}`, e);
+			//log.error(`Error processing ${fullPath}`, e);
 			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
 		}
 	});

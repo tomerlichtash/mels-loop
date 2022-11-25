@@ -22,7 +22,6 @@ const TypeMap: { [key: string]: CONTENT_TYPES } = {
 
 import * as fsPath from "path";
 import * as fileSystem from "fs";
-import { DynamicContentTypes } from "../../interfaces/dynamic-content";
 
 const noop = function () {
 	void 0;

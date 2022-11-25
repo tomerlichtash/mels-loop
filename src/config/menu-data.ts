@@ -120,7 +120,7 @@ export const MenuItems: IMenuItem[] = [
 		id: "preface",
 		type: "article",
 		meta: {
-			url: "/docs/preface",
+			url: "/docs/the-story-of-mel/pages/preface",
 		},
 		keys: {
 			title: "MENU_ITEM_LABEL_ID_PREFACE",
@@ -131,7 +131,7 @@ export const MenuItems: IMenuItem[] = [
 		id: "mels-hack-the-missing-bits",
 		type: "article",
 		meta: {
-			url: "/docs/mels-hack-the-missing-bits",
+			url: "/docs/the-story-of-mel/pages/mels-hack-the-missing-bits",
 		},
 		keys: {
 			title: "MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS",

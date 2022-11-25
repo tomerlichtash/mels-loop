@@ -19,7 +19,7 @@ export const useComponentAttributes = (
 		{}
 	);
 
-	// If the changed, reparse the attributes
+	// If the node changed, reparse the attributes
 	useEffect(() => {
 		setAttributes(mlNextBrowserUtils.extractNodeAttributes(node));
 	}, [node]);

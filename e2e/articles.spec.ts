@@ -11,7 +11,7 @@ test.describe("Articles", () => {
 		test(`${locale} > should navigate to the Preface article`, async ({
 			page,
 		}) => {
-			const path = "docs/preface";
+			const path = "docs/the-story-of-mel/pages/preface";
 			const filename = "index";
 			const { data } = getFrontMatter(`${path}/${filename}`, locale);
 
