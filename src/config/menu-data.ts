@@ -2,20 +2,19 @@ import { IMenuItem, IMenuSection } from "../interfaces/menu";
 import { PUBLIC_PROJECT_GITHUB_ADDRESS } from "../consts";
 
 export const MenuSections: IMenuSection[] = [
-	{
-		id: "codex",
-		type: "group",
-		meta: {
-			layout: "one",
-		},
-		keys: {
-			title: "Codex",
-		},
-		children: [
-			"the-story-of-mel",
-			"unix-koans",
-		],
-	},
+	// {
+	// 	id: "codex",
+	// 	type: "group",
+	// 	meta: {
+	// 		layout: "one",
+	// 	},
+	// 	keys: {
+	// 		title: "Codex",
+	// 	},
+	// 	children: [
+	// 		"the-story-of-mel",
+	// 	],
+	// },
 	{
 		id: "articles1",
 		type: "group",
@@ -25,11 +24,7 @@ export const MenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: [
-			"preface",
-			"mels-hack-the-missing-bits",
-			"resources"
-		],
+		children: ["preface", "mels-hack-the-missing-bits", "resources"],
 	},
 	{
 		id: "info",
@@ -63,11 +58,7 @@ export const MobileMenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: [
-			"preface",
-			"mels-hack-the-missing-bits",
-			"resources"
-		],
+		children: ["preface", "mels-hack-the-missing-bits", "resources"],
 	},
 	{
 		id: "about",
@@ -94,28 +85,18 @@ export const MobileMenuSections: IMenuSection[] = [
 ];
 
 export const MenuItems: IMenuItem[] = [
-	{
-		id: "the-story-of-mel",
-		type: "codex",
-		meta: {
-			url: "/docs/the-story-of-mel",
-		},
-		keys: {
-			title: "THE_STORY_OF_MEL",
-			author: "ED_NATHER",
-		},
-	},
-	{
-		id: "unix-koans",
-		type: "codex",
-		meta: {
-			url: "/docs/unix-koans",
-		},
-		keys: {
-			title: "UNIX_KOANS",
-			author: "ERIC_STEVEN_RAYMOND",
-		},
-	},
+	// {
+	// 	id: "the-story-of-mel",
+	// 	type: "codex",
+	// 	meta: {
+	// 		url: "/docs/the-story-of-mel",
+	// 	},
+	// 	keys: {
+	// 		title: "THE_STORY_OF_MEL",
+	// 		author: "ED_NATHER",
+	// 	},
+	// },
+	// {
 	{
 		id: "preface",
 		type: "article",
