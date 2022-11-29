@@ -13,7 +13,11 @@ test.describe("Articles", () => {
 		}) => {
 			const path = "docs/the-story-of-mel/pages/preface";
 			const filename = "index";
-			const { data } = getFrontMatter(`${path}/${filename}`, locale);
+			const { data } = getFrontMatter(
+				"the-story-of-mel",
+				`${path}/${filename}`,
+				locale
+			);
 
 			await page.goto(getLocalePath(locale));
 			await page.hover(
@@ -32,14 +36,21 @@ test.describe("Articles", () => {
 		}) => {
 			const path = "docs/mels-hack-the-missing-bits";
 			const filename = "index";
-			const { data } = getFrontMatter(`${path}/${filename}`, locale);
+			const { data } = getFrontMatter(
+				"the-story-of-mel",
+				`${path}/${filename}`,
+				locale
+			);
 
 			await page.goto(getLocalePath(locale));
 			await page.hover(
 				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
 			);
 			await page.click(
-				`text=${translate(locale, "MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS")}`
+				`text=${translate(
+					locale,
+					"MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS"
+				)}`
 			);
 
 			await expect(page).toHaveURL(getLocalePath(locale, path));

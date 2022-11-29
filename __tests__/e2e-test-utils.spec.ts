@@ -24,7 +24,7 @@ it('getMarkdownLinks', () => {
 })
 
 it("getFrontMatter", () => {
-	const { data, content } = getFrontMatter("codex/index", "en");
+	const { data, content } = getFrontMatter("the-story-of-mel", "codex/index", "en");
 	expect(data.title, "should return frontmatter").toEqual(
 		"The Story of Mel"
 	);

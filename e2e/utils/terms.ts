@@ -11,16 +11,23 @@ export const isValidTerm = (term: string) => invalidTerms.indexOf(term) === -1;
 export const getTermSelector = ({ type, key }: ITermTestData) =>
 	`[data-link-type="${type}"][data-link-target="${key}"]`;
 
-export const getAnnotationsData = (locale: string, codex: string) => {
-	const annotations = fs.readdirSync(`./public/content/docs/${codex}/annotations`, {
-		withFileTypes: false,
-	});
+export const getAnnotationsData = (locale: string, docId: string) => {
+	const annotations = fs.readdirSync(
+		`./public/content/docs/${docId}/annotations`,
+		{
+			withFileTypes: false,
+		}
+	);
 	return annotations
 		.map((term: string) => {
 			if (!isValidTerm(term)) {
 				return;
 			}
-			const { content } = getFrontMatter(`docs/${codex}/annotations/${term}/index`, locale);
+			const { content } = getFrontMatter(
+				"the-story-of-mel",
+				`annotations/${term}/index`,
+				locale
+			);
 			return {
 				key: term,
 				content,
@@ -39,6 +46,7 @@ export const getGlossaryData = (locale: string) => {
 				return;
 			}
 			const { data, content } = getFrontMatter(
+				"",
 				`glossary/${term}/index`,
 				locale
 			);

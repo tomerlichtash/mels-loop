@@ -23,7 +23,8 @@ const contentSelector = domUtil.scopeSelector(NOTE_CONTENT_SELECTOR);
 test.describe("Annotations", () => {
 	locales.map((locale) => {
 		const { content } = getFrontMatter(
-			"docs/the-story-of-mel/codex/index",
+			"the-story-of-mel",
+			"codex/index",
 			locale
 		);
 		const codexTerms = getMarkdownLinks(content as string, "annotations");

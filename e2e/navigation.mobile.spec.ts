@@ -131,7 +131,11 @@ test.describe.skip("Mobile Menu", () => {
 			}) => {
 				const id = "about";
 				const filename = "index";
-				const { data } = getFrontMatter(`${id}/${filename}`, locale);
+				const { data } = getFrontMatter(
+					"the-story-of-mel",
+					`${id}/${filename}`,
+					locale
+				);
 				const localePath = getLocalePath(locale, id);
 
 				await page.goto(localePath);
@@ -152,7 +156,11 @@ test.describe.skip("Mobile Menu", () => {
 			}) => {
 				const path = "docs/resources";
 				const filename = "index";
-				const { data } = getFrontMatter(`${path}/${filename}`, locale);
+				const { data } = getFrontMatter(
+					"the-story-of-mel",
+					`${path}/${filename}`,
+					locale
+				);
 				const localePath = getLocalePath(locale);
 
 				await page.goto(localePath);

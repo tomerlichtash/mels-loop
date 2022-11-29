@@ -46,9 +46,13 @@ export const getLocalePath = (locale: string, path?: string) => {
 /**
  * MarkDown
  */
-export const getFrontMatter = (path: string, locale: string) => {
+export const getFrontMatter = (
+	document: string,
+	path: string,
+	locale: string
+) => {
 	const testMdFile = fs.readFileSync(
-		`./public/content/${path}.${locale}.md`,
+		`./public/content/docs/${document}/${path}.${locale}.md`,
 		"utf-8"
 	);
 	return matter(testMdFile);
@@ -77,4 +81,5 @@ export const stripMarkdown = (content: string) =>
 		.filter(Boolean)
 		.join(EMPTY_STRING);
 
-export const validateStringTranslation = (str: string) => !UNTRANSLATED_STRING.test(str) && str !== wrapStr(EMPTY_STRING);
+export const validateStringTranslation = (str: string) =>
+	!UNTRANSLATED_STRING.test(str) && str !== wrapStr(EMPTY_STRING);

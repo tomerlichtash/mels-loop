@@ -6,7 +6,10 @@ import {
 	MLParseModes,
 	LoadFolderModes,
 } from "../../interfaces/parser";
-import { getContentRootDir, loadContentFolder } from "../../lib/markdown-driver";
+import {
+	getContentRootDir,
+	loadContentFolder,
+} from "../../lib/markdown-driver";
 import {
 	IMLApiResponse,
 	IMLDynamicContentParams,
@@ -27,43 +30,41 @@ const noop = function () {
 	void 0;
 };
 
-
 /**
  * returns the first folder in the provided hierarchy (`relativePath`) that contains a folder
  * named `contentPath`. Useful if you have annotations that are common to several subpages
- * @param relativePath 
- * @param contentPath 
- * @returns 
+ * @param relativePath
+ * @param contentPath
+ * @returns
  */
-const findFirstFolder = async (relativePath: string, contentPath: string): Promise<string | null> => {
+const findFirstFolder = async (
+	relativePath: string,
+	contentPath: string
+): Promise<string | null> => {
 	if (!relativePath || !contentPath) {
 		return null;
 	}
-	const parts = relativePath.split('/').filter(Boolean); // in case there was a / prefix
+	const parts = relativePath.split("/").filter(Boolean); // in case there was a / prefix
 	const root = getContentRootDir(process.cwd());
 
-	while (parts.length >= 2) { // at least docs/xxx, posts/yyy
-		const folderPath = [...parts, contentPath].join('/'),
+	while (parts.length >= 2) {
+		// at least docs/xxx, posts/yyy
+		const folderPath = [...parts, contentPath].join("/"),
 			path = fsPath.join(root, folderPath);
 		try {
 			const stat = await fileSystem.promises.lstat(path);
 			if (stat?.isDirectory()) {
 				return folderPath;
 			}
-		}
-		catch {
+		} catch {
 			void 0;
-		}
-		finally {
+		} finally {
 			parts.pop();
 		}
 	}
 
 	return null;
-
-
-}
-
+};
 
 /**
  *
@@ -96,17 +97,20 @@ async function loadContent(
 		};
 	}
 	const clientPath = params.document || "";
-	const cacheKey = `dc-${contentType}-${clientPath}${clientPath && '-'}${params.locale}`;
+	const cacheKey = `dc-${contentType}-${clientPath}${clientPath && "-"}${
+		params.locale
+	}`;
 	try {
 		const payload = await mlApiUtils.getFromCache(cacheKey);
 		if (payload) {
 			return JSON.parse(payload);
 		}
-		const docPath = (clientPath && contentType === CONTENT_TYPES.ANNOTATION)? 
-			await findFirstFolder(clientPath, contentType) 
-			: contentType;
+		const docPath =
+			clientPath && contentType === CONTENT_TYPES.ANNOTATION
+				? await findFirstFolder(clientPath, contentType)
+				: contentType;
 		if (!docPath) {
-			throw new Error(`No ${contentType} for ${clientPath}, or globally`)
+			throw new Error(`No ${contentType} for ${clientPath}, or globally`);
 		}
 		// = path
 		// 	.split('/')

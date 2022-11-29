@@ -25,7 +25,6 @@ import type { ITermTestData } from "./utils/types";
 import { SINGLE_WHITE_SPACE } from "./utils/patterns";
 
 const domUtil = new StylableDOMUtil(stylesheet);
-const SAMPLE_DOCUMENT = "docs/the-story-of-mel/codex/index";
 
 const contentSelector = domUtil.scopeSelector(NOTE_CONTENT_SELECTOR);
 const labelSelector = domUtil.scopeSelector(NOTE_LABEL_SELECTOR);
@@ -34,7 +33,11 @@ const termSelector = domUtil.scopeSelector(NOTE_TITLE_TERM_ORIGIN);
 
 test.describe("Glossary", () => {
 	locales.map((locale) => {
-		const { content } = getFrontMatter(SAMPLE_DOCUMENT, locale);
+		const { content } = getFrontMatter(
+			"the-story-of-mel",
+			"codex/index",
+			locale
+		);
 		const codexTerms = getMarkdownLinks(content as string, "glossary");
 		const terms = getGlossaryData(locale);
 		return codexTerms.map((key: string) => {
