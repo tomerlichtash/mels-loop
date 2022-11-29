@@ -150,11 +150,9 @@ export function loadContentFolder(
 			// Use gray-matter to parse the post metadata section
 			const { data: matterData, content } = matter(fileContents);
 			const metaData = new PageMetaData(matterData);
-			const chapterId = "koan1"
 			const parsedPageData = new ParsedPageData({
 				metaData: metaData.toObject(),
 				id: name,
-				chapterId,
 				path: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
 			});
 			if (mode.contentMode === LoadContentModes.FULL) {
@@ -185,7 +183,7 @@ export function loadContentFolder(
 
 class ParsedPageData implements IParsedPageData {
 	/* eslint-disable @typescript-eslint/no-explicit-any */
-	constructor(data: any) {
+	constructor(data: Partial<IParsedPageData>) {
 		Object.keys(this).forEach((key) => {
 			if (data[key] !== undefined) {
 				this[key] = data[key];

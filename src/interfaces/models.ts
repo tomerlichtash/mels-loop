@@ -297,6 +297,7 @@ export interface SitePage {
 
 export interface IPageProps {
 	locale: string;
+	documentPath: string;
 	translate: (key: string) => string;
 	content: string;
 	className?: string;

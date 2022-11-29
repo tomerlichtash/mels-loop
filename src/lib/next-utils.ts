@@ -15,7 +15,14 @@ import * as fs from "fs";
  * Extended Next.js types
  **************************************************/
 interface FolderStaticProps {
+	/**
+	 * Typically the stringified ParsedPageData
+	 */
 	content: string | object;
+	/**
+	 * The path of the first page in the document data
+	 */
+	documentPath: string
 }
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
@@ -81,6 +88,11 @@ interface ICollectedPath {
 
 const DYNAMIC_ROUTE_RE = /^\[([^\]]+)\]$/;
 
+/**
+ * Recursively collects all the paths in the content dir along a dynamic route
+ * @param params 
+ * @returns 
+ */
 async function _collectPaths(params: { parts: string[], root: string, paths?: ICollectedPath[] }): Promise<ICollectedPath[]> {
 	const paths = params.paths || [],
 		parts = params.parts.slice();
@@ -89,7 +101,7 @@ async function _collectPaths(params: { parts: string[], root: string, paths?: IC
 	}
 	const top = parts.shift(); // parts now shorter
 	const folderMatch = top.match(DYNAMIC_ROUTE_RE),
-		isKey = Boolean(folderMatch?.length);
+		isKey = Boolean(folderMatch?.length); // indicates that the path contains a dynamic part, /[XXX]
 	const topFolder = isKey ?
 		params.root : fsPath.join(params.root, top);
 	if (isKey) {
@@ -167,6 +179,7 @@ async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 		const root = getContentRootDir();
 		const allPaths = await _collectPaths({ root, parts });
 		const validPaths: ICollectedPath[] = [];
+		// use only valid (existing) paths to folders
 		for (let rec of allPaths) {
 			try {
 				const stat = await fs.promises.lstat(rec.path);
@@ -193,6 +206,12 @@ async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 
 class MLNextUtils implements IMLNextUtils {
 
+	/**
+	 * Converts a path template, e.g. docs/[id] to docs/the-story-of-mel when `dict` has `{ id: "the-story-of-mel" }`
+	 * @param path 
+	 * @param dict 
+	 * @returns 
+	 */
 	public async populateDynamicPath(path: string, dict: { [key: string]: string }): Promise<string> {
 		let relative = await pathToRelativePath(path);
 		if (!relative) {
@@ -217,11 +236,13 @@ class MLNextUtils implements IMLNextUtils {
 			locale,
 			mode,
 		});
+		const page = docData.pages[0];
 		return {
 			props: {
 				// Stringify the result, instead of leaving the job to Next, because
 				// Next's serializer is picky about objects, won't take class instances, Dates and more
-				content: JSON.stringify(docData.pages)
+				content: JSON.stringify(docData.pages),
+				documentPath: (page && page.path) || ""
 			},
 		};
 	}
