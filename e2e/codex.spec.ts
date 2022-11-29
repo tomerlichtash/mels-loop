@@ -34,7 +34,7 @@ const termSelector = domUtil.scopeSelector(NOTE_TITLE_TERM_ORIGIN);
 
 test.describe("Codex", () => {
 	locales.map((locale) => {
-		const { content } = getFrontMatter("codex/index", locale);
+		const { content } = getFrontMatter("docs/the-story-of-mel/codex/index", locale);
 		const codexTerms = getMarkdownLinks(content as string, "glossary");
 		const terms = getGlossaryData(locale);
 		return codexTerms.map((key: string) => {
@@ -91,9 +91,9 @@ test.describe("Codex", () => {
 	});
 
 	locales.map((locale) => {
-		const { content } = getFrontMatter("codex/index", locale);
+		const { content } = getFrontMatter("docs/the-story-of-mel/codex/index", locale);
 		const codexTerms = getMarkdownLinks(content as string, "annotations");
-		const terms = getAnnotationsData(locale);
+		const terms = getAnnotationsData(locale, "the-story-of-mel");
 		return codexTerms.map((key: string) => {
 			return test(`${locale} > should open annotation: ${key}`, async ({
 				page,
