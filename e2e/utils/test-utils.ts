@@ -52,7 +52,7 @@ export const getFrontMatter = (
 	locale: string
 ) => {
 	const testMdFile = fs.readFileSync(
-		`./public/content/docs/${document}/${path}.${locale}.md`,
+		`./public/content/${document}/${path}.${locale}.md`,
 		"utf-8"
 	);
 	return matter(testMdFile);

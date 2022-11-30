@@ -23,12 +23,12 @@ const contentSelector = domUtil.scopeSelector(NOTE_CONTENT_SELECTOR);
 test.describe("Annotations", () => {
 	locales.map((locale) => {
 		const { content } = getFrontMatter(
-			"the-story-of-mel",
+			"docs/the-story-of-mel",
 			"codex/index",
 			locale
 		);
 		const codexTerms = getMarkdownLinks(content as string, "annotations");
-		const terms = getAnnotationsData(locale, "the-story-of-mel");
+		const terms = getAnnotationsData(locale, "docs/the-story-of-mel");
 		return codexTerms.map((key: string) => {
 			return test(`${locale} > should open annotation: ${key}`, async ({
 				page,

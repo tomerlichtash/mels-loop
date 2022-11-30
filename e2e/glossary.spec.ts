@@ -34,7 +34,7 @@ const termSelector = domUtil.scopeSelector(NOTE_TITLE_TERM_ORIGIN);
 test.describe("Glossary", () => {
 	locales.map((locale) => {
 		const { content } = getFrontMatter(
-			"the-story-of-mel",
+			"docs/the-story-of-mel",
 			"codex/index",
 			locale
 		);

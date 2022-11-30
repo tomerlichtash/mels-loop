@@ -12,19 +12,16 @@ export const getTermSelector = ({ type, key }: ITermTestData) =>
 	`[data-link-type="${type}"][data-link-target="${key}"]`;
 
 export const getAnnotationsData = (locale: string, docId: string) => {
-	const annotations = fs.readdirSync(
-		`./public/content/docs/${docId}/annotations`,
-		{
-			withFileTypes: false,
-		}
-	);
+	const annotations = fs.readdirSync(`./public/content/${docId}/annotations`, {
+		withFileTypes: false,
+	});
 	return annotations
 		.map((term: string) => {
 			if (!isValidTerm(term)) {
 				return;
 			}
 			const { content } = getFrontMatter(
-				"the-story-of-mel",
+				"docs/the-story-of-mel",
 				`annotations/${term}/index`,
 				locale
 			);
