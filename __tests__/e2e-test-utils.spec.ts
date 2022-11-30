@@ -1,4 +1,4 @@
-import { it, describe, expect } from 'vitest'
+import { it, describe, expect } from "vitest";
 import { getMarkdownLinks } from "../e2e/utils/terms";
 import {
 	baseDir,
@@ -10,7 +10,7 @@ import {
 import { ASTRIEK_MOCK, EMPTY_STRING } from "../e2e/utils/patterns";
 const whitespace = "    ";
 
-it('getMarkdownLinks', () => {
+it("getMarkdownLinks", () => {
 	const mdMock =
 		"some text with [link](delim1/someValue) and [another link](delim2/anotherValue) of other type";
 	const delim1val = getMarkdownLinks(mdMock, "delim1");
@@ -21,13 +21,15 @@ it('getMarkdownLinks', () => {
 	expect(delim2val, "should return values for delim type").toEqual([
 		"anotherValue",
 	]);
-})
+});
 
 it("getFrontMatter", () => {
-	const { data, content } = getFrontMatter("the-story-of-mel", "codex/index", "en");
-	expect(data.title, "should return frontmatter").toEqual(
-		"The Story of Mel"
+	const { data, content } = getFrontMatter(
+		"docs/the-story-of-mel",
+		"codex/index",
+		"en"
 	);
+	expect(data.title, "should return frontmatter").toEqual("The Story of Mel");
 	expect(content.length, "should return content").toBeGreaterThan(0);
 });
 
@@ -217,10 +219,25 @@ describe("stripMarkdown", () => {
 });
 
 it("it should validate string was translated properly", () => {
-	expect(validateStringTranslation("%somestr%"), "missing translations not allowed").toBeFalsy();
-	expect(validateStringTranslation("%%"), "empty translations not allowed").toBeFalsy();
-	expect(validateStringTranslation("some%str%"), "should be valid").toBeTruthy();
-	expect(validateStringTranslation("%some%str"), "should be valid").toBeTruthy();
+	expect(
+		validateStringTranslation("%somestr%"),
+		"missing translations not allowed"
+	).toBeFalsy();
+	expect(
+		validateStringTranslation("%%"),
+		"empty translations not allowed"
+	).toBeFalsy();
+	expect(
+		validateStringTranslation("some%str%"),
+		"should be valid"
+	).toBeTruthy();
+	expect(
+		validateStringTranslation("%some%str"),
+		"should be valid"
+	).toBeTruthy();
 	expect(validateStringTranslation("some%str"), "should be valid").toBeTruthy();
-	expect(validateStringTranslation("some%%str"), "should be valid").toBeTruthy();
+	expect(
+		validateStringTranslation("some%%str"),
+		"should be valid"
+	).toBeTruthy();
 });
