@@ -54,7 +54,7 @@ export const DynamicContentViewer = ({
 		}
 		let docPath: string;
 		if (itemData.isRelative) {
-			docPath = router.asPath;
+			docPath = pageContext.documentPath || router.asPath;
 		}
 		pageContext.dynamicContentServer
 			.getItems({ type: itemData.type, locale, ids: [itemData.id], document: docPath })
