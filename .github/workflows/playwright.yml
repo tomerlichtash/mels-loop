@@ -24,14 +24,14 @@ jobs:
       test_name: Annotations
       device_type: "Desktop Chrome"
 
-  e2e_desktop_glossary:
+  e2e_mobile_glossary:
     name: Mobile Chrome: Glossary
     uses: ./.github/workflows/e2e.yml
     with:
       test_name: Glossary
       device_type: "Mobile Chrome"
 
-  e2e_desktop_annotations:
+  e2e_mobile_annotations:
     name: Mobile Chrome: Annotations
     uses: ./.github/workflows/e2e.yml
     with:
