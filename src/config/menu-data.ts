@@ -123,7 +123,7 @@ export const MenuItems: IMenuItem[] = [
 		id: "resources",
 		type: "page",
 		meta: {
-			url: "/docs/resources",
+			url: "/docs/the-story-of-mel/pages/resources",
 			icon: "list",
 		},
 		keys: {
