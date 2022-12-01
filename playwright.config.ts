@@ -71,7 +71,12 @@ const config: PlaywrightTestConfig = {
 		// Test against mobile viewports.
 		{
 			name: "Mobile Chrome",
-			testMatch: [/.mobile.spec.ts/, /codex.spec.ts/, /popover.spec.ts/],
+			testMatch: [
+				/.mobile.spec.ts/,
+				/glossary.spec.ts/,
+				/annotations.spec.ts/,
+				/popover.spec.ts/,
+			],
 			use: {
 				...devices["Pixel 5"],
 			},
