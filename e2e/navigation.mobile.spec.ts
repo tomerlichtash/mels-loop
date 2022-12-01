@@ -132,7 +132,7 @@ test.describe.skip("Mobile Menu", () => {
 				const id = "about";
 				const filename = "index";
 				const { data } = getFrontMatter(
-					"the-story-of-mel",
+					"docs/the-story-of-mel",
 					`${id}/${filename}`,
 					locale
 				);
@@ -157,7 +157,7 @@ test.describe.skip("Mobile Menu", () => {
 				const path = "docs/resources";
 				const filename = "index";
 				const { data } = getFrontMatter(
-					"the-story-of-mel",
+					"docs/the-story-of-mel",
 					`${path}/${filename}`,
 					locale
 				);

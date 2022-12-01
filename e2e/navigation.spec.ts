@@ -15,14 +15,17 @@ const headerDomUtil = new StylableDOMUtil(headerStylesheet);
 const topBar = domUtil.scopeSelector(".root");
 const siteTitle = headerDomUtil.scopeSelector(".siteTitle");
 
+const docId = "docs/the-story-of-mel";
+
 test.describe("TopBar Navigation", () => {
 	locales.map((locale) => {
 		test(`${locale} > should navigate to Homepage from Site Name button`, async ({
 			page,
 		}) => {
-			await page.goto(getLocalePath(locale, "about"));
+			await page.goto(getLocalePath(locale, "", "about"));
 			await page.locator(`${topBar} ${siteTitle}`).click();
-			await expect(page).toHaveURL(getLocalePath(locale));
+			const p = getLocalePath(locale, "", "about");
+			await expect(page).toHaveURL(p);
 		});
 	});
 });
@@ -32,11 +35,7 @@ test.describe("Dynamic Pages", () => {
 		test(`${locale} > should navigate to the About page`, async ({ page }) => {
 			const path = "about";
 			const filename = "index";
-			const { data } = getFrontMatter(
-				"the-story-of-mel",
-				`${path}/${filename}`,
-				locale
-			);
+			const { data } = getFrontMatter("", `${path}/${filename}`, locale);
 			const localePath = getLocalePath(locale, path);
 
 			await page.goto(localePath);
@@ -51,11 +50,7 @@ test.describe("Dynamic Pages", () => {
 		}) => {
 			const path = "about";
 			const filename = "index";
-			const { data } = getFrontMatter(
-				"the-story-of-mel",
-				`${path}/${filename}`,
-				locale
-			);
+			const { data } = getFrontMatter("", `${path}/${filename}`, locale);
 			const localePath = getLocalePath(locale, path);
 
 			await page.goto(localePath);
@@ -71,14 +66,10 @@ test.describe("Dynamic Pages", () => {
 		test(`${locale} > should navigate to the Resources page`, async ({
 			page,
 		}) => {
-			const path = "docs/resources";
+			const path = "pages/resources";
 			const filename = "index";
-			const { data } = getFrontMatter(
-				"the-story-of-mel",
-				`${path}/${filename}`,
-				locale
-			);
-			const localePath = getLocalePath(locale, path);
+			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
+			const localePath = getLocalePath(locale, docId, path);
 
 			await page.goto(localePath);
 			await page.hover(

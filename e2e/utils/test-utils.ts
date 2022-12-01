@@ -32,10 +32,13 @@ export const locales = Object.keys(Languages);
 export const translate = (locale: string, key: string) =>
 	_translate(locale, Languages)(key);
 
-export const getLocalePath = (locale: string, path?: string) => {
+export const getLocalePath = (locale: string, docId: string, path?: string) => {
 	let params = [baseDir];
 	if (locale !== "en") {
 		params.push(locale);
+	}
+	if (docId) {
+		params.push(docId);
 	}
 	if (path && path !== baseDir) {
 		params.push(path);
@@ -46,13 +49,9 @@ export const getLocalePath = (locale: string, path?: string) => {
 /**
  * MarkDown
  */
-export const getFrontMatter = (
-	document: string,
-	path: string,
-	locale: string
-) => {
+export const getFrontMatter = (docId: string, path: string, locale: string) => {
 	const testMdFile = fs.readFileSync(
-		`./public/content/${document}/${path}.${locale}.md`,
+		`./public/content/${docId}/${path}.${locale}.md`,
 		"utf-8"
 	);
 	return matter(testMdFile);
