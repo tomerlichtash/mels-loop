@@ -4,6 +4,13 @@ version: 2.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+executors:
+  pw-focal-development:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.28.0-focal
+  environment:
+    NODE_ENV: development # Needed if playwright is in `devDependencies`
+
 jobs:
   playwright-job-name:
     executor: pw-focal-development
