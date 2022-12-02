@@ -101,6 +101,7 @@ async function loadContent(
 		params.locale
 	}`;
 	try {
+		console.log(cacheKey);
 		const payload = await mlApiUtils.getFromCache(cacheKey);
 		if (payload) {
 			return JSON.parse(payload);
