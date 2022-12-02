@@ -1,26 +1,37 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
-version: 2.1
-
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-executors:
-  pw-focal-development:
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.28.0-focal
-  # environment:
-  #   NODE_ENV: development # Needed if playwright is in `devDependencies`
+ersion: 2.1
 
 jobs:
-  playwright-job-name:
-    executor: pw-focal-development
-    parallelism: 4
+  build:
+    docker:
+      - image: cimg/node:14.18
     steps:
-      - run: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; npx playwright test -- --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
+      - checkout
+      - run: |
+          curl -o- -L https://yarnpkg.com/install.sh | bash
+          echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $BASH_ENV
+      - run:
+          name: Compute version number
+          command: echo "0.0.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" | tee version.txt
+      - restore_cache:
+          keys:
+            - yarn-deps-{{ checksum "yarn.lock" }}
+            - yarn-deps
+      - run:
+          name: yarn install
+          command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: yarn-deps-{{ checksum "yarn.lock" }}-{{ epoch }}
+      - store_artifacts:
+          path: yarn.lock
+      - run:
+          name: "Build"
+          command: "yarn build"
+      - run:
+          name: "Install playwright"
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  infra:
     jobs:
-      - playwright-job-name
+      - "build"
