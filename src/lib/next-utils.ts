@@ -22,7 +22,7 @@ interface FolderStaticProps {
 	/**
 	 * The path of the first page in the document data
 	 */
-	documentPath: string
+	documentPath: string;
 }
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
@@ -47,7 +47,6 @@ type MLGetStaticPaths = (
 ) =>
 	| Promise<GetStaticPathsResult<ParsedUrlQuery>>
 	| GetStaticPathsResult<ParsedUrlQuery>;
-
 
 export interface IStaticPathsParameters {
 	readonly contentFolder?: string;
@@ -74,26 +73,33 @@ export interface IMLNextUtils {
 	 */
 	getFolderStaticPaths: MLGetStaticPaths;
 
-	getNestedStaticPaths(params: IStaticPathsParameters): Promise<GetStaticPathsResult<ParsedUrlQuery>>;
+	getNestedStaticPaths(
+		params: IStaticPathsParameters
+	): Promise<GetStaticPathsResult<ParsedUrlQuery>>;
 
-	populateDynamicPath(path: string, dict: { [key: string]: string }): Promise<string>;
+	populateDynamicPath(
+		path: string,
+		dict: { [key: string]: string }
+	): Promise<string>;
 }
 
 interface ICollectedPath {
 	readonly path: string;
-	readonly idMap: { [key: string]: string }
+	readonly idMap: { [key: string]: string };
 }
-
-
 
 const DYNAMIC_ROUTE_RE = /^\[([^\]]+)\]$/;
 
 /**
  * Recursively collects all the paths in the content dir along a dynamic route
- * @param params 
- * @returns 
+ * @param params
+ * @returns
  */
-async function _collectPaths(params: { parts: string[], root: string, paths?: ICollectedPath[] }): Promise<ICollectedPath[]> {
+async function _collectPaths(params: {
+	parts: string[];
+	root: string;
+	paths?: ICollectedPath[];
+}): Promise<ICollectedPath[]> {
 	const paths = params.paths || [],
 		parts = params.parts.slice();
 	if (!parts?.length) {
@@ -102,14 +108,15 @@ async function _collectPaths(params: { parts: string[], root: string, paths?: IC
 	const top = parts.shift(); // parts now shorter
 	const folderMatch = top.match(DYNAMIC_ROUTE_RE),
 		isKey = Boolean(folderMatch?.length); // indicates that the path contains a dynamic part, /[XXX]
-	const topFolder = isKey ?
-		params.root : fsPath.join(params.root, top);
+	const topFolder = isKey ? params.root : fsPath.join(params.root, top);
 	if (isKey) {
 		const allPaths: ICollectedPath[] = [];
 		const key: string = folderMatch[1];
 		try {
 			for (let nextFolder of paths) {
-				const children = await fs.promises.readdir(nextFolder.path, { withFileTypes: true });
+				const children = await fs.promises.readdir(nextFolder.path, {
+					withFileTypes: true,
+				});
 				for (let folder of children) {
 					if (!folder.isDirectory()) {
 						continue;
@@ -117,64 +124,63 @@ async function _collectPaths(params: { parts: string[], root: string, paths?: IC
 					const subPaths = await _collectPaths({
 						parts,
 						root: fsPath.join(params.root, folder.name),
-						paths: paths.map(rec => ({
+						paths: paths.map((rec) => ({
 							path: fsPath.join(rec.path, folder.name),
-							idMap: { ...nextFolder.idMap, [key]: folder.name }
-						}))
+							idMap: { ...nextFolder.idMap, [key]: folder.name },
+						})),
 					});
 					allPaths.push(...subPaths);
 				}
 			}
 			return allPaths;
-		}
-		catch (e) {
+		} catch (e) {
 			// probably enoent, folder doesn't exist, which is ok
 			void 0;
 		}
-	}
-	else {
-		const newPaths = paths.length ?
-			paths.map(rec => ({
-				path: fsPath.join(rec.path, top),
-				idMap: rec.idMap
-			}))
-			: [{
-				path: topFolder,
-				idMap: {}
-			}]
+	} else {
+		const newPaths = paths.length
+			? paths.map((rec) => ({
+					path: fsPath.join(rec.path, top),
+					idMap: rec.idMap,
+			  }))
+			: [
+					{
+						path: topFolder,
+						idMap: {},
+					},
+			  ];
 		return await _collectPaths({
 			parts,
 			root: topFolder,
-			paths: newPaths
-		})
+			paths: newPaths,
+		});
 	}
 	return [];
 }
 
 /**
  * Converts an OS path to xxx/yyy/zzz relative to the first /pages/ folder in the hierarchy
- * @param path 
- * @returns 
+ * @param path
+ * @returns
  */
 async function pathToRelativePath(path: string): Promise<string> {
 	try {
 		const stat = await fs.promises.lstat(path);
-		const contentFolder = stat.isDirectory() ?
-			path
+		const contentFolder = stat.isDirectory()
+			? path
 			: fsPath.join(fsPath.dirname(path), fsPath.basename(path, ".js"));
 		return contentFolder
-			.replace(/\\/g, '/')
+			.replace(/\\/g, "/")
 			.replace(/^.*?\/pages\/(.+)$/, "$1");
-	}
-	catch {
+	} catch {
 		return "";
 	}
 }
 
 async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 	try {
-		const relativePath = await pathToRelativePath(topFolder)
-		const parts = relativePath.split('/');
+		const relativePath = await pathToRelativePath(topFolder);
+		const parts = relativePath.split("/");
 
 		const root = getContentRootDir();
 		const allPaths = await _collectPaths({ root, parts });
@@ -186,33 +192,32 @@ async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 				if (stat.isDirectory()) {
 					validPaths.push(rec);
 				}
+			} catch {
+				// lint
+				void 0;
 			}
-			// lint
-			catch { void 0; }
 		}
-		return validPaths.map(rec => ({
-			path: rec.path
-				.replace(root, "")
-				.replace(/\\/g, '/')
-				.replace(/^\//, ''),
-			idMap: rec.idMap
+		return validPaths.map((rec) => ({
+			path: rec.path.replace(root, "").replace(/\\/g, "/").replace(/^\//, ""),
+			idMap: rec.idMap,
 		}));
-	}
-	catch (e) {
+	} catch (e) {
 		console.error(`Error collecting paths in ${topFolder}:\n${String(e)}`);
 		return [];
 	}
 }
 
 class MLNextUtils implements IMLNextUtils {
-
 	/**
 	 * Converts a path template, e.g. docs/[id] to docs/the-story-of-mel when `dict` has `{ id: "the-story-of-mel" }`
-	 * @param path 
-	 * @param dict 
-	 * @returns 
+	 * @param path
+	 * @param dict
+	 * @returns
 	 */
-	public async populateDynamicPath(path: string, dict: { [key: string]: string }): Promise<string> {
+	public async populateDynamicPath(
+		path: string,
+		dict: { [key: string]: string }
+	): Promise<string> {
 		let relative = await pathToRelativePath(path);
 		if (!relative) {
 			return "";
@@ -242,7 +247,7 @@ class MLNextUtils implements IMLNextUtils {
 				// Stringify the result, instead of leaving the job to Next, because
 				// Next's serializer is picky about objects, won't take class instances, Dates and more
 				content: JSON.stringify(docData.pages),
-				documentPath: (page && page.path) || ""
+				documentPath: (page && page.path) || "",
 			},
 		};
 	}
@@ -270,12 +275,13 @@ class MLNextUtils implements IMLNextUtils {
 		};
 	}
 
-	public async getNestedStaticPaths(options: IStaticPathsParameters): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
+	public async getNestedStaticPaths(
+		options: IStaticPathsParameters
+	): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
 		const paths: ILocaleMap[] = [];
 		const allPaths = await collectPathsIn(options.contentFolder);
 		for (let rec of allPaths) {
 			for (let locale of options.locales) {
-
 				const folderData = loadContentFolder({
 					locale,
 					relativePath: rec.path,
@@ -288,8 +294,8 @@ class MLNextUtils implements IMLNextUtils {
 				if (folderData.ids.length) {
 					paths.push({
 						params: rec.idMap,
-						locale
-					})
+						locale,
+					});
 				}
 			}
 		}
@@ -297,7 +303,6 @@ class MLNextUtils implements IMLNextUtils {
 			paths,
 			fallback: false,
 		});
-
 	}
 }
 

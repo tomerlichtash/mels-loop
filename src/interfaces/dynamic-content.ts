@@ -23,12 +23,12 @@ export interface IDynamicContentRecord {
 	/**
 	 * The id of the item to fetch
 	 */
-	 readonly id: string;
+	readonly id: string;
 
-	 /**
-	  * Is the url relative, or does it start with /
-	  */
-	 readonly isRelative: boolean;
+	/**
+	 * Is the url relative, or does it start with /
+	 */
+	readonly isRelative: boolean;
 }
 
 export interface IDynamicContentRequest {

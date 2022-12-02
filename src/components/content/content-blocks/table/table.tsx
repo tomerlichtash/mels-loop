@@ -10,7 +10,7 @@ import { useComponentAttributes } from "../../../use-component-attributes";
 
 export const Table = ({
 	componentData,
-	className
+	className,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { attributes } = useComponentAttributes(node);
@@ -18,7 +18,11 @@ export const Table = ({
 		? node.children
 		: [];
 	return (
-		<table className={st(classes.root, className)} key={node.key} {...attributes}>
+		<table
+			className={st(classes.root, className)}
+			key={node.key}
+			{...attributes}
+		>
 			<tbody key={mlUtils.uniqueId()}>
 				{elements.map((node) => {
 					return <ContentComponent key={node.key} componentData={{ node }} />;
