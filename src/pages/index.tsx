@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	 * @returns
 	 */
 	return mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.CODEX,
+		`docs/the-story-of-mel/${CONTENT_TYPES.CODEX}`,
 		context.locale,
 		LoadFolderModes.FOLDER,
 		{

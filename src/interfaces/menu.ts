@@ -1,6 +1,6 @@
 export type MenuItemLayout = "one" | "two" | "three";
 export type MenuSectionType = "group" | "single";
-export type MenuItemChildType = "article" | "page" | "link" | "external";
+export type MenuItemChildType = "codex" | "article" | "page" | "link" | "external";
 export type MenuItemKey =
 	| "title"
 	| "description"

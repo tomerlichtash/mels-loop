@@ -5,4 +5,8 @@ import { IDynamicContentServer } from "./dynamic-content";
  */
 export interface IPageContext {
 	readonly dynamicContentServer: IDynamicContentServer;
+	/**
+	 * The path of the document displayed in the current component
+	 */
+	readonly documentPath: string;
 }

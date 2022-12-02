@@ -17,7 +17,6 @@ import {
 	NOTE_TITLE_TERM_ORIGIN,
 } from "./utils/locators";
 import {
-	getAnnotationsData,
 	getGlossaryData,
 	getMarkdownLinks,
 	getTermSelector,
@@ -32,9 +31,13 @@ const labelSelector = domUtil.scopeSelector(NOTE_LABEL_SELECTOR);
 const titleSelector = domUtil.scopeSelector(NOTE_TITLE_SELECTOR);
 const termSelector = domUtil.scopeSelector(NOTE_TITLE_TERM_ORIGIN);
 
-test.describe("Codex", () => {
+test.describe("Glossary", () => {
 	locales.map((locale) => {
-		const { content } = getFrontMatter("codex/index", locale);
+		const { content } = getFrontMatter(
+			"docs/the-story-of-mel",
+			"codex/index",
+			locale
+		);
 		const codexTerms = getMarkdownLinks(content as string, "glossary");
 		const terms = getGlossaryData(locale);
 		return codexTerms.map((key: string) => {
@@ -86,47 +89,6 @@ test.describe("Codex", () => {
 					page.locator(contentSelector),
 					"term content equal to source"
 				).toHaveText(sanitizedContent);
-			});
-		});
-	});
-
-	locales.map((locale) => {
-		const { content } = getFrontMatter("codex/index", locale);
-		const codexTerms = getMarkdownLinks(content as string, "annotations");
-		const terms = getAnnotationsData(locale);
-		return codexTerms.map((key: string) => {
-			return test(`${locale} > should open annotation: ${key}`, async ({
-				page,
-			}) => {
-				await page.goto(getLocalePath(locale));
-				await page
-					.locator(getTermSelector({ type: "annotation", key }))
-					.first()
-					.click();
-				await page.$$(PORTAL_SELECTOR);
-
-				const textContent = await page.locator(contentSelector).textContent();
-
-				expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
-				expect(
-					textContent.split(SINGLE_WHITE_SPACE).length,
-					"minimum words per term"
-				).toBeGreaterThan(0);
-
-				const { content } = terms.filter(
-					(t: ITermTestData) => t.key === key
-				)[0];
-				const raw = stripMarkdown(content as string);
-				const sample = stripMarkdown(
-					await page.locator(contentSelector).textContent()
-				);
-
-				expect(
-					sample.length,
-					"sanitized content samples should have equal length"
-				).toEqual(sample.length);
-
-				expect(sample, "term content should be equal to source").toEqual(raw);
 			});
 		});
 	});

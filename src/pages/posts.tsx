@@ -22,7 +22,7 @@ export default function Blog(props: IPageProps) {
 				<h1 className={classes.title}>{sectionName}</h1>
 				{orderBy(pageData, ["metaData.date"], ["desc"]).map(
 					(page: IParsedPageData) => {
-						const { metaData, path } = page;
+						const { metaData, path: path } = page;
 						const { title, date, author } = metaData;
 						return (
 							<Post

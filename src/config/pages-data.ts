@@ -24,7 +24,7 @@ export const SITE_PAGES: SitePage[] = [
 	{
 		id: "preface",
 		locale: PREFACE_PAGE_LOCALE,
-		targetPathname: "/docs/preface",
+		targetPathname: "/docs/the-story-of-mel/pages/preface",
 	},
 	{
 		id: "resources",

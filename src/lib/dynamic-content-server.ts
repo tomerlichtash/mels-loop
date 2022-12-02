@@ -1,5 +1,6 @@
 import {
 	DynamicContentTypes,
+	IDynamicContentRequest,
 	IDynamicContentServer,
 } from "../interfaces/dynamic-content";
 import { IParsedPageData } from "../interfaces/models";
@@ -12,6 +13,7 @@ interface ContentMap {
 	[locale: string]: LocalizedContentMap;
 }
 
+
 const normalizeId = (id: string) => (id || "").trim().toLowerCase();
 export class DynamicContentServer implements IDynamicContentServer {
 	private readonly contentMap: { [type: string]: ContentMap };
@@ -20,22 +22,22 @@ export class DynamicContentServer implements IDynamicContentServer {
 		this.contentMap = {};
 	}
 
-	public async getItems(
-		type: DynamicContentTypes,
-		locale: string,
-		ids: string[]
+	public async getItems({
+		type, locale, ids, document
+	}: IDynamicContentRequest
 	): Promise<IParsedPageData[]> {
 		if (!type) {
 			// covers None, which is ""
 			return [];
 		}
-		const map = await this.ensureMap(type, locale);
+		const map = await this.ensureMap(type, locale, document);
 		return ids.map((id) => map[normalizeId(id)]);
 	}
 
 	private async ensureMap(
 		type: DynamicContentTypes,
-		locale: string
+		locale: string,
+		docPath?: string
 	): Promise<LocalizedContentMap> {
 		const itemsMap = this.contentMap[type],
 			localizedMap = itemsMap && itemsMap[locale];
@@ -44,7 +46,8 @@ export class DynamicContentServer implements IDynamicContentServer {
 		}
 		try {
 			const path = this.dynamicContentTypeToURL(type);
-			const url = `/api/content?type=${path}&locale=${locale}`;
+			const docParam = (docPath && `&document=${encodeURIComponent(docPath)}`) || "";
+			const url = `/api/content?type=${path}&locale=${locale}${docParam}`;
 			const response = await fetch(url, {
 				method: "GET",
 			});
