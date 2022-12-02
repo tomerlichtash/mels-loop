@@ -112,6 +112,7 @@ async function loadContent(
 		if (!docPath) {
 			throw new Error(`No ${contentType} for ${clientPath}, or globally`);
 		}
+		console.log(`Dynamic Content API using folder ${docPath} for type ${contentType} locale ${params.locale}`)
 		// = path
 		// 	.split('/')
 		// 	.filter(Boolean)
@@ -128,6 +129,8 @@ async function loadContent(
 			},
 			rootFolder: process.cwd(),
 		});
+		console.log(`Dynamic Content API found ${docData.pages?.length} items,
+content root folder ${process.cwd()}`)
 		const data = {
 			locale: params.locale,
 			// turn array into map
