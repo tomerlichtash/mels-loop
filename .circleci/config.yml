@@ -8,8 +8,8 @@ executors:
   pw-focal-development:
     docker:
       - image: mcr.microsoft.com/playwright:v1.28.0-focal
-  environment:
-    NODE_ENV: development # Needed if playwright is in `devDependencies`
+  # environment:
+  #   NODE_ENV: development # Needed if playwright is in `devDependencies`
 
 jobs:
   playwright-job-name:
