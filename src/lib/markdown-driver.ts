@@ -24,6 +24,7 @@ import getConfig from "next/config";
 import { mlUtils } from "./ml-utils";
 const { serverRuntimeConfig } = getConfig();
 
+
 const CONTENT_PATH = "public/content/";
 
 const getIndexFileName = (locale: string): string => `index.${locale}.md`;
@@ -34,7 +35,7 @@ function setContentRootDir(root: string): void {
 	rootDir = path.join(root, CONTENT_PATH);
 }
 
-function getContentRootDir(root?: string): string {
+export function getContentRootDir(root?: string): string {
 	return root ? path.join(root, CONTENT_PATH) : rootDir;
 }
 
@@ -57,10 +58,6 @@ export interface ILoadContentOptions {
 	 */
 	readonly locale: string;
 	readonly mode?: Partial<IContentParseOptions>;
-
-	/**
-	 * If not empty, use this as the top level folder in which the content folder can be found
-	 */
 	readonly rootFolder?: string;
 }
 
@@ -71,7 +68,7 @@ const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	contentMode: LoadContentModes.FULL,
 	parseMode: MLParseModes.NORMAL,
 	nodeProcessors: undefined,
-	locale: "en"
+	locale: undefined
 };
 
 export function loadContentFolder(
@@ -79,45 +76,37 @@ export function loadContentFolder(
 ): IFolderContent {
 	const mode: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
-		...options.mode,
-		locale: options.locale
+		...options.mode
 	};
 	const contentDir = path.join(
 		getContentRootDir(options.rootFolder),
 		options.relativePath
 	);
 
+	const folderContentData = new FolderContent();
 	if (!fs.existsSync(contentDir)) {
-		const paths = [
-			path.resolve("./public/content"),
-			path.resolve("/public"),
-			process.cwd(),
-		];
-		const diags = paths
-			.map((p) => [p, String(fs.existsSync(p))].join(" ->"))
-			.join("\n");
-		throw new Error(
-			`Cannot read files in ${options.rootFolder} (mapped to ${contentDir}),\ntry ${diags}`
+		console.warn(
+			`Cannot read files in ${options.relativePath} (mapped to ${contentDir}). In dynamic paths, this is not an error`
 		);
+		return folderContentData;
 	}
 
 	// Get file names under /posts
 	const contentNames: Dirent[] = fs.readdirSync(contentDir, {
 		withFileTypes: true,
 	});
-	const folderContentData = new FolderContent();
 
-	// log.info(
-	// 	`${chalk.blueBright(
-	// 		"collect"
-	// 	)} - sorted content in "${contentDir}" for locale "${options.locale}"`
-	// );
+	//log.info(
+	//	`${chalk.blueBright(
+	//		"collect"
+	//	)} - sorted content in "${contentDir}" for locale "${options.locale}"`
+	//);
 
 	const targetFileName = getIndexFileName(options.locale);
 
 	contentNames.forEach((rec: Dirent) => {
 		const name = rec.name;
-		// log.info(`${chalk.magenta("process")} - content ID "${name}"`);
+		//log.info(`${chalk.magenta("process")} - content ID "${name}"`);
 
 		let fullPath: string;
 
@@ -126,27 +115,29 @@ export function loadContentFolder(
 				return;
 			}
 			fullPath = path.join(contentDir, name);
-		} else {
+		}
+		else {
 			if (!rec.isDirectory()) {
 				return;
 			}
 
 			fullPath = path.join(contentDir, name, targetFileName);
-
-			if (!fs.existsSync(fullPath)) {
-				console.log(`error - Path not found: "${fullPath}"`);
-				// return error without disclosing OS path
-				return folderContentData.pages.push(
-					new ParsedPageData({
-						error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
-					})
-				);
-			}
-			folderContentData.ids.push({
-				params: { id: name },
-				locale: options.locale,
-			});
 		}
+
+		if (!fs.existsSync(fullPath)) {
+			//log.warn(`error - Path not found: "${fullPath}"`);
+			// return error without disclosing OS path
+			return folderContentData.pages.push(
+				new ParsedPageData({
+					error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
+				})
+			);
+		}
+		folderContentData.ids.push({
+			params: { id: name },
+			locale: options.locale,
+		});
+
 
 		if (mode.contentMode === LoadContentModes.NONE) {
 			return;
@@ -154,17 +145,16 @@ export function loadContentFolder(
 
 		try {
 			const fileContents = fs.readFileSync(fullPath, "utf8");
-			// log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
+			//log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
 
 			// Use gray-matter to parse the post metadata section
 			const { data: matterData, content } = matter(fileContents);
 			const metaData = new PageMetaData(matterData);
 			const parsedPageData = new ParsedPageData({
-				metaData,
+				metaData: metaData.toObject(),
 				id: name,
 				path: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
 			});
-			folderContentData.pages.push(parsedPageData);
 			if (mode.contentMode === LoadContentModes.FULL) {
 				// parse markdown and process
 				const mdParse = createHtmlMDParser(); //mdParser.defaultBlockParse;
@@ -177,8 +167,10 @@ export function loadContentFolder(
 				// Combine the data with the id
 				parsedPageData.parsed = tree;
 			}
-		} catch (e) {
-			console.log(`Error processing ${fullPath}`, e);
+			folderContentData.pages.push(parsedPageData.toObject());
+		}
+		catch (e) {
+			//log.error(`Error processing ${fullPath}`, e);
 			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
 		}
 	});
@@ -191,7 +183,7 @@ export function loadContentFolder(
 
 class ParsedPageData implements IParsedPageData {
 	/* eslint-disable @typescript-eslint/no-explicit-any */
-	constructor(data: any) {
+	constructor(data: Partial<IParsedPageData>) {
 		Object.keys(this).forEach((key) => {
 			if (data[key] !== undefined) {
 				this[key] = data[key];
@@ -199,8 +191,15 @@ class ParsedPageData implements IParsedPageData {
 		});
 	}
 
+	public toObject(): IParsedPageData {
+		return {
+			...this
+		}
+	}
+
 	public metaData: IPageMetaData = null;
 	public id = "";
+	public chapterId = "";
 	public path = "";
 	public parsed: IMLParsedNode[] = [];
 	public error?: string = "";
@@ -212,6 +211,11 @@ class PageMetaData implements IPageMetaData {
 		mlUtils.safeMerge(this, data);
 		if (this.date && typeof this.date === "string") {
 			this.date = mlUtils.parseDate(this.date);
+		}
+	}
+	public toObject(): IPageMetaData {
+		return {
+			...this
 		}
 	}
 	public glossary_key = "";
@@ -227,7 +231,7 @@ class PageMetaData implements IPageMetaData {
 	public figures: IFigureConfiguration = {
 		auto: true,
 		base: 1,
-		template: "[[FIGURE_ABBR]] %index%"
+		template: "Fig. %index%"
 	}
 }
 

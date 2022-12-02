@@ -9,6 +9,7 @@ export interface IMLApiResponse<T> {
 export interface IMLDynamicContentParams {
 	readonly locale: string;
 	readonly type: DynamicContentTypes;
+	readonly document?: string;
 }
 
 export interface IMLDynamicContentResponse {

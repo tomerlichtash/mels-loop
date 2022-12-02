@@ -11,6 +11,7 @@ import { mlUtils } from "../../../lib/ml-utils";
 import { LoadingIndicator } from "../../loading-indicator/loading-indicator";
 import ScrollArea from "../../scrollbar";
 import { st, classes } from "./dynamic-content-viewer.st.css";
+import { useRouter } from "next/router";
 
 /**
  * Show loading animation after this many msecs have elapsed without data
@@ -37,6 +38,7 @@ export const DynamicContentViewer = ({
 	const { translate, locale, textDirection } = useContext(ReactLocaleContext);
 	const dynamicContentContext = useContext(ReactDynamicContentContext);
 	const elements = item && item.parsed;
+	const router = useRouter();
 
 	useEffect(() => {
 		// safeguard against a promise resolving after the component was torn down
@@ -50,8 +52,12 @@ export const DynamicContentViewer = ({
 			setError(`Bad url ${url}`);
 			return;
 		}
+		let docPath: string;
+		if (itemData.isRelative) {
+			docPath = pageContext.documentPath || router.asPath;
+		}
 		pageContext.dynamicContentServer
-			.getItems(itemData.type, locale, [itemData.id])
+			.getItems({ type: itemData.type, locale, ids: [itemData.id], document: docPath })
 			.then((items: IParsedPageData[]) => {
 				if (removed) {
 					return;
@@ -83,7 +89,7 @@ export const DynamicContentViewer = ({
 		return () => {
 			removed = true;
 		};
-	}, [url, dynamicContentContext, pageContext, locale]);
+	}, [url, dynamicContentContext, pageContext, locale, router.asPath]);
 
 	if (error) {
 		return <div className={classes.error}>{error}</div>;

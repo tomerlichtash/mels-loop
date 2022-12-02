@@ -9,7 +9,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 	<cite>(Line 193)</cite>
 </blockQuote>
 
-This line in The Story of Mel precedes the author's description of Mel's hack, the almost criminally resourceful implementation of a finite loop with no exit condition.. These words never fail to give me goosebumps. They reflect a rare "Ah!" moment, where a seemingly random collection of facts suddenly falls into a coherent logical structure.
+This line in The Story of Mel precedes the author's description of Mel's hack, the almost criminally resourceful implementation of a finite loop with no exit condition. These words never fail to give me goosebumps. They reflect a rare "Ah!" moment, where a seemingly random collection of facts suddenly falls into a coherent logical structure.
 
 Intellectual satisfaction notwithstanding, I suspect that a considerable part of my pleasure has been derived from a sense of belonging to an elite handful of people that really got it. Sure, many developers loved the story and cherished it as part of their digital sphere, but I could go into detail and describe the hack without a refresher. I knew about the index register bit, the trick of storing the modified instruction in its original location and the magical appearance of a `JUMP` instruction in the right place, at the right time.
 

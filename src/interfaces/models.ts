@@ -236,7 +236,7 @@ export interface IParsedPageData {
 }
 
 export interface ILocaleMap {
-	readonly params: { id: string };
+	readonly params: { [key: string]: string };
 	locale: string;
 }
 
@@ -297,6 +297,7 @@ export interface SitePage {
 
 export interface IPageProps {
 	locale: string;
+	documentPath: string;
 	translate: (key: string) => string;
 	content: string;
 	className?: string;

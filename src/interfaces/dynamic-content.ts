@@ -19,11 +19,23 @@ export interface IDynamicContentRecord {
 	/**
 	 * Annotation, gloassary etc
 	 */
-	type: DynamicContentTypes;
+	readonly type: DynamicContentTypes;
 	/**
 	 * The id of the item to fetch
 	 */
-	id: string;
+	 readonly id: string;
+
+	 /**
+	  * Is the url relative, or does it start with /
+	  */
+	 readonly isRelative: boolean;
+}
+
+export interface IDynamicContentRequest {
+	type: DynamicContentTypes;
+	locale: string;
+	ids: Array<string>;
+	document?: string;
 }
 
 export interface IDynamicContentServer {
@@ -33,9 +45,5 @@ export interface IDynamicContentServer {
 	 * @param locale
 	 * @param ids
 	 */
-	getItems(
-		type: DynamicContentTypes,
-		locale: string,
-		ids: Array<string>
-	): Promise<IParsedPageData[]>;
+	getItems(options: IDynamicContentRequest): Promise<IParsedPageData[]>;
 }
