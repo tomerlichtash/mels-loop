@@ -5,6 +5,12 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
+  playwright-job-name:
+    executor: pw-focal-development
+    parallelism: 4
+    steps:
+      - run: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; npx playwright test -- --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
+
   say-hello:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -24,3 +30,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+      - playwright-job-name
