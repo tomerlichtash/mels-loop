@@ -2,6 +2,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /glossary
+
 # Host
 Host: https://melsloop.com
 
