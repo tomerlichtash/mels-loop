@@ -1,4 +1,4 @@
-ersion: 2.1
+version: 2.1
 
 jobs:
   build:
@@ -30,6 +30,10 @@ jobs:
           command: "yarn build"
       - run:
           name: "Install playwright"
+          command: "npx playwright install"
+      - run:
+          name: "E2E: Articles"
+          command: "yarn test:e2e articles"
 
 workflows:
   infra:
