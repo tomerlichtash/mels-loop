@@ -13,6 +13,7 @@ const stylableOptimizer = new StylableOptimizer();
 const nextConfig = {
 	reactStrictMode: true,
 	optimizeFonts: true,
+	webpack5: false,
 	webpack: (config) => {
 		config.module.rules.push({
 			test: /\.svg$/,
