@@ -47,6 +47,9 @@ const findFirstFolder = async (
 	const parts = relativePath.split("/").filter(Boolean); // in case there was a / prefix
 	const root = getContentRootDir(process.cwd());
 
+	console.log(`parts: ${JSON.stringify(parts)}`);
+	console.log(`root: ${root}`);
+
 	while (parts.length >= 2) {
 		// at least docs/xxx, posts/yyy
 		const folderPath = [...parts, contentPath].join("/"),
