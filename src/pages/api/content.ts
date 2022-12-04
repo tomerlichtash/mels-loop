@@ -14,6 +14,8 @@ import {
 } from "../../interfaces/ml-api";
 import { contentUtils } from "../../lib/content-utils";
 import { mlUtils } from "../../lib/ml-utils";
+import * as fsPath from "path";
+
 
 const TypeMap: { [key: string]: CONTENT_TYPES } = {
 	annotation: CONTENT_TYPES.ANNOTATION,
@@ -60,6 +62,8 @@ async function loadContent(
 		if (payload) {
 			return JSON.parse(payload);
 		}
+		const contentPath = fsPath.resolve(process.cwd(), "public");
+		console.log(`using content path ${contentPath}`);
 		const docData = loadContentFolder({
 			relativePath: contentType,
 			locale: params.locale,

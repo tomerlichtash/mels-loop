@@ -4,7 +4,7 @@ import { IProcessOptions, osUtils } from "../../lib/os-utils";
 interface IMelAPIParam {
 	data: string;
 }
-export default async function handler(_req: NextApiRequest, res: NextApiResponse): Promise<void> {
+export default async function apiHandler(_req: NextApiRequest, res: NextApiResponse): Promise<void> {
 	const input = _req.query as unknown as IMelAPIParam;
 	try {
 		const inner = input?.data ? JSON.parse(input.data) : {};
