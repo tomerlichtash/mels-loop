@@ -118,7 +118,7 @@ async function loadContent(
 		// 	.concat([contentType])
 		// 	.join('/');
 		const docData = loadContentFolder({
-			relativePath: docPath,
+			relativePath: "",
 			locale: params.locale,
 			loadMode: LoadFolderModes.CHILDREN,
 			mode: {
