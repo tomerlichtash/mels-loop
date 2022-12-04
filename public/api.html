@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<style>
+			body {
+				font-family: sans-serif;
+				margin: 10px;
+			}
+			.argv {
+				width: 30em;
+			}
+			.result .error {
+				color: red;
+			}
+			.result .output {
+				white-space: pre-wrap;
+				font-family: monospace;
+			}
+			.line {
+				display: flex;
+				justify-content: flex-start;
+				gap: 15px;
+				margin-bottom: 10px;
+			}
+			.version {
+				display: flex;
+				justify-content: flex-end;
+				font-size: 0.8em;
+			}
+		</style>
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+		<script>
+			function displayResult(result) {
+				var $div = $(".result");
+				$div.find(".status").text(String(result.status));
+				$div.find(".error").text(String(result.error));
+				$div.find(".output").text(String(result.output));
+			}
+
+			function processParam(s) {
+				return s.replace(/'[^']+'/g, function(match) {
+					return ["'", encodeURIComponent(match), "'"].join(''); 
+				})
+			}
+
+			function finalizeParam(s) {
+				return decodeURIComponent(s).trim();
+			}
+
+			async function onSubmit() {
+				try {
+					const exe = $(".exe").val().trim();
+					const argv = processParam($(".argv").val())
+						.split(/\s/)
+						.map(finalizeParam);
+					const cwd = $(".cwd").val().trim();
+					displayResult({ output: "", status: "", error: ""});
+					if (exe) {
+						const params = {
+							exe: exe,
+							argv: argv,
+							cwd: cwd
+						}
+						const url = "/api/mel?data=" + encodeURIComponent(JSON.stringify(params));
+						const response = await fetch(url, {
+							method: "GET"
+						})
+						const data = await response.json();
+						displayResult(data);
+					}
+				}
+				catch(e) {
+					displayResult({
+						error: String(e),
+						output: "",
+						status: ""
+					})
+				}
+			}
+
+			function run() {
+				$(".submit").on("click", onSubmit);
+				$(".form input").on("keydown", function(e) {
+					if (e.keyCode === 13 || e.which === 13) {
+						onSubmit();
+					}
+				})
+			}
+			$(run);
+		</script>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="version">version 11</div>
+			<div class="form">
+				<div class="line">Exe: <input type="text" class="exe" /></div>
+				<div class="line">Argv: <input type="text" class="argv"placeholder="Comma separated list of arguments" maxlength="100"/></div>
+				<div class="line">CWD: <input type="text" class="cwd"placeholder="Comma separated list of arguments" /></div>
+				<div class="line"><button class="submit">Send</button></div>
+			</div>
+			<div class="result">
+				<div class="line">Status: <span class="status"></span></div>
+				<div class="line">Error: <span class="error"></span></div>
+				<div class="line">Output: <div class="output"></div></div>
+			</div>
+		</div>
+	</body>
+</html>
