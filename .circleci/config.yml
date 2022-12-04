@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  E2E:
+  playwright:
     docker:
       - image: mcr.microsoft.com/playwright:v1.27.1-focal
     parallelism: 4
@@ -23,6 +23,6 @@ jobs:
       - run: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; npx playwright test --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
 
 workflows:
-  test:
+  E2E:
     jobs:
-      - E2E
+      - playwright
