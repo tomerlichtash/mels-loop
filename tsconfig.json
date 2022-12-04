@@ -14,7 +14,8 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"sourceMap": true
+		"sourceMap": true,
+		"types": ["node"]
 	},
 	"include": ["next-env.d.ts", "globals.d.ts", "**/**/*.ts", "**/**/*.tsx", "src/pages/docs/[id]/pages/[pageId]"],
 	"exclude": ["node_modules", "**/snippets/**", "**/*.ignore.*"]

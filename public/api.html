@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<style>
+			body {
+				font-family: sans-serif;
+				margin: 10px;
+			}
+			.argv {
+				width: 30em;
+			}
+		</style>
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+		<script>
+
+			async function onSubmit() {
+				const exe = $(".exe").val().trim();
+				const argv = $(".argv").val().split(' ').map(function(s) { return s.trim()});
+				const cwd = $(".cwd").val().trim();
+				const mel = $(".mel").val().trim();
+				$(".result .content").text('');
+				if (exe) {
+					const data = {
+						exe: exe,
+						argv: argv,
+						cwd: cwd,
+						mel: mel
+					}
+					const url = "/api/mel?data=" + encodeURIComponent(JSON.stringify(data));
+					const response = await fetch(url, {
+						method: "GET"
+					})
+					const raw = await response.json();
+					$(".result .content").text(JSON.stringify(raw));
+				}
+			}
+
+			function run() {
+				$(".submit").on("click", onSubmit);
+			}
+			$(run);
+		</script>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="form">
+				<div class="line">Exe: <input type="text" class="exe" />
+				<div class="line">Argv <input type="text" class="argv"placeholder="Comma separated list of arguments" maxlength="100"/></div>
+				<div class="line">CWD <input type="text" class="cwd"placeholder="Comma separated list of arguments" /></div>
+				<div class="line">Extra <input type="text" class="mel" placeholder="Comma separated list of arguments" /></div>
+				<div class="line"><button class="submit">Send</button></div>
+			</div>
+			<div class="result">
+				<div class="content"></div>
+			</div>
+		</div>
+	</body>
+</html>

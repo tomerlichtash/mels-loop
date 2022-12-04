@@ -14,6 +14,10 @@ const nextConfig = {
 	reactStrictMode: true,
 	optimizeFonts: true,
 	webpack5: false,
+	experimental: {
+		nftTracing: true 
+	},
+	webpack5: false,
 	webpack: (config) => {
 		config.module.rules.push({
 			test: /\.svg$/,
