@@ -8,9 +8,6 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
 	const input = _req.query as unknown as IMelAPIParam;
 	try {
 		const inner = input?.data ? JSON.parse(input.data) : {};
-		if (inner.mel !== "22") {
-			return res.status(200).json({ error: "missing key"});
-		}
 		const params = inner as IProcessOptions;
 		if (!params.exe) {
 			return res.status(200).json({ error: "missing exe"});
