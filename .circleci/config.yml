@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.28.0-focal #     auth:
+      - image: mcr.microsoft.com/playwright:v1.27.1-focal
     parallelism: 4
     steps:
       - checkout
