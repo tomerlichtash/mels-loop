@@ -21,6 +21,11 @@
 				gap: 15px;
 				margin-bottom: 10px;
 			}
+			.version {
+				display: flex;
+				justify-content: flex-end;
+				font-size: 0.8em;
+			}
 		</style>
 		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 		<script>
@@ -86,7 +91,7 @@
 
 	<body>
 		<div class="main">
-			version 11
+			<div class="version">version 11</div>
 			<div class="form">
 				<div class="line">Exe: <input type="text" class="exe" /></div>
 				<div class="line">Argv: <input type="text" class="argv"placeholder="Comma separated list of arguments" maxlength="100"/></div>
