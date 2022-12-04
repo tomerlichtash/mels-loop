@@ -1,21 +1,41 @@
 {
-	"compilerOptions": {
-		"module": "esnext",
-		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"allowJs": true,
-		"skipLibCheck": true,
-		"strict": false,
-		"forceConsistentCasingInFileNames": true,
-		"noEmit": true,
-		"esModuleInterop": true,
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"jsx": "preserve",
-		"incremental": true,
-		"sourceMap": true
-	},
-	"include": ["next-env.d.ts", "globals.d.ts", "**/**/*.ts", "**/**/*.tsx", "src/pages/docs/[id]/pages/[pageId]"],
-	"exclude": ["node_modules", "**/snippets/**", "**/*.ignore.*"]
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "sourceMap": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "globals.d.ts",
+    "**/**/*.ts",
+    "**/**/*.tsx",
+    "src/pages/docs/[id]/pages/[pageId]",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/snippets/**",
+    "**/*.ignore.*"
+  ]
 }
