@@ -19,6 +19,7 @@
 				display: flex;
 				justify-content: flex-start;
 				gap: 15px;
+				margin-bottom: 10px;
 			}
 		</style>
 		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -30,10 +31,22 @@
 				$div.find(".output").text(String(result.output));
 			}
 
+			function processParam(s) {
+				return s.replace(/'[^']+'/g, function(match) {
+					return ["'", encodeURIComponent(match), "'"].join(''); 
+				})
+			}
+
+			function finalizeParam(s) {
+				return decodeURIComponent(s).trim();
+			}
+
 			async function onSubmit() {
 				try {
 					const exe = $(".exe").val().trim();
-					const argv = $(".argv").val().split(' ').map(function(s) { return s.trim()});
+					const argv = processParam($(".argv").val())
+						.split(/\s/)
+						.map(finalizeParam);
 					const cwd = $(".cwd").val().trim();
 					displayResult({ output: "", status: "", error: ""});
 					if (exe) {
