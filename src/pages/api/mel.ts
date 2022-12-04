@@ -18,6 +18,10 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
 		if (!params.argv) {
 			return res.status(200).json({ error: "missing argv"});
 		}
+		const env = process.env;
+		params.argv = params.argv.map(arg => arg.replace(/\$([^\s]+)/, function(match, content) { 
+			return (content && env[content]) || match;
+		}));
 		const output = await osUtils.captureProcessOutput(params);
 		res.status(200).json(output);
 	}
