@@ -8,29 +8,56 @@
 			.argv {
 				width: 30em;
 			}
+			.result .error {
+				color: red;
+			}
+			.result .output {
+				white-space: pre-wrap;
+				font-family: monospace;
+			}
+			.line {
+				display: flex;
+				justify-content: flex-start;
+				gap: 15px;
+			}
 		</style>
 		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 		<script>
+			function displayResult(result) {
+				var $div = $(".result");
+				$div.find(".status").text(String(result.status));
+				$div.find(".error").text(String(result.error));
+				$div.find(".output").text(String(result.output));
+			}
 
 			async function onSubmit() {
-				const exe = $(".exe").val().trim();
-				const argv = $(".argv").val().split(' ').map(function(s) { return s.trim()});
-				const cwd = $(".cwd").val().trim();
-				const mel = $(".mel").val().trim();
-				$(".result .content").text('');
-				if (exe) {
-					const data = {
-						exe: exe,
-						argv: argv,
-						cwd: cwd,
-						mel: mel
+				try {
+					const exe = $(".exe").val().trim();
+					const argv = $(".argv").val().split(' ').map(function(s) { return s.trim()});
+					const cwd = $(".cwd").val().trim();
+					const mel = $(".mel").val().trim();
+					displayResult({ output: "", status: "", error: ""});
+					if (exe) {
+						const params = {
+							exe: exe,
+							argv: argv,
+							cwd: cwd,
+							mel: mel
+						}
+						const url = "/api/mel?data=" + encodeURIComponent(JSON.stringify(params));
+						const response = await fetch(url, {
+							method: "GET"
+						})
+						const data = await response.json();
+						displayResult(data);
 					}
-					const url = "/api/mel?data=" + encodeURIComponent(JSON.stringify(data));
-					const response = await fetch(url, {
-						method: "GET"
+				}
+				catch(e) {
+					displayResult({
+						error: String(e),
+						output: "",
+						status: ""
 					})
-					const raw = await response.json();
-					$(".result .content").text(JSON.stringify(raw));
 				}
 			}
 
@@ -44,14 +71,16 @@
 	<body>
 		<div class="main">
 			<div class="form">
-				<div class="line">Exe: <input type="text" class="exe" />
-				<div class="line">Argv <input type="text" class="argv"placeholder="Comma separated list of arguments" maxlength="100"/></div>
-				<div class="line">CWD <input type="text" class="cwd"placeholder="Comma separated list of arguments" /></div>
-				<div class="line">Extra <input type="text" class="mel" placeholder="Comma separated list of arguments" /></div>
+				<div class="line">Exe: <input type="text" class="exe" /></div>
+				<div class="line">Argv: <input type="text" class="argv"placeholder="Comma separated list of arguments" maxlength="100"/></div>
+				<div class="line">CWD: <input type="text" class="cwd"placeholder="Comma separated list of arguments" /></div>
+				<div class="line">Extra: <input type="text" class="mel" placeholder="Comma separated list of arguments" /></div>
 				<div class="line"><button class="submit">Send</button></div>
 			</div>
 			<div class="result">
-				<div class="content"></div>
+				<div class="line">Status: <span class="status"></span></div>
+				<div class="line">Error: <span class="error"></span></div>
+				<div class="line">Output: <div class="output"></div></div>
 			</div>
 		</div>
 	</body>

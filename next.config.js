@@ -13,7 +13,6 @@ const stylableOptimizer = new StylableOptimizer();
 const nextConfig = {
 	reactStrictMode: true,
 	optimizeFonts: true,
-	webpack5: false,
 	experimental: {
 		nftTracing: true 
 	},
