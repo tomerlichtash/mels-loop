@@ -63,6 +63,11 @@
 
 			function run() {
 				$(".submit").on("click", onSubmit);
+				$(".form input").on("keydown", function(e) {
+					if (e.keyCode === 13 || e.which === 13) {
+						onSubmit();
+					}
+				})
 			}
 			$(run);
 		</script>
