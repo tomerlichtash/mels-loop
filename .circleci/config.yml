@@ -1,0 +1,10 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.28.0-focal #     auth:
+    parallelism: 4
+    steps:
+      - checkout
+      - run: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e -- --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
