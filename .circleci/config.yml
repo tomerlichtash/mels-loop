@@ -21,15 +21,15 @@ commands:
             - ~/.cache/yarn
 
 jobs:
-  eslint:
-    docker:
-      - image: cimg/node:18.12
-    steps:
-      - checkout
-      - setup_dependencies
-      - run:
-          name: ESLint
-          command: yarn lint
+  # eslint:
+  #   docker:
+  #     - image: cimg/node:18.12
+  #   steps:
+  #     - checkout
+  #     - setup_dependencies
+  #     - run:
+  #         name: ESLint
+  #         command: yarn lint
 
   unit:
     docker:
@@ -57,6 +57,6 @@ workflows:
     jobs:
       - unit
       - e2e
-  Lint:
-    jobs:
-      - eslint
+  # Lint:
+  #   jobs:
+  #     - eslint
