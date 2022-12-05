@@ -96,6 +96,6 @@ workflows:
     jobs:
       - unit
       - e2e
-  Lint:
-    jobs:
       - eslint
+  # Lint:
+  #   jobs:
