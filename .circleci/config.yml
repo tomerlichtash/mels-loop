@@ -4,7 +4,7 @@ jobs:
   unit:
     docker:
       - image: cimg/node:16.10
-    parallelism: 4
+    # parallelism: 4
     steps:
       - checkout
       - restore_cache:
