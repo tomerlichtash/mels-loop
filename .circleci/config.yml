@@ -57,7 +57,7 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-cache-key-e2e-{{ checksum "yarn.lock" }}
+            - yarn-packages-cache-key-e2e-new-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn/cache
       - run:
@@ -68,6 +68,8 @@ jobs:
           key: yarn-packages-cache-key-e2e-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+      - store_test_results:
+          path: results.xml
       - run:
           name: E2E Test
           command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
