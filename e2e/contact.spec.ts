@@ -15,7 +15,7 @@ const emailErrSelector = (locale: string) =>
 const messageErrSelector = (locale: string) =>
 	`text=${translate(locale, "CONTACT_FORM_INVALID_MESSAGE")}`;
 
-test.describe.only("Contact Page", () => {
+test.describe("Contact Page", () => {
 	locales.map((locale) => {
 		test(`${locale} > should navigate to the contact page`, async ({
 			page,
