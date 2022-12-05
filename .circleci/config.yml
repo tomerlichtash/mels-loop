@@ -55,7 +55,7 @@ jobs:
 
       # Upload test results
       - store_test_results:
-          path: /tmp/unit-test-reports
+          path: /tmp/test-reports
 
   e2e:
     docker:
