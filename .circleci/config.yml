@@ -1,9 +1,9 @@
 version: 2.1
 
 jobs:
-  vitest:
+  unit:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.27.1-focal
+      - image: cimg/node:16.10
     parallelism: 4
     steps:
       - checkout
@@ -11,20 +11,20 @@ jobs:
           name: Restore Yarn Package Cache
           keys:
             - yarn-packages-{{ checksum "yarn.lock" }}
-      # - run:
-      #     name: Install Dependencies
-      #     command: yarn install --immutable
-      # - save_cache:
-      #     name: Save Yarn Package Cache
-      #     key: yarn-packages-{{ checksum "yarn.lock" }}
-      #     paths:
-      #       - .yarn/cache
-      #       - .yarn/unplugged
+      - run:
+          name: Install Dependencies
+          command: yarn install --immutable
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - .yarn/cache
+            - .yarn/unplugged
       - run:
           name: Unit Test
           command: yarn test:unit
 
-  playwright:
+  e2e:
     docker:
       - image: mcr.microsoft.com/playwright:v1.27.1-focal
     parallelism: 4
@@ -48,7 +48,7 @@ jobs:
           command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; npx playwright test --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
 
 workflows:
-  E2E:
+  Test:
     jobs:
-      - vitest
-      - playwright
+      - unit
+      - e2e
