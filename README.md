@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/tomerlichtash/mels-loop/circleci-docs.svg?style=svg)](https://circleci.com/tomerlichtash/mels-loop/circleci-docs)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/tomerlichtash/mels-loop/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/tomerlichtash/mels-loop/tree/master)
 
 # Mel's Loop
 
