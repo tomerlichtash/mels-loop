@@ -38,7 +38,7 @@ jobs:
           command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
       - save_cache:
           name: Save Yarn Package Cache
-          key: yarn-packages-cache-key-lint-{{ checksum "yarn.lock" }}
+          key: yarn-packages-cache-lint-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - run:
