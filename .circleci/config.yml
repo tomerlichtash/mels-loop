@@ -28,7 +28,7 @@ jobs:
       - checkout
       - run:
           name: ESLint
-          command: yarn eslint
+          command: yarn lint
 
   unit:
     docker:
