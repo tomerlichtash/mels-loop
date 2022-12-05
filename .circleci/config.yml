@@ -20,6 +20,7 @@ jobs:
           paths:
             - .yarn/cache
             - .yarn/unplugged
+            - node_modules
       - run:
           name: Unit Test
           command: yarn test:unit
