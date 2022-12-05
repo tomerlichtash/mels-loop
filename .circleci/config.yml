@@ -48,18 +48,27 @@ jobs:
           name: Unit Test
           command: yarn test:unit
 
+      # Save artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: unit_test
+
+      # Upload test results
+      - store_test_results:
+          path: /tmp/unit-test-reports
+
   e2e:
     docker:
       - image: mcr.microsoft.com/playwright:v1.28.1-focal
     parallelism: 4
     steps:
       - checkout
-      # - restore_cache:
-      #     name: Restore Yarn Package Cache
-      #     keys:
-      #       - yarn-packages-cache-key-e2e-{{ checksum "yarn.lock" }}
-      #     paths:
-      #       - ~/.yarn/cache
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-cache-key-e2e-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.yarn/cache
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
