@@ -43,6 +43,7 @@ jobs:
           paths:
             - .yarn/cache
             - .yarn/unplugged
+            - node_modules
       - run:
           name: E2E Test
           command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
