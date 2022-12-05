@@ -4,7 +4,11 @@ import { IPageProps } from "../../../../interfaces/models";
 import { CONTENT_TYPES } from "../../../../consts";
 import { mlNextUtils } from "../../../../lib/next-utils";
 import { GenericPage } from "../../../../components/content";
-import { LoadContentModes, LoadFolderModes, MLParseModes } from "../../../../interfaces/parser";
+import {
+	LoadContentModes,
+	LoadFolderModes,
+	MLParseModes,
+} from "../../../../interfaces/parser";
 
 export default function Doc(props: IPageProps) {
 	return <GenericPage pageProps={props} />;
@@ -26,6 +30,5 @@ export const getStaticProps: GetStaticProps = async (
 			parseMode: MLParseModes.VERSE,
 			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
 		}
-
 	);
 };
