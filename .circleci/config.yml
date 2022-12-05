@@ -28,20 +28,6 @@ jobs:
     steps:
       - checkout
       - setup_dependencies
-      # - restore_cache:
-      #     name: Restore Yarn Package Cache
-      #     keys:
-      #       - yarn-packages-{{ checksum "yarn.lock" }}
-      # - run:
-      #     name: Install Dependencies
-      #     command: yarn install --immutable
-      # - save_cache:
-      #     name: Save Yarn Package Cache
-      #     key: yarn-packages-{{ checksum "yarn.lock" }}
-      #     paths:
-      #       - .yarn/cache
-      #       - .yarn/unplugged
-      #       - ./node_modules
       - run:
           name: Unit Test
           command: yarn test:unit
@@ -52,20 +38,7 @@ jobs:
     parallelism: 4
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install --immutable
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - .yarn/cache
-            - .yarn/unplugged
-            - node_modules
+      - setup_dependencies
       - run:
           name: E2E Test
           command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
@@ -74,5 +47,4 @@ workflows:
   Test:
     jobs:
       - unit
-      # - e2e
-#
+      - e2e
