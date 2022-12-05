@@ -1,16 +1,16 @@
 version: 2.1
 
-jobs:
-  unit:
-    docker:
-      - image: cimg/node:18.12
-    # parallelism: 4
+# setup: &setup
+#   working_directory: ~/repo
+
+commands:
+  setup_dependencies:
+    description: "Setup Node Modules"
     steps:
-      - checkout
       - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
+        name: Restore Yarn Package Cache
+        keys:
+          - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
           command: yarn install --immutable
@@ -21,6 +21,29 @@ jobs:
             - .yarn/cache
             - .yarn/unplugged
             - ./node_modules
+
+jobs:
+  unit:
+    docker:
+      - image: cimg/node:18.12
+    # parallelism: 4
+    steps:
+      - checkout
+      - setup_dependencies
+      # - restore_cache:
+      #     name: Restore Yarn Package Cache
+      #     keys:
+      #       - yarn-packages-{{ checksum "yarn.lock" }}
+      # - run:
+      #     name: Install Dependencies
+      #     command: yarn install --immutable
+      # - save_cache:
+      #     name: Save Yarn Package Cache
+      #     key: yarn-packages-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - .yarn/cache
+      #       - .yarn/unplugged
+      #       - ./node_modules
       - run:
           name: Unit Test
           command: yarn test:unit
