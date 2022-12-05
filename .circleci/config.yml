@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   unit:
     docker:
-      - image: cimg/node:16.10
+      - image: cimg/node:18.12
     # parallelism: 4
     steps:
       - checkout
@@ -20,7 +20,7 @@ jobs:
           paths:
             - .yarn/cache
             - .yarn/unplugged
-            - node_modules
+            - ./node_modules
       - run:
           name: Unit Test
           command: yarn test:unit
