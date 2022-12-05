@@ -26,9 +26,10 @@ jobs:
       - image: cimg/node:18.12
     steps:
       - checkout
+      - setup_dependencies
       - run:
           name: ESLint
-          command: npx eslint . -f codeframe
+          command: yarn lint
 
   unit:
     docker:
