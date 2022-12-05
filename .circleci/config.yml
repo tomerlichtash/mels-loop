@@ -85,5 +85,5 @@ workflows:
   CI:
     jobs:
       - unit_test
-      - e2e
+      # - e2e
       - eslint
