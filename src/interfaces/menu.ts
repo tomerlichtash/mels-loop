@@ -1,6 +1,11 @@
 export type MenuItemLayout = "one" | "two" | "three";
 export type MenuSectionType = "group" | "single";
-export type MenuItemChildType = "codex" | "article" | "page" | "link" | "external";
+export type MenuItemChildType =
+	| "codex"
+	| "article"
+	| "page"
+	| "link"
+	| "external";
 export type MenuItemKey =
 	| "title"
 	| "description"
@@ -8,9 +13,7 @@ export type MenuItemKey =
 	| "cta_label"
 	| "author";
 
-export type MenuItemKeys = Partial<
-	Record<MenuItemKey, string>
->;
+export type MenuItemKeys = Partial<Record<MenuItemKey, string>>;
 
 export interface IMenuItemBase {
 	id: string;
