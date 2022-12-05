@@ -22,7 +22,7 @@ commands:
 
 jobs:
   eslint:
-    working_directory: ~/repo/eslint
+    # working_directory: ~/repo/eslint
     docker:
       - image: cimg/node:18.12
     steps:
@@ -45,7 +45,7 @@ jobs:
           name: ESLint
           command: yarn lint
 
-  unit:
+  unit_test:
     docker:
       - image: cimg/node:18.12
     steps:
@@ -93,12 +93,12 @@ jobs:
           command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
 
 workflows:
-  # E2E:
-  #   jobs:
-  #     - e2e
   Unit Test:
     jobs:
-      - unit
-  Lint:
+      - unit_test
+  Integration Test:
+    jobs:
+      - e2e
+  Clean Code:
     jobs:
       - eslint
