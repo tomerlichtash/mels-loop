@@ -1,7 +1,7 @@
 version: 2.1
 
 commands:
-  # working_directory: ~/repo
+  working_directory: ~/repo
   # setup_dependencies:
   #   description: "Setup Node Modules"
   #   steps:
@@ -22,6 +22,7 @@ commands:
 
 jobs:
   eslint:
+    working_directory: ~/repo/eslint
     docker:
       - image: cimg/node:18.12
     steps:
@@ -29,7 +30,7 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-cache-key-{{ checksum "yarn.lock" }}
+            - yarn-packages-cache-lint-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn/cache
       - run:
@@ -37,7 +38,7 @@ jobs:
           command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
       - save_cache:
           name: Save Yarn Package Cache
-          key: yarn-packages-cache-key-{{ checksum "yarn.lock" }}
+          key: yarn-packages-cache-key-lint-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - run:
