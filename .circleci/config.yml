@@ -2,7 +2,6 @@ version: 2.1
 
 jobs:
   eslint:
-    # working_directory: ~/repo/eslint
     docker:
       - image: cimg/node:18.12
     steps:
@@ -58,7 +57,7 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-cache-key-e2e-new-{{ checksum "yarn.lock" }}
+            - yarn-packages-cache-key-e2e-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn/cache
       - run:
