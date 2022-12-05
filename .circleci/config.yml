@@ -1,8 +1,5 @@
 version: 2.1
 
-environment:
-  TEST_REPORTS: /tmp/test-reports
-
 jobs:
   eslint:
     # working_directory: ~/repo/eslint
@@ -51,15 +48,6 @@ jobs:
           name: Unit Test
           command: yarn test:unit
 
-      # Save artifacts
-      - store_artifacts:
-          path: /tmp/artifacts
-          destination: unit_test
-
-      # Upload test results
-      - store_test_results:
-          path: /tmp/test-reports
-
   e2e:
     docker:
       - image: mcr.microsoft.com/playwright:v1.28.1-focal
@@ -88,5 +76,5 @@ workflows:
   CI:
     jobs:
       - unit_test
-      # - e2e
+      - e2e
       - eslint
