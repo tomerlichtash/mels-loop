@@ -1,7 +1,7 @@
 version: 2.1
 
 commands:
-  working_directory: ~/repo
+  # working_directory: ~/repo
   # setup_dependencies:
   #   description: "Setup Node Modules"
   #   steps:
