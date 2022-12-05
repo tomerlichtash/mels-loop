@@ -101,6 +101,8 @@ async function loadContent(
 		params.locale
 	}`;
 	try {
+		const contentPath = fsPath.resolve(process.cwd(), "public");
+		console.log(`using content path ${contentPath}`);
 		const payload = await mlApiUtils.getFromCache(cacheKey);
 		if (payload) {
 			return JSON.parse(payload);
@@ -112,11 +114,7 @@ async function loadContent(
 		if (!docPath) {
 			throw new Error(`No ${contentType} for ${clientPath}, or globally`);
 		}
-		// = path
-		// 	.split('/')
-		// 	.filter(Boolean)
-		// 	.concat([contentType])
-		// 	.join('/');
+
 		const docData = loadContentFolder({
 			relativePath: docPath,
 			locale: params.locale,
@@ -133,6 +131,7 @@ async function loadContent(
 			// turn array into map
 			items: mlUtils.arrayToMap(docData.pages, "id"),
 		};
+		// don't want to await before returning, so
 		mlApiUtils
 			.saveToCache(cacheKey, JSON.stringify({ data }))
 			.then(noop)
