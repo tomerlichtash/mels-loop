@@ -8,7 +8,7 @@ commands:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-cache-{{ checksum "yarn.lock" }}
+            - yarn-packages-cache-key-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn/cache
       - run:
@@ -16,20 +16,20 @@ commands:
           command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
       - save_cache:
           name: Save Yarn Package Cache
-          key: yarn-packages-cache-{{ checksum "yarn.lock" }}
+          key: yarn-packages-cache-key-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
 
 jobs:
-  # eslint:
-  #   docker:
-  #     - image: cimg/node:18.12
-  #   steps:
-  #     - checkout
-  #     - setup_dependencies
-  #     - run:
-  #         name: ESLint
-  #         command: yarn lint
+  eslint:
+    docker:
+      - image: cimg/node:18.12
+    steps:
+      - checkout
+      - setup_dependencies
+      - run:
+          name: ESLint
+          command: yarn lint
 
   unit:
     docker:
@@ -57,6 +57,6 @@ workflows:
     jobs:
       - unit
       - e2e
-  # Lint:
-  #   jobs:
-  #     - eslint
+  Lint:
+    jobs:
+      - eslint
