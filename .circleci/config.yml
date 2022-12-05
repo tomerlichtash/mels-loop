@@ -1,5 +1,8 @@
 version: 2.1
 
+environment:
+  TEST_REPORTS: /tmp/test-reports
+
 jobs:
   eslint:
     # working_directory: ~/repo/eslint
