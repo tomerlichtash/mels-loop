@@ -94,8 +94,8 @@ jobs:
 workflows:
   Test:
     jobs:
-      - unit
-      - e2e
+      # - unit
+      # - e2e
       - eslint
   # Lint:
   #   jobs:
