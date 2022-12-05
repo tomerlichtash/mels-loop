@@ -1,3 +1,5 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/tomerlichtash/mels-loop/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/tomerlichtash/mels-loop/tree/master)
+
 # Mel's Loop
 
 ## A Comprehensive Companion to _The Story of Mel_
