@@ -93,12 +93,8 @@ jobs:
           command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
 
 workflows:
-  Unit Test:
+  CI:
     jobs:
       - unit_test
-  Integration Test:
-    jobs:
       - e2e
-  Clean Code:
-    jobs:
       - eslint
