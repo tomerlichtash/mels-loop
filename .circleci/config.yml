@@ -28,7 +28,7 @@ jobs:
       - checkout
       - run:
           name: ESLint
-          command: yarn lint
+          command: npx eslint . -f codeframe
 
   unit:
     docker:
