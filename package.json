@@ -37,7 +37,6 @@
 		"lint": "eslint . -f codeframe",
 		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src",
 		"test:e2e": "playwright test",
-		"test:e2e:ci": "playwright test --workers=1",
 		"test:unit": "vitest __tests__"
 	},
 	"dependencies": {
