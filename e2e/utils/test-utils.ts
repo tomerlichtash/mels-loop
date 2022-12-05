@@ -32,7 +32,11 @@ export const locales = Object.keys(Languages);
 export const translate = (locale: string, key: string) =>
 	_translate(locale, Languages)(key);
 
-export const getLocalePath = (locale: string, docId: string, path?: string) => {
+export const getLocalePath = (
+	locale: string,
+	docId?: string,
+	path?: string
+) => {
 	let params = [baseDir];
 	if (locale !== "en") {
 		params.push(locale);
