@@ -57,7 +57,12 @@ export const DynamicContentViewer = ({
 			docPath = pageContext.documentPath || router.asPath;
 		}
 		pageContext.dynamicContentServer
-			.getItems({ type: itemData.type, locale, ids: [itemData.id], document: docPath })
+			.getItems({
+				type: itemData.type,
+				locale,
+				ids: [itemData.id],
+				document: docPath,
+			})
 			.then((items: IParsedPageData[]) => {
 				if (removed) {
 					return;

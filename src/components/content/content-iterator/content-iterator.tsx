@@ -27,7 +27,6 @@ export const ContentIterator = ({
 		return <div className={classes.noData}></div>;
 	}
 
-
 	const elements: IMLParsedNode[] =
 		Array.isArray(node.children) && node.children;
 	const Tag = componentData.tag as keyof JSX.IntrinsicElements;
@@ -41,12 +40,20 @@ export const ContentIterator = ({
 			);
 		}
 
-		return <span className={className} key={mlUtils.uniqueId()}>{node.text || ""}</span>;
+		return (
+			<span className={className} key={mlUtils.uniqueId()}>
+				{node.text || ""}
+			</span>
+		);
 	}
 
 	if (Tag) {
 		return (
-			<Tag className={st(classes[Tag], className)} key={mlUtils.uniqueId()} {...attributes}>
+			<Tag
+				className={st(classes[Tag], className)}
+				key={mlUtils.uniqueId()}
+				{...attributes}
+			>
 				{elements.map((node) => {
 					return (
 						<ContentComponent

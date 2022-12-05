@@ -1,6 +1,8 @@
 import { StringMap } from "../interfaces/models";
-import { CaseInsensitiveMap, CaseInsensitiveSet } from "./case-insensitive-collections";
-
+import {
+	CaseInsensitiveMap,
+	CaseInsensitiveSet,
+} from "./case-insensitive-collections";
 
 /**
  * Provides utility functions for App Specific validating html content
@@ -8,32 +10,32 @@ import { CaseInsensitiveMap, CaseInsensitiveSet } from "./case-insensitive-colle
 export interface IHTMLValidator {
 	/**
 	 * Is the attribute name valid for the provided tag?
-	 * @param tag 
-	 * @param key 
+	 * @param tag
+	 * @param key
 	 */
 	isValidAttributeFor(tag: string, key: string): boolean;
 	/**
 	 * return a map of the attributes in the provided map, that are valid for the provided tag
 	 * Guaranteed not null
-	 * @param tag 
-	 * @param attributes 
+	 * @param tag
+	 * @param attributes
 	 */
 	filterAttributesFor(tag: string, attributes: StringMap): StringMap;
 }
 
 const ALLOWED_HTML_ATTRIBUTES = {
 	"*": {
-		valid: ["data-type", "align"]
+		valid: ["data-type", "align"],
 	},
 	TD: {
-		valid: [ "rowspan", "colspan" ]
+		valid: ["rowspan", "colspan"],
 	},
 	TH: {
-		valid: [ "rowspan", "colspan" ]
+		valid: ["rowspan", "colspan"],
 	},
 	TABLE: {
-		valid: [ "border", "cellpadding", "cellspacing"]
-	}
+		valid: ["border", "cellpadding", "cellspacing"],
+	},
 };
 
 interface IAttributeMap {
@@ -44,21 +46,24 @@ class HTMLValidator implements IHTMLValidator {
 	private readonly attributeMap: CaseInsensitiveMap<IAttributeMap>;
 	constructor() {
 		this.attributeMap = new CaseInsensitiveMap();
-		Object.keys(ALLOWED_HTML_ATTRIBUTES).forEach(key => {
+		Object.keys(ALLOWED_HTML_ATTRIBUTES).forEach((key) => {
 			const rec = ALLOWED_HTML_ATTRIBUTES[key];
-			this.attributeMap.set(key, { valid: new CaseInsensitiveSet(rec.valid as string[])});
+			this.attributeMap.set(key, {
+				valid: new CaseInsensitiveSet(rec.valid as string[]),
+			});
 		});
 		if (!this.attributeMap.has("*")) {
 			this.attributeMap.set("*", { valid: new CaseInsensitiveSet() });
 		}
-
 	}
 	isValidAttributeFor(tag: string, key: string): boolean {
-		if (!tag){
+		if (!tag) {
 			return false;
 		}
-		return this.attributeMap.get("*").valid.has(key)
-			||this.attributeMap.get(tag)?.valid.has(key);
+		return (
+			this.attributeMap.get("*").valid.has(key) ||
+			this.attributeMap.get(tag)?.valid.has(key)
+		);
 	}
 
 	filterAttributesFor(tag: string, attributes: StringMap): StringMap {
@@ -70,9 +75,8 @@ class HTMLValidator implements IHTMLValidator {
 				acc[name] = attributes[name];
 			}
 			return acc;
-		}, {})
+		}, {});
 	}
-
 }
 
 export const htmlValidator: IHTMLValidator = new HTMLValidator();

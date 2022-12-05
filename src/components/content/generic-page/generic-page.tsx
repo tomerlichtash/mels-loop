@@ -18,7 +18,7 @@ export default function GenericPage(props: IContentComponentData) {
 		useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props.pageProps);
 	const page = pageData && pageData[0];
-	const metaData = page?.metaData || {} as IPageMetaData;
+	const metaData = page?.metaData || ({} as IPageMetaData);
 	const { author, date, abstract } = metaData;
 	const node: IMLParsedNode = page && {
 		children: page.parsed,
