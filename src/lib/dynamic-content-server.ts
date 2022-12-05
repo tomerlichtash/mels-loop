@@ -13,7 +13,6 @@ interface ContentMap {
 	[locale: string]: LocalizedContentMap;
 }
 
-
 const normalizeId = (id: string) => (id || "").trim().toLowerCase();
 export class DynamicContentServer implements IDynamicContentServer {
 	private readonly contentMap: { [type: string]: ContentMap };
@@ -23,9 +22,11 @@ export class DynamicContentServer implements IDynamicContentServer {
 	}
 
 	public async getItems({
-		type, locale, ids, document
-	}: IDynamicContentRequest
-	): Promise<IParsedPageData[]> {
+		type,
+		locale,
+		ids,
+		document,
+	}: IDynamicContentRequest): Promise<IParsedPageData[]> {
 		if (!type) {
 			// covers None, which is ""
 			return [];
@@ -46,7 +47,8 @@ export class DynamicContentServer implements IDynamicContentServer {
 		}
 		try {
 			const path = this.dynamicContentTypeToURL(type);
-			const docParam = (docPath && `&document=${encodeURIComponent(docPath)}`) || "";
+			const docParam =
+				(docPath && `&document=${encodeURIComponent(docPath)}`) || "";
 			const url = `/api/content?type=${path}&locale=${locale}${docParam}`;
 			const response = await fetch(url, {
 				method: "GET",

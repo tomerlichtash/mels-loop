@@ -4,7 +4,10 @@ import { IPageContext } from "../interfaces/page-context";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
 
 export class PageContext implements IPageContext {
-	constructor(public readonly dynamicContentServer: IDynamicContentServer, public documentPath: string) {}
+	constructor(
+		public readonly dynamicContentServer: IDynamicContentServer,
+		public documentPath: string
+	) {}
 }
 
 const ctx = createContext<IPageContext>(new PageContext(null, ""));

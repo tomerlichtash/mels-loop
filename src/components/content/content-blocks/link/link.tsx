@@ -13,11 +13,13 @@ export const Link = ({
 	className,
 }: ILinkProps): JSX.Element => {
 	const { node } = componentData;
-	const isHash = node.target && node.target[0] === '#';
-	const targetAttrs = isHash ? {} : {
-		target: "_blank",
-		rel: "noreferrer"
-	};
+	const isHash = node.target && node.target[0] === "#";
+	const targetAttrs = isHash
+		? {}
+		: {
+				target: "_blank",
+				rel: "noreferrer",
+		  };
 	return (
 		<a
 			className={st(classes.root, className)}

@@ -20,8 +20,8 @@ import LinkSelector from "../link-selector";
 import { st, classes } from "./content-component.st.css";
 
 const ROOT_CLASS_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
-	MLNODE_TYPES.TR
-])
+	MLNODE_TYPES.TR,
+]);
 
 export const ContentComponent = ({
 	componentData,
@@ -30,8 +30,11 @@ export const ContentComponent = ({
 	const { node } = componentData;
 	const { key, type } = node;
 	const useClassname = !ROOT_CLASS_TYPES.has(type);
-	const stylableClassName =  st(classes.root, { type }, 
-		useClassname? className : "");
+	const stylableClassName = st(
+		classes.root,
+		{ type },
+		useClassname ? className : ""
+	);
 
 	if (!key) {
 		console.warn("missing key on", node);
@@ -75,8 +78,12 @@ export const ContentComponent = ({
 			);
 		case MLNODE_TYPES.CODEBLOCK:
 			return (
-				<CodeBlock key={key} componentData={componentData} className={stylableClassName} />
-			)
+				<CodeBlock
+					key={key}
+					componentData={componentData}
+					className={stylableClassName}
+				/>
+			);
 		case MLNODE_TYPES.BLOCKQUOTE:
 			return (
 				<BlockQuote

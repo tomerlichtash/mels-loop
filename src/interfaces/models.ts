@@ -44,7 +44,7 @@ export enum ASTNODE_TYPES {
 	SUP = "sup",
 	/* Custom types */
 	HTML = "HTML",
-	comment = "comment"
+	comment = "comment",
 }
 
 export enum MLNODE_TYPES {
@@ -240,7 +240,7 @@ export interface ILocaleMap {
 	locale: string;
 }
 
-export type StringMap = {[key: string]: string};
+export type StringMap = { [key: string]: string };
 export type NodeAttributeMap = { readonly [rekey: string]: string };
 
 export type PageSortField = Omit<keyof IParsedPageData, "parsed" | "error">;
