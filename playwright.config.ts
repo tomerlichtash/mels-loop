@@ -13,11 +13,6 @@ const baseURL = `http://localhost:${PORT}`;
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
 	reporter: [["junit", { outputFile: "results.xml" }]],
-	use: {
-		trace: "on",
-		screenshot: "on",
-		video: "on",
-	},
 
 	// Timeout per test
 	timeout: 30 * 1000,
@@ -41,6 +36,9 @@ const config: PlaywrightTestConfig = {
 	},
 
 	use: {
+		screenshot: "on",
+		video: "on",
+
 		// Use baseURL so to make navigations relative.
 		// More information: https://playwright.dev/docs/api/class-testoptions#test-options-base-url
 		baseURL,
