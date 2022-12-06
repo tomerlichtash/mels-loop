@@ -6,7 +6,7 @@ import {
 	translate,
 } from "./utils/test-utils";
 
-test.describe("Articles", () => {
+test.describe.only("Articles", () => {
 	const docId = "docs/the-story-of-mel";
 	locales.map((locale) => {
 		test(`${locale} > should navigate to the Preface article`, async ({
@@ -25,7 +25,7 @@ test.describe("Articles", () => {
 			);
 
 			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
-			await expect(page.locator("h1")).toHaveText(data.title as string);
+			await expect(page.locator("h2")).toHaveText(data.title as string);
 		});
 
 		test(`${locale} > should navigate to the Missing Bits article`, async ({
