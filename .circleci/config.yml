@@ -28,7 +28,6 @@ jobs:
   unit_test:
     docker:
       - image: cimg/node:18.12
-    parallelism: 4
     steps:
       - checkout
       - restore_cache:
