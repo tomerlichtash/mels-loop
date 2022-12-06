@@ -56,7 +56,7 @@ const config: PlaywrightTestConfig = {
 	projects: [
 		{
 			name: "Desktop Chrome",
-			testIgnore: [/.mobile.spec.ts/],
+			testIgnore: [/.mobile.spec.ts/, /annotations/, /glossary/],
 			use: {
 				...devices["Desktop Chrome"],
 			},
@@ -78,8 +78,8 @@ const config: PlaywrightTestConfig = {
 			name: "Mobile Chrome",
 			testMatch: [
 				/.mobile.spec.ts/,
-				/glossary.spec.ts/,
-				/annotations.spec.ts/,
+				// /glossary.spec.ts/,
+				// /annotations.spec.ts/,
 				/popover.spec.ts/,
 			],
 			use: {

@@ -6,7 +6,7 @@ import {
 	translate,
 } from "./utils/test-utils";
 
-test.describe.only("Articles", () => {
+test.describe("Articles", () => {
 	const docId = "docs/the-story-of-mel";
 	locales.map((locale) => {
 		test(`${locale} > should navigate to the Preface article`, async ({
