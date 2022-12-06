@@ -46,7 +46,9 @@ jobs:
             - ~/.cache/yarn
       - run:
           name: Unit Test
-          command: yarn test:unit
+          command: yarn test:unit:ci
+      - store_test_results:
+          path: unit-tests-results.xml
 
   e2e:
     docker:
@@ -71,7 +73,6 @@ jobs:
       - run:
           name: E2E Test
           command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
-
       - store_test_results:
           path: results.xml
 

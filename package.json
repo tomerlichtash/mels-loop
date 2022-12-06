@@ -37,7 +37,8 @@
 		"lint": "eslint . -f codeframe",
 		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src",
 		"test:e2e": "playwright test",
-		"test:unit": "vitest __tests__"
+		"test:unit": "vitest __tests__",
+		"test:unit:ci": "vitest __tests__ --reporter=junit --outputFile.junit=unit-tests-results.xml"
 	},
 	"dependencies": {
 		"@radix-ui/react-icons": "^1.1.1",
