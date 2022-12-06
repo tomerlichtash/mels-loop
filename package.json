@@ -3,7 +3,7 @@
 	"version": "1.2.1",
 	"description": "A Comprehensive Guide to The Story of Mel",
 	"engines": {
-		"node": ">=15.0.0"
+		"node": ">=18.0.0"
 	},
 	"keywords": [
 		"hacker",
@@ -35,7 +35,7 @@
 		"build:sitemap": "next-sitemap",
 		"start": "next start",
 		"lint": "eslint . -f codeframe",
-		"prettier:check": "prettier --config .prettierrc --ignore-path .prettierignore --check src",
+		"prettier:check": "npx prettier --config .prettierrc --ignore-path .prettierignore --check src",
 		"test:e2e": "playwright test",
 		"test:unit": "vitest __tests__",
 		"test:unit:ci": "vitest __tests__ --reporter=junit --outputFile.junit=unit-tests-results.xml"
