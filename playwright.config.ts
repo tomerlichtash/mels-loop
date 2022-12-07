@@ -12,7 +12,9 @@ const baseURL = `http://localhost:${PORT}`;
 
 // Reference: https://playwright.dev/docs/test-configuration
 const config: PlaywrightTestConfig = {
-	reporter: [["junit", { outputFile: "results.xml" }]],
+	reporter: [
+		process.env.CI ? ["junit", { outputFile: "results.xml" }] : ["list"],
+	],
 
 	// Timeout per test
 	timeout: 40 * 1000,
@@ -23,7 +25,7 @@ const config: PlaywrightTestConfig = {
 	// Artifacts folder where screenshots, videos, and traces are stored.
 	outputDir: "test-results/",
 
-	workers: 8,
+	workers: 4,
 	fullyParallel: true,
 
 	// Run your local dev server before starting the tests:
@@ -55,35 +57,38 @@ const config: PlaywrightTestConfig = {
 
 	projects: [
 		{
-			name: "Desktop Chrome",
-			testIgnore: [/.mobile.spec.ts/],
+			name: "Site",
+			testMatch: ["site/**/*.spec.ts"],
 			use: {
 				...devices["Desktop Chrome"],
 			},
 		},
-		// {
-		// 	name: "Desktop Firefox",
-		// 	use: {
-		// 		...devices["Desktop Firefox"],
-		// 	},
-		// },
-		// {
-		// 	name: "Desktop Safari",
-		// 	use: {
-		// 		...devices["Desktop Safari"],
-		// 	},
-		// },
-		// Test against mobile viewports.
 		{
-			name: "Mobile Chrome",
-			testMatch: [/.mobile.spec.ts/, /popover.spec.ts/],
+			name: "Glossary",
+			testMatch: ["/glossary/**/*.spec.ts"],
 			use: {
-				...devices["Pixel 5"],
+				...devices["Desktop Chrome"],
+			},
+		},
+		{
+			name: "codex-the-story-of-mel",
+			testMatch: ["codex/the-story-of-mel/**/*.spec.ts"],
+			use: {
+				...devices["Desktop Chrome"],
+				...devices["iPhone 12"],
 			},
 		},
 		// {
-		// 	name: "Mobile Safari",
-		// 	use: devices["iPhone 12"],
+		// 	name: "Mobile Chrome",
+		// 	testMatch: [
+		// 		/.mobile.spec.ts/,
+		// 		/popover.spec.ts/,
+		// 		/glossary/,
+		// 		/annotations/,
+		// 	],
+		// 	use: {
+		// 		...devices["Pixel 5"],
+		// 	},
 		// },
 	],
 };

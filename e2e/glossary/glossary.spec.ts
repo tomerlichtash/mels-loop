@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as stylesheet from "../src/components/note/note.st.css";
+import * as stylesheet from "../../src/components/note/note.st.css";
 import {
 	getFrontMatter,
 	getLocalePath,
@@ -8,21 +8,21 @@ import {
 	stripMarkdown,
 	translate,
 	validateStringTranslation,
-} from "./utils/test-utils";
+} from "../utils/test-utils";
 import {
 	PORTAL_SELECTOR,
 	NOTE_LABEL_SELECTOR,
 	NOTE_TITLE_SELECTOR,
 	NOTE_CONTENT_SELECTOR,
 	NOTE_TITLE_TERM_ORIGIN,
-} from "./utils/locators";
+} from "../utils/locators";
 import {
 	getGlossaryData,
 	getMarkdownLinks,
 	getTermSelector,
-} from "./utils/terms";
-import type { ITermTestData } from "./utils/types";
-import { SINGLE_WHITE_SPACE } from "./utils/patterns";
+} from "../utils/terms";
+import type { ITermTestData } from "../utils/types";
+import { SINGLE_WHITE_SPACE } from "../utils/patterns";
 
 const domUtil = new StylableDOMUtil(stylesheet);
 

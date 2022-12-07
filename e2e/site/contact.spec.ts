@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 // import { StylableDOMUtil } from "@stylable/dom-test-kit";
 // import * as formStylesheet from "../src/components/form/form.st.css";
-import { getLocalePath, locales, translate } from "./utils/test-utils";
+import { getLocalePath, locales, translate } from "../utils/test-utils";
 
 // const domUtil = new StylableDOMUtil(formStylesheet);
 // const nameSelector = domUtil.scopeSelector(".field:id(fullname)");
