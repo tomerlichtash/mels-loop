@@ -76,7 +76,7 @@ jobs:
       - store_test_results:
           path: results.xml
       - store_artifacts:
-          path: /tmp/test-results
+          path: /project/test-results
           # destination: playwright-artifacts
 
 workflows:
