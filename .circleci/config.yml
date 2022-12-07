@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   eslint:
-    # working_directory: ~/repo/eslint
+    working_directory: /tmp
     docker:
       - image: cimg/node:18.12
     steps:
@@ -28,13 +28,12 @@ jobs:
   unit_test:
     docker:
       - image: cimg/node:18.12
-    environment: $JOB_NAME="unit"
     steps:
       - checkout
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-$JOB_NAME-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-unit-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn/cache
       - run:
@@ -77,12 +76,12 @@ jobs:
       - store_test_results:
           path: results.xml
       - store_artifacts:
-          path: /test-results
+          path: /tmp/test-results
           # destination: playwright-artifacts
 
 workflows:
   CI:
     jobs:
-      - unit_test
+      # - unit_test
       - e2e
-      - eslint
+      # - eslint

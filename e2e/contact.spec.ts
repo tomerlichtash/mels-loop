@@ -36,7 +36,7 @@ test.describe("Contact Page", () => {
 	});
 });
 
-test.describe("Contact Form", () => {
+test.describe.only("Contact Form", () => {
 	locales.map((locale) => {
 		test(`${locale} > should yield errors for empty fields on form submission`, async ({
 			page,
