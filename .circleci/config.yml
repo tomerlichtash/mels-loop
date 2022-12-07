@@ -51,6 +51,7 @@ jobs:
           path: unit-tests-results.xml
 
   e2e:
+    working_directory: /tmp
     docker:
       - image: mcr.microsoft.com/playwright:v1.28.1-focal
     parallelism: 4
@@ -76,7 +77,7 @@ jobs:
       - store_test_results:
           path: results.xml
       - store_artifacts:
-          path: /project/test-results
+          path: /tmp/test-results
           # destination: playwright-artifacts
 
 workflows:
