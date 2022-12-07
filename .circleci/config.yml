@@ -51,7 +51,6 @@ jobs:
           path: unit-tests-results.xml
 
   e2e:
-    working_directory: /tmp
     docker:
       - image: mcr.microsoft.com/playwright:v1.28.1-focal
     parallelism: 4
