@@ -28,12 +28,13 @@ jobs:
   unit_test:
     docker:
       - image: cimg/node:18.12
+    environment: JOB_NAME="unit"
     steps:
       - checkout
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-unit-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-$JOB_NAME-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn/cache
       - run:
