@@ -36,8 +36,8 @@ const config: PlaywrightTestConfig = {
 	},
 
 	use: {
-		screenshot: "on",
-		video: "on",
+		screenshot: "only-on-failure",
+		video: "retain-on-failure",
 
 		// Use baseURL so to make navigations relative.
 		// More information: https://playwright.dev/docs/api/class-testoptions#test-options-base-url
