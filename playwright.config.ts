@@ -19,7 +19,7 @@ const config: PlaywrightTestConfig = {
 	// Test directory
 	testDir: path.join(__dirname, "e2e"),
 	// If a test fails, retry it additional 2 times
-	retries: 2,
+	retries: 1,
 	// Artifacts folder where screenshots, videos, and traces are stored.
 	outputDir: "test-results/",
 
@@ -56,7 +56,7 @@ const config: PlaywrightTestConfig = {
 	projects: [
 		{
 			name: "Desktop Chrome",
-			testIgnore: [/.mobile.spec.ts/, /annotations/, /glossary/],
+			testIgnore: [/.mobile.spec.ts/],
 			use: {
 				...devices["Desktop Chrome"],
 			},
@@ -76,12 +76,7 @@ const config: PlaywrightTestConfig = {
 		// Test against mobile viewports.
 		{
 			name: "Mobile Chrome",
-			testMatch: [
-				/.mobile.spec.ts/,
-				// /glossary.spec.ts/,
-				// /annotations.spec.ts/,
-				/popover.spec.ts/,
-			],
+			testMatch: [/.mobile.spec.ts/, /popover.spec.ts/],
 			use: {
 				...devices["Pixel 5"],
 			},
