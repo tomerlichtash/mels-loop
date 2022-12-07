@@ -28,7 +28,7 @@ jobs:
   unit_test:
     docker:
       - image: cimg/node:18.12
-    environment: JOB_NAME="unit"
+    environment: $JOB_NAME="unit"
     steps:
       - checkout
       - restore_cache:
