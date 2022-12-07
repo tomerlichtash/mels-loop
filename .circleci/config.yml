@@ -2,7 +2,6 @@ version: 2.1
 
 jobs:
   eslint:
-    working_directory: /tmp
     docker:
       - image: cimg/node:18.12
     steps:
