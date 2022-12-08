@@ -28,7 +28,7 @@ export const getAnnotationsData = (
 				return;
 			}
 			const { content } = getFrontMatter(
-				"docs/the-story-of-mel",
+				docId,
 				`annotations/${term}/index`,
 				locale
 			);
@@ -55,7 +55,6 @@ export const getGlossaryData = (locale: string) => {
 				locale
 			);
 			return {
-				// type: "glossary",
 				key: term,
 				term_key: data.glossary_key,
 				content,

@@ -108,7 +108,7 @@ jobs:
   e2e_codex:
     docker:
       - image: mcr.microsoft.com/playwright:v1.28.1-focal
-    parallelism: 8
+    parallelism: 4
     steps:
       - checkout
       - restore_cache:
@@ -136,8 +136,8 @@ jobs:
 workflows:
   CI:
     jobs:
-      # - unit_test
+      - eslint
+      - unit_test
       - e2e_site
       - e2e_glossary
       - e2e_codex
-      # - eslint
