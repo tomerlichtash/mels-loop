@@ -17,22 +17,23 @@ const messageErrSelector = (locale: string) =>
 
 test.describe("Contact Page", () => {
 	locales.map((locale) => {
-		test(`${locale} > should navigate to the contact page`, async ({
-			page,
-		}) => {
-			await page.goto(getLocalePath(locale));
-			await page.hover(
-				`text=${translate(locale, "MENU_ITEM_LABEL_ID_CONTACT")}`
-			);
-			await page.click(
-				`text=${translate(locale, "MENU_ITEM_DESC_ID_CONTACT")}`
-			);
+		test.fixme(
+			`${locale} > should navigate to the contact page`,
+			async ({ page }) => {
+				await page.goto(getLocalePath(locale));
+				await page.hover(
+					`text=${translate(locale, "MENU_ITEM_LABEL_ID_CONTACT")}`
+				);
+				await page.click(
+					`text=${translate(locale, "MENU_ITEM_DESC_ID_CONTACT")}`
+				);
 
-			await expect(page).toHaveURL(getLocalePath(locale, "contact"));
-			await expect(page.locator("h1")).toHaveText(
-				translate(locale, "CONTACT_PAGE_TITLE")
-			);
-		});
+				await expect(page).toHaveURL(getLocalePath(locale, "contact"));
+				await expect(page.locator("h1")).toHaveText(
+					translate(locale, "CONTACT_PAGE_TITLE")
+				);
+			}
+		);
 	});
 });
 
