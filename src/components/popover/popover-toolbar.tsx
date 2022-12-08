@@ -23,7 +23,9 @@ export const PopoverToolbar = ({
 					</span>
 				))}
 			</div>
-			<PopoverCloseButton className={st(classes.item, classes.close)} />
+			<PopoverCloseButton
+				className={st(classes.item, "popoverClose", classes.close)}
+			/>
 		</div>
 	);
 };
