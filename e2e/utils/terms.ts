@@ -11,7 +11,14 @@ export const isValidTerm = (term: string) => invalidTerms.indexOf(term) === -1;
 export const getTermSelector = ({ type, key }: ITermTestData) =>
 	`[data-link-type="${type}"][data-link-target="${key}"]`;
 
-export const getAnnotationsData = (locale: string, docId: string) => {
+export interface IAnnotationData {
+	key: string;
+	content: string;
+}
+export const getAnnotationsData = (
+	locale: string,
+	docId: string
+): IAnnotationData[] => {
 	const annotations = fs.readdirSync(`./public/content/${docId}/annotations`, {
 		withFileTypes: false,
 	});
@@ -21,7 +28,7 @@ export const getAnnotationsData = (locale: string, docId: string) => {
 				return;
 			}
 			const { content } = getFrontMatter(
-				"docs/the-story-of-mel",
+				docId,
 				`annotations/${term}/index`,
 				locale
 			);
@@ -48,7 +55,6 @@ export const getGlossaryData = (locale: string) => {
 				locale
 			);
 			return {
-				// type: "glossary",
 				key: term,
 				term_key: data.glossary_key,
 				content,
