@@ -713,6 +713,15 @@ previous: ${map.get(id).type} current ${node.type}`);
 		);
 	}
 
+	/**
+	 * Finds links to page anchors (`#XXX`). For each link, check if we have a node
+	 * With this element id. If so and if the node doesn't already have text, set
+	 * the link text to a display name generated from a template specific to the target
+	 * node type (e.g., if the link is to a figure, we'll get something like `"Fig. 3"`)
+	 * @param node 
+	 * @param context 
+	 * @param map 
+	 */
 	private processIdLinks(
 		node: IMLParsedNode,
 		context: MLParseContext,

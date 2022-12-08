@@ -75,7 +75,7 @@ export function loadContentFolder(
 ): IFolderContent {
 	const mode: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
-		...options.mode,
+		...options,
 	};
 	const contentDir = path.join(
 		getContentRootDir(options.rootFolder),
