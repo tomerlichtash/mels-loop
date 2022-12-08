@@ -4,7 +4,7 @@ import {
 	locales,
 	getFrontMatter,
 	translate,
-} from "./utils/test-utils";
+} from "../../utils/test-utils";
 
 test.describe("Articles", () => {
 	const docId = "docs/the-story-of-mel";
@@ -47,6 +47,26 @@ test.describe("Articles", () => {
 			);
 
 			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
+			await expect(page.locator("h1")).toHaveText(data.title as string);
+		});
+
+		test(`${locale} > should navigate to the Resources page`, async ({
+			page,
+		}) => {
+			const path = "pages/resources";
+			const filename = "index";
+			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
+			const localePath = getLocalePath(locale, docId, path);
+
+			await page.goto(localePath);
+			await page.hover(
+				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
+			);
+			await page.click(
+				`text=${translate(locale, "MENU_ITEM_LABEL_ID_RESOURCES")}`
+			);
+
+			await expect(page).toHaveURL(localePath);
 			await expect(page.locator("h1")).toHaveText(data.title as string);
 		});
 	});
