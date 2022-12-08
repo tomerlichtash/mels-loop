@@ -58,7 +58,7 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-e2e-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-e2e-site-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn/cache
       - run:
@@ -80,7 +80,7 @@ jobs:
   e2e_glossary:
     docker:
       - image: mcr.microsoft.com/playwright:v1.28.1-focal
-    parallelism: 4
+    parallelism: 8
     steps:
       - checkout
       - restore_cache:
@@ -94,7 +94,7 @@ jobs:
           command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
       - save_cache:
           name: Save Yarn Package Cache
-          key: yarn-packages-e2e-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-packages-e2e-glossary-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - run:
@@ -108,7 +108,7 @@ jobs:
   e2e_codex:
     docker:
       - image: mcr.microsoft.com/playwright:v1.28.1-focal
-    parallelism: 4
+    parallelism: 8
     steps:
       - checkout
       - restore_cache:
@@ -122,7 +122,7 @@ jobs:
           command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
       - save_cache:
           name: Save Yarn Package Cache
-          key: yarn-packages-e2e-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-packages-e2e-codex-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - run:

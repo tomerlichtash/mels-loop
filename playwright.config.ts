@@ -75,7 +75,7 @@ const config: PlaywrightTestConfig = {
 			testMatch: ["codex/the-story-of-mel/**/*.spec.ts"],
 			use: {
 				...devices["Desktop Chrome"],
-				...devices["iPhone 12"],
+				// ...devices["iPhone 12"],
 			},
 		},
 		// {
