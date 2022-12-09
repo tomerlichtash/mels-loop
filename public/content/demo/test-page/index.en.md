@@ -6,6 +6,8 @@ abstract: "Figure and Blockquote Samples"
 
 See [](#verse-figure) for more details
 
+Here is a wrapped _[Real Programmers](glossary/real-programmer)_
+
 <figure>
 Figure With auto generated caption
 </figure>

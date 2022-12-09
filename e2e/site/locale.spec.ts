@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as stylesheet from "../src/components/locale-selector/locale-selector.st.css";
+import * as stylesheet from "../../src/components/locale-selector/locale-selector.st.css";
 // import {
 // 	TOPBAR_MENU_LOCALE_SELECTOR_EN,
 // 	TOPBAR_MENU_LOCALE_SELECTOR_HE,

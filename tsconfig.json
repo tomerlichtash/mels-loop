@@ -16,6 +16,12 @@
 		"incremental": true,
 		"sourceMap": true
 	},
-	"include": ["next-env.d.ts", "globals.d.ts", "**/**/*.ts", "**/**/*.tsx", "src/pages/docs/[id]/pages/[pageId]"],
+	"include": [
+		"next-env.d.ts",
+		"globals.d.ts",
+		"**/**/*.ts",
+		"**/**/*.tsx",
+		"src/pages/docs/[id]/pages/[pageId]"
+	],
 	"exclude": ["node_modules", "**/snippets/**", "**/*.ignore.*"]
 }

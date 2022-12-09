@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { getLocalePath, locales, getFrontMatter } from "./utils/test-utils";
+import { getLocalePath, locales, getFrontMatter } from "../../utils/test-utils";
 
 test.describe("Legacy Paths", () => {
 	const legacyDocs = ["preface", "mels-hack-the-missing-bits", "resources"];
