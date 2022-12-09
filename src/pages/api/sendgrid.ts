@@ -16,13 +16,14 @@ const tpl = ({ fullname, email, message }: IEmailTemplate) => {
 	)}</div>`;
 };
 
-const validateRequest = (body: IEmailTemplate): Partial<IEmailTemplate> => {
+const validateRequest = (body: Partial<IEmailTemplate>): Partial<IEmailTemplate> => {
 	const trim = (s: string, len: number) => String(s || "").substring(len);
-
+	body = body || {};
 	return {
-		fullname: trim(body?.fullname, 100),
-		email: trim(body?.email, 256),
-		message: trim(body?.message, 4096)
+		...body,
+		fullname: trim(body.fullname, 100),
+		email: trim(body.email, 256),
+		message: trim(body.message, 4096)
 	}
 }
 
