@@ -34,8 +34,15 @@ export const Captcha = ({
 	theme,
 	tabIndex,
 	highlight,
+	setCaptchaError,
 	className,
-}: ICaptchaProps) => (
+}: ICaptchaProps) => {
+	const key = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
+	if (!key) {
+		setCaptchaError("missing captcha key");
+		return <div className={classes.error}></div>
+	}
+	return (
 	<div className={st(classes.root, { highlight }, className)}>
 		<div className={classes.captcha} tabIndex={tabIndex}>
 			<ReCAPTCHA
@@ -50,5 +57,5 @@ export const Captcha = ({
 				theme={theme === "dark" ? "dark" : "light"}
 			/>
 		</div>
-	</div>
-);
+	</div>);
+}

@@ -15,6 +15,7 @@ export const Form = ({
 	// submitButtonLabelActive,
 	onSubmit,
 	className,
+	useCaptcha,
 }: IFormProps): JSX.Element => {
 	const { theme } = useContext(ReactThemeContext);
 	const { locale, translate } = useContext(ReactLocaleContext);
@@ -26,6 +27,7 @@ export const Form = ({
 	const [failureMessage, setFailureMessage] = useState(false);
 	const [sendButtonState, setSendButtonState] = useState(false);
 	const [highlightCaptcha, setHighlightCaptcha] = useState(false);
+	const [captchaError, setCaptchaError] = useState("");
 
 	const fields = Object.keys(entries).map(
 		(key) => createField({ translate, ...entries[key] })[0]
@@ -71,21 +73,21 @@ export const Form = ({
 	const validateAllFields = () =>
 		fields.map((field) => validateField(field)).indexOf(INVALID) === -1;
 
-	const onSubmitClick = (
+	const onSubmitClick = async (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		e.preventDefault();
-		if (validateAllFields()) async () => handleSubmit();
+		await handleSubmit();
 	};
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		if (validateAllFields()) {
 			if (!sendButtonState) {
 				setHighlightCaptcha(true);
 				captchaRef.current.focus();
 				return;
 			}
-			return async () => submitForm();
+			await submitForm();
 		}
 	};
 
@@ -94,10 +96,13 @@ export const Form = ({
 		const values = Object.fromEntries(
 			fields.map((field) => [field.props.id, field.props.value])
 		) as FormValues;
-		const res = await onSubmit(values);
-		const { error } = await res.json();
-		if (error) onFetchError();
-		else onFetchSuccess();
+		const { error } = await onSubmit(values);
+		if (error) {
+			onFetchError();
+		}
+		else {
+			onFetchSuccess();
+		}
 	}
 
 	useEffect(() => {
@@ -128,6 +133,10 @@ export const Form = ({
 		return () => document.removeEventListener("keydown", keyDownHandler);
 	});
 
+	if (captchaError) {
+		return <div className={classes.error}>{captchaError}</div>
+	}
+
 	return (
 		<div className={st(classes.root, className)}>
 			{successMessage && onSuccessMessage}
@@ -138,23 +147,26 @@ export const Form = ({
 				</form>
 			)}
 			<div className={classes.footer}>
-				<div className={classes.captchaContainer}>
-					<Captcha
-						onChange={onCaptchaChange}
-						onExpired={onCaptchaExpired}
-						tabIndex={captchaTabIndex}
-						locale={locale}
-						theme={theme}
-						highlight={highlightCaptcha}
-						className={classes.captcha}
-					/>
-				</div>
+				{useCaptcha && (
+					<div className={classes.captchaContainer}>
+						<Captcha
+							onChange={onCaptchaChange}
+							setCaptchaError={setCaptchaError}
+							onExpired={onCaptchaExpired}
+							tabIndex={captchaTabIndex}
+							locale={locale}
+							theme={theme}
+							highlight={highlightCaptcha}
+							className={classes.captcha}
+						/>
+					</div>)
+				}
 				<div className={classes.buttonContainer}>
 					<button
 						className={classes.button}
 						tabIndex={captchaTabIndex + 1}
 						ref={captchaRef}
-						onClick={(e) => onSubmitClick(e)}
+						onClick={onSubmitClick}
 					>
 						{loadingIndicator ? (
 							<LoadingIndicator

@@ -98,6 +98,7 @@ export const ContactForm = ({ className }: IFormInstance): JSX.Element => {
 				submitButtonLabel={compLocale.buttonLabel}
 				submitButtonLabelActive={compLocale.buttonLabelActive}
 				className={st(classes.form, className)}
+				useCaptcha={true}
 			/>
 		</div>
 	);

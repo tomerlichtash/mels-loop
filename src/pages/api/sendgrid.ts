@@ -16,13 +16,24 @@ const tpl = ({ fullname, email, message }: IEmailTemplate) => {
 	)}</div>`;
 };
 
+const validateRequest = (body: IEmailTemplate): IEmailTemplate => {
+	const trim = (s: string, len: number) => String(s || "").substring(len);
+
+	return {
+		fullname: trim(body?.fullname, 100),
+		email: trim(body?.email, 256),
+		message: trim(body?.message, 4096)
+	}
+}
+
 async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 	try {
+		const emailData = validateRequest(req.body as IEmailTemplate);
 		await sendgrid.send({
 			to: "aboutmelsloop@gmail.com",
 			from: "hello@melsloop.com",
-			subject: `[New Message] From: ${req.body.fullname as string}`,
-			html: tpl(req.body as IEmailTemplate),
+			subject: `[New Message] From: ${emailData.fullname}`,
+			html: tpl(emailData),
 		});
 	} catch (error) {
 		return res
