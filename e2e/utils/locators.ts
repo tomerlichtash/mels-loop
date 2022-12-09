@@ -1,5 +1,5 @@
 export const SITE_NAME_LOCATOR = `text="Mel's Loop"`;
-export const PORTAL_SELECTOR = `[data-radix-portal]`;
+export const PORTAL_SELECTOR = `[data-radix-scroll-area-viewport]`;
 
 /**
  * Note Component

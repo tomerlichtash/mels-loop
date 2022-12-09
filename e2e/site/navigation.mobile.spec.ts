@@ -1,14 +1,14 @@
 import { test, expect } from "@playwright/test";
 import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as stylesheet from "../src/components/mobile-menu/mobile-menu.st.css";
-import * as headerStylesheet from "../src/components/header/header.st.css";
-import * as LocaleSymbols from "./../src/locales/common/locales.json";
+import * as stylesheet from "../../src/components/mobile-menu/mobile-menu.st.css";
+import * as headerStylesheet from "../../src/components/header/header.st.css";
+import * as LocaleSymbols from "./../../src/locales/common/locales.json";
 import {
 	getLocalePath,
 	locales,
 	getFrontMatter,
 	translate,
-} from "./utils/test-utils";
+} from "../utils/test-utils";
 
 const { LOCALE_LABEL_EN, LOCALE_LABEL_HE } = LocaleSymbols;
 export const MOBILE_MENU_TRIGGER = `.bm-burger-button`;
@@ -151,28 +151,28 @@ test.describe.skip("Mobile Menu", () => {
 				await expect(page.locator("h1")).toHaveText(data.title as string);
 			});
 
-			test(`${locale} > should navigate to the Resources page`, async ({
-				page,
-			}) => {
-				const path = "docs/resources";
-				const filename = "index";
-				const { data } = getFrontMatter(
-					"docs/the-story-of-mel",
-					`${path}/${filename}`,
-					locale
-				);
-				const localePath = getLocalePath(locale);
+			// test(`${locale} > should navigate to the Resources page`, async ({
+			// 	page,
+			// }) => {
+			// 	const path = "docs/resources";
+			// 	const filename = "index";
+			// 	const { data } = getFrontMatter(
+			// 		"docs/the-story-of-mel",
+			// 		`${path}/${filename}`,
+			// 		locale
+			// 	);
+			// 	const localePath = getLocalePath(locale);
 
-				await page.goto(localePath);
-				await page.click(MOBILE_MENU_TRIGGER);
+			// 	await page.goto(localePath);
+			// 	await page.click(MOBILE_MENU_TRIGGER);
 
-				await page.click(
-					domUtil.scopeSelector(`.menuItemButton:id(resources)`)
-				);
+			// 	await page.click(
+			// 		domUtil.scopeSelector(`.menuItemButton:id(resources)`)
+			// 	);
 
-				await expect(page).toHaveURL(getLocalePath(locale, path));
-				await expect(page.locator("h1")).toHaveText(data.title as string);
-			});
+			// 	await expect(page).toHaveURL(getLocalePath(locale, path));
+			// 	await expect(page.locator("h1")).toHaveText(data.title as string);
+			// });
 		});
 	});
 });

@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
 import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as stylesheet from "../src/components/popover/popover.st.css";
-import { NOTE_CONTENT_SELECTOR, PORTAL_SELECTOR } from "./utils/locators";
-import { TEXT_NOT_EMPTY } from "./utils/patterns";
-import { translate } from "./utils/test-utils";
+import * as stylesheet from "../../src/components/popover/popover.st.css";
+import { NOTE_CONTENT_SELECTOR, PORTAL_SELECTOR } from "../utils/locators";
+import { TEXT_NOT_EMPTY } from "../utils/patterns";
+import { translate } from "../utils/test-utils";
 
 const domUtil = new StylableDOMUtil(stylesheet);
 
