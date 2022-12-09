@@ -76,6 +76,7 @@ export function loadContentFolder(
 	const mode: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
 		...options.mode,
+		locale: options.locale
 	};
 	const contentDir = path.join(
 		getContentRootDir(options.rootFolder),
@@ -225,7 +226,7 @@ class PageMetaData implements IPageMetaData {
 	public figures: IFigureConfiguration = {
 		auto: true,
 		base: 1,
-		template: "Fig. %index%",
+		template: "[[FIGURE_ABBR]] %index%",
 	};
 }
 
