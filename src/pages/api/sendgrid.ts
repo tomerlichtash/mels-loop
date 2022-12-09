@@ -16,7 +16,7 @@ const tpl = ({ fullname, email, message }: IEmailTemplate) => {
 	)}</div>`;
 };
 
-const validateRequest = (body: IEmailTemplate): IEmailTemplate => {
+const validateRequest = (body: IEmailTemplate): Partial<IEmailTemplate> => {
 	const trim = (s: string, len: number) => String(s || "").substring(len);
 
 	return {
@@ -33,7 +33,7 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 			to: "aboutmelsloop@gmail.com",
 			from: "hello@melsloop.com",
 			subject: `[New Message] From: ${emailData.fullname}`,
-			html: tpl(emailData),
+			html: tpl(emailData as IEmailTemplate),
 		});
 	} catch (error) {
 		return res
