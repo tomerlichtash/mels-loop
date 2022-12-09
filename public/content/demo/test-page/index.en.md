@@ -3,6 +3,8 @@ title: "TestPage"
 abstract: "Figure and Blockquote Samples"
 ---
 
+Here is a wrapped _[Real Programmers](glossary/real-programmer)_
+
 <figure>
 Figure With auto generated caption
 </figure>

@@ -4,6 +4,7 @@ import { CONTENT_TYPES } from "../../consts";
 import { mlNextUtils } from "../../lib/next-utils";
 import { GenericPage } from "../../components/content";
 import { LoadFolderModes } from "../../interfaces/parser";
+import { contentUtils } from "../../lib/content-utils";
 
 export default function Doc(props: IPageProps) {
 	return <GenericPage pageProps={props} />;
@@ -22,6 +23,9 @@ export const getStaticProps: GetStaticProps = async (
 	return mlNextUtils.getFolderStaticProps(
 		`${CONTENT_TYPES.DEMO}/${context.params.id as string}`,
 		context.locale,
-		LoadFolderModes.FOLDER
+		LoadFolderModes.FOLDER,
+		{
+			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
+		}
 	);
 };
