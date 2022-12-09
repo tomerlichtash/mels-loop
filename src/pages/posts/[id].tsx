@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import { IPageProps } from "../../interfaces/models";
 import { CONTENT_TYPES } from "../../consts";
@@ -8,7 +9,6 @@ import { usePageData } from "../../components/usePageData";
 import { Button } from "../../components/ui";
 import { mlUtils } from "../../lib/ml-utils";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { useContext } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Post from "../../components/post";
 import { classes } from "../../pages/page-base.st.css";

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Layout from "../components/layout";
 import { GetStaticProps, NextPage } from "next";
 import {
+	ComponentProps,
 	IMLParsedNode,
 	IPageProps,
 	IParsedPageData,
@@ -20,7 +21,7 @@ import { mlUtils } from "../lib/ml-utils";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { st, classes } from "../pages/page-base.st.css";
 
-const Index: NextPage<IPageProps> = (props) => {
+const Index: NextPage<IPageProps> = (props: ComponentProps) => {
 	const { className } = props;
 	const { textDirection } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);

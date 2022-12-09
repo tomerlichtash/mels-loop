@@ -11,6 +11,7 @@ import { Languages } from "../locales";
 import LocaleMetaContext, { ILocaleMetaContext } from "./locale-meta-context";
 import LocalePageContext, { ILocalePageContext } from "./locale-page-context";
 import { NextRouter } from "next/router";
+import { IContextWithRouter } from "../interfaces/contexts";
 
 export class LocaleContext implements ILocaleContext {
 	private _locale: string;
@@ -93,7 +94,10 @@ const ctx = createContext<ILocaleContext>(new LocaleContext(null));
 
 export const ReactLocaleContext: Context<ILocaleContext> = ctx;
 
-export const LocaleContextProvider = ({ children, router }) => {
+export const LocaleContextProvider = ({
+	children,
+	router,
+}: IContextWithRouter) => {
 	return (
 		<ReactLocaleContext.Provider value={new LocaleContext({ router })}>
 			{children}

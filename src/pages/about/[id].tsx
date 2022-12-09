@@ -1,3 +1,4 @@
+import React from "react";
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import { IPageProps } from "../../interfaces/models";
 import { CONTENT_TYPES } from "../../consts";

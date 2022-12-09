@@ -19,16 +19,7 @@
 			"version": "detect"
 		}
 	},
-	"rules": {
-		"react/react-in-jsx-scope": "off",
-		"react/prop-types": "off",
-		"react/no-unknown-property": [
-			2,
-			{
-				"ignore": ["jsx", "global"]
-			}
-		]
-	},
+	"rules": {},
 	"parser": "@typescript-eslint/parser",
 	"overrides": [
 		{
@@ -42,9 +33,9 @@
 				"plugin:@typescript-eslint/recommended-requiring-type-checking"
 			],
 			"rules": {
-				"@typescript-eslint/explicit-module-boundary-types": "off",
+				// "@typescript-eslint/explicit-module-boundary-types": "off"
 				"@typescript-eslint/no-unsafe-assignment": "off",
-				"@typescript-eslint/no-var-requires": "off",
+				// "@typescript-eslint/no-var-requires": "off"
 				"@typescript-eslint/require-await": "off",
 				"@typescript-eslint/no-unsafe-member-access": "off",
 				"@typescript-eslint/no-unsafe-call": "off",

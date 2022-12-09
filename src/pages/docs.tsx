@@ -10,7 +10,7 @@ import { Button } from "../components/ui";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { st, classes } from "./page-base.st.css";
 
-const Docs: NextPage<IPageProps> = (props) => {
+const Docs: NextPage<IPageProps> = (props: IPageProps) => {
 	const { pageName } = useContext(ReactLocaleContext);
 	const { className } = props;
 	const { metaData } = usePageData(props);

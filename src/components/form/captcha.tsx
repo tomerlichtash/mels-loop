@@ -1,6 +1,5 @@
 import React from "react";
-/* eslint-disable import/no-named-as-default */
-import ReCAPTCHA from "react-google-recaptcha";
+import { ReCAPTCHA } from "react-google-recaptcha";
 import { ICaptchaProps } from "./types";
 import { st, classes } from "./captcha.st.css";
 

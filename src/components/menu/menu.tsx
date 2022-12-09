@@ -71,7 +71,7 @@ const MenuButton = ({ meta, keys, type }: IMenuItem) => {
 	);
 };
 
-const MenuTrigger = ({ title, url }) => (
+const MenuTrigger = ({ title, url }: MenuTriggerProps) => (
 	<NavigationTrigger className={classes.menuTrigger}>
 		<Button
 			label={title}

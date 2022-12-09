@@ -1,4 +1,5 @@
 import React, { Context, createContext } from "react";
+import { IContext } from "../interfaces/contexts";
 import { IDynamicContentServer } from "../interfaces/dynamic-content";
 import { IPageContext } from "../interfaces/page-context";
 import { DynamicContentServer } from "../lib/dynamic-content-server";
@@ -14,9 +15,9 @@ const ctx = createContext<IPageContext>(new PageContext(null, ""));
 
 export const ReactPageContext: Context<IPageContext> = ctx;
 
-export const PageContextProvider = ({ documentPath, children }) => (
+export const PageContextProvider = ({ documentPath, children }: IContext) => (
 	<ReactPageContext.Provider
-		value={new PageContext(new DynamicContentServer(), documentPath as string)}
+		value={new PageContext(new DynamicContentServer(), documentPath)}
 	>
 		{children}
 	</ReactPageContext.Provider>

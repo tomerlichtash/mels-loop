@@ -1,3 +1,4 @@
+import React from "react";
 import { Themes, themes } from "../config/themes";
 
 const PUBLIC_ML_CONFIG_VAR = "__MLCONFIG__";
