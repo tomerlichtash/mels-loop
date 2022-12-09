@@ -73,11 +73,11 @@ export const Form = ({
 	const validateAllFields = () =>
 		fields.map((field) => validateField(field)).indexOf(INVALID) === -1;
 
-	const onSubmitClick = async (
+	const onSubmitClick = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		e.preventDefault();
-		await handleSubmit();
+		handleSubmit().catch(() => void 0);
 	};
 
 	const handleSubmit = async () => {
@@ -126,7 +126,7 @@ export const Form = ({
 				validateField(field);
 			} else if (enterWithMeta) {
 				e.preventDefault();
-				handleSubmit();
+				handleSubmit().catch(() => void 0);
 			}
 		};
 		document.addEventListener("keydown", keyDownHandler);
