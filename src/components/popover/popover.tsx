@@ -40,9 +40,7 @@ export const Popover = ({
 		<ReactPopoverContext.Provider value={ctx}>
 			<span className={st(classes.root, { type })}>
 				<PopoverRoot
-					onOpenChange={() => {
-						setPopoverVisible(!popoverVisible);
-					}}
+					onOpenChange={(state: boolean) => setPopoverVisible(state)}
 				>
 					<PopoverTrigger asChild>
 						<span
