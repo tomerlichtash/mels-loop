@@ -75,7 +75,7 @@ export function loadContentFolder(
 ): IFolderContent {
 	const mode: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
-		...options,
+		...options.mode,
 		locale: options.locale
 	};
 	const contentDir = path.join(
