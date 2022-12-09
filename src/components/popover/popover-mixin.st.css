@@ -41,12 +41,10 @@
 	color: value(TriggerTextColor_Hover);
 }
 
-.root:type(glossary)[data-state="open"]::triggerWrapper,
-.root:type(glossary)[data-state="open"]::triggerWrapper:hover {
+.root::trigger:popoverVisible {
+	color: value(TriggerMarkerColor_Open);
+}
+.root:type(glossary)::triggerWrapper:popoverVisible(true) {
 	background-color: value(TriggerTextBgColor_Open);
 	color: value(TriggerTextColor_Open);
-}
-
-.root:type(glossary)[data-state="open"]::trigger::after {
-	color: value(TriggerMarkerColor_Open);
 }

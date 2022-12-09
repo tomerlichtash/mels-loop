@@ -12,10 +12,13 @@
 }
 
 .trigger {
+	-st-states: popoverVisible(boolean);
 	cursor: pointer;
 }
 
-.triggerWrapper {}
+.triggerWrapper {
+	-st-states: popoverVisible(boolean);
+}
 
 .toolbar {
 	-st-extends: PopoverToolbar;

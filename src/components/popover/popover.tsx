@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { PopoverToolbar } from "./popover-toolbar";
 import { IPopoverContext } from "../../interfaces/IPopoverContext";
 import { Direction } from "../../interfaces/locale-context";
@@ -34,13 +34,24 @@ export const Popover = ({
 		removeToolbarItems: toolbar.removeItemsById,
 	};
 
+	const [popoverVisible, setPopoverVisible] = useState(false);
+
 	return (
 		<ReactPopoverContext.Provider value={ctx}>
 			<span className={st(classes.root, { type })}>
-				<PopoverRoot>
+				<PopoverRoot
+					onOpenChange={() => {
+						setPopoverVisible(!popoverVisible);
+					}}
+				>
 					<PopoverTrigger asChild>
-						<span className={classes.trigger} tabIndex={1}>
-							<span className={st(classes.triggerWrapper)}>{trigger}</span>
+						<span
+							className={st(classes.trigger, { popoverVisible })}
+							tabIndex={1}
+						>
+							<span className={st(classes.triggerWrapper, { popoverVisible })}>
+								{trigger}
+							</span>
 						</span>
 					</PopoverTrigger>
 					<PopoverContent
