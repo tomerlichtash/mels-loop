@@ -13,9 +13,7 @@
 	animation: flickerAnimation 1s infinite;
 }
 
-.error {
-	width: 24
-}
+.error {}
 
 .captcha {}
 

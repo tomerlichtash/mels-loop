@@ -99,8 +99,7 @@ export const Form = ({
 		const { error } = await onSubmit(values);
 		if (error) {
 			onFetchError();
-		}
-		else {
+		} else {
 			onFetchSuccess();
 		}
 	}
@@ -134,51 +133,56 @@ export const Form = ({
 	});
 
 	if (captchaError) {
-		return <div className={classes.error}>{captchaError}</div>
+		return <div className={classes.error}>{captchaError}</div>;
 	}
 
 	return (
 		<div className={st(classes.root, className)}>
 			{successMessage && onSuccessMessage}
 			{failureMessage && onFailMessage}
+
 			{!successMessage && !failureMessage && (
 				<form className={classes.form} noValidate>
 					{fields}
 				</form>
 			)}
 			<div className={classes.footer}>
-				{useCaptcha && (
-					<div className={classes.captchaContainer}>
-						<Captcha
-							onChange={onCaptchaChange}
-							setCaptchaError={setCaptchaError}
-							onExpired={onCaptchaExpired}
-							tabIndex={captchaTabIndex}
-							locale={locale}
-							theme={theme}
-							highlight={highlightCaptcha}
-							className={classes.captcha}
-						/>
-					</div>)
-				}
-				<div className={classes.buttonContainer}>
-					<button
-						className={classes.button}
-						tabIndex={captchaTabIndex + 1}
-						ref={captchaRef}
-						onClick={onSubmitClick}
-					>
-						{loadingIndicator ? (
-							<LoadingIndicator
-								// label={submitButtonLabelActive}
-								delay={0}
-								className={classes.loadingIndicator}
+				{useCaptcha &&
+					!loadingIndicator &&
+					!failureMessage &&
+					!successMessage && (
+						<div className={classes.captchaContainer}>
+							<Captcha
+								onChange={onCaptchaChange}
+								setCaptchaError={setCaptchaError}
+								onExpired={onCaptchaExpired}
+								tabIndex={captchaTabIndex}
+								locale={locale}
+								theme={theme}
+								highlight={highlightCaptcha}
+								className={classes.captcha}
 							/>
-						) : (
-							translate(submitButtonLabel)
-						)}
-					</button>
-				</div>
+						</div>
+					)}
+				{!failureMessage && !successMessage && (
+					<div className={classes.buttonContainer}>
+						<button
+							className={classes.button}
+							tabIndex={captchaTabIndex + 1}
+							ref={captchaRef}
+							onClick={onSubmitClick}
+						>
+							{loadingIndicator ? (
+								<LoadingIndicator
+									delay={0}
+									className={classes.loadingIndicator}
+								/>
+							) : (
+								translate(submitButtonLabel)
+							)}
+						</button>
+					</div>
+				)}
 			</div>
 		</div>
 	);
