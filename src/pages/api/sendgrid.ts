@@ -16,7 +16,7 @@ const tpl = ({ fullname, email, message }: IEmailTemplate) => {
 	)}</div>`;
 };
 
-const validateRequest = (
+export const validateRequest = (
 	body: Partial<IEmailTemplate>
 ): Partial<IEmailTemplate> => {
 	const trim = (s: string, len: number) => String(s || "").substring(0, len);

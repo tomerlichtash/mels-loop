@@ -11,7 +11,7 @@ export type FormValues = Record<string, string>;
 
 export interface IFormResponse {
 	error: string;
-	[key: string]: string | boolean | number | object | null
+	[key: string]: string | boolean | number | object | null;
 }
 
 export interface IFormProps extends ComponentProps {

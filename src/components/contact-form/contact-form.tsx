@@ -11,6 +11,7 @@ import {
 } from "@radix-ui/react-icons";
 import { st, classes } from "./contact-form.st.css";
 import { Button } from "../ui";
+import { SUBMIT_API } from "../../config/public-api-params";
 
 const compLocale: Record<string, string> = {
 	buttonLabel: "CONTACT_FORM_LABEL_SEND",
@@ -117,7 +118,7 @@ export const ContactForm = ({
 		<div className={st(classes.root, className)}>
 			<Form
 				entries={formFields}
-				onSubmit={onValuesSubmit}
+				onSubmit={onValuesSubmit(SUBMIT_API.SEND_GRID)}
 				onSuccessMessage={onSuccessMessage}
 				onFailMessage={onFailMessage}
 				submitButtonLabel={compLocale.buttonLabel}
