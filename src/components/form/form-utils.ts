@@ -1,8 +1,8 @@
-import { ISendgridSubmitAPI } from "../../config/public-api-params";
+import { IFetchParams } from "../../config/public-api-params";
 import { FormValues, IFormResponse } from "./types";
 
 export const onValuesSubmit =
-	(submitApi: ISendgridSubmitAPI) =>
+	(submitApi: IFetchParams) =>
 	async (values: FormValues): Promise<IFormResponse> => {
 		const { path, headers, method } = submitApi;
 		const body = JSON.stringify(values);
