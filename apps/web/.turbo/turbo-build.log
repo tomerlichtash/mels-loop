@@ -1,0 +1,23 @@
+$ next build
+warn  - You have enabled experimental feature (transpilePackages) in next.config.js.
+warn  - Experimental features are not covered by semver, and may cause unexpected or broken application behavior. Use at your own risk.
+
+info  - Linting and checking validity of types...
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/3)
+info  - Generating static pages (3/3)
+info  - Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ ○ /                                      300 B          72.3 kB
+└ ○ /404                                   181 B          72.2 kB
++ First Load JS shared by all              72 kB
+  ├ chunks/framework-aedff47d294e0670.js   45.4 kB
+  ├ chunks/main-5a7f57009ba196de.js        25.7 kB
+  ├ chunks/pages/_app-df511a3677d160f6.js  194 B
+  └ chunks/webpack-4e7214a60fad8e88.js     712 B
+
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+

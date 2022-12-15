@@ -1,0 +1,68 @@
+$ next build
+info  - Linting and checking validity of types...
+error - ESLint: Failed to load plugin '@typescript-eslint' declared in '../../.eslintrc#overrides[0]': Cannot find module '@typescript-eslint/eslint-plugin' Require stack: - /Users/tomerlichtash/code/mels-loop/__placeholder__.js Referenced from: /Users/tomerlichtash/code/mels-loop/.eslintrc
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/101)
+info  - Generating static pages (25/101)
+info  - Generating static pages (50/101)
+info  - Generating static pages (75/101)
+info  - Generating static pages (101/101)
+info  - Finalizing page optimization...
+
+Route (pages)                                                     Size     First Load JS
+┌ ● /                                                             536 B           194 kB
+├   /_app                                                         0 B            93.6 kB
+├ ○ /404                                                          401 B           183 kB
+├ ● /about                                                        501 B           194 kB
+├ ● /about/[id]                                                   297 B           193 kB
+├ λ /api/captcha                                                  0 B            93.6 kB
+├ λ /api/content                                                  0 B            93.6 kB
+├ λ /api/ping                                                     0 B            93.6 kB
+├ λ /api/sendgrid                                                 0 B            93.6 kB
+├ ● /contact                                                      7.54 kB         190 kB
+├ ● /contact/[id]                                                 298 B           193 kB
+├ ● /contribute                                                   487 B           194 kB
+├ ● /contribute/[id]                                              301 B           193 kB
+├ ● /demo/[id]                                                    297 B           193 kB
+├   ├ /en/demo/test-page
+├   └ /he/demo/test-page
+├ ● /docs                                                         1.53 kB         184 kB
+├ ● /docs/[id]                                                    296 B           193 kB
+├   ├ /en/docs/the-story-of-mel
+├   └ /he/docs/the-story-of-mel
+├ ● /docs/[id]/codex                                              301 B           193 kB
+├   ├ /en/docs/the-story-of-mel/codex
+├   └ /he/docs/the-story-of-mel/codex
+├ ● /docs/[id]/codex/pages/[pageId]                               310 B           193 kB
+├ ● /docs/[id]/pages                                              299 B           193 kB
+├ ● /docs/[id]/pages/[pageId]                                     306 B           193 kB
+├   ├ /en/docs/the-story-of-mel/pages/blackjack-writeup
+├   ├ /he/docs/the-story-of-mel/pages/blackjack-writeup
+├   ├ /en/docs/the-story-of-mel/pages/mels-hack-the-missing-bits
+├   └ [+5 more paths]
+├ ● /docs/[id]/resources                                          303 B           193 kB
+├ ● /glossary                                                     1.61 kB         184 kB
+├ ● /glossary/[id] (1417 ms)                                      702 B           194 kB
+├   ├ /en/glossary/addressing-scheme
+├   ├ /en/glossary/assembly-language
+├   ├ /en/glossary/bit
+├   └ [+59 more paths]
+├ ● /posts                                                        5.65 kB         199 kB
+└ ● /posts/[id]                                                   1.08 kB         194 kB
+    ├ /en/posts/07-04-21-hebrew-edition
+    ├ /en/posts/14-01-21-here-we-go
+    ├ /en/posts/21-05-22-project-launch
+    └ [+3 more paths]
++ First Load JS shared by all                                     99 kB
+  ├ chunks/framework-22108eb722d84e59.js                          45.4 kB
+  ├ chunks/main-8e3c5d92ff9f9fc4.js                               31.1 kB
+  ├ chunks/pages/_app-0c43e4a691aa60a3.js                         15.8 kB
+  ├ chunks/webpack-04fa75736bbd5db8.js                            1.27 kB
+  └ css/stylable.780ba07e47805009.css                             5.45 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+
