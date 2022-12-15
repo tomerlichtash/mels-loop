@@ -38,7 +38,7 @@ No less
 <figcaption>This is <strong>figure</strong> %index%</figcaption>
 </figure>
 
-See [](#verse-figure) For more details
+See <a href="#verse-figure"></a> For more details
 
 <blockquote>
 Blockquote Content
