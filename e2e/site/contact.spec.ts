@@ -1,12 +1,12 @@
 import { test, expect } from "@playwright/test";
-// import { StylableDOMUtil } from "@stylable/dom-test-kit";
-// import * as formStylesheet from "../src/components/form/form.st.css";
 import { getLocalePath, locales, translate } from "../utils/test-utils";
+// import { IFormSubmitAPI } from "../../src/config/public-api-params";
 
-// const domUtil = new StylableDOMUtil(formStylesheet);
-// const nameSelector = domUtil.scopeSelector(".field:id(fullname)");
-// const emailSelector = domUtil.scopeSelector(".field:id(email)");
-// const messageSelector = domUtil.scopeSelector(".field:id(message)");
+// const MOCK_SEND_GRID: IFormSubmitAPI = {
+// 	path: "/api/mock/sendgrid",
+// 	headers: { "Content-Type": "application/json" },
+// 	method: "POST",
+// };
 
 const nameErrSelector = (locale: string) =>
 	`text=${translate(locale, "CONTACT_FORM_INVALID_NAME")}`;
@@ -15,7 +15,7 @@ const emailErrSelector = (locale: string) =>
 const messageErrSelector = (locale: string) =>
 	`text=${translate(locale, "CONTACT_FORM_INVALID_MESSAGE")}`;
 
-test.describe("Contact Page", () => {
+test.describe.fixme("Contact Page", () => {
 	locales.map((locale) => {
 		test.fixme(
 			`${locale} > should navigate to the contact page`,

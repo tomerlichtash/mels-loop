@@ -27,6 +27,9 @@
 	FieldInputErrorTextColor: #f00;
 	FieldLabelBorderColor_Success: value(FieldInputSuccessTextColor);
 	FieldLabelBorderColor_Error: value(FieldInputErrorTextColor);
+
+	LinkColor: black;
+	LinkColorHover: green;
 }
 
 .root {
@@ -52,4 +55,12 @@
 		FieldInputErrorTextColor value(FieldInputErrorTextColor),
 		FieldInputSuccessTextColor value(FieldInputSuccessTextColor),
 	);
+}
+
+.root::button {
+	-st-mixin: ButtonMixin(
+		ButtonTextColor value(LinkColor),
+		ButtonTextColor_Hover value(LinkColorHover)
+	);
+	padding: 0.25rem;
 }

@@ -13,7 +13,19 @@ const stylableOptimizer = new StylableOptimizer();
 const nextConfig = {
 	reactStrictMode: true,
 	optimizeFonts: true,
-	webpack: (config) => {
+	webpack: (config, { webpack }) => {
+		const mockEnv = {
+			// mock public recaptcha site key
+			// https://developers.google.com/recaptcha/docs/faq#id-like-to-run-automated-tests-with-recaptcha.-what-should-i-do
+			NEXT_PUBLIC_RECAPTCHA_KEY: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
+		};
+		if (process.env.CI || process.env.ML_DEBUG) {
+			config.plugins.push(
+				new webpack.DefinePlugin({
+					"process.env": JSON.stringify(mockEnv),
+				})
+			);
+		}
 		// config.module.rules.push({
 		// 	test: /\.svg$/,
 		// 	use: ["@svgr/webpack"],

@@ -15,6 +15,7 @@ export const Form = ({
 	// submitButtonLabelActive,
 	onSubmit,
 	className,
+	useCaptcha,
 }: IFormProps): JSX.Element => {
 	const { theme } = useContext(ReactThemeContext);
 	const { locale, translate } = useContext(ReactLocaleContext);
@@ -26,6 +27,7 @@ export const Form = ({
 	const [failureMessage, setFailureMessage] = useState(false);
 	const [sendButtonState, setSendButtonState] = useState(false);
 	const [highlightCaptcha, setHighlightCaptcha] = useState(false);
+	const [captchaError, setCaptchaError] = useState("");
 
 	const fields = Object.keys(entries).map(
 		(key) => createField({ translate, ...entries[key] })[0]
@@ -75,17 +77,17 @@ export const Form = ({
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		e.preventDefault();
-		if (validateAllFields()) async () => handleSubmit();
+		handleSubmit().catch(() => void 0);
 	};
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		if (validateAllFields()) {
 			if (!sendButtonState) {
 				setHighlightCaptcha(true);
 				captchaRef.current.focus();
 				return;
 			}
-			return async () => submitForm();
+			await submitForm();
 		}
 	};
 
@@ -94,10 +96,12 @@ export const Form = ({
 		const values = Object.fromEntries(
 			fields.map((field) => [field.props.id, field.props.value])
 		) as FormValues;
-		const res = await onSubmit(values);
-		const { error } = await res.json();
-		if (error) onFetchError();
-		else onFetchSuccess();
+		const { error } = await onSubmit(values);
+		if (error) {
+			onFetchError();
+		} else {
+			onFetchSuccess();
+		}
 	}
 
 	useEffect(() => {
@@ -121,52 +125,64 @@ export const Form = ({
 				validateField(field);
 			} else if (enterWithMeta) {
 				e.preventDefault();
-				handleSubmit();
+				handleSubmit().catch(() => void 0);
 			}
 		};
 		document.addEventListener("keydown", keyDownHandler);
 		return () => document.removeEventListener("keydown", keyDownHandler);
 	});
 
+	if (captchaError) {
+		return <div className={classes.error}>{captchaError}</div>;
+	}
+
 	return (
 		<div className={st(classes.root, className)}>
 			{successMessage && onSuccessMessage}
 			{failureMessage && onFailMessage}
+
 			{!successMessage && !failureMessage && (
 				<form className={classes.form} noValidate>
 					{fields}
 				</form>
 			)}
 			<div className={classes.footer}>
-				<div className={classes.captchaContainer}>
-					<Captcha
-						onChange={onCaptchaChange}
-						onExpired={onCaptchaExpired}
-						tabIndex={captchaTabIndex}
-						locale={locale}
-						theme={theme}
-						highlight={highlightCaptcha}
-						className={classes.captcha}
-					/>
-				</div>
-				<div className={classes.buttonContainer}>
-					<button
-						className={classes.button}
-						tabIndex={captchaTabIndex + 1}
-						ref={captchaRef}
-						onClick={(e) => onSubmitClick(e)}
-					>
-						{loadingIndicator ? (
-							<LoadingIndicator
-								// label={submitButtonLabelActive}
-								delay={0}
-								className={classes.loadingIndicator}
+				{useCaptcha &&
+					!loadingIndicator &&
+					!failureMessage &&
+					!successMessage && (
+						<div className={classes.captchaContainer}>
+							<Captcha
+								onChange={onCaptchaChange}
+								setCaptchaError={setCaptchaError}
+								onExpired={onCaptchaExpired}
+								tabIndex={captchaTabIndex}
+								locale={locale}
+								theme={theme}
+								highlight={highlightCaptcha}
+								className={classes.captcha}
 							/>
-						) : (
-							translate(submitButtonLabel)
-						)}
-					</button>
-				</div>
+						</div>
+					)}
+				{!failureMessage && !successMessage && (
+					<div className={classes.buttonContainer}>
+						<button
+							className={classes.button}
+							tabIndex={captchaTabIndex + 1}
+							ref={captchaRef}
+							onClick={onSubmitClick}
+						>
+							{loadingIndicator ? (
+								<LoadingIndicator
+									delay={0}
+									className={classes.loadingIndicator}
+								/>
+							) : (
+								translate(submitButtonLabel)
+							)}
+						</button>
+					</div>
+				)}
 			</div>
 		</div>
 	);
