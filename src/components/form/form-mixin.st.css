@@ -4,6 +4,8 @@
 @st-import FieldMixin from "./field-mixin.st.css";
 
 :vars {
+	ButtonLinkColor: black;
+	ButtonLinkColorHover: green;
 	SubmitButtonBgColor: #808080;
 	SubmitButtonTextColor: #fff;
 	SubmitButtonBgColor_Hover: #404040;

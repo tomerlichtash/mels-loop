@@ -6,6 +6,7 @@
 	InputLabel,
 	InputText
 ] from "../../theme/common/typography.st.css";
+@st-import Button from "../ui/button/button.st.css";
 
 .root {}
 
@@ -61,4 +62,32 @@
 			display: block;
 		}
 	}
+}
+
+.onSubmitMessage {
+	-st-states: type(enum(success, fail));
+}
+.textWithIcon {}
+.icon {
+	display: inline-block;
+	line-height: 50px;
+	vertical-align: middle;
+	width: 24px;
+}
+.message {
+	display: inline-block;
+}
+
+.onSubmitMessage:type(success) .message,
+.onSubmitMessage:type(success) .icon {
+	color: green;
+}
+.onSubmitMessage:type(fail) .message,
+.onSubmitMessage:type(fail) .icon {
+	color: red;
+}
+
+.button {
+	-st-extends: Button;
+	padding: 0;
 }

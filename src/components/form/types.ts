@@ -9,15 +9,21 @@ import { ComponentProps } from "../../interfaces/models";
 
 export type FormValues = Record<string, string>;
 
+export interface IFormResponse {
+	error: string;
+	[key: string]: string | boolean | number | object | null;
+}
+
 export interface IFormProps extends ComponentProps {
-	entries: Record<string, IFieldRef>;
-	onSuccessMessage: React.ReactNode;
-	onFailMessage: React.ReactNode;
-	submitButtonLabel: string;
-	submitButtonLabelActive: string;
-	locale?: string;
-	theme?: string;
-	onSubmit: (values: FormValues) => Promise<Response>;
+	readonly entries: Record<string, IFieldRef>;
+	readonly onSuccessMessage: React.ReactNode;
+	readonly onFailMessage: React.ReactNode;
+	readonly submitButtonLabel: string;
+	readonly submitButtonLabelActive: string;
+	readonly onSubmit: (values: FormValues) => Promise<IFormResponse>;
+	readonly useCaptcha: boolean;
+	readonly locale?: string;
+	readonly theme?: string;
 }
 
 export enum FormFieldState {
@@ -73,6 +79,7 @@ export interface IFormField extends IFieldProps {
 
 export interface ICaptchaProps {
 	onChange: (value: string) => void;
+	setCaptchaError: (err: string) => void;
 	onExpired: () => void;
 	locale: string;
 	theme: string;
