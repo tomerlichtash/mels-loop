@@ -1,0 +1,21 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**"],
+      "env": [
+        "NEXT_PUBLIC_RECAPTCHA_KEY",
+        "SENDGRID_API_KEY",
+        "NEXT_PUBLIC_ML_DEBUG",
+        "NODE_ENV"
+      ]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false
+    }
+  }
+}
