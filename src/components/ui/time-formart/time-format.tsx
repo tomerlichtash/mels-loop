@@ -1,34 +1,27 @@
 import React from "react";
 import { ComponentProps } from "../../../interfaces/models";
-import { format } from "date-fns";
+import { format } from "./time-format-utils";
 import { st, classes } from "./time-format.st.css";
 
 export interface DateProps extends ComponentProps {
-	dateStr: Date;
+	timestamp: Date;
 	locale: string;
 }
 
-const localeFormats = {
-	en: "MM-dd-yyyy",
-	he: "dd/MM/yyyy",
-};
-
-const getLocaleFormat = (locale: string): string => localeFormats[locale];
-
 export const TimeFormat = ({
-	dateStr,
+	timestamp,
 	locale,
 	className,
 }: DateProps): JSX.Element => {
-	if (!dateStr) {
+	if (!timestamp) {
 		return null;
 	}
 
-	const date = new Date(dateStr);
+	const fDate = format(timestamp, locale);
 
 	return (
-		<time dateTime={date.toString()} className={st(classes.root, className)}>
-			{format(date, getLocaleFormat(locale))}
+		<time dateTime={fDate} className={st(classes.root, className)}>
+			{fDate}
 		</time>
 	);
 };

@@ -50,7 +50,6 @@
 		"@sendgrid/mail": "^7.7.0",
 		"@stitches/react": "^1.2.8",
 		"cookies-next": "^2.1.1",
-		"date-fns": "^2.29.3",
 		"gray-matter": "^4.0.3",
 		"js-cookie": "^3.0.1",
 		"lodash.orderby": "^4.6.0",
