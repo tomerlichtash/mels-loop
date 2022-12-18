@@ -8,7 +8,7 @@ import Layout from "../../components/layout";
 import { usePageData } from "../../components/usePageData";
 import { Button } from "../../components/ui";
 import { mlUtils } from "../../lib/ml-utils";
-import { ReactLocaleContext } from "../../contexts/locale-context";
+import { ReactLocaleContext } from "./../../contexts/locale-context";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Post from "../../components/post";
 import { classes } from "../../pages/page-base.st.css";

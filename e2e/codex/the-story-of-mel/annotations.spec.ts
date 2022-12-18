@@ -34,7 +34,7 @@ test.describe("Annotations", () =>
 			test.afterAll(async () => await page.close());
 
 			const { content } = getFrontMatter(docId, "codex/index", locale);
-			const codexTerms = getMarkdownLinks(content as string, "annotations");
+			const codexTerms = getMarkdownLinks(content, "annotations");
 			const terms = getAnnotationsData(locale, docId);
 
 			const getRawTerm = (term: string) =>

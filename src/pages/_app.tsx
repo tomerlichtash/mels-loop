@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import React from "react";
 import css from "styled-jsx/css";
 import { AppProps } from "next/app";

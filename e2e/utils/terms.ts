@@ -1,8 +1,7 @@
 import { getFrontMatter } from "./test-utils";
 import type { ITermTestData } from "./types";
 import { EMPTY_STRING, MD_LINK } from "./patterns";
-
-const fs = require("fs");
+import { readdirSync } from "fs";
 
 export const invalidTerms = ["index.en.md", "index.he.md", ".DS_Store"];
 
@@ -19,7 +18,7 @@ export const getAnnotationsData = (
 	locale: string,
 	docId: string
 ): IAnnotationData[] => {
-	const annotations = fs.readdirSync(`./public/content/${docId}/annotations`, {
+	const annotations = readdirSync(`./public/content/${docId}/annotations`, {
 		withFileTypes: false,
 	});
 	return annotations
@@ -41,7 +40,7 @@ export const getAnnotationsData = (
 };
 
 export const getGlossaryData = (locale: string) => {
-	const glossary = fs.readdirSync("./public/content/glossary", {
+	const glossary = readdirSync("./public/content/glossary", {
 		withFileTypes: false,
 	});
 	return glossary

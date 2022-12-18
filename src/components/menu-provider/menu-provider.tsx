@@ -41,7 +41,7 @@ const getSectionItems = (section: IMenuSection): IMenuItem[] =>
 	section.children
 		? section.children.map(
 				(childId) => MenuItems.filter((child) => child.id === childId)[0]
-		  )
+		)
 		: null;
 
 const getMenuItems = (

@@ -107,7 +107,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 		this.warn = animationProps.debug
 			? (...args: unknown[]) => {
 					console.warn("favicon animator: ", ...args);
-			  }
+			}
 			: () => void 0;
 		this.props = {
 			...animationProps,
@@ -142,7 +142,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 			return Promise.resolve();
 		}
 		if (this.props.durationSeconds <= 0 || isNaN(this.props.durationSeconds)) {
-			this.warn(`Meaningless duration  ${this.props.durationSeconds}`);
+			this.warn(`Meaningless duration ${this.props.durationSeconds}`);
 			return Promise.resolve();
 		}
 		return new Promise((resolve) => {

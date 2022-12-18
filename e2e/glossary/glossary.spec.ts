@@ -47,7 +47,7 @@ test.describe("Glossary", () => {
 			test.afterAll(async () => await page.close());
 
 			const { content } = getFrontMatter(docId, "codex/index", locale);
-			const codexTerms = getMarkdownLinks(content as string, "glossary");
+			const codexTerms = getMarkdownLinks(content, "glossary");
 			const terms = getGlossaryData(locale);
 
 			codexTerms.map(async (term: string) => {
@@ -100,7 +100,7 @@ test.describe("Glossary", () => {
 						"minimum words per term"
 					).toBeGreaterThan(0);
 
-					const sanitizedContent = stripMarkdown(content as string);
+					const sanitizedContent = stripMarkdown(content);
 
 					await expect(
 						page.locator(contentSelector),

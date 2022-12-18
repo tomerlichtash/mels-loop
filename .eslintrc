@@ -5,45 +5,34 @@
 		"node": true
 	},
 	"extends": [
-		"plugin:@next/next/recommended",
-		"plugin:react/recommended",
-		"plugin:react-hooks/recommended",
-		"plugin:import/recommended",
-		"plugin:import/typescript",
-		"eslint:recommended",
-		"prettier"
+		"eslint:recommended"
 	],
-	"plugins": ["jsx-a11y"],
-	"settings": {
-		"react": {
-			"version": "detect"
-		}
-	},
-	"rules": {},
+	// "settings": {
+	// 	"react": {
+	// 		"version": "detect"
+	// 	}
+	// },
+	// "rules": {},
 	"parser": "@typescript-eslint/parser",
 	"overrides": [
 		{
 			"files": ["*.ts", "*.tsx"],
 			"parserOptions": {
 				"project": "./tsconfig.json",
-				"warnOnUnsupportedTypeScriptVersion": false
+				// "warnOnUnsupportedTypeScriptVersion": false
 			},
 			"extends": [
 				"plugin:@typescript-eslint/recommended",
 				"plugin:@typescript-eslint/recommended-requiring-type-checking"
 			],
 			"rules": {
-				// "@typescript-eslint/explicit-module-boundary-types": "off"
 				"@typescript-eslint/no-unsafe-assignment": "off",
-				// "@typescript-eslint/no-var-requires": "off"
 				"@typescript-eslint/require-await": "off",
 				"@typescript-eslint/no-unsafe-member-access": "off",
 				"@typescript-eslint/no-unsafe-call": "off",
 				"@typescript-eslint/no-unsafe-return": "off",
 				"prefer-const": "off",
-				"react/no-unescaped-entities": "off",
-				"no-case-declarations": "off",
-				"@next/next/no-img-element": "off"
+				"no-case-declarations": "off"
 			}
 		}
 	]

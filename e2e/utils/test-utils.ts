@@ -1,3 +1,5 @@
+import fs from "fs";
+import matter from "gray-matter";
 import { Languages } from "../../src/locales";
 import { _translate, wrapStr } from "../../src/locales/translate";
 import {
@@ -18,9 +20,6 @@ import {
 	MD_CODEBLOCK_INLINE,
 	UNTRANSLATED_STRING,
 } from "./patterns";
-
-const fs = require("fs");
-const matter = require("gray-matter");
 
 export const baseDir = "http://localhost:3000";
 

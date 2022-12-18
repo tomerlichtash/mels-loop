@@ -748,7 +748,7 @@ previous: ${map.get(id).type} current ${node.type}`);
 			? translateString(
 					tmpl.replace(INDEX_RE, String(target.sequence)),
 					context.mode.locale
-			  )
+			)
 			: String(target.sequence);
 		node.children.length = 0;
 		node.children.push({

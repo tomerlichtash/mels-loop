@@ -19,7 +19,7 @@ export const Link = ({
 		: {
 				target: "_blank",
 				rel: "noreferrer",
-		  };
+	};
 	return (
 		<a
 			className={st(classes.root, className)}

@@ -142,13 +142,13 @@ async function _collectPaths(params: {
 			? paths.map((rec) => ({
 					path: fsPath.join(rec.path, top),
 					idMap: rec.idMap,
-			  }))
+			}))
 			: [
 					{
 						path: topFolder,
 						idMap: {},
 					},
-			  ];
+		];
 		return await _collectPaths({
 			parts,
 			root: topFolder,
