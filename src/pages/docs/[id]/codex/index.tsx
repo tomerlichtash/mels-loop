@@ -7,7 +7,6 @@ import { GenericPage } from "../../../../components/content";
 import {
 	LoadContentModes,
 	LoadFolderModes,
-	MLParseModes,
 } from "../../../../interfaces/parser";
 
 export default function Doc(props: IPageProps) {
@@ -27,7 +26,6 @@ export const getStaticProps: GetStaticProps = async (
 		LoadFolderModes.FOLDER,
 		{
 			contentMode: LoadContentModes.FULL,
-			parseMode: MLParseModes.VERSE,
 			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
 		}
 	);

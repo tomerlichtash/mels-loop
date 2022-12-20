@@ -3,6 +3,7 @@ title: "הסיפור על מל"
 moto: "פורסם בידי מחברו, אד ניית׳ר <nather@astro.as.utexas.edu>, ברשת Usenet, ב-21 במאי 1983:"
 author: "אד ניית׳ר"
 credits: "תרגם מאנגלית וביאר: תומר ליכטש | ייעוץ מדעי: דוד פרנקל"
+parse_mode: "verse"
 ---
 
 מאמר מן הזמן האחרון על צד _מצ'ואיסטי_ בתכנות[^](annotations/recent-article)
