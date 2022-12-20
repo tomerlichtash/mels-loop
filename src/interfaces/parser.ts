@@ -19,6 +19,8 @@ export enum LoadContentModes {
 }
 
 export enum MLParseModes {
+	// value must be falsy
+	AUTO = "",
 	VERSE = "verse",
 	NORMAL = "normal",
 }
@@ -71,16 +73,16 @@ export interface IContentParseOptions {
 	 */
 	readonly contentMode: LoadContentModes;
 	/**
+	 * The locale for which this content is parsed
+	 */
+	readonly locale: string;
+	 /**
 	 * Defaults to NORMAL
 	 */
-	readonly parseMode: MLParseModes;
+	readonly parseMode?: MLParseModes;
 	/**
 	 * an optional function that may return a new node
 	 */
 	readonly nodeProcessors?: Array<MLNodeProcessorFunction>;
 
-	/**
-	 * The locale for which this content is parsed
-	 */
-	readonly locale: string;
 }
