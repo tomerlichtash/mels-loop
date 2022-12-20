@@ -65,7 +65,7 @@ export interface ILoadContentOptions {
  */
 const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	contentMode: LoadContentModes.FULL,
-	parseMode: MLParseModes.NORMAL,
+	parseMode: MLParseModes.AUTO,
 	nodeProcessors: undefined,
 	locale: undefined,
 };
@@ -223,6 +223,8 @@ class PageMetaData implements IPageMetaData {
 	public source_url = "";
 	public source_name = "";
 	public source_author = "";
+	// value must be falsy, so initially it doesn't affect the parse mode computation
+	public parse_mode =  MLParseModes.AUTO; 
 	public figures: IFigureConfiguration = {
 		auto: true,
 		base: 1,

@@ -1,5 +1,6 @@
 import { IComponentKeyProps } from "../locales/keymap/types";
 import { DynamicContentTypes } from "./dynamic-content";
+import { MLParseModes } from "./parser";
 
 /**
  * Workaround for any
@@ -205,6 +206,8 @@ export interface IPageMetaData {
 	 * figures configuration, which may be overridden by the document metadata
 	 */
 	readonly figures: IFigureConfiguration;
+
+	readonly parse_mode?: MLParseModes;
 }
 
 /**

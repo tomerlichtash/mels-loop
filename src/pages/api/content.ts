@@ -3,7 +3,6 @@ import { CONTENT_TYPES } from "../../consts";
 import { mlApiUtils } from "../../lib/api-utils";
 import {
 	LoadContentModes,
-	MLParseModes,
 	LoadFolderModes,
 } from "../../interfaces/parser";
 import {
@@ -121,7 +120,6 @@ async function loadContent(
 			loadMode: LoadFolderModes.CHILDREN,
 			mode: {
 				contentMode: LoadContentModes.FULL,
-				parseMode: MLParseModes.NORMAL,
 				nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
 			},
 			rootFolder: process.cwd(),

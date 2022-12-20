@@ -86,6 +86,10 @@ interface IFigureInfo {
 
 const INDEX_RE = /%index%/i;
 
+const VALID_PARSE_MODES: Set<MLParseModes> = new Set<MLParseModes>([
+	MLParseModes.NORMAL, MLParseModes.VERSE
+])
+
 const AST2MLTypeMap: Map<ASTNODE_TYPES, MLNODE_TYPES> = new Map<
 	ASTNODE_TYPES,
 	MLNODE_TYPES
@@ -178,11 +182,6 @@ const NORMAL_MODE_AST_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>([
 	ASTNODE_TYPES.HEADING,
 ]);
 
-const NORMAL_MODE_MLTYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
-	MLNODE_TYPES.CITE,
-	MLNODE_TYPES.FIGCAPTION,
-]);
-
 /**
  * Node types that should be promoted to a figure if their only content is an image
  */
@@ -261,22 +260,20 @@ function extractParseMode(
 ): MLParseModes {
 	if (node.attributes) {
 		const attr = node.attributes.get("data-parse-mode");
-		if (attr && /^verse$/.test(attr)) {
-			return MLParseModes.VERSE;
+		if (attr && VALID_PARSE_MODES.has(attr as MLParseModes)) {
+			return attr as MLParseModes;
 		}
 	}
-	if (VERSE_MODE_AST_TYPES.has(node.type)) {
+	const type = node.type === ASTNODE_TYPES.HTML ?
+		node.tag : node.type;
+	if (VERSE_MODE_AST_TYPES.has(type as ASTNODE_TYPES)) {
 		return MLParseModes.VERSE;
 	}
-	if (NORMAL_MODE_AST_TYPES.has(node.type)) {
+	if (NORMAL_MODE_AST_TYPES.has(type as ASTNODE_TYPES)) {
 		return MLParseModes.NORMAL;
 	}
-	if (
-		node.type === ASTNODE_TYPES.HTML &&
-		NORMAL_MODE_MLTYPES.has(node.tag as MLNODE_TYPES)
-	) {
-		return MLParseModes.NORMAL;
-	}
+
+
 	return context.mode.parseMode;
 }
 
@@ -1173,12 +1170,24 @@ class MLParseContext {
 	private _linkDefs: { [key: string]: IMLParsedNode } = {};
 	private _indexer: NodeIndexer = new NodeIndexer();
 	private readonly _metaData: IPageMetaData;
+	private readonly _mode: IContentParseOptions;
 
 	constructor(
-		public readonly mode: IContentParseOptions,
+		mode: IContentParseOptions,
 		metaData: IPageMetaData
 	) {
+		const parseMode = mode.parseMode || metaData.parse_mode;
+		this._mode = {
+			...mode,
+			parseMode: VALID_PARSE_MODES.has(parseMode)?
+				parseMode: MLParseModes.NORMAL
+		}
 		this._metaData = mlUtils.clonePlainObject(metaData);
+	}
+
+
+	public get mode(): IContentParseOptions {
+		return this._mode;
 	}
 
 	public clone(mode: Partial<IContentParseOptions>): MLParseContext {

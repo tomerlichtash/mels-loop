@@ -11,7 +11,6 @@ import { mlNextUtils } from "../lib/next-utils";
 import {
 	LoadContentModes,
 	LoadFolderModes,
-	MLParseModes,
 } from "../interfaces/parser";
 import { contentUtils } from "../lib/content-utils";
 import { usePageData } from "../components/usePageData";
@@ -60,7 +59,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		LoadFolderModes.FOLDER,
 		{
 			contentMode: LoadContentModes.FULL,
-			parseMode: MLParseModes.VERSE,
 			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
 		}
 	);
