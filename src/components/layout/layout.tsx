@@ -62,7 +62,19 @@ export default function Layout({ children, title }: ILayoutProps) {
 		<>
 			<Head>
 				<title>{pageTitle}</title>
-				<link rel="icon" type="image/png" href="/favicon-temp.png" />
+				<link
+					rel="icon"
+					type="image/png"
+					href="/favicon-temp.png"
+					media="(prefers-color-scheme: light)"
+				/>
+				<link
+					rel="icon"
+					type="image/png"
+					href="/favicon-light-temp.png"
+					media="(prefers-color-scheme: dark)"
+				/>
+
 				<meta name="description" content={siteSubtitle} />
 				<meta itemProp="name" content={siteTitle} />
 				<meta itemProp="description" content={siteSubtitle} />
