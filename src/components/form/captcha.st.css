@@ -13,6 +13,8 @@
 	animation: flickerAnimation 1s infinite;
 }
 
+.error {}
+
 .captcha {}
 
 @keyframes fadeIn {

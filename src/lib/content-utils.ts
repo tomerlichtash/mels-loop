@@ -312,7 +312,7 @@ const urlToContentType = (
 	if (ANNOTATION_RE.test(url)) {
 		return DynamicContentTypes.Annotation;
 	}
-	if (GLOSSARY_RE.test(url) || url[0] === "#") {
+	if (GLOSSARY_RE.test(url)) {
 		return DynamicContentTypes.Glossary;
 	}
 	return defaultType || DynamicContentTypes.None;

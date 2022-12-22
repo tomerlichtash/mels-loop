@@ -35,6 +35,10 @@
 	-st-extends: Captcha;
 }
 
+.error {
+	color: red;
+}
+
 .loadingIndicator {
 	-st-extends: LoadingIndicator;
 }
