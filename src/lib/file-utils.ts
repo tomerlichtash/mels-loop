@@ -1,7 +1,6 @@
 
 import * as fs from "fs";
 import * as fsPath from "path";
-import * as nodeUtils from "util";
 import rimraf from "rimraf";
 
 /**
@@ -81,8 +80,10 @@ export interface IFileUtils {
 
 	/**
 	 * async rimraf a file/folder. Swallws errors, skips null input
+     * 
+     * Resolves to an error message, empty string if ok
 	 */
-	deleteAll(path: string): Promise<void>;
+	deleteAll(path: string): Promise<string>;
 }
 
 type FileFilter = (filePath: IFilePath) => boolean;
@@ -100,7 +101,6 @@ const createPatternArray = (arr: Array<RegExp | string>): Array<RegExp> => {
 		if (sr instanceof RegExp) {
 			return sr;
 		}
-		throw new Error(`Illegal string or regex ${sr}`);
 	});
 }
 
@@ -140,60 +140,6 @@ const existsOnFs = async (filePath: string): Promise<boolean> => {
 	}
 }
 
-const recurseCopy = async (options: {
-	srcPath: string,
-	targetPath: string,
-	filter: FileFilter,
-	overwrite: boolean,
-	recursive: boolean,
-	relativePath: string
-}): Promise<Array<IFilePath>> => {
-	const results: Array<IFilePath> = [];
-	const fullSrcPath = options.relativePath ?
-		fsPath.join(options.srcPath, options.relativePath) : options.srcPath;
-	const list = await fs.promises.readdir(fullSrcPath, { withFileTypes: true });
-	try {
-		for (const file of list) {
-			const relativePath = [options.relativePath, file.name].filter(Boolean).join('/');
-			const src = fsPath.join(options.srcPath, relativePath),
-				dst = fsPath.join(options.targetPath, relativePath);
-			//console.log(src);
-			const stat = await fs.promises.lstat(src);
-			if (!stat) {
-				throw new Error(`Failed to access file ${src}`);
-			}
-			const filePath: IFilePath = {
-				name: file.name,
-				relative: relativePath,
-				full: src
-			}
-			if (!options.filter(filePath)) {
-				// console.log(`copy: Filtering out file ${src}`);
-				continue;
-			}
-			if (stat.isDirectory()) {
-				await fs.promises.mkdir(dst);
-				console.log('creating dir: ' + dst);
-				if (options.recursive) {
-					console.log(`Recursing into ${file.name}`);
-					const sub = await recurseCopy({
-						...options,
-						relativePath
-					});
-					results.push(...sub);
-				}
-			} else {
-				console.log('copying file: ' + dst);
-				await fs.promises.copyFile(src, dst);
-				results.push(filePath);
-			}
-		}
-	}
-	catch (e) {
-		console.error(e);
-	}
-	return results;
-}
 
 
 const recurseFiles = async (options: {
@@ -285,15 +231,20 @@ export class FileUtils implements IFileUtils {
 		}
 	}
 
-	public async deleteAll(path: string): Promise<void> {
+	public async deleteAll(path: string): Promise<string> {
 		if (!path || path.trim() === '/') {
 			return;
 		}
-		const rr: (path: string, options: rimraf.Options) => Promise<void> = nodeUtils.promisify(rimraf);
-		try {
-			await rr(path, {});
-		}
-		catch (e) { }
+        return new Promise((resolve) => {
+            try {
+                rimraf(path, {}, (err) => {
+                    resolve(err && String(err)|| "");
+                })
+            }
+            catch(err) {
+                resolve(String(err));
+            }
+        });
 	}
 
 	public exploreToFile(path: string): boolean {
@@ -345,7 +296,7 @@ export class FileUtils implements IFileUtils {
 			return buffer && String(buffer) || null;
 		}
 		catch (e) {
-			console.error(`While trying to read ${path}: ${e}`);
+			console.error(`While trying to read ${path}: ${String(e)}`);
 			return null;
 		}
 	}
@@ -355,11 +306,11 @@ export class FileUtils implements IFileUtils {
 			return false;
 		}
 		try {
-			const buffer = await fs.promises.writeFile(path, content);
+			await fs.promises.writeFile(path, content);
 			return true;
 		}
 		catch (e) {
-			console.error(`While trying to write ${content?.length} characters to ${path}: ${e}`);
+			console.error(`While trying to write ${content?.length} characters to ${path}: ${String(e)}`);
 			return false;
 		}
 	}
@@ -402,7 +353,7 @@ export class FileUtils implements IFileUtils {
 			filter,
 			callback,
 			relativePath: ""
-		});;
+		});
 	}
 
 

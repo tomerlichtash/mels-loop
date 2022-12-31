@@ -54,7 +54,7 @@ class ContentIndexer {
 			}
 		}
 		catch(e) {
-			ret.errors.push(`Error processing ${path}: ${e}`);
+			ret.errors.push(`Error processing ${path}: ${String(e)}`);
 		}
 		return ret;
 	}
@@ -77,10 +77,10 @@ class ContentIndexer {
 			return "";
 		}
 		catch(e) {
-			return `Error processing ${path}: ${e}`;
+			return `Error processing ${path}: ${String(e)}`;
 		}
 	}
-
-
-
 }
+
+
+export const createContentIndexer = (...paths: string[]): IContentIndexr => new ContentIndexer(...paths);
