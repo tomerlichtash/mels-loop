@@ -40,7 +40,7 @@ const Contribute: NextPage<IPageProps> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-	return mlNextUtils.getFolderStaticProps(
+	return await mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.CONTRIBUTE,
 		context.locale,
 		LoadFolderModes.FOLDER

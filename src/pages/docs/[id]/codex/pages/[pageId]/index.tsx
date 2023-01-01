@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = async (
 		__filename,
 		params as { [key: string]: string }
 	);
-	return mlNextUtils.getFolderStaticProps(
+	return await mlNextUtils.getFolderStaticProps(
 		relativePath,
 		context.locale,
 		LoadFolderModes.FOLDER,

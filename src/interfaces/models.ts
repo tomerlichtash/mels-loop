@@ -249,6 +249,9 @@ export type NodeAttributeMap = { readonly [rekey: string]: string };
 export type PageSortField = Omit<keyof IParsedPageData, "parsed" | "error">;
 
 export interface IFolderContent {
+	/**
+	 * Guaranteed not null
+	 */
 	readonly pages: IParsedPageData[];
 	readonly ids: ILocaleMap[];
 	sortOn(field: PageSortField): IParsedPageData[];

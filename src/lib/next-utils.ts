@@ -36,7 +36,7 @@ type MLGetStaticProps = (
 	locale: string, //GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
 	loadMode: LoadFolderModes,
 	mode?: Partial<IContentParseOptions>
-) => GetStaticPropsResult<FolderStaticProps>;
+) => Promise<GetStaticPropsResult<FolderStaticProps>>;
 
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
@@ -229,13 +229,13 @@ class MLNextUtils implements IMLNextUtils {
 		return relative;
 	}
 
-	public getFolderStaticProps(
+	public async getFolderStaticProps(
 		folderPath: string,
 		locale: string,
 		loadMode: LoadFolderModes,
 		mode?: Partial<IContentParseOptions>
-	): GetStaticPropsResult<FolderStaticProps> {
-		const docData = loadContentFolder({
+	): Promise<GetStaticPropsResult<FolderStaticProps>> {
+		const docData = await loadContentFolder({
 			relativePath: folderPath,
 			loadMode,
 			locale,
@@ -247,18 +247,18 @@ class MLNextUtils implements IMLNextUtils {
 				// Stringify the result, instead of leaving the job to Next, because
 				// Next's serializer is picky about objects, won't take class instances, Dates and more
 				content: JSON.stringify(docData.pages),
-				documentPath: (page && page.path) || "",
+				documentPath: (page?.path) || "",
 			},
 		};
 	}
 
-	public getFolderStaticPaths(
+	public async getFolderStaticPaths(
 		folderPath: string,
 		locales: string[]
-	): GetStaticPathsResult<ParsedUrlQuery> {
+	): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
 		const paths: ILocaleMap[] = [];
-		(locales || []).forEach((locale: string) => {
-			const folderData = loadContentFolder({
+		for (const locale of (locales || [])) {
+			const folderData = await loadContentFolder({
 				locale,
 				relativePath: folderPath,
 				loadMode: LoadFolderModes.CHILDREN,
@@ -268,7 +268,7 @@ class MLNextUtils implements IMLNextUtils {
 				},
 			});
 			paths.push(...folderData.ids);
-		});
+		}
 		return {
 			paths,
 			fallback: false,
@@ -281,8 +281,8 @@ class MLNextUtils implements IMLNextUtils {
 		const paths: ILocaleMap[] = [];
 		const allPaths = await collectPathsIn(options.contentFolder);
 		for (let rec of allPaths) {
-			for (let locale of options.locales) {
-				const folderData = loadContentFolder({
+			for (const locale of options.locales || []) {
+				const folderData = await loadContentFolder({
 					locale,
 					relativePath: rec.path,
 					loadMode: LoadFolderModes.FOLDER,

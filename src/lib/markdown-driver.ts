@@ -70,9 +70,9 @@ const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	locale: undefined,
 };
 
-export function loadContentFolder(
+export async function loadContentFolder(
 	options: ILoadContentOptions
-): IFolderContent {
+): Promise<IFolderContent> {
 	const mode: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
 		...options.mode,
@@ -233,9 +233,9 @@ class PageMetaData implements IPageMetaData {
 }
 
 class FolderContent implements IFolderContent {
-	public pages: IParsedPageData[] = [];
-	public ids: ILocaleMap[] = [];
-	public paths: string[];
+	public readonly pages: IParsedPageData[] = [];
+	public readonly ids: ILocaleMap[] = [];
+	public readonly paths: string[];
 
 	sortOn(field: PageSortField): IParsedPageData[] {
 		if (!this.pages) {
