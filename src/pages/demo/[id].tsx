@@ -11,7 +11,7 @@ export default function Doc(props: IPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-	return mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.DEMO, context.locales);
+	return await mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.DEMO, context.locales);
 };
 
 export const getStaticProps: GetStaticProps = async (
@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps = async (
 	if (process.env.NODE_ENV === "production") {
 		return { notFound: true };
 	}
-	return mlNextUtils.getFolderStaticProps(
+	return await mlNextUtils.getFolderStaticProps(
 		`${CONTENT_TYPES.DEMO}/${context.params.id as string}`,
 		context.locale,
 		LoadFolderModes.FOLDER,

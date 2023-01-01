@@ -83,4 +83,6 @@ class ContentIndexer {
 }
 
 
-export const createContentIndexer = (...paths: string[]): IContentIndexr => new ContentIndexer(...paths);
+export function createContentIndexer(...paths: string[]): IContentIndexr {
+	return new ContentIndexer(...paths);
+}
