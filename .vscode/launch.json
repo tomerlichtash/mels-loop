@@ -5,6 +5,15 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "DB App",
+			"program": "${workspaceFolder}/src/db/server/app.js",
+			"request": "launch",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"type": "node"
+		},
+		{
 			"type": "node",
 			"request": "launch",
 			"name": "Launch Program",
