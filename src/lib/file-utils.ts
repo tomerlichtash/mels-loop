@@ -101,6 +101,7 @@ const createPatternArray = (arr: Array<RegExp | string>): Array<RegExp> => {
 		if (sr instanceof RegExp) {
 			return sr;
 		}
+		throw new Error(`Illegal pattern ${sr} (${typeof sr})`);
 	});
 }
 
@@ -233,12 +234,12 @@ export class FileUtils implements IFileUtils {
 
 	public async deleteAll(path: string): Promise<string> {
 		if (!path || path.trim() === '/') {
-			return;
+			return "illegal path";
 		}
         return new Promise((resolve) => {
             try {
-                rimraf(path, {}, (err) => {
-                    resolve(err && String(err)|| "");
+                rimraf(path, {}, (err?: Error | null) => {
+                    resolve(err?.toString() || "");
                 })
             }
             catch(err) {

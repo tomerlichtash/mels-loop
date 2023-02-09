@@ -115,7 +115,8 @@ export async function loadContentFolder(
 				return;
 			}
 			fullPath = path.join(contentDir, name);
-		} else {
+		}
+		else {
 			if (!rec.isDirectory()) {
 				return;
 			}
@@ -175,6 +176,44 @@ export async function loadContentFolder(
 
 	return folderContentData;
 	// Sort posts by date
+}
+
+
+interface IParsePageOptions {
+	relativePath: string;
+	contentFolder?: string;
+	mode: IContentParseOptions;
+}
+export async function parsePage(fullPath: string, relativePath: string): Promise<IParsedPageData> {
+	try {
+		const fileContents = fs.readFileSync(fullPath, "utf8");
+		//log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
+
+		// Use gray-matter to parse the post metadata section
+		const { data: matterData, content } = matter(fileContents);
+		const metaData = new PageMetaData(matterData);
+		const parsedPageData = new ParsedPageData({
+			metaData: metaData.toObject(),
+			id: name,
+			path: `${relativePath}/${name}`, // don't use path.join, it's os specific
+		});
+		if (mode.contentMode === LoadContentModes.FULL) {
+			// parse markdown and process
+			const mdParse = createHtmlMDParser(); //mdParser.defaultBlockParse;
+			const tree = contentUtils.processParseTree(
+				mdParse(contentUtils.stripComments(content)) as ParsedNode[],
+				metaData,
+				mode
+			);
+
+			// Combine the data with the id
+			parsedPageData.parsed = tree;
+		}
+		return parsedPageData;
+	} catch (e) {
+		//log.error(`Error processing ${fullPath}`, e);
+		return new ParsedPageData({ error: String(e) });
+	}
 }
 
 class ParsedPageData implements IParsedPageData {
