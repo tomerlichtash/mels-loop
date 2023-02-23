@@ -14,4 +14,9 @@ export namespace DB_MODELS {
         readonly labels: string[];
         readonly articles: string[];
     }
+
+    interface ILabel extends ILabelData {
+        readonly id: string;
+    }
 }
+

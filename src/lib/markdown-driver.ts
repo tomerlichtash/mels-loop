@@ -1,5 +1,5 @@
 import fs, { Dirent } from "fs";
-import path from "path";
+import fsPath from "path";
 import matter from "gray-matter";
 import * as mdParser from "simple-markdown";
 import {
@@ -31,11 +31,11 @@ const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 let rootDir: string;
 
 function setContentRootDir(root: string): void {
-	rootDir = path.join(root, CONTENT_PATH);
+	rootDir = fsPath.join(root, CONTENT_PATH);
 }
 
 export function getContentRootDir(root?: string): string {
-	return root ? path.join(root, CONTENT_PATH) : rootDir;
+	return root ? fsPath.join(root, CONTENT_PATH) : rootDir;
 }
 
 /**
@@ -78,7 +78,7 @@ export async function loadContentFolder(
 		...options.mode,
 		locale: options.locale
 	};
-	const contentDir = path.join(
+	const contentDir = fsPath.join(
 		getContentRootDir(options.rootFolder),
 		options.relativePath
 	);
@@ -92,7 +92,7 @@ export async function loadContentFolder(
 	}
 
 	// Get file names under /posts
-	const contentNames: Dirent[] = fs.readdirSync(contentDir, {
+	const allFiles: Dirent[] = await fs.promises.readdir(contentDir, {
 		withFileTypes: true,
 	});
 
@@ -104,34 +104,35 @@ export async function loadContentFolder(
 
 	const targetFileName = getIndexFileName(options.locale);
 
-	contentNames.forEach((rec: Dirent) => {
+	for (const rec of allFiles)  {
 		const name = rec.name;
 		//log.info(`${chalk.magenta("process")} - content ID "${name}"`);
 
 		let fullPath: string;
 
-		if (options.loadMode === LoadFolderModes.FOLDER) {
+		if (options.loadMode === LoadFolderModes.INDEX) {
 			if (targetFileName !== name) {
-				return;
+				continue;
 			}
-			fullPath = path.join(contentDir, name);
+			fullPath = fsPath.join(contentDir, name);
 		}
 		else {
 			if (!rec.isDirectory()) {
-				return;
+				continue;
 			}
 
-			fullPath = path.join(contentDir, name, targetFileName);
+			fullPath = fsPath.join(contentDir, name, targetFileName);
 		}
 
 		if (!fs.existsSync(fullPath)) {
 			//log.warn(`error - Path not found: "${fullPath}"`);
 			// return error without disclosing OS path
-			return folderContentData.pages.push(
+			folderContentData.pages.push(
 				new ParsedPageData({
 					error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
 				})
 			);
+			continue;
 		}
 		folderContentData.ids.push({
 			params: { id: name },
@@ -139,39 +140,17 @@ export async function loadContentFolder(
 		});
 
 		if (mode.contentMode === LoadContentModes.NONE) {
-			return;
+			continue;
 		}
 
-		try {
-			const fileContents = fs.readFileSync(fullPath, "utf8");
-			//log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
+		const pageData = await parsePage({
+			fullPath,
+			relativePath: `${options.relativePath}/${name}`,
+			mode
+		});
 
-			// Use gray-matter to parse the post metadata section
-			const { data: matterData, content } = matter(fileContents);
-			const metaData = new PageMetaData(matterData);
-			const parsedPageData = new ParsedPageData({
-				metaData: metaData.toObject(),
-				id: name,
-				path: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
-			});
-			if (mode.contentMode === LoadContentModes.FULL) {
-				// parse markdown and process
-				const mdParse = createHtmlMDParser(); //mdParser.defaultBlockParse;
-				const tree = contentUtils.processParseTree(
-					mdParse(contentUtils.stripComments(content)) as ParsedNode[],
-					metaData,
-					mode
-				);
-
-				// Combine the data with the id
-				parsedPageData.parsed = tree;
-			}
-			folderContentData.pages.push(parsedPageData.toObject());
-		} catch (e) {
-			//log.error(`Error processing ${fullPath}`, e);
-			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
-		}
-	});
+		folderContentData.pages.push(pageData);
+	}
 	// filter out empty items
 
 	return folderContentData;
@@ -180,11 +159,11 @@ export async function loadContentFolder(
 
 
 interface IParsePageOptions {
+	fullPath: string;
 	relativePath: string;
-	contentFolder?: string;
 	mode: IContentParseOptions;
 }
-export async function parsePage(fullPath: string, relativePath: string): Promise<IParsedPageData> {
+export async function parsePage({fullPath, relativePath, mode }: IParsePageOptions): Promise<IParsedPageData> {
 	try {
 		const fileContents = fs.readFileSync(fullPath, "utf8");
 		//log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
@@ -194,8 +173,8 @@ export async function parsePage(fullPath: string, relativePath: string): Promise
 		const metaData = new PageMetaData(matterData);
 		const parsedPageData = new ParsedPageData({
 			metaData: metaData.toObject(),
-			id: name,
-			path: `${relativePath}/${name}`, // don't use path.join, it's os specific
+			id: fsPath.basename(fullPath),
+			path: relativePath, // don't use path.join, it's os specific
 		});
 		if (mode.contentMode === LoadContentModes.FULL) {
 			// parse markdown and process
