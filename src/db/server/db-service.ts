@@ -26,9 +26,9 @@ export interface IDBService {
     }): Promise<DB_MODELS.IArticle>
     save(options: {
         table: "labels";
-        data: DB_MODELS.IArticleData;
+        data: DB_MODELS.ILabelData;
 
-    }): Promise<DB_MODELS.IArticle>
+    }): Promise<DB_MODELS.ILabel>
 }
 
 class ServerDBService {
@@ -65,6 +65,24 @@ class ServerDBService {
             console.error(`Error initalizing db service ${err}`);
             return false;
         }
+    }
+
+
+    public async save<TKey extends string, TData, TResult>(options: {
+        table: TKey;
+        data: TData;
+    }): Promise<TResult> {
+        const table = this._db?.collections[options.table];
+        if (table) {
+
+        }
+        else {
+            throw new Error(`save to db: table ${options.table} not found`);
+        }
+        const ret: TResult = await table.upsert(options.data as any);
+        return ret as TResult;
+
+
     }
 }
 

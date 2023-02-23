@@ -285,7 +285,7 @@ class MLNextUtils implements IMLNextUtils {
 				const folderData = await loadContentFolder({
 					locale,
 					relativePath: rec.path,
-					loadMode: LoadFolderModes.FOLDER,
+					loadMode: LoadFolderModes.INDEX,
 					mode: {
 						contentMode: LoadContentModes.NONE,
 						parseMode: MLParseModes.NORMAL,

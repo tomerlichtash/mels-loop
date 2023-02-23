@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	return await mlNextUtils.getFolderStaticProps(
 		`docs/the-story-of-mel/${CONTENT_TYPES.CODEX}`,
 		context.locale,
-		LoadFolderModes.FOLDER,
+		LoadFolderModes.INDEX,
 		{
 			contentMode: LoadContentModes.FULL,
 			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],

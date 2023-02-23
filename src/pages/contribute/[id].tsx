@@ -22,6 +22,6 @@ export const getStaticProps: GetStaticProps = async (
 	return await mlNextUtils.getFolderStaticProps(
 		`${CONTENT_TYPES.CONTRIBUTE}/${context.params.id as string}`,
 		context.locale,
-		LoadFolderModes.FOLDER
+		LoadFolderModes.INDEX
 	);
 };

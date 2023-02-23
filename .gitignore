@@ -37,3 +37,6 @@ yarn-error.log*
 test-results/
 results.xml
 unit-tests.xml
+
+**/*.js.map
+**/*.css.map

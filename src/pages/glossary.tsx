@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = await mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.GLOSSARY,
 		context.locale,
-		LoadFolderModes.FOLDER
+		LoadFolderModes.INDEX
 	);
 	const childrenProps = await mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.GLOSSARY,

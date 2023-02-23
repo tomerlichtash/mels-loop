@@ -39,6 +39,17 @@ class ServerDBService {
             return false;
         }
     }
+    async save(options) {
+        var _a;
+        const table = (_a = this._db) === null || _a === void 0 ? void 0 : _a.collections[options.table];
+        if (table) {
+        }
+        else {
+            throw new Error(`save to db: table ${options.table} not found`);
+        }
+        const ret = await table.upsert(options.data);
+        return ret;
+    }
 }
 const createServerDB = (options) => {
     return new ServerDBService(options);

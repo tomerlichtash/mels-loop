@@ -26,7 +26,13 @@ export enum MLParseModes {
 }
 
 export enum LoadFolderModes {
-	FOLDER = "folder",
+	/**
+	 * Load only the index file in the folder
+	 */
+	INDEX = "index",
+	/**
+	 * Load all the children in the folder
+	 */
 	CHILDREN = "children",
 }
 
