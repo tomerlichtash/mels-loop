@@ -40,3 +40,4 @@ unit-tests.xml
 
 **/*.js.map
 **/*.css.map
+temp

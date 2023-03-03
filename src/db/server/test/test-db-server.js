@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.testDB = void 0;
 const http_1 = __importDefault(require("http"));
 const test_data_json_1 = __importDefault(require("./test-data.json"));
+const path_1 = __importDefault(require("path"));
 function getServerData({ data, url, method }) {
     const json = data ? JSON.stringify(data) : "";
     const options = {
@@ -67,6 +68,11 @@ class TestDBServer {
         errors.push(err);
         err = await this.testPutArticle();
         errors.push(err);
+        err = await this.testSave();
+        errors.push(err);
+        if (!err) {
+            err = await this.testLoad();
+        }
         return errors.filter(Boolean);
     }
     async testPutArticle() {
@@ -87,6 +93,26 @@ class TestDBServer {
             method: "GET"
         });
         console.log("connect response", response.data);
+        return response.error || "";
+    }
+    async testSave() {
+        const filePath = path_1.default.resolve(__dirname, "../../../../temp/dump.json");
+        const response = await getServerData({
+            data: null,
+            url: this.makeURL(`save/${encodeURIComponent(filePath)}`),
+            method: "GET"
+        });
+        console.log("save response", response.data);
+        return response.error || "";
+    }
+    async testLoad() {
+        const filePath = path_1.default.resolve(__dirname, "../../../../temp/dump.json");
+        const response = await getServerData({
+            data: null,
+            url: this.makeURL(`load/${encodeURIComponent(filePath)}`),
+            method: "GET"
+        });
+        console.log("save response", response.data);
         return response.error || "";
     }
     makeURL(path) {

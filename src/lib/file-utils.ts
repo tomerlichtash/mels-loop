@@ -101,7 +101,7 @@ const createPatternArray = (arr: Array<RegExp | string>): Array<RegExp> => {
 		if (sr instanceof RegExp) {
 			return sr;
 		}
-		throw new Error(`Illegal pattern ${sr} (${typeof sr})`);
+		throw new Error(`Illegal pattern type ${typeof sr}`);
 	});
 }
 
