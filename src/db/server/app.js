@@ -38,10 +38,43 @@ class MLDBApp {
                     ctx.body = { error: "data should be an object with an article field containing the article" };
                     return;
                 }
-                const saved = await this._dbService.save({
+                const saved = await this._dbService.saveData({
                     table: "articles",
                     data: article
                 });
+                ctx.status = 200;
+                ctx.body = {
+                    ok: Boolean(saved.data),
+                    error: saved.error
+                };
+            });
+            router.get("/save/:filePath", async (ctx) => {
+                const filePath = ctx.params.filePath || "";
+                if (!filePath) {
+                    ctx.status = 500;
+                    ctx.body = { error: "Missing filepath" };
+                    return;
+                }
+                const err = await this._dbService.saveToFile(filePath);
+                ctx.status = 200;
+                ctx.body = {
+                    ok: !err,
+                    error: err || undefined
+                };
+            });
+            router.get("/load/:filePath", async (ctx) => {
+                const filePath = ctx.params.filePath || "";
+                if (!filePath) {
+                    ctx.status = 500;
+                    ctx.body = { error: "Missing filepath" };
+                    return;
+                }
+                const result = await this._dbService.loadFromFile(filePath);
+                ctx.status = 200;
+                ctx.body = {
+                    ok: Boolean(result.data),
+                    error: result.error
+                };
             });
             this._app.use(router.routes()).use(router.allowedMethods());
             const envPort = process.env.DB_API_PORT;

@@ -23,5 +23,5 @@
 		"**/**/*.tsx",
 		"src/pages/docs/[id]/pages/[pageId]"
 	],
-	"exclude": ["node_modules", "**/snippets/**", "**/*.ignore.*"]
+	"exclude": ["node_modules", "**/snippets/**", "**/*.ignore.*", "src/db/*"]
 }

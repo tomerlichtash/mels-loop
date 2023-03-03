@@ -1,5 +1,6 @@
 import http from "http";
 import TestData from "./test-data.json";
+import fsPath from "path";
 
 interface IRequestOptions {
     method: string;
@@ -77,9 +78,14 @@ class TestDBServer {
     public async test(): Promise<string[]> {
         const errors: string[] = [];
         let err = await this.testConnect();
-        errors.push(err)
+        errors.push(err);
         err = await this.testPutArticle();
         errors.push(err);
+        err = await this.testSave();
+        errors.push(err);
+        if (!err) {
+            err = await this.testLoad();
+        }
         return errors.filter(Boolean);
 
     }
@@ -109,6 +115,31 @@ class TestDBServer {
         return response.error || "";
 
     }
+
+    private async testSave(): Promise<string> {
+        const filePath = fsPath.resolve(__dirname, "../../../../temp/dump.json");
+        const response = await getServerData({
+            data: null,
+            url: this.makeURL(`save/${encodeURIComponent(filePath)}`),
+            method: "GET"
+        });
+        console.log("save response", response.data);
+        return response.error || "";
+
+    }
+
+    private async testLoad(): Promise<string> {
+        const filePath = fsPath.resolve(__dirname, "../../../../temp/dump.json");
+        const response = await getServerData({
+            data: null,
+            url: this.makeURL(`load/${encodeURIComponent(filePath)}`),
+            method: "GET"
+        });
+        console.log("save response", response.data);
+        return response.error || "";
+
+    }
+
     private makeURL(path: string): string {
         return `${this.prefix}/${path}`;
     }

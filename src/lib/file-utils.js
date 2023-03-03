@@ -44,7 +44,7 @@ const createPatternArray = (arr) => {
         if (sr instanceof RegExp) {
             return sr;
         }
-        throw new Error(`Illegal pattern ${sr} (${typeof sr})`);
+        throw new Error(`Illegal pattern type ${typeof sr}`);
     });
 };
 const matchesArray = (filePath, exprs) => {
