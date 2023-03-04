@@ -44,7 +44,6 @@
 		"test:unit:ci": "vitest __tests__ --reporter=junit --outputFile.junit=unit-tests-results.xml",
 		"dev-index": "next dev",
 		"predev-index": "bash scripts/run-indexer.sh"
-
 	},
 	"dependencies": {
 		"@radix-ui/react-icons": "^1.1.1",
@@ -68,6 +67,8 @@
 		"react-dom": "18.2.0",
 		"react-google-recaptcha": "^2.1.0",
 		"rimraf": "^3.0.2",
+		"rxdb": "^14.1.8",
+		"rxjs": "^7.8.0",
 		"tmp": "^0.2.1"
 	},
 	"devDependencies": {
