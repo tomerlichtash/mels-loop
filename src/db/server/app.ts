@@ -1,13 +1,16 @@
 import Koa from "koa";
 import { Context } from "koa";
 import * as KoaRouter from "koa-router";
+import { koaBody } from "koa-body";
+import http from "http";
+
 import { createServerDB, IDBService } from "./db-service";
 import { DB_MODELS } from "../models";
 import { testDB } from "./test/test-db-server";
 
+// no ts declaration
 const Router = require("@koa/router");
 const KoaJSON = require("koa-json");
-const KoaBodyParser = require("koa-body-parser");
 
 
 class MLDBApp {
@@ -17,7 +20,7 @@ class MLDBApp {
 	constructor() {
 		this._app = new Koa();
 		this._app.use(KoaJSON());
-		this._app.use(KoaBodyParser());
+		this._app.use(koaBody());
 		this._dbService = createServerDB({});
 	}
 
@@ -111,8 +114,24 @@ class MLDBApp {
 			const envPort = process.env.DB_API_PORT;
 			this._port = (envPort && !isNaN(parseInt(envPort))) ?
 				parseInt(envPort) : 11012;
+			this._app.on('error', (e) => {
+				if (e.code === 'EADDRINUSE') {
+					console.error(`Port ${this._port} in use, exiting...`);
+					setTimeout(() => process.exit(1), 1);
+				}
+			});
 
-			this._app.listen(this._port);
+			http.createServer(this._app.callback())
+				.listen(this._port)
+				.on("error", (err: (Error & { code: string })) => {
+					if (err.code === 'EADDRINUSE') {
+						console.error(`Port ${this._port} in use, exiting...`);
+						setTimeout(() => process.exit(1), 1);
+					}
+				})
+			// this._app.listen(this._port, (...args: any[]) => {
+			// 	console.log(args);
+			// });
 
 			return "";
 		}

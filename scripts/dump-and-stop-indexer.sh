@@ -52,3 +52,6 @@ echo "Final URL: http://localhost:11012/save/$ENCODED_PATH"
 
 curl http://localhost:11012/save/$ENCODED_PATH
 curl http://localhost:11012/terminate
+
+git add "$OUTPATH/$OUTFILE"
+

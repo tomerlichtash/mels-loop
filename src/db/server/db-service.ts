@@ -1,15 +1,15 @@
-import { createRxDatabase, RxDatabase, stringifyFilter } from 'rxdb';
-import { getRxStorageDexie } from 'rxdb/plugins/dexie';
-import { ArticleSchema } from "../schemas/article.schema";
-import { indexedDB, IDBKeyRange } from "fake-indexeddb";
-
-import { addRxPlugin } from 'rxdb';
 import { RxDBDevModePlugin } from 'rxdb/plugins/dev-mode';
 import { RxDBJsonDumpPlugin } from 'rxdb/plugins/json-dump';
-
-import { DB_MODELS } from '../models';
+import { createRxDatabase, RxDatabase, addRxPlugin } from 'rxdb';
+import { getRxStorageDexie } from 'rxdb/plugins/dexie';
 import fs from "fs";
 import fsPath from "path";
+
+import { ArticleSchema } from "../schemas/article.schema";
+import { indexedDB, IDBKeyRange } from "fake-indexeddb";
+import { importDBData } from "../common/db-utils";
+
+import { DB_MODELS, DB_SERVICE_MODELS } from '../models';
 
 export interface IDBOptions {
 	schema?: string;
@@ -25,10 +25,6 @@ type DBSaveMethod<TKey extends string, TData, TResult> = (options: {
 	data: TData;
 }) => Promise<TResult>;
 
-interface IDBDump {
-	data: object;
-	schemas: Array<object>;
-}
 
 export interface IDBService {
 	init(): Promise<boolean>;
@@ -110,7 +106,7 @@ class ServerDBService implements IDBService {
 			const dump = await this._db?.exportJSON();
 			const db = {
 				schemas: [
-					{ articles:{ schema: ArticleSchema } }
+					{ "articles": { schema: ArticleSchema } }
 				],
 				data: dump || {}
 			}
@@ -134,12 +130,12 @@ class ServerDBService implements IDBService {
 					error: "no content"
 				};
 			}
-			const snapshot: IDBDump = JSON.parse(String(content));
+			const snapshot: DB_SERVICE_MODELS.IDBDump = JSON.parse(String(content));
 			const db = await createDB({
-				name: "test",
-				collections: snapshot.schemas
+				name: "test"
 			})
-			await db.importJSON(snapshot.data as any);
+// eslint-disable-next-line @typescript-eslint/no-explicit any
+			await importDBData({ db: db as any, dump: snapshot, loadData: true })
 
 			return {
 				data: db,

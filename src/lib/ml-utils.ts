@@ -1,6 +1,15 @@
 /**
  * General utility functions
  */
+
+export interface IAppEnvironment {
+	readonly isBrowser: boolean;
+	readonly isDevMode: boolean;
+}
+
+/**
+ * Utilities available on the node and browser sides
+ */
 export interface IMLUtils {
 	uniqueId(prefix?: string): string;
 
@@ -16,6 +25,11 @@ export interface IMLUtils {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	flattenArray(arr: Array<any>): [];
+
+	/**
+	 * True if the app is running in a browser (as opposed to the react app constructed during a static build)
+	 */
+	readonly appEnvironment: IAppEnvironment;
 }
 
 const ALLOWED_MERGE_TYPES: Array<string> = [
@@ -28,6 +42,19 @@ const ALLOWED_MERGE_TYPES: Array<string> = [
 class MLUtils implements IMLUtils {
 	private readonly seed = `mlid-${String(Date.now() % 1000)}`;
 	private nextNumber = Math.round(Date.now() % 1000);
+	private readonly _appEnvironment: IAppEnvironment;
+
+	constructor() {
+		const t = typeof window;
+		this._appEnvironment = {
+			isDevMode: Boolean(process?.env?.NEXT_PUBLIC_ML_DEBUG),
+			isBrowser: (t === "object" || t === "function") && typeof window.setTimeout === "function"
+		};
+	}
+
+	public get appEnvironment() {
+		return this._appEnvironment;
+	}
 
 	public uniqueId(prefix: string = this.seed): string {
 		return `${prefix}-${this.nextNumber++}`;

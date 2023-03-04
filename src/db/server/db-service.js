@@ -4,15 +4,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createServerDB = void 0;
-const rxdb_1 = require("rxdb");
-const dexie_1 = require("rxdb/plugins/dexie");
-const article_schema_1 = require("../schemas/article.schema");
-const fake_indexeddb_1 = require("fake-indexeddb");
-const rxdb_2 = require("rxdb");
 const dev_mode_1 = require("rxdb/plugins/dev-mode");
 const json_dump_1 = require("rxdb/plugins/json-dump");
+const rxdb_1 = require("rxdb");
+const dexie_1 = require("rxdb/plugins/dexie");
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+const article_schema_1 = require("../schemas/article.schema");
+const fake_indexeddb_1 = require("fake-indexeddb");
+const db_utils_1 = require("../common/db-utils");
 async function createDB({ name, collections: schemas }) {
     const db = await (0, rxdb_1.createRxDatabase)({
         name,
@@ -36,8 +36,8 @@ class ServerDBService {
             throw new Error("db service already initialized");
         }
         try {
-            (0, rxdb_2.addRxPlugin)(dev_mode_1.RxDBDevModePlugin);
-            (0, rxdb_2.addRxPlugin)(json_dump_1.RxDBJsonDumpPlugin);
+            (0, rxdb_1.addRxPlugin)(dev_mode_1.RxDBDevModePlugin);
+            (0, rxdb_1.addRxPlugin)(json_dump_1.RxDBJsonDumpPlugin);
             // const db = new Dexie("MyDatabase", { indexedDB: indexedDB, IDBKeyRange: IDBKeyRange });
             this._db = await createDB({
                 name: "ml",
@@ -62,7 +62,7 @@ class ServerDBService {
             const dump = await ((_a = this._db) === null || _a === void 0 ? void 0 : _a.exportJSON());
             const db = {
                 schemas: [
-                    { articles: { schema: article_schema_1.ArticleSchema } }
+                    { "articles": { schema: article_schema_1.ArticleSchema } }
                 ],
                 data: dump || {}
             };
@@ -87,10 +87,10 @@ class ServerDBService {
             }
             const snapshot = JSON.parse(String(content));
             const db = await createDB({
-                name: "test",
-                collections: snapshot.schemas
+                name: "test"
             });
-            await db.importJSON(snapshot.data);
+            // eslint-disable-next-line @typescript-eslint/no-explicit any
+            await (0, db_utils_1.importDBData)({ db: db, dump: snapshot, loadData: true });
             return {
                 data: db,
                 error: ""
