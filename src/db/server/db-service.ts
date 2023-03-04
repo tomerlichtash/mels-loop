@@ -9,7 +9,7 @@ import { RxDBJsonDumpPlugin } from 'rxdb/plugins/json-dump';
 
 import { DB_MODELS } from '../models';
 import fs from "fs";
-
+import fsPath from "path";
 
 export interface IDBOptions {
 	schema?: string;
@@ -65,8 +65,7 @@ async function createDB({ name, collections: schemas }: ICreateDBOptions): Promi
 		})
 	});
 	for (let schema of schemas || []) {
-		const added = await db.addCollections({ ...schema });
-		console.log(added);
+		await db.addCollections({ ...schema });
 	}
 
 	return db;
@@ -106,6 +105,8 @@ class ServerDBService implements IDBService {
 
 	public async saveToFile(filePath: string): Promise<string> {
 		try {
+			// windows path, if necessary
+			filePath = filePath.replace(/\/(c|d|e)\//i, "$1:\\");
 			const dump = await this._db?.exportJSON();
 			const db = {
 				schemas: [
@@ -113,7 +114,10 @@ class ServerDBService implements IDBService {
 				],
 				data: dump || {}
 			}
-			await fs.promises.writeFile(filePath, JSON.stringify(db));
+			const fsp = fsPath;
+			const _fs = fs;
+			const osPath = fsPath.resolve(filePath);
+			await fs.promises.writeFile(osPath, JSON.stringify(db));
 			return "";
 		}
 		catch (err) {

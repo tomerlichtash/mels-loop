@@ -145,7 +145,7 @@ export async function loadContentFolder(
 
 		const pageData = await parsePage({
 			fullPath,
-			relativePath: `${options.relativePath}/${name}`,
+			relativePath: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
 			mode
 		});
 
@@ -174,7 +174,7 @@ export async function parsePage({fullPath, relativePath, mode }: IParsePageOptio
 		const parsedPageData = new ParsedPageData({
 			metaData: metaData.toObject(),
 			id: fsPath.basename(fullPath),
-			path: relativePath, // don't use path.join, it's os specific
+			path: relativePath, 
 		});
 		if (mode.contentMode === LoadContentModes.FULL) {
 			// parse markdown and process

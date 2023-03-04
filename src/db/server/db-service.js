@@ -12,6 +12,7 @@ const rxdb_2 = require("rxdb");
 const dev_mode_1 = require("rxdb/plugins/dev-mode");
 const json_dump_1 = require("rxdb/plugins/json-dump");
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 async function createDB({ name, collections: schemas }) {
     const db = await (0, rxdb_1.createRxDatabase)({
         name,
@@ -21,8 +22,7 @@ async function createDB({ name, collections: schemas }) {
         })
     });
     for (let schema of schemas || []) {
-        const added = await db.addCollections(Object.assign({}, schema));
-        console.log(added);
+        await db.addCollections(Object.assign({}, schema));
     }
     return db;
 }
@@ -57,6 +57,8 @@ class ServerDBService {
     async saveToFile(filePath) {
         var _a;
         try {
+            // windows path, if necessary
+            filePath = filePath.replace(/\/(c|d|e)\//i, "$1:\\");
             const dump = await ((_a = this._db) === null || _a === void 0 ? void 0 : _a.exportJSON());
             const db = {
                 schemas: [
@@ -64,7 +66,10 @@ class ServerDBService {
                 ],
                 data: dump || {}
             };
-            await fs_1.default.promises.writeFile(filePath, JSON.stringify(db));
+            const fsp = path_1.default;
+            const _fs = fs_1.default;
+            const osPath = path_1.default.resolve(filePath);
+            await fs_1.default.promises.writeFile(osPath, JSON.stringify(db));
             return "";
         }
         catch (err) {

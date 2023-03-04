@@ -1,13 +1,13 @@
 export namespace DB_MODELS {
     interface IArticleData {
-        readonly relativePath: string;
+        readonly path: string;
         readonly labels: string[];
         readonly startDate: number;
         readonly endDate: number;
     }
 
     interface IArticle extends IArticleData {
-        readonly id: string;
+        readonly _meta: object;
     }
 
     interface ILabelData {

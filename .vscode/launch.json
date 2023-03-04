@@ -31,6 +31,16 @@
 			}
 		},
 		{
+			"name": "Next.js: debug with indexing",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "yarn dev-index",
+			"env": {
+				"NODE_OPTIONS": "--inspect",
+				"NXT_INDEX_CONTENT": "true"
+			}
+		},
+		{
 			"type": "node",
 			"request": "attach",
 			"name": "Attach to Next",
