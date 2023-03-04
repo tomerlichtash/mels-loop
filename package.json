@@ -32,16 +32,19 @@
 		"clean": "rm -rf .next",
 		"dev": "next dev",
 		"build": "next build",
-		"prebuild-index": "echo starting build with index",
-		"build-index": "env NXT_INDEX_CONTENT=true && next build",
-		"postbuild-index": "echo Finished building with index",
+		"prebuild-index": "bash scripts/run-indexer.sh",
+		"build-index": "env NXT_INDEX_CONTENT=true next build",
+		"postbuild-index": "bash scripts/dump-and-stop-indexer.sh -O public/full-db.json",
 		"build:sitemap": "next-sitemap",
 		"start": "next start",
 		"lint": "eslint . -f codeframe",
 		"prettier:check": "npx prettier --config .prettierrc --ignore-path .prettierignore --check src",
 		"test:e2e": "playwright test",
 		"test:unit": "vitest __tests__",
-		"test:unit:ci": "vitest __tests__ --reporter=junit --outputFile.junit=unit-tests-results.xml"
+		"test:unit:ci": "vitest __tests__ --reporter=junit --outputFile.junit=unit-tests-results.xml",
+		"dev-index": "next dev",
+		"predev-index": "bash scripts/run-indexer.sh"
+
 	},
 	"dependencies": {
 		"@radix-ui/react-icons": "^1.1.1",

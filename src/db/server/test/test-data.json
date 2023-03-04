@@ -1,7 +1,6 @@
 {
     "ARTICLE1" : {
-        "relativePath": "/docs/codex/",
-		"id": "/docs/codex/index.en.md",
+        "path": "/docs/codex/",
 		"labels": [ "mel", "LGP-3000", "safran"],
 		"startDate": 0
 

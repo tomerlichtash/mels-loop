@@ -2,14 +2,10 @@ export const ArticleSchema = {
 	version: 0,
 	title: 'Schema for ML Articles',
 	keyCompression: false,
-	primaryKey: 'id',
+	primaryKey: 'path',
 	type: 'object',
 	properties: {
-		id: {
-			type: 'string',
-			maxLength: 100 // <- the primary key must have set maxLength
-		},
-		relativePath: {
+		path: {
 			type: 'string',
 			maxLength: 100 // <- string-fields that are used as an index, must have set maxLength.
 		},
@@ -28,12 +24,8 @@ export const ArticleSchema = {
 
 	},
 	required: [
-		'id',
-		'relativePath',
+		'path',
 		"labels",
 		"startDate"
-	],
-	indexes: [
-		"relativePath"
 	]
 };

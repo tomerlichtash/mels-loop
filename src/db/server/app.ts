@@ -40,8 +40,7 @@ class MLDBApp {
 			});
 
 			router.put("/article", async (ctx: Context) => {
-				const body = (ctx.request as any).body,
-					req = ctx.req;
+				const body = (ctx.request as any).body;
 				const { article } = body as { article: DB_MODELS.IArticleData };
 				if (!article || typeof article !== "object") {
 					ctx.status = 500;
@@ -94,6 +93,19 @@ class MLDBApp {
 				}
 			});
 
+			router.get("/terminate", async (ctx: Context) => {
+				setTimeout(() => {
+					process.exit(0);
+				});
+				const message = "DB Server terminating";
+				console.log(message);
+				ctx.status = 200;
+				ctx.body = {
+					ok: true,
+					message
+				}
+			});
+
 			this._app.use(router.routes()).use(router.allowedMethods());
 
 			const envPort = process.env.DB_API_PORT;
@@ -119,6 +131,8 @@ app.run()
 	.then(async () => {
 		console.log(`App listening on port ${app.port}`);
 		const errors = await testDB(app.port);
-		console.log("Test errors", errors.join('\n'))
+		if (errors.length) {
+			console.warn("Test errors: ", errors.join('\n'));
+		}
 	})
-	.catch(err => console.error(`ML DB App failed: ${err}`));
+	.catch(err => { console.error(`ML DB App failed: ${err}`); process.exit(1); });

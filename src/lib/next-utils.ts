@@ -1,6 +1,6 @@
 import { GetStaticPathsResult, GetStaticPropsResult } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { ILocaleMap } from "../interfaces/models";
+import { ILocaleMap, IParsedPageData } from "../interfaces/models";
 import {
 	IContentParseOptions,
 	MLParseModes,
@@ -10,6 +10,7 @@ import {
 import { getContentRootDir, loadContentFolder } from "./markdown-driver";
 import * as fsPath from "path";
 import * as fs from "fs";
+import { createPageIndexer } from "./page-indexer";
 
 /**************************************************
  * Extended Next.js types
@@ -207,6 +208,23 @@ async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 	}
 }
 
+async function postProcessPages(pages: IParsedPageData[]): Promise<boolean> {
+	const index = process.env.NXT_INDEX_CONTENT;
+	if (!pages?.length || index !== "true") {
+		return false;
+	}
+	const indexer = createPageIndexer({});
+	for (const page of pages.filter(p => !p.error)) {
+		try {
+			await indexer.indexPage(page);
+		}
+		catch (e) {
+			console.error(`Error indexing ${page.path} ${String(e)}`);
+		}
+	}
+	return true;
+}
+
 class MLNextUtils implements IMLNextUtils {
 	/**
 	 * Converts a path template, e.g. docs/[id] to docs/the-story-of-mel when `dict` has `{ id: "the-story-of-mel" }`
@@ -241,6 +259,7 @@ class MLNextUtils implements IMLNextUtils {
 			locale,
 			mode,
 		});
+		await postProcessPages(docData.pages);
 		const page = docData.pages[0];
 		return {
 			props: {
