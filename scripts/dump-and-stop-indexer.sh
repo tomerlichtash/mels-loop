@@ -1,12 +1,10 @@
 #!/bin/bash
 
-SCRIPT_DIR=`dirname "$0"`;
-# pushd "$SCRIPT_DIR" > /dev/null
+OUTFILE=""
+DB_PORT=""
+USAGE="Usage: $( basename $0 ) -O </full/out/file/path> -P <port of DB server>"
 
 shopt -s nocasematch
-OUTFILE=""
-USAGE="Usage: $( basename $0 ) -O </full/out/file/path>"
-
 while (( "$#" )); do
 	nextarg=$1
 	shift
@@ -15,16 +13,25 @@ while (( "$#" )); do
 			OUTFILE="$1"
             shift
 			;;
+		"-P"|"--port")
+			DB_PORT="$1"
+            shift
+			;;
 		*)
 			echo $USAGE
-			echo "unkonwn option $nextarg"
+			echo "unkonwn option $nextarg" >&2
 			exit 1
 			;;
 	esac
 done
 
+if [ $DB_PORT == "" ] ; then
+	echo $USAGE >& 2
+	exit 1
+fi
+
 if [ "$OUTFILE" == "" ]; then
-    echo $USAGE
+    echo $USAGE >& 2
     exit 1
 fi
 
@@ -38,11 +45,7 @@ if [ ! -d "$OUTPATH" ]; then
     exit 1;
 fi
 
-if  [ "$ML_DB_API_PORT" == "" ]; then
-    ML_DB_API_PORT=11012
-fi
-
-DB_URL="http://localhost:${ML_DB_API_PORT}"
+DB_URL="http://localhost:${DB_PORT}"
 
 # get full outfile path (param may be relative)
 OUTPATH=$( cd "$OUTPATH" && pwd -P )
