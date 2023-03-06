@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createDataFetcher = void 0;
 const http_1 = __importDefault(require("http"));
 class DataFetcher {
-    async fetchJSON({ data, url, method }) {
+    async fetchJSON({ data, url, method, query }) {
         const json = data ? JSON.stringify(data) : "";
         const options = {
             method,
@@ -15,6 +15,12 @@ class DataFetcher {
                 'Content-Length': json.length,
             },
         };
+        const queryKeys = Object.keys(query || {});
+        if (queryKeys.length) {
+            url += '?' +
+                queryKeys.map((key => `${key}=${encodeURIComponent(String(query[key]))}`))
+                    .join('&');
+        }
         return new Promise((resolve) => {
             const data = [];
             const req = http_1.default.request(url, options, (res) => {
@@ -24,12 +30,17 @@ class DataFetcher {
                 });
                 res.on('end', () => {
                     try {
+                        const response = JSON.parse(data.join(''));
+                        if (typeof (response === null || response === void 0 ? void 0 : response.error) === "string") {
+                            return resolve(Object.assign({}, response));
+                        }
                         resolve({
                             error: "",
-                            data: JSON.parse(data.join(''))
+                            data: response
                         });
                     }
                     catch (e) {
+                        console.error(`Error parsing ${data.join('')}`);
                         resolve({
                             data: null,
                             error: String(e)

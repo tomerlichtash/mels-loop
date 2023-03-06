@@ -7,6 +7,7 @@
 		{
 			"name": "DB App",
 			"program": "${workspaceFolder}/src/db/server/app.js",
+			"args": ["--port=11013", "--test"],
 			"request": "launch",
 			"skipFiles": [
 				"<node_internals>/**"
@@ -37,7 +38,7 @@
 			"command": "yarn dev-index",
 			"env": {
 				"NODE_OPTIONS": "--inspect",
-				"NXT_INDEX_CONTENT": "true"
+				"ML_INDEX_CONTENT": "true"
 			}
 		},
 		{

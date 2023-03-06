@@ -15,10 +15,6 @@ while (( "$#" )); do
 			OUTFILE="$1"
             shift
 			;;
-		#"-app")
-		#	app="$1"
-			#shift
-			#;;
 		*)
 			echo $USAGE
 			echo "unkonwn option $nextarg"
@@ -34,10 +30,7 @@ fi
 
 OUTPATH=`dirname "$OUTFILE"`
 OUTFILE=`basename "$OUTFILE"`
-
-
-echo "OUTPATH is $OUTPATH"
-
+# ensure out path exists
 mkdir -p "$OUTPATH"
 
 if [ ! -d "$OUTPATH" ]; then
@@ -45,13 +38,22 @@ if [ ! -d "$OUTPATH" ]; then
     exit 1;
 fi
 
+if  [ "$ML_DB_API_PORT" == "" ]; then
+    ML_DB_API_PORT=11012
+fi
+
+DB_URL="http://localhost:${ML_DB_API_PORT}"
+
+# get full outfile path (param may be relative)
 OUTPATH=$( cd "$OUTPATH" && pwd -P )
 
 ENCODED_PATH=$( node -p "encodeURIComponent('$OUTPATH/$OUTFILE')" )
-echo "Final URL: http://localhost:11012/save/$ENCODED_PATH"
 
-curl http://localhost:11012/save/$ENCODED_PATH
-curl http://localhost:11012/terminate
+#dump db to file
+curl "${DB_URL}/save/$ENCODED_PATH"
+#and terminate the db server
+curl ${DB_URL}/terminate
 
+# Add the result to git
 git add "$OUTPATH/$OUTFILE"
 

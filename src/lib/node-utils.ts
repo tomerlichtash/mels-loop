@@ -1,14 +1,19 @@
 import http from "http";
 
+export interface IFetchQuery {
+	[key: string] : unknown;
+}
+
 export interface IFetchOptions {
 	method: string;
 	data: object | null;
-	url: string;
+	url: string,
+	query?: IFetchQuery
 }
 
-export interface IFetchResponse {
-	data: object | null;
+export interface IFetchResponse<T = unknown> {
 	error: string;
+	data: T;
 }
 
 
@@ -18,7 +23,7 @@ export interface IDataFetcher {
 
 class DataFetcher implements IDataFetcher {
 
-	public async fetchJSON({ data, url, method }: IFetchOptions): Promise<IFetchResponse> {
+	public async fetchJSON<T>({ data, url, method, query }: IFetchOptions): Promise<IFetchResponse<T>> {
 		const json = data ? JSON.stringify(data) : "";
 		const options = {
 			method,
@@ -27,8 +32,14 @@ class DataFetcher implements IDataFetcher {
 				'Content-Length': json.length,
 			},
 		};
+		const queryKeys = Object.keys(query || {});
+		if (queryKeys.length) {
+			url += '?' +
+				queryKeys.map((key => `${key}=${encodeURIComponent(String(query[key]))}`))
+				.join('&')
+		}
 	
-		return new Promise((resolve: (response: IFetchResponse) => unknown) => {
+		return new Promise((resolve: (response: IFetchResponse<T>) => void) => {
 			const data: string[] = [];
 			const req = http.request(url, options, (res) => {
 				res.setEncoding('utf8');
@@ -37,12 +48,19 @@ class DataFetcher implements IDataFetcher {
 				});
 				res.on('end', () => {
 					try {
+						const response = JSON.parse(data.join(''));
+						if (typeof response?.error === "string") {
+						return resolve({
+								...response
+							} as IFetchResponse<T>);
+						}
 						resolve({
 							error: "",
-							data: JSON.parse(data.join(''))
+							data: response
 						})
 					}
 					catch (e) {
+						console.error(`Error parsing ${data.join('')}`);
 						resolve({
 							data: null,
 							error: String(e)

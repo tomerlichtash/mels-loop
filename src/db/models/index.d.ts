@@ -1,27 +1,52 @@
 /* eslint  @typescript-eslint/no-unused-vars: 0 */
 export namespace DB_MODELS {
-	interface IArticleData {
-		readonly path: string;
+	interface IBaseArticleData {
 		readonly labels: string[];
 		readonly startDate: number;
 		readonly endDate: number;
 	}
 
-	interface IArticle extends IArticleData {
+	type DBCollectionNames = "articles" | "labels";
+
+	interface IArticle extends IBaseArticleData {
+		/**
+		 * The relative url of the article e.g. /docs/the-story-of-mel/codex, no trailing slash
+		 */
+		readonly url: string;
+		readonly locales: string[];
 		readonly _meta: object;
 	}
 
+
+	interface ILabel {
+		readonly id: string;
+		readonly artices: string[];
+	}
+}
+
+export namespace DB_SERVICE_MODELS {
+	/**
+	 * The data provide to the save api
+	 */
+	interface IArticleData extends DB_MODELS.IBaseArticleData {
+		/**
+		 * The full path of the document (including the file name).
+		 * 
+		 * If you want to provide the folder, terminate the path with `/`
+		 */
+		readonly path: string;
+		readonly locale: string;
+	}
+
+	/**
+	 * Data provide to the save api
+	 */
 	interface ILabelData {
 		readonly labels: string[];
 		readonly articles: string[];
 	}
 
-	interface ILabel extends ILabelData {
-		readonly id: string;
-	}
-}
 
-export namespace DB_SERVICE_MODELS {
 	interface ISchemaRecord {
 		[name: string]: { schema: object }
 	}
@@ -37,6 +62,9 @@ export namespace DB_SERVICE_MODELS {
 		collections: ICollectionRecord[];
 	}
 
+	/**
+	 * Format saved by the db-service and read by the client-db-service
+	 */
 	interface IDBDump {
 		schemas: ISchemaRecord[];
 		data: IDBDataRecord;

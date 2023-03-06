@@ -5,10 +5,10 @@ exports.ArticleSchema = {
     version: 0,
     title: 'Schema for ML Articles',
     keyCompression: false,
-    primaryKey: 'path',
+    primaryKey: 'url',
     type: 'object',
     properties: {
-        path: {
+        url: {
             type: 'string',
             maxLength: 100 // <- string-fields that are used as an index, must have set maxLength.
         },
@@ -23,11 +23,18 @@ exports.ArticleSchema = {
         },
         endDate: {
             type: "number"
-        }
+        },
+        locales: {
+            type: "array",
+            items: {
+                type: "string"
+            }
+        },
     },
     required: [
-        'path',
+        'url',
         "labels",
+        "locales",
         "startDate"
     ]
 };

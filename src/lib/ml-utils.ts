@@ -15,7 +15,7 @@ export interface IMLUtils {
 
 	arrayToMap<T>(array: Array<T>, field: string): { [key: string]: T };
 
-	stringArrayToMap(array: Array<string>): { [key: string]: 1 };
+	stringArraysToMap(...arrays: Array<string>[]): { [key: string]: 1 };
 
 	safeMerge(into: object, data: object | string): object;
 
@@ -72,11 +72,12 @@ class MLUtils implements IMLUtils {
 		return map;
 	}
 
-	public stringArrayToMap(array: Array<string>): { [key: string]: 1 } {
-		return array.reduce((acc, str) => {
-			acc[str] = 1;
-			return acc;
-		}, {});
+	public stringArraysToMap(...arrays: Array<string>[]): { [key: string]: 1 } {
+		let map: { [key: string]: 1} = {};
+		for (const array of arrays) {
+			array?.forEach(s => map[s] = 1);
+		}
+		return map;
 	}
 
 	public parseDate(dateString: string | number | null | undefined): Date {
