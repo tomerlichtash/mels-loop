@@ -423,7 +423,7 @@ class ContentUtils implements IContentUtils {
 		if (!types || !types.length) {
 			return (n) => n;
 		}
-		const typeMap = mlUtils.stringArrayToMap(types);
+		const typeMap = mlUtils.stringArraysToMap(types);
 		return (node: IMLParsedNode, context: INodeProcessorContext) => {
 			if (!node || !(node.type in typeMap)) {
 				return null;

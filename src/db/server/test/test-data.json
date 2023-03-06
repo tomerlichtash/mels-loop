@@ -1,8 +1,8 @@
 {
     "ARTICLE1" : {
-        "path": "/docs/codex/",
+        "path": "/glossary/mything",
 		"labels": [ "mel", "LGP-3000", "safran"],
+        "locale": "en",
 		"startDate": 0
-
     }
 }

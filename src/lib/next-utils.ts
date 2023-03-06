@@ -208,15 +208,18 @@ async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 	}
 }
 
-async function postProcessPages(pages: IParsedPageData[]): Promise<boolean> {
-	const index = process.env.NXT_INDEX_CONTENT;
+async function postProcessPages(pages: IParsedPageData[], locale: string): Promise<boolean> {
+	const index = process.env.ML_INDEX_CONTENT;
 	if (!pages?.length || index !== "true") {
 		return false;
 	}
 	const indexer = createPageIndexer({});
 	for (const page of pages.filter(p => !p.error)) {
 		try {
-			await indexer.indexPage(page);
+			const err = await indexer.indexPage(page, locale);
+			if (err) {
+				console.warn(`Server error indexing page ${page.path}: ${err}`);
+			}
 		}
 		catch (e) {
 			console.error(`Error indexing ${page.path} ${String(e)}`);
@@ -259,7 +262,7 @@ class MLNextUtils implements IMLNextUtils {
 			locale,
 			mode,
 		});
-		await postProcessPages(docData.pages);
+		await postProcessPages(docData.pages, locale);
 		const page = docData.pages[0];
 		return {
 			props: {
