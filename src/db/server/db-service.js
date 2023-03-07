@@ -12,11 +12,20 @@ const rxdb_1 = require("rxdb");
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const article_schema_1 = require("../schemas/article.schema");
+const label_schema_1 = require("../schemas/label.schema");
 const db_utils_1 = require("../common/db-utils");
 const ml_utils_1 = require("../../lib/ml-utils");
 const INDEX_RE = /index\.[^\/]+$/;
+const LABEL_RE = /^[a-z][0-9a-z_,\-\.]+$/i;
+const LOCALE_RE = /^[a-z]{2}(:?-[a-z]{2,3})?$/i;
 function isIndex(name) {
     return INDEX_RE.test(name);
+}
+function isValidLabel(label) {
+    return LABEL_RE.test(label);
+}
+function isValidLocale(locale) {
+    return LOCALE_RE.test(locale);
 }
 async function createDB({ name, collections: schemas }) {
     const db = await (0, rxdb_1.createRxDatabase)({
@@ -49,11 +58,7 @@ class ServerDBService {
             // const db = new Dexie("MyDatabase", { indexedDB: indexedDB, IDBKeyRange: IDBKeyRange });
             this._db = await createDB({
                 name: "ml",
-                collections: [{
-                        "articles": {
-                            schema: article_schema_1.ArticleSchema
-                        }
-                    }]
+                collections: [article_schema_1.ArticleSchema, label_schema_1.LabelSchema]
             });
             return true;
         }
@@ -69,9 +74,7 @@ class ServerDBService {
             filePath = filePath.replace(/\/(c|d|e)\//i, "$1:\\");
             const dump = await ((_a = this._db) === null || _a === void 0 ? void 0 : _a.exportJSON());
             const db = {
-                schemas: [
-                    { "articles": { schema: article_schema_1.ArticleSchema } }
-                ],
+                schemas: [article_schema_1.ArticleSchema, label_schema_1.LabelSchema],
                 data: dump || {}
             };
             const fsp = path_1.default;
@@ -112,49 +115,97 @@ class ServerDBService {
             };
         }
     }
-    saveLabel(data) {
-        throw new Error('Method not implemented.');
-    }
-    async saveArticle(data) {
-        if (!(data === null || data === void 0 ? void 0 : data.path) || !data.locale) {
+    async saveLabel(data) {
+        if (!isValidLabel(data === null || data === void 0 ? void 0 : data.label) || !Array.isArray(data.articles) || !data.articles.length) {
             return {
-                error: "data must include path,locale field",
+                error: `data must include a valid label and at least one page url.\nReceived ${data === null || data === void 0 ? void 0 : data.label} ${data.articles}`,
                 data: null
             };
         }
-        // TODO perhaps treat only index.*.md as an indication for a cluster of files
+        try {
+            const db = this._db;
+            const current = await this._db.collections.labels.findOne(data.label).exec();
+            if (current) {
+                // merge articles
+                const updateData = {
+                    articles: Object.keys(ml_utils_1.mlUtils.stringArraysToMap(current.articles, data.articles)).sort()
+                };
+                // protect agains stale docs
+                await this.addTransaction(db.collections.labels.findOne(data.label).exec()
+                    .then((doc) => doc.atomicPatch(updateData)));
+            }
+            else {
+                await this.addTransaction(this.saveData({
+                    table: "labels",
+                    data: {
+                        id: data.label,
+                        articles: data.articles.sort()
+                    }
+                }));
+            }
+            return {
+                error: "",
+                data: current
+            };
+        }
+        catch (err) {
+            return {
+                error: String(err),
+                data: null
+            };
+        }
+    }
+    async saveArticle(data) {
+        var _a;
+        if (!(data === null || data === void 0 ? void 0 : data.path) || !isValidLocale(data.locale)) {
+            return {
+                error: `data must include the article path and a valid locale (e.g. 'en')\nReceived ${data === null || data === void 0 ? void 0 : data.path}, ${data === null || data === void 0 ? void 0 : data.locale}`,
+                data: null
+            };
+        }
         try {
             const origPath = String(data.path), db = this._db;
             const url = /\/$/.test(origPath) ?
-                origPath.slice(0, -1) // all but last
-                : isIndex(origPath) ?
+                origPath.slice(0, -1) // if it ends with /, save all but last
+                : isIndex(origPath) ? // if it's the url of an index file, the path is the folder, otherwise the full path
                     path_1.default.dirname(origPath)
                     : origPath;
             const article = {
                 url: url,
-                labels: (data.labels || []).sort(),
+                labels: (data.labels || []).filter(isValidLabel).sort(),
                 locales: [data.locale],
                 startDate: data.startDate,
                 endDate: data.endDate
             };
             const current = await this._db.collections.articles.findOne(url).exec();
-            if (!current) {
-                return this.addTransaction(this.saveData({
+            if (current) {
+                // merge articles, no validation since we assume the db data is valid and `article` has been validated
+                const updateData = {
+                    labels: Object.keys(ml_utils_1.mlUtils.stringArraysToMap(current.labels, article.labels))
+                        .sort(),
+                    locales: Object.keys(ml_utils_1.mlUtils.stringArraysToMap(current.locales, article.locales))
+                        .sort(),
+                    startDate: typeof article.startDate === "number" ? article.startDate : current.startDate,
+                    endDate: typeof article.endDate === "number" ? article.endDate : current.endDate,
+                };
+                // protect agains stale docs
+                await this.addTransaction(db.collections.articles.findOne(url).exec()
+                    .then((doc) => doc.atomicPatch(updateData)));
+            }
+            else {
+                await this.addTransaction(this.saveData({
                     table: "articles",
                     data: article
                 }));
             }
-            ;
-            // merge articles
-            const updateData = {
-                labels: Object.keys(ml_utils_1.mlUtils.stringArraysToMap(current.labels, article.labels)).sort(),
-                locales: Object.keys(ml_utils_1.mlUtils.stringArraysToMap(current.locales, article.locales)).sort(),
-                startDate: typeof article.startDate === "number" ? article.startDate : current.startDate,
-                endDate: typeof article.endDate === "number" ? article.endDate : current.endDate,
-            };
-            // protect agains stale docs
-            const updated = await this.addTransaction(db.collections.articles.findOne(url).exec()
-                .then((doc) => doc.atomicPatch(updateData)));
+            if ((_a = data.labels) === null || _a === void 0 ? void 0 : _a.length) {
+                for (const label of data.labels.filter(isValidLabel)) {
+                    await this.saveLabel({
+                        articles: [url],
+                        label
+                    });
+                }
+            }
             return {
                 error: "",
                 data: current

@@ -4,12 +4,11 @@ import { getRxStorageMemory } from "rxdb/plugins/memory";
 
 import { RxDBJsonDumpPlugin } from 'rxdb/plugins/json-dump';
 import { createRxDatabase, RxDatabase, addRxPlugin, RxDocument } from 'rxdb';
-import { getRxStorageDexie } from 'rxdb/plugins/dexie';
 import fs from "fs";
-import fsPath, { resolve } from "path";
+import fsPath from "path";
 
 import { ArticleSchema } from "../schemas/article.schema";
-import { indexedDB, IDBKeyRange } from "fake-indexeddb";
+import { LabelSchema } from "../schemas/label.schema";
 import { importDBData } from "../common/db-utils";
 
 import { DB_MODELS, DB_SERVICE_MODELS } from '../models';
@@ -26,10 +25,19 @@ export interface IDBResponse<T> {
 
 
 const INDEX_RE = /index\.[^\/]+$/;
+const LABEL_RE = /^[a-z][0-9a-z_,\-\.]+$/i;
+const LOCALE_RE = /^[a-z]{2}(:?-[a-z]{2,3})?$/i
 function isIndex(name: string): boolean {
 	return INDEX_RE.test(name);
 }
 
+function isValidLabel(label: string): boolean {
+	return LABEL_RE.test(label);
+}
+
+function isValidLocale(locale: string): boolean {
+	return LOCALE_RE.test(locale);
+}
 
 export interface IDBService {
 	init(): Promise<boolean>;
@@ -67,7 +75,7 @@ type IDBTransaction = IDBInsertTransaction | IDBUpdateTransaction;
 async function createDB({ name, collections: schemas }: ICreateDBOptions): Promise<RxDatabase> {
 	const db = await createRxDatabase({
 		name,
-		storage: getRxStorageMemory()		
+		storage: getRxStorageMemory()
 		// getRxStorageDexie({
 		// 	indexedDB: indexedDB,
 		// 	IDBKeyRange: IDBKeyRange
@@ -104,11 +112,7 @@ class ServerDBService implements IDBService {
 			// const db = new Dexie("MyDatabase", { indexedDB: indexedDB, IDBKeyRange: IDBKeyRange });
 			this._db = await createDB({
 				name: "ml",
-				collections: [{
-					"articles": {
-						schema: ArticleSchema
-					}
-				}]
+				collections: [ ArticleSchema, LabelSchema ]
 			});
 			return true;
 		}
@@ -124,9 +128,7 @@ class ServerDBService implements IDBService {
 			filePath = filePath.replace(/\/(c|d|e)\//i, "$1:\\");
 			const dump = await this._db?.exportJSON();
 			const db = {
-				schemas: [
-					{ "articles": { schema: ArticleSchema } }
-				],
+				schemas: [ ArticleSchema, LabelSchema ],
 				data: dump || {}
 			}
 			const fsp = fsPath;
@@ -170,51 +172,101 @@ class ServerDBService implements IDBService {
 		}
 	}
 
-	saveLabel(data: DB_SERVICE_MODELS.ILabelData): Promise<IDBResponse<DB_MODELS.ILabel>> {
-		throw new Error('Method not implemented.');
-	}
-
-	public async saveArticle(data: DB_SERVICE_MODELS.IArticleData): Promise<IDBResponse<DB_MODELS.IArticle>> {
-		if (!data?.path || !data.locale) {
+	async saveLabel(data: DB_SERVICE_MODELS.ILabelData): Promise<IDBResponse<DB_MODELS.ILabel>> {
+		if (!isValidLabel(data?.label) || !Array.isArray(data.articles) || !data.articles.length) {
 			return {
-				error: "data must include path,locale field",
+				error: `data must include a valid label and at least one page url.\nReceived ${data?.label} ${data.articles}`,
 				data: null
 			}
 		}
-		// TODO perhaps treat only index.*.md as an indication for a cluster of files
+		try {
+			const db = this._db!;
+
+			const current = await this._db!.collections.labels.findOne(data.label).exec() as RxDocument<DB_MODELS.ILabel>;
+			if (current) {
+				// merge articles
+				const updateData = {
+					articles: Object.keys(mlUtils.stringArraysToMap(current.articles, data.articles!)).sort()
+				};
+				// protect agains stale docs
+				await this.addTransaction(db.collections.labels.findOne(data.label).exec()
+					.then((doc: RxDocument<DB_MODELS.ILabel>) => doc.atomicPatch(updateData)));
+			}
+			else {
+				await this.addTransaction(this.saveData({
+					table: "labels",
+					data: {
+						id: data!.label,
+						articles: data.articles.sort()
+					}
+				}));
+			}
+			return {
+				error: "",
+				data: current
+			}
+
+		}
+		catch (err) {
+			return {
+				error: String(err),
+				data: null
+			}
+		}	
+	}
+
+	public async saveArticle(data: DB_SERVICE_MODELS.IArticleData): Promise<IDBResponse<DB_MODELS.IArticle>> {
+		if (!data?.path || !isValidLocale(data.locale)) {
+			return {
+				error: `data must include the article path and a valid locale (e.g. 'en')\nReceived ${data?.path}, ${data?.locale}`,
+				data: null
+			}
+		}
 		try {
 			const origPath = String(data.path),
 				db = this._db!;
 
 			const url = /\/$/.test(origPath) ?
-				origPath.slice(0, -1) // all but last
-				: isIndex(origPath)?
+				origPath.slice(0, -1) // if it ends with /, save all but last
+				: isIndex(origPath) ? // if it's the url of an index file, the path is the folder, otherwise the full path
 					fsPath.dirname(origPath)
 					: origPath;
 			const article: Partial<DB_MODELS.IArticle> = {
 				url: url,
-				labels: (data.labels || []).sort(),
+				labels: (data.labels || []).filter(isValidLabel).sort(),
 				locales: [data.locale],
 				startDate: data.startDate,
 				endDate: data.endDate
 			}
 			const current = await this._db!.collections.articles.findOne(url).exec() as RxDocument<DB_MODELS.IArticle>;
-			if (!current) {
-				return this.addTransaction(this.saveData({
+			if (current) {
+				// merge articles, no validation since we assume the db data is valid and `article` has been validated
+				const updateData = {
+					labels: Object.keys(mlUtils.stringArraysToMap(current.labels, article.labels!))
+						.sort(),
+					locales: Object.keys(mlUtils.stringArraysToMap(current.locales, article.locales!))
+						.sort(),
+					startDate: typeof article.startDate === "number" ? article.startDate : current.startDate,
+					endDate: typeof article.endDate === "number" ? article.endDate : current.endDate,
+				};
+				// protect agains stale docs
+				await this.addTransaction(db.collections.articles.findOne(url).exec()
+					.then((doc: RxDocument<DB_MODELS.IArticle>) => doc.atomicPatch(updateData)));
+			}
+			else {
+				await this.addTransaction(this.saveData({
 					table: "articles",
 					data: article
 				}));
-			};
-			// merge articles
-			const updateData = {
-				labels: Object.keys(mlUtils.stringArraysToMap(current.labels, article.labels!)).sort(),
-				locales: Object.keys(mlUtils.stringArraysToMap(current.locales, article.locales!)).sort(),
-				startDate: typeof article.startDate === "number" ? article.startDate : current.startDate,
-				endDate: typeof article.endDate === "number" ? article.endDate : current.endDate,
-			};
-			// protect agains stale docs
-			const updated = await this.addTransaction(db.collections.articles.findOne(url).exec()
-				.then((doc: RxDocument<DB_MODELS.IArticle>) => doc.atomicPatch(updateData)));
+			}
+			if (data.labels?.length) {
+				for (const label of data.labels.filter(isValidLabel)) {
+					await this.saveLabel({
+						articles: [url],
+						label
+					});
+				}
+			}
 			return {
 				error: "",
 				data: current
@@ -251,14 +303,14 @@ class ServerDBService implements IDBService {
 	}
 
 	private async addTransaction<T>(promise: Promise<T>): Promise<T> {
-		const runNext= async () => {
+		const runNext = async () => {
 			if (this._transactionQueue.length) {
 				const next = this._transactionQueue.shift() as ITransactionRecord;
 				try {
 					const value = await next.originalPromise;
 					next.resolve(value);
 				}
-				catch(e) {
+				catch (e) {
 					throw e;
 				}
 				finally {
@@ -272,7 +324,7 @@ class ServerDBService implements IDBService {
 				resolve
 			});
 			runNext();
-		}) 
+		})
 		return wrapper;
 	}
 }

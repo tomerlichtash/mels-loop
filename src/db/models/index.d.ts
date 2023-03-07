@@ -20,7 +20,7 @@ export namespace DB_MODELS {
 
 	interface ILabel {
 		readonly id: string;
-		readonly artices: string[];
+		readonly articles: string[];
 	}
 }
 
@@ -42,7 +42,7 @@ export namespace DB_SERVICE_MODELS {
 	 * Data provide to the save api
 	 */
 	interface ILabelData {
-		readonly labels: string[];
+		readonly label: string;
 		readonly articles: string[];
 	}
 

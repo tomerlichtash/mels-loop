@@ -8,6 +8,25 @@ async function getServerData<T>(options: IFetchOptions): Promise<IFetchResponse<
 	return df.fetchJSON(options) as unknown as IFetchResponse<T>;
 }
 
+function randomElement<T>(array: T[]): T {
+	return array[Math.round(Math.random() * (array.length - 1))];
+}
+
+function randomElements<T>(array: T[], size = 0.5): T[] {
+	if (array?.length < 2) {
+		return array || [];
+	}
+	const ret: T[] = [];
+	size = Math.min(1, Math.max(size, 1/array.length));
+	for (let t of array) {
+		if (Math.random() <= size) {
+			ret.push(t);
+		}
+	}
+	return ret.length ? ret : [ randomElement(array) ];
+}
+
+
 class TestDBServer {
 	constructor(private readonly prefix: string, private readonly clientId?: string) {
 
@@ -48,14 +67,18 @@ class TestDBServer {
 		const promises: Promise<IFetchResponse<DB_MODELS.IArticle>>[] = [];
 		const url = this.makeURL("article"),
 			query = this.queryObject;
-		for (let i = 0; i < 20; ++i) {
+		for (let i = 0; i < 30; ++i) {
 			promises.push(getServerData({
 				query,
 				data: {
 					article: {
 						...TestData.ARTICLE1,
-						locale: "lang-" + i,
-						labels: ["label-" + i],
+						path: `/docs/pages/${randomElement([
+							"about", "about/index.md", "about/", "about/index.he.md", "about/index.en.md",
+							"more", "bio/codex", "bio/codex/index.md", "bio/codex/custom.html"
+						])}`,
+						locale: randomElement(["he", "en", "fr", "en-notlegal", "not-legal", "n0-tl"]),
+						labels: randomElements(["sugar", "#illegal", "a", "ab", "abc", "Fortran"]),
 						startDate: Date.now()
 					}
 				},
