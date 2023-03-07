@@ -12,6 +12,7 @@ import Analytics from "./analytics";
 import { ComponentProps } from "../../interfaces/models";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
 import { st, classes } from "./layout.st.css";
+import { mlUtils } from "../../lib/ml-utils";
 
 export interface ILayoutProps extends ComponentProps {
 	title?: string;
@@ -27,7 +28,6 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	image: "/assets/ml-logo.png",
 };
 
-const isDebug = process.env.NEXT_PUBLIC_ML_DEBUG;
 
 export default function Layout({ children, title }: ILayoutProps) {
 	const router = useRouter();
@@ -97,7 +97,7 @@ export default function Layout({ children, title }: ILayoutProps) {
 				</ScrollArea>
 				{isMobile && <MenuProvider isMobile />}
 			</div>
-			{!isDebug && <Analytics />}
+			{!mlUtils.appEnvironment.isDevMode && <Analytics />}
 		</>
 	);
 }

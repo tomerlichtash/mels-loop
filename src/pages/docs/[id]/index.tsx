@@ -14,16 +14,16 @@ export default function Doc(props: IPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-	return mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.DOCS, context.locales);
+	return await mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.DOCS, context.locales);
 };
 
 export const getStaticProps: GetStaticProps = async (
 	context: GetStaticPropsContext
 ) => {
-	return mlNextUtils.getFolderStaticProps(
+	return await mlNextUtils.getFolderStaticProps(
 		`${CONTENT_TYPES.DOCS}/${context.params.id as string}`,
 		context.locale,
-		LoadFolderModes.FOLDER,
+		LoadFolderModes.INDEX,
 		{
 			contentMode: LoadContentModes.FULL,
 			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],

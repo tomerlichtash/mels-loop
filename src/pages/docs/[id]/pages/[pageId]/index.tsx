@@ -27,10 +27,10 @@ export const getStaticProps: GetStaticProps = async (
 		__filename,
 		context.params as { [key: string]: string }
 	);
-	return mlNextUtils.getFolderStaticProps(
+	return await mlNextUtils.getFolderStaticProps(
 		relativePath,
 		context.locale,
-		LoadFolderModes.FOLDER,
+		LoadFolderModes.INDEX,
 		{
 			contentMode: LoadContentModes.FULL,
 			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],

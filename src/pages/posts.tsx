@@ -44,12 +44,12 @@ export default function Blog(props: IPageProps) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-	const indexProps = mlNextUtils.getFolderStaticProps(
+	const indexProps = await mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.POSTS,
 		context.locale,
 		LoadFolderModes.CHILDREN
 	);
-	const childrenProps = mlNextUtils.getFolderStaticProps(
+	const childrenProps = await mlNextUtils.getFolderStaticProps(
 		CONTENT_TYPES.POSTS,
 		context.locale,
 		LoadFolderModes.CHILDREN,

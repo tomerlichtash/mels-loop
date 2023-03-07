@@ -5,6 +5,16 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "DB App",
+			"program": "${workspaceFolder}/src/db/server/app.js",
+			"args": ["--port=11013", "--test"],
+			"request": "launch",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"type": "node"
+		},
+		{
 			"type": "node",
 			"request": "launch",
 			"name": "Launch Program",
@@ -19,6 +29,16 @@
 			"command": "yarn dev",
 			"env": {
 				"NODE_OPTIONS": "--inspect"
+			}
+		},
+		{
+			"name": "Next.js: debug with indexing",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "yarn dev-index",
+			"env": {
+				"NODE_OPTIONS": "--inspect",
+				"ML_INDEX_CONTENT": "true"
 			}
 		},
 		{

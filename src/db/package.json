@@ -1,0 +1,11 @@
+{
+  "name": "mels-loop-database",
+  "version": "1.0.0",
+  "description": "Database server and client for Mels Loop",
+  "main": "server/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

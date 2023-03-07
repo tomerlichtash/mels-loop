@@ -1,5 +1,5 @@
 import fs, { Dirent } from "fs";
-import path from "path";
+import fsPath from "path";
 import matter from "gray-matter";
 import * as mdParser from "simple-markdown";
 import {
@@ -31,11 +31,11 @@ const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 let rootDir: string;
 
 function setContentRootDir(root: string): void {
-	rootDir = path.join(root, CONTENT_PATH);
+	rootDir = fsPath.join(root, CONTENT_PATH);
 }
 
 export function getContentRootDir(root?: string): string {
-	return root ? path.join(root, CONTENT_PATH) : rootDir;
+	return root ? fsPath.join(root, CONTENT_PATH) : rootDir;
 }
 
 /**
@@ -70,15 +70,15 @@ const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	locale: undefined,
 };
 
-export function loadContentFolder(
+export async function loadContentFolder(
 	options: ILoadContentOptions
-): IFolderContent {
+): Promise<IFolderContent> {
 	const mode: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
 		...options.mode,
 		locale: options.locale
 	};
-	const contentDir = path.join(
+	const contentDir = fsPath.join(
 		getContentRootDir(options.rootFolder),
 		options.relativePath
 	);
@@ -92,7 +92,7 @@ export function loadContentFolder(
 	}
 
 	// Get file names under /posts
-	const contentNames: Dirent[] = fs.readdirSync(contentDir, {
+	const allFiles: Dirent[] = await fs.promises.readdir(contentDir, {
 		withFileTypes: true,
 	});
 
@@ -104,33 +104,35 @@ export function loadContentFolder(
 
 	const targetFileName = getIndexFileName(options.locale);
 
-	contentNames.forEach((rec: Dirent) => {
+	for (const rec of allFiles)  {
 		const name = rec.name;
 		//log.info(`${chalk.magenta("process")} - content ID "${name}"`);
 
 		let fullPath: string;
 
-		if (options.loadMode === LoadFolderModes.FOLDER) {
+		if (options.loadMode === LoadFolderModes.INDEX) {
 			if (targetFileName !== name) {
-				return;
+				continue;
 			}
-			fullPath = path.join(contentDir, name);
-		} else {
+			fullPath = fsPath.join(contentDir, name);
+		}
+		else {
 			if (!rec.isDirectory()) {
-				return;
+				continue;
 			}
 
-			fullPath = path.join(contentDir, name, targetFileName);
+			fullPath = fsPath.join(contentDir, name, targetFileName);
 		}
 
 		if (!fs.existsSync(fullPath)) {
 			//log.warn(`error - Path not found: "${fullPath}"`);
 			// return error without disclosing OS path
-			return folderContentData.pages.push(
+			folderContentData.pages.push(
 				new ParsedPageData({
 					error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
 				})
 			);
+			continue;
 		}
 		folderContentData.ids.push({
 			params: { id: name },
@@ -138,43 +140,59 @@ export function loadContentFolder(
 		});
 
 		if (mode.contentMode === LoadContentModes.NONE) {
-			return;
+			continue;
 		}
 
-		try {
-			const fileContents = fs.readFileSync(fullPath, "utf8");
-			//log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
+		const pageData = await parsePage({
+			fullPath,
+			relativePath: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
+			mode
+		});
 
-			// Use gray-matter to parse the post metadata section
-			const { data: matterData, content } = matter(fileContents);
-			const metaData = new PageMetaData(matterData);
-			const parsedPageData = new ParsedPageData({
-				metaData: metaData.toObject(),
-				id: name,
-				path: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
-			});
-			if (mode.contentMode === LoadContentModes.FULL) {
-				// parse markdown and process
-				const mdParse = createHtmlMDParser(); //mdParser.defaultBlockParse;
-				const tree = contentUtils.processParseTree(
-					mdParse(contentUtils.stripComments(content)) as ParsedNode[],
-					metaData,
-					mode
-				);
-
-				// Combine the data with the id
-				parsedPageData.parsed = tree;
-			}
-			folderContentData.pages.push(parsedPageData.toObject());
-		} catch (e) {
-			//log.error(`Error processing ${fullPath}`, e);
-			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
-		}
-	});
+		folderContentData.pages.push(pageData);
+	}
 	// filter out empty items
 
 	return folderContentData;
 	// Sort posts by date
+}
+
+
+interface IParsePageOptions {
+	fullPath: string;
+	relativePath: string;
+	mode: IContentParseOptions;
+}
+export async function parsePage({fullPath, relativePath, mode }: IParsePageOptions): Promise<IParsedPageData> {
+	try {
+		const fileContents = fs.readFileSync(fullPath, "utf8");
+		//log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
+
+		// Use gray-matter to parse the post metadata section
+		const { data: matterData, content } = matter(fileContents);
+		const metaData = new PageMetaData(matterData);
+		const parsedPageData = new ParsedPageData({
+			metaData: metaData.toObject(),
+			id: fsPath.basename(fullPath),
+			path: relativePath, 
+		});
+		if (mode.contentMode === LoadContentModes.FULL) {
+			// parse markdown and process
+			const mdParse = createHtmlMDParser(); //mdParser.defaultBlockParse;
+			const tree = contentUtils.processParseTree(
+				mdParse(contentUtils.stripComments(content)) as ParsedNode[],
+				metaData,
+				mode
+			);
+
+			// Combine the data with the id
+			parsedPageData.parsed = tree;
+		}
+		return parsedPageData;
+	} catch (e) {
+		//log.error(`Error processing ${fullPath}`, e);
+		return new ParsedPageData({ error: String(e) });
+	}
 }
 
 class ParsedPageData implements IParsedPageData {
@@ -233,9 +251,9 @@ class PageMetaData implements IPageMetaData {
 }
 
 class FolderContent implements IFolderContent {
-	public pages: IParsedPageData[] = [];
-	public ids: ILocaleMap[] = [];
-	public paths: string[];
+	public readonly pages: IParsedPageData[] = [];
+	public readonly ids: ILocaleMap[] = [];
+	public readonly paths: string[];
 
 	sortOn(field: PageSortField): IParsedPageData[] {
 		if (!this.pages) {

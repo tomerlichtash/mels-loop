@@ -1,0 +1,18 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"module": "CommonJS",
+		"target": "ES2017",
+		"lib": ["esnext"],
+		"skipLibCheck": true,
+		"strict": true,
+		"noEmit": false,
+		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"incremental": true,
+		"sourceMap": true
+	},
+	"exclude": ["node_modules" ]
+}

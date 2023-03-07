@@ -1,6 +1,6 @@
 import { GetStaticPathsResult, GetStaticPropsResult } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { ILocaleMap } from "../interfaces/models";
+import { ILocaleMap, IParsedPageData } from "../interfaces/models";
 import {
 	IContentParseOptions,
 	MLParseModes,
@@ -10,6 +10,7 @@ import {
 import { getContentRootDir, loadContentFolder } from "./markdown-driver";
 import * as fsPath from "path";
 import * as fs from "fs";
+import { createPageIndexer } from "./page-indexer";
 
 /**************************************************
  * Extended Next.js types
@@ -36,7 +37,7 @@ type MLGetStaticProps = (
 	locale: string, //GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
 	loadMode: LoadFolderModes,
 	mode?: Partial<IContentParseOptions>
-) => GetStaticPropsResult<FolderStaticProps>;
+) => Promise<GetStaticPropsResult<FolderStaticProps>>;
 
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
@@ -207,6 +208,26 @@ async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 	}
 }
 
+async function postProcessPages(pages: IParsedPageData[], locale: string): Promise<boolean> {
+	const index = process.env.ML_INDEX_CONTENT;
+	if (!pages?.length || index !== "true") {
+		return false;
+	}
+	const indexer = createPageIndexer({});
+	for (const page of pages.filter(p => !p.error)) {
+		try {
+			const err = await indexer.indexPage(page, locale);
+			if (err) {
+				console.warn(`Server error indexing page ${page.path}: ${err}`);
+			}
+		}
+		catch (e) {
+			console.error(`Error indexing ${page.path} ${String(e)}`);
+		}
+	}
+	return true;
+}
+
 class MLNextUtils implements IMLNextUtils {
 	/**
 	 * Converts a path template, e.g. docs/[id] to docs/the-story-of-mel when `dict` has `{ id: "the-story-of-mel" }`
@@ -229,36 +250,37 @@ class MLNextUtils implements IMLNextUtils {
 		return relative;
 	}
 
-	public getFolderStaticProps(
+	public async getFolderStaticProps(
 		folderPath: string,
 		locale: string,
 		loadMode: LoadFolderModes,
 		mode?: Partial<IContentParseOptions>
-	): GetStaticPropsResult<FolderStaticProps> {
-		const docData = loadContentFolder({
+	): Promise<GetStaticPropsResult<FolderStaticProps>> {
+		const docData = await loadContentFolder({
 			relativePath: folderPath,
 			loadMode,
 			locale,
 			mode,
 		});
+		await postProcessPages(docData.pages, locale);
 		const page = docData.pages[0];
 		return {
 			props: {
 				// Stringify the result, instead of leaving the job to Next, because
 				// Next's serializer is picky about objects, won't take class instances, Dates and more
 				content: JSON.stringify(docData.pages),
-				documentPath: (page && page.path) || "",
+				documentPath: (page?.path) || "",
 			},
 		};
 	}
 
-	public getFolderStaticPaths(
+	public async getFolderStaticPaths(
 		folderPath: string,
 		locales: string[]
-	): GetStaticPathsResult<ParsedUrlQuery> {
+	): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
 		const paths: ILocaleMap[] = [];
-		(locales || []).forEach((locale: string) => {
-			const folderData = loadContentFolder({
+		for (const locale of (locales || [])) {
+			const folderData = await loadContentFolder({
 				locale,
 				relativePath: folderPath,
 				loadMode: LoadFolderModes.CHILDREN,
@@ -268,7 +290,7 @@ class MLNextUtils implements IMLNextUtils {
 				},
 			});
 			paths.push(...folderData.ids);
-		});
+		}
 		return {
 			paths,
 			fallback: false,
@@ -281,11 +303,11 @@ class MLNextUtils implements IMLNextUtils {
 		const paths: ILocaleMap[] = [];
 		const allPaths = await collectPathsIn(options.contentFolder);
 		for (let rec of allPaths) {
-			for (let locale of options.locales) {
-				const folderData = loadContentFolder({
+			for (const locale of options.locales || []) {
+				const folderData = await loadContentFolder({
 					locale,
 					relativePath: rec.path,
-					loadMode: LoadFolderModes.FOLDER,
+					loadMode: LoadFolderModes.INDEX,
 					mode: {
 						contentMode: LoadContentModes.NONE,
 						parseMode: MLParseModes.NORMAL,

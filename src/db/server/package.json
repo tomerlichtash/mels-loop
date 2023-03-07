@@ -1,0 +1,27 @@
+{
+  "name": "mels-loop-db-server",
+  "version": "1.0.0",
+  "description": "Database server for Mels Loop",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^12.0.0",
+    "fake-indexeddb": "^4.0.1",
+    "koa": "^2.14.1",
+    "koa-body": "^6.0.1",
+    "koa-body-parser": "^1.1.2",
+    "koa-json": "^2.0.2",
+    "process.argv": "^0.6.1",
+    "rimraf": "^3.0.2",
+    "rxdb": "^13.17.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.5",
+    "@types/koa-router": "^7.4.4",
+    "@types/rimraf": "^3.0.2"
+  }
+}
