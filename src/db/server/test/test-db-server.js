@@ -11,6 +11,22 @@ async function getServerData(options) {
     const df = (0, node_utils_1.createDataFetcher)();
     return df.fetchJSON(options);
 }
+function randomElement(array) {
+    return array[Math.round(Math.random() * (array.length - 1))];
+}
+function randomElements(array, size = 0.5) {
+    if ((array === null || array === void 0 ? void 0 : array.length) < 2) {
+        return array || [];
+    }
+    const ret = [];
+    size = Math.min(1, Math.max(size, 1 / array.length));
+    for (let t of array) {
+        if (Math.random() <= size) {
+            ret.push(t);
+        }
+    }
+    return ret.length ? ret : [randomElement(array)];
+}
 class TestDBServer {
     constructor(prefix, clientId) {
         this.prefix = prefix;
@@ -43,11 +59,14 @@ class TestDBServer {
         }
         const promises = [];
         const url = this.makeURL("article"), query = this.queryObject;
-        for (let i = 0; i < 20; ++i) {
+        for (let i = 0; i < 30; ++i) {
             promises.push(getServerData({
                 query,
                 data: {
-                    article: Object.assign(Object.assign({}, test_data_json_1.default.ARTICLE1), { locale: "lang-" + i, labels: ["label-" + i], startDate: Date.now() })
+                    article: Object.assign(Object.assign({}, test_data_json_1.default.ARTICLE1), { path: `/docs/pages/${randomElement([
+                            "about", "about/index.md", "about/", "about/index.he.md", "about/index.en.md",
+                            "more", "bio/codex", "bio/codex/index.md", "bio/codex/custom.html"
+                        ])}`, locale: randomElement(["he", "en", "fr", "en-notlegal", "not-legal", "n0-tl"]), labels: randomElements(["sugar", "#illegal", "a", "ab", "abc", "Fortran"]), startDate: Date.now() })
                 },
                 url,
                 method: "PUT"

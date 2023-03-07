@@ -1,37 +1,27 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ArticleSchema = void 0;
-exports.ArticleSchema = {
-    "articles": {
+exports.LabelSchema = void 0;
+exports.LabelSchema = {
+    "labels": {
         schema: {
             version: 0,
-            title: 'Schema for ML Articles',
+            title: 'Schema for ML Labels',
             keyCompression: false,
-            primaryKey: 'url',
+            primaryKey: 'id',
             type: 'object',
             properties: {
-                url: {
+                id: {
                     type: 'string',
+                    minLength: 3,
                     maxLength: 100 // <- string-fields that are used as an index, must have set maxLength.
                 },
-                labels: {
+                articles: {
                     type: "array",
                     items: {
+                        ref: "articles",
                         type: "string"
                     }
-                },
-                startDate: {
-                    type: "number"
-                },
-                endDate: {
-                    type: "number"
-                },
-                locales: {
-                    type: "array",
-                    items: {
-                        type: "string"
-                    }
-                },
+                }
             },
             required: [
                 'url',
@@ -42,4 +32,4 @@ exports.ArticleSchema = {
         }
     }
 };
-//# sourceMappingURL=article.schema.js.map
+//# sourceMappingURL=label.schema.js.map
