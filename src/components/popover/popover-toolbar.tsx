@@ -1,7 +1,6 @@
 import React from "react";
 import { IToolbarItem } from "../../interfaces/IPopoverContext";
 import { PopoverCloseButton } from "./popover-close-button";
-import { st, classes } from "./popover-toolbar.st.css";
 import { ComponentProps } from "../../interfaces/models";
 import { mlUtils } from "../../lib/ml-utils";
 
@@ -15,17 +14,15 @@ export const PopoverToolbar = ({
 	className,
 }: IPopoverToolbarProps): JSX.Element => {
 	return (
-		<div className={st(classes.root, className)}>
-			<div className={classes.toolbarContainer}>
+		<div className="popover-toolbar">
+			<div className="popover-toolbar-container">
 				{items.map((item) => (
-					<span className={classes.item} key={mlUtils.uniqueId()}>
+					<span className="popover-toolbar-item" key={mlUtils.uniqueId()}>
 						{item.element}
 					</span>
 				))}
 			</div>
-			<PopoverCloseButton
-				className={st(classes.item, "popoverClose", classes.close)}
-			/>
+			<PopoverCloseButton className="popover-toolbar-item popoverClose" />
 		</div>
 	);
 };

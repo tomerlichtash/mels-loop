@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Field } from "./field";
 import { FormFieldState, IFieldDef, FieldType } from "./types";
-import { st, classes } from "./form.st.css";
 
 const initValue = (type: FieldType) => {
 	switch (type) {
@@ -56,7 +55,7 @@ export const useFormField = ({
 			tabIndex={tabIndex}
 			autoFocus={autoFocus}
 			translate={translate}
-			className={st(classes.field, className)}
+			// className={st(classes.field, className)}
 		/>
 	);
 

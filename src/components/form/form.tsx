@@ -5,7 +5,6 @@ import { Captcha } from "./captcha";
 import LoadingIndicator from "../loading-indicator";
 import { ReactThemeContext } from "../../contexts/theme-context";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { st, classes } from "./form.st.css";
 
 export const Form = ({
 	entries,
@@ -133,25 +132,25 @@ export const Form = ({
 	});
 
 	if (captchaError) {
-		return <div className={classes.error}>{captchaError}</div>;
+		return <div className="error">{captchaError}</div>;
 	}
 
 	return (
-		<div className={st(classes.root, className)}>
+		<div>
 			{successMessage && onSuccessMessage}
 			{failureMessage && onFailMessage}
 
 			{!successMessage && !failureMessage && (
-				<form className={classes.form} noValidate>
+				<form className="form" noValidate>
 					{fields}
 				</form>
 			)}
-			<div className={classes.footer}>
+			<div className="footer">
 				{useCaptcha &&
 					!loadingIndicator &&
 					!failureMessage &&
 					!successMessage && (
-						<div className={classes.captchaContainer}>
+						<div className="captcha-container">
 							<Captcha
 								onChange={onCaptchaChange}
 								setCaptchaError={setCaptchaError}
@@ -160,23 +159,20 @@ export const Form = ({
 								locale={locale}
 								theme={theme}
 								highlight={highlightCaptcha}
-								className={classes.captcha}
+								className="captcha"
 							/>
 						</div>
 					)}
 				{!failureMessage && !successMessage && (
-					<div className={classes.buttonContainer}>
+					<div className="button-container">
 						<button
-							className={classes.button}
+							className="button"
 							tabIndex={captchaTabIndex + 1}
 							ref={captchaRef}
 							onClick={onSubmitClick}
 						>
 							{loadingIndicator ? (
-								<LoadingIndicator
-									delay={0}
-									className={classes.loadingIndicator}
-								/>
+								<LoadingIndicator delay={0} className="loading-indicator" />
 							) : (
 								translate(submitButtonLabel)
 							)}

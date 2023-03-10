@@ -12,7 +12,6 @@ import {
 } from "../interfaces/models";
 import { LoadFolderModes } from "../interfaces/parser";
 import { ContentComponent } from "../components/content";
-import { classes } from "./page-base.st.css";
 
 const About: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
@@ -21,16 +20,15 @@ const About: NextPage<IPageProps> = (props) => {
 	const { metaData } = pageData[0];
 	return (
 		<Layout>
-			<article className={classes.root}>
-				<h1 className={classes.topic}>{metaData.title}</h1>
-				<p className={classes.title}>{metaData.abstract}</p>
-				<div className={classes.section}>
+			<article className="page">
+				<h1 className="topic">{metaData.title}</h1>
+				<p className="title">{metaData.abstract}</p>
+				<div className="section">
 					{elements.map((node) => {
 						return (
 							<ContentComponent
 								key={mlUtils.uniqueId()}
 								componentData={{ node }}
-								className={classes.contentComponent}
 							/>
 						);
 					})}

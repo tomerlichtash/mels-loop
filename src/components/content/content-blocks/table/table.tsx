@@ -4,7 +4,6 @@ import {
 	IMLParsedNode,
 	ContentComponentProps,
 } from "../../../../interfaces/models";
-import { st, classes } from "./table.st.css";
 import { mlUtils } from "../../../../lib/ml-utils";
 import { useComponentAttributes } from "../../../use-component-attributes";
 
@@ -18,11 +17,7 @@ export const Table = ({
 		? node.children
 		: [];
 	return (
-		<table
-			className={st(classes.root, className)}
-			key={node.key}
-			{...attributes}
-		>
+		<table className="table" key={node.key} {...attributes}>
 			<tbody key={mlUtils.uniqueId()}>
 				{elements.map((node) => {
 					return <ContentComponent key={node.key} componentData={{ node }} />;

@@ -13,13 +13,8 @@ import {
 	IMenuData,
 } from "../../interfaces/menu";
 import { ComponentProps } from "../../interfaces/models";
-import { Menu } from "../menu";
+import { Menu } from "../../#stylable-styles";
 import { MobileMenu } from "../mobile-menu";
-import {
-	st as mobileStyle,
-	classes as mobileClasses,
-} from "../mobile-menu/mobile-menu.st.css";
-import { st as menuStyle, classes as menuClasses } from "../menu/menu.st.css";
 import { TextDirection } from "../../interfaces/locale-context";
 
 export interface MenuProviderProps extends ComponentProps {
@@ -100,7 +95,7 @@ export const MenuProvider = ({ isMobile, className }: MenuProviderProps) => {
 			<MobileMenu
 				items={menuItems}
 				textDirection={textDirection}
-				className={mobileStyle(mobileClasses.root, className)}
+				// className={mobileStyle(mobileClasses.root, className)}
 				right={textDirection === "ltr"}
 			/>
 		);
@@ -110,7 +105,7 @@ export const MenuProvider = ({ isMobile, className }: MenuProviderProps) => {
 		<Menu
 			items={menuItems}
 			textDirection={textDirection}
-			className={menuStyle(menuClasses.root, className)}
+			// className={menuStyle(menuClasses.root, className)}
 		/>
 	);
 };

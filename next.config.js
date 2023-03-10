@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 
+const path = require("path");
 const { withAxiom } = require("next-axiom");
 
 const {
@@ -13,6 +14,9 @@ const stylableOptimizer = new StylableOptimizer();
 const nextConfig = {
 	reactStrictMode: true,
 	optimizeFonts: true,
+	sassOptions: {
+		includePaths: [path.join(__dirname, "styles")],
+	},
 	webpack: (config, { webpack }) => {
 		const mockEnv = {
 			// mock public recaptcha site key

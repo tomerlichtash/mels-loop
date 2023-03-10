@@ -6,7 +6,6 @@ import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-co
 import { ReactPopoverContext } from "../../../contexts/popover-context";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { Button } from "../../ui";
-import { classes } from "./dynamic-content-toolbar.st.css";
 
 export interface IDynamicContentToolbarProps {
 	pages: IParsedPageData[];
@@ -43,7 +42,7 @@ export default function DynamicContentToolbar({
 					icon={
 						textDirection === "ltr" ? <ArrowLeftIcon /> : <ArrowRightIcon />
 					}
-					className={classes.backButton}
+					className="back-button"
 					callback={() => dcCtx.setPageIndex(pages.length - 2)}
 					title={title}
 					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}

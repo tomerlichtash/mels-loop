@@ -23,7 +23,7 @@ import {
 	Pencil1Icon,
 } from "@radix-ui/react-icons";
 import { TextDirection } from "../../interfaces/locale-context";
-import { st, classes } from "./menu.st.css";
+import MyNavigationMenuDemo from "./tempmenu";
 
 export interface MenuData {
 	items: IMenuData[];
@@ -63,20 +63,20 @@ const MenuButton = ({ meta, keys, type }: IMenuItem) => {
 			link={url}
 			target={type === "external" ? "_blank" : undefined}
 			label={title}
-			className={st(classes.button, classes.menuItemButton)}
+			className="button"
 			icon={getButtonIcon(type, icon)}
 		>
-			<div className={classes.buttonSubtitle}>{subtitle}</div>
+			<div className="subtitle">{subtitle}</div>
 		</Button>
 	);
 };
 
 const MenuTrigger = ({ title, url }) => (
-	<NavigationTrigger className={classes.menuTrigger}>
+	<NavigationTrigger className="NavigationMenuTrigger">
 		<Button
 			label={title}
 			link={url}
-			className={st(classes.button, classes.triggerButton)}
+			className="trigger"
 			icon={<NavigationCaret aria-hidden />}
 			iconSide={"left"}
 		/>
@@ -90,15 +90,15 @@ const renderGroupSection = (items: IMenuData) => {
 	return (
 		<NavigationMenuItem
 			key={mlUtils.uniqueId()}
-			className={classes.menuItem}
+			className="NavigationMenuLink"
 			asChild
 		>
 			<div>
 				<MenuTrigger title={title} url={url} />
 				<NavigationMenuContent>
-					<div className={st(classes.menuContent, { layout })}>
+					<div className="NavigationMenuContent">
 						{children.map((child) => (
-							<div key={mlUtils.uniqueId()} className={classes.listItem}>
+							<div key={mlUtils.uniqueId()} className="list-item">
 								<MenuButton {...child} />
 							</div>
 						))}
@@ -116,13 +116,13 @@ const renderSingleSection = (item: IMenuData, textDirection: TextDirection) => {
 		const { url } = meta;
 		const { title, description, cta_label } = keys;
 		return (
-			<NavigationMenuItem key={mlUtils.uniqueId()} className={classes.menuItem}>
+			<NavigationMenuItem key={mlUtils.uniqueId()} className="menu-item">
 				<MenuTrigger title={title} url={url} />
 				<NavigationMenuContent asChild>
-					<div className={st(classes.menuContent, { layout })}>
-						<p className={classes.abstract}>{description}</p>
+					<div className="menu-content">
+						<p className="abstract">{description}</p>
 						<Button
-							className={classes.more}
+							className="more"
 							label={cta_label}
 							link={url}
 							iconSide={"left"}
@@ -154,19 +154,18 @@ export const Menu = ({ items, textDirection, className }: MenuData) => {
 	);
 
 	return (
-		<NavigationMenu className={st(classes.root, { textDirection }, className)}>
-			<NavigationMenuList asChild>
-				<div className={classes.list}>
-					{menuItems}
-					<NavigationIndicator className={classes.indicator}>
-						<div className={classes.arrow}></div>
-					</NavigationIndicator>
-				</div>
-			</NavigationMenuList>
-			<div className={classes.viewportPosition}>
-				<NavigationMenuViewport className={classes.viewport} />
-			</div>
-		</NavigationMenu>
+		<MyNavigationMenuDemo />
+		// <NavigationMenu className="NavigationMenuRoot">
+		// 	<NavigationMenuList className="NavigationMenuList">
+		// 		{menuItems}
+		// 		<NavigationIndicator className="NavigationMenuIndicator">
+		// 			<div className="arrow"></div>
+		// 		</NavigationIndicator>
+		// 	</NavigationMenuList>
+		// 	<div className="ViewportPosition">
+		// 		<NavigationMenuViewport className="NavigationMenuViewport" />
+		// 	</div>
+		// </NavigationMenu>
 	);
 };
 

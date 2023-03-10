@@ -8,7 +8,6 @@ import { usePageData } from "../components/usePageData";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { Button } from "../components/ui";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import { st, classes } from "./page-base.st.css";
 
 const Glossary: NextPage<IPageProps> = (props) => {
 	const { translate, pageName } = useContext(ReactLocaleContext);
@@ -16,23 +15,23 @@ const Glossary: NextPage<IPageProps> = (props) => {
 	const { metaData } = usePageData(props);
 	return (
 		<Layout>
-			<article className={st(classes.root, className)}>
-				<h1 className={classes.title}>{pageName}</h1>
+			<article className="page">
+				<h1 className="title">{pageName}</h1>
 				{metaData.length && (
-					<ul className={classes.termList}>
+					<ul className="term-list">
 						{metaData.map((page, index) => {
 							const term = page.metaData;
 							const key = `term-${index}`;
 							const { glossary_key } = term;
 							return glossary_key ? (
-								<li className={classes.term} key={key}>
+								<li className="term" key={key}>
 									<Button
 										label={translate(term.glossary_key)}
 										link={page.path}
 									/>
 								</li>
 							) : (
-								<div key={key} className={classes.error}>
+								<div key={key} className="error">
 									Missing glossary term data {page.id}
 								</div>
 							);

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { ComponentProps } from "../../interfaces/models";
-import { st, classes } from "./loading-indicator.st.css";
 
 export interface ILoadingIndicatorProps extends ComponentProps {
 	/**
@@ -33,10 +32,12 @@ export const LoadingIndicator = ({
 		return <></>;
 	}
 	return (
-		<div className={st(classes.root, className)}>
-			<div className={classes.container}>
-				<div className={classes.animation}></div>
-				{label && <div className={classes.label}>{translate(label)}</div>}
+		<div className="loading-indicator">
+			<div className="loading-indicator-container">
+				<div className="loading-indicator-animation"></div>
+				{label && (
+					<div className="loading-indicator-label">{translate(label)}</div>
+				)}
 			</div>
 		</div>
 	);

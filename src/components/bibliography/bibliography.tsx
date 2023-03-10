@@ -2,7 +2,6 @@ import React from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import { mlUtils } from "../../lib/ml-utils";
-import { st, classes } from "./bibliography.st.css";
 
 export interface IBibliographySource {
 	name: string;
@@ -21,9 +20,9 @@ export const Bibliography = ({
 	className,
 }: IBibliographyProps): JSX.Element => {
 	return (
-		<div className={st(classes.root, className)}>
-			<div className={classes.title}>{label}:</div>
-			<ul className={classes.list}>
+		<div className="bibliography">
+			<div className="title">{label}:</div>
+			<ul className="list">
 				{sources.map(({ name, url, author }) => {
 					const authorSuffix = author ? ` / ${author}` : "";
 					return (
@@ -32,7 +31,7 @@ export const Bibliography = ({
 								label={`${name}${authorSuffix}`}
 								link={url}
 								target="_blank"
-								className={classes.button}
+								className="button"
 							/>
 						</li>
 					);

@@ -1,0 +1,197 @@
+@use "./colors";
+
+$FONT_WEIGHT_REGULAR: 300;
+$FONT_WEIGHT_MEDIUM: 500;
+$FONT_WEIGHT_BOLD: 700;
+
+@mixin LatinText {
+	font-family: "Roboto Slab", serif;
+	font-weight: $FONT_WEIGHT_REGULAR;
+	direction: ltr;
+}
+@mixin HebrewText {
+	font-family: "Assistant", sans-serif;
+	font-weight: $FONT_WEIGHT_REGULAR;
+	direction: rtl;
+}
+
+@mixin Link {
+	cursor: pointer;
+	color: colors.$color13;
+}
+
+.h1 {
+	font-size: 2.5vmax;
+	line-height: 3vmax;
+	font-weight: $FONT_WEIGHT_MEDIUM;
+	margin-bottom: 1.302vmax;
+}
+.h2 {
+	font-size: 2.03vmax;
+	line-height: 3vmax;
+	font-weight: $FONT_WEIGHT_MEDIUM;
+	margin-bottom: 0;
+}
+.h3 {
+	font-size: 1.614vmax;
+	line-height: 2vmax;
+	font-weight: $FONT_WEIGHT_MEDIUM;
+	margin-bottom: 0;
+}
+.h4 {
+	font-size: 1.302vmax;
+	line-height: 31px;
+	font-weight: $FONT_WEIGHT_MEDIUM;
+	margin-bottom: 0;
+}
+.h5 {
+	font-size: 1.041vmax;
+	line-height: 25px;
+	font-weight: $FONT_WEIGHT_BOLD;
+	margin-bottom: 0;
+}
+.h6 {
+	font-size: 0.833vmax;
+	line-height: 20px;
+	font-weight: $FONT_WEIGHT_BOLD;
+	margin-bottom: 0;
+}
+@mixin bodyTextNormal {
+	font-size: 0.875rem;
+	line-height: 21px;
+	font-weight: $FONT_WEIGHT_REGULAR;
+}
+
+.Topic {
+	// -st-mixin: h3;
+}
+.Term {
+	// -st-mixin: h5;
+	margin-bottom: 2rem;
+}
+
+.Title {
+	// -st-mixin: h1;
+}
+
+.SubtitleMargin1 {
+	margin-top: 4rem;
+	margin-bottom: 1.302vmax;
+}
+.SubtitleMargin2 {
+	margin: 2rem 0 1rem;
+}
+
+.InlineCode {
+	font-family: monospace;
+	font-size: 0.8rem;
+	font-weight: $FONT_WEIGHT_MEDIUM;
+	border-radius: 6px;
+	border: 1px solid;
+	padding: 0 0.25rem;
+}
+.CodeBlockStyle {
+	border-radius: 6px;
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.ListBullet {
+	font-size: 14px;
+}
+
+.Paragraph {
+	// -st-mixin: bodyTextNormal;
+}
+@mixin ParagraphMargin {
+	margin-bottom: 1.302vmax;
+}
+
+.Blockquote {
+	// -st-mixin: bodyTextNormal;
+	font-weight: $FONT_WEIGHT_REGULAR;
+	padding: 0rem 1rem;
+}
+
+/* Top Bar Menu */
+.TopMenuTriggerLabel {
+	font-size: 1rem;
+	line-height: 32px;
+}
+
+.SiteTitle {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: $FONT_WEIGHT_MEDIUM;
+}
+.SiteSubtitle {
+	text-transform: lowercase;
+}
+
+/* Footer */
+.FooterTitle {
+	font-size: 0.85rem;
+	font-weight: $FONT_WEIGHT_BOLD;
+	text-transform: uppercase;
+}
+.FooterButton {
+	font-size: 14px;
+	line-height: 21px;
+}
+.FooterSectionTitle {
+	font-weight: $FONT_WEIGHT_MEDIUM;
+	font-size: 0.85rem;
+}
+
+.SmallCaption {
+	font-size: 0.8rem;
+}
+
+.InlineAnnotation {
+	font-size: 0.7rem;
+	font-weight: $FONT_WEIGHT_BOLD;
+}
+.InlineAnnotation::before,
+.InlineAnnotation::after {
+	font-weight: $FONT_WEIGHT_REGULAR;
+}
+
+.ButtonSubtitleSmall {
+	font-size: 0.85rem;
+}
+
+.ToggleButton {
+	font-size: 14px;
+	line-height: 32px;
+	font-weight: 400;
+}
+.ToggleButtonSelected {
+	font-weight: $FONT_WEIGHT_MEDIUM;
+}
+
+.MenuItemLabel {
+	font-weight: $FONT_WEIGHT_BOLD;
+	text-transform: uppercase;
+}
+
+/* INPUT */
+.InputLabel {
+	font-weight: $FONT_WEIGHT_MEDIUM;
+	line-height: 40px;
+}
+
+.InputText {
+	font-family: inherit;
+	font-weight: $FONT_WEIGHT_REGULAR;
+}
+
+.ArticleByline {
+	// -st-mixin: Paragraph;
+	text-transform: uppercase;
+}
+
+.Caption {
+	// -st-mixin: bodyTextNormal;
+	margin-top: 0.5rem;
+	font-style: italic;
+}

@@ -11,7 +11,6 @@ import {
 	PopoverContent,
 	PopoverArrow,
 } from "../radix-primitives";
-import { st, classes } from "./popover.st.css";
 
 export interface IPopoverProps extends ComponentProps {
 	id: string;
@@ -38,16 +37,20 @@ export const Popover = ({
 
 	return (
 		<ReactPopoverContext.Provider value={ctx}>
-			<span className={st(classes.root, { type })}>
+			<span className={`popover popover type-${type}`}>
 				<PopoverRoot
 					onOpenChange={(state: boolean) => setPopoverVisible(state)}
 				>
 					<PopoverTrigger asChild>
 						<span
-							className={st(classes.trigger, { popoverVisible })}
+							className={`trigger`}
+							data-popover-visibility={popoverVisible}
 							tabIndex={1}
 						>
-							<span className={st(classes.triggerWrapper, { popoverVisible })}>
+							<span
+								className="wrapper"
+								data-popover-visibility={popoverVisible}
+							>
 								{trigger}
 							</span>
 						</span>
@@ -58,11 +61,8 @@ export const Popover = ({
 						align="center"
 						sideOffset={5}
 					>
-						<div className={st(classes.content, className)}>
-							<PopoverToolbar
-								items={toolbar.items}
-								className={st(classes.toolbar, className)}
-							/>
+						<div className={`popover-content`}>
+							<PopoverToolbar items={toolbar.items} className={`toolbar`} />
 							{children}
 						</div>
 						<PopoverArrow />

@@ -2,7 +2,6 @@ import React from "react";
 /* eslint-disable import/no-named-as-default */
 import ReCAPTCHA from "react-google-recaptcha";
 import { ICaptchaProps } from "./types";
-import { st, classes } from "./captcha.st.css";
 
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
 
@@ -49,27 +48,24 @@ export const Captcha = ({
 	tabIndex,
 	highlight,
 	setCaptchaError,
-	className,
 }: ICaptchaProps) => {
 	if (!recaptchaSiteKey) {
 		setCaptchaError("Missing captcha key");
 		return;
 	}
 	return (
-		<div className={st(classes.root, { highlight }, className)}>
-			<div className={classes.captcha} tabIndex={tabIndex}>
-				<ReCAPTCHA
-					sitekey={recaptchaSiteKey}
-					// eslint-disable-next-line @typescript-eslint/no-misused-promises
-					onChange={(value: string) =>
-						onCaptchaChange(value, () => onChange(value))
-					}
-					onExpired={onExpired}
-					size="normal"
-					hl={locale}
-					theme={theme === "dark" ? "dark" : "light"}
-				/>
-			</div>
+		<div className="captcha" tabIndex={tabIndex}>
+			<ReCAPTCHA
+				sitekey={recaptchaSiteKey}
+				// eslint-disable-next-line @typescript-eslint/no-misused-promises
+				onChange={(value: string) =>
+					onCaptchaChange(value, () => onChange(value))
+				}
+				onExpired={onExpired}
+				size="normal"
+				hl={locale}
+				theme={theme === "dark" ? "dark" : "light"}
+			/>
 		</div>
 	);
 };

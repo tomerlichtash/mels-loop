@@ -6,7 +6,6 @@ import {
 	IFormField,
 } from "./types";
 import { CheckIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
-import { st, classes } from "./field.st.css";
 
 export const Field = ({
 	tag,
@@ -66,22 +65,25 @@ export const Field = ({
 		if (autoFocus) ref.current.focus();
 	}, [autoFocus]);
 
+	{
+		/* <div className={st(classes.root, { id }, className)}> */
+	}
 	return (
-		<div className={st(classes.root, { id }, className)}>
-			<label htmlFor={id} className={classes.label}>
-				<span className={st(classes.caption, { required })}>
-					<span className={classes.icon}>{icon}</span>
-					<span className={classes.text} aria-label={translate(label)}>
+		<div>
+			<label htmlFor={id} className="label">
+				<span className="caption">
+					<span className="icon">{icon}</span>
+					<span className="text" aria-label={translate(label)}>
 						{translate(label)}
 						{validation === VALID && (
-							<span className={classes.checkMark}>
-								<CheckIcon className={classes.checkMark} />
+							<span className="checkmark">
+								<CheckIcon />
 							</span>
 						)}
 					</span>
 				</span>
 			</label>
-			<div className={classes.inputContainer}>
+			<div>
 				<Tag
 					id={id}
 					name={id}
@@ -90,7 +92,7 @@ export const Field = ({
 					autoFocus={autoFocus}
 					ref={ref}
 					placeholder={translate(placeholder)}
-					className={st(classes.input, { tag, validation })}
+					// className={st(classes.input, { tag, validation })}
 					onChange={onInputChange}
 					onFocus={onInputFocus}
 					onBlur={onInputBlur}
@@ -99,11 +101,11 @@ export const Field = ({
 					{...inputType}
 				/>
 				{validation === INVALID && (
-					<p className={classes.error}>
-						<span className={classes.errorIcon}>
-							<ExclamationTriangleIcon className={classes.icon} />
+					<p className="error">
+						<span className="icon">
+							<ExclamationTriangleIcon />
 						</span>
-						<span className={classes.errorText}>{translate(errorMsg)}</span>
+						<span>{translate(errorMsg)}</span>
 					</p>
 				)}
 			</div>

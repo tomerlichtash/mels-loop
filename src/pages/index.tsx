@@ -8,16 +8,12 @@ import {
 } from "../interfaces/models";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
-import {
-	LoadContentModes,
-	LoadFolderModes,
-} from "../interfaces/parser";
+import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { contentUtils } from "../lib/content-utils";
 import { usePageData } from "../components/usePageData";
 import { ContentComponent } from "../components/content";
 import { mlUtils } from "../lib/ml-utils";
 import { ReactLocaleContext } from "../contexts/locale-context";
-import { st, classes } from "../pages/page-base.st.css";
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { className } = props;
@@ -30,14 +26,14 @@ const Index: NextPage<IPageProps> = (props) => {
 
 	return (
 		<Layout>
-			<article className={st(classes.root, { textDirection })}>
-				<h1 className={classes.title}>{title}</h1>
-				<p className={classes.moto}>{moto}</p>
+			<article className="article">
+				<h1 className="title">{title}</h1>
+				<p className="moto">{moto}</p>
 				{elements.map((node) => {
 					return (
 						<ContentComponent
 							key={mlUtils.uniqueId()}
-							className={st(classes.contentComponent, className)}
+							className={"content-component"}
 							componentData={{ node }}
 						/>
 					);

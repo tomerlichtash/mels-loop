@@ -5,7 +5,6 @@ import { Button } from "../ui";
 import { ToggleGroupRoot, ToggleGroupItem } from "../radix-primitives";
 import { LocaleId } from "../../interfaces/locale-context";
 import { mlUtils } from "../../lib/ml-utils";
-import { st, classes } from "./locale-selector.st.css";
 
 export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 	const {
@@ -17,7 +16,7 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 		onLocaleChange,
 	} = useContext(ReactLocaleContext);
 	return (
-		<div className={st(classes.root, className)}>
+		<div className="locale-selector" data-locale={locale}>
 			<ToggleGroupRoot
 				type="single"
 				onValueChange={(localeId: LocaleId) => {
@@ -26,7 +25,7 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 					);
 				}}
 			>
-				<div className={classes.list}>
+				<div className="list">
 					{locales.map((id) => {
 						const localeLabel = getLocaleSymbol(id);
 						const localTitle = translate(`${getLocaleLabel(id)}_LABEL`);
@@ -38,16 +37,13 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 								title={localTitle}
 								value={id}
 							>
-								<div className={classes.item}>
-									<Button
-										label={localeLabel}
-										title={localTitle}
-										className={st(classes.button, {
-											locale: id,
-											selected: locale === id,
-										})}
-									/>
-								</div>
+								<Button
+									label={localeLabel}
+									title={localTitle}
+									className="item"
+									data-locale={id}
+									data-selecetd={locale === id}
+								/>
 							</ToggleGroupItem>
 						);
 					})}

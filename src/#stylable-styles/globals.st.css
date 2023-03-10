@@ -1,4 +1,4 @@
-@namespace "Global";
+/* @namespace "Global";
 
 @st-import [boxSizing] from "../common/mixins.st.css";
 
@@ -40,4 +40,6 @@
 
 [data-radix-popper-content-wrapper] {
 	z-index: 1 !important;
-}
+} */
+
+

@@ -3,7 +3,6 @@ import { ComponentProps } from "../../interfaces/models";
 import { SunIcon } from "@radix-ui/react-icons";
 import { ReactThemeContext } from "../../contexts/theme-context";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { st, classes } from "./theme-selector.st.css";
 
 export const ThemeSelector = ({ className }: ComponentProps): JSX.Element => {
 	const { toggleTheme } = useContext(ReactThemeContext);
@@ -11,12 +10,12 @@ export const ThemeSelector = ({ className }: ComponentProps): JSX.Element => {
 	const label = translate("TOGGLE_THEME");
 	return (
 		<div
-			className={st(classes.root, className)}
+			className="theme-selector"
 			title={label}
 			aria-label={label}
 			onClick={toggleTheme}
 		>
-			<SunIcon className={classes.icon} />
+			<SunIcon className="icon" />
 		</div>
 	);
 };

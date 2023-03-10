@@ -1,12 +1,11 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import Layout from "../components/layout";
-import { classes } from "./_error.st.css";
 
 const CustomError: NextPage = () => {
 	return (
 		<Layout title="Error">
-			<div className={classes.root}>
+			<div className="error">
 				<h1>Error</h1>
 			</div>
 		</Layout>

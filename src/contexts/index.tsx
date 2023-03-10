@@ -6,9 +6,9 @@ export const AppContext = ({ children, router, documentPath }) => {
 	return (
 		<LocaleContextProvider router={router}>
 			<PageContextProvider documentPath={documentPath}>
-				<ThemeContextProvider>
-					<>{children}</>
-				</ThemeContextProvider>
+				{/* <ThemeContextProvider> */}
+				<>{children}</>
+				{/* </ThemeContextProvider> */}
 			</PageContextProvider>
 		</LocaleContextProvider>
 	);

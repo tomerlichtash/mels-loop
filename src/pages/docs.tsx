@@ -8,7 +8,6 @@ import { usePageData } from "../components/usePageData";
 import { ReactLocaleContext } from "../contexts/locale-context";
 import { Button } from "../components/ui";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import { st, classes } from "./page-base.st.css";
 
 const Docs: NextPage<IPageProps> = (props) => {
 	const { pageName } = useContext(ReactLocaleContext);
@@ -16,14 +15,14 @@ const Docs: NextPage<IPageProps> = (props) => {
 	const { metaData } = usePageData(props);
 	return (
 		<Layout>
-			<article className={st(classes.root, className)}>
-				<h1 className={classes.title}>{pageName}</h1>
+			<article className="page">
+				<h1 className="title">{pageName}</h1>
 				{metaData.length && (
 					<ul>
 						{metaData.map((page, index) => {
 							const key = `doc-${index}`;
 							return (
-								<li className={classes.item} key={key}>
+								<li className="item" key={key}>
 									<Button label={page.metaData.title} link={page.path} />
 								</li>
 							);

@@ -6,7 +6,6 @@ import {
 } from "../../../../interfaces/models";
 import { mlUtils } from "../../../../lib/ml-utils";
 import { useComponentAttributes } from "../../../use-component-attributes";
-import { st, classes } from "./block-quote.st.css";
 
 export const BlockQuote = ({
 	componentData,
@@ -18,11 +17,7 @@ export const BlockQuote = ({
 		? node.children
 		: [];
 	return (
-		<blockquote
-			className={st(classes.root, className)}
-			key={node.key}
-			{...attributes}
-		>
+		<blockquote className="blockquote" key={node.key} {...attributes}>
 			<p key={mlUtils.uniqueId()}>
 				{elements.map((node) => {
 					return <ContentComponent key={node.key} componentData={{ node }} />;

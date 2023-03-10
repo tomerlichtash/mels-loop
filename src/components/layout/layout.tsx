@@ -11,7 +11,6 @@ import { MenuProvider } from "../menu-provider";
 import Analytics from "./analytics";
 import { ComponentProps } from "../../interfaces/models";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
-import { st, classes } from "./layout.st.css";
 
 export interface ILayoutProps extends ComponentProps {
 	title?: string;
@@ -87,12 +86,16 @@ export default function Layout({ children, title }: ILayoutProps) {
 				<meta name="og:title" content={`${siteTitle} - ${siteSubtitle}`} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<div id="outer-container" className={st(classes.root, { textDirection })}>
+			<div
+				id="outer-container"
+				className="layout"
+				data-text-direction={textDirection}
+			>
 				<ScrollArea>
 					<div id="page-wrap">
-						<TopBar className={classes.header} />
-						<Page className={classes.page} nodes={children} />
-						<Footer className={classes.footer} textDirection={textDirection} />
+						<TopBar />
+						<Page nodes={children} />
+						<Footer textDirection={textDirection} />
 					</div>
 				</ScrollArea>
 				{isMobile && <MenuProvider isMobile />}

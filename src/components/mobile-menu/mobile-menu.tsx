@@ -9,7 +9,6 @@ import { Button } from "../ui";
 import { ComponentProps } from "../../interfaces/models";
 import { IMenuData, IMenuItem } from "../../interfaces/menu";
 import { TextDirection } from "../../interfaces/locale-context";
-import { st, classes } from "./mobile-menu.st.css";
 
 export interface IMobileNavProps extends ComponentProps {
 	right: boolean;
@@ -27,9 +26,9 @@ const groupChild = (child: IMenuItem) => {
 			link={url}
 			label={title}
 			key={mlUtils.uniqueId()}
-			className={st(classes.menuItemButton, { id })}
+			// className={st(classes.menuItemButton, { id })}
 		>
-			<div className={classes.subtitle}>{subtitle}</div>
+			<div className="subtitle">{subtitle}</div>
 		</Button>
 	);
 };
@@ -44,7 +43,8 @@ const renderSingleItems = (children: IMenuItem[]) => {
 				link={url}
 				label={title}
 				key={mlUtils.uniqueId()}
-				className={st(classes.menuItemButton, { id })}
+				className="menu-item-button"
+				data-item-id={id}
 			>
 				<div>{description}</div>
 			</Button>
@@ -56,8 +56,8 @@ const renderGroupSection = (item: IMenuData) => {
 	const { keys, children } = item;
 	const { title } = keys;
 	return (
-		<div key={mlUtils.uniqueId()} className={classes.section}>
-			<div className={classes.sectionTitle}>{title}</div>
+		<div key={mlUtils.uniqueId()} className="section">
+			<div className="section-title">{title}</div>
 			{children.map((item) => (
 				<div key={mlUtils.uniqueId()}>{groupChild(item)}</div>
 			))}
@@ -69,8 +69,8 @@ const renderSingleSection = (items: IMenuData) => {
 	const { keys, children } = items;
 	const { title } = keys;
 	return (
-		<div key={mlUtils.uniqueId()} className={classes.section}>
-			<div className={classes.sectionTitle}>{title}</div>
+		<div key={mlUtils.uniqueId()} className="section">
+			<div className="section-title">{title}</div>
 			{renderSingleItems(children)}
 		</div>
 	);
@@ -109,31 +109,31 @@ export const MobileMenu = ({
 		<Menu
 			pageWrapId={"page-wrap"}
 			outerContainerId={"outer-container"}
-			burgerButtonClassName={st(classes.burgerButton, { side })}
-			menuClassName={classes.burgerMenu}
-			burgerBarClassName={st(classes.burgerBars, "data-burger-bars")}
-			crossButtonClassName={st(classes.crossButton, { side })}
-			crossClassName={classes.burgerCross}
-			overlayClassName={classes.overlay}
-			itemListClassName={classes.itemList}
+			burgerButtonClassName={`buger-button-${side}`}
+			menuClassName="burger-menu"
+			burgerBarClassName="data-burger-bars"
+			crossButtonClassName={`cross-button-${side}`}
+			crossClassName="burger-cross"
+			overlayClassName="overlay"
+			itemListClassName="item-list"
 			styles={menuStyles}
 			right={right}
-			className={st(classes.root, { side }, className)}
+			className="mobile-menu"
 		>
-			<div className={classes.menu}>
-				<div className={classes.menuHeader}>
-					<Header className={classes.header} />
-					<div className={classes.strip}></div>
-					<div className={classes.toolbar}>
+			<div className="menu">
+				<div className="container">
+					<Header className="menu-header" />
+					<div className="strip"></div>
+					<div className="toolbar">
 						<LocaleSelector
-							className={st(classes.toolbarItem, classes.localeSelector)}
+						// className={st(classes.toolbarItem, classes.localeSelector)}
 						/>
 						{/* <ThemeSelector
 							className={st(classes.toolbarItem, classes.themeSelector)}
 						/> */}
 					</div>
 				</div>
-				<div className={classes.content}>{menuItems}</div>
+				<div className="content">{menuItems}</div>
 			</div>
 		</Menu>
 	);

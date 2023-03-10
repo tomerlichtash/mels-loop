@@ -9,7 +9,6 @@ import {
 	EnvelopeClosedIcon,
 	PersonIcon,
 } from "@radix-ui/react-icons";
-import { st, classes } from "./contact-form.st.css";
 import { Button } from "../ui";
 import { SUBMIT_API } from "../../config/public-api-params";
 
@@ -77,56 +76,50 @@ export const ContactForm = ({
 	const backHomeButtonText = translate(compLocale.backHome);
 
 	const onSuccessMessage = (
-		<div className={st(classes.onSubmitMessage, { type: "success" })}>
-			<span className={classes.icon}>
+		// <div className={st(classes.onSubmitMessage, { type: "success" })}>
+		<div>
+			<span className="icon">
 				<CheckIcon />
 			</span>
-			<span className={classes.message}>
+			<span className="message">
 				<span>{onSuccessMessageText}</span>
 			</span>
-			<div className={classes.options}>
-				<Button
-					className={classes.button}
-					label={backHomeButtonText}
-					link="/"
-				/>
+			<div className="options">
+				<Button className="button" label={backHomeButtonText} link="/" />
 			</div>
 		</div>
 	);
 
 	const onFailMessage = (
-		<div className={st(classes.onSubmitMessage, { type: "fail" })}>
-			<div className={classes.textWithIcon}>
-				<div className={classes.icon}>
+		// <div className={st(classes.onSubmitMessage, { type: "fail" })}>
+		<div>
+			<div className="textWithIcon">
+				<div className="icon">
 					<ExclamationTriangleIcon />
 				</div>
-				<div className={classes.message}>
+				<div className="message">
 					<span>{onFailMessageText}</span>
 				</div>
 			</div>
-			<div className={classes.options}>
-				<Button
-					className={classes.button}
-					label={backHomeButtonText}
-					link="/"
-				/>
+			<div className="options">
+				<Button className="button" label={backHomeButtonText} link="/" />
 			</div>
 		</div>
 	);
 
 	return (
-		<div className={st(classes.root, className)}>
-			<Form
-				entries={formFields}
-				onSubmit={onValuesSubmit(SUBMIT_API.SEND_GRID)}
-				onSuccessMessage={onSuccessMessage}
-				onFailMessage={onFailMessage}
-				submitButtonLabel={compLocale.buttonLabel}
-				submitButtonLabelActive={compLocale.buttonLabelActive}
-				className={st(classes.form, className)}
-				useCaptcha={true}
-			/>
-		</div>
+		// <div className={st(classes.root, className)}>
+		<Form
+			entries={formFields}
+			onSubmit={onValuesSubmit(SUBMIT_API.SEND_GRID)}
+			onSuccessMessage={onSuccessMessage}
+			onFailMessage={onFailMessage}
+			submitButtonLabel={compLocale.buttonLabel}
+			submitButtonLabelActive={compLocale.buttonLabelActive}
+			// className={st(classes.form, className)}
+			useCaptcha={true}
+		/>
+		// </div>
 	);
 };
 

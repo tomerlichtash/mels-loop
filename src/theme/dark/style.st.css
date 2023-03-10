@@ -1,6 +1,6 @@
 @namespace "DarkTheme";
 
-@st-import PageBase from "../../pages/page-base.st.css";
+/* @st-import PageBase from "../../pages/page-base.st.css";
 @st-import PageBaseMixin from "../../pages/page-base-mixin.st.css";
 @st-import Scrollbar from "../../components/scrollbar/scrollbar.st.css";
 @st-import ScrollbarMixin from "../../components/scrollbar/scrollbar-mixin.st.css";
@@ -266,4 +266,4 @@
 			IndicatorImage value(SITE_LOGO_BRIGHT),
 		);
 	}
-}
+} */

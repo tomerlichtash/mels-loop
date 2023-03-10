@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentProps } from "../../../interfaces/models";
 import { format } from "date-fns";
-import { st, classes } from "./time-format.st.css";
 
 export interface DateProps extends ComponentProps {
 	dateStr: Date;
@@ -27,7 +26,7 @@ export const TimeFormat = ({
 	const date = new Date(dateStr);
 
 	return (
-		<time dateTime={date.toString()} className={st(classes.root, className)}>
+		<time dateTime={date.toString()} className="time-format">
 			{format(date, getLocaleFormat(locale))}
 		</time>
 	);

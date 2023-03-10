@@ -3,8 +3,6 @@ import { ComponentProps, IParsedPageData } from "../../interfaces/models";
 import { mlUtils } from "../../lib/ml-utils";
 import { ContentComponent } from "../content";
 import { Button, TimeFormat } from "../ui";
-import { st, classes } from "../../pages/page-base.st.css";
-import { classes as postClasses } from "./post.st.css";
 
 export interface IBlogPostProps extends ComponentProps {
 	title: string;
@@ -25,27 +23,19 @@ export const Post = ({
 	className,
 }: IBlogPostProps): JSX.Element => {
 	return (
-		<article className={st(classes.root, postClasses.root, className)}>
-			<div className={classes.section}>
-				<header className={classes.header} aria-label={title} title={title}>
-					<h2 className={classes.topic}>
+		<article className="post">
+			<div className="section">
+				<header className="header" aria-label={title} title={title}>
+					<h2 className="topic">
 						{path ? (
-							<Button
-								label={title}
-								link={`/${path}`}
-								className={classes.button}
-							/>
+							<Button label={title} link={`/${path}`} className="button" />
 						) : (
-							<span className={postClasses.title}>{title}</span>
+							<span className="title">{title}</span>
 						)}
 					</h2>
-					<div className={classes.paragraph}>
+					<div className="paragraph">
 						{date && (
-							<TimeFormat
-								dateStr={date}
-								locale={locale}
-								className={classes.date}
-							/>
+							<TimeFormat dateStr={date} locale={locale} className="date" />
 						)}{" "}
 						&bull; {author}
 					</div>
@@ -55,7 +45,6 @@ export const Post = ({
 						return (
 							<ContentComponent
 								key={mlUtils.uniqueId()}
-								className={classes.contentComponent}
 								componentData={{ node }}
 							/>
 						);

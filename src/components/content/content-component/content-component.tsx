@@ -17,7 +17,6 @@ import {
 } from "../content-blocks";
 import ContentIterator from "../content-iterator";
 import LinkSelector from "../link-selector";
-import { st, classes } from "./content-component.st.css";
 
 const ROOT_CLASS_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
 	MLNODE_TYPES.TR,
@@ -30,11 +29,7 @@ export const ContentComponent = ({
 	const { node } = componentData;
 	const { key, type } = node;
 	const useClassname = !ROOT_CLASS_TYPES.has(type);
-	const stylableClassName = st(
-		classes.root,
-		{ type },
-		useClassname ? className : ""
-	);
+	const contentClassName = `content-component-${type}`;
 
 	if (!key) {
 		console.warn("missing key on", node);
@@ -46,7 +41,7 @@ export const ContentComponent = ({
 				<Paragraph
 					key={key}
 					componentData={componentData}
-					className={stylableClassName}
+					className={contentClassName}
 				/>
 			);
 		case MLNODE_TYPES.LINE:
@@ -54,7 +49,7 @@ export const ContentComponent = ({
 				<Line
 					key={key}
 					componentData={componentData}
-					className={stylableClassName}
+					className={contentClassName}
 				/>
 			);
 		case MLNODE_TYPES.DEL:
@@ -73,7 +68,7 @@ export const ContentComponent = ({
 				<ContentIterator
 					key={key}
 					componentData={{ tag: type, ...componentData }}
-					className={stylableClassName}
+					className={contentClassName}
 				/>
 			);
 		case MLNODE_TYPES.CODEBLOCK:
@@ -81,7 +76,7 @@ export const ContentComponent = ({
 				<CodeBlock
 					key={key}
 					componentData={componentData}
-					className={stylableClassName}
+					className={contentClassName}
 				/>
 			);
 		case MLNODE_TYPES.BLOCKQUOTE:
@@ -89,13 +84,13 @@ export const ContentComponent = ({
 				<BlockQuote
 					key={key}
 					componentData={componentData}
-					className={stylableClassName}
+					className={contentClassName}
 				/>
 			);
 		case MLNODE_TYPES.TEXT:
 			const { text } = node;
 			return (
-				<span key={key} className={stylableClassName}>
+				<span key={key} className={contentClassName}>
 					{text}
 				</span>
 			);
@@ -107,7 +102,8 @@ export const ContentComponent = ({
 			return (
 				<ContentIterator
 					key={key}
-					className={st(classes.root, { type, listType }, className)}
+					className={`${className}-${type}`}
+					// className={st(classes.root, { type, listType }, className)}
 					componentData={{
 						tag: listType,
 						...componentData,
@@ -119,7 +115,7 @@ export const ContentComponent = ({
 				<ListItem
 					key={key}
 					componentData={componentData}
-					className={stylableClassName}
+					className={contentClassName}
 				/>
 			);
 		case MLNODE_TYPES.LINK:
@@ -127,7 +123,7 @@ export const ContentComponent = ({
 				<LinkSelector
 					key={key}
 					componentData={componentData}
-					className={stylableClassName}
+					className={contentClassName}
 				/>
 			);
 		case MLNODE_TYPES.IMAGE:
@@ -135,7 +131,7 @@ export const ContentComponent = ({
 				<CustomImage
 					key={key}
 					componentData={componentData}
-					className={stylableClassName}
+					className={contentClassName}
 				/>
 			);
 		case MLNODE_TYPES.FIGURE:
@@ -143,7 +139,7 @@ export const ContentComponent = ({
 				<Figure
 					key={key}
 					componentData={componentData}
-					className={stylableClassName}
+					className={contentClassName}
 				/>
 			);
 		case MLNODE_TYPES.TABLE:
@@ -151,7 +147,7 @@ export const ContentComponent = ({
 				<Table
 					key={key}
 					componentData={componentData}
-					className={stylableClassName}
+					className={contentClassName}
 				/>
 			);
 
@@ -163,19 +159,20 @@ export const ContentComponent = ({
 					<Heading
 						key={key}
 						componentData={componentData}
-						className={st(
-							classes.root,
-							{
-								type: `heading_${componentData.node.level}`,
-							},
-							className
-						)}
+						className={`content-component-heading-${node.level}`}
+						// className={st(
+						// 	classes.root,
+						// 	{
+						// 		type: `heading_${componentData.node.level}`,
+						// 	},
+						// 	className
+						// )}
 					/>
 				);
 			}
 			return (
-				<div className={classes.error} key={key}>
-					<pre className={classes.error}>Type {node.type} not found</pre>
+				<div className="error" key={key}>
+					<pre>Type {node.type} not found</pre>
 				</div>
 			);
 	}

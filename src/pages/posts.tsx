@@ -10,16 +10,14 @@ import { ReactLocaleContext } from "../contexts/locale-context";
 import orderBy from "lodash.orderby";
 import Post from "../components/post";
 import { mlUtils } from "../lib/ml-utils";
-import { st, classes } from "./page-base.st.css";
-import { classes as postsClasses } from "./posts.st.css";
 
 export default function Blog(props: IPageProps) {
 	const { locale, sectionName } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	return (
 		<Layout>
-			<div className={st(classes.root, postsClasses.root)}>
-				<h1 className={classes.title}>{sectionName}</h1>
+			<div className="page">
+				<h1 className="title">{sectionName}</h1>
 				{orderBy(pageData, ["metaData.date"], ["desc"]).map(
 					(page: IParsedPageData) => {
 						const { metaData, path: path } = page;
@@ -33,7 +31,6 @@ export default function Blog(props: IPageProps) {
 								locale={locale}
 								author={author}
 								content={page}
-								className={postsClasses.post}
 							/>
 						);
 					}

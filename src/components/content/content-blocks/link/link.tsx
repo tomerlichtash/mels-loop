@@ -1,7 +1,6 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
 import ContentIterator from "../../content-iterator";
-import { st, classes } from "./link.st.css";
 
 export interface ILinkProps extends ContentComponentProps {
 	onClick?: (evt: React.MouseEvent) => boolean;
@@ -21,13 +20,8 @@ export const Link = ({
 				rel: "noreferrer",
 		  };
 	return (
-		<a
-			className={st(classes.root, className)}
-			href={node.target}
-			onClick={onClick}
-			{...targetAttrs}
-		>
-			<ContentIterator componentData={componentData} className={classes.href} />
+		<a className="link" href={node.target} onClick={onClick} {...targetAttrs}>
+			<ContentIterator componentData={componentData} className="href" />
 		</a>
 	);
 };

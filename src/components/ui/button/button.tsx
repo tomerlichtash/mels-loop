@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { ComponentProps } from "../../../interfaces/models";
-import { st, classes } from "./button.st.css";
 
 export interface ButtonProps extends ComponentProps {
 	label?: string;
@@ -27,40 +26,50 @@ export const Button = ({
 	callback,
 	className,
 	children,
+	...rest
 }: ButtonProps): JSX.Element => {
 	const btnLabel = title || label;
-	const btnClassName = st(classes.root, { selected }, classes.aTag, className);
 	const props = {
 		title: btnLabel,
 		"aria-label": btnLabel,
-		className: btnClassName,
 	};
 	const btnContent = (
-		<span className={st(classes.contentWrapper, { icon: !!icon })}>
+		<span className="content-wrapper" data-icon={!!icon} {...rest}>
 			{icon && (
-				<span className={st(classes.icon, { side: iconSide })}>
-					<span className={classes.img}>{icon}</span>
+				<span className="icon" data-icon-side={iconSide}>
+					<span className="img">{icon}</span>
 				</span>
 			)}
-			<span className={st(classes.content, { addIconMargin: !!icon })}>
+			<span className="content" data-add-icon-margin={!!icon}>
 				{label && (
-					<span className={classes.label}>
-						<span className={classes.text}>{label}</span>
+					<span className="label">
+						<span className="text">{label}</span>
 					</span>
 				)}
-				{children && <span className={classes.children}>{children}</span>}
+				{children && <span className="children">{children}</span>}
 			</span>
 		</span>
 	);
 
+	debugger;
 	if (!link && !target && !callback) {
-		return <span {...props}>{btnContent}</span>;
+		return (
+			<span {...props} {...rest}>
+				{btnContent}
+			</span>
+		);
 	}
 
 	if (link) {
 		return (
 			<Link href={link} passHref legacyBehavior>
-				<a href={link} {...props} target={target}>
+				<a
+					href={link}
+					className={className}
+					target={target}
+					{...props}
+					{...rest}
+				>
 					{btnContent}
 				</a>
 			</Link>

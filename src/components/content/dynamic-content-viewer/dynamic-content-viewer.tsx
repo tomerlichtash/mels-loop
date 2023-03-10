@@ -10,7 +10,6 @@ import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-co
 import { mlUtils } from "../../../lib/ml-utils";
 import { LoadingIndicator } from "../../loading-indicator/loading-indicator";
 import ScrollArea from "../../scrollbar";
-import { st, classes } from "./dynamic-content-viewer.st.css";
 import { useRouter } from "next/router";
 
 /**
@@ -97,7 +96,7 @@ export const DynamicContentViewer = ({
 	}, [url, dynamicContentContext, pageContext, locale, router.asPath]);
 
 	if (error) {
-		return <div className={classes.error}>{error}</div>;
+		return <div className="error">{error}</div>;
 	}
 
 	if (isLoading) {
@@ -105,7 +104,7 @@ export const DynamicContentViewer = ({
 			<LoadingIndicator
 				label="PRELOADER_LABEL"
 				delay={LOADING_DELAY_MSEC}
-				className={classes.loadingIndicator}
+				className="loading-indicator"
 			/>
 		);
 	}
@@ -138,15 +137,15 @@ export const DynamicContentViewer = ({
 		<ContentComponent
 			key={mlUtils.uniqueId()}
 			componentData={{ node }}
-			className={classes.contentComponent}
+			className="content-component"
 		/>
 	));
 
 	return (
-		<div className={st(classes.root, className)}>
+		<div className="dynamic-viewer">
 			<ScrollArea height="300px">
 				<Note
-					className={classes.note}
+					className="note"
 					type={itemType}
 					contents={contents}
 					label={label}

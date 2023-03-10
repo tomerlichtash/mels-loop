@@ -3,7 +3,6 @@ import { ComponentProps } from "../../interfaces/models";
 import { TextDirection } from "../../interfaces/locale-context";
 import { IBibliographySource } from "../bibliography/bibliography";
 import Bibliography from "../bibliography";
-import { st, classes } from "./note.st.css";
 
 export type NoteViews = "note" | "ref";
 
@@ -30,20 +29,20 @@ export const Note = ({
 	className,
 }: INoteProps): JSX.Element => {
 	return (
-		<div className={st(classes.root, { type, textDirection }, className)}>
+		<div className="note">
 			{type === "ref" && (
-				<div className={classes.header}>
-					<div className={classes.topic}>{label}</div>
-					<div className={classes.title}>{title}</div>
-					<div className={classes.term}>{term}</div>
+				<div className="header">
+					<div className="topic">{label}</div>
+					<div className="title">{title}</div>
+					<div className="term">{term}</div>
 				</div>
 			)}
-			<div className={classes.content}>{contents}</div>
+			<div className="content">{contents}</div>
 			{sources && (
 				<Bibliography
 					sources={sources}
 					label={biblgraphyLabel}
-					className={classes.bibliography}
+					className="bibliography"
 				/>
 			)}
 		</div>

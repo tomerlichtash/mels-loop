@@ -31,7 +31,7 @@
 }
 
 .menuContent {
-	-st-mixin: bodyTextNormal;
+	/* -st-mixin: bodyTextNormal; */
 	-st-states: layout(string);
 	display: grid;
 	margin: 0;

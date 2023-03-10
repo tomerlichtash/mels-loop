@@ -15,7 +15,6 @@ import { usePageData } from "../../components/usePageData";
 import { ReactLocaleContext } from "../../contexts/locale-context";
 import { Button } from "../../components/ui";
 import Bibliography from "../../components/bibliography";
-import { classes } from "./glossary-item.st.css";
 
 export default function GlossaryTerm(props: IPageProps) {
 	const { translate } = useContext(ReactLocaleContext);
@@ -30,23 +29,21 @@ export default function GlossaryTerm(props: IPageProps) {
 	};
 	return (
 		<Layout title={metaData?.title}>
-			<article className={classes.root}>
+			<article className="page">
 				<Button
-					className={classes.title}
+					className="title"
 					label={translate("GLOSSARY_NAV_LABEL")}
 					link={"/glossary"}
 				/>
-				<h1 className={classes.title}>{translate(metaData?.glossary_key)}</h1>
-				<p className={classes.term}>
-					{translate(metaData?.glossary_key, "en")}
-				</p>
+				<h1 className="title">{translate(metaData?.glossary_key)}</h1>
+				<p className="term">{translate(metaData?.glossary_key, "en")}</p>
 				{node ? (
 					<ContentIterator componentData={{ node }} />
 				) : (
-					<div className={classes.noContent}>(No page content)</div>
+					<div className="no-content">(No page content)</div>
 				)}
 				<Bibliography
-					className={classes.bibliography}
+					className="bibliography"
 					label={""}
 					sources={[
 						{

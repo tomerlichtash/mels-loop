@@ -5,7 +5,6 @@ import {
 	IMLParsedNode,
 } from "../../../interfaces/models";
 import { mlUtils } from "../../../lib/ml-utils";
-import { st, classes } from "./content-iterator.st.css";
 import { useComponentAttributes } from "../../use-component-attributes";
 
 /**
@@ -24,7 +23,7 @@ export const ContentIterator = ({
 
 	if (!node) {
 		console.warn("Content Iterator: no input node");
-		return <div className={classes.noData}></div>;
+		return <div className="no-data"></div>;
 	}
 
 	const elements: IMLParsedNode[] =
@@ -49,11 +48,7 @@ export const ContentIterator = ({
 
 	if (Tag) {
 		return (
-			<Tag
-				className={st(classes[Tag], className)}
-				key={mlUtils.uniqueId()}
-				{...attributes}
-			>
+			<Tag className={`tag-${Tag}`} key={mlUtils.uniqueId()} {...attributes}>
 				{elements.map((node) => {
 					return (
 						<ContentComponent

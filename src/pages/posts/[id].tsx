@@ -11,7 +11,6 @@ import { ReactLocaleContext } from "../../contexts/locale-context";
 import { useContext } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Post from "../../components/post";
-import { classes } from "../../pages/page-base.st.css";
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);
@@ -23,10 +22,10 @@ export default function Doc(props: IPageProps) {
 		textDirection === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />;
 	return (
 		<Layout title={title}>
-			<div className={classes.root}>
+			<div className="page">
 				<Button
 					label={translate("POSTS_BACK_TO_POSTS_LIST")}
-					className={classes.smallButton}
+					className="button"
 					icon={backIcon}
 					link={"/posts"}
 				/>
