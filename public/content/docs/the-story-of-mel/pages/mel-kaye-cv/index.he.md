@@ -5,7 +5,7 @@ title: "מל קיי - ביוגרפיה"
 ---
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684135605/mel-kaye-bio/Yearbook_profile_photo_nellbe.jpg)
+![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/mel-kaye-profile-picture-1951_aark5e.jpg)
 
 <figcaption>Fig. %index%. Source: RPC-4000 manual</figcaption>
 </figure>
