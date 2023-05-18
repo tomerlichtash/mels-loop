@@ -138,7 +138,7 @@
 
 .root::contentComponent:type(figure) {
 	border: 1px solid;
-	padding: 0;
+	padding: 10px;
 	box-sizing: border-box;
 	margin: 2rem 0;
 }
@@ -147,11 +147,15 @@
 }
 
 .root::contentComponent:type(figure)[data-type="no-border"] {
+	padding: 0;
 	border: none;
 }
 .root::contentComponent:type(figure)[data-type="codeblock"] {
 	border: none;
 	display: block;
+}
+.root::contentComponent:type(figure)[dir="ltr"] {
+	direction: ltr;
 }
 
 .link {}
