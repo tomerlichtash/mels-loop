@@ -221,11 +221,14 @@
 	transition: 75ms background-color ease-in;
 }
 .stickyItemLayout {
-	display: flex;
 	align-items: center;
+	text-align: center;
 }
 .sticky:hover {
 	background-color: #CCC9C0;
+}
+.sticky:hover .imageContainer {
+	border-color: #F2EFE4;
 }
 .sticky a {
 	text-decoration: none;
@@ -237,42 +240,47 @@
 }
 .sticky p {
 	font-weight: bold;
-	color: #274F8C;
+	color: #FFFFFF;
 }
-
 .stickyInner {
+	border-radius: 6px;
 	padding: 1rem 2rem;
 	font-size: 0.85rem;
 	align-items: center;
 	align-content: space-between;
 }
 .stickyContent {
-	padding: 0 2rem;
-	text-align: left;
+	/* padding: 0 2rem; */
+	text-align: center;
 }
 .root:textDirection(rtl) .stickyContent {
-	text-align: right;
+	/* text-align: right; */
 }
-.stickyInner .imageContainer {
+.imageContainer {
 	width: 150px;
 	height: 150px;
 	overflow: hidden;
 	border-radius: 50%;
-	border: 1rem solid #E6E3D8;
+	margin: 0 auto 1rem;
+	border: 0.5rem solid #E6E3D8;
 }
-.stickyInner .imageContainer img {
+ .imageContainer img {
 	width: 100%;
 }
 .stickyItemTitle {
-	-st-mixin: h1;
+	-st-mixin: h2;
+	text-transform: uppercase;
+	margin-bottom: 1rem;
 }
 .stickyItemDate {
-	-st-mixin: paragraph;
+	-st-mixin: Paragraph;
 }
-.stickyItemBody {
+p.stickyItemBody {
 	-st-mixin: h3;
+	font-weight: 300;
 }
-.stickyItemRef {
-	-st-mixin: h5;
+p.stickyItemRef {
+	-st-mixin: h4;
 	margin-top: 1rem;
 }
+
