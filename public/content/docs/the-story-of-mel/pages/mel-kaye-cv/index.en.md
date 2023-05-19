@@ -10,23 +10,23 @@ title: "Mel Kaye – CV"
 <figcaption>Mel Kaye, 1952</figcaption>
 </figure>
 
-_Mel Kaye_ (Melvin Kornitzky, born Jan 14th 1931, died April 20th 2018) was a software engineer, employed at Librascope and at Royal McBee in New York and Los Angeles between the years 1956-1960. Among other programs, he developed a Blackjack game for two first generation digital computers - the LGP-30 and the RPC-4000. The game was highly regarded by fellow engineers and by computer science students. Mel also conceived the ingenious hack described in The Story of Mel, by Ed Nather, published on the internet in 1983. This story won Mel world fame in the hacking community and is regarded as a seminal epic in hacking folklore.
+_Mel Kaye_ (Melvin Kornitzky) was a software engineer, employed at Librascope and at Royal McBee in New York and Los Angeles between the years 1956-1960. Among other programs, he developed a Blackjack game for two first generation digital computers - the LGP-30 and the RPC-4000. The game was highly regarded by fellow engineers and by computer science students. Mel also conceived the ingenious hack described in The Story of Mel, by Ed Nather, published on the internet in 1983. This story won Mel world fame in the hacking community and is regarded as a seminal epic in hacking folklore.
 
-Mel was born on January 14th 1931 in Brooklyn, NY, as Melvin Kornitzki, son of Esther and Herman Kaye. During his early childhood, the family relocated to the west coast and later settled down in Lemon Grove, Los Angeles.
+Mel was born on January 14th 1931 in Brooklyn, NY, as Melvin Kornitzky, son of Esther and Herman Kaye. During his early childhood, the family relocated to the west coast and later settled down in Lemon Grove, Los Angeles.
 
 (Add a blurb about Shirley)
 
-After passing away in 2018, Mel was buried in the Beit Olam cemetery, Los Angeles.
+After passing away in 2018, Mel was buried in the Pierce Brothers Valley Oaks-Griffin Memorial Park, Los Angeles.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/graves/mel-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_kmkoie.jpg)
 
-<figcaption>קברו של מלוין קיי, לוס אנג׳לס. צילום: ארכיון לולאת מל</figcaption>
+<figcaption>Mel’s grave at the Pierce Brothers Valley Oaks-Griffin Memorial Park, Los Angeles. Photo: Mel’s Loop</figcaption>
 </figure>
 
 ## The University Years
 
-Around 1948, Mel entered his undergraduate studies in UCLA, still under the name Melvin Kornitzki. This name was used in the 1951 university yearbook, but the 1952 issue already called him Melvin Kaye. We do not know what faculties he attended and whether or not he majored in any discipline.
+Around 1948, Mel entered his undergraduate studies in UCLA, still under the name Melvin Kornitzky. This name was used in the 1951 university yearbook, but the 1952 issue already called him Melvin Kaye. We do not know what faculties he attended and whether or not he majored in any discipline.
 
 During his studies, Mel was a member of the Jewish fraterity Tau Delta Phi, which ended its activity in the ‘70s.
 
@@ -35,21 +35,21 @@ After finishing his studies in 1952, with the Stevenson/Eisenhower presidential 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1951-page-416_xutkm0.jpg)
 
-<figcaption>תמונתו של מל תחת השם "מלוין קורניצקי" בספר המחזור של UCLA משנת 1951. מקור: Ancestry
+<figcaption>Mel’s picture, as Melvin Kornitzky, in the UCLA 1951 yearbook. Source: Ancestry
 </figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1952-page-441_b7qdh4.jpg)
 
-<figcaption>תמונתו של מל בשם "מלוין קיי" בספר המחזור של UCLA משנת 1952. מקור: Ancestry
+<figcaption>Mel’s picture, under the name Melvin Kaye, in the UCLA 1951 yearbook. Source: Ancestry
 </figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/1952-index-to-register-of-voters-in-los-angeles-with-markup_cnwpdf.jpg)
 
-<figcaption>Source: RPC-4000 manual</figcaption>
+<figcaption>Mel and Herman Kaye in the voters index list.</figcaption>
 </figure>
 
 ## Programming in the Early Years of the Computer Era
@@ -62,7 +62,7 @@ When Royal McBee was ready to launch its new computer, the RPC-4000, was nearing
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-july-1956-mel-kaye-in-librascope-meeting-room-with-team-and-potential-clients_x5aey7.png)
 
-<figcaption>יולי 1956, ליברזט. חדר הישיבות בחברת ליברסקופ/רויאל מק׳בי בלוס אנג׳לס. בחדר - צוות החברה בהם מל קיי, ולקוחות פוטנציאליים. מקור: Librascope Memories</figcaption>
+<figcaption>July 1956: Meeting room at Librascope's headquarters, with the company's team, including Mel, and potential cusomters. Source: Librascope Memories</figcaption>
 </figure>
 
 It seems that Mels recruitment to Librascope was hastened, possibly due to increased needs from the company’s customers. In July of 1965, the company’s internal magazine (Librazette) ran a story about the company’s instruction and support program for LGP-30 users.. Mel, 25 years old at the time, was mentioned among the engineers who led the program. Only a month later did the Librazette publish a greeting to new hires, among which Mel was listed as a member of the Engineering and Commerce department.
@@ -70,15 +70,14 @@ It seems that Mels recruitment to Librascope was hastened, possibly due to incre
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-august-1956-welcome-new-employees-mentions-mel-kaye_ztvbna.png)
 
-<figcaption>יולי 1956, ליברזט. מקור: Librascope Memories</figcaption>
+<figcaption>The Librazette, July 1956. Source: Librascope Memories</figcaption>
 </figure>
 
 Mel’s work in Librascope and Royal McBee was diverse and apparently lasted around 4 years, until 1960. In July 1961, the Librazette greeted the veteran employees - those who had completed five years or more in the company, nicknamed Libravetes. Mels name was absent from the list.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-july-1961-libravets-list_ety2i3.png)
-
-<figcaption>ליברזט, יולי 1961. מקור: Librascope Memories</figcaption>
+<figcaption>Librazette, July 1961. Source: Librascope Memories</figcaption>
 </figure>
 
 ## Code remnants
@@ -118,18 +117,27 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 </figcaption>
 </figure>
 
-## שורשים: הגירה מחוף לחוף
+## Origins: Coast to Coast Migration
 
-על הוריו של מל ידוע מעט מאוד, עיקר הפרטים הנגישים במאגרי המידע השונים נוגעים למשפחתו של אביו - קורניצקה.
+Little is known about Mel’s parents. Most of the relevant details in various databases pertain to the family of Mel’s father - Kornitzka.
 
-אביו של מל, הרמן קיי, נולד ב-2 במאי 1905 בוורשה, פולין, בשם נחמיה קורניצקה, והגיע לארה"ב כפעוט בן שנתיים בשנת 1907 עם אמו (סבתו של מל), הלה קורניצקה, על גבי סיפון ספינת המשא ה"אסטוניה" של חברת East Asiatic שפעלה על קו רוסיה-ארה"ב. עם הגיעם לארה"ב אימצו את השם "קורניצקי" על פני "קורניצקה", והתיישבו בברוקלין, ניו-יורק. מאוחר יותר, שינו את שם משפחתם לקיי.
+Mel’s father, Herman Kaye, was born on May 2nd, 1905 in Warsaw, Poland as Nehemia Kornitzka. At the tender age of two, he immigrated to the United states with his mother, Hela Kornitzka (Mel’s grandmother). They boarded the cargo ship Estonia, operated by the East Asiatic company and sailed from Russia to the US.Upon their arrival, the changed their family name to Kornitzky and settled in Brooklyn, New York. later on, they changed the name again, this time to the more American Kaye.
+
+Mel’s mother, Esther Peitelevitch, was born in 1907 to a Russian-Jewish family. Her father, Abraham, worked in construction, while her mother was a homemaker. The household language was Yiddish. The Peitelevitches immigrated to the United States in the 1920’s and settled down in Watkins st., Brooklyn, NYC. Esther grew up there, along with her brothers and sister: Benny, Sam and Celia.
+
+Herman Kaye and Esther Peitelevitch were married on June 27 1925. Herman was in the TV manufacturing business and later started a successful mobile home company. Esther was a homemaker.
+
+Herman Kaye passed away on December 16th 1979 in Anaheim, Los Angeles.
+Esther Kaye passed away on January 15th 1994, in Orange County, Los Angeles.
+
+The two are buried side by side in the Beth Olam cemetery, Los Angeles.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684449576/mel-kaye-bio/hela-kornitzka-in-ship-manifest-for-immigration-in-ellis-island_gqafzx.jpg)
 
 <figcaption>הלה קורניצקה, סבתו של מל מצד אביו, ברשומה במניפסט הספינה "אסטוניה" מאירופה לאליס איילנד, 1907. שתי שורות מתחתיה מצויין נחמיה קורניצקה (Nechemje) - שהפך ברבות הימים לאביו של מל, הרמן קיי.
 
-צילום: ארכיון לולאת מל; מקור: Ellis Island Foundation.</figcaption>
+Photo by Mel's Loop. Source: Ellis Island Foundation.</figcaption>
 
 </figure>
 
@@ -148,26 +156,26 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 <figcaption>צילום: findagrave.com</figcaption>
 </figure>
 
-## משפחה אמריקאית
+## An American Family
 
-ב-24 במאי 1953 התחתן מל עם ריטה ברנשטיין. ריטה נולדה ב-27 במאי 1933ֿ, וב-30 בינואר 1951 הפליגה מליברפול שבאנגליה על סיפון ה-SS Britannic לניו-יורק. כשנתיים לאחר מכן נישאו מל וריטה, והגישו בקשת אזרחות עבור ריטה בגין נישואיה למל, שהיה אזרח אמריקאי מלידה. ריטה נפטרה ב-30 ביולי 2011, ונקברה בבית הקברות "בית עולם" בלוס אנג׳לס. לימים, מל נקבר לצידה.
+On May 24th 1953, Mel married Rita Bernstein, born in England on May 27th 1933. Only two years before their marriage, On January 30th 1951, she boarded the SS Britannic which sailed from Liverpool to New York, on her way to start a new life in the US. Shortly after their marriage, the couple applied for American citizenship for Rita. She passed away on July 30th 2011 and was burried in the Valley Oaks Memorial park. 7 years later, Mel would find his final resting next to her.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/mel-and-rita-kaye-marriage-record_w2semg.png)
 
-<figcaption>רישום נישואים של מל קיי וריטה ברנשטיין בעיריית ניו יורק</figcaption>
+<figcaption>Marriage registration for Mel Kaye and Rita Bernstein, NYC City Clerk</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/graves/rita-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_xpl5w9.jpg)
 
-<figcaption>קברה של ריטה קיי בלוס אנג׳לס. צילום: ארכיון לולאת מל</figcaption>
+<figcaption>Rita Kaye’s tombstone in the Pierce Brothers Valley Oaks-Griffin Memorial Park cemetery</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/naturalization/rita-kaye/rita-kaye-us-naturalization-form-1-front_u8ppqe.jpg)
 
-<figcaption>טופס בקשת מעמד אזרח עבור ריטה קיי. מקור: Ancestry</figcaption>
+<figcaption>Rita Kaye’s citizenship application. Source: Ancestry</figcaption>
 </figure>
 
 לצד בקשת ההתאזרחות של ריטה, הגישה משפחת קיי המתרחבת בקשות אזרחות גם עבור אביו של מל, הרמן.
@@ -180,9 +188,9 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 
 ## המילה האחרונה
 
-מל מעולם לא תבע את תהילתו בקרב חובבי וחוקרי פולקלור ההאקינג. למעשה, איש מעולם לא שמע ממנו. היחיד שהפר את השתיקה המוחלטת היה אנתוני קוזו, מתכנת חובב פולקלור האקינג, שהעריץ את מל בעקבות "הסיפור על מל". הוא חיפש אותו עד שמצא קצה חוט, ובעקבותיו כתב אימייל לכתובת rimel3@roadrunner.com, בתקווה שזוהי אכן כתובתו של מל, האיש מאחורי האגדה (הכתובת, rimel3, כנראה נוסחה עבור מל ועבור אשתו ריטה יחדיו, בצירוף אותיות שמותיהם הפרטיים). מבדיקות שערכנו בפרויקט "לולאת מל" נראה שזו אכן היתה כתובת האימייל של מל.
+Mel never sought (or even acknowledged) his glory in the hacking culture. In fact, only one person managed to track him down and extract a few words out of him. Anthony Cuozzo, a computer programmer and hacking folklore buf who grew to admire the character portrayed in The Story of Mel. Following a clue he uncovered during his search for Mel, he wrote an email to rimel3@roadrunner.com (possibly an acronym for Rita and Mel), hoping it would reach the legendary engineer. Our research in the Mel’s Loop project supports Cuozzo’s hunch.
 
-וכך כתב אנתוני קוזו באפריל 2012:
+Thus wrote Anthony Cozo on April 2012:
 
 <figure dir="ltr">
     Anthony Cuozzo <acuozzo@***.********.***>
@@ -198,7 +206,7 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 <figcaption>האימייל של אנתוני קוזו למל קיי, 2012.</figcaption>
 </figure>
 
-בתוך שעה, השיב מל:
+Within an hour, Mel replied:
 
 <figure dir="ltr">
     Mel Kaye <rimel3@roadrunner.com>
@@ -213,4 +221,4 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 <figcaption>האימייל האחרון של מל</figcaption>
 </figure>
 
-עם קבלת תשובתו של מייל ניסה קוזו להמשיך את ההתכתבות, אך קולו של מל נדם, והשתיקה נמשכת. זו, למעשה, היתה המילה האחרונה של מל.
+Upon receiving the reply, Cozo tried to continue the correspondence, but Mel fell silent. When we reached out to his family, they were ostensibly unwilling to discuss either the myth or the man behind it. There are probably more chapters in this story. The research continues.

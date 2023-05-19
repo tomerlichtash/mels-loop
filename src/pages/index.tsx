@@ -30,24 +30,31 @@ const Index: NextPage<IPageProps> = (props) => {
 			<article className={st(classes.root, { textDirection })}>
 				<div className={classes.sticky}>
 					<a href={`${locale}/docs/the-story-of-mel/pages/mel-kaye-cv`}>
-						<div className={classes.stickyInner}>
+						<div
+							className={classes.stickyInner}
+							style={{
+								backgroundSize: "100%",
+								backgroundRepeat: "no-repeat",
+								backgroundPosition: "center",
+								backgroundImage:
+									"url(https://res.cloudinary.com/dcajl1s6a/image/upload/v1684527967/mel-kaye-bio/homepage-ref-cover-kornitzka-b_q6d9rg.jpg)",
+							}}
+						>
 							<div className={classes.stickyItemLayout}>
-								<div>
-									<div className={classes.imageContainer}>
-										<img
-											className={classes.avatar}
-											src="https://res.cloudinary.com/dcajl1s6a/image/upload/c_thumb,w_200,g_face/v1684493903/mel-kaye-bio/avatar-mel-kaye_xwd6kx.jpg"
-											alt={translate("AVATAR_MEL_KAYE")}
-										/>
-									</div>
+								<div className={classes.imageContainer}>
+									<img
+										className={classes.avatar}
+										src="https://res.cloudinary.com/dcajl1s6a/image/upload/c_thumb,w_200,g_face/v1684493903/mel-kaye-bio/avatar-mel-kaye_xwd6kx.jpg"
+										alt={translate("AVATAR_MEL_KAYE")}
+									/>
 								</div>
 								<div className={classes.stickyContent}>
-									<p className={classes.stickyItemDate}>
-										{translate("STICKY_DATE")}
-									</p>
 									<p className={classes.stickyItemTitle}>
 										{translate("STICKY_TITLE")}
 									</p>
+									{/* <p className={classes.stickyItemDate}>
+										{translate("STICKY_DATE")}
+									</p> */}
 									<p className={classes.stickyItemBody}>
 										{translate("STICKY_SUBTITLE")}{" "}
 									</p>
