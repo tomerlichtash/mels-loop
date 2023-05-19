@@ -7,7 +7,7 @@ title: "מל קיי – קורות חיים"
 <figure data-type="no-border">
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/mel-kaye-profile-picture-1951_aark5e.jpg)
 
-<figcaption>תמונה %index%. מל קיי, 1952</figcaption>
+<figcaption>מל קיי, 1952</figcaption>
 </figure>
 
 _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפריל 2018) היה מהנדס תוכנה בחברת Librascope ובחברת Royal McBee בניו-יורק ובלוס אנג׳לס בשנים 1956-1960. בין היתר, פיתח משחק בלאק ג׳ק למחשבי דור ראשון מסוג LGP-30 ו-RPC-4000, שהפך למוכר ומוערך בקרב אנשי מקצוע וסטודנטים למחשבים. הוא גם היה מי שהגה את ההאק האגדי מה"סיפור על מל" מאת אד ניית׳ר, שפורסם באינטרנט בשנת 1983 והקנה לו תהילת עולם בקרב קהילת ההאקינג העולמית, כאפוס הגדול של פולקלור ההאקינג.
@@ -20,7 +20,7 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/graves/mel-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_kmkoie.jpg)
 
-<figcaption>תמונה %index%. Source: קברו של מלוין קיי, לוס אנג׳לס. צילום: ארכיון לולאת מל</figcaption>
+<figcaption>קברו של מלוין קיי, לוס אנג׳לס. צילום: ארכיון לולאת מל</figcaption>
 </figure>
 
 ## שנות הלימודים
@@ -34,21 +34,21 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1951-page-416_xutkm0.jpg)
 
-<figcaption>תמונה %index%. תמונתו של מל תחת השם "מלוין קורניצקי" בספר המחזור של UCLA משנת 1951. מקור: Ancestry
+<figcaption>תמונתו של מל תחת השם "מלוין קורניצקי" בספר המחזור של UCLA משנת 1951. מקור: Ancestry
 </figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1952-page-441_b7qdh4.jpg)
 
-<figcaption>תמונה %index%. תמונתו של מל בשם "מלוין קיי" בספר המחזור של UCLA משנת 1952. מקור: Ancestry
+<figcaption>תמונתו של מל בשם "מלוין קיי" בספר המחזור של UCLA משנת 1952. מקור: Ancestry
 </figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/1952-index-to-register-of-voters-in-los-angeles-with-markup_cnwpdf.jpg)
 
-<figcaption>תמונה %index%. Source: RPC-4000 manual</figcaption>
+<figcaption>Source: RPC-4000 manual</figcaption>
 </figure>
 
 ## תכנות בראשית עידן המחשב
@@ -60,7 +60,7 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-july-1956-mel-kaye-in-librascope-meeting-room-with-team-and-potential-clients_x5aey7.png)
 
-<figcaption>תמונה %index%. יולי 1956, ליברזט. חדר הישיבות בחברת ליברסקופ/רויאל מק׳בי בלוס אנג׳לס. בחדר - צוות החברה בהם מל קיי, ולקוחות פוטנציאליים. מקור: Librascope Memories</figcaption>
+<figcaption>יולי 1956, ליברזט. חדר הישיבות בחברת ליברסקופ/רויאל מק׳בי בלוס אנג׳לס. בחדר - צוות החברה בהם מל קיי, ולקוחות פוטנציאליים. מקור: Librascope Memories</figcaption>
 </figure>
 
 נראה שהעסקתו של מל נעשתה בחופזה ומתוך דוחק לשרת לקוחות קיימים, שכן כבר ביולי 1956 פורסמה בעלון החברה "הליברזט" (Librazette) ידיעה על מפגש עם לקוחות פוטנציאליים של מחשב ה-LGP-30, לצד תוכנית הדרכה וסיוע מטעם החברה עבור הלקוחות. בראש התוכנית עמדו מפתחים של החברה, בהם מל קיי, שהיה באותו זמן בן 25. רק חודש לאחר מכן פורסמה ב"ליברזט" ידיעה המברכת על הגעת עובדים חדשים לחברה, ובהם צוין גם מל קיי, במחלקת הנדסה ומסחר.
@@ -68,7 +68,7 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-august-1956-welcome-new-employees-mentions-mel-kaye_ztvbna.png)
 
-<figcaption>תמונה %index%. יולי 1956, ליברזט. מקור: Librascope Memories</figcaption>
+<figcaption>יולי 1956, ליברזט. מקור: Librascope Memories</figcaption>
 </figure>
 
 עבודתו של מל ב-Librascope וב-Royal McBee הייתה מגוונת, ונמשכה ככל הנראה 4 שנים, עד שנת 1960. ביולי 1961 התפרסמה ב"ליברזט" ידיעה המברכת את ותיקי החברה (המכונים "Libravets") לציון חמש שנים בחברה, ושמו של מל נעדר מהרשימה:
@@ -76,7 +76,7 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-july-1961-libravets-list_ety2i3.png)
 
-<figcaption>תמונה %index%. ליברזט, יולי 1961. מקור: Librascope Memories</figcaption>
+<figcaption>ליברזט, יולי 1961. מקור: Librascope Memories</figcaption>
 </figure>
 
 ## שרידים של קוד
@@ -86,31 +86,31 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-hexadecimal-punch-print_w6bhyn.jpg)
 
-<figcaption>תמונה %index%. Hexadecimal Punch Print, אוקטובר 1956. חתום בידי מ׳ קיי</figcaption>
+<figcaption>Hexadecimal Punch Print, אוקטובר 1956. חתום בידי מ׳ קיי</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-alphanumeric-printout-subroutine_mj1blm.jpg)
 
-<figcaption>תמונה %index%. Alphanumeric Printout Subroutine, מרץ 1957. חתום בידי MK</figcaption>
+<figcaption>Alphanumeric Printout Subroutine, מרץ 1957. חתום בידי MK</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684445123/mel-kaye-bio/code/mel-kaye-code-evaluation-of-4th-degree-polynomial-fixed-point-june-16th-1959-source-_lgp-30-subroutine-manual-oct-60_wgoukq.jpg)
 
-<figcaption>תמונה %index%. Evluation of 4th Degree Polynomial Fixed Point, יוני 1959. חתום בידי מל קיי.</figcaption>
+<figcaption>Evluation of 4th Degree Polynomial Fixed Point, יוני 1959. חתום בידי מל קיי.</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684445123/mel-kaye-bio/code/lgp-30-coding-sheet-by-mk-illustrative-example-for-floating-point-interreptive-system-1950_hfdeku.jpg)
 
-<figcaption>תמונה %index%. Illustrative Example for Floating Point Interpretive System, יוני, 1959. חתום בידי MK</figcaption>
+<figcaption>Illustrative Example for Floating Point Interpretive System, יוני, 1959. חתום בידי MK</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/code/mel-kaye-rpc-4000-blackjack-writeup-program-w1-01-0-librascope-royal-mcbee_kdupaf.png)
 
-<figcaption>תמונה %index%. מתוך המבוא שכתב מל למשחק הבלק ג׳ק.
+<figcaption>מתוך המבוא שכתב מל למשחק הבלק ג׳ק.
 [לטקסט המלא](/he/docs/the-story-of-mel/pages/blackjack-writeup)
 
 </figcaption>
@@ -125,7 +125,7 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684449576/mel-kaye-bio/hela-kornitzka-in-ship-manifest-for-immigration-in-ellis-island_gqafzx.jpg)
 
-<figcaption>תמונה %index%. הלה קורניצקה, סבתו של מל מצד אביו, ברשומה במניפסט הספינה "אסטוניה" מאירופה לאליס איילנד, 1907. שתי שורות מתחתיה מצויין נחמיה קורניצקה (Nechemje) - שהפך ברבות הימים לאביו של מל, הרמן קיי.
+<figcaption>הלה קורניצקה, סבתו של מל מצד אביו, ברשומה במניפסט הספינה "אסטוניה" מאירופה לאליס איילנד, 1907. שתי שורות מתחתיה מצויין נחמיה קורניצקה (Nechemje) - שהפך ברבות הימים לאביו של מל, הרמן קיי.
 
 צילום: ארכיון לולאת מל; מקור: Ellis Island Foundation.</figcaption>
 
@@ -143,7 +143,7 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/graves/herman-and-esther-kaye-graves-at-beth-olan-cemetery-los-angeles_hb5jp9.jpg)
 
-<figcaption>תמונה %index%. צילום: Find-a-grave</figcaption>
+<figcaption>צילום: findagrave.com</figcaption>
 </figure>
 
 ## משפחה אמריקאית
@@ -153,19 +153,19 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/mel-and-rita-kaye-marriage-record_w2semg.png)
 
-<figcaption>תמונה %index%. רישום נישואים של מל קיי וריטה ברנשטיין בעיריית ניו יורק [חסר מקור]</figcaption>
+<figcaption>רישום נישואים של מל קיי וריטה ברנשטיין בעיריית ניו יורק</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/graves/rita-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_xpl5w9.jpg)
 
-<figcaption>תמונה %index%. קברה של ריטה קיי בלוס אנג׳לס. צילום: ארכיון לולאת מל</figcaption>
+<figcaption>קברה של ריטה קיי בלוס אנג׳לס. צילום: ארכיון לולאת מל</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/naturalization/rita-kaye/rita-kaye-us-naturalization-form-1-front_u8ppqe.jpg)
 
-<figcaption>תמונה %index%. טופס בקשת מעמד אזרח עבור ריטה קיי</figcaption>
+<figcaption>טופס בקשת מעמד אזרח עבור ריטה קיי. מקור: Ancestry</figcaption>
 </figure>
 
 לצד בקשת ההתאזרחות של ריטה, הגישה משפחת קיי המתרחבת בקשות אזרחות גם עבור אביו של מל, הרמן.
@@ -173,7 +173,7 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/naturalization/herman-kornitzky/herman-kornitzky-us-naturalization-form-1-front_jyng2j.jpg)
 
-<figcaption>תמונה %index%. טופס בקשת מעמד אזרח עבור ריטה קיי</figcaption>
+<figcaption>טופס בקשת מעמד אזרח עבור ריטה קיי. מקור: Ancestry</figcaption>
 </figure>
 
 ## המילה האחרונה
@@ -193,13 +193,14 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
     Thanks,
     Anthony
 
-<figcaption>תמונה %index%. האימייל של אנתוני קוזו למל קיי, 2012</figcaption>
+<figcaption>האימייל של אנתוני קוזו למל קיי, 2012.</figcaption>
 </figure>
 
 בתוך שעה, השיב מל:
 
 <figure dir="ltr">
-    Mel Kaye \<rimel3@roadrunner.com\> Tue, Apr 17, 2012 at 12:01 PM
+    Mel Kaye <rimel3@roadrunner.com>
+    Tue, Apr 17, 2012 at 12:01 PM
     To: acuozzo@***.********.***
     ---
 
@@ -207,7 +208,7 @@ _מל קיי_ (מלוין קורניצקי, 14 בינואר 1931 – 20 באפר
     I believe I worked for Royal McBee first.
     Mel Kaye
 
-<figcaption>תמונה %index%. האימייל האחרון של מל</figcaption>
+<figcaption>האימייל האחרון של מל</figcaption>
 </figure>
 
 עם קבלת תשובתו של מייל ניסה קוזו להמשיך את ההתכתבות, אך קולו של מל נדם, והשתיקה נמשכת. זו, למעשה, היתה המילה האחרונה של מל.
