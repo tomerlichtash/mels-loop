@@ -88,32 +88,32 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-hexadecimal-punch-print_w6bhyn.jpg)
 
-<figcaption>Hexadecimal Punch Print, אוקטובר 1956. חתום בידי מ׳ קיי</figcaption>
+<figcaption>Hexadecimal Punch Print, October 1956. Signed by M. Kaye</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-alphanumeric-printout-subroutine_mj1blm.jpg)
 
-<figcaption>Alphanumeric Printout Subroutine, מרץ 1957. חתום בידי MK</figcaption>
+<figcaption>Alphanumeric Printout Subroutine, March 1957. Signed by MK</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684445123/mel-kaye-bio/code/mel-kaye-code-evaluation-of-4th-degree-polynomial-fixed-point-june-16th-1959-source-_lgp-30-subroutine-manual-oct-60_wgoukq.jpg)
 
-<figcaption>Evluation of 4th Degree Polynomial Fixed Point, יוני 1959. חתום בידי מל קיי.</figcaption>
+<figcaption>Evluation of 4th Degree Polynomial Fixed Point, June 1959. Signed by Mel Kaye.</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684445123/mel-kaye-bio/code/lgp-30-coding-sheet-by-mk-illustrative-example-for-floating-point-interreptive-system-1950_hfdeku.jpg)
 
-<figcaption>Illustrative Example for Floating Point Interpretive System, יוני, 1959. חתום בידי MK</figcaption>
+<figcaption>Illustrative Example for Floating Point Interpretive System, June 1959. Signed by MK</figcaption>
 </figure>
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/code/mel-kaye-rpc-4000-blackjack-writeup-program-w1-01-0-librascope-royal-mcbee_kdupaf.png)
 
-<figcaption>מתוך המבוא שכתב מל למשחק הבלק ג׳ק.
-[לטקסט המלא](/he/docs/the-story-of-mel/pages/blackjack-writeup)
+<figcaption>Preface to Mel's Blackjack game.
+[Full text here](/he/docs/the-story-of-mel/pages/blackjack-writeup)
 
 </figcaption>
 </figure>
