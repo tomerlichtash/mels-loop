@@ -42,7 +42,7 @@ const Index: NextPage<IPageProps> = (props) => {
 									</div>
 								</div>
 								<div className={classes.stickyContent}>
-									<p className={classes.stickyItemDate}>23/5/2023</p>
+									<p className={classes.stickyItemDate}>21/5/2023</p>
 									<p className={classes.stickyItemTitle}>
 										{translate("STICKY_TITLE")}
 									</p>
