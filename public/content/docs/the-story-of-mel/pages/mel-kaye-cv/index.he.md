@@ -4,7 +4,7 @@ title: "מל קיי – קורות חיים"
 # date: Tue Jul 23 2022 01:14:31 GMT+0300
 ---
 
-<figure data-type="no-border">
+<figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/mel-kaye-profile-picture-1951_aark5e.jpg)
 
 <figcaption>מל קיי, 1952</figcaption>
