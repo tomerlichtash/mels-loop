@@ -227,8 +227,10 @@
 .sticky:hover {
 	background-color: #CCC9C0;
 }
-.sticky:hover .imageContainer {
-	border-color: #F2EFE4;
+.sticky:hover {
+	/* border-color: #F2EFE4; */
+	text-decoration: underline;
+	color:#FFFFFF;
 }
 .sticky a {
 	text-decoration: none;

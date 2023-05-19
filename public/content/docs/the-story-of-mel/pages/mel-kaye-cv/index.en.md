@@ -77,10 +77,11 @@ Mel’s work in Librascope and Royal McBee was diverse and apparently lasted aro
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-july-1961-libravets-list_ety2i3.png)
+
 <figcaption>Librazette, July 1961. Source: Librascope Memories</figcaption>
 </figure>
 
-## Code remnants
+## Code Remnants
 
 A few handwritten code fragments, probably in his own handwriting, survived from Mel’s work in Librascope. Below are some code sheets from Bill Breiner’s archive, along with a preface that Mel had written for the Blackjack game.
 
@@ -123,37 +124,26 @@ Little is known about Mel’s parents. Most of the relevant details in various d
 
 Mel’s father, Herman Kaye, was born on May 2nd, 1905 in Warsaw, Poland as Nehemia Kornitzka. At the tender age of two, he immigrated to the United states with his mother, Hela Kornitzka (Mel’s grandmother). They boarded the cargo ship Estonia, operated by the East Asiatic company and sailed from Russia to the US.Upon their arrival, the changed their family name to Kornitzky and settled in Brooklyn, New York. later on, they changed the name again, this time to the more American Kaye.
 
-Mel’s mother, Esther Peitelevitch, was born in 1907 to a Russian-Jewish family. Her father, Abraham, worked in construction, while her mother was a homemaker. The household language was Yiddish. The Peitelevitches immigrated to the United States in the 1920’s and settled down in Watkins st., Brooklyn, NYC. Esther grew up there, along with her brothers and sister: Benny, Sam and Celia.
-
-Herman Kaye and Esther Peitelevitch were married on June 27 1925. Herman was in the TV manufacturing business and later started a successful mobile home company. Esther was a homemaker.
-
-Herman Kaye passed away on December 16th 1979 in Anaheim, Los Angeles.
-Esther Kaye passed away on January 15th 1994, in Orange County, Los Angeles.
-
-The two are buried side by side in the Beth Olam cemetery, Los Angeles.
-
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684449576/mel-kaye-bio/hela-kornitzka-in-ship-manifest-for-immigration-in-ellis-island_gqafzx.jpg)
 
-<figcaption>הלה קורניצקה, סבתו של מל מצד אביו, ברשומה במניפסט הספינה "אסטוניה" מאירופה לאליס איילנד, 1907. שתי שורות מתחתיה מצויין נחמיה קורניצקה (Nechemje) - שהפך ברבות הימים לאביו של מל, הרמן קיי.
+<figcaption>Hela Kornitzka, סבתו של מל מצד אביו, ברשומה במניפסט הספינה "אסטוניה" מאירופה לאליס איילנד, 1907. שתי שורות מתחתיה מצויין נחמיה קורניצקה (Nechemje) - שהפך ברבות הימים לאביו של מל, הרמן קיי.
 
 Photo by Mel's Loop. Source: Ellis Island Foundation.</figcaption>
 
 </figure>
 
-אימו של מל, אסתר פייטלביץ׳ נולדה בשנת 1907~, בת למשפחה יהודית-רוסית. אביה אברהם עסק בבניין, ואמה שרה הייתה עקרת בית. השניים דיברו יידיש. משפחת פייטלביץ׳ הגיעה לארה"ב בשנת 1920, והתמקמה ברחוב ווטקינס בברוקלין, ניו-יורק, יחד עם שני אחיה ואחותה: בני, סם וסיליה.
+Mel’s mother, Esther Fietelewitch, was born in 1907 to a Russian-Jewish family. Her father, Abraham, worked in construction, while her mother was a homemaker. The household language was Yiddish. The Fietelewitches immigrated to the United States in the 1920’s and settled down in Watkins st., Brooklyn, NYC. Esther grew up there, along with her brothers and sister: Benny, Sam and Celia.
 
-ב-27 ביוני 1925 הרמן ואסתר נישאו. הרמן עסק בייצור טלוויזיות, ואסתר היתה עקרת בית.
+Herman Kaye and Esther Fietelewitch were married on June 27 1925. Herman was in the TV manufacturing business and later started a successful mobile home company. Esther was a homemaker.
 
-הרמן קיי נפטר ב-16 בדצמבר 1979 באנהיים, לוס אנג׳לס.
-אסתר קיי נפטרה ב…
-
-השניים קבורים זה לצד זו בבית הקברות "בית עולם" בלוס אנג׳לס.
+Herman Kaye passed away on December 16th 1979 in Anaheim, Los Angeles.
+Esther Kaye passed away on January 15th 1994, in Orange County, Los Angeles. The two are buried side by side in the Beth Olam cemetery, Los Angeles.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/graves/herman-and-esther-kaye-graves-at-beth-olan-cemetery-los-angeles_hb5jp9.jpg)
 
-<figcaption>צילום: findagrave.com</figcaption>
+<figcaption>Source: findagrave.com</figcaption>
 </figure>
 
 ## An American Family
@@ -178,19 +168,19 @@ On May 24th 1953, Mel married Rita Bernstein, born in England on May 27th 1933. 
 <figcaption>Rita Kaye’s citizenship application. Source: Ancestry</figcaption>
 </figure>
 
-לצד בקשת ההתאזרחות של ריטה, הגישה משפחת קיי המתרחבת בקשות אזרחות גם עבור אביו של מל, הרמן.
+Along with Rita’s naturalization application, the expanding Kaye family applied to grant citizenship to Mel’s father, Herman.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/naturalization/herman-kornitzky/herman-kornitzky-us-naturalization-form-1-front_jyng2j.jpg)
 
-<figcaption>טופס בקשת מעמד אזרח עבור ריטה קיי. מקור: Ancestry</figcaption>
+<figcaption>Herman Kaye’s citizenship application. Source: Ancestry</figcaption>
 </figure>
 
-## המילה האחרונה
+## Final words
 
 Mel never sought (or even acknowledged) his glory in the hacking culture. In fact, only one person managed to track him down and extract a few words out of him. Anthony Cuozzo, a computer programmer and hacking folklore buf who grew to admire the character portrayed in The Story of Mel. Following a clue he uncovered during his search for Mel, he wrote an email to rimel3@roadrunner.com (possibly an acronym for Rita and Mel), hoping it would reach the legendary engineer. Our research in the Mel’s Loop project supports Cuozzo’s hunch.
 
-Thus wrote Anthony Cozo on April 2012:
+Thus wrote Anthony Cuozzo on April 2012:
 
 <figure dir="ltr">
     Anthony Cuozzo <acuozzo@***.********.***>
@@ -203,7 +193,7 @@ Thus wrote Anthony Cozo on April 2012:
     Thanks,
     Anthony
 
-<figcaption>האימייל של אנתוני קוזו למל קיי, 2012.</figcaption>
+<figcaption>Anthony Cuozoo's email to Mel Kaye, 2012.</figcaption>
 </figure>
 
 Within an hour, Mel replied:
@@ -218,7 +208,7 @@ Within an hour, Mel replied:
     I believe I worked for Royal McBee first.
     Mel Kaye
 
-<figcaption>האימייל האחרון של מל</figcaption>
+<figcaption>Mel's final email</figcaption>
 </figure>
 
-Upon receiving the reply, Cozo tried to continue the correspondence, but Mel fell silent. When we reached out to his family, they were ostensibly unwilling to discuss either the myth or the man behind it. There are probably more chapters in this story. The research continues.
+Upon receiving the reply, Cuozzo tried to continue the correspondence, but Mel fell silent. When we reached out to his family, they were ostensibly unwilling to discuss either the myth or the man behind it. There are probably more chapters in this story. The research continues.
