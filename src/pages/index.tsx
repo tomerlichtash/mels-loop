@@ -8,10 +8,7 @@ import {
 } from "../interfaces/models";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
-import {
-	LoadContentModes,
-	LoadFolderModes,
-} from "../interfaces/parser";
+import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { contentUtils } from "../lib/content-utils";
 import { usePageData } from "../components/usePageData";
 import { ContentComponent } from "../components/content";
@@ -21,7 +18,7 @@ import { st, classes } from "../pages/page-base.st.css";
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { className } = props;
-	const { textDirection } = useContext(ReactLocaleContext);
+	const { textDirection, translate, locale } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData[0] || ({} as IParsedPageData);
 	const { metaData } = pageData[0];
@@ -31,6 +28,36 @@ const Index: NextPage<IPageProps> = (props) => {
 	return (
 		<Layout>
 			<article className={st(classes.root, { textDirection })}>
+				<div className={classes.sticky}>
+					<a href={`${locale}/docs/the-story-of-mel/pages/mel-kaye-cv`}>
+						<div className={classes.stickyInner}>
+							<div className={classes.stickyItemLayout}>
+								<div>
+									<div className={classes.imageContainer}>
+										<img
+											className={classes.avatar}
+											src="https://res.cloudinary.com/dcajl1s6a/image/upload/c_thumb,w_200,g_face/v1684493903/mel-kaye-bio/avatar-mel-kaye_xwd6kx.jpg"
+											alt={translate("AVATAR_MEL_KAYE")}
+										/>
+									</div>
+								</div>
+								<div className={classes.stickyContent}>
+									<p className={classes.stickyItemDate}>23/5/2023</p>
+									<p className={classes.stickyItemTitle}>
+										{translate("STICKY_TITLE")}
+									</p>
+									<p className={classes.stickyItemBody}>
+										{translate("STICKY_SUBTITLE")}{" "}
+									</p>
+									<p className={classes.stickyItemRef}>
+										{translate("STICKY_TITLE_LINK_PREFIX")}:{" "}
+										{translate("STICKY_TITLE_LINK_TEXT")}
+									</p>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
 				<h1 className={classes.title}>{title}</h1>
 				<p className={classes.moto}>{moto}</p>
 				{elements.map((node) => {

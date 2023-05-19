@@ -212,3 +212,67 @@
 .button {
 	-st-extends: Button;	
 }
+
+.sticky {
+	text-align: center;
+	margin-bottom: 2rem;
+	border-radius: 6px;
+	background-color: #F2EFE4;
+	transition: 75ms background-color ease-in;
+}
+.stickyItemLayout {
+	display: flex;
+	align-items: center;
+}
+.sticky:hover {
+	background-color: #CCC9C0;
+}
+.sticky a {
+	text-decoration: none;
+}
+.sticky p.date {
+	font-size: 1rem;
+	margin-bottom: 1rem;
+	font-weight: normal;
+}
+.sticky p {
+	font-weight: bold;
+	color: #274F8C;
+}
+
+.stickyInner {
+	padding: 1rem 2rem;
+	font-size: 0.85rem;
+	align-items: center;
+	align-content: space-between;
+}
+.stickyContent {
+	padding: 0 2rem;
+	text-align: left;
+}
+.root:textDirection(rtl) .stickyContent {
+	text-align: right;
+}
+.stickyInner .imageContainer {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 1rem solid #E6E3D8;
+}
+.stickyInner .imageContainer img {
+	width: 100%;
+}
+.stickyItemTitle {
+	-st-mixin: h1;
+}
+.stickyItemDate {
+	-st-mixin: paragraph;
+}
+.stickyItemBody {
+	-st-mixin: h3;
+}
+.stickyItemRef {
+	-st-mixin: h5;
+	margin-top: 1rem;
+}
