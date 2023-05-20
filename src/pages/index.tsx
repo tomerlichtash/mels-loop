@@ -37,8 +37,7 @@ const Index: NextPage<IPageProps> = (props) => {
 							<div
 								className={classes.stickyInner}
 								style={{
-									backgroundSize: "100%",
-									backgroundRepeat: "no-repeat",
+									backgroundSize: "cover",
 									backgroundPosition: "center",
 									backgroundImage:
 										"url(https://res.cloudinary.com/dcajl1s6a/image/upload/v1684527967/mel-kaye-bio/homepage-ref-cover-kornitzka-b_q6d9rg.jpg)",
