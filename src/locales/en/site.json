@@ -68,8 +68,10 @@
 	"PRELOADER_LABEL": "Loading...",
 	"TOGGLE_THEME": "Toggle Theme",
 	"STICKY_DATE": "May 21st 2023",
-	"STICKY_TITLE": "40th Anniversary to The Story of Mel",
-	"STICKY_SUBTITLE": "Fictional charachter or a real programmer? Finally, a biographic article unfolds the life of Mel Kaye, who hacked his way to greener pa$ture$ and became a hacking legend",
-	"STICKY_TITLE_LINK_PREFIX": "Read more",
-	"STICKY_TITLE_LINK_TEXT": "Mel Kaye – CV"
+	"STICKY_TITLE": "The Story of Mel – 40th Anniversary",
+	"STICKY_SUBTITLE": "A fictional character or a real programmer? Finally, a biographical article unfolds the life of Mel Kaye, who hacked his way to greener pa$ture$ to become a hacking legend",
+	"STICKY_TITLE_LINK_PREFIX": "Read full article",
+	"STICKY_TITLE_LINK_TEXT": "Mel Kaye – CV",
+	"STICKY_TITLE_IMAGE_ALT": "Photo of Mel Kaye, 1952",
+	"STICKY_BADGE_LABEL": "New!"
 }
