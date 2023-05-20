@@ -1,8 +1,8 @@
 ---
 title: "Mel Kaye – CV"
 abstract: "The Life and Work of Mel Kaye, A Real Programmer (1931-2018)"
-# author: "Tomer Lichtash"
-# date: Tue May 21 2023 01:00:00 GMT+0300
+author: "Tomer Lichtash, (David *)Frenkiel"
+date: Tue May 21 2023 01:00:00 GMT+0300
 ---
 
 <figure>
@@ -210,7 +210,7 @@ Upon receiving the reply, Cuozzo tried to continue the correspondence, but Mel f
 
 ## Recommended Reading
 
-Find more information about The Story of Mel in these articles:
+Find more information about **The Story of Mel** in these articles:
 
 - [**The Story of Mel** (annotated version in Mel's Loop homepage)](/)
 - [**Preface to the Story of Mel: A Software Legend That Really Happened**](/docs/the-story-of-mel/pages/preface)
