@@ -127,7 +127,7 @@ Mel’s father, Herman Kaye, was born on May 2nd, 1905 in Warsaw, Poland as Nehe
 
 <figcaption>Hela Kornitzka, Mel's paternal grandmother, appearing in the manifest of the SS Estonia, sailing from Europe to Ellis Island in 1907. Two rows below her name appears the name of her son, Nechemje, who became Herman Kaye, Mel's father.
 
-Photo by Mel's Loop (Source: Ellis Island Foundation)</figcaption>
+(Photo by Mel's Loop; Source: Ellis Island Foundation)</figcaption>
 
 </figure>
 
@@ -175,7 +175,7 @@ Along with Rita’s naturalization application, the expanding Kaye family applie
 
 ## Final words
 
-Mel never sought (or even acknowledged) his glory in the hacking culture. In fact, only one person managed to track him down and extract a few words out of him. Anthony Cuozzo, a computer programmer and hacking folklore buf who grew to admire the character portrayed in The Story of Mel. Following a clue he uncovered during his search for Mel, he wrote an email to rimel3@roadrunner.com (possibly an acronym for Rita and Mel), hoping it would reach the legendary engineer. Our research in the Mel’s Loop project supports Cuozzo’s hunch.
+Mel never sought (or even acknowledged) his glory in the hacking culture. In fact, only one person managed to track him down and extract a few words out of him. Anthony Cuozzo, a computer programmer and hacking folklore buf who grew to admire the character portrayed in The Story of Mel. Following a clue he uncovered during his search for Mel, he wrote an email to `rimel3@roadrunner.com` (possibly an acronym for Rita and Mel), hoping it would reach the legendary engineer. Our research in the Mel’s Loop project supports Cuozzo’s hunch.
 
 Thus wrote Anthony Cuozzo on April 2012:
 
