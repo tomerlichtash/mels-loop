@@ -13,7 +13,7 @@ abstract: "The Life and Work of Mel Kaye, A Real Programmer (1931-2018)"
 
 Mel Kaye (Melvin Kornitzky) was a software engineer, employed at Librascope and at Royal McBee in New York and Los Angeles between the years 1956-1960. Among other programs, he developed a Blackjack game for two models of first-generation digital computers – the LGP-30 and the RPC-4000. His Blackjack game was highly regarded by fellow engineers and computer science students. Mel also conceived the ingenious hack described in The Story of Mel by Ed Nather, which was published on the internet in 1983. Ed Nather’s story won Mel world fame in the hacking community and is regarded as a seminal epic in hacking folklore.
 
-Mel was born on January 14th 1931, in Brooklyn, NY, as Melvin Kornitzky, son of Esther and Herman Kaye, and younger sibling of Shirley (born April 27th, 1926). During his early childhood, the family relocated to the West Coast and later settled in Lemon Grove, Los Angeles.
+Mel was born on January 14th, 1931, in Brooklyn, NY, as Melvin Kornitzky, son of Esther and Herman Kaye, and younger sibling of Shirley (born April 27th, 1926). During his early childhood, the family relocated to the West Coast and later settled in Lemon Grove, Los Angeles.
 
 After passing away in 2018, Mel was buried in Pierce Brothers Valley Oaks-Griffin Memorial Park, Los Angeles.
 
@@ -53,9 +53,9 @@ After graduating in 1952, during the Stevenson/Eisenhower presidential race, Mel
 
 In the summer of 1956, Mel Joined the commercial department of Librascope, a technology unit in the General Precision company, which had won a few government contracts to build military devices. General Precision’s main business was military technologies for aerial and naval warfare. In the mid 1950s, it started developing a first-generation digital computer branded LGP-30, incorporating a dedicated development unit into its Royal McBee subsidiary. Royal McBee was tasked with marketing and selling the LPG-30.
 
-Mel worked as an application engineer in the commercial development group of Librascope, housed in the modern and luxurious building #3 at the company campus in Glendale, California. Among his other responsibilities, he helped with teaching customers how to program the LGP-30. About a month after he was recruited to the job, Mel and many of his colleagues were transferred to Royal McBee, where he wrote the Blackjack program which became the company’s flagship software.
+Mel worked as an application engineer in the commercial development group of Librascope, housed in the modern and luxurious building #3 at the company campus in Glendale, California. Among his other responsibilities, he helped teaching customers how to program the LGP-30. About a month after he was recruited to the job, Mel and many of his colleagues were transferred to Royal McBee, where he wrote the Blackjack program which became the company’s flagship software.
 
-When Royal McBee was getting ready to launch its new computer, the RPC-4000, Mel ported the game for this platform. In addition, he wrote parts of the machine’s assembler and helped Ed Nather write the machine’s Fortran compiler. In the early 1960s, following some difference of opinions with the management, Mel left Royal McBee. The only relics from his work are The Story of Mel, a few photocopies of handwritten computer code and the preface he had written for the ported Blackjack program.
+When Royal McBee was getting ready to launch its new computer, the RPC-4000, Mel ported the game for this platform. In addition, he wrote parts of the machine’s assembler and helped Ed Nather write its Fortran compiler. In the early 1960s, following some difference of opinions with the management, Mel left Royal McBee. The only relics from his work are The Story of Mel, a few photocopies of handwritten computer code and the preface he had written for the ported Blackjack program.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-july-1956-mel-kaye-in-librascope-meeting-room-with-team-and-potential-clients_x5aey7.png)
@@ -120,14 +120,12 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 
 Little is known about Mel’s parents. Most of the relevant details in various databases pertain to the family of Mel’s father, Kornitzka.
 
-Mel’s father, Herman Kaye, was born on May 2nd, 1905 in Warsaw, Poland as Nehemia Kornitzka. At the tender age of two, he immigrated to the United States with his mother, Hela Kornitzka (Mel’s grandmother). They boarded the cargo ship Estonia, operated by the East Asiatic company to sail from Russia to the US. Upon their arrival, they changed their family name to Kornitzky and settled in Brooklyn, New York. Later on, they changed their name again, this time using the American sounding name, Kaye.
+Mel’s father, Herman Kaye, was born on May 2nd, 1905 in Warsaw, Poland as Nechemje Kornitzka. At the tender age of two, he immigrated to the United States with his mother, Hela Kornitzka (Mel’s grandmother). They boarded the cargo ship Estonia, operated by the East Asiatic company to sail from Russia to the US. Upon their arrival, they changed their family name to Kornitzky and settled in Brooklyn, New York. Later on, they changed their name again, this time using the American sounding name, Kaye.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684449576/mel-kaye-bio/hela-kornitzka-in-ship-manifest-for-immigration-in-ellis-island_gqafzx.jpg)
 
-<figcaption>Hela Kornitzka, Mel's paternal grandmother, appearing in the manifest of the SS Estonia, sailing from Europe to Ellis Island in 1907. Two rows below her name appears the name of her son, Nechemje, who became Herman Kaye, Mel's father.
-
-(Photo by Mel's Loop; Source: Ellis Island Foundation)</figcaption>
+<figcaption>Hela Kornitzka, Mel's paternal grandmother, appearing in the manifest of the SS Estonia, sailing from Europe to Ellis Island in 1907. Two rows below her name appears the name of her son, Nechemje, who became Herman Kaye, Mel's father (Photo by Mel's Loop; Source: Ellis Island Foundation)</figcaption>
 
 </figure>
 
@@ -135,7 +133,7 @@ Mel’s mother, Esther Fietelewitch, was born in 1907 to a Russian-Jewish family
 
 Herman Kaye and Esther Fietelewitch were married on June 27, 1925. Herman was in the TV manufacturing business and later started a successful mobile home company. Esther was a homemaker.
 
-Herman Kaye passed away on December 16th 1979 in Anaheim, Los Angeles. Esther Kaye passed away on January 15th 1994, in Orange County, Los Angeles. The two are buried side by side in the Beth Olam cemetery, Los Angeles.
+Herman Kaye passed away on December 16th, 1979, in Anaheim, Los Angeles. Esther Kaye passed away on January 15th, 1994, in Orange County, Los Angeles. The two are buried side by side in the Beth Olam cemetery, Los Angeles.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/graves/herman-and-esther-kaye-graves-at-beth-olan-cemetery-los-angeles_hb5jp9.jpg)
@@ -145,7 +143,7 @@ Herman Kaye passed away on December 16th 1979 in Anaheim, Los Angeles. Esther Ka
 
 ## An American Family
 
-On May 24th, 1953, Mel married Rita Bernstein, born in England on May 27th 1933. Only two years before their marriage, On January 30th, 1951, she boarded the SS Britannic which sailed from Liverpool to New York, on her way to start a new life in the US. Shortly after their marriage, the couple applied for Rita’s American citizenship. She passed away on July 30th, 2011 and was buried in the Valley Oaks Memorial park. 7 years later, Mel would find his final resting next to her.
+On May 24th, 1953, Mel married Rita Bernstein, born in England on May 27th, 1933. Only two years before their marriage, On January 30th, 1951, she boarded the SS Britannic which sailed from Liverpool to New York, on her way to start a new life in the US. Shortly after their marriage, the couple applied for Rita’s American citizenship. She passed away on July 30th, 2011, and was buried in the Valley Oaks Memorial park. 7 years later, Mel would find his final resting next to her.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/mel-and-rita-kaye-marriage-record_w2semg.png)
@@ -173,7 +171,7 @@ Along with Rita’s naturalization application, the expanding Kaye family applie
 <figcaption>Herman Kaye’s citizenship application (Source: Ancestry.com)</figcaption>
 </figure>
 
-## Final words
+## Final Words
 
 Mel never sought (or even acknowledged) his glory in the hacking culture. In fact, only one person managed to track him down and extract a few words out of him. Anthony Cuozzo, a computer programmer and hacking folklore buf who grew to admire the character portrayed in The Story of Mel. Following a clue he uncovered during his search for Mel, he wrote an email to `rimel3@roadrunner.com` (possibly an acronym for Rita and Mel), hoping it would reach the legendary engineer. Our research in the Mel’s Loop project supports Cuozzo’s hunch.
 
@@ -208,7 +206,7 @@ Within an hour, Mel replied:
 <figcaption>Mel's final email</figcaption>
 </figure>
 
-Upon receiving the reply, Cuozzo tried to continue the correspondence, but Mel fell silent. When we reached out to his family, they were ostensibly unwilling to discuss either the myth or the man behind it. There are probably more chapters in this story. The research continues.
+Upon receiving the reply, Cuozzo tried to continue the correspondence, but Mel fell silent. There are probably more chapters in this story. The research continues.
 
 ## Recommended Reading
 
