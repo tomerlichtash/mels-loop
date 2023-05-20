@@ -34,7 +34,6 @@ const About: NextPage<IPageProps> = (props) => {
 							/>
 						);
 					})}
-					<script async src="https://widget.spreaker.com/widgets.js"></script>
 				</div>
 			</article>
 		</Layout>
