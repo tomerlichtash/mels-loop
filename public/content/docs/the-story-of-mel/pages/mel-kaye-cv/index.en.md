@@ -127,7 +127,7 @@ Mel’s father, Herman Kaye, was born on May 2nd, 1905 in Warsaw, Poland as Nehe
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684449576/mel-kaye-bio/hela-kornitzka-in-ship-manifest-for-immigration-in-ellis-island_gqafzx.jpg)
 
-<figcaption>Hela Kornitzka, סבתו של מל מצד אביו, ברשומה במניפסט הספינה "אסטוניה" מאירופה לאליס איילנד, 1907. שתי שורות מתחתיה מצויין נחמיה קורניצקה (Nechemje) - שהפך ברבות הימים לאביו של מל, הרמן קיי.
+<figcaption>Hela Kornitzka, Mel's paternal grandmother, appearing in the manifest of the SS Estonia, from Europe to Ellis Island, 1907. Two lines below her name, appears the name of her son, Nechemje, who became Herman Kaye, Mel's father.
 
 Photo by Mel's Loop. Source: Ellis Island Foundation.</figcaption>
 
