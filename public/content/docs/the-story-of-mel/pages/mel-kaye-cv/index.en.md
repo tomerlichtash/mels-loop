@@ -111,7 +111,7 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/code/mel-kaye-rpc-4000-blackjack-writeup-program-w1-01-0-librascope-royal-mcbee_kdupaf.png)
 
 <figcaption>Preface to Mel's Blackjack game.
-[Full text here](/he/docs/the-story-of-mel/pages/blackjack-writeup)
+[Full text here](/en/docs/the-story-of-mel/pages/blackjack-writeup)
 
 </figcaption>
 </figure>
