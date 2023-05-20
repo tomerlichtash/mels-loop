@@ -46,7 +46,7 @@ After graduating in 1952, during the Stevenson/Eisenhower presidential race, Mel
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/1952-index-to-register-of-voters-in-los-angeles-with-markup_cnwpdf.jpg)
 
-<figcaption>Mel and Herman Kaye in the voters index list</figcaption>
+<figcaption>Mel and Herman Kaye in the voters index list, 1952</figcaption>
 </figure>
 
 ## Programming in the Early Years of the Computer Era
