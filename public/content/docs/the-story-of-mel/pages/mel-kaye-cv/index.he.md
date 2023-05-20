@@ -46,7 +46,7 @@ abstract: "חייו ועבודתו של מל קיי, מתכנת אמיתי (1931
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/1952-index-to-register-of-voters-in-los-angeles-with-markup_cnwpdf.jpg)
 
-<figcaption>(מקור: RPC-4000 – מדריך שימוש)</figcaption>
+<figcaption>שמותיהם של מל והרמן קיי ברשימת המצביעים לבחירות לנשיאות ארה"ב, 1952</figcaption>
 </figure>
 
 ## תכנות בראשית עידן המחשב
