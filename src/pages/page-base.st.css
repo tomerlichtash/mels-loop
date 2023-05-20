@@ -298,6 +298,7 @@
 }
 .stickyItemDate {
 	-st-mixin: Paragraph;
+	margin-bottom: 1rem;
 }
 p.stickyItemBody {
 	-st-mixin: h3;
