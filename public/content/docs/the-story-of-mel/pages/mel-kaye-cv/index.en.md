@@ -27,7 +27,7 @@ After passing away in 2018, Mel was buried in Pierce Brothers Valley Oaks-Griffi
 
 Around 1948, Mel entered his undergraduate studies in UCLA, still under the name Melvin Kornitzky. This name was used in the 1951 university yearbook, but in the 1952 issue he was already named Melvin Kaye. We don’t know which faculties he attended and whether or not he majored in any discipline.
 
-During his university years, Mel was a member of the Jewish fraternity Tau Delta Phi, which ended its activity in the 1970s.
+During his academic studies, Mel was a member of the Jewish fraternity Tau Delta Phi, which ended its activity in the 1970s.
 
 After graduating in 1952, during the Stevenson/Eisenhower presidential race, Mel and his father Heman Kaye registered in the Los Angeles voters book.
 
@@ -53,7 +53,7 @@ After graduating in 1952, during the Stevenson/Eisenhower presidential race, Mel
 
 In the summer of 1956, Mel Joined the commercial department of Librascope, a technology unit in the General Precision company, which had won a few government contracts to build military devices. General Precision’s main business was military technologies for aerial and naval warfare. In the mid 1950s, it started developing a first-generation digital computer branded LGP-30, incorporating a dedicated development unit into its Royal McBee subsidiary. Royal McBee was tasked with marketing and selling the LPG-30.
 
-Mel worked as an application engineer in the commercial development group of Librascope, housed in the modern luxurious building #3 at the company campus in Glendale, California. Among his other responsibilities, he helped with teaching customers how to program the LGP-30. About a month after he was recruited to the job, Mel and many of his colleagues were transferred to Royal McBee, where he wrote the Blackjack program which became the company’s flagship software.
+Mel worked as an application engineer in the commercial development group of Librascope, housed in the modern and luxurious building #3 at the company campus in Glendale, California. Among his other responsibilities, he helped with teaching customers how to program the LGP-30. About a month after he was recruited to the job, Mel and many of his colleagues were transferred to Royal McBee, where he wrote the Blackjack program which became the company’s flagship software.
 
 When Royal McBee was getting ready to launch its new computer, the RPC-4000, Mel ported the game for this platform. In addition, he wrote parts of the machine’s assembler and helped Ed Nather write the machine’s Fortran compiler. In the early 1960s, following some difference of opinions with the management, Mel left Royal McBee. The only relics from his work are The Story of Mel, a few photocopies of handwritten computer code and the preface he had written for the ported Blackjack program.
 
@@ -81,7 +81,7 @@ Mel’s work in Librascope and Royal McBee was diverse and apparently lasted aro
 
 ## Code Remnants
 
-A few handwritten code fragments, probably in his own handwriting, survived Mel’s work in Librascope. Below are some code sheets from Bill Breiner’s archive, along with a preface that Mel had written for the Blackjack game.
+A few handwritten code fragments, probably in his own handwriting, survived from Mel’s work in Librascope. Below are some code sheets from Bill Breiner’s archive, along with a preface that Mel had written for the Blackjack game.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-hexadecimal-punch-print_w6bhyn.jpg)
@@ -120,7 +120,7 @@ A few handwritten code fragments, probably in his own handwriting, survived Mel�
 
 Little is known about Mel’s parents. Most of the relevant details in various databases pertain to the family of Mel’s father, Kornitzka.
 
-Mel’s father, Herman Kaye, was born on May 2nd, 1905 in Warsaw, Poland as Nehemia Kornitzka. At the tender age of two, he immigrated to the United States with his mother, Hela Kornitzka (Mel’s grandmother). They boarded the cargo ship Estonia, operated by the East Asiatic company to sail from Russia to the US. Upon their arrival, they changed their family name to Kornitzky and settled in Brooklyn, New York. Later on, they changed the name again, this time using the American sounding name, Kaye.
+Mel’s father, Herman Kaye, was born on May 2nd, 1905 in Warsaw, Poland as Nehemia Kornitzka. At the tender age of two, he immigrated to the United States with his mother, Hela Kornitzka (Mel’s grandmother). They boarded the cargo ship Estonia, operated by the East Asiatic company to sail from Russia to the US. Upon their arrival, they changed their family name to Kornitzky and settled in Brooklyn, New York. Later on, they changed their name again, this time using the American sounding name, Kaye.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684449576/mel-kaye-bio/hela-kornitzka-in-ship-manifest-for-immigration-in-ellis-island_gqafzx.jpg)
