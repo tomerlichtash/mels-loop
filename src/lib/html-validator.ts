@@ -25,7 +25,7 @@ export interface IHTMLValidator {
 
 const ALLOWED_HTML_ATTRIBUTES = {
 	"*": {
-		valid: ["data-type", "align"],
+		valid: ["data-type", "align", "dir"],
 	},
 	TD: {
 		valid: ["rowspan", "colspan"],
