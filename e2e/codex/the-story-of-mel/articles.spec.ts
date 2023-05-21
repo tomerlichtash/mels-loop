@@ -50,6 +50,23 @@ test.describe("Articles", () => {
 			await expect(page.locator("h1")).toHaveText(data.title as string);
 		});
 
+		test(`${locale} > should navigate to the CV article`, async ({ page }) => {
+			const path = "pages/mel-kaye-cv";
+			const filename = "index";
+			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
+
+			await page.goto(getLocalePath(locale, docId));
+			await page.hover(
+				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
+			);
+			await page.click(
+				`text=${translate(locale, "MENU_ITEM_LABEL_ID_MEL_KAYE_BIO")}`
+			);
+
+			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
+			await expect(page.locator("h1")).toHaveText(data.title as string);
+		});
+
 		test(`${locale} > should navigate to the Resources page`, async ({
 			page,
 		}) => {
