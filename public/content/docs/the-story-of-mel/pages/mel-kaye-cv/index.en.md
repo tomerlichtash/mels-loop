@@ -29,7 +29,7 @@ Around 1948, Mel entered his undergraduate studies in UCLA, still under the name
 
 During his academic studies, Mel was a member of the Jewish fraternity Tau Delta Phi, which ended its activity in the 1970s.
 
-After graduating in 1952, during the Stevenson/Eisenhower presidential race, Mel and his father Heman Kaye registered in the Los Angeles voters book.
+After graduating in 1952, during the Stevenson/Eisenhower presidential race, Mel and his father Herman Kaye registered in the Los Angeles voters book.
 
 <figure>
 ![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1951-page-416_xutkm0.jpg)
