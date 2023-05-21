@@ -215,3 +215,4 @@ Find more information about **The Story of Mel** in these articles:
 - [**The Story of Mel** (annotated version in Mel's Loop homepage)](/)
 - [**Preface to the Story of Mel: A Software Legend That Really Happened**](/docs/the-story-of-mel/pages/preface)
 - [**Mel's Hack – The Missing Bits**](/docs/the-story-of-mel/pages/mels-hack-the-missing-bits)
+- [The Story of Mel – Wikipedia](https://en.wikipedia.org/wiki/The_Story_of_Mel)
