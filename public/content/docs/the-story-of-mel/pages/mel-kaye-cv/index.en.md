@@ -6,7 +6,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 ---
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/mel-kaye-profile-picture-1951_aark5e.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/mel-kaye-profile-picture-1951_aark5e.jpg)
 
 <figcaption>Mel Kaye, 1952</figcaption>
 </figure>
@@ -18,7 +18,7 @@ Mel was born on January 14th, 1931, in Brooklyn, NY, as Melvin Kornitzky, son of
 After passing away in 2018, Mel was buried in Pierce Brothers Valley Oaks-Griffin Memorial Park, Los Angeles.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/graves/mel-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_kmkoie.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/graves/mel-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_kmkoie.jpg)
 
 <figcaption>Mel’s grave at the Pierce Brothers Valley Oaks-Griffin Memorial Park, Los Angeles. Photo: Mel’s Loop</figcaption>
 </figure>
@@ -32,19 +32,19 @@ During his academic studies, Mel was a member of the Jewish fraternity Tau Delta
 After graduating in 1952, during the Stevenson/Eisenhower presidential race, Mel and his father Herman Kaye registered in the Los Angeles voters book.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1951-page-416_xutkm0.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1951-page-416_xutkm0.jpg)
 
 <figcaption>Mel’s portrait, as Melvin Kornitzky, in the UCLA 1951 yearbook (Source: Ancestry.com)</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1952-page-441_b7qdh4.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1952-page-441_b7qdh4.jpg)
 
 <figcaption>Mel’s portrait, under the name Melvin Kaye, in the UCLA 1951 yearbook (Source: Ancestry.com)</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/1952-index-to-register-of-voters-in-los-angeles-with-markup_cnwpdf.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/1952-index-to-register-of-voters-in-los-angeles-with-markup_cnwpdf.jpg)
 
 <figcaption>Mel and Herman Kaye in the voters index list, 1952</figcaption>
 </figure>
@@ -58,7 +58,7 @@ Mel worked as an application engineer in the commercial development group of Lib
 When Royal McBee was getting ready to launch its new computer, the RPC-4000, Mel ported the game for this platform. In addition, he wrote parts of the machine’s assembler and helped Ed Nather write its Fortran compiler. In the early 1960s, following some difference of opinions with the management, Mel left Royal McBee. The only relics from his work are The Story of Mel, a few photocopies of handwritten computer code and the preface he had written for the ported Blackjack program.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-july-1956-mel-kaye-in-librascope-meeting-room-with-team-and-potential-clients_x5aey7.png)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/librazette/takeouts/librazette-july-1956-mel-kaye-in-librascope-meeting-room-with-team-and-potential-clients_x5aey7.png)
 
 <figcaption>July 1956: The meeting room at Librascope's headquarters, featuring the Librascope team, Mel, and potential customers (Source: Librascope Memories)</figcaption>
 </figure>
@@ -66,7 +66,7 @@ When Royal McBee was getting ready to launch its new computer, the RPC-4000, Mel
 It seems that Mel’s recruitment to Librascope was hastened, possibly due to increased demand by the company’s customers. In July of 1956, the company’s internal magazine (Librazette) published a piece about the company’s instruction and support program for LGP-30 users. Mel, 25 years old at the time, was mentioned among the engineers who led the program. Only a month later did the Librazette publish a greeting for new hires, among which Mel was listed as a member of the Engineering and Commerce department.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-august-1956-welcome-new-employees-mentions-mel-kaye_ztvbna.png)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/librazette/takeouts/librazette-august-1956-welcome-new-employees-mentions-mel-kaye_ztvbna.png)
 
 <figcaption>The Librazette, July 1956 (Source: Librascope Memories)</figcaption>
 </figure>
@@ -74,7 +74,7 @@ It seems that Mel’s recruitment to Librascope was hastened, possibly due to in
 Mel’s work in Librascope and Royal McBee was diverse and apparently lasted around 4 years, until 1960. In July 1961, the Librazette greeted the veteran employees – those who had completed five years or more in the company, nicknamed Libravetes. Mel’s name was absent from this list.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-july-1961-libravets-list_ety2i3.png)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/librazette/takeouts/librazette-july-1961-libravets-list_ety2i3.png)
 
 <figcaption>Librazette, July 1961 (Source: Librascope Memories)</figcaption>
 </figure>
@@ -84,31 +84,31 @@ Mel’s work in Librascope and Royal McBee was diverse and apparently lasted aro
 A few handwritten code fragments, probably in his own handwriting, survived from Mel’s work in Librascope. Below are some code sheets from Bill Breiner’s archive, along with a preface that Mel had written for the Blackjack game.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-hexadecimal-punch-print_w6bhyn.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-hexadecimal-punch-print_w6bhyn.jpg)
 
 <figcaption>Hexadecimal Punch Print, October 1956, Signed by M. Kaye</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-alphanumeric-printout-subroutine_mj1blm.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-alphanumeric-printout-subroutine_mj1blm.jpg)
 
 <figcaption>Alphanumeric Printout Subroutine, March 1957, Signed by MK</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684445123/mel-kaye-bio/code/mel-kaye-code-evaluation-of-4th-degree-polynomial-fixed-point-june-16th-1959-source-_lgp-30-subroutine-manual-oct-60_wgoukq.jpg)
+![]https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/code/mel-kaye-code-evaluation-of-4th-degree-polynomial-fixed-point-june-16th-1959-source-_lgp-30-subroutine-manual-oct-60_wgoukq.jpg)
 
 <figcaption>Evaluation of 4th Degree Polynomial Fixed Point, June 1959, Signed by Mel Kaye</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684445123/mel-kaye-bio/code/lgp-30-coding-sheet-by-mk-illustrative-example-for-floating-point-interreptive-system-1950_hfdeku.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/code/lgp-30-coding-sheet-by-mk-illustrative-example-for-floating-point-interreptive-system-1950_hfdeku.jpg)
 
 <figcaption>Illustrative Example for Floating Point Interpretive System, June 1959, Signed by MK</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/code/mel-kaye-rpc-4000-blackjack-writeup-program-w1-01-0-librascope-royal-mcbee_kdupaf.png)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/code/mel-kaye-rpc-4000-blackjack-writeup-program-w1-01-0-librascope-royal-mcbee_kdupaf.png)
 
 <figcaption>Preface to Mel's Blackjack game.
 [Full text here](/en/docs/the-story-of-mel/pages/blackjack-writeup)
@@ -123,7 +123,7 @@ Little is known about Mel’s parents. Most of the relevant details in various d
 Mel’s father, Herman Kaye, was born on May 2nd, 1905 in Warsaw, Poland as Nechemje Kornitzka. At the tender age of two, he immigrated to the United States with his mother, Hela Kornitzka (Mel’s grandmother). They boarded the cargo ship Estonia, operated by the East Asiatic company to sail from Russia to the US. Upon their arrival, they changed their family name to Kornitzky and settled in Brooklyn, New York. Later on, they changed their name again, this time using the American sounding name, Kaye.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684449576/mel-kaye-bio/hela-kornitzka-in-ship-manifest-for-immigration-in-ellis-island_gqafzx.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/hela-kornitzka-in-ship-manifest-for-immigration-in-ellis-island_gqafzx.jpg)
 
 <figcaption>Hela Kornitzka, Mel's paternal grandmother, appearing in the manifest of the SS Estonia, sailing from Europe to Ellis Island in 1907. Two rows below her name appears the name of her son, Nechemje, who became Herman Kaye, Mel's father (Photo by Mel's Loop; Source: Ellis Island Foundation)</figcaption>
 
@@ -136,7 +136,7 @@ Herman Kaye and Esther Fietelewitch were married on June 27, 1925. Herman was in
 Herman Kaye passed away on December 16th, 1979, in Anaheim, Los Angeles. Esther Kaye passed away on January 15th, 1994, in Orange County, Los Angeles. The two are buried side by side in the Beth Olam cemetery, Los Angeles.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/graves/herman-and-esther-kaye-graves-at-beth-olan-cemetery-los-angeles_hb5jp9.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/graves/herman-and-esther-kaye-graves-at-beth-olan-cemetery-los-angeles_hb5jp9.jpg)
 
 <figcaption>(Source: findagrave.com)</figcaption>
 </figure>
@@ -146,19 +146,19 @@ Herman Kaye passed away on December 16th, 1979, in Anaheim, Los Angeles. Esther 
 On May 24th, 1953, Mel married Rita Bernstein, born in England on May 27th, 1933. Only two years before their marriage, On January 30th, 1951, she boarded the SS Britannic which sailed from Liverpool to New York, on her way to start a new life in the US. Shortly after their marriage, the couple applied for Rita’s American citizenship. She passed away on July 30th, 2011, and was buried in the Valley Oaks Memorial park. 7 years later, Mel would find his final resting next to her.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/mel-and-rita-kaye-marriage-record_w2semg.png)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/mel-and-rita-kaye-marriage-record_w2semg.png)
 
 <figcaption>Marriage registration for Mel Kaye and Rita Bernstein, NYC City Clerk</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/graves/rita-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_xpl5w9.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/graves/rita-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_xpl5w9.jpg)
 
 <figcaption>Rita Kaye’s tombstone in the Pierce Brothers Valley Oaks-Griffin Memorial Park cemetery</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/naturalization/rita-kaye/rita-kaye-us-naturalization-form-1-front_u8ppqe.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/naturalization/rita-kaye/rita-kaye-us-naturalization-form-1-front_u8ppqe.jpg)
 
 <figcaption>Rita Kaye’s citizenship application (Source: Ancestry.com)</figcaption>
 </figure>
@@ -166,7 +166,7 @@ On May 24th, 1953, Mel married Rita Bernstein, born in England on May 27th, 1933
 Along with Rita’s naturalization application, the expanding Kaye family applied to grant citizenship to Mel’s father, Herman.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/naturalization/herman-kornitzky/herman-kornitzky-us-naturalization-form-1-front_jyng2j.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/naturalization/herman-kornitzky/herman-kornitzky-us-naturalization-form-1-front_jyng2j.jpg)
 
 <figcaption>Herman Kaye’s citizenship application (Source: Ancestry.com)</figcaption>
 </figure>

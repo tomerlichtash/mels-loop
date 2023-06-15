@@ -50,9 +50,6 @@ const nextConfig = {
 		locales: ["en", "he"],
 		defaultLocale: "en",
 	},
-	images: {
-		domains: ["res.cloudinary.com"],
-	},
 	serverRuntimeConfig: {
 		PROJECT_ROOT: __dirname,
 	},

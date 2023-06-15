@@ -6,7 +6,7 @@ date: Wed May 21 2023 01:00 GMT+0300
 
 ב-21 במאי 1983, היום לפני 40 שנה, פרסם אד נייתר ב-Usenet את ״הסיפור על מל״. במשך שנים רבות ״מל״ היה דמות בדיונית. אף שבמהלכן התגלו כמה פרטים על האדם מל קיי, לא הרבה ידוע על חייו ועבודתו. היום, אחרי שנים של מחקר, נבירה בארכיונים ציבוריים וחיפוש אחר הוכחות ממשיות, אנו שמחים לפרסם [מאמר ביוגרפי השופך אור על זהותו](/he/docs/the-story-of-mel/pages/mel-kaye-cv).
 
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1951-page-416_xutkm0.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1951-page-416_xutkm0.jpg)
 _תמונתו של מל תחת השם "**מלוין קורניצקי**" בספר המחזור של UCLA משנת 1951_
 
 מתוך המאמר:

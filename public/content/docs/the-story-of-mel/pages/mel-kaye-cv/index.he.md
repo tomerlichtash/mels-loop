@@ -6,7 +6,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 ---
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/mel-kaye-profile-picture-1951_aark5e.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/mel-kaye-profile-picture-1951_aark5e.jpg)
 
 <figcaption>מל קיי, 1952</figcaption>
 </figure>
@@ -18,7 +18,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 כיום מונח קברו בבית הקברות Pierce Brothers Valley Oaks-Griffin Memorial Park, Mortuary & Crematory, בלוס אנג׳לס, קליפורניה.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/graves/mel-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_kmkoie.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/graves/mel-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_kmkoie.jpg)
 
 <figcaption>קברו של מלוין קיי, לוס אנג׳לס (צילום: לולאת מל)</figcaption>
 </figure>
@@ -32,19 +32,19 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 ֿעם סיום לימודיו, בשנת 1952, ברקע המירוץ לנשיאות ארה"ב (אייזנהאוהר/סטיבנסון) מלוין קיי נרשם יחד עם אביו הרמן קיי בספר הבוחרים בלוס אנג׳לס.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1951-page-416_xutkm0.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1951-page-416_xutkm0.jpg)
 
 <figcaption>תמונתו של מל תחת השם "מלוין קורניצקי" בספר המחזור של UCLA משנת 1951 (מקור: Ancestry.com)</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1952-page-441_b7qdh4.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/ucla-yearbook/ucla-yearbook-1952-page-441_b7qdh4.jpg)
 
 <figcaption>תמונתו של מל בשם "מלוין קיי" בספר המחזור של UCLA משנת 1952 (מקור: Ancestry.com)</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/1952-index-to-register-of-voters-in-los-angeles-with-markup_cnwpdf.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/1952-index-to-register-of-voters-in-los-angeles-with-markup_cnwpdf.jpg)
 
 <figcaption>שמותיהם של מל והרמן קיי ברשימת המצביעים לבחירות לנשיאות ארה"ב, 1952</figcaption>
 </figure>
@@ -56,7 +56,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 מל עבד במשרת מהנדס אפליקציות בקבוצת הפיתוח המסחרי בבניין 3 החדיש והמפואר באתר בנייני החברה בגלנדייל, קליפורניה, ובין היתר סייע בהדרכת לקוחות על ה-LGP-30. בתוך חודש מגיוסו, יחד עם רבים במחלקה המסחרית, הועבר ל-Royal McBee, שם כתב את תוכנת הבלאק ג׳ק שהפכה לתוכנת הדגל של החברה. עם השקת מחשב נוסף, ה-RPC-4000, הוא שיכתב את תוכנת הבלאק ג׳ק כדי להתאימה למחשב החדש, וכתב עבורו חלקים משפת הסף. נוסף לכך, הוא סייע לאד ניית׳ר בכתיבת מהדר פורטרן למחשב. בתחילת שנות ה-60, בעקבות חילוקי דעות עם הנהלת החברה, מל עזב את Royal McBee. השרידים שנותרו מעבודתו הם "הסיפור על מל", צילום של כמה קטעי קוד בכתב יד ומבוא פרי עטו לתוכנת הבלאק ג׳ק המשוכתבת.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-july-1956-mel-kaye-in-librascope-meeting-room-with-team-and-potential-clients_x5aey7.png)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/librazette/takeouts/librazette-july-1956-mel-kaye-in-librascope-meeting-room-with-team-and-potential-clients_x5aey7.png)
 
 <figcaption>ליברזט, יולי 1956, חדר הישיבות בחברת ליברסקופ/רויאל מק׳בי בלוס אנג׳לס. בחדר – צוות החברה בהם מל קיי, ולקוחות פוטנציאליים (מקור: Librascope Memories)</figcaption>
 </figure>
@@ -64,7 +64,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 נראה שהעסקתו של מל נעשתה בחופזה ומתוך דוחק לשרת לקוחות קיימים, שכן כבר ביולי 1956 פורסמה בעלון החברה "הליברזט" (Librazette) ידיעה על מפגש עם לקוחות פוטנציאליים של מחשב ה-LGP-30, לצד תוכנית הדרכה וסיוע מטעם החברה עבור הלקוחות. בראש התוכנית עמדו מפתחים של החברה, בהם מל קיי, שהיה באותו זמן בן 25. רק חודש לאחר מכן פורסמה ב"ליברזט" ידיעה המברכת על הגעת עובדים חדשים לחברה, ובהם צוין גם מל קיי, במחלקת הנדסה ומסחר.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-august-1956-welcome-new-employees-mentions-mel-kaye_ztvbna.png)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/librazette/takeouts/librazette-august-1956-welcome-new-employees-mentions-mel-kaye_ztvbna.png)
 
 <figcaption>ליברזט, יולי 1956 (מקור: Librascope Memories)</figcaption>
 </figure>
@@ -72,7 +72,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 עבודתו של מל ב-Librascope וב-Royal McBee הייתה מגוונת, ונמשכה ככל הנראה 4 שנים, עד שנת 1960. ביולי 1961 התפרסמה ב"ליברזט" ידיעה המברכת את ותיקי החברה (המכונים "Libravets") לציון חמש שנים בחברה, ושמו של מל נעדר מהרשימה:
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/librazette/takeouts/librazette-july-1961-libravets-list_ety2i3.png)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/librazette/takeouts/librazette-july-1961-libravets-list_ety2i3.png)
 
 <figcaption>ליברזט, יולי 1961 (מקור: Librascope Memories)</figcaption>
 </figure>
@@ -82,31 +82,31 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 מעבודתו בחברה נותרו מעט שרידים בכתב יד, כנראה בכתב ידו של מל. להלן כמה קטעים שנמצאו בארכיון של ביל בריינר, לצד מבוא שכתב מל למשחק הבלאק ג׳ק.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-hexadecimal-punch-print_w6bhyn.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-hexadecimal-punch-print_w6bhyn.jpg)
 
 <figcaption>Hexadecimal Punch Print, אוקטובר 1956, חתום בידי מ׳ קיי</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-alphanumeric-printout-subroutine_mj1blm.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/code/lgp-30-coding-sheet-by-mel-kaye-alphanumeric-printout-subroutine_mj1blm.jpg)
 
 <figcaption>Alphanumeric Printout Subroutine, מרץ 1957, חתום בידי מ׳ קיי</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684445123/mel-kaye-bio/code/mel-kaye-code-evaluation-of-4th-degree-polynomial-fixed-point-june-16th-1959-source-_lgp-30-subroutine-manual-oct-60_wgoukq.jpg)
+![]https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/code/mel-kaye-code-evaluation-of-4th-degree-polynomial-fixed-point-june-16th-1959-source-_lgp-30-subroutine-manual-oct-60_wgoukq.jpg)
 
 <figcaption>Evaluation of 4th Degree Polynomial Fixed Point, יוני 1959, חתום בידי מ׳ קיי</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684445123/mel-kaye-bio/code/lgp-30-coding-sheet-by-mk-illustrative-example-for-floating-point-interreptive-system-1950_hfdeku.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/code/lgp-30-coding-sheet-by-mk-illustrative-example-for-floating-point-interreptive-system-1950_hfdeku.jpg)
 
 <figcaption>Illustrative Example for Floating Point Interpretive System, יוני 1959, חתום בידי מ׳ קיי</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300866/mel-kaye-bio/code/mel-kaye-rpc-4000-blackjack-writeup-program-w1-01-0-librascope-royal-mcbee_kdupaf.png)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/code/mel-kaye-rpc-4000-blackjack-writeup-program-w1-01-0-librascope-royal-mcbee_kdupaf.png)
 
 <figcaption>מתוך המבוא שכתב מל למשחק הבלק ג׳ק
 [לטקסט המלא](/he/docs/the-story-of-mel/pages/blackjack-writeup)
@@ -121,7 +121,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 אביו של מל, הרמן קיי, נולד ב-2 במאי 1905 בוורשה, פולין, בשם נחמיה קורניצקה. הוא הגיע לארה"ב כפעוט בן שנתיים בשנת 1907 עם אמו (סבתו של מל), הלה קורניצקה, על גבי סיפון ספינת המשא ה"אסטוניה" של חברת East Asiatic שפעלה על קו רוסיה-ארה"ב. עם הגיעם לארה"ב אימצו את השם "קורניצקי" על פני "קורניצקה", והתיישבו בברוקלין, ניו יורק. מאוחר יותר, שינו את שם משפחתם לקיי.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684449576/mel-kaye-bio/hela-kornitzka-in-ship-manifest-for-immigration-in-ellis-island_gqafzx.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/hela-kornitzka-in-ship-manifest-for-immigration-in-ellis-island_gqafzx.jpg)
 
 <figcaption>
 הלה קורניצקה, סבתו של מל מצד אביו, ברשומה במניפסט הספינה "אסטוניה" מאירופה לאליס איילנד, 1907. שתי שורות מתחתיה מצויין נחמיה קורניצקה (Nechemje) - שהפך ברבות הימים לאביו של מל, הרמן קיי
@@ -137,7 +137,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 הרמן קיי נפטר ב-16 בדצמבר 1979 באנהיים, לוס אנג׳לס. אסתר קיי נפטרה ב-15 בינואר 1994, במחוז אורנג׳, לוס אנג׳לס. השניים קבורים זה לצד זו בבית הקברות "בית עולם" בלוס אנג׳לס.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300864/mel-kaye-bio/graves/herman-and-esther-kaye-graves-at-beth-olan-cemetery-los-angeles_hb5jp9.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/graves/herman-and-esther-kaye-graves-at-beth-olan-cemetery-los-angeles_hb5jp9.jpg)
 
 <figcaption>צילום: findagrave.com</figcaption>
 </figure>
@@ -147,19 +147,19 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 ב-24 במאי 1953 התחתן מל עם ריטה ברנשטיין. ריטה נולדה ב-27 במאי 1933, וב-30 בינואר 1951 הפליגה מליברפול שבאנגליה על סיפון ה-SS Britannic לניו יורק. כשנתיים לאחר מכן נישאו מל וריטה, והגישו בקשת אזרחות עבור ריטה בגין נישואיה למל, שהיה אזרח אמריקאי מלידה. ריטה נפטרה ב-30 ביולי 2011, ונקברה בבית הקברות "בית עולם" בלוס אנג׳לס. לימים, מל נקבר לצידה.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/mel-and-rita-kaye-marriage-record_w2semg.png)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/mel-and-rita-kaye-marriage-record_w2semg.png)
 
 <figcaption>רישום נישואים של מל קיי וריטה ברנשטיין בעיריית ניו יורק</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300865/mel-kaye-bio/graves/rita-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_xpl5w9.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/graves/rita-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_xpl5w9.jpg)
 
 <figcaption>קברה של ריטה קיי בלוס אנג׳לס. צילום: לולאת מל</figcaption>
 </figure>
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/naturalization/rita-kaye/rita-kaye-us-naturalization-form-1-front_u8ppqe.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/naturalization/rita-kaye/rita-kaye-us-naturalization-form-1-front_u8ppqe.jpg)
 
 <figcaption>טופס בקשת מעמד אזרח עבור ריטה קיי (מקור: Ancestry.com)</figcaption>
 </figure>
@@ -167,7 +167,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 לצד בקשת ההתאזרחות של ריטה, הגישה משפחת קיי המתרחבת בקשות אזרחות גם עבור אביו של מל, הרמן.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1684300867/mel-kaye-bio/naturalization/herman-kornitzky/herman-kornitzky-us-naturalization-form-1-front_jyng2j.jpg)
+![](https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/naturalization/herman-kornitzky/herman-kornitzky-us-naturalization-form-1-front_jyng2j.jpg)
 
 <figcaption>טופס בקשת מעמד אזרח עבור הרמן קיי (מקור: Ancestry.com)</figcaption>
 </figure>
