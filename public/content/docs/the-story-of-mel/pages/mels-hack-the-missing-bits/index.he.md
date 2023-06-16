@@ -152,7 +152,7 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 אחרי התאוששות הכרחית מהמהלומה שספג האגו התכנותי שלי, נפניתי סוף סוף לפעולה הבסיסית שנדרשת כדי להבין את ההאק של מל: עיון בספרי ההדרכה של RPC-4000. עיון קצר הספיק כדי ליישב את הספקות.
 
 <figure>
-![RPC 4000 Instruction format](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
+![RPC 4000 Instruction format](https://mels-loop-media.s3.eu-north-1.amazonaws.com/RPC_4000_Instruction_ypjaii.png)
 
 </figure>
 
@@ -246,14 +246,14 @@ date: Tue Jul 23 2022 01:14:31 GMT+0300
 קוד הפעולה `23` `(10111)` ייצג את הוראת `TBC` (Transfer on Branch Control) – גירסת ה-RPC-4000 לפעולת `JUMP`מותנית. הפעולה מעבירה את התוכנית לכתובת שברכיב`(A)`, אם מתג פנימי בשם `Branch Control Unit (BCU)`דלוק. במקרה שזה האחרון כבוי, התוכנית ממשיכה, כרגיל, להוראה שבכתובת בשדה`(N)`.
 
 <figure>
-![RPC-4000 TBC instruction](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654922031/mels-hack/transfer-branch-control_gc2xg2.png)
+![RPC-4000 TBC instruction](https://mels-loop-media.s3.eu-north-1.amazonaws.com/transfer-branch-control_gc2xg2.png)
 
 </figure>
 
 על פי התעוד, מתג ה-`BCU` נדלק (קיבל את הערך `1`) בשני מקרים: פעולת השוואה שהצליחה (למשל, בדיקה אם מספר מסויים גדול/שווה למספר אחר), או – רלוונטי יותר לענייננו – _גלישה_ ברגיסטר של המכונה.
 
 <figure data-type="no-border">
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1655241687/mels-hack/branch-control_xd0vqd.png)
+![](https://mels-loop-media.s3.eu-north-1.amazonaws.com/branch-control_xd0vqd.png)
 
 <figcaption>תרשים %index%, מקור: המדריך ל-RPC-4000</figcaption>
 </figure>

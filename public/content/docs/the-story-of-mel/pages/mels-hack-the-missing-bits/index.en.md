@@ -151,7 +151,7 @@ Not only did I gloss over this crucial step for 30 years – I also ignored the 
 After recovering from this blow to my computer ego, I took the basic step required to understand Mel's hack: looking up the RPC-4000 manual. It didn't take much browsing to hit a figure that dispelled all my doubts.
 
 <figure>
-![RPC 4000 Instruction format](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654892829/mels-hack/RPC_4000_Instruction_ypjaii.png)
+![RPC 4000 Instruction format](https://mels-loop-media.s3.eu-north-1.amazonaws.com/RPC_4000_Instruction_ypjaii.png)
 
 </figure>
 
@@ -241,14 +241,14 @@ There's another possible scenario, even more compatible with the story and in li
 - Opcode `23 (10111)` was the machine's _conditional_ `JUMP` instruction, called `TBC` (**T**ransfer on **B**ranch **C**ontrol). This opcode transferred control to the address in the `(A)` field, _If_ an internal switch called the `Branch Control Unit (BCU)` was on. If it was off, the next instruction address would default to the `(N)` field.
 
 <figure>
-![RPC-4000 TBC instruction](https://res.cloudinary.com/dcajl1s6a/image/upload/v1654922031/mels-hack/transfer-branch-control_gc2xg2.png)
+![RPC-4000 TBC instruction](https://mels-loop-media.s3.eu-north-1.amazonaws.com/transfer-branch-control_gc2xg2.png)
 
 </figure>
 
 - What could switch the `BCU` on? According to the manual - either when a successful comparison had just been made, or - more relevant to our story - following _an overflow_.
 
 <figure>
-![](https://res.cloudinary.com/dcajl1s6a/image/upload/v1655241687/mels-hack/branch-control_xd0vqd.png)
+![](https://mels-loop-media.s3.eu-north-1.amazonaws.com/branch-control_xd0vqd.png)
 
 <figcaption>Fig. %index%. Source: RPC-4000 manual</figcaption>
 </figure>
