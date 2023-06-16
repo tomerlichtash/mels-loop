@@ -8,10 +8,10 @@ We're happy to announce the first publication of The Story of Mel in Hebrew. The
 
 Along with the translation we've added an introductory preface, and 50-some sidenotes, to ease the read for the non-tech reader. Full text, with preface and comments will soon be published on Mel's Loop website.
 
-![](https://hapinkas.com/static/assets/179336898_10159668751861518_5418128068163937771_n_mm8cy6.jpg)
+![](https://mels-loop-media.s3.eu-north-1.amazonaws.com/179336898_10159668751861518_5418128068163937771_n_mm8cy6.jpg)
 
 _The Story of Mel Hebrew Translation first fold, published in Dehak Literary Periodical_
 
-![](https://hapinkas.com/static/assets/9f8e9214adaaa4b57b29_yx777b.jpg)
+![](https://mels-loop-media.s3.eu-north-1.amazonaws.com/9f8e9214adaaa4b57b29_yx777b.jpg)
 
 _Dehak Literary Periodical #13 cover_

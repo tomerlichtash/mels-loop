@@ -10,7 +10,7 @@ date: Wed Apr 7 2021 13:45 GMT+0300
 
 <figure>
 
-![](https://hapinkas.com/static/assets/9f8e9214adaaa4b57b29_yx777b.jpg)
+![](https://mels-loop-media.s3.eu-north-1.amazonaws.com/9f8e9214adaaa4b57b29_yx777b.jpg)
 
 <caption>
 כריכת כתב העת ״דחק״ #13

@@ -6,7 +6,7 @@ date: Wed May 21 2022 12:0 GMT+0300
 
 **TL;DR: 39 years ago The Story of Mel was published on Usenet by its author. Today, we launch the [Mel’s Loop](https://melsloop.com) project, with some fascinating details about the epic hacker folklore tale.**
 
-![](https://hapinkas.com/static/assets/mel-and-ed-ny-2022_metuas.png)
+![](https://mels-loop-media.s3.eu-north-1.amazonaws.com/mel-and-ed-ny-2022_metuas.png)
 
 Today we celebrate the 39th anniversary of the first publication of The Story of Mel by **Ed Nather**. The Story of Mel was written as a memoir about the era of early computing of the late 1950s, creating a fresh memory of the days when Hackership was first forged. It continued to live through the years as an epic hacker folklore.
 

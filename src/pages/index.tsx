@@ -40,14 +40,14 @@ const Index: NextPage<IPageProps> = (props) => {
 									backgroundSize: "cover",
 									backgroundPosition: "center",
 									backgroundImage:
-										"url(https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/homepage-ref-cover-kornitzka-b_q6d9rg.jpg)",
+										"url(https://mels-loop-media.s3.eu-north-1.amazonaws.com/homepage-ref-cover-kornitzka-b_q6d9rg.jpg)",
 								}}
 							>
 								<div className={classes.stickyItemLayout}>
 									<div className={classes.imageContainer}>
 										<img
 											className={classes.avatar}
-											src="https://hapinkas.com/static/the-story-of-mel/articles/mel-kaye-bio/avatar-mel-kaye_xwd6kx.jpg"
+											src="https://mels-loop-media.s3.eu-north-1.amazonaws.com/avatar-mel-kaye_xwd6kx.jpg"
 											alt={translate("STICKY_TITLE_IMAGE_ALT")}
 										/>
 									</div>
