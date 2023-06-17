@@ -22,7 +22,7 @@ export const PopoverToolbar = ({
 					</span>
 				))}
 			</div>
-			<PopoverCloseButton className="popover-toolbar-item popoverClose" />
+			<PopoverCloseButton />
 		</div>
 	);
 };

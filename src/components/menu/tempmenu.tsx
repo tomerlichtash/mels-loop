@@ -35,7 +35,7 @@ const MyNavigationMenuDemo = () => {
 								</NavigationMenu.Link>
 							</li>
 
-							<ListItem href="https://stitches.dev/" title="Stitches">
+							{/* <ListItem href="https://stitches.dev/" title="Stitches">
 								CSS-in-JS with best-in-class developer experience.
 							</ListItem>
 							<ListItem href="/colors" title="Colors">
@@ -43,7 +43,7 @@ const MyNavigationMenuDemo = () => {
 							</ListItem>
 							<ListItem href="https://icons.radix-ui.com/" title="Icons">
 								A crisp set of 15x15 icons, balanced and consistent.
-							</ListItem>
+							</ListItem> */}
 						</ul>
 					</NavigationMenu.Content>
 				</NavigationMenu.Item>
@@ -54,7 +54,7 @@ const MyNavigationMenuDemo = () => {
 					</NavigationMenu.Trigger>
 					<NavigationMenu.Content className="NavigationMenuContent">
 						<ul className="List two">
-							<ListItem
+							{/* <ListItem
 								title="Introduction"
 								href="/docs/primitives/overview/introduction"
 							>
@@ -90,7 +90,7 @@ const MyNavigationMenuDemo = () => {
 								href="/docs/primitives/overview/releases"
 							>
 								Radix Primitives releases and their changelogs.
-							</ListItem>
+							</ListItem> */}
 						</ul>
 					</NavigationMenu.Content>
 				</NavigationMenu.Item>
@@ -116,21 +116,21 @@ const MyNavigationMenuDemo = () => {
 	);
 };
 
-const ListItem = React.forwardRef(
-	({ className, children, title, ...props }, forwardedRef) => (
-		<li>
-			<NavigationMenu.Link asChild>
-				<a
-					className={classNames("ListItemLink", className)}
-					{...props}
-					ref={forwardedRef}
-				>
-					<div className="ListItemHeading">{title}</div>
-					<p className="ListItemText">{children}</p>
-				</a>
-			</NavigationMenu.Link>
-		</li>
-	)
-);
+// const ListItem = React.forwardRef(
+// 	({ className, children, title, ...props }, forwardedRef) => (
+// 		<li>
+// 			<NavigationMenu.Link asChild>
+// 				<a
+// 					className={classNames("ListItemLink", className)}
+// 					{...props}
+// 					ref={forwardedRef}
+// 				>
+// 					<div className="ListItemHeading">{title}</div>
+// 					<p className="ListItemText">{children}</p>
+// 				</a>
+// 			</NavigationMenu.Link>
+// 		</li>
+// 	)
+// );
 
 export default MyNavigationMenuDemo;
