@@ -4,7 +4,7 @@ export const PORTAL_SELECTOR = `[data-radix-scroll-area-viewport]`;
 /**
  * Note Component
  */
-export const NOTE_CONTENT_SELECTOR = `.content`;
-export const NOTE_LABEL_SELECTOR = `.topic`;
-export const NOTE_TITLE_SELECTOR = `.title`;
-export const NOTE_TITLE_TERM_ORIGIN = `.term`;
+export const NOTE_CONTENT_SELECTOR = `.note > .content`;
+export const NOTE_LABEL_SELECTOR = `.note .header .topic`;
+export const NOTE_TITLE_SELECTOR = `.note .header .title`;
+export const NOTE_TITLE_TERM_ORIGIN = `.note .header .term`;

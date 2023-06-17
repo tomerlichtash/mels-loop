@@ -13,7 +13,7 @@ import {
 	IMenuData,
 } from "../../interfaces/menu";
 import { ComponentProps } from "../../interfaces/models";
-import { Menu } from "../../#stylable-styles";
+import { Menu } from "../menu/menu";
 import { MobileMenu } from "../mobile-menu";
 import { TextDirection } from "../../interfaces/locale-context";
 

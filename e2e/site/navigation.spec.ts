@@ -1,7 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as stylesheet from "../../src/components/top-bar/top-bar.st.css";
-import * as headerStylesheet from "../../src/components/header/header.st.css";
 import {
 	getLocalePath,
 	locales,
@@ -9,21 +6,13 @@ import {
 	translate,
 } from "../utils/test-utils";
 
-const domUtil = new StylableDOMUtil(stylesheet);
-const headerDomUtil = new StylableDOMUtil(headerStylesheet);
-
-const topBar = domUtil.scopeSelector(".root");
-const siteTitle = headerDomUtil.scopeSelector(".siteTitle");
-
-// const docId = "docs/the-story-of-mel";
-
 test.describe("TopBar Navigation", () => {
 	locales.map((locale) => {
 		test(`${locale} > should navigate to Homepage from Site Name button`, async ({
 			page,
 		}) => {
 			await page.goto(getLocalePath(locale, "", "about"));
-			await page.locator(`${topBar} ${siteTitle}`).click();
+			await page.locator(`.top-bar .site-title`).click();
 			const p = getLocalePath(locale, "", "about");
 			await expect(page).toHaveURL(p);
 		});

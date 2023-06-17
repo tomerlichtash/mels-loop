@@ -1,7 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as stylesheet from "../../src/components/mobile-menu/mobile-menu.st.css";
-import * as headerStylesheet from "../../src/components/header/header.st.css";
 import * as LocaleSymbols from "./../../src/locales/common/locales.json";
 import {
 	getLocalePath,
@@ -13,12 +10,6 @@ import {
 const { LOCALE_LABEL_EN, LOCALE_LABEL_HE } = LocaleSymbols;
 export const MOBILE_MENU_TRIGGER = `.bm-burger-button`;
 
-const domUtil = new StylableDOMUtil(stylesheet);
-const headerDomUtil = new StylableDOMUtil(headerStylesheet);
-
-const mobileMenu = domUtil.scopeSelector(".root");
-const siteTitle = headerDomUtil.scopeSelector(".siteTitle");
-
 test.describe.skip("Mobile Menu", () => {
 	test.describe("TopBar Navigation", () => {
 		locales.map((locale) => {
@@ -27,7 +18,7 @@ test.describe.skip("Mobile Menu", () => {
 			}) => {
 				await page.goto(getLocalePath(locale, "about"));
 				await page.locator(MOBILE_MENU_TRIGGER).click();
-				await page.locator(`${mobileMenu} ${siteTitle}`).click();
+				await page.locator(`.mobile-menu .site-title`).click();
 				await expect(page).toHaveURL(getLocalePath(locale));
 			});
 		});
@@ -41,7 +32,7 @@ test.describe.skip("Mobile Menu", () => {
 			await page.click(MOBILE_MENU_TRIGGER);
 			await page
 				.locator(
-					`${domUtil.scopeSelector(".localeSelector")} [type="button"]`,
+					`.localeSelector" [type="button"]`,
 					{
 						hasText: LOCALE_LABEL_EN,
 					}
@@ -68,9 +59,7 @@ test.describe.skip("Mobile Menu", () => {
 			await page.click(MOBILE_MENU_TRIGGER);
 			await page
 				.locator(
-					`${mobileMenu} ${domUtil.scopeSelector(
-						".localeSelector"
-					)} [type="button"]`,
+					`.mobile-menu .localeSelector [type="button"]`,
 					{
 						hasText: LOCALE_LABEL_HE,
 					}
@@ -84,7 +73,7 @@ test.describe.skip("Mobile Menu", () => {
 			await page.goto("http://localhost:3000/he");
 			await page.click(MOBILE_MENU_TRIGGER);
 			await page
-				.locator(`${mobileMenu} ${domUtil.scopeSelector(".localeSelector")}`, {
+				.locator(`.mobile-menu .localeSelector"`, {
 					hasText: LOCALE_LABEL_HE,
 				})
 				.click();
@@ -97,7 +86,7 @@ test.describe.skip("Mobile Menu", () => {
 		locales.map((locale) => {
 			test(`${locale} > should navigate to Contact page`, async ({ page }) => {
 				// const buttonTitle = translate(locale, "MENU_ITEM_LABEL_ID_CONTACT");
-				const selector = domUtil.scopeSelector(`.menuItemButton:id(contact)`);
+				const selector = `.menuItemButton:id(contact)`;
 
 				await page.goto(getLocalePath(locale));
 				await page.click(MOBILE_MENU_TRIGGER);
@@ -113,7 +102,7 @@ test.describe.skip("Mobile Menu", () => {
 				await page.click(MOBILE_MENU_TRIGGER);
 
 				await page.click(
-					`${mobileMenu} ${domUtil.scopeSelector(`.menuItemButton:id(blog)`)}`
+					`.mobile-menu .menuItemButton:id(blog)`
 				);
 
 				await expect(page).toHaveURL(getLocalePath(locale, "posts"));
@@ -142,9 +131,7 @@ test.describe.skip("Mobile Menu", () => {
 				await page.click(MOBILE_MENU_TRIGGER);
 
 				await page.click(
-					domUtil.scopeSelector(
-						`${mobileMenu} .menuItemButton:id(about-mobile)`
-					)
+					`.mobile-menu .menuItemButton:id(about-mobile)`
 				);
 
 				await expect(page).toHaveURL(localePath);

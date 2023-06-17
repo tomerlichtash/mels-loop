@@ -1,6 +1,4 @@
 import { test, expect, Page } from "@playwright/test";
-import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as stylesheet from "../../../src/components/note/note.st.css";
 import {
 	getFrontMatter,
 	getLocalePath,
@@ -15,9 +13,6 @@ import {
 import { NOTE_CONTENT_SELECTOR } from "../../utils/locators";
 import { SINGLE_WHITE_SPACE } from "../../utils/patterns";
 import { docIds } from "../doc-ids";
-
-const domUtil = new StylableDOMUtil(stylesheet);
-const contentSelector = domUtil.scopeSelector(NOTE_CONTENT_SELECTOR);
 
 test.describe.configure({ mode: "serial" });
 
@@ -51,8 +46,8 @@ test.describe("Annotations", () =>
 						)
 						.first()
 						.click();
-					await page.waitForSelector(contentSelector);
-					const textContent = await page.locator(contentSelector).textContent();
+					await page.waitForSelector(NOTE_CONTENT_SELECTOR);
+					const textContent = await page.locator(NOTE_CONTENT_SELECTOR).textContent();
 					expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
 					expect(
 						textContent.split(SINGLE_WHITE_SPACE).length,
@@ -66,7 +61,7 @@ test.describe("Annotations", () =>
 						stripMarkdown(textContent),
 						"term content should be equal to source"
 					).toEqual(getRawTerm(term));
-					await page.locator(".popoverClose").click();
+					await page.locator(".popover-close-button").click();
 				});
 			});
 		});

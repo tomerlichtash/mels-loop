@@ -3,59 +3,15 @@
 const path = require("path");
 const { withAxiom } = require("next-axiom");
 
-const {
-	StylableWebpackPlugin,
-	applyWebpackConfigStylableExcludes,
-} = require("@stylable/webpack-plugin");
-
-const StylableOptimizer = require("@stylable/optimizer").StylableOptimizer;
-const stylableOptimizer = new StylableOptimizer();
-
 const nextConfig = {
 	reactStrictMode: true,
 	optimizeFonts: true,
 	sassOptions: {
 		includePaths: [path.join(__dirname, "styles")],
 	},
-	webpack: (config, { webpack }) => {
-		const mockEnv = {
-			// mock public recaptcha site key
-			// https://developers.google.com/recaptcha/docs/faq#id-like-to-run-automated-tests-with-recaptcha.-what-should-i-do
-			NEXT_PUBLIC_RECAPTCHA_KEY: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
-		};
-		if (process.env.CI || process.env.ML_DEBUG) {
-			config.plugins.push(
-				new webpack.DefinePlugin({
-					"process.env": JSON.stringify(mockEnv),
-				})
-			);
-		}
-		// config.module.rules.push({
-		// 	test: /\.svg$/,
-		// 	use: ["@svgr/webpack"],
-		// });
-
-		/* exclude Stylable files from all other loaders */
-		applyWebpackConfigStylableExcludes(config);
-
-		/* add the Stylable plugin to the webpack configuration */
-		config.plugins.push(
-			new StylableWebpackPlugin({
-				optimizer: stylableOptimizer,
-				/* let NextJS handle assets */
-				filterAssets: () => false,
-				/* output CSS to the correct location */
-				filename: "static/css/stylable.[contenthash].css",
-			})
-		);
-		return config;
-	},
 	i18n: {
 		locales: ["en", "he"],
 		defaultLocale: "en",
-	},
-	images: {
-		domains: ["res.cloudinary.com"],
 	},
 	serverRuntimeConfig: {
 		PROJECT_ROOT: __dirname,

@@ -1,6 +1,4 @@
 import { test, expect, Page } from "@playwright/test";
-import { StylableDOMUtil } from "@stylable/dom-test-kit";
-import * as stylesheet from "../../src/components/note/note.st.css";
 import {
 	getFrontMatter,
 	getLocalePath,
@@ -24,13 +22,6 @@ import {
 import type { ITermTestData } from "../utils/types";
 import { SINGLE_WHITE_SPACE } from "../utils/patterns";
 import { docIds } from "../codex/doc-ids";
-
-const domUtil = new StylableDOMUtil(stylesheet);
-const contentSelector = domUtil.scopeSelector(NOTE_CONTENT_SELECTOR);
-
-const labelSelector = domUtil.scopeSelector(NOTE_LABEL_SELECTOR);
-const titleSelector = domUtil.scopeSelector(NOTE_TITLE_SELECTOR);
-const termSelector = domUtil.scopeSelector(NOTE_TITLE_TERM_ORIGIN);
 
 test.describe.configure({ mode: "serial" });
 
@@ -67,31 +58,31 @@ test.describe("Glossary", () => {
 						.click();
 					await page.waitForSelector(PORTAL_SELECTOR);
 
-					const glossaryLabel = await page.locator(labelSelector).textContent();
+					const glossaryLabel = await page.locator(NOTE_LABEL_SELECTOR).textContent();
 					expect(validateStringTranslation(glossaryLabel)).toBeTruthy();
 					expect(glossaryLabel).toEqual(
 						translate(locale, "NOTE_LABEL_GLOSSARY")
 					);
 
-					await expect(page.locator(titleSelector)).toHaveText(
+					await expect(page.locator(NOTE_TITLE_SELECTOR)).toHaveText(
 						translate(locale, term_key as string)
 					);
 
 					if (locale !== "en") {
 						const originTerm = translate("en", term_key as string);
 						const translatedTerm = await page
-							.locator(termSelector)
+							.locator(NOTE_TITLE_TERM_ORIGIN)
 							.textContent();
 
 						expect(validateStringTranslation(translatedTerm)).toBeTruthy();
 
 						await expect(
-							page.locator(termSelector),
+							page.locator(NOTE_TITLE_TERM_ORIGIN),
 							"Non-English glossary entries should show original term in English"
 						).toHaveText(originTerm);
 					}
 
-					const textContent = await page.locator(contentSelector).textContent();
+					const textContent = await page.locator(NOTE_CONTENT_SELECTOR).textContent();
 
 					expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
 
@@ -103,11 +94,11 @@ test.describe("Glossary", () => {
 					const sanitizedContent = stripMarkdown(content as string);
 
 					await expect(
-						page.locator(contentSelector),
+						page.locator(NOTE_CONTENT_SELECTOR),
 						"term content equal to source"
 					).toHaveText(sanitizedContent);
 
-					await page.locator(".popoverClose").click();
+					await page.locator(".popover-close-button").click();
 				});
 			});
 		});

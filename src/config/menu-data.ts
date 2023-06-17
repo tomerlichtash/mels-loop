@@ -24,7 +24,12 @@ export const MenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: ["preface", "mels-hack-the-missing-bits", "resources"],
+		children: [
+			"preface",
+			"mel-kaye-bio",
+			"mels-hack-the-missing-bits",
+			"resources",
+		],
 	},
 	{
 		id: "info",
@@ -58,7 +63,12 @@ export const MobileMenuSections: IMenuSection[] = [
 		keys: {
 			title: "MENU_SECTION_LABEL_ARTICLES",
 		},
-		children: ["preface", "mels-hack-the-missing-bits", "resources"],
+		children: [
+			"preface",
+			"mel-kaye-bio",
+			"mels-hack-the-missing-bits",
+			"resources",
+		],
 	},
 	{
 		id: "about",
@@ -105,6 +115,17 @@ export const MenuItems: IMenuItem[] = [
 		},
 		keys: {
 			title: "MENU_ITEM_LABEL_ID_PREFACE",
+			author: "AUTHOR_TOMER_LICHTASH",
+		},
+	},
+	{
+		id: "mel-kaye-bio",
+		type: "article",
+		meta: {
+			url: "/docs/the-story-of-mel/pages/mel-kaye-cv",
+		},
+		keys: {
+			title: "MENU_ITEM_LABEL_ID_MEL_KAYE_BIO",
 			author: "AUTHOR_TOMER_LICHTASH",
 		},
 	},
