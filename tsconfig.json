@@ -19,8 +19,10 @@
 	"include": [
 		"next-env.d.ts",
 		"globals.d.ts",
-		"**/**/*.ts",
-		"**/**/*.tsx",
+		"src/*.ts",
+		"src/*.tsx",
+		"src/**/*.ts",
+		"src/**/*.tsx",
 		"src/pages/docs/[id]/pages/[pageId]"
 	],
 	"exclude": ["node_modules", "**/snippets/**", "**/*.ignore.*"]
