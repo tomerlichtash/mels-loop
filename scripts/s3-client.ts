@@ -1,11 +1,5 @@
-import {
-	S3Client, ListObjectsV2Command,
-	PutObjectCommand, PutObjectCommandOutput
-} from "@aws-sdk/client-s3";
-// import { S3 } from "aws-sdk";
+import { S3Client } from "@aws-sdk/client-s3";
 import * as dotenv from "dotenv";
-import * as fsPath from "path";
-import * as fileSystem from "fs";
 
 const root = process.cwd();
 process.chdir(__dirname);
