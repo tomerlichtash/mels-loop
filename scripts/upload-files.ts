@@ -1,19 +1,15 @@
 
 
 import {
-	S3Client, ListObjectsV2Command,
-	PutObjectCommand, PutObjectCommandOutput, GetObjectCommand, PutObjectTaggingCommand, PutObjectTaggingCommandOutput
+	PutObjectCommand, PutObjectCommandOutput, GetObjectCommand,
+	PutObjectTaggingCommand, PutObjectTaggingCommandOutput
 } from "@aws-sdk/client-s3";
-// import { S3 } from "aws-sdk";
-import * as dotenv from "dotenv";
 import * as fsPath from "path";
 import * as fileSystem from "fs";
 import { IS3Proxy, createS3Proxy } from "./s3-client";
 
 
 const root = process.cwd();
-// process.chdir(__dirname);
-// dotenv.config();
 
 const USAGE = `Usage: ${fsPath.basename(__filename)} <path> [path ...] [--tags tag1 [tag2...]]`;
 
@@ -108,6 +104,11 @@ const parseArgs = (argv: string[]) => {
 		};
 	}
 
+	/**
+	 * splits comma separated arg into components, otherwise just copies the arg
+	 * @param args 
+	 * @returns 
+	 */
 	const parseList = (args: string[]): string[] => {
 		return args
 			.reduce((arr, arg) => {
