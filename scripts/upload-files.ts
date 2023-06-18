@@ -15,7 +15,7 @@ const root = process.cwd();
 // process.chdir(__dirname);
 // dotenv.config();
 
-const USAGE = `Usage: ${fsPath.basename(__filename)} <path> [path, ...] [--tags tag1[ tag2...]]`;
+const USAGE = `Usage: ${fsPath.basename(__filename)} <path> [path ...] [--tags tag1 [tag2...]]`;
 
 const findObject = async (proxy: IS3Proxy, name: string) => {
 	try {
