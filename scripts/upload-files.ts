@@ -7,6 +7,7 @@ import {
 import * as fsPath from "path";
 import * as fileSystem from "fs";
 import { IS3Proxy, createS3Proxy } from "./s3-client";
+import { lookup } from "mime-types";
 
 
 const root = process.cwd();
@@ -38,7 +39,8 @@ const uploadOneFile = async (proxy: IS3Proxy, path: string, tags: string[]) => {
 		const cmd = new PutObjectCommand({
 			Bucket: proxy.bucket,
 			Key: name,
-			Body: buf
+			Body: buf,
+			ContentType:  lookup(name) || "application/octet-stream"			
 		});
 		const res = await proxy.client.send(cmd) as PutObjectCommandOutput;
 		if (tags.length) {
