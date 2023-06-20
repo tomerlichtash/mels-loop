@@ -38,16 +38,7 @@
 				"uriFormat": "%s",
 				"action": "debugWithChrome"
 			}
-		},
-		{
-			"name": "Upload image",
-			"type": "node-terminal",
-			"request": "launch",
-			"command": "yarn upload c:\\\\temp\\\\moredfl.png --tags rabak,hashish man" ,
-			"env": {
-				"NODE_OPTIONS": "--inspect"
-			},
-		},
+		}
 
 	]
 }

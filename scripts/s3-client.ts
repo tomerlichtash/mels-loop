@@ -1,4 +1,4 @@
-import { S3Client } from "@aws-sdk/client-s3";
+import { GetObjectCommandOutput, S3Client } from "@aws-sdk/client-s3";
 import * as dotenv from "dotenv";
 
 const root = process.cwd();
@@ -7,6 +7,11 @@ dotenv.config();
 process.chdir(root);
 
 export interface IS3Proxy {
+	/**
+	 * caller's responsibility to urlencode
+	 * @param name 
+	 */
+	getObjectUrl(name: string): string;
 	readonly client: S3Client;
 	readonly bucket: string;
 	readonly region: string;
@@ -22,6 +27,10 @@ class S3Proxy implements IS3Proxy {
 				throw new Error(`Environment variables ${envKeys.join(',')} must be defined`);
 			}
 		})
+	}
+
+	public getObjectUrl(name: string): string {
+		return `https://${this.bucket}.s3.${this.region}.amazonaws.com/${name}`
 	}
 
 	public get bucket() {

@@ -14,6 +14,16 @@ const root = process.cwd();
 
 const USAGE = `Usage: ${fsPath.basename(__filename)} <path> [path ...] [--tags tag1 [tag2...]]`;
 
+const fileExists = async (fullPath: string): Promise<boolean> => {
+	try {
+		const stat = await fileSystem.promises.lstat(fullPath);
+		return Boolean(stat?.isFile());
+	}
+	catch (err) {
+		return false
+	}
+}
+
 const findObject = async (proxy: IS3Proxy, name: string) => {
 	try {
 		const cmd = new GetObjectCommand({
@@ -34,7 +44,7 @@ const uploadOneFile = async (proxy: IS3Proxy, path: string, tags: string[]) => {
 		const name = encodeURIComponent(fsPath.basename(path));
 		const found = await findObject(proxy, name);
 		if (found) {
-			throw new Error(`File ${name} already exists in bucket ${[proxy.bucket]}`)
+			throw new Error(`File ${name} already exists in bucket ${proxy.bucket}`)
 		}
 		const cmd = new PutObjectCommand({
 			Bucket: proxy.bucket,
@@ -61,7 +71,7 @@ const uploadOneFile = async (proxy: IS3Proxy, path: string, tags: string[]) => {
 		}
 		return {
 			...res,
-			url: `https://${proxy.bucket}.s3.${proxy.region}.amazonaws.com/${name}`
+			url: proxy.getObjectUrl(name)
 		}
 	}
 	catch (err) {
@@ -78,12 +88,13 @@ const uploadFiles = async (paths: string[], tags: string[]) => {
 	const proxy = createS3Proxy();
 	for (let path of paths) {
 		const fullPath = fsPath.resolve(root, path);
-		console.log(`uploading ${fullPath}`);
-		if (!fileSystem.existsSync(fullPath)) {
-			console.error(`File ${fullPath} not found`);
+		const exists = await fileExists(fullPath);
+		if (!exists) {
+			console.error(`File ${fullPath} not found or not a plain file`);
 			result.failed.push(fullPath);
 		}
 		else {
+			console.log(`uploading ${fullPath}`);
 			const fileRes = await uploadOneFile(proxy, fullPath, tags);
 			if (fileRes) {
 				result.uploaded.push(fileRes.url);
