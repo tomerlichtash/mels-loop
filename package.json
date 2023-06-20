@@ -50,14 +50,11 @@
 		"@radix-ui/react-tooltip": "1.0.2",
 		"@sendgrid/mail": "^7.7.0",
 		"@stitches/react": "^1.2.8",
-		"aws": "^0.0.3-2",
-		"aws-sdk": "^2.1399.0",
 		"cookies-next": "^2.1.1",
 		"date-fns": "^2.29.3",
 		"gray-matter": "^4.0.3",
 		"js-cookie": "^3.0.1",
 		"lodash.orderby": "^4.6.0",
-		"mime-types": "^2.1.35",
 		"next": "13.0.6",
 		"next-axiom": "^0.16.0",
 		"react": "18.2.0",
@@ -69,6 +66,8 @@
 		"ts-node": "^10.9.1"
 	},
 	"devDependencies": {
+		"aws-sdk": "^2.1399.0",
+		"mime-types": "^2.1.35",
 		"@next/env": "^13.0.6",
 		"@next/eslint-plugin-next": "^13.0.6",
 		"@playwright/test": "^1.28.1",
