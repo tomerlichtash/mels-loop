@@ -43,7 +43,7 @@ class S3Proxy implements IS3Proxy {
 
 	public get client(): S3Client {
 		if (!this._client) {
-			this._client = new (S3Client as any)({
+			this._client = new S3Client({
 				region: this.region
 			});
 		}
