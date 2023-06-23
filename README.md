@@ -9,3 +9,5 @@ Mel's Loop is a comprehensive companion and guide for _The Story of Mel_, an epi
 In Mel's Loop we will also collect a lot of sub-stories around _The Story of Mel_, its author, Ed Nather, and Mel Kaye himself. This is an historical (or rather an e-archeological) ongoing research into the world of Ed, Mel, their families and life stories, first generation computing and the birth of digital culture, hacker lore and more.
 
 Alongside _The Story of Mel_, Mel's Loop project is designed as an anthology for other stories, poems and relics in the Hacker Folklore genre. We acknowledge the aesthetic and literary value of such stories, and we aim at providing them with quality translations.
+
+#
