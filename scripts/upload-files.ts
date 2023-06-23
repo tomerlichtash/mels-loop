@@ -1,8 +1,7 @@
-
-
 import {
-	PutObjectCommand, PutObjectCommandOutput, GetObjectCommand,
-	PutObjectTaggingCommand, PutObjectTaggingCommandOutput
+	PutObjectCommand,
+	GetObjectCommand,
+	PutObjectTaggingCommand
 } from "@aws-sdk/client-s3";
 import * as fsPath from "path";
 import * as fileSystem from "fs";
@@ -52,7 +51,7 @@ const uploadOneFile = async (proxy: IS3Proxy, path: string, tags: string[]) => {
 			Body: buf,
 			ContentType:  lookup(name) || "application/octet-stream"			
 		});
-		const res = await proxy.client.send(cmd) as PutObjectCommandOutput;
+		const res = await proxy.client.send(cmd);
 		if (tags.length) {
 			const tcmd = new PutObjectTaggingCommand({
 				Key: name,
@@ -64,7 +63,7 @@ const uploadOneFile = async (proxy: IS3Proxy, path: string, tags: string[]) => {
 				},
 				Bucket: proxy.bucket
 			})
-			const tres = await proxy.client.send(tcmd) as PutObjectTaggingCommandOutput;
+			const tres = await proxy.client.send(tcmd);
 			if (!tres) {
 				console.error(`Error tagging object ${name}`);
 			}
@@ -75,7 +74,7 @@ const uploadOneFile = async (proxy: IS3Proxy, path: string, tags: string[]) => {
 		}
 	}
 	catch (err) {
-		console.error(`Error uploading ${path}:\n${err}`);
+		console.error(`Error uploading ${path}:\n`, err || null);
 		return null;
 	}
 }
@@ -135,7 +134,7 @@ const parseArgs = (argv: string[]) => {
 	const ind = argv.indexOf(__filename);
 	if (ind < 0 || ind === argv.length - 1) {
 		return error("no files provided");
-	};
+	}
 	const args = argv.slice(ind + 1);
 	const tagIndex = args.indexOf("--tags");
 	if (tagIndex < 0) {
@@ -184,4 +183,3 @@ uploadFiles(args.files, args.tags).then(result => {
 	.finally(() => {
 		process.exit();
 	});
-

@@ -1,4 +1,4 @@
-import { GetObjectCommandOutput, S3Client } from "@aws-sdk/client-s3";
+import { S3Client } from "@aws-sdk/client-s3";
 import * as dotenv from "dotenv";
 
 const root = process.cwd();
@@ -47,11 +47,10 @@ class S3Proxy implements IS3Proxy {
 				region: this.region
 			});
 		}
-		return this._client!;
+		return this._client;
 	}
 }
 
 export const createS3Proxy = (): IS3Proxy => {
 	return new S3Proxy();
 }
-
