@@ -11,5 +11,6 @@ export enum CONTENT_TYPES {
 	ANNOTATION = "annotations",
 }
 
+// Repo URL
 export const PUBLIC_PROJECT_GITHUB_ADDRESS =
 	"https://github.com/tomerlichtash/mels-loop";
