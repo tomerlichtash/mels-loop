@@ -1,1 +1,0 @@
-This folder contains self-documenting code and data snippets. Should be excluded by tsc
