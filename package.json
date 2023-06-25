@@ -29,6 +29,7 @@
 	],
 	"private": true,
 	"scripts": {
+		"upload": "npx ts-node scripts/upload-files.ts",
 		"clean": "rm -rf .next",
 		"dev": "next dev",
 		"build": "next build",
