@@ -1,7 +1,7 @@
 import sendgrid from "@sendgrid/mail";
 import { NextApiRequest, NextApiResponse } from "next";
 
-sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+sendgrid.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY);
 
 export interface IEmailTemplate extends NextApiRequest {
 	fullname: string;
