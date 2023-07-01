@@ -25,7 +25,7 @@ export const Form = ({
 	const [loadingIndicator, setLoadingIndicator] = useState(false);
 	const [successMessage, setSuccessMessage] = useState(false);
 	const [failureMessage, setFailureMessage] = useState(false);
-	const [sendButtonState, setSendButtonState] = useState(false);
+	const [sendButtonState, setSendButtonState] = useState(!useCaptcha);
 	const [highlightCaptcha, setHighlightCaptcha] = useState(false);
 	const [captchaError, setCaptchaError] = useState("");
 
@@ -83,8 +83,10 @@ export const Form = ({
 	const handleSubmit = async () => {
 		if (validateAllFields()) {
 			if (!sendButtonState) {
-				setHighlightCaptcha(true);
-				captchaRef.current.focus();
+				if (useCaptcha) {
+					setHighlightCaptcha(true);
+					captchaRef.current.focus();
+				}
 				return;
 			}
 			await submitForm();
