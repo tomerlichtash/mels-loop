@@ -124,7 +124,7 @@ export const ContactForm = ({
 				submitButtonLabel={compLocale.buttonLabel}
 				submitButtonLabelActive={compLocale.buttonLabelActive}
 				className={st(classes.form, className)}
-				useCaptcha={false}
+				useCaptcha={true}
 			/>
 		</div>
 	);
