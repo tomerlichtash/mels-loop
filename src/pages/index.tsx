@@ -27,10 +27,8 @@ const Index: NextPage<IPageProps> = (props) => {
 	return (
 		<Layout>
 			<article className="article">
-			<div className="stickySection section">
-					<span className="stickyBadge">
-						{translate("STICKY_BADGE_LABEL")}
-					</span>
+				<div className="stickySection section">
+					<span className="stickyBadge">{translate("STICKY_BADGE_LABEL")}</span>
 					<div className="sticky">
 						<a href={`${locale}/docs/the-story-of-mel/pages/mel-kaye-cv`}>
 							<div
@@ -54,9 +52,7 @@ const Index: NextPage<IPageProps> = (props) => {
 										<p className="stickyItemTitle">
 											{translate("STICKY_TITLE")}
 										</p>
-										<p className="stickyItemDate">
-											{translate("STICKY_DATE")}
-										</p>
+										<p className="stickyItemDate">{translate("STICKY_DATE")}</p>
 										<p className="stickyItemBody">
 											{translate("STICKY_SUBTITLE")}{" "}
 										</p>
