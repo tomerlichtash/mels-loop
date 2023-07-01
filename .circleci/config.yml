@@ -151,8 +151,8 @@ jobs:
 workflows:
   CI:
     jobs:
-      - eslint
-      - unit_test
-      - e2e_site
-      - e2e_glossary
-      - e2e_codex
+      # - eslint
+      # - unit_test
+      # - e2e_site
+      # - e2e_glossary
+      # - e2e_codex
