@@ -6,11 +6,7 @@ export interface PageProps extends ComponentProps {
 }
 
 export const Page = ({ nodes, className }: PageProps): JSX.Element => {
-	return (
-		<main className="page">
-			<div className="gutter">{nodes}</div>
-		</main>
-	);
+	return <main className="page">{nodes}</main>;
 };
 
 export default Page;

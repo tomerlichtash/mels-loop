@@ -90,6 +90,7 @@ export default function Layout({ children, title }: ILayoutProps) {
 				id="outer-container"
 				className="layout"
 				data-text-direction={textDirection}
+				data-theme="light"
 			>
 				<ScrollArea>
 					<div id="page-wrap">

@@ -21,10 +21,10 @@ class CustomDocument extends Document<CustomDocumentProps> {
 		const mlConfig = new MLConfig({ theme: "light" });
 		const props = await Document.getInitialProps(ctx);
 		// @ts-expect-error Weird NextJS issue doesn't declare `cookies` in request
-		const { cookies } = ctx.req;
-		cookies &&
-			cookies["theme"] &&
-			mlConfig.setTheme((cookies["theme"] || "light") as Themes);
+		// const { cookies } = ctx.req;
+		// cookies &&
+		// 	cookies["theme"] &&
+		// 	mlConfig.setTheme((cookies["theme"] || "light") as Themes);
 		return { ...props, mlConfig };
 	}
 

@@ -106,37 +106,40 @@ export const MobileMenu = ({
 	const side = right ? "right" : "left";
 
 	return (
-		<Menu
-			pageWrapId={"page-wrap"}
-			outerContainerId={"outer-container"}
-			burgerButtonClassName={`buger-button-${side}`}
-			menuClassName="burger-menu"
-			burgerBarClassName="data-burger-bars"
-			crossButtonClassName={`cross-button-${side}`}
-			crossClassName="burger-cross"
-			overlayClassName="overlay"
-			itemListClassName="item-list"
-			styles={menuStyles}
-			right={right}
-			className="mobile-menu"
-		>
-			<div className="menu">
-				<div className="container">
-					<Header className="menu-header" />
-					<div className="strip"></div>
-					<div className="toolbar">
-						<LocaleSelector
-						// className={st(classes.toolbarItem, classes.localeSelector)}
-						/>
-						{/* <ThemeSelector
-							className={st(classes.toolbarItem, classes.themeSelector)}
-						/> */}
-					</div>
-				</div>
-				<div className="content">{menuItems}</div>
-			</div>
-		</Menu>
+		<></>
+		// <Menu
+		// 	pageWrapId={"page-wrap"}
+		// 	outerContainerId={"outer-container"}
+		// 	burgerButtonClassName={`buger-button-${side}`}
+		// 	menuClassName="burger-menu"
+		// 	burgerBarClassName="data-burger-bars"
+		// 	crossButtonClassName={`cross-button-${side}`}
+		// 	crossClassName="burger-cross"
+		// 	overlayClassName="overlay"
+		// 	itemListClassName="item-list"
+		// 	styles={menuStyles}
+		// 	right={right}
+		// 	className="mobile-menu"
+		// ></Menu>
 	);
 };
 
 export default MobileMenu;
+/**
+<div className="menu">
+<div className="container">
+	<Header className="menu-header" />
+	<div className="strip"></div>
+	<div className="toolbar">
+		<LocaleSelector
+		// className={st(classes.toolbarItem, classes.localeSelector)}
+		/>
+		{/* <ThemeSelector
+			className={st(classes.toolbarItem, classes.themeSelector)}
+		/> 
+	</div>
+</div>
+<div className="content">{menuItems}</div>
+</div>
+
+*/

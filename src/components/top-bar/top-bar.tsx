@@ -10,10 +10,10 @@ export default function TopBar({ className }: ComponentProps) {
 	// const { locale, textDirection } = useContext(ReactLocaleContext);
 	return (
 		<div className="top-bar">
-			<Header />
+			{/* <Header /> */}
 			<div className="menu">
-				<MenuProvider />
-				<LocaleSelector />
+				{/* <MenuProvider /> */}
+				{/* <LocaleSelector /> */}
 				{/* <ThemeSelector className={st(classes.themeSelector, classes.item)} /> */}
 			</div>
 		</div>

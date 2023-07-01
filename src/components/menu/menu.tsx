@@ -117,7 +117,7 @@ const renderSingleSection = (item: IMenuData, textDirection: TextDirection) => {
 		const { title, description, cta_label } = keys;
 		return (
 			<NavigationMenuItem key={mlUtils.uniqueId()} className="menu-item">
-				<MenuTrigger title={title} url={url} />
+				{/* <MenuTrigger title={title} url={url} /> */}
 				<NavigationMenuContent asChild>
 					<div className="menu-content">
 						<p className="abstract">{description}</p>

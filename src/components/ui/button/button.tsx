@@ -51,8 +51,7 @@ export const Button = ({
 		</span>
 	);
 
-	debugger;
-	if (!link && !target && !callback) {
+		if (!link && !target && !callback) {
 		return (
 			<span {...props} {...rest}>
 				{btnContent}
