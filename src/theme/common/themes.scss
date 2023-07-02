@@ -1,0 +1,22 @@
+$themes: (
+	light: (
+		colors: (
+			surface: #fff,
+			primary: #3770c5,
+			secondary: #bd5e91,
+			link: #3770c5,
+			error: red,
+			success: green,
+		),
+	),
+	dark: (
+		colors: (
+			surface: #333,
+			primary: #bd5e91,
+			secondary: #bd5e91,
+			link: #bd5e91,
+			error: red,
+			success: green,
+		),
+	),
+);

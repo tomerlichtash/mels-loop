@@ -1,130 +1,130 @@
-$color0: #ffffff;
-$color1: #fcfbf9;
-$color2: #f2efe4;
-$color3: #e6e3d8;
-$color4: #ccc9c0;
-$color5: #a6a49c;
-$color6: #666560;
-$color7: #434440;
-$color8: #20201e;
-$color9: #fd658a;
-$color9_1: #f178b6;
-$color9_2: #f178b6;
-$color10: #bd5e91;
-$color11: #70538a;
-$color12: #4e4a7a;
-$color13: #3770c5;
-$color14: #274f8c;
-$color15: #1a355f;
-$color16: #00173a;
-$color17: #0a0;
-$color18: #c00;
-$hsl1: hsl(206 22% 7% / 35%) 0px 10px 38px -10px;
-$hsl2: hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-$shadow0: $hsl1, $hsl2;
+// $color0: #ffffff;
+// $color1: #fcfbf9;
+// $color2: #f2efe4;
+// $color3: #e6e3d8;
+// $color4: #ccc9c0;
+// $color5: #a6a49c;
+// $color6: #666560;
+// $color7: #434440;
+// $color8: #20201e;
+// $color9: #fd658a;
+// $color9_1: #f178b6;
+// $color9_2: #f178b6;
+// $color10: #bd5e91;
+// $color11: #70538a;
+// $color12: #4e4a7a;
+// $color13: #3770c5;
+// $color14: #274f8c;
+// $color15: #1a355f;
+// $color16: #00173a;
+// $color17: #0a0;
+// $color18: #c00;
+// $hsl1: hsl(206 22% 7% / 35%) 0px 10px 38px -10px;
+// $hsl2: hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+// $shadow0: $hsl1, $hsl2;
 
-// light theme
-$level0: $color0;
-$level1: $color1;
-$level2: $color2;
-$level3: $color3;
-$level4: $color4;
-$level5: $color5;
-$level6: $color6;
-$level7: $color7;
-$level8: $color8;
-$primary1: $color9;
-$primary1_1: $color9_1;
-$primary2: $color10;
-$primary3: $color11;
-$primary4: $color12;
-$accent1: $color13;
-$accent2: $color14;
-$success1: $color17;
-$fail1: $color18;
+// // light theme
+// $level0: $color0;
+// $level1: $color1;
+// $level2: $color2;
+// $level3: $color3;
+// $level4: $color4;
+// $level5: $color5;
+// $level6: $color6;
+// $level7: $color7;
+// $level8: $color8;
+// $primary1: $color9;
+// $primary1_1: $color9_1;
+// $primary2: $color10;
+// $primary3: $color11;
+// $primary4: $color12;
+// $accent1: $color13;
+// $accent2: $color14;
+// $success1: $color17;
+// $fail1: $color18;
 
-/* LAYOUT */
-$LAYOUT_SCROLLBAR_COLOR: $level3;
-$LAYOUT_BG_COLOR: $level1;
-$LAYOUT_TEXT_COLOR: $level8;
-$LAYOUT_ALT_BG_COLOR: $level2;
-$LAYOUT_TEXT_COLOR_ALT: $level4;
-$LAYOUT_SECTION_BG_COLOR: $level0;
-$LAYOUT_SECTION_SHADOW: $shadow0;
+// /* LAYOUT */
+// $LAYOUT_SCROLLBAR_COLOR: $level3;
+// $LAYOUT_BG_COLOR: $level1;
+// $LAYOUT_TEXT_COLOR: $level8;
+// $LAYOUT_ALT_BG_COLOR: $level2;
+// $LAYOUT_TEXT_COLOR_ALT: $level4;
+// $LAYOUT_SECTION_BG_COLOR: $level0;
+// $LAYOUT_SECTION_SHADOW: $shadow0;
 
-/* HEADINGS */
-$HEADING1_TEXT_COLOR: $level8;
-$HEADING2_TEXT_COLOR: $level6;
-$HEADING3_TEXT_COLOR: $level6;
-$HEADING4_TEXT_COLOR: $level5;
-$HEADING5_TEXT_COLOR: $level5;
-$HEADING6_TEXT_COLOR: $level5;
-$HEADING1_TEXT_ALT_COLOR: $level6;
+// /* HEADINGS */
+// $HEADING1_TEXT_COLOR: $level8;
+// $HEADING2_TEXT_COLOR: $level6;
+// $HEADING3_TEXT_COLOR: $level6;
+// $HEADING4_TEXT_COLOR: $level5;
+// $HEADING5_TEXT_COLOR: $level5;
+// $HEADING6_TEXT_COLOR: $level5;
+// $HEADING1_TEXT_ALT_COLOR: $level6;
 
-/* RUNNING TEXT */
-$BODY_TEXT_COLOR: $level6;
+// /* RUNNING TEXT */
+// $BODY_TEXT_COLOR: $level6;
 
-/* LINK */
-$LINK_TEXT_COLOR: $accent1;
-$LINK_HOVER_TEXT_COLOR: $primary2;
+// /* LINK */
+// $LINK_TEXT_COLOR: $accent1;
+// $LINK_HOVER_TEXT_COLOR: $primary2;
 
-/* CODE */
-$CODE_TEXT_COLOR: $level8;
-$CODE_BLOCK_BG_COLOR: $level3;
-$CODE_INLINE_BORDER_COLOR: $level4;
+// /* CODE */
+// $CODE_TEXT_COLOR: $level8;
+// $CODE_BLOCK_BG_COLOR: $level3;
+// $CODE_INLINE_BORDER_COLOR: $level4;
 
-/* HIGHLIGHT */
-$HIGHLIGHT_OPEN_TEXT_COLOR: $level0;
-$HIGHLIGHT_OPEN_BG_COLOR: $primary2;
+// /* HIGHLIGHT */
+// $HIGHLIGHT_OPEN_TEXT_COLOR: $level0;
+// $HIGHLIGHT_OPEN_BG_COLOR: $primary2;
 
-/* DIALOG */
-$DIALOG_BG_COLOR: $level1;
-$DIALOG_TOOLBAR_ICON_FILL_COLOR: $level5;
-$DIALOG_TOOLBAR_ICON_FILL_HOVER_COLOR: $level8;
-$DIALOG_TOOLBAR_ICON_FILL_HOVER_BG_COLOR: $level5;
-$DIALOG_TOOLBAR_ICON_FILL_ACTIVE_COLOR: $primary2;
-$DIALOG_TOOLBAR_SEPERATOR: $level4;
-$DIALOG_TRIGGER_DECORATION_COLOR: $level5;
-$DIALOG_TOPIC_BG_COLOR: $level2;
-$DIALOG_TOPIC_TEXT_COLOR: $primary2;
+// /* DIALOG */
+// $DIALOG_BG_COLOR: $level1;
+// $DIALOG_TOOLBAR_ICON_FILL_COLOR: $level5;
+// $DIALOG_TOOLBAR_ICON_FILL_HOVER_COLOR: $level8;
+// $DIALOG_TOOLBAR_ICON_FILL_HOVER_BG_COLOR: $level5;
+// $DIALOG_TOOLBAR_ICON_FILL_ACTIVE_COLOR: $primary2;
+// $DIALOG_TOOLBAR_SEPERATOR: $level4;
+// $DIALOG_TRIGGER_DECORATION_COLOR: $level5;
+// $DIALOG_TOPIC_BG_COLOR: $level2;
+// $DIALOG_TOPIC_TEXT_COLOR: $primary2;
 
-/* INPUT */
-$INPUT_LABEL_TEXT_COLOR: $level6;
-$INPUT_LABEL_HOVER_BG_COLOR: $level2;
-$INPUT_BORDER_COLOR: $level4;
-$INPUT_BORDER_COLOR_FOCUS: $accent1;
-$INPUT_PLACEHOLDER_TEXT_COLOR: $level5;
-$INPUT_VALIDATION_SUCCESS_COLOR: $success1;
-$INPUT_VALIDATION_FAIL_COLOR: $fail1;
-$INPUT_TEXT_COLOR: $level8;
+// /* INPUT */
+// $INPUT_LABEL_TEXT_COLOR: $level6;
+// $INPUT_LABEL_HOVER_BG_COLOR: $level2;
+// $INPUT_BORDER_COLOR: $level4;
+// $INPUT_BORDER_COLOR_FOCUS: $accent1;
+// $INPUT_PLACEHOLDER_TEXT_COLOR: $level5;
+// $INPUT_VALIDATION_SUCCESS_COLOR: $success1;
+// $INPUT_VALIDATION_FAIL_COLOR: $fail1;
+// $INPUT_TEXT_COLOR: $level8;
 
-/* FORM SUBMIT BUTTON */
-$FORM_SUBMIT_BG_COLOR: $accent1;
-$FORM_SUBMIT_BG_COLOR_HOVER: $accent2;
-$FORM_SUBMIT_TEXT_COLOR: $level1;
+// /* FORM SUBMIT BUTTON */
+// $FORM_SUBMIT_BG_COLOR: $accent1;
+// $FORM_SUBMIT_BG_COLOR_HOVER: $accent2;
+// $FORM_SUBMIT_TEXT_COLOR: $level1;
 
-/* TOP BAR MENU */
-$MENU_ITEM_HOVER_BG_COLOR: $level3;
+// /* TOP BAR MENU */
+// $MENU_ITEM_HOVER_BG_COLOR: $level3;
 
-/* MOBILE MENU */
-$MOBILE_MENU_BG_COLOR: $level7;
-$MOBILE_MENU_ITEM_TEXT_COLOR: $primary1_1;
-$MOBILE_MENU_ITEM_SUBTITLE_TEXT_COLOR: $level0;
-$MOBILE_MENU_ITEM_HOVER_TEXT_COLOR: $primary1;
-$MOBILE_MENU_ITEM_HOVER_BG_COLOR: $level8;
-$MOBILE_MENU_ITEM_BORDER_COLOR: $level6;
-$MOBILE_MENU_SECTION_TITLE_TEXT_COLOR: $level5;
+// /* MOBILE MENU */
+// $MOBILE_MENU_BG_COLOR: $level7;
+// $MOBILE_MENU_ITEM_TEXT_COLOR: $primary1_1;
+// $MOBILE_MENU_ITEM_SUBTITLE_TEXT_COLOR: $level0;
+// $MOBILE_MENU_ITEM_HOVER_TEXT_COLOR: $primary1;
+// $MOBILE_MENU_ITEM_HOVER_BG_COLOR: $level8;
+// $MOBILE_MENU_ITEM_BORDER_COLOR: $level6;
+// $MOBILE_MENU_SECTION_TITLE_TEXT_COLOR: $level5;
 
-/* DARK LOCALE SELECTOR */
-$DARK_LOCALE_SELECTOR_TEXT_COLOR: $level1;
-$DARK_LOCALE_SELECTOR_HOVER_BG_COLOR: $level8;
-$DARK_LOCALE_SELECTOR_ITEM_SELECTED_TEXT_COLOR: $level0;
-$DARK_LOCALE_SELECTOR_ITEM_SELECTED_BG_COLOR: $primary1;
+// /* DARK LOCALE SELECTOR */
+// $DARK_LOCALE_SELECTOR_TEXT_COLOR: $level1;
+// $DARK_LOCALE_SELECTOR_HOVER_BG_COLOR: $level8;
+// $DARK_LOCALE_SELECTOR_ITEM_SELECTED_TEXT_COLOR: $level0;
+// $DARK_LOCALE_SELECTOR_ITEM_SELECTED_BG_COLOR: $primary1;
 
-/* BORDER */
-$CONTENT_BORDER_COLOR: $level4;
+// /* BORDER */
+// $CONTENT_BORDER_COLOR: $level4;
 
-/* GRADIENT */
-$GRADIENT1_START: $primary1;
-$GRADIENT1_MID: $primary3;
-$GRADIENT1_END: $primary4;
+// /* GRADIENT */
+// $GRADIENT1_START: $primary1;
+// $GRADIENT1_MID: $primary3;
+// $GRADIENT1_END: $primary4;

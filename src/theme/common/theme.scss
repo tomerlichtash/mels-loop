@@ -1,7 +1,7 @@
 $color2: #f2efe4;
 $color6: #666560;
 
-$factor0: 25%;
+$factor0: 5%;
 
 @function contrastText($color) {
 	$result: invert($color);
@@ -24,7 +24,20 @@ $factor0: 25%;
 	@return $map;
 }
 
-@mixin Theme($theme) {
+@mixin Theme(
+	$theme: (
+		colors: (
+			surface,
+			primary,
+			secondary,
+			link,
+			error,
+			success,
+		),
+	)
+) {
+	$colors-map: ();
+	$gradients: map-get($theme, gradients);
 	$pallette: (
 		surface: map-get(map-get($theme, colors), surface),
 		primary: map-get(map-get($theme, colors), primary),
@@ -33,9 +46,6 @@ $factor0: 25%;
 		error: map-get(map-get($theme, colors), error),
 		success: map-get(map-get($theme, colors), success),
 	);
-
-	$colors-map: ();
-
 	@each $key, $value in $pallette {
 		$map: ();
 		$map: map-merge(
@@ -49,10 +59,10 @@ $factor0: 25%;
 
 	background-color: map-get(map-get($colors-map, surface), main);
 
-	@include Typography($colors-map);
+	@include ThemeColors($colors-map, $gradients);
 }
 
-@mixin Typography(
+@mixin ThemeColors(
 	$colors: (
 		surface,
 		primary,
@@ -60,17 +70,15 @@ $factor0: 25%;
 		link,
 		error,
 		success,
+	),
+	$gradients: (
+		gradient1: (
+			start,
+			middle,
+			end,
+		),
 	)
 ) {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		color: map-get(map-get($colors, surface), contrast);
-	}
-
 	[data-link-type],
 	a {
 		color: map-get(map-get($colors, link), main);
@@ -86,8 +94,36 @@ $factor0: 25%;
 		}
 	}
 
-	p {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	ul,
+	ol,
+	table,
+	blockquote,
+	p,
+	pre {
 		color: map-get(map-get($colors, surface), contrast);
+	}
+
+	pre {
+		background-color: map-get(map-get($colors, surface), dark);
+	}
+
+	footer {
+		background-color: map-get(map-get($colors, surface), dark);
+	}
+
+	.strip {
+		background: linear-gradient(
+			90deg,
+			map-get(map-get($gradients, gradient1), start) 0%,
+			map-get(map-get($gradients, gradient1), middle) 50%,
+			map-get(map-get($gradients, gradient1), end) 100%
+		);
 	}
 
 	// // COMPONENTS

@@ -1,48 +1,111 @@
 @use "./reset";
+@use "./theme";
 // @use "./colors";
 // @use "./typography";
 // @use "./animations";
 // @use "./content-blocks";
 // @use "./menu";
 // @use "./radix";
-@use "./theme";
 
 body {
 	font-size: 16px;
 }
-
 .page {
 	margin: 0 auto;
-	// min-height: 75vh;
 	max-width: 1200px;
+	padding: 0 4vh;
+	// min-height: 75vh;
 	// min-width: 100%;
 	// padding-top: 80px;
-	padding: 0 4vh;
 
 	// DEBUG
-	.section {
-		&:hover {
-			outline: 1px dashed green;
-			background: rgba(0, 255, 0, 0.1);
-		}
-	}
+	// .section {
+	// 	&:hover {
+	// 		outline: 1px dashed green;
+	// 		background: rgba(0, 255, 0, 0.1);
+	// 	}
+	// }
 }
 
-@mixin font($size, $weight, $lineHeight) {
-	font-size: $size;
-	line-height: $lineHeight;
-	font-weight: $weight;
-}
+$hsl1: hsl(206 22% 7% / 35%) 0px 10px 38px -10px;
+$hsl2: hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+$shadow0: $hsl1, $hsl2;
 
+$pallette: (
+	color0: #ffffff,
+	color1: #fcfbf9,
+	color2: #f2efe4,
+	color3: #e6e3d8,
+	color4: #ccc9c0,
+	color5: #a6a49c,
+	color6: #666560,
+	color7: #434440,
+	color8: #20201e,
+	color9: #fd658a,
+	color9_1: #f178b6,
+	color10: #bd5e91,
+	color11: #70538a,
+	color12: #4e4a7a,
+	color13: #3770c5,
+	color14: #274f8c,
+	color15: #1a355f,
+	color16: #00173a,
+);
+
+// COLORS
 $themes: (
 	light: (
 		colors: (
-			surface: #fff,
+			surface: #f2efe4,
 			primary: #3770c5,
 			secondary: #bd5e91,
 			link: #3770c5,
 			error: red,
 			success: green,
+		),
+		static: (
+			g: (
+				color0: map-get($pallette, color0),
+				color1: map-get($pallette, color1),
+				color2: map-get($pallette, color2),
+				color3: map-get($pallette, color3),
+				color4: map-get($pallette, color4),
+				color5: map-get($pallette, color5),
+				color6: map-get($pallette, color6),
+				color7: map-get($pallette, color7),
+				color8: map-get($pallette, color8),
+			),
+			r: (
+				color9: map-get($pallette, color9),
+				color9_1: map-get($pallette, color9_1),
+				color10: map-get($pallette, color10),
+				color11: map-get($pallette, color11),
+				color12: map-get($pallette, color12),
+			),
+			b: (
+				color13: map-get($pallette, color13),
+				color14: map-get($pallette, color14),
+				color15: map-get($pallette, color15),
+				color16: map-get($pallette, color16),
+			),
+		),
+		shadow: (
+			shadow0: $shadow0,
+		),
+		ui: (
+			footer: (
+				color1: #f2efe4,
+			),
+		),
+		factor: (
+			base: 25%,
+		),
+		gradients: (
+			gradient1: (
+				start: #fd658a,
+				middle: #70538a,
+				end: #4e4a7a,
+			),
 		),
 	),
 	dark: (
@@ -54,6 +117,19 @@ $themes: (
 			error: red,
 			success: green,
 		),
+		shadow: (
+			shadow0: $shadow0,
+		),
+		gradients: (
+			gradient1: (
+				start: #4e4a7a,
+				middle: #70538a,
+				end: #fd658a,
+			),
+		),
+		factor: (
+			base: 25%,
+		),
 	),
 );
 
@@ -64,94 +140,133 @@ $themes: (
 	@include theme.Theme(map-get($themes, dark));
 }
 
+// FONTS
+@mixin font($size, $weight, $lineHeight) {
+	font-size: $size;
+	line-height: $lineHeight;
+	font-weight: $weight;
+}
+
+$FONT_FAMILY_1: "Roboto Slab", serif;
+$FONT_FAMILIY_2: "Assistant", sans-serif;
 $FONT_WEIGHT_REGULAR: 300;
 $FONT_WEIGHT_MEDIUM: 500;
 $FONT_WEIGHT_BOLD: 700;
 $FONT_WEIGHT_THIN: 100;
 
-$font1: "Roboto Slab", serif;
-$font2: "Assistant", sans-serif;
-
 [data-text-direction="ltr"] {
-	font-family: $font1;
+	font-family: $FONT_FAMILY_1;
 	direction: ltr;
 }
 [data-text-direction="rtl"] {
-	font-family: $font2;
+	font-family: $FONT_FAMILIY_2;
 	direction: rtl;
 }
 
 h1 {
 	@include font(2.5vmax, $FONT_WEIGHT_BOLD, 3vmax);
-	margin-bottom: 1.302vmax;
 }
 h2 {
 	@include font(2.03vmax, $FONT_WEIGHT_MEDIUM, 3vmax);
-	margin-bottom: 1.202vmax;
 }
 h3 {
 	@include font(1.614vmax, $FONT_WEIGHT_THIN, 2vmax);
-	margin-bottom: 1.102vmax;
 }
 h4 {
 	@include font(1.302vmax, $FONT_WEIGHT_THIN, 2vmax);
-	margin-bottom: 1.002vmax;
 }
 h5 {
 	@include font(1.241vmax, $FONT_WEIGHT_THIN, 1.6vmax);
-	margin-bottom: 1vmax;
 }
 h6 {
 	@include font(1.041vmax, $FONT_WEIGHT_THIN, 1.6vmax);
-	margin-bottom: 1.302vmax;
 }
+ul li,
+ol li,
+table,
 p {
 	@include font(1vmax, $FONT_WEIGHT_REGULAR, 1.5vmax);
-	margin-bottom: 1vmax;
 }
 blockquote {
 	@include font(1vmax, $FONT_WEIGHT_BOLD, 1.5vmax);
+}
+small {
+	@include font(0.9vmax, $FONT_WEIGHT_REGULAR, 1.4vmax);
+}
+
+h1 {
+	margin-bottom: 1.302vmax;
+}
+h2 {
+	margin-bottom: 1.202vmax;
+}
+h3 {
+	margin-bottom: 1.102vmax;
+}
+h4 {
+	margin-bottom: 1.002vmax;
+}
+h5 {
+	margin-bottom: 1vmax;
+}
+h6 {
+	margin-bottom: 1.302vmax;
+}
+ul li,
+ol li {
+}
+p {
+	margin-bottom: 1vmax;
+}
+blockquote {
 	margin: 0;
 	padding: 0;
 }
 small {
 	display: block;
-	@include font(0.9vmax, $FONT_WEIGHT_REGULAR, 1.4vmax);
 }
 
 [data-link-type],
 a {
+	cursor: pointer;
 	&:hover {
 		text-decoration: underline;
 	}
 }
 
-[data-radix-scroll-area-viewport] {
-	height: 100% !important;
+code {
+	display: block;
+	margin: 1rem;
 }
-[data-radix-popper-content-wrapper] {
-	z-index: 1 !important;
+
+table {
+	padding: 0.25rem 0.5rem;
+	font-size: 1vmax;
+	border: 1px solid;
 }
 
 // LAYOUT
-
-[data-link-type] {
-	cursor: pointer;
-}
 .annotation {
+	font-size: 0.8vmax;
+	position: relative;
+	top: -0.5vmax;
 	&::before {
 		content: "[";
 		margin-right: 0.05rem;
+		opacity: 0.8;
 	}
 	&::after {
 		content: "]";
 		margin-left: 0.05rem;
+		opacity: 0.8;
 	}
 	.content::after {
 		content: attr(data-prefix) attr(data-seq);
+		font-weight: 500;
 	}
 }
 
+// CONTENT COMPONENTS
 .line {
 	display: block;
 }
@@ -305,7 +420,7 @@ a {
 }
 .strip {
 	height: 4px;
-	background: linear-gradient(90deg, #fff 0%, #c0c0c0 50%, #000 100%);
+	// background: linear-gradient(90deg, #fff 0%, #c0c0c0 50%, #000 100%);
 }
 
 // popover close
@@ -371,3 +486,11 @@ a {
 // .NavigationMenuViewport {
 // 	background-color: colors.$level0;
 // }
+
+// RADIX
+[data-radix-scroll-area-viewport] {
+	height: 100% !important;
+}
+[data-radix-popper-content-wrapper] {
+	z-index: 1 !important;
+}

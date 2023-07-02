@@ -7,7 +7,7 @@ import StyleGuideComponents from "./style-guide-components";
 const StyleGuide: NextPage<IPageProps> = () => {
 	return (
 		<Layout>
-			<StyleGuideComponents />
+			<StyleGuideComponents theme="light" />
 			<StyleGuideComponents theme="dark" />
 		</Layout>
 	);
