@@ -4,6 +4,7 @@ import { ComponentProps } from "../../interfaces/models";
 import { Button } from "../ui";
 import { TextDirection } from "../../interfaces/locale-context";
 import { PUBLIC_PROJECT_GITHUB_ADDRESS } from "../../consts";
+import styles from "./footer.module.scss";
 
 export interface IFooterProps extends ComponentProps {
 	textDirection: TextDirection;
@@ -16,8 +17,9 @@ export const Footer = ({ textDirection }: IFooterProps): JSX.Element => {
 		"SITE_LICENSE_ATTRS"
 	)}`;
 	return (
-		<footer className="footer" data-text-direction={textDirection}>
+		<footer className={styles.footer} data-text-direction={textDirection}>
 			<div className="strip"></div>
+			<h1>test</h1>
 			<div className="page-container">
 				<div className="layout">
 					<div className="column">

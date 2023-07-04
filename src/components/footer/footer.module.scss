@@ -1,0 +1,10 @@
+// @use "../../theme/common/theme.scss";
+
+footer.footer {
+	background: var(--footer-background-color);
+
+	--h1-font-size: 100px;
+	h1 {
+		color: var(--color-primary-dark);
+	}
+}

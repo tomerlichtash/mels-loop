@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Figure } from "../components/content/content-blocks";
+import React from "react";
 
 const StyleGuideComponents = ({ theme }) => {
 	return (
 		<div data-theme={theme || "light"}>
 			<div className="strip"></div>
+			<div className="logo"></div>
 			<section className="section">
 				<main>
 					<h1>Heading 1</h1>
@@ -58,7 +58,6 @@ const StyleGuideComponents = ({ theme }) => {
 								className="trigger"
 								data-popover-visibility="false"
 								tabIndex={1}
-								type="button"
 								aria-haspopup="dialog"
 								aria-expanded="false"
 								aria-controls="radix-:rch:"

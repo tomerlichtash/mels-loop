@@ -1,0 +1,71 @@
+@function get($theme, $prop, $map) {
+	@return map-get(map-get($theme, $prop), $map);
+}
+
+@mixin cssVars($themeIndex) {
+	$colors: map-get($themeIndex, color);
+	$fonts: map-get($themeIndex, typography);
+	// $gradient: map-get(light.$index, gradient);
+	// $logo: map-get($themeIndex, logo);
+
+	// COLORS
+	--color-surface-main: #{get($colors, surface, main)};
+	--color-surface-dark: #{get($colors, surface, dark)};
+	--color-surface-light: #{get($colors, surface, light)};
+	--color-surface-contrast: #{get($colors, surface, contrast)};
+	--color-primary-main: #{get($colors, primary, main)};
+	--color-primary-dark: #{get($colors, primary, dark)};
+	--color-primary-light: #{get($colors, primary, light)};
+	--color-primary-contrast: #{get($colors, primary, contrast)};
+	--color-secondary-main: #{get($colors, secondary, main)};
+	--color-secondary-dark: #{get($colors, secondary, dark)};
+	--color-secondary-light: #{get($colors, secondary, light)};
+	--color-secondary-contrast: #{get($colors, secondary, contrast)};
+	--color-error-main: #{get($colors, error, main)};
+	--color-error-dark: #{get($colors, error, dark)};
+	--color-error-light: #{get($colors, error, light)};
+	--color-error-contrast: #{get($colors, error, contrast)};
+	--color-success-main: #{get($colors, success, main)};
+	--color-success-dark: #{get($colors, success, dark)};
+	--color-success-light: #{get($colors, success, light)};
+	--color-success-contrast: #{get($colors, success, contrast)};
+
+	// TYPOGRAPHY
+	--h1-font-size: #{get($fonts, h1, fontSize)};
+	--h1-font-weight: #{get($fonts, h1, fontWeight)};
+	--h1-line-height: #{get($fonts, h1, lineHeight)};
+	--h1-margin-bottom: #{get($fonts, h1, marginBottom)};
+	--h2-font-size: #{get($fonts, h2, fontSize)};
+	--h2-font-weight: #{get($fonts, h2, fontWeight)};
+	--h2-line-height: #{get($fonts, h2, lineHeight)};
+	--h2-margin-bottom: #{get($fonts, h2, marginBottom)};
+	--h3-font-size: #{get($fonts, h3, fontSize)};
+	--h3-font-weight: #{get($fonts, h3, fontWeight)};
+	--h3-line-height: #{get($fonts, h3, lineHeight)};
+	--h3-margin-bottom: #{get($fonts, h3, marginBottom)};
+	--h4-font-size: #{get($fonts, h4, fontSize)};
+	--h4-font-weight: #{get($fonts, h4, fontWeight)};
+	--h4-line-height: #{get($fonts, h4, lineHeight)};
+	--h4-margin-bottom: #{get($fonts, h4, marginBottom)};
+	--h5-font-size: #{get($fonts, h5, fontSize)};
+	--h5-font-weight: #{get($fonts, h5, fontWeight)};
+	--h5-line-height: #{get($fonts, h5, lineHeight)};
+	--h5-margin-bottom: #{get($fonts, h5, marginBottom)};
+	--h6-font-size: #{get($fonts, h6, fontSize)};
+	--h6-font-weight: #{get($fonts, h6, fontWeight)};
+	--h6-line-height: #{get($fonts, h6, lineHeight)};
+	--h6-margin-bottom: #{get($fonts, h6, marginBottom)};
+	--text-font-size: #{get($fonts, text, fontSize)};
+	--text-font-weight: #{get($fonts, text, fontWeight)};
+	--text-line-height: #{get($fonts, text, lineHeight)};
+	--text-margin-bottom: #{get($fonts, text, marginBottom)};
+
+	// UI
+	--layout-background-color: var(--color-surface-main);
+	--text-color: var(--color-surface-contrast);
+	--link-color: var(--color-primary-main);
+	--link-color-hover: var(--color-primary-dark);
+	--footer-background-color: var(--color-surface-dark);
+
+	// @include cssVar(logo-url, $logo);
+}

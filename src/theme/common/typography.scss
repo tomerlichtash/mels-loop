@@ -1,66 +1,14 @@
-// @use "./colors";
+$FONT_FAMILY_1: "Roboto Slab", serif;
+$FONT_FAMILIY_2: "Assistant", sans-serif;
 
-// @mixin LTRFont1 {
-// 	font-family: "Roboto Slab", serif;
-// 	direction: ltr;
-// }
-// @mixin RTLFont1 {
-// 	font-family: "Assistant", sans-serif;
-// 	direction: rtl;
-// }
-
-// @mixin Link {
-// 	cursor: pointer;
-// 	color: var(--link-color);
-// 	&:hover {
-// 		color: var(--link-hover-color);
-// 	}
-// 	&:active {
-// 		color: var(--link-active-color);
-// 	}
-// }
-
-// .h1 {
-// 	font-size: 2.5vmax;
-// 	line-height: 3vmax;
-// 	font-weight: $FONT_WEIGHT_MEDIUM;
-// 	margin-bottom: 1.302vmax;
-// }
-// .h2 {
-// 	font-size: 2.03vmax;
-// 	line-height: 3vmax;
-// 	font-weight: $FONT_WEIGHT_MEDIUM;
-// 	margin-bottom: 0;
-// }
-// .h3 {
-// 	font-size: 1.614vmax;
-// 	line-height: 2vmax;
-// 	font-weight: $FONT_WEIGHT_MEDIUM;
-// 	margin-bottom: 0;
-// }
-// .h4 {
-// 	font-size: 1.302vmax;
-// 	line-height: 31px;
-// 	font-weight: $FONT_WEIGHT_MEDIUM;
-// 	margin-bottom: 0;
-// }
-// .h5 {
-// 	font-size: 1.041vmax;
-// 	line-height: 25px;
-// 	font-weight: $FONT_WEIGHT_BOLD;
-// 	margin-bottom: 0;
-// }
-// .h6 {
-// 	font-size: 0.833vmax;
-// 	line-height: 20px;
-// 	font-weight: $FONT_WEIGHT_BOLD;
-// 	margin-bottom: 0;
-// }
-// @mixin bodyTextNormal {
-// 	font-size: 0.875rem;
-// 	line-height: 21px;
-// 	font-weight: $FONT_WEIGHT_REGULAR;
-// }
+[data-text-direction="ltr"] {
+	font-family: $FONT_FAMILY_1;
+	direction: ltr;
+}
+[data-text-direction="rtl"] {
+	font-family: $FONT_FAMILIY_2;
+	direction: rtl;
+}
 
 // .Topic {
 // 	// -st-mixin: h3;
