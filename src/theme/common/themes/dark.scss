@@ -95,41 +95,4 @@ $index: (
 			end: colors.get(b1),
 		),
 	),
-	typography: (
-		h1: (
-			fontSize: typography.fontSize(5xl),
-			lineHeight: typography.lineHeight(xl),
-			fontWeight: typography.fontWeight(bold),
-		),
-		h2: (
-			fontSize: typography.fontSize(4xl),
-			lineHeight: typography.lineHeight(lg),
-			fontWeight: typography.fontWeight(thin),
-		),
-		h3: (
-			fontSize: typography.fontSize(3xl),
-			lineHeight: typography.lineHeight(lg),
-			fontWeight: typography.fontWeight(thin),
-		),
-		h4: (
-			fontSize: typography.fontSize(2xl),
-			lineHeight: typography.lineHeight(lg),
-			fontWeight: typography.fontWeight(thin),
-		),
-		h5: (
-			fontSize: typography.fontSize(xl),
-			lineHeight: typography.lineHeight(md),
-			fontWeight: typography.fontWeight(thin),
-		),
-		h6: (
-			fontSize: typography.fontSize(lg),
-			lineHeight: typography.lineHeight(md),
-			fontWeight: typography.fontWeight(thin),
-		),
-		text: (
-			fontSize: typography.fontSize(md),
-			lineHeight: typography.lineHeight(sm),
-			fontWeight: typography.fontWeight(regular),
-		),
-	),	
 );

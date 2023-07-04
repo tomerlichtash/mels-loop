@@ -1,28 +1,16 @@
-@use "../vars.scss";
+// @use "../vars.scss";
 
-$fontSize: map-get(map-get(vars.$index, typography), fontSize);
-$lineHeight: map-get(map-get(vars.$index, typography), lineHeight);
-$fontWeight: map-get(map-get(vars.$index, typography), fontWeight);
-$textMargin: map-get(map-get(vars.$index, typography), margin);
+// $fontSize: map-get(map-get(vars.$index, font), fontSize);
+// $lineHeight: map-get(map-get(vars.$index, font), lineHeight);
+// $fontWeight: map-get(map-get(vars.$index, font), fontWeight);
+// $textMargin: map-get(map-get(vars.$index, font), margin);
 
-@function fontSize($size) {
-	@return map-get($fontSize, $size);
-}
+// @mixin get($size, $height, $weight) {
+// 	font-size: map-get($fontSize, $size);
+// 	font-weight: map-get($fontWeight, $weight);
+// 	line-height: map-get($lineHeight, $height);
+// }
 
-@function fontWeight($weight) {
-	@return map-get($fontWeight, $weight);
-}
-
-@function lineHeight($height) {
-	@return map-get($lineHeight, $height);
-}
-
-@mixin get($size, $height, $weight) {
-	font-size: map-get($fontSize, $size);
-	font-weight: map-get($fontWeight, $weight);
-	line-height: map-get($lineHeight, $height);
-}
-
-@function gap($size) {
-	@return map-get($textMargin, $size);
-}
+// @function gap($size) {
+// 	@return map-get($textMargin, $size);
+// }

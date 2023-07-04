@@ -1,6 +1,3 @@
-// @use "./utils/colors.scss";
-@use "./utils/typography.scss";
-
 [data-theme] {
 	background-color: var(--layout-background-color);
 
@@ -9,36 +6,42 @@
 		font-weight: var(--h1-font-weight);
 		line-height: var(--h1-line-height);
 		margin-bottom: var(--h1-margin-bottom);
+		color: var(--h1-text-color);
 	}
 	h2 {
 		font-size: var(--h2-font-size);
 		font-weight: var(--h2-font-weight);
 		line-height: var(--h2-line-height);
 		margin-bottom: var(--h1-margin-bottom);
+		color: var(--h2-text-color);
 	}
 	h3 {
 		font-size: var(--h3-font-size);
 		font-weight: var(--h3-font-weight);
 		line-height: var(--h3-line-height);
 		margin-bottom: var(--h1-margin-bottom);
+		color: var(--h3-text-color);
 	}
 	h4 {
 		font-size: var(--h4-font-size);
 		font-weight: var(--h4-font-weight);
 		line-height: var(--h4-line-height);
 		margin-bottom: var(--h1-margin-bottom);
+		color: var(--h4-text-color);
 	}
 	h5 {
 		font-size: var(--h5-font-size);
 		font-weight: var(--h5-font-weight);
 		line-height: var(--h5-line-height);
 		margin-bottom: var(--h1-margin-bottom);
+		color: var(--h5-text-color);
 	}
 	h6 {
 		font-size: var(--h6-font-size);
 		font-weight: var(--h6-font-weight);
 		line-height: var(--h6-line-height);
 		margin-bottom: var(--h1-margin-bottom);
+		color: var(--h6-text-color);
 	}
 	ul li,
 	ol li,
@@ -47,22 +50,19 @@
 		font-size: var(--text-font-size);
 		font-weight: var(--text-font-weight);
 		line-height: var(--text-line-height);
-		margin-bottom: var(--h1-margin-bottom);
 	}
 
-	blockquote {
-		@include typography.get(md, sm, bold);
-	}
-	small {
-		@include typography.get(sm, xs, regular);
+	p {
+		margin-bottom: var(--text-margin-bottom);
 	}
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
+	// blockquote {
+	// 	@include typography.get(md, sm, bold);
+	// }
+	// small {
+	// 	@include typography.get(sm, xs, regular);
+	// }
+
 	ul,
 	ol,
 	table,
@@ -88,9 +88,13 @@
 	}
 
 	pre {
-		// background-color: map-get($surface, dark);
 	}
 
+	article {
+		background-color: var(--color-surface-light);
+		border-radius: var(--border-radius-md);
+		box-shadow: var(--box-shadow-md);
+	}
 	// moved to footer.module.css
 	footer {
 		background-color: var(--color-surface-dark);
@@ -118,23 +122,3 @@
 		}
 	}
 }
-
-// $colors-map: ();
-// $colors: (
-// 	surface: map-get(map-get($theme, colors), surface),
-// 	primary: map-get(map-get($theme, colors), primary),
-// 	secondary: map-get(map-get($theme, colors), secondary),
-// 	link: map-get(map-get($theme, colors), link),
-// 	error: map-get(map-get($theme, colors), error),
-// 	success: map-get(map-get($theme, colors), success),
-// );
-// @each $key, $value in $colors {
-// 	$map: ();
-// 	$map: map-merge(
-// 		$map,
-// 		(
-// 			$key: colors.createColorMap($value, $factor0),
-// 		)
-// 	);
-// 	$colors-map: map-merge($colors-map, $map);
-// }

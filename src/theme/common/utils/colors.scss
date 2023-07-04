@@ -31,3 +31,23 @@
 // 	);
 // 	@return $map;
 // }
+
+// $colors-map: ();
+// $colors: (
+// 	surface: map-get(map-get($theme, colors), surface),
+// 	primary: map-get(map-get($theme, colors), primary),
+// 	secondary: map-get(map-get($theme, colors), secondary),
+// 	link: map-get(map-get($theme, colors), link),
+// 	error: map-get(map-get($theme, colors), error),
+// 	success: map-get(map-get($theme, colors), success),
+// );
+// @each $key, $value in $colors {
+// 	$map: ();
+// 	$map: map-merge(
+// 		$map,
+// 		(
+// 			$key: colors.createColorMap($value, $factor0),
+// 		)
+// 	);
+// 	$colors-map: map-merge($colors-map, $map);
+// }

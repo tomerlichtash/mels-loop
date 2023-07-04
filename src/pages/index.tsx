@@ -26,47 +26,44 @@ const Index: NextPage<IPageProps> = (props) => {
 
 	return (
 		<Layout>
-			<article className="article">
-				<div className="stickySection section">
-					<span className="stickyBadge">{translate("STICKY_BADGE_LABEL")}</span>
-					<div className="sticky">
-						<a href={`${locale}/docs/the-story-of-mel/pages/mel-kaye-cv`}>
-							<div
-								className="stickyInner"
-								style={{
-									backgroundSize: "cover",
-									backgroundPosition: "center",
-									backgroundImage:
-										"url(https://mels-loop-media.s3.eu-north-1.amazonaws.com/homepage-ref-cover-kornitzka-b_q6d9rg.jpg)",
-								}}
-							>
-								<div className="stickyItemLayout">
-									<div className="imageContainer">
-										<img
-											className="avatar"
-											src="https://mels-loop-media.s3.eu-north-1.amazonaws.com/avatar-mel-kaye_xwd6kx.jpg"
-											alt={translate("STICKY_TITLE_IMAGE_ALT")}
-										/>
-									</div>
-									<div className="stickyContent">
-										<p className="stickyItemTitle">
-											{translate("STICKY_TITLE")}
-										</p>
-										<p className="stickyItemDate">{translate("STICKY_DATE")}</p>
-										<p className="stickyItemBody">
-											{translate("STICKY_SUBTITLE")}{" "}
-										</p>
-										<p className="stickyItemRef">
-											{translate("STICKY_TITLE_LINK_PREFIX")}:{" "}
-											<strong>{translate("STICKY_TITLE_LINK_TEXT")}</strong>{" "}
-										</p>
-									</div>
+			<div className="stickySection section">
+				<span className="stickyBadge">{translate("STICKY_BADGE_LABEL")}</span>
+				<div className="sticky">
+					<a href={`${locale}/docs/the-story-of-mel/pages/mel-kaye-cv`}>
+						<div
+							className="stickyInner"
+							style={{
+								backgroundSize: "cover",
+								backgroundPosition: "center",
+								backgroundImage:
+									"url(https://mels-loop-media.s3.eu-north-1.amazonaws.com/homepage-ref-cover-kornitzka-b_q6d9rg.jpg)",
+							}}
+						>
+							<div className="stickyItemLayout">
+								<div className="imageContainer">
+									<img
+										className="avatar"
+										src="https://mels-loop-media.s3.eu-north-1.amazonaws.com/avatar-mel-kaye_xwd6kx.jpg"
+										alt={translate("STICKY_TITLE_IMAGE_ALT")}
+									/>
+								</div>
+								<div className="stickyContent">
+									<p className="stickyItemTitle">{translate("STICKY_TITLE")}</p>
+									<p className="stickyItemDate">{translate("STICKY_DATE")}</p>
+									<p className="stickyItemBody">
+										{translate("STICKY_SUBTITLE")}{" "}
+									</p>
+									<p className="stickyItemRef">
+										{translate("STICKY_TITLE_LINK_PREFIX")}:{" "}
+										<strong>{translate("STICKY_TITLE_LINK_TEXT")}</strong>{" "}
+									</p>
 								</div>
 							</div>
-						</a>
-					</div>
+						</div>
+					</a>
 				</div>
-
+			</div>
+			<article className="article">
 				<h1 className="title">{title}</h1>
 				<p className="moto">{moto}</p>
 				{elements.map((node) => {

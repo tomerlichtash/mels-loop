@@ -27,9 +27,9 @@ $FONT_FAMILIY_2: "Assistant", sans-serif;
 [data-theme="light"] {
 	@include themeVars.cssVars(light.$index);
 }
-[data-theme="dark"] {
-	@include themeVars.cssVars(dark.$index);
-}
+// [data-theme="dark"] {
+// 	@include themeVars.cssVars(dark.$index);
+// }
 
 .page {
 	margin: 0 auto;
@@ -38,6 +38,10 @@ $FONT_FAMILIY_2: "Assistant", sans-serif;
 	// min-height: 75vh;
 	// min-width: 100%;
 	// padding-top: 80px;
+}
+
+article {
+	padding: 2rem;
 }
 
 [data-link-type],
