@@ -1,33 +1,38 @@
+@use "sass:map";
 @use "./reset";
 @use "./vars/theme.scss";
 @use "./vars/components.scss";
 @use "./themes/light.scss";
 @use "./themes/dark.scss";
 @use "./base";
+@use "./mixins/typography.scss";
 
 body {
+	$font-family-1: "Roboto Slab", serif;
+	$font-family-2: "Assistant", sans-serif;
+
 	font-size: 16px;
+	
+	[data-text-direction="ltr"] {
+		font-family: $font-family-1;
+		direction: ltr;
+	}
+	
+	[data-text-direction="rtl"] {
+		font-family: $font-family-2;
+		direction: rtl;
+	}
+
+	[data-theme="light"] {
+		@include theme.css-vars(light.$index);
+		@include components.css-vars;
+	}
 }
 
-// Fonts & Text Direction
-$font-family-1: "Roboto Slab", serif;
-$font-family-2: "Assistant", sans-serif;
-
-[data-text-direction="ltr"] {
-	font-family: $font-family-1;
-	direction: ltr;
-}
-
-[data-text-direction="rtl"] {
-	font-family: $font-family-2;
-	direction: rtl;
-}
-
-// Theme Variants
-[data-theme="light"] {
-	@include theme.css-vars(light.$index);
-	@include components.css-vars;
-}
+// [data-theme="light"] {
+// 	@include theme.css-vars(light.$index);
+// 	@include components.css-vars;
+// }
 
 // [data-theme="dark"] {
 // 	@include theme.cssVars(dark.$index);
@@ -50,7 +55,7 @@ small {
 }
 
 code {
-	display: block;
+	// display: block;
 }
 
 table {
@@ -61,6 +66,11 @@ table {
 .line {
 	display: block;
 }
+
+img {
+	max-width: 100%;
+}
+
 
 // Text Components
 .annotation {

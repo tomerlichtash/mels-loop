@@ -14,19 +14,9 @@
 	} @else {
 		$result: get(a2);
 	}
+
 	@return $result;
 }
-
-@mixin gradient($col1, $col2, $col3) {
-	background: linear-gradient(90deg, $col1 0%, $col2 50%, $col3 100%);
-}
-
-// @mixin gradient($gradient) {
-// 	$start: map-get($gradient, start);
-// 	$middle: map-get($gradient, middle);
-// 	$end: map-get($gradient, end);
-// 	background: linear-gradient(90deg, $start 0%, $middle 50%, $end 100%);
-// }
 
 // @function createColorMap($color, $percentage) {
 // 	$map: (

@@ -2,35 +2,30 @@
 
 @mixin css-vars {
 	// Headings
-	// --h1-font-size: var(--font-size-5xl);
-	// --h1-font-weight: var(--font-weight-medium);
-	// --h1-line-height: var(--font-line-height-xl);
-	// --h1-margin-bottom: var(--font-margin-bottom-3xl);
-
-	// --h2-font-size: var(--font-size-4xl);
-	// --h2-font-weight: var(--font-weight-thin);
-	// --h2-line-height: var(--font-line-height-lg);
-	// --h2-margin-bottom: var(--font-margin-bottom-2xl);
-
-	// --h3-font-size: var(--font-size-3xl);
-	// --h3-font-weight: var(--font-weight-thin);
-	// --h3-line-height: var(--font-line-height-lg);
-	// --h3-margin-bottom: var(--font-margin-bottom-xl);
-
-	// --h4-font-size: var(--font-size-2xl);
-	// --h4-font-weight: var(--font-weight-thin);
-	// --h4-line-height: var(--font-line-height-lg);
-	// --h4-margin-bottom: var(--font-margin-bottom-lg);
-
-	// --h5-font-size: var(--font-size-xl);
-	// --h5-font-weight: var(--font-weight-thin);
-	// --h5-line-height: var(--font-line-height-md);
-	// --h5-margin-bottom: var(--font-margin-bottom-md);
-
-	// --h6-font-size: var(--font-size-lg);
-	// --h6-font-weight: var(--font-weight-thin);
-	// --h6-line-height: var(--font-line-height-md);
-	// --h6-margin-bottom: var(--font-margin-bottom-md);
+	--h1-font-size: var(--font-size-5xl);
+	--h1-font-weight: var(--font-weight-medium);
+	--h1-line-height: var(--font-line-height-xl);
+	--h1-margin-bottom: var(--font-margin-bottom-3xl);
+	--h2-font-size: var(--font-size-4xl);
+	--h2-font-weight: var(--font-weight-thin);
+	--h2-line-height: var(--font-line-height-lg);
+	--h2-margin-bottom: var(--font-margin-bottom-2xl);
+	--h3-font-size: var(--font-size-3xl);
+	--h3-font-weight: var(--font-weight-thin);
+	--h3-line-height: var(--font-line-height-lg);
+	--h3-margin-bottom: var(--font-margin-bottom-xl);
+	--h4-font-size: var(--font-size-2xl);
+	--h4-font-weight: var(--font-weight-thin);
+	--h4-line-height: var(--font-line-height-lg);
+	--h4-margin-bottom: var(--font-margin-bottom-lg);
+	--h5-font-size: var(--font-size-xl);
+	--h5-font-weight: var(--font-weight-thin);
+	--h5-line-height: var(--font-line-height-md);
+	--h5-margin-bottom: var(--font-margin-bottom-md);
+	--h6-font-size: var(--font-size-lg);
+	--h6-font-weight: var(--font-weight-thin);
+	--h6-line-height: var(--font-line-height-md);
+	--h6-margin-bottom: var(--font-margin-bottom-md);
 
 	// Text
 	--text-font-size: var(--font-size-md);
