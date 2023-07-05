@@ -1,0 +1,83 @@
+@use "sass:map";
+@use "./common.scss";
+@use "../utils/theme.scss";
+
+@mixin css-vars($themeIndex) {
+	// THEHE CATEGORIES
+	$colors: map.get($themeIndex, color);
+	$fonts: map.get($themeIndex, typography);
+	$shadow: map.get($themeIndex, shadow);
+	$radius: map.get($themeIndex, radius);
+	$gradient: map.get($themeIndex, gradient);
+
+	// $logo: map.get($themeIndex, logo);
+
+	// COLORS
+	--color-surface-main: #{theme.prop($colors, surface, main)};
+	--color-surface-dark: #{theme.prop($colors, surface, dark)};
+	--color-surface-light: #{theme.prop($colors, surface, light)};
+	--color-surface-contrast: #{theme.prop($colors, surface, contrast)};
+	--color-primary-main: #{theme.prop($colors, primary, main)};
+	--color-primary-dark: #{theme.prop($colors, primary, dark)};
+	--color-primary-light: #{theme.prop($colors, primary, light)};
+	--color-primary-contrast: #{theme.prop($colors, primary, contrast)};
+	--color-secondary-main: #{theme.prop($colors, secondary, main)};
+	--color-secondary-dark: #{theme.prop($colors, secondary, dark)};
+	--color-secondary-light: #{theme.prop($colors, secondary, light)};
+	--color-secondary-contrast: #{theme.prop($colors, secondary, contrast)};
+	--color-error-main: #{theme.prop($colors, error, main)};
+	--color-error-dark: #{theme.prop($colors, error, dark)};
+	--color-error-light: #{theme.prop($colors, error, light)};
+	--color-error-contrast: #{theme.prop($colors, error, contrast)};
+	--color-success-main: #{theme.prop($colors, success, main)};
+	--color-success-dark: #{theme.prop($colors, success, dark)};
+	--color-success-light: #{theme.prop($colors, success, light)};
+	--color-success-contrast: #{theme.prop($colors, success, contrast)};
+
+	// GRADIENT
+	--gradient-color-1: #{theme.prop($gradient, gradient1, start)};
+	--gradient-color-2: #{theme.prop($gradient, gradient1, middle)};
+	--gradient-color-3: #{theme.prop($gradient, gradient1, end)};
+
+	// RADIUS
+	--border-radius-md: #{map.get($radius, md)};
+
+	// SHADOW
+	--box-shadow-md: #{map.get($shadow, md)};
+
+	// TYPOGRAPHY
+	$common: common.$index;
+
+	--font-size-5xl: #{theme.var($common, font, fontSize, 5xl)};
+	--font-size-4xl: #{theme.var($common, font, fontSize, 4xl)};
+	--font-size-3xl: #{theme.var($common, font, fontSize, 3xl)};
+	--font-size-2xl: #{theme.var($common, font, fontSize, 2xl)};
+	--font-size-xl: #{theme.var($common, font, fontSize, xl)};
+	--font-size-lg: #{theme.var($common, font, fontSize, lg)};
+	--font-size-md: #{theme.var($common, font, fontSize, md)};
+	--font-size-sm: #{theme.var($common, font, fontSize, sm)};
+	--font-size-xs: #{theme.var($common, font, fontSize, xs)};
+	--font-weight-thin: #{theme.var($common, font, fontWeight, thin)};
+	--font-weight-regular: #{theme.var($common, font, fontWeight, regular)};
+	--font-weight-medium: #{theme.var($common, font, fontWeight, medium)};
+	--font-weight-bold: #{theme.var($common, font, fontWeight, bold)};
+	--font-line-height-xl: #{theme.var($common, font, lineHeight, xl)};
+	--font-line-height-lg: #{theme.var($common, font, lineHeight, lg)};
+	--font-line-height-md: #{theme.var($common, font, lineHeight, md)};
+	--font-line-height-sm: #{theme.var($common, font, lineHeight, sm)};
+	--font-line-height-xs: #{theme.var($common, font, lineHeight, xs)};
+	--font-margin-bottom-3xl: #{theme.var($common, font, margin, 3xl)};
+	--font-margin-bottom-2xl: #{theme.var($common, font, margin, 2xl)};
+	--font-margin-bottom-xl: #{theme.var($common, font, margin, xl)};
+	--font-margin-bottom-lg: #{theme.var($common, font, margin, lg)};
+	--font-margin-bottom-md: #{theme.var($common, font, margin, md)};
+
+	// TEXT COLOR OVERRIDES
+	// TODO: Optimize and remove this after moving it to theme roles
+	--h1-text-color: #{theme.var($colors, surface, custom, s8)};
+	--h2-text-color: #{theme.var($colors, surface, custom, s9)};
+	--h3-text-color: #{theme.var($colors, surface, custom, s9)};
+	--h4-text-color: #{theme.var($colors, surface, custom, s9)};
+	--h5-text-color: #{theme.var($colors, surface, custom, s9)};
+	--h6-text-color: #{theme.var($colors, surface, custom, s9)};
+}

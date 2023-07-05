@@ -1,0 +1,96 @@
+/*
+DDDDDDDDDDDDD                 AAA              RRRRRRRRRRRRRRRRR  KKKKKKKKK    KKKKKKK
+D::::::::::::DDD             A:::A             R::::::::::::::::R K:::::::K    K:::::K
+D:::::::::::::::DD          A:::::A            R::::::RRRRRR:::::RK:::::::K    K:::::K
+DDD:::::DDDDD:::::D        A:::::::A           RR:::::R     R:::::K:::::::K   K::::::K
+  D:::::D    D:::::D      A:::::::::A            R::::R     R:::::KK::::::K  K:::::KKK
+  D:::::D     D:::::D    A:::::A:::::A           R::::R     R:::::R K:::::K K:::::K   
+  D:::::D     D:::::D   A:::::A A:::::A          R::::RRRRRR:::::R  K::::::K:::::K    
+  D:::::D     D:::::D  A:::::A   A:::::A         R:::::::::::::RR   K:::::::::::K     
+  D:::::D     D:::::D A:::::A     A:::::A        R::::RRRRRR:::::R  K:::::::::::K     
+  D:::::D     D:::::DA:::::AAAAAAAAA:::::A       R::::R     R:::::R K::::::K:::::K    
+  D:::::D     D:::::A:::::::::::::::::::::A      R::::R     R:::::R K:::::K K:::::K   
+  D:::::D    D:::::A:::::AAAAAAAAAAAAA:::::A     R::::R     R:::::KK::::::K  K:::::KKK
+DDD:::::DDDDD:::::A:::::A             A:::::A  RR:::::R     R:::::K:::::::K   K::::::K
+D:::::::::::::::DA:::::A               A:::::A R::::::R     R:::::K:::::::K    K:::::K
+D::::::::::::DDDA:::::A                 A:::::AR::::::R     R:::::K:::::::K    K:::::K
+DDDDDDDDDDDDD  AAAAAAA                   AAAAAARRRRRRRR     RRRRRRKKKKKKKKK    KKKKKKK                                                                                     
+*/
+
+@use "../utils/colors.scss";
+
+$index: (
+	logo: url(//public/favicon-temp.png),
+	color: (
+		surface: (
+			main: colors.get(a8),
+			light: colors.get(a1),
+			dark: colors.get(a4),
+			contrast: colors.contrast(colors.get(a7)),
+			custom: (
+				s1: colors.get(a1),
+				s2: colors.get(a2),
+				s3: colors.get(a3),
+				s4: colors.get(a4),
+				s5: colors.get(a5),
+				s6: colors.get(a6),
+				s7: colors.get(a7),
+				s8: colors.get(a8),
+				s9: colors.get(a9),
+			),
+		),
+		primary: (
+			main: colors.get(c1),
+			light: colors.get(c2),
+			dark: colors.get(c3),
+			contrast: colors.contrast(colors.get(c1)),
+			custom: (
+				s1: colors.get(c1),
+				s2: colors.get(c2),
+				s3: colors.get(c3),
+				s4: colors.get(c4),
+			),
+		),
+		secondary: (
+			main: colors.get(b3),
+			light: colors.get(b4),
+			dark: colors.get(b2),
+			contrast: colors.contrast(colors.get(b3)),
+			custom: (
+				s1: colors.get(b1),
+				s2: colors.get(b2),
+				s3: colors.get(b3),
+				s4: colors.get(b4),
+				s5: colors.get(b5),
+			),
+		),
+		error: (
+			main: colors.get(y1),
+			light: colors.get(y1),
+			dark: colors.get(y1),
+			contrast: colors.contrast(colors.get(y1)),
+			custom: (
+				s1: colors.get(y1),
+			),
+		),
+		success: (
+			main: colors.get(z1),
+			light: colors.get(z1),
+			dark: colors.get(z1),
+			contrast: colors.contrast(colors.get(z1)),
+			custom: (
+				s1: colors.get(z1),
+			),
+		),
+	),
+	shadow: (
+		md: #{colors.get(hsl1),
+			colors.get(hsl2)},	),
+	gradient: (
+		gradient1: (
+			start: colors.get(b5),
+			middle: colors.get(b4),
+			end: colors.get(b1),
+		),
+	),
+);

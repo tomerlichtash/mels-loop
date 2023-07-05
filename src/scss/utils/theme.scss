@@ -1,0 +1,7 @@
+@function prop($theme, $prop, $map) {
+	@return map-get(map-get($theme, $prop), $map);
+}
+
+@function var($theme, $prop, $map, $var) {
+	@return map-get(map-get(map-get($theme, $prop), $map), $var);
+}

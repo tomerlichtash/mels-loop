@@ -8,7 +8,7 @@ import { IPageProps } from "../interfaces/models";
 
 export { reportWebVitals } from "next-axiom";
 
-import "../theme/common/globals.scss";
+import "../scss/app.scss";
 
 const App = ({ Component, pageProps }: AppProps<IPageProps>) => {
 	const router = useRouter();

@@ -1,0 +1,59 @@
+@use "sass:color";
+@use "../vars/common.scss";
+
+@function get($name) {
+	@return map-get(map-get(map-get(common.$index, color), pallette), $name);
+}
+
+@function contrast($color) {
+	$result: color.invert($color);
+	$lightness: color.lightness($result);
+
+	@if $lightness < 50 {
+		$result: get(a7);
+	} @else {
+		$result: get(a2);
+	}
+	@return $result;
+}
+
+@mixin gradient($col1, $col2, $col3) {
+	background: linear-gradient(90deg, $col1 0%, $col2 50%, $col3 100%);
+}
+
+// @mixin gradient($gradient) {
+// 	$start: map-get($gradient, start);
+// 	$middle: map-get($gradient, middle);
+// 	$end: map-get($gradient, end);
+// 	background: linear-gradient(90deg, $start 0%, $middle 50%, $end 100%);
+// }
+
+// @function createColorMap($color, $percentage) {
+// 	$map: (
+// 		main: $color,
+// 		light: lighten($color, $percentage),
+// 		dark: darken($color, $percentage),
+// 		contrast: contrast($color),
+// 	);
+// 	@return $map;
+// }
+
+// $colors-map: ();
+// $colors: (
+// 	surface: map-get(map-get($theme, colors), surface),
+// 	primary: map-get(map-get($theme, colors), primary),
+// 	secondary: map-get(map-get($theme, colors), secondary),
+// 	link: map-get(map-get($theme, colors), link),
+// 	error: map-get(map-get($theme, colors), error),
+// 	success: map-get(map-get($theme, colors), success),
+// );
+// @each $key, $value in $colors {
+// 	$map: ();
+// 	$map: map-merge(
+// 		$map,
+// 		(
+// 			$key: colors.createColorMap($value, $factor0),
+// 		)
+// 	);
+// 	$colors-map: map-merge($colors-map, $map);
+// }

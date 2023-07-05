@@ -19,13 +19,12 @@ export const Footer = ({ textDirection }: IFooterProps): JSX.Element => {
 	return (
 		<footer className={styles.footer} data-text-direction={textDirection}>
 			<div className="strip"></div>
-			<h1>test</h1>
-			<div className="page-container">
-				<div className="layout">
-					<div className="column">
+			<div className={styles.pageContainer}>
+				<div className={styles.layout}>
+					<div className={styles.column}>
 						<div className="footer-title">
 							<div
-								className="title"
+								className={styles.title}
 								aria-label={`${licenseYears} ${fullLicense} ${siteTitle}`}
 							>
 								<time className="year">{licenseYears}</time>{" "}
@@ -40,6 +39,7 @@ export const Footer = ({ textDirection }: IFooterProps): JSX.Element => {
 						</div>
 						<p className="excerpt">{translate("MENU_ITEM_DESC_ID_ABOUT")}</p>
 					</div>
+
 					<div className="column">
 						<div className="column-title">
 							{translate("SECTION_LABEL_PAGES")}
@@ -70,6 +70,7 @@ export const Footer = ({ textDirection }: IFooterProps): JSX.Element => {
 							</ul>
 						</div>
 					</div>
+
 					<div className="column">
 						<div className="column-title">
 							{translate("SECTION_LABEL_LINKS")}
