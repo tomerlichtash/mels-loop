@@ -8,6 +8,7 @@ const nextConfig = {
 	optimizeFonts: true,
 	sassOptions: {
 		includePaths: [path.join(__dirname, "styles")],
+		quietDeps: true,
 	},
 	i18n: {
 		locales: ["en", "he"],

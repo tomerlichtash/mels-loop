@@ -1,0 +1,35 @@
+@use 'sass:map';
+// @use "forwards" as stml;
+// vars
+@use 'colors';
+// @use 'shadow';
+
+$colors: colors.$index;
+
+// $colors: (index: colors.$index);
+
+// // themes
+// @use 'light';
+
+// // populated theme
+// $lightTheme: (
+//     color: (
+//         primaryColor: stml.get("a3", colors.$index),
+//         secondaryColor: stml.get("a2", colors.$index)
+//     )
+// );
+
+// $darkTheme: (
+//     color: (
+//         primaryColor: stml.get("a4", colors.$index),
+//         secondaryColor: stml.get("a5", colors.$index)
+//     )
+// );
+
+// $exports: (
+//     light: $lightTheme,
+//     dark: $darkTheme
+// );
+
+// @use 'colors';
+// $dada:(base:colors.$index);

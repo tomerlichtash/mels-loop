@@ -1,0 +1,14 @@
+@use 'sass:map';
+
+$dfr-config: map.deep-merge(
+  (
+    'breakpoint': (
+      'xs': null,
+      's':  544px,
+      'm':  768px,
+      'l':  992px,
+      'xl': 1200px
+    )
+  ),
+  $dfr-config,
+);

@@ -1,0 +1,28 @@
+@use 'sass:map';
+
+/* stylelint-disable */
+$dfr-config: map.deep-merge(
+  (
+    'font': (
+      'family': (
+        'sans-serif': (
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif
+        ),
+        'mono': (
+          Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace
+        ),
+      ),
+      'weight': normal,
+      'path': '../fonts',
+      'size': (
+        'xs': $dfr--base-fontSize / 1.5,
+        's':  $dfr--base-fontSize / 1.25,
+        'l':  $dfr--base-fontSize * 1.25,
+        'xl': $dfr--base-fontSize * 1.5,
+      ),
+    )
+  ),
+  $dfr-config,
+);
+/* stylelint-enable */

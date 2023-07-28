@@ -1,0 +1,26 @@
+@use 'sass:meta';
+@use 'sass:string';
+
+// ---------------------------------------------------------
+// grid-calc
+// Formula that calculates percentage of the column(s)
+//
+// Required arguments:
+// `$number` Number
+// `$columns` Number *predefined*
+//
+// Example of use:
+// grid-calc(3, 12)
+//
+// @return String
+// ---------------------------------------------------------
+@function grid-calc ($number, $columns: $dfr-grid-columns) {
+  @if meta.type-of($number) != 'number' {
+    @error 'The argument $number: `#{$number}` is of incorrect type: `#{meta.type-of($number)}`. Type of `Number` is required!';
+  }
+  @else if meta.type-of($columns) != 'number' {
+    @error 'The argument $columns: `#{$columns}` is of incorrect type: `#{meta.type-of($columns)}`. Type of `Number` is required!';
+  }
+
+  @return string.unquote((100 / $columns * $number) + '%');
+}

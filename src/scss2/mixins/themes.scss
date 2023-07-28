@@ -1,0 +1,17 @@
+@use "../vars/theme.scss";
+@use "../vars/components.scss";
+@use "../themes/light.scss";
+@use "../themes/dark.scss";
+
+@mixin styles {
+    body {
+        [data-theme="light"] {
+            @include theme.css-vars(light.$index);
+            @include components.css-vars;
+        }
+        // [data-theme="dark"] {
+        //     @include theme.css-vars(dark.$index);
+        //     @include components.css-vars;
+        // }        
+    }
+}

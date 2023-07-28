@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "sass:string";
+
+@function get($key, $map) {
+    $keys: string.split($key, '.');
+  
+    @if not map.has-key($map, $keys...) {
+      @error 'The argument $map: `#{$map}` doesn\'t have some of the $keys: `#{$keys}`!';
+    }
+  
+    @return map.get($map, $keys...);
+}

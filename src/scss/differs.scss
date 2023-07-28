@@ -1,0 +1,166 @@
+/*
+
+*/
+
+@use "api" as app;
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+
+@use "themes/variants/light" as light;
+
+:root {
+	--layout-background-color: #{app.get(
+			"light.color.secondary.dark",
+			app.$themes
+		)};
+}
+
+// @debug app.$themes;
+// @debug app.get('light.color', app.$themes);
+
+$map: (
+	key1: "value",
+	key2: "value",
+	map1: (
+		mappedKey1: 5,
+		mappedKey2: 10,
+	),
+);
+
+@function parse($map, $prefix: "") {
+	$res: list();
+	@each $key, $val in $map {
+		$res: append($res, #{"--" + $key + ": " + $val}, comma);
+	}
+	@return $res;
+}
+
+@function generate-css-variables($map, $parent-path: "") {
+	$variables: ();
+
+	@each $key, $value in $map {
+		$variable-name: $parent-path + "-" + $key;
+
+		@if type-of($value) == map {
+			$variables: map-merge(
+				$variables,
+				generate-css-variables($value, $variable-name)
+			);
+		} @else {
+			$variables: map-merge(
+				$variables,
+				(
+					$variable-name: $value,
+				)
+			);
+		}
+	}
+
+	@return $variables;
+}
+$colors: app.$colors;
+
+$theme: (
+	id: "light",
+	color: (
+		surface: (
+			main: app.get("a2", $colors),
+			light: app.get("a1", $colors),
+			dark: app.get("a4", $colors),
+			contrast: app.get("a7", $colors),
+			custom: (
+				_s1: app.get("a1", $colors),
+				s3: app.get("a3", $colors),
+				_s4: app.get("a4", $colors),
+				_s2: app.get("a2", $colors),
+				s5: app.get("a5", $colors),
+				s6: app.get("a6", $colors),
+				_s7: app.get("a7", $colors),
+				s8: app.get("a8", $colors),
+				s9: app.get("a9", $colors),
+			),
+		),
+		primary: (
+			main: app.get("c1", $colors),
+			light: app.get("c1", $colors),
+			dark: app.get("c1", $colors),
+			contrast: app.get("c1", $colors),
+			custom: (
+				_s1: app.get("c1", $colors),
+				_s2: app.get("c2", $colors),
+				_s3: app.get("c3", $colors),
+				s4: app.get("c4", $colors),
+			),
+		),
+		secondary: (
+			main: app.get("b1", $colors),
+			light: app.get("b2", $colors),
+			dark: app.get("b3", $colors),
+			contrast: app.get("b1", $colors),
+			custom: (
+				_s1: app.get("b1", $colors),
+				_s2: app.get("b2", $colors),
+				_s3: app.get("b3", $colors),
+				s4: app.get("b4", $colors),
+			),
+		),
+		error: (
+			main: app.get("y1", $colors),
+			light: app.get("y1", $colors),
+			dark: app.get("y1", $colors),
+			contrast: app.get("y1", $colors),
+		),
+		success: (
+			main: app.get("z1", $colors),
+			light: app.get("z1", $colors),
+			dark: app.get("z1", $colors),
+			contrast: app.get("z1", $colors),
+		),
+	),
+);
+
+// @debug generate-css-var-name(map.get($theme, color));
+
+// @debug map.values(map.get(app.$themes, light));
+
+// @each $color in map.values(map.get(app.$themes, light)) {
+// @debug $color;
+// @each $c in $color {
+//     // @each $d in $c {
+//         // @debug $d;
+//     // }
+// }
+// }
+
+body {
+	background-color: var(--layout-background-color);
+}
+
+// @debug app.get('colors.a4', app.$exports);
+// @debug app.get('light.color.primaryColor', app.$themes);
+
+// @debug stml.get('color.primaryColor', stml.$lightTheme);
+// @debug stml.get('color.primaryColor', stml.$darkTheme);
+
+// // Core
+// @forward 'abstracts/variables';
+// // @forward 'abstracts/core-functions';
+// // @forward 'abstracts/core-functions';
+// @forward 'abstracts/config';
+// @forward 'abstracts/mixins';
+// @forward 'abstracts/helper-mixins';
+
+// // // Base
+// // @forward 'base/@reset';
+// @forward 'base/animations';
+// // @forward 'base/container';
+// // @forward 'base/grid';
+// // @forward 'base/helpers';
+// @forward 'base/print';
+// // @forward 'base/typography';
+
+// // // Components
+// // @forward 'components/action';
+// // @forward 'components/button';
+// // @forward 'components/input';

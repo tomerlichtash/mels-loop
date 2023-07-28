@@ -1,0 +1,20 @@
+$dfr--base-color-dark:                  #000 !default;
+$dfr--base-color-light:                 #fff !default;
+
+$dfr--base-lineHeight:                  1.5 !default;
+$dfr--base-fontSize:                    16px !default;
+$dfr--root-fontSize-small:              ($dfr--base-fontSize - 2) !default;
+$dfr--root-fontSize-large:              $dfr--base-fontSize !default;
+
+$dfr--base-borderRadius:                4px !default;
+
+$dfr--base-spacing:                     15px !default;
+$dfr--x-spacing:                        $dfr--base-spacing !default;
+$dfr--y-spacing:                        $dfr--base-spacing / 2 !default;
+
+$dfr-grid-columns:                      12 !default;
+$dfr-grid-gutter:                       15px !default;
+
+$dfr-yiq-threshold:                     180 !default; // 128 is common default, but looks odd
+$dfr-yiq-color-dark:                    $dfr--base-color-dark !default;
+$dfr-yiq-color-light:                   $dfr--base-color-light !default;

@@ -1,0 +1,8 @@
+@use "sass:map";
+@use 'variants/light';
+@use 'variants/dark';
+
+$themes: (
+    map.get(light.$theme, id): light.$theme,
+    map.get(dark.$theme, id): dark.$theme
+);

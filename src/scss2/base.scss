@@ -1,54 +1,210 @@
-@use "sass:map";
-@use "./reset";
-@use "./vars/theme.scss";
-@use "./vars/components.scss";
-@use "./themes/light.scss";
-@use "./themes/dark.scss";
-@use "./base";
+@use "./utils/colors.scss";
 @use "./mixins/typography.scss";
+@use "./mixins/gradient.scss";
 
-body {
-	$font-family-1: "Roboto Slab", serif;
-	$font-family-2: "Assistant", sans-serif;
+@mixin link-hover {
+	border-bottom: 1px solid currentcolor;
+}
 
-	font-size: 16px;
-	
-	[data-text-direction="ltr"] {
-		font-family: $font-family-1;
-		direction: ltr;
-	}
-	
-	[data-text-direction="rtl"] {
-		font-family: $font-family-2;
-		direction: rtl;
+[data-theme] {
+	background-color: var(--layout-background-color);
+
+	h1 {
+		@include typography.variant(h1);
 	}
 
-	[data-theme="light"] {
-		@include theme.css-vars(light.$index);
-		@include components.css-vars;
+	h2 {
+		@include typography.variant(h2);
+
+	}
+
+	h3 {
+		@include typography.variant(h3);
+	}
+
+	h4 {
+		@include typography.variant(h4);
+	}
+
+	h5 {
+		@include typography.variant(h5);
+	}
+
+	h6 {
+		@include typography.variant(h6);
+	}
+
+	ul li,
+	ol li,
+	table {
+		@include typography.variant(text);
+
+		margin-bottom: 0;
+	}
+
+	p {
+		@include typography.variant(text);
+	}
+
+	code {
+		// color: var(--color-text-main);
+
+		background-color: var(--color-surface-dark);
+		padding: 0 0.2rem;
+		border-radius: 4px;
+	}
+
+	pre {
+		background-color: var(--color-surface-dark);
+		padding: 2rem;
+		border-radius: 4px;
+
+		// code {
+		// 	// color: #000;
+		// }
+	}
+
+	.subtitle {
+		@include typography.variant(h5);
+	}
+
+	// small {
+	// 	@include typography.get(sm, xs, regular);
+	// }
+
+	ul,
+	ol,
+	table,
+	p,
+	pre {
+		color: var(--text-color);
+	}
+
+	blockquote {
+		padding: 0 2rem;
+
+		p {
+			@include typography.variant(h6);
+
+			margin: 2rem 0;
+			font-style: italic;
+		}
+
+		cite {
+			@include typography.variant(text);
+		}
+	}
+
+
+	[data-link-type],
+	a {
+		cursor: pointer;
+		color: var(--link-color);
+
+		&:link,
+		&:visited {
+			color: var(--link-color);
+		}
+
+		&:hover {
+			color: var(--link-color-hover);
+		}
+
+		&:active {
+			color: var(--link-color-active);
+		}
+	}
+
+	[data-link-type="annotation"] {
+		&:hover .content {
+			@include link-hover;
+		}
+	}
+
+	[data-link-type="glossary"] {
+		&:hover .trigger .content-component-text {
+			@include link-hover;
+		}
+	}
+
+	[data-link-type="annotation"],
+	[data-link-type="glossary"] {
+		&:hover {
+			color: var(--annotation-text-color-hover);
+		}
+
+		&:hover span.content {
+			@include link-hover;
+		}
+	}
+
+	// Page Layout
+	.page {
+		margin: 0 auto;
+		min-height: 70vh;
+		max-width: 80vh;
+
+		// max-width: 40vw;
+		// padding: 0 2rem;
+		// min-width: 100%;
+		// padding-top: 80px;
+	}
+
+	article {
+		padding: 4rem;
+		background-color: var(--color-surface-light);
+		border-radius: var(--border-radius-md);
+		box-shadow: var(--box-shadow-md);
+	}
+
+	footer {
+		background-color: var(--color-surface-dark);
+	}
+
+	.strip {
+		@include gradient.simple(
+			var(--gradient-color-1),
+			var(--gradient-color-2),
+			var(--gradient-color-3)
+		);
+	}
+
+	.annotation {
+		$annotation-paren-gap: 0.05rem;
+		$annotation-paren-opacity: 0.8;
+		$annotation-offset-top: -2px;
+
+		font-size: var(--font-size-xs);
+		top: $annotation-offset-top;
+
+		&::before,
+		&::after {
+			opacity: $annotation-paren-opacity;
+		}
+
+		&::before {
+			content: "[";
+			margin-right: $annotation-paren-gap;
+		}
+
+		&::after {
+			content: "]";
+			margin-left: $annotation-paren-gap;
+		}
+
+		.content::after {
+			font-weight: var(--font-weight-bold);
+		}
+	}
+
+	[data-link-type="annotation"] [data-popover-visibility="true"] .content,
+	[data-link-type="glossary"] [data-popover-visibility="true"] span {
+		border-radius: 3px;
+		background-color: var(--color-primary-dark);
+		color: var(--color-primary-contrast);
 	}
 }
 
-// [data-theme="light"] {
-// 	@include theme.css-vars(light.$index);
-// 	@include components.css-vars;
-// }
-
-// [data-theme="dark"] {
-// 	@include theme.cssVars(dark.$index);
-// }
-
-// Page Layout
-.page {
-	margin: 0 auto;
-	min-height: 70vh;
-	max-width: 80vh;
-
-	// max-width: 40vw;
-	// padding: 0 2rem;
-	// min-width: 100%;
-	// padding-top: 80px;
-}
 
 small {
 	display: block;
@@ -317,12 +473,3 @@ img {
 // .NavigationMenuViewport {
 // 	background-color: colors.$level0;
 // }
-
-// RADIX
-[data-radix-scroll-area-viewport] {
-	height: 100% !important;
-}
-
-[data-radix-popper-content-wrapper] {
-	z-index: 1 !important;
-}

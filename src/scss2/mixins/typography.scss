@@ -1,0 +1,41 @@
+$font-family-1: "Roboto Slab", serif;
+$font-family-2: "Assistant", sans-serif;
+
+@mixin variant($name) {
+    font-size: var(--#{$name}-font-size);
+    font-weight: var(--#{$name}-font-weight);
+    line-height: var(--#{$name}-line-height);
+    margin-bottom: var(--#{$name}-margin-bottom);
+    color: var(--#{$name}-text-color);
+}
+
+@mixin lang-en {
+    [data-text-direction="ltr"] {
+        font-family: $font-family-1;
+    }
+}
+
+@mixin lang-he {
+    [data-text-direction="rtl"] {
+        font-family: $font-family-2;
+    }
+}
+
+@mixin text-direction-ltr {
+    [data-text-direction="ltr"] {
+        direction: ltr;
+    }
+}
+
+@mixin text-direction-rtl {
+    [data-text-direction="rtl"] {
+        direction: rtl;
+    }
+}
+
+@mixin locale {
+    @include text-direction-ltr;
+    @include text-direction-rtl;
+    @include lang-en;
+    @include lang-he;
+}

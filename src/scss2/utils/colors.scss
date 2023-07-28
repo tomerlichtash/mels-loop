@@ -2,7 +2,7 @@
 @use "../vars/common.scss";
 
 @function get($name) {
-	@return map-get(map-get(map-get(common.$index, color), pallette), $name);
+	@return map-get(map-get(common.$index, color), $name);
 }
 
 @function contrast($color) {

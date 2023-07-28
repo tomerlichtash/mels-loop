@@ -1,0 +1,33 @@
+$vars: (
+    fontSize: (
+        5xl: 2.5vmax,
+        4xl: 2.03vmax,
+        3xl: 1.614vmax,
+        2xl: 1.302vmax,
+        xl: 1.241vmax,
+        lg: 1.041vmax,
+        md: 1rem,
+        sm: 0.9vmax,
+        xs: 0.7rem,
+    ),
+    lineHeight: (
+        xl: 3vmax,
+        lg: 2vmax,
+        md: 1.6vmax,
+        sm: 1.4rem,
+        xs: 1.4vmax,
+    ),
+    fontWeight: (
+        thin: 100,
+        regular: 300,
+        medium: 500,
+        bold: 700,
+    ),
+    margin: (
+        3xl: 1.302vmax,
+        2xl: 1.202vmax,
+        xl: 1.102vmax,
+        lg: 1.002vmax,
+        md: 1vmax,
+    ),
+);

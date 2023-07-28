@@ -1,0 +1,19 @@
+// ---------------------------------------------------------
+// color
+// Set predefined background and text color
+//
+// Required arguments:
+// `$namespace` String
+//
+// Allowed `$value`(s) as namespaces can be found at:
+// "abstracts/config/color.scss"
+//
+// Examples of use:
+// @include color('almost-dark')
+// ---------------------------------------------------------
+@mixin color ($namespace) {
+  $color: get('color.#{$namespace}');
+
+  background-color: $color;
+  color: yiq($color);
+}

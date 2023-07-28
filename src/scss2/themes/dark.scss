@@ -17,15 +17,23 @@ D::::::::::::DDDA:::::A                 A:::::AR::::::R     R:::::K:::::::K    K
 DDDDDDDDDDDDD  AAAAAAA                   AAAAAARRRRRRRR     RRRRRRKKKKKKKKK    KKKKKKK                                                                                     
 */
 
+@use "sass:map";
+@use "../vars/common.scss";
+
 @use "../utils/colors.scss";
+@use "../utils/theme.scss";
+
+@function getProp($index, $prop) {
+	@return map.get(common.$index, a8);
+}
 
 $index: (
 	logo: url(//public/favicon-temp.png),
 	color: (
 		surface: (
-			main: colors.get(a8),
-			light: colors.get(a1),
-			dark: colors.get(a4),
+			main: red,
+			light: blue, //colors.get(a1),
+			dark: green, //colors.get(a4),
 			contrast: colors.contrast(colors.get(a7)),
 			custom: (
 				s1: colors.get(a1),

@@ -1,0 +1,25 @@
+@use 'sass:string';
+@use 'sass:map';
+
+// ---------------------------------------------------------
+// get
+// Search for any value contained within nested maps, by using
+// dot notation as the key argument
+//
+// Required arguments:
+// `$key` String
+//
+// Example of use:
+// get('border.radius.xs')
+//
+// @return Anything
+// ---------------------------------------------------------
+@function get ($key, $map: $dfr-config) {
+  $keys: string.split($key, '.');
+
+  @if not map.has-key($map, $keys...) {
+    @error 'The argument $map: `#{$map}` doesn\'t have some of the $keys: `#{$keys}`!';
+  }
+
+  @return map.get($map, $keys...);
+}

@@ -1,0 +1,36 @@
+// stylelint-disable font-weight-notation
+%dfr-headings-common {
+  font-weight: get('heading.font.weight');
+  line-height: get('heading.line-height');
+  margin-bottom: convert-unit(get('heading.margin.bottom'), 'rem');
+}
+// stylelint-enable font-weight-notation
+
+@each $size in get('heading.font.size') {
+  $index: index(get('heading.font.size'), $size);
+
+  .title-#{$index} {
+    @extend %dfr-headings-common;
+
+    font-size: convert-unit($size, 'rem');
+  }
+}
+
+blockquote {
+  @include padding('s');
+
+  margin-left: 0;
+  border-left: {
+    width: get('border.width');
+    style: get('border.style');
+    color: get('border.color');
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  cite {
+    color: get('color.medium');
+  }
+}

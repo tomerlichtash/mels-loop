@@ -57,7 +57,7 @@
 		"gray-matter": "4.0.3",
 		"js-cookie": "3.0.1",
 		"lodash.orderby": "4.6.0",
-		"next": "13.0.6",
+		"next": "13.4.9",
 		"next-axiom": "0.16.0",
 		"react": "18.2.0",
 		"react-burger-menu": "3.0.9",
@@ -67,7 +67,7 @@
 		"tmp": "0.2.1"
 	},
 	"devDependencies": {
-		"@next/env": "13.0.6",
+		"@next/env": "13.4.9",
 		"@next/eslint-plugin-next": "13.0.6",
 		"@playwright/test": "1.28.1",
 		"@types/js-cookie": "3.0.2",

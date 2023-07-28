@@ -1,0 +1,80 @@
+@use "../forwards" as app;
+
+$colors: app.$colors;
+
+$theme: (
+	id: "light",
+	color: (
+		surface: (
+			main: app.get("a2", $colors),
+			light: app.get("a1", $colors),
+			dark: app.get("a4", $colors),
+			contrast: app.get("a7", $colors),
+			custom: (
+				_s1: app.get("a1", $colors),
+				s3: app.get("a3", $colors),
+				_s4: app.get("a4", $colors),
+				_s2: app.get("a2", $colors),
+				s5: app.get("a5", $colors),
+				s6: app.get("a6", $colors),
+				_s7: app.get("a7", $colors),
+				s8: app.get("a8", $colors),
+				s9: app.get("a9", $colors),
+			),
+		),
+		primary: (
+			main: app.get("c1", $colors),
+			light: app.get("c1", $colors),
+			dark: app.get("c1", $colors),
+			contrast: app.get("c1", $colors),
+			custom: (
+				_s1: app.get("c1", $colors),
+				_s2: app.get("c2", $colors),
+				_s3: app.get("c3", $colors),
+				s4: app.get("c4", $colors),
+			),
+		),
+		secondary: (
+			main: app.get("b1", $colors),
+			light: app.get("b2", $colors),
+			dark: app.get("b3", $colors),
+			contrast: app.get("b1", $colors),
+			custom: (
+				_s1: app.get("b1", $colors),
+				_s2: app.get("b2", $colors),
+				_s3: app.get("b3", $colors),
+				s4: app.get("b4", $colors),
+			),
+		),
+		error: (
+			main: app.get("y1", $colors),
+			light: app.get("y1", $colors),
+			dark: app.get("y1", $colors),
+			contrast: app.get("y1", $colors),
+		),
+		success: (
+			main: app.get("z1", $colors),
+			light: app.get("z1", $colors),
+			dark: app.get("z1", $colors),
+			contrast: app.get("z1", $colors),
+		),
+	),
+);
+
+// $index: (
+// 	logo: "public/favicon-temp.png",
+// 	shadow: (
+// 		md: #{colors.get(hsl1),
+// 		colors.get(hsl2)},
+// 	),
+// 	radius: (
+// 		md: 4px,
+// 	),
+// 	gradient: (
+// 		gradient1: (
+// 			start: colors.get(b1),
+// 			middle: colors.get(b4),
+// 			end: colors.get(b5),
+// 		),
+// 	),
+// );

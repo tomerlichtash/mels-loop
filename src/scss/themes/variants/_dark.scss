@@ -1,0 +1,10 @@
+@use "../forwards" as app;
+
+$theme: (
+	name: 'Dark Theme',
+    color: (
+        primaryColor: app.get("a3", app.$colors),
+        secondaryColor: app.get("a2", app.$colors)
+    )
+);
+
