@@ -28,12 +28,12 @@ export function ThemeContextProvider({ children }: ThemeContextProps) {
 	);
 }
 
-const updateClassName = (theme: string) => {
+const updateThemeAttr = (theme: string) => {
 	const ref = window.document.querySelectorAll(
 		"[data-theme]"
 	)[0] as HTMLElement;
-	ref.classList.remove(ref.classList[0]);
-	ref.classList.add(themes[theme][0]);
+	ref.removeAttribute(ref.classList[0]);
+	ref.setAttribute("data-theme", themes[theme][0]);
 };
 
 export class ThemeContext implements IThemeContext {
@@ -44,7 +44,7 @@ export class ThemeContext implements IThemeContext {
 
 	public setTheme = (theme: Themes) => {
 		this._theme = theme;
-		updateClassName(theme);
+		updateThemeAttr(theme);
 		Cookies.set("theme", theme);
 	};
 

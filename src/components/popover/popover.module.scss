@@ -1,0 +1,27 @@
+.content {
+	background-color: var(--popover-content-background-color);
+	box-shadow: var(--popover-content-box-shadow);
+	// padding: var(--popover-content-padding);
+	width: 414px;
+	animation: fadeIn 300ms ease-out forwards;
+}
+
+.trigger {
+	border: 2px solid purple;
+}
+
+.triggerWrapper {
+	background-color: yellow;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.9;
+	}
+	100% {
+		opacity: 1;
+	}
+}

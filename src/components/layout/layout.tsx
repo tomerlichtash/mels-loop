@@ -6,11 +6,12 @@ import Head from "next/head";
 import TopBar from "../top-bar";
 import Footer from "../footer";
 import Page from "../page";
-import ScrollArea from "../scrollbar";
-import { MenuProvider } from "../menu-provider";
 import Analytics from "./analytics";
 import { ComponentProps } from "../../interfaces/models";
 import { FavIconAnimator, IFavIconProps } from "../../lib/favicon-animator";
+import { Scrollable } from "../scrollbar/scrollbar";
+import { Menu } from "../menu";
+import { ReactThemeContext } from "../../contexts/theme-context";
 
 export interface ILayoutProps extends ComponentProps {
 	title?: string;
@@ -35,6 +36,7 @@ export default function Layout({ children, title }: ILayoutProps) {
 	const { locale, asPath: currentUrl } = router;
 	const size = useWindowSize();
 	const isMobile = size.width <= 1024;
+	const { theme } = useContext(ReactThemeContext);
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
@@ -44,12 +46,9 @@ export default function Layout({ children, title }: ILayoutProps) {
 		const handleRouteChange = () => {
 			new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
 		};
-
 		router.events.on("routeChangeStart", handleRouteChange);
 		// unsubscribe on unmount
-		return () => {
-			router.events.off("routeChangeStart", handleRouteChange);
-		};
+		return () => router.events.off("routeChangeStart", handleRouteChange);
 	}, [router.events]);
 
 	const pageTitle = [siteTitle, siteSubtitle, title || pageName]
@@ -57,6 +56,9 @@ export default function Layout({ children, title }: ILayoutProps) {
 		.filter(Boolean)
 		.join(" - ");
 
+	useEffect(() => {
+		console.log(theme);
+	}, [theme]);
 	return (
 		<>
 			<Head>
@@ -73,7 +75,6 @@ export default function Layout({ children, title }: ILayoutProps) {
 					href="/favicon-light-temp.png"
 					media="(prefers-color-scheme: dark)"
 				/>
-
 				<meta name="description" content={siteSubtitle} />
 				<meta itemProp="name" content={siteTitle} />
 				<meta itemProp="description" content={siteSubtitle} />
@@ -90,16 +91,15 @@ export default function Layout({ children, title }: ILayoutProps) {
 				id="outer-container"
 				className="layout"
 				data-text-direction={textDirection}
-				data-theme="light"
 			>
-				<ScrollArea>
+				<Scrollable>
 					<div id="page-wrap">
 						<TopBar />
 						<Page nodes={children} />
 						<Footer textDirection={textDirection} />
 					</div>
-				</ScrollArea>
-				{isMobile && <MenuProvider isMobile />}
+				</Scrollable>
+				{isMobile && <Menu isMobile />}
 			</div>
 			{!isDebug && <Analytics />}
 		</>

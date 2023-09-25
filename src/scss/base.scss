@@ -15,7 +15,6 @@
 
 	h2 {
 		@include typography.variant(h2);
-
 	}
 
 	h3 {
@@ -38,13 +37,11 @@
 	ol li,
 	table {
 		@include typography.variant(text);
-
 		margin-bottom: 0;
 	}
 
 	p {
 		@include typography.variant(text);
-
 	}
 
 	code {
@@ -94,7 +91,6 @@
 			@include typography.variant(text);
 		}
 	}
-
 
 	[data-link-type],
 	a {
@@ -160,9 +156,9 @@
 
 	.strip {
 		@include gradient.simple(
-			var(--gradient-color-1),
-			var(--gradient-color-2),
-			var(--gradient-color-3)
+			var(--color-gradient-1),
+			var(--color-gradient-2),
+			var(--color-gradient-3)
 		);
 	}
 

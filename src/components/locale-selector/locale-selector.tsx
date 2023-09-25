@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
 import { ReactLocaleContext } from "../../contexts/locale-context";
-import { ComponentProps } from "../../interfaces/models";
-import { Button } from "../ui";
-import { ToggleGroupRoot, ToggleGroupItem } from "../radix-primitives";
-import { LocaleId } from "../../interfaces/locale-context";
 import { mlUtils } from "../../lib/ml-utils";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
-export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
+export const LocaleSelector = ({ className }): JSX.Element => {
 	const {
 		locale,
 		locales,
@@ -15,42 +12,43 @@ export const LocaleSelector = ({ className }: ComponentProps): JSX.Element => {
 		getLocaleSymbol,
 		onLocaleChange,
 	} = useContext(ReactLocaleContext);
+
+	const [localeValue, setLocaleValue] = React.useState<string | null>(locale);
+
+	const handleChange = (_: React.MouseEvent<HTMLElement>, val: string) =>
+		setLocaleValue(val);
+
 	return (
-		<div className="locale-selector" data-locale={locale}>
-			<ToggleGroupRoot
-				type="single"
-				onValueChange={(localeId: LocaleId) => {
-					onLocaleChange(localeId).catch(() =>
-						console.error("onLocaleChange Error")
-					);
-				}}
-			>
-				<div className="list">
-					{locales.map((id) => {
-						const localeLabel = getLocaleSymbol(id);
-						const localTitle = translate(`${getLocaleLabel(id)}_LABEL`);
-						return (
-							<ToggleGroupItem
-								key={mlUtils.uniqueId()}
-								tabIndex={1}
-								asChild
-								title={localTitle}
-								value={id}
-							>
-								<Button
-									label={localeLabel}
-									title={localTitle}
-									className="item"
-									data-locale={id}
-									data-selecetd={locale === id}
-								/>
-							</ToggleGroupItem>
-						);
-					})}
-				</div>
-			</ToggleGroupRoot>
-		</div>
+		<ToggleButtonGroup
+			className={className}
+			value={localeValue}
+			exclusive
+			onChange={handleChange}
+			aria-label="Site Language"
+		>
+			{locales.map((id) => {
+				const localeLabel = getLocaleSymbol(id);
+				const localeTitle = translate(`${getLocaleLabel(id)}_LABEL`);
+				return (
+					<ToggleButton
+						size="small"
+						key={mlUtils.uniqueId()}
+						value={id}
+						selected={locale === id}
+						aria-label={localeTitle}
+						title={localeTitle}
+						onClick={() => {
+							onLocaleChange(id).catch(() =>
+								console.error("onLocaleChange Error")
+							);
+						}}
+					>
+						{localeLabel}
+					</ToggleButton>
+				);
+			})}
+		</ToggleButtonGroup>
 	);
 };
 
-export default LocaleSelector;
+// export default LocaleSelector;

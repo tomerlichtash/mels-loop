@@ -3,6 +3,7 @@ import { ComponentProps } from "../../interfaces/models";
 import { TextDirection } from "../../interfaces/locale-context";
 import { IBibliographySource } from "../bibliography/bibliography";
 import Bibliography from "../bibliography";
+import styles from "./note.module.scss";
 
 export type NoteViews = "note" | "ref";
 
@@ -29,7 +30,7 @@ export const Note = ({
 	className,
 }: INoteProps): JSX.Element => {
 	return (
-		<div className="note">
+		<div className={styles.root}>
 			{type === "ref" && (
 				<div className="header">
 					<div className="topic">{label}</div>

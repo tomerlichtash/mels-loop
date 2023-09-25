@@ -1,20 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import Header from "../header";
 import LocaleSelector from "../locale-selector";
-// import ThemeSelector from "../theme-selector";
-import { ReactLocaleContext } from "../../contexts/locale-context";
-import { MenuProvider } from "../menu-provider";
-import { ComponentProps } from "../../interfaces/models";
+import ThemeSelector from "../theme-selector";
+import { Menu } from "../menu";
+import styles from "./top-bar.module.scss";
 
-export default function TopBar({ className }: ComponentProps) {
-	// const { locale, textDirection } = useContext(ReactLocaleContext);
+export default function TopBar() {
 	return (
-		<div className="top-bar">
-			{/* <Header /> */}
-			<div className="menu">
-				{/* <MenuProvider /> */}
-				{/* <LocaleSelector /> */}
-				{/* <ThemeSelector className={st(classes.themeSelector, classes.item)} /> */}
+		<div className={styles.root}>
+			<div className={styles.section}>
+				<Header className={styles.header} />
+			</div>
+			<div className={styles.section}>
+				<Menu className={styles.menu} />
+				<LocaleSelector className={styles.localeSelector} />
+				<ThemeSelector className={styles.themeSelector} />
 			</div>
 		</div>
 	);

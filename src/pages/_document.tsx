@@ -20,10 +20,12 @@ class CustomDocument extends Document<CustomDocumentProps> {
 	): Promise<CustomDocumentProps> {
 		const mlConfig = new MLConfig({ theme: "light" });
 		const props = await Document.getInitialProps(ctx);
-		// const { cookies } = ctx.req;
-		// cookies &&
-		// 	cookies["theme"] &&
-		// 	mlConfig.setTheme((cookies["theme"] || "light") as Themes);
+		const { cookies } = ctx.req;
+		if (!cookies["theme"]) {
+			mlConfig.setTheme("light" as Themes);
+		} else {
+			mlConfig.setTheme(cookies["theme"] as Themes);
+		}
 		return { ...props, mlConfig };
 	}
 
@@ -33,7 +35,7 @@ class CustomDocument extends Document<CustomDocumentProps> {
 			<Html>
 				<Head>{fontFaceLinks}</Head>
 				<body>
-					<div data-theme className={mlConfig.getThemeClassName()}>
+					<div data-theme={mlConfig.getThemeClassName()}>
 						<Main />
 						<NextScript />
 						{addConfigScript(mlConfig.getConfig())}

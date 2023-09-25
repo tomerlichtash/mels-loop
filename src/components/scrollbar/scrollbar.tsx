@@ -1,32 +1,36 @@
 import React, { useContext } from "react";
 import { ReactLocaleContext } from "../../contexts/locale-context";
+import * as ScrollArea from "@radix-ui/react-scroll-area";
+import classNames from "classnames";
+import styles from "./scrollbar.module.scss";
 
-import {
-	StyledScrollArea,
-	ScrollViewport,
-	ScrollBar,
-	ScrollBarThumb,
-	ScrollAreaProps,
-} from "../radix-primitives";
-
-export function ScrollArea({
+export function Scrollable({
 	children,
 	orientation = "vertical",
 	height = "100vh",
+	className,
 }: ScrollAreaProps) {
 	const { textDirection } = useContext(ReactLocaleContext);
 	return (
-		<StyledScrollArea
-			className="scrollbar-root"
+		<ScrollArea.Root
+			className={classNames([styles.root, className])}
 			type="always"
 			dir={textDirection}
 		>
-			<ScrollViewport style={{ height: `${height}` }}>
-				{children}
-			</ScrollViewport>
-			<ScrollBar orientation={orientation} className="scrollbar">
-				<ScrollBarThumb className="scrollbar-thumb" />
-			</ScrollBar>
-		</StyledScrollArea>
+			<ScrollArea.Viewport>{children}</ScrollArea.Viewport>
+			<ScrollArea.Scrollbar
+				className="ScrollAreaScrollbar"
+				orientation="vertical"
+			>
+				<ScrollArea.Thumb className="ScrollAreaThumb" />
+			</ScrollArea.Scrollbar>
+			<ScrollArea.Scrollbar
+				className="ScrollAreaScrollbar"
+				orientation="horizontal"
+			>
+				<ScrollArea.Thumb className="ScrollAreaThumb" />
+			</ScrollArea.Scrollbar>
+			<ScrollArea.Corner className="ScrollAreaCorner" />
+		</ScrollArea.Root>
 	);
 }

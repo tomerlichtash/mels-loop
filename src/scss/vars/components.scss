@@ -43,7 +43,13 @@
 
 	// Surfaces
 	--layout-background-color: var(--color-surface-main);
+	--header-background-color: var(--color-surface-dark);
 	--footer-background-color: var(--color-surface-dark);
 
 	// @include cssVar(logo-url, $logo);
+
+	// Popover
+	--popover-content-background-color: var(--color-surface-light);
+	--popover-content-box-shadow: var(--box-shadow-md);
+	--popover-content-padding: var(--spacing-md);
 }

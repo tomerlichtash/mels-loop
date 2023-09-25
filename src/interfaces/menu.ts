@@ -1,11 +1,14 @@
 export type MenuItemLayout = "one" | "two" | "three";
+
 export type MenuSectionType = "group" | "single";
+
 export type MenuItemChildType =
 	| "codex"
 	| "article"
 	| "page"
 	| "link"
 	| "external";
+
 export type MenuItemKey =
 	| "title"
 	| "description"
@@ -23,6 +26,7 @@ export interface IMenuItemBase {
 export interface IMenuSection extends IMenuItemBase {
 	type: MenuSectionType;
 	meta: { layout: MenuItemLayout };
+	keys: Record<string, string>;
 	children: string[];
 }
 
@@ -31,10 +35,10 @@ export interface IMenuItem extends IMenuItemBase {
 	meta: { url?: string; icon?: string };
 }
 
-export interface IMenuData {
+export type MenuItemProps = {
 	id: string;
-	keys: MenuItemKeys;
-	type: MenuSectionType;
-	meta: { layout: MenuItemLayout; url?: string };
-	children: IMenuItem[];
-}
+	locale: MenuItemKeys;
+	url: string;
+	target?: "blank" | null;
+	items: IMenuItem[];
+};

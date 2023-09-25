@@ -1,0 +1,27 @@
+.root {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed;
+	padding: 0.25em 1em;
+	top: 0;
+	width: 100%;
+	background-color: var(--header-background-color);
+	box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+	z-index: 1;
+}
+
+.section {
+	display: flex;
+	align-items: center;
+}
+
+.header {
+}
+
+.menu {
+	width: 480px;
+}
+
+.themeSelector {
+}

@@ -7,6 +7,7 @@
 	$colors: map.get($themeIndex, color);
 	$fonts: map.get($themeIndex, typography);
 	$shadow: map.get($themeIndex, shadow);
+	$spacing: map.get($themeIndex, spacing);
 	$radius: map.get($themeIndex, radius);
 	$gradient: map.get($themeIndex, gradient);
 
@@ -35,15 +36,18 @@
 	--color-success-contrast: #{theme.prop($colors, success, contrast)};
 
 	// GRADIENT
-	--gradient-color-1: #{theme.prop($gradient, gradient1, start)};
-	--gradient-color-2: #{theme.prop($gradient, gradient1, middle)};
-	--gradient-color-3: #{theme.prop($gradient, gradient1, end)};
+	--color-gradient-1: #{theme.prop($gradient, gradient1, start)};
+	--color-gradient-2: #{theme.prop($gradient, gradient1, middle)};
+	--color-gradient-3: #{theme.prop($gradient, gradient1, end)};
 
 	// RADIUS
 	--border-radius-md: #{map.get($radius, md)};
 
 	// SHADOW
 	--box-shadow-md: #{map.get($shadow, md)};
+
+	// SPACING
+	--spacing-md: #{map.get($spacing, md)};
 
 	// TYPOGRAPHY
 	$common: common.$index;

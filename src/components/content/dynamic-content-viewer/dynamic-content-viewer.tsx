@@ -11,6 +11,7 @@ import { mlUtils } from "../../../lib/ml-utils";
 import { LoadingIndicator } from "../../loading-indicator/loading-indicator";
 import ScrollArea from "../../scrollbar";
 import { useRouter } from "next/router";
+import { Scrollable } from "../../scrollbar/scrollbar";
 
 /**
  * Show loading animation after this many msecs have elapsed without data
@@ -143,7 +144,7 @@ export const DynamicContentViewer = ({
 
 	return (
 		<div className="dynamic-viewer">
-			<ScrollArea height="300px">
+			<Scrollable height="300px">
 				<Note
 					className="note"
 					type={itemType}
@@ -155,7 +156,7 @@ export const DynamicContentViewer = ({
 					textDirection={textDirection}
 					sources={sources}
 				/>
-			</ScrollArea>
+			</Scrollable>
 		</div>
 	);
 };
