@@ -69,6 +69,77 @@ img {
 	}
 }
 
+/* UI */
+// .locale-selector .list .item {
+// 	border: 2px solid red;
+// 	display: inline-block;
+// 	height: 32px;
+// 	width: 32px;
+// 	line-height: 32px;
+// 	text-align: center;
+// 	cursor: pointer;
+// }
+
+// .locale-selector .list .item[data-locale="en"] {
+// 	// @include typography.LatinText;
+// }
+
+// .locale-selector .list .item[data-locale="he"] {
+// 	// @include typography.HebrewText;
+// }
+
+// .locale-selector .list .item[data-selected="true"] {
+// 	cursor: default;
+// }
+
+// loading indicator
+.loading-indicator .loading-indicator-animation {
+	width: 32px;
+	height: 32px;
+	animation: rotation 2s infinite linear;
+	// background-image: url(../../../public/assets/ml-logo.png);
+}
+
+.loading-indicator .rotate {
+	animation: rotation 2s infinite linear;
+}
+
+// footer
+.footer {
+	margin-top: 2rem;
+}
+
+.strip {
+	height: 0.3vh;
+	// background: linear-gradient(90deg, #fff 0%, #c0c0c0 50%, #000 100%);
+}
+
+// popover close
+.popover-close-button {
+	cursor: pointer;
+	border: none;
+	background: none;
+	flex-grow: 0;
+}
+
+// captcha
+.captcha {
+	animation: fadeIn 2000ms;
+	display: inline-block;
+	width: 302px;
+	height: 76px;
+	border-radius: 6px;
+}
+
+// RADIX
+[data-radix-scroll-area-viewport] {
+	height: 100% !important;
+}
+
+[data-radix-popper-content-wrapper] {
+	z-index: 1 !important;
+}
+
 // CONTENT COMPONENTS
 // .moto {
 // 	margin-bottom: 2rem;
@@ -116,30 +187,6 @@ img {
 // 	top: -6px;
 // 	content: "\203B";
 // }
-
-/* UI */
-.locale-selector .list .item {
-	border: 2px solid red;
-	display: inline-block;
-	height: 32px;
-	width: 32px;
-	line-height: 32px;
-	text-align: center;
-	cursor: pointer;
-}
-
-.locale-selector .list .item[data-locale="en"] {
-	// @include typography.LatinText;
-}
-
-.locale-selector .list .item[data-locale="he"] {
-	// @include typography.HebrewText;
-}
-
-.locale-selector .list .item[data-selected="true"] {
-	cursor: default;
-}
-
 // Scrollbar
 // .scrollbar-root {
 // 	width: 100%;
@@ -182,51 +229,6 @@ img {
 // 	min-width: 44px;
 // 	min-height: 44px;
 // }
-
-// loading indicator
-.loading-indicator .loading-indicator-animation {
-	width: 32px;
-	height: 32px;
-	animation: rotation 2s infinite linear;
-
-	// background-image: url(../../../public/assets/ml-logo.png);
-}
-
-.loading-indicator .rotate {
-	animation: rotation 2s infinite linear;
-}
-
-// footer
-.footer {
-	margin-top: 2rem;
-
-	// background-color: colors.$color2;
-	// color: colors.$color8;
-}
-
-.strip {
-	height: 0.3vh;
-
-	// background: linear-gradient(90deg, #fff 0%, #c0c0c0 50%, #000 100%);
-}
-
-// popover close
-.popover-close-button {
-	cursor: pointer;
-	border: none;
-	background: none;
-	flex-grow: 0;
-}
-
-// captcha
-.captcha {
-	animation: fadeIn 2000ms;
-	display: inline-block;
-	width: 302px;
-	height: 76px;
-	border-radius: 6px;
-}
-
 // .root:highlight {
 // 	animation: flickerAnimation 1s infinite;
 // }
@@ -273,12 +275,3 @@ img {
 // .NavigationMenuViewport {
 // 	background-color: colors.$level0;
 // }
-
-// RADIX
-[data-radix-scroll-area-viewport] {
-	height: 100% !important;
-}
-
-[data-radix-popper-content-wrapper] {
-	z-index: 1 !important;
-}

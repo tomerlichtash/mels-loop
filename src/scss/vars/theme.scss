@@ -10,6 +10,7 @@
 	$spacing: map.get($themeIndex, spacing);
 	$radius: map.get($themeIndex, radius);
 	$gradient: map.get($themeIndex, gradient);
+	$logo: map.get($themeIndex, logo);
 
 	// $logo: map.get($themeIndex, logo);
 
@@ -84,4 +85,6 @@
 	--h4-text-color: #{theme.var($colors, surface, custom, s9)};
 	--h5-text-color: #{theme.var($colors, surface, custom, s9)};
 	--h6-text-color: #{theme.var($colors, surface, custom, s9)};
+
+	--ml-site-logo: #{map.get($logo, url)};
 }

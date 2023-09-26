@@ -20,71 +20,69 @@
 @use "../utils/colors.scss";
 
 $index: (
-	logo: "public/favicon-temp.png",
-	color: (
-		surface: (
-			main: colors.get(a2),
-			light: colors.get(a1),
-			dark: colors.get(a4),
-			contrast: colors.get(a7),
-			// contrast: colors.contrast(colors.get(a3)),
-			custom:
-				(
-					_s1: colors.get(a1),
-					s3: colors.get(a3),
-					_s4: colors.get(a4),
-					_s2: colors.get(a2),
-					s5: colors.get(a5),
-					s6: colors.get(a6),
-					_s7: colors.get(a7),
-					s8: colors.get(a8),
-					s9: colors.get(a9),
+	// logo: "public/favicon-temp.png",
+	color:
+		(
+			surface: (
+				main: colors.get(a3),
+				light: colors.get(a2),
+				dark: colors.get(a4),
+				contrast: colors.get(a7),
+				// contrast: colors.contrast(colors.get(a3)),
+				custom:
+					(
+						_s1: colors.get(a1),
+						s3: colors.get(a3),
+						_s4: colors.get(a4),
+						_s2: colors.get(a2),
+						s5: colors.get(a5),
+						s6: colors.get(a6),
+						_s7: colors.get(a7),
+						s8: colors.get(a8),
+						s9: colors.get(a9),
+					),
+			),
+			primary: (
+				main: colors.get(c1),
+				light: colors.get(c2),
+				dark: colors.get(c3),
+				contrast: colors.contrast(colors.get(c1)),
+				custom: (
+					_s1: colors.get(c1),
+					_s2: colors.get(c2),
+					_s3: colors.get(c3),
+					s4: colors.get(c4),
 				),
-		),
-		primary: (
-			main: colors.get(c1),
-			light: colors.get(c2),
-			dark: colors.get(c3),
-			contrast: colors.contrast(colors.get(c1)),
-			custom: (
-				_s1: colors.get(c1),
-				_s2: colors.get(c2),
-				_s3: colors.get(c3),
-				s4: colors.get(c4),
+			),
+			secondary: (
+				main: colors.get(b3),
+				light: colors.get(b4),
+				dark: colors.get(b2),
+				contrast: colors.contrast(colors.get(b3)),
+				custom: (
+					s1: colors.get(b1),
+					s5: colors.get(b5),
+					_s2: colors.get(b2),
+					_s3: colors.get(b3),
+					_s4: colors.get(b4),
+				),
+			),
+			error: (
+				main: colors.get(y1),
+				light: colors.get(y1),
+				dark: colors.get(y1),
+				contrast: colors.contrast(colors.get(y1)),
+			),
+			success: (
+				main: colors.get(z1),
+				light: colors.get(z1),
+				dark: colors.get(z1),
+				contrast: colors.contrast(colors.get(z1)),
 			),
 		),
-		secondary: (
-			main: colors.get(b3),
-			light: colors.get(b4),
-			dark: colors.get(b2),
-			contrast: colors.contrast(colors.get(b3)),
-			custom: (
-				s1: colors.get(b1),
-				s5: colors.get(b5),
-				_s2: colors.get(b2),
-				_s3: colors.get(b3),
-				_s4: colors.get(b4),
-			),
-		),
-		error: (
-			main: colors.get(y1),
-			light: colors.get(y1),
-			dark: colors.get(y1),
-			contrast: colors.contrast(colors.get(y1)),
-		),
-		success: (
-			main: colors.get(z1),
-			light: colors.get(z1),
-			dark: colors.get(z1),
-			contrast: colors.contrast(colors.get(z1)),
-		),
-	),
 	shadow: (
 		md: #{colors.get(hsl1),
 		colors.get(hsl2)},
-	),
-	radius: (
-		md: 4px,
 	),
 	gradient: (
 		gradient1: (
@@ -93,7 +91,13 @@ $index: (
 			end: colors.get(b5),
 		),
 	),
+	radius: (
+		md: 4px,
+	),
 	spacing: (
 		md: 1em,
 	),
+	logo: (
+		url: url(../../../public/assets/ml-logo.png),
+	)
 );

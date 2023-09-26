@@ -94,12 +94,12 @@ export default function Layout({ children, title }: ILayoutProps) {
 			>
 				<Scrollable>
 					<div id="page-wrap">
-						<TopBar />
+						<TopBar isMobile={isMobile} />
+						{/* {isMobile ? <Menu isMobile={isMobile} /> : <TopBar />} */}
 						<Page nodes={children} />
 						<Footer textDirection={textDirection} />
 					</div>
 				</Scrollable>
-				{isMobile && <Menu isMobile />}
 			</div>
 			{!isDebug && <Analytics />}
 		</>

@@ -6,7 +6,6 @@ import { getButtonIcon } from "../../utils";
 import styles from "./topbar-menu.module.scss";
 import { mlUtils } from "../../../../lib/ml-utils";
 import classNames from "classnames";
-import { Typography } from "@mui/material";
 
 export const TopbarMenu = ({ items: sections, className }) => {
 	// eslint-disable-next-line react/display-name
@@ -23,18 +22,9 @@ export const TopbarMenu = ({ items: sections, className }) => {
 							target={target}
 						>
 							{icon && getButtonIcon(icon)}
-
-							{title && (
-								<div className={styles.ListItemHeading}>
-									<Typography variant="body1">{title}</Typography>
-								</div>
-							)}
-
-							{description && (
-								<Typography variant="caption">{description}</Typography>
-							)}
-
-							{author && <Typography variant="caption">{author}</Typography>}
+							{title && <div className={styles.ListItemHeading}>{title}</div>}
+							{description && description}
+							{author && author}
 						</Link>
 					</NavigationMenu.Link>
 				</li>
@@ -49,14 +39,9 @@ export const TopbarMenu = ({ items: sections, className }) => {
 			<NavigationMenu.List className={styles.NavigationMenuList}>
 				{sections.map((section) => (
 					<NavigationMenu.Item key={section.id}>
-						<NavigationMenu.Trigger
-							className={styles.NavigationMenuTrigger}
-							asChild
-						>
-							<Typography variant="caption">
-								{section.locale.title}
-								<CaretDownIcon className={styles.CaretDown} aria-hidden />
-							</Typography>
+						<NavigationMenu.Trigger className={styles.NavigationMenuTrigger}>
+							{section.locale.title}
+							<CaretDownIcon className={styles.CaretDown} aria-hidden />
 						</NavigationMenu.Trigger>
 						<NavigationMenu.Content className={styles.NavigationMenuContent}>
 							<ul data-list-grid-size="1" className={styles.List}>

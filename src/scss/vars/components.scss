@@ -1,6 +1,8 @@
 // TYPOGRAPHY VARIANTS
 
 @mixin css-vars {
+	--site-logo: var(--ml-site-logo);
+
 	// Headings
 	--h1-font-size: var(--font-size-5xl);
 	--h1-font-weight: var(--font-weight-medium);
@@ -42,8 +44,8 @@
 	--annotation-text-color-hover: var(--color-secondary-main);
 
 	// Surfaces
-	--layout-background-color: var(--color-surface-main);
-	--header-background-color: var(--color-surface-dark);
+	--layout-background-color: var(--color-surface-light);
+	--header-background-color: var(--color-surface-main);
 	--footer-background-color: var(--color-surface-dark);
 
 	// @include cssVar(logo-url, $logo);

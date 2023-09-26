@@ -1,4 +1,4 @@
-import { PUBLIC_PROJECT_GITHUB_ADDRESS } from "../../../consts";
+import { PUBLIC_PROJECT_GITHUB_ADDRESS } from "../../consts";
 
 export const MenuItems = [
 	{

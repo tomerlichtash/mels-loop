@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { mlUtils } from "../../../../lib/ml-utils";
 import { ComponentProps } from "../../../../interfaces/models";
 import { MenuItemProps } from "../../../../interfaces/menu";
@@ -8,6 +8,15 @@ import { Button, SwipeableDrawer } from "@mui/material";
 import Link from "next/link";
 import { getButtonIcon } from "../../utils";
 import classNames from "classnames";
+import {
+	Cross2Icon,
+	HamburgerMenuIcon,
+	LockClosedIcon,
+} from "@radix-ui/react-icons";
+import Header from "../../../header";
+import LocaleSelector from "../../../locale-selector";
+import ThemeSelector from "../../../theme-selector";
+import { ReactLocaleContext } from "../../../../contexts/locale-context";
 
 export interface IMobileNavProps extends ComponentProps {
 	items: MenuItemProps[];
@@ -15,6 +24,8 @@ export interface IMobileNavProps extends ComponentProps {
 
 export const SidebarMenu = ({ items, className }): JSX.Element => {
 	const [visible, setVisible] = useState(false);
+	const { textDirection } = useContext(ReactLocaleContext);
+	const anchor = textDirection === "ltr" ? "right" : "left";
 
 	// eslint-disable-next-line react/display-name
 	const ListItem = React.forwardRef(
@@ -38,13 +49,27 @@ export const SidebarMenu = ({ items, className }): JSX.Element => {
 
 	return (
 		<div className={classNames([styles.root, className])}>
-			<Button onClick={() => setVisible(!visible)}>open</Button>
+			<Button size="large" onClick={() => setVisible(true)}>
+				<HamburgerMenuIcon />
+			</Button>
 			<SwipeableDrawer
-				anchor={"left"}
+				anchor={anchor}
 				open={visible}
 				onClose={() => setVisible(false)}
 				onOpen={() => setVisible(true)}
 			>
+				<Button size="large" onClick={() => setVisible(false)}>
+					<Cross2Icon />
+				</Button>
+
+				<Header className={styles.header} />
+
+				<LocaleSelector
+					className={styles.localeSelector}
+					onClick={() => setVisible(false)}
+				/>
+				<ThemeSelector className={styles.themeSelector} />
+
 				{items.map((section) => (
 					<div key={mlUtils.uniqueId()}>
 						{section.locale.title}

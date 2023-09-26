@@ -1,31 +1,29 @@
 import React, { useContext } from "react";
 import { ComponentProps } from "../../interfaces/models";
 import { ReactLocaleContext } from "../../contexts/locale-context";
+import Link from "next/link";
 import classNames from "classnames";
 import styles from "./header.module.scss";
-import { Typography } from "@mui/material";
-import Link from "next/link";
 
 export const Header = ({ className }: ComponentProps): JSX.Element => {
-	const { siteTitle, siteSubtitle } = useContext(ReactLocaleContext);
+	const { siteTitle, siteSubtitle, textDirection } =
+		useContext(ReactLocaleContext);
+
 	return (
-		<header className={classNames([styles.root, className])}>
+		<header
+			className={classNames([styles.root, className])}
+			data-text-direction={textDirection}
+		>
 			<Link
 				title={`${siteTitle} - ${siteSubtitle}`}
 				aria-label={`${siteTitle} - ${siteSubtitle}`}
 				href="/"
-				className={styles.siteTitle}
+				className={styles.title}
 			>
-				<Typography variant="button">{siteTitle}</Typography>
-				<div className="site-logo"></div>
+				<div className={styles.logo}></div>
+				<span className={styles.titleText}>{siteTitle}</span>
 			</Link>
-			<Typography
-				variant="caption"
-				aria-label={siteSubtitle}
-				className={styles.siteSubtitle}
-			>
-				{siteSubtitle}
-			</Typography>
+			<span className={styles.subtitle}>{siteSubtitle}</span>
 		</header>
 	);
 };

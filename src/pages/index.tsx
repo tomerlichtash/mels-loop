@@ -63,7 +63,7 @@ const Index: NextPage<IPageProps> = (props) => {
 					</a>
 				</div>
 			</div> */}
-			<article className="article">
+			<article>
 				<h1 className="title">{title}</h1>
 				<p className="moto">{moto}</p>
 				{elements.map((node) => {
