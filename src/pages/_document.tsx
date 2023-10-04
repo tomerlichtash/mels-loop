@@ -3,43 +3,18 @@ import Document, {
 	Head,
 	Main,
 	NextScript,
-	DocumentContext,
 	DocumentInitialProps,
 } from "next/document";
 import { fontFaceLinks } from "../site-fonts";
-import { MLConfig, addConfigScript } from "../config";
-import type { Themes } from "../config/themes";
 
-type CustomDocumentProps = DocumentInitialProps & {
-	mlConfig: MLConfig;
-};
-
-class CustomDocument extends Document<CustomDocumentProps> {
-	static async getInitialProps(
-		ctx: DocumentContext
-	): Promise<CustomDocumentProps> {
-		const mlConfig = new MLConfig({ theme: "light" });
-		const props = await Document.getInitialProps(ctx);
-		const { cookies } = ctx.req;
-		if (!cookies["theme"]) {
-			mlConfig.setTheme("light" as Themes);
-		} else {
-			mlConfig.setTheme(cookies["theme"] as Themes);
-		}
-		return { ...props, mlConfig };
-	}
-
+class CustomDocument extends Document<DocumentInitialProps> {
 	render() {
-		const { mlConfig } = this.props;
 		return (
-			<Html>
+			<Html suppressHydrationWarning>
 				<Head>{fontFaceLinks}</Head>
 				<body>
-					<div data-theme={mlConfig.getThemeClassName()}>
-						<Main />
-						<NextScript />
-						{addConfigScript(mlConfig.getConfig())}
-					</div>
+					<Main />
+					<NextScript />
 				</body>
 			</Html>
 		);

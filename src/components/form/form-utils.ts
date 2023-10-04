@@ -1,4 +1,4 @@
-import { IFetchParams } from "../../config/public-api-params";
+import { IFetchParams } from "../../config/sendgrid";
 import { FormValues, IFormResponse } from "./types";
 
 export const onValuesSubmit =

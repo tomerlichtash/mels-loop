@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IParsedPageData } from "../../../interfaces/models";
 import { mlUtils } from "../../../lib/ml-utils";
-import { ReactLocaleContext } from "../../../contexts/locale-context";
+import { LocaleProvider } from "../../../locale/context/locale-context";
 import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
 import { ReactPopoverContext } from "../../../contexts/popover-context";
+import Button from "../../ui/Button";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import { Button } from "../../ui";
 
 export interface IDynamicContentToolbarProps {
 	pages: IParsedPageData[];
@@ -17,7 +17,7 @@ export default function DynamicContentToolbar({
 	pages,
 }: IDynamicContentToolbarProps): JSX.Element {
 	const [prevPageId, setPrevPageid] = useState("");
-	const { textDirection, translate } = useContext(ReactLocaleContext);
+	const { textDirection, translate } = useContext(LocaleProvider);
 	const popoverCtx = useContext(ReactPopoverContext);
 	const dcCtx = useContext(ReactDynamicContentContext);
 

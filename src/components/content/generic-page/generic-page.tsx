@@ -5,16 +5,15 @@ import {
 	IPageMetaData,
 	MLNODE_TYPES,
 } from "../../../interfaces/models";
-import Layout from "../../layout";
+import Layout from "../../site/Layout";
 import Head from "next/head";
 import ContentIterator from "../content-iterator";
-import { usePageData } from "../../usePageData";
-import { TimeFormat } from "../../ui";
-import { ReactLocaleContext } from "../../../contexts/locale-context";
+import usePageData from "../../../lib/usePageData";
+import { LocaleProvider } from "../../../locale/context/locale-context";
+import { DateFormat } from "../../ui/DateFormat";
 
 export default function GenericPage(props: IContentComponentData) {
-	const { locale, textDirection, siteTitle, siteSubtitle } =
-		useContext(ReactLocaleContext);
+	const { siteTitle, siteSubtitle, locale } = useContext(LocaleProvider);
 	const { pageData } = usePageData(props.pageProps);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData || ({} as IPageMetaData);
@@ -36,9 +35,7 @@ export default function GenericPage(props: IContentComponentData) {
 					{abstract && <div className="subtitle">{abstract}</div>}
 					<div className="meta" data-has-content={!!author || !!date}>
 						{author && <div className="byline">{author}</div>}
-						{date && (
-							<TimeFormat dateStr={date} locale={locale} className="date" />
-						)}
+						{date && <DateFormat date={date} locale={locale} />}
 					</div>
 				</header>
 				{node ? (

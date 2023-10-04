@@ -1,8 +1,8 @@
+import fs from "fs";
+
 import { getFrontMatter } from "./test-utils";
 import type { ITermTestData } from "./types";
 import { EMPTY_STRING, MD_LINK } from "./patterns";
-
-const fs = require("fs");
 
 export const invalidTerms = ["index.en.md", "index.he.md", ".DS_Store"];
 

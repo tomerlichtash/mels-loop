@@ -1,5 +1,5 @@
-import { Languages } from "../../src/locales";
-import { _translate, wrapStr } from "../../src/locales/translate";
+import { Languages } from "../../src/locale";
+import { _translate, wrapStr } from "../../src/locale/translate";
 import {
 	MD_LINK,
 	MD_BLOCKQUOTE,
@@ -19,8 +19,8 @@ import {
 	UNTRANSLATED_STRING,
 } from "./patterns";
 
-const fs = require("fs");
-const matter = require("gray-matter");
+import fs from "fs";
+// const matter = require("gray-matter");
 
 export const baseDir = "http://localhost:3000";
 

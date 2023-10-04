@@ -1,17 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ContentComponent } from "../index";
-import { ReactLocaleContext } from "../../../contexts/locale-context";
+import { LocaleProvider } from "../../../locale/context/locale-context";
 import { DynamicContentTypes } from "../../../interfaces/dynamic-content";
 import { ComponentProps, IParsedPageData } from "../../../interfaces/models";
 import { ReactPageContext } from "../../../contexts/page-context";
 import { contentUtils } from "../../../lib/content-utils";
-import Note from "../../note";
+import Note from "../../Note";
 import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
 import { mlUtils } from "../../../lib/ml-utils";
-import { LoadingIndicator } from "../../loading-indicator/loading-indicator";
-import ScrollArea from "../../scrollbar";
+import { LoadingIndicator } from "../../ui/LoadingIndicator/LoadingIndicator";
 import { useRouter } from "next/router";
-import { Scrollable } from "../../scrollbar/scrollbar";
 
 /**
  * Show loading animation after this many msecs have elapsed without data
@@ -35,7 +33,7 @@ export const DynamicContentViewer = ({
 	const [error, setError] = useState("");
 	const [isLoading, setIsLoading] = useState(true);
 	const pageContext = useContext(ReactPageContext);
-	const { translate, locale, textDirection } = useContext(ReactLocaleContext);
+	const { translate, locale, textDirection } = useContext(LocaleProvider);
 	const dynamicContentContext = useContext(ReactDynamicContentContext);
 	const elements = item && item.parsed;
 	const router = useRouter();
@@ -143,21 +141,17 @@ export const DynamicContentViewer = ({
 	));
 
 	return (
-		<div className="dynamic-viewer">
-			<Scrollable height="300px">
-				<Note
-					className="note"
-					type={itemType}
-					contents={contents}
-					label={label}
-					biblgraphyLabel={bibliographyLabel}
-					title={translate(glossary_key)}
-					term={locale === "en" ? "" : translate(glossary_key, "en")}
-					textDirection={textDirection}
-					sources={sources}
-				/>
-			</Scrollable>
-		</div>
+		<Note
+			textDirection={textDirection}
+			className="note"
+			type={itemType}
+			contents={contents}
+			label={label}
+			biblgraphyLabel={bibliographyLabel}
+			title={translate(glossary_key)}
+			term={locale === "en" ? "" : translate(glossary_key, "en")}
+			sources={sources}
+		/>
 	);
 };
 

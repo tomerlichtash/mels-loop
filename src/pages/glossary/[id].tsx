@@ -9,15 +9,15 @@ import {
 	IPageProps,
 	MLNODE_TYPES,
 } from "../../interfaces/models";
-import Layout from "../../components/layout";
+import Layout from "../../components/site/Layout";
 import ContentIterator from "../../components/content/content-iterator";
-import { usePageData } from "../../components/usePageData";
-import { ReactLocaleContext } from "../../contexts/locale-context";
-import { Button } from "../../components/ui";
-import Bibliography from "../../components/bibliography";
+import usePageData from "../../lib/usePageData";
+import { LocaleProvider } from "../../locale/context/locale-context";
+import Button from "../../components/Button";
+import Bibliography from "../../components/List";
 
 export default function GlossaryTerm(props: IPageProps) {
-	const { translate } = useContext(ReactLocaleContext);
+	const { translate } = useContext(LocaleProvider);
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;

@@ -6,9 +6,9 @@ import { AppContext } from "../contexts";
 import { fontFaceDecls } from "../site-fonts";
 import { IPageProps } from "../interfaces/models";
 
-export { reportWebVitals } from "next-axiom";
-
 import "../scss/app.scss";
+
+export { reportWebVitals } from "next-axiom";
 
 const App = ({ Component, pageProps }: AppProps<IPageProps>) => {
 	const router = useRouter();

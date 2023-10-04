@@ -1,10 +1,10 @@
 import React from "react";
-import Layout from "../components/layout/layout";
+import Layout from "../components/site/Layout/Layout";
 import { GetStaticProps, NextPage } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { mlUtils } from "../lib/ml-utils";
-import { usePageData } from "../components/usePageData";
+import usePageData from "../lib/usePageData";
 import {
 	IMLParsedNode,
 	IPageProps,

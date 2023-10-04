@@ -5,6 +5,7 @@ import {
 	FormFieldState,
 	IFormField,
 } from "./types";
+import { Icon } from "../shoelace";
 import { CheckIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
 
 export const Field = ({
@@ -72,7 +73,11 @@ export const Field = ({
 		<div>
 			<label htmlFor={id} className="label">
 				<span className="caption">
-					<span className="icon">{icon}</span>
+					{/* {icon && (
+						<span className="icon">
+							<Icon name={icon} />
+						</span>
+					)} */}
 					<span className="text" aria-label={translate(label)}>
 						{translate(label)}
 						{validation === VALID && (

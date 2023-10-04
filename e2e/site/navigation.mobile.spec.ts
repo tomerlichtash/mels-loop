@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import * as LocaleSymbols from "./../../src/locales/common/locales.json";
+import * as LocaleSymbols from "../../src/locale/common/locales.json";
 import {
 	getLocalePath,
 	locales,
@@ -31,12 +31,9 @@ test.describe.skip("Mobile Menu", () => {
 			await page.goto("http://localhost:3000/he");
 			await page.click(MOBILE_MENU_TRIGGER);
 			await page
-				.locator(
-					`.localeSelector" [type="button"]`,
-					{
-						hasText: LOCALE_LABEL_EN,
-					}
-				)
+				.locator(`.localeSelector" [type="button"]`, {
+					hasText: LOCALE_LABEL_EN,
+				})
 				.click();
 			await expect(page).toHaveURL("http://localhost:3000");
 			await expect(page.locator("h1")).toHaveText("The Story of Mel");
@@ -58,12 +55,9 @@ test.describe.skip("Mobile Menu", () => {
 			await page.goto("http://localhost:3000/");
 			await page.click(MOBILE_MENU_TRIGGER);
 			await page
-				.locator(
-					`.mobile-menu .localeSelector [type="button"]`,
-					{
-						hasText: LOCALE_LABEL_HE,
-					}
-				)
+				.locator(`.mobile-menu .localeSelector [type="button"]`, {
+					hasText: LOCALE_LABEL_HE,
+				})
 				.click();
 			await expect(page).toHaveURL("http://localhost:3000/he");
 			await expect(page.locator("h1")).toHaveText("הסיפור על מל");
@@ -101,9 +95,7 @@ test.describe.skip("Mobile Menu", () => {
 				await page.goto(getLocalePath(locale));
 				await page.click(MOBILE_MENU_TRIGGER);
 
-				await page.click(
-					`.mobile-menu .menuItemButton:id(blog)`
-				);
+				await page.click(`.mobile-menu .menuItemButton:id(blog)`);
 
 				await expect(page).toHaveURL(getLocalePath(locale, "posts"));
 				await expect(page.locator("h1")).toHaveText(
@@ -130,9 +122,7 @@ test.describe.skip("Mobile Menu", () => {
 				await page.goto(localePath);
 				await page.click(MOBILE_MENU_TRIGGER);
 
-				await page.click(
-					`.mobile-menu .menuItemButton:id(about-mobile)`
-				);
+				await page.click(`.mobile-menu .menuItemButton:id(about-mobile)`);
 
 				await expect(page).toHaveURL(localePath);
 				await expect(page.locator("h1")).toHaveText(data.title as string);

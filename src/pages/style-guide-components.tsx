@@ -1,8 +1,8 @@
 import React from "react";
 
-const StyleGuideComponents = ({ theme }) => {
+const StyleGuideComponents = () => {
 	return (
-		<div data-theme={theme || "light"}>
+		<div>
 			<div className="strip"></div>
 			<div className="logo"></div>
 			<section className="section">

@@ -3,19 +3,19 @@ import { IPageProps } from "../../interfaces/models";
 import { CONTENT_TYPES } from "../../consts";
 import { mlNextUtils } from "../../lib/next-utils";
 import { LoadFolderModes } from "../../interfaces/parser";
-import Layout from "../../components/layout";
-import { usePageData } from "../../components/usePageData";
-import { Button } from "../../components/ui";
+import Layout from "../../components/site/Layout";
+import usePageData from "../../lib/usePageData";
 import { mlUtils } from "../../lib/ml-utils";
-import { ReactLocaleContext } from "../../contexts/locale-context";
+import { LocaleProvider } from "../../locale/context/locale-context";
 import { useContext } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import Post from "../../components/post";
+import Button from "../../components/Button";
+import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
-	const { locale, translate, textDirection } = useContext(ReactLocaleContext);
+	const { locale, translate, textDirection } = useContext(LocaleProvider);
 	const { metaData } = page;
 	const { title, date, author } = metaData;
 	const backIcon =

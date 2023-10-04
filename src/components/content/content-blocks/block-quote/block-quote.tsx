@@ -5,7 +5,7 @@ import {
 	ContentComponentProps,
 } from "../../../../interfaces/models";
 import { mlUtils } from "../../../../lib/ml-utils";
-import { useComponentAttributes } from "../../../use-component-attributes";
+import { useComponentAttributes } from "../../useComponentAttributes";
 
 export const BlockQuote = ({
 	componentData,

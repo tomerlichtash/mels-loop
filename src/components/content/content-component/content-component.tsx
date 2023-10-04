@@ -1,9 +1,12 @@
 import React from "react";
+import ContentIterator from "../content-iterator";
+import { LinkSelector } from "./link-selector";
 import {
 	ContentComponentProps,
 	MLNODE_TYPES,
 	NODE_LIST_TYPES,
 } from "../../../interfaces/models";
+
 import {
 	Heading,
 	ListItem,
@@ -15,8 +18,6 @@ import {
 	Table,
 	CustomImage,
 } from "../content-blocks";
-import ContentIterator from "../content-iterator";
-import LinkSelector from "../link-selector";
 
 const ROOT_CLASS_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
 	MLNODE_TYPES.TR,

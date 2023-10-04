@@ -11,10 +11,10 @@ export interface ButtonProps extends ComponentProps {
 	target?: string;
 	selected?: boolean;
 	iconSide?: "right" | "left";
-	callback?: (id: string) => void;
+	onClick?: (id: string) => void;
 }
 
-export const Button = ({
+const Button = ({
 	id,
 	label,
 	icon,
@@ -23,9 +23,9 @@ export const Button = ({
 	selected,
 	target,
 	iconSide,
-	callback,
 	className,
 	children,
+	onClick,
 	...rest
 }: ButtonProps): JSX.Element => {
 	const btnLabel = title || label;
@@ -51,9 +51,9 @@ export const Button = ({
 		</span>
 	);
 
-		if (!link && !target && !callback) {
+	if (!link && !target && !onClick) {
 		return (
-			<span {...props} {...rest}>
+			<span {...props} {...rest} data-selected={selected}>
 				{btnContent}
 			</span>
 		);
@@ -66,6 +66,7 @@ export const Button = ({
 					href={link}
 					className={className}
 					target={target}
+					data-selected={selected}
 					{...props}
 					{...rest}
 				>
@@ -75,7 +76,15 @@ export const Button = ({
 		);
 	}
 
-	return <span onClick={() => callback(id)}>{btnContent}</span>;
+	return (
+		<span
+			onClick={() => onClick(id)}
+			data-selected={selected}
+			className={className}
+		>
+			{btnContent}
+		</span>
+	);
 };
 
 export default Button;

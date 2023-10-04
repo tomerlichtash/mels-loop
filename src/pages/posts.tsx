@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
-import Layout from "../components/layout/layout";
+import Layout from "../components/site/Layout/Layout";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
 import { GetStaticProps } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps, IParsedPageData } from "../interfaces/models";
-import { usePageData } from "../components/usePageData";
-import { ReactLocaleContext } from "../contexts/locale-context";
+import usePageData from "../lib/usePageData";
+import { LocaleProvider } from "../locale/context/locale-context";
 import orderBy from "lodash.orderby";
 import Post from "../components/post";
 import { mlUtils } from "../lib/ml-utils";
 
 export default function Blog(props: IPageProps) {
-	const { locale, sectionName } = useContext(ReactLocaleContext);
+	const { locale, sectionName } = useContext(LocaleProvider);
 	const { pageData } = usePageData(props);
 	return (
 		<Layout>

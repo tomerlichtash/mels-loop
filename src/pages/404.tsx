@@ -1,6 +1,6 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
-import Layout from "../components/layout";
+import Layout from "../components/site/Layout";
 
 const Error404: NextPage = () => {
 	return (

@@ -18,8 +18,8 @@ import {
 } from "../interfaces/parser";
 import { CaseInsensitiveMap } from "./case-insensitive-collections";
 import { mlUtils } from "./ml-utils";
-import { Languages } from "../locales";
-import { _translate } from "../locales/translate";
+import { Languages } from "../locale";
+import { _translate } from "../locale/translate";
 
 /**
  * Functions for processing parsed markdown nodes and maybe more
@@ -87,8 +87,9 @@ interface IFigureInfo {
 const INDEX_RE = /%index%/i;
 
 const VALID_PARSE_MODES: Set<MLParseModes> = new Set<MLParseModes>([
-	MLParseModes.NORMAL, MLParseModes.VERSE
-])
+	MLParseModes.NORMAL,
+	MLParseModes.VERSE,
+]);
 
 const AST2MLTypeMap: Map<ASTNODE_TYPES, MLNODE_TYPES> = new Map<
 	ASTNODE_TYPES,
@@ -264,15 +265,13 @@ function extractParseMode(
 			return attr as MLParseModes;
 		}
 	}
-	const type = node.type === ASTNODE_TYPES.HTML ?
-		node.tag : node.type;
+	const type = node.type === ASTNODE_TYPES.HTML ? node.tag : node.type;
 	if (VERSE_MODE_AST_TYPES.has(type as ASTNODE_TYPES)) {
 		return MLParseModes.VERSE;
 	}
 	if (NORMAL_MODE_AST_TYPES.has(type as ASTNODE_TYPES)) {
 		return MLParseModes.NORMAL;
 	}
-
 
 	return context.mode.parseMode;
 }
@@ -715,9 +714,9 @@ previous: ${map.get(id).type} current ${node.type}`);
 	 * With this element id. If so and if the node doesn't already have text, set
 	 * the link text to a display name generated from a template specific to the target
 	 * node type (e.g., if the link is to a figure, we'll get something like `"Fig. 3"`)
-	 * @param node 
-	 * @param context 
-	 * @param map 
+	 * @param node
+	 * @param context
+	 * @param map
 	 */
 	private processIdLinks(
 		node: IMLParsedNode,
@@ -1172,19 +1171,16 @@ class MLParseContext {
 	private readonly _metaData: IPageMetaData;
 	private readonly _mode: IContentParseOptions;
 
-	constructor(
-		mode: IContentParseOptions,
-		metaData: IPageMetaData
-	) {
+	constructor(mode: IContentParseOptions, metaData: IPageMetaData) {
 		const parseMode = mode.parseMode || metaData.parse_mode;
 		this._mode = {
 			...mode,
-			parseMode: VALID_PARSE_MODES.has(parseMode)?
-				parseMode: MLParseModes.NORMAL
-		}
+			parseMode: VALID_PARSE_MODES.has(parseMode)
+				? parseMode
+				: MLParseModes.NORMAL,
+		};
 		this._metaData = mlUtils.clonePlainObject(metaData);
 	}
-
 
 	public get mode(): IContentParseOptions {
 		return this._mode;

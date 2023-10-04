@@ -14,13 +14,24 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"sourceMap": true
+		"sourceMap": true,
+
+		"allowSyntheticDefaultImports": true,
+
+		"baseUrl": "src", // This must be specified if "paths" is.
+		"paths": {
+			"@config/*": ["./config/*"], // This mapping is relative to "baseUrl".
+			"@components/*": ["./components/*"] // This mapping is relative to "baseUrl".
+		}
 	},
 	"include": [
+		"src",
+		"src/components/index.tsx",
 		"next-env.d.ts",
 		"globals.d.ts",
 		"**/**/*.ts",
 		"**/**/*.tsx",
+		"./src/**/*",
 		"src/pages/docs/[id]/pages/[pageId]"
 	],
 	"exclude": ["node_modules", "**/snippets/**", "**/*.ignore.*", "scripts"]

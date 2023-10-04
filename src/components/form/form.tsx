@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { FormFieldState, FormValues, IFormProps } from "./types";
 import { useFormField as createField } from "./useFormField";
 import { Captcha } from "./captcha";
-import LoadingIndicator from "../loading-indicator";
-import { ReactThemeContext } from "../../contexts/theme-context";
-import { ReactLocaleContext } from "../../contexts/locale-context";
+import { LoadingIndicator } from "@components/ui";
+import { LocaleProvider } from "../../locale/context/locale-context";
+import styles from "./form.module.scss";
 
 export const Form = ({
 	entries,
@@ -16,8 +16,7 @@ export const Form = ({
 	className,
 	useCaptcha,
 }: IFormProps): JSX.Element => {
-	const { theme } = useContext(ReactThemeContext);
-	const { locale, translate } = useContext(ReactLocaleContext);
+	const { locale, translate } = useContext(LocaleProvider);
 
 	const { VALID, INVALID } = FormFieldState;
 
@@ -138,7 +137,7 @@ export const Form = ({
 	}
 
 	return (
-		<div>
+		<div className={styles.root}>
 			{successMessage && onSuccessMessage}
 			{failureMessage && onFailMessage}
 
@@ -159,7 +158,7 @@ export const Form = ({
 								onExpired={onCaptchaExpired}
 								tabIndex={captchaTabIndex}
 								locale={locale}
-								theme={theme}
+								theme={"light"}
 								highlight={highlightCaptcha}
 								className="captcha"
 							/>

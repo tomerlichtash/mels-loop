@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
-import Layout from "../components/layout/layout";
+import Layout from "../components/site/Layout/Layout";
 import { GetStaticProps, NextPage } from "next";
 import { CONTENT_TYPES } from "../consts";
 import { mlNextUtils } from "../lib/next-utils";
 import { IPageProps } from "../interfaces/models";
-import { usePageData } from "../components/usePageData";
-import { ReactLocaleContext } from "../contexts/locale-context";
-import { Button } from "../components/ui";
+import usePageData from "../lib/usePageData";
+import { LocaleProvider } from "../locale/context/locale-context";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
+import Button from "../components/Button";
 
 const Docs: NextPage<IPageProps> = (props) => {
-	const { pageName } = useContext(ReactLocaleContext);
+	const { pageName } = useContext(LocaleProvider);
 	const { className } = props;
 	const { metaData } = usePageData(props);
 	return (

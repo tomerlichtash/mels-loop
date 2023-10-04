@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import Layout from "../components/layout/layout";
+import Layout from "../components/site/Layout/Layout";
 import { GetStaticProps, NextPage } from "next";
 import type { IPageProps } from "../interfaces/models";
-import { ReactLocaleContext } from "../contexts/locale-context";
-import ContactForm from "../components/contact-form";
+import { LocaleProvider } from "../locale/context/locale-context";
+import ContactForm from "../components/site/ContactForm";
 
 const Contact: NextPage<IPageProps> = () => {
-	const { translate } = useContext(ReactLocaleContext);
+	const { translate } = useContext(LocaleProvider);
 	return (
 		<Layout>
 			<article className="page">

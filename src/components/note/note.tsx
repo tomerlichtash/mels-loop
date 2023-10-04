@@ -1,11 +1,19 @@
-import React from "react";
-import { ComponentProps } from "../../interfaces/models";
-import { TextDirection } from "../../interfaces/locale-context";
-import { IBibliographySource } from "../bibliography/bibliography";
-import Bibliography from "../bibliography";
-import styles from "./note.module.scss";
+import React, { useMemo } from "react";
+import { Scrollbar, List } from "@components/ui";
+
+import styles from "./Note.module.scss";
+
+import type { LinkTarget } from "@components/ui/Link/types";
+import type { ComponentProps } from "../../interfaces/models";
+import type { TextDirection } from "../../locale/locale-context";
 
 export type NoteViews = "note" | "ref";
+
+export interface IBibliographySource {
+	name?: string;
+	url: string;
+	author?: string;
+}
 
 export interface INoteProps extends ComponentProps {
 	type: NoteViews;
@@ -18,35 +26,54 @@ export interface INoteProps extends ComponentProps {
 	textDirection: TextDirection;
 }
 
-export const Note = ({
+const Note = ({
 	type,
 	label,
 	term,
 	contents,
 	title,
 	sources,
-	textDirection,
 	biblgraphyLabel,
-	className,
+	textDirection,
 }: INoteProps): JSX.Element => {
+	const mappedSources = useMemo(
+		() =>
+			sources &&
+			sources.map(({ name, author, ...rest }) => {
+				const authorSuffix = author ? ` / ${author}` : "";
+				return {
+					label: `${name}${authorSuffix}`,
+					target: "_blank" as LinkTarget,
+					...rest,
+				};
+			}),
+		[sources]
+	);
+
 	return (
-		<div className={styles.root}>
-			{type === "ref" && (
-				<div className="header">
-					<div className="topic">{label}</div>
-					<div className="title">{title}</div>
-					<div className="term">{term}</div>
-				</div>
-			)}
-			<div className="content">{contents}</div>
-			{sources && (
-				<Bibliography
-					sources={sources}
-					label={biblgraphyLabel}
-					className="bibliography"
-				/>
-			)}
-		</div>
+		<Scrollbar className={styles.root} textDirection={textDirection}>
+			<article>
+				{type === "ref" && (
+					<header className={styles.header}>
+						<div className={styles.topic}>{label}</div>
+						<div className={styles.title}>{title}</div>
+						<div className={styles.term}>{term}</div>
+					</header>
+				)}
+
+				<main className={styles.content}>{contents}</main>
+
+				{sources && (
+					<footer>
+						<List
+							items={mappedSources}
+							label={`${biblgraphyLabel}:`}
+							className={styles.bibliography}
+						/>
+					</footer>
+				)}
+			</article>
+		</Scrollbar>
 	);
 };
 

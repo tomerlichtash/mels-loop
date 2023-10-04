@@ -1,0 +1,39 @@
+.root {
+	--annotation-paren-opacity: 0.8;
+	--annotation-offset-top: -0.5em;
+	--annotation-font-size: var(--font-size-xs);
+	--annotation-prefix: "[";
+	--annotation-suffix: "]";
+	--annotation-font-weight: var(--font-weight-bold);
+	--annotation-padding: 0.05em;
+
+	position: relative;
+	font-size: var(--annotation-font-size);
+	top: var(--annotation-offset-top);
+
+	&::before,
+	&::after {
+		opacity: var(--annotation-paren-opacity);
+	}
+
+	&::before {
+		content: var(--annotation-prefix);
+	}
+
+	&::after {
+		content: var(--annotation-suffix);
+	}
+
+	.content::after {
+		font-weight: var(--annotation-font-weight);
+		content: attr(data-prefix) attr(data-seq);
+		padding: 0 var(--annotation-padding);
+	}
+
+	// &[data-link-type="annotation"] [data-popover-visibility="true"] .content,
+	// &[data-link-type="glossary"] [data-popover-visibility="true"] span {
+	// 	border-radius: 3px;
+	// 	background-color: var(--color-primary-dark);
+	// 	color: var(--color-primary-contrast);
+	// }
+}

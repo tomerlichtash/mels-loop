@@ -1,5 +1,6 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
+import styles from "./annotation-link.module.scss";
 
 export const AnnotationLink = ({
 	componentData,
@@ -8,9 +9,9 @@ export const AnnotationLink = ({
 	const annotationPrefix = node.sequence <= 9 ? "0" : "";
 	return (
 		<>
-			<span className="annotation">
+			<span className={styles.root}>
 				<span
-					className="content"
+					className={styles.content}
 					data-prefix={annotationPrefix}
 					data-seq={node.sequence}
 				></span>

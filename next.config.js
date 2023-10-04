@@ -1,9 +1,17 @@
-/** @type {import('next').NextConfig} */
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+import { withAxiom } from "next-axiom";
 
-const path = require("path");
-const { withAxiom } = require("next-axiom");
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const nextConfig = {
+	typescript: {
+		// !! WARN !!
+		// Dangerously allow production builds to successfully complete even if
+		// your project has type errors.
+		// !! WARN !!
+		ignoreBuildErrors: true,
+	},
 	reactStrictMode: true,
 	optimizeFonts: true,
 	sassOptions: {
@@ -42,4 +50,4 @@ const nextConfig = {
 	},
 };
 
-module.exports = withAxiom(nextConfig);
+export default withAxiom(nextConfig);

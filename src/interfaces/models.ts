@@ -1,4 +1,4 @@
-import { IComponentKeyProps } from "../locales/keymap/types";
+import { IComponentKeyProps } from "../locale/keymap/types";
 import { DynamicContentTypes } from "./dynamic-content";
 import { MLParseModes } from "./parser";
 

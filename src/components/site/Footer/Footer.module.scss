@@ -1,0 +1,33 @@
+// @use "../../theme/common/theme.scss";
+@use "../../../scss/mixins/gradient.scss";
+
+footer {
+	&.footer {
+		background: var(--footer-background-color);
+		margin-top: 2rem;
+	}
+
+	.pageContainer {
+		margin: 0 auto;
+		padding: 2rem;
+		max-width: 1600px;
+	}
+
+	.layout {
+		display: flex;
+	}
+
+	.title {
+		text-transform: uppercase;
+	}
+
+	.strip {
+		height: 0.3vh;
+
+		@include gradient.simple(
+			var(--color-gradient-1),
+			var(--color-gradient-2),
+			var(--color-gradient-3)
+		);
+	}
+}

@@ -1,0 +1,16 @@
+.root {
+	border: 2px solid purple;
+}
+.link {
+	border: 2px solid green;
+	display: block;
+}
+.listItemTitle {
+}
+.listItemText {
+}
+.listItemAuthor {
+}
+.listItemIcon {
+	border: var(--listItemBorderColor);
+}

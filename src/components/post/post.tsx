@@ -1,13 +1,15 @@
 import React from "react";
-import { ComponentProps, IParsedPageData } from "../../interfaces/models";
 import { mlUtils } from "../../lib/ml-utils";
 import { ContentComponent } from "../content";
-import { Button, TimeFormat } from "../ui";
+import { Button, DateFormat } from "@components/ui";
+
+import type { LocaleId } from "../../locale/locale-context";
+import type { ComponentProps, IParsedPageData } from "../../interfaces/models";
 
 export interface IBlogPostProps extends ComponentProps {
 	title: string;
 	date: Date;
-	locale: string;
+	locale: LocaleId;
 	author: string;
 	content: IParsedPageData;
 	path?: string;
@@ -16,11 +18,10 @@ export interface IBlogPostProps extends ComponentProps {
 export const Post = ({
 	title,
 	date,
-	locale,
 	author,
 	path,
 	content,
-	className,
+	locale,
 }: IBlogPostProps): JSX.Element => {
 	return (
 		<article className="post">
@@ -34,10 +35,7 @@ export const Post = ({
 						)}
 					</h2>
 					<div className="paragraph">
-						{date && (
-							<TimeFormat dateStr={date} locale={locale} className="date" />
-						)}{" "}
-						&bull; {author}
+						<DateFormat date={date} locale={locale} /> &bull; {author}
 					</div>
 				</header>
 				<main>

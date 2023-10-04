@@ -58,7 +58,9 @@ test.describe("Glossary", () => {
 						.click();
 					await page.waitForSelector(PORTAL_SELECTOR);
 
-					const glossaryLabel = await page.locator(NOTE_LABEL_SELECTOR).textContent();
+					const glossaryLabel = await page
+						.locator(NOTE_LABEL_SELECTOR)
+						.textContent();
 					expect(validateStringTranslation(glossaryLabel)).toBeTruthy();
 					expect(glossaryLabel).toEqual(
 						translate(locale, "NOTE_LABEL_GLOSSARY")
@@ -82,7 +84,9 @@ test.describe("Glossary", () => {
 						).toHaveText(originTerm);
 					}
 
-					const textContent = await page.locator(NOTE_CONTENT_SELECTOR).textContent();
+					const textContent = await page
+						.locator(NOTE_CONTENT_SELECTOR)
+						.textContent();
 
 					expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
 

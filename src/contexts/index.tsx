@@ -1,14 +1,14 @@
-import { LocaleContextProvider } from "../contexts/locale-context";
+import { LocaleContextProvider } from "../locale/context/locale-context";
 import { PageContextProvider } from "../contexts/page-context";
-import { ThemeContextProvider } from "../contexts/theme-context";
+import { ThemeProvider } from "next-themes";
 
 export const AppContext = ({ children, router, documentPath }) => {
 	return (
 		<LocaleContextProvider router={router}>
 			<PageContextProvider documentPath={documentPath}>
-				<ThemeContextProvider>
+				<ThemeProvider>
 					<>{children}</>
-				</ThemeContextProvider>
+				</ThemeProvider>
 			</PageContextProvider>
 		</LocaleContextProvider>
 	);

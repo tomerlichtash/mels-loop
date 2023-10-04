@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/layout";
+import Layout from "../components/site/Layout";
 import { NextPage } from "next";
 import { IPageProps } from "../interfaces/models";
 import StyleGuideComponents from "./style-guide-components";
