@@ -8,8 +8,8 @@ import usePageData from "../../lib/usePageData";
 import { mlUtils } from "../../lib/ml-utils";
 import { LocaleProvider } from "../../locale/context/locale-context";
 import { useContext } from "react";
-import Post from "../../components/post";
-import Button from "../../components/Button";
+import BlogPost from "../../components/BlogPost";
+import { Button } from "@components/ui";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 
 export default function Doc(props: IPageProps) {
@@ -23,13 +23,10 @@ export default function Doc(props: IPageProps) {
 	return (
 		<Layout title={title}>
 			<div className="page">
-				<Button
-					label={translate("POSTS_BACK_TO_POSTS_LIST")}
-					className="button"
-					icon={backIcon}
-					link={"/posts"}
-				/>
-				<Post
+				<Button className="button" icon={backIcon} link={"/posts"}>
+					{translate("POSTS_BACK_TO_POSTS_LIST")}
+				</Button>
+				<BlogPost
 					key={mlUtils.uniqueId()}
 					title={title}
 					date={date}

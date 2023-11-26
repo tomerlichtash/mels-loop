@@ -5,16 +5,18 @@ import {
 	ContentComponentProps,
 } from "../../../../interfaces/models";
 
+import styles from "./paragraph.module.scss";
+import classNames from "classnames";
+
 export const Paragraph = ({
 	componentData,
 	className,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
-	const elements: IMLParsedNode[] = Array.isArray(node.children)
-		? node.children
-		: [];
+	const { key, children } = node;
+	const elements: IMLParsedNode[] = Array.isArray(children) ? children : [];
 	return (
-		<p className="paragraph" key={node.key}>
+		<p className={classNames(styles.root, className)} key={key}>
 			{elements.map((node) => {
 				return <ContentComponent key={node.key} componentData={{ node }} />;
 			})}

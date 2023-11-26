@@ -8,7 +8,7 @@ import { IPageProps, IParsedPageData } from "../interfaces/models";
 import usePageData from "../lib/usePageData";
 import { LocaleProvider } from "../locale/context/locale-context";
 import orderBy from "lodash.orderby";
-import Post from "../components/post";
+import BlogPost from "../components/BlogPost";
 import { mlUtils } from "../lib/ml-utils";
 
 export default function Blog(props: IPageProps) {
@@ -23,7 +23,7 @@ export default function Blog(props: IPageProps) {
 						const { metaData, path: path } = page;
 						const { title, date, author } = metaData;
 						return (
-							<Post
+							<BlogPost
 								key={mlUtils.uniqueId()}
 								title={title}
 								date={date}

@@ -9,7 +9,7 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 const HorizontalMenu = ({ items: sections, className }) => {
 	return (
 		<NavigationMenu.Root
-			className={classNames([styles.NavigationMenuRoot, className])}
+			className={classNames(styles.NavigationMenuRoot, className)}
 		>
 			<NavigationMenu.List className={styles.NavigationMenuList}>
 				{sections.map((section) => (

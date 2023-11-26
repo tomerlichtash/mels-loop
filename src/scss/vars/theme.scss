@@ -15,9 +15,9 @@
 	// $logo: map.get($themeIndex, logo);
 
 	// COLORS
-	--color-surface-main: #{theme.prop($colors, surface, main)};
-	--color-surface-dark: #{theme.prop($colors, surface, dark)};
-	--color-surface-light: #{theme.prop($colors, surface, light)};
+	--ml-color-surface-main: #{theme.prop($colors, surface, main)};
+	--ml-color-surface-dark: #{theme.prop($colors, surface, dark)};
+	--ml-color-surface-light: #{theme.prop($colors, surface, light)};
 	--color-surface-contrast: #{theme.prop($colors, surface, contrast)};
 	--color-primary-main: #{theme.prop($colors, primary, main)};
 	--color-primary-dark: #{theme.prop($colors, primary, dark)};
@@ -49,6 +49,7 @@
 
 	// SPACING
 	--spacing-md: #{map.get($spacing, md)};
+	--spacing-lg: #{map.get($spacing, lg)};
 
 	// TYPOGRAPHY
 	$common: common.$index;
@@ -60,7 +61,7 @@
 	--font-size-xl: #{theme.var($common, font, fontSize, xl)};
 	--font-size-lg: #{theme.var($common, font, fontSize, lg)};
 	--font-size-md: #{theme.var($common, font, fontSize, md)};
-	--font-size-sm: #{theme.var($common, font, fontSize, sm)};
+	--ml-font-size-sm: #{theme.var($common, font, fontSize, sm)};
 	--font-size-xs: #{theme.var($common, font, fontSize, xs)};
 	--font-weight-thin: #{theme.var($common, font, fontWeight, thin)};
 	--font-weight-regular: #{theme.var($common, font, fontWeight, regular)};

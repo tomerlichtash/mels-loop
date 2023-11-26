@@ -1,11 +1,9 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
 import { ContentComponent } from "../../index";
+import styles from "./line.module.scss";
 
-export const Line = ({
-	componentData,
-	className,
-}: ContentComponentProps): JSX.Element => {
+export const Line = ({ componentData }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const children = node.children || [];
 
@@ -18,7 +16,7 @@ export const Line = ({
 
 	if (children.length === 1 && children[0].type === "text") {
 		return (
-			<span key={node.key} className="line" data-line-index={line + 1}>
+			<span key={node.key} className={styles.root} data-line-index={line + 1}>
 				{anchor}
 				{node.children[0].text}
 			</span>
@@ -26,14 +24,10 @@ export const Line = ({
 	}
 
 	return (
-		<span key={node.key} className="line" data-line-index={line + 1}>
+		<span key={node.key} className={styles.root} data-line-index={line + 1}>
 			{anchor}
 			{children.map((node) => (
-				<ContentComponent
-					key={node.key}
-					className={className}
-					componentData={{ node }}
-				/>
+				<ContentComponent key={node.key} componentData={{ node }} />
 			))}
 		</span>
 	);

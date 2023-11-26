@@ -1,3 +1,3 @@
-import { default as Page } from "./page";
+import { default as Page } from "./Page";
 
 export default Page;

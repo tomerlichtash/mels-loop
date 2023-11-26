@@ -26,7 +26,7 @@ const ThemeSelector = ({
 
 	return (
 		<ToggleRoot
-			className={classNames([styles.root, className])}
+			className={classNames(styles.root, className)}
 			onPressedChange={() => setTheme(isDark ? "light" : "dark")}
 			data-state={isDark ? "on" : "off"}
 			defaultPressed={isDark}

@@ -22,7 +22,7 @@ const DateFormat = ({
 	className,
 }: DateFormatProps): JSX.Element => {
 	return (
-		<time className={classNames([styles.root, className])}>
+		<time className={classNames(styles.root, className)}>
 			{dateFormat(date, localeMasks[locale ? locale : "default"])}
 		</time>
 	);

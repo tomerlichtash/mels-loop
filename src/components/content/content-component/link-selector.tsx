@@ -10,6 +10,8 @@ import Popover from "../popover";
 import { LocaleProvider } from "../../../locale/context/locale-context";
 import DynamicContentBrowser from "../dynamic-content-browser";
 import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
+import classNames from "classnames";
+// import ContentIterator from "../content-iterator";
 
 const getTriggerComp = (
 	type: DynamicContentTypes,
@@ -18,9 +20,16 @@ const getTriggerComp = (
 ): React.ReactNode => {
 	switch (type) {
 		case DynamicContentTypes.Annotation:
-			return <AnnotationLink className={className} componentData={data} />;
+			return (
+				<AnnotationLink
+					className={classNames(className)}
+					componentData={data}
+				/>
+			);
 		default:
-			return <TermLink className={className} componentData={data} />;
+			return (
+				<TermLink className={classNames(className)} componentData={data} />
+			);
 	}
 };
 
@@ -57,18 +66,19 @@ export const LinkSelector = ({
 		);
 	}
 	return (
-		<span
-			data-link-type={node.linkType}
-			data-link-target={node.target.split(`/`)[1]}
+		// <span
+		// // data-link-type={node.linkType}
+		// // data-link-target={node.target.split(`/`)[1]}
+		// >
+		<Popover
+			// type={linkType}
+			// id={node.target}
+			side={textDirection === "ltr" ? "right" : "left"}
+			trigger={getTriggerComp(linkType, componentData, className)}
+			className={className}
 		>
-			<Popover
-				type={linkType}
-				id={node.target}
-				side={textDirection === "ltr" ? "right" : "left"}
-				trigger={getTriggerComp(linkType, componentData, className)}
-			>
-				<DynamicContentBrowser node={node} />
-			</Popover>
-		</span>
+			<DynamicContentBrowser node={node} />
+		</Popover>
+		// </span>
 	);
 };

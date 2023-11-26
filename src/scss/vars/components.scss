@@ -1,9 +1,30 @@
 // TYPOGRAPHY VARIANTS
 
 @mixin css-vars {
-	--site-logo: var(--ml-site-logo);
+	--ml-font-family-1: "Roboto Slab", serif;
+	--ml-font-family-2: "Assistant", sans-serif;
 
-	// Headings
+	--ml-font-size-default: 16px;
+
+	--ml-font-size-xs: 0.75em;
+	--ml-font-size-sm: 1em;
+	--ml-font-size-md: 1.25em;
+	--ml-font-size-lg: 1.5em;
+	--ml-font-size-xl: 1.75em;
+
+	--component-size-xs: var(--ml-font-size-xs);
+	--component-size-sm: var(--ml-font-size-sm);
+	--component-size-md: var(--ml-font-size-md);
+	--component-size-lg: var(--ml-font-size-lg);
+	--component-size-xl: var(--ml-font-size-xl);
+
+	--ml-input-border-width: 1px;
+	--ml-input-border-style: solid;
+	--ml-input-border-color: var(--color-surface-dark);
+
+	--radix-navigation-menu-viewport-width: 500px;
+
+	// headings
 	--h1-font-size: var(--font-size-5xl);
 	--h1-font-weight: var(--font-weight-medium);
 	--h1-line-height: var(--font-line-height-xl);
@@ -40,18 +61,60 @@
 	--link-color: var(--color-primary-main);
 	--link-color-hover: var(--color-primary-dark);
 
+	--ml-site-logo: var(--ml-site-logo);
+
 	// Annotations
 	--annotation-text-color-hover: var(--color-secondary-main);
 
 	// Surfaces
 	--layout-background-color: var(--color-surface-light);
-	--header-background-color: var(--color-surface-main);
+
+	// header
+	--header-background-color: var(--ml-color-surface-main);
+
+	// footer
 	--footer-background-color: var(--color-surface-dark);
 
 	// @include cssVar(logo-url, $logo);
 
-	// Popover
-	--popover-content-background-color: var(--color-surface-light);
+	// popover
+	--popover-dialog-background-color: var(--ml-color-surface-light);
 	--popover-content-box-shadow: var(--box-shadow-md);
 	--popover-content-padding: var(--spacing-md);
+
+	// content page
+	--ml-content-page-title-font-size: var(--h3-font-size);
+	--ml-content-page-subtitle-font-size: var(--h1-font-size);
+	--ml-content-page-abstract-font-size: var(--h4-font-size);
+
+	// card
+	--ml-card-box-shadow: var(--box-shadow-md);
+	--ml-card-padding: var(--spacing-lg);
+
+	// BUTTON
+	--button-border-radius: var(--border-radius-md);
+	--button-background-color: var(--color-primary-main);
+	--button-background-color__hover: var(--color-primary-dark);
+	--button-background-color__active: var(--color-primary-light);
+	--button-text-color: var(--ml-color-surface-light);
+
+	// INPUT
+	--input-border-radius: var(--border-radius-md);
+	--input-border-width: var(--ml-input-border-width);
+	--input-border-style: var(--ml-input-border-style);
+	--input-border-color: var(--ml-color-surface-dark);
+	--input-background-color: var(--ml-color-surface-main);
+	--input-background-color__hover: var(--ml-color-surface-light);
+	--input-background-color__focus: var(--ml-color-surface-dark);
+
+	// CONTACT FORM
+	--form-title-font-size: 3em;
+	--form-subtitle-font-size: 2em;
+	// --contact-form-field-gap: 0;
+	--form-field-background-color: var(--color-surface-light);
+	// --contact-form-field-border-width: var(--ml-input-border-width);
+	// --contact-form-field-border-style: var(--ml-input-border-style);
+	// --contact-form-field-border-color: var(--ml-input-border-color);
+	--form-input-error-message-font-size: var(--ml-font-size-sm);
+	--form-input-error-message-text-color: var(--color-error-light);
 }

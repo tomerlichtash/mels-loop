@@ -1,22 +1,22 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
 import styles from "./annotation-link.module.scss";
+import classNames from "classnames";
 
-export const AnnotationLink = ({
+const AnnotationLink = ({
 	componentData,
+	className,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const annotationPrefix = node.sequence <= 9 ? "0" : "";
 	return (
-		<>
-			<span className={styles.root}>
-				<span
-					className={styles.content}
-					data-prefix={annotationPrefix}
-					data-seq={node.sequence}
-				></span>
-			</span>
-		</>
+		<span className={classNames(styles.root, className)}>
+			<span
+				className={styles.content}
+				data-prefix={annotationPrefix}
+				data-seq={node.sequence}
+			></span>
+		</span>
 	);
 };
 

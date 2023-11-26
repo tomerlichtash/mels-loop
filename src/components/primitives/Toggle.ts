@@ -1,4 +1,4 @@
 import * as Toggle from "@radix-ui/react-toggle";
-import { createCompRef } from "./helpers";
+import extendPrimitive from "./extendPrimitive";
 
-export const ToggleRoot = createCompRef(Toggle.Root);
+export const ToggleRoot = extendPrimitive(Toggle.Root);

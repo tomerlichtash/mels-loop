@@ -1,0 +1,12 @@
+.root {
+	.title {
+		font-size: var(--ml-content-page-title-font-size);
+	}
+	.subtitle {
+		font-size: var(--ml-content-page-subtitle-font-size);
+	}
+	.abstract {
+		font-size: var(--ml-content-page-abstract-font-size);
+		margin: 1em 0 2em;
+	}
+}

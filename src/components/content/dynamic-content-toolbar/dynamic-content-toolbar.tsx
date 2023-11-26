@@ -4,14 +4,14 @@ import { mlUtils } from "../../../lib/ml-utils";
 import { LocaleProvider } from "../../../locale/context/locale-context";
 import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
 import { ReactPopoverContext } from "../../../contexts/popover-context";
-import Button from "../../ui/Button";
+import { Button } from "@components/ui";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 
 export interface IDynamicContentToolbarProps {
 	pages: IParsedPageData[];
 }
 
-const NAV_BUTTON_KEY = "header-back";
+const NAV_BUTTON_KEY = "popover-toolbar-back-button";
 
 export default function DynamicContentToolbar({
 	pages,
@@ -27,26 +27,31 @@ export default function DynamicContentToolbar({
 			setPrevPageid("");
 			return;
 		}
-		const prevPage = pages[pages.length - 2]; // guaranteed
+
+		const idx = pages.length - 2;
+		const prevPage = pages[idx]; // guaranteed
+
 		if (prevPage.id === prevPageId) {
 			return;
 		}
+
 		setPrevPageid(prevPage.id);
-		const title =
+
+		const backButtonLabel =
 			prevPage.metaData.title ||
 			translate(prevPage.metaData.glossary_key) ||
 			prevPage.id;
+
 		popoverCtx.addToolbarItems({
 			element: (
 				<Button
-					icon={
-						textDirection === "ltr" ? <ArrowLeftIcon /> : <ArrowRightIcon />
-					}
 					className="back-button"
-					callback={() => dcCtx.setPageIndex(pages.length - 2)}
-					title={title}
+					onClick={() => dcCtx.setPageIndex(idx)}
+					title={backButtonLabel}
 					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}
-				/>
+				>
+					{textDirection === "ltr" ? <ArrowLeftIcon /> : <ArrowRightIcon />}
+				</Button>
 			),
 			id: NAV_BUTTON_KEY,
 			enabled: true,

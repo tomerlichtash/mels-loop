@@ -38,21 +38,9 @@ export const ContentComponent = ({
 
 	switch (type) {
 		case MLNODE_TYPES.PARAGRAPH:
-			return (
-				<Paragraph
-					key={key}
-					componentData={componentData}
-					className={contentClassName}
-				/>
-			);
+			return <Paragraph key={key} componentData={componentData} />;
 		case MLNODE_TYPES.LINE:
-			return (
-				<Line
-					key={key}
-					componentData={componentData}
-					className={contentClassName}
-				/>
-			);
+			return <Line key={key} componentData={componentData} />;
 		case MLNODE_TYPES.DEL:
 		case MLNODE_TYPES.INS:
 		case MLNODE_TYPES.STRONG:
@@ -81,13 +69,7 @@ export const ContentComponent = ({
 				/>
 			);
 		case MLNODE_TYPES.BLOCKQUOTE:
-			return (
-				<BlockQuote
-					key={key}
-					componentData={componentData}
-					className={contentClassName}
-				/>
-			);
+			return <BlockQuote key={key} componentData={componentData} />;
 		case MLNODE_TYPES.TEXT:
 			const { text } = node;
 			return (

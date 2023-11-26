@@ -1,0 +1,5 @@
+@use "../mixins.scss";
+
+.root {
+	@include mixins.AnnotationMixin;
+}

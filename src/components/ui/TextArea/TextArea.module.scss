@@ -1,0 +1,6 @@
+@use "../Input/InputMixin.scss";
+
+.root {
+	// @include InputMixin.Default;
+	border: 2px solid red;
+}

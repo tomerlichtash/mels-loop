@@ -15,7 +15,7 @@ const LocaleSelector = ({
 		<ToggleGroupRoot
 			defaultValue={value}
 			aria-label="View density"
-			className={classNames([styles.root, className])}
+			className={classNames(styles.root, className)}
 			onValueChange={(id) => onChange(id)}
 			dir="ltr"
 			type="single"

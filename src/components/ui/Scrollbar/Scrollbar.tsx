@@ -18,7 +18,7 @@ export const Scrollbar = ({
 }: ScrollAreaProps) => {
 	return (
 		<ScrollArea
-			className={classNames([styles.root, className])}
+			className={classNames(styles.root, className)}
 			type="always"
 			dir={textDirection}
 			style={{ height }}

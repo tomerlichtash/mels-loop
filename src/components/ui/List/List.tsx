@@ -7,7 +7,7 @@ import styles from "./List.module.scss";
 import type { IList } from "./types";
 
 const List = ({ items, label, className }: IList): JSX.Element => (
-	<div className={classNames([styles.root, className])}>
+	<div className={classNames(styles.root, className)}>
 		<div className={styles.label}>{label}</div>
 		<ul className={styles.list}>
 			{items.map(({ label, target, url }) => {

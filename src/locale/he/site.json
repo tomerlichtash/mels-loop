@@ -1,6 +1,6 @@
 {
-	"SITE_TITLE": "לולאת מל",
-	"SITE_SUBTITLE": "מדריך מקיף לסיפור על מל",
+	"site.title": "לולאת מל",
+	"site.subtitle": "מדריך מקיף לסיפור על מל",
 	"SITE_LICENSE_LABEL": "cc",
 	"SITE_LICENSE_ATTRS": "by-sa",
 	"ERROR_404_FILE_NOT_FOUND": "הדף לא נמצא",

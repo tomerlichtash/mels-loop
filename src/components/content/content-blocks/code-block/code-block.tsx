@@ -1,5 +1,6 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
+import styles from "./code-block.module.scss";
 
 /**
  * Displays a code block (preformatted code)
@@ -11,9 +12,9 @@ export const CodeBlock = ({
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	return (
-		<div className="code-snippet">
-			<pre className="pre">
-				<code className="code" key={node.key}>
+		<div className={styles.root}>
+			<pre className={styles.pre}>
+				<code className={styles.code} key={node.key}>
 					{node.text}
 				</code>
 			</pre>

@@ -1,12 +1,15 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
 import ContentIterator from "../../content-iterator";
+import styles from "./term-link.module.scss";
 
 export const TermLink = ({
 	componentData,
 }: ContentComponentProps): JSX.Element => {
 	return (
-		<ContentIterator componentData={componentData} className="term-link" />
+		<span className={styles.root}>
+			<ContentIterator componentData={componentData} />
+		</span>
 	);
 };
 

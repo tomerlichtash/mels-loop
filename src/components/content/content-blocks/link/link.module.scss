@@ -1,0 +1,27 @@
+.root {
+	cursor: pointer;
+
+	// color: var(--link-color);
+	color: #f00;
+
+	[data-link-type="glossary"] {
+		color: blue;
+	}
+
+	.href {
+		color: var(--link-color);
+	}
+
+	&:link,
+	&:visited {
+		color: var(--link-color);
+	}
+
+	&:hover {
+		color: var(--link-color-hover);
+	}
+
+	&:active {
+		color: var(--link-color-active);
+	}
+}

@@ -7,7 +7,7 @@ import { IPageProps } from "../interfaces/models";
 import usePageData from "../lib/usePageData";
 import { LocaleProvider } from "../locale/context/locale-context";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import Button from "../components/Button";
+import { Button } from "@components/ui";
 
 const Docs: NextPage<IPageProps> = (props) => {
 	const { pageName } = useContext(LocaleProvider);
@@ -23,7 +23,7 @@ const Docs: NextPage<IPageProps> = (props) => {
 							const key = `doc-${index}`;
 							return (
 								<li className="item" key={key}>
-									<Button label={page.metaData.title} link={page.path} />
+									<Button link={page.path}>{page.metaData.title}</Button>
 								</li>
 							);
 						})}

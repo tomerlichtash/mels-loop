@@ -13,8 +13,7 @@ import Layout from "../../components/site/Layout";
 import ContentIterator from "../../components/content/content-iterator";
 import usePageData from "../../lib/usePageData";
 import { LocaleProvider } from "../../locale/context/locale-context";
-import Button from "../../components/Button";
-import Bibliography from "../../components/List";
+import { Button, List } from "@components/ui";
 
 export default function GlossaryTerm(props: IPageProps) {
 	const { translate } = useContext(LocaleProvider);
@@ -30,11 +29,9 @@ export default function GlossaryTerm(props: IPageProps) {
 	return (
 		<Layout title={metaData?.title}>
 			<article className="page">
-				<Button
-					className="title"
-					label={translate("GLOSSARY_NAV_LABEL")}
-					link={"/glossary"}
-				/>
+				<Button className="title" link={"/glossary"}>
+					{translate("GLOSSARY_NAV_LABEL")}
+				</Button>
 				<h1 className="title">{translate(metaData?.glossary_key)}</h1>
 				<p className="term">{translate(metaData?.glossary_key, "en")}</p>
 				{node ? (
@@ -42,10 +39,10 @@ export default function GlossaryTerm(props: IPageProps) {
 				) : (
 					<div className="no-content">(No page content)</div>
 				)}
-				<Bibliography
+				<List
 					className="bibliography"
 					label={""}
-					sources={[
+					items={[
 						{
 							author: metaData.source_name,
 							url: metaData.source_url,

@@ -1,0 +1,17 @@
+@use "../ComponentMixin.scss";
+
+@mixin Default {
+	@include ComponentMixin.ComponentSize;
+
+	border-radius: var(--button-border-radius);
+	background-color: var(--button-background-color);
+	color: var(--button-text-color);
+
+	&:hover {
+		background-color: var(--button-background-color__hover);
+	}
+
+	&:active {
+		background-color: var(--button-background-color__active);
+	}
+}

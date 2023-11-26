@@ -17,8 +17,8 @@ const SiteTitle = ({
 	textDirection,
 	className,
 }: SiteTitleProps): JSX.Element => (
-	<header
-		className={classNames([styles.root, className])}
+	<div
+		className={classNames(styles.root, className)}
 		data-text-direction={textDirection}
 	>
 		<Link
@@ -31,7 +31,7 @@ const SiteTitle = ({
 			<span className={styles.titleText}>{title}</span>
 		</Link>
 		<span className={styles.subtitle}>{subtitle}</span>
-	</header>
+	</div>
 );
 
 export default SiteTitle;

@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { LocaleProvider } from "../../../locale/context/locale-context";
-import Button from "../../ui/Button";
+import { Button, Link } from "@components/ui";
 import styles from "./Footer.module.scss";
 import { PUBLIC_PROJECT_GITHUB_ADDRESS } from "../../../consts";
 
@@ -41,25 +41,21 @@ export const Footer = (): JSX.Element => {
 						<div className="site-pages">
 							<ul className="list">
 								<li className="item">
-									<Button
-										link="/about"
-										label={translate("MENU_ITEM_LABEL_ID_ABOUT")}
-										className="button"
-									/>
+									<Button asChild className={styles.link}>
+										<Link href="/about">
+											{translate("MENU_ITEM_LABEL_ID_ABOUT")}
+										</Link>
+									</Button>
 								</li>
 								<li className="item">
-									<Button
-										link="/posts"
-										label={translate("MENU_ITEM_LABEL_ID_BLOG")}
-										className="button"
-									/>
+									<Button className={styles.link} href="/posts">
+										{translate("MENU_ITEM_LABEL_ID_BLOG")}
+									</Button>
 								</li>
 								<li className="item">
-									<Button
-										label={translate("MENU_ITEM_LABEL_ID_CONTRIBUTE")}
-										link={"/contribute"}
-										className="button"
-									/>
+									<Button className={styles.link} href="/contribute">
+										{translate("MENU_ITEM_LABEL_ID_CONTRIBUTE")}
+									</Button>
 								</li>
 							</ul>
 						</div>
@@ -72,26 +68,26 @@ export const Footer = (): JSX.Element => {
 						<ul className="list">
 							<li className="item">
 								<Button
-									link={PUBLIC_PROJECT_GITHUB_ADDRESS}
-									label={translate("MENU_ITEM_LABEL_ID_GITHUB")}
-									className="button"
+									className={styles.link}
+									href={PUBLIC_PROJECT_GITHUB_ADDRESS}
 									target="_blank"
-								/>
+								>
+									{translate("MENU_ITEM_LABEL_ID_GITHUB")}
+								</Button>
 							</li>
 							<li className="item">
 								<Button
-									link="https://twitter.com/aboutmelsloop"
-									label={translate("MENU_ITEM_LABEL_ID_TWITTER")}
-									className="button"
+									className={styles.link}
+									href="https://twitter.com/aboutmelsloop"
 									target="_blank"
-								/>
+								>
+									{translate("MENU_ITEM_LABEL_ID_TWITTER")}
+								</Button>
 							</li>
 							<li className="item">
-								<Button
-									label={translate("MENU_ITEM_LABEL_ID_CONTACT")}
-									link={"/contact"}
-									className="button"
-								/>
+								<Button className={styles.link} href="/contact">
+									{translate("MENU_ITEM_LABEL_ID_CONTACT")}
+								</Button>
 							</li>
 						</ul>
 					</div>

@@ -5,7 +5,7 @@ import LocaleSelector from "../LocaleSelector";
 import ThemeSelector from "../ThemeSelector";
 import { LocaleProvider } from "../../../locale/context/locale-context";
 import Drawer from "react-modern-drawer";
-import Button from "../../ui/Button";
+import { Button } from "@components/ui";
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import classNames from "classnames";
 import styles from "./Header.module.scss";
@@ -39,7 +39,7 @@ const Header = ({ isMobile }) => {
 	const themeSelectorComponent = useMemo(
 		() => (
 			<ThemeSelector
-				className={classNames([styles.item, styles.themeSelector])}
+				className={classNames(styles.item, styles.themeSelector)}
 				label={translate("button.toggleTheme")}
 				icon="sun"
 			/>
@@ -56,7 +56,7 @@ const Header = ({ isMobile }) => {
 	const localeSelectorComponent = useMemo(
 		() => (
 			<LocaleSelector
-				className={classNames([styles.item, styles.localeSelector])}
+				className={classNames(styles.item, styles.localeSelector)}
 				value={locale}
 				options={localeOptions}
 				size="small"
@@ -71,7 +71,7 @@ const Header = ({ isMobile }) => {
 			<div className={styles.section}>
 				<SiteNav
 					variant="horizontal"
-					className={classNames([styles.item, styles.menu])}
+					className={classNames(styles.item, styles.menu)}
 				/>
 				{localeSelectorComponent}
 				{themeSelectorComponent}
@@ -104,7 +104,7 @@ const Header = ({ isMobile }) => {
 					{localeSelectorComponent}
 					{themeSelectorComponent}
 					<SiteNav
-						className={classNames([styles.item, styles.menu])}
+						className={classNames(styles.item, styles.menu)}
 						variant="vertical"
 					/>
 				</aside>
@@ -142,7 +142,7 @@ const Header = ({ isMobile }) => {
 	);
 
 	return (
-		<div className={styles.root} data-text-direction={textDirection}>
+		<header className={styles.root} data-text-direction={textDirection}>
 			<div className={styles.content}>
 				<SiteTitle
 					title={siteTitle}
@@ -152,7 +152,7 @@ const Header = ({ isMobile }) => {
 				/>
 				{nav}
 			</div>
-		</div>
+		</header>
 	);
 };
 

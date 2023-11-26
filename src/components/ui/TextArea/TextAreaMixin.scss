@@ -1,0 +1,30 @@
+@mixin Default {
+	background-color: var(--textarea-background-color);
+	border-width: var(--textarea-border-width);
+	border-style: var(--textarea-border-style);
+	border-color: var(--textarea-border-color);
+	border-radius: var(--textarea-border-radius);
+
+	&:hover {
+		background-color: var(--textarea-background-color__hover);
+	}
+	&:focus {
+		background-color: var(--textarea-background-color__focus);
+	}
+
+	&[data-size="xs"] {
+		font-size: var(--component-size-xs);
+	}
+	&[data-size="sm"] {
+		font-size: var(--component-size-sm);
+	}
+	&[data-size="md"] {
+		font-size: var(--component-size-md);
+	}
+	&[data-size="lg"] {
+		font-size: var(--component-size-lg);
+	}
+	&[data-size="xl"] {
+		font-size: var(--component-size-xl);
+	}
+}

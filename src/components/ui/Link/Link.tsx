@@ -6,18 +6,20 @@ import styles from "./Link.module.scss";
 import type { LinkProps } from "./types";
 
 const Link = ({
-	label,
+	title,
 	href,
 	target,
 	children,
 	className,
 }: LinkProps): JSX.Element => (
 	<NextLink
+		title={title}
+		aria-label={title}
 		href={href}
 		target={target}
-		className={classNames([styles.root, className])}
+		className={classNames(styles.root, className)}
 	>
-		{label || children}
+		{children}
 	</NextLink>
 );
 

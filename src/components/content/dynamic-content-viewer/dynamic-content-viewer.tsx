@@ -5,7 +5,7 @@ import { DynamicContentTypes } from "../../../interfaces/dynamic-content";
 import { ComponentProps, IParsedPageData } from "../../../interfaces/models";
 import { ReactPageContext } from "../../../contexts/page-context";
 import { contentUtils } from "../../../lib/content-utils";
-import Note from "../../Note";
+import DynamicContentLayout from "../dynamic-content-layout";
 import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
 import { mlUtils } from "../../../lib/ml-utils";
 import { LoadingIndicator } from "../../ui/LoadingIndicator/LoadingIndicator";
@@ -27,7 +27,6 @@ export interface DynamicContentViewerProps extends ComponentProps {
 
 export const DynamicContentViewer = ({
 	url,
-	className,
 }: DynamicContentViewerProps): JSX.Element => {
 	const [item, setItem] = useState<IParsedPageData>(null);
 	const [error, setError] = useState("");
@@ -101,9 +100,8 @@ export const DynamicContentViewer = ({
 	if (isLoading) {
 		return (
 			<LoadingIndicator
-				label="PRELOADER_LABEL"
+				label={translate("PRELOADER_LABEL")}
 				delay={LOADING_DELAY_MSEC}
-				className="loading-indicator"
 			/>
 		);
 	}
@@ -130,28 +128,25 @@ export const DynamicContentViewer = ({
 	const bibliographyLabel = translate(
 		`COMPONENT_BIBLIOGRAPHY_LABEL_${sources.length > 1 ? "MULTIPLE" : "SINGLE"}`
 	);
-	const itemType =
-		itemData.type === DynamicContentTypes.Glossary ? "ref" : "note";
-	const contents = elements.map((node) => (
-		<ContentComponent
-			key={mlUtils.uniqueId()}
-			componentData={{ node }}
-			className="content-component"
-		/>
-	));
 
 	return (
-		<Note
+		<DynamicContentLayout
 			textDirection={textDirection}
-			className="note"
-			type={itemType}
-			contents={contents}
+			type={itemData.type === DynamicContentTypes.Glossary ? "ref" : "note"}
 			label={label}
 			biblgraphyLabel={bibliographyLabel}
 			title={translate(glossary_key)}
 			term={locale === "en" ? "" : translate(glossary_key, "en")}
 			sources={sources}
-		/>
+		>
+			{elements.map((node) => (
+				<ContentComponent
+					key={mlUtils.uniqueId()}
+					componentData={{ node }}
+					className="content-component"
+				/>
+			))}
+		</DynamicContentLayout>
 	);
 };
 

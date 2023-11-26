@@ -1,2 +1,36 @@
+@use "./FormMixin.scss";
+
 .root {
+	.header {
+		@include FormMixin.FormTitle;
+	}
+
+	.fieldset {
+		.field {
+			@include FormMixin.Field;
+
+			.label {
+				@include FormMixin.Label;
+				cursor: pointer;
+			}
+
+			.inputField {
+				@include FormMixin.InputField;
+
+				.input,
+				.textarea {
+					@include FormMixin.Input;
+					box-sizing: border-box;
+				}
+
+				.errorMessage {
+					@include FormMixin.ErrorMessage;
+				}
+			}
+		}
+	}
+
+	.submit {
+		@include FormMixin.SubmitButton;
+	}
 }

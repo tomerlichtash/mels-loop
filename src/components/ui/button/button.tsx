@@ -1,90 +1,38 @@
-import React from "react";
-import Link from "next/link";
+import React, { SyntheticEvent } from "react";
 import { ComponentProps } from "../../../interfaces/models";
+import styles from "./Button.module.scss";
+import { Slot } from "@radix-ui/react-slot";
+import classNames from "classnames";
 
-export interface ButtonProps extends ComponentProps {
-	label?: string;
+export type ButtonProps = {
 	title?: string;
-	icon?: string | React.ReactElement;
-	link?: string;
-	id?: string;
-	target?: string;
-	selected?: boolean;
-	iconSide?: "right" | "left";
-	onClick?: (id: string) => void;
-}
+	asChild?: boolean;
+	type?: "button" | "submit" | "reset";
+	href?: string;
+	target?: "_blank";
+	onClick?: (e: SyntheticEvent) => void;
+} & ComponentProps;
 
-const Button = ({
-	id,
-	label,
-	icon,
-	title,
-	link,
-	selected,
-	target,
-	iconSide,
-	className,
+function Button({
+	asChild,
 	children,
+	className,
+	title,
 	onClick,
-	...rest
-}: ButtonProps): JSX.Element => {
-	const btnLabel = title || label;
-	const props = {
-		title: btnLabel,
-		"aria-label": btnLabel,
-	};
-	const btnContent = (
-		<span className="content-wrapper" data-icon={!!icon} {...rest}>
-			{icon && (
-				<span className="icon" data-icon-side={iconSide}>
-					<span className="img">{icon}</span>
-				</span>
-			)}
-			<span className="content" data-add-icon-margin={!!icon}>
-				{label && (
-					<span className="label">
-						<span className="text">{label}</span>
-					</span>
-				)}
-				{children && <span className="children">{children}</span>}
-			</span>
-		</span>
-	);
-
-	if (!link && !target && !onClick) {
-		return (
-			<span {...props} {...rest} data-selected={selected}>
-				{btnContent}
-			</span>
-		);
-	}
-
-	if (link) {
-		return (
-			<Link href={link} passHref legacyBehavior>
-				<a
-					href={link}
-					className={className}
-					target={target}
-					data-selected={selected}
-					{...props}
-					{...rest}
-				>
-					{btnContent}
-				</a>
-			</Link>
-		);
-	}
+	...props
+}: ButtonProps) {
+	const Comp = asChild && typeof children !== "string" ? Slot : "button";
 
 	return (
-		<span
-			onClick={() => onClick(id)}
-			data-selected={selected}
-			className={className}
+		<Comp
+			className={classNames(styles.root, className)}
+			onClick={(e: SyntheticEvent) => onClick?.(e)}
+			title={title}
+			{...props}
 		>
-			{btnContent}
-		</span>
+			{children}
+		</Comp>
 	);
-};
+}
 
 export default Button;

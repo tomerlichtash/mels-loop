@@ -11,6 +11,7 @@ export interface IUseToolbar {
 interface IToolbarItemImp extends IToolbarItem {
 	key: string;
 }
+
 class Toolbar {
 	private readonly _items: IToolbarItemImp[];
 

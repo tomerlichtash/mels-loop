@@ -1,0 +1,33 @@
+@mixin Default {
+	padding: 0.75em;
+
+	background-color: var(--input-background-color);
+
+	border-width: var(--input-border-width);
+	border-style: var(--input-border-style);
+	border-color: var(--input-border-color);
+	border-radius: var(--input-border-radius);
+
+	&:hover {
+		background-color: var(--input-background-color__hover);
+	}
+	&:focus {
+		background-color: var(--input-background-color__focus);
+	}
+
+	&[data-size="xs"] {
+		font-size: var(--component-size-xs);
+	}
+	&[data-size="sm"] {
+		font-size: var(--component-size-sm);
+	}
+	&[data-size="md"] {
+		font-size: var(--component-size-md);
+	}
+	&[data-size="lg"] {
+		font-size: var(--component-size-lg);
+	}
+	&[data-size="xl"] {
+		font-size: var(--component-size-xl);
+	}
+}

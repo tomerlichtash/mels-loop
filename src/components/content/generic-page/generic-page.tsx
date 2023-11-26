@@ -10,7 +10,7 @@ import Head from "next/head";
 import ContentIterator from "../content-iterator";
 import usePageData from "../../../lib/usePageData";
 import { LocaleProvider } from "../../../locale/context/locale-context";
-import { DateFormat } from "../../ui/DateFormat";
+import { DateFormat } from "@components/ui";
 
 export default function GenericPage(props: IContentComponentData) {
 	const { siteTitle, siteSubtitle, locale } = useContext(LocaleProvider);

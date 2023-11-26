@@ -1,2 +1,15 @@
 .root {
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: space-between;
+	padding: 0 0.5em;
+	height: 2em;
+}
+
+.container {
+}
+
+.close {
+	display: flex;
 }

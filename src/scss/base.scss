@@ -10,39 +10,41 @@
 	background-color: var(--layout-background-color);
 
 	h1 {
-		@include typography.variant(h1);
+		// @include typography.variant(h1);
+		// --content-page-title-font-size: var(--h1-font-size);
+		// --content-page-title-font-size: var(--h2-font-size);
 	}
 
 	h2 {
-		@include typography.variant(h2);
+		// @include typography.variant(h2);
 	}
 
-	h3 {
-		@include typography.variant(h3);
-	}
+	// h3 {
+	// 	@include typography.variant(h3);
+	// }
 
-	h4 {
-		@include typography.variant(h4);
-	}
+	// h4 {
+	// 	@include typography.variant(h4);
+	// }
 
-	h5 {
-		@include typography.variant(h5);
-	}
+	// h5 {
+	// 	@include typography.variant(h5);
+	// }
 
-	h6 {
-		@include typography.variant(h6);
-	}
+	// h6 {
+	// 	@include typography.variant(h6);
+	// }
 
-	ul li,
-	ol li,
-	table {
-		@include typography.variant(text);
-		margin-bottom: 0;
-	}
+	// ul li,
+	// ol li,
+	// table {
+	// 	@include typography.variant(text);
+	// 	margin-bottom: 0;
+	// }
 
-	p {
-		@include typography.variant(text);
-	}
+	// p {
+	// 	@include typography.variant(text);
+	// }
 
 	code {
 		// color: var(--color-text-main);
@@ -62,7 +64,7 @@
 	}
 
 	.subtitle {
-		@include typography.variant(h5);
+		// @include typography.variant(h5);
 	}
 
 	// small {
@@ -78,38 +80,38 @@
 	}
 
 	blockquote {
-		padding: 0 2rem;
+		// padding: 0 2rem;
 
-		p {
-			@include typography.variant(h6);
+		// p {
+		// 	@include typography.variant(h6);
 
-			margin: 2rem 0;
-			font-style: italic;
-		}
+		// 	margin: 2rem 0;
+		// 	font-style: italic;
+		// }
 
-		cite {
-			@include typography.variant(text);
-		}
+		// cite {
+		// 	@include typography.variant(text);
+		// }
 	}
 
-	[data-link-type],
-	a {
-		cursor: pointer;
-		color: var(--link-color);
+	// [data-link-type],
+	// a {
+	// 	cursor: pointer;
+	// 	color: var(--link-color);
 
-		&:link,
-		&:visited {
-			color: var(--link-color);
-		}
+	// 	&:link,
+	// 	&:visited {
+	// 		color: var(--link-color);
+	// 	}
 
-		&:hover {
-			color: var(--link-color-hover);
-		}
+	// 	&:hover {
+	// 		color: var(--link-color-hover);
+	// 	}
 
-		&:active {
-			color: var(--link-color-active);
-		}
-	}
+	// 	&:active {
+	// 		color: var(--link-color-active);
+	// 	}
+	// }
 
 	// a {
 	// 	&:hover {

@@ -1,26 +1,30 @@
 import React, { useContext } from "react";
-import Layout from "../components/site/Layout/Layout";
-import { GetStaticProps, NextPage } from "next";
-import type { IPageProps } from "../interfaces/models";
 import { LocaleProvider } from "../locale/context/locale-context";
-import ContactForm from "../components/site/ContactForm";
+import Layout from "@components/site/Layout";
+import ContactForm from "@components/site/ContactForm";
+
+import type { NextPage, GetStaticProps } from "next";
+import type { IPageProps } from "../interfaces/models";
+import Article from "@components/site/ContentPage";
+
+const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
 
 const Contact: NextPage<IPageProps> = () => {
 	const { translate } = useContext(LocaleProvider);
 	return (
 		<Layout>
-			<article className="page">
-				<h1 className="topic">{translate("CONTACT_PAGE_TITLE")}</h1>
-				<p className="title">{translate("CONTACT_PAGE_SUBTITLE")}</p>
-				<div className="section">
-					<p className="paragraph">{translate("CONTACT_PAGE_TEXT1")}</p>
-					<h3 className="section-title">
-						{translate("CONTACT_FORM_FORM_TITLE")}
-					</h3>
-					<p className="paragraph">{translate("CONTACT_FORM_FORM_SUBTITLE")}</p>
-					<ContactForm className="form" translate={translate} />
-				</div>
-			</article>
+			<Article
+				title={translate("CONTACT_PAGE_TITLE")}
+				subtitle={translate("CONTACT_PAGE_SUBTITLE")}
+				abstract={translate("CONTACT_PAGE_TEXT1")}
+			>
+				<ContactForm
+					className="form"
+					title={translate("CONTACT_FORM_FORM_TITLE")}
+					description={translate("CONTACT_FORM_FORM_SUBTITLE")}
+					recaptchaSiteKey={recaptchaSiteKey}
+				/>
+			</Article>
 		</Layout>
 	);
 };

@@ -7,7 +7,7 @@ import { IPageProps } from "../interfaces/models";
 import usePageData from "../lib/usePageData";
 import { LocaleProvider } from "../locale/context/locale-context";
 import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import Button from "../components/Button";
+import { Button } from "@components/ui";
 
 const Glossary: NextPage<IPageProps> = (props) => {
 	const { translate, pageName } = useContext(LocaleProvider);
@@ -24,10 +24,9 @@ const Glossary: NextPage<IPageProps> = (props) => {
 							const { glossary_key } = term;
 							return glossary_key ? (
 								<li className="term" key={key}>
-									<Button
-										label={translate(term.glossary_key)}
-										link={page.path}
-									/>
+									<Button link={page.path}>
+										{translate(term.glossary_key)}
+									</Button>
 								</li>
 							) : (
 								<div key={key} className="error">

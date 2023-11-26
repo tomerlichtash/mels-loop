@@ -1,3 +1,3 @@
-import { AnnotationLink } from "./annotation-link";
+import { default as AnnotationLink } from "./annotation-link";
 
 export default AnnotationLink;

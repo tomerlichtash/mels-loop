@@ -1,15 +1,33 @@
-.content {
-	background-color: var(--popover-content-background-color);
+.root {
+	--popover-trigger-color: var(--link-color);
+	--popover-trigger-color-active: red;
+	--popover-trigger-radius: 4px;
+
+	--popover-dialog-background-color: var(--ml-color-surface-light);
+	--popover-dialog-padding: 2em;
+}
+
+.dialog {
+	background-color: var(--popover-dialog-background-color);
 	box-shadow: var(--popover-content-box-shadow);
-	// padding: var(--popover-content-padding);
 	width: 414px;
-	animation: fadeIn 300ms ease-out forwards;
+	animation: fadeIn 250ms ease-out forwards;
+}
+
+.content {
+	background-color: var(--popover-dialog-background-color);
 }
 
 .trigger {
-}
+	color: var(--popover-trigger-color);
+	cursor: pointer;
 
-.triggerWrapper {
+	&[data-state="open"] {
+		--popover-trigger-active-background: lightgreen;
+		--popover-trigger-active-text-color: blue;
+		--popover-trigger-active-radius: 4px;
+		--popover-trigger-active-cursor: default;
+	}
 }
 
 @keyframes fadeIn {
@@ -17,7 +35,7 @@
 		opacity: 0;
 	}
 	50% {
-		opacity: 0.9;
+		opacity: 0.75;
 	}
 	100% {
 		opacity: 1;

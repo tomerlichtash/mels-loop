@@ -8,7 +8,7 @@ import { LocaleProvider } from "../../../locale/context/locale-context";
 import Head from "next/head";
 import Header from "../Header";
 import Footer from "../Footer";
-import Page from "../page";
+import Page from "../Page";
 import Analytics from "./analytics";
 
 import { FavIconAnimator, IFavIconProps } from "../../../lib/favicon-animator";
@@ -31,7 +31,7 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	width: 32,
 	debug: true,
 	// TODO: Use light logo when dark mode is enabled
-	image: "/assets/ml-logo-dark.png",
+	image: "/assets/logo/ml-logo-dark.png",
 };
 
 const isDebug = process.env.NEXT_PUBLIC_ML_DEBUG;
@@ -95,7 +95,7 @@ function Layout({ children, title, className }: ILayoutProps) {
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
 			<Scrollbar
-				className={classNames([styles.root, className])}
+				className={classNames(styles.root, className)}
 				textDirection={textDirection}
 			>
 				<div data-text-direction={textDirection}>

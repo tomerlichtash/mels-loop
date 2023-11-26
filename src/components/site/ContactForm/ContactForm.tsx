@@ -1,115 +1,246 @@
-import React from "react";
-import { Form, onValuesSubmit } from "../../form";
-import type { IFormInstance, IFieldRef } from "../../form";
-import { VALUE_NOT_EMPTY, VALUE_VALID_EMAIL } from "../../form/validations";
-import { Button } from "@components/ui";
-import SENDGRID_API from "../../../config/sendgrid";
+import React, { useContext, useEffect } from "react";
+// import { useFormik } from "formik";
+import * as yup from "yup";
+import { useFormik, Formik, Form as FormikForm, Field } from "formik";
+
+import { LabelRoot } from "@components/primitives/Label";
+import {
+	Form,
+	FormField,
+	FormLabel,
+	FormMessage,
+	FormControl,
+	FormSubmit,
+} from "@components/primitives/Form";
+import { LocaleProvider } from "locale/context/locale-context";
+import Recaptcha from "@components/ui/Recaptcha";
+import {
+	ChatBubbleIcon,
+	EnvelopeClosedIcon,
+	PersonIcon,
+	SunIcon,
+} from "@radix-ui/react-icons";
+import { Button, Card, Input, TextArea } from "@components/ui";
 import classNames from "classnames";
 import styles from "./ContactForm.module.scss";
 
-const compLocale: Record<string, string> = {
-	buttonLabel: "CONTACT_FORM_LABEL_SEND",
-	buttonLabelActive: "CONTACT_FORM_LABEL_SEND_ACTIVE",
-	success: "CONTACT_FORM_SUCCESS_MESSAGE",
-	fail: "CONTACT_FORM_SUCCESS_FAIL",
-	backHome: "CONTACT_FORM_ON_SUCCESS_MESSAGE_BACK_HOME",
-	reportProblem: "CONTACT_FORM_ON_FAIL_MESSAGE_REPORT_PROBLEM",
-};
+const ContactForm = ({ title, description, recaptchaSiteKey, className }) => {
+	const { locale, translate } = useContext(LocaleProvider);
 
-const formFields: Record<string, IFieldRef> = {
-	fullname: {
-		id: "fullname",
-		type: "text",
-		tag: "input",
-		required: true,
-		autoFocus: true,
-		tabIndex: 1,
-		icon: "person",
-		rules: [VALUE_NOT_EMPTY],
-		locale: {
-			label: "CONTACT_FORM_LABEL_FULLNAME",
-			placeholder: "CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER",
-			errorMsg: "CONTACT_FORM_INVALID_NAME",
+	const formik = useFormik({
+		initialValues: {
+			fullName: "",
+			email: "",
+			message: "",
 		},
-	},
-	email: {
-		id: "email",
-		type: "email",
-		tag: "input",
-		required: true,
-		tabIndex: 2,
-		icon: "envelope",
-		rules: [VALUE_NOT_EMPTY, VALUE_VALID_EMAIL],
-		locale: {
-			label: "CONTACT_FORM_LABEL_EMAIL",
-			placeholder: "CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER",
-			errorMsg: "CONTACT_FORM_INVALID_EMAIL",
+		validationSchema: yup.object().shape({
+			fullName: yup.string().required(),
+			email: yup.string().required(),
+			message: yup.string().required(),
+			recaptcha: yup.string().required(),
+		}),
+		onSubmit: (values) => {
+			console.log(JSON.stringify(values, null, 2));
 		},
-	},
-	message: {
-		id: "message",
-		type: "text",
-		tag: "textarea",
-		required: true,
-		tabIndex: 3,
-		icon: "chat-square-text",
-		rules: [VALUE_NOT_EMPTY],
-		locale: {
-			label: "CONTACT_FORM_LABEL_MESSAGE",
-			placeholder: "CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER",
-			errorMsg: "CONTACT_FORM_INVALID_MESSAGE",
-		},
-	},
-};
+	});
 
-const ContactForm = ({ translate, className }: IFormInstance): JSX.Element => {
-	const onSuccessMessageText = translate(compLocale.success);
-	const onFailMessageText = translate(compLocale.fail);
-	const backHomeButtonText = translate(compLocale.backHome);
+	useEffect(() => {
+		const keyDownHandler = (e: KeyboardEvent) =>
+			e.key === "Enter" && e.ctrlKey && formik.handleSubmit();
+		document.addEventListener("keydown", keyDownHandler);
+		return () => document.removeEventListener("keydown", keyDownHandler);
+	});
 
-	const onSuccessMessage = (
-		// <div className={st(classes.onSubmitMessage, { type: "success" })}>
-		<div>
-			{/* <span className="icon">
-				<Icon name="check" />
-			</span> */}
-			<span className="message">
-				<span>{onSuccessMessageText}</span>
-			</span>
-			<div className="options">
-				<Button className="button" label={backHomeButtonText} link="/" />
-			</div>
-		</div>
-	);
+	// useEffect(() => {
+	// 	console.log(formik);
+	// }, [formik]);
 
-	const onFailMessage = (
-		// <div className={st(classes.onSubmitMessage, { type: "fail" })}>
-		<div>
-			<div className="textWithIcon">
-				{/* <div className="icon">
-					<ExclamationTriangleIcon />
-				</div> */}
-				<div className="message">
-					<span>{onFailMessageText}</span>
-				</div>
-			</div>
-			<div className="options">
-				<Button className="button" label={backHomeButtonText} link="/" />
-			</div>
-		</div>
-	);
+	const SignupSchema = yup.object().shape({
+		firstName: yup
+			.string()
+			.min(2, "Too Short!")
+			.max(50, "Too Long!")
+			.required("Required"),
+		lastName: yup
+			.string()
+			.min(2, "Too Short!")
+			.max(50, "Too Long!")
+			.required("Required"),
+		email: yup.string().email("Invalid email").required("Required"),
+	});
 
 	return (
-		<Form
-			entries={formFields}
-			onSubmit={onValuesSubmit(SENDGRID_API)}
-			onSuccessMessage={onSuccessMessage}
-			onFailMessage={onFailMessage}
-			submitButtonLabel={compLocale.buttonLabel}
-			submitButtonLabelActive={compLocale.buttonLabelActive}
-			className={classNames([styles.root, className])}
-			useCaptcha={true}
-		/>
+		<div>
+			<h1>Signup</h1>
+			<Formik
+				initialValues={{
+					fullName: "",
+					email: "",
+					message: "",
+				}}
+				validationSchema={SignupSchema}
+				onSubmit={(values) => {
+					// same shape as initial values
+				}}
+			>
+				{/* errors.email && touched.emai */}
+				{({ errors, touched }) => {
+					console.log({ errors, touched });
+					return (
+						<Card className={classNames(styles.root, className)}>
+							<div className={styles.header}>
+								<div className={styles.title}>{title}</div>
+								<div className={styles.subtitle}>{description}</div>
+							</div>
+							<Form className={styles.form} onSubmit={formik.handleSubmit}>
+								<div className={styles.fieldset}>
+									<FormField className={styles.field} name="fullName">
+										<FormLabel asChild>
+											<LabelRoot className={styles.label} htmlFor="fullName">
+												<PersonIcon />
+												{translate("CONTACT_FORM_LABEL_FULLNAME")}
+											</LabelRoot>
+										</FormLabel>
+										<div className={styles.inputField}>
+											<FormControl asChild>
+												<Field name="fullName" type="text" />
+												{/* <Input
+													id="fullName"
+													className={styles.input}
+													type="text"
+													required
+													placeholder={translate(
+														"CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER"
+													)}
+													value={formik.values.fullName}
+													onChange={formik.handleChange}
+													data-size="sm"
+												/> */}
+											</FormControl>
+											<div className={styles.errorMessage}>
+												<FormMessage
+													className={classNames(
+														styles.validationMessage,
+														styles.valueMissing
+													)}
+													match="valueMissing"
+												>
+													{translate("CONTACT_FORM_INVALID_NAME")}
+												</FormMessage>
+												<FormMessage
+													className={classNames(
+														styles.validationMessage,
+														styles.typeMismatch
+													)}
+													match="typeMismatch"
+												>
+													Please provide a name
+												</FormMessage>
+											</div>
+										</div>
+									</FormField>
+									<FormField className={styles.field} name="email">
+										<FormLabel asChild>
+											<LabelRoot className={styles.label} htmlFor="email">
+												<EnvelopeClosedIcon />
+												{translate("CONTACT_FORM_LABEL_EMAIL")}
+											</LabelRoot>
+										</FormLabel>
+										<div className={styles.inputField}>
+											<FormControl asChild>
+												<Input
+													id="email"
+													className={styles.input}
+													type="email"
+													required
+													placeholder={translate(
+														"CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER"
+													)}
+													value={formik.values.email}
+													onChange={formik.handleChange}
+												/>
+											</FormControl>
+											<div className={styles.errorMessage}>
+												<FormMessage
+													className={classNames(
+														styles.validationMessage,
+														styles.valueMissing
+													)}
+													match="valueMissing"
+												>
+													{translate("CONTACT_FORM_INVALID_EMAIL")}
+												</FormMessage>
+												<FormMessage
+													className={classNames(
+														styles.validationMessage,
+														styles.typeMismatch
+													)}
+													match="typeMismatch"
+												>
+													Please provide a valid email
+												</FormMessage>
+											</div>
+										</div>
+									</FormField>
+									<FormField className={styles.field} name="message">
+										<FormLabel asChild>
+											<LabelRoot className={styles.label} htmlFor="message">
+												<ChatBubbleIcon />
+												{translate("CONTACT_FORM_LABEL_MESSAGE")}
+											</LabelRoot>
+										</FormLabel>
+										<div className={styles.inputField}>
+											<FormControl asChild>
+												<TextArea
+													id="message"
+													className={classNames(styles.input, styles.textarea)}
+													required
+													placeholder={translate(
+														"CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER"
+													)}
+													value={formik.values.message}
+													onChange={formik.handleChange}
+												/>
+											</FormControl>
+											<div className={styles.errorMessage}>
+												<FormMessage
+													className={classNames(
+														styles.validationMessage,
+														styles.valueMissing
+													)}
+													match="valueMissing"
+												>
+													{translate("CONTACT_FORM_INVALID_MESSAGE")}
+												</FormMessage>
+											</div>
+										</div>
+									</FormField>
+								</div>
+								<Recaptcha
+									locale={locale}
+									tabIndex={0}
+									siteKey={recaptchaSiteKey}
+									onChange={async (response: string) =>
+										await formik.setFieldValue("recaptcha", response)
+									}
+									onExpired={() => console.log("expired")}
+								/>
+								<FormSubmit asChild>
+									<Button
+										type="submit"
+										className={styles.submit}
+										data-size="sm"
+									>
+										<SunIcon />
+										{translate("CONTACT_FORM_LABEL_SEND")}
+									</Button>
+								</FormSubmit>
+							</Form>
+						</Card>
+					);
+				}}
+			</Formik>
+		</div>
 	);
 };
 

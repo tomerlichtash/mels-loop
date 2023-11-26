@@ -48,7 +48,7 @@ export const ContentIterator = ({
 
 	if (Tag) {
 		return (
-			<Tag className={`tag-${Tag}`} key={mlUtils.uniqueId()} {...attributes}>
+			<Tag key={mlUtils.uniqueId()} {...attributes}>
 				{elements.map((node) => {
 					return (
 						<ContentComponent
