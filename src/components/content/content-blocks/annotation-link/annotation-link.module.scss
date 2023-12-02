@@ -1,4 +1,4 @@
-@use "../mixins.scss";
+@use "../../popover/PopoverMixin.scss";
 
 .root {
 	--annotation-trigger-color: var(--link-color);
@@ -10,11 +10,12 @@
 	--annotation-suffix: "]";
 	--annotation-padding: 0.05em;
 
+	// include shared trigger styles
+	@include PopoverMixin.PopoverTrigger;
+
 	position: relative;
 	font-size: var(--annotation-font-size);
 	top: var(--annotation-offset-top);
-
-	@include mixins.AnnotationMixin;
 
 	&::before,
 	&::after {

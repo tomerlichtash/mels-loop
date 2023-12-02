@@ -1,8 +1,10 @@
 .root {
+	height: 20em;
 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
 }
 
 .image {
@@ -14,6 +16,7 @@
 
 .label {
 	display: block;
+	margin-top: 1em;
 }
 
 @keyframes rotation {

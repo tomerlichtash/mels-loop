@@ -11,7 +11,7 @@ export const Footer = (): JSX.Element => {
 		"SITE_LICENSE_ATTRS"
 	)}`;
 	return (
-		<footer className={styles.footer}>
+		<footer className={styles.root}>
 			<div className={styles.strip}></div>
 			<div className={styles.pageContainer}>
 				<div className={styles.layout}>

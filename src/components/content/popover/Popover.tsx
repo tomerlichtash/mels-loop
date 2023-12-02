@@ -1,67 +1,39 @@
-import React, { useRef } from "react";
-import PopoverToolbar from "./PopoverToolbar";
-import { ReactPopoverContext } from "../../../contexts/popover-context";
-import { useToolbar } from "./useToolbar";
-import {
-	PopoverRoot,
-	PopoverTrigger,
-	PopoverContent,
-	PopoverArrow,
-	PopoverPortal,
-} from "@components/primitives";
-import classNames from "classnames";
-import styles from "./Popover.module.scss";
-import type { ComponentProps } from "../../../interfaces/models";
-import type { IPopoverContext } from "../../../interfaces/IPopoverContext";
+import React, { PropsWithChildren } from "react";
+import { PopoverProvider } from "./PopoverContext";
+import { PopoverRoot } from "@components/primitives";
+import PopoverTrigger from "./PopoverTrigger";
+import PopoverDialog from "./PopoverDialog";
+import { useToolbar } from "../dynamic-content-toolbar/useToolbar";
+import type { IPopoverContext } from "../types/IPopoverContext";
 import type { Direction } from "../../../locale/locale-context";
 
-export type IPopoverProps = {
+type PopoverProps = {
 	trigger: React.ReactNode;
 	side: Direction;
-} & ComponentProps;
+};
 
 const Popover = ({
 	trigger,
 	children,
 	side,
-	className,
-}: IPopoverProps): JSX.Element => {
+}: PropsWithChildren<PopoverProps>) => {
 	const toolbar = useToolbar();
 
-	const ctx: IPopoverContext = {
+	const context: IPopoverContext = {
 		toolbar: toolbar.items,
 		addToolbarItems: toolbar.addItems,
 		removeToolbarItems: toolbar.removeItemsById,
 	};
 
 	return (
-		<ReactPopoverContext.Provider value={ctx}>
-			<span className={classNames(styles.root, className)}>
-				<PopoverRoot>
-					<PopoverTrigger asChild>
-						<span className={styles.trigger} tabIndex={1}>
-							{trigger}
-						</span>
-					</PopoverTrigger>
-					<PopoverPortal>
-						<PopoverContent
-							side={side}
-							avoidCollisions={true}
-							sideOffset={5}
-							className={styles.dialog}
-							data-theme="light"
-							data-text-direction="ltr"
-						>
-							<div data-theme="light">
-								<PopoverToolbar items={toolbar.items} />
-								<div className={styles.content}>{children}</div>
-								<PopoverArrow />
-							</div>
-						</PopoverContent>
-					</PopoverPortal>
-				</PopoverRoot>
-			</span>
-		</ReactPopoverContext.Provider>
+		<PopoverProvider value={context}>
+			<PopoverRoot>
+				<PopoverTrigger>{trigger}</PopoverTrigger>
+				<PopoverDialog side={"top"} toolbarItems={toolbar.items}>
+					{children}
+				</PopoverDialog>
+			</PopoverRoot>
+		</PopoverProvider>
 	);
 };
 

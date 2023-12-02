@@ -1,0 +1,80 @@
+@import "../../../scss/utils/components";
+
+// This is an agnostic CSS var map, contains only vars in states.
+//
+// We use this map to define CSS vars in different states, while the property mappings of these vars are defined
+// in a mixin (see: `PopoverMixin.PopoverTrigger`), which be included in the trigger element's classname.
+// This allowes us, for instance, to achieve different highlighting, regardless any imeplentation detail.
+
+// the fallback format allows us to fallback to component's default style (--part-prop__state),
+// and override it from theme (--component-part-prop__state)
+
+.root {
+	// default styling
+	--trigger-background-color: #0f0f0f;
+	--trigger-text-color: #fff;
+	--trigger-border-radius: 0;
+	--trigger-background-color__hover: #000;
+	--trigger-text-color__hover: #fff;
+	--trigger-background-color__active: #808080;
+	--trigger-text-color__active: #fff;
+	--trigger-background-color__open: #b0b0b0;
+	--trigger-text-color__open: #303030;
+
+	// native states
+	&:hover {
+		--popover-trigger-background-color: var(
+			--popover-trigger-background-color__hover,
+			var(--trigger-background-color__hover)
+		);
+		--popover-trigger-text-color: var(
+			--popover-trigger-text-color__hover,
+			var(--trigger-text-color__hover)
+		);
+	}
+
+	&:active {
+		--popover-trigger-background-color: var(
+			--popover-trigger-background-color__active,
+			var(--trigger-background-color__active)
+		);
+		--popover-trigger-text-color: var(
+			--popover-trigger-text-color__active,
+			var(--trigger-text-color__active)
+		);
+	}
+
+	// 'open' state provided by Radix Popover component
+	&[data-state="open"] {
+		--popover-trigger-background-color: var(
+			--popover-trigger-background-color__open,
+			var(--trigger-background-color__open)
+		);
+		--popover-trigger-text-color: var(
+			--popover-trigger-text-color__open,
+			var(--trigger-text-color__open)
+		);
+
+		&:hover {
+			--popover-trigger-background-color: var(
+				--popover-trigger-background-color__open__hover,
+				var(--trigger-background-color__open__hover)
+			);
+			--popover-trigger-text-color: var(
+				--popover-trigger-text-color__open__hover,
+				var(--trigger-text-color__open__hover)
+			);
+		}
+
+		&:active {
+			--popover-trigger-background-color: var(
+				--popover-trigger-background-color__open__active,
+				var(--trigger-background-color__open__active)
+			);
+			--popover-trigger-text-color: var(
+				--popover-trigger-text-color__open__active,
+				var(--trigger-text-color__open__active)
+			);
+		}
+	}
+}

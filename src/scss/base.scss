@@ -1,189 +1,189 @@
-@use "./utils/colors.scss";
-@use "./mixins/typography.scss";
-@use "./mixins/gradient.scss";
+// @use "./utils/colors.scss";
+// @use "./mixins/typography.scss";
+// @use "./mixins/gradient.scss";
 
-@mixin link-hover {
-	border-bottom: 1px solid currentcolor;
-}
+// @mixin link-hover {
+// 	border-bottom: 1px solid currentcolor;
+// }
 
-[data-theme] {
-	background-color: var(--layout-background-color);
+// [data-theme] {
+// 	background-color: var(--layout-background-color);
 
-	h1 {
-		// @include typography.variant(h1);
-		// --content-page-title-font-size: var(--h1-font-size);
-		// --content-page-title-font-size: var(--h2-font-size);
-	}
+// 	h1 {
+// 		// @include typography.variant(h1);
+// 		// --content-page-title-font-size: var(--h1-font-size);
+// 		// --content-page-title-font-size: var(--h2-font-size);
+// 	}
 
-	h2 {
-		// @include typography.variant(h2);
-	}
+// 	h2 {
+// 		// @include typography.variant(h2);
+// 	}
 
-	// h3 {
-	// 	@include typography.variant(h3);
-	// }
+// 	// h3 {
+// 	// 	@include typography.variant(h3);
+// 	// }
 
-	// h4 {
-	// 	@include typography.variant(h4);
-	// }
+// 	// h4 {
+// 	// 	@include typography.variant(h4);
+// 	// }
 
-	// h5 {
-	// 	@include typography.variant(h5);
-	// }
+// 	// h5 {
+// 	// 	@include typography.variant(h5);
+// 	// }
 
-	// h6 {
-	// 	@include typography.variant(h6);
-	// }
+// 	// h6 {
+// 	// 	@include typography.variant(h6);
+// 	// }
 
-	// ul li,
-	// ol li,
-	// table {
-	// 	@include typography.variant(text);
-	// 	margin-bottom: 0;
-	// }
+// 	// ul li,
+// 	// ol li,
+// 	// table {
+// 	// 	@include typography.variant(text);
+// 	// 	margin-bottom: 0;
+// 	// }
 
-	// p {
-	// 	@include typography.variant(text);
-	// }
+// 	// p {
+// 	// 	@include typography.variant(text);
+// 	// }
 
-	code {
-		// color: var(--color-text-main);
-		background-color: var(--color-surface-dark);
-		padding: 0 0.2rem;
-		border-radius: 4px;
-	}
+// 	code {
+// 		// color: var(--ml-color-text-main);
+// 		background-color: var(--ml-color-surface-dark);
+// 		padding: 0 0.2rem;
+// 		border-radius: 4px;
+// 	}
 
-	pre {
-		background-color: var(--color-surface-dark);
-		padding: 2rem;
-		border-radius: 4px;
+// 	pre {
+// 		background-color: var(--ml-color-surface-dark);
+// 		padding: 2rem;
+// 		border-radius: 4px;
 
-		// code {
-		// 	// color: #000;
-		// }
-	}
+// 		// code {
+// 		// 	// color: #000;
+// 		// }
+// 	}
 
-	.subtitle {
-		// @include typography.variant(h5);
-	}
+// 	.subtitle {
+// 		// @include typography.variant(h5);
+// 	}
 
-	// small {
-	// 	@include typography.get(sm, xs, regular);
-	// }
+// 	// small {
+// 	// 	@include typography.get(sm, xs, regular);
+// 	// }
 
-	ul,
-	ol,
-	table,
-	p,
-	pre {
-		color: var(--text-color);
-	}
+// 	ul,
+// 	ol,
+// 	table,
+// 	p,
+// 	pre {
+// 		color: var(--text-color);
+// 	}
 
-	blockquote {
-		// padding: 0 2rem;
+// 	blockquote {
+// 		// padding: 0 2rem;
 
-		// p {
-		// 	@include typography.variant(h6);
+// 		// p {
+// 		// 	@include typography.variant(h6);
 
-		// 	margin: 2rem 0;
-		// 	font-style: italic;
-		// }
+// 		// 	margin: 2rem 0;
+// 		// 	font-style: italic;
+// 		// }
 
-		// cite {
-		// 	@include typography.variant(text);
-		// }
-	}
+// 		// cite {
+// 		// 	@include typography.variant(text);
+// 		// }
+// 	}
 
-	// [data-link-type],
-	// a {
-	// 	cursor: pointer;
-	// 	color: var(--link-color);
+// 	// [data-link-type],
+// 	// a {
+// 	// 	cursor: pointer;
+// 	// 	color: var(--link-color);
 
-	// 	&:link,
-	// 	&:visited {
-	// 		color: var(--link-color);
-	// 	}
+// 	// 	&:link,
+// 	// 	&:visited {
+// 	// 		color: var(--link-color);
+// 	// 	}
 
-	// 	&:hover {
-	// 		color: var(--link-color-hover);
-	// 	}
+// 	// 	&:hover {
+// 	// 		color: var(--link-color-hover);
+// 	// 	}
 
-	// 	&:active {
-	// 		color: var(--link-color-active);
-	// 	}
-	// }
+// 	// 	&:active {
+// 	// 		color: var(--link-color-active);
+// 	// 	}
+// 	// }
 
-	// a {
-	// 	&:hover {
-	// 		// @include LinkHover;
-	// 	}
-	// }
+// 	// a {
+// 	// 	&:hover {
+// 	// 		// @include LinkHover;
+// 	// 	}
+// 	// }
 
-	// [data-link-type="annotation"] {
-	// 	&:hover .content {
-	// 		@include link-hover;
-	// 	}
-	// }
+// 	// [data-link-type="annotation"] {
+// 	// 	&:hover .content {
+// 	// 		@include link-hover;
+// 	// 	}
+// 	// }
 
-	// [data-link-type="glossary"] {
-	// 	&:hover .trigger .content-component-text {
-	// 		@include link-hover;
-	// 	}
-	// }
+// 	// [data-link-type="glossary"] {
+// 	// 	&:hover .trigger .content-component-text {
+// 	// 		@include link-hover;
+// 	// 	}
+// 	// }
 
-	// [data-link-type="annotation"],
-	// [data-link-type="glossary"] {
-	// 	&:hover {
-	// 		color: var(--annotation-text-color-hover);
-	// 	}
+// 	// [data-link-type="annotation"],
+// 	// [data-link-type="glossary"] {
+// 	// 	&:hover {
+// 	// 		color: var(--annotation-text-color-hover);
+// 	// 	}
 
-	// 	&:hover span.content {
-	// 		@include link-hover;
-	// 	}
-	// }
+// 	// 	&:hover span.content {
+// 	// 		@include link-hover;
+// 	// 	}
+// 	// }
 
-	// pre {
-	// }
+// 	// pre {
+// 	// }
 
-	// article {
-	// 	padding: 4rem;
-	// 	background-color: var(--color-surface-light);
-	// 	border-radius: var(--border-radius-md);
-	// 	box-shadow: var(--box-shadow-md);
-	// }
+// 	// article {
+// 	// 	padding: 4rem;
+// 	// 	background-color: var(--ml-color-surface-light);
+// 	// 	border-radius: var(--border-radius-md);
+// 	// 	box-shadow: var(--box-shadow-md);
+// 	// }
 
-	// .annotation {
-	// 	$annotation-paren-gap: 0.05rem;
-	// 	$annotation-paren-opacity: 0.8;
-	// 	$annotation-offset-top: -2px;
+// 	// .annotation {
+// 	// 	$annotation-paren-gap: 0.05rem;
+// 	// 	$annotation-paren-opacity: 0.8;
+// 	// 	$annotation-offset-top: -2px;
 
-	// 	font-size: var(--font-size-xs);
-	// 	top: $annotation-offset-top;
+// 	// 	font-size: var(--font-size-xs);
+// 	// 	top: $annotation-offset-top;
 
-	// 	&::before,
-	// 	&::after {
-	// 		opacity: $annotation-paren-opacity;
-	// 	}
+// 	// 	&::before,
+// 	// 	&::after {
+// 	// 		opacity: $annotation-paren-opacity;
+// 	// 	}
 
-	// 	&::before {
-	// 		content: "[";
-	// 		margin-right: $annotation-paren-gap;
-	// 	}
+// 	// 	&::before {
+// 	// 		content: "[";
+// 	// 		margin-right: $annotation-paren-gap;
+// 	// 	}
 
-	// 	&::after {
-	// 		content: "]";
-	// 		margin-left: $annotation-paren-gap;
-	// 	}
+// 	// 	&::after {
+// 	// 		content: "]";
+// 	// 		margin-left: $annotation-paren-gap;
+// 	// 	}
 
-	// 	.content::after {
-	// 		font-weight: var(--font-weight-bold);
-	// 	}
-	// }
+// 	// 	.content::after {
+// 	// 		font-weight: var(--font-weight-bold);
+// 	// 	}
+// 	// }
 
-	// [data-link-type="annotation"] [data-popover-visibility="true"] .content,
-	// [data-link-type="glossary"] [data-popover-visibility="true"] span {
-	// 	border-radius: 3px;
-	// 	background-color: var(--color-primary-dark);
-	// 	color: var(--color-primary-contrast);
-	// }
-}
+// 	// [data-link-type="annotation"] [data-popover-visibility="true"] .content,
+// 	// [data-link-type="glossary"] [data-popover-visibility="true"] span {
+// 	// 	border-radius: 3px;
+// 	// 	background-color: var(--ml-color-primary-dark);
+// 	// 	color: var(--ml-color-primary-contrast);
+// 	// }
+// }

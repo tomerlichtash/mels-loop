@@ -22,7 +22,6 @@ const App = ({ Component, pageProps }: AppProps<IPageProps>) => {
 				{fontStyles}
 			</style>
 			<Component {...pageProps} />
-			<div id="popover"></div>
 		</AppContext>
 	);
 };

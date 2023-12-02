@@ -1,6 +1,6 @@
 import { Context, createContext } from "react";
-import { IDynamicContentContext } from "../interfaces/dynamic-content-context";
+import { IDynamicContentContext } from "../components/content/types/dynamic-content-context";
 
 const ctx = createContext<IDynamicContentContext>(null);
 
-export const ReactDynamicContentContext: Context<IDynamicContentContext> = ctx;
+export const DynamicContentContext: Context<IDynamicContentContext> = ctx;

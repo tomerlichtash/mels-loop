@@ -9,7 +9,7 @@ import { Link, AnnotationLink, TermLink } from "../content-blocks";
 import Popover from "../popover";
 import { LocaleProvider } from "../../../locale/context/locale-context";
 import DynamicContentBrowser from "../dynamic-content-browser";
-import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
+import { DynamicContentContext } from "../../../contexts/dynamic-content-context";
 import classNames from "classnames";
 // import ContentIterator from "../content-iterator";
 
@@ -39,7 +39,7 @@ export const LinkSelector = ({
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { displayType, key } = node;
-	const dcContext = useContext(ReactDynamicContentContext);
+	const dcContext = useContext(DynamicContentContext);
 	const { textDirection } = useContext(LocaleProvider);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {

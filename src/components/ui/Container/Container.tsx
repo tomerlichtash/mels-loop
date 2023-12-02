@@ -1,16 +1,10 @@
-import React, { SyntheticEvent } from "react";
+import React, { PropsWithChildren, SyntheticEvent } from "react";
 import { ComponentProps } from "../../../interfaces/models";
 import styles from "./Container.module.scss";
-import classNames from "classnames";
 
-export interface ContainerProps extends ComponentProps {
-	title?: string;
-	asChild?: boolean;
-}
-
-function Container({ children, className, ...props }: ContainerProps) {
+function Container({ children, ...props }: PropsWithChildren<ComponentProps>) {
 	return (
-		<div className={classNames(styles.root, className)} {...props}>
+		<div className={styles.root} {...props}>
 			{children}
 		</div>
 	);

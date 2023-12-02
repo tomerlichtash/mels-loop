@@ -1,10 +1,13 @@
+@use "../../../scss/utils/components.scss";
 @use "../ComponentMixin.scss";
 
 @mixin Default {
 	@include ComponentMixin.ComponentSize;
 
+	--button-mixin-background-color: magenta;
+
+	background-color: magenta; //var(--button-background-color);
 	border-radius: var(--button-border-radius);
-	background-color: var(--button-background-color);
 	color: var(--button-text-color);
 
 	&:hover {

@@ -6,14 +6,14 @@ import { Button, DateFormat } from "@components/ui";
 import type { LocaleId } from "../../locale/locale-context";
 import type { ComponentProps, IParsedPageData } from "../../interfaces/models";
 
-export interface IBlogPostProps extends ComponentProps {
+type IBlogPostProps = {
 	title: string;
 	date: Date;
 	locale: LocaleId;
 	author: string;
 	content: IParsedPageData;
 	path?: string;
-}
+} & ComponentProps;
 
 export const BlogPost = ({
 	title,
@@ -29,7 +29,7 @@ export const BlogPost = ({
 				<header className="header" aria-label={title} title={title}>
 					<h2 className="topic">
 						{path ? (
-							<Button link={`/${path}`} className="button">
+							<Button href={`/${path}`} className="button">
 								{title}
 							</Button>
 						) : (

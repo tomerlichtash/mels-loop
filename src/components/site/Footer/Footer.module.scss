@@ -1,7 +1,14 @@
 // @use "../../theme/common/theme.scss";
+@use "../../../scss/utils/components.scss";
 @use "../../../scss/mixins/gradient.scss";
 
-footer {
+$__namespace__: footer;
+
+.root {
+	--footer-strip-color-start: red;
+	--footer-strip-color-mid: green;
+	--footer-strip-color-end: blue;
+
 	&.footer {
 		background: var(--footer-background-color);
 		margin-top: 2rem;
@@ -25,9 +32,9 @@ footer {
 		height: 0.3vh;
 
 		@include gradient.simple(
-			var(--color-gradient-1),
-			var(--color-gradient-2),
-			var(--color-gradient-3)
+			var(--site-footer-strip-color-start, var(--footer-strip-color-start)),
+			var(--site-footer-strip-color-mid, var(--footer-strip-color-mid)),
+			var(--site-footer-strip-color-end, var(--footer-strip-color-end))
 		);
 	}
 

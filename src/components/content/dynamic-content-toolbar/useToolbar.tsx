@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IToolbarItem } from "../../../interfaces/IPopoverContext";
+import { IToolbarItem } from "../types/IPopoverContext";
 import { mlUtils } from "../../../lib/ml-utils";
 
 export interface IUseToolbar {
@@ -74,10 +74,12 @@ export const useToolbar = (): IUseToolbar => {
 
 	return {
 		items: toolbarItems,
+
 		addItems: (items: IToolbarItem | IToolbarItem[]) => {
 			toolbar.addItems(items);
 			setToolbarItems(toolbar.items);
 		},
+
 		removeItemsById: (keys: string | string[]) => {
 			toolbar.removeItems(keys);
 			if (toolbar.items.length !== toolbarItems.length) {

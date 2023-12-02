@@ -1,6 +1,0 @@
-@mixin AnnotationMixin {
-	background: var(--popover-trigger-active-background);
-	border-radius: var(--popover-trigger-active-radius);
-	color: var(--popover-trigger-active-text-color);
-	cursor: var(--popover-trigger-active-cursor, pointer);
-}

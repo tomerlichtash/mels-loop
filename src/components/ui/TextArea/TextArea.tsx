@@ -16,7 +16,6 @@ function TextArea({
 	id,
 	required,
 	placeholder,
-	type,
 	value,
 	className,
 	onChange,

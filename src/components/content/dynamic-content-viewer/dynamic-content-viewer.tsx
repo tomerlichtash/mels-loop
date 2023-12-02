@@ -6,7 +6,7 @@ import { ComponentProps, IParsedPageData } from "../../../interfaces/models";
 import { ReactPageContext } from "../../../contexts/page-context";
 import { contentUtils } from "../../../lib/content-utils";
 import DynamicContentLayout from "../dynamic-content-layout";
-import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
+import { DynamicContentContext } from "../../../contexts/dynamic-content-context";
 import { mlUtils } from "../../../lib/ml-utils";
 import { LoadingIndicator } from "../../ui/LoadingIndicator/LoadingIndicator";
 import { useRouter } from "next/router";
@@ -33,7 +33,7 @@ export const DynamicContentViewer = ({
 	const [isLoading, setIsLoading] = useState(true);
 	const pageContext = useContext(ReactPageContext);
 	const { translate, locale, textDirection } = useContext(LocaleProvider);
-	const dynamicContentContext = useContext(ReactDynamicContentContext);
+	const dynamicContentContext = useContext(DynamicContentContext);
 	const elements = item && item.parsed;
 	const router = useRouter();
 
@@ -117,7 +117,6 @@ export const DynamicContentViewer = ({
 	const { metaData } = item;
 	const { source_name, source_url, glossary_key } = metaData;
 
-	// TODO: Support multiple sources - https://github.com/tomerlichtash/mels-loop/issues/188
 	const sources = source_name && [
 		{
 			name: source_name,
@@ -125,7 +124,7 @@ export const DynamicContentViewer = ({
 		},
 	];
 	const label = translate(`NOTE_LABEL_${itemData.type.toUpperCase()}`);
-	const bibliographyLabel = translate(
+	const sourcesLabel = translate(
 		`COMPONENT_BIBLIOGRAPHY_LABEL_${sources.length > 1 ? "MULTIPLE" : "SINGLE"}`
 	);
 
@@ -134,7 +133,7 @@ export const DynamicContentViewer = ({
 			textDirection={textDirection}
 			type={itemData.type === DynamicContentTypes.Glossary ? "ref" : "note"}
 			label={label}
-			biblgraphyLabel={bibliographyLabel}
+			sourcesLabel={sourcesLabel}
 			title={translate(glossary_key)}
 			term={locale === "en" ? "" : translate(glossary_key, "en")}
 			sources={sources}

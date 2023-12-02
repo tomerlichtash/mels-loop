@@ -1,7 +1,7 @@
-@mixin variant($name) {
-	font-size: var(--#{$name}-font-size);
-	font-weight: var(--#{$name}-font-weight);
-	line-height: var(--#{$name}-line-height);
-	margin-bottom: var(--#{$name}-margin-bottom);
-	color: var(--#{$name}-text-color);
-}
+// @mixin variant($name) {
+// 	font-size: var(--#{$name}-font-size);
+// 	font-weight: var(--#{$name}-font-weight);
+// 	line-height: var(--#{$name}-line-height);
+// 	margin-bottom: var(--#{$name}-margin-bottom);
+// 	color: var(--#{$name}-text-color);
+// }

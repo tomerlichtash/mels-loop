@@ -1,28 +1,26 @@
-import React, { useContext, useEffect, useMemo } from "react";
-
+import React, {
+	PropsWithChildren,
+	useContext,
+	useEffect,
+	useMemo,
+} from "react";
 import { useRouter } from "next/router";
 import { useWindowSize } from "./useWindowSize";
-
 import { LocaleProvider } from "../../../locale/context/locale-context";
-
 import Head from "next/head";
 import Header from "../Header";
 import Footer from "../Footer";
 import Page from "../Page";
 import Analytics from "./analytics";
-
 import { FavIconAnimator, IFavIconProps } from "../../../lib/favicon-animator";
-
 import { Scrollbar } from "@components/ui";
-
-import styles from "./Layout.module.scss";
 import classNames from "classnames";
-
+import styles from "./Layout.module.scss";
 import type { ComponentProps } from "../../../interfaces/models";
 
-interface ILayoutProps extends ComponentProps {
+type ILayoutProps = {
 	title?: string;
-}
+};
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: "rotate",
@@ -36,7 +34,11 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 
 const isDebug = process.env.NEXT_PUBLIC_ML_DEBUG;
 
-function Layout({ children, title, className }: ILayoutProps) {
+function Layout({
+	title,
+	children,
+	className,
+}: PropsWithChildren<ILayoutProps> & ComponentProps) {
 	const router = useRouter();
 	const size = useWindowSize();
 	const { siteTitle, siteSubtitle, textDirection, pageName } =

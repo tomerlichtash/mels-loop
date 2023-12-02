@@ -7,4 +7,6 @@ export const Languages = {
 	he: Object.assign({}, COMMON, HE_IL),
 };
 
+export * from "./locale-context";
+
 export default Languages;

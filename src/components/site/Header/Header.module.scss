@@ -4,7 +4,7 @@
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background-color: var(--header-background-color);
+	background-color: var(--site-header-background-color);
 	z-index: 1;
 
 	&[data-text-direction="ltr"] {

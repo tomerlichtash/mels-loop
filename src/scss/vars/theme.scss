@@ -12,34 +12,33 @@
 	$gradient: map.get($themeIndex, gradient);
 	$logo: map.get($themeIndex, logo);
 
-	// $logo: map.get($themeIndex, logo);
+	--ml-site-logo: #{map.get($logo, url)};
 
 	// COLORS
 	--ml-color-surface-main: #{theme.prop($colors, surface, main)};
 	--ml-color-surface-dark: #{theme.prop($colors, surface, dark)};
 	--ml-color-surface-light: #{theme.prop($colors, surface, light)};
-	--color-surface-contrast: #{theme.prop($colors, surface, contrast)};
-	--color-primary-main: #{theme.prop($colors, primary, main)};
-	--color-primary-dark: #{theme.prop($colors, primary, dark)};
-	--color-primary-light: #{theme.prop($colors, primary, light)};
-	--color-primary-contrast: #{theme.prop($colors, primary, contrast)};
-	--color-secondary-main: #{theme.prop($colors, secondary, main)};
-	--color-secondary-dark: #{theme.prop($colors, secondary, dark)};
-	--color-secondary-light: #{theme.prop($colors, secondary, light)};
-	--color-secondary-contrast: #{theme.prop($colors, secondary, contrast)};
-	--color-error-main: #{theme.prop($colors, error, main)};
-	--color-error-dark: #{theme.prop($colors, error, dark)};
-	--color-error-light: #{theme.prop($colors, error, light)};
-	--color-error-contrast: #{theme.prop($colors, error, contrast)};
-	--color-success-main: #{theme.prop($colors, success, main)};
-	--color-success-dark: #{theme.prop($colors, success, dark)};
-	--color-success-light: #{theme.prop($colors, success, light)};
-	--color-success-contrast: #{theme.prop($colors, success, contrast)};
-
-	// GRADIENT
-	--color-gradient-1: #{theme.prop($gradient, gradient1, start)};
-	--color-gradient-2: #{theme.prop($gradient, gradient1, middle)};
-	--color-gradient-3: #{theme.prop($gradient, gradient1, end)};
+	--ml-color-surface-contrast: #{theme.prop($colors, surface, contrast)};
+	--ml-color-primary-main: #{theme.prop($colors, primary, main)};
+	--ml-color-primary-dark: #{theme.prop($colors, primary, dark)};
+	--ml-color-primary-light: #{theme.prop($colors, primary, light)};
+	--ml-color-primary-contrast: #{theme.prop($colors, primary, contrast)};
+	--ml-color-secondary-main: #{theme.prop($colors, secondary, main)};
+	--ml-color-secondary-dark: #{theme.prop($colors, secondary, dark)};
+	--ml-color-secondary-light: #{theme.prop($colors, secondary, light)};
+	--ml-color-secondary-contrast: #{theme.prop($colors, secondary, contrast)};
+	--ml-color-error-main: #{theme.prop($colors, error, main)};
+	--ml-color-error-dark: #{theme.prop($colors, error, dark)};
+	--ml-color-error-light: #{theme.prop($colors, error, light)};
+	--ml-color-error-contrast: #{theme.prop($colors, error, contrast)};
+	--ml-color-success-main: #{theme.prop($colors, success, main)};
+	--ml-color-success-dark: #{theme.prop($colors, success, dark)};
+	--ml-color-success-light: #{theme.prop($colors, success, light)};
+	--ml-color-success-contrast: #{theme.prop($colors, success, contrast)};
+	// GRADIENT 1
+	--ml-color-gradient-1: #{theme.prop($gradient, gradient1, start)};
+	--ml-color-gradient-2: #{theme.prop($gradient, gradient1, middle)};
+	--ml-color-gradient-3: #{theme.prop($gradient, gradient1, end)};
 
 	// RADIUS
 	--border-radius-md: #{map.get($radius, md)};
@@ -87,5 +86,5 @@
 	--h5-text-color: #{theme.var($colors, surface, custom, s9)};
 	--h6-text-color: #{theme.var($colors, surface, custom, s9)};
 
-	--ml-site-logo: #{map.get($logo, url)};
+	// e.g.: group-component-part
 }

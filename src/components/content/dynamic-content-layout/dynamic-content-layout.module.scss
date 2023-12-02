@@ -1,11 +1,24 @@
 .root {
 	height: 20em;
+
 	user-select: text;
-}
 
-.article {
-	padding: 0 2em 2em;
-}
+	.article {
+		padding: 1em;
 
-.content {
+		.header {
+			padding-bottom: 1em;
+
+			.title {
+				font-size: 1.5em;
+			}
+
+			.topic {
+				font-size: 1em;
+			}
+
+			.term {
+			}
+		}
+	}
 }

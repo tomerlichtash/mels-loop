@@ -13,8 +13,8 @@ import LocaleMetaContext, { ILocaleMetaContext } from "./locale-meta-context";
 import LocalePageContext, { ILocalePageContext } from "./locale-page-context";
 
 export class LocaleContext implements ILocaleContext {
-	private _locale: string;
-	private _locales: string[];
+	private _locale: LocaleId;
+	private _locales: LocaleId[];
 	private _translate: (s: string, lang?: LocaleId) => string;
 	private _router: NextRouter;
 	public meta: ILocaleMetaContext;
@@ -26,8 +26,8 @@ export class LocaleContext implements ILocaleContext {
 		const { router } = props;
 		const { locale, locales, route } = router;
 		this._router = router;
-		this._locale = locale;
-		this._locales = locales;
+		this._locale = locale as LocaleId;
+		this._locales = locales as LocaleId[];
 		this.meta = new LocaleMetaContext();
 		this.pages = new LocalePageContext(route);
 		this._translate = _translate(locale, Languages);

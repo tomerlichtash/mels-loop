@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { IParsedPageData } from "../../../interfaces/models";
 import { mlUtils } from "../../../lib/ml-utils";
 import { LocaleProvider } from "../../../locale/context/locale-context";
-import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
-import { ReactPopoverContext } from "../../../contexts/popover-context";
+import { DynamicContentContext } from "../../../contexts/dynamic-content-context";
+import { PopoverContext } from "../popover/PopoverContext";
 import { Button } from "@components/ui";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 
@@ -18,8 +18,8 @@ export default function DynamicContentToolbar({
 }: IDynamicContentToolbarProps): JSX.Element {
 	const [prevPageId, setPrevPageid] = useState("");
 	const { textDirection, translate } = useContext(LocaleProvider);
-	const popoverCtx = useContext(ReactPopoverContext);
-	const dcCtx = useContext(ReactDynamicContentContext);
+	const popoverCtx = useContext(PopoverContext);
+	const dcCtx = useContext(DynamicContentContext);
 
 	useEffect(() => {
 		if (pages.length < 2) {

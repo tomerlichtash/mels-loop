@@ -285,7 +285,7 @@ export interface ContentComponentProps {
  * Base component props
  */
 export interface ComponentProps {
-	children?: React.ReactNode;
+	// children?: React.ReactNode;
 	className?: string;
 }
 

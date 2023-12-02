@@ -1,5 +1,6 @@
-@use "../mixins.scss";
+@use "../../popover/PopoverMixin.scss";
 
 .root {
-	@include mixins.AnnotationMixin;
+	// include shared trigger styles
+	@include PopoverMixin.PopoverTrigger;
 }

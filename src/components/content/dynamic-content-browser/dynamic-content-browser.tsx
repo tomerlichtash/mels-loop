@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { ReactDynamicContentContext } from "../../../contexts/dynamic-content-context";
-import { IDynamicContentContext } from "../../../interfaces/dynamic-content-context";
+import { DynamicContentContext } from "../../../contexts/dynamic-content-context";
+import { IDynamicContentContext } from "../types/dynamic-content-context";
 import { IMLParsedNode, IParsedPageData } from "../../../interfaces/models";
-import { ContentStack } from "../../../lib/content-stack";
+import { ContentStack } from "./content-stack";
 import DynamicContentViewer from "../dynamic-content-viewer";
 import DynamicContentToolbar from "../dynamic-content-toolbar";
 
@@ -51,11 +51,11 @@ export default function DynamicContentBrowser(
 		setPageIndex: setCurrentIndex,
 	};
 	return (
-		<ReactDynamicContentContext.Provider value={ctx}>
+		<DynamicContentContext.Provider value={ctx}>
 			<>
 				<DynamicContentToolbar pages={pages} />
 				<DynamicContentViewer url={url} />
 			</>
-		</ReactDynamicContentContext.Provider>
+		</DynamicContentContext.Provider>
 	);
 }

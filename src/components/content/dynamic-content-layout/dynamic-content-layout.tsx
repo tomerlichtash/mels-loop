@@ -1,29 +1,25 @@
-import React, { useMemo } from "react";
+import React, { PropsWithChildren, useMemo } from "react";
 import { Scrollbar, List } from "@components/ui";
-
+import type { TextDirection } from "@locale/index";
 import styles from "./dynamic-content-layout.module.scss";
 
-import type { LinkTarget } from "@components/ui/Link/types";
-import type { ComponentProps } from "../../../interfaces/models";
-import type { TextDirection } from "../../../locale/locale-context";
+type ViewType = "note" | "ref";
 
-export type NoteViews = "note" | "ref";
-
-export interface IBibliographySource {
+type SourceProps = {
 	name?: string;
 	url: string;
 	author?: string;
-}
+};
 
-export interface INoteProps extends ComponentProps {
-	type: NoteViews;
+type DynamicLayoutProps = {
+	type: ViewType;
 	label?: string;
 	title?: string;
 	term?: string;
-	sources?: IBibliographySource[];
-	biblgraphyLabel?: string;
+	sources?: SourceProps[];
+	sourcesLabel?: string;
 	textDirection: TextDirection;
-}
+};
 
 const DynamicContentLayout = ({
 	type,
@@ -31,10 +27,10 @@ const DynamicContentLayout = ({
 	term,
 	title,
 	sources,
-	biblgraphyLabel,
+	sourcesLabel,
 	textDirection,
 	children,
-}: INoteProps): JSX.Element => {
+}: PropsWithChildren<DynamicLayoutProps>): JSX.Element => {
 	const mappedSources = useMemo(
 		() =>
 			sources &&
@@ -42,7 +38,7 @@ const DynamicContentLayout = ({
 				const authorSuffix = author ? ` / ${author}` : "";
 				return {
 					label: `${name}${authorSuffix}`,
-					target: "_blank" as LinkTarget,
+					target: "_blank",
 					...rest,
 				};
 			}),
@@ -59,15 +55,12 @@ const DynamicContentLayout = ({
 						<div className={styles.term}>{term}</div>
 					</header>
 				)}
-				<main className={styles.content}>
-					{/* {contents} */}
-					{children}
-				</main>
+				<main className={styles.content}>{children}</main>
 				{sources && (
 					<footer className={styles.footer}>
 						<List
 							items={mappedSources}
-							label={`${biblgraphyLabel}:`}
+							label={`${sourcesLabel}:`}
 							className={styles.bibliography}
 						/>
 					</footer>

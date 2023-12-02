@@ -20,7 +20,7 @@
 
 	--ml-input-border-width: 1px;
 	--ml-input-border-style: solid;
-	--ml-input-border-color: var(--color-surface-dark);
+	--ml-input-border-color: var(--ml-color-surface-dark);
 
 	--radix-navigation-menu-viewport-width: 500px;
 
@@ -55,32 +55,16 @@
 	--text-font-weight: var(--font-weight-regular);
 	--text-line-height: var(--font-line-height-sm);
 	--text-margin-bottom: var(--font-margin-bottom-md);
-	--text-color: var(--color-surface-contrast);
-
-	// Link
-	--link-color: var(--color-primary-main);
-	--link-color-hover: var(--color-primary-dark);
-
-	--ml-site-logo: var(--ml-site-logo);
-
-	// Annotations
-	--annotation-text-color-hover: var(--color-secondary-main);
+	--text-color: var(--ml-color-surface-contrast);
 
 	// Surfaces
-	--layout-background-color: var(--color-surface-light);
+	--layout-background-color: var(--ml-color-surface-light);
 
 	// header
-	--header-background-color: var(--ml-color-surface-main);
-
 	// footer
-	--footer-background-color: var(--color-surface-dark);
+	--footer-background-color: var(--ml-color-surface-dark);
 
 	// @include cssVar(logo-url, $logo);
-
-	// popover
-	--popover-dialog-background-color: var(--ml-color-surface-light);
-	--popover-content-box-shadow: var(--box-shadow-md);
-	--popover-content-padding: var(--spacing-md);
 
 	// content page
 	--ml-content-page-title-font-size: var(--h3-font-size);
@@ -92,11 +76,11 @@
 	--ml-card-padding: var(--spacing-lg);
 
 	// BUTTON
-	--button-border-radius: var(--border-radius-md);
-	--button-background-color: var(--color-primary-main);
-	--button-background-color__hover: var(--color-primary-dark);
-	--button-background-color__active: var(--color-primary-light);
-	--button-text-color: var(--ml-color-surface-light);
+	// --button-border-radius: var(--border-radius-md);
+	// --button-background-color: var(--ml-color-primary-main);
+	// --button-background-color__hover: var(--ml-color-primary-dark);
+	// --button-background-color__active: var(--ml-color-primary-light);
+	// --button-text-color: var(--ml-color-surface-light);
 
 	// INPUT
 	--input-border-radius: var(--border-radius-md);
@@ -111,10 +95,10 @@
 	--form-title-font-size: 3em;
 	--form-subtitle-font-size: 2em;
 	// --contact-form-field-gap: 0;
-	--form-field-background-color: var(--color-surface-light);
+	--form-field-background-color: var(--ml-color-surface-light);
 	// --contact-form-field-border-width: var(--ml-input-border-width);
 	// --contact-form-field-border-style: var(--ml-input-border-style);
 	// --contact-form-field-border-color: var(--ml-input-border-color);
 	--form-input-error-message-font-size: var(--ml-font-size-sm);
-	--form-input-error-message-text-color: var(--color-error-light);
+	--form-input-error-message-text-color: var(--ml-color-error-light);
 }

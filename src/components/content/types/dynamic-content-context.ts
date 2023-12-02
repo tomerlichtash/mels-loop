@@ -1,4 +1,4 @@
-import { IMLParsedNode, IParsedPageData } from "./models";
+import { IMLParsedNode, IParsedPageData } from "../../../interfaces/models";
 
 /**
  * Describes a content-related context, available to all rendered components under a ML page.

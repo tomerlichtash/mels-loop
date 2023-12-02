@@ -19,9 +19,9 @@ import {
 	CustomImage,
 } from "../content-blocks";
 
-const ROOT_CLASS_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
-	MLNODE_TYPES.TR,
-]);
+// const ROOT_CLASS_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
+// 	MLNODE_TYPES.TR,
+// ]);
 
 export const ContentComponent = ({
 	componentData,
@@ -29,7 +29,7 @@ export const ContentComponent = ({
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { key, type } = node;
-	const useClassname = !ROOT_CLASS_TYPES.has(type);
+	// const useClassname = !ROOT_CLASS_TYPES.has(type);
 	const contentClassName = `content-component-${type}`;
 
 	if (!key) {

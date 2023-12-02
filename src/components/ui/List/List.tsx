@@ -3,10 +3,24 @@ import { mlUtils } from "../../../lib/ml-utils";
 import Link from "../Link";
 import classNames from "classnames";
 import styles from "./List.module.scss";
+import { ComponentProps } from "interfaces/models";
 
-import type { IList } from "./types";
+export type IListItem = {
+	label?: string;
+	url?: string;
+	target?: "_blank";
+};
 
-const List = ({ items, label, className }: IList): JSX.Element => (
+type IList = {
+	label?: string;
+	items?: IListItem[];
+};
+
+const List = ({
+	items,
+	label,
+	className,
+}: IList & ComponentProps): JSX.Element => (
 	<div className={classNames(styles.root, className)}>
 		<div className={styles.label}>{label}</div>
 		<ul className={styles.list}>

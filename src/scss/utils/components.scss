@@ -1,0 +1,3 @@
+@function vars($varName) {
+	@return var(--#{$__namespace__}-#{$varName}, var(--#{$varName}));
+}

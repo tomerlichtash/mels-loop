@@ -20,8 +20,10 @@
 
 		"baseUrl": "src", // This must be specified if "paths" is.
 		"paths": {
-			"@config/*": ["./config/*"], // This mapping is relative to "baseUrl".
-			"@components/*": ["./components/*"] // This mapping is relative to "baseUrl".
+			// This mapping is relative to "baseUrl".
+			"@config/*": ["./config/*"],
+			"@locale/*": ["./locale"],
+			"@components/*": ["./components/*"]
 		}
 	},
 	"include": [

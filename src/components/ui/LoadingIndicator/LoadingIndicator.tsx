@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ComponentProps } from "../../../interfaces/models";
 import styles from "./LoadingIndicator.module.scss";
 
-export interface ILoadingIndicatorProps extends ComponentProps {
+type ILoadingIndicatorProps = {
 	/**
 	 * Number of MILLISECONDS to wait before displaying
 	 */
 	readonly delay: number;
 	readonly label?: string;
-}
+};
 
 export const LoadingIndicator = ({
 	delay,

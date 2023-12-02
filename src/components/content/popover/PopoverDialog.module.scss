@@ -1,0 +1,41 @@
+@import "../../../scss/utils/components";
+
+$__namespace__: popover;
+
+.root {
+	--dialog-width: 25em;
+	--dialog-border-width: 1px;
+	--dialog-border-style: solid;
+	--dialog-border-color: #808080;
+	--dialog-border-radius: 4px;
+	--dialog-border-style: solid;
+	--dialog-background-color: #e0e0e0;
+	--dialog-box-shadow: none;
+	--dialog-animation-duration: 250ms;
+
+	overflow: hidden;
+	animation: fadeIn vars(dialog-animation-duration) ease-out forwards;
+	background-color: vars(dialog-background-color);
+	box-shadow: vars(dialog-box-shadow);
+	width: vars(dialog-width);
+	border-width: vars(dialog-border-width);
+	border-style: vars(dialog-border-style);
+	border-color: vars(dialog-border-color);
+	border-radius: vars(dialog-border-radius);
+
+	.content {
+		background-color: vars(dialog-background-color);
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.75;
+	}
+	100% {
+		opacity: 1;
+	}
+}

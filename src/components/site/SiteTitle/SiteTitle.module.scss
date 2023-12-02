@@ -33,7 +33,7 @@
 }
 
 .logo {
-	content: var(--header-logo-content-url);
+	content: var(--site-header-logo-content-url, var(--header-logo-content-url));
 	width: var(--header-logo-size);
 	height: var(--header-logo-size);
 }

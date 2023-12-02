@@ -1,7 +1,7 @@
 import React from "react";
 import { mlUtils } from "../../../../lib/ml-utils";
 import { ComponentProps } from "../../../../interfaces/models";
-import { MenuItemProps } from "../../../../interfaces/menu";
+import { MenuItemProps } from "../menu";
 import ListItem from "../NavListItem";
 import styles from "./VerticalMenu.module.scss";
 import classNames from "classnames";

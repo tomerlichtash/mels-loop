@@ -1,0 +1,37 @@
+:root {
+	// Link
+	--link-color: var(--ml-color-primary-main);
+	--link-color-hover: var(--ml-color-primary-dark);
+
+	// Site Header
+	--site-header-logo-content-url: var(--ml-site-logo);
+	--site-header-background-color: var(--ml-color-surface-main);
+
+	// Site Footer
+	--site-footer-strip-color-start: var(--ml-color-gradient-1);
+	--site-footer-strip-color-mid: var(--ml-color-gradient-2);
+	--site-footer-strip-color-end: var(--ml-color-gradient-3);
+
+	// Popover Trigger
+	--popover-trigger-text-color: var(--link-color);
+	--popover-trigger-border-radius: 4px;
+	--popover-trigger-background-color__hover: transparent;
+	--popover-trigger-text-color__hover: var(--ml-color-secondary-main);
+	--popover-trigger-background-color__active: var(--ml-color-secondary-dark);
+	--popover-trigger-background-color__open: var(--ml-color-secondary-dark);
+	--popover-trigger-text-color__open: var(--ml-color-primary-contrast);
+	--popover-trigger-background-color__open__hover: var(
+		--ml-color-secondary-dark
+	);
+	--popover-trigger-text-color__open__hover: var(--ml-color-primary-contrast);
+	--popover-trigger-background-color__open__active: var(
+		--ml-color-secondary-light
+	);
+	--popover-trigger-text-color__open__active: var(--ml-color-primary-contrast);
+
+	// Popover Dialog
+	--popover-dialog-background-color: var(--ml-color-surface-light);
+	--popover-dialog-box-shadow: var(--box-shadow-md);
+	--popover-dialog-border-color: var(--ml-color-surface-dark);
+	--popover-content-padding: var(--spacing-md);
+}

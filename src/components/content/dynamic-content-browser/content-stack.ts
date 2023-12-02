@@ -1,4 +1,4 @@
-import { IContentStack } from "../interfaces/models";
+import { IContentStack } from "../../../interfaces/models";
 
 export class ContentStack<T> implements IContentStack<T> {
 	constructor(private readonly key = "key") {

@@ -1,17 +1,16 @@
-import React, { SyntheticEvent } from "react";
+import React, { PropsWithChildren, SyntheticEvent } from "react";
 import { ComponentProps } from "../../../interfaces/models";
 import styles from "./Button.module.scss";
 import { Slot } from "@radix-ui/react-slot";
 import classNames from "classnames";
 
-export type ButtonProps = {
+type ButtonProps = {
 	title?: string;
 	asChild?: boolean;
-	type?: "button" | "submit" | "reset";
 	href?: string;
 	target?: "_blank";
 	onClick?: (e: SyntheticEvent) => void;
-} & ComponentProps;
+};
 
 function Button({
 	asChild,
@@ -20,7 +19,7 @@ function Button({
 	title,
 	onClick,
 	...props
-}: ButtonProps) {
+}: PropsWithChildren<ButtonProps> & ComponentProps) {
 	const Comp = asChild && typeof children !== "string" ? Slot : "button";
 
 	return (

@@ -1,11 +1,11 @@
 import React from "react";
 import { PopoverClose } from "@components/primitives";
-import { IToolbarItem } from "../../../../interfaces/IPopoverContext";
-import { ComponentProps } from "../../../../interfaces/models";
-import styles from "./PopoverToolbar.module.scss";
+import { IToolbarItem } from "../types/IPopoverContext";
+import { ComponentProps } from "../../../interfaces/models";
 import classNames from "classnames";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Button } from "@components/ui";
+import styles from "./PopoverToolbar.module.scss";
 
 export interface IPopoverToolbarProps extends ComponentProps {
 	showClose?: boolean;
