@@ -1,30 +1,33 @@
-@import "../../../scss/utils/components";
+@import "../../../scss/utils/vars";
 
 $__namespace__: popover;
 
 .root {
+	--dialog-animation-type: fadeIn;
+	--dialog-animation-duration: 250ms;
+	--dialog-animation-easing: ease-out forwards;
 	--dialog-width: 25em;
 	--dialog-border-width: 1px;
 	--dialog-border-style: solid;
 	--dialog-border-color: #808080;
 	--dialog-border-radius: 4px;
-	--dialog-border-style: solid;
-	--dialog-background-color: #e0e0e0;
 	--dialog-box-shadow: none;
-	--dialog-animation-duration: 250ms;
+	--dialog-background-color: #e0e0e0;
 
 	overflow: hidden;
-	animation: fadeIn vars(dialog-animation-duration) ease-out forwards;
-	background-color: vars(dialog-background-color);
-	box-shadow: vars(dialog-box-shadow);
-	width: vars(dialog-width);
-	border-width: vars(dialog-border-width);
-	border-style: vars(dialog-border-style);
-	border-color: vars(dialog-border-color);
-	border-radius: vars(dialog-border-radius);
+	width: refs(dialog-width);
+	background-color: refs(dialog-background-color);
+	box-shadow: refs(dialog-box-shadow);
+	border-width: refs(dialog-border-width);
+	border-style: refs(dialog-border-style);
+	border-color: refs(dialog-border-color);
+	border-radius: refs(dialog-border-radius);
+
+	animation: fadeIn refs(dialog-animation-duration)
+		refs(dialog-animation-easing);
 
 	.content {
-		background-color: vars(dialog-background-color);
+		background-color: refs(dialog-background-color);
 	}
 }
 

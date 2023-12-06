@@ -1,0 +1,5 @@
+@use "../config";
+
+@function state($state) {
+	@return #{config.$theme-state-delim}#{$state};
+}

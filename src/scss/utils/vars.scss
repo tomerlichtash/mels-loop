@@ -1,0 +1,51 @@
+@use "sass:string";
+
+@function refs($key, $comp: $__namespace__, $prefix: "ml") {
+	@return #{var(--#{$prefix}-#{$comp}-#{$key}, var(--#{$key}))};
+}
+
+@function transform($map, $path: "ml", $delim: "__") {
+	$result: ();
+
+	@each $key, $value in $map {
+		$variable-name: if($path, "#{$path}-#{$key}", "#{$key}");
+
+		// handle states path
+		@if str-index($path, $delim) {
+			$split: string.split($path, "-#{$delim}");
+			$newPath: nth($split, 1);
+			$state: nth($split, 2);
+
+			$variable-name: if(
+				$newPath,
+				"#{$newPath}-#{$key}#{$delim}#{$state}",
+				"#{$key}"
+			);
+		}
+
+		@if type-of($value) == map {
+			$result: map-merge($result, transform($value, $variable-name));
+		} @else {
+			// handle quoted strings (e.g. font families)
+			@if type-of($value) == "string" {
+				$value: string.unquote($value);
+			}
+
+			$result: map-merge($result, (--#{$variable-name}: $value));
+		}
+	}
+
+	@return $result;
+}
+
+@mixin parse($vars) {
+	@each $key, $val in $vars {
+		#{$key}: $val;
+	}
+}
+
+@mixin theme($resources) {
+	@each $resource in $resources {
+		@include parse((transform($resource)));
+	}
+}

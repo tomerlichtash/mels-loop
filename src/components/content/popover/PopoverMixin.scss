@@ -6,13 +6,17 @@
 // in different states, shared by all triggers.
 
 @mixin PopoverTrigger {
-	background: var(--popover-trigger-background-color);
-	color: var(--popover-trigger-text-color);
-	border-radius: var(--popover-trigger-border-radius);
+	background: var(--ml-popover-trigger-background-color);
+	color: var(--ml-popover-trigger-text-color);
+	border-radius: var(--ml-popover-trigger-border-radius);
 
 	cursor: pointer;
 
 	&:active {
 		user-select: none;
+	}
+
+	&:hover {
+		color: var(--ml-popover-trigger-text-color__hover);
 	}
 }

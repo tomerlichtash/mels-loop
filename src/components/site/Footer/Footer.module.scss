@@ -1,13 +1,17 @@
 // @use "../../theme/common/theme.scss";
-@use "../../../scss/utils/components.scss";
-@use "../../../scss/mixins/gradient.scss";
-
 $__namespace__: footer;
 
 .root {
 	--footer-strip-color-start: red;
 	--footer-strip-color-mid: green;
 	--footer-strip-color-end: blue;
+
+	--footer-strip-background-color: linear-gradient(
+		90deg,
+		var(--footer-strip-color-start) 0%,
+		var(--footer-strip-color-mid) 50%,
+		var(--footer-strip-color-end) 100%
+	);
 
 	&.footer {
 		background: var(--footer-background-color);
@@ -31,14 +35,12 @@ $__namespace__: footer;
 	.strip {
 		height: 0.3vh;
 
-		@include gradient.simple(
-			var(--site-footer-strip-color-start, var(--footer-strip-color-start)),
-			var(--site-footer-strip-color-mid, var(--footer-strip-color-mid)),
-			var(--site-footer-strip-color-end, var(--footer-strip-color-end))
+		background: var(
+			--ml-footer-strip-background-color,
+			var(--footer-strip-background-color)
 		);
 	}
 
 	.link {
-		background: lightgreen;
 	}
 }

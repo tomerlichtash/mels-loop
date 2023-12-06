@@ -2,10 +2,5 @@
 @use "./reset";
 @use "./radix-overrides.scss";
 @use "./EZDrawer.scss";
+@use "./typography.scss";
 @use "./themes.scss";
-@use "./site.scss";
-
-html,
-body {
-	font-size: var(--ml-font-size-default);
-}

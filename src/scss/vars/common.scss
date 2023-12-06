@@ -1,67 +1,16 @@
-$index: (
-	color: (
-		pallette: (
-			a1: #fff,
-			a2: #fcfbf9,
-			a3: #f2efe4,
-			a4: #e6e3d8,
-			a5: #ccc9c0,
-			a6: #a6a49c,
-			a7: #666560,
-			a8: #434440,
-			a9: #20201e,
-			b1: #fd658a,
-			b2: #f178b6,
-			b3: #bd5e91,
-			b4: #70538a,
-			b5: #4e4a7a,
-			c1: #3770c5,
-			c2: #274f8c,
-			c3: #1a355f,
-			c4: #00173a,
-			y1: #f44,
-			z1: #4a4,
-			hsl1: hsl(206deg 22% 7% / 35%) 0 10px 38px -10px,
-			hsl2: hsl(206deg 22% 7% / 20%) 0 10px 20px -15px,
-		),
-	),
-	font: (
-		fontSize: (
-			xs: 0.7em,
-			sm: 0.9em,
-			md: 1em,
-			lg: 1.041em,
-			xl: 1.241em,
-			2xl: 1.302em,
-			3xl: 1.614em,
-			4xl: 2.03em,
-			5xl: 2.5em,
-		),
-		lineHeight: (
-			xs: 1.4em,
-			sm: 1.4em,
-			md: 1.6em,
-			lg: 2em,
-			xl: 3em,
-		),
-		fontWeight: (
-			thin: 100,
-			regular: 300,
-			medium: 500,
-			bold: 700,
-		),
-		margin: (
-			md: 1em,
-			lg: 1.002em,
-			xl: 1.102em,
-			2xl: 1.202em,
-			3xl: 1.302em,
-		),
-	),
-	spacing: (
-		sm: 0.5em,
-		md: 1em,
-		lg: 1.5em,
-		xl: 2em,
-	),
-);
+@use "../utils/color.scss";
+@use "../utils/vars.scss";
+@use "./colors.scss";
+@use "./typography.scss";
+@use "./shadows.scss";
+@use "./layout.scss";
+
+$pallette: color.generate(colors.$index);
+
+@mixin theme {
+	// @include vars.parse((vars.transform(colors.$index, "ml-color")));
+	@include vars.parse(vars.transform($pallette, "ml-color"));
+	@include vars.parse((vars.transform(typography.$index)));
+	@include vars.parse((vars.transform(shadows.$index)));
+	@include vars.parse((vars.transform(layout.$index)));
+}

@@ -15,8 +15,8 @@ type PopoverProps = {
 const Popover = ({
 	trigger,
 	children,
-	side,
-}: PropsWithChildren<PopoverProps>) => {
+}: // side,
+PropsWithChildren<PopoverProps>) => {
 	const toolbar = useToolbar();
 
 	const context: IPopoverContext = {

@@ -1,0 +1,53 @@
+@use "./../_ml";
+
+$index: (
+	layout: (
+		background-color: var(--ml-color-surface-main),
+		header: (
+			background-color: var(--ml-color-a2),
+		),
+	),
+
+	link: (
+		text-color: var(--ml-color-primary-main),
+		#{ml.state(hover)}: (
+				text-color: var(--ml-color-primary-contrast),
+			),
+	),
+
+	footer: (
+		strip: (
+			background-color: var(--ml-gradient-primary-main),
+		),
+	),
+
+	popover: (
+		trigger: (
+			text-color: var(--ml-link-text-color),
+			text-color__hover: var(--ml-color-secondary-main),
+			border-radius: 4px,
+			// background-color__hover: transparent,
+			// background-color__active: var(--ml-color-secondary-main),
+			#{ml.state(hover)}: (
+					text-color: var(--ml-color-secondary-contrast),
+					background-color: var(--ml-color-secondary-main),
+				),
+			__active: (
+				text-color: green,
+			),
+			__open: (
+				__hover: (
+					background-color: var(--ml-color-primary-light),
+				),
+				background-color: var(--ml-color-secondary-main),
+				text-color: var(--ml-color-secondary-contrast),
+				// background-color__open__hover: var(--ml-color-secondary-dark)
+				//),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+			),
+		),
+		dialog: (
+			background-color: var(--ml-color-surface-light),
+			border-radius: var(--ml-radius-md),
+		),
+	),
+);

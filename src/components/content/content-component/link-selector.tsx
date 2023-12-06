@@ -9,7 +9,7 @@ import { Link, AnnotationLink, TermLink } from "../content-blocks";
 import Popover from "../popover";
 import { LocaleProvider } from "../../../locale/context/locale-context";
 import DynamicContentBrowser from "../dynamic-content-browser";
-import { DynamicContentContext } from "../../../contexts/dynamic-content-context";
+import { DynamicContentContext } from "../dynamic-content-context";
 import classNames from "classnames";
 // import ContentIterator from "../content-iterator";
 
@@ -75,7 +75,6 @@ export const LinkSelector = ({
 			// id={node.target}
 			side={textDirection === "ltr" ? "right" : "left"}
 			trigger={getTriggerComp(linkType, componentData, className)}
-			className={className}
 		>
 			<DynamicContentBrowser node={node} />
 		</Popover>

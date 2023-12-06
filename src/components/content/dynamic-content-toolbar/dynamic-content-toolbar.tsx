@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { IParsedPageData } from "../../../interfaces/models";
 import { mlUtils } from "../../../lib/ml-utils";
 import { LocaleProvider } from "../../../locale/context/locale-context";
-import { DynamicContentContext } from "../../../contexts/dynamic-content-context";
+import { DynamicContentContext } from "../dynamic-content-context";
 import { PopoverContext } from "../popover/PopoverContext";
 import { Button } from "@components/ui";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";

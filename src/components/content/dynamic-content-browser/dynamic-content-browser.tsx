@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DynamicContentContext } from "../../../contexts/dynamic-content-context";
+import { DynamicContentContext } from "../dynamic-content-context";
 import { IDynamicContentContext } from "../types/dynamic-content-context";
 import { IMLParsedNode, IParsedPageData } from "../../../interfaces/models";
 import { ContentStack } from "./content-stack";

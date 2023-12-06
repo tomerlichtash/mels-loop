@@ -6,7 +6,7 @@ import { ComponentProps, IParsedPageData } from "../../../interfaces/models";
 import { ReactPageContext } from "../../../contexts/page-context";
 import { contentUtils } from "../../../lib/content-utils";
 import DynamicContentLayout from "../dynamic-content-layout";
-import { DynamicContentContext } from "../../../contexts/dynamic-content-context";
+import { DynamicContentContext } from "../dynamic-content-context";
 import { mlUtils } from "../../../lib/ml-utils";
 import { LoadingIndicator } from "../../ui/LoadingIndicator/LoadingIndicator";
 import { useRouter } from "next/router";

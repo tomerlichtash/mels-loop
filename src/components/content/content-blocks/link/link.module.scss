@@ -2,19 +2,19 @@
 	cursor: pointer;
 
 	// color: var(--link-color);
-	color: #f00;
+	color: var(--ml-link-text-color);
 
 	[data-link-type="glossary"] {
 		color: blue;
 	}
 
 	.href {
-		color: var(--link-color);
+		color: red;
 	}
 
 	&:link,
 	&:visited {
-		color: var(--link-color);
+		color: var(--ml-link-text-color);
 	}
 
 	&:hover {

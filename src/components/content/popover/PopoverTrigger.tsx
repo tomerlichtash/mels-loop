@@ -7,9 +7,7 @@ const PopoverTrigger = ({
 	children,
 }: PropsWithChildren<ComponentProps>): JSX.Element => (
 	<Trigger asChild>
-		<span className={styles.root} tabIndex={1}>
-			{children}
-		</span>
+		<span className={styles.root}>{children}</span>
 	</Trigger>
 );
 

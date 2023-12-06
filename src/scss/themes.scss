@@ -1,27 +1,15 @@
-@use "sass:map";
-@use "./vars/theme.scss";
-@use "./themes/light.scss";
-@use "./themes/dark.scss";
-@use "./vars/components.scss";
-
-[data-text-direction="ltr"] {
-	font-family: var(--ml-font-family-1);
-	direction: ltr;
-}
-
-[data-text-direction="rtl"] {
-	font-family: var(--ml-font-family-2);
-	direction: rtl;
-}
+@use "./vars/common.scss";
+@use "./themes/light/light.scss";
+@use "./themes/dark/dark.scss";
 
 [data-theme] {
-	@include components.css-vars;
+	@include common.theme;
 }
 
 [data-theme="light"] {
-	@include theme.css-vars(light.$index);
+	@include light.theme;
 }
 
-[data-theme="dark"] {
-	@include theme.css-vars(dark.$index);
-}
+// [data-theme="dark"] {
+// 	@include theme.css-vars(dark.$index);
+// }
