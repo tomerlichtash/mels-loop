@@ -1,4 +1,4 @@
-@use "./../_ml";
+@use "./../../utils/_state";
 
 $index: (
 	layout: (
@@ -10,9 +10,9 @@ $index: (
 
 	link: (
 		text-color: var(--ml-color-primary-main),
-		#{ml.state(hover)}: (
-				text-color: var(--ml-color-primary-contrast),
-			),
+		state.$hover: (
+			text-color: var(--ml-color-primary-contrast),
+		),
 	),
 
 	footer: (
@@ -28,21 +28,22 @@ $index: (
 			border-radius: 4px,
 			// background-color__hover: transparent,
 			// background-color__active: var(--ml-color-secondary-main),
-			#{ml.state(hover)}: (
+			state.$hover:
+				(
 					text-color: var(--ml-color-secondary-contrast),
 					background-color: var(--ml-color-secondary-main),
 				),
-			__active: (
+			state.$active: (
 				text-color: green,
 			),
-			__open: (
+			state.$open: (
 				__hover: (
 					background-color: var(--ml-color-primary-light),
 				),
 				background-color: var(--ml-color-secondary-main),
 				text-color: var(--ml-color-secondary-contrast),
 				// background-color__open__hover: var(--ml-color-secondary-dark)
-				//),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+				//),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 			),
 		),
 		dialog: (

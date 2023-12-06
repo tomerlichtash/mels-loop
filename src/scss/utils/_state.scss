@@ -1,0 +1,9 @@
+@use "../config";
+
+@function name($state) {
+	@return #{config.$theme-state-delim}#{$state};
+}
+
+$hover: name(hover);
+$active: name(active);
+$open: name(open);
