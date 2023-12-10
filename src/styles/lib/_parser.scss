@@ -1,0 +1,67 @@
+@use "sass:string";
+@use "sass:list";
+@use "lists";
+@use "refs";
+@import "styles/config";
+
+@function _transform($map, $path, $delim: $theme-state-delim) {
+	$result: ();
+
+	@each $key, $value in $map {
+		$variable-name: if($path, "#{$path}-#{$key}", "#{$key}");
+
+		// handle states path
+		@if str-index($path, $delim) {
+			$split: string.split($path, $delim);
+			$pathPrefix: nth($split, 1);
+			$stateList: lists.remove-nth($split, 1);
+			$stateSuffix: "";
+
+			@each $state in $stateList {
+				$stateSuffix: #{$stateSuffix}#{$delim}#{$state};
+			}
+
+			$variable-name: #{$pathPrefix}#{$key}#{$stateSuffix};
+		}
+
+		@if type-of($value) == map {
+			$result: map-merge($result, _transform($value, $variable-name));
+		} @else {
+			// handle quoted strings (e.g. font families)
+			@if type-of($value) == "string" {
+				$value: string.unquote($value);
+			}
+
+			$result: map-merge(
+				$result,
+				(
+					refs.cssVar(#{$variable-name}): $value,
+				)
+			);
+		}
+	}
+
+	@return $result;
+}
+
+@mixin _traverse($vars) {
+	@each $key, $val in $vars {
+		@if (type-of($val) == "list") {
+			@if (length($val) == 0) {
+				@warn #{empty theme object #{":"}$key, skipping};
+			}
+		} @else {
+			#{$key}: $val;
+		}
+	}
+}
+
+@mixin compile(
+	$resources,
+	$pathPrefix: $theme-var-prefix,
+	$delim: $theme-state-delim
+) {
+	@each $resource in $resources {
+		@include _traverse((_transform($resource, $pathPrefix, $delim)));
+	}
+}

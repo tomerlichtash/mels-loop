@@ -10,7 +10,7 @@ import {
 	MLNODE_TYPES,
 } from "../../interfaces/models";
 import Layout from "../../components/site/Layout";
-import ContentIterator from "../../components/content/content-iterator";
+import ContentIterator from "../../components/content/dynamic-content-browser/content-iterator";
 import usePageData from "../../lib/usePageData";
 import { LocaleProvider } from "../../locale/context/locale-context";
 import { Button, List } from "@components/ui";

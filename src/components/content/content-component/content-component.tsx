@@ -1,5 +1,5 @@
 import React from "react";
-import ContentIterator from "../content-iterator";
+import ContentIterator from "../dynamic-content-browser/content-iterator";
 import { LinkSelector } from "./link-selector";
 import {
 	ContentComponentProps,

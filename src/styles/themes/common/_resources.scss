@@ -1,0 +1,9 @@
+@use "styles/lib/color";
+@use "vars/colors";
+@use "vars/typography";
+@use "vars/shadows";
+@use "vars/layout";
+
+$pallette: color.generate(colors.$index, "color");
+
+$exports: $pallette, typography.$index, shadows.$index, layout.$index;

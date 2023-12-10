@@ -8,7 +8,6 @@ import styles from "./code-block.module.scss";
  */
 export const CodeBlock = ({
 	componentData,
-	className,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
-import ContentIterator from "../../content-iterator";
+import ContentIterator from "../../dynamic-content-browser/content-iterator";
 
 export const Heading = ({
 	componentData,

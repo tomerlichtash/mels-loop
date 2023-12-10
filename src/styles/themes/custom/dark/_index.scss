@@ -1,25 +1,30 @@
-/*
-DDDDDDDDDDDDD                 AAA              RRRRRRRRRRRRRRRRR  KKKKKKKKK    KKKKKKK
-D::::::::::::DDD             A:::A             R::::::::::::::::R K:::::::K    K:::::K
-D:::::::::::::::DD          A:::::A            R::::::RRRRRR:::::RK:::::::K    K:::::K
-DDD:::::DDDDD:::::D        A:::::::A           RR:::::R     R:::::K:::::::K   K::::::K
-  D:::::D    D:::::D      A:::::::::A            R::::R     R:::::KK::::::K  K:::::KKK
-  D:::::D     D:::::D    A:::::A:::::A           R::::R     R:::::R K:::::K K:::::K   
-  D:::::D     D:::::D   A:::::A A:::::A          R::::RRRRRR:::::R  K::::::K:::::K    
-  D:::::D     D:::::D  A:::::A   A:::::A         R:::::::::::::RR   K:::::::::::K     
-  D:::::D     D:::::D A:::::A     A:::::A        R::::RRRRRR:::::R  K:::::::::::K     
-  D:::::D     D:::::DA:::::AAAAAAAAA:::::A       R::::R     R:::::R K::::::K:::::K    
-  D:::::D     D:::::A:::::::::::::::::::::A      R::::R     R:::::R K:::::K K:::::K   
-  D:::::D    D:::::A:::::AAAAAAAAAAAAA:::::A     R::::R     R:::::KK::::::K  K:::::KKK
-DDD:::::DDDDD:::::A:::::A             A:::::A  RR:::::R     R:::::K:::::::K   K::::::K
-D:::::::::::::::DA:::::A               A:::::A R::::::R     R:::::K:::::::K    K:::::K
-D::::::::::::DDDA:::::A                 A:::::AR::::::R     R:::::K:::::::K    K:::::K
-DDDDDDDDDDDDD  AAAAAAA                   AAAAAARRRRRRRR     RRRRRRKKKKKKKKK    KKKKKKK                                                                                     
-*/
+@use "styles/lib/parser";
+@use "resources";
 
-// @use "../utils/colors.scss";
+@mixin index {
+	/*
+		DDDDDDDDDDDDD                 AAA              RRRRRRRRRRRRRRRRR  KKKKKKKKK    KKKKKKK
+		D::::::::::::DDD             A:::A             R::::::::::::::::R K:::::::K    K:::::K
+		D:::::::::::::::DD          A:::::A            R::::::RRRRRR:::::RK:::::::K    K:::::K
+		DDD:::::DDDDD:::::D        A:::::::A           RR:::::R     R:::::K:::::::K   K::::::K
+			D:::::D    D:::::D      A:::::::::A            R::::R     R:::::KK::::::K  K:::::KKK
+			D:::::D     D:::::D    A:::::A:::::A           R::::R     R:::::R K:::::K K:::::K   
+			D:::::D     D:::::D   A:::::A A:::::A          R::::RRRRRR:::::R  K::::::K:::::K    
+			D:::::D     D:::::D  A:::::A   A:::::A         R:::::::::::::RR   K:::::::::::K     
+			D:::::D     D:::::D A:::::A     A:::::A        R::::RRRRRR:::::R  K:::::::::::K     
+			D:::::D     D:::::DA:::::AAAAAAAAA:::::A       R::::R     R:::::R K::::::K:::::K    
+			D:::::D     D:::::A:::::::::::::::::::::A      R::::R     R:::::R K:::::K K:::::K   
+			D:::::D    D:::::A:::::AAAAAAAAAAAAA:::::A     R::::R     R:::::KK::::::K  K:::::KKK
+		DDD:::::DDDDD:::::A:::::A             A:::::A  RR:::::R     R:::::K:::::::K   K::::::K
+		D:::::::::::::::DA:::::A               A:::::A R::::::R     R:::::K:::::::K    K:::::K
+		D::::::::::::DDDA:::::A                 A:::::AR::::::R     R:::::K:::::::K    K:::::K
+		DDDDDDDDDDDDD  AAAAAAA                   AAAAAARRRRRRRR     RRRRRRKKKKKKKKK    KKKKKKK
+	*/
 
-$index: (
+	@include parser.compile(resources.$exports);
+}
+
+$index2: (
 	typography: (
 		font1: "Roboto Slab, serif",
 		font2: "Assistant, sans-serif",
@@ -84,11 +89,11 @@ $index: (
 		// 	custom: (
 		// 		s1: colors.get(z1),
 		// 	),
-		// ),,,,,,
+		// ),,,,,,,,,,,,,,,,,,,,,,,
 	),
 	shadow: (
 		// md: #{colors.get(hsl1),
-		// colors.get(hsl2)},,,,,,
+		// colors.get(hsl2)},,,,,,,,,,,,,,,,,,,,,,,
 	),
 	radius: (
 		md: 4px,
@@ -97,7 +102,7 @@ $index: (
 		gradient1: (
 			// start: colors.get(b5),
 			// middle: colors.get(b4),
-			// end: colors.get(b1),,,,
+			// end: colors.get(b1),,,,,,,,,,,,,,,,,,,,,
 		),
 	),
 	spacing: (

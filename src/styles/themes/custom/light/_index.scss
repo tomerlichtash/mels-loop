@@ -1,11 +1,7 @@
-@use "../../utils/vars.scss";
-@use "./assets.scss";
-@use "./colors.scss";
-@use "./components.scss";
+@use "styles/lib/parser";
+@use "resources";
 
-$resources: assets.$index, colors.$index, components.$index;
-
-@mixin theme {
+@mixin index {
 	/*
 	       ,gggg,
 	      d8" "8I                     ,dPYb,       I8
@@ -24,5 +20,5 @@ $resources: assets.$index, colors.$index, components.$index;
 	                         `8, ,8I
 	                          `Y8P"
 	*/
-	@include vars.theme($resources);
+	@include parser.compile(resources.$exports);
 }

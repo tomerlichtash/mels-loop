@@ -18,7 +18,7 @@ import classNames from "classnames";
 import styles from "./Layout.module.scss";
 import type { ComponentProps } from "../../../interfaces/models";
 
-type ILayoutProps = {
+type LayoutProps = {
 	title?: string;
 };
 
@@ -38,7 +38,7 @@ function Layout({
 	title,
 	children,
 	className,
-}: PropsWithChildren<ILayoutProps> & ComponentProps) {
+}: PropsWithChildren<LayoutProps> & ComponentProps) {
 	const router = useRouter();
 	const size = useWindowSize();
 	const { siteTitle, siteSubtitle, textDirection, pageName } =
@@ -75,7 +75,7 @@ function Layout({
 				<link
 					rel="icon"
 					type="image/png"
-					href="/favicon-light.png"
+					href="/favicon-dark.png"
 					media="(prefers-color-scheme: light)"
 				/>
 				<link

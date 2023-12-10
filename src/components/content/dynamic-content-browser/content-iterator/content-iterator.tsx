@@ -1,11 +1,11 @@
 import React from "react";
-import ContentComponent from "../content-component";
+import ContentComponent from "../../content-component";
 import {
 	ContentComponentProps,
 	IMLParsedNode,
-} from "../../../interfaces/models";
-import { mlUtils } from "../../../lib/ml-utils";
-import { useComponentAttributes } from "../useComponentAttributes";
+} from "../../../../interfaces/models";
+import { mlUtils } from "../../../../lib/ml-utils";
+import { useComponentAttributes } from "../../useComponentAttributes";
 
 /**
  * Displays the content of a Content Node, optionally wrapping

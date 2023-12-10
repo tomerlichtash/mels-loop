@@ -8,7 +8,7 @@
 @mixin PopoverTrigger {
 	background: var(--ml-popover-trigger-background-color);
 	color: var(--ml-popover-trigger-text-color);
-	border-radius: var(--ml-popover-trigger-border-radius);
+	border-radius: var(--ml-popover-trigger-radius);
 
 	cursor: pointer;
 

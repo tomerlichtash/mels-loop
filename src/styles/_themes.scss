@@ -1,0 +1,15 @@
+@use "themes/common" as Commons;
+@use "themes/custom/light" as LightTheme;
+@use "themes/custom/dark" as DarkTheme;
+
+[data-theme] {
+	@include Commons.index;
+}
+
+[data-theme="light"] {
+	@include LightTheme.index;
+}
+
+[data-theme="dark"] {
+	@include DarkTheme.index;
+}

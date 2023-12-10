@@ -7,7 +7,7 @@ import {
 } from "../../../interfaces/models";
 import Layout from "../../site/Layout";
 import Head from "next/head";
-import ContentIterator from "../content-iterator";
+import ContentIterator from "../dynamic-content-browser/content-iterator";
 import usePageData from "../../../lib/usePageData";
 import { LocaleProvider } from "../../../locale/context/locale-context";
 import { DateFormat } from "@components/ui";

@@ -1,4 +1,6 @@
+$layout-min-height: 100vh;
+
 .root {
-	height: 100vh;
+	height: $layout-min-height;
 	background-color: var(--ml-layout-background-color);
 }

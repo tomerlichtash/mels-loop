@@ -60,6 +60,7 @@ const Header = ({ isMobile }) => {
 				value={locale}
 				options={localeOptions}
 				size="small"
+				// eslint-disable-next-line @typescript-eslint/no-misused-promises
 				onChange={(val) => onLocaleChange(val)}
 			/>
 		),

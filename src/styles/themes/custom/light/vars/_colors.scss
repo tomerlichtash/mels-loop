@@ -1,0 +1,47 @@
+@import "styles/lib/refs";
+
+$index: (
+	color: (
+		surface: (
+			main: ref(color-a2-main),
+			light: ref(color-a1-light),
+			dark: ref(color-a3-dark),
+			contrast: ref(color-a7-contrast),
+		),
+		primary: (
+			main: ref(color-c1-main),
+			light: ref(color-c2-light),
+			dark: ref(color-c3-dark),
+			contrast: ref(color-c3-contrast),
+		),
+		secondary: (
+			main: ref(color-b3-main),
+			light: ref(color-b4-light),
+			dark: ref(color-b2-dark),
+			contrast: ref(color-b2-contrast),
+		),
+		error: (
+			main: ref(color-y1-main),
+			light: ref(color-y1-light),
+			dark: ref(color-y1-dark),
+			contrast: ref(color-y1-contrast),
+		),
+		success: (
+			main: ref(color-z1-main),
+			light: ref(color-z1-light),
+			dark: ref(color-z1-dark),
+			contrast: ref(color-z1-contrast),
+		),
+	),
+	gradient: (
+		primary: (
+			main:
+				linear-gradient(
+					90deg,
+					ref(color-b1-main) 0%,
+					ref(color-b4-main) 50%,
+					ref(color-b5-main) 100%
+				),
+		),
+	),
+);

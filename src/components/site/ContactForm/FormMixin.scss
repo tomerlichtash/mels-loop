@@ -1,5 +1,5 @@
-@use "../../ui/Button/ButtonMixin.scss";
-@use "../../ui/Input/InputMixin.scss";
+@use "../../ui/Button/ButtonMixin";
+@use "../../ui/Input/InputMixin";
 
 @mixin FormTitle {
 	margin-bottom: 2em;

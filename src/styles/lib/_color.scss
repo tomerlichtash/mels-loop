@@ -33,7 +33,7 @@
 	@return $contrast;
 }
 
-@function generate($colors) {
+@function generate($colors, $prefix: config.$theme-var-prefix) {
 	$color-palette: ();
 
 	@each $key, $value in $colors {
@@ -47,10 +47,10 @@
 		$color-palette: map-merge(
 			$color-palette,
 			(
-				#{$key}-main: $primary,
-				#{$key}-light: $light,
-				#{$key}-dark: $dark,
-				#{$key}-contrast: $contrast
+				#{$prefix}-#{$key}-main: $primary,
+				#{$prefix}-#{$key}-light: $light,
+				#{$prefix}-#{$key}-dark: $dark,
+				#{$prefix}-#{$key}-contrast: $contrast
 			)
 		);
 	}

@@ -1,0 +1,18 @@
+@import "styles/config";
+
+@function cssVar($var) {
+	@return #{"--"}#{$var};
+}
+
+@function cssRef($key, $prefix: "") {
+	@return cssVar(#{$prefix}-#{$key});
+}
+
+@function ref($key, $prefix: $theme-var-prefix) {
+	@return #{var(cssRef($key, $prefix))};
+}
+
+@function compRef($ns: $__namespace__, $key, $prefix: $theme-var-prefix) {
+	$publicNamespace: #{$prefix}-#{$ns};
+	@return #{var(cssRef($key, $publicNamespace), var(cssVar($key)))};
+}

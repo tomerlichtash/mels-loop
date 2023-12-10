@@ -16,6 +16,7 @@ const nextConfig = {
 	optimizeFonts: true,
 	sassOptions: {
 		includePaths: [path.join(__dirname, "styles")],
+		// additionalData: `@import "src/scss/_config.scss";`,
 	},
 	i18n: {
 		locales: ["en", "he"],

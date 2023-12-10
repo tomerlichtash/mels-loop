@@ -1,4 +1,4 @@
-@use "../ComponentMixin.scss";
+@use "../ComponentMixin";
 
 @mixin Default {
 	@include ComponentMixin.ComponentSize;

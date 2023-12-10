@@ -1,11 +1,6 @@
 import React, { PropsWithChildren, useContext } from "react";
 import { ComponentProps } from "../../../interfaces/models";
-import {
-	PopoverArrow,
-	PopoverClose,
-	PopoverContent,
-	PopoverPortal,
-} from "@radix-ui/react-popover";
+import { PopoverArrow, PopoverContent } from "@radix-ui/react-popover";
 import PopoverToolbar from "./PopoverToolbar";
 import { useTheme } from "next-themes";
 import { IToolbarItem } from "@components/content/types/IPopoverContext";

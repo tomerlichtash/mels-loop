@@ -9,7 +9,6 @@ import { useComponentAttributes } from "../../useComponentAttributes";
 
 export const Figure = ({
 	componentData,
-	className,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { attributes } = useComponentAttributes(node);

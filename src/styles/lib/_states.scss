@@ -1,0 +1,50 @@
+@use "sass:map";
+@use "sass:list";
+@use "strings";
+
+@function customStates($states) {
+	$output-map: ();
+
+	@each $key in map-keys($states) {
+		$state: map-get($states, $key);
+		$val: $state;
+
+		@if (type-of($state) == "list") {
+			$s: "";
+			@each $stateMap in $state {
+				@each $st in $stateMap {
+					$idx: list.index($stateMap, $st);
+					$stateDelim: if($idx == 1, "", $theme-state-delim);
+					$s: #{$s}#{$stateDelim}#{$st};
+				}
+			}
+			$val: $s;
+		}
+
+		$transformed-value: strings.str-replace(
+			$val,
+			$val,
+			#{$theme-state-delim}#{$val}
+		);
+
+		$output-map: map-merge(
+			$output-map,
+			(
+				$key: $transformed-value,
+			)
+		);
+	}
+
+	@return $output-map;
+}
+
+@function state($state) {
+	$compState: map-get(customStates($states), $state);
+
+	@if $compState != null {
+		@return $compState;
+	}
+
+	@warn Undefined state "#{$state}" in component;
+	@return $state;
+}

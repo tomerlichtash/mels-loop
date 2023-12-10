@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext } from "react";
 import { LocaleProvider } from "../../../locale/context/locale-context";
 import { Button, Link } from "@components/ui";
 import styles from "./Footer.module.scss";

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, SyntheticEvent } from "react";
+import React, { PropsWithChildren } from "react";
 import { ComponentProps } from "../../../interfaces/models";
 import styles from "./Container.module.scss";
 

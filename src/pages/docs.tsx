@@ -11,7 +11,6 @@ import { Button } from "@components/ui";
 
 const Docs: NextPage<IPageProps> = (props) => {
 	const { pageName } = useContext(LocaleProvider);
-	const { className } = props;
 	const { metaData } = usePageData(props);
 	return (
 		<Layout>

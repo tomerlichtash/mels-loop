@@ -1,0 +1,6 @@
+@use "styles/lib/parser";
+@use "resources";
+
+@mixin index {
+	@include parser.compile(resources.$exports);
+}

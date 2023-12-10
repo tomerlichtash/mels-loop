@@ -1,6 +1,4 @@
-@import "../../../scss/utils/vars";
-
-$__namespace__: popover;
+@import "../../../styles/lib/refs";
 
 .root {
 	--dialog-animation-type: fadeIn;
@@ -15,19 +13,19 @@ $__namespace__: popover;
 	--dialog-background-color: #e0e0e0;
 
 	overflow: hidden;
-	width: refs(dialog-width);
-	background-color: refs(dialog-background-color);
-	box-shadow: refs(dialog-box-shadow);
-	border-width: refs(dialog-border-width);
-	border-style: refs(dialog-border-style);
-	border-color: refs(dialog-border-color);
-	border-radius: refs(dialog-border-radius);
+	width: compRef(popover, dialog-width);
+	background-color: compRef(popover, dialog-background-color);
+	box-shadow: compRef(popover, dialog-box-shadow);
+	border-width: compRef(popover, dialog-border-width);
+	border-style: compRef(popover, dialog-border-style);
+	border-color: compRef(popover, dialog-border-color);
+	border-radius: compRef(popover, dialog-border-radius);
 
-	animation: fadeIn refs(dialog-animation-duration)
-		refs(dialog-animation-easing);
+	animation: fadeIn compRef(popover, dialog-animation-duration)
+		compRef(popover, dialog-animation-easing);
 
 	.content {
-		background-color: refs(dialog-background-color);
+		background-color: compRef(popover, dialog-background-color);
 	}
 }
 
