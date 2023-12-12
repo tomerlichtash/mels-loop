@@ -2,8 +2,8 @@
 @use "vars/colors";
 @use "vars/typography";
 @use "vars/shadows";
-@use "vars/layout";
+@use "vars/radius";
 
 $pallette: color.generate(colors.$index, "color");
 
-$exports: $pallette, typography.$index, shadows.$index, layout.$index;
+$exports: $pallette, typography.$index, shadows.$index, radius.$index;

@@ -6,6 +6,7 @@ import { AppContext } from "../contexts";
 import { fontFaceDecls } from "../site-fonts";
 import { IPageProps } from "../interfaces/models";
 
+import "normalize.css/normalize.css";
 import "../styles/_app.scss";
 
 export { reportWebVitals } from "next-axiom";

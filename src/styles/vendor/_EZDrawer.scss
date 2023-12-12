@@ -1,23 +1,25 @@
 .EZDrawer {
 	.EZDrawer__checkbox {
 		display: none;
-	}
 
-	.EZDrawer__checkbox:checked ~ .EZDrawer__overlay {
-		display: block;
-		opacity: 1;
-	}
+		&:checked {
+			~ .EZDrawer__overlay {
+				display: block;
+				opacity: 1;
+			}
 
-	.EZDrawer__checkbox:checked ~ .EZDrawer__container {
-		visibility: visible;
-		transform: translate3d(0, 0, 0) !important;
+			~ .EZDrawer__container {
+				visibility: visible;
+				transform: translate3d(0, 0, 0) !important;
+			}
+		}
 	}
 
 	.EZDrawer__overlay {
 		display: none;
 		height: 100vh;
-		left: 0;
 		position: fixed;
+		left: 0;
 		top: 0;
 		width: 100%;
 	}
@@ -25,7 +27,7 @@
 	.EZDrawer__container {
 		position: fixed;
 		visibility: hidden;
-		background: white;
+		background: var(--ml-color-surface-main);
 		transition: all;
 		box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
 	}

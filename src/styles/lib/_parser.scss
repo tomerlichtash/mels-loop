@@ -1,8 +1,24 @@
 @use "sass:string";
 @use "sass:list";
-@use "lists";
 @use "refs";
 @import "styles/config";
+
+@function _remove-nth($list, $n) {
+	$result: ();
+
+	$n: if($n < 0, length($list) + $n + 1, $n);
+
+	$bracketed: is-bracketed($list);
+	$separator: list-separator($list);
+
+	@for $i from 1 through length($list) {
+		@if $i != $n {
+			$result: append($result, nth($list, $i));
+		}
+	}
+
+	@return join((), $result, $separator, $bracketed);
+}
 
 @function _transform($map, $path, $delim: $theme-state-delim) {
 	$result: ();
@@ -14,7 +30,7 @@
 		@if str-index($path, $delim) {
 			$split: string.split($path, $delim);
 			$pathPrefix: nth($split, 1);
-			$stateList: lists.remove-nth($split, 1);
+			$stateList: _remove-nth($split, 1);
 			$stateSuffix: "";
 
 			@each $state in $stateList {
@@ -57,11 +73,11 @@
 }
 
 @mixin compile(
-	$resources,
+	$exports,
 	$pathPrefix: $theme-var-prefix,
 	$delim: $theme-state-delim
 ) {
-	@each $resource in $resources {
+	@each $resource in $exports {
 		@include _traverse((_transform($resource, $pathPrefix, $delim)));
 	}
 }

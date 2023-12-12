@@ -1,0 +1,16 @@
+@import "styles/lib/refs";
+
+$index: (
+	typography: (
+		ltr: (
+			base-font-size: 12px,
+			font-family: ref(typography-font-family-font1),
+			font-weight: ref(typography-font-weight-regular),
+		),
+		rtl: (
+			base-font-size: 12px,
+			font-family: ref(typography-font-family-font2),
+			font-weight: ref(typography-font-weight-regular),
+		),
+	),
+);
