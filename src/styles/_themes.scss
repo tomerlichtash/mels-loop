@@ -1,32 +1,16 @@
-@use "./lib/refs";
-@use "themes/common" as Commons;
-@use "themes/custom/light" as LightTheme;
-@use "themes/custom/dark" as DarkTheme;
+@use "vars/common" as common;
+@use "vars/custom/light" as light;
+@use "vars/custom/dark" as dark;
+@import "styles/lib/parser";
 
-// common vars are shared between themes. These vars are colors, typography,
-// shadows, radius etc.
 [data-theme] {
-	@include Commons.index;
+	@include compile(common.$index, $theme-global-prefix);
 }
 
-// custom themes use common vars to define theme colors (e.g. surface, primary,
-// secondary, error, success), define theme assets (e.g. dark/light logo)
-// and override components base theme
 [data-theme="light"] {
-	@include LightTheme.index;
+	@include compile(light.$index);
 }
 
 [data-theme="dark"] {
-	@include DarkTheme.index;
+	@include compile(dark.$index);
 }
-
-// @mixin text-direction-variant($direction) {
-// 	[data-text-direction="#{$direction}"] {
-// 		font-family: var(--ml-typography-#{$direction}-font-family);
-// 		font-weight: var(--ml-typography-#{$direction}-font-weight);
-// 		direction: #{$direction};
-// 	}
-// }
-
-// @include text-direction-variant(ltr);
-// @include text-direction-variant(rtl);

@@ -1,0 +1,6 @@
+@use "assets";
+@use "colors";
+@use "components";
+@use "typography";
+
+$index: typography.$index, assets.$index, colors.$index, components.$index;

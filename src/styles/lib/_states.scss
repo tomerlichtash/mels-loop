@@ -1,12 +1,12 @@
 @use "sass:map";
 @use "sass:list";
 
-@function _str-replace($string, $search, $replace: "") {
+@function _strReplace($string, $search, $replace: "") {
 	$index: str-index($string, $search);
 
 	@if $index {
 		@return str-slice($string, 1, $index - 1) + $replace +
-			_str-replace(
+			_strReplace(
 				str-slice($string, $index + str-length($search)),
 				$search,
 				$replace
@@ -35,7 +35,7 @@
 			$val: $s;
 		}
 
-		$transformed-value: _str-replace($val, $val, #{$theme-state-delim}#{$val});
+		$transformed-value: _strReplace($val, $val, #{$theme-state-delim}#{$val});
 
 		$output-map: map-merge(
 			$output-map,

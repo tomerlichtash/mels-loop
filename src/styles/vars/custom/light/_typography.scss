@@ -1,0 +1,14 @@
+@import "styles/lib/refs";
+
+$index: (
+	text-direction: (
+		font-size: globalRef(typography-font-size-base),
+		font-weight: globalRef(typography-font-weight-regular),
+		ltr: (
+			font-family: globalRef(typography-font-family-font1),
+		),
+		rtl: (
+			family: globalRef(typography-font-family-font2),
+		),
+	),
+);

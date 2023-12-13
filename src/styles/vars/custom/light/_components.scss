@@ -1,0 +1,58 @@
+@use "components/content/popover/PopoverTrigger.module";
+@import "styles/lib/refs";
+
+$index: (
+	layout: (
+		background-color: ref(color-surface-main),
+		header: (
+			background-color: globalRef(color-a2-main),
+		),
+	),
+	link: (
+		text-color: ref(color-primary-main),
+		"hover": (
+			text-color: ref(color-primary-contrast),
+		),
+	),
+	footer: (
+		strip: (
+			background-color: ref(gradient-primary-main),
+		),
+	),
+	annotation: (
+		font-size: globalRef(typography-font-size-xs),
+		font-weight: globalRef(typography-font-weight-regular),
+		color: ref(link-text-color),
+	),
+	popover: (
+		trigger: (
+			text-color: ref(link-text-color),
+			radius: globalRef(radius-md),
+			PopoverTrigger.state(hovered): (
+				background-color: ref(color-secondary-main),
+				text-color: ref(color-secondary-contrast),
+			),
+			PopoverTrigger.state(clicked): (
+				background-color: ref(color-secondary-main),
+				// background-color: ref(color-secondary-main),
+				text-color: ref(color-secondary-contrast),
+			),
+			PopoverTrigger.state(selected): (
+				background-color: ref(color-secondary-main),
+				text-color: ref(color-secondary-contrast),
+			),
+			PopoverTrigger.state(selected-hovered): (
+				background-color: ref(color-secondary-main),
+				text-color: ref(color-secondary-contrast),
+			),
+			PopoverTrigger.state(selected-clicked): (
+				background-color: ref(color-secondary-main),
+				text-color: ref(color-secondary-contrast),
+			),
+		),
+		dialog: (
+			background-color: ref(color-surface-light),
+			border-radius: globalRef(radius-md),
+		),
+	),
+);

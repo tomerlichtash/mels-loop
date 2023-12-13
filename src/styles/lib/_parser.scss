@@ -1,6 +1,7 @@
 @use "sass:string";
 @use "sass:list";
 @use "refs";
+
 @import "styles/config";
 
 @function _remove-nth($list, $n) {
@@ -72,12 +73,13 @@
 	}
 }
 
-@mixin compile(
-	$exports,
-	$pathPrefix: $theme-var-prefix,
-	$delim: $theme-state-delim
-) {
+@mixin compile($exports, $pathPrefix: "", $delim: $theme-state-delim) {
+	$prefix: #{$theme-namespace-prefix}#{if(
+			string.length($pathPrefix) > 0,
+			-#{$pathPrefix},
+			""
+		)};
 	@each $resource in $exports {
-		@include _traverse((_transform($resource, $pathPrefix, $delim)));
+		@include _traverse((_transform($resource, $prefix, $delim)));
 	}
 }

@@ -1,3 +1,5 @@
+@import "styles/lib/refs";
+
 $index: (
 	typography: (
 		font-family: (
@@ -5,6 +7,7 @@ $index: (
 			font2: "Assistant, sans-serif",
 		),
 		font-size: (
+			base: 12px,
 			xs: 0.7em,
 			sm: 0.9em,
 			md: 1em,
@@ -39,7 +42,22 @@ $index: (
 		),
 		variant: (
 			h1: (
-				font-size: var(--ml-typography-font-size-2xl),
+				font-size: globalRef(typography-font-size-2xl),
+			),
+			h2: (
+				font-size: globalRef(typography-font-size-xl),
+			),
+			h3: (
+				font-size: globalRef(typography-font-size-lg),
+			),
+			h4: (
+				font-size: globalRef(typography-font-size-md),
+			),
+			h5: (
+				font-size: globalRef(typography-font-size-sm),
+			),
+			h6: (
+				font-size: globalRef(typography-font-size-xs),
 			),
 		),
 	),

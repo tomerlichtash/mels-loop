@@ -1,4 +1,14 @@
+@use "sass:string";
 @import "../config";
+
+@function prefix($prefix) {
+	$path: #{$theme-namespace-prefix}#{if(
+			string.length($prefix) > 0,
+			-#{$prefix},
+			""
+		)};
+	@return $path;
+}
 
 @function cssVar($var) {
 	@return #{"--"}#{$var};
@@ -8,10 +18,14 @@
 	@return cssVar(#{$prefix}-#{$key});
 }
 
-@function ref($key, $prefix: $theme-var-prefix) {
-	@return #{var(cssRef($key, $prefix))};
+@function ref($key, $prefix: "") {
+	@return #{var(cssRef($key, prefix($prefix)))};
 }
 
-@function compRef($ns: $__namespace__, $key, $prefix: $theme-var-prefix) {
+@function globalRef($key) {
+	@return ref($key, $theme-global-prefix);
+}
+
+@function compRef($ns: $__namespace__, $key, $prefix: $theme-namespace-prefix) {
 	@return #{var(cssRef($key, #{$prefix}-#{$ns}), var(cssVar($key)))};
 }

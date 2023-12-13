@@ -1,6 +1,6 @@
 @use "sass:math";
 
-@function hex-to-rgb($hex) {
+@function hexToRgb($hex) {
 	$r: red($hex);
 	$g: green($hex);
 	$b: blue($hex);
@@ -8,7 +8,7 @@
 }
 
 @function luminance($hex) {
-	$rgb: hex-to-rgb($hex);
+	$rgb: hexToRgb($hex);
 	$r: calc(nth($rgb, 1) / 255);
 	$g: calc(nth($rgb, 2) / 255);
 	$b: calc(nth($rgb, 3) / 255);
@@ -24,7 +24,7 @@
 	@return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
 }
 
-@function contrast-ratio($color1, $color2) {
+@function contrastRatio($color1, $color2) {
 	$l1: luminance($color1) + 0.05;
 	$l2: luminance($color2) + 0.05;
 
@@ -33,7 +33,7 @@
 	@return $contrast;
 }
 
-@function generate($colors, $prefix: config.$theme-var-prefix) {
+@function generate($colors, $prefix: config.$theme-namespace-prefix) {
 	$color-palette: ();
 
 	@each $key, $value in $colors {
@@ -41,8 +41,8 @@
 		$light: lighten($primary, 20%);
 		$dark: darken($primary, 20%);
 
-		$contrast-ratio: contrast-ratio($value, #000);
-		$contrast: if($contrast-ratio >= 12.95, #000, #fff);
+		$contrastRatio: contrastRatio($value, #000);
+		$contrast: if($contrastRatio >= 12.95, #000, #fff);
 
 		$color-palette: map-merge(
 			$color-palette,

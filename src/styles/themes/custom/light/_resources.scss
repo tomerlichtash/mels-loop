@@ -1,6 +1,0 @@
-@use "vars/assets";
-@use "vars/colors";
-@use "vars/components";
-@use "vars/typography";
-
-$exports: typography.$index, assets.$index, colors.$index, components.$index;
