@@ -1,16 +1,17 @@
-@use "vars/common" as common;
-@use "vars/custom/light" as light;
-@use "vars/custom/dark" as dark;
-@import "styles/lib/parser";
+@use "styles/config";
+@use "styles/lib/parser";
+@use "vars/common";
+@use "vars/custom/light";
+@use "vars/custom/dark";
 
 [data-theme] {
-	@include compile(common.$index, $theme-global-prefix);
+	@include parser.compile(common.$index, config.$theme-global-prefix);
 }
 
 [data-theme="light"] {
-	@include compile(light.$index);
+	@include parser.compile(light.$index);
 }
 
 [data-theme="dark"] {
-	@include compile(dark.$index);
+	@include parser.compile(dark.$index);
 }

@@ -1,6 +1,5 @@
-@use "../../popover/PopoverMixin";
+@import "../../popover/PopoverMixin";
 
 .root {
-	// include shared trigger styles
-	@include PopoverMixin.PopoverTrigger;
+	@include PopoverTrigger;
 }

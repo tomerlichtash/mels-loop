@@ -1,19 +1,22 @@
 @use "sass:string";
 @use "sass:list";
 @use "refs";
+@use "styles/config";
 
-@import "styles/config";
+$defaultStateDelim: config.$theme-state-delim;
 
-@function _remove-nth($list, $n) {
+@function _isEmptyVarMap($vars) {
+	@return (type-of($vars) == "list") and (length($vars) == 0);
+}
+
+@function _removeNth($list, $nth) {
 	$result: ();
-
-	$n: if($n < 0, length($list) + $n + 1, $n);
-
+	$nth: if($nth < 0, length($list) + $nth + 1, $nth);
 	$bracketed: is-bracketed($list);
 	$separator: list-separator($list);
 
 	@for $i from 1 through length($list) {
-		@if $i != $n {
+		@if $i != $nth {
 			$result: append($result, nth($list, $i));
 		}
 	}
@@ -21,7 +24,11 @@
 	@return join((), $result, $separator, $bracketed);
 }
 
-@function _transform($map, $path, $delim: $theme-state-delim) {
+@function isContentProp($val) {
+	@return str-index($val, "-content") != null;
+}
+
+@function _transform($map, $path, $delim: $defaultStateDelim) {
 	$result: ();
 
 	@each $key, $value in $map {
@@ -30,22 +37,24 @@
 		// handle states path
 		@if str-index($path, $delim) {
 			$split: string.split($path, $delim);
-			$pathPrefix: nth($split, 1);
-			$stateList: _remove-nth($split, 1);
-			$stateSuffix: "";
+			$prefix: nth($split, 1);
+			$stateList: _removeNth($split, 1);
+			$states: "";
 
 			@each $state in $stateList {
-				$stateSuffix: #{$stateSuffix}#{$delim}#{$state};
+				$states: #{$states}#{$delim}#{$state};
 			}
 
-			$variable-name: #{$pathPrefix}#{$key}#{$stateSuffix};
+			$variable-name: #{$prefix}#{$key}#{$states};
 		}
 
 		@if type-of($value) == map {
 			$result: map-merge($result, _transform($value, $variable-name));
 		} @else {
-			// handle quoted strings (e.g. font families)
-			@if type-of($value) == "string" {
+			// unquote all values, except special case of `content` properties,
+			// that should be in quotes. This is to support handling of quoted strings
+			// (e.g. font families)
+			@if type-of($value) == "string" and not isContentProp($key) {
 				$value: string.unquote($value);
 			}
 
@@ -61,25 +70,18 @@
 	@return $result;
 }
 
-@mixin _traverse($vars) {
+@mixin _parse($vars) {
 	@each $key, $val in $vars {
-		@if (type-of($val) == "list") {
-			@if (length($val) == 0) {
-				@warn #{empty theme object #{":"}$key, skipping};
-			}
+		@if _isEmptyVarMap($val) {
+			@error #{empty theme vars object #{":"}$key};
 		} @else {
 			#{$key}: $val;
 		}
 	}
 }
 
-@mixin compile($exports, $pathPrefix: "", $delim: $theme-state-delim) {
-	$prefix: #{$theme-namespace-prefix}#{if(
-			string.length($pathPrefix) > 0,
-			-#{$pathPrefix},
-			""
-		)};
-	@each $resource in $exports {
-		@include _traverse((_transform($resource, $prefix, $delim)));
+@mixin compile($exports, $prefix: "", $delim: $defaultStateDelim) {
+	@each $vars in $exports {
+		@include _parse((_transform($vars, refs.prefix($prefix), $delim)));
 	}
 }

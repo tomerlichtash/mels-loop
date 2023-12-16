@@ -1,6 +1,11 @@
 @use "sass:map";
 @use "sass:list";
 
+$COMPONENT_STATES: (
+	hovered: hover,
+	clicked: active,
+);
+
 @function _strReplace($string, $search, $replace: "") {
 	$index: str-index($string, $search);
 

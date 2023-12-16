@@ -1,27 +1,24 @@
+@import "styles/lib/refs";
+@import "styles/lib/states";
+
+$states: $COMPONENT_STATES;
+
 .root {
+	--text-color__hovered: #000;
+	--text-color__active: #888;
+
 	cursor: pointer;
-
-	// color: var(--link-color);
-	color: var(--ml-link-text-color);
-
-	[data-link-type="glossary"] {
-		color: blue;
-	}
-
-	.href {
-		color: red;
-	}
 
 	&:link,
 	&:visited {
-		color: var(--ml-link-text-color);
+		color: compRef(link, text-color);
 	}
 
 	&:hover {
-		color: var(--link-color-hover);
+		color: compRef(link, text-color__hover);
 	}
 
 	&:active {
-		color: var(--link-color-active);
+		color: compRef(link, text-color__active);
 	}
 }

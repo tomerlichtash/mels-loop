@@ -1,0 +1,4 @@
+@use "styles/lib/merge";
+@use "./footer";
+
+$index: merge.deep-merge(footer.$index);

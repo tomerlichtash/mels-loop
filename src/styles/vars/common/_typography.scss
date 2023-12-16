@@ -40,24 +40,38 @@ $index: (
 			2xl: 1.202em,
 			3xl: 1.302em,
 		),
-		variant: (
+		variants: (
 			h1: (
 				font-size: globalRef(typography-font-size-2xl),
+				font-weight: globalRef(typography-font-weight-bold),
 			),
 			h2: (
 				font-size: globalRef(typography-font-size-xl),
+				font-weight: globalRef(typography-font-weight-bold),
 			),
 			h3: (
 				font-size: globalRef(typography-font-size-lg),
+				font-weight: globalRef(typography-font-weight-bold),
 			),
 			h4: (
 				font-size: globalRef(typography-font-size-md),
+				font-weight: globalRef(typography-font-weight-regular),
 			),
 			h5: (
 				font-size: globalRef(typography-font-size-sm),
+				font-weight: globalRef(typography-font-weight-regular),
 			),
 			h6: (
 				font-size: globalRef(typography-font-size-xs),
+				font-weight: globalRef(typography-font-weight-regular),
+			),
+			body1: (
+				font-size: globalRef(typography-font-size-md),
+				font-weight: globalRef(typography-font-weight-regular),
+			),
+			body2: (
+				font-size: globalRef(typography-font-size-sm),
+				font-weight: globalRef(typography-font-weight-regular),
 			),
 		),
 	),

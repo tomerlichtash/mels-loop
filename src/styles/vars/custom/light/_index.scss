@@ -1,6 +1,19 @@
 @use "assets";
 @use "colors";
-@use "components";
 @use "typography";
+@use "components";
+
+@import "styles/lib/refs";
+
+$demo: (
+	demo: (
+		// var(--ml-dada)
+		ref: ref(dada),
+		// var(--ml-g-dada)
+		globalRef: globalRef(dada),
+		// var(--ml-dada-key, var(_cssVar(key)))
+		compRef: compRef(dada, key),
+	),
+);
 
 $index: typography.$index, assets.$index, colors.$index, components.$index;

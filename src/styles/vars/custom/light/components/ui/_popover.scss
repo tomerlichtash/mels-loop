@@ -2,28 +2,6 @@
 @import "styles/lib/refs";
 
 $index: (
-	layout: (
-		background-color: ref(color-surface-main),
-		header: (
-			background-color: globalRef(color-a2-main),
-		),
-	),
-	link: (
-		text-color: ref(color-primary-main),
-		"hover": (
-			text-color: ref(color-primary-contrast),
-		),
-	),
-	footer: (
-		strip: (
-			background-color: ref(gradient-primary-main),
-		),
-	),
-	annotation: (
-		font-size: globalRef(typography-font-size-xs),
-		font-weight: globalRef(typography-font-weight-regular),
-		color: ref(link-text-color),
-	),
 	popover: (
 		trigger: (
 			text-color: ref(link-text-color),

@@ -4,8 +4,8 @@ import { PopoverArrow, PopoverContent } from "@radix-ui/react-popover";
 import PopoverToolbar from "./PopoverToolbar";
 import { useTheme } from "next-themes";
 import { IToolbarItem } from "@components/content/types/IPopoverContext";
-import styles from "./PopoverDialog.module.scss";
 import { LocaleProvider } from "locale/context/locale-context";
+import styles from "./PopoverDialog.module.scss";
 
 export type PopoverDialogProps = {
 	side: "top" | "right" | "bottom" | "left";

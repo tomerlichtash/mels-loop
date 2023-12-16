@@ -44,7 +44,8 @@
 		"test:e2e": "playwright test",
 		"test:unit": "vitest __tests__",
 		"test:unit:ci": "vitest __tests__ --reporter=junit --outputFile.junit=unit-tests-results.xml",
-		"upload": "npx ts-node scripts/upload-files.ts"
+		"upload": "npx ts-node scripts/upload-files.ts",
+		"sass:debug": "sass --load-path=src -wc ."
 	},
 	"dependencies": {
 		"@radix-ui/colors": "^3.0.0",

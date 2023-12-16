@@ -1,0 +1,9 @@
+@import "styles/lib/refs";
+
+$index: (
+	annotation: (
+		font-size: globalRef(typography-font-size-xs),
+		font-weight: globalRef(typography-font-weight-regular),
+		color: ref(link-text-color),
+	),
+);

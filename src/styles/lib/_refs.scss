@@ -18,6 +18,10 @@
 	@return cssVar(#{$prefix}-#{$key});
 }
 
+@function varName($key, $prefix: "") {
+	@return cssRef($key, prefix($prefix));
+}
+
 @function ref($key, $prefix: "") {
 	@return #{var(cssRef($key, prefix($prefix)))};
 }
@@ -26,6 +30,20 @@
 	@return ref($key, $theme-global-prefix);
 }
 
-@function compRef($ns: $__namespace__, $key, $prefix: $theme-namespace-prefix) {
-	@return #{var(cssRef($key, #{$prefix}-#{$ns}), var(cssVar($key)))};
+@function compRef(
+	$ns: $__namespace__,
+	$key,
+	$state: "",
+	$prefix: $theme-namespace-prefix
+) {
+	$compState: "";
+
+	@if (str-length($state) > 0) {
+		$compState: $state;
+	}
+
+	@return #{var(
+			cssRef(#{$key}#{$compState}, #{$prefix}-#{$ns}),
+			var(cssVar(#{$key}#{$compState}))
+		)};
 }

@@ -1,0 +1,41 @@
+@import "../../popover/PopoverMixin";
+@import "styles/lib/refs";
+
+.root {
+	--font-size: 0.75em;
+	--font-weight: normal;
+	--offset-top: -0.5em;
+	--padding: 0.15em;
+	--paren-opacity: 0.65;
+	--prefix-content: "[";
+	--suffix-content: "]";
+	--line-height: 1em;
+
+	@include PopoverTrigger;
+
+	position: relative;
+	font-size: compRef(annotation, font-size);
+	line-height: compRef(annotation, line-height);
+	top: compRef(annotation, offset-top);
+
+	&::before,
+	&::after {
+		opacity: compRef(annotation, paren-opacity);
+	}
+
+	&::before {
+		content: compRef(annotation, prefix-content);
+	}
+
+	&::after {
+		content: compRef(annotation, suffix-content);
+	}
+
+	.content {
+		&::after {
+			content: attr(data-prefix-content) attr(data-seq);
+			font-weight: compRef(annotation, font-weight);
+			padding: 0 compRef(annotation, padding);
+		}
+	}
+}

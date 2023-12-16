@@ -1,0 +1,9 @@
+@import "styles/lib/refs";
+
+$index: (
+	footer: (
+		strip: (
+			background-color: ref(gradient-primary-main),
+		),
+	),
+);

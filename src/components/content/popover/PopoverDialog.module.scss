@@ -1,4 +1,4 @@
-@import "../../../styles/lib/refs";
+@import "styles/lib/refs";
 
 .root {
 	--dialog-animation-type: fadeIn;
@@ -12,6 +12,7 @@
 	--dialog-box-shadow: none;
 	--dialog-background-color: #e0e0e0;
 
+	border: 2px solid red;
 	overflow: hidden;
 	width: compRef(popover, dialog-width);
 	background-color: compRef(popover, dialog-background-color);

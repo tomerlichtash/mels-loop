@@ -1,0 +1,27 @@
+@function deep-merge($maps...) {
+	$result: ();
+
+	@each $map in $maps {
+		@each $key, $value in $map {
+			$existing-value: map-get($result, $key);
+
+			@if type-of($value) == map and type-of($existing-value) == map {
+				$result: map-merge(
+					$result,
+					(
+						$key: deep-merge($existing-value, $value),
+					)
+				);
+			} @else {
+				$result: map-merge(
+					$result,
+					(
+						$key: $value,
+					)
+				);
+			}
+		}
+	}
+
+	@return $result;
+}

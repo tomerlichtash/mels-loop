@@ -9,16 +9,15 @@ the fallback format allows us to fallback to component's default style (--part-p
 and override it from the theme.
 */
 
-// component utils include `config`, `states` etc.
-@import "styles/config";
 @import "styles/lib/states";
+@import "styles/lib/refs";
+@import "styles/lib/merge";
 
 $__namespace: popover-trigger;
 
-$states: (
+$states: deep-merge(
+	$COMPONENT_STATES,
 	(
-		hovered: hover,
-		clicked: active,
 		selected: open,
 		selected-hovered: (
 			(open, hover),
@@ -30,84 +29,44 @@ $states: (
 );
 
 .root {
-	// default styling
-	--trigger-radius: 0;
-
-	--trigger-my-background-color: none;
-	--trigger-background-color: none;
-	--trigger-text-color: #000;
-	--trigger-background-color__hover: #e0e0e0;
-	--trigger-text-color__hover: inherit;
-	--trigger-background-color__active: #c0c0c0;
-	--trigger-text-color__active: inherit;
-	--trigger-text-color__open: inherit;
-	--trigger-background-color__open: #e0e0e0;
-	--trigger-background-color__open__hover: #e0e0e0;
-	--trigger-text-color__open__hover: inherit;
-	--trigger-background-color__open__active: #e0e0e0;
-	--trigger-text-color__open__active: inherit;
-
-	color: var(--trigger-text-color, var(--ml-popover-text-background-color));
-	border-radius: var(--trigger-radius, var(--ml-popover-trigger-radius));
-
-	background-color: compRef(popover-trigger, my-background-color);
-	// background-color: var(
-	// 	--trigger-background-color,
-	// 	var(--ml-popover-trigger-background-color)
-	// );
-	// native states
-	&:hover {
-		--ml-popover-trigger-background-color: var(
-			--ml-popover-trigger-background-color__hover,
-			var(--trigger-background-color__hover)
-		);
-		--ml-popover-trigger-text-color: var(
-			--ml-popover-trigger-text-color__hover,
-			var(--trigger-text-color__hover)
-		);
-	}
-
-	&:active {
-		--ml-popover-trigger-background-color: var(
-			--ml-popover-trigger-background-color__active,
-			var(--trigger-background-color__active)
-		);
-		--ml-popover-trigger-text-color: var(
-			--ml-popover-trigger-text-color__active,
-			var(--trigger-text-color__active)
-		);
-	}
+	--background-color: none;
+	--text-color: #000;
+	--background-color__hover: #e0e0e0;
+	--text-color__hover: inherit;
+	--background-color__active: #c0c0c0;
+	--text-color__active: inherit;
+	--text-color__open: inherit;
+	--background-color__open: #e0e0e0;
+	--background-color__open__hover: #e0e0e0;
+	--text-color__open__hover: inherit;
+	// --background-color__open__active: #e0e0e0;
+	// --text-color__open__active: inherit;
 
 	// custom state 'open' is provided by Radix Popover
 	&[data-state="open"] {
-		--ml-popover-trigger-background-color: var(
-			--ml-popover-trigger-background-color__open,
-			var(--trigger-background-color__open)
+		#{varName(popover-trigger-background-color)}: compRef(
+			popover-trigger,
+			background-color,
+			state(selected)
 		);
-		--ml-popover-trigger-text-color: var(
-			--ml-popover-trigger-text-color__open,
-			var(--trigger-text-color__open)
+
+		#{varName(popover-trigger-text-color)}: compRef(
+			popover-trigger,
+			text-color,
+			state(selected)
 		);
 
 		&:hover {
-			--ml-popover-trigger-background-color: var(
-				--ml-popover-trigger-background-color__open__hover,
-				var(--trigger-background-color__open__hover)
+			#{varName(popover-trigger-background-color)}: compRef(
+				popover-trigger,
+				background-color,
+				state(selected-hovered)
 			);
-			--ml-popover-trigger-text-color: var(
-				--ml-popover-trigger-text-color__open__hover,
-				var(--trigger-text-color__open__hover)
-			);
-		}
 
-		&:active {
-			--ml-popover-trigger-background-color: var(
-				--ml-popover-trigger-background-color__open__active,
-				var(--trigger-background-color__open__active)
-			);
-			--ml-popover-trigger-text-color: var(
-				--ml-popover-trigger-text-color__open__active,
-				var(--trigger-text-color__open__active)
+			#{varName(popover-trigger-text-color)}: compRef(
+				popover-trigger,
+				text-color,
+				state(selected-hovered)
 			);
 		}
 	}
