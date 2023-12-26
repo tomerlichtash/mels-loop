@@ -9,9 +9,7 @@ the fallback format allows us to fallback to component's default style (--part-p
 and override it from the theme.
 */
 
-@import "styles/lib/states";
-@import "styles/lib/refs";
-@import "styles/lib/merge";
+@import "styles";
 
 $__namespace: popover-trigger;
 
@@ -31,7 +29,7 @@ $states: deep-merge(
 .root {
 	--background-color: none;
 	--text-color: #000;
-	--background-color__hover: #e0e0e0;
+	--background-color__hover: none;
 	--text-color__hover: inherit;
 	--background-color__active: #c0c0c0;
 	--text-color__active: inherit;
@@ -39,11 +37,54 @@ $states: deep-merge(
 	--background-color__open: #e0e0e0;
 	--background-color__open__hover: #e0e0e0;
 	--text-color__open__hover: inherit;
-	// --background-color__open__active: #e0e0e0;
-	// --text-color__open__active: inherit;
+	--background-color__open__active: #e0e0e0;
+	--text-color__open__active: inherit;
+
+	&:after {
+		#{varName(popover-trigger-decoration-color)}: compRef(
+			popover-trigger,
+			astriek-color
+		);
+	}
+
+	:hover {
+		#{varName(popover-trigger-background-color)}: compRef(
+			popover-trigger,
+			background-color,
+			state(hovered)
+		);
+
+		#{varName(popover-trigger-text-color)}: compRef(
+			popover-trigger,
+			text-color,
+			state(hovered)
+		);
+
+		&:after {
+			#{varName(popover-trigger-decoration-color)}: compRef(
+				popover-trigger,
+				astriek-color,
+				state(hovered)
+			);
+		}
+	}
 
 	// custom state 'open' is provided by Radix Popover
 	&[data-state="open"] {
+		:after {
+			#{varName(popover-trigger-decoration-color)}: compRef(
+				popover-trigger,
+				astriek-color,
+				state(selected)
+			);
+		}
+
+		#{varName(popover-trigger-decoration-color)}: compRef(
+			popover-trigger,
+			astriek-color,
+			state(selected)
+		);
+
 		#{varName(popover-trigger-background-color)}: compRef(
 			popover-trigger,
 			background-color,
@@ -56,7 +97,7 @@ $states: deep-merge(
 			state(selected)
 		);
 
-		&:hover {
+		:hover {
 			#{varName(popover-trigger-background-color)}: compRef(
 				popover-trigger,
 				background-color,

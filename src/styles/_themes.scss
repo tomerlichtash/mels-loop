@@ -4,14 +4,14 @@
 @use "vars/custom/light";
 @use "vars/custom/dark";
 
-[data-theme] {
+[data-ml-theme] {
 	@include parser.compile(common.$index, config.$theme-global-prefix);
 }
 
-[data-theme="light"] {
+[data-ml-theme="light"] {
 	@include parser.compile(light.$index);
 }
 
-[data-theme="dark"] {
+[data-ml-theme="dark"] {
 	@include parser.compile(dark.$index);
 }

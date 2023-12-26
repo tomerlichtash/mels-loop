@@ -48,13 +48,17 @@ export const Footer = (): JSX.Element => {
 									</Button>
 								</li>
 								<li className="item">
-									<Button className={styles.link} href="/posts">
-										{translate("MENU_ITEM_LABEL_ID_BLOG")}
+									<Button asChild className={styles.link}>
+										<Link href="/posts">
+											{translate("MENU_ITEM_LABEL_ID_BLOG")}
+										</Link>
 									</Button>
 								</li>
 								<li className="item">
-									<Button className={styles.link} href="/contribute">
-										{translate("MENU_ITEM_LABEL_ID_CONTRIBUTE")}
+									<Button asChild className={styles.link}>
+										<Link href="/contribute">
+											{translate("MENU_ITEM_LABEL_ID_CONTRIBUTE")}
+										</Link>
 									</Button>
 								</li>
 							</ul>

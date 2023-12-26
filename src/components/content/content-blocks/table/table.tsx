@@ -6,6 +6,7 @@ import {
 } from "../../../../interfaces/models";
 import { mlUtils } from "../../../../lib/ml-utils";
 import { useComponentAttributes } from "../../useComponentAttributes";
+import styles from "./table.module.scss";
 
 export const Table = ({
 	componentData,
@@ -16,7 +17,7 @@ export const Table = ({
 		? node.children
 		: [];
 	return (
-		<table className="table" key={node.key} {...attributes}>
+		<table className={styles.root} key={node.key} {...attributes}>
 			<tbody key={mlUtils.uniqueId()}>
 				{elements.map((node) => {
 					return <ContentComponent key={node.key} componentData={{ node }} />;

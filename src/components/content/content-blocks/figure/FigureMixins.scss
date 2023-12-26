@@ -1,0 +1,5 @@
+@mixin no-border {
+	&[data-type="no-border"] {
+		border: none;
+	}
+}

@@ -1,0 +1,5 @@
+@use "styles/lib/merge";
+@use "link";
+@use "annotation";
+
+$index: merge.deep-merge(annotation.$index, link.$index);

@@ -28,7 +28,7 @@ $defaultStateDelim: config.$theme-state-delim;
 	@return str-index($val, "-content") != null;
 }
 
-@function _transform($map, $path, $delim: $defaultStateDelim) {
+@function transform($map, $path, $delim: $defaultStateDelim) {
 	$result: ();
 
 	@each $key, $value in $map {
@@ -49,7 +49,7 @@ $defaultStateDelim: config.$theme-state-delim;
 		}
 
 		@if type-of($value) == map {
-			$result: map-merge($result, _transform($value, $variable-name));
+			$result: map-merge($result, transform($value, $variable-name));
 		} @else {
 			// unquote all values, except special case of `content` properties,
 			// that should be in quotes. This is to support handling of quoted strings
@@ -82,6 +82,6 @@ $defaultStateDelim: config.$theme-state-delim;
 
 @mixin compile($exports, $prefix: "", $delim: $defaultStateDelim) {
 	@each $vars in $exports {
-		@include _parse((_transform($vars, refs.prefix($prefix), $delim)));
+		@include _parse((transform($vars, refs.prefix($prefix), $delim)));
 	}
 }

@@ -10,7 +10,7 @@ import { fontFaceLinks } from "../site-fonts";
 class CustomDocument extends Document<DocumentInitialProps> {
 	render() {
 		return (
-			<Html suppressHydrationWarning>
+			<Html>
 				<Head>{fontFaceLinks}</Head>
 				<body>
 					<Main />

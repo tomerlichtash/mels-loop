@@ -2,15 +2,12 @@ import React from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { mlUtils } from "../../../../lib/ml-utils";
 import ListItem from "../NavListItem";
-import classNames from "classnames";
-import styles from "./HorizontalMenu.module.scss";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import styles from "./HorizontalMenu.module.scss";
 
-const HorizontalMenu = ({ items: sections, className }) => {
+const HorizontalMenu = ({ items: sections }) => {
 	return (
-		<NavigationMenu.Root
-			className={classNames(styles.NavigationMenuRoot, className)}
-		>
+		<NavigationMenu.Root className={styles.NavigationMenuRoot}>
 			<NavigationMenu.List className={styles.NavigationMenuList}>
 				{sections.map((section) => (
 					<NavigationMenu.Item key={section.id}>

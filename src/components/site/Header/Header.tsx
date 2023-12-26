@@ -9,8 +9,11 @@ import { Button } from "@components/ui";
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import classNames from "classnames";
 import styles from "./Header.module.scss";
+import { TextDirection } from "locale/locale-context";
+import { useTheme } from "next-themes";
 
 const Header = ({ isMobile }) => {
+	const { theme } = useTheme();
 	const [open, setOpen] = useState(false);
 	const {
 		siteTitle,
@@ -40,17 +43,24 @@ const Header = ({ isMobile }) => {
 		() => (
 			<ThemeSelector
 				className={classNames(styles.item, styles.themeSelector)}
-				label={translate("button.toggleTheme")}
+				label={`${translate(
+					"site.components.themeSelector.switchTo"
+				)} ${translate(
+					`site.components.themeSelector.theme.${
+						theme === "dark" ? "light" : "dark"
+					}`
+				)}`}
 				icon="sun"
 			/>
 		),
-		[translate]
+		[translate, theme]
 	);
 
 	const localeOptions = locales.map((id) => ({
 		id,
 		symbol: getLocaleSymbol(id),
 		title: translate(`${getLocaleLabel(id)}_LABEL`),
+		textDirection: "ltr" as TextDirection,
 	}));
 
 	const localeSelectorComponent = useMemo(

@@ -1,8 +1,5 @@
+@import "../LocaleSelector/MenuButtonMixin.scss";
+
 .root {
-}
-
-.root[data-state="off"] {
-}
-
-.root[data-state="on"] {
+	@include ToggleButton;
 }

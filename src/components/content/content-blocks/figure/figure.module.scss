@@ -1,0 +1,23 @@
+@import "./styles";
+@import "./FigureMixins";
+
+.root {
+	--border-size: 1px;
+	--border-color: blue;
+	--border-style: solid;
+
+	max-width: 100%;
+	text-align: center;
+	margin: 2em 0;
+
+	img {
+		max-width: 100%;
+	}
+
+	padding: 2em;
+
+	border: compRef(figure, border-size) compRef(figure, border-style)
+		compRef(figure, border-color);
+
+	@include no-border;
+}

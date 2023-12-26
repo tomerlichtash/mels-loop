@@ -1,4 +1,4 @@
-@import "styles/lib/refs";
+@import "styles";
 
 $index: (
 	typography: (
@@ -7,7 +7,7 @@ $index: (
 			font2: "Assistant, sans-serif",
 		),
 		font-size: (
-			base: 12px,
+			base: 14px,
 			xs: 0.7em,
 			sm: 0.9em,
 			md: 1em,

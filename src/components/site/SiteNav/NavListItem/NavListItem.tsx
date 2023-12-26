@@ -38,10 +38,10 @@ const getIcon = (icon: string) => {
 	}
 };
 
-const NavListItem = ({ locale, icon, className, ...item }: any) => {
+const NavListItem = ({ locale, icon, className, ...item }) => {
 	const { title, author, description } = locale;
 	return (
-		<li className={classNames(styles.root, className)}>
+		<li className={classNames(styles.root)}>
 			<Link className={styles.link} href={item.url} target={item.target}>
 				{title && <span className={styles.listItemTitle}>{title}</span>}
 				{description && (

@@ -1,0 +1,11 @@
+@import "styles";
+
+$index: (
+	layout: (
+		background-color: ref(color-container-light),
+		selection: (
+			background-color: ref(color-secondary-dark),
+			text-color: ref(color-secondary-contrast),
+		),
+	),
+);

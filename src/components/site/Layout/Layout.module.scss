@@ -1,6 +1,16 @@
-$layout-min-height: 100vh;
+@import "styles";
 
 .root {
-	height: $layout-min-height;
-	background-color: var(--ml-layout-background-color);
+	--min-height: 100vh;
+	--background-color: #fff;
+	--selection-background-color: #000;
+	--selection-text-color: #fff;
+
+	height: compRef(site-layout, min-height);
+	background-color: compRef(site-layout, background-color);
+
+	::selection {
+		color: compRef(site-layout, selection-text-color);
+		background-color: compRef(site-layout, selection-background-color);
+	}
 }

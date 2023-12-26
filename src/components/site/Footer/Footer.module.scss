@@ -1,22 +1,27 @@
+@import "styles";
+
 $__namespace__: footer;
 
 .root {
-	--footer-strip-color-start: red;
-	--footer-strip-color-mid: green;
-	--footer-strip-color-end: blue;
+	--background-color: #f0f0f0;
 
-	--footer-strip-background-color: linear-gradient(
+	--strip-color-start: red;
+	--strip-color-mid: green;
+	--strip-color-end: blue;
+	--strip-background-color: linear-gradient(
 		90deg,
-		var(--footer-strip-color-start) 0%,
-		var(--footer-strip-color-mid) 50%,
-		var(--footer-strip-color-end) 100%
+		var(--strip-color-start) 0%,
+		var(--strip-color-mid) 50%,
+		var(--strip-color-end) 100%
 	);
 
-	&.footer {
-		background: var(--footer-background-color);
-		margin-top: 2rem;
-	}
+	background-color: compRef(site-footer, background-color);
 
+	// &.footer {
+	// 	margin-top: 2rem;
+	// }
+
+	// todo: get from mixin
 	.pageContainer {
 		margin: 0 auto;
 		padding: 2rem;
@@ -32,14 +37,11 @@ $__namespace__: footer;
 	}
 
 	.strip {
-		height: 0.3vh;
-
-		background: var(
-			--ml-footer-strip-background-color,
-			var(--footer-strip-background-color)
-		);
+		height: 0.3em;
+		background: compRef(site-footer, strip-background-color);
 	}
 
-	// .link {
-	// }
+	.link {
+		background-color: red;
+	}
 }

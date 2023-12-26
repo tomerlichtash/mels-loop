@@ -1,0 +1,14 @@
+@import "./CodeMixin.scss";
+
+.root {
+	.pre {
+		border-radius: 4px;
+		background: #f0f0f0;
+		text-align: left;
+		padding: 2em;
+
+		.code {
+			@include Code(code-block);
+		}
+	}
+}

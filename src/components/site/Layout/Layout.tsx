@@ -34,7 +34,7 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 
 const isDebug = process.env.NEXT_PUBLIC_ML_DEBUG;
 
-function Layout({
+export default function Layout({
 	title,
 	children,
 	className,
@@ -67,7 +67,6 @@ function Layout({
 				.join(" - "),
 		[siteTitle, siteSubtitle, title, pageName]
 	);
-
 	return (
 		<>
 			<Head>
@@ -111,4 +110,4 @@ function Layout({
 	);
 }
 
-export default Layout;
+// export default Layout;

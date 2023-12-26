@@ -1,36 +1,42 @@
-@import "styles/lib/refs";
+@import "styles";
 
 $index: (
 	color: (
 		surface: (
-			main: ref(color-a2-main),
-			light: ref(color-a1-light),
-			dark: ref(color-a3-dark),
-			contrast: ref(color-a7-contrast),
+			main: globalRef(color-a2-main),
+			light: globalRef(color-a1-light),
+			dark: globalRef(color-a3-dark),
+			contrast: globalRef(color-a7-contrast),
+		),
+		container: (
+			main: globalRef(color-c4-main),
+			light: globalRef(color-a5-dark),
+			dark: globalRef(color-a7-dark),
+			contrast: globalRef(color-b7-main),
 		),
 		primary: (
-			main: ref(color-c1-main),
-			light: ref(color-c2-light),
-			dark: ref(color-c3-dark),
-			contrast: ref(color-c3-contrast),
+			main: globalRef(color-c1-main),
+			light: globalRef(color-c2-light),
+			dark: globalRef(color-c3-dark),
+			contrast: globalRef(color-c3-contrast),
 		),
 		secondary: (
-			main: ref(color-b3-main),
-			light: ref(color-b4-light),
-			dark: ref(color-b2-dark),
-			contrast: ref(color-b2-contrast),
+			main: globalRef(color-b3-main),
+			light: globalRef(color-b4-light),
+			dark: globalRef(color-b2-dark),
+			contrast: globalRef(color-b2-contrast),
 		),
 		error: (
-			main: ref(color-y1-main),
-			light: ref(color-y1-light),
-			dark: ref(color-y1-dark),
-			contrast: ref(color-y1-contrast),
+			main: globalRef(color-y1-main),
+			light: globalRef(color-y1-light),
+			dark: globalRef(color-y1-dark),
+			contrast: globalRef(color-y1-contrast),
 		),
 		success: (
-			main: ref(color-z1-main),
-			light: ref(color-z1-light),
-			dark: ref(color-z1-dark),
-			contrast: ref(color-z1-contrast),
+			main: globalRef(color-z1-main),
+			light: globalRef(color-z1-light),
+			dark: globalRef(color-z1-dark),
+			contrast: globalRef(color-z1-contrast),
 		),
 	),
 	gradient: (
@@ -38,9 +44,9 @@ $index: (
 			main:
 				linear-gradient(
 					90deg,
-					ref(color-b1-main) 0%,
-					ref(color-b4-main) 50%,
-					ref(color-b5-main) 100%
+					globalRef(color-b1-main) 0%,
+					globalRef(color-b4-main) 50%,
+					globalRef(color-b5-main) 100%
 				),
 		),
 	),

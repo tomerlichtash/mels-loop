@@ -2,14 +2,11 @@ import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
 import styles from "./code-block.module.scss";
 
-/**
- * Displays a code block (preformatted code)
- * @returns
- */
 export const CodeBlock = ({
 	componentData,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
+
 	return (
 		<div className={styles.root}>
 			<pre className={styles.pre}>
@@ -20,5 +17,3 @@ export const CodeBlock = ({
 		</div>
 	);
 };
-
-export default CodeBlock;

@@ -1,10 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { CONTENT_TYPES } from "../../consts";
 import { mlApiUtils } from "../../lib/api-utils";
-import {
-	LoadContentModes,
-	LoadFolderModes,
-} from "../../interfaces/parser";
+import { LoadContentModes, LoadFolderModes } from "../../interfaces/parser";
 import {
 	getContentRootDir,
 	loadContentFolder,

@@ -1,9 +1,8 @@
 import React from "react";
-import classNames from "classnames";
 import styles from "./Card.module.scss";
 
-const Card = ({ children, className }): JSX.Element => {
-	return <div className={classNames(styles.root, className)}>{children}</div>;
+const Card = ({ children }): JSX.Element => {
+	return <div className={styles.root}>{children}</div>;
 };
 
 export default Card;

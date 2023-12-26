@@ -1,0 +1,6 @@
+@import "../paragraph/ParagraphMixin.scss";
+
+.root {
+	@include ParagraphMixin;
+	margin: 0;
+}

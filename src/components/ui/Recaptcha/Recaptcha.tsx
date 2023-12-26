@@ -47,7 +47,7 @@ const Recaptcha = ({
 	siteKey,
 	setCaptchaError,
 }: ICaptchaProps) => {
-	if (!siteKey) {
+	if (setCaptchaError && !siteKey) {
 		setCaptchaError("Missing captcha key");
 		return;
 	}

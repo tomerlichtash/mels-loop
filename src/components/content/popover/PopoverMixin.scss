@@ -4,10 +4,10 @@
 // See PopoverTrigger.module.scss - an agnostic CSS var map which defines these CSS vars
 // in different states, shared by all triggers.
 
-@import "styles/lib/refs";
+@import "styles";
 @import "PopoverTrigger.module";
 
-@mixin PopoverTrigger($comp: "popover-trigger") {
+@mixin PopoverTrigger($comp: "popover-trigger", $state: "") {
 	cursor: pointer;
 
 	background: compRef($comp, background-color);
@@ -15,8 +15,8 @@
 	border-radius: compRef($comp, radius);
 
 	&:hover {
-		color: compRef($comp, text-color, state(hovered));
-		background: compRef($comp, background-color, state(hovered));
+		background: compRef($comp, background-color, state($state));
+		color: compRef($comp, text-color, state($state));
 	}
 
 	&:active {

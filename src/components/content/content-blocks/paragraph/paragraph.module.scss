@@ -1,7 +1,5 @@
-.root {
-	--content-paragraph-margin-bottom: 1em;
-	--content-paragraph-line-height: 1.4em;
+@import "./ParagraphMixin";
 
-	margin-bottom: var(--content-paragraph-margin-bottom);
-	line-height: var(--content-paragraph-line-height);
+.root {
+	@include ParagraphMixin;
 }

@@ -1,0 +1,11 @@
+@import "styles";
+
+$index: (
+	header: (
+		background-color: ref(color-container-main),
+	),
+	title: (
+		logo-url: ref(assets-logo-url),
+		text-color: ref(color-primary-dark),
+	),
+);

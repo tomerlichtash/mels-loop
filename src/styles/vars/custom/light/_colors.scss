@@ -1,4 +1,4 @@
-@import "styles/lib/refs";
+@import "styles";
 
 $index: (
 	color: (
@@ -7,6 +7,12 @@ $index: (
 			light: globalRef(color-a1-light),
 			dark: globalRef(color-a3-dark),
 			contrast: globalRef(color-a7-contrast),
+		),
+		container: (
+			main: globalRef(color-a3-main),
+			light: globalRef(color-a2-main),
+			// dark: globalRef(color-a3-dark),
+			contrast: globalRef(color-a7-main),
 		),
 		primary: (
 			main: globalRef(color-c1-main),

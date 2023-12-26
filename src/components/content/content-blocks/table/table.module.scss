@@ -1,0 +1,27 @@
+@import "styles";
+
+.root {
+	--border-color: #c0c0c0;
+
+	margin: 0 auto;
+	border-spacing: 0;
+
+	// &[data-type="bit-layout"] {
+	// 	// border: 1px solid blue;
+	// 	// padding: 1em;
+	// }
+
+	border-top: 1px solid compRef(content-table, border-color);
+
+	td,
+	th {
+		padding: 0.5rem 1rem;
+
+		border-right: 1px solid compRef(content-table, border-color);
+		border-bottom: 1px solid compRef(content-table, border-color);
+
+		&:first-child {
+			border-left: 1px solid compRef(content-table, border-color);
+		}
+	}
+}

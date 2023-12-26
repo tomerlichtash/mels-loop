@@ -75,7 +75,9 @@
 
 	"PRELOADER_LABEL": "Loading...",
 
-	"button.toggleTheme": "Toggle Theme",
+	"site.components.themeSelector.switchTo": "Switch to",
+	"site.components.themeSelector.theme.light": "Light Theme",
+	"site.components.themeSelector.theme.dark": "Dark Theme",
 
 	"STICKY_DATE": "May 21st 2023",
 	"STICKY_TITLE": "The Story of Mel – 40th Anniversary",

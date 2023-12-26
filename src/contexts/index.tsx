@@ -6,7 +6,11 @@ export const AppContext = ({ children, router, documentPath }) => {
 	return (
 		<LocaleContextProvider router={router}>
 			<PageContextProvider documentPath={documentPath}>
-				<ThemeProvider>
+				<ThemeProvider
+					defaultTheme="light"
+					storageKey="ml-theme"
+					attribute="data-ml-theme"
+				>
 					<>{children}</>
 				</ThemeProvider>
 			</PageContextProvider>

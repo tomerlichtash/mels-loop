@@ -1,3 +1,5 @@
+@import "styles";
+
 .root {
 	--header-logo-content-url: var(--ml-logo-url);
 	--header-logo-margin: 0.5em;
@@ -7,8 +9,8 @@
 	--header-title-font-weight: 500;
 	--header-title-text-transform: uppercase;
 	--header-title-separator-content: "|";
-	--header-title-separator-weight: 100;
 	--header-title-separator-margin: 0.5em;
+	--header-title-separator-weight: 100;
 	--header-title-separator-opacity: 0.3;
 	--header-subtitle-font-weight: 300;
 	--header-subtitle-text-transform: lowercase;
@@ -33,7 +35,7 @@
 }
 
 .logo {
-	content: var(--site-header-logo-content-url, var(--header-logo-content-url));
+	content: compRef(site-title, logo-url);
 	width: var(--header-logo-size);
 	height: var(--header-logo-size);
 }
@@ -45,6 +47,10 @@
 	text-transform: var(--header-title-text-transform);
 	letter-spacing: var(--header-title-letter-spacing);
 	text-decoration: none;
+	color: compRef(site-title, text-color);
+	// &:hover {
+	// 	text-decoration: underline;
+	// }
 }
 
 .titleText {

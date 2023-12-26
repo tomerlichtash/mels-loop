@@ -1,0 +1,8 @@
+@use "components/content/content-blocks/link/link.module" as Link;
+@import "styles";
+
+$index: (
+	paragraph: (
+		text-color: ref(color-container-contrast),
+	),
+);

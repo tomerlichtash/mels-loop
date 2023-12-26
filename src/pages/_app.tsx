@@ -9,8 +9,6 @@ import { IPageProps } from "../interfaces/models";
 import "normalize.css/normalize.css";
 import "../styles/app.scss";
 
-export { reportWebVitals } from "next-axiom";
-
 const App = ({ Component, pageProps }: AppProps<IPageProps>) => {
 	const router = useRouter();
 	const fontStyles = css`

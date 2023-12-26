@@ -6,6 +6,7 @@ import {
 } from "../../../../interfaces/models";
 import { mlUtils } from "../../../../lib/ml-utils";
 import { useComponentAttributes } from "../../useComponentAttributes";
+import styles from "./figure.module.scss";
 
 export const Figure = ({
 	componentData,
@@ -16,7 +17,7 @@ export const Figure = ({
 		? node.children
 		: [];
 	return (
-		<figure className="figure" key={node.key} {...attributes}>
+		<figure className={styles.root} key={node.key} {...attributes}>
 			{node.elementId && <a id={node.elementId}></a>}
 			<div className="figure-content" key={mlUtils.uniqueId()}>
 				{elements.map((node) => {
@@ -26,5 +27,3 @@ export const Figure = ({
 		</figure>
 	);
 };
-
-export default Figure;

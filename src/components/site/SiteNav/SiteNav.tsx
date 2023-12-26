@@ -23,7 +23,7 @@ const SiteNav = ({ variant = "horizontal", className }: SiteNavProps) => {
 	return (
 		<nav className={styles.root}>
 			{variant === "horizontal" ? (
-				<HorizontalMenu className={className} items={items} />
+				<HorizontalMenu items={items} />
 			) : (
 				<VerticalMenu className={className} items={items} />
 			)}

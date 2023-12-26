@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 // import { useFormik } from "formik";
 import * as yup from "yup";
-import { useFormik, Formik, Form as FormikForm, Field } from "formik";
+import { useFormik, Formik, Field } from "formik";
 
 import { LabelRoot } from "@components/primitives/Label";
 import {
@@ -20,11 +20,11 @@ import {
 	PersonIcon,
 	SunIcon,
 } from "@radix-ui/react-icons";
-import { Button, Card, Input, TextArea } from "@components/ui";
+import { Button, Input, TextArea } from "@components/ui";
 import classNames from "classnames";
 import styles from "./ContactForm.module.scss";
 
-const ContactForm = ({ title, description, recaptchaSiteKey, className }) => {
+const ContactForm = ({ title, description, recaptchaSiteKey }) => {
 	const { locale, translate } = useContext(LocaleProvider);
 
 	const formik = useFormik({
@@ -79,7 +79,7 @@ const ContactForm = ({ title, description, recaptchaSiteKey, className }) => {
 					message: "",
 				}}
 				validationSchema={SignupSchema}
-				onSubmit={(values) => {
+				onSubmit={() => {
 					// same shape as initial values
 				}}
 			>
@@ -87,7 +87,7 @@ const ContactForm = ({ title, description, recaptchaSiteKey, className }) => {
 				{({ errors, touched }) => {
 					console.log({ errors, touched });
 					return (
-						<Card className={classNames(styles.root, className)}>
+						<div className={styles.root}>
 							<div className={styles.header}>
 								<div className={styles.title}>{title}</div>
 								<div className={styles.subtitle}>{description}</div>
@@ -226,17 +226,13 @@ const ContactForm = ({ title, description, recaptchaSiteKey, className }) => {
 									onExpired={() => console.log("expired")}
 								/>
 								<FormSubmit asChild>
-									<Button
-										type="submit"
-										className={styles.submit}
-										data-size="sm"
-									>
+									<Button className={styles.submit} data-size="sm">
 										<SunIcon />
 										{translate("CONTACT_FORM_LABEL_SEND")}
 									</Button>
 								</FormSubmit>
 							</Form>
-						</Card>
+						</div>
 					);
 				}}
 			</Formik>

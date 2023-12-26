@@ -1,9 +1,7 @@
 .root {
 	margin: 0 auto;
-	max-width: 1200px;
+	max-width: 50em;
 	min-height: 70vh; // todo: calc(100vh - footer height)
-	padding: 4em 2em 0;
-	// .card {
-	// 	background: #f0a;
-	// }
+	margin-top: 4em;
+	padding: 1em 2em 0;
 }

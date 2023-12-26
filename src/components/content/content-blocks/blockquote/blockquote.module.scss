@@ -1,0 +1,15 @@
+// @import "styles";
+@import "../paragraph/ParagraphMixin";
+
+.root {
+	margin: 1.5em 1em;
+
+	p {
+		@include ParagraphMixin;
+	}
+
+	cite {
+		font-weight: globalRef(typography-font-weight-thin);
+		font-style: normal;
+	}
+}

@@ -1,10 +1,11 @@
-import type { LocaleId } from "../../../locale/locale-context";
+import type { LocaleId, TextDirection } from "../../../locale/locale-context";
 import type { ComponentProps } from "../../../interfaces/models";
 
 export type LocaleOption = {
 	id: LocaleId;
 	symbol: string;
 	title: string;
+	textDirection: TextDirection;
 };
 
 export interface LocaleSelectorProps extends ComponentProps {

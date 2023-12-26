@@ -14,14 +14,10 @@ import {
 	Paragraph,
 	Figure,
 	BlockQuote,
-	CodeBlock,
+	Code,
 	Table,
 	CustomImage,
 } from "../content-blocks";
-
-// const ROOT_CLASS_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
-// 	MLNODE_TYPES.TR,
-// ]);
 
 export const ContentComponent = ({
 	componentData,
@@ -29,7 +25,6 @@ export const ContentComponent = ({
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { key, type } = node;
-	// const useClassname = !ROOT_CLASS_TYPES.has(type);
 	const contentClassName = `content-component-${type}`;
 
 	if (!key) {
@@ -37,15 +32,10 @@ export const ContentComponent = ({
 	}
 
 	switch (type) {
-		case MLNODE_TYPES.PARAGRAPH:
-			return <Paragraph key={key} componentData={componentData} />;
-		case MLNODE_TYPES.LINE:
-			return <Line key={key} componentData={componentData} />;
 		case MLNODE_TYPES.DEL:
 		case MLNODE_TYPES.INS:
 		case MLNODE_TYPES.STRONG:
 		case MLNODE_TYPES.EM:
-		case MLNODE_TYPES.CODE:
 		case MLNODE_TYPES.TR:
 		case MLNODE_TYPES.TD:
 		case MLNODE_TYPES.TH:
@@ -60,9 +50,22 @@ export const ContentComponent = ({
 					className={contentClassName}
 				/>
 			);
+		case MLNODE_TYPES.PARAGRAPH:
+			return <Paragraph key={key} componentData={componentData} />;
+		case MLNODE_TYPES.LINE:
+			return <Line key={key} componentData={componentData} />;
+		case MLNODE_TYPES.CODE:
+			return (
+				<Code
+					key={key}
+					inline={true}
+					componentData={componentData}
+					className={contentClassName}
+				/>
+			);
 		case MLNODE_TYPES.CODEBLOCK:
 			return (
-				<CodeBlock
+				<Code
 					key={key}
 					componentData={componentData}
 					className={contentClassName}
@@ -133,7 +136,6 @@ export const ContentComponent = ({
 					className={contentClassName}
 				/>
 			);
-
 		case MLNODE_TYPES.HR:
 			return <hr />;
 		default:

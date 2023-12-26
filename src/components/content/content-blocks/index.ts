@@ -4,10 +4,10 @@ import AnnotationLink from "./annotation-link";
 import Heading from "./heading";
 import ListItem from "./list-item";
 import Line from "./line";
-import BlockQuote from "./block-quote";
+import BlockQuote from "./blockquote";
 import Paragraph from "./paragraph";
 import Figure from "./figure";
-import CodeBlock from "./code-block";
+import Code from "./code";
 import CustomImage from "./custom-image";
 import Table from "./table";
 
@@ -19,7 +19,7 @@ export {
 	Paragraph,
 	Figure,
 	BlockQuote,
-	CodeBlock,
+	Code,
 	CustomImage,
 	TermLink,
 	AnnotationLink,

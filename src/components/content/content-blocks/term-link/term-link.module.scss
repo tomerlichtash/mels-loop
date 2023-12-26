@@ -1,5 +1,21 @@
+@import "styles";
 @import "../../popover/PopoverMixin";
 
 .root {
-	@include PopoverTrigger;
+	--offset-top: -0.3em;
+	--suffix-content: "#{\203B}";
+	--decoration-color: #000;
+
+	.popoverTrigger {
+		@include PopoverTrigger;
+	}
+
+	&:after {
+		position: relative;
+		cursor: pointer;
+		color: compRef(popover-trigger, decoration-color);
+		top: compRef(popover-trigger, offset-top);
+		content: compRef(popover-trigger, suffix-content);
+		user-select: none;
+	}
 }

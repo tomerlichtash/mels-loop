@@ -1,0 +1,14 @@
+@import "./CodeMixin.scss";
+@import "styles";
+
+.root {
+	--background-color: #f0f0f0;
+	--radius: 4px;
+	--padding: 0 0.25em;
+
+	background-color: compRef(code-inline, background-color);
+	border-radius: compRef(code-inline, radius);
+	padding: compRef(code-inline, padding);
+
+	@include Code(code-inline);
+}
