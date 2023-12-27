@@ -1,23 +1,29 @@
 import React from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { mlUtils } from "../../../../lib/ml-utils";
+import { CaretDownIcon } from "@radix-ui/react-icons";
 import ListItem from "../NavListItem";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { mlUtils } from "lib/ml-utils";
+import classNames from "classnames";
 import styles from "./HorizontalMenu.module.scss";
 
-const HorizontalMenu = ({ items: sections }) => {
+type HorizontalMenuProps = {
+	items: Record<any, any>[];
+	className?: string;
+};
+
+const HorizontalMenu = ({ items, className }: HorizontalMenuProps) => {
 	return (
-		<NavigationMenu.Root className={styles.NavigationMenuRoot}>
-			<NavigationMenu.List className={styles.NavigationMenuList}>
-				{sections.map((section) => (
-					<NavigationMenu.Item key={section.id}>
-						<NavigationMenu.Trigger className={styles.NavigationMenuTrigger}>
-							{section.locale.title}
-							<ChevronDownIcon className={styles.CaretDown} />
+		<NavigationMenu.Root className={classNames(styles.root, className)}>
+			<NavigationMenu.List className={styles.list}>
+				{items.map((item) => (
+					<NavigationMenu.Item key={item.id}>
+						<NavigationMenu.Trigger className={styles.trigger}>
+							{item.locale.title}
+							<CaretDownIcon className={styles.caretDown} />
 						</NavigationMenu.Trigger>
-						<NavigationMenu.Content className={styles.NavigationMenuContent}>
-							<ul data-list-grid-size="1" className={styles.List}>
-								{section.items.map((item) => (
+						<NavigationMenu.Content className={styles.content}>
+							<ul data-list-grid-size="1" className="list one">
+								{item.items.map((item) => (
 									<NavigationMenu.Link asChild key={mlUtils.uniqueId()}>
 										<ListItem
 											key={mlUtils.uniqueId()}
@@ -30,12 +36,12 @@ const HorizontalMenu = ({ items: sections }) => {
 						</NavigationMenu.Content>
 					</NavigationMenu.Item>
 				))}
-				<NavigationMenu.Indicator className={styles.NavigationMenuIndicator}>
+				<NavigationMenu.Indicator className={styles.indicator}>
 					<div className={styles.arrow}></div>
 				</NavigationMenu.Indicator>
 			</NavigationMenu.List>
-			<div className={styles.ViewportPosition}>
-				<NavigationMenu.Viewport className={styles.NavigationMenuViewport} />
+			<div className={styles.viewportPosition}>
+				<NavigationMenu.Viewport className={styles.viewport} />
 			</div>
 		</NavigationMenu.Root>
 	);

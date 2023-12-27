@@ -28,7 +28,11 @@ const ThemeSelector = ({ label }: ThemeSelectorProps): JSX.Element => {
 			defaultPressed={isDark}
 			title={label}
 		>
-			{isDark ? <MoonIcon color="#fff" /> : <SunIcon color="#000" />}
+			{isDark ? (
+				<MoonIcon className={styles.icon} />
+			) : (
+				<SunIcon className={styles.icon} />
+			)}
 		</ToggleRoot>
 	);
 };

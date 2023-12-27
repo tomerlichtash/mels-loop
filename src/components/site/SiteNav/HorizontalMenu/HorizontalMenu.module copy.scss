@@ -1,0 +1,71 @@
+/* styles.css */
+.NavigationMenuContent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	animation-duration: 250ms;
+	animation-timing-function: ease;
+}
+.NavigationMenuContent[data-motion="from-start"] {
+	animation-name: enterFromLeft;
+}
+.NavigationMenuContent[data-motion="from-end"] {
+	animation-name: enterFromRight;
+}
+.NavigationMenuContent[data-motion="to-start"] {
+	animation-name: exitToLeft;
+}
+.NavigationMenuContent[data-motion="to-end"] {
+	animation-name: exitToRight;
+}
+
+.NavigationMenuViewport {
+	position: relative;
+	width: var(--radix-navigation-menu-viewport-width);
+	height: var(--radix-navigation-menu-viewport-height);
+	transition: width, height, 250ms ease;
+}
+
+@keyframes enterFromRight {
+	from {
+		opacity: 0;
+		transform: translateX(200px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes enterFromLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-200px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes exitToRight {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(200px);
+	}
+}
+
+@keyframes exitToLeft {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(-200px);
+	}
+}

@@ -8,11 +8,16 @@ import Drawer from "react-modern-drawer";
 import { Button } from "@components/ui";
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import classNames from "classnames";
-import styles from "./Header.module.scss";
 import { TextDirection } from "locale/locale-context";
 import { useTheme } from "next-themes";
+import styles from "./SiteHeader.module.scss";
 
-const Header = ({ isMobile }) => {
+type SiteHeaderProps = {
+	isHome?: boolean;
+	isMobile?: boolean;
+};
+
+const SiteHeader = ({ isHome, isMobile }: SiteHeaderProps) => {
 	const { theme } = useTheme();
 	const [open, setOpen] = useState(false);
 	const {
@@ -79,13 +84,15 @@ const Header = ({ isMobile }) => {
 
 	const horizontalMenu = useMemo(
 		() => (
-			<div className={styles.section}>
+			<div className={classNames(styles.section, styles.horizontalMenu)}>
+				{/* <div className={styles.item}> */}
 				<SiteNav
 					variant="horizontal"
 					className={classNames(styles.item, styles.menu)}
 				/>
-				{localeSelectorComponent}
-				{themeSelectorComponent}
+				{/* </div> */}
+				<div className={styles.item}>{localeSelectorComponent}</div>
+				<div className={styles.item}>{themeSelectorComponent}</div>
 			</div>
 		),
 		[localeSelectorComponent, themeSelectorComponent]
@@ -110,7 +117,8 @@ const Header = ({ isMobile }) => {
 						title={siteTitle}
 						subtitle={siteSubtitle}
 						textDirection={textDirection}
-						className={styles.header}
+						isHome={isHome}
+						className={styles.siteTitle}
 					/>
 					{localeSelectorComponent}
 					{themeSelectorComponent}
@@ -128,6 +136,7 @@ const Header = ({ isMobile }) => {
 			textDirection,
 			localeSelectorComponent,
 			themeSelectorComponent,
+			isHome,
 		]
 	);
 
@@ -159,7 +168,8 @@ const Header = ({ isMobile }) => {
 					title={siteTitle}
 					subtitle={siteSubtitle}
 					textDirection={textDirection}
-					className={styles.header}
+					isHome={isHome}
+					className={styles.siteTitle}
 				/>
 				{nav}
 			</div>
@@ -167,4 +177,4 @@ const Header = ({ isMobile }) => {
 	);
 };
 
-export default Header;
+export default SiteHeader;

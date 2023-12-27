@@ -14,7 +14,7 @@ const VerticalMenu = ({ items, className }) => {
 	return items.map((section) => (
 		<div
 			key={mlUtils.uniqueId()}
-			className={classNames[(styles.root, className)]}
+			className={classNames(styles.root, className)}
 		>
 			{section.locale.title}
 			<ul data-list-grid-size="1" className={styles.List}>

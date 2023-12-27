@@ -9,11 +9,12 @@ const LocaleSelector = ({
 	value,
 	options,
 	onChange,
+	className,
 }: LocaleSelectorProps): JSX.Element => {
 	return (
 		<ToggleGroupRoot
 			defaultValue={value}
-			aria-label="View density"
+			aria-label="Switch Site Language"
 			className={styles.root}
 			onValueChange={(id: LocaleId) => onChange(id)}
 			dir="ltr"
@@ -27,9 +28,12 @@ const LocaleSelector = ({
 						value={id}
 						title={title}
 						aria-label={title}
-						data-selected={value === id ? "true" : "false"}
 					>
-						<span data-text-direction={textDirection} className={styles.button}>
+						<span
+							data-state={value === id ? "selected" : ""}
+							data-text-direction={textDirection}
+							className={styles.button}
+						>
 							{symbol}
 						</span>
 					</ToggleGroupItem>

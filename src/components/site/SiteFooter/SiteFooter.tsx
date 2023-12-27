@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { LocaleProvider } from "../../../locale/context/locale-context";
 import { Button, Link } from "@components/ui";
-import styles from "./Footer.module.scss";
+import styles from "./SiteFooter.module.scss";
 import { PUBLIC_PROJECT_GITHUB_ADDRESS } from "../../../consts";
 
-export const Footer = (): JSX.Element => {
+export const SiteFooter = (): JSX.Element => {
 	const { translate, siteTitle, siteSubtitle } = useContext(LocaleProvider);
 	const licenseYears = `${new Date().getFullYear()}`;
 	const fullLicense = `${translate("SITE_LICENSE_LABEL")}-${translate(
@@ -101,4 +101,4 @@ export const Footer = (): JSX.Element => {
 	);
 };
 
-export default Footer;
+export default SiteFooter;

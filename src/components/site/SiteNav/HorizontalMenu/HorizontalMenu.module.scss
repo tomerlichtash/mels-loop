@@ -1,337 +1,136 @@
-.NavigationMenuRoot {
-	--radix-navigation-menu-viewport-width: 500px;
+@import "styles";
+@import "./animations.module.scss";
+
+.root {
 	position: relative;
 	display: flex;
 	justify-content: center;
+	width: 500px;
 	z-index: 1;
-}
 
-.NavigationMenuList {
-	display: flex;
-	justify-content: center;
-	list-style: none;
-	padding: 0;
-}
-
-[data-text-direction="rtl"] {
-	.NavigationMenuList {
-		direction: rtl;
+	.list {
+		display: flex;
+		justify-content: center;
+		list-style: none;
+		padding: 0;
+		// margin: ;
 	}
-}
 
-.NavigationMenuTrigger,
-.NavigationMenuLink {
-	// padding: 8px 12px;
-	outline: none;
-	user-select: none;
-	// color: var(--violet-11);
-}
-// .NavigationMenuTrigger:focus,
-// .NavigationMenuLink:focus {
-// 	// box-shadow: 0 0 0 2px var(--violet-7);
-// }
-// .NavigationMenuTrigger:hover,
-// .NavigationMenuLink:hover {
-// 	// background-color: var(--violet-3);
-// }
+	.trigger {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		user-select: none;
+		// border: none;
 
-.NavigationMenuTrigger {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	// gap: 2px;
-}
+		&:hover {
+			background: blue;
+		}
 
-.NavigationMenuLink {
-	display: block;
-	// text-decoration: none;
-	// font-size: 15px;
-	// line-height: 1;
-}
-
-.NavigationMenuContent {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	animation-duration: 250ms;
-	animation-timing-function: ease;
-}
-.NavigationMenuRoot [data-motion="from-start"] {
-	animation-name: enterFromLeft;
-}
-.NavigationMenuRoot [data-motion="from-end"] {
-	animation-name: enterFromRight;
-}
-.NavigationMenuRoot [data-motion="to-start"] {
-	animation-name: exitToLeft;
-}
-.NavigationMenuRoot [data-motion="to-end"] {
-	animation-name: exitToRight;
-}
-
-.NavigationMenuContentFromStart {
-	animation-name: enterFromLeft;
-}
-.NavigationMenuContentFromEnd {
-	animation-name: enterFromRight;
-}
-.NavigationMenuContentToStart {
-	animation-name: exitToLeft;
-}
-.NavigationMenuContentToEnd {
-	animation-name: exitToRight;
-}
-
-@media only screen and (min-width: 600px) {
-	.NavigationMenuContent {
-		width: auto;
+		&[data-state="open"] {
+			background: blue;
+		}
 	}
-}
 
-.NavigationMenuIndicator {
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
-	height: 10px;
-	top: 100%;
-	overflow: hidden;
-	z-index: 1;
-	transition: width, transform 250ms ease;
-}
-.NavigationMenuIndicator[data-state="visible"] {
-	animation: fadeIn 200ms ease;
-}
-.NavigationMenuIndicator[data-state="hidden"] {
-	animation: fadeOut 200ms ease;
-}
+	.content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		animation-duration: 250ms;
+		animation-timing-function: ease;
 
-.NavigationMenuViewport {
-	position: relative;
-	transform-origin: top center;
-	// margin-top: 10px;
-	width: 100%;
-	background-color: white;
-	border-radius: 6px;
-	overflow: hidden;
-	box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-		hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-	height: var(--radix-navigation-menu-viewport-height);
-	transition: width, height, 300ms ease;
-}
-.NavigationMenuViewport[data-state="open"] {
-	animation: scaleIn 200ms ease;
-}
-.NavigationMenuViewport[data-state="closed"] {
-	animation: scaleOut 200ms ease;
-}
+		&[data-motion="from-start"] {
+			animation-name: enterFromLeft;
+		}
+		&[data-motion="from-end"] {
+			animation-name: enterFromRight;
+		}
+		&[data-motion="to-start"] {
+			animation-name: exitToLeft;
+		}
+		&[data-motion="to-end"] {
+			animation-name: exitToRight;
+		}
 
-.NavigationMenuViewportClosed {
-	animation: scaleOut 200ms ease;
-	border: 2px solid blueviolet;
-}
-.NavigationMenuViewportOpen {
-	animation: scaleIn 200ms ease;
-	border: 2px solid red;
-}
-
-@media only screen and (min-width: 600px) {
-	.NavigationMenuViewport {
-		width: 400px; //var(--radix-navigation-menu-viewport-width);
+		@media only screen and (min-width: 600px) {
+			// .content {
+			width: auto;
+			// }
+		}
 	}
-}
 
-.List {
-	display: grid;
-	padding: 22px;
-	margin: 0;
-	column-gap: 10px;
-	list-style: none;
-}
-@media only screen and (min-width: 600px) {
-	.List[data-list-grid-size="1"] {
-		width: 500px;
-		grid-template-columns: 0.75fr 1fr;
+	.indicator {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		height: 10px;
+		top: 45px;
+		overflow: hidden;
+		z-index: 2;
+		transition: width, transform 250ms ease;
+
+		&[data-state="visible"] {
+			animation: fadeIn 200ms ease;
+		}
+		&[data-state="hidden"] {
+			animation: fadeOut 200ms ease;
+		}
 	}
-	.List[data-list-grid-size="2"] {
-		width: 600px;
-		grid-auto-flow: column;
-		grid-template-rows: repeat(3, 1fr);
+
+	.viewport {
+		position: relative;
+		transform-origin: top center;
+		margin-top: 5px;
+		width: 100%;
+		background-color: white;
+		border-radius: 6px;
+		overflow: hidden;
+		box-shadow: globalRef(shadow-md);
+		height: var(--radix-navigation-menu-viewport-height);
+		transition: width, height, 300ms ease;
+
+		&[data-state="open"] {
+			animation: scaleIn 200ms ease;
+		}
+		&[data-state="closed"] {
+			animation: scaleOut 200ms ease;
+		}
+
+		@media only screen and (min-width: 600px) {
+			// .viewport {
+			width: 500px; //var(--radix-navigation-menu-viewport-width);
+			// }
+		}
 	}
-}
 
-.ListItemLink {
-	display: block;
-	outline: none;
-	text-decoration: none;
-	user-select: none;
-	padding: 12px;
-	border-radius: 6px;
-	font-size: 15px;
-	line-height: 1;
-}
-.ListItemLink:focus {
-	box-shadow: 0 0 0 2px var(--violet-7);
-}
-.ListItemLink:hover {
-	background-color: var(--mauve-3);
-}
-
-.ListItemHeading {
-	font-weight: 500;
-	line-height: 1.2;
-	// margin-bottom: 5px;
-	color: var(--violet-12);
-}
-
-.ListItemText {
-	color: var(--mauve-11);
-	line-height: 1.4;
-	font-weight: initial;
-}
-
-.Callout {
-	display: flex;
-	justify-content: flex-end;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(135deg, var(--purple-9) 0%, var(--indigo-9) 100%);
-	border-radius: 6px;
-	padding: 25px;
-	text-decoration: none;
-	outline: none;
-	user-select: none;
-}
-.Callout:focus {
-	box-shadow: 0 0 0 2px var(--violet-7);
-}
-
-.CalloutHeading {
-	color: white;
-	font-size: 18px;
-	font-weight: 500;
-	line-height: 1.2;
-	margin-top: 16px;
-	margin-bottom: 7px;
-}
-
-.CalloutText {
-	color: var(--mauve-4);
-	font-size: 14px;
-	line-height: 1.3;
-}
-
-.ViewportPosition {
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	top: 100%;
-	left: 0;
-	perspective: 2000px;
-}
-
-.CaretDown {
-	position: relative;
-	color: var(--violet-10);
-	top: 1px;
-	transition: transform 250ms ease;
-}
-[data-state="open"] > .CaretDown {
-	transform: rotate(-180deg);
-}
-
-.Arrow {
-	position: relative;
-	top: 70%;
-	background-color: white;
-	width: 10px;
-	height: 10px;
-	transform: rotate(45deg);
-	border-top-left-radius: 2px;
-}
-
-@keyframes enterFromRight {
-	from {
-		opacity: 0;
-		transform: translateX(200px);
+	.viewportPosition {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		top: 100%;
+		left: 0;
+		perspective: 2000px;
 	}
-	to {
-		opacity: 1;
-		transform: translateX(0);
-	}
-}
 
-@keyframes enterFromLeft {
-	from {
-		opacity: 0;
-		transform: translateX(-200px);
+	.caretDown {
+		position: relative;
+		color: var(--violet-10);
+		top: 1px;
+		transition: transform 250ms ease;
 	}
-	to {
-		opacity: 1;
-		transform: translateX(0);
+	[data-state="open"] > .caretDown {
+		transform: rotate(-180deg);
 	}
-}
 
-@keyframes exitToRight {
-	from {
-		opacity: 1;
-		transform: translateX(0);
-	}
-	to {
-		opacity: 0;
-		transform: translateX(200px);
-	}
-}
-
-@keyframes exitToLeft {
-	from {
-		opacity: 1;
-		transform: translateX(0);
-	}
-	to {
-		opacity: 0;
-		transform: translateX(-200px);
-	}
-}
-
-@keyframes scaleIn {
-	from {
-		opacity: 0;
-		transform: rotateX(-30deg) scale(0.9);
-	}
-	to {
-		opacity: 1;
-		transform: rotateX(0deg) scale(1);
-	}
-}
-
-@keyframes scaleOut {
-	from {
-		opacity: 1;
-		transform: rotateX(0deg) scale(1);
-	}
-	to {
-		opacity: 0;
-		transform: rotateX(-10deg) scale(0.95);
-	}
-}
-
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes fadeOut {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
+	.arrow {
+		position: relative;
+		top: 70%;
+		background-color: white;
+		width: 10px;
+		height: 10px;
+		transform: rotate(45deg);
+		border-top-left-radius: 2px;
 	}
 }

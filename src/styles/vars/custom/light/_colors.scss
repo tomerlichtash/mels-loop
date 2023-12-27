@@ -3,15 +3,15 @@
 $index: (
 	color: (
 		surface: (
-			main: globalRef(color-a2-main),
-			light: globalRef(color-a1-light),
-			dark: globalRef(color-a3-dark),
-			contrast: globalRef(color-a7-contrast),
-		),
-		container: (
 			main: globalRef(color-a3-main),
 			light: globalRef(color-a2-main),
-			// dark: globalRef(color-a3-dark),
+			dark: globalRef(color-a5-main),
+			contrast: globalRef(color-a9-main),
+		),
+		container: (
+			main: globalRef(color-a4-main),
+			// light: globalRef(color-a2-main),
+			dark: globalRef(color-a5-dark),
 			contrast: globalRef(color-a7-main),
 		),
 		primary: (

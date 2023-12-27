@@ -1,0 +1,38 @@
+@import "styles";
+
+@mixin ToggleButton {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+
+	width: compRef(site-mixins-toggle-button, size);
+	height: compRef(site-mixins-toggle-button, size);
+	border-radius: compRef(site-mixins-toggle-button, radius);
+	color: compRef(site-mixins-toggle-button, text-color);
+	background-color: compRef(site-mixins-toggle-button, background-color);
+	font-weight: compRef(site-mixins-toggle-button, font-weight);
+
+	&:not([data-state="selected"]):hover {
+		cursor: pointer;
+		color: compRef(site-mixins-toggle-button, text-color, __hover);
+		background-color: compRef(
+			site-mixins-toggle-button,
+			background-color,
+			__hover
+		);
+	}
+
+	&[data-state="selected"] {
+		#{varName(site-mixins-toggle-button-background-color)}: compRef(
+			site-mixins-toggle-button,
+			background-color,
+			__selected
+		);
+		#{varName(site-mixins-toggle-button-text-color)}: compRef(
+			site-mixins-toggle-button,
+			text-color,
+			__selected
+		);
+	}
+}

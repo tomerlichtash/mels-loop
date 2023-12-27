@@ -1,0 +1,10 @@
+@import "styles";
+
+$index: (
+	locale-selector: (
+		button: (
+			background-color: ref(color-surface-dark),
+			text-color: ref(color-primary-dark),
+		),
+	),
+);

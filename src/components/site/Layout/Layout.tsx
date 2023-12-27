@@ -8,8 +8,8 @@ import { useRouter } from "next/router";
 import { useWindowSize } from "./useWindowSize";
 import { LocaleProvider } from "../../../locale/context/locale-context";
 import Head from "next/head";
-import Header from "../Header";
-import Footer from "../Footer";
+import SiteHeader from "../SiteHeader";
+import SiteFooter from "../SiteFooter";
 import Page from "../Page";
 import Analytics from "./analytics";
 import { FavIconAnimator, IFavIconProps } from "../../../lib/favicon-animator";
@@ -100,9 +100,9 @@ export default function Layout({
 				textDirection={textDirection}
 			>
 				<div data-text-direction={textDirection}>
-					<Header isMobile={isMobile} />
+					<SiteHeader isHome={router.pathname === "/"} isMobile={isMobile} />
 					<Page nodes={children} />
-					<Footer />
+					<SiteFooter />
 				</div>
 			</Scrollbar>
 			{!isDebug && <Analytics />}
