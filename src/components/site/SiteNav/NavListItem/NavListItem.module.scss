@@ -1,16 +1,24 @@
 .root {
-	// border: 2px solid purple;
-}
-.link {
-	// border: 2px solid green;
-	display: block;
-}
-// .listItemTitle {
-// }
-// .listItemText {
-// }
-// .listItemAuthor {
-// }
-.listItemIcon {
-	border: var(--listItemBorderColor);
+	.content {
+		display: inline-flex;
+		justify-content: flex-start;
+		gap: 0.5em;
+
+		// .icon {
+		// }
+
+		.title {
+			display: block;
+			text-transform: uppercase;
+			// font-size: 1.15em;
+			// line-height: 1.6em;
+			// font-weight: 900;
+		}
+
+		.author,
+		.description {
+			// font-size: 1.15em;
+			line-height: 2em;
+		}
+	}
 }

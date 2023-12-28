@@ -15,7 +15,7 @@ export const MenuItems = [
 		id: "mel-kaye-bio",
 		type: "article",
 		url: "/docs/the-story-of-mel/pages/mel-kaye-cv",
-		icon: "file-text",
+		icon: "article",
 		locale: {
 			title: "MENU_ITEM_LABEL_ID_MEL_KAYE_BIO",
 			author: "AUTHOR_TOMER_LICHTASH",
@@ -25,7 +25,7 @@ export const MenuItems = [
 		id: "mels-hack-the-missing-bits",
 		type: "article",
 		url: "/docs/the-story-of-mel/pages/mels-hack-the-missing-bits",
-		icon: "file-text",
+		icon: "article",
 		locale: {
 			title: "MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS",
 			author: "AUTHOR_DAVID_FRENKIEL",

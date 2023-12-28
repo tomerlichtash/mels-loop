@@ -1,5 +1,6 @@
 @import "styles";
 @import "./animations.module.scss";
+@import "../../MenuButtonMixin.scss";
 
 .root {
 	position: relative;
@@ -12,23 +13,45 @@
 		display: flex;
 		justify-content: center;
 		list-style: none;
+		// padding: 0;
+		// margin: 0;
+	}
+
+	.items {
+		width: 100%;
+		margin: 0;
 		padding: 0;
-		// margin: ;
+		// padding: 2em;
 	}
 
 	.trigger {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		user-select: none;
-		// border: none;
+
+		@include NavButton;
 
 		&:hover {
-			background: blue;
+			background: compRef(
+				site-horizontal-menu,
+				trigger-background-color,
+				__hover
+			);
 		}
 
 		&[data-state="open"] {
-			background: blue;
+			background: compRef(
+				site-horizontal-menu,
+				trigger-background-color,
+				__open
+			);
+		}
+
+		&[data-state="open"],
+		&:hover {
+			.caretDown {
+				color: compRef(site-horizontal-menu, caret-color, __hover);
+			}
 		}
 	}
 
@@ -39,6 +62,8 @@
 		width: 100%;
 		animation-duration: 250ms;
 		animation-timing-function: ease;
+		box-sizing: border-box;
+		padding: 1em;
 
 		&[data-motion="from-start"] {
 			animation-name: enterFromLeft;
@@ -53,11 +78,11 @@
 			animation-name: exitToRight;
 		}
 
-		@media only screen and (min-width: 600px) {
-			// .content {
-			width: auto;
-			// }
-		}
+		// @media only screen and (min-width: 600px) {
+		// 	.content {
+		// 	width: auto;
+		// 	}
+		// }
 	}
 
 	.indicator {
@@ -65,7 +90,7 @@
 		align-items: flex-end;
 		justify-content: center;
 		height: 10px;
-		top: 45px;
+		top: 50px;
 		overflow: hidden;
 		z-index: 2;
 		transition: width, transform 250ms ease;
@@ -81,7 +106,7 @@
 	.viewport {
 		position: relative;
 		transform-origin: top center;
-		margin-top: 5px;
+		// margin-top: 0;
 		width: 100%;
 		background-color: white;
 		border-radius: 6px;
@@ -115,9 +140,7 @@
 	}
 
 	.caretDown {
-		position: relative;
-		color: var(--violet-10);
-		top: 1px;
+		color: compRef(site-horizontal-menu, caret-color);
 		transition: transform 250ms ease;
 	}
 	[data-state="open"] > .caretDown {
@@ -128,9 +151,29 @@
 		position: relative;
 		top: 70%;
 		background-color: white;
-		width: 10px;
-		height: 10px;
+		width: 12px;
+		height: 12px;
 		transform: rotate(45deg);
 		border-top-left-radius: 2px;
+	}
+
+	.listItem {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+		overflow: hidden;
+
+		.entry {
+			display: block;
+			text-decoration: none;
+			padding: 1em;
+			cursor: pointer;
+			border-radius: 6px;
+
+			&:hover {
+				background: #f0f0f0;
+			}
+		}
 	}
 }

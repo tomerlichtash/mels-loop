@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import Link from "next/link";
 import styles from "./NavListItem.module.scss";
 
@@ -20,6 +19,7 @@ import {
 	GitHubLogoIcon,
 	Pencil1Icon,
 } from "@radix-ui/react-icons";
+import classNames from "classnames";
 
 const getIcon = (icon: string) => {
 	switch (icon) {
@@ -41,16 +41,23 @@ const getIcon = (icon: string) => {
 const NavListItem = ({ locale, icon, className, ...item }) => {
 	const { title, author, description } = locale;
 	return (
-		<li className={classNames(styles.root)}>
-			<Link className={styles.link} href={item.url} target={item.target}>
-				{title && <span className={styles.listItemTitle}>{title}</span>}
-				{description && (
-					<span className={styles.listItemText}>{description}</span>
-				)}
-				{author && <span className={styles.listItemAuthor}>{author}</span>}
-				{icon && getIcon(icon as string)}
-			</Link>
-		</li>
+		<Link
+			className={classNames(styles.root, className)}
+			href={item.url}
+			target={item.target}
+		>
+			<span className={styles.content}>
+				<span className={styles.icon}>{icon && getIcon(icon as string)}</span>
+
+				<span>
+					{title && <span className={styles.title}>{title}</span>}
+					{description && (
+						<span className={styles.description}>{description}</span>
+					)}
+					{author && <span className={styles.author}>{author}</span>}
+				</span>
+			</span>
+		</Link>
 	);
 };
 

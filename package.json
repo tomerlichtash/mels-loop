@@ -62,7 +62,7 @@
 		"@radix-ui/react-toggle": "1.0.3",
 		"@radix-ui/react-toggle-group": "1.0.4",
 		"@sendgrid/mail": "7.7.0",
-		"classnames": "2.3.3",
+		"classnames": "2.5.0",
 		"dateformat": "5.0.3",
 		"formik": "2.4.5",
 		"gray-matter": "4.0.3",

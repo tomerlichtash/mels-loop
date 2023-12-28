@@ -22,14 +22,16 @@ const HorizontalMenu = ({ items, className }: HorizontalMenuProps) => {
 							<CaretDownIcon className={styles.caretDown} />
 						</NavigationMenu.Trigger>
 						<NavigationMenu.Content className={styles.content}>
-							<ul data-list-grid-size="1" className="list one">
+							<ul data-list-grid-size="1" className={styles.items}>
 								{item.items.map((item) => (
 									<NavigationMenu.Link asChild key={mlUtils.uniqueId()}>
-										<ListItem
-											key={mlUtils.uniqueId()}
-											className={styles.listItem}
-											{...item}
-										/>
+										<li className={styles.listItem}>
+											<ListItem
+												key={mlUtils.uniqueId()}
+												className={styles.entry}
+												{...item}
+											/>
+										</li>
 									</NavigationMenu.Link>
 								))}
 							</ul>

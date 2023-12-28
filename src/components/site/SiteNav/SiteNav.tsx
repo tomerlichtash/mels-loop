@@ -5,8 +5,6 @@ import { MenuSections as menuSections } from "../../../config/siteNav/sections";
 import HorizontalMenu from "./HorizontalMenu";
 import VerticalMenu from "./VerticalMenu";
 import { getMenuItems } from "./helpers";
-import styles from "./SiteNav.module.scss";
-import classNames from "classnames";
 
 type SiteNavProps = {
 	variant?: "horizontal" | "vertical";
@@ -22,13 +20,13 @@ const SiteNav = ({ variant = "horizontal", className }: SiteNavProps) => {
 	);
 
 	return (
-		<div className={classNames(styles.root)}>
+		<>
 			{variant === "horizontal" ? (
 				<HorizontalMenu className={className} items={items} />
 			) : (
 				<VerticalMenu className={className} items={items} />
 			)}
-		</div>
+		</>
 	);
 };
 

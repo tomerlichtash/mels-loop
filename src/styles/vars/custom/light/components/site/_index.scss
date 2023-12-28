@@ -4,6 +4,7 @@
 @use "./footer";
 @use "./localeSelector";
 @use "./themeSelector";
+@use "./horizontalMenu";
 
 $index: (
 	site:
@@ -12,6 +13,7 @@ $index: (
 			header.$index,
 			footer.$index,
 			localeSelector.$index,
-			themeSelector.$index
+			themeSelector.$index,
+			horizontalMenu.$index
 		),
 );

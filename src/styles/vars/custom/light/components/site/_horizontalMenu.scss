@@ -1,0 +1,22 @@
+@import "styles";
+
+$index: (
+	horizontal-menu: (
+		caret: (
+			color: ref(color-surface-contrast),
+			__hover: (
+				color: ref(color-surface-contrast),
+			),
+		),
+		trigger: (
+			__hover: (
+				background-color: ref(color-surface-dark),
+				text-color: ref(color-primary-dark),
+			),
+			__open: (
+				background-color: ref(color-surface-dark),
+				text-color: ref(color-primary-dark),
+			),
+		),
+	),
+);

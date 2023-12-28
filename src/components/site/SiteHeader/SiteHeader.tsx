@@ -85,12 +85,10 @@ const SiteHeader = ({ isHome, isMobile }: SiteHeaderProps) => {
 	const horizontalMenu = useMemo(
 		() => (
 			<div className={classNames(styles.section, styles.horizontalMenu)}>
-				{/* <div className={styles.item}> */}
 				<SiteNav
 					variant="horizontal"
 					className={classNames(styles.item, styles.menu)}
 				/>
-				{/* </div> */}
 				<div className={styles.item}>{localeSelectorComponent}</div>
 				<div className={styles.item}>{themeSelectorComponent}</div>
 			</div>
