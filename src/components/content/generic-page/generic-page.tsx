@@ -39,7 +39,7 @@ export default function GenericPage(props: IContentComponentData) {
 						{author && <div className={classes.byline}>{author}</div>}
 						{date && (
 							<TimeFormat
-								dateStr={date}
+								timestamp={date}
 								locale={locale}
 								className={classes.date}
 							/>

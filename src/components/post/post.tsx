@@ -42,7 +42,7 @@ export const Post = ({
 					<div className={classes.paragraph}>
 						{date && (
 							<TimeFormat
-								dateStr={date}
+								timestamp={date}
 								locale={locale}
 								className={classes.date}
 							/>
