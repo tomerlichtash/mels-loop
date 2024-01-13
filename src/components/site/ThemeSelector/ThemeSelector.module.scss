@@ -1,23 +1,5 @@
-@use "../MenuButtonMixin.scss";
-@import "styles";
-@import "styles/lib/states";
-
-$states: $COMPONENT_STATES;
+@import "styles/mixins/menuButtonMixin.scss";
 
 .root {
-	--icon-color: #000;
-	--icon-color__hover: #fff;
-	--button-radius: 2px;
-
-	@include MenuButtonMixin.ToggleButton;
-
-	.icon {
-		color: compRef(site-theme-selector, icon-color);
-	}
-
-	&:hover {
-		.icon {
-			color: compRef(site-theme-selector, icon-color, __hover);
-		}
-	}
+	@include ToggleButton;
 }

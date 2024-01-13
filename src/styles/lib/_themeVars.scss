@@ -1,0 +1,284 @@
+@mixin useDirection($var, $state: "") {
+	@include useThemeVar(direction, direction, $var, $state);
+}
+
+// COLOR
+@mixin useTextColor($var, $state: "") {
+	@include useThemeVar(color, text-color, $var, $state);
+}
+
+@mixin useBackgroundColor($var, $state: "") {
+	@include useThemeVar(background-color, background-color, $var, $state);
+}
+
+@mixin useGradient($var, $state: "") {
+	@include useThemeVar(background, background-color, $var, $state);
+}
+
+@mixin useIconColor($var, $state: "") {
+	@include useThemeVar(color, icon-color, $var, $state);
+}
+
+// BORDER
+@mixin useBorderTopColor($var, $state: "") {
+	@include useThemeVar(border-top-color, border-top-color, $var, $state);
+}
+
+@mixin useBorderBottomColor($var, $state: "") {
+	@include useThemeVar(border-bottom-color, border-bottom-color, $var, $state);
+}
+
+@mixin useBorderRightColor($var, $state: "") {
+	@include useThemeVar(border-right-color, border-right-color, $var, $state);
+}
+
+@mixin useBorderLeftColor($var, $state: "") {
+	@include useThemeVar(border-left-color, border-left-color, $var, $state);
+}
+
+@mixin useBorderTopSize($var, $state: "") {
+	@include useThemeVar(border-top-width, border-top-size, $var, $state);
+}
+
+@mixin useBorderBottomSize($var, $state: "") {
+	@include useThemeVar(border-bottom-width, border-bottom-size, $var, $state);
+}
+
+@mixin useBorderRightSize($var, $state: "") {
+	@include useThemeVar(border-right-width, border-right-size, $var, $state);
+}
+
+@mixin useBorderLeftSize($var, $state: "") {
+	@include useThemeVar(border-left-width, border-left-size, $var, $state);
+}
+
+@mixin useBorderTopStyle($var, $state: "") {
+	@include useThemeVar(border-top-style, border-top-style, $var, $state);
+}
+
+@mixin useBorderBottomStyle($var, $state: "") {
+	@include useThemeVar(border-bottom-style, border-bottom-style, $var, $state);
+}
+
+@mixin useBorderRightStyle($var, $state: "") {
+	@include useThemeVar(border-right-style, border-right-style, $var, $state);
+}
+
+@mixin useBorderLeftStyle($var, $state: "") {
+	@include useThemeVar(border-left-style, border-left-style, $var, $state);
+}
+
+@mixin useBorderSize($var, $state: "") {
+	@include useThemeVar(border-width, border-size, $var, $state);
+}
+
+@mixin useBorderStyle($var, $state: "") {
+	@include useThemeVar(border-style, border-style, $var, $state);
+}
+
+@mixin useBorderColor($var, $state: "") {
+	@include useThemeVar(border-color, border-color, $var, $state);
+}
+
+@mixin useRadius($var, $state: "") {
+	@include useThemeVar(border-radius, radius, $var, $state);
+}
+
+@mixin useBorder($var, $state: "") {
+	@include useBorderSize($var, $state);
+	@include useBorderStyle($var, $state);
+	@include useBorderColor($var, $state);
+}
+
+// CONTENT
+@mixin useContent($var, $state: "") {
+	@include useThemeVar(content, content, $var, $state);
+}
+@mixin useContentUrl($var, $state: "") {
+	@include useThemeVar(content, url, $var, $state);
+}
+
+// MARGIN
+@mixin useMarginTop($var, $state: "") {
+	@include useThemeVar(margin-top, margin-top, $var, $state);
+}
+
+@mixin useMarginBottom($var, $state: "") {
+	@include useThemeVar(margin-bottom, margin-bottom, $var, $state);
+}
+
+@mixin useMarginRight($var, $state: "") {
+	@include useThemeVar(margin-right, margin-right, $var, $state);
+}
+
+@mixin useMarginLeft($var, $state: "") {
+	@include useThemeVar(margin-left, margin-left, $var, $state);
+}
+
+@mixin useInlineMarginStart($var, $state: "") {
+	@include useThemeVar(margin-inline-start, margin-start, $var, $state);
+}
+
+@mixin useInlineMarginEnd($var, $state: "") {
+	@include useThemeVar(margin-inline-end, margin-end, $var, $state);
+}
+
+@mixin useMargin($var, $state: "") {
+	@include useMarginTop($var, $state);
+	@include useMarginRight($var, $state);
+	@include useMarginBottom($var, $state);
+	@include useMarginLeft($var, $state);
+}
+
+// margin axis mixins
+@mixin useVerticalMargin($var, $state: "") {
+	@include useMarginTop($var, $state);
+	@include useMarginBottom($var, $state);
+}
+
+@mixin useHorizontalMargin($var, $state: "") {
+	@include useThemeVar(margin-right, horizontal-margin, $var, $state);
+	@include useThemeVar(margin-left, horizontal-margin, $var, $state);
+}
+
+// PADDING
+@mixin usePaddingTop($var, $state: "") {
+	padding-top: compRef($var, padding-top, $state);
+	@include useThemeVar(padding-top, padding-top, $var, $state);
+}
+
+@mixin usePaddingBottom($var, $state: "") {
+	@include useThemeVar(padding-bottom, padding-bottom, $var, $state);
+}
+
+@mixin usePaddingRight($var, $state: "") {
+	@include useThemeVar(padding-right, padding-right, $var, $state);
+}
+
+@mixin usePaddingLeft($var, $state: "") {
+	@include useThemeVar(padding-left, padding-left, $var, $state);
+}
+
+@mixin usePadding($var, $state: "") {
+	@include MarginTop($var, $state);
+	@include MarginRight($var, $state);
+	@include MarginBottom($var, $state);
+	@include MarginLeft($var, $state);
+}
+
+// padding axis mixins
+@mixin useVerticalPadding($var, $state: "") {
+	@include usePaddingTop($var, $state);
+	@include usePaddingBottom($var, $state);
+}
+
+@mixin useHorizontalPadding($var, $state: "") {
+	@include usePaddingRight($var, $state);
+	@include usePaddingLeft($var, $state);
+}
+
+@mixin useOpacity($var, $state: "") {
+	@include useThemeVar(opacity, opacity, $var, $state);
+}
+
+// LAYOUT
+@mixin useHeight($var, $state: "") {
+	@include useThemeVar(height, height, $var, $state);
+}
+
+@mixin useMinHeight($var, $state: "") {
+	@include useThemeVar(min-height, height, $var, $state);
+}
+
+@mixin useWidth($var, $state: "") {
+	@include useThemeVar(width, width, $var, $state);
+}
+
+@mixin useMinWidth($var, $state: "") {
+	@include useThemeVar(min-width, width, $var, $state);
+}
+
+@mixin useSize($var, $state: "") {
+	@include useThemeVar(height, size, $var, $state);
+	@include useThemeVar(width, size, $var, $state);
+}
+
+@mixin useOffsetTop($var, $state: "") {
+	@include useThemeVar(top, offset-top, $var, $state);
+}
+
+@mixin useGap($var, $state: "") {
+	@include useThemeVar(gap, gap, $var, $state);
+}
+
+// TYPOGRAPHY
+@mixin useFontFamily($var, $state: "") {
+	@include useThemeVar(font-family, font-family, $var, $state);
+}
+
+@mixin useFontSize($var, $state: "") {
+	@include useThemeVar(font-size, font-size, $var, $state);
+}
+
+@mixin useFontWeight($var, $state: "") {
+	@include useThemeVar(font-weight, font-weight, $var, $state);
+}
+
+@mixin useLineHeight($var, $state: "") {
+	@include useThemeVar(line-height, line-height, $var, $state);
+}
+
+@mixin useLetterSpacing($var, $state: "") {
+	@include useThemeVar(letter-spacing, letter-spacing, $var, $state);
+}
+
+@mixin useTextTransform($var, $state: "") {
+	@include useThemeVar(text-transform, text-transform, $var, $state);
+}
+
+// SHADOW
+@mixin useShadow($var, $state: "") {
+	@include useThemeVar(box-shadow, shadow, $var, $state);
+}
+
+// ANIMATIONS
+@mixin useAnimation($anim, $comp) {
+	animation: $anim;
+	animation-duration: compRef($comp, animation-duration);
+	animation-timing-function: compRef($comp, animation-easing);
+
+	// 	animation-duration: 250ms;
+	// animation-timing-function: ease;
+}
+
+@mixin useFadeIn($comp) {
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 0.75;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+	@include useAnimation(fadeIn, $comp);
+}
+
+// UTILITIES
+@mixin clearBorder {
+	border: none;
+}
+
+@mixin disableUserSelection {
+	user-select: none;
+}
+
+@mixin cursorPointer {
+	cursor: pointer;
+}
+
+@mixin textUnderline {
+	text-decoration: underline;
+}

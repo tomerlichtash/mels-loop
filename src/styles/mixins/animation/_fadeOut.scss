@@ -1,0 +1,17 @@
+@import "styles/lib/themeVars";
+
+@mixin fadeOutKeyframes {
+	@keyframes fadeOut {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
+	}
+}
+
+@mixin useFadeOut($comp: "", $anim: fadeOut) {
+	@include fadeOutKeyframes;
+	@include useAnimation($anim, #{$comp}-#{$anim});
+}

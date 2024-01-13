@@ -2,5 +2,11 @@
 @use "paragraph";
 @use "link";
 @use "annotation";
+@use "code";
 
-$index: merge.deep-merge(paragraph.$index, annotation.$index, link.$index);
+$index: merge.deep-merge(
+	paragraph.$index,
+	annotation.$index,
+	link.$index,
+	code.$index
+);

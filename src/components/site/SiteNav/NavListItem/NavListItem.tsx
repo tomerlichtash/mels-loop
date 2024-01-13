@@ -1,4 +1,12 @@
 import Link from "next/link";
+import {
+	FileIcon,
+	ListBulletIcon,
+	GitHubLogoIcon,
+	Pencil1Icon,
+} from "@radix-ui/react-icons";
+import { Button } from "@components/ui";
+import classNames from "classnames";
 import styles from "./NavListItem.module.scss";
 
 // type MenuItemLocale = {
@@ -12,52 +20,44 @@ import styles from "./NavListItem.module.scss";
 // 	target: string;
 // };
 
-import {
-	FileIcon,
-	ListBulletIcon,
-	TwitterLogoIcon,
-	GitHubLogoIcon,
-	Pencil1Icon,
-} from "@radix-ui/react-icons";
-import classNames from "classnames";
-
 const getIcon = (icon: string) => {
 	switch (icon) {
 		case "article":
 			return <FileIcon />;
 		case "list":
 			return <ListBulletIcon />;
-		case "twitter":
-			return <TwitterLogoIcon />;
 		case "github":
 			return <GitHubLogoIcon />;
 		case "pencil":
 			return <Pencil1Icon />;
 		default:
-			break;
+			return icon;
 	}
 };
 
-const NavListItem = ({ locale, icon, className, ...item }) => {
+const NavListItem = ({ onSelect, locale, icon, className, ...item }) => {
 	const { title, author, description } = locale;
 	return (
-		<Link
+		<Button
 			className={classNames(styles.root, className)}
-			href={item.url}
-			target={item.target}
+			asChild
+			onClick={onSelect}
 		>
-			<span className={styles.content}>
-				<span className={styles.icon}>{icon && getIcon(icon as string)}</span>
-
-				<span>
-					{title && <span className={styles.title}>{title}</span>}
-					{description && (
-						<span className={styles.description}>{description}</span>
-					)}
-					{author && <span className={styles.author}>{author}</span>}
+			<Link href={item.url} target={item.target}>
+				<span className={classNames(styles.content)}>
+					<span className={styles.icon}>{icon && getIcon(icon as string)}</span>
+					<span>
+						{title && (
+							<span className={classNames(styles.itemTitle)}>{title}</span>
+						)}
+						{description && (
+							<span className={styles.description}>{description}</span>
+						)}
+						{author && <span className={styles.author}>{author}</span>}
+					</span>
 				</span>
-			</span>
-		</Link>
+			</Link>
+		</Button>
 	);
 };
 

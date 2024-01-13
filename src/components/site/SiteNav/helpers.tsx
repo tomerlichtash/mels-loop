@@ -1,4 +1,4 @@
-export const trKeys = (item, translate: (s: string) => string) =>
+const trKeys = (item, translate: (s: string) => string) =>
 	Object.fromEntries(
 		Object.keys(item.locale as string[]).map((key) => [
 			key,

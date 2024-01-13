@@ -1,23 +1,21 @@
 @import "styles";
 
-$states: $COMPONENT_STATES;
-
 .root {
-	--text-color__hovered: #000;
-	--text-color__active: #888;
+	--text-color__hover: #00a;
+	--text-color__active: #a00;
 
-	cursor: pointer;
+	@include cursorPointer;
 
 	&:link,
 	&:visited {
-		color: compRef(link, text-color);
+		@include useTextColor(link);
 	}
 
 	&:hover {
-		color: compRef(link, text-color__hover);
+		@include useTextColor(link, state(hovered));
 	}
 
 	&:active {
-		color: compRef(link, text-color__active);
+		@include useTextColor(link, state(clicked));
 	}
 }

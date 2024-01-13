@@ -1,66 +1,56 @@
 @import "styles";
+@import "styles/mixins/inlineSeperatorMixin.scss";
+@import "styles/mixins/textVariantsMixin.scss";
 
 .root {
-	--logo-content-url: var(--ml-logo-url);
-	--logo-margin: 0.5em;
-	--logo-size: 24px;
-	--title-text-color: inherit;
-	--title-letter-spacing: 1px;
-	--title-font-weight: 500;
-	--title-text-transform: uppercase;
-	--title-separator-content: "|";
-	--title-separator-margin: 0.5em;
-	--title-separator-weight: 100;
-	--title-separator-opacity: 0.3;
-	--subtitle-font-weight: 300;
-	--subtitle-text-transform: lowercase;
-	--subtitle-horizontal-padding: 0;
-	--button-font-size: 2em;
+	--text-color: #000;
+	--primary-letter-spacing: 1px;
+	--primary-font-weight: 500;
+	--primary-text-transform: uppercase;
+	// --secondary-letter-spacing: 0;
+	// --secondary-font-weight: 300;
+	--secondary-text-transform: lowercase;
+	--subtitle-visibility: block;
 
 	display: flex;
 	align-items: center;
 
-	&[data-text-direction="ltr"] {
-		.logo {
-			margin-right: var(--logo-margin);
-		}
-	}
-	&[data-text-direction="rtl"] {
-		.logo {
-			margin-left: var(--logo-margin);
-		}
-	}
-
 	.logo {
-		content: compRef(site-title, logo-url);
-		width: var(--logo-size);
-		height: var(--logo-size);
+		--margin-end: 0.5em;
+		@include useInlineMarginEnd(site-header-logo);
 	}
 
 	.title {
 		display: flex;
 		align-items: center;
-		text-decoration: none;
-		font-weight: var(--title-font-weight);
-		text-transform: var(--title-text-transform);
-		letter-spacing: var(--title-letter-spacing);
-		color: compRef(site-title, text-color);
-	}
 
-	.titleText {
-		color: var(--title-text-color);
+		@include useTextColor(site-title);
+
+		.label {
+			@include Label1(site-title-primary);
+		}
 	}
 
 	.subtitle {
-		text-transform: var(--subtitle-text-transform);
-		font-weight: var(--subtitle-font-weight);
-		padding: var(--subtitle-horizontal-padding);
+		display: compRef(site-title, subtitle-visibility);
 
-		&::before {
-			content: var(--title-separator-content);
-			font-weight: var(--title-separator-weight);
-			margin: 0 var(--title-separator-margin);
-			opacity: var(--title-separator-opacity);
+		@include Label1(site-title-secondary);
+		@include SeparatorMixin(site-header-separator);
+	}
+
+	.link {
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	// layout variants
+	&[data-variant="centered"] {
+		display: block;
+
+		.subtitle {
+			--separator-content: "";
+			--separator-horizontal-margin: 0;
 		}
 	}
 }

@@ -1,0 +1,59 @@
+// @use "../ComponentMixin";
+@import "styles";
+
+@mixin Default {
+	--text-color: magenta;
+	// --button-mixin-background-color: magenta;
+
+	background-color: var(--button-background-color);
+	border-radius: var(--button-border-radius);
+	color: var(--text-color);
+	text-decoration: none;
+
+	&:hover {
+		color: var(--text-color);
+		background-color: var(--button-background-color__hover);
+	}
+
+	&:active {
+		color: green; //var(--text-color);
+		background-color: var(--button-background-color__active);
+	}
+}
+
+@mixin IconWithLabel {
+	@include disableUserSelection;
+	overflow: hidden;
+
+	.icon {
+		color: #000;
+		border-radius: 6px;
+		display: flex;
+		// padding: 4px;
+		height: 32px;
+		width: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.label {
+		position: relative;
+		top: -10px;
+		margin: 0 0.5em;
+		opacity: 0;
+		transition: 125ms all ease-in-out;
+	}
+
+	&:hover {
+		.icon {
+			background-color: ref(color-container-main);
+		}
+
+		.label {
+			top: 0;
+			display: block;
+			opacity: 1;
+		}
+	}
+}

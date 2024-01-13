@@ -1,4 +1,4 @@
-@import "./ParagraphMixin";
+@import "styles/mixins/content/ParagraphMixin";
 
 .root {
 	@include ParagraphMixin;

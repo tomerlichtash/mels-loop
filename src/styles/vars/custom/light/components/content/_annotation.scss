@@ -1,9 +1,21 @@
 @import "styles";
 
+$annotationPrefix: "'['";
+$annotationSuffix: "']'";
+$annotationAffixOpacity: 0.65;
+
 $index: (
 	annotation: (
 		font-size: globalRef(typography-font-size-xs),
 		font-weight: globalRef(typography-font-weight-regular),
 		color: ref(link-text-color),
+		prefix: (
+			content: $annotationPrefix,
+			opacity: $annotationAffixOpacity,
+		),
+		suffix: (
+			content: $annotationSuffix,
+			opacity: $annotationAffixOpacity,
+		),
 	),
 );

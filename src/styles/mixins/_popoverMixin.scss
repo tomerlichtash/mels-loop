@@ -5,21 +5,23 @@
 // in different states, shared by all triggers.
 
 @import "styles";
-@import "PopoverTrigger.module";
+@import "../../components/content/popover/PopoverTrigger.module.scss";
 
 @mixin PopoverTrigger($comp: "popover-trigger", $state: "") {
-	cursor: pointer;
+	@include cursorPointer;
 
-	background: compRef($comp, background-color);
-	color: compRef($comp, text-color);
-	border-radius: compRef($comp, radius);
+	@include useBackgroundColor($comp);
+	@include useTextColor($comp);
+	@include useRadius($comp);
 
 	&:hover {
-		background: compRef($comp, background-color, state($state));
-		color: compRef($comp, text-color, state($state));
+		@include textUnderline;
+
+		@include useBackgroundColor($comp, $state);
+		@include useTextColor($comp, $state);
 	}
 
 	&:active {
-		user-select: none;
+		@include disableUserSelection;
 	}
 }

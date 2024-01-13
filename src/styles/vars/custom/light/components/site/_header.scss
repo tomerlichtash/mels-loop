@@ -3,6 +3,12 @@
 $index: (
 	header: (
 		background-color: ref(color-surface-main),
+		separator: (
+			content: '"|"',
+		),
+		logo: (
+			margin-end: 0.5em,
+		),
 	),
 	title: (
 		logo-url: ref(assets-logo-url),

@@ -1,16 +1,15 @@
 {
 	"site.title": "Mel's Loop",
 	"site.subtitle": "A Comprehensive Guide to The Story of Mel",
-
-	"SITE_LICENSE_LABEL": "cc",
-	"SITE_LICENSE_ATTRS": "by-sa",
+	"site.license.label": "cc",
+	"site.license.attributs": "by-sa",
 
 	"ERROR_404_FILE_NOT_FOUND": "Page not found",
 	"ERROR_GENERAL": "Error",
 
-	"PAGE_LABEL_HOME": "Home",
-	"PAGE_LABEL_ABOUT": "About",
-	"PAGE_LABEL_BLOG": "Blog",
+	"site.pages.home.label": "Home",
+	"site.pages.about.label": "About",
+	"site.pages.blog.label": "Blog",
 	"PAGE_LABEL_RESOURCES": "Resources",
 	"PAGE_LABEL_GLOSSARY": "Glossary",
 	"PAGE_LABEL_DOCS": "Documents",
@@ -21,7 +20,7 @@
 	"SECTION_LABEL_PAGES": "Pages",
 	"SECTION_LABEL_LINKS": "Links",
 
-	"POSTS_BACK_TO_POSTS_LIST": "Back",
+	"button.back": "Back",
 
 	"MENU_SECTION_LABEL_ARTICLES": "Articles",
 	"MENU_SECTION_LABEL_INFO": "Info",
@@ -36,7 +35,7 @@
 	"MENU_ITEM_LABEL_ID_CONTACT": "Contact",
 	"MENU_ITEM_LABEL_ID_TWITTER": "Twitter",
 	"MENU_ITEM_LABEL_ID_GITHUB": "Github",
-	"MENU_ITEM_DESC_ID_ABOUT": "About the project",
+	"MENU_ITEM_DESC_ID_ABOUT": "Mel’s Loop is a guide to the epic hacker folklore tale \"The Story of Mel\". It also aims to collect the stories and sub-stories around the tale, its author, and its main characters, as well as early computing era stories and other related tales.",
 	"MENU_ITEM_DESC_ID_BLOG": "News and Updates",
 	"MENU_ITEM_DESC_ID_RESOURCES": "Web Resources for The Story of Mel",
 	"MENU_ITEM_DESC_ID_CONTRIBUTE": "TBD",

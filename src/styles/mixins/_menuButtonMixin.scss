@@ -1,0 +1,63 @@
+@import "styles";
+
+$states: deep-merge(
+	$COMPONENT_STATES,
+	(
+		selected: selected,
+	)
+);
+
+@function getBgColor($var, $state) {
+	@return compRef($var, background-color, $state);
+}
+
+@function getTextColor($var, $state) {
+	@return compRef($var, text-color, $state);
+}
+
+$bgVar: varName(site-mixins-toggle-button-background-color);
+$textVar: varName(site-mixins-toggle-button-text-color);
+
+@mixin IconMixin($var) {
+	.icon {
+		@include useIconColor($var);
+	}
+	&:hover {
+		.icon {
+			@include useIconColor($var, state(hovered));
+		}
+	}
+}
+
+@mixin NavButton($var: site-mixins-toggle-button) {
+	@include clearBorder;
+	@include disableUserSelection;
+	@include useHeight($var);
+	@include useRadius($var);
+	@include useTextColor($var);
+	@include useBackgroundColor($var);
+	@include useFontWeight($var);
+	@include IconMixin($var);
+}
+
+@mixin ToggleButton($var: site-mixins-toggle-button) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	@include NavButton;
+	@include useWidth($var);
+	@include useTextColor($var);
+
+	&:not([data-state="selected"]):hover {
+		@include cursorPointer;
+		@include useTextColor($var, state(hovered));
+		@include useBackgroundColor($var, state(hovered));
+	}
+
+	// selected state var overrides
+	&[data-state="selected"] {
+		#{$bgVar}: #{getBgColor($var, state(selected))};
+		#{$textVar}: #{getTextColor($var, state(selected))};
+	}
+}

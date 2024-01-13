@@ -1,24 +1,55 @@
+@import "styles";
+
 .root {
+	.item {
+		@include useTextColor(site-nav-item-title);
+		@include useBackgroundColor(site-nav-item-title);
+
+		&:hover {
+			@include useTextColor(site-nav-item-title, state(hovered));
+			@include useBackgroundColor(site-nav-item-title, state(hovered));
+		}
+	}
+
+	.icon {
+		@include useBorder(site-nav-item-icon);
+
+		background-color: #239;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+	}
+
 	.content {
 		display: inline-flex;
 		justify-content: flex-start;
 		gap: 0.5em;
+	}
 
-		// .icon {
-		// }
+	.sectionTitle {
+		display: block;
+		background-color: orange;
+		padding: 1em;
+	}
 
-		.title {
-			display: block;
-			text-transform: uppercase;
-			// font-size: 1.15em;
-			// line-height: 1.6em;
-			// font-weight: 900;
-		}
+	.itemTitle {
+		display: inline-flex;
+		text-transform: uppercase;
+		// font-size: 1.15em;
+		// line-height: 1.6em;
+		// font-weight: 900;
+	}
 
-		.author,
-		.description {
-			// font-size: 1.15em;
-			line-height: 2em;
-		}
+	.author,
+	.description {
+		display: block;
+
+		// font-size: 1.15em;
+		// line-height: 2em;
 	}
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { ContentComponentProps } from "../../../../interfaces/models";
-import styles from "./_annotation-link.module.scss";
+import styles from "./annotation-link.module.scss";
 import classNames from "classnames";
 
 const AnnotationLink = ({

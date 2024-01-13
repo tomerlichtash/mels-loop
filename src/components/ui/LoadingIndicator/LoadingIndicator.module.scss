@@ -1,22 +1,29 @@
+@import "styles";
+
 .root {
-	height: 20em;
-	text-align: center;
+	--size: 24px;
+	--height: 20em;
+	--label-margin: 1em;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-}
 
-.image {
-	width: 32px;
-	height: 32px;
-	animation: rotation 2s infinite linear;
-	content: var(--ml-site-logo);
+	@include useHeight(loading-indicator);
+
+	.image {
+		animation: rotation 2s infinite linear;
+
+		@include useSize(loading-indicator);
+		@include useContentUrl(site-title-logo);
+	}
 }
 
 .label {
+	--margin-top: var(--label-margin);
 	display: block;
-	margin-top: 1em;
+	@include useVerticalMargin(loading-indicator-label);
 }
 
 @keyframes rotation {

@@ -4,15 +4,17 @@
 $index: (
 	mixins: (
 		toggle-button: (
-			size: 2.2855em,
+			height: 2.2855em,
+			width: 2.2855em,
 			radius: globalRef(radius-md),
 			background-color: none,
+			text-color: ref(color-surface-contrast),
 			font-weight: globalRef(typography-font-weight-thin),
 			state(hovered): (
 				background-color: ref(color-container-main),
 				text-color: ref(color-surface-contrast),
 			),
-			__selected: (
+			state(selected): (
 				background-color: ref(color-surface-dark),
 				text-color: ref(color-surface-contrast),
 			),
@@ -25,9 +27,9 @@ $index: (
 		// ),
 		icon:
 			(
-				color: ref(color-surface-contrast),
+				text-color: ref(color-surface-contrast),
 				state(hovered): (
-					color: ref(color-surface-contrast),
+					text-color: ref(color-surface-contrast),
 				),
 			),
 	),

@@ -1,4 +1,4 @@
-@use "FormMixin";
+@use "styles/mixins/formMixin";
 
 .root {
 	.header {
@@ -11,7 +11,7 @@
 
 			.label {
 				@include FormMixin.Label;
-				cursor: pointer;
+				@include cursorPointer;
 			}
 
 			.inputField {

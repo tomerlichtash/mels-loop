@@ -1,0 +1,12 @@
+@mixin AffixMixin($module, $affix) {
+	@include useContent(#{$module}-#{$affix});
+	@include useOpacity(#{$module}-#{$affix});
+}
+
+@mixin Prefix($module: default) {
+	@include AffixMixin($module, prefix);
+}
+
+@mixin Suffix($module: default) {
+	@include AffixMixin($module, suffix);
+}

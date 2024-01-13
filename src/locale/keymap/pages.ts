@@ -2,13 +2,13 @@ import { ComponentKeyMap } from "./types";
 
 const PageKeys: Record<string, ComponentKeyMap> = {
 	HOME_PAGE: {
-		pageName: "PAGE_LABEL_HOME",
+		pageName: "site.pages.home.label",
 	},
 	ABOUT_PAGE: {
-		pageName: "PAGE_LABEL_ABOUT",
+		pageName: "site.pages.about.label",
 	},
 	BLOG_PAGE: {
-		pageName: "PAGE_LABEL_BLOG",
+		pageName: "site.pages.blog.label",
 		sectionName: "SECTION_LABEL_POSTS",
 	},
 	RESOURCES_PAGE: {

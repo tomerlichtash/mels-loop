@@ -2,17 +2,11 @@
 @import "components/content/popover/PopoverTrigger.module";
 
 $index: (
-	code-inline: (
-		text-color: green,
-	),
-	code-block: (
-		text-color: blue,
-	),
-
 	popover-trigger: (
 		text-color: ref(link-text-color),
 		radius: globalRef(radius-md),
 		astriek-color: ref(link-text-color),
+		suffix-content: "#{\203B}",
 		state(hovered): (
 			text-color: ref(color-secondary-main),
 			astriek-color: ref(color-secondary-main),
@@ -38,5 +32,11 @@ $index: (
 	popover-dialog: (
 		background-color: ref(color-surface-light),
 		border-radius: globalRef(radius-md),
+		width: 10em,
+	),
+	loading-indicator: (
+		label: (
+			margin-top: 1em,
+		),
 	),
 );

@@ -1,0 +1,11 @@
+@import "styles";
+
+@mixin footnoteAnchorMixin($var, $content: "") {
+	--content: #{$content};
+
+	&::after {
+		@include useContent($var);
+		@include useFontWeight($var);
+		@include useHorizontalPadding($var);
+	}
+}

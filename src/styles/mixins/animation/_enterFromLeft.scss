@@ -1,0 +1,19 @@
+@import "styles/lib/themeVars";
+
+@mixin enterFromLeftKeyframes {
+	@keyframes enterFromLeft {
+		from {
+			opacity: 0;
+			transform: translateX(-200px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+}
+
+@mixin useEnterFromLeft($comp: "", $anim: enterFromLeft) {
+	@include enterFromLeftKeyframes;
+	@include useAnimation($anim, #{$comp}-#{$anim});
+}

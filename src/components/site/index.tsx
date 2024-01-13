@@ -1,3 +1,9 @@
-import * as Layout from "./Layout";
-
-export { Layout };
+export { default as Layout } from "./Layout";
+export { default as Logo } from "./Logo";
+export { default as SiteTitle } from "./SiteTitle";
+export { default as LocaleSelector } from "./LocaleSelector";
+export { default as ThemeSelector } from "./ThemeSelector";
+export { default as HorizontalMenu } from "./SiteNav/HorizontalMenu";
+export { default as VerticalMenu } from "./SiteNav/VerticalMenu";
+export { default as VerticalMenuTrigger } from "./SiteNav/VerticalMenu/VerticalMenuTrigger";
+export { default as NavListItem } from "./SiteNav/NavListItem";

@@ -1,43 +1,30 @@
 @import "styles";
+@import "styles/mixins/animation/fadeIn";
 
 .root {
-	--dialog-animation-type: fadeIn;
-	--dialog-animation-duration: 250ms;
-	--dialog-animation-easing: ease-out forwards;
-	--dialog-width: 25em;
-	--dialog-border-width: 1px;
-	--dialog-border-style: solid;
-	--dialog-border-color: #808080;
-	--dialog-border-radius: 4px;
-	--dialog-box-shadow: none;
-	--dialog-background-color: #e0e0e0;
+	--animation-type: fadeIn;
+	--animation-duration: 250ms;
+	--animation-easing: ease-out forwards;
+	--width: 25em;
+	--border-width: 1px;
+	--border-style: solid;
+	--border-color: #808080;
+	--radius: 4px;
+	--shadow: none;
+	--background-color: #e0e0e0;
 
-	border: 2px solid red;
 	overflow: hidden;
-	width: compRef(popover, dialog-width);
-	background-color: compRef(popover, dialog-background-color);
-	box-shadow: compRef(popover, dialog-box-shadow);
-	border-width: compRef(popover, dialog-border-width);
-	border-style: compRef(popover, dialog-border-style);
-	border-color: compRef(popover, dialog-border-color);
-	border-radius: compRef(popover, dialog-border-radius);
 
-	animation: fadeIn compRef(popover, dialog-animation-duration)
-		compRef(popover, dialog-animation-easing);
+	@include useWidth(popver-dialog);
+	@include useBackgroundColor(popver-dialog);
+	@include useShadow(popover-dialog);
+	@include useBorderSize(popover-dialog);
+	@include useBorderStyle(popover-dialog);
+	@include useBorderColor(popover-dialog);
+	@include useRadius(popover-dialog);
+	@include useFadeIn(popover-dialog);
 
 	.content {
-		background-color: compRef(popover, dialog-background-color);
-	}
-}
-
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	50% {
-		opacity: 0.75;
-	}
-	100% {
-		opacity: 1;
+		@include useBackgroundColor(popover-dialog);
 	}
 }

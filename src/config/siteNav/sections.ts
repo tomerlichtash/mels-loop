@@ -16,7 +16,7 @@ export const MenuSections = [
 		locale: {
 			title: "MENU_SECTION_LABEL_CONTACT",
 		},
-		items: ["about", "contact", "twitter", "github"],
+		items: ["contact", "twitter", "github"],
 	},
 ];
 

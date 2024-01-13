@@ -1,8 +1,12 @@
 @import "styles";
-
-$__namespace__: footer;
+@import "styles/mixins/textVariantsMixin.scss";
+@import "styles/mixins/site/PageMixin.scss";
+@import "styles/mixins/stripMixin.scss";
 
 .root {
+	--primary-text-transform: uppercase;
+	--primary-font-weight: 700;
+	--primary-letter-spacing: 0.035em;
 	--background-color: #f0f0f0;
 
 	--strip-color-start: red;
@@ -14,34 +18,78 @@ $__namespace__: footer;
 		var(--strip-color-mid) 50%,
 		var(--strip-color-end) 100%
 	);
+	--strip-height: 4px;
 
-	background-color: compRef(site-footer, background-color);
+	@include useBackgroundColor(site-footer);
 
-	// &.footer {
-	// 	margin-top: 2rem;
-	// }
+	.strip {
+		@include GradientStrip(site-footer-strip);
+	}
 
-	// todo: get from mixin
 	.pageContainer {
-		margin: 0 auto;
-		padding: 2rem;
-		max-width: 1600px;
+		@include PageContainer;
 	}
 
 	.layout {
 		display: flex;
+		flex-direction: row;
+		gap: 2em;
+		padding-top: 2em;
+		padding-bottom: 2em;
 	}
 
 	.title {
-		text-transform: uppercase;
+		#{varName(site-footer-primary-font-weight)}: var(--primary-font-weight);
+		#{varName(site-footer-primary-text-transform)}: var(
+			--primary-text-transform
+		);
+		#{varName(site-footer-primary-letter-spacing)}: var(
+			--primary-letter-spacing
+		);
+
+		@include Label1(site-footer-primary);
 	}
 
-	.strip {
-		height: 0.3em;
-		background: compRef(site-footer, strip-background-color);
+	.column {
+		flex: 1;
+		display: flex;
+		gap: 0.5em;
+		flex-direction: column;
+
+		&.large {
+			flex: 4;
+		}
+	}
+
+	.list {
+		margin: 0;
+		padding: 0;
+
+		.item {
+			list-style: none;
+		}
 	}
 
 	.link {
-		background-color: red;
+		color: ref(link-text-color);
+		display: inline-flex;
+		text-decoration: none;
+
+		&:hover {
+			color: ref(link-text-color#{state(hovered)});
+			text-decoration: underline;
+		}
+	}
+
+	@media (min-width: 0px) and (max-width: 767px) {
+		.layout {
+			display: block;
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		.column {
+			margin-bottom: 1em;
+		}
 	}
 }

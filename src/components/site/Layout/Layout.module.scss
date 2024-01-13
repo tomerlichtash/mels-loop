@@ -1,16 +1,11 @@
 @import "styles";
+@import "styles/mixins/contentSelectionMixin";
 
 .root {
-	--min-height: 100vh;
+	--min-height: 300px;
 	--background-color: #fff;
-	--selection-background-color: #000;
-	--selection-text-color: #fff;
 
-	height: compRef(site-layout, min-height);
-	background-color: compRef(site-layout, background-color);
-
-	::selection {
-		color: compRef(site-layout, selection-text-color);
-		background-color: compRef(site-layout, selection-background-color);
-	}
+	@include useMinHeight(site-layout);
+	@include useBackgroundColor(site-layout);
+	@include contentSelection;
 }

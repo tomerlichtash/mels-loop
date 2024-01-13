@@ -1,0 +1,8 @@
+@import "styles";
+
+.root {
+	--size: 24px;
+
+	@include useContentUrl(site-title-logo);
+	@include useSize(logo);
+}

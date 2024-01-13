@@ -11,8 +11,6 @@ and override it from the theme.
 
 @import "styles";
 
-$__namespace: popover-trigger;
-
 $states: deep-merge(
 	$COMPONENT_STATES,
 	(
@@ -26,89 +24,66 @@ $states: deep-merge(
 	)
 );
 
+@function getAstriekColor($state) {
+	@return compRef(popover-trigger-astriek, color, state($state));
+}
+
+@function getTriggerTextColor($state) {
+	@return compRef(popover-trigger, text-color, state($state));
+}
+
+@function getTriggerBackgroundColor($state) {
+	@return compRef(popover-trigger, background-color, state($state));
+}
+
+$textVar: varName(popover-trigger-text-color);
+$bgVar: varName(popover-trigger-background-color);
+
 .root {
 	--background-color: none;
-	--text-color: #000;
 	--background-color__hover: none;
-	--text-color__hover: inherit;
 	--background-color__active: #c0c0c0;
-	--text-color__active: inherit;
-	--text-color__open: inherit;
 	--background-color__open: #e0e0e0;
 	--background-color__open__hover: #e0e0e0;
-	--text-color__open__hover: inherit;
 	--background-color__open__active: #e0e0e0;
+	--text-color: #000;
+	--text-color__hover: inherit;
+	--text-color__active: inherit;
+	--text-color__open: inherit;
+	--text-color__open__hover: inherit;
 	--text-color__open__active: inherit;
 
 	&:after {
-		#{varName(popover-trigger-decoration-color)}: compRef(
-			popover-trigger,
-			astriek-color
-		);
+		#{$textVar}: compRef(popover-trigger, astriek-color);
 	}
 
 	:hover {
-		#{varName(popover-trigger-background-color)}: compRef(
-			popover-trigger,
-			background-color,
-			state(hovered)
-		);
-
-		#{varName(popover-trigger-text-color)}: compRef(
-			popover-trigger,
-			text-color,
-			state(hovered)
-		);
+		#{$bgVar}: compRef(popover-trigger, background-color, state(hovered));
+		#{$textVar}: compRef(popover-trigger, text-color, state(hovered));
 
 		&:after {
-			#{varName(popover-trigger-decoration-color)}: compRef(
-				popover-trigger,
-				astriek-color,
-				state(hovered)
-			);
+			#{$textVar}: compRef(popover-trigger, astriek-color, state(hovered));
 		}
 	}
 
-	// custom state 'open' is provided by Radix Popover
+	// custom Popover state `open`
 	&[data-state="open"] {
 		:after {
-			#{varName(popover-trigger-decoration-color)}: compRef(
-				popover-trigger,
-				astriek-color,
-				state(selected)
-			);
+			#{$textVar}: #{getAstriekColor(selected)};
 		}
 
-		#{varName(popover-trigger-decoration-color)}: compRef(
-			popover-trigger,
-			astriek-color,
-			state(selected)
-		);
+		// #{triggerTextColorVar}: compRef(
+		// 	popover-trigger-astriek,
+		// 	color,
+		// 	state(selected)
+		// );
 
-		#{varName(popover-trigger-background-color)}: compRef(
-			popover-trigger,
-			background-color,
-			state(selected)
-		);
-
-		#{varName(popover-trigger-text-color)}: compRef(
-			popover-trigger,
-			text-color,
-			state(selected)
-		);
+		#{$bgVar}: #{getTriggerBackgroundColor(selected)};
+		#{$textVar}: compRef(popover-trigger, text-color, state(selected));
 
 		:hover {
-			#{varName(popover-trigger-background-color)}: compRef(
-				popover-trigger,
-				background-color,
-				state(selected-hovered)
-			);
-
-			#{varName(popover-trigger-text-color)}: compRef(
-				popover-trigger,
-				text-color,
-				state(selected-hovered)
-			);
+			#{$bgVar}: getTriggerBackgroundColor(selected-hovered);
+			#{$textVar}: getTriggerTextColor(selected-hovered);
 		}
 	}
 }

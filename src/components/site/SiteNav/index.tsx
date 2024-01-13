@@ -1,3 +1,5 @@
-import { default as SiteNav } from "./SiteNav";
+import VerticalMenu from "./VerticalMenu";
+import HorizontalMenu from "./HorizontalMenu";
+import NavListItem from "./NavListItem";
 
-export default SiteNav;
+export { HorizontalMenu, VerticalMenu, NavListItem };

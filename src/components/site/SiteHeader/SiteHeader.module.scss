@@ -1,82 +1,59 @@
 @import "styles";
 
 .root {
-	// --item-margin: 0.5em;
+	--vertical-menu-trigger-color__hover: #808080;
 
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background-color: compRef(site-header, background-color);
 	z-index: 1;
 
-	// &[data-text-direction="ltr"] {
-	// 	.item:not(:last-child) {
-	// 		margin-right: var(--item-margin);
-	// 	}
-	// }
-
-	// &[data-text-direction="rtl"] {
-	// 	.item:not(:last-child) {
-	// 		margin-left: var(--item-margin);
-	// 	}
-	// }
+	@include useBackgroundColor(site-header);
 
 	.content {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 3.4em;
+
 		padding: 0 2em;
-		height: 58px;
+		min-height: 48px;
 	}
 
-	@media (min-width: 451px) and (max-width: 767px) {
-		.content {
-			display: block;
-			text-align: center;
-		}
-		justify-content: center;
+	.section {
+		display: flex;
+		align-items: center;
+
+		gap: 1em;
 	}
+
+	// @media (min-width: 451px) and (max-width: 767px) {
+	// 	.content {
+	// 		display: block;
+	// 		text-align: center;
+	// 	}
+	// 	justify-content: center;
+	// }
 
 	.siteTitle {
-		@media (min-width: 1025px) and (max-width: 1280px) {
+		@media (min-width: 1080px) and (max-width: 1280px) {
 			// background-color: red;
 		}
 
 		@media (min-width: 768px) and (max-width: 1024px) {
-			// background-color: blue;
+			display: block;
+
+			#{varName(site-title-subtitle-separator-content)}: "";
+			#{varName(site-title-subtitle-separator-margin)}: 4em;
 		}
-		@media (min-width: 451px) and (max-width: 767px) {
-		}
+		// @media (min-width: 451px) and (max-width: 767px) {
+		// 	background-color: green;
+		// }
 		@media (min-width: 0px) and (max-width: 450px) {
-			// background-color: green;
+			#{varName(site-title-subtitle-visibility)}: none;
 		}
 
 		@media (min-width: 451px) and (max-width: 767px) {
-			display: block;
-			// --subtitle-horizontal-padding: 2.25em;
-			--title-separator-content: "";
-			--title-separator-margin: 0;
+			#{varName(site-title-subtitle-visibility)}: none;
 		}
 	}
-}
-
-.section {
-	display: flex;
-	align-items: center;
-	// gap: 10.25em;
-	// margin: 0 2em;
-}
-
-.item {
-	// border: 1px solid red;
-}
-
-.menu {
-	// width: 480px;
-	--radix-navigation-menu-viewport-width: 500px;
-}
-
-.mobileMenuTrigger {
-	font-size: 1.5em;
 }

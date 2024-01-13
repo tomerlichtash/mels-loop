@@ -1,51 +1,42 @@
-import React from "react";
-import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { CaretDownIcon } from "@radix-ui/react-icons";
-import ListItem from "../NavListItem";
-import { mlUtils } from "lib/ml-utils";
-import classNames from "classnames";
+import React, { useMemo } from "react";
+import {
+	LocaleSelector,
+	ThemeSelector,
+	VerticalMenuTrigger,
+} from "@components/site";
+import HorizontalNav from "./HorizontalNav";
 import styles from "./HorizontalMenu.module.scss";
+import classNames from "classnames";
 
 type HorizontalMenuProps = {
-	items: Record<any, any>[];
+	isMobile?: boolean;
+	toggleSidebar?: () => void;
 	className?: string;
 };
+const HorizontalMenu = ({
+	isMobile,
+	toggleSidebar,
+	className,
+}: HorizontalMenuProps) => {
+	const verticalMenuTrigger = useMemo(
+		() => <VerticalMenuTrigger onClick={toggleSidebar} />,
+		[toggleSidebar]
+	);
+	const horizontalNav = useMemo(() => <HorizontalNav />, []);
+	const localeSelector = useMemo(() => <LocaleSelector />, []);
+	const themeSelector = useMemo(() => <ThemeSelector />, []);
 
-const HorizontalMenu = ({ items, className }: HorizontalMenuProps) => {
+	if (isMobile) {
+		return verticalMenuTrigger;
+	}
+
 	return (
-		<NavigationMenu.Root className={classNames(styles.root, className)}>
-			<NavigationMenu.List className={styles.list}>
-				{items.map((item) => (
-					<NavigationMenu.Item key={item.id}>
-						<NavigationMenu.Trigger className={styles.trigger}>
-							{item.locale.title}
-							<CaretDownIcon className={styles.caretDown} />
-						</NavigationMenu.Trigger>
-						<NavigationMenu.Content className={styles.content}>
-							<ul data-list-grid-size="1" className={styles.items}>
-								{item.items.map((item) => (
-									<NavigationMenu.Link asChild key={mlUtils.uniqueId()}>
-										<li className={styles.listItem}>
-											<ListItem
-												key={mlUtils.uniqueId()}
-												className={styles.entry}
-												{...item}
-											/>
-										</li>
-									</NavigationMenu.Link>
-								))}
-							</ul>
-						</NavigationMenu.Content>
-					</NavigationMenu.Item>
-				))}
-				<NavigationMenu.Indicator className={styles.indicator}>
-					<div className={styles.arrow}></div>
-				</NavigationMenu.Indicator>
-			</NavigationMenu.List>
-			<div className={styles.viewportPosition}>
-				<NavigationMenu.Viewport className={styles.viewport} />
-			</div>
-		</NavigationMenu.Root>
+		<div className={classNames(styles.root, className)}>
+			{verticalMenuTrigger}
+			{horizontalNav}
+			{localeSelector}
+			{themeSelector}
+		</div>
 	);
 };
 

@@ -1,0 +1,29 @@
+@import "styles";
+@import "../NavListItem/NavListItem.module.scss";
+
+.root {
+	.list {
+		padding: 0;
+		margin: 0;
+	}
+
+	.item {
+		display: flex;
+		border-top: 1px dashed blue;
+		padding: 2em 1em;
+		line-height: 2em;
+
+		$bgColor: varName(site-nav-item-title-background-color);
+		$textColor: varName(site-nav-item-title-text-color);
+
+		#{$bgColor}: #004;
+		#{$bgColor}#{state(hovered)}: #f00;
+
+		#{$textColor}: white;
+		#{$textColor}#{state(hovered)}: orange;
+
+		#{varName(site-nav-item-icon-border-size)}: 2px;
+		#{varName(site-nav-item-icon-border-style)}: solid;
+		#{varName(site-nav-item-icon-border-color)}: red;
+	}
+}

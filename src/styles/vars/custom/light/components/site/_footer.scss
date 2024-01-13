@@ -2,9 +2,10 @@
 
 $index: (
 	footer: (
-		background-color: ref(color-container-main),
+		background-color: ref(color-surface-main),
 		strip: (
 			background-color: ref(gradient-primary-main),
+			height: 4px,
 		),
 	),
 );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "styled-jsx/css";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";

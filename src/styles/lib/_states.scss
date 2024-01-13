@@ -1,9 +1,11 @@
 @use "sass:map";
 @use "sass:list";
 
+// base component states
 $COMPONENT_STATES: (
 	hovered: hover,
 	clicked: active,
+	selected: selected,
 );
 
 @function _strReplace($string, $search, $replace: "") {

@@ -1,0 +1,210 @@
+@import "styles";
+
+@import "styles/mixins/menuButtonMixin.scss";
+
+@import "styles/mixins/animation/fadeIn.scss";
+@import "styles/mixins/animation/fadeOut.scss";
+@import "styles/mixins/animation/scaleIn.scss";
+@import "styles/mixins/animation/scaleOut.scss";
+@import "styles/mixins/animation/enterFromLeft.scss";
+@import "styles/mixins/animation/enterFromRight.scss";
+@import "styles/mixins/animation/exitToLeft.scss";
+@import "styles/mixins/animation/exitToRight.scss";
+
+@import "../NavListItem/NavListItem.module.scss";
+
+// @import "./animations";
+
+$states: deep-merge(
+	$COMPONENT_STATES,
+	(
+		opened: open,
+	)
+);
+
+.root {
+	width: 400px;
+
+	.list {
+		display: flex;
+		justify-content: center;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.items {
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.trigger {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		@include NavButton;
+
+		// this `hover` state aims to fix the slight delay in applying
+		// background-color to the menu trigger whic his based on its
+		// `open` state
+		&:hover,
+		&[data-state="open"] {
+			@include useBackgroundColor(site-horizontal-menu-trigger, state(opened));
+		}
+
+		&[data-state="open"],
+		&:hover {
+			.caretDown {
+				@include useTextColor(
+					site-horizontal-menu-trigger-caret,
+					state(hovered)
+				);
+			}
+		}
+	}
+
+	.content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		// animation-duration: 250ms;
+		// animation-timing-function: ease;
+		box-sizing: border-box;
+		// padding: 1em;
+		margin: 0;
+
+		&[data-motion="from-start"] {
+			@include useEnterFromLeft(site-horizontal-menu);
+			animation-name: enterFromLeft;
+		}
+		&[data-motion="from-end"] {
+			@include useEnterFromRight(site-horizontal-menu);
+			// animation-name: enterFromRight;
+		}
+		&[data-motion="to-start"] {
+			@include useExitToLeft(site-horizontal-menu);
+			// animation-name: exitToLeft;
+		}
+		&[data-motion="to-end"] {
+			@include useExitToRight(site-horizontal-menu);
+			// animation-name: exitToRight;
+		}
+
+		// @media only screen and (min-width: 600px) {
+		// 	.content {
+		// 	width: auto;
+		// 	}
+		// }
+	}
+
+	.indicator {
+		--indicator-height: 10px;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		height: var(--indicator-height);
+		// todo: fix calc
+		top: calc(var(--bar-height) - var(--indicator-height) - 8px);
+		overflow: hidden;
+		z-index: 2;
+		transition: width, transform 250ms ease;
+
+		&[data-state="visible"] {
+			@include useFadeIn(site-horizontal-menu);
+			// animation: fadeIn 2200ms ease;
+		}
+		&[data-state="hidden"] {
+			@include useFadeOut(fafa);
+			// animation: fadeOut 200ms ease;
+		}
+	}
+
+	.viewport {
+		position: relative;
+		transform-origin: top center;
+		// margin-top: 0;
+		width: 100%;
+		background-color: white;
+		border-radius: 6px;
+		overflow: hidden;
+		box-shadow: globalRef(shadow-md);
+		height: var(--radix-navigation-menu-viewport-height);
+		transition: width, height, 300ms ease;
+
+		&[data-state="open"] {
+			@include useScaleIn(site-horizontal-menu);
+			// animation: scaleIn 200ms ease;
+		}
+		&[data-state="closed"] {
+			@include useScaleOut(site-horizontal-menu);
+			// animation: scaleOut 200ms ease;
+		}
+
+		@media only screen and (min-width: 600px) {
+			// .viewport {
+			width: 400px; //var(--radix-navigation-menu-viewport-width);
+			// }
+		}
+	}
+
+	.viewportPosition {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		top: 100%;
+		left: 0;
+		perspective: 2000px;
+	}
+
+	.caretDown {
+		@include useTextColor(site-horizontal-menu-trigger-caret);
+
+		transition: transform 250ms ease;
+	}
+	[data-state="open"] > .caretDown {
+		transform: rotate(-180deg);
+	}
+
+	.arrow {
+		position: relative;
+		top: 70%;
+		background-color: white;
+		width: 12px;
+		height: 12px;
+		transform: rotate(45deg);
+		border-top-left-radius: 2px;
+	}
+
+	.listItem {
+		list-style: none;
+		margin: 0;
+		box-sizing: border-box;
+		overflow: hidden;
+	}
+
+	.item {
+		display: flex;
+		padding: 1em;
+
+		#{varName(site-nav-item-title-background-color)}: #004;
+		#{varName(site-nav-item-title-text-color)}: white;
+
+		#{varName(site-nav-item-title-background-color)}#{state(hovered)}: #0f0;
+		#{varName(site-nav-item-title-text-color)}#{state(hovered)}: blue;
+
+		#{varName(site-nav-item-icon-border-size)}: 2px;
+		#{varName(site-nav-item-icon-border-style)}: solid;
+		#{varName(site-nav-item-icon-border-color)}: red;
+
+		.content {
+		}
+		// border: 5px solid magenta;
+		.title {
+			// border: 5px solid yellow;
+		}
+	}
+}

@@ -47,3 +47,12 @@
 			var(cssVar(#{$key}#{$compState}))
 		)};
 }
+
+@mixin useThemeVar(
+	$cssProperty,
+	$themeProperty,
+	$varName: "__generic__",
+	$varState: ""
+) {
+	#{$cssProperty}: compRef($varName, $themeProperty, $varState);
+}

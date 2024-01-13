@@ -14,9 +14,9 @@ import Page from "../Page";
 import Analytics from "./analytics";
 import { FavIconAnimator, IFavIconProps } from "../../../lib/favicon-animator";
 import { Scrollbar } from "@components/ui";
-import classNames from "classnames";
 import styles from "./Layout.module.scss";
-import type { ComponentProps } from "../../../interfaces/models";
+import useDrawer from "../SiteNav/VerticalMenu/useDrawer";
+import { VerticalMenu } from "../SiteNav";
 
 type LayoutProps = {
 	title?: string;
@@ -37,15 +37,33 @@ const isDebug = process.env.NEXT_PUBLIC_ML_DEBUG;
 export default function Layout({
 	title,
 	children,
-	className,
-}: PropsWithChildren<LayoutProps> & ComponentProps) {
+}: PropsWithChildren<LayoutProps>) {
 	const router = useRouter();
 	const size = useWindowSize();
 	const { siteTitle, siteSubtitle, textDirection, pageName } =
 		useContext(LocaleProvider);
+	const { open, setOpen, toggle } = useDrawer();
 
 	const { locale, asPath: currentUrl } = router;
+	const isHome = router.pathname === "/";
 	const isMobile = size.width <= 1024;
+
+	const sidebarMenu = useMemo(
+		() => <VerticalMenu open={open} toggle={toggle} isHome={isHome} />,
+		[isHome, open, toggle]
+	);
+
+	const pageTitle = useMemo(
+		() =>
+			[siteTitle, siteSubtitle, title || pageName]
+				.map((s) => s && s.trim())
+				.filter(Boolean)
+				.join(" - "),
+		[siteTitle, siteSubtitle, title, pageName]
+	);
+
+	// close mobile menu on viewport change
+	useEffect(() => setOpen(false), [isMobile, setOpen]);
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
@@ -59,14 +77,10 @@ export default function Layout({
 		return () => router.events.off("routeChangeStart", handleRouteChange);
 	}, [router.events]);
 
-	const pageTitle = useMemo(
-		() =>
-			[siteTitle, siteSubtitle, title || pageName]
-				.map((s) => s && s.trim())
-				.filter(Boolean)
-				.join(" - "),
-		[siteTitle, siteSubtitle, title, pageName]
-	);
+	if (size.width === undefined) {
+		return null;
+	}
+
 	return (
 		<>
 			<Head>
@@ -95,14 +109,16 @@ export default function Layout({
 				<meta name="og:title" content={`${siteTitle} - ${siteSubtitle}`} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<Scrollbar
-				className={classNames(styles.root, className)}
-				textDirection={textDirection}
-			>
+			<Scrollbar className={styles.root} textDirection={textDirection}>
 				<div data-text-direction={textDirection}>
-					<SiteHeader isHome={router.pathname === "/"} isMobile={isMobile} />
+					<SiteHeader
+						isHome={isHome}
+						isMobile={isMobile}
+						toggleSidebar={toggle}
+					/>
 					<Page nodes={children} />
 					<SiteFooter />
+					{sidebarMenu}
 				</div>
 			</Scrollbar>
 			{!isDebug && <Analytics />}

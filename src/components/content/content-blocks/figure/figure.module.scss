@@ -1,5 +1,5 @@
-@import "./styles";
-@import "./FigureMixins";
+@import "styles";
+@import "styles/mixins/content/figureMixin";
 
 .root {
 	--border-size: 1px;
@@ -8,16 +8,18 @@
 
 	max-width: 100%;
 	text-align: center;
-	margin: 2em 0;
+	margin: 0;
 
 	img {
 		max-width: 100%;
 	}
 
-	padding: 2em;
+	padding: 1em;
 
-	border: compRef(figure, border-size) compRef(figure, border-style)
-		compRef(figure, border-color);
+	@include useBorderSize(figure);
+	@include useBorderStyle(figure);
+	@include useBorderColor(figure);
 
+	// variant mixins
 	@include no-border;
 }

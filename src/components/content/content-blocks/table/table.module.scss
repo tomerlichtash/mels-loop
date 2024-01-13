@@ -1,7 +1,18 @@
 @import "styles";
 
 .root {
-	--border-color: #c0c0c0;
+	--border-top-size: 1px;
+	--border-top-style: solid;
+	--border-top-color: #c0c0c0;
+	--border-bottom-size: 1px;
+	--border-bottom-style: solid;
+	--border-bottom-color: #c0c0c0;
+	--border-right-size: 1px;
+	--border-right-style: solid;
+	--border-right-color: #c0c0c0;
+	--border-left-size: 1px;
+	--border-left-style: solid;
+	--border-left-color: #c0c0c0;
 
 	margin: 0 auto;
 	border-spacing: 0;
@@ -11,17 +22,26 @@
 	// 	// padding: 1em;
 	// }
 
-	border-top: 1px solid compRef(content-table, border-color);
+	@include useBorderTopSize(content-table);
+	@include useBorderTopStyle(content-table);
+	@include useBorderTopColor(content-table);
 
 	td,
 	th {
 		padding: 0.5rem 1rem;
 
-		border-right: 1px solid compRef(content-table, border-color);
-		border-bottom: 1px solid compRef(content-table, border-color);
+		@include useBorderRightSize(content-table);
+		@include useBorderRightStyle(content-table);
+		@include useBorderRightColor(content-table);
+
+		@include useBorderBottomSize(content-table);
+		@include useBorderBottomStyle(content-table);
+		@include useBorderBottomColor(content-table);
 
 		&:first-child {
-			border-left: 1px solid compRef(content-table, border-color);
+			@include useBorderLeftSize(content-table);
+			@include useBorderLeftStyle(content-table);
+			@include useBorderLeftColor(content-table);
 		}
 	}
 }

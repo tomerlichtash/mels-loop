@@ -1,0 +1,19 @@
+@import "styles/lib/themeVars";
+
+@mixin exitToLeftKeyframes {
+	@keyframes exitToLeft {
+		from {
+			opacity: 1;
+			transform: translateX(0);
+		}
+		to {
+			opacity: 0;
+			transform: translateX(-200px);
+		}
+	}
+}
+
+@mixin useExitToLeft($comp: "", $anim: exitToLeft) {
+	@include exitToLeftKeyframes;
+	@include useAnimation($anim, #{$comp}-#{$anim});
+}

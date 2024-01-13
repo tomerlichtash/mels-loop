@@ -1,22 +1,45 @@
-import React from "react";
+import React, { useContext, useMemo } from "react";
 import { mlUtils } from "../../../lib/ml-utils";
 import { ToggleGroupRoot, ToggleGroupItem } from "@components/primitives";
-import { LocaleId } from "locale/locale-context";
+import { LocaleId, TextDirection } from "locale/locale-context";
 import styles from "./LocaleSelector.module.scss";
-import type { LocaleSelectorProps } from "./types";
+import { Button } from "@components/ui";
+import { LocaleProvider } from "locale/context/locale-context";
 
-const LocaleSelector = ({
-	value,
-	options,
-	onChange,
-	className,
-}: LocaleSelectorProps): JSX.Element => {
+// type LocaleOption = {
+// 	id: LocaleId;
+// 	symbol: string;
+// 	title: string;
+// 	textDirection: TextDirection;
+// };
+
+const LocaleSelector = (): JSX.Element => {
+	const {
+		locale,
+		locales,
+		translate,
+		getLocaleLabel,
+		getLocaleSymbol,
+		onLocaleChange,
+	} = useContext(LocaleProvider);
+
+	const options = useMemo(
+		() =>
+			locales.map((id) => ({
+				id,
+				symbol: getLocaleSymbol(id),
+				title: translate(`${getLocaleLabel(id)}_LABEL`),
+				textDirection: "ltr" as TextDirection,
+			})),
+		[getLocaleLabel, getLocaleSymbol, locales, translate]
+	);
+
 	return (
 		<ToggleGroupRoot
-			defaultValue={value}
+			defaultValue={locale}
 			aria-label="Switch Site Language"
 			className={styles.root}
-			onValueChange={(id: LocaleId) => onChange(id)}
+			onValueChange={(id: LocaleId) => onLocaleChange(id)}
 			dir="ltr"
 			type="single"
 		>
@@ -29,13 +52,14 @@ const LocaleSelector = ({
 						title={title}
 						aria-label={title}
 					>
-						<span
-							data-state={value === id ? "selected" : ""}
-							data-text-direction={textDirection}
-							className={styles.button}
-						>
-							{symbol}
-						</span>
+						<Button className={styles.button} asChild>
+							<span
+								data-state={locale === id ? "selected" : ""}
+								data-text-direction={textDirection}
+							>
+								{symbol}
+							</span>
+						</Button>
 					</ToggleGroupItem>
 				);
 			})}

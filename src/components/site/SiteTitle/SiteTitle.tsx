@@ -1,53 +1,66 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import Link from "next/link";
+import classNames from "classnames";
+import { Button } from "@components/ui";
+import { Logo } from "@components/site";
 import styles from "./SiteTitle.module.scss";
 
 import type { TextDirection } from "../../../locale/locale-context";
-import classNames from "classnames";
+import { LocaleProvider } from "locale/context/locale-context";
 
 type SiteTitleProps = {
-	title: string;
-	subtitle: string;
-	textDirection: TextDirection;
+	title?: string;
+	subtitle?: string;
 	isHome?: boolean;
+	showLogo?: boolean;
+	textDirection?: TextDirection;
 	className?: string;
+	variant?: string;
 };
 
 const SiteTitle = ({
-	title,
-	subtitle,
-	textDirection,
 	isHome,
+	showLogo = true,
+	variant,
 	className,
 }: SiteTitleProps): JSX.Element => {
-	const titleContent = useMemo(() => {
-		return (
-			<span className={styles.title}>
-				<span className={styles.logo}></span>
-				<span className={styles.titleText}>{title}</span>
-			</span>
-		);
-	}, [title]);
+	const {
+		siteTitle: title,
+		siteSubtitle: subtitle,
+		textDirection,
+	} = useContext(LocaleProvider);
 
-	const linkTitle = useMemo(() => {
-		return (
-			<Link
-				title={`${title} - ${subtitle}`}
-				aria-label={`${title} - ${subtitle}`}
-				href="/"
-			>
-				{titleContent}
-			</Link>
-		);
-	}, [titleContent, title, subtitle]);
+	const label = useMemo(() => `${title} - ${subtitle}`, [title, subtitle]);
+
+	const text = useMemo(
+		() => (
+			<span className={styles.title}>
+				{showLogo && <Logo className={styles.logo} />}
+				{title && <span className={styles.label}>{title}</span>}
+			</span>
+		),
+		[title, showLogo]
+	);
+
+	const link = useMemo(
+		() => (
+			<Button className={styles.link} asChild>
+				<Link href="/" title={label} aria-label={label}>
+					{text}
+				</Link>
+			</Button>
+		),
+		[label, text]
+	);
 
 	return (
 		<div
 			className={classNames(styles.root, className)}
 			data-text-direction={textDirection}
+			data-variant={variant}
 		>
-			{isHome ? titleContent : linkTitle}
-			<span className={styles.subtitle}>{subtitle}</span>
+			{isHome ? text : link}
+			{subtitle && <span className={styles.subtitle}>{subtitle}</span>}
 		</div>
 	);
 };

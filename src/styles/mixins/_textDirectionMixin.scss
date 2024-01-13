@@ -1,0 +1,11 @@
+@import "styles";
+
+@mixin TextDirection($direction) {
+	[data-text-direction="#{$direction}"] {
+		@include useFontFamily(text-direction-#{$direction});
+		@include useFontSize(text-direction-#{$direction});
+		@include useFontWeight(text-direction-#{$direction});
+		// @include useDirection(text-direction-#{$direction});
+		direction: #{$direction};
+	}
+}

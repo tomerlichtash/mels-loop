@@ -1,21 +1,69 @@
 @import "styles";
 
 $index: (
-	horizontal-menu: (
-		caret: (
-			color: ref(color-surface-contrast),
-			__hover: (
-				color: ref(color-surface-contrast),
+	nav: (
+		item: (
+			title: (
+				text-color: #fff,
+				background-color: #000,
 			),
 		),
+	),
+	horizontal-menu: (
+		scaleIn: (
+			animation-duration: 200ms,
+			animation-easing: ease,
+		),
+		scaleOut: (
+			animation-duration: 200ms,
+			animation-easing: ease,
+		),
+		fadeIn: (
+			animation-duration: 250ms,
+			animation-easing: ease,
+		),
+		fadeOut: (
+			animation-duration: 250ms,
+			animation-easing: ease,
+		),
+		enterFromRight: (
+			animation-duration: 250ms,
+			animation-easing: ease,
+		),
+		enterFromLeft: (
+			animation-duration: 250ms,
+			animation-easing: ease,
+		),
+		exitFromRight: (
+			animation-duration: 250ms,
+			animation-easing: ease,
+		),
+		exitFromLeft: (
+			animation-duration: 250ms,
+			animation-easing: ease,
+		),
 		trigger: (
-			__hover: (
+			text-color: red,
+			caret: (
+				text-color: ref(color-surface-contrast),
+				state(hovered): (
+					text-color: ref(color-surface-contrast),
+				),
+			),
+			state(hovered): (
 				background-color: ref(color-surface-dark),
 				text-color: ref(color-primary-dark),
 			),
 			__open: (
 				background-color: ref(color-surface-dark),
 				text-color: ref(color-primary-dark),
+			),
+		),
+		item: (
+			text-color: ref(color-primary-main),
+			state(hovered): (
+				text-color: ref(color-secondary-main),
+				background-color: ref(color-container-main),
 			),
 		),
 	),

@@ -1,0 +1,11 @@
+@import "styles";
+
+@mixin contentSelection {
+	--background-color: #000;
+	--text-color: #fff;
+
+	::selection {
+		@include useTextColor(site-layout-selection);
+		@include useBackgroundColor(site-layout-selection);
+	}
+}

@@ -105,7 +105,7 @@ export const MenuItems = [
 		id: "twitter",
 		type: "external",
 		url: "https://twitter.com/aboutmelsloop",
-		icon: "twitter",
+		icon: "𝕏",
 		locale: {
 			title: "MENU_ITEM_LABEL_ID_TWITTER",
 			description: "MENU_ITEM_DESC_ID_TWITTER",

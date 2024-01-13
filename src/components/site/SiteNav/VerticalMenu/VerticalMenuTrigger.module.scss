@@ -1,0 +1,5 @@
+@import "styles/mixins/ButtonMixin.scss";
+
+.root {
+	@include IconWithLabel;
+}

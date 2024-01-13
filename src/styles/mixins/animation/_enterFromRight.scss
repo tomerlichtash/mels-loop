@@ -1,0 +1,19 @@
+@import "styles/lib/themeVars";
+
+@mixin enterFromRightKeyframes {
+	@keyframes enterFromRight {
+		from {
+			opacity: 0;
+			transform: translateX(200px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+}
+
+@mixin useEnterFromRight($comp: "", $anim: enterFromRight) {
+	@include enterFromRightKeyframes;
+	@include useAnimation($anim, #{$comp}-#{$anim});
+}

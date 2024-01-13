@@ -1,12 +1,14 @@
+@import "styles";
+
 .root {
 	.title {
-		font-size: var(--ml-content-page-title-font-size);
+		@include useFontSize(content-page-title);
 	}
 	.subtitle {
-		font-size: var(--ml-content-page-subtitle-font-size);
+		@include useFontSize(content-page-subtitle);
 	}
 	.abstract {
-		font-size: var(--ml-content-page-abstract-font-size);
-		margin: 1em 0 2em;
+		@include useFontSize(content-page-abstract);
+		// margin: 1em 0 2em;
 	}
 }

@@ -1,3 +1,5 @@
+@import "styles";
+
 .root {
 	width: 100%;
 	border-radius: 0px;
@@ -9,11 +11,9 @@
 // .scrollbar {
 // 	background: red;
 // 	display: flex;
-// 	user-select: none;
 // 	touch-action: none;
 // 	padding: 0 12px;
 // 	transition: background 160ms ease-out;
-// 	cursor: pointer;
 // 	z-index: 2;
 // }
 
@@ -51,13 +51,14 @@
 }
 
 .ScrollAreaScrollbar {
+	@include disableUserSelection;
+
 	display: flex;
-	user-select: none;
+
 	touch-action: none;
 	padding: 2px;
 	background: var(--black-a6);
 	transition: background 160ms ease-out;
-	// background: #f0f0f0;
 	z-index: 1;
 }
 

@@ -24,7 +24,7 @@ export default function Doc(props: IPageProps) {
 		<Layout title={title}>
 			<div className="page">
 				<Button className="button" icon={backIcon} link={"/posts"}>
-					{translate("POSTS_BACK_TO_POSTS_LIST")}
+					{translate("button.back")}
 				</Button>
 				<BlogPost
 					key={mlUtils.uniqueId()}

@@ -14,20 +14,4 @@
 	&:focus {
 		background-color: var(--input-background-color__focus);
 	}
-
-	&[data-size="xs"] {
-		font-size: var(--component-size-xs);
-	}
-	&[data-size="sm"] {
-		font-size: var(--component-size-sm);
-	}
-	&[data-size="md"] {
-		font-size: var(--component-size-md);
-	}
-	&[data-size="lg"] {
-		font-size: var(--component-size-lg);
-	}
-	&[data-size="xl"] {
-		font-size: var(--component-size-xl);
-	}
 }

@@ -1,13 +1,12 @@
-@use "../MenuButtonMixin.scss";
+@import "styles/mixins/menuButtonMixin.scss";
 @import "styles";
 
 .root {
-	--button-background-color: #c0c0c0;
 	--gap: 4px;
 
 	display: flex;
 
-	gap: compRef(site-locale-selector, gap);
+	@include useGap(site-locale-selector);
 
 	.item {
 		background-color: transparent;
@@ -15,7 +14,7 @@
 		padding: 0;
 
 		.button {
-			@include MenuButtonMixin.ToggleButton;
+			@include ToggleButton;
 		}
 	}
 }

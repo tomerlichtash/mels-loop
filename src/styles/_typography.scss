@@ -1,18 +1,10 @@
 @import "lib/refs";
+@import "mixins/textDirectionMixin";
 
 $typogrpahy-direction-variants: (ltr, rtl);
 
-@mixin text-direction-variant($direction) {
-	[data-text-direction="#{$direction}"] {
-		font-family: ref(text-direction-#{$direction}-font-family);
-		font-size: ref(text-direction-#{$direction}-font-size);
-		font-weight: ref(text-direction-#{$direction}-font-weight);
-		direction: #{$direction};
-	}
-}
-
 @each $variant in $typogrpahy-direction-variants {
-	@include text-direction-variant($variant);
+	@include TextDirection($variant);
 }
 
 html,
