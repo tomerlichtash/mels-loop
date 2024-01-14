@@ -1,5 +1,5 @@
 // @use "../ComponentMixin";
-@import "styles";
+@import "../lib/themeVars";
 
 @mixin Default {
 	--text-color: magenta;

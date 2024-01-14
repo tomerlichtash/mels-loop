@@ -1,7 +1,6 @@
 @import "styles";
 @import "styles/mixins/popoverMixin";
 @import "styles/mixins/affixMixin";
-@import "styles/mixins/footnoteAnchorMixin";
 
 .root {
 	--font-size: 0.75em;
@@ -21,14 +20,14 @@
 	@include useOffsetTop(annotation);
 
 	.content {
-		@include footnoteAnchorMixin(annotation, var(--data-content));
+		@include SuffixDataContentMixin(annotation, var(--data-content));
 	}
 
 	&:before {
-		@include Prefix(annotation);
+		@include PrefixMixin(annotation);
 	}
 
 	&:after {
-		@include Suffix(annotation);
+		@include SuffixMixin(annotation);
 	}
 }

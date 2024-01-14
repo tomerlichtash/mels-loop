@@ -1,19 +1,7 @@
 @import "styles";
-
 @import "styles/mixins/menuButtonMixin.scss";
-
-@import "styles/mixins/animation/fadeIn.scss";
-@import "styles/mixins/animation/fadeOut.scss";
-@import "styles/mixins/animation/scaleIn.scss";
-@import "styles/mixins/animation/scaleOut.scss";
-@import "styles/mixins/animation/enterFromLeft.scss";
-@import "styles/mixins/animation/enterFromRight.scss";
-@import "styles/mixins/animation/exitToLeft.scss";
-@import "styles/mixins/animation/exitToRight.scss";
-
+@import "./horizontalNavAnimationMixin.scss";
 @import "../NavListItem/NavListItem.module.scss";
-
-// @import "./animations";
 
 $states: deep-merge(
 	$COMPONENT_STATES,
@@ -22,8 +10,33 @@ $states: deep-merge(
 	)
 );
 
+@mixin Item {
+	// // override nav-list-item background-color
+	#{varName(site-nav-item-title-background-color)}: #fff;
+	#{varName(site-nav-item-title-text-color)}: 000;
+
+	// override nav-list-item text-color
+	#{varName(site-nav-item-title-background-color)}#{state(hovered)}: #0f0;
+	#{varName(site-nav-item-title-text-color)}#{state(hovered)}: blue;
+
+	// override nav-list-item border
+	#{varName(site-nav-item-icon-border-size)}: 2px;
+	#{varName(site-nav-item-icon-border-style)}: solid;
+	#{varName(site-nav-item-icon-border-color)}: red;
+}
+
+@mixin ButtonCaret($var) {
+	.caretDown {
+		@include useTextColor($var);
+		transition: transform 250ms ease;
+	}
+	[data-state="open"] > .caretDown {
+		transform: rotate(-180deg);
+	}
+}
+
 .root {
-	width: 400px;
+	min-width: 200px;
 
 	.list {
 		display: flex;
@@ -46,15 +59,18 @@ $states: deep-merge(
 
 		@include NavButton;
 
+		&[data-state="open"],
 		// this `hover` state aims to fix the slight delay in applying
-		// background-color to the menu trigger whic his based on its
+		// background-color to the menu trigger which his based on its
 		// `open` state
-		&:hover,
-		&[data-state="open"] {
+		&:hover {
 			@include useBackgroundColor(site-horizontal-menu-trigger, state(opened));
 		}
 
 		&[data-state="open"],
+		// this `hover` state aims to fix the slight delay in applying
+		// background-color to the menu trigger which his based on its
+		// `open` state
 		&:hover {
 			.caretDown {
 				@include useTextColor(
@@ -70,28 +86,11 @@ $states: deep-merge(
 		top: 0;
 		left: 0;
 		width: 100%;
-		// animation-duration: 250ms;
-		// animation-timing-function: ease;
 		box-sizing: border-box;
 		// padding: 1em;
 		margin: 0;
 
-		&[data-motion="from-start"] {
-			@include useEnterFromLeft(site-horizontal-menu);
-			animation-name: enterFromLeft;
-		}
-		&[data-motion="from-end"] {
-			@include useEnterFromRight(site-horizontal-menu);
-			// animation-name: enterFromRight;
-		}
-		&[data-motion="to-start"] {
-			@include useExitToLeft(site-horizontal-menu);
-			// animation-name: exitToLeft;
-		}
-		&[data-motion="to-end"] {
-			@include useExitToRight(site-horizontal-menu);
-			// animation-name: exitToRight;
-		}
+		@include contentAnimations(site-horizontal-menu);
 
 		// @media only screen and (min-width: 600px) {
 		// 	.content {
@@ -112,42 +111,28 @@ $states: deep-merge(
 		z-index: 2;
 		transition: width, transform 250ms ease;
 
-		&[data-state="visible"] {
-			@include useFadeIn(site-horizontal-menu);
-			// animation: fadeIn 2200ms ease;
-		}
-		&[data-state="hidden"] {
-			@include useFadeOut(fafa);
-			// animation: fadeOut 200ms ease;
-		}
+		@include indicatorAnimations(site-horizontal-menu);
 	}
 
 	.viewport {
+		width: 100%;
 		position: relative;
 		transform-origin: top center;
+		overflow: hidden;
 		// margin-top: 0;
-		width: 100%;
 		background-color: white;
 		border-radius: 6px;
-		overflow: hidden;
 		box-shadow: globalRef(shadow-md);
 		height: var(--radix-navigation-menu-viewport-height);
 		transition: width, height, 300ms ease;
 
-		&[data-state="open"] {
-			@include useScaleIn(site-horizontal-menu);
-			// animation: scaleIn 200ms ease;
-		}
-		&[data-state="closed"] {
-			@include useScaleOut(site-horizontal-menu);
-			// animation: scaleOut 200ms ease;
-		}
+		@include viewportAnimations(site-horizontal-menu);
 
-		@media only screen and (min-width: 600px) {
-			// .viewport {
-			width: 400px; //var(--radix-navigation-menu-viewport-width);
-			// }
-		}
+		// @media only screen and (min-width: 600px) {
+		// 	.viewport {
+		// 		width: 400px; //var(--radix-navigation-menu-viewport-width);
+		// 	}
+		// }
 	}
 
 	.viewportPosition {
@@ -160,14 +145,7 @@ $states: deep-merge(
 		perspective: 2000px;
 	}
 
-	.caretDown {
-		@include useTextColor(site-horizontal-menu-trigger-caret);
-
-		transition: transform 250ms ease;
-	}
-	[data-state="open"] > .caretDown {
-		transform: rotate(-180deg);
-	}
+	@include ButtonCaret(site-horizontal-menu-trigger-caret);
 
 	.arrow {
 		position: relative;
@@ -180,31 +158,16 @@ $states: deep-merge(
 	}
 
 	.listItem {
+		// overflow: hidden;
+		// box-sizing: border-box;
+		// margin: 0;
 		list-style: none;
-		margin: 0;
-		box-sizing: border-box;
-		overflow: hidden;
 	}
 
 	.item {
-		display: flex;
+		// display: flex;
 		padding: 1em;
 
-		#{varName(site-nav-item-title-background-color)}: #004;
-		#{varName(site-nav-item-title-text-color)}: white;
-
-		#{varName(site-nav-item-title-background-color)}#{state(hovered)}: #0f0;
-		#{varName(site-nav-item-title-text-color)}#{state(hovered)}: blue;
-
-		#{varName(site-nav-item-icon-border-size)}: 2px;
-		#{varName(site-nav-item-icon-border-style)}: solid;
-		#{varName(site-nav-item-icon-border-color)}: red;
-
-		.content {
-		}
-		// border: 5px solid magenta;
-		.title {
-			// border: 5px solid yellow;
-		}
+		@include Item;
 	}
 }

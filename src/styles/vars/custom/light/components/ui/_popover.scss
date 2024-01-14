@@ -33,6 +33,10 @@ $index: (
 		background-color: ref(color-surface-light),
 		border-radius: globalRef(radius-md),
 		width: 10em,
+		fadeIn-animation: (
+			duration: 200ms,
+			easing: ease-in,
+		),
 	),
 	loading-indicator: (
 		label: (

@@ -2,6 +2,7 @@
 
 .root {
 	.item {
+		--background-color: red;
 		@include useTextColor(site-nav-item-title);
 		@include useBackgroundColor(site-nav-item-title);
 
@@ -14,7 +15,7 @@
 	.icon {
 		@include useBorder(site-nav-item-icon);
 
-		background-color: #239;
+		// background-color: #239;
 
 		display: flex;
 		align-items: center;

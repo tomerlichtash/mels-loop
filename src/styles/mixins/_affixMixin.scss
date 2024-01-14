@@ -1,12 +1,24 @@
+@import "../lib/themeVars";
+
 @mixin AffixMixin($module, $affix) {
 	@include useContent(#{$module}-#{$affix});
 	@include useOpacity(#{$module}-#{$affix});
 }
 
-@mixin Prefix($module: default) {
+@mixin PrefixMixin($module: default) {
 	@include AffixMixin($module, prefix);
 }
 
-@mixin Suffix($module: default) {
+@mixin SuffixMixin($module: default) {
 	@include AffixMixin($module, suffix);
+}
+
+@mixin SuffixDataContentMixin($var, $content: "") {
+	--content: #{$content};
+
+	&::after {
+		@include useContent($var);
+		@include useFontWeight($var);
+		@include useHorizontalPadding($var);
+	}
 }

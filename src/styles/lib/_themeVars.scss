@@ -246,25 +246,10 @@
 	animation: $anim;
 	animation-duration: compRef($comp, animation-duration);
 	animation-timing-function: compRef($comp, animation-easing);
-
-	// 	animation-duration: 250ms;
-	// animation-timing-function: ease;
 }
 
-@mixin useFadeIn($comp) {
-	@keyframes fadeIn {
-		0% {
-			opacity: 0;
-		}
-		50% {
-			opacity: 0.75;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
-	@include useAnimation(fadeIn, $comp);
-}
+// useTransition
+// useTransform
 
 // UTILITIES
 @mixin clearBorder {

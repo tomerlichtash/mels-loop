@@ -1,4 +1,4 @@
-@import "styles";
+@import "../lib/themeVars";
 
 @mixin TextDirection($direction) {
 	[data-text-direction="#{$direction}"] {

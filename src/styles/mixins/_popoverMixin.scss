@@ -1,11 +1,4 @@
-// this mixin provides a shared style for popover triggers.
-// a trigger can provide its own styling (e.g. Annotation's before/after content)
-// and use this mixin to define where in its implementation the shared styling should apply.
-// See PopoverTrigger.module.scss - an agnostic CSS var map which defines these CSS vars
-// in different states, shared by all triggers.
-
-@import "styles";
-@import "../../components/content/popover/PopoverTrigger.module.scss";
+@import "../lib/themeVars";
 
 @mixin PopoverTrigger($comp: "popover-trigger", $state: "") {
 	@include cursorPointer;

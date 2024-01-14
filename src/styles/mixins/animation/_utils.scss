@@ -1,0 +1,5 @@
+@import "styles/lib/themeVars";
+
+@mixin _useAnimationThemeVar($anim, $comp) {
+	@include useAnimation($anim, #{$comp}-#{$anim});
+}

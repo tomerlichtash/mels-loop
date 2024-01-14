@@ -17,7 +17,7 @@
 		@include disableUserSelection;
 		@include cursorPointer;
 
-		@include Suffix(popover-trigger);
+		@include SuffixMixin(popover-trigger);
 		@include useTextColor(popover-trigger);
 		@include useOffsetTop(popover-trigger);
 	}

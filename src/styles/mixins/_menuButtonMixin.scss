@@ -1,4 +1,7 @@
-@import "styles";
+@import "../lib/themeVars";
+@import "../lib/refs";
+@import "../lib/states";
+@import "../lib/merge";
 
 $states: deep-merge(
 	$COMPONENT_STATES,

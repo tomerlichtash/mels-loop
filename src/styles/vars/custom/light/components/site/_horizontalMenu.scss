@@ -1,4 +1,11 @@
+@use "../../../../../../components/site/SiteNav/HorizontalMenu/HorizontalNav.module.scss"
+	as HorizontalNav;
 @import "styles";
+
+$easing: ease;
+
+$hovered: HorizontalNav.state(hovered);
+$opened: HorizontalNav.state(opened);
 
 $index: (
 	nav: (
@@ -10,61 +17,61 @@ $index: (
 		),
 	),
 	horizontal-menu: (
-		scaleIn: (
-			animation-duration: 200ms,
-			animation-easing: ease,
+		scaleIn-animation: (
+			duration: 200ms,
+			easing: $easing,
 		),
-		scaleOut: (
-			animation-duration: 200ms,
-			animation-easing: ease,
+		scaleOut-animation: (
+			duration: 200ms,
+			easing: $easing,
 		),
-		fadeIn: (
-			animation-duration: 250ms,
-			animation-easing: ease,
+		fadeIn-animation: (
+			duration: 200ms,
+			easing: $easing,
 		),
-		fadeOut: (
-			animation-duration: 250ms,
-			animation-easing: ease,
+		fadeOut-animation: (
+			duration: 200ms,
+			easing: $easing,
 		),
-		enterFromRight: (
-			animation-duration: 250ms,
-			animation-easing: ease,
+		enterFromRight-animation: (
+			duration: 250ms,
+			easing: $easing,
 		),
-		enterFromLeft: (
-			animation-duration: 250ms,
-			animation-easing: ease,
+		enterFromLeft-animation: (
+			duration: 250ms,
+			easing: $easing,
 		),
-		exitFromRight: (
-			animation-duration: 250ms,
-			animation-easing: ease,
+		exitToRight-animation: (
+			duration: 250ms,
+			easing: $easing,
 		),
-		exitFromLeft: (
-			animation-duration: 250ms,
-			animation-easing: ease,
+		exitToLeft-animation: (
+			duration: 250ms,
+			easing: $easing,
 		),
 		trigger: (
 			text-color: red,
 			caret: (
 				text-color: ref(color-surface-contrast),
-				state(hovered): (
-					text-color: ref(color-surface-contrast),
+				#{$hovered}: (
+						text-color: ref(color-surface-contrast),
+					),
+			),
+			#{$hovered}: (
+					background-color: ref(color-surface-dark),
+					text-color: ref(color-primary-dark),
 				),
-			),
-			state(hovered): (
-				background-color: ref(color-surface-dark),
-				text-color: ref(color-primary-dark),
-			),
-			__open: (
-				background-color: ref(color-surface-dark),
-				text-color: ref(color-primary-dark),
-			),
+			#{$opened}: (
+					background-color: ref(color-surface-dark),
+					text-color: ref(color-primary-dark),
+				),
 		),
 		item: (
 			text-color: ref(color-primary-main),
-			state(hovered): (
-				text-color: ref(color-secondary-main),
-				background-color: ref(color-container-main),
-			),
+			#{$hovered}: (
+					text-color: ref(color-secondary-main),
+					background-color: ref(color-container-main),
+				),
 		),
 	),
 );
