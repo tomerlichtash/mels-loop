@@ -18,36 +18,36 @@ $index: (
 	),
 	horizontal-menu: (
 		scaleIn-animation: (
-			duration: 200ms,
-			easing: $easing,
+			duration: globalRef(animation-duration-sm),
+			easing: globalRef(animation-easing-default),
 		),
 		scaleOut-animation: (
-			duration: 200ms,
-			easing: $easing,
+			duration: globalRef(animation-duration-sm),
+			easing: globalRef(animation-easing-default),
 		),
 		fadeIn-animation: (
-			duration: 200ms,
-			easing: $easing,
+			duration: globalRef(animation-duration-sm),
+			easing: globalRef(animation-easing-default),
 		),
 		fadeOut-animation: (
-			duration: 200ms,
-			easing: $easing,
+			duration: globalRef(animation-duration-sm),
+			easing: globalRef(animation-easing-default),
 		),
 		enterFromRight-animation: (
-			duration: 250ms,
-			easing: $easing,
+			duration: globalRef(animation-duration-md),
+			easing: globalRef(animation-easing-default),
 		),
 		enterFromLeft-animation: (
-			duration: 250ms,
-			easing: $easing,
+			duration: globalRef(animation-duration-md),
+			easing: globalRef(animation-easing-default),
 		),
 		exitToRight-animation: (
-			duration: 250ms,
-			easing: $easing,
+			duration: globalRef(animation-duration-md),
+			easing: globalRef(animation-easing-default),
 		),
 		exitToLeft-animation: (
-			duration: 250ms,
-			easing: $easing,
+			duration: globalRef(animation-duration-md),
+			easing: globalRef(animation-easing-default),
 		),
 		trigger: (
 			text-color: red,

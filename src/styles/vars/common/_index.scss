@@ -3,7 +3,9 @@
 @use "typography";
 @use "shadows";
 @use "radius";
+@use "animations";
 
 $pallette: color.generate(colors.$index, "color");
 
-$index: $pallette, typography.$index, shadows.$index, radius.$index;
+$index: $pallette, typography.$index, shadows.$index, radius.$index,
+	animations.$index;

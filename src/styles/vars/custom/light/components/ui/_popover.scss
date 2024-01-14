@@ -34,8 +34,8 @@ $index: (
 		border-radius: globalRef(radius-md),
 		width: 10em,
 		fadeIn-animation: (
-			duration: 200ms,
-			easing: ease-in,
+			duration: globalRef(animation-duration-sm),
+			easing: globalRef(animation-easing-in),
 		),
 	),
 	loading-indicator: (
