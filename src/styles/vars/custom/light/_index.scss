@@ -1,6 +1,6 @@
 @use "assets";
 @use "colors";
-@use "typography";
+@use "locale";
 @use "components";
 
-$index: typography.$index, assets.$index, colors.$index, components.$index;
+$index: locale.$index, assets.$index, colors.$index, components.$index;

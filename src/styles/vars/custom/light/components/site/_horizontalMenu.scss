@@ -50,7 +50,8 @@ $index: (
 			easing: globalRef(animation-easing-default),
 		),
 		trigger: (
-			text-color: red,
+			// text-color: red,
+			font-weight: 900,
 			caret: (
 				text-color: ref(color-surface-contrast),
 				#{$hovered}: (

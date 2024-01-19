@@ -1,11 +1,14 @@
 @import "styles";
+@import "styles/lib/refs";
 
 .root {
-	width: 100%;
-	border-radius: 0px;
-	overflow: hidden;
+	// width: 100%;
+	// overflow: hidden;
+	// direction: var(--ml-layout-direction);
+	// direction: ltr;
+	// border-radius: 0px;
 	// box-shadow: 0 2px 10px red;
-	--scrollbar-size: 10px;
+	// --scrollbar-size: 10px;
 }
 
 // .scrollbar {
@@ -57,31 +60,42 @@
 
 	touch-action: none;
 	padding: 2px;
-	background: var(--black-a6);
+	// background: var(--black-a6);
 	transition: background 160ms ease-out;
 	z-index: 1;
 }
 
 .ScrollAreaScrollbar:hover {
-	background: #e0e0e0;
+	// background: #e0e0e0;
 }
 
 .ScrollAreaScrollbar[data-orientation="vertical"] {
-	width: 10px;
+	padding: 0.1em 0.25em;
+	width: 0.5715em;
+	padding: 0 0.85em;
 }
 
 .ScrollAreaScrollbar[data-orientation="horizontal"] {
 	flex-direction: column;
-	height: 10px;
+	height: 0;
+	display: none;
 }
 
 .ScrollAreaThumb {
 	flex: 1;
-	background: blue;
-	// border-radius: 4px;
+	cursor: pointer;
+	@include useBackgroundColor(site-layout-scrollbar);
 	position: relative;
+	box-shadow: 0 0 1px #333;
+	border-radius: 1px;
+	transition: 75ms background-color ease-in-out;
+	&:hover {
+		box-shadow: 0 0 1px currentColor;
+		@include useBackgroundColor(site-layout-scrollbar, state(hovered));
+	}
 }
 
 .ScrollAreaCorner {
-	background: gold;
+	// @include useBackgroundColor(site-layout-scrollbar);
+	// background: gold;
 }

@@ -21,7 +21,6 @@ const HorizontalNav = () => {
 		() => getMenuItems(MenuSections, MenuItems, translate),
 		[translate]
 	);
-	console.log(styles);
 
 	return (
 		<div className={styles.section}>

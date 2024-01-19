@@ -1,10 +1,10 @@
 @import "styles";
-@import "styles/mixins/content/figureMixin";
 
 .root {
-	--border-size: 1px;
-	--border-color: blue;
+	--border-size: 2px;
+	--border-color: #000;
 	--border-style: solid;
+	--radius: 4px;
 
 	max-width: 100%;
 	text-align: center;
@@ -19,7 +19,16 @@
 	@include useBorderSize(figure);
 	@include useBorderStyle(figure);
 	@include useBorderColor(figure);
+	@include useRadius(figure);
 
 	// variant mixins
-	@include no-border;
+	&[data-type="no-border"] {
+		border: none;
+	}
+	&[data-type="codeblock"] {
+		border: none;
+		margin: 0;
+		padding-right: 0;
+		padding-left: 0;
+	}
 }

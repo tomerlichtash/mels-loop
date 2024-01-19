@@ -20,10 +20,10 @@ export const SiteFooter = (): JSX.Element => {
 						<div className="footer-title">
 							<div
 								className={styles.title}
-								aria-label={`2023-${licenseYears} ${fullLicense} ${siteTitle}`}
-								title={`2023-${licenseYears} ${fullLicense} ${siteTitle}`}
+								aria-label={`2021-${licenseYears} ${fullLicense} ${siteTitle}`}
+								title={`2021-${licenseYears} ${fullLicense} ${siteTitle}`}
 							>
-								<time className="year">2023-{licenseYears}</time>{" "}
+								<time className="year">2021-{licenseYears}</time>{" "}
 								<span className="license">
 									({translate("site.license.label")})
 								</span>{" "}

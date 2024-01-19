@@ -14,9 +14,9 @@ import Page from "../Page";
 import Analytics from "./analytics";
 import { FavIconAnimator, IFavIconProps } from "../../../lib/favicon-animator";
 import { Scrollbar } from "@components/ui";
-import styles from "./Layout.module.scss";
 import useDrawer from "../SiteNav/VerticalMenu/useDrawer";
 import { VerticalMenu } from "../SiteNav";
+import styles from "./Layout.module.scss";
 
 type LayoutProps = {
 	title?: string;
@@ -109,18 +109,20 @@ export default function Layout({
 				<meta name="og:title" content={`${siteTitle} - ${siteSubtitle}`} />
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
-			<Scrollbar className={styles.root} textDirection={textDirection}>
-				<div data-text-direction={textDirection}>
-					<SiteHeader
-						isHome={isHome}
-						isMobile={isMobile}
-						toggleSidebar={toggle}
-					/>
-					<Page nodes={children} />
-					<SiteFooter />
-					{sidebarMenu}
-				</div>
-			</Scrollbar>
+			<div data-locale={locale}>
+				<Scrollbar textDirection={textDirection} height="100vh">
+					<div className={styles.root}>
+						<SiteHeader
+							isHome={isHome}
+							isMobile={isMobile}
+							toggleSidebar={toggle}
+						/>
+						<Page nodes={children} />
+						<SiteFooter />
+						{sidebarMenu}
+					</div>
+				</Scrollbar>
+			</div>
 			{!isDebug && <Analytics />}
 		</>
 	);

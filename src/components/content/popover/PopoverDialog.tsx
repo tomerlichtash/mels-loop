@@ -1,6 +1,10 @@
 import React, { PropsWithChildren, useContext } from "react";
 import { ComponentProps } from "../../../interfaces/models";
-import { PopoverArrow, PopoverContent } from "@radix-ui/react-popover";
+import {
+	PopoverArrow,
+	PopoverContent,
+	PopoverPortal,
+} from "@radix-ui/react-popover";
 import PopoverToolbar from "./PopoverToolbar";
 import { useTheme } from "next-themes";
 import { IToolbarItem } from "@components/content/types/IPopoverContext";
@@ -17,25 +21,23 @@ const PopoverDialog = ({
 	toolbarItems,
 	children,
 }: PropsWithChildren<PopoverDialogProps>) => {
-	const { textDirection } = useContext(LocaleProvider);
 	const { theme } = useTheme();
+	const { locale } = useContext(LocaleProvider);
 
 	return (
-		// <PopoverPortal>
-		<PopoverContent
-			side={side}
-			sideOffset={5}
-			className={styles.root}
-			data-theme={theme}
-			data-text-direction={textDirection}
-		>
-			<div data-theme={theme}>
+		<PopoverPortal>
+			<PopoverContent
+				side={side}
+				// sideOffset={5}
+				data-theme={theme}
+				data-locale={locale}
+				className={styles.root}
+			>
 				<PopoverToolbar items={toolbarItems} />
 				<div className={styles.content}>{children}</div>
 				<PopoverArrow />
-			</div>
-		</PopoverContent>
-		// </PopoverPortal>
+			</PopoverContent>
+		</PopoverPortal>
 	);
 };
 

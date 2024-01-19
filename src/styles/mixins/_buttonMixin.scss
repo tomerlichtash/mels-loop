@@ -1,27 +1,77 @@
-// @use "../ComponentMixin";
 @import "../lib/themeVars";
+@import "../lib/refs";
+@import "../lib/states";
+@import "../lib/merge";
 
-@mixin Default {
-	--text-color: magenta;
-	// --button-mixin-background-color: magenta;
+$states: deep-merge(
+	$COMPONENT_STATES,
+	(
+		selected: selected,
+	)
+);
 
-	background-color: var(--button-background-color);
-	border-radius: var(--button-border-radius);
-	color: var(--text-color);
-	text-decoration: none;
+@function getBgColor($var, $state) {
+	@return compRef($var, background-color, $state);
+}
 
-	&:hover {
-		color: var(--text-color);
-		background-color: var(--button-background-color__hover);
+@function getTextColor($var, $state) {
+	@return compRef($var, text-color, $state);
+}
+
+@function getFontWeight($var, $state) {
+	@return compRef($var, font-weight, $state);
+}
+
+$bgVar: varName(site-mixins-toggle-button-background-color);
+$textColorVar: varName(site-mixins-toggle-button-text-color);
+$fontWeightVar: varName(site-mixins-toggle-button-font-weight);
+
+@mixin IconMixin($var) {
+	.icon {
+		@include useIconColor($var);
 	}
-
-	&:active {
-		color: green; //var(--text-color);
-		background-color: var(--button-background-color__active);
+	&:hover {
+		.icon {
+			@include useIconColor($var, state(hovered));
+		}
 	}
 }
 
-@mixin IconWithLabel {
+@mixin MenuTriggerButtonMixin($var: site-mixins-toggle-button) {
+	@include clearBorder;
+	@include disableUserSelection;
+	@include useHeight($var);
+	@include useRadius($var);
+	@include useTextColor($var);
+	@include useBackgroundColor($var);
+	@include useFontWeight($var);
+	@include IconMixin($var);
+}
+
+@mixin ToggleButtonMixin($var: site-mixins-toggle-button) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	@include MenuTriggerButtonMixin;
+	@include useWidth($var);
+	@include useTextColor($var);
+
+	&:not([data-state="selected"]):hover {
+		@include cursorPointer;
+		@include useTextColor($var, state(hovered));
+		@include useBackgroundColor($var, state(hovered));
+	}
+
+	// `selected` state overrides
+	&[data-state="selected"] {
+		#{$bgVar}: #{getBgColor($var, state(selected))};
+		#{$textColorVar}: #{getTextColor($var, state(selected))};
+		#{$fontWeightVar}: #{getFontWeight($var, state(selected))};
+	}
+}
+
+@mixin IconButtonWithLabelMixin {
 	@include disableUserSelection;
 	overflow: hidden;
 
@@ -57,3 +107,23 @@
 		}
 	}
 }
+
+// @mixin Default {
+// 	--text-color: magenta;
+// 	// --button-mixin-background-color: magenta;
+
+// 	background-color: var(--button-background-color);
+// 	border-radius: var(--button-border-radius);
+// 	color: var(--text-color);
+// 	text-decoration: none;
+
+// 	&:hover {
+// 		color: var(--text-color);
+// 		background-color: var(--button-background-color__hover);
+// 	}
+
+// 	&:active {
+// 		color: green; //var(--text-color);
+// 		background-color: var(--button-background-color__active);
+// 	}
+// }

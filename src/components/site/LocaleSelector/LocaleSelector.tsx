@@ -1,17 +1,9 @@
 import React, { useContext, useMemo } from "react";
-import { mlUtils } from "../../../lib/ml-utils";
 import { ToggleGroupRoot, ToggleGroupItem } from "@components/primitives";
-import { LocaleId, TextDirection } from "locale/locale-context";
-import styles from "./LocaleSelector.module.scss";
+import { LocaleId } from "locale/locale-context";
 import { Button } from "@components/ui";
 import { LocaleProvider } from "locale/context/locale-context";
-
-// type LocaleOption = {
-// 	id: LocaleId;
-// 	symbol: string;
-// 	title: string;
-// 	textDirection: TextDirection;
-// };
+import styles from "./LocaleSelector.module.scss";
 
 const LocaleSelector = (): JSX.Element => {
 	const {
@@ -29,7 +21,6 @@ const LocaleSelector = (): JSX.Element => {
 				id,
 				symbol: getLocaleSymbol(id),
 				title: translate(`${getLocaleLabel(id)}_LABEL`),
-				textDirection: "ltr" as TextDirection,
 			})),
 		[getLocaleLabel, getLocaleSymbol, locales, translate]
 	);
@@ -40,22 +31,21 @@ const LocaleSelector = (): JSX.Element => {
 			aria-label="Switch Site Language"
 			className={styles.root}
 			onValueChange={(id: LocaleId) => onLocaleChange(id)}
-			dir="ltr"
 			type="single"
 		>
-			{options.map(({ id, symbol, title, textDirection }) => {
+			{options.map(({ id, symbol, title }) => {
 				return (
 					<ToggleGroupItem
 						className={styles.item}
-						key={mlUtils.uniqueId()}
+						key={`localeSelectorOption_${id}`}
 						value={id}
 						title={title}
 						aria-label={title}
 					>
 						<Button className={styles.button} asChild>
 							<span
+								data-locale={id}
 								data-state={locale === id ? "selected" : ""}
-								data-text-direction={textDirection}
 							>
 								{symbol}
 							</span>

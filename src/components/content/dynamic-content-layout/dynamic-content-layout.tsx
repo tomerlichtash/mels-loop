@@ -46,26 +46,28 @@ const DynamicContentLayout = ({
 	);
 
 	return (
-		<Scrollbar className={styles.root} textDirection={textDirection}>
-			<article className={styles.article}>
-				{type === "ref" && (
-					<header className={styles.header}>
-						<div className={styles.topic}>{label}</div>
-						<div className={styles.title}>{title}</div>
-						<div className={styles.term}>{term}</div>
-					</header>
-				)}
-				<main className={styles.content}>{children}</main>
-				{sources && (
-					<footer className={styles.footer}>
-						<List
-							items={mappedSources}
-							label={`${sourcesLabel}:`}
-							className={styles.bibliography}
-						/>
-					</footer>
-				)}
-			</article>
+		<Scrollbar textDirection={textDirection}>
+			<div className={styles.root}>
+				<article className={styles.article}>
+					{type === "ref" && (
+						<header className={styles.header}>
+							<div className={styles.topic}>{label}</div>
+							<div className={styles.title}>{title}</div>
+							<div className={styles.term}>{term}</div>
+						</header>
+					)}
+					<main className={styles.content}>{children}</main>
+					{sources && (
+						<footer className={styles.footer}>
+							<List
+								items={mappedSources}
+								label={`${sourcesLabel}:`}
+								className={styles.bibliography}
+							/>
+						</footer>
+					)}
+				</article>
+			</div>
 		</Scrollbar>
 	);
 };

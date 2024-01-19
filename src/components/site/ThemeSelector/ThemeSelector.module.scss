@@ -1,5 +1,5 @@
-@import "styles/mixins/menuButtonMixin.scss";
+@import "styles/mixins/buttonMixin.scss";
 
 .root {
-	@include ToggleButton;
+	@include ToggleButtonMixin;
 }

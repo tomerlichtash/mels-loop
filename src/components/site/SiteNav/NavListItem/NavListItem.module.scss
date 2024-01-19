@@ -27,6 +27,8 @@
 	}
 
 	.content {
+		@include useDirection(locale);
+
 		display: inline-flex;
 		justify-content: flex-start;
 		gap: 0.5em;

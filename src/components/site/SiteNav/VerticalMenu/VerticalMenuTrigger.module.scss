@@ -1,5 +1,5 @@
-@import "styles/mixins/ButtonMixin.scss";
+@import "styles/mixins/buttonMixin.scss";
 
 .root {
-	@include IconWithLabel;
+	@include IconButtonWithLabelMixin;
 }

@@ -3,6 +3,12 @@
 $index: (
 	layout: (
 		background-color: ref(color-surface-light),
+		scrollbar: (
+			background-color: ref(color-container-main),
+			state(hovered): (
+				background-color: ref(color-surface-dark),
+			),
+		),
 		selection: (
 			background-color: ref(color-secondary-dark),
 			text-color: ref(color-secondary-contrast),

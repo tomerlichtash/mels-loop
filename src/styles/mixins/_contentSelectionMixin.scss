@@ -1,11 +1,11 @@
 @import "../lib/themeVars";
 
 @mixin contentSelection {
-	--background-color: #000;
-	--text-color: #fff;
+	// --background-color: #f0f0f0;
+	// --text-color: #333;
 
-	::selection {
-		@include useTextColor(site-layout-selection);
-		@include useBackgroundColor(site-layout-selection);
-	}
+	// ::selection {
+	// 	@include useTextColor(site-layout-selection);
+	// 	@include useBackgroundColor(site-layout-selection);
+	// }
 }

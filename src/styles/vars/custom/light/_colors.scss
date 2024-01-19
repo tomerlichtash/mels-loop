@@ -5,10 +5,13 @@ $index: (
 		surface: (
 			main: globalRef(color-a3-main),
 			light: globalRef(color-a2-main),
+			// border
 			dark: globalRef(color-a5-main),
+			// code color
 			contrast: globalRef(color-a9-main),
 		),
 		container: (
+			// bg
 			main: globalRef(color-a4-main),
 			// light: globalRef(color-a2-main),
 			dark: globalRef(color-a5-dark),

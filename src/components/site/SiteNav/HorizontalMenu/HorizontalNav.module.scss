@@ -1,5 +1,5 @@
 @import "styles";
-@import "styles/mixins/menuButtonMixin.scss";
+@import "styles/mixins/buttonMixin.scss";
 @import "./horizontalNavAnimationMixin.scss";
 @import "../NavListItem/NavListItem.module.scss";
 
@@ -39,6 +39,8 @@ $states: deep-merge(
 	min-width: 200px;
 
 	.list {
+		@include useDirection(locale);
+
 		display: flex;
 		justify-content: center;
 		list-style: none;
@@ -57,7 +59,7 @@ $states: deep-merge(
 		align-items: center;
 		justify-content: space-between;
 
-		@include NavButton;
+		@include MenuTriggerButtonMixin;
 
 		&[data-state="open"],
 		// this `hover` state aims to fix the slight delay in applying

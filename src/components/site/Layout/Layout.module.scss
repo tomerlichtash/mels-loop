@@ -2,10 +2,12 @@
 @import "styles/mixins/contentSelectionMixin";
 
 .root {
-	--min-height: 300px;
-	--background-color: #fff;
+	// --min-height: 300px;
+	// --background-color: #fff;
 
-	@include useMinHeight(site-layout);
+	// @include useMinHeight(site-layout);
 	@include useBackgroundColor(site-layout);
 	@include contentSelection;
+
+	// #{varName(layout-direction)}: #{compRef(locale, direction)};
 }

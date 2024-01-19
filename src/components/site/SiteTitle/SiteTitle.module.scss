@@ -7,8 +7,8 @@
 	--primary-letter-spacing: 1px;
 	--primary-font-weight: 500;
 	--primary-text-transform: uppercase;
-	// --secondary-letter-spacing: 0;
-	// --secondary-font-weight: 300;
+	--secondary-letter-spacing: 0;
+	--secondary-font-weight: 300;
 	--secondary-text-transform: lowercase;
 	--subtitle-visibility: block;
 
@@ -34,6 +34,7 @@
 	.subtitle {
 		display: compRef(site-title, subtitle-visibility);
 
+		@include useTextColor(site-title);
 		@include Label1(site-title-secondary);
 		@include SeparatorMixin(site-header-separator);
 	}

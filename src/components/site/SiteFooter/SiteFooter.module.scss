@@ -27,7 +27,7 @@
 	}
 
 	.pageContainer {
-		@include PageContainer;
+		@include PageContainerMixin;
 	}
 
 	.layout {

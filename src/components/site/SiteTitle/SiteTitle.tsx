@@ -24,11 +24,8 @@ const SiteTitle = ({
 	variant,
 	className,
 }: SiteTitleProps): JSX.Element => {
-	const {
-		siteTitle: title,
-		siteSubtitle: subtitle,
-		textDirection,
-	} = useContext(LocaleProvider);
+	const { siteTitle: title, siteSubtitle: subtitle } =
+		useContext(LocaleProvider);
 
 	const label = useMemo(() => `${title} - ${subtitle}`, [title, subtitle]);
 
@@ -54,11 +51,7 @@ const SiteTitle = ({
 	);
 
 	return (
-		<div
-			className={classNames(styles.root, className)}
-			data-text-direction={textDirection}
-			data-variant={variant}
-		>
+		<div className={classNames(styles.root, className)} data-variant={variant}>
 			{isHome ? text : link}
 			{subtitle && <span className={styles.subtitle}>{subtitle}</span>}
 		</div>

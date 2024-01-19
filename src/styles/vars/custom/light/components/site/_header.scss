@@ -5,6 +5,7 @@ $index: (
 		background-color: ref(color-surface-main),
 		separator: (
 			content: '"|"',
+			// 2630 - threee line bar
 		),
 		logo: (
 			margin-end: 0.5em,
@@ -13,5 +14,15 @@ $index: (
 	title: (
 		logo-url: ref(assets-logo-url),
 		text-color: ref(color-primary-dark),
+		primary: (
+			text-transform: uppercase,
+			font-weight: 500,
+			letter-spacing: 1px,
+		),
+		secondary: (
+			text-transform: lowercase,
+			font-weight: 300,
+			letter-spacing: 0,
+		),
 	),
 );

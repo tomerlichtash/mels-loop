@@ -17,6 +17,7 @@ $index: (
 			state(selected): (
 				background-color: ref(color-surface-dark),
 				text-color: ref(color-surface-contrast),
+				font-weight: globalRef(typography-font-weight-bold),
 			),
 		),
 	),

@@ -7,12 +7,21 @@ $annotationAffixOpacity: 0.65;
 $index: (
 	code: (
 		block: (
-			text-color: globalRef(color-c1-main),
+			background-color: ref(color-container-main),
+			text-color: ref(color-surface-contrast),
+			border-color: ref(color-surface-dark),
+			radius: globalRef(radius-sm),
+			boxPadding: 2em,
 			font-family: "monospace",
 			font-weight: 500,
 		),
 		inline: (
-			text-color: globalRef(color-c1-main),
+			background-color: ref(color-container-main),
+			text-color: ref(color-surface-contrast),
+			border-color: ref(color-surface-dark),
+			radius: globalRef(radius-sm),
+			padding-left: 0.25em,
+			padding-right: 0.25em,
 			font-family: "monospace",
 			font-weight: 500,
 		),

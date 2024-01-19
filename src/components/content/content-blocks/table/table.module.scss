@@ -14,21 +14,29 @@
 	--border-left-style: solid;
 	--border-left-color: #c0c0c0;
 
+	--radius: 4px;
+
 	margin: 0 auto;
 	border-spacing: 0;
 
 	// &[data-type="bit-layout"] {
-	// 	// border: 1px solid blue;
-	// 	// padding: 1em;
+	// 	border: 1px solid blue;
+	// 	padding: 1em;
 	// }
+
+	@include useRadius(content-table);
 
 	@include useBorderTopSize(content-table);
 	@include useBorderTopStyle(content-table);
 	@include useBorderTopColor(content-table);
 
+	@include useBorderLeftSize(content-table);
+	@include useBorderLeftStyle(content-table);
+	@include useBorderLeftColor(content-table);
+
 	td,
 	th {
-		padding: 0.5rem 1rem;
+		padding: 1rem 2rem;
 
 		@include useBorderRightSize(content-table);
 		@include useBorderRightStyle(content-table);
@@ -37,11 +45,5 @@
 		@include useBorderBottomSize(content-table);
 		@include useBorderBottomStyle(content-table);
 		@include useBorderBottomColor(content-table);
-
-		&:first-child {
-			@include useBorderLeftSize(content-table);
-			@include useBorderLeftStyle(content-table);
-			@include useBorderLeftColor(content-table);
-		}
 	}
 }

@@ -1,14 +1,6 @@
-@import "lib/refs";
-@import "mixins/textDirectionMixin";
+@use "styles/config/locales";
+@use "mixins/localeMixin";
 
-$typogrpahy-direction-variants: (ltr, rtl);
-
-@each $variant in $typogrpahy-direction-variants {
-	@include TextDirection($variant);
-}
-
-html,
-body {
-	font-size: ref(text-direction-font-size);
-	font-weight: ref(text-direction-font-weight);
+@each $locale in locales.$index {
+	@include localeMixin.LocaleSetupMixin($locale);
 }

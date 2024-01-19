@@ -143,7 +143,7 @@
 
 // PADDING
 @mixin usePaddingTop($var, $state: "") {
-	padding-top: compRef($var, padding-top, $state);
+	// padding-top: compRef($var, padding-top, $state);
 	@include useThemeVar(padding-top, padding-top, $var, $state);
 }
 
@@ -160,10 +160,14 @@
 }
 
 @mixin usePadding($var, $state: "") {
-	@include MarginTop($var, $state);
-	@include MarginRight($var, $state);
-	@include MarginBottom($var, $state);
-	@include MarginLeft($var, $state);
+	@include usePaddingTop($var, $state);
+	@include usePaddingRight($var, $state);
+	@include usePaddingBottom($var, $state);
+	@include usePaddingLeft($var, $state);
+}
+
+@mixin useBoxPadding($var, $state: "") {
+	@include useThemeVar(padding, boxPadding, $var, $state);
 }
 
 // padding axis mixins

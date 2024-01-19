@@ -1,11 +1,14 @@
-@import "styles";
+// @import "styles";
 
-@mixin Code($comp: "code-inline") {
-	--text-color: #000;
-	--font-weight: 500;
-	--font-family: monospace;
+// @mixin Code($comp: "code-inline") {
+// 	// --text-color: #000;
+// 	// --font-weight: 500;
+// 	// --font-family: monospace;
 
-	@include useTextColor($comp);
-	@include useFontWeight($comp);
-	@include useFontFamily($comp);
-}
+// 	@debug $comp;
+// 	@include useTextColor($comp);
+// 	@include useBackgroundColor($comp);
+// 	@include useBorderColor($comp);
+// 	@include useFontWeight($comp);
+// 	@include useFontFamily($comp);
+// }

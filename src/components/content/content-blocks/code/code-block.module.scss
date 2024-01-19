@@ -1,14 +1,27 @@
+@import "styles";
 @import "styles/mixins/content/codeMixin.scss";
 
 .root {
 	.pre {
-		border-radius: 4px;
-		background: #f0f0f0;
+		@include useBackgroundColor(code-block);
+		@include useRadius(code-block);
+		@include useBoxPadding(code-block);
+		@include useBorderColor(code-inline);
+
 		text-align: left;
-		padding: 2em;
 
 		.code {
-			@include Code(code-block);
+			// @include Code(code-block);
+
+			// @include useTextColor(code-inline);
+			// @include useBackgroundColor(code-inline);
+			@include useFontWeight(code-inline);
+			@include useFontFamily(code-inline);
+
+			// @include useHorizontalPadding(code-inline);
+			// @include useRadius(code-inline);
+			// @include useBorderSize(code-inline);
+			// @include useBorderStyle(code-inline);
 		}
 	}
 }

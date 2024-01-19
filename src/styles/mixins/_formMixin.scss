@@ -1,4 +1,4 @@
-@use "./buttonMixin";
+// @use "./buttonMixin";
 @use "./inputMixin";
 
 @mixin FormTitle {
@@ -31,7 +31,7 @@
 }
 
 @mixin Input {
-	@include InputMixin.Default;
+	// @include InputMixin.Default;
 	width: 100%;
 }
 
@@ -52,5 +52,5 @@
 }
 
 @mixin SubmitButton {
-	@include ButtonMixin.Default;
+	// @include ButtonMixin.Default;
 }
