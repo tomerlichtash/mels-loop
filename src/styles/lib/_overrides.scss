@@ -1,0 +1,42 @@
+@use "sass:map";
+@use "sass:string";
+@import "styles/lib/refs";
+@import "styles/lib/states";
+
+@function _getPartVar($comp, $part) {
+	@return #{$comp}-#{$part};
+}
+
+@function _getModulePartVar($comp, $module, $part) {
+	@return #{$module}-#{$part};
+}
+
+@mixin _mapVars($comp, $module, $props, $part: "", $state: "") {
+	$var: if(string.length($part) > 0, _getPartVar($comp, $part), $comp);
+	$ref: if(
+		string.length($part) > 0,
+		_getModulePartVar($comp, $module, $part),
+		$module
+	);
+
+	@each $prop in $props {
+		#{varName(#{$var}-#{$prop}#{$state})}: #{compRef($ref, $prop, $state)};
+	}
+}
+
+@mixin transform($module, $map) {
+	$compName: map-get($map, comp);
+	$overrides: map-get($map, overrides);
+
+	@each $key, $refs in $overrides {
+		// extract root vars
+		$rootVars: map-get($refs, _);
+		// if key is `_` (root) then use empty string
+		$partName: if($key == "_", "", $key);
+
+		@each $ref in map.keys($refs) {
+			$state: if($ref == "_", "", $ref);
+			@include _mapVars($compName, $module, $rootVars, $partName, $state);
+		}
+	}
+}
