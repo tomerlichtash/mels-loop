@@ -2,57 +2,45 @@
 
 .root {
 	.item {
-		--background-color: red;
-		@include useTextColor(site-nav-item-title);
-		@include useBackgroundColor(site-nav-item-title);
+		display: flex;
+		text-decoration: none;
+
+		@include useRadius(site-nav-item);
+		@include useInnerGutter(site-nav-item);
+		@include useTextColor(site-nav-item);
+		@include useBackgroundColor(site-nav-item);
 
 		&:hover {
-			@include useTextColor(site-nav-item-title, state(hovered));
-			@include useBackgroundColor(site-nav-item-title, state(hovered));
+			@include useTextColor(site-nav-item, state(hovered));
+			@include useBackgroundColor(site-nav-item, state(hovered));
 		}
 	}
 
-	.icon {
-		@include useBorder(site-nav-item-icon);
-
-		// background-color: #239;
-
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		width: 24px;
-		height: 24px;
-		border-radius: 50%;
-	}
-
 	.content {
-		@include useDirection(locale);
-
-		display: inline-flex;
-		justify-content: flex-start;
-		gap: 0.5em;
+		display: flex;
+		align-items: flex-start;
+		width: 100%;
+		@include useGap(site-nav-item-content);
+		// gap: 2em;
 	}
 
-	.sectionTitle {
-		display: block;
-		background-color: orange;
-		padding: 1em;
+	.icon {
+		display: flex;
+
+		@include useBorderSize(site-nav-item-icon);
+		@include useBorderStyle(site-nav-item-icon);
+		@include useBorderColor(site-nav-item-icon);
+		@include useRadius(site-nav-item-icon);
+		@include useInnerGutter(site-nav-item-icon);
+		@include useGap(site-nav-item-icon);
+		@include useBackgroundColor(site-nav-item-icon);
 	}
 
-	.itemTitle {
-		display: inline-flex;
-		text-transform: uppercase;
-		// font-size: 1.15em;
-		// line-height: 1.6em;
-		// font-weight: 900;
-	}
+	.title {
+		display: flex;
 
-	.author,
-	.description {
-		display: block;
-
-		// font-size: 1.15em;
-		// line-height: 2em;
+		@include useFontWeight(site-nav-item-title);
+		@include useTextTransform(site-nav-item-title);
+		@include useLineHeight(site-nav-item-title);
 	}
 }

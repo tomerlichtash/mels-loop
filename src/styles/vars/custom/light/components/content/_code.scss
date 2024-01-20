@@ -11,7 +11,7 @@ $index: (
 			text-color: ref(color-surface-contrast),
 			border-color: ref(color-surface-dark),
 			radius: globalRef(radius-sm),
-			boxPadding: 2em,
+			gutter: 2em,
 			font-family: "monospace",
 			font-weight: 500,
 		),

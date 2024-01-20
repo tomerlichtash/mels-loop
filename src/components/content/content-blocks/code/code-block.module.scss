@@ -5,7 +5,7 @@
 	.pre {
 		@include useBackgroundColor(code-block);
 		@include useRadius(code-block);
-		@include useBoxPadding(code-block);
+		@include useInnerGutter(code-block);
 		@include useBorderColor(code-inline);
 
 		text-align: left;

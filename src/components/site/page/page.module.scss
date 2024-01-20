@@ -1,7 +1,7 @@
 @use "styles/mixins/site/PageMixin.scss";
 
 .root {
-	@include PageMixin.PageContainer;
+	@include PageMixin.PageContainerMixin;
 
 	margin-top: 3em;
 	// min-height: 70vh; // todo: calc(100vh - footer height)

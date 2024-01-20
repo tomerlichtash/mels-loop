@@ -1,7 +1,5 @@
+@use "./HorizontalMenuMixins.scss";
 @import "styles";
-@import "styles/mixins/buttonMixin.scss";
-@import "./horizontalNavAnimationMixin.scss";
-@import "../NavListItem/NavListItem.module.scss";
 
 $states: deep-merge(
 	$COMPONENT_STATES,
@@ -10,48 +8,17 @@ $states: deep-merge(
 	)
 );
 
-@mixin Item {
-	// // override nav-list-item background-color
-	#{varName(site-nav-item-title-background-color)}: #fff;
-	#{varName(site-nav-item-title-text-color)}: 000;
-
-	// override nav-list-item text-color
-	#{varName(site-nav-item-title-background-color)}#{state(hovered)}: #0f0;
-	#{varName(site-nav-item-title-text-color)}#{state(hovered)}: blue;
-
-	// override nav-list-item border
-	#{varName(site-nav-item-icon-border-size)}: 2px;
-	#{varName(site-nav-item-icon-border-style)}: solid;
-	#{varName(site-nav-item-icon-border-color)}: red;
-}
-
-@mixin ButtonCaret($var) {
-	.caretDown {
-		@include useTextColor($var);
-		transition: transform 250ms ease;
-	}
-	[data-state="open"] > .caretDown {
-		transform: rotate(-180deg);
-	}
-}
-
 .root {
-	min-width: 200px;
+	width: 250px;
 
 	.list {
-		@include useDirection(locale);
-
-		display: flex;
-		justify-content: center;
-		list-style: none;
-		padding: 0;
-		margin: 0;
+		@include HorizontalMenuMixins.ListMixin;
 	}
 
 	.items {
 		width: 100%;
 		margin: 0;
-		padding: 0;
+		@include useInnerGutter(site-horizontal-menu-list);
 	}
 
 	.trigger {
@@ -59,117 +26,38 @@ $states: deep-merge(
 		align-items: center;
 		justify-content: space-between;
 
-		@include MenuTriggerButtonMixin;
-
-		&[data-state="open"],
-		// this `hover` state aims to fix the slight delay in applying
-		// background-color to the menu trigger which his based on its
-		// `open` state
-		&:hover {
-			@include useBackgroundColor(site-horizontal-menu-trigger, state(opened));
-		}
-
-		&[data-state="open"],
-		// this `hover` state aims to fix the slight delay in applying
-		// background-color to the menu trigger which his based on its
-		// `open` state
-		&:hover {
-			.caretDown {
-				@include useTextColor(
-					site-horizontal-menu-trigger-caret,
-					state(hovered)
-				);
-			}
-		}
+		@include HorizontalMenuMixins.MenuTriggerButtonMixin;
+		@include HorizontalMenuMixins.TriggerButtonMixin(
+			site-horizontal-menu-trigger
+		);
 	}
 
 	.content {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		box-sizing: border-box;
-		// padding: 1em;
-		margin: 0;
-
-		@include contentAnimations(site-horizontal-menu);
-
-		// @media only screen and (min-width: 600px) {
-		// 	.content {
-		// 	width: auto;
-		// 	}
-		// }
+		@include HorizontalMenuMixins.ContentMixin;
+		@include HorizontalMenuMixins.contentAnimations(site-horizontal-menu);
 	}
 
 	.indicator {
-		--indicator-height: 10px;
-		display: flex;
-		align-items: flex-end;
-		justify-content: center;
-		height: var(--indicator-height);
-		// todo: fix calc
-		top: calc(var(--bar-height) - var(--indicator-height) - 8px);
-		overflow: hidden;
-		z-index: 2;
-		transition: width, transform 250ms ease;
-
-		@include indicatorAnimations(site-horizontal-menu);
+		@include HorizontalMenuMixins.IndicatorMixin;
 	}
 
 	.viewport {
-		width: 100%;
-		position: relative;
-		transform-origin: top center;
-		overflow: hidden;
-		// margin-top: 0;
-		background-color: white;
-		border-radius: 6px;
-		box-shadow: globalRef(shadow-md);
-		height: var(--radix-navigation-menu-viewport-height);
-		transition: width, height, 300ms ease;
-
-		@include viewportAnimations(site-horizontal-menu);
-
-		// @media only screen and (min-width: 600px) {
-		// 	.viewport {
-		// 		width: 400px; //var(--radix-navigation-menu-viewport-width);
-		// 	}
-		// }
+		@include HorizontalMenuMixins.ViewPortMixin;
 	}
 
 	.viewportPosition {
-		position: absolute;
-		display: flex;
-		justify-content: center;
-		width: 100%;
-		top: 100%;
-		left: 0;
-		perspective: 2000px;
+		@include HorizontalMenuMixins.ViewPortPosition;
 	}
 
-	@include ButtonCaret(site-horizontal-menu-trigger-caret);
+	@include HorizontalMenuMixins.ButtonCaret(site-horizontal-menu-trigger-caret);
 
 	.arrow {
-		position: relative;
-		top: 70%;
-		background-color: white;
-		width: 12px;
-		height: 12px;
-		transform: rotate(45deg);
-		border-top-left-radius: 2px;
+		@include HorizontalMenuMixins.ArrowMixin;
 	}
 
 	.listItem {
-		// overflow: hidden;
-		// box-sizing: border-box;
-		// margin: 0;
 		list-style: none;
 	}
 
-	.item {
-		// display: flex;
-		padding: 1em;
-
-		@include Item;
-	}
+	@include HorizontalMenuMixins.ListItemMixin(site-horizontal-menu-item);
 }

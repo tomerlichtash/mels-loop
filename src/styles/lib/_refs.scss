@@ -22,6 +22,10 @@
 	@return cssRef($key, prefix($prefix));
 }
 
+@function varNameState($key, $state: "", $prefix: "") {
+	@return cssRef(#{$key}#{$state}, prefix($prefix));
+}
+
 @function ref($key, $prefix: "") {
 	@return #{var(cssRef($key, prefix($prefix)))};
 }

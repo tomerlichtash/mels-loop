@@ -166,8 +166,12 @@
 	@include usePaddingLeft($var, $state);
 }
 
-@mixin useBoxPadding($var, $state: "") {
-	@include useThemeVar(padding, boxPadding, $var, $state);
+@mixin useInnerGutter($var, $state: "") {
+	@include useThemeVar(padding, gutter, $var, $state);
+}
+
+@mixin useOuterGutter($var, $state: "") {
+	@include useThemeVar(margin, gutter, $var, $state);
 }
 
 // padding axis mixins

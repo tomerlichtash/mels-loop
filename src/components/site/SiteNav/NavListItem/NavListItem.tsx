@@ -47,9 +47,7 @@ const NavListItem = ({ onSelect, locale, icon, className, ...item }) => {
 				<span className={classNames(styles.content)}>
 					<span className={styles.icon}>{icon && getIcon(icon as string)}</span>
 					<span>
-						{title && (
-							<span className={classNames(styles.itemTitle)}>{title}</span>
-						)}
+						{title && <span className={classNames(styles.title)}>{title}</span>}
 						{description && (
 							<span className={styles.description}>{description}</span>
 						)}

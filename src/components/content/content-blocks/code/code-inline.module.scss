@@ -9,14 +9,13 @@
 	--border-size: 1px;
 	--border-style: solid;
 
+	@include useHorizontalPadding(code-inline);
+	@include useFontFamily(code-inline);
+	@include useFontWeight(code-inline);
 	@include useTextColor(code-inline);
 	@include useBackgroundColor(code-inline);
-	@include useBorderColor(code-inline);
-	@include useFontWeight(code-inline);
-	@include useFontFamily(code-inline);
-
-	@include useHorizontalPadding(code-inline);
-	@include useRadius(code-inline);
 	@include useBorderSize(code-inline);
 	@include useBorderStyle(code-inline);
+	@include useBorderColor(code-inline);
+	@include useRadius(code-inline);
 }

@@ -1,0 +1,34 @@
+@use "../../../../../../components/site/SiteNav/NavListItem/NavListItem.module.scss"
+	as NavListItem;
+@import "styles";
+
+$easing: ease;
+
+$hovered: NavListItem.state(hovered);
+// $opened: NavListItem.state(opened);
+
+$index: (
+	nav: (
+		item: (
+			// radius: 10px,
+			// gutter: 2em,
+			text-color: #000,
+			background-color: #fff,
+
+			content: (
+				gap: 4em,
+			),
+
+			icon: (
+				border-size: 0,
+				border-style: solid,
+				border-color: transparent,
+			),
+
+			state(hovered): (
+				text-color: #fff,
+				background-color: #000,
+			),
+		),
+	),
+);

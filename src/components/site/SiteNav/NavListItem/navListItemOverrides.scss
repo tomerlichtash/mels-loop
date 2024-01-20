@@ -1,0 +1,65 @@
+@import "styles";
+
+@mixin ItemLayoutOverrides($module) {
+	#{varName(site-nav-item-background-color)}: #{compRef(
+			$module,
+			background-color
+		)};
+	#{varName(site-nav-item-text-color)}: #{compRef($module, text-color)};
+	#{varName(site-nav-item-radius)}: #{compRef($module, radius)};
+	#{varName(site-nav-item-gutter)}: #{compRef($module, gutter)};
+
+	#{varNameState(site-nav-item-background-color, state(hovered))}: #{compRef(
+			$module,
+			background-color,
+			state(hovered)
+		)};
+	#{varNameState(site-nav-item-text-color, state(hovered))}: #{compRef(
+			$module,
+			text-color,
+			state(hovered)
+		)};
+}
+
+@mixin ItemContentOverrides($module) {
+	#{varName(site-nav-item-content-gap)}: #{compRef(#{$module}-content, gap)};
+}
+
+@mixin ItemIconOverrides($module) {
+	#{varName(site-nav-item-icon-border-size)}: #{compRef(
+			#{$module}-icon,
+			border-size
+		)};
+	#{varName(site-nav-item-icon-border-style)}: #{compRef(
+			#{$module}-icon,
+			border-style
+		)};
+	#{varName(site-nav-item-icon-border-color)}: #{compRef(
+			#{$module}-icon,
+			border-color
+		)};
+	#{varName(site-nav-item-icon-background-color)}: #{compRef(
+			#{$module}-icon,
+			background-color
+		)};
+	#{varName(site-nav-item-icon-radius)}: #{compRef(#{$module}-icon, radius)};
+	#{varName(site-nav-item-icon-width)}: #{compRef(#{$module}-icon, width)};
+	#{varName(site-nav-item-icon-height)}: #{compRef(#{$module}-icon, height)};
+	#{varName(site-nav-item-icon-gutter)}: #{compRef(#{$module}-icon, gutter)};
+	#{varName(site-nav-item-icon-gap)}: #{compRef(#{$module}-icon, gap)};
+}
+
+@mixin ItemTitleOverrides($module) {
+	#{varName(site-nav-item-title-text-transform)}: #{compRef(
+			#{$module}-title,
+			text-transform
+		)};
+	#{varName(site-nav-item-title-line-height)}: #{compRef(
+			#{$module}-title,
+			line-height
+		)};
+	#{varName(site-nav-item-title-font-weight)}: #{compRef(
+			#{$module}-title,
+			font-weight
+		)};
+}
