@@ -1,12 +1,18 @@
-@import "styles/mixins/buttonMixin.scss";
-@import "styles";
+@use "styles/mixins/buttonMixin.scss";
+@import "styles/baseComponentStyle";
+@import "styles/lib/states";
+@import "styles/lib/themeVars";
+
+$__stylesheet__: (
+	name: locale-selector,
+);
 
 .root {
 	--gap: 4px;
 
 	display: flex;
 
-	@include useGap(site-locale-selector);
+	@include useGap();
 
 	.item {
 		background-color: transparent;
@@ -14,7 +20,7 @@
 		padding: 0;
 
 		.button {
-			@include ToggleButtonMixin;
+			@include buttonMixin.ToggleButtonMixin;
 		}
 	}
 }

@@ -1,14 +1,14 @@
-@use "components/content/content-blocks/link/link.module" as Link;
-@import "styles";
+@use "../../../../../../components/content/content-blocks/link/link.module.scss"
+	as Link;
+@import "styles/lib/refs";
+@import "styles/baseThemeStyle";
 
 $index: (
-	link: (
-		text-color: ref(color-primary-main),
-		Link.state(hovered): (
-			text-color: ref(color-secondary-main),
-		),
-		Link.state(clicked): (
-			text-color: ref(color-secondary-light),
-		),
+	text-color: ref(color-primary-main),
+	Link.state(hovered): (
+		text-color: ref(color-secondary-main),
+	),
+	Link.state(clicked): (
+		text-color: ref(color-secondary-light),
 	),
 );

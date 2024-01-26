@@ -1,6 +1,10 @@
-@import "styles";
+@import "styles/baseComponentStyle";
 @import "styles/mixins/popoverMixin";
-@import "styles/mixins/affixMixin";
+@import "styles/mixins/typographyMixins";
+
+$__stylesheet__: (
+	name: term,
+);
 
 .root {
 	--content: "*";

@@ -34,12 +34,7 @@
 	@return ref($key, $theme-global-prefix);
 }
 
-@function compRef(
-	$ns: $__namespace__,
-	$key,
-	$state: "",
-	$prefix: $theme-namespace-prefix
-) {
+@function compRef($ns, $key, $state: "", $prefix: $theme-namespace-prefix) {
 	$compState: "";
 
 	@if (str-length($state) > 0) {

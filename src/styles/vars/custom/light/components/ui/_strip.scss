@@ -1,0 +1,10 @@
+@import "styles/baseThemeStyle";
+@import "styles/lib/refs";
+
+$index: (
+	background-color: ref(gradient-primary-main),
+	height: 4px,
+	border-color: blue,
+	border-size: 4px,
+	border-style: dashed,
+);

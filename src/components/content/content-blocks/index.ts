@@ -7,7 +7,8 @@ import Line from "./line";
 import BlockQuote from "./blockquote";
 import Paragraph from "./paragraph";
 import Figure from "./figure";
-import Code from "./code";
+import CodeInline from "./code-inline";
+import CodeBlock from "./code-block";
 import CustomImage from "./custom-image";
 import Table from "./table";
 
@@ -19,7 +20,8 @@ export {
 	Paragraph,
 	Figure,
 	BlockQuote,
-	Code,
+	CodeInline,
+	CodeBlock,
 	CustomImage,
 	TermLink,
 	AnnotationLink,

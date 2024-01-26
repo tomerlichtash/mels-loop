@@ -1,4 +1,9 @@
-@import "styles";
+@import "styles/baseComponentStyle";
+@import "styles/lib/themeVars";
+
+$__stylesheet__: (
+	name: table,
+);
 
 .root {
 	--border-top-size: 1px;
@@ -13,7 +18,6 @@
 	--border-left-size: 1px;
 	--border-left-style: solid;
 	--border-left-color: #c0c0c0;
-
 	--radius: 4px;
 
 	margin: 0 auto;
@@ -24,26 +28,26 @@
 	// 	padding: 1em;
 	// }
 
-	@include useRadius(content-table);
+	@include useRadius();
 
-	@include useBorderTopSize(content-table);
-	@include useBorderTopStyle(content-table);
-	@include useBorderTopColor(content-table);
+	@include useBorderTopSize();
+	@include useBorderTopStyle();
+	@include useBorderTopColor();
 
-	@include useBorderLeftSize(content-table);
-	@include useBorderLeftStyle(content-table);
-	@include useBorderLeftColor(content-table);
+	@include useBorderLeftSize();
+	@include useBorderLeftStyle();
+	@include useBorderLeftColor();
 
 	td,
 	th {
 		padding: 1rem 2rem;
 
-		@include useBorderRightSize(content-table);
-		@include useBorderRightStyle(content-table);
-		@include useBorderRightColor(content-table);
+		@include useBorderRightSize();
+		@include useBorderRightStyle();
+		@include useBorderRightColor();
 
-		@include useBorderBottomSize(content-table);
-		@include useBorderBottomStyle(content-table);
-		@include useBorderBottomColor(content-table);
+		@include useBorderBottomSize();
+		@include useBorderBottomStyle();
+		@include useBorderBottomColor();
 	}
 }

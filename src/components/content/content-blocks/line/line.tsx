@@ -1,5 +1,8 @@
 import React from "react";
-import { ContentComponentProps } from "../../../../interfaces/models";
+import {
+	ContentComponentProps,
+	MLNODE_TYPES,
+} from "../../../../interfaces/models";
 import { ContentComponent } from "../../index";
 import styles from "./line.module.scss";
 
@@ -14,7 +17,7 @@ export const Line = ({ componentData }: ContentComponentProps): JSX.Element => {
 		return <span className="empty text-line"></span>;
 	}
 
-	if (children.length === 1 && children[0].type === "text") {
+	if (children.length === 1 && children[0].type === MLNODE_TYPES.TEXT) {
 		return (
 			<span key={node.key} className={styles.root} data-line-index={line + 1}>
 				{anchor}

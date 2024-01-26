@@ -1,0 +1,9 @@
+@use "config/locales";
+@use "mixins/typographyMixins";
+
+@each $locale in locales.$index {
+	[data-locale="#{$locale}"] {
+		@include typographyMixins.BaseTypographyMixin(locale-#{$locale});
+		#{varName(locale-direction)}: #{compRef(locale-#{$locale}, direction)};
+	}
+}

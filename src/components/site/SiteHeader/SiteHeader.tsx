@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { SiteTitle, HorizontalMenu } from "@components/site";
-import styles from "./SiteHeader.module.scss";
 import classNames from "classnames";
+import styles from "./SiteHeader.module.scss";
 
 type SiteHeaderProps = {
 	isHome?: boolean;

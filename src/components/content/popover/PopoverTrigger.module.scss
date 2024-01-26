@@ -9,9 +9,13 @@ the fallback format allows us to fallback to component's default style (--part-p
 and override it from the theme.
 */
 
-@import "styles";
+@import "styles/baseComponentStyle";
+@import "styles/lib/states";
+@import "styles/lib/themeVars";
+@import "styles/lib/states";
+@import "styles/lib/merge";
 
-$states: deep-merge(
+$states: deep(
 	$COMPONENT_STATES,
 	(
 		selected: open,

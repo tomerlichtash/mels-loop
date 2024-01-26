@@ -1,4 +1,4 @@
-@function deep-merge($maps...) {
+@function deep($maps...) {
 	$result: ();
 
 	@each $map in $maps {
@@ -9,7 +9,7 @@
 				$result: map-merge(
 					$result,
 					(
-						$key: deep-merge($existing-value, $value),
+						$key: deep($existing-value, $value),
 					)
 				);
 			} @else {

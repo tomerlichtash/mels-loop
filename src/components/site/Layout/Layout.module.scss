@@ -1,13 +1,17 @@
-@import "styles";
-@import "styles/mixins/contentSelectionMixin";
+@import "styles/baseComponentStyle";
+@import "styles/lib/themeVars";
+
+$__stylesheet__: (
+	name: site-layout,
+);
 
 .root {
 	// --min-height: 300px;
 	// --background-color: #fff;
 
 	// @include useMinHeight(site-layout);
-	@include useBackgroundColor(site-layout);
-	@include contentSelection;
+	@include useBackgroundColor();
+	// @include contentSelection;
 
 	// #{varName(layout-direction)}: #{compRef(locale, direction)};
 }

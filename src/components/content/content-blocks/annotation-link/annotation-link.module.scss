@@ -1,6 +1,12 @@
-@import "styles";
-@import "styles/mixins/popoverMixin";
-@import "styles/mixins/affixMixin";
+@use "styles/mixins/typographyMixins" as Typography;
+@use "styles/mixins/popoverMixin" as Popover;
+@import "styles/baseComponentStyle";
+@import "styles/lib/themeVars";
+@import "styles/lib/states";
+
+$__stylesheet__: (
+	name: annotation,
+);
 
 .root {
 	--font-size: 0.75em;
@@ -13,21 +19,21 @@
 
 	position: relative;
 
-	@include PopoverTrigger;
+	@include Popover.PopoverTrigger;
 
-	@include useFontSize(annotation);
-	@include useLineHeight(annotation);
-	@include useOffsetTop(annotation);
+	@include useFontSize();
+	@include useLineHeight();
+	@include useOffsetTop();
 
 	.content {
-		@include SuffixDataContentMixin(annotation, var(--data-content));
+		@include Typography.SuffixDataContentMixin(name(), var(--data-content));
 	}
 
 	&:before {
-		@include PrefixMixin(annotation);
+		@include Typography.PrefixMixin();
 	}
 
 	&:after {
-		@include SuffixMixin(annotation);
+		@include Typography.SuffixMixin();
 	}
 }

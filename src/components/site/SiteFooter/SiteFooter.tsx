@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { LocaleProvider } from "../../../locale/context/locale-context";
 import { Button, Link } from "@components/ui";
-import styles from "./SiteFooter.module.scss";
+import { Strip } from "@components/site";
 import { PUBLIC_PROJECT_GITHUB_ADDRESS } from "../../../consts";
 import classNames from "classnames";
+import styles from "./SiteFooter.module.scss";
 
 export const SiteFooter = (): JSX.Element => {
 	const { translate, siteTitle, siteSubtitle } = useContext(LocaleProvider);
@@ -13,7 +14,7 @@ export const SiteFooter = (): JSX.Element => {
 	)}`;
 	return (
 		<footer className={styles.root}>
-			<div className={styles.strip}></div>
+			<Strip />
 			<div className={styles.pageContainer}>
 				<div className={styles.layout}>
 					<div className={classNames(styles.column, styles.large)}>

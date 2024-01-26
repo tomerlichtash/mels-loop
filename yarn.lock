@@ -1510,6 +1510,11 @@ cross-spawn@^7.0.0, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+css-class-generator@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/css-class-generator/-/css-class-generator-2.0.0.tgz#611ea8b9565763439779100f2473d03b9a8bd99d"
+  integrity sha512-zlmG8hCTmtc+3Esj1R5PgXCKDqJT1Uqhm8NyALvg3kSjAK0+tByFTkMhEh101V+f7toETM4RGigBU4BjGvphLg==
+
 css-functions-list@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/css-functions-list/-/css-functions-list-3.2.1.tgz#2eb205d8ce9f9ce74c5c1d7490b66b77c45ce3ea"
@@ -3038,6 +3043,13 @@ next-axiom@1.1.1:
   dependencies:
     remeda "^1.29.0"
     whatwg-fetch "^3.6.2"
+
+next-optimized-classnames@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/next-optimized-classnames/-/next-optimized-classnames-1.0.2.tgz#1c3447dd58ab684b88414e3197e51c6c17626ed2"
+  integrity sha512-qbO0NBE+LObf0QOSQ524yKrriZEMJcJ+CRXUs/WSR0IuDDufJcXdWEZEPPGPUL0LpRFO9CU/MM3v/3U5a1ukaQ==
+  dependencies:
+    css-class-generator "^2.0.0"
 
 next-sitemap@3.1.32:
   version "3.1.32"

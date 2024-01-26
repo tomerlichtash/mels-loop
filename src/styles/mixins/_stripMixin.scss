@@ -1,6 +1,0 @@
-@import "../lib/themeVars";
-
-@mixin GradientStrip($comp) {
-	@include useHeight($comp);
-	@include useGradient($comp);
-}

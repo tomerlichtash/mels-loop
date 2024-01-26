@@ -14,9 +14,10 @@ import {
 	Paragraph,
 	Figure,
 	BlockQuote,
-	Code,
 	Table,
 	CustomImage,
+	CodeInline,
+	CodeBlock,
 } from "../content-blocks";
 
 export const ContentComponent = ({
@@ -56,16 +57,15 @@ export const ContentComponent = ({
 			return <Line key={key} componentData={componentData} />;
 		case MLNODE_TYPES.CODE:
 			return (
-				<Code
+				<CodeInline
 					key={key}
-					inline={true}
 					componentData={componentData}
 					className={contentClassName}
 				/>
 			);
 		case MLNODE_TYPES.CODEBLOCK:
 			return (
-				<Code
+				<CodeBlock
 					key={key}
 					componentData={componentData}
 					className={contentClassName}

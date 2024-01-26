@@ -1,4 +1,6 @@
-@import "styles";
+@import "styles/baseComponentStyle";
+@import "styles/lib/themeVars";
+@import "styles/lib/states";
 
 .root {
 	.item {
@@ -9,6 +11,9 @@
 		@include useInnerGutter(site-nav-item);
 		@include useTextColor(site-nav-item);
 		@include useBackgroundColor(site-nav-item);
+		@include useBorderBottomSize(site-nav-item);
+		@include useBorderBottomStyle(site-nav-item);
+		@include useBorderBottomColor(site-nav-item);
 
 		&:hover {
 			@include useTextColor(site-nav-item, state(hovered));
@@ -20,27 +25,8 @@
 		display: flex;
 		align-items: flex-start;
 		width: 100%;
+
 		@include useGap(site-nav-item-content);
-		// gap: 2em;
-	}
-
-	.icon {
-		display: flex;
-
-		@include useBorderSize(site-nav-item-icon);
-		@include useBorderStyle(site-nav-item-icon);
-		@include useBorderColor(site-nav-item-icon);
-		@include useRadius(site-nav-item-icon);
-		@include useInnerGutter(site-nav-item-icon);
-		@include useGap(site-nav-item-icon);
-		@include useBackgroundColor(site-nav-item-icon);
-	}
-
-	.title {
-		display: flex;
-
-		@include useFontWeight(site-nav-item-title);
-		@include useTextTransform(site-nav-item-title);
-		@include useLineHeight(site-nav-item-title);
+		@include useInnerGutter(site-nav-item-content);
 	}
 }

@@ -1,33 +1,30 @@
-@import "styles";
-@import "styles/mixins/textVariantsMixin.scss";
-@import "styles/mixins/site/PageMixin.scss";
-@import "styles/mixins/stripMixin.scss";
+@use "styles/mixins/layoutMixins.scss";
+@import "styles/mixins/typographyMixins.scss";
+
+@import "styles/baseComponentStyle";
+@import "styles/lib/refs";
+@import "styles/lib/states";
+
+$__stylesheet__: (
+	name: site-footer,
+);
+
+$states: (
+	hovered: hover,
+	clicked: active,
+	selected: selected,
+);
 
 .root {
-	--primary-text-transform: uppercase;
-	--primary-font-weight: 700;
-	--primary-letter-spacing: 0.035em;
-	--background-color: #f0f0f0;
-
-	--strip-color-start: red;
-	--strip-color-mid: green;
-	--strip-color-end: blue;
-	--strip-background-color: linear-gradient(
-		90deg,
-		var(--strip-color-start) 0%,
-		var(--strip-color-mid) 50%,
-		var(--strip-color-end) 100%
-	);
-	--strip-height: 4px;
+	// --primary-text-transform: uppercase;
+	// --primary-font-weight: 700;
+	// --primary-letter-spacing: 0.035em;
+	// --background-color: #f0f0f0;
 
 	@include useBackgroundColor(site-footer);
 
-	.strip {
-		@include GradientStrip(site-footer-strip);
-	}
-
 	.pageContainer {
-		@include PageContainerMixin;
+		@include layoutMixins.PageContainerMixin(site-footer-container);
 	}
 
 	.layout {
@@ -39,15 +36,7 @@
 	}
 
 	.title {
-		#{varName(site-footer-primary-font-weight)}: var(--primary-font-weight);
-		#{varName(site-footer-primary-text-transform)}: var(
-			--primary-text-transform
-		);
-		#{varName(site-footer-primary-letter-spacing)}: var(
-			--primary-letter-spacing
-		);
-
-		@include Label1(site-footer-primary);
+		@include RunningTextMixin(site-footer-primary-label);
 	}
 
 	.column {

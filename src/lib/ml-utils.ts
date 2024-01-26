@@ -93,7 +93,7 @@ class MLUtils implements IMLUtils {
 				if (myVal === null) {
 					into[key] = val;
 				} else if (val instanceof Date || Array.isArray(val)) {
-					// we don't deep-merge arrays
+					// we don't deep arrays
 					into[key] = val;
 				} else if (tSource === "object") {
 					this.safeMerge(myVal as object, val as object);

@@ -1,17 +1,14 @@
 import React, { useContext } from "react";
+import { LocaleProvider } from "locale/context/locale-context";
 import Drawer from "react-modern-drawer";
-
 import {
 	SiteTitle,
 	LocaleSelector,
 	ThemeSelector,
-	Logo,
+	Strip,
 } from "@components/site";
 import VerticalNav from "./VerticalNav";
 import { Button, Scrollbar } from "@components/ui";
-
-import { LocaleProvider } from "locale/context/locale-context";
-
 import { Cross2Icon } from "@radix-ui/react-icons";
 import styles from "./VerticalMenu.module.scss";
 
@@ -37,12 +34,12 @@ const VerticalMenu = ({ toggle, open, isHome }: VerticalMenuProps) => {
 		>
 			<Scrollbar className={styles.root} textDirection={textDirection}>
 				<Button onClick={toggle} asChild>
-					<span className={styles.close}>
+					<Cross2Icon />
+					{/* <span className={styles.close}>
 						<span className={styles.label}>Close</span>
 						<span className={styles.icon}>
-							<Cross2Icon />
 						</span>
-					</span>
+					</span> */}
 				</Button>
 
 				<div className={styles.header}>
@@ -53,8 +50,9 @@ const VerticalMenu = ({ toggle, open, isHome }: VerticalMenuProps) => {
 						isHome={isHome}
 						variant="centered"
 					/>
-					<div className={styles.strip} />
 				</div>
+
+				<Strip />
 
 				<div className={styles.panel}>
 					<LocaleSelector />

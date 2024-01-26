@@ -1,6 +1,5 @@
 @use "styles/lib/overrides";
-@import "./NavListItem.module.scss";
-@import "styles/lib/states";
+@use "./NavListItem.module.scss";
 
 @mixin ListItemMixin($module) {
 	@include overrides.transform(
@@ -14,6 +13,9 @@
 						text-color,
 						radius,
 						gutter,
+						border-bottom-size,
+						border-bottom-style,
+						border-bottom-color,
 					),
 					state(hovered): (
 						background-color,
@@ -23,28 +25,29 @@
 				content: (
 					_: (
 						gap,
-					),
-				),
-				icon: (
-					_: (
-						border-size,
-						border-style,
-						border-color,
-						background-color,
-						radius,
-						width,
-						height,
 						gutter,
-						gap,
 					),
 				),
-				title: (
-					_: (
-						text-transform,
-						line-height,
-						font-weight,
-					),
-				),
+				// icon: (
+				// 	_: (
+				// 		border-size,
+				// 		border-style,
+				// 		border-color,
+				// 		background-color,
+				// 		radius,
+				// 		// width,
+				// 		// height,
+				// 		gutter,
+				// 		gap,
+				// 	),
+				// ),
+				// title: (
+				// 	_: (
+				// 		text-transform,
+				// 		line-height,
+				// 		font-weight,
+				// 	),
+				// ),,,,,,,,
 			),
 		)
 	);

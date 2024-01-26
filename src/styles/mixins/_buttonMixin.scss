@@ -3,7 +3,7 @@
 @import "../lib/states";
 @import "../lib/merge";
 
-$states: deep-merge(
+$states: deep(
 	$COMPONENT_STATES,
 	(
 		selected: selected,
@@ -22,9 +22,9 @@ $states: deep-merge(
 	@return compRef($var, font-weight, $state);
 }
 
-$bgVar: varName(site-mixins-toggle-button-background-color);
-$textColorVar: varName(site-mixins-toggle-button-text-color);
-$fontWeightVar: varName(site-mixins-toggle-button-font-weight);
+$bgVar: varName(site-button-toggle-background-color);
+$textColorVar: varName(site-button-toggle-text-color);
+$fontWeightVar: varName(site-button-toggle-font-weight);
 
 @mixin IconMixin($var) {
 	.icon {
@@ -48,7 +48,7 @@ $fontWeightVar: varName(site-mixins-toggle-button-font-weight);
 	@include IconMixin($var);
 }
 
-@mixin ToggleButtonMixin($var: site-mixins-toggle-button) {
+@mixin ToggleButtonMixin($var: site-button-toggle) {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;

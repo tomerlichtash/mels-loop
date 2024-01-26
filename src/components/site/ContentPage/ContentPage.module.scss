@@ -1,14 +1,21 @@
-@import "styles";
+@import "styles/baseComponentStyle";
+@import "styles/lib/themeVars";
+
+$__stylesheet__: (
+	name: content-page,
+);
 
 .root {
 	.title {
-		@include useFontSize(content-page-title);
+		@include useFontSize(title);
 	}
+
 	.subtitle {
-		@include useFontSize(content-page-subtitle);
+		@include useFontSize(subtitle);
 	}
+
 	.abstract {
-		@include useFontSize(content-page-abstract);
+		@include useFontSize(abstract);
 		// margin: 1em 0 2em;
 	}
 }

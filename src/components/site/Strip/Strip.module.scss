@@ -1,0 +1,15 @@
+// @use "./Strip.mixin.scss" as StripMixin;
+@import "styles/baseComponentStyle";
+@import "styles/lib/themeVars";
+
+$__stylesheet__: (
+	name: gradient-strip,
+);
+
+.root {
+	--background-color: pink;
+	--height: 6px;
+
+	@include useGradient();
+	@include useHeight();
+}

@@ -1,3 +1,1 @@
-const docIds = ["docs/the-story-of-mel"];
-
-export default docIds;
+export default ["docs/the-story-of-mel"];

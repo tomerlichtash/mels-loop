@@ -2,4 +2,4 @@
 @use "link";
 @use "annotation";
 
-$index: merge.deep-merge(annotation.$index, link.$index);
+$index: merge.deep(annotation.$index, link.$index);

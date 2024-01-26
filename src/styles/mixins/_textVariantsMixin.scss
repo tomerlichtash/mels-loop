@@ -1,7 +1,0 @@
-@import "../lib/themeVars";
-
-@mixin Label1($module) {
-	@include useFontWeight($module);
-	@include useTextTransform($module);
-	@include useLetterSpacing($module);
-}

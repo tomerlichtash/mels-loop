@@ -1,6 +1,11 @@
-@import "styles/mixins/content/ParagraphMixin";
+@import "styles/baseComponentStyle";
+@import "styles/mixins/typographyMixins";
+
+$__stylesheet__: (
+	name: list-item,
+);
 
 .root {
-	@include ParagraphMixin;
 	margin: 0;
+	@include RunningTextMixin();
 }

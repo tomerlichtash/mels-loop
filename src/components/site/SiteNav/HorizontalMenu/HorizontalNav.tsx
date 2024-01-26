@@ -6,13 +6,13 @@ import { Button } from "@components/ui";
 import { NavListItem } from "@components/site";
 import { MenuSections } from "@config/siteNav/sections";
 import { MenuItems } from "@config/siteNav/items";
-import { getMenuItems } from "../helpers";
+import { getMenuItems, itemContent } from "../helpers";
 import { LocaleProvider } from "locale/context/locale-context";
 import styles from "./HorizontalNav.module.scss";
 
-type HorizontalMenuProps = {
-	items: Record<any, any>[];
-};
+// type HorizontalMenuProps = {
+// 	items: Record<any, any>[];
+// };
 
 const HorizontalNav = () => {
 	const { translate } = useContext(LocaleProvider);
@@ -43,7 +43,9 @@ const HorizontalNav = () => {
 													key={mlUtils.uniqueId()}
 													className={styles.item}
 													{...item}
-												/>
+												>
+													{itemContent(styles, { ...item, ...item.locale })}
+												</NavListItem>
 											</li>
 										</NavigationMenu.Link>
 									))}

@@ -1,9 +1,8 @@
 @import "./horizontalNavAnimationMixin.scss";
 @import "../NavListItem/navListItemMixin.scss";
 @import "styles/mixins/buttonMixin.scss";
-@import "styles";
 
-$states: deep-merge(
+$states: deep(
 	$COMPONENT_STATES,
 	(
 		opened: open,

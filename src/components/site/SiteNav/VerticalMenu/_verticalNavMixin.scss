@@ -1,0 +1,7 @@
+@import "../NavListItem/navListItemMixin.scss";
+@import "../NavItemContent/navItemContentMixin.scss";
+
+@mixin VerticalNavMixin {
+	@include ListItemMixin(site-vertical-menu-item);
+	@include NavItemContentMixin(site-item-content-variant-base);
+}

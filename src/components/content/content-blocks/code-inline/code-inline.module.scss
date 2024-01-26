@@ -1,0 +1,25 @@
+@import "styles/baseComponentStyle";
+@import "styles/lib/themeVars";
+
+$__stylesheet__: (
+	name: code-inline,
+);
+
+.root {
+	--background-color: #f0f0f0;
+	--radius: 4px;
+	--padding-right: 0.15em;
+	--padding-left: 0.15em;
+	--border-size: 1px;
+	--border-style: solid;
+
+	@include useHorizontalPadding();
+	@include useFontFamily();
+	@include useFontWeight();
+	@include useTextColor();
+	@include useBackgroundColor();
+	@include useBorderSize();
+	@include useBorderStyle();
+	@include useBorderColor();
+	@include useRadius();
+}

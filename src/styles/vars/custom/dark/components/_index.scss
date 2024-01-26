@@ -3,4 +3,4 @@
 @use "ui";
 @use "content";
 
-$index: merge.deep-merge(site.$index, ui.$index, content.$index);
+$index: merge.deep(site.$index, ui.$index, content.$index);

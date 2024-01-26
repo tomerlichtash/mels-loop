@@ -6,6 +6,7 @@ import { getMenuItems } from "../helpers";
 import { MenuItems as menuItems } from "@config/siteNav/items";
 import { MenuSections as menuSections } from "@config/siteNav/sections";
 import styles from "./VerticalNav.module.scss";
+import NavItemContent from "../NavItemContent/NavItemContent";
 
 type VerticalNavProps = {
 	onClose: () => void;
@@ -25,18 +26,21 @@ const VerticalNav = ({ onClose }): VerticalNavProps => {
 				<div key={mlUtils.uniqueId()} className={styles.root}>
 					<span className={styles.sectionTitle}>{section.locale.title}</span>
 					<ul className={styles.list}>
-						{section.items.map((item) => (
+						{section.items.map(({ locale, ...item }) => (
 							<NavListItem
-								onSelect={onClose}
+								url={item.url}
+								target={item.target}
 								key={mlUtils.uniqueId()}
 								className={styles.item}
-								{...item}
-							/>
+								onClick={onClose}
+							>
+								<NavItemContent {...item} {...locale} />
+							</NavListItem>
 						))}
 					</ul>
 				</div>
 			)),
-		[items]
+		[items, onClose]
 	);
 
 	return menu;

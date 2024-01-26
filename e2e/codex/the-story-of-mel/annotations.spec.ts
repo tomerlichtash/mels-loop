@@ -12,12 +12,12 @@ import {
 } from "../../utils/terms";
 import { NOTE_CONTENT_SELECTOR } from "../../utils/locators";
 import { SINGLE_WHITE_SPACE } from "../../utils/patterns";
-import { docIds } from "../doc-ids";
+import docIds from "../doc-ids";
 
 test.describe.configure({ mode: "serial" });
 
 test.describe("Annotations", () =>
-	docIds.map((docId) => {
+	docIds.map((docId: string) => {
 		return locales.map((locale) => {
 			let page: Page;
 
@@ -47,7 +47,9 @@ test.describe("Annotations", () =>
 						.first()
 						.click();
 					await page.waitForSelector(NOTE_CONTENT_SELECTOR);
-					const textContent = await page.locator(NOTE_CONTENT_SELECTOR).textContent();
+					const textContent = await page
+						.locator(NOTE_CONTENT_SELECTOR)
+						.textContent();
 					expect(textContent.length, "term cannot be empty").toBeGreaterThan(0);
 					expect(
 						textContent.split(SINGLE_WHITE_SPACE).length,

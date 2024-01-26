@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:list";
+@import "styles/config/consts";
 
 // base component states
 $COMPONENT_STATES: (
@@ -7,6 +8,8 @@ $COMPONENT_STATES: (
 	clicked: active,
 	selected: selected,
 );
+
+$states: $COMPONENT_STATES;
 
 @function _strReplace($string, $search, $replace: "") {
 	$index: str-index($string, $search);

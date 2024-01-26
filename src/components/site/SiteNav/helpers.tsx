@@ -1,3 +1,10 @@
+import {
+	FileIcon,
+	ListBulletIcon,
+	GitHubLogoIcon,
+	Pencil1Icon,
+} from "@radix-ui/react-icons";
+
 const trKeys = (item, translate: (s: string) => string) =>
 	Object.fromEntries(
 		Object.keys(item.locale as string[]).map((key) => [
@@ -12,6 +19,21 @@ export const getSectionItems = (section, items) => {
 				(itemId) => items.filter((item) => item.id === itemId)[0]
 		  )
 		: null;
+};
+
+const getIcon = (icon: string) => {
+	switch (icon) {
+		case "article":
+			return <FileIcon />;
+		case "list":
+			return <ListBulletIcon />;
+		case "github":
+			return <GitHubLogoIcon />;
+		case "pencil":
+			return <Pencil1Icon />;
+		default:
+			return icon;
+	}
 };
 
 export const getMenuItems = (
@@ -30,4 +52,17 @@ export const getMenuItems = (
 			),
 		});
 	});
+};
+
+export const itemContent = (styles, { icon, title, description, author }) => {
+	return (
+		<>
+			<div className={"icon"}>{icon && getIcon(icon as string)}</div>
+			<div>
+				<div className={"title"}>{title}</div>
+				<div className={"description"}>{description}</div>
+				<div className={"author"}>{author}</div>
+			</div>
+		</>
+	);
 };

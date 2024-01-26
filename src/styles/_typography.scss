@@ -1,6 +1,0 @@
-@use "styles/config/locales";
-@use "mixins/localeMixin";
-
-@each $locale in locales.$index {
-	@include localeMixin.LocaleSetupMixin($locale);
-}

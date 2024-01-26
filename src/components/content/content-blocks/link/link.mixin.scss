@@ -1,0 +1,29 @@
+@import "styles/lib/themeVars";
+@import "styles/lib/states";
+
+@mixin root {
+	--text-color#{state(hovered)}: magenta;
+	--text-color#{state(clicked)}: #a00;
+}
+
+.root {
+	--text-color#{state(hovered)}: magenta;
+	--text-color#{state(clicked)}: #a00;
+
+	&:link,
+	&:visited {
+		@include useTextColor();
+		@include useBackgroundColor();
+	}
+
+	&:hover {
+		@include useTextColor(name(), state(hovered));
+	}
+
+	&:active {
+		@include useTextColor(name(), state(clicked));
+	}
+}
+.someEle {
+	background: blue;
+}

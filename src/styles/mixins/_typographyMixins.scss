@@ -1,0 +1,69 @@
+@import "styles/lib/themeVars";
+@import "styles/lib/states";
+
+@mixin BaseTypographyMixin($var) {
+	@include useFontFamily($var);
+	@include useFontSize($var);
+	@include useFontWeight($var);
+}
+
+@mixin RunningTextMixin($var: paragraph) {
+	--text-color: #000;
+	--line-height: 1em;
+	--font-size: 1em;
+	--font-weight: 300;
+
+	@include BaseTypographyMixin($var);
+
+	@include useTextColor($var);
+	@include useLineHeight($var);
+	@include useTextTransform($var);
+	@include useLetterSpacing($var);
+}
+
+@mixin AffixMixin($module, $affix) {
+	@include useContent(#{$module}-#{$affix});
+	@include useOpacity(#{$module}-#{$affix});
+}
+
+@mixin PrefixMixin($module: default) {
+	@include AffixMixin($module, prefix);
+}
+
+@mixin SuffixMixin($module: default) {
+	@include AffixMixin($module, suffix);
+}
+
+@mixin SuffixDataContentMixin($var, $content: "") {
+	--content: #{$content};
+
+	&::after {
+		@include useContent($var);
+		@include useFontWeight($var);
+		@include useHorizontalPadding($var);
+	}
+}
+
+@mixin SeparatorMixin($var, $content: "|") {
+	--content: "#{$content}";
+	--horizontal-margin: 0.5em;
+	--font-weight: 300;
+	--opacity: 0.5;
+
+	&::before {
+		@include useContent($var);
+		@include useFontWeight($var);
+		@include useHorizontalMargin($var);
+		@include useOpacity($var);
+	}
+}
+
+// @mixin contentSelection {
+// 	// --background-color: #f0f0f0;
+// 	// --text-color: #333;
+
+// 	// ::selection {
+// 	// 	@include useTextColor(site-layout-selection);
+// 	// 	@include useBackgroundColor(site-layout-selection);
+// 	// }
+// }

@@ -1,0 +1,36 @@
+@use "styles/lib/overrides";
+@use "./NavItemContent.module.scss";
+
+@mixin NavItemContentMixin($module) {
+	@include overrides.transform(
+		$module,
+		(
+			comp: item-content-variant-base,
+			overrides: (
+				_: (
+					_: (
+						background-color,
+					),
+				),
+				icon: (
+					_: (
+						border-size,
+						border-style,
+						border-color,
+						background-color,
+						radius,
+						gutter,
+						gap,
+					),
+				),
+				title: (
+					_: (
+						text-transform,
+						line-height,
+						font-weight,
+					),
+				),
+			),
+		)
+	);
+}

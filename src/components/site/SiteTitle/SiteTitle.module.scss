@@ -1,6 +1,11 @@
-@import "styles";
-@import "styles/mixins/inlineSeperatorMixin.scss";
-@import "styles/mixins/textVariantsMixin.scss";
+@use "styles/mixins/typographyMixins.scss";
+@import "styles/lib/themeVars";
+@import "styles/baseComponentStyle";
+// @import "styles/mixins/inlineSeperatorMixin.scss";
+
+$__stylesheet__: (
+	name: site-title,
+);
 
 .root {
 	--text-color: #000;
@@ -17,17 +22,17 @@
 
 	.logo {
 		--margin-end: 0.5em;
-		@include useInlineMarginEnd(site-header-logo);
+		@include useInlineMarginEnd(name(logo));
 	}
 
 	.title {
 		display: flex;
 		align-items: center;
 
-		@include useTextColor(site-title);
+		@include useTextColor();
 
 		.label {
-			@include Label1(site-title-primary);
+			@include typographyMixins.RunningTextMixin(name(primary));
 		}
 	}
 
@@ -35,8 +40,8 @@
 		display: compRef(site-title, subtitle-visibility);
 
 		@include useTextColor(site-title);
-		@include Label1(site-title-secondary);
-		@include SeparatorMixin(site-header-separator);
+		@include typographyMixins.RunningTextMixin(name(secondary));
+		@include typographyMixins.SeparatorMixin(name(separator));
 	}
 
 	.link {

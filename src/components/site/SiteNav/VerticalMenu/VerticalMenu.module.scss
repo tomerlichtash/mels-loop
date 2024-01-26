@@ -1,10 +1,10 @@
-@import "styles";
+@import "styles/baseComponentStyle";
 @import "styles/mixins/buttonMixin.scss";
-@import "styles/mixins/stripMixin.scss";
+@import "styles/lib/overrides";
 
 .root {
 	height: 100vh;
-	background: #333;
+	// background: #333;
 
 	.dialogPanel {
 		@include disableUserSelection;
@@ -19,22 +19,15 @@
 		// background-color: ref(color-container-dark);
 		color: #fff;
 
-		.close {
-			@include IconButtonWithLabelMixin;
-		}
+		// .close {
+		// 	@include IconButtonWithLabelMixin;
+		// }
 	}
 
-	.strip {
-		@include GradientStrip(site-footer);
-		height: 2px;
+	.header {
+		// padding: 2em;
+		@include _mapVars(site-title, site-vertical-menu-header, (text-color));
 	}
-
-	// .header {
-	// 	padding: 2em;
-	// 	// margin: 1em 0;
-	// 	background-color: ref(color-container-dark);
-	// 	box-shadow: globalRef(shadow-md);
-	// }
 
 	.panel {
 		direction: ltr;
@@ -44,10 +37,10 @@
 		gap: 0.5em;
 	}
 
-	.menu {
-		.verticalNavMenuItem {
-			background-color: green;
-			color: red;
-		}
-	}
+	// .menu {
+	// 	.verticalNavMenuItem {
+	// 		background-color: green;
+	// 		color: red;
+	// 	}
+	// }
 }

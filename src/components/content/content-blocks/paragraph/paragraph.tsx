@@ -16,11 +16,13 @@ export const Paragraph = ({
 	const { key, children } = node;
 	const elements: IMLParsedNode[] = Array.isArray(children) ? children : [];
 	return (
-		<p className={classNames(styles.root, className)} key={key}>
-			{elements.map((node) => {
-				return <ContentComponent key={node.key} componentData={{ node }} />;
-			})}
-		</p>
+		<>
+			<p className={classNames(styles.root, className)} key={key}>
+				{elements.map((node) => {
+					return <ContentComponent key={node.key} componentData={{ node }} />;
+				})}
+			</p>
+		</>
 	);
 };
 

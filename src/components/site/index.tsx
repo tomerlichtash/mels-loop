@@ -7,3 +7,4 @@ export { default as HorizontalMenu } from "./SiteNav/HorizontalMenu";
 export { default as VerticalMenu } from "./SiteNav/VerticalMenu";
 export { default as VerticalMenuTrigger } from "./SiteNav/VerticalMenu/VerticalMenuTrigger";
 export { default as NavListItem } from "./SiteNav/NavListItem";
+export { default as Strip } from "./Strip";

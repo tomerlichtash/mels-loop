@@ -1,8 +1,8 @@
-@import "styles";
 @import "components/content/popover/PopoverTrigger.module";
+@import "styles/baseThemeStyle";
 
 $index: (
-	popover-trigger: (
+	trigger: (
 		text-color: ref(link-text-color),
 		radius: globalRef(radius-md),
 		astriek-color: ref(link-text-color),
@@ -29,18 +29,13 @@ $index: (
 			text-color: ref(color-secondary-contrast),
 		),
 	),
-	popover-dialog: (
+	dialog: (
 		background-color: ref(color-surface-light),
 		border-radius: globalRef(radius-md),
 		width: 10em,
 		fadeIn-animation: (
 			duration: globalRef(animation-duration-sm),
 			easing: globalRef(animation-easing-in),
-		),
-	),
-	loading-indicator: (
-		label: (
-			margin-top: 1em,
 		),
 	),
 );

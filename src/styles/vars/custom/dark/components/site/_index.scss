@@ -6,7 +6,7 @@
 
 $index: (
 	site:
-		merge.deep-merge(
+		merge.deep(
 			layout.$index,
 			header.$index,
 			footer.$index,

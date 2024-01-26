@@ -70,6 +70,7 @@
 		"lodash.orderby": "4.6.0",
 		"next": "14.1.0",
 		"next-axiom": "1.1.1",
+		"next-optimized-classnames": "^1.0.2",
 		"next-themes": "0.2.1",
 		"normalize.css": "8.0.1",
 		"react": "18.2.0",
