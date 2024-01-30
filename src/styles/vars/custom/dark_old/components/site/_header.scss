@@ -1,0 +1,12 @@
+@import "styles/baseThemeStyle";
+
+$index: (
+	header: (
+		gap: 2em,
+		background-color: ref(color-secondary-main),
+	),
+	title: (
+		logo-url: ref(assets-logo-url),
+		text-color: ref(color-primary-contrast),
+	),
+);

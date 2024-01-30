@@ -51,7 +51,7 @@
 	$cssProperty,
 	$themeProperty,
 	$varName: "__generic__",
-	$varState: ""
+	$state: ""
 ) {
-	#{$cssProperty}: compRef($varName, $themeProperty, $varState);
+	#{$cssProperty}: compRef($varName, $themeProperty, $state);
 }

@@ -1,5 +1,5 @@
-@import "styles/lib/themeVars";
-@import "styles/lib/states";
+@import "../../styles/lib/themeVars";
+@import "../../styles/lib/states";
 
 @mixin BaseTypographyMixin($var) {
 	@include useFontFamily($var);
@@ -8,7 +8,7 @@
 }
 
 @mixin RunningTextMixin($var: paragraph) {
-	--text-color: #000;
+	// --text-color: #000;
 	--line-height: 1em;
 	--font-size: 1em;
 	--font-weight: 300;

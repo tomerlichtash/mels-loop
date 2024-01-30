@@ -1,13 +1,13 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import classNames from "classnames";
 import styles from "./ContentPage.module.scss";
-import { ComponentProps } from "interfaces/models";
 
-interface ContentPageProps extends ComponentProps {
+type ContentPageProps = {
 	title?: string;
 	subtitle?: string;
 	abstract?: string;
-}
+	className?: string;
+};
 
 const Article = ({
 	title,
@@ -15,7 +15,7 @@ const Article = ({
 	abstract,
 	children,
 	className,
-}: ContentPageProps) => (
+}: ContentPageProps & PropsWithChildren) => (
 	<article className={classNames(styles.root, className)}>
 		{title && <h1 className={styles.title}>{title}</h1>}
 		{subtitle && <p className={styles.subtitle}>{subtitle}</p>}

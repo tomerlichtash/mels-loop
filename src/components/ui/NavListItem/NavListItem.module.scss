@@ -1,0 +1,32 @@
+@import "../../../styles/baseComponentStyle";
+@import "../../../styles/lib/themeVars";
+@import "../../../styles/lib/states";
+
+.root {
+	.item {
+		display: flex;
+		text-decoration: none;
+
+		@include useRadius(site-nav-item);
+		@include useInnerGutter(site-nav-item);
+		@include useTextColor(site-nav-item);
+		@include useBackgroundColor(site-nav-item);
+		@include useBorderBottomSize(site-nav-item);
+		@include useBorderBottomStyle(site-nav-item);
+		@include useBorderBottomColor(site-nav-item);
+
+		&:hover {
+			@include useTextColor(site-nav-item, state(hovered));
+			@include useBackgroundColor(site-nav-item, state(hovered));
+		}
+	}
+
+	.content {
+		display: flex;
+		align-items: flex-start;
+		width: 100%;
+
+		@include useGap(site-nav-item-content);
+		@include useInnerGutter(site-nav-item-content);
+	}
+}

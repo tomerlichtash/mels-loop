@@ -1,9 +1,11 @@
-@import "styles/baseThemeStyle";
+@import "../../../../../baseThemeStyle";
+@import "../../../../../lib/refs";
 
 $index: (
-	locale-selector: (
-		button: (
-			background-color: ref(color-primary-main),
-		),
+	gap: 20px,
+
+	button: (
+		background-color: ref(color-surface-dark),
+		text-color: ref(color-primary-dark),
 	),
 );

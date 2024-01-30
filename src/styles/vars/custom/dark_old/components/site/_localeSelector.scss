@@ -1,0 +1,9 @@
+@import "styles/baseThemeStyle";
+
+$index: (
+	locale-selector: (
+		button: (
+			background-color: ref(color-primary-main),
+		),
+	),
+);

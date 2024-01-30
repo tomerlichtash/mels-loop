@@ -1,14 +1,14 @@
-@import "styles/baseThemeStyle";
-@import "styles/lib/refs";
+@import "../../../../../baseThemeStyle";
+@import "../../../../../lib/refs";
 
 $annotationPrefix: "'['";
 $annotationSuffix: "']'";
 $annotationAffixOpacity: 0.65;
 
 $index: (
-	font-size: globalRef(typography-font-size-xs),
-	font-weight: globalRef(typography-font-weight-regular),
-	color: ref(link-text-color),
+	// font-size: globalRef(typography-font-size-xs),
+	// font-weight: globalRef(typography-font-weight-regular),
+	text-color: ref(link-text-color),
 	prefix: (
 		content: $annotationPrefix,
 		opacity: $annotationAffixOpacity,
@@ -16,5 +16,5 @@ $index: (
 	suffix: (
 		content: $annotationSuffix,
 		opacity: $annotationAffixOpacity,
-	),
+	)
 );

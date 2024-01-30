@@ -1,17 +1,14 @@
-@import "styles/baseComponentStyle";
-@import "styles/lib/themeVars";
+@import "../../../styles/baseComponentStyle";
+@import "../../../styles/lib/themeVars";
+@import "../../../styles/lib/states";
 
 $__stylesheet__: (
-	name: site-layout,
+	name: layout,
 );
 
 .root {
-	// --min-height: 300px;
-	// --background-color: #fff;
-
-	// @include useMinHeight(site-layout);
 	@include useBackgroundColor();
-	// @include contentSelection;
-
-	// #{varName(layout-direction)}: #{compRef(locale, direction)};
+	.siteTitle {
+		@include useGap(name(logo));
+	}
 }

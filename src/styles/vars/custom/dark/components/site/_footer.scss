@@ -1,10 +1,14 @@
-@import "styles/baseThemeStyle";
+@import "../../../../../baseThemeStyle";
+@import "../../../../../lib/refs";
 
 $index: (
-	footer: (
-		background-color: ref(color-container-main),
-		strip: (
-			background-color: ref(gradient-primary-main),
-		),
+	background-color: ref(color-surface-main),
+	container: (
+		gutter: 2em,
+	),
+	primary-label: (
+		text-transform: uppercase,
+		font-weight: 700,
+		letter-spacing: 0.05em,
 	),
 );

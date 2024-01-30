@@ -1,0 +1,10 @@
+@import "styles/baseThemeStyle";
+
+$index: (
+	footer: (
+		background-color: ref(color-container-main),
+		strip: (
+			background-color: ref(gradient-primary-main),
+		),
+	),
+);

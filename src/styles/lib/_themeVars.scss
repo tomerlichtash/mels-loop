@@ -1,5 +1,5 @@
 @use "../mixins/keyframesMixins";
-@import "styles/lib/refs";
+@import "./refs";
 
 @mixin useDirection($var: name(), $state: "") {
 	@include useThemeVar(direction, direction, $var, $state);
@@ -283,47 +283,47 @@
 	@include useAnimation($anim, #{$comp}-#{$anim});
 }
 
-@mixin useEnterFromLeft($var: mixins) {
+@mixin useEnterFromLeft($var) {
 	@include keyframesMixins.enterFromLeft;
 	@include _useAnimationThemeVar(enterFromLeft, $var);
 }
 
-@mixin useEnterFromRight($var: mixins) {
+@mixin useEnterFromRight($var) {
 	@include keyframesMixins.enterFromRight;
 	@include _useAnimationThemeVar(enterFromRight, $var);
 }
 
-@mixin useExitToLeft($var: mixins) {
+@mixin useExitToLeft($var) {
 	@include keyframesMixins.exitToLeft;
 	@include _useAnimationThemeVar(exitToLeft, $var);
 }
 
-@mixin useExitToRight($var: mixins) {
+@mixin useExitToRight($var) {
 	@include keyframesMixins.exitToRight;
 	@include _useAnimationThemeVar(exitToRight, $var);
 }
 
-@mixin useFadeIn($var: mixins) {
+@mixin useFadeIn($var) {
 	@include keyframesMixins.fadeIn;
 	@include _useAnimationThemeVar(fadeIn, $var);
 }
 
-@mixin useFadeOut($var: mixins) {
+@mixin useFadeOut($var) {
 	@include keyframesMixins.fadeOut;
 	@include _useAnimationThemeVar(fadeOut, $var);
 }
 
-@mixin useScaleIn($var: mixins) {
+@mixin useScaleIn($var) {
 	@include keyframesMixins.scaleIn;
 	@include _useAnimationThemeVar(scaleIn, $var);
 }
 
-@mixin useScaleOut($var: mixins) {
+@mixin useScaleOut($var) {
 	@include keyframesMixins.scaleOut;
 	@include _useAnimationThemeVar(scaleOut, $var);
 }
 
-@mixin useRotation($var: mixins) {
+@mixin useRotation($var) {
 	@include keyframesMixins.rotation;
 	@include _useAnimationThemeVar(rotation, $var);
 }

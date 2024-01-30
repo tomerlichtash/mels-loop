@@ -1,6 +1,113 @@
-@use "styles/lib/merge";
-@use "site";
-@use "ui";
-@use "content";
+@use "sass:map";
 
-$index: merge.deep(site.$index, ui.$index, content.$index);
+$baseDir: "../../../../../components";
+
+// @use "components/content/popover/PopoverTrigger.module" as PopoverTrigger;
+@use "../../../../../components/ui/LoadingIndicator/LoadingIndicator.module" as
+	LoadingIndicator;
+@use "../../../../../components/ui/Strip/Strip.module" as Strip; // todo: move to ui components
+
+@use "../../../../../components/content/content-blocks/line/line.module" as Line;
+@use "../../../../../components/content/content-blocks/paragraph/paragraph.module"
+	as Paragraph;
+@use "../../../../../components/content/content-blocks/blockquote/blockquote.module"
+	as Blockquote;
+// @use "components/content/content-blocks/cite" as Cite;
+@use "../../../../../components/content/content-blocks/link/link.module" as Link;
+@use "../../../../../components/content/content-blocks/table/table.module" as
+	Table;
+@use "../../../../../components/content/content-blocks/figure/figure.module" as
+	Figure;
+@use "../../../../../components/content/content-blocks/custom-image/custom-image.module"
+	as CustomImage;
+@use "../../../../../components/content/content-blocks/annotation-link/annotation-link.module"
+	as Annotation;
+@use "../../../../../components/content/content-blocks/term-link/term-link.module"
+	as GlossaryTerm;
+@use "../../../../../components/content/content-blocks/code-inline/code-inline.module"
+	as CodeInline;
+@use "../../../../../components/content/content-blocks/code-block/code-block.module"
+	as CodeBlock;
+@use "../../../../../components/content/content-blocks/list-item/list-item.module"
+	as ListItem;
+@use "../../../../../components/ui/Scrollbar/Scrollbar.module" as Scrollbar;
+@use "../../../../../components/ui/page/page.module" as Page;
+@use "../../../../../components/site/layout/layout.module" as Layout;
+// @use "../../../../../components/site/SiteHeader/SiteHeader.module" as SiteHeader;
+@use "../../../../../components/site/SiteFooter/SiteFooter.module" as SiteFooter;
+@use "../../../../../components/ui/SiteTitle/SiteTitle.module" as SiteTitle;
+@use "../../../../../components/ui/LocaleSelector/LocaleSelector.module" as
+	LocaleSelector;
+@use "../../../../../components/ui/ThemeSelector/ThemeSelector.module" as
+	ThemeSelector;
+// @use "components/site/button" as buttonComponent;
+// @use "components/site/SiteNav/HorizontalMenu/HorizontalMenu.module" as
+// 	HorizontalMenu;
+@use "../../../../../components/ui/HorizontalMenu/HorizontalNav.module" as
+	HorizontalNav;
+
+@use "../../../../../components/ui/VerticalMenu/VerticalNav.module" as
+	VerticalMenu;
+@use "../../../../../components/ui/NavItemContent/NavItemContent.module" as
+	NavItemContent;
+
+@use "ui/scrollbar" as scrollbarTheme;
+// @use "ui/popover" as popoverTriggerTheme;
+@use "ui/strip" as stripTheme;
+@use "ui/loadingIndicator" as loadingIndicatorTheme;
+@use "content/line" as lineTheme;
+@use "content/paragraph" as paragraphTheme;
+@use "content/blockquote" as blockquoteTheme;
+@use "content/cite" as citeTheme;
+@use "content/link" as linkTheme;
+@use "content/table" as tableTheme;
+@use "content/figure" as figureTheme;
+@use "content/customImage" as customImageTheme;
+@use "content/annotation" as annotationTheme;
+@use "content/glossary" as glossaryTheme;
+@use "content/codeInline" as codeInlineTheme;
+@use "content/codeBlock" as codeBlockTheme;
+@use "content/listItem" as listItemTheme;
+@use "site/page" as pageTheme;
+@use "site/layout" as layoutTheme;
+@use "site/header" as headerTheme;
+@use "site/footer" as footerTheme;
+@use "site/siteTitle" as siteTitleTheme;
+@use "site/localeSelector" as localeSelectorTheme;
+@use "site/themeSelector" as themeSelectorTheme;
+@use "site/button" as buttonTheme; // todo: move to ui components
+@use "site/horizontalNav" as horizontalNavTheme;
+@use "site/verticalNav" as verticalNavTheme;
+@use "site/navItemContent" as navItemContentTheme;
+
+$index: (
+	Scrollbar.name(): scrollbarTheme.vars(),
+	// PopoverTrigger.name(): popoverTriggerTheme.vars(),
+	Strip.name(): stripTheme.vars(),
+	LoadingIndicator.name(): loadingIndicatorTheme.vars(),
+	// SiteButton.name(): buttonTheme.vars(),
+	Line.name(): lineTheme.vars(),
+	Paragraph.name(): paragraphTheme.vars(),
+	Link.name(): linkTheme.vars(),
+	Blockquote.name(): blockquoteTheme.vars(),
+	Annotation.name(): annotationTheme.vars(),
+	GlossaryTerm.name(): glossaryTheme.vars(),
+	// Cite.name(): citeTheme.vars(),
+	// Heading.name(): heading.vars(),
+	ListItem.name(): listItemTheme.vars(),
+	CodeInline.name(): codeInlineTheme.vars(),
+	CodeBlock.name(): codeBlockTheme.vars(),
+	Table.name(): tableTheme.vars(),
+	Figure.name(): figureTheme.vars(),
+	CustomImage.name(): customImageTheme.vars(),
+	Layout.name(): layoutTheme.vars(),
+	Page.name(): pageTheme.vars(),
+	// SiteHeader.name(): headerTheme.vars(),
+	SiteFooter.name(): footerTheme.vars(),
+	SiteTitle.name(): siteTitleTheme.vars(),
+	HorizontalNav.name(): horizontalNavTheme.vars(),
+	VerticalMenu.name(): verticalNavTheme.vars(),
+	NavItemContent.name(): navItemContentTheme.vars(),
+	ThemeSelector.name(): themeSelectorTheme.vars(),
+	LocaleSelector.name(): localeSelectorTheme.vars(),
+);

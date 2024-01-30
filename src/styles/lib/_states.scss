@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "sass:list";
-@import "styles/config/consts";
+@import "../config/consts";
+@import "./merge";
 
 // base component states
 $COMPONENT_STATES: (
@@ -58,8 +59,8 @@ $states: $COMPONENT_STATES;
 	@return $output-map;
 }
 
-@function state($state) {
-	$compState: map-get(customStates($states), $state);
+@function state($state, $customStateMap: ()) {
+	$compState: map-get(customStates(deep($states, $customStateMap)), $state);
 
 	@if $compState != null {
 		@return $compState;

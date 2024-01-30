@@ -5,18 +5,39 @@ import React, {
 	useMemo,
 } from "react";
 import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
 import { useWindowSize } from "./useWindowSize";
 import { LocaleProvider } from "../../../locale/context/locale-context";
-import Head from "next/head";
-import SiteHeader from "../SiteHeader";
-import SiteFooter from "../SiteFooter";
-import Page from "../Page";
-import Analytics from "./analytics";
+import { Drawer, useDrawer } from "../../ui/VerticalMenu/useDrawer";
+
+import { HeadSection } from "./Head";
 import { FavIconAnimator, IFavIconProps } from "../../../lib/favicon-animator";
-import { Scrollbar } from "@components/ui";
-import useDrawer from "../SiteNav/VerticalMenu/useDrawer";
-import { VerticalMenu } from "../SiteNav";
+
+import Page from "../../ui/Page";
+import SiteFooter from "../SiteFooter";
+import LocaleSelector from "../../ui/LocaleSelector";
+import ThemeSelector from "../../ui/ThemeSelector";
+import Analytics from "./analytics";
+
+import HorizontalNav from "../../ui/HorizontalMenu/HorizontalNav";
+import VerticalNav from "../../ui/VerticalMenu/VerticalNav";
+import VerticalMenuTrigger from "../../ui/VerticalMenu/VerticalMenuTrigger";
+
+import SiteTitle from "../../ui/SiteTitle";
+import Strip from "../../ui/Strip";
+import Logo from "../../ui/Logo";
+
+import { Button, Scrollbar, Container } from "@components/ui";
+
+import { MenuSections } from "@config/siteNav/sections";
+import { MenuItems } from "@config/siteNav/items";
+import { getMenuItems } from "../../helpers";
+
+import { Cross2Icon } from "@radix-ui/react-icons";
+
 import styles from "./Layout.module.scss";
+
+import type { LocaleId } from "locale/locale-context";
 
 type LayoutProps = {
 	title?: string;
@@ -34,32 +55,50 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 
 const isDebug = process.env.NEXT_PUBLIC_ML_DEBUG;
 
-export default function Layout({
-	title,
-	children,
-}: PropsWithChildren<LayoutProps>) {
+const Layout = ({ title, children }: PropsWithChildren<LayoutProps>) => {
 	const router = useRouter();
 	const size = useWindowSize();
-	const { siteTitle, siteSubtitle, textDirection, pageName } =
-		useContext(LocaleProvider);
+	const { theme, setTheme } = useTheme();
 	const { open, setOpen, toggle } = useDrawer();
-
-	const { locale, asPath: currentUrl } = router;
 	const isHome = router.pathname === "/";
 	const isMobile = size.width <= 1024;
 
-	const sidebarMenu = useMemo(
-		() => <VerticalMenu open={open} toggle={toggle} isHome={isHome} />,
-		[isHome, open, toggle]
+	const {
+		siteTitle,
+		siteSubtitle,
+		textDirection,
+		pageName,
+		locale,
+		locales,
+		translate,
+		getLocaleLabel,
+		getLocaleSymbol,
+		onLocaleChange,
+	} = useContext(LocaleProvider);
+
+	const getThemeName = (theme: string) => {
+		return theme === "dark" ? "light" : "dark";
+	};
+
+	const themeLabel = useMemo(() => {
+		return `${translate("site.components.themeSelector.switchTo")} ${translate(
+			`site.components.themeSelector.theme.${getThemeName(theme)}`
+		)}`;
+	}, [theme, translate]);
+
+	const menuItems = useMemo(
+		() => getMenuItems(MenuSections, MenuItems, translate),
+		[translate]
 	);
 
-	const pageTitle = useMemo(
+	const localeOptions = useMemo(
 		() =>
-			[siteTitle, siteSubtitle, title || pageName]
-				.map((s) => s && s.trim())
-				.filter(Boolean)
-				.join(" - "),
-		[siteTitle, siteSubtitle, title, pageName]
+			locales.map((id) => ({
+				id,
+				label: getLocaleSymbol(id),
+				title: translate(`${getLocaleLabel(id)}_LABEL`),
+			})),
+		[getLocaleLabel, getLocaleSymbol, locales, translate]
 	);
 
 	// close mobile menu on viewport change
@@ -67,7 +106,7 @@ export default function Layout({
 
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-	}, [currentUrl, locale]);
+	}, [router.asPath, locale]);
 
 	useEffect(() => {
 		const handleRouteChange = () => {
@@ -77,55 +116,129 @@ export default function Layout({
 		return () => router.events.off("routeChangeStart", handleRouteChange);
 	}, [router.events]);
 
-	if (size.width === undefined) {
-		return null;
-	}
+	// if (size.width === undefined) {
+	// 	return null;
+	// }
+
+	const mobileMenu = useMemo(
+		() => (
+			<Drawer
+				direction={"right"}
+				open={open}
+				size={350}
+				duration={300}
+				overlayOpacity={0.5}
+				onClose={toggle}
+				className={styles.root}
+			>
+				<Scrollbar className={styles.root} textDirection={textDirection}>
+					<Button onClick={toggle} asChild>
+						<Cross2Icon />
+					</Button>
+					<Logo />
+					<SiteTitle
+						title={siteTitle}
+						subtitle={siteSubtitle}
+						linked={!isHome}
+					/>
+					<Strip />
+					<LocaleSelector
+						type="single"
+						value={locale}
+						options={localeOptions}
+						onSelect={(id: LocaleId) => void onLocaleChange(id)}
+					/>
+					<ThemeSelector
+						label={themeLabel}
+						theme={theme}
+						setTheme={setTheme}
+					></ThemeSelector>
+					<VerticalNav
+						items={menuItems}
+						onClose={toggle}
+						// className={styles.menu}
+					/>
+				</Scrollbar>
+			</Drawer>
+		),
+		[
+			isHome,
+			locale,
+			textDirection,
+			localeOptions,
+			menuItems,
+			open,
+			theme,
+			themeLabel,
+			siteSubtitle,
+			siteTitle,
+			onLocaleChange,
+			setTheme,
+			toggle,
+		]
+	);
 
 	return (
 		<>
-			<Head>
-				<title>{pageTitle}</title>
-				<link
-					rel="icon"
-					type="image/png"
-					href="/favicon-dark.png"
-					media="(prefers-color-scheme: light)"
-				/>
-				<link
-					rel="icon"
-					type="image/png"
-					href="/favicon-light.png"
-					media="(prefers-color-scheme: dark)"
-				/>
-				<meta itemProp="name" content={siteTitle} />
-				<meta itemProp="description" content={siteSubtitle} />
-				<meta name="description" content={siteSubtitle} />
-				{/* <meta
-					property="og:image"
-					content={`https://og-image.vercel.app/${encodeURI(
-						title
-					)}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-				/> */}
-				<meta name="og:title" content={`${siteTitle} - ${siteSubtitle}`} />
-				<meta name="twitter:card" content="summary_large_image" />
-			</Head>
-			<div data-locale={locale}>
-				<Scrollbar textDirection={textDirection} height="100vh">
-					<div className={styles.root}>
-						<SiteHeader
-							isHome={isHome}
-							isMobile={isMobile}
-							toggleSidebar={toggle}
-						/>
-						<Page nodes={children} />
-						<SiteFooter />
-						{sidebarMenu}
-					</div>
-				</Scrollbar>
-			</div>
+			<HeadSection
+				siteTitle={siteTitle}
+				siteSubtitle={siteSubtitle}
+				title={title}
+				pageName={pageName}
+			/>
+			<Scrollbar
+				textDirection={textDirection}
+				height="100vh"
+				className={styles.root}
+				data-locale={locale}
+			>
+				<Container
+					sticky
+					fullWidth
+					spaceBetween
+					alignItemsCenter
+					horizontalGutter
+					position="top"
+					asChild
+				>
+					<Container>
+						<Container alignItemsCenter className={styles.siteTitle}>
+							<Logo />
+							<SiteTitle
+								title={siteTitle}
+								subtitle={siteSubtitle}
+								linked={!isHome}
+							/>
+						</Container>
+						{isMobile ? (
+							<VerticalMenuTrigger onClick={toggle} />
+						) : (
+							<Container alignItemsCenter>
+								<HorizontalNav items={menuItems} />
+								<>
+									<LocaleSelector
+										type="single"
+										value={locale}
+										options={localeOptions}
+										onSelect={(id: LocaleId) => void onLocaleChange(id)}
+									/>
+									<ThemeSelector
+										label={themeLabel}
+										theme={theme}
+										setTheme={setTheme}
+									></ThemeSelector>
+								</>
+							</Container>
+						)}
+					</Container>
+				</Container>
+				<Page>{children}</Page>
+				<SiteFooter title={siteTitle} subtitle={siteSubtitle} />
+				{isMobile && mobileMenu}
+			</Scrollbar>
 			{!isDebug && <Analytics />}
 		</>
 	);
-}
+};
 
-// export default Layout;
+export default Layout;

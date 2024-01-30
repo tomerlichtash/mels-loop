@@ -1,0 +1,6 @@
+@use "styles/lib/merge";
+@use "site";
+@use "ui";
+@use "content";
+
+$index: merge.deep(site.$index, ui.$index, content.$index);

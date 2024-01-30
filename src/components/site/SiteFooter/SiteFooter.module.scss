@@ -1,9 +1,9 @@
-@use "styles/mixins/layoutMixins.scss";
-@import "styles/mixins/typographyMixins.scss";
-
-@import "styles/baseComponentStyle";
-@import "styles/lib/refs";
-@import "styles/lib/states";
+@use "../../../styles/mixins/buttonMixin";
+@use "../../../styles/mixins/layoutMixins.scss";
+@import "../../../styles/mixins/typographyMixins.scss";
+@import "../../../styles/baseComponentStyle";
+@import "../../../styles/lib/refs";
+@import "../../../styles/lib/states";
 
 $__stylesheet__: (
 	name: site-footer,
@@ -60,14 +60,15 @@ $states: (
 	}
 
 	.link {
-		color: ref(link-text-color);
-		display: inline-flex;
-		text-decoration: none;
+		@include buttonMixin.TextLinkMixin;
+		// color: ref(link-text-color);
+		// display: inline-flex;
+		// text-decoration: none;
 
-		&:hover {
-			color: ref(link-text-color#{state(hovered)});
-			text-decoration: underline;
-		}
+		// &:hover {
+		// 	color: ref(link-text-color#{state(hovered)});
+		// 	text-decoration: underline;
+		// }
 	}
 
 	@media (min-width: 0px) and (max-width: 767px) {

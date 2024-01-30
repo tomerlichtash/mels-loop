@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:string";
-@import "styles/lib/refs";
-@import "styles/lib/states";
+@import "./refs";
+@import "./states";
 
 @function _getPartVar($comp, $part) {
 	@return #{$comp}-#{$part};

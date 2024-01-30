@@ -1,0 +1,14 @@
+@use "../../../styles/mixins/layoutMixins";
+@import "../../../styles/baseComponentStyle";
+
+$__stylesheet__: (
+	name: page,
+);
+
+.root {
+	@include layoutMixins.PageContainerMixin(name());
+
+	margin-top: 3em;
+	// min-height: 70vh; // todo: calc(100vh - footer height)
+	// padding: 1em 2em 0;
+}

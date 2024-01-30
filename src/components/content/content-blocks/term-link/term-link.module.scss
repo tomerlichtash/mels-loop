@@ -1,9 +1,10 @@
-@import "styles/baseComponentStyle";
-@import "styles/mixins/popoverMixin";
-@import "styles/mixins/typographyMixins";
+@use "../../../../styles/mixins/popoverMixin";
+@use "../../../../styles/mixins/typographyMixins";
+@import "../../../../styles/baseComponentStyle";
+@import "../../../../styles/lib/themeVars";
 
 $__stylesheet__: (
-	name: term,
+	name: term-link,
 );
 
 .root {
@@ -12,17 +13,17 @@ $__stylesheet__: (
 	--decoration-color: #000;
 
 	.popoverTrigger {
-		@include PopoverTrigger;
+		@include popoverMixin.PopoverTrigger(name());
 	}
 
 	&:after {
 		position: relative;
 
-		@include disableUserSelection;
 		@include cursorPointer;
+		@include disableUserSelection;
 
-		@include SuffixMixin(popover-trigger);
-		@include useTextColor(popover-trigger);
-		@include useOffsetTop(popover-trigger);
+		@include typographyMixins.SuffixMixin(name());
+		@include useTextColor(name());
+		@include useOffsetTop(name());
 	}
 }

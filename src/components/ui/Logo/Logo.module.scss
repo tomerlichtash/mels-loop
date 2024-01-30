@@ -1,0 +1,14 @@
+@import "../../../styles/baseComponentStyle";
+@import "../../../styles/lib/themeVars";
+
+$__stylesheet__: (
+	name: logo,
+);
+
+.root {
+	--size: 24px;
+	--url: url(https://placehold.co/40x40);
+
+	@include useContentUrl();
+	@include useSize();
+}

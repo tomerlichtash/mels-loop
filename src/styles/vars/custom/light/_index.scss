@@ -5,4 +5,4 @@
 @use "locale";
 @use "components";
 
-$index: locale.$index, assets.$index, colors.$index, components.$index;
+$index: locale.$index, colors.$index, components.$index;

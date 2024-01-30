@@ -1,5 +1,5 @@
-@import "styles/baseComponentStyle";
-@import "styles/lib/themeVars";
+@import "../../../styles/baseComponentStyle";
+@import "../../../styles/lib/themeVars";
 
 $__stylesheet__: (
 	name: loading-indicator,
@@ -15,20 +15,20 @@ $__stylesheet__: (
 	justify-content: center;
 	flex-direction: column;
 
-	@include useHeight(loading-indicator);
+	@include useHeight();
 
 	.image {
 		animation: rotation 2s infinite linear;
 
-		@include useSize(loading-indicator);
-		@include useContentUrl(site-title-logo);
+		@include useSize();
+		@include useContentUrl();
 	}
 }
 
 .label {
 	--margin-top: var(--label-margin);
 	display: block;
-	@include useVerticalMargin(loading-indicator-label);
+	@include useVerticalMargin(name(label));
 }
 
 @keyframes rotation {

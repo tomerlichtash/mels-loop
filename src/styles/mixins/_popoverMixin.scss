@@ -1,6 +1,8 @@
+// @use "../../components/content/popover/PopoverToolbar.module.scss" as
+// 	PopoverTrigger;
 @import "../lib/themeVars";
 
-@mixin PopoverTrigger($comp: "popover-trigger", $state: "") {
+@mixin PopoverTrigger($comp: "", $state: "") {
 	@include cursorPointer;
 
 	@include useBackgroundColor($comp);
@@ -11,7 +13,7 @@
 		@include textUnderline;
 
 		@include useBackgroundColor($comp, $state);
-		@include useTextColor($comp, $state);
+		@include useTextColor($comp, __hover);
 	}
 
 	&:active {

@@ -145,13 +145,6 @@ export const ContentComponent = ({
 						key={key}
 						componentData={componentData}
 						className={`content-component-heading-${node.level}`}
-						// className={st(
-						// 	classes.root,
-						// 	{
-						// 		type: `heading_${componentData.node.level}`,
-						// 	},
-						// 	className
-						// )}
 					/>
 				);
 			}

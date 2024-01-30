@@ -1,15 +1,15 @@
-@import "styles/baseThemeStyle";
-@import "styles/lib/refs";
+@import "../../../../../baseThemeStyle";
+@import "../../../../../lib/refs";
 
 $index: (
-	logo-url: ref(assets-logo-url),
-	text-color: ref(color-primary-dark),
 	primary: (
+		text-color: ref(color-primary-dark),
 		text-transform: uppercase,
 		font-weight: 500,
 		letter-spacing: 1px,
 	),
 	secondary: (
+		text-color: ref(color-primary-dark),
 		text-transform: lowercase,
 		font-weight: 300,
 		letter-spacing: 0,

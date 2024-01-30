@@ -1,17 +1,22 @@
-@import "styles/baseThemeStyle";
-@import "styles/lib/refs";
-@import "styles/lib/states";
+@use "../../../../../../components/site/Layout/Layout.module.scss" as Layout;
+@import "../../../../../baseThemeStyle";
+@import "../../../../../lib/refs";
+@import "../../../../../lib/states";
 
 $index: (
 	background-color: ref(color-surface-light),
 	scrollbar: (
 		background-color: ref(color-container-main),
-		state(hovered): (
+		Layout.state(hovered): (
 			background-color: ref(color-surface-dark),
 		),
 	),
-	selection: (
-		background-color: ref(color-secondary-dark),
-		text-color: ref(color-secondary-contrast),
-	),
+	// selection: (
+	// 	background-color: ref(color-secondary-dark),
+	// 	text-color: ref(color-secondary-contrast),
+	// ),
+	logo:
+		(
+			gap: 1em,
+		),
 );

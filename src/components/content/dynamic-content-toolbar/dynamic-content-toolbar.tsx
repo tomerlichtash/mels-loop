@@ -45,10 +45,10 @@ export default function DynamicContentToolbar({
 		popoverCtx.addToolbarItems({
 			element: (
 				<Button
-					className="back-button"
-					onClick={() => dcCtx.setPageIndex(idx)}
-					title={backButtonLabel}
 					key={mlUtils.uniqueId(NAV_BUTTON_KEY)}
+					title={backButtonLabel}
+					onClick={() => dcCtx.setPageIndex(idx)}
+					className="back-button"
 				>
 					{textDirection === "ltr" ? <ArrowLeftIcon /> : <ArrowRightIcon />}
 				</Button>

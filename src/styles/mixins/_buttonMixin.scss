@@ -37,6 +37,13 @@ $fontWeightVar: varName(site-button-toggle-font-weight);
 	}
 }
 
+@mixin TextLinkMixin {
+	@include useTextColor(link);
+	&:hover {
+		@include useTextColor(link, state(hovered));
+	}
+}
+
 @mixin MenuTriggerButtonMixin($var: site-mixins-toggle-button) {
 	@include clearBorder;
 	@include disableUserSelection;

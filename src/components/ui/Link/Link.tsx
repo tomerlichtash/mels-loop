@@ -2,12 +2,12 @@ import React, { PropsWithChildren } from "react";
 import { default as NextLink } from "next/link";
 import classNames from "classnames";
 import styles from "./Link.module.scss";
-import { ComponentProps } from "interfaces/models";
 
 type LinkProps = {
 	title?: string;
 	href?: string;
 	target?: "_blank";
+	className?: string;
 };
 
 const Link = ({
@@ -16,7 +16,7 @@ const Link = ({
 	target,
 	children,
 	className,
-}: ComponentProps & PropsWithChildren<LinkProps>): JSX.Element => (
+}: LinkProps & PropsWithChildren<LinkProps>): JSX.Element => (
 	<NextLink
 		title={title}
 		aria-label={title}

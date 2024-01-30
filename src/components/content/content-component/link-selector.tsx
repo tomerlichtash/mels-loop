@@ -7,7 +7,7 @@ import {
 } from "../../../interfaces/models";
 import { Link, AnnotationLink, TermLink } from "../content-blocks";
 import Popover from "../popover";
-import { LocaleProvider } from "../../../locale/context/locale-context";
+// import { LocaleProvider } from "../../../locale/context/locale-context";
 import DynamicContentBrowser from "../dynamic-content-browser";
 import { DynamicContentContext } from "../dynamic-content-context";
 import classNames from "classnames";
@@ -40,7 +40,7 @@ export const LinkSelector = ({
 	const { node } = componentData;
 	const { displayType, key } = node;
 	const dcContext = useContext(DynamicContentContext);
-	const { textDirection } = useContext(LocaleProvider);
+	// const { textDirection } = useContext(LocaleProvider);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return (
@@ -73,7 +73,8 @@ export const LinkSelector = ({
 		<Popover
 			// type={linkType}
 			// id={node.target}
-			side={textDirection === "ltr" ? "right" : "left"}
+			// side={textDirection === "ltr" ? "right" : "left"}
+			side="right"
 			trigger={getTriggerComp(linkType, componentData, className)}
 		>
 			<DynamicContentBrowser node={node} />

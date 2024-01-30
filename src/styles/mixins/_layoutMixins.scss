@@ -1,4 +1,4 @@
-@use "styles/lib/themeVars";
+@use "../../styles/lib/themeVars";
 
 @mixin PageContainerMixin($var) {
 	margin: 0 auto;

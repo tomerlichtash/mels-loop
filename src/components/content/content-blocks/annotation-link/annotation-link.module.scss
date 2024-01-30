@@ -1,8 +1,8 @@
-@use "styles/mixins/typographyMixins" as Typography;
-@use "styles/mixins/popoverMixin" as Popover;
-@import "styles/baseComponentStyle";
-@import "styles/lib/themeVars";
-@import "styles/lib/states";
+@use "../../../../styles/mixins/typographyMixins" as Typography;
+@use "../../../../styles/mixins/popoverMixin" as Popover;
+@import "../../../../styles/baseComponentStyle";
+@import "../../../../styles/lib/themeVars";
+@import "../../../../styles/lib/states";
 
 $__stylesheet__: (
 	name: annotation,
@@ -19,7 +19,7 @@ $__stylesheet__: (
 
 	position: relative;
 
-	@include Popover.PopoverTrigger;
+	@include Popover.PopoverTrigger(name());
 
 	@include useFontSize();
 	@include useLineHeight();
@@ -30,10 +30,10 @@ $__stylesheet__: (
 	}
 
 	&:before {
-		@include Typography.PrefixMixin();
+		@include Typography.PrefixMixin(name());
 	}
 
 	&:after {
-		@include Typography.SuffixMixin();
+		@include Typography.SuffixMixin(name());
 	}
 }

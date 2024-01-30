@@ -1,7 +1,7 @@
-@import "styles/baseComponentStyle";
-@import "styles/lib/refs";
-@import "styles/lib/states";
-@import "styles/lib/themeVars";
+@import "../../../styles/baseComponentStyle";
+@import "../../../styles/lib/refs";
+@import "../../../styles/lib/states";
+@import "../../../styles/lib/themeVars";
 
 $__stylesheet__: (
 	name: scrollbar,
@@ -24,7 +24,6 @@ $__stylesheet__: (
 
 	.ScrollAreaScrollbar {
 		@include disableUserSelection;
-
 		display: flex;
 
 		touch-action: none;
@@ -55,7 +54,7 @@ $__stylesheet__: (
 		cursor: pointer;
 		@include useBackgroundColor(site-layout-scrollbar);
 		position: relative;
-		box-shadow: 0 0 1px #333;
+		// box-shadow: 0 0 1px #333;
 		border-radius: 1px;
 		transition: 75ms background-color ease-in-out;
 		&:hover {

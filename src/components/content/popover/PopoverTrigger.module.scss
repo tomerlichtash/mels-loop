@@ -15,6 +15,10 @@ and override it from the theme.
 @import "styles/lib/states";
 @import "styles/lib/merge";
 
+$__stylesheet__: (
+	name: popover-trigger,
+);
+
 $states: deep(
 	$COMPONENT_STATES,
 	(

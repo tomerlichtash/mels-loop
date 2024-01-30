@@ -1,7 +1,7 @@
 @use "sass:string";
 @use "sass:list";
-@use "refs";
-@use "styles/config";
+@use "./refs";
+@use "../config";
 
 $defaultStateDelim: config.$theme-state-delim;
 
@@ -33,6 +33,10 @@ $defaultStateDelim: config.$theme-state-delim;
 
 	@each $key, $value in $map {
 		$variable-name: if($path, "#{$path}-#{$key}", "#{$key}");
+
+		// @if ($key == "url") {
+		// 	$value: #{"url(../../logo/#{$value})"};
+		// }
 
 		// handle states path
 		@if str-index($path, $delim) {

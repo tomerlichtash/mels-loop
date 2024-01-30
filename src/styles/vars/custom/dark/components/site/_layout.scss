@@ -1,11 +1,18 @@
-@import "styles/baseThemeStyle";
+@use "../../../../../../components/site/Layout/Layout.module.scss" as Layout;
+@import "../../../../../baseThemeStyle";
+@import "../../../../../lib/refs";
+@import "../../../../../lib/states";
 
 $index: (
-	layout: (
-		background-color: ref(color-container-dark),
-		selection: (
-			background-color: ref(color-secondary-dark),
-			text-color: ref(color-secondary-contrast),
+	background-color: ref(color-surface-light),
+	scrollbar: (
+		background-color: ref(color-container-main),
+		Layout.state(hovered): (
+			background-color: ref(color-surface-dark),
 		),
+	),
+	selection: (
+		background-color: ref(color-secondary-dark),
+		text-color: ref(color-secondary-contrast),
 	),
 );

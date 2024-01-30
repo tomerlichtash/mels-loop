@@ -3,7 +3,6 @@
 
 @function name($part: "") {
 	@if (string.length($part) > 0) {
-		@debug #{map-get($__stylesheet__, name)}-#{$part};
 		@return #{map-get($__stylesheet__, name)}-#{$part};
 	}
 	@return map-get($__stylesheet__, name);

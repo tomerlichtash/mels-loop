@@ -1,30 +1,31 @@
-@import "components/content/popover/PopoverTrigger.module";
-@import "styles/baseThemeStyle";
+@use "../../../../../../components/content/popover/PopoverTrigger.module" as
+	PopoverTrigger;
+@import "../../../../../baseThemeStyle";
+@import "../../../../../lib/refs";
 
 $index: (
 	trigger: (
 		text-color: ref(link-text-color),
 		radius: globalRef(radius-md),
 		astriek-color: ref(link-text-color),
-		suffix-content: "#{\203B}",
-		state(hovered): (
+		PopoverTrigger.state(hovered): (
 			text-color: ref(color-secondary-main),
 			astriek-color: ref(color-secondary-main),
 		),
-		state(clicked): (
+		PopoverTrigger.state(clicked): (
 			background-color: ref(color-secondary-main),
 			text-color: ref(color-secondary-contrast),
 		),
-		state(selected): (
+		PopoverTrigger.state(selected): (
 			background-color: ref(color-secondary-main),
 			text-color: ref(color-secondary-contrast),
 			astriek-color: ref(color-secondary-main),
 		),
-		state(selected-hovered): (
+		PopoverTrigger.state(selected-hovered): (
 			background-color: ref(color-secondary-main),
 			text-color: ref(color-secondary-contrast),
 		),
-		state(selected-clicked): (
+		PopoverTrigger.state(selected-clicked): (
 			background-color: ref(color-secondary-main),
 			text-color: ref(color-secondary-contrast),
 		),

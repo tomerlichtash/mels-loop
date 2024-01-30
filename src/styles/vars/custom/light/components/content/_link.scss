@@ -1,7 +1,7 @@
 @use "../../../../../../components/content/content-blocks/link/link.module.scss"
 	as Link;
-@import "styles/lib/refs";
-@import "styles/baseThemeStyle";
+@import "../../../../../baseThemeStyle";
+@import "../../../../../lib/refs";
 
 $index: (
 	text-color: ref(color-primary-main),

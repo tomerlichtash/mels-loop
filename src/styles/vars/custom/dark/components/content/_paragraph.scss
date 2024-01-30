@@ -1,7 +1,7 @@
-@import "styles/baseThemeStyle";
+@import "../../../../../baseThemeStyle";
+@import "../../../../../lib/refs";
 
 $index: (
-	paragraph: (
-		text-color: ref(color-container-contrast),
-	),
+	text-color: ref(color-container-contrast),
+	line-height: 1.5em,
 );

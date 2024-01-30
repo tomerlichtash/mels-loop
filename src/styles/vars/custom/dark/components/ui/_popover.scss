@@ -1,42 +1,42 @@
-@import "components/content/popover/PopoverTrigger.module";
-@import "styles/baseThemeStyle";
+@use "../../../../../../components/content/popover/PopoverTrigger.module" as
+	PopoverTrigger;
+@import "../../../../../baseThemeStyle";
+@import "../../../../../lib/refs";
 
 $index: (
-	code-inline: (
-		text-color: green,
-	),
-	code-block: (
-		text-color: blue,
-	),
-
-	popover-trigger: (
+	trigger: (
 		text-color: ref(link-text-color),
 		radius: globalRef(radius-md),
 		astriek-color: ref(link-text-color),
-		state(hovered): (
+		PopoverTrigger.state(hovered): (
 			text-color: ref(color-secondary-main),
 			astriek-color: ref(color-secondary-main),
 		),
-		state(clicked): (
+		PopoverTrigger.state(clicked): (
 			background-color: ref(color-secondary-main),
 			text-color: ref(color-secondary-contrast),
 		),
-		state(selected): (
+		PopoverTrigger.state(selected): (
 			background-color: ref(color-secondary-main),
 			text-color: ref(color-secondary-contrast),
 			astriek-color: ref(color-secondary-main),
 		),
-		state(selected-hovered): (
+		PopoverTrigger.state(selected-hovered): (
 			background-color: ref(color-secondary-main),
 			text-color: ref(color-secondary-contrast),
 		),
-		state(selected-clicked): (
+		PopoverTrigger.state(selected-clicked): (
 			background-color: ref(color-secondary-main),
 			text-color: ref(color-secondary-contrast),
 		),
 	),
-	popover-dialog: (
+	dialog: (
 		background-color: ref(color-surface-light),
 		border-radius: globalRef(radius-md),
+		width: 10em,
+		fadeIn-animation: (
+			duration: globalRef(animation-duration-sm),
+			easing: globalRef(animation-easing-in),
+		),
 	),
 );

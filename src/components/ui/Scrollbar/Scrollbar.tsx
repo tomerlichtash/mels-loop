@@ -15,6 +15,7 @@ export const Scrollbar = ({
 	height,
 	textDirection,
 	className,
+	...rest
 }: ScrollAreaProps) => {
 	return (
 		<ScrollArea
@@ -23,7 +24,7 @@ export const Scrollbar = ({
 			dir={textDirection}
 			style={{ height }}
 		>
-			<ScrollViewport className={styles.ScrolLAreaViewport}>
+			<ScrollViewport className={styles.ScrolLAreaViewport} {...rest}>
 				{children}
 			</ScrollViewport>
 			<ScrollBar className={styles.ScrollAreaScrollbar} orientation="vertical">

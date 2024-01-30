@@ -1,18 +1,21 @@
-@import "styles/baseThemeStyle";
+@import "../../../lib/themeVars";
 
 $index: (
 	color: (
 		surface: (
-			main: globalRef(color-a2-main),
-			light: globalRef(color-a1-light),
-			dark: globalRef(color-a3-dark),
-			contrast: globalRef(color-a7-contrast),
+			main: globalRef(color-a3-main),
+			light: globalRef(color-a2-main),
+			// border
+			dark: globalRef(color-a5-main),
+			// code color
+			contrast: globalRef(color-a9-main),
 		),
 		container: (
-			main: globalRef(color-c4-main),
-			light: globalRef(color-a5-dark),
-			dark: globalRef(color-a7-dark),
-			contrast: globalRef(color-b7-main),
+			// bg
+			main: globalRef(color-a4-main),
+			// light: globalRef(color-a2-main),
+			dark: globalRef(color-a5-dark),
+			contrast: globalRef(color-a7-main),
 		),
 		primary: (
 			main: globalRef(color-c1-main),
@@ -44,9 +47,9 @@ $index: (
 			main:
 				linear-gradient(
 					90deg,
-					globalRef(color-b5-main) 0%,
+					globalRef(color-b1-main) 0%,
 					globalRef(color-b4-main) 50%,
-					globalRef(color-b1-main) 100%
+					globalRef(color-b5-main) 100%
 				),
 		),
 	),

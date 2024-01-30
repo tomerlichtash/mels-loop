@@ -22,6 +22,9 @@ const nextConfig = {
 		locales: ["en", "he"],
 		defaultLocale: "en",
 	},
+	publicRuntimeConfig: {
+		basePath: process.env.BASE_PATH || "/public/",
+	},
 	serverRuntimeConfig: {
 		PROJECT_ROOT: __dirname,
 	},
