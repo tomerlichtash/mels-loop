@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   eslint:
     docker:
-      - image: cimg/node:20.11.0
+      - image: cimg/node:18.17
     steps:
       - checkout
       # - restore_cache:
@@ -41,7 +41,7 @@ jobs:
 
   unit_test:
     docker:
-      - image: cimg/node:20.11.0
+      - image: cimg/node:18.17
     steps:
       - checkout
       # - restore_cache:
