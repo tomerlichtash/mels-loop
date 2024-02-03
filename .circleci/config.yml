@@ -41,7 +41,7 @@ jobs:
 
   unit_test:
     docker:
-      - image: cimg/node:18.12
+      - image: cimg/node:20.11.0
     steps:
       - checkout
       # - restore_cache:
