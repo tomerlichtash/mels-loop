@@ -36,8 +36,7 @@ jobs:
       - run:
           name: ESLint
           command: yarn lint
-
-  unit_test:
+  unit:
     docker:
       - image: cimg/node:18.17
     steps:
@@ -61,7 +60,6 @@ jobs:
           command: yarn test:unit:ci
       - store_test_results:
           path: unit-tests-results.xml
-
   e2e:
     docker:
       - image: mcr.microsoft.com/playwright:v1.41.2-jammy
@@ -88,16 +86,10 @@ jobs:
       - store_artifacts:
           path: playwright-report
           destination: playwright-report
-      # - store_artifacts:
-      #     path: /tmp/artifacts
-      # - store_test_results:
-      #     path: results.xml
-      # - store_artifacts:
-      #     path: test-results
 
 workflows:
   CI:
     jobs:
-      # - eslint
-      - unit_test
+      - eslint
+      - unit
       - e2e
