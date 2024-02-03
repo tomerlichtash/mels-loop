@@ -28,7 +28,7 @@ jobs:
             - ~/.yarn/cache
       - run:
           name: scripts - Install Dependencies
-          command: cd scripts && yarn install --frozen-lockfile --cache-folder ~/.cache/yarn-scripts
+          command: cd scripts && yarn install
       - save_cache:
           name: scripts - Save Yarn Package Cache
           key: yarn-packages-cache-lint-scripts-{{ .Branch }}-{{ checksum "yarn.lock" }}
