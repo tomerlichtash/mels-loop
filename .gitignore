@@ -49,3 +49,5 @@ temp/
 
 *.css
 *.css.map
+
+playwright-report

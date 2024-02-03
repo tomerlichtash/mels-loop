@@ -143,10 +143,15 @@ jobs:
       - run:
           name: E2E Test
           command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
-      - store_test_results:
-          path: results.xml
       - store_artifacts:
-          path: test-results
+          path: /tmp/playwright-report
+          destination: playwright-report
+      # - store_artifacts:
+      #     path: /tmp/artifacts
+      # - store_test_results:
+      #     path: results.xml
+      # - store_artifacts:
+      #     path: test-results
 
 workflows:
   CI:
