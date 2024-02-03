@@ -1,15 +1,14 @@
 import fs from 'fs';
 
 import { getFrontMatter } from './test-utils';
-import type { ITermTestData } from './types';
 import { EMPTY_STRING, MD_LINK } from './patterns';
 
 export const invalidTerms = ['index.en.md', 'index.he.md', '.DS_Store'];
 
 export const isValidTerm = (term: string) => invalidTerms.indexOf(term) === -1;
 
-export const getTermSelector = ({ type, key }: ITermTestData) =>
-	`[data-link-type="${type}"][data-link-target="${key}"]`;
+export const getTermSelector = ({ type, key }) =>
+	`[data-testid="${type}_${key}"]`;
 
 export interface IAnnotationData {
 	key: string;
@@ -21,7 +20,8 @@ export const getAnnotationsData = (
 ): IAnnotationData[] => {
 	const annotations = fs.readdirSync(`./public/content/${docId}/annotations`, {
 		withFileTypes: false,
-	});
+	}) as string[];
+
 	return annotations
 		.map((term) => {
 			if (!isValidTerm(term)) {
@@ -43,7 +43,8 @@ export const getAnnotationsData = (
 export const getGlossaryData = (locale: string) => {
 	const glossary = fs.readdirSync('./public/content/glossary', {
 		withFileTypes: false,
-	});
+	}) as string[];
+
 	return glossary
 		.map((term) => {
 			if (!isValidTerm(term)) {

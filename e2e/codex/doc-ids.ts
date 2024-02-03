@@ -1,1 +1,1 @@
-export default ["docs/the-story-of-mel"];
+export default ['docs/the-story-of-mel'];

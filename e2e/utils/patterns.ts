@@ -17,7 +17,7 @@ export const MD_CODEBLOCK_INLINE =
 	/<code(?:\s[^>]*)?>[\s\S]*?<\/code>|`{3}([\S\s]*?)`{3}|`([^`]*)`|~~([\S\s]*?)~~|\*{2}([\s\S]*?)\*{2}(?!\*)|\*([^*]*)\*|__([\s\S]*?)__/gm;
 
 // export const STRIP_MD_LINK = /(?:__|[*#])|\[(.*?)\]\(.*?\)/g;
-export const SINGLE_WHITE_SPACE = " ";
-export const EMPTY_STRING = "";
-export const ASTRIEK_MOCK = "%astriek%";
+export const WHITE_SPACE = ' ';
+export const EMPTY_STRING = '';
+export const ASTRIEK_MOCK = '%astriek%';
 export const UNTRANSLATED_STRING = /^[%].+[%]$/m;

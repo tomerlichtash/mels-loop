@@ -11,7 +11,7 @@ import {
 	STRIP_MD,
 	MD_DOUBLE_ASTRIEK,
 	MD_MID_ASTRIEK,
-	SINGLE_WHITE_SPACE,
+	WHITE_SPACE,
 	EMPTY_STRING,
 	ASTRIEK_MOCK,
 	MD_SINGLE_ASTRIEK,
@@ -30,8 +30,10 @@ export const baseDir = 'http://localhost:3000';
  */
 export const locales = Object.keys(Languages);
 
-export const translate = (locale: string, key: string) =>
-	_translate(locale, Languages)(key);
+export const translate = (locale: string, key: string) => {
+	// console.log(Languages);
+	return _translate(locale, Languages)(key);
+};
 
 export const getLocalePath = (
 	locale: string,
@@ -67,7 +69,7 @@ export const stripMarkdown = (content: string) =>
 		.replace('\n', EMPTY_STRING)
 		.replace(
 			MD_MID_ASTRIEK,
-			[EMPTY_STRING, ASTRIEK_MOCK, EMPTY_STRING].join(SINGLE_WHITE_SPACE)
+			[EMPTY_STRING, ASTRIEK_MOCK, EMPTY_STRING].join(WHITE_SPACE)
 		)
 		.replace(STRIP_MD, '$2')
 		.replace(MD_COMMENT, EMPTY_STRING)

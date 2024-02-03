@@ -1,43 +1,40 @@
-import React, { PropsWithChildren, useContext, useMemo } from 'react';
+import classNames from 'classnames';
 import { unique } from 'lib/utils';
-import { Head } from './customHead';
-import { Analytics } from './analytics';
-import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { useWindowSize } from './useWindowSize';
-import { useIconAnimator } from './useIconAnimator';
-import { footerLinks } from '@config/footer';
-import { MenuSections } from '@config/siteNav/sections';
-import { MenuItems } from '@config/siteNav/items';
+import { useRouter } from 'next/router';
+import React, { PropsWithChildren, useContext, useMemo } from 'react';
+import { useDrawer } from '@components/drawer/useDrawer';
 import {
-	Page,
-	Container,
-	Scrollbar,
 	Button,
-	Strip,
-	Logo,
-	TextLink,
+	Container,
+	Drawer,
 	HorizontalNav,
-	VerticalNav,
-	VerticalMenuTrigger,
-	LocaleSelect,
-	ThemeSelect,
+	Link,
 	List,
 	ListItem,
-	Text,
-	Link,
-	Drawer,
+	LocaleSelect,
+	Logo,
+	Page,
+	Scrollbar,
 	Separator,
+	Strip,
+	Text,
+	TextLink,
+	ThemeSelect,
+	VerticalMenuTrigger,
+	VerticalNav,
 } from '@components/index';
-import { useDrawer } from '@components/drawer/useDrawer';
+import { footerLinks } from '@config/footer';
+import { MenuItems } from '@config/siteNav/items';
+import { MenuSections } from '@config/siteNav/sections';
 import { Cross2Icon } from '@radix-ui/react-icons';
-
 import { LocaleProvider } from '../../locale/context/locale-context';
 import { parseMenuItems } from '../helpers';
-
-import classNames from 'classnames';
+import { Analytics } from './analytics';
+import { Head } from './customHead';
 import styles from './Layout.module.scss';
-
+import { useIconAnimator } from './useIconAnimator';
+import { useWindowSize } from './useWindowSize';
 import type { NavParsedNodes } from '@components/HorizontalMenu/types';
 import type { LocaleId } from 'locale/locale-context';
 

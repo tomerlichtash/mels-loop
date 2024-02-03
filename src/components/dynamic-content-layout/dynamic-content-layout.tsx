@@ -51,14 +51,22 @@ const DynamicContentLayout = ({
 				<article className={styles.article}>
 					{type === 'ref' && (
 						<header className={styles.header}>
-							<div className={styles.topic}>{label}</div>
-							<div className={styles.title}>{title}</div>
-							<div className={styles.term}>{term}</div>
+							<div role="caption" className={styles.topic}>
+								{label}
+							</div>
+							<div role="term" className={styles.title}>
+								{title}
+							</div>
+							<div role="definition" className={styles.term}>
+								{term}
+							</div>
 						</header>
 					)}
-					<main className={styles.content}>{children}</main>
+					<main role="note" className={styles.content}>
+						{children}
+					</main>
 					{sources && (
-						<footer className={styles.footer}>
+						<footer role="list" className={styles.footer}>
 							<List
 								items={mappedSources}
 								label={`${sourcesLabel}:`}

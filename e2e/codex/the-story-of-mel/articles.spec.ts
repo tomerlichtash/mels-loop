@@ -1,90 +1,95 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 import {
 	getLocalePath,
 	locales,
 	getFrontMatter,
 	translate,
-} from "../../utils/test-utils";
+} from '../../utils/test-utils';
 
-test.describe("Articles", () => {
-	const docId = "docs/the-story-of-mel";
+test.describe('Articles', () => {
+	const docId = 'docs/the-story-of-mel';
+
 	locales.map((locale) => {
 		test(`${locale} > should navigate to the Preface article`, async ({
 			page,
 		}) => {
-			const path = "pages/preface";
-			const filename = "index";
+			const path = 'pages/preface';
+			const filename = 'index';
 			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
 
 			await page.goto(getLocalePath(locale, docId));
-			await page.hover(
-				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
-			);
+
+			await page
+				.getByRole('button', {
+					name: translate(locale, 'MENU_SECTION_LABEL_ARTICLES'),
+				})
+				.hover();
+
 			await page.click(
-				`text=${translate(locale, "MENU_ITEM_LABEL_ID_PREFACE")}`
+				`text=${translate(locale, 'MENU_ITEM_LABEL_ID_PREFACE')}`
 			);
 
 			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
-			await expect(page.locator("h1")).toHaveText(data.title as string);
+			await expect(page.locator('h1')).toHaveText(data.title as string);
 		});
 
 		test(`${locale} > should navigate to the Missing Bits article`, async ({
 			page,
 		}) => {
-			const path = "pages/mels-hack-the-missing-bits";
-			const filename = "index";
+			const path = 'pages/mels-hack-the-missing-bits';
+			const filename = 'index';
 			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
 
 			await page.goto(getLocalePath(locale, docId));
 			await page.hover(
-				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
+				`text=${translate(locale, 'MENU_SECTION_LABEL_ARTICLES')}`
 			);
 			await page.click(
 				`text=${translate(
 					locale,
-					"MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS"
+					'MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS'
 				)}`
 			);
 
 			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
-			await expect(page.locator("h1")).toHaveText(data.title as string);
+			await expect(page.locator('h1')).toHaveText(data.title as string);
 		});
 
 		test(`${locale} > should navigate to the CV article`, async ({ page }) => {
-			const path = "pages/mel-kaye-cv";
-			const filename = "index";
+			const path = 'pages/mel-kaye-cv';
+			const filename = 'index';
 			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
 
 			await page.goto(getLocalePath(locale, docId));
 			await page.hover(
-				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
+				`text=${translate(locale, 'MENU_SECTION_LABEL_ARTICLES')}`
 			);
 			await page.click(
-				`text=${translate(locale, "MENU_ITEM_LABEL_ID_MEL_KAYE_BIO")}`
+				`text=${translate(locale, 'MENU_ITEM_LABEL_ID_MEL_KAYE_BIO')}`
 			);
 
 			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
-			await expect(page.locator("h1")).toHaveText(data.title as string);
+			await expect(page.locator('h1')).toHaveText(data.title as string);
 		});
 
 		test(`${locale} > should navigate to the Resources page`, async ({
 			page,
 		}) => {
-			const path = "pages/resources";
-			const filename = "index";
+			const path = 'pages/resources';
+			const filename = 'index';
 			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
 			const localePath = getLocalePath(locale, docId, path);
 
 			await page.goto(localePath);
 			await page.hover(
-				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
+				`text=${translate(locale, 'MENU_SECTION_LABEL_ARTICLES')}`
 			);
 			await page.click(
-				`text=${translate(locale, "MENU_ITEM_LABEL_ID_RESOURCES")}`
+				`text=${translate(locale, 'MENU_ITEM_LABEL_ID_RESOURCES')}`
 			);
 
 			await expect(page).toHaveURL(localePath);
-			await expect(page.locator("h1")).toHaveText(data.title as string);
+			await expect(page.locator('h1')).toHaveText(data.title as string);
 		});
 	});
 });

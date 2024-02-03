@@ -1,6 +1,6 @@
-import { LocaleId } from "./locale-context";
+import { LocaleId } from './locale-context';
 
-export const TRANS_DELIM = "%";
+export const TRANS_DELIM = '%';
 export const wrapStr = (str: string) => `${TRANS_DELIM}${str}${TRANS_DELIM}`;
 
 export const _translate =

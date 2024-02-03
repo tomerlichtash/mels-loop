@@ -1,5 +1,5 @@
-import * as localeKeys from "./locales.json";
+import { default as localeKeys } from './locales.json' assert { type: 'json' };
 
-const COMMON = { ...localeKeys };
+// const COMMON = { ...localeKeys };
 
-export default COMMON;
+export default localeKeys;

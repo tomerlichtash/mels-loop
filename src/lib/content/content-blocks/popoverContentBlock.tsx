@@ -27,6 +27,7 @@ type PopoverContentBlockProps = {
 	type: DynamicContentTypes;
 	textDirection: TextDirection;
 	locale: LocaleId;
+	'data-testid'?: string;
 };
 
 const getContentBlock = (
@@ -52,6 +53,7 @@ export const PopoverContentBlock = ({
 	textDirection,
 	locale,
 	className,
+	'data-testid': dataTestId,
 }: PopoverContentBlockProps & ContentComponentProps): JSX.Element => {
 	const toolbar = useToolbar();
 	const { node } = componentData;
@@ -75,7 +77,10 @@ export const PopoverContentBlock = ({
 				}}
 				open={visible}
 			>
-				<Popover.Trigger onClick={() => setVisible(true)}>
+				<Popover.Trigger
+					onClick={() => setVisible(true)}
+					data-testid={dataTestId}
+				>
 					<PopoverTrigger>{trigger}</PopoverTrigger>
 				</Popover.Trigger>
 				<Popover.Portal>

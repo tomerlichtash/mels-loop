@@ -1,8 +1,8 @@
-import * as site from "./site.json";
-import * as authors from "./authors.json";
-import * as glossary from "./glossary.json";
-import * as content from "./content.json";
+import * as site from './site.json' assert { type: 'json' };
+// import * as authors from './authors.json' assert { type: 'json' };
+// import * as glossary from './glossary.json' assert { type: 'json' };
+// import * as content from './content.json' assert { type: 'json' };
 
-const HE_IL = { ...site, ...authors, ...glossary, ...content };
+// const HE_IL = { ...site, ...authors, ...glossary, ...content };
 
-export default HE_IL;
+export default site;

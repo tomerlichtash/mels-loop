@@ -7,8 +7,13 @@ export type PopoverDialogProps = {
 
 export const PopoverDialog = ({
 	children,
+	...rest
 }: PropsWithChildren<PopoverDialogProps>) => {
-	return <div className={styles.root}>{children}</div>;
+	return (
+		<div className={styles.root} {...rest}>
+			{children}
+		</div>
+	);
 };
 
 export default PopoverDialog;
