@@ -6,6 +6,9 @@ import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import { useWindowSize } from './useWindowSize';
 import { useIconAnimator } from './useIconAnimator';
+import { footerLinks } from '@config/footer';
+import { MenuSections } from '@config/siteNav/sections';
+import { MenuItems } from '@config/siteNav/items';
 import {
 	Page,
 	Container,
@@ -27,12 +30,11 @@ import {
 	Separator,
 } from '@components/index';
 import { useDrawer } from '@components/drawer/useDrawer';
+import { Cross2Icon } from '@radix-ui/react-icons';
+
 import { LocaleProvider } from '../../locale/context/locale-context';
 import { parseMenuItems } from '../helpers';
-import { Cross2Icon } from '@radix-ui/react-icons';
-import { footerLinks } from '@config/footer';
-import { MenuSections } from '@config/siteNav/sections';
-import { MenuItems } from '@config/siteNav/items';
+
 import classNames from 'classnames';
 import styles from './Layout.module.scss';
 

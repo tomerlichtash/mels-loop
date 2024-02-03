@@ -1,7 +1,7 @@
-@use "../../../../../components/Layout/Layout.module.scss" as Layout;
-@import "../../../../baseThemeStyle";
-@import "../../../../lib/refs";
-@import "../../../../lib/states";
+@use '../../../../../components/Layout/Layout.module.scss' as Layout;
+@import '../../../../baseThemeStyle';
+@import '../../../../lib/refs';
+@import '../../../../lib/states';
 
 $index: (
 	background-color: ref(color-surface-light),
