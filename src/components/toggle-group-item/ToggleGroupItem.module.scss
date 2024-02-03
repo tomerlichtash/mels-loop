@@ -1,0 +1,26 @@
+@use '../../styles/mixins/buttonMixin.scss';
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/states';
+@import '../../styles/lib/themeVars';
+
+$__stylesheet__: (
+	name: toggle-group-item,
+);
+
+.root {
+	--gap: 4px;
+
+	display: flex;
+
+	@include useGap();
+
+	.item {
+		background-color: transparent;
+		border: none;
+		padding: 0;
+
+		.button {
+			@include buttonMixin.ToggleButtonMixin;
+		}
+	}
+}

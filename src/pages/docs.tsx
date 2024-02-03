@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import Layout from "../components/site/Layout/Layout";
-import { GetStaticProps, NextPage } from "next";
-import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
-import { IPageProps } from "../interfaces/models";
-import usePageData from "../lib/usePageData";
-import { LocaleProvider } from "../locale/context/locale-context";
-import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import { Button } from "@components/ui";
+import React, { useContext } from 'react';
+import Layout from '@components/layout';
+import { GetStaticProps, NextPage } from 'next';
+import { CONTENT_TYPES } from '../consts';
+import { mlNextUtils } from '../lib/next-utils';
+import { IPageProps } from '../types/models';
+import usePageData from '../lib/usePageData';
+import { LocaleProvider } from '../locale/context/locale-context';
+import { LoadContentModes, LoadFolderModes } from '../types/parser';
+import { Link } from '@components/index';
 
 const Docs: NextPage<IPageProps> = (props) => {
 	const { pageName } = useContext(LocaleProvider);
@@ -22,7 +22,7 @@ const Docs: NextPage<IPageProps> = (props) => {
 							const key = `doc-${index}`;
 							return (
 								<li className="item" key={key}>
-									<Button link={page.path}>{page.metaData.title}</Button>
+									<Link href={page.path}>{page.metaData.title}</Link>
 								</li>
 							);
 						})}

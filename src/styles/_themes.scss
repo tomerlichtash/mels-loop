@@ -2,7 +2,7 @@
 @use "./lib/parser";
 @use "./vars/common";
 @use "./vars/custom/light";
-@use "./vars/custom/dark";
+// @use "./vars/custom/dark";
 
 [data-ml-theme] {
 	@include parser.compile(common.$index, config.$theme-global-prefix);

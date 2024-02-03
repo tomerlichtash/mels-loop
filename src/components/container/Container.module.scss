@@ -1,0 +1,49 @@
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+
+$__stylesheet__: (
+	name: container,
+);
+
+.root {
+	display: inline-flex;
+	box-sizing: border-box;
+
+	min-height: 48px;
+	@include useBackgroundColor(name());
+
+	&[data-fixed-position='true'] {
+		position: fixed;
+		z-index: 1;
+
+		&[data-position-top] {
+			&[data-position='bottom'] {
+				bottom: 0;
+			}
+
+			&[data-position-top='top'] {
+				top: 0;
+			}
+		}
+	}
+
+	&[data-position='bottom'] {
+		bottom: 0;
+	}
+
+	&[data-space-between='true'] {
+		justify-content: space-between;
+	}
+
+	&[data-align-items-center='true'] {
+		align-items: center;
+	}
+
+	&[data-full-width='true'] {
+		width: 100%;
+	}
+
+	&[data-horizontal-gutter='true'] {
+		@include useHorizontalPadding(name());
+	}
+}

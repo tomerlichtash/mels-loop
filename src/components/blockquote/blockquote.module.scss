@@ -1,0 +1,25 @@
+// @use "styles/lib/component";
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/states';
+@import '../../styles/mixins/typographyMixins';
+
+$__stylesheet__: (
+	name: blockquote,
+);
+
+.root {
+	margin: 0;
+
+	@include useVerticalPadding();
+	@include useHorizontalPadding();
+
+	p {
+		@include RunningTextMixin(name());
+	}
+
+	cite {
+		@include useVerticalPadding();
+		@include useHorizontalPadding();
+		@include RunningTextMixin(cite);
+	}
+}

@@ -1,0 +1,41 @@
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+
+$__stylesheet__: (
+	name: loading-indicator,
+);
+
+.root {
+	--size: 24px;
+	--height: 20em;
+	--label-margin: 1em;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	@include useHeight();
+
+	.image {
+		animation: rotation 2s infinite linear;
+
+		@include useSize();
+		@include useContentUrl();
+	}
+}
+
+.label {
+	--margin-top: var(--label-margin);
+	display: block;
+	@include useVerticalMargin(name(label));
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}

@@ -1,0 +1,28 @@
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+@import '../../styles/lib/states';
+
+$__stylesheet__: (
+	name: link,
+);
+
+.root {
+	--color#{state(hovered)}: #00a;
+	--color#{state(clicked)}: #a00;
+
+	@include cursorPointer;
+
+	&:link,
+	&:visited {
+		@include useTextColor();
+		@include useBackgroundColor();
+	}
+
+	&:hover {
+		@include useTextColor(name(), state(hovered));
+	}
+
+	&:active {
+		@include useTextColor(name(), state(clicked));
+	}
+}

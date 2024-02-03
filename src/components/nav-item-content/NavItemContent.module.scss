@@ -1,0 +1,50 @@
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+
+$__stylesheet__: (
+	name: site-item-content,
+);
+
+@mixin rootMixin($module) {
+	@include useBackgroundColor($module);
+}
+
+@mixin iconMixin($module) {
+	--background-color: transparent;
+	@include useBorderSize($module);
+	@include useBorderStyle($module);
+	@include useBorderColor($module);
+	@include useRadius($module);
+	@include useInnerGutter($module);
+	@include useGap($module);
+	@include useBackgroundColor($module);
+}
+
+@mixin titleMixin($module) {
+	@include useFontWeight($module);
+	@include useTextTransform($module);
+	@include useLineHeight($module);
+}
+
+@mixin descriptionMixin($module) {
+	@include useTextColor($module);
+}
+
+.root {
+	@include rootMixin(item-content-variant-base);
+
+	.icon {
+		display: flex;
+		@include iconMixin(item-content-variant-base-icon);
+	}
+
+	.title {
+		display: flex;
+		@include titleMixin(item-content-variant-base-title);
+	}
+
+	.author,
+	.description {
+		@include descriptionMixin(item-content-variant-base-description);
+	}
+}

@@ -1,0 +1,55 @@
+@use './NavListItem.module.scss';
+@use '../../styles/lib/overrides';
+@import '../../styles/lib/states';
+
+@mixin ListItemMixin($module, $states: ()) {
+	@include overrides.transform(
+		$module,
+		(
+			comp: site-nav-item,
+			overrides: (
+				_: (
+					_: (
+						background-color,
+						text-color,
+						radius,
+						gutter,
+						border-bottom-size,
+						border-bottom-style,
+						border-bottom-color,
+					),
+					#{state(hovered, $states)}: (
+							background-color,
+							text-color,
+						),
+				),
+				content: (
+					_: (
+						gap,
+						gutter,
+					),
+				),
+				// icon: (
+				// 	_: (
+				// 		border-size,
+				// 		border-style,
+				// 		border-color,
+				// 		background-color,
+				// 		radius,
+				// 		// width,
+				// 		// height,
+				// 		gutter,
+				// 		gap,
+				// 	),
+				// ),
+				// title: (
+				// 	_: (
+				// 		text-transform,
+				// 		line-height,
+				// 		font-weight,
+				// 	),
+				// ),,,,,,,,,,,,,,,,,,,,,,,,,,,,
+			),
+		)
+	);
+}

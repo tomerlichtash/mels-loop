@@ -1,90 +1,76 @@
-@use "sass:map";
+@use 'sass:map';
 
-$baseDir: "../../../../../components";
+@use '../../../../../components/layout/layout.module' as Layout;
+@use '../../../../../components/popover/PopoverTrigger.module' as PopoverTrigger;
+@use '../../../../../components/popover/PopoverDialog.module' as PopoverDialog;
+@use '../../../../../components/line/line.module' as Line;
+@use '../../../../../components/paragraph/paragraph.module' as Paragraph;
+@use '../../../../../components/blockquote/blockquote.module' as Blockquote;
+// @use "components/cite" as Cite;
+@use '../../../../../components/link/link.module' as Link;
+@use '../../../../../components/table/table.module' as Table;
+@use '../../../../../components/figure/figure.module' as Figure;
+@use '../../../../../components/custom-image/custom-image.module' as CustomImage;
+@use '../../../../../components/annotation/annotation.module' as Annotation;
+@use '../../../../../components/term/term.module' as GlossaryTerm;
+@use '../../../../../components/code-inline/code-inline.module' as CodeInline;
+@use '../../../../../components/code-block/code-block.module' as CodeBlock;
+@use '../../../../../components/list-item/list-item.module' as ListItem;
 
-// @use "components/content/popover/PopoverTrigger.module" as PopoverTrigger;
-@use "../../../../../components/ui/LoadingIndicator/LoadingIndicator.module" as
+@use '../../../../../components/scrollbar/Scrollbar.module' as Scrollbar;
+@use '../../../../../components/loading-indicator/LoadingIndicator.module' as
 	LoadingIndicator;
-@use "../../../../../components/ui/Strip/Strip.module" as Strip; // todo: move to ui components
-@use "../../../../../components/ui/Container/Container.module" as Container;
-
-@use "../../../../../components/content/content-blocks/line/line.module" as Line;
-@use "../../../../../components/content/content-blocks/paragraph/paragraph.module"
-	as Paragraph;
-@use "../../../../../components/content/content-blocks/blockquote/blockquote.module"
-	as Blockquote;
-// @use "components/content/content-blocks/cite" as Cite;
-@use "../../../../../components/content/content-blocks/link/link.module" as Link;
-@use "../../../../../components/content/content-blocks/table/table.module" as
-	Table;
-@use "../../../../../components/content/content-blocks/figure/figure.module" as
-	Figure;
-@use "../../../../../components/content/content-blocks/custom-image/custom-image.module"
-	as CustomImage;
-@use "../../../../../components/content/content-blocks/annotation-link/annotation-link.module"
-	as Annotation;
-@use "../../../../../components/content/content-blocks/term-link/term-link.module"
-	as GlossaryTerm;
-@use "../../../../../components/content/content-blocks/code-inline/code-inline.module"
-	as CodeInline;
-@use "../../../../../components/content/content-blocks/code-block/code-block.module"
-	as CodeBlock;
-@use "../../../../../components/content/content-blocks/list-item/list-item.module"
-	as ListItem;
-@use "../../../../../components/ui/Scrollbar/Scrollbar.module" as Scrollbar;
-@use "../../../../../components/ui/page/page.module" as Page;
-@use "../../../../../components/site/layout/layout.module" as Layout;
-@use "../../../../../components/ui/Logo/Logo.module" as Logo;
-@use "../../../../../components/site/SiteFooter/SiteFooter.module" as SiteFooter;
-@use "../../../../../components/ui/SiteTitle/SiteTitle.module" as SiteTitle;
-@use "../../../../../components/ui/LocaleSelector/LocaleSelector.module" as
-	LocaleSelector;
-@use "../../../../../components/ui/ThemeSelector/ThemeSelector.module" as
+@use '../../../../../components/strip/Strip.module' as Strip; // todo: move to ui components
+@use '../../../../../components/container/Container.module' as Container;
+@use '../../../../../components/page/page.module' as Page;
+@use '../../../../../components/logo/Logo.module' as Logo;
+@use '../../../../../components/text-link/TextLink.module' as TextLink;
+@use '../../../../../components/locale-select/LocaleSelect.module' as
+	LocaleSelect;
+@use '../../../../../components/theme-select/ThemeSelect.module' as
 	ThemeSelector;
 // @use "components/site/button" as buttonComponent;
-// @use "components/site/SiteNav/HorizontalMenu/HorizontalMenu.module" as
-// 	HorizontalMenu;
-@use "../../../../../components/ui/HorizontalMenu/HorizontalNav.module" as
+@use '../../../../../components/HorizontalMenu/HorizontalNav.module.scss' as
 	HorizontalNav;
-
-@use "../../../../../components/ui/VerticalMenu/VerticalNav.module" as
-	VerticalMenu;
-@use "../../../../../components/ui/NavItemContent/NavItemContent.module" as
+@use '../../../../../components/VerticalMenu/VerticalNav.module' as VerticalMenu;
+@use '../../../../../components/nav-item-content/NavItemContent.module' as
 	NavItemContent;
+@use '../../../../../components/Text/Text.module' as Text;
 
-@use "ui/scrollbar" as scrollbarTheme;
-// @use "ui/popover" as popoverTriggerTheme;
-@use "ui/strip" as stripTheme;
-@use "ui/loadingIndicator" as loadingIndicatorTheme;
-@use "ui/container" as containerTheme;
-@use "content/line" as lineTheme;
-@use "content/paragraph" as paragraphTheme;
-@use "content/blockquote" as blockquoteTheme;
-@use "content/cite" as citeTheme;
-@use "content/link" as linkTheme;
-@use "content/table" as tableTheme;
-@use "content/figure" as figureTheme;
-@use "content/customImage" as customImageTheme;
-@use "content/annotation" as annotationTheme;
-@use "content/glossary" as glossaryTheme;
-@use "content/codeInline" as codeInlineTheme;
-@use "content/codeBlock" as codeBlockTheme;
-@use "content/listItem" as listItemTheme;
-@use "site/page" as pageTheme;
-@use "site/layout" as layoutTheme;
-@use "site/logo" as logoTheme;
-@use "site/footer" as footerTheme;
-@use "site/siteTitle" as siteTitleTheme;
-@use "site/localeSelector" as localeSelectorTheme;
-@use "site/themeSelector" as themeSelectorTheme;
-@use "site/button" as buttonTheme; // todo: move to ui components
-@use "site/horizontalNav" as horizontalNavTheme;
-@use "site/verticalNav" as verticalNavTheme;
-@use "site/navItemContent" as navItemContentTheme;
+@use 'layout' as layoutTheme;
+@use 'scrollbar' as scrollbarTheme;
+@use 'popoverTrigger' as popoverTriggerTheme;
+@use 'popoverDialog' as popoverDialogTheme;
+@use 'strip' as stripTheme;
+@use 'loadingIndicator' as loadingIndicatorTheme;
+@use 'container' as containerTheme;
+@use 'page' as pageTheme;
+@use 'logo' as logoTheme;
+@use 'footer' as footerTheme;
+@use 'textLink' as textLinkTheme;
+@use 'localeSelect' as localeSelectTheme;
+@use 'themeSelector' as themeSelectorTheme;
+@use 'button' as buttonTheme; // todo: move to ui components
+@use 'horizontalNav' as horizontalNavTheme;
+@use 'verticalNav' as verticalNavTheme;
+@use 'navItemContent' as navItemContentTheme;
+@use 'text' as textTheme;
+@use 'line' as lineTheme;
+@use 'paragraph' as paragraphTheme;
+@use 'blockquote' as blockquoteTheme;
+@use 'cite' as citeTheme;
+@use 'link' as linkTheme;
+@use 'table' as tableTheme;
+@use 'figure' as figureTheme;
+@use 'customImage' as customImageTheme;
+@use 'annotation' as annotationTheme;
+@use 'glossary' as glossaryTheme;
+@use 'codeInline' as codeInlineTheme;
+@use 'codeBlock' as codeBlockTheme;
+@use 'listItem' as listItemTheme;
 
 $index: (
 	Scrollbar.name(): scrollbarTheme.vars(),
-	// PopoverTrigger.name(): popoverTriggerTheme.vars(),
 	Strip.name(): stripTheme.vars(),
 	LoadingIndicator.name(): loadingIndicatorTheme.vars(),
 	// SiteButton.name(): buttonTheme.vars(),
@@ -105,12 +91,14 @@ $index: (
 	Layout.name(): layoutTheme.vars(),
 	Page.name(): pageTheme.vars(),
 	Container.name(): containerTheme.vars(),
-	SiteFooter.name(): footerTheme.vars(),
 	Logo.name(): logoTheme.vars(),
-	SiteTitle.name(): siteTitleTheme.vars(),
+	TextLink.name(): textLinkTheme.vars(),
 	HorizontalNav.name(): horizontalNavTheme.vars(),
 	VerticalMenu.name(): verticalNavTheme.vars(),
 	NavItemContent.name(): navItemContentTheme.vars(),
 	ThemeSelector.name(): themeSelectorTheme.vars(),
-	LocaleSelector.name(): localeSelectorTheme.vars(),
+	LocaleSelect.name(): localeSelectTheme.vars(),
+	PopoverTrigger.name(): popoverTriggerTheme.vars(),
+	PopoverDialog.name(): popoverDialogTheme.vars(),
+	Text.name(): textTheme.vars(),
 );

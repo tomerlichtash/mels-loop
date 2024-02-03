@@ -1,12 +1,22 @@
-const trKeys = (item, translate: (s: string) => string) =>
+import {
+	NavItemDataProps,
+	NavItemLocaleProps,
+	NavParsedNodes,
+	NavSectionDataProps,
+} from './HorizontalMenu/types';
+
+const translateKeys = (
+	keys: NavItemLocaleProps,
+	translateFn: (s: string) => string
+) =>
 	Object.fromEntries(
-		Object.keys(item.locale as string[]).map((key) => [
-			key,
-			translate(item.locale[key] as string),
-		])
+		Object.keys(keys).map((key) => [key, translateFn(keys[key])])
 	);
 
-const getSectionItems = (section, items) => {
+const getSectionItems = (
+	section: NavSectionDataProps,
+	items: NavItemDataProps[]
+) => {
 	return section.items
 		? section.items.map(
 				(itemId) => items.filter((item) => item.id === itemId)[0]
@@ -14,20 +24,20 @@ const getSectionItems = (section, items) => {
 		: null;
 };
 
-export const getMenuItems = (
-	sections,
-	items,
+export const parseMenuItems = (
+	sections: NavSectionDataProps[],
+	items: NavItemDataProps[],
 	translate: (s: string) => string
-) => {
-	return Object.keys(sections as Record<any, any>[]).map((section) => {
-		const currentSection = sections[section];
-		return Object.assign({}, currentSection, {
-			locale: trKeys(currentSection, translate),
-			items: getSectionItems(currentSection, items).map((item) =>
-				Object.assign({}, item, {
-					locale: trKeys(item, translate),
-				})
-			),
+): NavParsedNodes[] => {
+	const res = sections.map((section) => {
+		return Object.assign({}, section, {
+			locale: translateKeys(section.locale, translate),
+			items: getSectionItems(section, items).map((item) => {
+				return Object.assign({}, item, {
+					locale: translateKeys(item.locale, translate),
+				});
+			}),
 		});
 	});
+	return res;
 };

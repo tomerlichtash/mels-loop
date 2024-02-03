@@ -1,5 +1,6 @@
-import { Languages } from "../../src/locale";
-import { _translate, wrapStr } from "../../src/locale/translate";
+import matter from 'gray-matter';
+import { Languages } from '../../src/locale';
+import { _translate, wrapStr } from '../../src/locale/translate';
 import {
 	MD_LINK,
 	MD_BLOCKQUOTE,
@@ -17,12 +18,12 @@ import {
 	MD_CODEBLOCK,
 	MD_CODEBLOCK_INLINE,
 	UNTRANSLATED_STRING,
-} from "./patterns";
+} from './patterns';
 
-import fs from "fs";
+import fs from 'fs';
 // const matter = require("gray-matter");
 
-export const baseDir = "http://localhost:3000";
+export const baseDir = 'http://localhost:3000';
 
 /**
  * Locale
@@ -38,7 +39,7 @@ export const getLocalePath = (
 	path?: string
 ) => {
 	let params = [baseDir];
-	if (locale !== "en") {
+	if (locale !== 'en') {
 		params.push(locale);
 	}
 	if (docId) {
@@ -47,7 +48,7 @@ export const getLocalePath = (
 	if (path && path !== baseDir) {
 		params.push(path);
 	}
-	return params.join("/");
+	return params.join('/');
 };
 
 /**
@@ -56,31 +57,31 @@ export const getLocalePath = (
 export const getFrontMatter = (docId: string, path: string, locale: string) => {
 	const testMdFile = fs.readFileSync(
 		`./public/content/${docId}/${path}.${locale}.md`,
-		"utf-8"
+		'utf-8'
 	);
 	return matter(testMdFile);
 };
 
 export const stripMarkdown = (content: string) =>
 	content
-		.replace("\n", EMPTY_STRING)
+		.replace('\n', EMPTY_STRING)
 		.replace(
 			MD_MID_ASTRIEK,
 			[EMPTY_STRING, ASTRIEK_MOCK, EMPTY_STRING].join(SINGLE_WHITE_SPACE)
 		)
-		.replace(STRIP_MD, "$2")
+		.replace(STRIP_MD, '$2')
 		.replace(MD_COMMENT, EMPTY_STRING)
 		.replace(MD_BLOCKQUOTE, EMPTY_STRING)
 		.replace(MD_ORDERED_LIST, EMPTY_STRING)
 		.replace(MD_UNORDERED_LIST_DASH, EMPTY_STRING)
 		.replace(MD_UNORDERED_LIST_ASTRIEK, EMPTY_STRING)
-		.replace(MD_DOUBLE_ASTRIEK, "$1")
+		.replace(MD_DOUBLE_ASTRIEK, '$1')
 		.replace(MD_SINGLE_ASTRIEK, ASTRIEK_MOCK)
-		.replace(MD_LINK, "$1")
-		.replace(MD_CODEBLOCK, "$1")
-		.replace(MD_CODEBLOCK_INLINE, "$2")
+		.replace(MD_LINK, '$1')
+		.replace(MD_CODEBLOCK, '$1')
+		.replace(MD_CODEBLOCK_INLINE, '$2')
 		.trim()
-		.split("\n")
+		.split('\n')
 		.filter(Boolean)
 		.join(EMPTY_STRING);
 

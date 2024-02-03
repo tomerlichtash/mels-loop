@@ -1,8 +1,8 @@
-import { StringMap } from "../interfaces/models";
+import { StringMap } from '../types/models';
 import {
 	CaseInsensitiveMap,
 	CaseInsensitiveSet,
-} from "./case-insensitive-collections";
+} from './case-insensitive-collections';
 
 /**
  * Provides utility functions for App Specific validating html content
@@ -24,17 +24,17 @@ export interface IHTMLValidator {
 }
 
 const ALLOWED_HTML_ATTRIBUTES = {
-	"*": {
-		valid: ["data-type", "align", "dir"],
+	'*': {
+		valid: ['data-type', 'align', 'dir'],
 	},
 	TD: {
-		valid: ["rowspan", "colspan"],
+		valid: ['rowspan', 'colspan'],
 	},
 	TH: {
-		valid: ["rowspan", "colspan"],
+		valid: ['rowspan', 'colspan'],
 	},
 	TABLE: {
-		valid: ["border", "cellpadding", "cellspacing"],
+		valid: ['border', 'cellpadding', 'cellspacing'],
 	},
 };
 
@@ -52,8 +52,8 @@ class HTMLValidator implements IHTMLValidator {
 				valid: new CaseInsensitiveSet(rec.valid as string[]),
 			});
 		});
-		if (!this.attributeMap.has("*")) {
-			this.attributeMap.set("*", { valid: new CaseInsensitiveSet() });
+		if (!this.attributeMap.has('*')) {
+			this.attributeMap.set('*', { valid: new CaseInsensitiveSet() });
 		}
 	}
 	isValidAttributeFor(tag: string, key: string): boolean {
@@ -61,7 +61,7 @@ class HTMLValidator implements IHTMLValidator {
 			return false;
 		}
 		return (
-			this.attributeMap.get("*").valid.has(key) ||
+			this.attributeMap.get('*').valid.has(key) ||
 			this.attributeMap.get(tag)?.valid.has(key)
 		);
 	}

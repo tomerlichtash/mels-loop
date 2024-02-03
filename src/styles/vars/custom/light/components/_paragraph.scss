@@ -1,0 +1,7 @@
+@import '../../../../baseThemeStyle';
+@import '../../../../lib/refs';
+
+$index: (
+	text-color: ref(color-container-contrast),
+	line-height: 1.5em,
+);

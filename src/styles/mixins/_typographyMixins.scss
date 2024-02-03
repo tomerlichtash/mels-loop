@@ -1,5 +1,5 @@
-@import "../../styles/lib/themeVars";
-@import "../../styles/lib/states";
+@import '../../styles/lib/themeVars';
+@import '../../styles/lib/states';
 
 @mixin BaseTypographyMixin($var) {
 	@include useFontFamily($var);
@@ -34,7 +34,7 @@
 	@include AffixMixin($module, suffix);
 }
 
-@mixin SuffixDataContentMixin($var, $content: "") {
+@mixin SuffixDataContentMixin($var, $content: '') {
 	--content: #{$content};
 
 	&::after {
@@ -44,19 +44,19 @@
 	}
 }
 
-@mixin SeparatorMixin($var, $content: "|") {
-	--content: "#{$content}";
-	--horizontal-margin: 0.5em;
-	--font-weight: 300;
-	--opacity: 0.5;
+// @mixin SeparatorMixin($var, $content: "|") {
+// 	--content: "#{$content}";
+// 	--horizontal-margin: 0.5em;
+// 	--font-weight: 300;
+// 	--opacity: 0.5;
 
-	&::before {
-		@include useContent($var);
-		@include useFontWeight($var);
-		@include useHorizontalMargin($var);
-		@include useOpacity($var);
-	}
-}
+// 	&::before {
+// 		@include useContent($var);
+// 		@include useFontWeight($var);
+// 		@include useHorizontalMargin($var);
+// 		@include useOpacity($var);
+// 	}
+// }
 
 // @mixin contentSelection {
 // 	// --background-color: #f0f0f0;

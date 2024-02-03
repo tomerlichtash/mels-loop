@@ -1,0 +1,14 @@
+@import "../../../../baseThemeStyle";
+@import "../../../../lib/refs";
+
+$index: (
+	h1: (
+		text-color: ref(color-surface-contrast),
+		// font-family: arial,
+		font-size: 1em,
+		font-weight: 900,
+		line-height: 2em,
+		text-transform: uppercase,
+		letter-spacing: 2px,
+	),
+);

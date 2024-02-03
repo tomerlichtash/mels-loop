@@ -1,7 +1,7 @@
-import fs, { Dirent } from "fs";
-import path from "path";
-import matter from "gray-matter";
-import * as mdParser from "simple-markdown";
+import fs, { Dirent } from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import * as mdParser from 'simple-markdown';
 import {
 	IFigureConfiguration,
 	IFolderContent,
@@ -11,20 +11,20 @@ import {
 	IParsedPageData,
 	PageSortField,
 	ParsedNode,
-} from "../interfaces/models";
-import { contentUtils } from "./content-utils";
+} from '../types/models';
+import { contentUtils } from './content-utils';
 import {
 	IContentParseOptions,
 	LoadContentModes,
 	LoadFolderModes,
 	MLParseModes,
-} from "../interfaces/parser";
+} from '../types/parser';
 
-import getConfig from "next/config";
-import { mlUtils } from "./ml-utils";
+import getConfig from 'next/config';
+import { mlUtils } from './ml-utils';
 const { serverRuntimeConfig } = getConfig();
 
-const CONTENT_PATH = "public/content/";
+const CONTENT_PATH = 'public/content/';
 
 const getIndexFileName = (locale: string): string => `index.${locale}.md`;
 
@@ -76,7 +76,7 @@ export function loadContentFolder(
 	const mode: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
 		...options.mode,
-		locale: options.locale
+		locale: options.locale,
 	};
 	const contentDir = path.join(
 		getContentRootDir(options.rootFolder),
@@ -128,7 +128,7 @@ export function loadContentFolder(
 			// return error without disclosing OS path
 			return folderContentData.pages.push(
 				new ParsedPageData({
-					error: `${fullPath.split(/\/|\\/).slice(-3).join("/")} not found`,
+					error: `${fullPath.split(/\/|\\/).slice(-3).join('/')} not found`,
 				})
 			);
 		}
@@ -142,7 +142,7 @@ export function loadContentFolder(
 		}
 
 		try {
-			const fileContents = fs.readFileSync(fullPath, "utf8");
+			const fileContents = fs.readFileSync(fullPath, 'utf8');
 			//log.info(`${chalk.green("parse")} - parsed "${fullPath}"`);
 
 			// Use gray-matter to parse the post metadata section
@@ -194,17 +194,17 @@ class ParsedPageData implements IParsedPageData {
 	}
 
 	public metaData: IPageMetaData = null;
-	public id = "";
-	public chapterId = "";
-	public path = "";
+	public id = '';
+	public chapterId = '';
+	public path = '';
 	public parsed: IMLParsedNode[] = [];
-	public error?: string = "";
+	public error?: string = '';
 }
 
 class PageMetaData implements IPageMetaData {
 	constructor(data: Partial<IParsedPageData> | string) {
 		mlUtils.safeMerge(this, data);
-		if (this.date && typeof this.date === "string") {
+		if (this.date && typeof this.date === 'string') {
 			this.date = mlUtils.parseDate(this.date);
 		}
 	}
@@ -213,22 +213,22 @@ class PageMetaData implements IPageMetaData {
 			...this,
 		};
 	}
-	public glossary_key = "";
+	public glossary_key = '';
 	public date: Date = null;
-	public title = "";
-	public abstract = "";
-	public moto = "";
-	public author = "";
-	public credits = "";
-	public source_url = "";
-	public source_name = "";
-	public source_author = "";
+	public title = '';
+	public abstract = '';
+	public moto = '';
+	public author = '';
+	public credits = '';
+	public source_url = '';
+	public source_name = '';
+	public source_author = '';
 	// value must be falsy, so initially it doesn't affect the parse mode computation
-	public parse_mode =  MLParseModes.AUTO; 
+	public parse_mode = MLParseModes.AUTO;
 	public figures: IFigureConfiguration = {
 		auto: true,
 		base: 1,
-		template: "[[FIGURE_ABBR]] %index%",
+		template: '[[FIGURE_ABBR]] %index%',
 	};
 }
 

@@ -1,0 +1,50 @@
+@use '../../styles/mixins/typographyMixins.scss';
+@use '../../styles/mixins/layoutMixins.scss';
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+@import '../../styles/lib/states';
+
+$__stylesheet__: (
+	name: layout,
+);
+
+.root {
+	@include useBackgroundColor();
+
+	.siteTitle {
+		@include useGap(name(logo));
+	}
+
+	.footer {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.footerSiteTitle {
+		display: flex;
+		flex-direction: row;
+		gap: 0.25em;
+		@include typographyMixins.RunningTextMixin(site-footer-primary-label);
+	}
+
+	.pageContainer {
+		// @include layoutMixins.PageContainerMixin(site-footer-container);
+		@include layoutMixins.PageContainerMixin(name());
+	}
+
+	.footerLayout {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		gap: 2em;
+	}
+
+	.column {
+		display: flex;
+		flex-direction: column;
+		&:first-child {
+			gap: 0.5em;
+			max-width: 50%;
+		}
+	}
+}

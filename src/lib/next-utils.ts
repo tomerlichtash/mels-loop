@@ -1,15 +1,15 @@
-import { GetStaticPathsResult, GetStaticPropsResult } from "next";
-import { ParsedUrlQuery } from "querystring";
-import { ILocaleMap } from "../interfaces/models";
+import { GetStaticPathsResult, GetStaticPropsResult } from 'next';
+import { ParsedUrlQuery } from 'querystring';
+import { ILocaleMap } from '../types/models';
 import {
 	IContentParseOptions,
 	MLParseModes,
 	LoadFolderModes,
 	LoadContentModes,
-} from "../interfaces/parser";
-import { getContentRootDir, loadContentFolder } from "./markdown-driver";
-import * as fsPath from "path";
-import * as fs from "fs";
+} from '../types/parser';
+import { getContentRootDir, loadContentFolder } from './markdown-driver';
+import * as fsPath from 'path';
+import * as fs from 'fs';
 
 /**************************************************
  * Extended Next.js types
@@ -168,19 +168,19 @@ async function pathToRelativePath(path: string): Promise<string> {
 		const stat = await fs.promises.lstat(path);
 		const contentFolder = stat.isDirectory()
 			? path
-			: fsPath.join(fsPath.dirname(path), fsPath.basename(path, ".js"));
+			: fsPath.join(fsPath.dirname(path), fsPath.basename(path, '.js'));
 		return contentFolder
-			.replace(/\\/g, "/")
-			.replace(/^.*?\/pages\/(.+)$/, "$1");
+			.replace(/\\/g, '/')
+			.replace(/^.*?\/pages\/(.+)$/, '$1');
 	} catch {
-		return "";
+		return '';
 	}
 }
 
 async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 	try {
 		const relativePath = await pathToRelativePath(topFolder);
-		const parts = relativePath.split("/");
+		const parts = relativePath.split('/');
 
 		const root = getContentRootDir();
 		const allPaths = await _collectPaths({ root, parts });
@@ -198,7 +198,7 @@ async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 			}
 		}
 		return validPaths.map((rec) => ({
-			path: rec.path.replace(root, "").replace(/\\/g, "/").replace(/^\//, ""),
+			path: rec.path.replace(root, '').replace(/\\/g, '/').replace(/^\//, ''),
 			idMap: rec.idMap,
 		}));
 	} catch (e) {
@@ -220,10 +220,10 @@ class MLNextUtils implements IMLNextUtils {
 	): Promise<string> {
 		let relative = await pathToRelativePath(path);
 		if (!relative) {
-			return "";
+			return '';
 		}
 		Object.entries(dict).forEach(([key, value]) => {
-			const re = new RegExp(`\\[${key}\\]`, "g");
+			const re = new RegExp(`\\[${key}\\]`, 'g');
 			relative = relative.replace(re, value);
 		});
 		return relative;
@@ -247,7 +247,7 @@ class MLNextUtils implements IMLNextUtils {
 				// Stringify the result, instead of leaving the job to Next, because
 				// Next's serializer is picky about objects, won't take class instances, Dates and more
 				content: JSON.stringify(docData.pages),
-				documentPath: (page && page.path) || "",
+				documentPath: (page && page.path) || '',
 			},
 		};
 	}

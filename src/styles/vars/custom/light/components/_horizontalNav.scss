@@ -1,0 +1,84 @@
+@use '../../../../../components/HorizontalMenu/HorizontalNav.module.scss' as
+	HorizontalNav;
+@import '../../../../baseThemeStyle';
+@import '../../../../lib/refs';
+
+$__stylesheet__: (
+	name: site-horizontal-nav,
+);
+
+$growthAnimation: (
+	duration: globalRef(animation-duration-sm),
+	easing: globalRef(animation-easing-default),
+);
+
+$stageAnimation: (
+	duration: globalRef(animation-duration-sm),
+	easing: globalRef(animation-easing-default),
+);
+
+$hovered: HorizontalNav.state(hovered);
+$opened: HorizontalNav.state(opened);
+
+$index: (
+	trigger: (
+		// font-weight: 900,
+		caret:
+			(
+				text-color: ref(color-surface-contrast),
+				#{$hovered}: (
+						text-color: ref(color-surface-contrast),
+					),
+			),
+		#{$hovered}: (
+				background-color: ref(color-surface-dark),
+				text-color: ref(color-primary-dark),
+			),
+		#{$opened}: (
+				background-color: ref(color-surface-dark),
+				text-color: ref(color-primary-dark),
+			),
+	),
+
+	list: (
+		gutter: 0.5em,
+	),
+
+	item: (
+		text-color: ref(color-primary-main),
+		radius: globalRef(radius-sm),
+		gutter: 1em,
+
+		#{$hovered}: (
+				text-color: ref(color-secondary-main),
+				background-color: ref(color-container-main),
+			),
+
+		content: (
+			gap: 0.5em,
+		),
+
+		icon: (
+			border-size: 1px,
+			border-style: solid,
+			border-color: transparent,
+			radius: globalRef(radius-md),
+			gutter: 0.4em,
+		),
+
+		title: (
+			text-transform: uppercase,
+			line-height: 2em,
+			font-weight: 700,
+		),
+	),
+
+	scaleIn-animation: $growthAnimation,
+	scaleOut-animation: $growthAnimation,
+	fadeIn-animation: $growthAnimation,
+	fadeOut-animation: $growthAnimation,
+	enterFromRight-animation: $stageAnimation,
+	enterFromLeft-animation: $stageAnimation,
+	exitToRight-animation: $stageAnimation,
+	exitToLeft-animation: $stageAnimation,
+);

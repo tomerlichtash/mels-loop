@@ -1,38 +1,38 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import Container from "../components/ui/Container";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import type { Meta, StoryObj } from '@storybook/react';
+import Container from '../components/container';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 const meta = {
-	title: "Container",
+	title: 'Container',
 	component: Container,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
 		},
 	},
-	tags: ["autodocs"],
+	tags: ['autodocs'],
 	argTypes: {
 		sticky: {
-			type: "boolean",
+			type: 'boolean',
 		},
 		position: {
-			options: ["top", "bottom"],
-			control: { type: "select" },
+			options: ['top', 'bottom'],
+			control: { type: 'select' },
 		},
 		spaceBetween: {
-			type: "boolean",
+			type: 'boolean',
 		},
 		alignItemsCenter: {
-			type: "boolean",
+			type: 'boolean',
 		},
 		fullWidth: {
-			type: "boolean",
+			type: 'boolean',
 		},
 		horizontalGutter: {
-			type: "boolean",
+			type: 'boolean',
 		},
 		asChild: {
-			type: "boolean",
+			type: 'boolean',
 		},
 	},
 } satisfies Meta<typeof Container>;
@@ -43,7 +43,7 @@ type Story = StoryObj<typeof meta>;
 const BaseStory: Story = {
 	args: {
 		sticky: false,
-		position: "top",
+		position: 'top',
 		spaceBetween: true,
 		alignItemsCenter: true,
 		fullWidth: true,
@@ -88,7 +88,7 @@ export const Mobile: Story = {
 	...BaseStory,
 	parameters: {
 		viewport: {
-			defaultViewport: "iphonex",
+			defaultViewport: 'iphonex',
 		},
 	},
 };

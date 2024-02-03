@@ -1,19 +1,15 @@
-import React, { useContext } from "react";
-import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
-import { CONTENT_TYPES } from "../../consts";
-import { mlNextUtils } from "../../lib/next-utils";
-import { LoadFolderModes } from "../../interfaces/parser";
-import { contentUtils } from "../../lib/content-utils";
-import {
-	IMLParsedNode,
-	IPageProps,
-	MLNODE_TYPES,
-} from "../../interfaces/models";
-import Layout from "../../components/site/Layout";
-import ContentIterator from "../../components/content/dynamic-content-browser/content-iterator";
-import usePageData from "../../lib/usePageData";
-import { LocaleProvider } from "../../locale/context/locale-context";
-import { Button, List } from "@components/ui";
+import React, { useContext } from 'react';
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
+import { CONTENT_TYPES } from '../../consts';
+import { mlNextUtils } from '../../lib/next-utils';
+import { LoadFolderModes } from '../../types/parser';
+import { contentUtils } from '../../lib/content-utils';
+import { IMLParsedNode, IPageProps, MLNODE_TYPES } from '../../types/models';
+import Layout from '../../components/layout';
+import usePageData from '../../lib/usePageData';
+import { LocaleProvider } from '../../locale/context/locale-context';
+import { Link, List } from '@components/index';
+import { ContentIterator } from 'lib/content';
 
 export default function GlossaryTerm(props: IPageProps) {
 	const { translate } = useContext(LocaleProvider);
@@ -29,11 +25,11 @@ export default function GlossaryTerm(props: IPageProps) {
 	return (
 		<Layout title={metaData?.title}>
 			<article className="page">
-				<Button className="title" link={"/glossary"}>
-					{translate("GLOSSARY_NAV_LABEL")}
-				</Button>
+				<Link className="title" href={'/glossary'}>
+					{translate('GLOSSARY_NAV_LABEL')}
+				</Link>
 				<h1 className="title">{translate(metaData?.glossary_key)}</h1>
-				<p className="term">{translate(metaData?.glossary_key, "en")}</p>
+				<p className="term">{translate(metaData?.glossary_key, 'en')}</p>
 				{node ? (
 					<ContentIterator componentData={{ node }} />
 				) : (
@@ -41,12 +37,13 @@ export default function GlossaryTerm(props: IPageProps) {
 				)}
 				<List
 					className="bibliography"
-					label={""}
+					label={''}
 					items={[
 						{
-							author: metaData.source_name,
+							label: `${metaData.source_name}${
+								metaData.source_name ? ` / ${metaData.source_name}` : ''
+							}`,
 							url: metaData.source_url,
-							name: metaData.source_name,
 						},
 					]}
 				/>

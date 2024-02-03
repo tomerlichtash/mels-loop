@@ -1,26 +1,26 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { CONTENT_TYPES } from "../../consts";
-import { mlApiUtils } from "../../lib/api-utils";
-import { LoadContentModes, LoadFolderModes } from "../../interfaces/parser";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { CONTENT_TYPES } from '../../consts';
+import { mlApiUtils } from '../../lib/api-utils';
+import { LoadContentModes, LoadFolderModes } from '../../types/parser';
 import {
 	getContentRootDir,
 	loadContentFolder,
-} from "../../lib/markdown-driver";
+} from '../../lib/markdown-driver';
 import {
 	IMLApiResponse,
 	IMLDynamicContentParams,
 	IMLDynamicContentResponse,
-} from "../../interfaces/ml-api";
-import { contentUtils } from "../../lib/content-utils";
-import { mlUtils } from "../../lib/ml-utils";
+} from '../../types/ml-api';
+import { contentUtils } from '../../lib/content-utils';
+import { mlUtils } from '../../lib/ml-utils';
 
 const TypeMap: { [key: string]: CONTENT_TYPES } = {
 	annotation: CONTENT_TYPES.ANNOTATION,
 	glossary: CONTENT_TYPES.GLOSSARY,
 };
 
-import * as fsPath from "path";
-import * as fileSystem from "fs";
+import * as fsPath from 'path';
+import * as fileSystem from 'fs';
 
 const noop = function () {
 	void 0;
@@ -40,12 +40,12 @@ const findFirstFolder = async (
 	if (!relativePath || !contentPath) {
 		return null;
 	}
-	const parts = relativePath.split("/").filter(Boolean); // in case there was a / prefix
+	const parts = relativePath.split('/').filter(Boolean); // in case there was a / prefix
 	const root = getContentRootDir(process.cwd());
 
 	while (parts.length >= 2) {
 		// at least docs/xxx, posts/yyy
-		const folderPath = [...parts, contentPath].join("/"),
+		const folderPath = [...parts, contentPath].join('/'),
 			path = fsPath.join(root, folderPath);
 		try {
 			const stat = await fileSystem.promises.lstat(path);
@@ -92,12 +92,12 @@ async function loadContent(
 (expected one of ${Object.keys(TypeMap).toString()})`,
 		};
 	}
-	const clientPath = params.document || "";
-	const cacheKey = `dc-${contentType}-${clientPath}${clientPath && "-"}${
+	const clientPath = params.document || '';
+	const cacheKey = `dc-${contentType}-${clientPath}${clientPath && '-'}${
 		params.locale
 	}`;
 	try {
-		const contentPath = fsPath.resolve(process.cwd(), "public");
+		const contentPath = fsPath.resolve(process.cwd(), 'public');
 		console.log(`using content path ${contentPath}`);
 		const payload = await mlApiUtils.getFromCache(cacheKey);
 		if (payload) {
@@ -124,7 +124,7 @@ async function loadContent(
 		const data = {
 			locale: params.locale,
 			// turn array into map
-			items: mlUtils.arrayToMap(docData.pages, "id"),
+			items: mlUtils.arrayToMap(docData.pages, 'id'),
 		};
 		// don't want to await before returning, so
 		mlApiUtils

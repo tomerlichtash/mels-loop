@@ -1,0 +1,29 @@
+@use '../../styles/mixins/popoverMixin';
+@use '../../styles/mixins/typographyMixins';
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+
+$__stylesheet__: (
+	name: term,
+);
+
+.root {
+	--content: '*';
+	--offset-top: -0.3em;
+	--decoration-color: #000;
+
+	.popoverTrigger {
+		@include popoverMixin.PopoverTrigger(name());
+	}
+
+	&:after {
+		position: relative;
+
+		@include cursorPointer;
+		@include disableUserSelection;
+
+		@include typographyMixins.SuffixMixin(name());
+		@include useTextColor(name());
+		@include useOffsetTop(name());
+	}
+}

@@ -1,8 +1,8 @@
-import type { NextRouter } from "next/router";
-import type { ILocaleMetaContext } from "locale/context/locale-meta-context";
-import type { ILocalePageContext } from "locale/context/locale-page-context";
+import type { NextRouter } from 'next/router';
+import type { ILocaleMetaContext } from 'locale/context/locale-meta-context';
+import type { ILocalePageContext } from 'locale/context/locale-page-context';
 
-export type LocaleId = "en" | "he";
+export type LocaleId = 'en' | 'he';
 
 export interface ILocaleContext {
 	readonly locale: LocaleId;
@@ -25,17 +25,17 @@ export interface ILocaleContextProps {
 	readonly router: NextRouter;
 }
 
-export type TextDirection = "rtl" | "ltr";
+export type TextDirection = 'rtl' | 'ltr';
 
-export type Direction = "right" | "left";
+export type Direction = 'right' | 'left';
 
 export interface ILocaleInfo {
 	readonly direction: TextDirection;
 }
 
 export const LocaleInfo: Record<LocaleId, ILocaleInfo> = {
-	en: { direction: "ltr" },
-	he: { direction: "rtl" },
+	en: { direction: 'ltr' },
+	he: { direction: 'rtl' },
 };
 
-export const localeLabelPrefix = "LOCALE_LABEL";
+export const localeLabelPrefix = 'LOCALE_LABEL';

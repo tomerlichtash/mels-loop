@@ -1,0 +1,40 @@
+@use '../../styles/mixins/typographyMixins';
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+
+$__stylesheet__: (
+	name: text,
+);
+
+.root {
+	&[data-italics] {
+		font-style: italic;
+	}
+
+	&[data-uppercase] {
+		text-transform: uppercase;
+	}
+
+	&[data-lowecase] {
+		text-transform: lowercase;
+	}
+
+	&[data-variant] {
+		&[data-variant='h1'] {
+			// font-size: 1.2em;
+			@include typographyMixins.RunningTextMixin(name(h1));
+			// @include useTextColor(name(h1));
+			// @include useLineHeight(name(h1));
+			// @include useTextTransform(name(h1));
+			// @include useLetterSpacing(name(h1));
+		}
+
+		&[data-variant='h2'] {
+			font-size: 1.2em;
+		}
+
+		&[data-variant='h3'] {
+			font-size: 1.2em;
+		}
+	}
+}

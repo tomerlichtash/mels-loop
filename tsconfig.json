@@ -21,9 +21,10 @@
 		"baseUrl": "src", // This must be specified if "paths" is.
 		"paths": {
 			// This mapping is relative to "baseUrl".
+			"@types/*": ["./typings/*"],
 			"@config/*": ["./config/*"],
-			"@locale/*": ["./locale"],
-			"@components/*": ["./components/*"]
+			"@components/*": ["./components/*"],
+			"@locale/*": ["./locale"]
 		}
 	},
 	"include": [

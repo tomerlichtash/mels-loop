@@ -1,12 +1,9 @@
-import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
-import { contentUtils } from "../../../../../lib/content-utils";
-import { IPageProps } from "../../../../../interfaces/models";
-import { mlNextUtils } from "../../../../../lib/next-utils";
-import { GenericPage } from "../../../../../components/content";
-import {
-	LoadContentModes,
-	LoadFolderModes,
-} from "../../../../../interfaces/parser";
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
+import { GenericPage } from 'lib/content';
+import { mlNextUtils } from 'lib/next-utils';
+import { contentUtils } from 'lib/content-utils';
+import { LoadContentModes, LoadFolderModes } from 'types/parser';
+import { IPageProps } from 'types/models';
 
 export default function Doc(props: IPageProps) {
 	return <GenericPage pageProps={props} />;

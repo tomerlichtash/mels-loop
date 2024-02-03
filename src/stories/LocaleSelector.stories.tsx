@@ -1,47 +1,45 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import LocaleSelector from "../components/ui/LocaleSelector/LocaleSelector";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import type { Meta, StoryObj } from '@storybook/react';
+import LocaleSelect from '../components/locale-select/LocaleSelect';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 const meta = {
-	title: "Site/LocaleSelector",
-	component: LocaleSelector,
+	title: 'Site/LocaleSelect',
+	component: LocaleSelect,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
 		},
 	},
-	tags: ["autodocs"],
+	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof LocaleSelector>;
+} satisfies Meta<typeof LocaleSelect>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const Desktop: Story = {
 	args: {
-		type: "single",
-		value: "en",
+		defaultValue: 'en',
 		options: [
 			{
-				id: "en",
-				label: "EN",
-				title: "English",
+				id: 'en',
+				label: 'EN',
+				title: 'English',
 			},
 			{
-				id: "he",
-				label: "ע",
-				title: "עברית",
+				id: 'he',
+				label: 'ע',
+				title: 'עברית',
 			},
 		],
 		onSelect: (id: string) => {
-			console.log("toggle from story", id);
+			console.log('toggle from story', id);
 		},
 	},
-	render: function Render({ type, value, options, onSelect }) {
+	render: function Render({ defaultValue, options, onSelect }) {
 		return (
-			<LocaleSelector
-				type={type}
-				value={value}
+			<LocaleSelect
+				defaultValue={defaultValue}
 				options={options}
 				onSelect={onSelect}
 			/>
@@ -53,7 +51,7 @@ export const Mobile: Story = {
 	...Desktop,
 	parameters: {
 		viewport: {
-			defaultViewport: "iphonex",
+			defaultViewport: 'iphonex',
 		},
 	},
 };

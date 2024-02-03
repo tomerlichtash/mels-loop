@@ -1,5 +1,5 @@
-import { SitePage } from "../interfaces/models";
-import LOCALE from "../locale/keymap/pages";
+import { SitePage } from '../types/models';
+import LOCALE from '../locale/keymap/pages';
 
 const {
 	HOME_PAGE_LOCALE,
@@ -17,63 +17,63 @@ const {
 
 export const SITE_PAGES: SitePage[] = [
 	{
-		id: "home",
+		id: 'home',
 		locale: HOME_PAGE_LOCALE,
-		targetPathname: "/",
+		targetPathname: '/',
 	},
 	{
-		id: "preface",
+		id: 'preface',
 		locale: PREFACE_PAGE_LOCALE,
-		targetPathname: "/docs/the-story-of-mel/pages/preface",
+		targetPathname: '/docs/the-story-of-mel/pages/preface',
 	},
 	{
-		id: "resources",
+		id: 'resources',
 		locale: RESOURCES_PAGE_LOCALE,
-		targetPathname: "/docs/resources",
+		targetPathname: '/docs/resources',
 	},
 	{
-		id: "about",
+		id: 'about',
 		locale: ABOUT_PAGE_LOCALE,
-		targetPathname: "/about",
+		targetPathname: '/about',
 	},
 	{
-		id: "posts",
+		id: 'posts',
 		locale: BLOG_PAGE_LOCALE,
-		targetPathname: "/posts",
+		targetPathname: '/posts',
 	},
 	{
-		id: "post",
+		id: 'post',
 		locale: BLOG_PAGE_LOCALE,
-		targetPathname: "/posts/[id]",
+		targetPathname: '/posts/[id]',
 	},
 	{
-		id: "error",
+		id: 'error',
 		locale: ERROR_GENERAL_LOCALE,
-		targetPathname: "NONE",
+		targetPathname: 'NONE',
 	},
 	{
-		id: "404",
+		id: '404',
 		locale: ERROR_404_PAGE_LOCALE,
-		targetPathname: "NONE",
+		targetPathname: 'NONE',
 	},
 	{
-		id: "glossary",
+		id: 'glossary',
 		locale: GLOSSARY_PAGE_LOCALE,
-		targetPathname: "/glossary",
+		targetPathname: '/glossary',
 	},
 	{
-		id: "docs",
+		id: 'docs',
 		locale: DOCS_PAGE_LOCALE,
-		targetPathname: "/docs",
+		targetPathname: '/docs',
 	},
 	{
-		id: "contact",
+		id: 'contact',
 		locale: CONTACT_PAGE_LOCALE,
-		targetPathname: "/contact",
+		targetPathname: '/contact',
 	},
 	{
-		id: "contribute",
+		id: 'contribute',
 		locale: CONTRIBUTE_PAGE_LOCALE,
-		targetPathname: "/contribute",
+		targetPathname: '/contribute',
 	},
 ];

@@ -2,8 +2,8 @@ import {
 	DynamicContentTypes,
 	IDynamicContentRequest,
 	IDynamicContentServer,
-} from "../interfaces/dynamic-content";
-import { IParsedPageData } from "../interfaces/models";
+} from './types/dynamic-content';
+import { IParsedPageData } from '../types/models';
 
 interface LocalizedContentMap {
 	[id: string]: IParsedPageData;
@@ -13,7 +13,7 @@ interface ContentMap {
 	[locale: string]: LocalizedContentMap;
 }
 
-const normalizeId = (id: string) => (id || "").trim().toLowerCase();
+const normalizeId = (id: string) => (id || '').trim().toLowerCase();
 export class DynamicContentServer implements IDynamicContentServer {
 	private readonly contentMap: { [type: string]: ContentMap };
 
@@ -48,10 +48,10 @@ export class DynamicContentServer implements IDynamicContentServer {
 		try {
 			const path = this.dynamicContentTypeToURL(type);
 			const docParam =
-				(docPath && `&document=${encodeURIComponent(docPath)}`) || "";
+				(docPath && `&document=${encodeURIComponent(docPath)}`) || '';
 			const url = `/api/content?type=${path}&locale=${locale}${docParam}`;
 			const response = await fetch(url, {
-				method: "GET",
+				method: 'GET',
 			});
 			const responseData = await response.json();
 			const data = responseData?.data;

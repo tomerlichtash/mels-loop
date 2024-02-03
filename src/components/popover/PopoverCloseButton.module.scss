@@ -1,0 +1,10 @@
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+
+$__stylesheet__: (
+	name: popover-close-button,
+);
+
+.root {
+	background: red;
+}

@@ -1,26 +1,28 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import HorizontalMenu from "../components/ui/HorizontalMenu";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import type { Meta, StoryObj } from '@storybook/react';
+import HorizontalNav from '../components/HorizontalMenu';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 const meta = {
-	title: "HorizontalNav",
-	component: HorizontalMenu,
+	title: 'HorizontalNav',
+	component: HorizontalNav,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
 		},
 	},
-	tags: ["autodocs"],
+	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof HorizontalMenu>;
+} satisfies Meta<typeof HorizontalNav>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const Desktop: Story = {
-	args: {},
+	args: {
+		items: [],
+	},
 	render: function Render() {
-		return <HorizontalMenu />;
+		return <HorizontalNav items={[]} />;
 	},
 };
 
@@ -28,7 +30,7 @@ export const Mobile: Story = {
 	...Desktop,
 	parameters: {
 		viewport: {
-			defaultViewport: "iphonex",
+			defaultViewport: 'iphonex',
 		},
 	},
 };

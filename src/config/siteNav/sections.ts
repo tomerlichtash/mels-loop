@@ -1,50 +1,52 @@
-export const MenuSections = [
+import { NavSectionDataProps } from '@components/HorizontalMenu/types';
+
+export const MenuSections: NavSectionDataProps[] = [
 	{
-		id: "articles",
+		id: 'articles',
 		locale: {
-			title: "MENU_SECTION_LABEL_ARTICLES",
+			title: 'MENU_SECTION_LABEL_ARTICLES',
 		},
 		items: [
-			"preface",
-			"mel-kaye-bio",
-			"mels-hack-the-missing-bits",
-			"resources",
+			'preface',
+			'mel-kaye-bio',
+			'mels-hack-the-missing-bits',
+			'resources',
 		],
 	},
 	{
-		id: "contact",
+		id: 'contact',
 		locale: {
-			title: "MENU_SECTION_LABEL_CONTACT",
+			title: 'MENU_SECTION_LABEL_CONTACT',
 		},
-		items: ["contact", "twitter", "github"],
+		items: ['contact', 'twitter', 'github'],
 	},
 ];
 
-export const MobileMenuSections = [
+export const MobileMenuSections: NavSectionDataProps[] = [
 	{
-		id: "articles",
+		id: 'articles',
 		locale: {
-			title: "MENU_SECTION_LABEL_ARTICLES",
+			title: 'MENU_SECTION_LABEL_ARTICLES',
 		},
 		items: [
-			"preface",
-			"mel-kaye-bio",
-			"mels-hack-the-missing-bits",
-			"resources",
+			'preface',
+			'mel-kaye-bio',
+			'mels-hack-the-missing-bits',
+			'resources',
 		],
 	},
 	{
-		id: "about",
+		id: 'about',
 		locale: {
-			title: "MENU_SECTION_LABEL_INFO",
+			title: 'MENU_SECTION_LABEL_INFO',
 		},
-		items: ["about-mobile", "blog"],
+		items: ['about-mobile', 'blog'],
 	},
 	{
-		id: "contact",
+		id: 'contact',
 		locale: {
-			title: "MENU_SECTION_LABEL_CONTACT",
+			title: 'MENU_SECTION_LABEL_CONTACT',
 		},
-		items: ["twitter", "github", "contact"],
+		items: ['twitter', 'github', 'contact'],
 	},
 ];

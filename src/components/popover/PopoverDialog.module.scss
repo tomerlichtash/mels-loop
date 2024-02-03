@@ -1,0 +1,35 @@
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+@import '../../styles/lib/states';
+
+$__stylesheet__: (
+	name: popover-dialog,
+);
+
+.root {
+	--animation-type: fadeIn;
+	--animation-duration: 250ms;
+	--animation-easing: ease-out forwards;
+	--width: 25em;
+	--border-width: 1px;
+	--border-style: solid;
+	--border-color: #808080;
+	--radius: 4px;
+	--shadow: none;
+	--background-color: #e0e0e0;
+
+	overflow: hidden;
+
+	@include useWidth(popver-dialog);
+	@include useBackgroundColor(popver-dialog);
+	@include useShadow(popover-dialog);
+	@include useBorderSize(popover-dialog);
+	@include useBorderStyle(popover-dialog);
+	@include useBorderColor(popover-dialog);
+	@include useRadius(popover-dialog);
+	@include useFadeIn(popover-dialog);
+
+	.content {
+		@include useBackgroundColor(popover-dialog);
+	}
+}

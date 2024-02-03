@@ -1,9 +1,0 @@
-// @use "./components/site/header";
-
-// @use "assets";
-// @use "colors";
-// @use "locale";
-@use "components";
-
-// $index: locale.$index, assets.$index, colors.$index, components.$index;
-$index: components.$index;

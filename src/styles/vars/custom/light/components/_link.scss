@@ -1,0 +1,13 @@
+@use '../../../../../components/link/link.module.scss' as Link;
+@import '../../../../baseThemeStyle';
+@import '../../../../lib/refs';
+
+$index: (
+	text-color: ref(color-primary-main),
+	Link.state(hovered): (
+		text-color: ref(color-secondary-main),
+	),
+	Link.state(clicked): (
+		text-color: ref(color-secondary-light),
+	),
+);

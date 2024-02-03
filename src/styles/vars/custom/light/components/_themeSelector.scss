@@ -1,0 +1,36 @@
+@use '../../../../../components/theme-select/ThemeSelect.module.scss' as
+	ThemeSelector;
+@import '../../../../baseThemeStyle';
+
+$index: (
+	// mixins: (
+	// 	toggle-button: (
+	// 		height: 2.2855em,
+	// 		width: 2.2855em,
+	// 		radius: globalRef(radius-md),
+	// 		background-color: none,
+	// 		text-color: ref(color-surface-contrast),
+	// 		font-weight: globalRef(typography-font-weight-thin),
+	// 		state(hovered): (
+	// 			background-color: ref(color-container-main),
+	// 			text-color: ref(color-surface-contrast),
+	// 		),
+	// 		state(selected): (
+	// 			background-color: ref(color-surface-dark),
+	// 			text-color: ref(color-surface-contrast),
+	// 			font-weight: globalRef(typography-font-weight-bold),
+	// 		),
+	// 	),
+	// ),
+	// button: (
+	// 	background-color: ref(color-surface-dark),
+	// 	text-color: ref(color-container-dark),
+	// ),
+	icon:
+		(
+			text-color: ref(color-surface-contrast),
+			ThemeSelector.state(hovered): (
+				text-color: ref(color-surface-contrast),
+			),
+		)
+);

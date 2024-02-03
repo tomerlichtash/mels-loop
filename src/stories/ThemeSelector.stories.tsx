@@ -1,26 +1,28 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import ThemeSelector from "../components/ui/ThemeSelector/ThemeSelector";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import type { Meta, StoryObj } from '@storybook/react';
+import ThemeSelect from '../components/theme-select/ThemeSelect';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 const meta = {
-	title: "Site/ThemeSelector",
-	component: ThemeSelector,
+	title: 'ThemeSelect',
+	component: ThemeSelect,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
 		},
 	},
-	tags: ["autodocs"],
+	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof ThemeSelector>;
+} satisfies Meta<typeof ThemeSelect>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const Desktop: Story = {
-	args: {},
-	render: function Render() {
-		return <ThemeSelector />;
+	args: {
+		label: 'selected label',
+	},
+	render: function Render({ label }) {
+		return <ThemeSelect label={label} theme="light" setTheme={() => {}} />;
 	},
 };
 
@@ -28,7 +30,7 @@ export const Mobile: Story = {
 	...Desktop,
 	parameters: {
 		viewport: {
-			defaultViewport: "iphonex",
+			defaultViewport: 'iphonex',
 		},
 	},
 };

@@ -1,13 +1,15 @@
-import React from "react";
-import css from "styled-jsx/css";
-import { AppProps } from "next/app";
-import { useRouter } from "next/router";
-import { AppContext } from "../contexts";
-import { fontFaceDecls } from "../site-fonts";
-import { IPageProps } from "../interfaces/models";
+import React from 'react';
+import css from 'styled-jsx/css';
+import { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import { fontFaceDecls } from '../site-fonts';
+import { IPageProps } from '../types/models';
+import { LocaleContextProvider } from '../locale/context/locale-context';
+import { PageContextProvider } from '../context/pageContext';
+import { ThemeProvider } from 'next-themes';
 
-import "normalize.css/normalize.css";
-import "../styles/app.scss";
+import 'normalize.css/normalize.css';
+import '../styles/app.scss';
 
 const App = ({ Component, pageProps }: AppProps<IPageProps>) => {
 	const router = useRouter();
@@ -16,12 +18,20 @@ const App = ({ Component, pageProps }: AppProps<IPageProps>) => {
 	`;
 
 	return (
-		<AppContext router={router} documentPath={pageProps.documentPath}>
-			<style jsx global>
-				{fontStyles}
-			</style>
-			<Component {...pageProps} />
-		</AppContext>
+		<LocaleContextProvider router={router}>
+			<PageContextProvider documentPath={pageProps.documentPath}>
+				<ThemeProvider
+					defaultTheme="light"
+					storageKey="ml-theme"
+					attribute="data-ml-theme"
+				>
+					<style jsx global>
+						{fontStyles}
+					</style>
+					<Component {...pageProps} />
+				</ThemeProvider>
+			</PageContextProvider>
+		</LocaleContextProvider>
 	);
 };
 

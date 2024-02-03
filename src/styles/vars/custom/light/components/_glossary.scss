@@ -1,0 +1,20 @@
+@import '../../../../baseThemeStyle';
+@import '../../../../lib/refs';
+
+$annotationSuffix: "'\203B'";
+$annotationAffixOpacity: 0.65;
+
+$index: (
+	// font-size: globalRef(typography-font-size-xs),
+	font-weight: globalRef(typography-font-weight-regular),
+	// text-color: ref(link-text-color),
+	suffix:
+		(
+			content: $annotationSuffix,
+			opacity: $annotationAffixOpacity,
+		),
+	__hover: (
+		text-color: red,
+		//ref(link-text-color),
+	)
+);

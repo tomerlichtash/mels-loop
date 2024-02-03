@@ -1,5 +1,6 @@
-import { mlUtils } from "./lib/ml-utils";
-import { fontBasePath, siteFontData } from "./config/siteFonts";
+import { mlUtils } from './lib/ml-utils';
+import { fontBasePath, siteFontData } from './config/siteFonts';
+import { unique } from 'lib/utils';
 
 export interface IFontFace {
 	id: string;
@@ -17,20 +18,20 @@ export interface IFontFaceDecl extends IFontFaceLink {
 
 const FontFaceDecl = ({ name, id, href, weight, format }: IFontFaceDecl) => {
 	const fontFaceProps = [
-		["font-family", `"${name}"`],
-		["src", `url("${fontBasePath}/${id}/${href}") format("${format}")`],
-		["font-weight", weight],
-		["font-display", "swap"],
+		['font-family', `"${name}"`],
+		['src', `url("${fontBasePath}/${id}/${href}") format("${format}")`],
+		['font-weight', weight],
+		['font-display', 'swap'],
 	];
 	return `@font-face{${fontFaceProps
 		.map((keyVal) => `${keyVal[0]}: ${keyVal[1]};`)
-		.join("")}}`;
+		.join('')}}`;
 };
 
 const FontFaceLink = ({ id, href, format }: IFontFaceLink) => {
 	return (
 		<link
-			key={mlUtils.uniqueId()}
+			key={unique.id()}
 			rel="preload"
 			href={`${fontBasePath}/${id}/${href}`}
 			as="font"
@@ -46,9 +47,9 @@ export const fontFaceDecls = siteFontData
 			.map(({ weight, format, href }) => {
 				return FontFaceDecl({ name, id, href, weight, format });
 			})
-			.join("");
+			.join('');
 	})
-	.join("");
+	.join('');
 
 export const fontFaceLinks = mlUtils.flattenArray(
 	siteFontData.map(({ id, family }) => {

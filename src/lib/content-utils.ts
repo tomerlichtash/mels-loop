@@ -1,7 +1,7 @@
 import {
 	DynamicContentTypes,
 	IDynamicContentRecord,
-} from "../interfaces/dynamic-content";
+} from './types/dynamic-content';
 import {
 	ASTNODE_TYPES,
 	IMLParsedNode,
@@ -9,17 +9,17 @@ import {
 	MLNODE_TYPES,
 	NODE_DISPLAY_TYPES,
 	ParsedNode,
-} from "../interfaces/models";
+} from '../types/models';
 import {
 	IContentParseOptions,
 	INodeProcessorContext,
 	MLNodeProcessorFunction,
 	MLParseModes,
-} from "../interfaces/parser";
-import { CaseInsensitiveMap } from "./case-insensitive-collections";
-import { mlUtils } from "./ml-utils";
-import { Languages } from "../locale";
-import { _translate } from "../locale/translate";
+} from '../types/parser';
+import { CaseInsensitiveMap } from './case-insensitive-collections';
+import { mlUtils } from './ml-utils';
+import { Languages } from '../locale';
+import { _translate } from '../locale/translate';
 
 /**
  * Functions for processing parsed markdown nodes and maybe more
@@ -162,10 +162,10 @@ const NO_PARAGRAPH_TYPES: Set<MLNODE_TYPES> = new Set<MLNODE_TYPES>([
 
 const HTML_VALIDATION_MAP = {
 	TR: {
-		valid: ["TD", "TH"],
+		valid: ['TD', 'TH'],
 	},
 	TABLE: {
-		valid: ["TBODY", "TR"],
+		valid: ['TBODY', 'TR'],
 	},
 };
 
@@ -199,14 +199,14 @@ function toValue<T>(val: T, defaultValue: T | null): T | null {
 }
 
 const MLTYPE_TO_LINK_TEXT_MAP = new Map<MLNODE_TYPES, string>([
-	[MLNODE_TYPES.FIGURE, "[[FIGURE_ABBR]] %index%"],
+	[MLNODE_TYPES.FIGURE, '[[FIGURE_ABBR]] %index%'],
 ]);
 
 function collectText(content: string | ParsedNode): string {
 	if (!content) {
-		return "";
+		return '';
 	}
-	if (typeof content === "string") {
+	if (typeof content === 'string') {
 		return content;
 	}
 	if (content.type === ASTNODE_TYPES.TEXT) {
@@ -214,25 +214,25 @@ function collectText(content: string | ParsedNode): string {
 	}
 	const children = findArrayPart(content);
 	if (children) {
-		return children.map((child) => collectText(child)).join("");
+		return children.map((child) => collectText(child)).join('');
 	}
-	return "";
+	return '';
 }
 
 function collectMLNodeText(node: IMLParsedNode): string {
 	if (!node) {
-		return "";
+		return '';
 	}
-	if (typeof node === "string") {
+	if (typeof node === 'string') {
 		return node;
 	}
 	if (node.type === MLNODE_TYPES.TEXT) {
 		return node.text;
 	}
 	if (node.children) {
-		return node.children.map((child) => collectMLNodeText(child)).join("");
+		return node.children.map((child) => collectMLNodeText(child)).join('');
 	}
-	return "";
+	return '';
 }
 
 function nodeTypeToMLType(
@@ -260,7 +260,7 @@ function extractParseMode(
 	context: MLParseContext
 ): MLParseModes {
 	if (node.attributes) {
-		const attr = node.attributes.get("data-parse-mode");
+		const attr = node.attributes.get('data-parse-mode');
 		if (attr && VALID_PARSE_MODES.has(attr as MLParseModes)) {
 			return attr as MLParseModes;
 		}
@@ -291,7 +291,7 @@ function removeNullChildren(node: IMLParsedNode): IMLParsedNode {
 
 function translateString(str: string, locale: string): string {
 	if (!str) {
-		return "";
+		return '';
 	}
 	return str.replace(/\[\[(.+?)\]\]/g, function (m, key: string) {
 		return _translate(locale, Languages)(key);
@@ -319,11 +319,11 @@ const urlToContentType = (
 
 const urlToContentId = (url: string) => {
 	if (!url) {
-		return "";
+		return '';
 	}
-	const parts = url.split("/");
+	const parts = url.split('/');
 	const id = parts[parts.length - 1];
-	return (id && id.replace("#", "")) || "";
+	return (id && id.replace('#', '')) || '';
 };
 
 const findArrayPart = (node: ParsedNode): Array<ParsedNode> | null => {
@@ -340,7 +340,7 @@ const findArrayPart = (node: ParsedNode): Array<ParsedNode> | null => {
 };
 
 const validateHTMLNode = (node: ParsedNode): ParsedNode => {
-	const tag: string = ((node.tag as string) || "").toUpperCase();
+	const tag: string = ((node.tag as string) || '').toUpperCase();
 	const children: Array<ParsedNode> = node.content;
 	const rec = Array.isArray(children) && HTML_VALIDATION_MAP[tag];
 	if (rec && rec.valid) {
@@ -410,7 +410,7 @@ class ContentUtils implements IContentUtils {
 			isRelative: false,
 		};
 		if (contentData.type !== DynamicContentTypes.None) {
-			contentData.isRelative = url[0] !== "/";
+			contentData.isRelative = url[0] !== '/';
 		}
 		return contentData;
 	}
@@ -437,7 +437,7 @@ class ContentUtils implements IContentUtils {
 	 * @returns stripped string
 	 */
 	public stripComments(source: string): string {
-		return (source || "").replace(/<!---?\s.*\s-?-->/g, "");
+		return (source || '').replace(/<!---?\s.*\s-?-->/g, '');
 	}
 
 	public processParseTree(
@@ -463,7 +463,7 @@ class ContentUtils implements IContentUtils {
 
 	private isTextContainer(nodeOrType: ParsedNode | ASTNODE_TYPES): boolean {
 		const type: ASTNODE_TYPES =
-			typeof nodeOrType === "string" ? nodeOrType : nodeOrType.type;
+			typeof nodeOrType === 'string' ? nodeOrType : nodeOrType.type;
 		return TEXT_CONTAINER_TYPES.has(type);
 	}
 
@@ -547,7 +547,7 @@ class ContentUtils implements IContentUtils {
 			ordered: toValue(node.ordered, false),
 			target: toValue(node.target, null),
 			level: toValue(node.level, null),
-			text: typeof node.content === "string" ? node.content : null,
+			text: typeof node.content === 'string' ? node.content : null,
 			attributes:
 				(isHTML && node.attributes && Object.fromEntries(node.attributes)) ||
 				null,
@@ -633,9 +633,9 @@ class ContentUtils implements IContentUtils {
 		node: ParsedNode,
 		context: MLParseContext
 	): IMLParsedNode {
-		const def = (node.def || "").toLowerCase();
+		const def = (node.def || '').toLowerCase();
 		context.linkDefs[def] = {
-			key: "",
+			key: '',
 			type: MLNODE_TYPES.LINK,
 			line: 0,
 			target: node.target,
@@ -877,7 +877,7 @@ previous: ${map.get(id).type} current ${node.type}`);
 			nCaptions = captionNodes?.length;
 		// 2. If more than one, throw
 		if (nCaptions > 1) {
-			throw new Error("Figure node contains more than one caption");
+			throw new Error('Figure node contains more than one caption');
 		}
 
 		// 1. If there's a caption attribute
@@ -902,7 +902,7 @@ previous: ${map.get(id).type} current ${node.type}`);
 		} else {
 			captionNode = nCaptions === 1 && captionNodes[0];
 		}
-		const figIndex = context.indexer.nextIndex("figure");
+		const figIndex = context.indexer.nextIndex('figure');
 		Object.assign(node, { sequence: figIndex + context.metaData.figures.base });
 		this.processCaptionNode(captionNode, context);
 		// 1.2 otherwise Create a caption child and append to node1
@@ -928,7 +928,7 @@ previous: ${map.get(id).type} current ${node.type}`);
 		}
 		if (node.text) {
 			const ind =
-				context.indexer.currentIndex("figure") + context.metaData.figures.base;
+				context.indexer.currentIndex('figure') + context.metaData.figures.base;
 			const newText = translateString(
 				node.text.replace(INDEX_RE, ind.toString()),
 				context.mode.locale
@@ -1095,9 +1095,9 @@ previous: ${map.get(id).type} current ${node.type}`);
 	 */
 	private mergeTextElements(strings: Array<string>): ParsedNode[] {
 		const text = strings
-			.join("") // to string
-			.replace(/\r/g, "") // remove windows CR
-			.replace(/\n/g, " "); // remove LF
+			.join('') // to string
+			.replace(/\r/g, '') // remove windows CR
+			.replace(/\n/g, ' '); // remove LF
 		return [
 			{
 				content: text,
@@ -1115,9 +1115,9 @@ previous: ${map.get(id).type} current ${node.type}`);
 	 */
 	private breakTextToLines(strings: Array<string>): ParsedNode[] {
 		return strings
-			.join("") // to string
-			.replace(/\r/g, "") // remove windows CR
-			.split("\n") // split to lines
+			.join('') // to string
+			.replace(/\r/g, '') // remove windows CR
+			.split('\n') // split to lines
 			.reduce((acc, line, index): ParsedNode[] => {
 				if (index > 0) {
 					// insert newlines between each two text lines, so not on the first time
@@ -1144,7 +1144,7 @@ class NodeIndexer {
 	}
 
 	public nextLine(): number {
-		return this.nextIndex("line");
+		return this.nextIndex('line');
 	}
 
 	public nextIndex(key: string): number {
@@ -1161,7 +1161,7 @@ class NodeIndexer {
 	}
 
 	public currentLine(): number {
-		return this.currentIndex("line");
+		return this.currentIndex('line');
 	}
 }
 

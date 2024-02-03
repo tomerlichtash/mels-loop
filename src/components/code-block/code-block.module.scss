@@ -1,0 +1,31 @@
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/_themeVars';
+
+$__stylesheet__: (
+	name: code-block,
+);
+
+.root {
+	.pre {
+		@include useBackgroundColor();
+		@include useRadius();
+		@include useInnerGutter();
+		@include useBorderColor();
+
+		text-align: left;
+
+		.code {
+			// @include Code();
+
+			// @include useTextColor(code-inline);
+			// @include useBackgroundColor(code-inline);
+			@include useFontWeight();
+			@include useFontFamily();
+
+			// @include useHorizontalPadding(code-inline);
+			// @include useRadius(code-inline);
+			// @include useBorderSize(code-inline);
+			// @include useBorderStyle(code-inline);
+		}
+	}
+}

@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import Strip from "../components/ui/Strip";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import type { Meta, StoryObj } from '@storybook/react';
+import Strip from '../components/strip';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 const meta = {
-	title: "Strip",
+	title: 'Strip',
 	component: Strip,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
 		},
 	},
-	tags: ["autodocs"],
+	tags: ['autodocs'],
 	argTypes: {},
 } satisfies Meta<typeof Strip>;
 
@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 
 const BaseStory: Story = {
 	args: {},
-	render: function Render({}) {
+	render: function Render() {
 		return <Strip />;
 	},
 };
@@ -30,7 +30,7 @@ export const Mobile: Story = {
 	...BaseStory,
 	parameters: {
 		viewport: {
-			defaultViewport: "iphonex",
+			defaultViewport: 'iphonex',
 		},
 	},
 };

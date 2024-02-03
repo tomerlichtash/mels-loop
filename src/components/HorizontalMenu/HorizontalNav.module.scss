@@ -1,0 +1,68 @@
+@use './horizontalNavMixins.scss';
+@use '../nav-item/navListItemMixin.scss';
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+@import '../../styles/lib/states';
+@import '../../styles/lib/merge';
+
+$__stylesheet__: (
+	name: site-horizontal-menu,
+);
+
+$states: deep(
+	$COMPONENT_STATES,
+	(
+		opened: open,
+	)
+);
+
+.root {
+	width: 250px;
+
+	.list {
+		@include horizontalNavMixins.ListMixin;
+	}
+
+	.items {
+		width: 100%;
+		margin: 0;
+		@include useInnerGutter(name(list));
+	}
+
+	.trigger {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		@include horizontalNavMixins.MenuTriggerButtonMixin;
+		@include horizontalNavMixins.TriggerButtonMixin(name(trigger), $states);
+	}
+
+	.content {
+		@include horizontalNavMixins.ContentMixin(name());
+	}
+
+	.indicator {
+		@include horizontalNavMixins.IndicatorMixin(name());
+	}
+
+	.viewport {
+		@include horizontalNavMixins.ViewPortMixin(name());
+	}
+
+	.viewportPosition {
+		@include horizontalNavMixins.ViewPortPosition;
+	}
+
+	@include horizontalNavMixins.ButtonCaret(name(trigger-caret));
+
+	.arrow {
+		@include horizontalNavMixins.ArrowMixin;
+	}
+
+	.listItem {
+		list-style: none;
+	}
+
+	@include navListItemMixin.ListItemMixin(name(item), $states);
+}

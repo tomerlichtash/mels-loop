@@ -1,0 +1,47 @@
+@use '../../styles/mixins/typographyMixins.scss';
+@import '../../styles/lib/themeVars';
+@import '../../styles/baseComponentStyle';
+
+$__stylesheet__: (
+	name: text-link,
+);
+
+.root {
+	--text-color: #000;
+	--primary-letter-spacing: 1px;
+	--primary-font-weight: 500;
+	--primary-text-transform: uppercase;
+	--secondary-letter-spacing: 0;
+	--secondary-font-weight: 300;
+	--secondary-text-transform: lowercase;
+	--subtitle-visibility: block;
+
+	display: flex;
+	align-items: center;
+
+	// .label {
+	// 	@include useTextTransform(name(primary));
+	// 	@include typographyMixins.RunningTextMixin(name(primary));
+	// }
+
+	// .subtitle {
+	// 	@include useTextTransform(name(secondary));
+	// 	@include typographyMixins.RunningTextMixin(name(secondary));
+	// 	@include typographyMixins.SeparatorMixin(name(separator));
+	// }
+
+	.link {
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	// // layout variants
+	// &[data-variant="centered"] {
+	// 	display: block;
+	// 	.subtitle {
+	// 		--separator-content: "";
+	// 		--separator-horizontal-margin: 0;
+	// 	}
+	// }
+}

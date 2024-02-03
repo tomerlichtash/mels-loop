@@ -1,0 +1,39 @@
+@use '../../styles/mixins/typographyMixins' as Typography;
+@use '../../styles/mixins/popoverMixin' as Popover;
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+@import '../../styles/lib/states';
+
+$__stylesheet__: (
+	name: annotation,
+);
+
+.root {
+	--font-size: 0.75em;
+	--font-weight: normal;
+	--line-height: 1em;
+	--offset-top: -0.5em;
+	--padding-left: 0.15em;
+	--padding-right: 0.15em;
+	--data-content: #{attr(data-prefix-content) attr(data-seq)};
+
+	position: relative;
+
+	@include Popover.PopoverTrigger(name());
+
+	@include useFontSize();
+	@include useLineHeight();
+	@include useOffsetTop();
+
+	.content {
+		@include Typography.SuffixDataContentMixin(name(), var(--data-content));
+	}
+
+	&:before {
+		@include Typography.PrefixMixin(name());
+	}
+
+	&:after {
+		@include Typography.SuffixMixin(name());
+	}
+}

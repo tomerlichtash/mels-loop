@@ -1,0 +1,12 @@
+@import '../../../../baseThemeStyle';
+@import '../../../../lib/refs';
+
+$index: (
+	background-color: ref(color-container-main),
+	text-color: ref(color-surface-contrast),
+	border-color: ref(color-surface-dark),
+	radius: globalRef(radius-sm),
+	font-family: 'monospace',
+	font-weight: 500,
+	gutter: 2em,
+);

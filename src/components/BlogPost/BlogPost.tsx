@@ -1,10 +1,10 @@
-import React from "react";
-import { mlUtils } from "../../lib/ml-utils";
-import { ContentComponent } from "../content";
-import { Button, DateFormat } from "@components/ui";
+import React from 'react';
+import { unique } from 'lib/utils';
+import { ContentComponent } from '../../lib/content';
+import { Link, DateFormat } from '@components/index';
 
-import type { LocaleId } from "../../locale/locale-context";
-import type { ComponentProps, IParsedPageData } from "../../interfaces/models";
+import type { LocaleId } from '../../types';
+import type { IParsedPageData } from '../../types/models';
 
 type IBlogPostProps = {
 	title: string;
@@ -13,7 +13,8 @@ type IBlogPostProps = {
 	author: string;
 	content: IParsedPageData;
 	path?: string;
-} & ComponentProps;
+	className?: string;
+};
 
 export const BlogPost = ({
 	title,
@@ -29,9 +30,9 @@ export const BlogPost = ({
 				<header className="header" aria-label={title} title={title}>
 					<h2 className="topic">
 						{path ? (
-							<Button href={`/${path}`} className="button">
+							<Link href={`/${path}`} className="button">
 								{title}
-							</Button>
+							</Link>
 						) : (
 							<span className="title">{title}</span>
 						)}
@@ -41,14 +42,9 @@ export const BlogPost = ({
 					</div>
 				</header>
 				<main>
-					{content.parsed.map((node) => {
-						return (
-							<ContentComponent
-								key={mlUtils.uniqueId()}
-								componentData={{ node }}
-							/>
-						);
-					})}
+					{content.parsed.map((node) => (
+						<ContentComponent key={unique.id()} componentData={{ node }} />
+					))}
 				</main>
 			</div>
 		</article>

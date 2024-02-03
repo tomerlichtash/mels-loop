@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import Scrollbar from "../components/ui/Scrollbar";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import type { Meta, StoryObj } from '@storybook/react';
+import Scrollbar from '../components/scrollbar';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 const meta = {
-	title: "Scrollbar",
+	title: 'Scrollbar',
 	component: Scrollbar,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
 		},
 	},
-	tags: ["autodocs"],
+	tags: ['autodocs'],
 	argTypes: {},
 } satisfies Meta<typeof Scrollbar>;
 
@@ -19,16 +19,15 @@ type Story = StoryObj<typeof meta>;
 
 const BaseStory: Story = {
 	args: {
-		children: (
-			<div style={{ height: "1000px" }}>
-				<div>Content</div>
-			</div>
-		),
+		children: [],
+		textDirection: 'rtl',
 	},
-	render: function Render({ children }) {
+	render: function Render() {
 		return (
 			<Scrollbar height="100vh" textDirection="ltr">
-				{children}
+				<div style={{ height: '1000px' }}>
+					<div>Content</div>
+				</div>
 			</Scrollbar>
 		);
 	},
@@ -40,7 +39,7 @@ export const Mobile: Story = {
 	...BaseStory,
 	parameters: {
 		viewport: {
-			defaultViewport: "iphonex",
+			defaultViewport: 'iphonex',
 		},
 	},
 };

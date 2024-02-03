@@ -1,37 +1,27 @@
-import React from "react";
-import Layout from "../components/site/Layout";
-import { GetStaticProps, NextPage } from "next";
-import {
-	IMLParsedNode,
-	IPageProps,
-	IParsedPageData,
-} from "../interfaces/models";
-import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
-import { mlUtils } from "../lib/ml-utils";
-import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import { contentUtils } from "../lib/content-utils";
-import usePageData from "../lib/usePageData";
-import { ContentComponent } from "../components/content";
+import React from 'react';
+import Layout from '../components/layout';
+import { GetStaticProps, NextPage } from 'next';
+import { IPageProps } from '../types/models';
+import { mlNextUtils } from '../lib/next-utils';
+import { LoadContentModes, LoadFolderModes } from '../types/parser';
+import { contentUtils } from '../lib/content-utils';
+import usePageData from '../lib/usePageData';
+import { getMetadata, renderElements } from '../lib/content/helpers';
+import { CONTENT_TYPES } from '../consts';
+import Heading from '@components/heading';
+import { Text } from '@components/index';
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
-	const page = pageData[0] || ({} as IParsedPageData);
-	const { metaData } = pageData[0];
-	const { title, moto } = metaData;
-	const elements: IMLParsedNode[] = page.parsed;
+	const [title, moto] = getMetadata(['title', 'moto'], pageData);
 	return (
 		<Layout>
 			<article>
-				<h1 className="title">{title}</h1>
-				<p className="moto">{moto}</p>
-				{elements.map((node) => (
-					<ContentComponent
-						key={mlUtils.uniqueId()}
-						className={"content-component"}
-						componentData={{ node }}
-					/>
-				))}
+				<Heading level={1} className="title">
+					{title}
+				</Heading>
+				<Text variant="h2">{moto}</Text>
+				{renderElements(pageData)}
 			</article>
 		</Layout>
 	);

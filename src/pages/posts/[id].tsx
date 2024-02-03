@@ -1,16 +1,16 @@
-import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
-import { IPageProps } from "../../interfaces/models";
-import { CONTENT_TYPES } from "../../consts";
-import { mlNextUtils } from "../../lib/next-utils";
-import { LoadFolderModes } from "../../interfaces/parser";
-import Layout from "../../components/site/Layout";
-import usePageData from "../../lib/usePageData";
-import { mlUtils } from "../../lib/ml-utils";
-import { LocaleProvider } from "../../locale/context/locale-context";
-import { useContext } from "react";
-import BlogPost from "../../components/BlogPost";
-import { Button } from "@components/ui";
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
+import { IPageProps } from '../../types/models';
+import { CONTENT_TYPES } from '../../consts';
+import { mlNextUtils } from '../../lib/next-utils';
+import { LoadFolderModes } from '../../types/parser';
+import Layout from '../../components/layout';
+import usePageData from '../../lib/usePageData';
+import { mlUtils } from '../../lib/ml-utils';
+import { LocaleProvider } from '../../locale/context/locale-context';
+import { useContext } from 'react';
+import BlogPost from '../../components/BlogPost';
+import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
+import Link from '@components/link';
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);
@@ -19,13 +19,14 @@ export default function Doc(props: IPageProps) {
 	const { metaData } = page;
 	const { title, date, author } = metaData;
 	const backIcon =
-		textDirection === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />;
+		textDirection === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />;
+
 	return (
 		<Layout title={title}>
 			<div className="page">
-				<Button className="button" icon={backIcon} link={"/posts"}>
-					{translate("button.back")}
-				</Button>
+				<Link href={'/posts'}>
+					{backIcon} {translate('button.back')}
+				</Link>
 				<BlogPost
 					key={mlUtils.uniqueId()}
 					title={title}

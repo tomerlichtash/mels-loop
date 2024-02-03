@@ -1,0 +1,39 @@
+@import "../../../../baseThemeStyle";
+
+$index: (
+	variant: (
+		base: (
+			title: (
+				text-transform: uppercase,
+			),
+		),
+	),
+);
+
+// .ItemContent {
+// 	.icon {
+// 		--background-color: transparent;
+
+// 		display: flex;
+
+// 		@include useBorderSize(site-nav-item-icon);
+// 		@include useBorderStyle(site-nav-item-icon);
+// 		@include useBorderColor(site-nav-item-icon);
+// 		@include useRadius(site-nav-item-icon);
+// 		@include useInnerGutter(site-nav-item-icon);
+// 		@include useGap(site-nav-item-icon);
+// 		@include useBackgroundColor(site-nav-item-icon);
+// 	}
+
+// 	.title {
+// 		display: flex;
+
+// 		@include useFontWeight(site-nav-item-title);
+// 		@include useTextTransform(site-nav-item-title);
+// 		@include useLineHeight(site-nav-item-title);
+// 	}
+
+// 	.description {
+// 		color: #fff;
+// 	}
+// }

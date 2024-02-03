@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import Layout from "../components/site/Layout/Layout";
-import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import { GetStaticProps } from "next";
-import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
-import { IPageProps, IParsedPageData } from "../interfaces/models";
-import usePageData from "../lib/usePageData";
-import { LocaleProvider } from "../locale/context/locale-context";
-import orderBy from "lodash.orderby";
-import BlogPost from "../components/BlogPost";
-import { mlUtils } from "../lib/ml-utils";
+import React, { useContext } from 'react';
+import Layout from '@components/layout';
+import { LoadContentModes, LoadFolderModes } from '../types/parser';
+import { GetStaticProps } from 'next';
+import { CONTENT_TYPES } from '../consts';
+import { mlNextUtils } from '../lib/next-utils';
+import { IPageProps, IParsedPageData } from '../types/models';
+import usePageData from '../lib/usePageData';
+import { LocaleProvider } from '../locale/context/locale-context';
+import orderBy from 'lodash.orderby';
+import BlogPost from '../components/BlogPost';
+import { mlUtils } from '../lib/ml-utils';
 
 export default function Blog(props: IPageProps) {
 	const { locale, sectionName } = useContext(LocaleProvider);
@@ -18,7 +18,7 @@ export default function Blog(props: IPageProps) {
 		<Layout>
 			<div className="page">
 				<h1 className="title">{sectionName}</h1>
-				{orderBy(pageData, ["metaData.date"], ["desc"]).map(
+				{orderBy(pageData, ['metaData.date'], ['desc']).map(
 					(page: IParsedPageData) => {
 						const { metaData, path: path } = page;
 						const { title, date, author } = metaData;

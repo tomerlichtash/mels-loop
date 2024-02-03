@@ -1,0 +1,19 @@
+@import '../../styles/baseComponentStyle';
+
+$__stylesheet__: (
+	name: separator,
+);
+
+.root {
+	background-color: black;
+
+	&[data-orientation='vertical'] {
+		width: 1px;
+		height: 16px;
+	}
+
+	&[data-orientation='horizontal'] {
+		width: 16px;
+		height: 1px;
+	}
+}

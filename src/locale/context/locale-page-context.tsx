@@ -1,6 +1,6 @@
-import { SITE_PAGES } from "../../config/sitePages";
-import type { SitePage } from "../../interfaces/models";
-import { ComponentKeyMap } from "../keymap/types";
+import { SITE_PAGES } from '../../config/sitePages';
+import type { SitePage } from '../../types/models';
+import { ComponentKeyMap } from '../keymap/types';
 
 export interface ILocalePageContext {
 	pageName: string;

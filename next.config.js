@@ -1,29 +1,21 @@
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
-import { withAxiom } from "next-axiom";
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { withAxiom } from 'next-axiom';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const nextConfig = {
-	typescript: {
-		// !! WARN !!
-		// Dangerously allow production builds to successfully complete even if
-		// your project has type errors.
-		// !! WARN !!
-		ignoreBuildErrors: true,
-	},
 	reactStrictMode: true,
 	optimizeFonts: true,
 	sassOptions: {
-		includePaths: [path.join(__dirname, "styles")],
-		// additionalData: `@import "src/scss/_config.scss";`,
+		includePaths: [path.join(__dirname, 'styles')],
 	},
 	i18n: {
-		locales: ["en", "he"],
-		defaultLocale: "en",
+		locales: ['en', 'he'],
+		defaultLocale: 'en',
 	},
 	publicRuntimeConfig: {
-		basePath: process.env.BASE_PATH || "/public/",
+		basePath: process.env.BASE_PATH || '/public/',
 	},
 	serverRuntimeConfig: {
 		PROJECT_ROOT: __dirname,
@@ -31,23 +23,23 @@ const nextConfig = {
 	async redirects() {
 		return [
 			{
-				source: "/docs/preface",
-				destination: "/docs/the-story-of-mel/pages/preface",
+				source: '/docs/preface',
+				destination: '/docs/the-story-of-mel/pages/preface',
 				permanent: true,
 			},
 			{
-				source: "/docs/mels-hack-the-missing-bits",
-				destination: "/docs/the-story-of-mel/pages/mels-hack-the-missing-bits",
+				source: '/docs/mels-hack-the-missing-bits',
+				destination: '/docs/the-story-of-mel/pages/mels-hack-the-missing-bits',
 				permanent: true,
 			},
 			{
-				source: "/docs/resources",
-				destination: "/docs/the-story-of-mel/pages/resources",
+				source: '/docs/resources',
+				destination: '/docs/the-story-of-mel/pages/resources',
 				permanent: true,
 			},
 			{
-				source: "/docs/blackjack-writeup",
-				destination: "/docs/the-story-of-mel/pages/blackjack-writeup",
+				source: '/docs/blackjack-writeup',
+				destination: '/docs/the-story-of-mel/pages/blackjack-writeup',
 				permanent: true,
 			},
 		];

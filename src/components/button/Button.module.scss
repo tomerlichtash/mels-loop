@@ -1,0 +1,13 @@
+@import '../../styles/baseComponentStyle';
+@import '../../styles/lib/themeVars';
+
+.root {
+	display: inline-flex;
+	align-items: center;
+
+	@include cursorPointer;
+
+	&[data-size] {
+		padding: 0.5em 0.75em;
+	}
+}
