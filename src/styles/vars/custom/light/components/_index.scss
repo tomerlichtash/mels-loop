@@ -7,12 +7,12 @@
 @use '../../../../../components/paragraph/paragraph.module' as Paragraph;
 @use '../../../../../components/blockquote/blockquote.module' as Blockquote;
 // @use "components/cite" as Cite;
-@use '../../../../../components/link/link.module' as Link;
+@use '../../../../../components/link/Link.module' as Link;
 @use '../../../../../components/table/table.module' as Table;
 @use '../../../../../components/figure/figure.module' as Figure;
 @use '../../../../../components/custom-image/custom-image.module' as CustomImage;
 @use '../../../../../components/annotation/annotation.module' as Annotation;
-@use '../../../../../components/term/term.module' as GlossaryTerm;
+@use '../../../../../components/term/Term.module' as GlossaryTerm;
 @use '../../../../../components/code-inline/code-inline.module' as CodeInline;
 @use '../../../../../components/code-block/code-block.module' as CodeBlock;
 @use '../../../../../components/list-item/list-item.module' as ListItem;
@@ -22,7 +22,7 @@
 	LoadingIndicator;
 @use '../../../../../components/strip/Strip.module' as Strip; // todo: move to ui components
 @use '../../../../../components/container/Container.module' as Container;
-@use '../../../../../components/page/page.module' as Page;
+@use '../../../../../components/page/Page.module' as Page;
 @use '../../../../../components/logo/Logo.module' as Logo;
 @use '../../../../../components/text-link/TextLink.module' as TextLink;
 @use '../../../../../components/locale-select/LocaleSelect.module' as
@@ -30,7 +30,7 @@
 @use '../../../../../components/theme-select/ThemeSelect.module' as
 	ThemeSelector;
 // @use "components/site/button" as buttonComponent;
-@use '../../../../../components/HorizontalMenu/HorizontalNav.module.scss' as
+@use '../../../../../components/HorizontalMenu/HorizontalNav.module' as
 	HorizontalNav;
 @use '../../../../../components/VerticalMenu/VerticalNav.module' as VerticalMenu;
 @use '../../../../../components/nav-item-content/NavItemContent.module' as
