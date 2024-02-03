@@ -126,23 +126,23 @@ jobs:
     # parallelism: 4
     steps:
       - checkout
-      # - restore_cache:
-      #     name: Restore Yarn Package Cache
-      #     keys:
-      #       - yarn-packages-e2e-codex-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      #     paths:
-      #       - ~/.yarn/cache
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-e2e-codex-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.yarn/cache
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile #--cache-folder ~/.cache/yarn
-      # - save_cache:
-      #     name: Save Yarn Package Cache
-      #     key: yarn-packages-e2e-codex-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      #     paths:
-      #       - ~/.cache/yarn
+          command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-e2e-codex-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
       - run:
           name: E2E Test
-          command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e --project="codex-the-story-of-mel" --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
+          command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
       - store_test_results:
           path: results.xml
       - store_artifacts:
