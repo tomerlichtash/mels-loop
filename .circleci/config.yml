@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  eslint:
+  lint:
     docker:
       - image: cimg/node:18.17
     steps:
@@ -90,6 +90,6 @@ jobs:
 workflows:
   CI:
     jobs:
-      - eslint
+      - lint
       - unit
       - e2e
