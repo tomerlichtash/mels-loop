@@ -29,7 +29,7 @@
 	},
 	"include": [
 		"src",
-		"src/components/index.ts",
+		"src/components/index.tsx",
 		"next-env.d.ts",
 		"globals.d.ts",
 		"**/**/*.ts",
