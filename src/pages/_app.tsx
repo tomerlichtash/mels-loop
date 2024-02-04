@@ -16,7 +16,6 @@ const App = ({ Component, pageProps }: AppProps<IPageProps>) => {
 	const fontStyles = css`
 		${fontFaceDecls}
 	`;
-
 	return (
 		<LocaleContextProvider router={router}>
 			<PageContextProvider documentPath={pageProps.documentPath}>

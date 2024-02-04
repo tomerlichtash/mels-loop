@@ -20,7 +20,6 @@ export { default as Page } from './page';
 export { default as LocaleSelect } from './locale-select';
 export { default as ThemeSelect } from './theme-select';
 export { default as Logo } from './logo';
-export { default as ContentPage } from './ContentPage';
 export { default as BlogPost } from './BlogPost';
 export { default as PopoverDialog } from './popover/PopoverDialog';
 export { default as PopoverTrigger } from './popover/PopoverTrigger';

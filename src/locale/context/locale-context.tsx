@@ -1,16 +1,16 @@
-import React, { Context, createContext } from "react";
-import { NextRouter } from "next/router";
+import React, { Context, createContext } from 'react';
+import { NextRouter } from 'next/router';
 import {
 	ILocaleContext,
 	ILocaleContextProps,
 	localeLabelPrefix,
 	LocaleId,
 	LocaleInfo,
-} from "../locale-context";
-import { _translate } from "../translate";
-import { Languages } from "..";
-import LocaleMetaContext, { ILocaleMetaContext } from "./locale-meta-context";
-import LocalePageContext, { ILocalePageContext } from "./locale-page-context";
+} from '../locale-context';
+import { _translate } from '../translate';
+import { Languages } from '..';
+import LocaleMetaContext, { ILocaleMetaContext } from './locale-meta-context';
+import LocalePageContext, { ILocalePageContext } from './locale-page-context';
 
 export class LocaleContext implements ILocaleContext {
 	private _locale: LocaleId;
@@ -74,7 +74,7 @@ export class LocaleContext implements ILocaleContext {
 	}
 
 	public getLocaleLabel = (id: string) =>
-		[localeLabelPrefix, id].join("_").toUpperCase();
+		[localeLabelPrefix, id].join('_').toUpperCase();
 
 	public getLocaleSymbol = (id: string) =>
 		this.translate(this.getLocaleLabel(id));

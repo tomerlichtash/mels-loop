@@ -1,36 +1,36 @@
-import { ComponentKeyMap } from "./types";
+import { ComponentKeyMap } from './types';
 
 const PageKeys: Record<string, ComponentKeyMap> = {
 	HOME_PAGE: {
-		pageName: "site.pages.home.label",
+		pageName: 'site.pages.home.label',
 	},
 	ABOUT_PAGE: {
-		pageName: "site.pages.about.label",
+		pageName: 'site.pages.about.label',
 	},
 	BLOG_PAGE: {
-		pageName: "site.pages.blog.label",
-		sectionName: "SECTION_LABEL_POSTS",
+		pageName: 'site.pages.blog.label',
+		sectionName: 'SECTION_LABEL_POSTS',
 	},
 	RESOURCES_PAGE: {
-		pageName: "PAGE_LABEL_RESOURCES",
+		pageName: 'site.pages.resources.label',
 	},
 	GLOSSARY_PAGE: {
-		pageName: "PAGE_LABEL_GLOSSARY",
+		pageName: 'site.pages.glossary.label',
 	},
 	DOCS_PAGE: {
-		pageName: "PAGE_LABEL_DOCS",
+		pageName: 'site.pages.docs.label',
 	},
 	CONTACT_PAGE: {
-		pageName: "PAGE_LABEL_CONTACT",
+		pageName: 'site.pages.contact.label',
 	},
 	CONTRIBUTE_PAGE: {
-		pageName: "PAGE_LABEL_CONTRIBUTE",
+		pageName: 'site.pages.contribute.label',
 	},
 	ERROR_404_PAGE: {
-		pageName: "ERROR_404_FILE_NOT_FOUND",
+		pageName: 'error.404.label',
 	},
-	ERROR_GENERAL: {
-		pageName: "ERROR_GENERAL",
+	'error.label': {
+		pageName: 'error.label',
 	},
 };
 
@@ -45,5 +45,5 @@ export default {
 	CONTRIBUTE_PAGE_LOCALE: PageKeys.CONTRIBUTE_PAGE,
 	GLOSSARY_PAGE_LOCALE: PageKeys.GLOSSARY_PAGE,
 	ERROR_404_PAGE_LOCALE: PageKeys.ERROR_404_PAGE,
-	ERROR_GENERAL_LOCALE: PageKeys.ERROR_GENERAL,
+	ERROR_GENERAL_LOCALE: PageKeys['error.label'],
 };

@@ -6,12 +6,9 @@ export const renderElements = (pageData) => {
 	const page = pageData[0] || ({} as IParsedPageData);
 	const elements: IMLParsedNode[] = page.parsed;
 
-	return elements.map((node: IMLParsedNode) => {
-		// key={node.key}
-		return (
-			<ContentComponent key={mlUtils.uniqueId()} componentData={{ node }} />
-		);
-	});
+	return elements.map((node: IMLParsedNode) => (
+		<ContentComponent key={mlUtils.uniqueId()} componentData={{ node }} />
+	));
 };
 
 export const getMetadata = (keys, pageData) => {

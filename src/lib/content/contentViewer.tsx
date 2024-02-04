@@ -6,11 +6,13 @@ import { DynamicContentContext } from './contentContext';
 import { ReactPageContext } from '../../context/pageContext';
 import { ContentComponent } from './contentComponent';
 import { LoadingIndicator } from '@components/index';
-import DynamicContentLayout from '@components/dynamic-content-layout';
-
 import { LocaleProvider } from '../../locale/context/locale-context';
-import { DynamicContentTypes } from '../types/dynamic-content';
+import {
+	BibliographyItem,
+	DynamicContentTypes,
+} from '../types/dynamic-content';
 import { IParsedPageData } from '../../types/models';
+import { DynamicContentLayout } from './contentLayout';
 
 /**
  * Show loading animation after this many msecs have elapsed without data
@@ -118,25 +120,28 @@ export const DynamicContentViewer = ({
 	const { metaData } = item;
 	const { source_name, source_url, glossary_key } = metaData;
 
-	const sources = source_name && [
+	const sources: BibliographyItem[] = source_name && [
 		{
 			name: source_name,
 			url: source_url,
 		},
 	];
+
 	const label = translate(`NOTE_LABEL_${itemData.type.toUpperCase()}`);
+	const origTerm = locale === 'en' ? null : translate(glossary_key, 'en');
+	const sourcesLabelSuffix = sources.length > 1 ? 'MULTIPLE' : 'SINGLE';
 	const sourcesLabel = translate(
-		`COMPONENT_BIBLIOGRAPHY_LABEL_${sources.length > 1 ? 'MULTIPLE' : 'SINGLE'}`
+		`COMPONENT_BIBLIOGRAPHY_LABEL_${sourcesLabelSuffix}`
 	);
 
 	return (
 		<DynamicContentLayout
+			type={itemData.type}
 			textDirection={textDirection}
-			type={itemData.type === DynamicContentTypes.Glossary ? 'ref' : 'note'}
 			label={label}
-			sourcesLabel={sourcesLabel}
 			title={translate(glossary_key)}
-			term={locale === 'en' ? '' : translate(glossary_key, 'en')}
+			term={origTerm}
+			sourcesLabel={sourcesLabel}
 			sources={sources}
 		>
 			{elements.map((node) => (

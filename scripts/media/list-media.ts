@@ -1,8 +1,8 @@
 import {
 	ListObjectsV2Command,
 	ListObjectsV2CommandOutput,
-} from "@aws-sdk/client-s3";
-import { createS3Proxy } from "./s3-client";
+} from '@aws-sdk/client-s3';
+import { createS3Proxy } from './lib/s3-client';
 
 // runs without params to list the content of the bucket configured in .env
 
@@ -19,11 +19,11 @@ const listObjects = async () => {
 listObjects()
 	.then((response: ListObjectsV2CommandOutput) => {
 		console.log(
-			"List response",
+			'List response',
 			response.Contents?.map((o) => ({
 				name: o.Key,
-				size: ((o.Size || 0) / 1000).toFixed(2) + "KB",
-				url: proxy.getObjectUrl(o.Key || ""),
+				size: ((o.Size || 0) / 1000).toFixed(2) + 'KB',
+				url: proxy.getObjectUrl(o.Key || ''),
 			}))
 		);
 	})

@@ -41,3 +41,14 @@ export const parseMenuItems = (
 	});
 	return res;
 };
+
+export const mapSources = (sources) =>
+	sources &&
+	sources.map(({ name, author, ...rest }) => {
+		const authorSuffix = author ? ` / ${author}` : '';
+		return {
+			label: `${name}${authorSuffix}`,
+			target: '_blank',
+			...rest,
+		};
+	});

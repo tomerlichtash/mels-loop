@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React, { HTMLAttributes, PropsWithChildren } from 'react';
 import Link from '../link';
 import classNames from 'classnames';
 import styles from './List.module.scss';
@@ -38,8 +38,10 @@ const List = ({
 	label,
 	children,
 	className,
-}: PropsWithChildren<ListProps>): JSX.Element => (
-	<div className={classNames(styles.root, className)}>
+	...rest
+}: PropsWithChildren<ListProps> &
+	HTMLAttributes<HTMLDivElement>): JSX.Element => (
+	<div className={classNames(styles.root, className)} {...rest}>
 		{label && <Text className={styles.label}>{label}</Text>}
 		<ul className={styles.list}>{children || renderListItems(items)}</ul>
 	</div>

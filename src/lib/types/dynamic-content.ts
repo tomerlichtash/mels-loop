@@ -72,3 +72,8 @@ export interface IDynamicContentContext {
 	readonly pageIndex: number;
 	setPageIndex(index: number): void;
 }
+
+export type BibliographyItem = {
+	name: string;
+	url?: string;
+};
