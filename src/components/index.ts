@@ -1,4 +1,4 @@
-export * from './annotation';
+export { Annotation } from './annotation';
 export { Button } from './button';
 export { Container } from './container';
 export { Drawer } from './drawer';
