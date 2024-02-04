@@ -1,3 +1,3 @@
-import { default as Annotation } from './Annotation';
+export { Annotation } from './Annotation';
 
-export default Annotation;
+export type { AnnotationProps } from './Annotation';

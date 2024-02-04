@@ -12,7 +12,7 @@ type InputProps = {
 	className?: string;
 };
 
-export const Input = ({
+const Input = ({
 	id,
 	required,
 	placeholder,
@@ -34,4 +34,6 @@ export const Input = ({
 	/>
 );
 
-export default Input;
+export { Input };
+
+export type { InputProps };

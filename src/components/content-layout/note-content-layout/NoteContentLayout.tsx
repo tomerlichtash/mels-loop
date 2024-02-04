@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './NoteContentLayout.module.scss';
-
 import type { NoteContentLayoutProps } from '../types';
 
 const NoteContentLayout = ({
@@ -11,4 +10,4 @@ const NoteContentLayout = ({
 	</div>
 );
 
-export default NoteContentLayout;
+export { NoteContentLayout };

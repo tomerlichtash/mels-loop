@@ -1,3 +1,3 @@
-import { CodeInline } from './code-inline';
+import { CodeInline } from './CodeInline';
 
 export default CodeInline;

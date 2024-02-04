@@ -7,7 +7,7 @@ export type PopoverCloseButtonProps = {
 	className?: string;
 };
 
-export const PopoverCloseButton = ({
+const PopoverCloseButton = ({
 	onClick,
 	children,
 }: PropsWithChildren<PopoverCloseButtonProps>) => {
@@ -18,4 +18,4 @@ export const PopoverCloseButton = ({
 	);
 };
 
-export default PopoverCloseButton;
+export { PopoverCloseButton };

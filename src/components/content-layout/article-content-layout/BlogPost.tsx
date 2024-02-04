@@ -1,7 +1,8 @@
 import React from 'react';
 import { unique } from 'lib/utils';
 import { ContentComponent } from '../../../lib/content';
-import { Link, DateFormat } from '@components/index';
+import { Link } from '../../link';
+import { DateFormat } from '../../date-format';
 
 import type { LocaleId } from '../../../types';
 import type { IParsedPageData } from '../../../types/models';

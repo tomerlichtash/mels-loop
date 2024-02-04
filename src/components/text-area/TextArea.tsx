@@ -12,7 +12,7 @@ type TextAreaProps = {
 	className?: string;
 };
 
-export const TextArea = ({
+const TextArea = ({
 	id,
 	required,
 	placeholder,
@@ -32,4 +32,6 @@ export const TextArea = ({
 	/>
 );
 
-export default TextArea;
+export { TextArea };
+
+export type { TextAreaProps };

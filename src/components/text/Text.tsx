@@ -12,7 +12,7 @@ export type TextVariant =
 	| 'body1'
 	| 'body2';
 
-type TextProps = {
+export type TextProps = {
 	asChild?: boolean;
 	variant?: TextVariant;
 	italics?: boolean;
@@ -51,4 +51,4 @@ const Text = ({
 	);
 };
 
-export default Text;
+export { Text };

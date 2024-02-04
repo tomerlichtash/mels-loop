@@ -10,7 +10,7 @@ type ButtonProps = {
 	className?: string;
 };
 
-export const Button = ({
+const Button = ({
 	asChild,
 	children,
 	className,
@@ -32,4 +32,6 @@ export const Button = ({
 	);
 };
 
-export default Button;
+export { Button };
+
+export type { ButtonProps };

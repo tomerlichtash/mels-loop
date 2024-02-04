@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { Button } from '@components/index';
+import { Button } from '../button';
 import classNames from 'classnames';
 import styles from './NavListItem.module.scss';
 import { PropsWithChildren } from 'react';
-import { NavItemDataProps } from '@components/HorizontalMenu/types';
+import { NavItemDataProps } from '../HorizontalMenu';
 
-type NavListItemProps = {
+export type NavListItemProps = {
 	onClick?: () => void;
 	className?: string;
 };
@@ -28,4 +28,4 @@ const NavListItem = ({
 	</Button>
 );
 
-export default NavListItem;
+export { NavListItem };

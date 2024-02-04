@@ -5,18 +5,18 @@ import { TextDirection } from 'locale/locale-context';
 import classNames from 'classnames';
 import styles from './Scrollbar.module.scss';
 
-type ScrollAreaProps = {
+type ScrollbarProps = {
 	height?: string;
 	textDirection: TextDirection;
 };
 
-export const Scrollbar = ({
+const Scrollbar = ({
 	children,
 	height,
 	textDirection,
 	className,
 	...rest
-}: ScrollAreaProps & ScrollAreaScrollbarVisibleProps) => (
+}: ScrollbarProps & ScrollAreaScrollbarVisibleProps) => (
 	<ScrollAreaPrimitive.Root
 		className={classNames(styles.root, className)}
 		type="always"
@@ -45,4 +45,6 @@ export const Scrollbar = ({
 	</ScrollAreaPrimitive.Root>
 );
 
-export default Scrollbar;
+export { Scrollbar };
+
+export type { ScrollbarProps };

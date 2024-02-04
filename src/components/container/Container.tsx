@@ -52,4 +52,6 @@ const Container = ({
 	);
 };
 
-export default Container;
+export { Container };
+
+export type { ContainerProps };

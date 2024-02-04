@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Scrollbar } from '@components/index';
+import { Scrollbar } from '../scrollbar';
 import styles from './ContentLayout.module.scss';
 
 import type { TextDirection } from '@locale/index';
@@ -20,4 +20,6 @@ const ContentLayout = ({
 	</Scrollbar>
 );
 
-export default ContentLayout;
+export { ContentLayout };
+
+export type { ContentLayoutProps };

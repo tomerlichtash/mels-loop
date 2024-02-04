@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './table.module.scss';
+import styles from './Table.module.scss';
 
 export const Table = ({ children, ...rest }) => (
 	<table className={styles.root} {...rest}>

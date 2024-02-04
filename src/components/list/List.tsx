@@ -1,16 +1,10 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
-import Link from '../link';
 import classNames from 'classnames';
 import styles from './List.module.scss';
-import Text from '../text';
-import ListItem from '@components/list-item';
+import { Link } from '../link';
+import { Text } from '../text';
+import { ListItem, ListItemProps } from '../list-item';
 import { unique } from 'lib/utils';
-
-export type ListItemProps = {
-	label?: string;
-	url?: string;
-	target?: string;
-};
 
 type ListProps = {
 	label?: string;
@@ -47,4 +41,6 @@ const List = ({
 	</div>
 );
 
-export default List;
+export { List };
+
+export type { ListProps };

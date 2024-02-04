@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
-import { NavListItem } from '@components/index';
-import NavItemContent from '../nav-item-content/NavItemContent';
+import { NavListItem } from '../nav-item';
+import { NavItemContent } from '../nav-item-content';
 import { unique } from 'lib/utils';
-import { NavParsedNodes } from '@components/HorizontalMenu/types';
+import { NavParsedNodes } from '../../components/HorizontalMenu';
 import styles from './VerticalNav.module.scss';
 
-type VerticalNavProps = {
+export type VerticalNavProps = {
 	items: NavParsedNodes[];
 	onClose: () => void;
 };
@@ -38,4 +38,4 @@ const VerticalNav = ({ items, onClose }: VerticalNavProps) =>
 		[items, onClose]
 	);
 
-export default VerticalNav;
+export { VerticalNav };

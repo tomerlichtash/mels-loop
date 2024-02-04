@@ -1,12 +1,12 @@
 import React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { CaretDownIcon } from '@radix-ui/react-icons';
-import { Button, NavListItem, NavItemContent } from '@components/index';
+import { Button, NavListItem, NavItemContent } from 'components';
 import styles from './HorizontalNav.module.scss';
 import { unique } from 'lib/utils';
 import { NavItemDataProps, NavParsedNodes } from './types';
 
-type NavProps = {
+export type NavProps = {
 	items: NavParsedNodes[];
 };
 
@@ -57,4 +57,4 @@ const HorizontalNav = ({ items }: NavProps) => (
 	</NavigationMenu.Root>
 );
 
-export default HorizontalNav;
+export { HorizontalNav };

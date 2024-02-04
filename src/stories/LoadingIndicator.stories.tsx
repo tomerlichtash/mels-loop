@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import LoadingIndicator from '../components/loading-indicator';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { LoadingIndicator } from '@components/loading-indicator';
 
 const meta = {
 	title: 'LoadingIndicator',

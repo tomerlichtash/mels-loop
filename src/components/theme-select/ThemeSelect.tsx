@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Toggle from '../toggle';
-import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import styles from './ThemeSelect.module.scss';
+import { getIcon } from './helpers';
 
-const getIcon = (isDark: boolean) =>
-	isDark ? (
-		<MoonIcon className={styles.icon} />
-	) : (
-		<SunIcon className={styles.icon} />
-	);
+export type ThemeSelectProps = {
+	label: string;
+	theme: string;
+	setTheme: (val: string) => void;
+};
 
 const ThemeSelect = ({ label, theme, setTheme }): JSX.Element => {
 	const [mounted, setMounted] = useState(false);
@@ -24,10 +23,11 @@ const ThemeSelect = ({ label, theme, setTheme }): JSX.Element => {
 			title={label}
 			isToggled={isDark}
 			onToggle={() => setTheme(isDark ? 'light' : 'dark')}
+			className={styles.root}
 		>
 			{getIcon(isDark)}
 		</Toggle>
 	);
 };
 
-export default ThemeSelect;
+export { ThemeSelect };

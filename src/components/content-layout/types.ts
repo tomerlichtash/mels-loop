@@ -1,7 +1,9 @@
+import { LinkTarget } from '@components/link/Link';
+
 export type SourceProps = {
 	label?: string;
 	url: string;
-	target?: string;
+	target?: LinkTarget;
 };
 
 export type ReferenceContentLayoutProps = {

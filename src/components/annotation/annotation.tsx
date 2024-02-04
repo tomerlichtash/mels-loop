@@ -1,14 +1,21 @@
 import React from 'react';
 import styles from './Annotation.module.scss';
+import { leadingZero } from '../helpers';
 
-export const Annotation = ({ index }): JSX.Element => (
+type AnnotationProps = {
+	index: number;
+};
+
+const Annotation = ({ index }: AnnotationProps): JSX.Element => (
 	<span className={styles.root}>
 		<span
 			className={styles.content}
-			data-prefix={index <= 9 ? '0' : ''}
+			data-prefix={leadingZero(index)}
 			data-seq={index}
 		></span>
 	</span>
 );
 
-export default Annotation;
+export { Annotation };
+
+export type { AnnotationProps };

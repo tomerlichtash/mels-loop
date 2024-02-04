@@ -1,12 +1,12 @@
-import { Button } from '@components/index';
+import { Button } from '../button';
 import styles from './VerticalMenuTrigger.module.scss';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 
-type VerticalMenuProps = {
+export type VerticalTriggerProps = {
 	onClick: () => void;
 };
 
-const VerticalMenuTrigger = ({ onClick }: VerticalMenuProps) => {
+const VerticalMenuTrigger = ({ onClick }: VerticalTriggerProps) => {
 	return (
 		<Button onClick={onClick} asChild>
 			<span className={styles.root}>
@@ -19,4 +19,4 @@ const VerticalMenuTrigger = ({ onClick }: VerticalMenuProps) => {
 	);
 };
 
-export default VerticalMenuTrigger;
+export { VerticalMenuTrigger };

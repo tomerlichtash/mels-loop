@@ -1,3 +1,3 @@
-import Logo from './Logo';
+export { Logo } from './Logo';
 
-export default Logo;
+export type { LogoProps } from './Logo';

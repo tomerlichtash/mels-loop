@@ -22,4 +22,6 @@ const DateFormat = ({
 	</time>
 );
 
-export default DateFormat;
+export { DateFormat };
+
+export type { DateFormatProps };

@@ -1,3 +1,3 @@
-import { Scrollbar } from './Scrollbar';
+export { Scrollbar } from './Scrollbar';
 
-export default Scrollbar;
+export type { ScrollbarProps } from './Scrollbar';

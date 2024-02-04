@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './line.module.scss';
+import styles from './Line.module.scss';
 
 export const Line = ({ index, children, ...rest }): JSX.Element => {
 	if (children.length === 0) {

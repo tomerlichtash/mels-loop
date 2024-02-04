@@ -1,3 +1,3 @@
-import Strip from './Strip';
+export { Strip } from './Strip';
 
-export default Strip;
+export type { StripProps } from './Strip';

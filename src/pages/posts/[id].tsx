@@ -10,7 +10,7 @@ import { LocaleProvider } from '../../locale/context/locale-context';
 import { useContext } from 'react';
 import BlogPost from '../../components/content-layout/article-content-layout';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
-import Link from '@components/link';
+import { Link } from '@components/link';
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);

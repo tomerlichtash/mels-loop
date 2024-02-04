@@ -1,5 +1,8 @@
 import React, { PropsWithChildren } from 'react';
-import { Link, List, ListItem, Text } from '@components/index';
+import { Link } from '../../link';
+import { List } from '../../list';
+import { ListItem } from '../../list-item';
+import { Text } from '../../text';
 import styles from './ReferenceContentLayout.module.scss';
 
 import type { ReferenceContentLayoutProps } from '../types';

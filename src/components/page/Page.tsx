@@ -9,4 +9,4 @@ const Page = ({ children }: PropsWithChildren<PageProps>) => (
 	<main className={styles.root}>{children}</main>
 );
 
-export default Page;
+export { Page };

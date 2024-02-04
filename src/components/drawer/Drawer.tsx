@@ -20,7 +20,7 @@ type DrawerProps = {
 	// style?: React.CSSProperties;
 };
 
-export const Drawer = ({
+const Drawer = ({
 	open,
 	direction = 'right',
 	size = 350,
@@ -43,4 +43,6 @@ export const Drawer = ({
 	</ModernDrawer>
 );
 
-export default Drawer;
+export { Drawer };
+
+export type { DrawerProps };

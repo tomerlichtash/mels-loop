@@ -1,17 +1,19 @@
 import React, { PropsWithChildren, SyntheticEvent } from 'react';
 import NextLink from 'next/link';
-import Button from '../button';
+import { Button } from '../button';
 import styles from './Link.module.scss';
 
-type LinkProps = {
+export type LinkTarget = '_blank' | null;
+
+export type LinkProps = {
 	title?: string;
 	href?: string;
-	target?: string;
+	target?: LinkTarget;
 	onClick?: (e: SyntheticEvent) => void;
 	className?: string;
 };
 
-export const Link = ({
+const Link = ({
 	title,
 	href,
 	target,
@@ -23,16 +25,6 @@ export const Link = ({
 			{children}
 		</NextLink>
 	</Button>
-
-	// <NextLink
-	// 	title={title}
-	// 	aria-label={title}
-	// 	href={href}
-	// 	target={target}
-	// 	className={classNames(styles.root, className)}
-	// >
-	// 	{children}
-	// </NextLink>
 );
 
-export default Link;
+export { Link };

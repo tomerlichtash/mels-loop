@@ -1,3 +1,3 @@
-import { default as LocaleSelect } from './LocaleSelect';
+export { LocaleSelect } from './LocaleSelect';
 
-export default LocaleSelect;
+export type { LocaleSelectProps, LocaleOption } from './LocaleSelect';

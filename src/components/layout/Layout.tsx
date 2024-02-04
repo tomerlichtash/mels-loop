@@ -3,7 +3,7 @@ import { unique } from 'lib/utils';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
 import React, { PropsWithChildren, useContext, useMemo } from 'react';
-import { useDrawer } from '@components/drawer/useDrawer';
+import { useDrawer } from '../drawer/useDrawer';
 import {
 	Button,
 	Container,
@@ -23,7 +23,7 @@ import {
 	ThemeSelect,
 	VerticalMenuTrigger,
 	VerticalNav,
-} from '@components/index';
+} from '../index';
 import { footerLinks } from '@config/footer';
 import { MenuItems } from '@config/siteNav/items';
 import { MenuSections } from '@config/siteNav/sections';
@@ -35,7 +35,7 @@ import { Head } from './customHead';
 import styles from './Layout.module.scss';
 import { useIconAnimator } from './useIconAnimator';
 import { useWindowSize } from './useWindowSize';
-import type { NavParsedNodes } from '@components/HorizontalMenu/types';
+import type { NavParsedNodes } from '../HorizontalMenu';
 import type { LocaleId } from 'locale/locale-context';
 
 type LayoutProps = {

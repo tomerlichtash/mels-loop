@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Strip from '../components/strip';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { Strip } from '../components/strip';
 
 const meta = {
 	title: 'Strip',

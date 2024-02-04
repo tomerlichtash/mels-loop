@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './figure.module.scss';
+import styles from './Figure.module.scss';
 
 export const Figure = ({ elementId, children, ...rest }) => (
 	<figure className={styles.root} {...rest}>

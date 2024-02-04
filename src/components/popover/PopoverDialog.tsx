@@ -5,7 +5,7 @@ export type PopoverDialogProps = {
 	className?: string;
 };
 
-export const PopoverDialog = ({
+const PopoverDialog = ({
 	children,
 	...rest
 }: PropsWithChildren<PopoverDialogProps>) => {
@@ -16,4 +16,4 @@ export const PopoverDialog = ({
 	);
 };
 
-export default PopoverDialog;
+export { PopoverDialog };

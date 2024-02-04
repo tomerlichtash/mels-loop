@@ -1,3 +1,3 @@
-import { CodeBlock } from './code-block';
+export { CodeBlock } from './CodeBlock';
 
-export default CodeBlock;
+// export type { CodeBlockProps } from './CodeBlock';

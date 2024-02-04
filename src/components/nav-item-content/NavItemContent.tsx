@@ -1,14 +1,14 @@
 import { getIcon } from '../nav-item/helpers';
 import styles from './NavItemContent.module.scss';
 
-type NavItemContentProps = {
+export type NavItemContentProps = {
 	title: string;
 	description: string;
 	author: string;
 	icon?: string;
 };
 
-export const NavItemContent = ({
+const NavItemContent = ({
 	icon,
 	title,
 	description,
@@ -24,4 +24,4 @@ export const NavItemContent = ({
 	</span>
 );
 
-export default NavItemContent;
+export { NavItemContent };

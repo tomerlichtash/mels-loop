@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from 'react';
-import styles from './code-inline.module.scss';
+import styles from './CodeInline.module.scss';
 import classNames from 'classnames';
 
-export type CodeInlineProps = {
+export type CodeProps = {
 	className?: string;
 };
 
@@ -10,7 +10,7 @@ export const CodeInline = ({
 	children,
 	className,
 	...rest
-}: PropsWithChildren<CodeInlineProps>): JSX.Element => (
+}: PropsWithChildren<CodeProps>): JSX.Element => (
 	<code className={classNames(styles.root, className)} {...rest}>
 		{children}
 	</code>

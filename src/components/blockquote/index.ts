@@ -1,3 +1,3 @@
-import { default as BlockQuote } from './Blockquote';
+export { Blockquote } from './Blockquote';
 
-export default BlockQuote;
+// export type { BlockquoteProps } from './Blockquote';
