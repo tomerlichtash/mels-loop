@@ -1,3 +1,3 @@
-import { default as Annotation } from './annotation';
+import { default as Annotation } from './Annotation';
 
 export default Annotation;

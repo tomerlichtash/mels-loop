@@ -8,7 +8,7 @@ import usePageData from '../../lib/usePageData';
 import { mlUtils } from '../../lib/ml-utils';
 import { LocaleProvider } from '../../locale/context/locale-context';
 import { useContext } from 'react';
-import BlogPost from '../../components/BlogPost';
+import BlogPost from '../../components/content-layout/article-content-layout';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 import Link from '@components/link';
 

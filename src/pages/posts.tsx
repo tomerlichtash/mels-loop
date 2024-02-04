@@ -8,7 +8,7 @@ import { IPageProps, IParsedPageData } from '../types/models';
 import usePageData from '../lib/usePageData';
 import { LocaleProvider } from '../locale/context/locale-context';
 import orderBy from 'lodash.orderby';
-import BlogPost from '../components/BlogPost';
+import BlogPost from '../components/content-layout/article-content-layout';
 import { mlUtils } from '../lib/ml-utils';
 
 export default function Blog(props: IPageProps) {

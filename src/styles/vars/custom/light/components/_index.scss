@@ -3,20 +3,20 @@
 @use 'components/popover/PopoverDialog.module' as PopoverDialog;
 @use 'components/line/line.module' as Line;
 @use 'components/paragraph/paragraph.module' as Paragraph;
-@use 'components/blockquote/blockquote.module' as Blockquote;
+@use 'components/blockquote/Blockquote.module' as Blockquote;
 // @use "components/cite" as Cite;
 @use 'components/link/Link.module' as Link;
 @use 'components/table/table.module' as Table;
 @use 'components/figure/figure.module' as Figure;
 @use 'components/custom-image/custom-image.module' as CustomImage;
-@use 'components/annotation/annotation.module' as Annotation;
+@use 'components/annotation/Annotation.module' as Annotation;
 @use 'components/term/Term.module' as GlossaryTerm;
 @use 'components/code-inline/code-inline.module' as CodeInline;
 @use 'components/code-block/code-block.module' as CodeBlock;
 @use 'components/list-item/list-item.module' as ListItem;
 @use 'components/scrollbar/Scrollbar.module' as Scrollbar;
 @use 'components/loading-indicator/LoadingIndicator.module' as LoadingIndicator;
-@use 'components/strip/Strip.module' as Strip; // todo: move to ui components
+@use 'components/strip/Strip.module' as Strip;
 @use 'components/container/Container.module' as Container;
 @use 'components/page/Page.module' as Page;
 @use 'components/logo/Logo.module' as Logo;
@@ -42,7 +42,7 @@
 @use 'textLink' as textLinkTheme;
 @use 'localeSelect' as localeSelectTheme;
 @use 'themeSelector' as themeSelectorTheme;
-@use 'button' as buttonTheme; // todo: move to ui components
+@use 'button' as buttonTheme;
 @use 'horizontalNav' as horizontalNavTheme;
 @use 'verticalNav' as verticalNavTheme;
 @use 'navItemContent' as navItemContentTheme;

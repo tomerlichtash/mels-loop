@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentComponentProps } from '../../../types/models';
-import { Annotation } from '@components/annotation/annotation';
+import { Annotation } from '@components/annotation/Annotation';
 
 export const AnnotationContentBlock = ({
 	componentData,

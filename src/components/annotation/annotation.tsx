@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './annotation.module.scss';
+import styles from './Annotation.module.scss';
 
 export const Annotation = ({ index }): JSX.Element => (
 	<span className={styles.root}>

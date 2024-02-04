@@ -1,10 +1,10 @@
 import React from 'react';
 import { unique } from 'lib/utils';
-import { ContentComponent } from '../../lib/content';
+import { ContentComponent } from '../../../lib/content';
 import { Link, DateFormat } from '@components/index';
 
-import type { LocaleId } from '../../types';
-import type { IParsedPageData } from '../../types/models';
+import type { LocaleId } from '../../../types';
+import type { IParsedPageData } from '../../../types/models';
 
 type IBlogPostProps = {
 	title: string;

@@ -2,7 +2,7 @@ import React from 'react';
 import { ContentComponent } from '../index';
 import { IMLParsedNode, ContentComponentProps } from '../../../types/models';
 import { useComponentAttrs } from '../useComponentAttrs';
-import { Blockquote } from '@components/blockquote/blockquote';
+import { Blockquote } from '@components/blockquote/Blockquote';
 
 export const BlockquoteContentBlock = ({
 	componentData,
