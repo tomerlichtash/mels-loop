@@ -16,6 +16,6 @@ const Annotation = ({ index }: AnnotationProps): JSX.Element => (
 	</span>
 );
 
-export { Annotation };
+export default Annotation;
 
 export type { AnnotationProps };
