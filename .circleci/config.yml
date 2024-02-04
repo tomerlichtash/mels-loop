@@ -25,14 +25,14 @@ jobs:
             - yarn-packages-cache-lint-scripts-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn/cache
-      - run:
-          name: scripts - Install Dependencies
-          command: cd scripts && yarn install --frozen-lockfile --cache-folder ~/.cache/yarn-scripts
-      - save_cache:
-          name: scripts - Save Yarn Package Cache
-          key: yarn-packages-cache-lint-scripts-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn-scripts
+      # - run:
+      #     name: scripts - Install Dependencies
+      #     command: cd scripts && yarn install --frozen-lockfile --cache-folder ~/.cache/yarn-scripts
+      # - save_cache:
+      #     name: scripts - Save Yarn Package Cache
+      #     key: yarn-packages-cache-lint-scripts-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn-scripts
       - run:
           name: ESLint
           command: yarn lint
