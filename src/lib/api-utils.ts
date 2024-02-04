@@ -1,6 +1,6 @@
-import * as tempFiles from "tmp";
-import * as fs from "fs";
-import * as nodeUtils from "util";
+import * as tempFiles from 'tmp';
+import * as fs from 'fs';
+import * as nodeUtils from 'util';
 
 /**
  * Helpers for ML API implementation

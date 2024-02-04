@@ -19,10 +19,10 @@ export interface IMLUtils {
 }
 
 const ALLOWED_MERGE_TYPES: Array<string> = [
-	"object",
-	"string",
-	"number",
-	"boolean",
+	'object',
+	'string',
+	'number',
+	'boolean',
 ];
 
 class MLUtils implements IMLUtils {
@@ -54,10 +54,10 @@ class MLUtils implements IMLUtils {
 
 	public parseDate(dateString: string | number | null | undefined): Date {
 		const t = typeof dateString;
-		if (t === "number") {
+		if (t === 'number') {
 			return new Date(dateString);
 		}
-		if (t === "string") {
+		if (t === 'string') {
 			try {
 				const t = Date.parse(dateString as string);
 				return new Date(t);
@@ -79,7 +79,7 @@ class MLUtils implements IMLUtils {
 		if (!into || !data) {
 			return into;
 		}
-		const realData = typeof data === "string" ? JSON.parse(data) : data;
+		const realData = typeof data === 'string' ? JSON.parse(data) : data;
 		Object.keys(into).forEach((key) => {
 			const val = realData[key];
 			const tSource = typeof val;
@@ -89,15 +89,15 @@ class MLUtils implements IMLUtils {
 			}
 			const myVal = into[key];
 			const tTarget = typeof myVal;
-			if (tTarget === "object") {
+			if (tTarget === 'object') {
 				if (myVal === null) {
 					into[key] = val;
 				} else if (val instanceof Date || Array.isArray(val)) {
 					// we don't deep arrays
 					into[key] = val;
-				} else if (tSource === "object") {
+				} else if (tSource === 'object') {
 					this.safeMerge(myVal as object, val as object);
-				} else if (myVal instanceof Date && tSource === "string") {
+				} else if (myVal instanceof Date && tSource === 'string') {
 					into[key] = this.parseDate(val as string);
 				} else {
 					console.warn(
@@ -106,7 +106,7 @@ class MLUtils implements IMLUtils {
 				}
 			} else {
 				// target field is primitive, check source field
-				if (tSource !== "object") {
+				if (tSource !== 'object') {
 					into[key] = val;
 				} else {
 					console.warn(

@@ -1,6 +1,6 @@
-import React from "react";
-import { GetStaticProps, NextPage } from "next";
-import Layout from "../components/layout";
+import React from 'react';
+import { GetStaticProps, NextPage } from 'next';
+import Layout from '../components/layout';
 
 const CustomError: NextPage = () => {
 	return (

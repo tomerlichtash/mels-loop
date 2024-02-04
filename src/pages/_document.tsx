@@ -4,8 +4,8 @@ import Document, {
 	Main,
 	NextScript,
 	DocumentInitialProps,
-} from "next/document";
-import { fontFaceLinks } from "../site-fonts";
+} from 'next/document';
+import { fontFaceLinks } from '../site-fonts';
 
 class CustomDocument extends Document<DocumentInitialProps> {
 	render() {

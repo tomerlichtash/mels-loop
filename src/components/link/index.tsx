@@ -1,5 +1,5 @@
-import { default as Link } from "./Link";
+import { default as Link } from './Link';
 
-export * from "./types";
+export * from './types';
 
 export default Link;

@@ -1,12 +1,12 @@
-@use "sass:string";
-@use "sass:list";
-@use "./refs";
-@use "../config";
+@use 'sass:string';
+@use 'sass:list';
+@use './refs';
+@use '../config';
 
 $defaultStateDelim: config.$theme-state-delim;
 
 @function _isEmptyVarMap($vars) {
-	@return (type-of($vars) == "list") and (length($vars) == 0);
+	@return (type-of($vars) == 'list') and (length($vars) == 0);
 }
 
 @function _removeNth($list, $nth) {
@@ -25,14 +25,14 @@ $defaultStateDelim: config.$theme-state-delim;
 }
 
 @function isContentProp($val) {
-	@return str-index($val, "-content") != null;
+	@return str-index($val, '-content') != null;
 }
 
 @function transform($map, $path, $delim: $defaultStateDelim) {
 	$result: ();
 
 	@each $key, $value in $map {
-		$variable-name: if($path, "#{$path}-#{$key}", "#{$key}");
+		$variable-name: if($path, '#{$path}-#{$key}', '#{$key}');
 
 		// @if ($key == "url") {
 		// 	$value: #{"url(../../logo/#{$value})"};
@@ -43,7 +43,7 @@ $defaultStateDelim: config.$theme-state-delim;
 			$split: string.split($path, $delim);
 			$prefix: nth($split, 1);
 			$stateList: _removeNth($split, 1);
-			$states: "";
+			$states: '';
 
 			@each $state in $stateList {
 				$states: #{$states}#{$delim}#{$state};
@@ -58,7 +58,7 @@ $defaultStateDelim: config.$theme-state-delim;
 			// unquote all values, except special case of `content` properties,
 			// that should be in quotes. This is to support handling of quoted strings
 			// (e.g. font families)
-			@if type-of($value) == "string" and not isContentProp($key) {
+			@if type-of($value) == 'string' and not isContentProp($key) {
 				$value: string.unquote($value);
 			}
 
@@ -84,7 +84,7 @@ $defaultStateDelim: config.$theme-state-delim;
 	}
 }
 
-@mixin compile($exports, $prefix: "", $delim: $defaultStateDelim) {
+@mixin compile($exports, $prefix: '', $delim: $defaultStateDelim) {
 	@each $vars in $exports {
 		@include _parse((transform($vars, refs.prefix($prefix), $delim)));
 	}

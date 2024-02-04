@@ -3,17 +3,17 @@ import {
 	ListBulletIcon,
 	GitHubLogoIcon,
 	Pencil1Icon,
-} from "@radix-ui/react-icons";
+} from '@radix-ui/react-icons';
 
 export const getIcon = (icon: string) => {
 	switch (icon) {
-		case "article":
+		case 'article':
 			return <FileIcon />;
-		case "list":
+		case 'list':
 			return <ListBulletIcon />;
-		case "github":
+		case 'github':
 			return <GitHubLogoIcon />;
-		case "pencil":
+		case 'pencil':
 			return <Pencil1Icon />;
 		default:
 			return icon;

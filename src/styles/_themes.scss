@@ -1,14 +1,14 @@
-@use "./config";
-@use "./lib/parser";
-@use "./vars/common";
-@use "./vars/custom/light";
+@use './config';
+@use './lib/parser';
+@use './vars/common';
+@use './vars/custom/light';
 // @use "./vars/custom/dark";
 
 [data-ml-theme] {
 	@include parser.compile(common.$index, config.$theme-global-prefix);
 }
 
-[data-ml-theme="light"] {
+[data-ml-theme='light'] {
 	@include parser.compile(light.$index);
 	--ml-logo-url: url(../../public/assets/logo/ml-logo-dark.png);
 	--ml-loading-indicator-url: url(../../public/assets/logo/ml-logo-dark.png);

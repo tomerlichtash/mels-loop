@@ -1,6 +1,6 @@
 const normalize = (key: string): string => {
 	// safety, since data may be read dynamically
-	return typeof key === "string" ? key.toLowerCase() : String(key);
+	return typeof key === 'string' ? key.toLowerCase() : String(key);
 };
 
 export class CaseInsensitiveMap<U> extends Map<string, U> {

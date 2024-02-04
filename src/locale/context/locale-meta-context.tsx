@@ -1,4 +1,4 @@
-import { SITE_META } from "../keymap/common";
+import { SITE_META } from '../keymap/common';
 
 export interface ILocaleMetaContext {
 	siteTitle: string;

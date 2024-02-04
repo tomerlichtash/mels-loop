@@ -1,11 +1,11 @@
-@import "../../baseThemeStyle";
-@import "../../lib/themeVars";
+@import '../../baseThemeStyle';
+@import '../../lib/themeVars';
 
 $index: (
 	typography: (
 		font-family: (
-			font1: "Roboto Slab, serif",
-			font2: "Assistant, sans-serif",
+			font1: 'Roboto Slab, serif',
+			font2: 'Assistant, sans-serif',
 		),
 		font-size: (
 			base: 14px,

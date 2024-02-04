@@ -1,11 +1,11 @@
-@use "../../lib/color";
-@use "./colors";
-@use "./typography";
-@use "./shadows";
-@use "./radius";
-@use "./animations";
+@use '../../lib/color';
+@use './colors';
+@use './typography';
+@use './shadows';
+@use './radius';
+@use './animations';
 
-$pallette: color.generate(colors.$index, "color");
+$pallette: color.generate(colors.$index, 'color');
 
 $index: $pallette, typography.$index, shadows.$index, radius.$index,
 	animations.$index;

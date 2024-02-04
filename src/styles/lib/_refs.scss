@@ -1,32 +1,32 @@
-@use "sass:string";
-@import "../config";
+@use 'sass:string';
+@import '../config';
 
 @function prefix($prefix) {
 	$path: #{$theme-namespace-prefix}#{if(
 			string.length($prefix) > 0,
 			-#{$prefix},
-			""
+			''
 		)};
 	@return $path;
 }
 
 @function cssVar($var) {
-	@return #{"--"}#{$var};
+	@return #{'--'}#{$var};
 }
 
-@function cssRef($key, $prefix: "") {
+@function cssRef($key, $prefix: '') {
 	@return cssVar(#{$prefix}-#{$key});
 }
 
-@function varName($key, $prefix: "") {
+@function varName($key, $prefix: '') {
 	@return cssRef($key, prefix($prefix));
 }
 
-@function varNameState($key, $state: "", $prefix: "") {
+@function varNameState($key, $state: '', $prefix: '') {
 	@return cssRef(#{$key}#{$state}, prefix($prefix));
 }
 
-@function ref($key, $prefix: "") {
+@function ref($key, $prefix: '') {
 	@return #{var(cssRef($key, prefix($prefix)))};
 }
 
@@ -34,8 +34,8 @@
 	@return ref($key, $theme-global-prefix);
 }
 
-@function compRef($ns, $key, $state: "", $prefix: $theme-namespace-prefix) {
-	$compState: "";
+@function compRef($ns, $key, $state: '', $prefix: $theme-namespace-prefix) {
+	$compState: '';
 
 	@if (str-length($state) > 0) {
 		$compState: $state;
@@ -50,8 +50,8 @@
 @mixin useThemeVar(
 	$cssProperty,
 	$themeProperty,
-	$varName: "__generic__",
-	$state: ""
+	$varName: '__generic__',
+	$state: ''
 ) {
 	#{$cssProperty}: compRef($varName, $themeProperty, $state);
 }

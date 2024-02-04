@@ -1,6 +1,6 @@
-import { ComponentKeyMap } from "./types";
+import { ComponentKeyMap } from './types';
 
 export const SITE_META: ComponentKeyMap = {
-	siteTitle: "site.title",
-	siteSubtitle: "site.subtitle",
+	siteTitle: 'site.title',
+	siteSubtitle: 'site.subtitle',
 };

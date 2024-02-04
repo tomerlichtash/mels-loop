@@ -1,4 +1,4 @@
-@import "../../baseThemeStyle";
+@import '../../baseThemeStyle';
 
 $index: (
 	animation: (
@@ -7,8 +7,8 @@ $index: (
 			md: 250ms,
 		),
 		easing: (
-			default: "ease",
-			in: "ease-in",
+			default: 'ease',
+			in: 'ease-in',
 		),
 	),
 );

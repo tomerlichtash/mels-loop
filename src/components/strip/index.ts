@@ -1,3 +1,3 @@
-import Strip from "./Strip";
+import Strip from './Strip';
 
 export default Strip;

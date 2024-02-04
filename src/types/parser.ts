@@ -1,4 +1,4 @@
-import { IMLParsedNode } from "./models";
+import { IMLParsedNode } from './models';
 
 /**
  * How to load a markdown file
@@ -7,27 +7,27 @@ export enum LoadContentModes {
 	/**
 	 * Don't load anything. Used for enumerating folders
 	 */
-	NONE = "none",
+	NONE = 'none',
 	/**
 	 * Load only the metadata (at the head of the file)
 	 */
-	METADATA = "metadata",
+	METADATA = 'metadata',
 	/**
 	 * Load metadata and markdown
 	 */
-	FULL = "full",
+	FULL = 'full',
 }
 
 export enum MLParseModes {
 	// value must be falsy
-	AUTO = "",
-	VERSE = "verse",
-	NORMAL = "normal",
+	AUTO = '',
+	VERSE = 'verse',
+	NORMAL = 'normal',
 }
 
 export enum LoadFolderModes {
-	FOLDER = "folder",
-	CHILDREN = "children",
+	FOLDER = 'folder',
+	CHILDREN = 'children',
 }
 
 /**
@@ -76,7 +76,7 @@ export interface IContentParseOptions {
 	 * The locale for which this content is parsed
 	 */
 	readonly locale: string;
-	 /**
+	/**
 	 * Defaults to NORMAL
 	 */
 	readonly parseMode?: MLParseModes;
@@ -84,5 +84,4 @@ export interface IContentParseOptions {
 	 * an optional function that may return a new node
 	 */
 	readonly nodeProcessors?: Array<MLNodeProcessorFunction>;
-
 }

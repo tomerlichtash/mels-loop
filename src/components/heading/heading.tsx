@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./heading.module.scss";
+import React from 'react';
+import styles from './heading.module.scss';
 
 export const Heading = ({ level, children, ...rest }): JSX.Element => {
 	const Tag = `h${level}` as keyof JSX.IntrinsicElements;

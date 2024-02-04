@@ -1,30 +1,30 @@
 // todo: parse markdown
 
 export default {
-	type: "paragraph",
+	type: 'paragraph',
 	line: 0,
-	key: "ast-0",
+	key: 'ast-0',
 	children: [
 		{
-			key: "ast-1",
+			key: 'ast-1',
 			line: 0,
 			children: [
 				{
-					type: "text",
-					key: "ast-2",
+					type: 'text',
+					key: 'ast-2',
 					line: 0,
-					text: "A recent article devoted to the ",
+					text: 'A recent article devoted to the ',
 				},
 				{
-					type: "em",
+					type: 'em',
 					line: 0,
-					key: "ast-3",
+					key: 'ast-3',
 					children: [
 						{
-							type: "text",
-							key: "ast-4",
+							type: 'text',
+							key: 'ast-4',
 							line: 0,
-							text: "macho",
+							text: 'macho',
 						},
 					],
 					ordered: false,
@@ -34,32 +34,32 @@ export default {
 					attributes: null,
 				},
 				{
-					type: "text",
-					key: "ast-5",
+					type: 'text',
+					key: 'ast-5',
 					line: 0,
-					text: " side of programming",
+					text: ' side of programming',
 				},
 				{
-					type: "text",
-					key: "ast-8",
+					type: 'text',
+					key: 'ast-8',
 					line: 0,
-					text: "",
+					text: '',
 				},
 			],
-			type: "line",
+			type: 'line',
 		},
 		{
-			key: "ast-9",
+			key: 'ast-9',
 			line: 1,
 			children: [
 				{
-					type: "text",
-					key: "ast-10",
+					type: 'text',
+					key: 'ast-10',
 					line: 1,
-					text: "made the bold and unvarnished statement:",
+					text: 'made the bold and unvarnished statement:',
 				},
 			],
-			type: "line",
+			type: 'line',
 		},
 	],
 	ordered: false,

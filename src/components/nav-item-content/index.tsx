@@ -1,3 +1,3 @@
-import { default as NavItemContent } from "./NavItemContent";
+import { default as NavItemContent } from './NavItemContent';
 
 export default NavItemContent;

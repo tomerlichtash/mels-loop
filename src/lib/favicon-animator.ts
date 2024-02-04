@@ -1,4 +1,4 @@
-type IconAnimtationTypes = "rotate" | "frames";
+type IconAnimtationTypes = 'rotate' | 'frames';
 
 export interface IFavIconAnimator {
 	run(): Promise<void>;
@@ -112,12 +112,12 @@ export class FavIconAnimator implements IFavIconAnimator {
 		const icon = animationProps.icon || doc.querySelector("link[rel='icon']");
 		this.warn = animationProps.debug
 			? (...args: unknown[]) => {
-				console.warn("favicon animator: ", ...args);
-			}
+					console.warn('favicon animator: ', ...args);
+			  }
 			: () => void 0;
 		this.props = {
 			...animationProps,
-			canvas: doc.createElement("canvas"),
+			canvas: doc.createElement('canvas'),
 			fps: animationProps.fps || 15,
 			frameWidth: 0,
 			frameHeight: 0,
@@ -128,17 +128,16 @@ export class FavIconAnimator implements IFavIconAnimator {
 			rows: animationProps.rows || 1,
 			cols: animationProps.cols || 1,
 			cache: {},
-			savedIconHref: (icon && icon.href) || "",
+			savedIconHref: (icon && icon.href) || '',
 			icon: icon,
 		};
 		this.props.canvas.width = this.props.width;
 		this.props.canvas.height = this.props.height;
 
 		this.isDarkMode = Boolean(
-			window.matchMedia
-			&& window.matchMedia('(prefers-color-scheme: dark)').matches
+			window.matchMedia &&
+				window.matchMedia('(prefers-color-scheme: dark)').matches
 		);
-
 	}
 
 	/**
@@ -150,7 +149,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 
 	public async run(): Promise<void> {
 		if (!this.props.icon) {
-			this.warn("Missing favicon in document");
+			this.warn('Missing favicon in document');
 			return Promise.resolve();
 		}
 		if (this.props.durationSeconds <= 0 || isNaN(this.props.durationSeconds)) {
@@ -183,17 +182,17 @@ export class FavIconAnimator implements IFavIconAnimator {
 	 * @param props
 	 */
 	private _loadImage(props: IFIProps): void {
-		let src = "";
+		let src = '';
 		if (!props.image) {
-			src = props.icon.getAttribute("href");
+			src = props.icon.getAttribute('href');
 		}
-		if (typeof props.image === "string") {
+		if (typeof props.image === 'string') {
 			src = props.image;
 		}
 		if (src) {
 			const img = new Image();
-			img.addEventListener("load", () => this._onImageLoaded(img, props));
-			img.addEventListener("error", () => this._onImageLoaded(null, props));
+			img.addEventListener('load', () => this._onImageLoaded(img, props));
+			img.addEventListener('error', () => this._onImageLoaded(null, props));
 			img.src = src;
 		} else if (props.image) {
 			this._onImageLoaded(props.image as HTMLImageElement, props);
@@ -201,11 +200,11 @@ export class FavIconAnimator implements IFavIconAnimator {
 	}
 
 	private _getAnimator(props: IFIProps): AnimatorFunction | null {
-		return props.type === "frames"
+		return props.type === 'frames'
 			? this._drawIconFrame.bind(this)
-			: props.type === "rotate"
-				? this._rotateIconFrame.bind(this)
-				: null;
+			: props.type === 'rotate'
+			? this._rotateIconFrame.bind(this)
+			: null;
 	}
 
 	/**
@@ -224,7 +223,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 			return p.resolve();
 		}
 		p.image = img;
-		if (p.type === "frames") {
+		if (p.type === 'frames') {
 			p.frameWidth = img.width / p.cols;
 			p.frameHeight = img.height / p.rows;
 		} else {
@@ -241,7 +240,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 		p.startTime = Date.now();
 		const animateIt = this._getAnimator(p);
 		if (!animateIt) {
-			this.warn("Missing animator for type", p.type);
+			this.warn('Missing animator for type', p.type);
 			return p.resolve();
 		}
 
@@ -260,9 +259,9 @@ export class FavIconAnimator implements IFavIconAnimator {
 				}
 				if (ic !== p.icon) {
 					p.icon = ic as HTMLLinkElement;
-					p.savedIconHref = ic.getAttribute("href");
+					p.savedIconHref = ic.getAttribute('href');
 				}
-				const ctx = p.canvas.getContext("2d");
+				const ctx = p.canvas.getContext('2d');
 				ctx.clearRect(0, 0, p.width, p.height);
 				const dataUrl = animateIt(ctx, p);
 				p.icon.href = dataUrl;
@@ -276,13 +275,13 @@ export class FavIconAnimator implements IFavIconAnimator {
 	private _drawIconFrame(ctx: CanvasRenderingContext2D, p: IFIProps): string {
 		const col = p.count % p.cols,
 			row = Math.floor(p.count / p.rows) % p.rows,
-			key = [col, "x", row].join("");
+			key = [col, 'x', row].join('');
 		let dataUrl = p.cache[key];
 		if (dataUrl) {
 			return dataUrl;
 		}
 		if (this.isDarkMode) {
-			ctx.filter = "invert(100%)";
+			ctx.filter = 'invert(100%)';
 		}
 		ctx.drawImage(
 			p.image as HTMLImageElement,
@@ -295,7 +294,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 			p.width,
 			p.height
 		);
-		return (p.cache[key] = p.canvas.toDataURL("image/png"));
+		return (p.cache[key] = p.canvas.toDataURL('image/png'));
 	}
 
 	private _rotateIconFrame(ctx: CanvasRenderingContext2D, p: IFIProps) {
@@ -307,7 +306,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 
 		const angle = Math.PI / ROTATION_FRAMES;
 		if (this.isDarkMode) {
-			ctx.filter = "invert(100%)";
+			ctx.filter = 'invert(100%)';
 		}
 		ctx.drawImage(
 			p.image as HTMLImageElement,
@@ -323,6 +322,6 @@ export class FavIconAnimator implements IFavIconAnimator {
 		ctx.translate(p.width * 0.5, p.height * 0.5);
 		ctx.rotate(frame * angle);
 		ctx.translate(p.width * -0.5, p.height * -0.5);
-		return (p.cache[String(frame)] = p.canvas.toDataURL("image/png"));
+		return (p.cache[String(frame)] = p.canvas.toDataURL('image/png'));
 	}
 }

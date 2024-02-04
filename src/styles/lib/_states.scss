@@ -1,7 +1,7 @@
-@use "sass:map";
-@use "sass:list";
-@import "../config/consts";
-@import "./merge";
+@use 'sass:map';
+@use 'sass:list';
+@import '../config/consts';
+@import './merge';
 
 // base component states
 $COMPONENT_STATES: (
@@ -12,7 +12,7 @@ $COMPONENT_STATES: (
 
 $states: $COMPONENT_STATES;
 
-@function _strReplace($string, $search, $replace: "") {
+@function _strReplace($string, $search, $replace: '') {
 	$index: str-index($string, $search);
 
 	@if $index {
@@ -34,12 +34,12 @@ $states: $COMPONENT_STATES;
 		$state: map-get($states, $key);
 		$val: $state;
 
-		@if (type-of($state) == "list") {
-			$s: "";
+		@if (type-of($state) == 'list') {
+			$s: '';
 			@each $stateMap in $state {
 				@each $st in $stateMap {
 					$idx: list.index($stateMap, $st);
-					$stateDelim: if($idx == 1, "", $theme-state-delim);
+					$stateDelim: if($idx == 1, '', $theme-state-delim);
 					$s: #{$s}#{$stateDelim}#{$st};
 				}
 			}

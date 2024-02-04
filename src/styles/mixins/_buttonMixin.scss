@@ -1,7 +1,7 @@
-@import "../lib/themeVars";
-@import "../lib/refs";
-@import "../lib/states";
-@import "../lib/merge";
+@import '../lib/themeVars';
+@import '../lib/refs';
+@import '../lib/states';
+@import '../lib/merge';
 
 $states: deep(
 	$COMPONENT_STATES,
@@ -64,14 +64,14 @@ $fontWeightVar: varName(site-button-toggle-font-weight);
 	@include useWidth($var);
 	@include useTextColor($var);
 
-	&:not([data-state="selected"]):hover {
+	&:not([data-state='selected']):hover {
 		@include cursorPointer;
 		@include useTextColor($var, state(hovered));
 		@include useBackgroundColor($var, state(hovered));
 	}
 
 	// `selected` state overrides
-	&[data-state="selected"] {
+	&[data-state='selected'] {
 		#{$bgVar}: #{getBgColor($var, state(selected))};
 		#{$textColorVar}: #{getTextColor($var, state(selected))};
 		#{$fontWeightVar}: #{getFontWeight($var, state(selected))};

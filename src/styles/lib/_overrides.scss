@@ -1,7 +1,7 @@
-@use "sass:map";
-@use "sass:string";
-@import "./refs";
-@import "./states";
+@use 'sass:map';
+@use 'sass:string';
+@import './refs';
+@import './states';
 
 @function _getPartVar($comp, $part) {
 	@return #{$comp}-#{$part};
@@ -11,7 +11,7 @@
 	@return #{$module}-#{$part};
 }
 
-@mixin _mapVars($comp, $module, $props, $part: "", $state: "") {
+@mixin _mapVars($comp, $module, $props, $part: '', $state: '') {
 	$var: if(string.length($part) > 0, _getPartVar($comp, $part), $comp);
 	$ref: if(
 		string.length($part) > 0,
@@ -32,10 +32,10 @@
 		// extract root vars
 		$rootVars: map-get($refs, _);
 		// if key is `_` (root) then use empty string
-		$partName: if($key == "_", "", $key);
+		$partName: if($key == '_', '', $key);
 
 		@each $ref in map.keys($refs) {
-			$state: if($ref == "_", "", $ref);
+			$state: if($ref == '_', '', $ref);
 			@include _mapVars($compName, $module, $rootVars, $partName, $state);
 		}
 	}

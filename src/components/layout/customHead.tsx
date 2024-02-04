@@ -1,5 +1,5 @@
-import { default as CustomHead } from "next/head";
-import { useMemo } from "react";
+import { default as CustomHead } from 'next/head';
+import { useMemo } from 'react';
 
 export const Head = ({ siteTitle, siteSubtitle, title, pageName }) => {
 	const pageTitle = useMemo(
@@ -7,7 +7,7 @@ export const Head = ({ siteTitle, siteSubtitle, title, pageName }) => {
 			[siteTitle, siteSubtitle, title || pageName]
 				.map((s) => s && s.trim())
 				.filter(Boolean)
-				.join(" - "),
+				.join(' - '),
 		[siteTitle, siteSubtitle, title, pageName]
 	);
 
