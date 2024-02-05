@@ -2,26 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import classNames from 'classnames';
 import styles from './Text.module.scss';
-
-export type TextVariant =
-	| 'h1'
-	| 'h2'
-	| 'h3'
-	| 'subtitle1'
-	| 'subtitle2'
-	| 'body1'
-	| 'body2';
-
-export type TextProps = {
-	asChild?: boolean;
-	variant?: TextVariant;
-	italics?: boolean;
-	weight?: number;
-	lowercase?: boolean;
-	uppercase?: boolean;
-	locale?: string;
-	className?: string;
-};
+import type { TextProps } from './types';
 
 const Text = ({
 	asChild,

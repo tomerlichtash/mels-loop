@@ -2,14 +2,7 @@ import dateFormat from 'dateformat';
 import classNames from 'classnames';
 import { localeFormats } from './consts';
 import styles from './DateFormat.module.scss';
-import type { LocaleId } from '../../locale/locale-context';
-
-type DateFormatProps = {
-	date: Date;
-	locale?: LocaleId;
-	format?: string;
-	className?: string;
-};
+import type { DateFormatProps } from './types';
 
 const DateFormat = ({
 	date,

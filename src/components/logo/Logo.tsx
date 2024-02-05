@@ -1,11 +1,8 @@
 import React from 'react';
 import styles from './Logo.module.scss';
 import classNames from 'classnames';
-import CssVarImage from '../css-var-image';
-
-export type LogoProps = {
-	className?: string;
-};
+import { CssVarImage } from '../css-var-image';
+import { LogoProps } from './types';
 
 const Logo = ({ className }: LogoProps) => (
 	<CssVarImage

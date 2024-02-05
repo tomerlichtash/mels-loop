@@ -1,12 +1,19 @@
 import type { LinkTarget } from 'components';
+import { LocaleId, TextDirection } from 'locale/locale-context';
+import { IParsedPageData } from 'types/models';
 
-export type SourceProps = {
+type ContentLayoutProps = {
+	type: string;
+	textDirection: TextDirection;
+};
+
+type SourceProps = {
 	label?: string;
 	url: string;
 	target?: LinkTarget;
 };
 
-export type ReferenceContentLayoutProps = {
+type ReferenceContentLayoutProps = {
 	label?: string;
 	title?: string;
 	term?: string;
@@ -15,6 +22,24 @@ export type ReferenceContentLayoutProps = {
 	className?: string;
 };
 
-export type NoteContentLayoutProps = {
+type NoteContentLayoutProps = {
 	className?: string;
+};
+
+type IBlogPostProps = {
+	title: string;
+	date: Date;
+	locale: LocaleId;
+	author: string;
+	content: IParsedPageData;
+	path?: string;
+	className?: string;
+};
+
+export type {
+	IBlogPostProps,
+	ContentLayoutProps,
+	SourceProps, // todo: extract
+	ReferenceContentLayoutProps,
+	NoteContentLayoutProps,
 };

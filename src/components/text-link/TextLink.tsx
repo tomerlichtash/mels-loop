@@ -2,14 +2,7 @@ import React, { useMemo } from 'react';
 import { Text } from '../text';
 import { Link } from '../link';
 import styles from './TextLink.module.scss';
-import type { TextVariant } from '../text/Text';
-
-export type TextLinkProps = {
-	label?: string;
-	linked?: boolean;
-	className?: string;
-	variant?: TextVariant;
-};
+import type { TextLinkProps } from './types';
 
 const TextLink = ({ linked, label, variant }: TextLinkProps): JSX.Element => {
 	const text = useMemo(

@@ -3,14 +3,9 @@ import classNames from 'classnames';
 import styles from './List.module.scss';
 import { Link } from '../link';
 import { Text } from '../text';
-import { ListItem, ListItemProps } from '../list-item';
+import { ListItem } from '../list-item';
 import { unique } from 'lib/utils';
-
-type ListProps = {
-	label?: string;
-	items?: ListItemProps[];
-	className?: string;
-};
+import type { ListProps } from './types';
 
 const renderListItems = (items) =>
 	items.map(({ label, target, url }) => {
@@ -42,5 +37,3 @@ const List = ({
 );
 
 export default List;
-
-export type { ListProps };

@@ -1,4 +1,4 @@
-import { IDynamicContentServer } from '../../lib/types/dynamic-content';
+import type { IDynamicContentServer } from '../../lib/types/dynamic-content';
 
 /**
  * Describes a content-related context, available to all rendered components under a ML page

@@ -1,9 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './PopoverToolbar.module.scss';
-
-export type PopoverToolbarProps = {
-	className?: string;
-};
+import type { PopoverToolbarProps } from './types';
 
 const PopoverToolbar = ({
 	children,

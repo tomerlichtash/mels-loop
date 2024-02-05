@@ -3,19 +3,7 @@ import { unique } from 'lib/utils';
 import { ContentComponent } from '../../../lib/content';
 import { Link } from '../../link';
 import { DateFormat } from '../../date-format';
-
-import type { LocaleId } from 'types';
-import type { IParsedPageData } from 'types/models';
-
-type IBlogPostProps = {
-	title: string;
-	date: Date;
-	locale: LocaleId;
-	author: string;
-	content: IParsedPageData;
-	path?: string;
-	className?: string;
-};
+import type { IBlogPostProps } from '../types';
 
 export const BlogPost = ({
 	title,

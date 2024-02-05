@@ -1,13 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { Scrollbar } from '../scrollbar';
 import styles from './ContentLayout.module.scss';
-
-import type { TextDirection } from 'locale/index';
-
-type ContentLayoutProps = {
-	type: string;
-	textDirection: TextDirection;
-};
+import type { ContentLayoutProps } from './types';
 
 const ContentLayout = ({
 	textDirection,
@@ -21,5 +15,3 @@ const ContentLayout = ({
 );
 
 export default ContentLayout;
-
-export type { ContentLayoutProps };

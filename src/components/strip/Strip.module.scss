@@ -1,6 +1,6 @@
 // @use "./Strip.mixin.scss" as StripMixin;
-@import '../../styles/baseComponentStyle';
-@import '../../styles/lib/themeVars';
+@import 'styles/baseComponentStyle';
+@import 'styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: gradient-strip,

@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+import { unique } from 'lib/utils';
 import { Link } from '../../link';
 import { List } from '../../list';
 import { ListItem } from '../../list-item';
@@ -6,7 +7,6 @@ import { Text } from '../../text';
 import styles from './ReferenceContentLayout.module.scss';
 
 import type { ReferenceContentLayoutProps } from '../types';
-import { unique } from 'lib/utils';
 
 export const ReferenceContentLayout = ({
 	label,

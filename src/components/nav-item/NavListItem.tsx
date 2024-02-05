@@ -3,12 +3,8 @@ import { Button } from '../button';
 import classNames from 'classnames';
 import styles from './NavListItem.module.scss';
 import { PropsWithChildren } from 'react';
-import { NavItemDataProps } from '../HorizontalMenu';
-
-export type NavListItemProps = {
-	onClick?: () => void;
-	className?: string;
-};
+import type { NavListItemProps } from './types';
+import type { NavItemDataProps } from '../HorizontalMenu/types';
 
 const NavListItem = ({
 	url,

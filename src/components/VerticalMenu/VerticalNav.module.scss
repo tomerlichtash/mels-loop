@@ -2,8 +2,8 @@
 @import './verticalNavMixin';
 @import '../nav-item/navListItemMixin.scss';
 @import '../nav-item-content/navItemContentMixin.scss';
-@import '../../styles/baseComponentStyle';
-@import '../../styles/lib/states';
+@import 'styles/baseComponentStyle';
+@import 'styles/lib/states';
 
 $__stylesheet__: (
 	name: site-vertical-nav,

@@ -1,4 +1,4 @@
-@import '../../styles/lib/themeVars';
+@import 'styles/lib/themeVars';
 
 @mixin fromStartAnimationMixin($var) {
 	&[data-motion='from-start'] {

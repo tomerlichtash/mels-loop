@@ -7,9 +7,8 @@ import { IPageProps } from 'types/models';
 import { LocaleContextProvider } from '../locale/context/locale-context';
 import { PageContextProvider } from '../context/pageContext';
 import { ThemeProvider } from 'next-themes';
-
 import 'normalize.css/normalize.css';
-import '../styles/app.scss';
+import 'styles/app.scss';
 
 const App = ({ Component, pageProps }: AppProps<IPageProps>) => {
 	const router = useRouter();

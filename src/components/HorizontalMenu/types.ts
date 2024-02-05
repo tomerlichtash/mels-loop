@@ -1,6 +1,6 @@
-export type NavItemLocaleProps = Record<string, string>;
+type NavItemLocaleProps = Record<string, string>;
 
-export type NavItemDataProps = {
+type NavItemDataProps = {
 	id: string;
 	type: 'article' | 'page' | 'external';
 	url: string;
@@ -9,14 +9,26 @@ export type NavItemDataProps = {
 	target?: string;
 };
 
-export type NavSectionDataProps = {
+type NavSectionDataProps = {
 	id: string;
 	locale: NavItemLocaleProps;
 	items: string[];
 };
 
-export type NavParsedNodes = {
+type NavParsedNodes = {
 	id: string;
 	locale: Record<string, string>;
 	items: NavItemDataProps[];
+};
+
+type NavProps = {
+	items: NavParsedNodes[];
+};
+
+export type {
+	NavItemLocaleProps,
+	NavSectionDataProps,
+	NavItemDataProps,
+	NavParsedNodes,
+	NavProps,
 };

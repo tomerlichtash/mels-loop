@@ -1,11 +1,7 @@
-import React, { PropsWithChildren, SyntheticEvent } from 'react';
+import React, { PropsWithChildren } from 'react';
 import styles from './PopoverCloseButton.module.scss';
 import { Button } from '..';
-
-export type PopoverCloseButtonProps = {
-	onClick: (e: SyntheticEvent) => void;
-	className?: string;
-};
+import type { PopoverCloseButtonProps } from './types';
 
 const PopoverCloseButton = ({
 	onClick,

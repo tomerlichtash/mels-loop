@@ -1,12 +1,6 @@
 import { getIcon } from '../nav-item/helpers';
 import styles from './NavItemContent.module.scss';
-
-export type NavItemContentProps = {
-	title: string;
-	description: string;
-	author: string;
-	icon?: string;
-};
+import type { NavItemContentProps } from './types';
 
 const NavItemContent = ({
 	icon,

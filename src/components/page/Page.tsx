@@ -1,9 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './Page.module.scss';
-
-export type PageProps = {
-	className?: string;
-};
+import { PageProps } from './types';
 
 const Page = ({ children }: PropsWithChildren<PageProps>) => (
 	<main className={styles.root}>{children}</main>

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import styles from './Line.module.scss';
+import type { LineProps } from './types';
 
-export const Line = ({ index, children, ...rest }): JSX.Element => {
-	if (children.length === 0) {
+export const Line = ({
+	index,
+	children,
+	...rest
+}: PropsWithChildren<LineProps>): JSX.Element => {
+	if (!children) {
 		return <span className="empty text-line"></span>;
 	}
 

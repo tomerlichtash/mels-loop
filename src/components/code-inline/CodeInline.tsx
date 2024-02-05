@@ -1,10 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './CodeInline.module.scss';
 import classNames from 'classnames';
-
-type CodeProps = {
-	className?: string;
-};
+import type { CodeProps } from 'components/code-block/types';
 
 const CodeInline = ({
 	children,
@@ -17,5 +14,3 @@ const CodeInline = ({
 );
 
 export default CodeInline;
-
-export type { CodeProps };

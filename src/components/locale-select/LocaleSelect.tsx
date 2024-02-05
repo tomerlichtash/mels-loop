@@ -1,21 +1,9 @@
 import React from 'react';
 import ToggleGroup from '../toggle-group/ToggleGroup';
 import ToggleGroupItem from '../toggle-group-item/ToggleGroupItem';
-import type { LocaleId } from 'locale/locale-context';
 import { unique } from 'lib/utils';
 import styles from './LocaleSelect.module.scss';
-
-type LocaleOption = {
-	id: LocaleId;
-	label: string;
-	title: string;
-};
-
-type LocaleSelectProps = {
-	defaultValue: string;
-	options: LocaleOption[];
-	onSelect: (id: LocaleId) => void;
-};
+import type { LocaleSelectProps } from './types';
 
 const LocaleSelect = ({
 	defaultValue,
@@ -42,5 +30,3 @@ const LocaleSelect = ({
 );
 
 export default LocaleSelect;
-
-export type { LocaleOption, LocaleSelectProps };

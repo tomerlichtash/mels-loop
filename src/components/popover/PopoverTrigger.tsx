@@ -1,9 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './PopoverTrigger.module.scss';
-
-export type PopoverTriggerProps = {
-	className?: string;
-};
+import type { PopoverTriggerProps } from './types';
 
 const PopoverTrigger = ({
 	children,

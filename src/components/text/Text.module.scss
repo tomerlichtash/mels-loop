@@ -1,6 +1,6 @@
-@use '../../styles/mixins/typographyMixins';
-@import '../../styles/baseComponentStyle';
-@import '../../styles/lib/themeVars';
+@use 'styles/mixins/typographyMixins';
+@import 'styles/baseComponentStyle';
+@import 'styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: text,

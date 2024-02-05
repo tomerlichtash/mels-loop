@@ -1,4 +1,4 @@
-@use '../../styles/lib/overrides';
+@use 'styles/lib/overrides';
 @use './NavItemContent.module.scss';
 
 @mixin NavItemContentMixin($module) {

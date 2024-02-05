@@ -32,15 +32,12 @@ import { LocaleProvider } from '../../locale/context/locale-context';
 import { parseMenuItems } from '../helpers';
 import { Analytics } from './analytics';
 import { Head } from './customHead';
-import styles from './Layout.module.scss';
 import { useIconAnimator } from './useIconAnimator';
 import { useWindowSize } from './useWindowSize';
-import type { NavParsedNodes } from '../HorizontalMenu';
+import styles from './Layout.module.scss';
+import type { NavParsedNodes } from '..';
 import type { LocaleId } from 'locale/locale-context';
-
-type LayoutProps = {
-	title?: string;
-};
+import type { LayoutProps } from './types';
 
 const IS_DEBUG = process.env.NEXT_PUBLIC_ML_DEBUG;
 const MIN_DESKTOP_WIDTH = 1024;

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Toggle from '../toggle/Toggle';
-import styles from './ThemeSelect.module.scss';
 import { getIcon } from './helpers';
+import { Toggle } from '../toggle';
+import styles from './ThemeSelect.module.scss';
+import type { ThemeSelectProps } from './types';
 
-export type ThemeSelectProps = {
-	label: string;
-	theme: string;
-	setTheme: (val: string) => void;
-};
-
-const ThemeSelect = ({ label, theme, setTheme }): JSX.Element => {
+const ThemeSelect = ({
+	label,
+	theme,
+	setTheme,
+}: ThemeSelectProps): JSX.Element => {
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => setMounted(true), []);

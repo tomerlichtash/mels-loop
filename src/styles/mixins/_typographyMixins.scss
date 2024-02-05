@@ -1,5 +1,5 @@
-@import '../../styles/lib/themeVars';
-@import '../../styles/lib/states';
+@import 'styles/lib/themeVars';
+@import 'styles/lib/states';
 
 @mixin BaseTypographyMixin($var) {
 	@include useFontFamily($var);

@@ -21,7 +21,8 @@
 			"types/*": ["types/*"],
 			"config/*": ["config/*"],
 			"components/*": ["components/*"],
-			"locale/*": ["locale/*"]
+			"locale/*": ["locale/*"],
+			"styles/*": ["styles/*"]
 		}
 	},
 	"include": [

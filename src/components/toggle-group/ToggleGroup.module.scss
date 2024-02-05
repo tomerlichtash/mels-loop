@@ -1,7 +1,7 @@
-@use '../../styles/mixins/buttonMixin.scss';
-@import '../../styles/baseComponentStyle';
-@import '../../styles/lib/states';
-@import '../../styles/lib/themeVars';
+@use 'styles/mixins/buttonMixin.scss';
+@import 'styles/baseComponentStyle';
+@import 'styles/lib/states';
+@import 'styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: toggle-group,

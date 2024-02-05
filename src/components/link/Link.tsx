@@ -1,17 +1,8 @@
-import React, { PropsWithChildren, SyntheticEvent } from 'react';
+import React, { PropsWithChildren } from 'react';
 import NextLink from 'next/link';
 import { Button } from '../button';
 import styles from './Link.module.scss';
-
-export type LinkTarget = '_blank' | null;
-
-export type LinkProps = {
-	title?: string;
-	href?: string;
-	target?: LinkTarget;
-	onClick?: (e: SyntheticEvent) => void;
-	className?: string;
-};
+import type { LinkProps } from './types';
 
 const Link = ({
 	title,

@@ -1,16 +1,7 @@
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import styles from './TextArea.module.scss';
-
-type TextAreaProps = {
-	id?: string;
-	required?: boolean;
-	placeholder?: string;
-	value?: string | number;
-	type?: 'text' | 'number' | 'tel' | 'file' | 'email';
-	onChange?: (e: SyntheticEvent) => void;
-	className?: string;
-};
+import type { TextAreaProps } from './types';
 
 const TextArea = ({
 	id,
@@ -33,5 +24,3 @@ const TextArea = ({
 );
 
 export default TextArea;
-
-export type { TextAreaProps };

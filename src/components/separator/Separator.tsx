@@ -1,12 +1,7 @@
 import React from 'react';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import styles from './Separator.module.scss';
-
-export type SeparatorProps = {
-	orientation?: 'vertical' | 'horizontal';
-	decorative?: boolean;
-	asChild?: boolean;
-};
+import type { SeparatorProps } from './types';
 
 const Separator = ({
 	orientation = 'vertical',

@@ -1,3 +1,1 @@
-import CssVarImage from './CssVarImage';
-
-export default CssVarImage;
+export { default as CssVarImage } from './CssVarImage';

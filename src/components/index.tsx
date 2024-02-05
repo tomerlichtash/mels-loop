@@ -41,3 +41,5 @@ export * from './toggle';
 export * from './toggle-group';
 export * from './toggle-group-item';
 export * from './VerticalMenu'; // rename
+
+export * from './types';
