@@ -1,3 +1,1 @@
-import { Heading } from './heading';
-
-export default Heading;
+export { Heading } from './heading';

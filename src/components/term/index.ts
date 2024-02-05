@@ -1,3 +1,1 @@
-import { TermLink } from './Term';
-
-export default TermLink;
+export { TermLink } from './Term';

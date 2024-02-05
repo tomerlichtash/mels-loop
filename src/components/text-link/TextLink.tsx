@@ -42,4 +42,4 @@ const TextLink = ({ linked, label, variant }: TextLinkProps): JSX.Element => {
 	);
 };
 
-export { TextLink };
+export default TextLink;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { ContentComponent } from '../contentComponent';
-import { IMLParsedNode, ContentComponentProps } from '../../../types/models';
+import { IMLParsedNode, ContentComponentProps } from 'types/models';
 // import { mlUtils } from "../../../lib/ml-utils";
 import { useComponentAttrs } from '../useComponentAttrs';
-import Table from '@components/table';
+import { Table } from 'components';
 
 export const TableContentBlock = ({
 	componentData,

@@ -5,7 +5,7 @@ import {
 	ContentComponentProps,
 	MLNODE_TYPES,
 	NODE_LIST_TYPES,
-} from '../../types/models';
+} from 'types/models';
 import {
 	HeadingContentBlock,
 	ListItemContentBlock,

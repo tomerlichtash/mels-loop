@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
-import Layout from '@components/layout';
 import { GetStaticProps, NextPage } from 'next';
 import { CONTENT_TYPES } from '../consts';
 import { mlNextUtils } from '../lib/next-utils';
-import { IPageProps } from '../types/models';
+import type { IPageProps } from 'types/models';
 import usePageData from '../lib/usePageData';
 import { LocaleProvider } from '../locale/context/locale-context';
-import { LoadContentModes, LoadFolderModes } from '../types/parser';
-import { Link } from '@components/index';
+import { LoadContentModes, LoadFolderModes } from 'types/parser';
+import { Layout, Link } from 'components';
 
 const Glossary: NextPage<IPageProps> = (props) => {
 	const { translate, pageName } = useContext(LocaleProvider);

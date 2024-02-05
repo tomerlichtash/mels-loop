@@ -1,4 +1,4 @@
-import { IMLParsedNode, NodeAttributeMap } from '../types/models';
+import { IMLParsedNode, NodeAttributeMap } from 'types/models';
 import { htmlValidator } from '../lib/html-validator';
 
 /**

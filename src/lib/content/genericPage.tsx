@@ -1,16 +1,15 @@
 import React, { useContext } from 'react';
 import Head from 'next/head';
 import { LocaleProvider } from '../../locale/context/locale-context';
-import {
+import type {
 	IContentComponentData,
 	IMLParsedNode,
 	IPageMetaData,
-	MLNODE_TYPES,
-} from '../../types/models';
-import Layout from '@components/layout';
+} from 'types/models';
+import { MLNODE_TYPES } from 'types/models';
 import { ContentIterator } from './contentIterator';
 import usePageData from '../../lib/usePageData';
-import { DateFormat } from '@components/index';
+import { Layout, DateFormat } from 'components';
 
 export default function GenericPage(props: IContentComponentData) {
 	const { siteTitle, siteSubtitle, locale } = useContext(LocaleProvider);

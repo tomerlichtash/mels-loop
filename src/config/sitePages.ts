@@ -1,4 +1,4 @@
-import { SitePage } from '../types/models';
+import type { SitePage } from 'types/models';
 import LOCALE from '../locale/keymap/pages';
 
 const {

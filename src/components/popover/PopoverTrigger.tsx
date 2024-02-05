@@ -11,4 +11,4 @@ const PopoverTrigger = ({
 	<span className={styles.root}>{children}</span>
 );
 
-export { PopoverTrigger };
+export default PopoverTrigger;

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { IParsedPageData } from '../../types/models';
+import { IParsedPageData } from 'types/models';
 import { mlUtils } from '../../lib/ml-utils';
 import { LocaleProvider } from '../../locale/context/locale-context';
 import { DynamicContentContext } from './contentContext';
 import { PopoverContext } from 'lib/content/popoverContext';
-import { Button } from '@components/index';
+import { Button } from 'components';
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 
 export interface IDynamicContentToolbarProps {

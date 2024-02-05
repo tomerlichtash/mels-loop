@@ -4,8 +4,8 @@ import { ContentComponent } from '../../../lib/content';
 import { Link } from '../../link';
 import { DateFormat } from '../../date-format';
 
-import type { LocaleId } from '../../../types';
-import type { IParsedPageData } from '../../../types/models';
+import type { LocaleId } from 'types';
+import type { IParsedPageData } from 'types/models';
 
 type IBlogPostProps = {
 	title: string;

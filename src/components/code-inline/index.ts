@@ -1,3 +1,3 @@
-import { CodeInline } from './CodeInline';
+export { default as CodeInline } from './CodeInline';
 
-export default CodeInline;
+export type { CodeProps } from './CodeInline';

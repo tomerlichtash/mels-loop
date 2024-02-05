@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentComponent } from '../index';
-import { IMLParsedNode, ContentComponentProps } from '../../../types/models';
-import Paragraph from '@components/paragraph';
+import { IMLParsedNode, ContentComponentProps } from 'types/models';
+import { Paragraph } from 'components';
 
 export const ParagraphContentBlock = ({
 	componentData,

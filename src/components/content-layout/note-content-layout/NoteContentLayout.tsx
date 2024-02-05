@@ -10,4 +10,4 @@ const NoteContentLayout = ({
 	</div>
 );
 
-export { NoteContentLayout };
+export default NoteContentLayout;

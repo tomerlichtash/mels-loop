@@ -10,4 +10,4 @@ const Strip = ({ className }: StripProps) => (
 	<div className={classNames(styles.root, className)}></div>
 );
 
-export { Strip };
+export default Strip;

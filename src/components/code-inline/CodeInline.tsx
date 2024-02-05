@@ -2,11 +2,11 @@ import React, { PropsWithChildren } from 'react';
 import styles from './CodeInline.module.scss';
 import classNames from 'classnames';
 
-export type CodeProps = {
+type CodeProps = {
 	className?: string;
 };
 
-export const CodeInline = ({
+const CodeInline = ({
 	children,
 	className,
 	...rest
@@ -15,3 +15,7 @@ export const CodeInline = ({
 		{children}
 	</code>
 );
+
+export default CodeInline;
+
+export type { CodeProps };

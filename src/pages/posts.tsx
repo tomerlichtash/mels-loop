@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
-import Layout from '@components/layout';
-import { LoadContentModes, LoadFolderModes } from '../types/parser';
+import { LoadContentModes, LoadFolderModes } from 'types/parser';
 import { GetStaticProps } from 'next';
 import { CONTENT_TYPES } from '../consts';
 import { mlNextUtils } from '../lib/next-utils';
-import { IPageProps, IParsedPageData } from '../types/models';
+import type { IPageProps, IParsedPageData } from 'types/models';
 import usePageData from '../lib/usePageData';
 import { LocaleProvider } from '../locale/context/locale-context';
 import orderBy from 'lodash.orderby';
 import BlogPost from '../components/content-layout/article-content-layout';
+import { Layout } from 'components';
 import { mlUtils } from '../lib/ml-utils';
 
 export default function Blog(props: IPageProps) {

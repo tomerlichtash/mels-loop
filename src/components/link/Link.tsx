@@ -27,4 +27,4 @@ const Link = ({
 	</Button>
 );
 
-export { Link };
+export default Link;

@@ -3,14 +3,14 @@ import * as yup from 'yup';
 import * as Form from '@radix-ui/react-form';
 import { useFormik, Formik, Field } from 'formik';
 import { LocaleProvider } from 'locale/context/locale-context';
-// import Recaptcha from '@components/recaptcha';
+// import Recaptcha from 'components/recaptcha';
 import {
 	ChatBubbleIcon,
 	EnvelopeClosedIcon,
 	PersonIcon,
 	SunIcon,
 } from '@radix-ui/react-icons';
-import { Button, Input, TextArea } from '@components/index';
+import { Button, Input, TextArea } from 'components';
 import classNames from 'classnames';
 import styles from './ContactForm.module.scss';
 
@@ -230,7 +230,7 @@ export default ContactForm;
 // import React, { useContext, useEffect } from "react";
 // import { useFormik } from "formik";
 // import * as yup from "yup";
-// import { LabelRoot } from "@components/primitives/Label";
+// import { LabelRoot } from "components/primitives/Label";
 // import {
 // 	Form,
 // 	FormField,
@@ -238,16 +238,16 @@ export default ContactForm;
 // 	FormMessage,
 // 	FormControl,
 // 	FormSubmit,
-// } from "@components/primitives/Form";
+// } from "components/primitives/Form";
 // import { LocaleProvider } from "locale/context/locale-context";
-// import Recaptcha from "@components/ui/Recaptcha";
+// import Recaptcha from "components/ui/Recaptcha";
 // import {
 // 	ChatBubbleIcon,
 // 	EnvelopeClosedIcon,
 // 	PersonIcon,
 // 	SunIcon,
 // } from "@radix-ui/react-icons";
-// import { Button, Card, Input, TextArea } from "@components/ui";
+// import { Button, Card, Input, TextArea } from "components/ui";
 // import classNames from "classnames";
 // import styles from "./ContactForm.module.scss";
 

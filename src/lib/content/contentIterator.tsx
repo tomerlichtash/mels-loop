@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentComponent } from './contentComponent';
-import { ContentComponentProps, IMLParsedNode } from '../../types/models';
+import { ContentComponentProps, IMLParsedNode } from 'types/models';
 import { mlUtils } from '../../lib/ml-utils';
 import { useComponentAttrs } from './useComponentAttrs';
 

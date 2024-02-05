@@ -1,6 +1,6 @@
 import React from 'react';
-import { ContentComponentProps } from '../../../types/models';
-import CustomImage from '@components/custom-image';
+import { ContentComponentProps } from 'types/models';
+import { CustomImage } from 'components';
 
 export const CustomImageContentBlock = ({
 	componentData,

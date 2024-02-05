@@ -15,27 +15,24 @@
 		"jsx": "preserve",
 		"incremental": true,
 		"sourceMap": true,
-
 		"allowSyntheticDefaultImports": true,
-
-		"baseUrl": "src", // This must be specified if "paths" is.
+		"baseUrl": "./src",
 		"paths": {
-			// This mapping is relative to "baseUrl".
-			"@types/*": ["./typings/*"],
-			"@config/*": ["./config/*"],
-			"@components/*": ["./components/*"],
-			"@locale/*": ["./locale"]
+			"types/*": ["types/*"],
+			"config/*": ["config/*"],
+			"components/*": ["components/*"],
+			"locale/*": ["locale/*"]
 		}
 	},
 	"include": [
 		"src",
-		"src/components/index.tsx",
+		"src/components.tsx",
 		"next-env.d.ts",
 		"globals.d.ts",
 		"**/**/*.ts",
 		"**/**/*.tsx",
-		"./src/**/*",
+		"src/**/*",
 		"src/pages/docs/[id]/pages/[pageId]"
 	],
-	"exclude": ["node_modules", "**/snippets/**", "**/*.ignore.*", "scripts"]
+	"exclude": ["node_modules", "**/*.ignore.*", "scripts"]
 }

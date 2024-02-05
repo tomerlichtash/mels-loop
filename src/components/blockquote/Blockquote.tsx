@@ -8,4 +8,4 @@ const Blockquote = ({ children, ...rest }): JSX.Element => (
 	</blockquote>
 );
 
-export { Blockquote };
+export default Blockquote;

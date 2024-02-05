@@ -28,4 +28,4 @@ const NavListItem = ({
 	</Button>
 );
 
-export { NavListItem };
+export default NavListItem;

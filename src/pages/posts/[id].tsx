@@ -1,16 +1,15 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
-import { IPageProps } from '../../types/models';
+import type { IPageProps } from 'types/models';
+import { LoadFolderModes } from 'types/parser';
 import { CONTENT_TYPES } from '../../consts';
 import { mlNextUtils } from '../../lib/next-utils';
-import { LoadFolderModes } from '../../types/parser';
-import Layout from '../../components/layout';
 import usePageData from '../../lib/usePageData';
 import { mlUtils } from '../../lib/ml-utils';
 import { LocaleProvider } from '../../locale/context/locale-context';
 import { useContext } from 'react';
-import BlogPost from '../../components/content-layout/article-content-layout';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
-import { Link } from '@components/link';
+import BlogPost from 'components/content-layout/article-content-layout';
+import { Layout, Link } from 'components';
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);

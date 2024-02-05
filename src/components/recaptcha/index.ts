@@ -1,3 +1,1 @@
-import { default as Recaptcha } from './Recaptcha';
-
-export default Recaptcha;
+export { default as Recaptcha } from './Recaptcha';

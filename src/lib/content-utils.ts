@@ -1,21 +1,15 @@
 import {
 	DynamicContentTypes,
-	IDynamicContentRecord,
+	type IDynamicContentRecord,
 } from './types/dynamic-content';
+import { ASTNODE_TYPES, MLNODE_TYPES, NODE_DISPLAY_TYPES } from 'types/models';
+import type { IMLParsedNode, IPageMetaData, ParsedNode } from 'types/models';
 import {
-	ASTNODE_TYPES,
-	IMLParsedNode,
-	IPageMetaData,
-	MLNODE_TYPES,
-	NODE_DISPLAY_TYPES,
-	ParsedNode,
-} from '../types/models';
-import {
-	IContentParseOptions,
-	INodeProcessorContext,
-	MLNodeProcessorFunction,
 	MLParseModes,
-} from '../types/parser';
+	type IContentParseOptions,
+	type INodeProcessorContext,
+	type MLNodeProcessorFunction,
+} from 'types/parser';
 import { CaseInsensitiveMap } from './case-insensitive-collections';
 import { mlUtils } from './ml-utils';
 import { Languages } from '../locale';

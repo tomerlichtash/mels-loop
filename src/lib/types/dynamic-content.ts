@@ -1,4 +1,4 @@
-import { IMLParsedNode, IParsedPageData } from '../../types/models';
+import { IMLParsedNode, IParsedPageData } from 'types/models';
 
 /**
  * Types of dynamic content

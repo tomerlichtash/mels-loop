@@ -19,4 +19,4 @@ const VerticalMenuTrigger = ({ onClick }: VerticalTriggerProps) => {
 	);
 };
 
-export { VerticalMenuTrigger };
+export default VerticalMenuTrigger;

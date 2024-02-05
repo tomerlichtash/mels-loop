@@ -1,7 +1,7 @@
-export { PopoverDialog } from './PopoverDialog';
-export { PopoverTrigger } from './PopoverTrigger';
-export { PopoverToolbar } from './PopoverToolbar';
-export { PopoverCloseButton } from './PopoverCloseButton';
+export { default as PopoverDialog } from './PopoverDialog';
+export { default as PopoverTrigger } from './PopoverTrigger';
+export { default as PopoverToolbar } from './PopoverToolbar';
+export { default as PopoverCloseButton } from './PopoverCloseButton';
 
 export type { PopoverDialogProps } from './PopoverDialog';
 export type { PopoverTriggerProps } from './PopoverTrigger';

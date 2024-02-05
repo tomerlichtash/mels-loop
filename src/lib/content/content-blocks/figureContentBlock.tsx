@@ -1,9 +1,8 @@
 import React from 'react';
 import { ContentComponent } from '../index';
-import { IMLParsedNode, ContentComponentProps } from '../../../types/models';
-// import { mlUtils } from "../../../lib/ml-utils";
+import { IMLParsedNode, ContentComponentProps } from 'types/models';
 import { useComponentAttrs } from '../useComponentAttrs';
-import Figure from '@components/figure';
+import { Figure } from 'components';
 
 export const FigureContentBlock = ({
 	componentData,

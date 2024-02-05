@@ -45,6 +45,6 @@ const Scrollbar = ({
 	</ScrollAreaPrimitive.Root>
 );
 
-export { Scrollbar };
+export default Scrollbar;
 
 export type { ScrollbarProps };

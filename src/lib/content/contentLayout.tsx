@@ -5,7 +5,7 @@ import {
 	NoteContentLayoutProps,
 	ReferenceContentLayout,
 	ReferenceContentLayoutProps,
-} from '@components/content-layout';
+} from 'components';
 import { TextDirection } from 'locale/locale-context';
 import {
 	BibliographyItem,

@@ -1,3 +1,1 @@
-import { CustomImage } from './CustomImage';
-
-export default CustomImage;
+export { default as CustomImage } from './CustomImage';

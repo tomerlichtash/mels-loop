@@ -1,7 +1,7 @@
 import React from 'react';
-import { ContentComponentProps } from '../../../types/models';
+import { ContentComponentProps } from 'types/models';
 import { ContentIterator } from '../contentIterator';
-import Heading from '@components/heading';
+import { Heading } from 'components';
 
 export const HeadingContentBlock = ({
 	componentData,

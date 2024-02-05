@@ -38,4 +38,4 @@ const VerticalNav = ({ items, onClose }: VerticalNavProps) =>
 		[items, onClose]
 	);
 
-export { VerticalNav };
+export default VerticalNav;

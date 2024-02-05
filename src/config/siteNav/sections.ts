@@ -1,4 +1,4 @@
-import { NavSectionDataProps } from '@components/HorizontalMenu/types';
+import type { NavSectionDataProps } from 'components/HorizontalMenu/types';
 
 export const MenuSections: NavSectionDataProps[] = [
 	{

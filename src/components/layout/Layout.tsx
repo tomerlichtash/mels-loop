@@ -24,9 +24,9 @@ import {
 	VerticalMenuTrigger,
 	VerticalNav,
 } from '../index';
-import { footerLinks } from '@config/footer';
-import { MenuItems } from '@config/siteNav/items';
-import { MenuSections } from '@config/siteNav/sections';
+import { footerLinks } from 'config/footer';
+import { MenuItems } from 'config/siteNav/items';
+import { MenuSections } from 'config/siteNav/sections';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { LocaleProvider } from '../../locale/context/locale-context';
 import { parseMenuItems } from '../helpers';

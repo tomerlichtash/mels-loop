@@ -43,6 +43,6 @@ const Drawer = ({
 	</ModernDrawer>
 );
 
-export { Drawer };
+export default Drawer;
 
 export type { DrawerProps };

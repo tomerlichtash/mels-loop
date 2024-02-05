@@ -1,12 +1,12 @@
 import { GetStaticPathsResult, GetStaticPropsResult } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { ILocaleMap } from '../types/models';
+import { ILocaleMap } from 'types/models';
 import {
 	IContentParseOptions,
 	MLParseModes,
 	LoadFolderModes,
 	LoadContentModes,
-} from '../types/parser';
+} from 'types/parser';
 import { getContentRootDir, loadContentFolder } from './markdown-driver';
 import * as fsPath from 'path';
 import * as fs from 'fs';

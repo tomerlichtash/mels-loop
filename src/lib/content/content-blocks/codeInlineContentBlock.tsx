@@ -1,6 +1,6 @@
 import React from 'react';
-import { ContentComponentProps } from '../../../types/models';
-import { CodeInline } from '@components/code-inline/CodeInline';
+import { ContentComponentProps } from 'types/models';
+import { CodeInline } from 'components';
 
 export const CodeInlineContentBlock = ({
 	componentData,

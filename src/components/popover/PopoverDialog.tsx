@@ -16,4 +16,4 @@ const PopoverDialog = ({
 	);
 };
 
-export { PopoverDialog };
+export default PopoverDialog;

@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './CodeBlock.module.scss';
-import type { CodeProps } from '@components/code-inline/CodeInline';
+import type { CodeProps } from '../code-inline';
 
 const CodeBlock = ({
 	children,
@@ -12,6 +12,6 @@ const CodeBlock = ({
 		</pre>
 	</div>
 );
-export { CodeBlock };
+export default CodeBlock;
 
 // export type { CodeProps };

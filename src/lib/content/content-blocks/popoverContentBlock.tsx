@@ -12,15 +12,12 @@ import {
 	PopoverTrigger,
 	PopoverToolbar,
 	PopoverCloseButton,
-} from '@components/index';
+} from 'components';
 import { Cross2Icon } from '@radix-ui/react-icons';
 
 import { IPopoverContext } from '../types';
 import { LocaleId, TextDirection } from 'locale/locale-context';
-import {
-	ContentComponentProps,
-	IContentComponentInitData,
-} from '../../../types/models';
+import { ContentComponentProps, IContentComponentInitData } from 'types/models';
 import { DynamicContentTypes } from 'lib/types/dynamic-content';
 
 type PopoverContentBlockProps = {

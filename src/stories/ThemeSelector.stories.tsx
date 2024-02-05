@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import { ThemeSelect } from '@components/theme-select';
+import { ThemeSelect } from 'components/theme-select';
 
 const meta = {
 	title: 'ThemeSelect',

@@ -24,4 +24,4 @@ const NavItemContent = ({
 	</span>
 );
 
-export { NavItemContent };
+export default NavItemContent;

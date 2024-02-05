@@ -3,7 +3,7 @@ import { GenericPage } from 'lib/content';
 import { mlNextUtils } from 'lib/next-utils';
 import { CONTENT_TYPES } from 'consts';
 import { LoadFolderModes } from 'types/parser';
-import { IPageProps } from 'types/models';
+import type { IPageProps } from 'types/models';
 
 export default function Doc(props: IPageProps) {
 	return <GenericPage pageProps={props} />;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentComponentProps } from '../../../types/models';
+import { ContentComponentProps } from 'types/models';
 import { Annotation } from '../../../components';
 
 export const AnnotationContentBlock = ({

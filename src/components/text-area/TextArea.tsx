@@ -32,6 +32,6 @@ const TextArea = ({
 	/>
 );
 
-export { TextArea };
+export default TextArea;
 
 export type { TextAreaProps };

@@ -11,14 +11,14 @@ import {
 	IParsedPageData,
 	PageSortField,
 	ParsedNode,
-} from '../types/models';
+} from 'types/models';
 import { contentUtils } from './content-utils';
 import {
 	IContentParseOptions,
 	LoadContentModes,
 	LoadFolderModes,
 	MLParseModes,
-} from '../types/parser';
+} from 'types/parser';
 
 import getConfig from 'next/config';
 import { mlUtils } from './ml-utils';

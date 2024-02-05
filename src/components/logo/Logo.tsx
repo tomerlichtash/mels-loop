@@ -14,4 +14,4 @@ const Logo = ({ className }: LogoProps) => (
 	/>
 );
 
-export { Logo };
+export default Logo;

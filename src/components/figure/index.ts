@@ -1,3 +1,1 @@
-import { Figure } from './Figure';
-
-export default Figure;
+export { Figure } from './Figure';

@@ -1,7 +1,7 @@
 import React from 'react';
-import { ContentComponentProps } from '../../../types/models';
+import { ContentComponentProps } from 'types/models';
 import { ContentIterator } from '../contentIterator';
-import { Link } from '@components/link/Link';
+import { Link } from 'components';
 
 export interface ILinkProps extends ContentComponentProps {
 	onClick?: (evt: React.MouseEvent) => boolean;

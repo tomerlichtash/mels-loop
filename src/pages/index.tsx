@@ -1,15 +1,13 @@
 import React from 'react';
-import Layout from '../components/layout';
 import { GetStaticProps, NextPage } from 'next';
-import { IPageProps } from '../types/models';
+import type { IPageProps } from 'types/models';
 import { mlNextUtils } from '../lib/next-utils';
-import { LoadContentModes, LoadFolderModes } from '../types/parser';
+import { LoadContentModes, LoadFolderModes } from 'types/parser';
 import { contentUtils } from '../lib/content-utils';
 import usePageData from '../lib/usePageData';
 import { getMetadata, renderElements } from '../lib/content/helpers';
 import { CONTENT_TYPES } from '../consts';
-import Heading from '@components/heading';
-import { Text } from '@components/index';
+import { Layout, Text, Heading } from 'components';
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);

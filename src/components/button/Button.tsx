@@ -32,6 +32,6 @@ const Button = ({
 	);
 };
 
-export { Button };
+export default Button;
 
 export type { ButtonProps };

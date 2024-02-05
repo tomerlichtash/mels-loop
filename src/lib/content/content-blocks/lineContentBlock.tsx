@@ -1,7 +1,7 @@
 import React from 'react';
-import { ContentComponentProps, MLNODE_TYPES } from '../../../types/models';
+import { ContentComponentProps, MLNODE_TYPES } from 'types/models';
 import { ContentComponent } from '../index';
-import Line from '@components/line';
+import { Line } from 'components';
 
 export const LineContentBlock = ({
 	componentData,

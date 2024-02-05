@@ -1,16 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { CONTENT_TYPES } from '../../consts';
 import { mlApiUtils } from '../../lib/api-utils';
-import { LoadContentModes, LoadFolderModes } from '../../types/parser';
+import { LoadContentModes, LoadFolderModes } from 'types/parser';
 import {
 	getContentRootDir,
 	loadContentFolder,
 } from '../../lib/markdown-driver';
-import {
+import type {
 	IMLApiResponse,
 	IMLDynamicContentParams,
 	IMLDynamicContentResponse,
-} from '../../types/ml-api';
+} from 'types/ml-api';
 import { contentUtils } from '../../lib/content-utils';
 import { mlUtils } from '../../lib/ml-utils';
 

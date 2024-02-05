@@ -1,4 +1,4 @@
-import { LinkTarget } from '@components/link/Link';
+import type { LinkTarget } from 'components';
 
 export type SourceProps = {
 	label?: string;

@@ -18,4 +18,4 @@ const PopoverCloseButton = ({
 	);
 };
 
-export { PopoverCloseButton };
+export default PopoverCloseButton;

@@ -11,4 +11,4 @@ const PopoverToolbar = ({
 	<div className={styles.root}>{children}</div>
 );
 
-export { PopoverToolbar };
+export default PopoverToolbar;

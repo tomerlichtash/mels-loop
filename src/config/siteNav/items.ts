@@ -1,4 +1,4 @@
-import { NavItemDataProps } from '@components/HorizontalMenu/types';
+import type { NavItemDataProps } from 'components';
 import { PUBLIC_PROJECT_GITHUB_ADDRESS } from '../../consts';
 
 export const MenuItems: NavItemDataProps[] = [

@@ -57,4 +57,4 @@ const HorizontalNav = ({ items }: NavProps) => (
 	</NavigationMenu.Root>
 );
 
-export { HorizontalNav };
+export default HorizontalNav;

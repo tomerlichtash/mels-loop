@@ -41,6 +41,6 @@ const List = ({
 	</div>
 );
 
-export { List };
+export default List;
 
 export type { ListProps };

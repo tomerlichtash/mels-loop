@@ -3,7 +3,7 @@ import css from 'styled-jsx/css';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { fontFaceDecls } from '../site-fonts';
-import { IPageProps } from '../types/models';
+import { IPageProps } from 'types/models';
 import { LocaleContextProvider } from '../locale/context/locale-context';
 import { PageContextProvider } from '../context/pageContext';
 import { ThemeProvider } from 'next-themes';

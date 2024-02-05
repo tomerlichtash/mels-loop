@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Toggle from '../toggle';
+import Toggle from '../toggle/Toggle';
 import styles from './ThemeSelect.module.scss';
 import { getIcon } from './helpers';
 
@@ -30,4 +30,4 @@ const ThemeSelect = ({ label, theme, setTheme }): JSX.Element => {
 	);
 };
 
-export { ThemeSelect };
+export default ThemeSelect;

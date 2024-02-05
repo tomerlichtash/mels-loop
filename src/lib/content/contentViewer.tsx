@@ -5,13 +5,13 @@ import { contentUtils } from '../../lib/content-utils';
 import { DynamicContentContext } from './contentContext';
 import { ReactPageContext } from '../../context/pageContext';
 import { ContentComponent } from './contentComponent';
-import { LoadingIndicator } from '@components/index';
+import { LoadingIndicator } from 'components';
 import { LocaleProvider } from '../../locale/context/locale-context';
 import {
 	BibliographyItem,
 	DynamicContentTypes,
 } from '../types/dynamic-content';
-import { IParsedPageData } from '../../types/models';
+import { IParsedPageData } from 'types/models';
 import { DynamicContentLayout } from './contentLayout';
 
 /**

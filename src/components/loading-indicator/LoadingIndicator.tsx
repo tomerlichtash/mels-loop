@@ -41,6 +41,6 @@ const LoadingIndicator = ({
 	);
 };
 
-export { LoadingIndicator };
+export default LoadingIndicator;
 
 export type { LoadingIndicatorProps };

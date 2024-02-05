@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IParsedPageData } from '../types/models';
+import { IParsedPageData } from 'types/models';
 import { mlNextBrowserUtils } from './next-browser-utils';
 
 export interface IComponentContentData {

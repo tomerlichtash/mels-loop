@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ContentComponentProps, NODE_DISPLAY_TYPES } from '../../types/models';
+import { ContentComponentProps, NODE_DISPLAY_TYPES } from 'types/models';
 import { LinkContentBlock } from './content-blocks';
 import { DynamicContentContext } from './contentContext';
 import { LocaleProvider } from '../../locale/context/locale-context';

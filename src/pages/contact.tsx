@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import { LocaleProvider } from '../locale/context/locale-context';
-import Layout from '@components/layout';
-import ContactForm from '@components/contact-form';
+import { Layout, ContactForm } from 'components';
 
 import type { NextPage, GetStaticProps } from 'next';
-import type { IPageProps } from '../types/models';
-// import Article from '@components/ContentPage';
+import type { IPageProps } from 'types/models';
+// import Article from 'components/ContentPage';
 
 // const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
 

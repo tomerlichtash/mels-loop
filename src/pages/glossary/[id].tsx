@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
 import { CONTENT_TYPES } from '../../consts';
 import { mlNextUtils } from '../../lib/next-utils';
-import { LoadFolderModes } from '../../types/parser';
+import { LoadFolderModes } from 'types/parser';
 import { contentUtils } from '../../lib/content-utils';
-import { IMLParsedNode, IPageProps, MLNODE_TYPES } from '../../types/models';
-import Layout from '../../components/layout';
+import { MLNODE_TYPES } from 'types/models';
+import type { IMLParsedNode, IPageProps } from 'types/models';
 import usePageData from '../../lib/usePageData';
 import { LocaleProvider } from '../../locale/context/locale-context';
-import { Link, List } from '@components/index';
+import { Layout, Link, List } from 'components';
 import { ContentIterator } from 'lib/content';
 
 export default function GlossaryTerm(props: IPageProps) {

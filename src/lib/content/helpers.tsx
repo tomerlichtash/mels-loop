@@ -1,4 +1,4 @@
-import { IMLParsedNode, IParsedPageData } from 'types/models';
+import type { IMLParsedNode, IParsedPageData } from 'types/models';
 import { ContentComponent } from './contentComponent';
 import { mlUtils } from 'lib/ml-utils';
 

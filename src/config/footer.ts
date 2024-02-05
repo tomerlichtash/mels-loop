@@ -1,4 +1,4 @@
-import { ListItemProps } from '@components/list-item';
+import type { ListItemProps } from 'components';
 import { PUBLIC_PROJECT_GITHUB_ADDRESS } from 'consts';
 
 export const footerLinks: Record<string, ListItemProps[]> = {
