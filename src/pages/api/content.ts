@@ -1,26 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { CONTENT_TYPES } from '../../consts';
-import { mlApiUtils } from '../../lib/api-utils';
+import { ContentTypes } from '../../consts';
+import { mlApiUtils } from '../../lib/apiUtils';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
-import {
-	getContentRootDir,
-	loadContentFolder,
-} from '../../lib/markdown-driver';
+import { getContentRootDir, loadContentFolder } from '../../lib/markdownDriver';
 import type {
 	IMLApiResponse,
 	IMLDynamicContentParams,
 	IMLDynamicContentResponse,
-} from 'types/ml-api';
-import { contentUtils } from '../../lib/content-utils';
-import { mlUtils } from '../../lib/ml-utils';
+} from 'types/api';
+import { contentUtils } from '../../lib/contentUtils';
 
-const TypeMap: { [key: string]: CONTENT_TYPES } = {
-	annotation: CONTENT_TYPES.ANNOTATION,
-	glossary: CONTENT_TYPES.GLOSSARY,
+const TypeMap: { [key: string]: ContentTypes } = {
+	annotation: ContentTypes.Annotation,
+	glossary: ContentTypes.Glossary,
 };
 
 import * as fsPath from 'path';
 import * as fileSystem from 'fs';
+import { arrayToMap } from 'utils';
 
 const noop = function () {
 	void 0;
@@ -104,7 +101,7 @@ async function loadContent(
 			return JSON.parse(payload);
 		}
 		const docPath =
-			clientPath && contentType === CONTENT_TYPES.ANNOTATION
+			clientPath && contentType === ContentTypes.Annotation
 				? await findFirstFolder(clientPath, contentType)
 				: contentType;
 		if (!docPath) {
@@ -114,9 +111,9 @@ async function loadContent(
 		const docData = loadContentFolder({
 			relativePath: docPath,
 			locale: params.locale,
-			loadMode: LoadFolderModes.CHILDREN,
+			loadMode: LoadFolderModes.Children,
 			mode: {
-				contentMode: LoadContentModes.FULL,
+				contentMode: LoadContentModes.Full,
 				nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
 			},
 			rootFolder: process.cwd(),
@@ -124,7 +121,7 @@ async function loadContent(
 		const data = {
 			locale: params.locale,
 			// turn array into map
-			items: mlUtils.arrayToMap(docData.pages, 'id'),
+			items: arrayToMap(docData.pages, 'id'),
 		};
 		// don't want to await before returning, so
 		mlApiUtils

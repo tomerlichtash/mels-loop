@@ -7,7 +7,7 @@
 // 	translate,
 // } from '../utils/test-utils';
 
-// const { LOCALE_LABEL_EN, LOCALE_LABEL_HE } = LocaleSymbols;
+// const { locale.en, locale.he } = LocaleSymbols;
 // export const MOBILE_MENU_TRIGGER = `.bm-burger-button`;
 
 // test.describe.skip('Mobile Menu', () => {
@@ -32,7 +32,7 @@
 // 			await page.click(MOBILE_MENU_TRIGGER);
 // 			await page
 // 				.locator(`.localeSelector" [type="button"]`, {
-// 					hasText: LOCALE_LABEL_EN,
+// 					hasText: locale.en,
 // 				})
 // 				.click();
 // 			await expect(page).toHaveURL('http://localhost:3000');
@@ -44,7 +44,7 @@
 // 			await page.click(MOBILE_MENU_TRIGGER);
 // 			await page
 // 				.locator(domUtil.scopeSelector('.localeSelector'), {
-// 					hasText: LOCALE_LABEL_EN,
+// 					hasText: locale.en,
 // 				})
 // 				.click();
 // 			await expect(page).toHaveURL('http://localhost:3000/');
@@ -56,7 +56,7 @@
 // 			await page.click(MOBILE_MENU_TRIGGER);
 // 			await page
 // 				.locator(`.mobile-menu .localeSelector [type="button"]`, {
-// 					hasText: LOCALE_LABEL_HE,
+// 					hasText: locale.he,
 // 				})
 // 				.click();
 // 			await expect(page).toHaveURL('http://localhost:3000/he');
@@ -68,7 +68,7 @@
 // 			await page.click(MOBILE_MENU_TRIGGER);
 // 			await page
 // 				.locator(`.mobile-menu .localeSelector"`, {
-// 					hasText: LOCALE_LABEL_HE,
+// 					hasText: locale.he,
 // 				})
 // 				.click();
 // 			await expect(page).toHaveURL('http://localhost:3000/he');
@@ -79,7 +79,7 @@
 // 	test.describe('Static Pages', () => {
 // 		locales.map((locale) => {
 // 			test(`${locale} > should navigate to Contact page`, async ({ page }) => {
-// 				// const buttonTitle = translate(locale, "MENU_ITEM_LABEL_ID_CONTACT");
+// 				// const buttonTitle = translate(locale, "nav.items.pages.contact.label");
 // 				const selector = `.menuItemButton:id(contact)`;
 
 // 				await page.goto(getLocalePath(locale));
@@ -99,7 +99,7 @@
 
 // 				await expect(page).toHaveURL(getLocalePath(locale, 'posts'));
 // 				await expect(page.locator('h1')).toHaveText(
-// 					translate(locale, 'SECTION_LABEL_POSTS')
+// 					translate(locale, 'pages.blog.label')
 // 				);
 // 			});
 // 		});

@@ -1,8 +1,13 @@
 import classNames from 'classnames';
-import { unique } from 'lib/utils';
+import { unique } from 'utils';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
-import React, { PropsWithChildren, useContext, useMemo } from 'react';
+import React, {
+	PropsWithChildren,
+	useCallback,
+	useContext,
+	useMemo,
+} from 'react';
 import { useDrawer } from '../drawer/useDrawer';
 import {
 	Button,
@@ -24,44 +29,62 @@ import {
 	VerticalMenuTrigger,
 	VerticalNav,
 } from '../index';
-import { footerLinks } from 'config/footer';
-import { MenuItems } from 'config/siteNav/items';
-import { MenuSections } from 'config/siteNav/sections';
 import { Cross2Icon } from '@radix-ui/react-icons';
-import { LocaleProvider } from '../../locale/context/locale-context';
+import { LocaleContext } from '../../context/locale/localeContext';
 import { parseMenuItems } from '../helpers';
 import { Analytics } from './analytics';
 import { Head } from './customHead';
 import { useIconAnimator } from './useIconAnimator';
 import { useWindowSize } from './useWindowSize';
 import styles from './Layout.module.scss';
-import type { NavParsedNodes } from '..';
-import type { LocaleId } from 'locale/locale-context';
-import type { LayoutProps } from './types';
+
+import { default as menuItemsData } from 'config/navItems.json' assert { type: 'json' };
+import { default as menuSectionData } from 'config/navSections.json' assert { type: 'json' };
+import { default as footerLinksData } from 'config/layoutFooterLinks.json' assert { type: 'json' };
+
+import type { LocaleId } from 'types/locale';
+import type {
+	NavItemDataProps,
+	NavParsedNodes,
+	NavSectionDataProps,
+} from '../HorizontalMenu/types';
+import type { LayoutProps, LinkSectionProps } from './types';
 
 const IS_DEBUG = process.env.NEXT_PUBLIC_ML_DEBUG;
 const MIN_DESKTOP_WIDTH = 1024;
 
-const Layout = ({ title, children }: PropsWithChildren<LayoutProps>) => {
+const Layout = ({
+	title,
+	pageName,
+	children,
+}: PropsWithChildren<LayoutProps>) => {
 	const router = useRouter();
-	const size = useWindowSize();
-	const { theme, setTheme } = useTheme();
-	const isMobile = size.width <= MIN_DESKTOP_WIDTH;
-	const { open, toggle } = useDrawer(isMobile);
+	const { width: screenWidth } = useWindowSize();
+
+	const isMobile = screenWidth <= MIN_DESKTOP_WIDTH;
 	const isHome = router.pathname === '/';
 
+	const { theme, setTheme } = useTheme();
+	const { open, toggle } = useDrawer(isMobile);
+
 	const {
-		siteTitle,
-		siteSubtitle,
 		textDirection,
-		pageName,
+		// pageName,
 		locale,
 		locales,
 		translate,
 		getLocaleLabel,
 		getLocaleSymbol,
-		onLocaleChange,
-	} = useContext(LocaleProvider);
+	} = useContext(LocaleContext);
+
+	const onLocaleChange = useCallback(
+		(id: LocaleId) =>
+			router.push(router.asPath, router.asPath, {
+				locale: id,
+				scroll: true,
+			}),
+		[router]
+	);
 
 	useIconAnimator(router, locale);
 
@@ -70,13 +93,20 @@ const Layout = ({ title, children }: PropsWithChildren<LayoutProps>) => {
 	};
 
 	const themeLabel = useMemo(() => {
-		return `${translate('site.components.themeSelector.switchTo')} ${translate(
-			`site.components.themeSelector.theme.${getThemeName(theme)}`
+		return `${translate(
+			'site.layout.components.themeSelector.switchTo'
+		)} ${translate(
+			`site.layout.components.themeSelector.theme.${getThemeName(theme)}`
 		)}`;
 	}, [theme, translate]);
 
 	const navItems: NavParsedNodes[] = useMemo(
-		() => parseMenuItems(MenuSections, MenuItems, translate),
+		() =>
+			parseMenuItems(
+				menuSectionData as NavSectionDataProps[],
+				menuItemsData as NavItemDataProps[],
+				translate
+			),
 		[translate]
 	);
 
@@ -85,25 +115,25 @@ const Layout = ({ title, children }: PropsWithChildren<LayoutProps>) => {
 			locales.map((id) => ({
 				id,
 				label: getLocaleSymbol(id),
-				title: translate(`${getLocaleLabel(id)}_LABEL`),
+				title: getLocaleLabel(id),
 			})),
-		[getLocaleLabel, getLocaleSymbol, locales, translate]
+		[getLocaleLabel, getLocaleSymbol, locales]
 	);
 
 	const footerItems = useMemo(
 		() =>
-			Object.keys(footerLinks).map((sectionLabel) => (
+			(footerLinksData as LinkSectionProps[]).map(({ label, items }) => (
 				<Container className={styles.column} key={unique.id()}>
-					<List className={styles.list} label={translate(sectionLabel)}>
-						{footerLinks[sectionLabel]
+					<List className={styles.list} label={translate(label)}>
+						{items
 							.map((item) => {
 								return { ...item, label: translate(item.label) };
 							})
-							.map(({ label, target, url }) => {
+							.map(({ label, target, href }) => {
 								return (
 									<ListItem key={unique.id()} className={styles.item}>
-										{url ? (
-											<Link href={url} target={target} className={styles.link}>
+										{href ? (
+											<Link href={href} target={target} className={styles.link}>
 												{label}
 											</Link>
 										) : (
@@ -138,12 +168,12 @@ const Layout = ({ title, children }: PropsWithChildren<LayoutProps>) => {
 						<Cross2Icon />
 					</Button>
 					<Logo />
-					<TextLink label={siteTitle} linked={!isHome} />
+					<TextLink label={translate('site.title')} linked={!isHome} />
 					<Strip />
 					<LocaleSelect
 						defaultValue={locale}
 						options={localeItems}
-						onSelect={(id: LocaleId) => void onLocaleChange(id)}
+						onSelect={(id) => void onLocaleChange(id)}
 					/>
 					<ThemeSelect
 						label={themeLabel}
@@ -155,26 +185,26 @@ const Layout = ({ title, children }: PropsWithChildren<LayoutProps>) => {
 			</Drawer>
 		),
 		[
-			localeItems,
-			navItems,
+			textDirection,
+			open,
 			isHome,
 			locale,
-			textDirection,
-			siteTitle,
-			theme,
+			localeItems,
 			themeLabel,
-			open,
-			onLocaleChange,
-			setTheme,
+			theme,
+			navItems,
 			toggle,
+			translate,
+			setTheme,
+			onLocaleChange,
 		]
 	);
 
 	return (
 		<>
 			<Head
-				siteTitle={siteTitle}
-				siteSubtitle={siteSubtitle}
+				siteTitle={translate('site.title')}
+				siteSubtitle={translate('site.subtitle')}
 				title={title}
 				pageName={pageName}
 			/>
@@ -196,10 +226,10 @@ const Layout = ({ title, children }: PropsWithChildren<LayoutProps>) => {
 					<header>
 						<Container alignItemsCenter className={styles.siteTitle}>
 							<Logo />
-							<TextLink label={siteTitle} linked={!isHome} />
+							<TextLink label={translate('site.title')} linked={!isHome} />
 							<Separator />
 							<Text variant="subtitle2" className={styles.subtitle}>
-								{siteSubtitle}
+								{translate('site.subtitle')}
 							</Text>
 						</Container>
 						{isMobile ? (
@@ -211,7 +241,7 @@ const Layout = ({ title, children }: PropsWithChildren<LayoutProps>) => {
 									<LocaleSelect
 										defaultValue={locale}
 										options={localeItems}
-										onSelect={(id: LocaleId) => void onLocaleChange(id)}
+										onSelect={(id) => void onLocaleChange(id)}
 									/>
 									<ThemeSelect
 										label={themeLabel}
@@ -237,10 +267,10 @@ const Layout = ({ title, children }: PropsWithChildren<LayoutProps>) => {
 									>
 										<time className="year">2021-{siteLicenseCurrentYear}</time>
 										<span className="license">{siteLicenseType}</span>
-										<span className="title">{siteTitle}</span>
+										<span className="title">{translate('site.title')}</span>
 									</Text>
-									<Text italics={true}>{siteSubtitle}</Text>
-									<Text lowercase>{translate('MENU_ITEM_DESC_ID_ABOUT')}</Text>
+									<Text italics={true}>{translate('site.subtitle')}</Text>
+									<Text lowercase>{translate('footer.siteDescription')}</Text>
 								</div>
 								{footerItems}
 							</div>

@@ -1,5 +1,13 @@
+import { LinkProps } from '../link/types';
+
 type LayoutProps = {
 	title?: string;
+	pageName?: string;
 };
 
-export type { LayoutProps };
+type LinkSectionProps = {
+	label: string;
+	items: LinkProps[];
+};
+
+export type { LayoutProps, LinkSectionProps };

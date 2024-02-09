@@ -1,13 +1,13 @@
 import React from 'react';
 import { Layout } from 'components';
 import { GetStaticProps, NextPage } from 'next';
-import { CONTENT_TYPES } from '../consts';
-import { mlNextUtils } from '../lib/next-utils';
-import { mlUtils } from '../lib/ml-utils';
+import { ContentTypes } from '../consts';
+import { mlNextUtils } from '../lib/nextUtils';
 import usePageData from '../lib/usePageData';
-import type { IMLParsedNode, IPageProps, IParsedPageData } from 'types/models';
 import { LoadFolderModes } from 'types/parser';
-import { ContentComponent } from 'lib/content';
+import { ContentComponent } from 'lib/dynamic-content';
+import { unique } from 'utils';
+import type { IMLParsedNode, IPageProps, IParsedPageData } from 'types/models';
 
 const Contribute: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
@@ -21,10 +21,7 @@ const Contribute: NextPage<IPageProps> = (props) => {
 				<div className="section">
 					{elements.map((node) => {
 						return (
-							<ContentComponent
-								key={mlUtils.uniqueId()}
-								componentData={{ node }}
-							/>
+							<ContentComponent key={unique.id()} componentData={{ node }} />
 						);
 					})}
 				</div>
@@ -33,12 +30,11 @@ const Contribute: NextPage<IPageProps> = (props) => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-	return mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.CONTRIBUTE,
+export const getStaticProps: GetStaticProps = async (context) =>
+	mlNextUtils.getFolderStaticProps(
+		ContentTypes.Contrib,
 		context.locale,
-		LoadFolderModes.FOLDER
+		LoadFolderModes.Folder
 	);
-};
 
 export default Contribute;

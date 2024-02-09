@@ -1,4 +1,4 @@
-import type { LocaleId } from 'locale/locale-context';
+import type { LocaleId } from 'types/locale';
 
 type DateFormatProps = {
 	date: Date;

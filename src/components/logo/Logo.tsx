@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Logo.module.scss';
 import classNames from 'classnames';
-import { CssVarImage } from '../css-var-image';
+import CssVarImage from '../css-var-image/CssVarImage';
 import { LogoProps } from './types';
 
 const Logo = ({ className }: LogoProps) => (

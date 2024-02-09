@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import * as yup from 'yup';
 import * as Form from '@radix-ui/react-form';
 import { useFormik, Formik, Field } from 'formik';
-import { LocaleProvider } from 'locale/context/locale-context';
+import { LocaleContext } from 'context/locale/localeContext';
 // import Recaptcha from 'components/recaptcha';
 import {
 	ChatBubbleIcon,
@@ -15,7 +15,7 @@ import classNames from 'classnames';
 import styles from './ContactForm.module.scss';
 
 const ContactForm = ({ title, description }) => {
-	const { translate } = useContext(LocaleProvider);
+	const { translate } = useContext(LocaleContext);
 
 	const formik = useFormik({
 		initialValues: {
@@ -88,7 +88,7 @@ const ContactForm = ({ title, description }) => {
 									<Form.Field className={styles.field} name="fullName">
 										<Form.Label className={styles.label} htmlFor="fullName">
 											<PersonIcon />
-											{translate('CONTACT_FORM_LABEL_FULLNAME')}
+											{translate('forms.contact.field.name.label')}
 										</Form.Label>
 										<div className={styles.inputField}>
 											<Form.FormControl asChild>
@@ -99,7 +99,7 @@ const ContactForm = ({ title, description }) => {
 													type="text"
 													required
 													placeholder={translate(
-														"CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER"
+														"forms.contact.field.name.placeholder"
 													)}
 													value={formik.values.fullName}
 													onChange={formik.handleChange}
@@ -114,7 +114,9 @@ const ContactForm = ({ title, description }) => {
 													)}
 													match="valueMissing"
 												>
-													{translate('CONTACT_FORM_INVALID_NAME')}
+													{translate(
+														'forms.contact.field.name.validity.missingValue'
+													)}
 												</Form.Message>
 												<Form.Message
 													className={classNames(
@@ -131,7 +133,7 @@ const ContactForm = ({ title, description }) => {
 									<Form.Field className={styles.field} name="email">
 										<Form.Label className={styles.label} htmlFor="email">
 											<EnvelopeClosedIcon />
-											{translate('CONTACT_FORM_LABEL_EMAIL')}
+											{translate('forms.contact.field.email.label')}
 										</Form.Label>
 										<div className={styles.inputField}>
 											<Form.Control asChild>
@@ -141,7 +143,7 @@ const ContactForm = ({ title, description }) => {
 													type="email"
 													required
 													placeholder={translate(
-														'CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER'
+														'forms.contact.field.email.placeholder'
 													)}
 													value={formik.values.email}
 													onChange={formik.handleChange}
@@ -155,7 +157,9 @@ const ContactForm = ({ title, description }) => {
 													)}
 													match="valueMissing"
 												>
-													{translate('CONTACT_FORM_INVALID_EMAIL')}
+													{translate(
+														'forms.contact.field.email.validity.missingValue'
+													)}
 												</Form.Message>
 												<Form.Message
 													className={classNames(
@@ -172,7 +176,7 @@ const ContactForm = ({ title, description }) => {
 									<Form.Field className={styles.field} name="message">
 										<Form.Label className={styles.label} htmlFor="message">
 											<ChatBubbleIcon />
-											{translate('CONTACT_FORM_LABEL_MESSAGE')}
+											{translate('forms.contact.field.message.label')}
 										</Form.Label>
 										<div className={styles.inputField}>
 											<Form.Control asChild>
@@ -181,7 +185,7 @@ const ContactForm = ({ title, description }) => {
 													className={classNames(styles.input, styles.textarea)}
 													required
 													placeholder={translate(
-														'CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER'
+														'forms.contact.field.message.placeholder'
 													)}
 													value={formik.values.message}
 													onChange={formik.handleChange}
@@ -195,7 +199,9 @@ const ContactForm = ({ title, description }) => {
 													)}
 													match="valueMissing"
 												>
-													{translate('CONTACT_FORM_INVALID_MESSAGE')}
+													{translate(
+														'forms.contact.field.message.validity.missingValue'
+													)}
 												</Form.Message>
 											</div>
 										</div>
@@ -213,7 +219,7 @@ const ContactForm = ({ title, description }) => {
 								<Form.Submit asChild>
 									<Button className={styles.submit} data-size="sm">
 										<SunIcon />
-										{translate('CONTACT_FORM_LABEL_SEND')}
+										{translate('button.send')}
 									</Button>
 								</Form.Submit>
 							</Form.Root>
@@ -294,7 +300,7 @@ export default ContactForm;
 // 						<FormLabel asChild>
 // 							<LabelRoot className={styles.label} htmlFor="fullName">
 // 								<PersonIcon />
-// 								{translate("CONTACT_FORM_LABEL_FULLNAME")}
+// 								{translate("forms.contact.field.name.label")}
 // 							</LabelRoot>
 // 						</FormLabel>
 // 						<div className={styles.inputField}>
@@ -305,7 +311,7 @@ export default ContactForm;
 // 									type="text"
 // 									required
 // 									placeholder={translate(
-// 										"CONTACT_FORM_LABEL_FULLNAME_PLACEHOLDER"
+// 										"forms.contact.field.name.placeholder"
 // 									)}
 // 									value={formik.values.fullName}
 // 									onChange={formik.handleChange}
@@ -320,7 +326,7 @@ export default ContactForm;
 // 									)}
 // 									match="valueMissing"
 // 								>
-// 									{translate("CONTACT_FORM_INVALID_NAME")}
+// 									{translate("forms.contact.field.name.validity.missingValue")}
 // 								</FormMessage>
 // 								<FormMessage
 // 									className={classNames(
@@ -338,7 +344,7 @@ export default ContactForm;
 // 						<FormLabel asChild>
 // 							<LabelRoot className={styles.label} htmlFor="email">
 // 								<EnvelopeClosedIcon />
-// 								{translate("CONTACT_FORM_LABEL_EMAIL")}
+// 								{translate("forms.contact.field.email.label")}
 // 							</LabelRoot>
 // 						</FormLabel>
 // 						<div className={styles.inputField}>
@@ -349,7 +355,7 @@ export default ContactForm;
 // 									type="email"
 // 									required
 // 									placeholder={translate(
-// 										"CONTACT_FORM_LABEL_EMAIL_PLACEHOLDER"
+// 										"forms.contact.field.email.placeholder"
 // 									)}
 // 									value={formik.values.email}
 // 									onChange={formik.handleChange}
@@ -363,7 +369,7 @@ export default ContactForm;
 // 									)}
 // 									match="valueMissing"
 // 								>
-// 									{translate("CONTACT_FORM_INVALID_EMAIL")}
+// 									{translate("forms.contact.field.email.validity.missingValue")}
 // 								</FormMessage>
 // 								<FormMessage
 // 									className={classNames(
@@ -381,7 +387,7 @@ export default ContactForm;
 // 						<FormLabel asChild>
 // 							<LabelRoot className={styles.label} htmlFor="message">
 // 								<ChatBubbleIcon />
-// 								{translate("CONTACT_FORM_LABEL_MESSAGE")}
+// 								{translate("forms.contact.field.message.label")}
 // 							</LabelRoot>
 // 						</FormLabel>
 // 						<div className={styles.inputField}>
@@ -391,7 +397,7 @@ export default ContactForm;
 // 									className={classNames(styles.input, styles.textarea)}
 // 									required
 // 									placeholder={translate(
-// 										"CONTACT_FORM_LABEL_MESSAGE_PLACEHOLDER"
+// 										"forms.contact.field.message.placeholder"
 // 									)}
 // 									value={formik.values.message}
 // 									onChange={formik.handleChange}
@@ -405,7 +411,7 @@ export default ContactForm;
 // 									)}
 // 									match="valueMissing"
 // 								>
-// 									{translate("CONTACT_FORM_INVALID_MESSAGE")}
+// 									{translate("forms.contact.field.message.validity.missingValue")}
 // 								</FormMessage>
 // 							</div>
 // 						</div>
@@ -423,7 +429,7 @@ export default ContactForm;
 // 				<FormSubmit asChild>
 // 					<Button type="submit" className={styles.submit} data-size="sm">
 // 						<SunIcon />
-// 						{translate("CONTACT_FORM_LABEL_SEND")}
+// 						{translate("button.send")}
 // 					</Button>
 // 				</FormSubmit>
 // 			</Form>

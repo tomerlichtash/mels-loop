@@ -9,11 +9,17 @@ import { getLocalePath, locales, translate } from '../utils/test-utils';
 // };
 
 const nameErrSelector = (locale: string) =>
-	`text=${translate(locale, 'CONTACT_FORM_INVALID_NAME')}`;
+	`text=${translate(locale, 'forms.contact.field.name.validity.missingValue')}`;
 const emailErrSelector = (locale: string) =>
-	`text=${translate(locale, 'CONTACT_FORM_INVALID_EMAIL')}`;
+	`text=${translate(
+		locale,
+		'forms.contact.field.email.validity.missingValue'
+	)}`;
 const messageErrSelector = (locale: string) =>
-	`text=${translate(locale, 'CONTACT_FORM_INVALID_MESSAGE')}`;
+	`text=${translate(
+		locale,
+		'forms.contact.field.message.validity.missingValue'
+	)}`;
 
 test.describe.fixme('Contact Page', () => {
 	locales.map((locale) => {
@@ -22,15 +28,15 @@ test.describe.fixme('Contact Page', () => {
 			async ({ page }) => {
 				await page.goto(getLocalePath(locale));
 				await page.hover(
-					`text=${translate(locale, 'MENU_ITEM_LABEL_ID_CONTACT')}`
+					`text=${translate(locale, 'nav.items.pages.contact.label')}`
 				);
 				await page.click(
-					`text=${translate(locale, 'MENU_ITEM_DESC_ID_CONTACT')}`
+					`text=${translate(locale, 'nav.items.pages.contact.desc')}`
 				);
 
 				await expect(page).toHaveURL(getLocalePath(locale, 'contact'));
 				await expect(page.locator('h1')).toHaveText(
-					translate(locale, 'CONTACT_PAGE_TITLE')
+					translate(locale, 'pages.contact.title')
 				);
 			}
 		);
@@ -44,21 +50,32 @@ test.describe.fixme('Contact Form', () => {
 		}) => {
 			await page.goto(getLocalePath(locale, 'contact'));
 
-			await page
-				.locator(`text=${translate(locale, 'CONTACT_FORM_LABEL_SEND')}`)
-				.click();
+			await page.locator(`text=${translate(locale, 'button.send')}`).click();
 
 			await expect(
-				page.locator(`text=${translate(locale, 'CONTACT_FORM_INVALID_NAME')}`)
-			).toHaveCount(1);
-
-			await expect(
-				page.locator(`text=${translate(locale, 'CONTACT_FORM_INVALID_EMAIL')}`)
+				page.locator(
+					`text=${translate(
+						locale,
+						'forms.contact.field.name.validity.missingValue'
+					)}`
+				)
 			).toHaveCount(1);
 
 			await expect(
 				page.locator(
-					`text=${translate(locale, 'CONTACT_FORM_INVALID_MESSAGE')}`
+					`text=${translate(
+						locale,
+						'forms.contact.field.email.validity.missingValue'
+					)}`
+				)
+			).toHaveCount(1);
+
+			await expect(
+				page.locator(
+					`text=${translate(
+						locale,
+						'forms.contact.field.message.validity.missingValue'
+					)}`
 				)
 			).toHaveCount(1);
 		});
@@ -71,9 +88,7 @@ test.describe.fixme('Contact Form', () => {
 			await page.locator(`#fullname`).fill('Ed Nather');
 			await page.locator(`#email`).fill('nather@astro.as.utexas.edu');
 
-			await page
-				.locator(`text=${translate(locale, 'CONTACT_FORM_LABEL_SEND')}`)
-				.click();
+			await page.locator(`text=${translate(locale, 'button.send')}`).click();
 
 			await expect(page.locator(nameErrSelector(locale))).toHaveCount(0);
 			await expect(page.locator(emailErrSelector(locale))).toHaveCount(0);
@@ -81,7 +96,9 @@ test.describe.fixme('Contact Form', () => {
 			await expect(
 				page.locator(messageErrSelector(locale)),
 				'should display warning for Message Input'
-			).toHaveText(translate(locale, 'CONTACT_FORM_INVALID_MESSAGE'));
+			).toHaveText(
+				translate(locale, 'forms.contact.field.message.validity.missingValue')
+			);
 		});
 
 		test(`${locale} > should show error for populated input on blur`, async ({
@@ -134,14 +151,14 @@ test.describe.fixme('Contact Form', () => {
 					.locator(`#message`)
 					.fill('Real Programmers write in FORTRAN');
 
-				await page
-					.locator(`text=${translate(locale, 'CONTACT_FORM_LABEL_SEND')}`)
-					.click();
+				await page.locator(`text=${translate(locale, 'button.send')}`).click();
 
 				await expect(
 					page.locator(messageErrSelector(locale)),
 					'should display warning for Message Input'
-				).toHaveText(translate(locale, 'CONTACT_FORM_INVALID_MESSAGE'));
+				).toHaveText(
+					translate(locale, 'forms.contact.field.message.validity.missingValue')
+				);
 			}
 		);
 	});

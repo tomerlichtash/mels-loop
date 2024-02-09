@@ -64,8 +64,6 @@ $bgVar: varName(popover-trigger-background-color);
 	@include useBackgroundColor();
 	@include useRadius();
 
-	background: red;
-
 	&:after {
 		#{$textVar}: compRef(popover-trigger, astriek-color);
 	}

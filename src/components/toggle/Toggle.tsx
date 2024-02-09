@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import * as ToggleRoot from '@radix-ui/react-toggle';
-import { Button } from '../button';
+import Button from '../button/Button';
 import classNames from 'classnames';
 import styles from './Toggle.module.scss';
 import type { ToggleProps } from './types';

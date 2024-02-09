@@ -1,5 +1,5 @@
 ---
-glossary_key: "PORT"
+glossary_key: 'glossary.term.port'
 source_url: https://en.wikipedia.org/wiki/Porting
 source_name: Wikipedia
 ---

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '../button';
+import Button from '../button/Button';
 import classNames from 'classnames';
 import styles from './NavListItem.module.scss';
 import { PropsWithChildren } from 'react';

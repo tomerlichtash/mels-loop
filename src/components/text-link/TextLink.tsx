@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { Text } from '../text';
-import { Link } from '../link';
+import Text from '../text/Text';
+import Link from '../link/Link';
 import styles from './TextLink.module.scss';
 import type { TextLinkProps } from './types';
 

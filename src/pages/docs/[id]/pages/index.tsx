@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
-import { GenericPage } from 'lib/content';
-import { mlNextUtils } from 'lib/next-utils';
-import { contentUtils } from 'lib/content-utils';
+import { GenericPage } from 'lib/dynamic-content';
+import { mlNextUtils } from 'lib/nextUtils';
+import { contentUtils } from 'lib/contentUtils';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
 import { IPageProps } from 'types/models';
 
@@ -14,6 +14,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 		contentFolder: __filename,
 		locales: context.locales,
 	});
+
 	return paths;
 };
 
@@ -28,9 +29,9 @@ export const getStaticProps: GetStaticProps = async (
 	return mlNextUtils.getFolderStaticProps(
 		relativePath, //`${CONTENT_TYPES.DOCS}/${context.params.id as string}/resources`,
 		context.locale,
-		LoadFolderModes.FOLDER,
+		LoadFolderModes.Folder,
 		{
-			contentMode: LoadContentModes.FULL,
+			contentMode: LoadContentModes.Full,
 			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
 		}
 	);

@@ -21,12 +21,12 @@ test.describe('Articles', () => {
 
 			await page
 				.getByRole('button', {
-					name: translate(locale, 'MENU_SECTION_LABEL_ARTICLES'),
+					name: translate(locale, 'nav.sections.articles.label'),
 				})
 				.hover();
 
 			await page.click(
-				`text=${translate(locale, 'MENU_ITEM_LABEL_ID_PREFACE')}`
+				`text=${translate(locale, 'nav.items.articles.som.intro.label')}`
 			);
 
 			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
@@ -42,13 +42,10 @@ test.describe('Articles', () => {
 
 			await page.goto(getLocalePath(locale, docId));
 			await page.hover(
-				`text=${translate(locale, 'MENU_SECTION_LABEL_ARTICLES')}`
+				`text=${translate(locale, 'nav.sections.articles.label')}`
 			);
 			await page.click(
-				`text=${translate(
-					locale,
-					'MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS'
-				)}`
+				`text=${translate(locale, 'nav.items.articles.som.missingBits.label')}`
 			);
 
 			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
@@ -62,10 +59,10 @@ test.describe('Articles', () => {
 
 			await page.goto(getLocalePath(locale, docId));
 			await page.hover(
-				`text=${translate(locale, 'MENU_SECTION_LABEL_ARTICLES')}`
+				`text=${translate(locale, 'nav.sections.articles.label')}`
 			);
 			await page.click(
-				`text=${translate(locale, 'MENU_ITEM_LABEL_ID_MEL_KAYE_BIO')}`
+				`text=${translate(locale, 'nav.items.articles.som.bio.label')}`
 			);
 
 			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
@@ -82,11 +79,9 @@ test.describe('Articles', () => {
 
 			await page.goto(localePath);
 			await page.hover(
-				`text=${translate(locale, 'MENU_SECTION_LABEL_ARTICLES')}`
+				`text=${translate(locale, 'nav.sections.articles.label')}`
 			);
-			await page.click(
-				`text=${translate(locale, 'MENU_ITEM_LABEL_ID_RESOURCES')}`
-			);
+			await page.click(`text=${translate(locale, 'pages.resources.label')}`);
 
 			await expect(page).toHaveURL(localePath);
 			await expect(page.locator('h1')).toHaveText(data.title as string);

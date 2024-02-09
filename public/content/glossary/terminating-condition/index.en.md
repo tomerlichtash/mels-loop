@@ -1,5 +1,5 @@
 ---
-glossary_key: "TERMINATING_CONDITION"
+glossary_key: 'glossary.term.terminatingCondition'
 # source_url: http://teaching.idallen.com/cst8110/97s/LoopTermConditions.html
 # source_name: TBD
 ---

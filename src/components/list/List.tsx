@@ -1,10 +1,10 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import styles from './List.module.scss';
-import { Link } from '../link';
-import { Text } from '../text';
-import { ListItem } from '../list-item';
-import { unique } from 'lib/utils';
+import Link from '../link/Link';
+import Text from '../text/Text';
+import ListItem from '../list-item/ListItem';
+import { unique } from 'utils';
 import type { ListProps } from './types';
 
 const renderListItems = (items) =>

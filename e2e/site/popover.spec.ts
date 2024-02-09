@@ -19,7 +19,7 @@ test.describe('Popover', () => {
 			await page.$$(loadingIndicatorSelector);
 
 			await expect(page.locator(loadingIndicatorSelector)).toHaveText(
-				translate('en', 'PRELOADER_LABEL')
+				translate('en', 'dynamicContent.viewer.loadingIndicator.label')
 			);
 		}
 	);

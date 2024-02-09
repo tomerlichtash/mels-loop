@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import styles from './Figure.module.scss';
 import type { FigureProps } from './types';
 
-export const Figure = ({
+const Figure = ({
 	elementId,
 	children,
 	...rest
@@ -12,3 +12,5 @@ export const Figure = ({
 		<div className="figure-content">{children}</div>
 	</figure>
 );
+
+export default Figure;

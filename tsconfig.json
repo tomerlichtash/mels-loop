@@ -20,8 +20,9 @@
 		"paths": {
 			"types/*": ["types/*"],
 			"config/*": ["config/*"],
-			"components/*": ["components/*"],
 			"locale/*": ["locale/*"],
+			"context/*": ["context/*"],
+			"components/*": ["components/*"],
 			"styles/*": ["styles/*"]
 		}
 	},

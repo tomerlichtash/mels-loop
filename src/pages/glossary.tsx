@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import { CONTENT_TYPES } from '../consts';
-import { mlNextUtils } from '../lib/next-utils';
+import { ContentTypes } from '../consts';
+import { mlNextUtils } from '../lib/nextUtils';
 import type { IPageProps } from 'types/models';
 import usePageData from '../lib/usePageData';
-import { LocaleProvider } from '../locale/context/locale-context';
+import { LocaleContext } from '../context/locale/localeContext';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
 import { Layout, Link } from 'components';
 
 const Glossary: NextPage<IPageProps> = (props) => {
-	const { translate, pageName } = useContext(LocaleProvider);
+	const { translate } = useContext(LocaleContext);
 	const { metaData } = usePageData(props);
 	return (
 		<Layout>
 			<article className="page">
-				<h1 className="title">{pageName}</h1>
+				<h1 className="title">{translate('pages.glossary.label')}</h1>
 				{metaData.length && (
 					<ul className="term-list">
 						{metaData.map((page, index) => {
@@ -40,18 +40,20 @@ const Glossary: NextPage<IPageProps> = (props) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.GLOSSARY,
+		ContentTypes.Glossary,
 		context.locale,
-		LoadFolderModes.FOLDER
+		LoadFolderModes.Folder
 	);
+
 	const childrenProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.GLOSSARY,
+		ContentTypes.Glossary,
 		context.locale,
-		LoadFolderModes.CHILDREN,
+		LoadFolderModes.Children,
 		{
-			contentMode: LoadContentModes.FULL,
+			contentMode: LoadContentModes.Full,
 		}
 	);
+
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const props = {
 		props: {
@@ -59,6 +61,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 			metaData: (childrenProps as any).props.content,
 		},
 	};
+
 	return props;
 };
 

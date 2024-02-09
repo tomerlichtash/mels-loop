@@ -1,4 +1,4 @@
-import { LocaleId } from 'locale/locale-context';
+import type { LocaleId } from 'types/locale';
 
 type LocaleOption = {
 	id: LocaleId;

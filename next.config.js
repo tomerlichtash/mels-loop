@@ -1,6 +1,7 @@
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { withAxiom } from 'next-axiom';
+import { default as legacyRedirects } from './legacy.json' assert { type: 'json' };
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -21,28 +22,7 @@ const nextConfig = {
 		PROJECT_ROOT: __dirname,
 	},
 	async redirects() {
-		return [
-			{
-				source: '/docs/preface',
-				destination: '/docs/the-story-of-mel/pages/preface',
-				permanent: true,
-			},
-			{
-				source: '/docs/mels-hack-the-missing-bits',
-				destination: '/docs/the-story-of-mel/pages/mels-hack-the-missing-bits',
-				permanent: true,
-			},
-			{
-				source: '/docs/resources',
-				destination: '/docs/the-story-of-mel/pages/resources',
-				permanent: true,
-			},
-			{
-				source: '/docs/blackjack-writeup',
-				destination: '/docs/the-story-of-mel/pages/blackjack-writeup',
-				permanent: true,
-			},
-		];
+		return legacyRedirects;
 	},
 };
 

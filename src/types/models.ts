@@ -1,28 +1,20 @@
-import { DynamicContentTypes } from 'lib/types/dynamic-content';
+import { DynamicContentTypes } from 'lib/types';
 import { MLParseModes } from './parser';
 
-/**
- * Workaround for any
- */
+/** Workaround for any */
 export interface IPlainObject {
 	[key: string | number]: string | number | boolean | object | null;
 }
 
-/**
- * A single node in a parsed markdown AST
- */
+/** A single node in a parsed markdown AST */
 export type ParsedNode = {
 	readonly type: ASTNODE_TYPES;
-
 	readonly attributes?: Map<string, string>;
-
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	[prop: string]: any;
 };
 
-/**
- * Node names as assigned by the markdown parser
- */
+/** Node names as assigned by the markdown parser */
 export enum ASTNODE_TYPES {
 	NEWLINE = 'newline',
 	PARAGRAPH = 'paragraph',
@@ -80,74 +72,43 @@ export enum NODE_LIST_TYPES {
 	UNORDERED = 'ul',
 }
 
-/**
- * Special display modes for nodes
- */
+/** Special display modes for nodes */
 export enum NODE_DISPLAY_TYPES {
-	/**
-	 * Show in popover
-	 */
+	/** Show in popover */
 	POPOVER = 'popover',
 	NORMAL = 'normal',
 }
 
-/**
- * A markdown node parsed and processed by ML
- */
+/** A markdown node parsed and processed by ML */
 export interface IMLParsedNode {
 	readonly type: MLNODE_TYPES;
-	/**
-	 * Unique key across the tree in which the node resides
-	 */
+	/** Unique key across the tree in which the node resides */
 	readonly key: string;
-	/**
-	 * Line number associated with this node
-	 */
+	/** Line number associated with this node */
 	readonly line: number;
 	/**
 	 * Returns the actual array of children, NOT a copy, so you can manipulate
 	 * the node's children in place.
 	 */
 	readonly children?: IMLParsedNode[];
-	/**
-	 * Occurrence index in parent line
-	 */
+	/** Occurrence index in parent line */
 	readonly occurrenceIndex?: number;
-	/**
-	 * Node text, if it is a leaf
-	 */
+	/** Node text, if it is a leaf */
 	readonly text?: string;
-	/**
-	 * Un/Ordered list
-	 */
+	/** Un/Ordered list */
 	readonly ordered?: boolean;
-	/**
-	 * Link target
-	 */
+	/** Link target */
 	readonly target?: string;
-	/**
-	 * Heading level
-	 */
+	/** Heading level */
 	readonly level?: number | string;
-	/**
-	 * How should this node be displayed?
-	 */
+	/** How should this node be displayed? */
 	readonly displayType?: NODE_DISPLAY_TYPES;
-
-	/**
-	 * Number in a series (e.g. annotation number)
-	 */
+	/** Number in a series (e.g. annotation number) */
 	readonly sequence?: number;
-	/**
-	 * The type of link
-	 */
+	/** The type of link */
 	readonly linkType?: DynamicContentTypes;
-
 	readonly attributes?: { [name: string]: string };
-
-	/**
-	 * If present, other nodes may refer to this node through the ID
-	 */
+	/** If present, other nodes may refer to this node through the ID */
 	readonly elementId?: string;
 }
 
@@ -158,82 +119,45 @@ export interface IFigureConfiguration {
 }
 
 export interface IPageMetaData {
-	/**
-	 * Date metadata, if present in the MD
-	 */
+	/** Date metadata, if present in the MD */
 	readonly date: Date;
-	/**
-	 * Title metadata, if present in the MD
-	 */
+	/** Title metadata, if present in the MD */
 	readonly title: string;
-	/**
-	 * Abstract metadata, if present in the MD
-	 */
+	/** Abstract metadata, if present in the MD */
 	readonly abstract: string;
-	/**
-	 * Moto metadata, if present in the MD
-	 */
+	/** Moto metadata, if present in the MD  */
 	readonly moto: string;
-	/**
-	 * Credits metadata, if present in the MD
-	 */
+	/** Credits metadata, if present in the MD */
 	readonly credits: string;
-	/**
-	 * Author metadata, if present in the MD
-	 */
+	/** Author metadata, if present in the MD */
 	readonly author: string;
-
-	/**
-	 * Key of term in glossary
-	 */
+	/** Key of term in glossary */
 	readonly glossary_key: string;
-	/**
-	 * Display source URL of glossary item
-	 */
+	/** Display source URL of glossary item */
 	readonly source_url: string;
-	/**
-	 * Display source name of glossary item
-	 */
+	/**  Display source name of glossary item */
 	readonly source_name: string;
-	/**
-	 * Display source author of glossary item
-	 */
+	/** Display source author of glossary item */
 	readonly source_author: string;
-
 	/**
 	 * Guaranteed not null. Each metadata object is created with at least the default
 	 * figures configuration, which may be overridden by the document metadata
 	 */
 	readonly figures: IFigureConfiguration;
-
 	readonly parse_mode?: MLParseModes;
 }
 
-/**
- * Full results of a parsed page
- */
+/** Full results of a parsed page */
 export interface IParsedPageData {
-	/**
-	 * Usually the file name
-	 */
+	/** Usually the file name */
 	readonly id: string;
-
-	/**
-	 * The relative path of this page
-	 */
+	/** The relative path of this page */
 	readonly path: string;
-
-	/**
-	 * The page's metadata properties, from the front matter block
-	 */
+	/** The page's metadata properties, from the front matter block */
 	metaData: IPageMetaData;
-	/**
-	 * The parsed MD
-	 */
+	/**  The parsed MD */
 	readonly parsed: IMLParsedNode[];
-	/**
-	 * If not empty, ignore the data
-	 */
+	/** If not empty, ignore the data */
 	readonly error?: string;
 }
 
@@ -266,9 +190,7 @@ export interface IGenericPageProps {
 	translate: (k: string) => string;
 }
 
-/**
- * The data structure passed to a content component
- */
+/** The data structure passed to a content component */
 export interface IContentComponentInitData {
 	node: IMLParsedNode;
 	tag?: string;
@@ -283,11 +205,11 @@ export interface ContentComponentProps {
 /**
  * Site page navigation props
  */
-export interface SitePage {
+export type SitePage = {
 	id: string;
-	targetPathname: string;
-	locale: Record<string, string>;
-}
+	path: string;
+	locale: string;
+};
 
 export interface IPageProps {
 	locale: string;
@@ -298,19 +220,12 @@ export interface IPageProps {
 	metaData?: string;
 }
 
-/**
- * A stack of parsed nodes
- */
+/** A stack of parsed nodes */
 export interface IContentStack<T> {
 	readonly count: number;
-	/**
-	 * returns the topmost node, null when the stack is empty.
-	 */
+	/** returns the topmost node, null when the stack is empty. */
 	readonly current: T | null;
-
-	/**
-	 * Returns a copy of the stack array
-	 */
+	/**  Returns a copy of the stack array */
 	readonly stack: Array<T>;
 	/**
 	 * Pushes the node only if its not null and different (by key) from the top node
@@ -318,7 +233,6 @@ export interface IContentStack<T> {
 	 * @returns the content stack object, e.g. for chaining
 	 */
 	push(node: T): IContentStack<T>;
-
 	/**
 	 * Set the tip of the stack to the provided index, if legal (bad input is ignored)
 	 * @param index

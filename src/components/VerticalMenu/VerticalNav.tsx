@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import { NavListItem } from '../nav-item';
-import { NavItemContent } from '../nav-item-content';
-import { unique } from 'lib/utils';
+import NavListItem from '../nav-item/NavListItem';
+import NavItemContent from '../nav-item-content/NavItemContent';
+import { unique } from 'utils';
 import styles from './VerticalNav.module.scss';
 import type { VerticalNavProps } from './types';
 

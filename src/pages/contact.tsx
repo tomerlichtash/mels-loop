@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { LocaleProvider } from '../locale/context/locale-context';
-import { Layout, ContactForm } from 'components';
+import { LocaleContext } from '../context/locale/localeContext';
+import Layout from 'components/layout/Layout';
+import ContactForm from 'components/contact-form/ContactForm';
 
 import type { NextPage, GetStaticProps } from 'next';
 import type { IPageProps } from 'types/models';
@@ -9,17 +10,17 @@ import type { IPageProps } from 'types/models';
 // const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
 
 const Contact: NextPage<IPageProps> = () => {
-	const { translate } = useContext(LocaleProvider);
+	const { translate } = useContext(LocaleContext);
 	return (
-		<Layout>
+		<Layout title="Contact Us">
 			{/* <Article
-				title={translate('CONTACT_PAGE_TITLE')}
-				subtitle={translate('CONTACT_PAGE_SUBTITLE')}
-				abstract={translate('CONTACT_PAGE_TEXT1')}
+				title={translate('pages.contact.title')}
+				subtitle={translate('pages.contact.subtitle')}
+				abstract={translate('pages.contact.abstract')}
 			> */}
 			<ContactForm
-				title={translate('CONTACT_FORM_FORM_TITLE')}
-				description={translate('CONTACT_FORM_FORM_SUBTITLE')}
+				title={translate('pages.contact.formtitle')}
+				description={translate('pages.contact.formsubtitle')}
 				// recaptchaSiteKey={recaptchaSiteKey}
 			/>
 			{/* </Article> */}
@@ -27,8 +28,6 @@ const Contact: NextPage<IPageProps> = () => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-	return { props: {} };
-};
+export const getStaticProps: GetStaticProps = async () => ({ props: {} });
 
 export default Contact;

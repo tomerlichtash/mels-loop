@@ -1,8 +1,8 @@
 ---
-title: "The Story of Mel"
-moto: "This was posted to Usenet by its author, Ed Nather <nather@astro.as.utexas.edu>, on May 21, 1983:"
-credits: "Annotations written and curated by Tomer Lichtash and David Frenkiel"
-parse_mode: "verse"
+title: 'The Story of Mel'
+moto: 'This was posted to Usenet by its author, Ed Nather <nather@astro.as.utexas.edu>, on May 21, 1983:'
+credits: 'Annotations written and curated by Tomer Lichtash and David Frenkiel'
+parse_mode: 'verse'
 ---
 
 A recent article devoted to the _macho_ side of programming[^](annotations/recent-article)
@@ -17,7 +17,7 @@ but back in the Good Old Days,[^](annotations/story-timeline-estimation)
 when the term "software" sounded funny
 and Real Computers[^](annotations/real-computers) were made out of [drums](glossary/drum-memory) and [vacuum tubes](glossary/vacuum-tube),
 [Real Programmers](glossary/real-programmer) wrote in [machine code](glossary/machine-code).
-Not [FORTRAN](glossary/fortran). Not [RATFOR](glossary/ratfor). Not, even, [assembly language](glossary/assembly-language).
+Not [glossary.term.fortran](glossary/fortran). Not [RATFOR](glossary/ratfor). Not, even, [assembly language](glossary/assembly-language).
 [Machine Code](glossary/machine-code).
 Raw, unadorned, inscrutable [hexadecimal](glossary/hexadecimal) numbers.
 Directly.
@@ -43,7 +43,7 @@ and weren't here to stay, anyway.
 (That's why you haven't heard of the company,
 or the computer.)
 
-I had been hired to write a [FORTRAN](glossary/fortran) [compiler](glossary/compiler)
+I had been hired to write a glossary.term.fortran(glossary/fortran) [compiler](glossary/compiler)
 for this new marvel[^](annotations/librazette-marvel) and Mel was my guide to its wonders.
 Mel didn't approve of [compilers](glossary/compiler).
 

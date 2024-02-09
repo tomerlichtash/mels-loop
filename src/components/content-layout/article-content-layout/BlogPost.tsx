@@ -1,6 +1,6 @@
 import React from 'react';
-import { unique } from 'lib/utils';
-import { ContentComponent } from '../../../lib/content';
+import { unique } from 'utils';
+import { ContentComponent } from '../../../lib/dynamic-content';
 import { Link } from '../../link';
 import { DateFormat } from '../../date-format';
 import type { IBlogPostProps } from '../types';

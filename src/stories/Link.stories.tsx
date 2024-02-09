@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 // import "!style-loader!css-loader!sass-loader!./../../src/styles/app.scss";
-import { Link } from '../components/link';
+import Link from '../components/link/Link';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

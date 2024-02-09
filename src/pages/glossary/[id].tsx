@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
-import { CONTENT_TYPES } from '../../consts';
-import { mlNextUtils } from '../../lib/next-utils';
+import { ContentTypes } from '../../consts';
+import { mlNextUtils } from '../../lib/nextUtils';
 import { LoadFolderModes } from 'types/parser';
-import { contentUtils } from '../../lib/content-utils';
+import { contentUtils } from '../../lib/contentUtils';
 import { MLNODE_TYPES } from 'types/models';
 import type { IMLParsedNode, IPageProps } from 'types/models';
 import usePageData from '../../lib/usePageData';
-import { LocaleProvider } from '../../locale/context/locale-context';
+import { LocaleContext } from '../../context/locale/localeContext';
 import { Layout, Link, List } from 'components';
-import { ContentIterator } from 'lib/content';
+import { ContentIterator } from 'lib/dynamic-content';
 
 export default function GlossaryTerm(props: IPageProps) {
-	const { translate } = useContext(LocaleProvider);
+	const { translate } = useContext(LocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;
@@ -52,22 +52,17 @@ export default function GlossaryTerm(props: IPageProps) {
 	);
 }
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-	return mlNextUtils.getFolderStaticPaths(
-		CONTENT_TYPES.GLOSSARY,
-		context.locales
-	);
-};
+export const getStaticPaths: GetStaticPaths = async (context) =>
+	mlNextUtils.getFolderStaticPaths(ContentTypes.Glossary, context.locales);
 
 export const getStaticProps: GetStaticProps = async (
 	context: GetStaticPropsContext
-) => {
-	return mlNextUtils.getFolderStaticProps(
-		`${CONTENT_TYPES.GLOSSARY}/${context.params.id as string}`,
+) =>
+	mlNextUtils.getFolderStaticProps(
+		`${ContentTypes.Glossary}/${context.params.id as string}`,
 		context.locale,
-		LoadFolderModes.FOLDER,
+		LoadFolderModes.Folder,
 		{
 			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
 		}
 	);
-};

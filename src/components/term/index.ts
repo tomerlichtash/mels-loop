@@ -1,1 +1,0 @@
-export { TermLink } from './Term';

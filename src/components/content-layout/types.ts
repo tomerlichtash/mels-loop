@@ -1,6 +1,6 @@
 import type { LinkTarget } from 'components';
-import { LocaleId, TextDirection } from 'locale/locale-context';
-import { IParsedPageData } from 'types/models';
+import type { LocaleId, TextDirection } from 'types/locale';
+import type { IParsedPageData } from 'types/models';
 
 type ContentLayoutProps = {
 	type: string;
@@ -14,7 +14,7 @@ type SourceProps = {
 };
 
 type ReferenceContentLayoutProps = {
-	label?: string;
+	caption?: string;
 	title?: string;
 	term?: string;
 	sources?: SourceProps[];

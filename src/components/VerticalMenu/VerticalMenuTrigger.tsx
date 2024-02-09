@@ -1,4 +1,4 @@
-import { Button } from '../button';
+import Button from '../button/Button';
 import styles from './VerticalMenuTrigger.module.scss';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import type { VerticalTriggerProps } from './types';

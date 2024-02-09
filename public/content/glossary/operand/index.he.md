@@ -1,5 +1,5 @@
 ---
-glossary_key: "OPERAND"
+glossary_key: 'glossary.term.operand'
 source_url: https://he.wikipedia.org/wiki/%D7%90%D7%95%D7%A4%D7%A8%D7%A0%D7%93
 source_name: ויקיפדיה
 ---

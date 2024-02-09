@@ -1,21 +1,13 @@
 import { IMLParsedNode } from './models';
 
-/**
- * How to load a markdown file
- */
+/** How to load a markdown file */
 export enum LoadContentModes {
-	/**
-	 * Don't load anything. Used for enumerating folders
-	 */
-	NONE = 'none',
-	/**
-	 * Load only the metadata (at the head of the file)
-	 */
-	METADATA = 'metadata',
-	/**
-	 * Load metadata and markdown
-	 */
-	FULL = 'full',
+	/** Don't load anything. Used for enumerating folders */
+	None = 'none',
+	/** Load only the metadata (at the head of the file) */
+	Metadata = 'metadata',
+	/**  Load metadata and markdown */
+	Full = 'full',
 }
 
 export enum MLParseModes {
@@ -26,8 +18,8 @@ export enum MLParseModes {
 }
 
 export enum LoadFolderModes {
-	FOLDER = 'folder',
-	CHILDREN = 'children',
+	Folder = 'folder',
+	Children = 'children',
 }
 
 /**
@@ -35,9 +27,7 @@ export enum LoadFolderModes {
  * helper functions to manipulate nodes
  */
 export interface INodeProcessorContext {
-	/**
-	 * The content loading options, passed by the page (or defaults)
-	 */
+	/**  The content loading options, passed by the page (or defaults) */
 	readonly mode: IContentParseOptions;
 
 	/**
@@ -48,6 +38,7 @@ export interface INodeProcessorContext {
 	 * @param text
 	 */
 	setNodeText(node: IMLParsedNode, text: string): IMLParsedNode;
+
 	/**
 	 * Returns the next consecutive number, 0 based, in a series keyed by `type`
 	 * @param type
@@ -64,24 +55,13 @@ export type MLNodeProcessorFunction = (
 	context: INodeProcessorContext
 ) => IMLParsedNode;
 
-/**
- *
- */
 export interface IContentParseOptions {
-	/**
-	 * Defaults to FULL
-	 */
+	/** Defaults to FULL */
 	readonly contentMode: LoadContentModes;
-	/**
-	 * The locale for which this content is parsed
-	 */
+	/** The locale for which this content is parsed */
 	readonly locale: string;
-	/**
-	 * Defaults to NORMAL
-	 */
+	/**  Defaults to NORMAL */
 	readonly parseMode?: MLParseModes;
-	/**
-	 * an optional function that may return a new node
-	 */
+	/**  an optional function that may return a new node */
 	readonly nodeProcessors?: Array<MLNodeProcessorFunction>;
 }

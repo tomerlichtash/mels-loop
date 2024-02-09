@@ -1,6 +1,9 @@
 import matter from 'gray-matter';
-import { Languages } from '../../src/locale';
-import { _translate, wrapStr } from '../../src/locale/translate';
+import { languages } from '../../src/locale';
+import {
+	translate as translateFn,
+	wrapStr,
+} from '../../src/context/locale/translate';
 import {
 	MD_LINK,
 	MD_BLOCKQUOTE,
@@ -28,11 +31,11 @@ export const baseDir = 'http://localhost:3000';
 /**
  * Locale
  */
-export const locales = Object.keys(Languages);
+export const locales = Object.keys(languages);
 
 export const translate = (locale: string, key: string) => {
 	// console.log(Languages);
-	return _translate(locale, Languages)(key);
+	return translateFn(locale, languages)(key);
 };
 
 export const getLocalePath = (

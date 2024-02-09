@@ -1,15 +1,15 @@
 import React, { PropsWithChildren } from 'react';
-import { unique } from 'lib/utils';
-import { Link } from '../../link';
-import { List } from '../../list';
-import { ListItem } from '../../list-item';
-import { Text } from '../../text';
+import { unique } from 'utils';
+import Link from '../../link/Link';
+import List from '../../list/List';
+import ListItem from '../../list-item/ListItem';
+import Text from '../../text/Text';
 import styles from './ReferenceContentLayout.module.scss';
 
 import type { ReferenceContentLayoutProps } from '../types';
 
 export const ReferenceContentLayout = ({
-	label,
+	caption,
 	term,
 	title,
 	sources,
@@ -19,7 +19,7 @@ export const ReferenceContentLayout = ({
 	<div className={styles.root}>
 		<header className={styles.header}>
 			<div role="caption" className={styles.caption}>
-				{label}
+				{caption}
 			</div>
 			<div role="term" className={styles.term}>
 				{title}

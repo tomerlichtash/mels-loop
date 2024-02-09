@@ -1,5 +1,5 @@
 ---
-glossary_key: "TOP_DOWN_DESIGN"
+glossary_key: 'glossary.term.topDownDesign'
 source_url: https://en.wikipedia.org/wiki/Top-down_and_bottom-up_design
 source_name: Wikipedia
 ---

@@ -33,7 +33,9 @@ test.describe('Dynamic Pages', () => {
 			const localePath = getLocalePath(locale, path);
 
 			await page.goto(localePath);
-			await page.click(`text=${translate(locale, 'MENU_ITEM_LABEL_ID_ABOUT')}`);
+			await page.click(
+				`text=${translate(locale, 'nav.items.pages.about.label')}`
+			);
 
 			await expect(page).toHaveURL(localePath);
 			await expect(page.locator('h1')).toHaveText(data.title as string);
@@ -48,10 +50,10 @@ test.describe('Dynamic Pages', () => {
 			const localePath = getLocalePath(locale, path);
 
 			await page.goto(localePath);
-			await page.hover(`text=${translate(locale, 'MENU_ITEM_LABEL_ID_ABOUT')}`);
-			await page.click(
-				`text=${translate(locale, 'MENU_ITEM_LABEL_EXCERPT_SHOW_MORE')}`
+			await page.hover(
+				`text=${translate(locale, 'nav.items.pages.about.label')}`
 			);
+			await page.click(`text=${translate(locale, 'button.learnMore')}`);
 
 			await expect(page).toHaveURL(localePath);
 			await expect(page.locator('h1')).toHaveText(data.title as string);

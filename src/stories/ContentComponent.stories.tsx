@@ -6,7 +6,6 @@
 // 	MLNODE_TYPES,
 // } from 'types/models';
 // import mockAstTree from './mocks/mockAstTree';
-// import { mlUtils } from 'lib/ml-utils';
 // import { ContentComponent } from 'lib/content';
 
 // // const mockTextNode: IMLParsedNode = {
@@ -60,7 +59,7 @@
 // 	render: function Render() {
 // 		return mockAstTree.map((node: IContentComponentInitData) => {
 // 			return (
-// 				<ContentComponent key={mlUtils.uniqueId()} componentData={{ node }} />
+// 				<ContentComponent key={unique.id()} componentData={{ node }} />
 // 			);
 // 		});
 // 	},

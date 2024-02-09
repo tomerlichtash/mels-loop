@@ -1,5 +1,5 @@
 ---
-glossary_key: "MACHINE_CODE"
+glossary_key: 'glossary.term.machineCode'
 source_url: https://en.wikipedia.org/wiki/Machine_code
 source_name: Wikipedia
 ---

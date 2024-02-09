@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Scrollbar } from '../scrollbar';
+import Scrollbar from '../scrollbar/Scrollbar';
 import styles from './ContentLayout.module.scss';
 import type { ContentLayoutProps } from './types';
 

@@ -1,0 +1,39 @@
+[
+	{
+		"label": "footer.links.sections.pages.label",
+		"items": [
+			{
+				"href": "/about",
+				"label": "nav.items.pages.about.label"
+			},
+			{
+				"href": "/blog",
+				"label": "nav.items.pages.blog.label"
+			},
+			{
+				"href": "/contribute",
+				"label": "nav.items.pages.contrib.label"
+			}
+		]
+	},
+	{
+		"label": "footer.links.sections.pages.links",
+		"items": [
+			{
+				"href": "https://github.com/tomerlichtash/mels-loop",
+				"label": "nav.items.links.github.label",
+				"target": "_blank"
+			},
+			{
+				"href": "https://twitter.com/aboutmelsloop",
+				"label": "nav.items.links.twitter.label",
+				"target": "_blank"
+			},
+			{
+				"href": "/contact",
+				"label": "nav.items.pages.contact.label",
+				"target": "_blank"
+			}
+		]
+	}
+]

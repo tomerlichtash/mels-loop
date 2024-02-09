@@ -1,10 +1,23 @@
-import { default as COMMON } from './locales/common.json' assert { type: 'json' };
-import { default as EN_US } from './locales/en.json' assert { type: 'json' };
-import { default as HE_IL } from './locales/he.json' assert { type: 'json' };
+import { default as common } from './common.json' assert { type: 'json' };
+import { default as enUS } from './en.json' assert { type: 'json' };
+import { default as heIL } from './he.json' assert { type: 'json' };
+import type { LocaleSource, RawDict } from 'context/locale/types';
 
-export const Languages = {
-	en: Object.assign({}, COMMON, EN_US),
-	he: Object.assign({}, COMMON, HE_IL),
-};
+const withCommon = (lang: RawDict): RawDict => Object.assign({}, lang, common);
 
-export * from './locale-context';
+export const languages: LocaleSource[] = [
+	{
+		id: 'en',
+		direction: 'ltr',
+		label: 'locale.en.label',
+		symbol: 'locale.en.symbol',
+		dict: withCommon(enUS),
+	},
+	{
+		id: 'he',
+		direction: 'rtl',
+		label: 'locale.he.label',
+		symbol: 'locale.he.symbol',
+		dict: withCommon(heIL),
+	},
+];

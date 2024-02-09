@@ -1,8 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+const VALIDATE_CAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify';
+
 async function validateCaptcha(req: NextApiRequest, res: NextApiResponse) {
 	try {
-		await fetch('https://www.google.com/recaptcha/api/siteverify', {
+		await fetch(VALIDATE_CAPTCHA_URL, {
 			body: JSON.stringify({ value: req.body.value }),
 			method: 'POST',
 		});

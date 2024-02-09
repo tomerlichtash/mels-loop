@@ -1,30 +1,30 @@
 import React, { useContext } from 'react';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
 import { GetStaticProps } from 'next';
-import { CONTENT_TYPES } from '../consts';
-import { mlNextUtils } from '../lib/next-utils';
+import { ContentTypes } from '../consts';
+import { mlNextUtils } from '../lib/nextUtils';
 import type { IPageProps, IParsedPageData } from 'types/models';
 import usePageData from '../lib/usePageData';
-import { LocaleProvider } from '../locale/context/locale-context';
+import { LocaleContext } from '../context/locale/localeContext';
 import orderBy from 'lodash.orderby';
-import BlogPost from '../components/content-layout/article-content-layout';
+import BlogPost from '../components/content-layout/article-content-layout/BlogPost';
 import { Layout } from 'components';
-import { mlUtils } from '../lib/ml-utils';
+import { unique } from 'utils';
 
 export default function Blog(props: IPageProps) {
-	const { locale, sectionName } = useContext(LocaleProvider);
+	const { locale, translate } = useContext(LocaleContext);
 	const { pageData } = usePageData(props);
 	return (
 		<Layout>
 			<div className="page">
-				<h1 className="title">{sectionName}</h1>
+				<h1 className="title">{translate('pages.blog.label')}</h1>
 				{orderBy(pageData, ['metaData.date'], ['desc']).map(
 					(page: IParsedPageData) => {
 						const { metaData, path: path } = page;
 						const { title, date, author } = metaData;
 						return (
 							<BlogPost
-								key={mlUtils.uniqueId()}
+								key={unique.id()}
 								title={title}
 								date={date}
 								path={path}
@@ -42,18 +42,20 @@ export default function Blog(props: IPageProps) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.POSTS,
+		ContentTypes.Posts,
 		context.locale,
-		LoadFolderModes.CHILDREN
+		LoadFolderModes.Children
 	);
+
 	const childrenProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.POSTS,
+		ContentTypes.Posts,
 		context.locale,
-		LoadFolderModes.CHILDREN,
+		LoadFolderModes.Children,
 		{
-			contentMode: LoadContentModes.METADATA,
+			contentMode: LoadContentModes.Metadata,
 		}
 	);
+
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const props = {
 		props: {
@@ -61,5 +63,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 			metaData: (childrenProps as any).props.content,
 		},
 	};
+
 	return props;
 };

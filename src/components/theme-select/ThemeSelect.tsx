@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getIcon } from './helpers';
-import { Toggle } from '../toggle';
+import Toggle from '../toggle/Toggle';
 import styles from './ThemeSelect.module.scss';
 import type { ThemeSelectProps } from './types';
 
