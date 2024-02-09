@@ -1,5 +1,5 @@
-import { TextDirection } from 'context/locale/types';
 import type { ScrollAreaScrollbarVisibleProps } from '@radix-ui/react-scroll-area';
+import type { TextDirection } from 'types/locale';
 
 type ScrollbarProps = {
 	height?: string;

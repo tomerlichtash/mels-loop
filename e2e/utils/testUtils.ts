@@ -1,5 +1,5 @@
 import matter from 'gray-matter';
-import { languages } from '../../src/locale';
+import { languages } from '../../src/locale/index';
 import {
 	translate as translateFn,
 	wrapStr,
@@ -24,6 +24,8 @@ import {
 } from './patterns';
 
 import fs from 'fs';
+import { getDictionary } from 'context/locale/helpers';
+import { LocaleSource } from 'context/locale/types';
 // const matter = require("gray-matter");
 
 export const baseDir = 'http://localhost:3000';
@@ -31,12 +33,10 @@ export const baseDir = 'http://localhost:3000';
 /**
  * Locale
  */
-export const locales = Object.keys(languages);
+export const locales = languages.map((l: LocaleSource) => l.id);
 
-export const translate = (locale: string, key: string) => {
-	// console.log(Languages);
-	return translateFn(locale, languages)(key);
-};
+export const translate = (locale: string, key: string) =>
+	translateFn(locale, getDictionary(languages))(key);
 
 export const getLocalePath = (
 	locale: string,

@@ -1,15 +1,15 @@
-import { test, expect } from "@playwright/test";
-import { getLocalePath, locales, getFrontMatter } from "../../utils/test-utils";
+import { test, expect } from '@playwright/test';
+import { getLocalePath, locales, getFrontMatter } from '../../utils/testUtils';
 
-test.describe("Legacy Paths", () => {
-	const legacyDocs = ["preface", "mels-hack-the-missing-bits", "resources"];
+test.describe('Legacy Paths', () => {
+	const legacyDocs = ['preface', 'mels-hack-the-missing-bits', 'resources'];
 	legacyDocs.map((legacyDocName) => {
 		locales.map((locale) => {
 			test(`${locale} > should support single doc URL to ${legacyDocName}`, async ({
 				page,
 			}) => {
-				const docId = "docs/the-story-of-mel";
-				const filename = "index";
+				const docId = 'docs/the-story-of-mel';
+				const filename = 'index';
 				const { data } = getFrontMatter(
 					docId,
 					`pages/${legacyDocName}/${filename}`,
@@ -19,7 +19,7 @@ test.describe("Legacy Paths", () => {
 				await expect(page).toHaveURL(
 					getLocalePath(locale, docId, `pages/${legacyDocName}`)
 				);
-				await expect(page.locator("h1")).toHaveText(data.title as string);
+				await expect(page.locator('h1')).toHaveText(data.title as string);
 			});
 		});
 	});

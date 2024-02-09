@@ -6,7 +6,7 @@ import {
 	getLocalePath,
 	stripMarkdown,
 	validateStringTranslation,
-} from '../e2e/utils/test-utils';
+} from '../e2e/utils/testUtils';
 import { ASTRIEK_MOCK, EMPTY_STRING } from '../e2e/utils/patterns';
 const whitespace = '    ';
 

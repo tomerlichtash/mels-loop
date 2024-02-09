@@ -6,7 +6,7 @@ import {
 	stripMarkdown,
 	translate,
 	validateStringTranslation,
-} from './utils/test-utils';
+} from './utils/testUtils';
 import {
 	getGlossaryData,
 	getMarkdownLinks,

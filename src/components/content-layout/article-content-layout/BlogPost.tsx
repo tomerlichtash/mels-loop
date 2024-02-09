@@ -1,8 +1,8 @@
 import React from 'react';
 import { unique } from 'utils';
 import { ContentComponent } from '../../../lib/dynamic-content';
-import { Link } from '../../link';
-import { DateFormat } from '../../date-format';
+import Link from '../../link/Link';
+import DateFormat from '../../date-format/DateFormat';
 import type { IBlogPostProps } from '../types';
 
 export const BlogPost = ({

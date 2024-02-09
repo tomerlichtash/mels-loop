@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import { Scrollbar } from 'components/scrollbar';
+import Scrollbar from 'components/scrollbar/Scrollbar';
 
 const meta = {
 	title: 'Scrollbar',

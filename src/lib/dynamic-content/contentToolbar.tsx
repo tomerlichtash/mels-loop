@@ -3,7 +3,7 @@ import { IParsedPageData } from 'types/models';
 import { LocaleContext } from '../../context/locale/localeContext';
 import { DynamicContentContext } from './contentContext';
 import { PopoverContext } from 'lib/dynamic-content/popoverContext';
-import { Button } from 'components';
+import Button from 'components/button/Button';
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 import { unique } from 'utils';
 

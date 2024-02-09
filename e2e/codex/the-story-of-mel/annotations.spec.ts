@@ -4,7 +4,7 @@ import {
 	getLocalePath,
 	locales,
 	stripMarkdown,
-} from '../../utils/test-utils';
+} from '../../utils/testUtils';
 import {
 	getAnnotationsData,
 	getMarkdownLinks,

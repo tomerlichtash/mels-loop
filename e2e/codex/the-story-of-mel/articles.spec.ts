@@ -4,7 +4,7 @@ import {
 	locales,
 	getFrontMatter,
 	translate,
-} from '../../utils/test-utils';
+} from '../../utils/testUtils';
 
 test.describe('Articles', () => {
 	const docId = 'docs/the-story-of-mel';

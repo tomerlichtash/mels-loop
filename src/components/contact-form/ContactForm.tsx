@@ -10,7 +10,9 @@ import {
 	PersonIcon,
 	SunIcon,
 } from '@radix-ui/react-icons';
-import { Button, Input, TextArea } from 'components';
+import Button from 'components/button/Button';
+import Input from 'components/input/Input';
+import TextArea from 'components/text-area/TextArea';
 import classNames from 'classnames';
 import styles from './ContactForm.module.scss';
 

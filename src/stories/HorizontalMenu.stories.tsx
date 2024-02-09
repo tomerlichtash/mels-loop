@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import { HorizontalNav } from 'components/HorizontalMenu';
+import HorizontalNav from 'components/HorizontalMenu/HorizontalNav';
 
 const meta = {
 	title: 'HorizontalNav',

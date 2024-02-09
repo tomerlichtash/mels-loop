@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './PopoverCloseButton.module.scss';
-import { Button } from '..';
+import Button from '../button/Button';
 import type { PopoverCloseButtonProps } from './types';
 
 const PopoverCloseButton = ({

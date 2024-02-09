@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import { getFrontMatter } from './test-utils';
+import { getFrontMatter } from './testUtils';
 import { EMPTY_STRING, MD_LINK } from './patterns';
 
 export const invalidTerms = ['index.en.md', 'index.he.md', '.DS_Store'];
