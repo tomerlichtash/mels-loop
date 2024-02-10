@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { getLocalePath, locales, translate } from '../utils/testUtils';
+import { getLocalePath, locales, translate } from '../utils/localeTestUtils';
 // import { IFormSubmitAPI } from "../../src/config/public-api-params";
 
 // const MOCK_SEND_GRID: IFormSubmitAPI = {

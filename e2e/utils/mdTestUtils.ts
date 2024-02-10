@@ -1,9 +1,9 @@
 import matter from 'gray-matter';
-import { languages } from '../../src/locale/index';
-import {
-	translate as translateFn,
-	wrapStr,
-} from '../../src/context/locale/translate';
+// import { languages } from '../../src/locale/index';
+// import {
+// 	// translate as translateFn,
+// 	wrapStr,
+// } from '../../src/context/locale/translate';
 import {
 	MD_LINK,
 	MD_BLOCKQUOTE,
@@ -20,45 +20,41 @@ import {
 	MD_SINGLE_ASTRIEK,
 	MD_CODEBLOCK,
 	MD_CODEBLOCK_INLINE,
-	UNTRANSLATED_STRING,
+	// UNTRANSLATED_STRING,
 } from './patterns';
 
 import fs from 'fs';
-import { getDictionary } from 'context/locale/helpers';
-import { LocaleSource } from 'context/locale/types';
+// import { getDictionary } from '../../src/context/locale/helpers';
+// import { LocaleSource } from '../../src/context/locale/types';
 // const matter = require("gray-matter");
 
 export const baseDir = 'http://localhost:3000';
 
-/**
- * Locale
- */
-export const locales = languages.map((l: LocaleSource) => l.id);
+// /** Locale */
+// export const locales = languages.map((l: LocaleSource) => l.id);
 
-export const translate = (locale: string, key: string) =>
-	translateFn(locale, getDictionary(languages))(key);
+// export const translate = (locale: string, key: string) =>
+// 	translateFn(locale, getDictionary(languages))(key);
 
-export const getLocalePath = (
-	locale: string,
-	docId?: string,
-	path?: string
-) => {
-	let params = [baseDir];
-	if (locale !== 'en') {
-		params.push(locale);
-	}
-	if (docId) {
-		params.push(docId);
-	}
-	if (path && path !== baseDir) {
-		params.push(path);
-	}
-	return params.join('/');
-};
+// export const getLocalePath = (
+// 	locale: string,
+// 	docId?: string,
+// 	path?: string
+// ) => {
+// 	let params = [baseDir];
+// 	if (locale !== 'en') {
+// 		params.push(locale);
+// 	}
+// 	if (docId) {
+// 		params.push(docId);
+// 	}
+// 	if (path && path !== baseDir) {
+// 		params.push(path);
+// 	}
+// 	return params.join('/');
+// };
 
-/**
- * MarkDown
- */
+/** MarkDown */
 export const getFrontMatter = (docId: string, path: string, locale: string) => {
 	const testMdFile = fs.readFileSync(
 		`./public/content/${docId}/${path}.${locale}.md`,
@@ -90,5 +86,5 @@ export const stripMarkdown = (content: string) =>
 		.filter(Boolean)
 		.join(EMPTY_STRING);
 
-export const validateStringTranslation = (str: string) =>
-	!UNTRANSLATED_STRING.test(str) && str !== wrapStr(EMPTY_STRING);
+// export const validateStringTranslation = (str: string) =>
+// 	!UNTRANSLATED_STRING.test(str) && str !== wrapStr(EMPTY_STRING);

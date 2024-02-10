@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { translate } from '../utils/localeTestUtils';
 // import { TEXT_NOT_EMPTY } from '../utils/patterns';
-import { translate } from '../utils/testUtils';
 
 const loadingIndicatorSelector = '.root';
 

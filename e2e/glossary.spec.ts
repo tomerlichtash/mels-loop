@@ -1,19 +1,18 @@
 import { test, expect, Page } from '@playwright/test';
 import {
-	getFrontMatter,
-	getLocalePath,
-	locales,
-	stripMarkdown,
-	translate,
-	validateStringTranslation,
-} from './utils/testUtils';
-import {
 	getGlossaryData,
 	getMarkdownLinks,
 	getTermSelector,
-} from './utils/terms';
+} from './utils/termsTestUtils';
+import {
+	getLocalePath,
+	locales,
+	translate,
+	validateStringTranslation,
+} from './utils/localeTestUtils';
+import { getFrontMatter, stripMarkdown } from './utils/mdTestUtils';
+import docIds from './codex/docIds';
 import { WHITE_SPACE } from './utils/patterns';
-import docIds from './codex/doc-ids';
 
 // test.describe.configure({ mode: 'serial' });
 

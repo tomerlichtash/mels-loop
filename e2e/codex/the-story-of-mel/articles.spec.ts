@@ -1,10 +1,6 @@
 import { test, expect } from '@playwright/test';
-import {
-	getLocalePath,
-	locales,
-	getFrontMatter,
-	translate,
-} from '../../utils/testUtils';
+import { getFrontMatter } from '../../utils/mdTestUtils';
+import { getLocalePath, locales, translate } from '../../utils/localeTestUtils';
 
 test.describe('Articles', () => {
 	const docId = 'docs/the-story-of-mel';

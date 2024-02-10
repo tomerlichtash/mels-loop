@@ -1,13 +1,14 @@
 import { it, describe, expect } from 'vitest';
 import { validateRequest } from '../src/pages/api/sendgrid';
 
-describe.skip('validateRequest', () => {
+describe('validateRequest', () => {
 	it('should allow normal content', () => {
 		const res = validateRequest({
 			fullname: 'Ed Nather',
 			email: 'nather@astro.as.utexas.edu',
 			message: 'Some message',
 		});
+
 		expect(res.fullname).toEqual('Ed Nather');
 		expect(res.email).toEqual('nather@astro.as.utexas.edu');
 		expect(res.message).toEqual('Some message');

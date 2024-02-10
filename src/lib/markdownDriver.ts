@@ -21,9 +21,9 @@ import {
 } from 'types/parser';
 
 import getConfig from 'next/config';
-import { mlUtils } from '../utils/ml-utils';
 import { customMarkdownTags } from './consts';
 import { parseDate } from '../utils';
+import { safeMerge } from './safeMerge';
 const { serverRuntimeConfig } = getConfig();
 
 const CONTENT_PATH = 'public/content/';
@@ -201,7 +201,7 @@ class ParsedPageData implements IParsedPageData {
 
 class PageMetaData implements IPageMetaData {
 	constructor(data: Partial<IParsedPageData> | string) {
-		mlUtils.safeMerge(this, data);
+		safeMerge(this, data);
 		if (this.date && typeof this.date === 'string') {
 			this.date = parseDate(this.date);
 		}

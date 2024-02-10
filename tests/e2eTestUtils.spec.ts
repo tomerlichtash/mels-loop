@@ -1,13 +1,15 @@
 import { it, describe, expect } from 'vitest';
-import { getMarkdownLinks } from '../e2e/utils/terms';
+import { getMarkdownLinks } from '../e2e/utils/termsTestUtils';
 import {
 	baseDir,
 	getFrontMatter,
-	getLocalePath,
 	stripMarkdown,
-	validateStringTranslation,
-} from '../e2e/utils/testUtils';
+} from '../e2e/utils/mdTestUtils';
 import { ASTRIEK_MOCK, EMPTY_STRING } from '../e2e/utils/patterns';
+import {
+	getLocalePath,
+	validateStringTranslation,
+} from '../e2e/utils/localeTestUtils';
 const whitespace = '    ';
 
 it('getMarkdownLinks', () => {

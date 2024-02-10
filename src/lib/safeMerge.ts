@@ -1,4 +1,4 @@
-import { parseDate } from './parseDate';
+import { parseDate } from '../utils/parseDate';
 
 const ALLOWED_MERGE_TYPES: Array<string> = [
 	'object',
@@ -8,8 +8,8 @@ const ALLOWED_MERGE_TYPES: Array<string> = [
 ];
 
 /**
- * Sort-of-safely merge data into an object. The object should contain values in its fields,
- * so that the type can be determined at runtime
+ * Sort-of-safely merge data into an object.
+ * The object should contain values in its fields, so that the type can be determined at runtime
  * @param into
  * @param data
  * @returns

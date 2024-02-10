@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { translate } from '../utils/testUtils';
+import { translate } from './utils/localeTestUtils';
 
 test.describe('Locale Selector', () => {
 	// TODO: validate selected lang

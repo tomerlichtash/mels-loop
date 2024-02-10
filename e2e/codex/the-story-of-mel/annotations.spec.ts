@@ -1,17 +1,13 @@
 import { test, expect, Page } from '@playwright/test';
-import {
-	getFrontMatter,
-	getLocalePath,
-	locales,
-	stripMarkdown,
-} from '../../utils/testUtils';
+import { getFrontMatter, stripMarkdown } from '../../utils/mdTestUtils';
 import {
 	getAnnotationsData,
 	getMarkdownLinks,
 	getTermSelector,
-} from '../../utils/terms';
+} from '../../utils/termsTestUtils';
+import { getLocalePath, locales } from '../../utils/localeTestUtils';
 import { WHITE_SPACE } from '../../utils/patterns';
-import docIds from '../doc-ids';
+import docIds from '../docIds';
 
 test.describe('Annotations', () =>
 	docIds.map((docId: string) => {
