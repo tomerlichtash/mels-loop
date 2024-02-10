@@ -72,9 +72,9 @@ jobs:
       #       - yarn-packages-playwright-{{ .Branch }}-{{ checksum "yarn.lock" }}
       #     paths:
       #       - ~/.yarn/cache
-      # - run:
-      #     name: Install Dependencies
-      #     command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+      - run:
+          name: Install Dependencies
+          command: yarn install #--frozen-lockfile --cache-folder ~/.cache/yarn
       # - save_cache:
       #     name: Save Yarn Package Cache
       #     key: yarn-packages-playwright-{{ .Branch }}-{{ checksum "yarn.lock" }}
