@@ -17,31 +17,31 @@ import { getDictionary } from 'context/locale/helpers';
 import { LocaleId } from 'types/locale';
 import { languages } from 'locale/index';
 import { DynamicContentTypes } from 'lib/types';
-import { customMarkdownTags } from 'lib/consts';
 import { MLParseContext } from './parserContext';
 
 export function toValue<T>(val: T, defaultValue: T | null): T | null {
 	return val === undefined ? defaultValue : val;
 }
 
-export const MLTYPE_TO_LINK_TEXT_MAP = new Map<MLNODE_TYPES, string>([
-	[MLNODE_TYPES.FIGURE, `[[${customMarkdownTags.figureAbbr}]] %index%`],
-]);
-
 export function collectText(content: string | ParsedNode): string {
 	if (!content) {
 		return '';
 	}
+
 	if (typeof content === 'string') {
 		return content;
 	}
+
 	if (content.type === ASTNODE_TYPES.TEXT) {
 		return content.content;
 	}
+
 	const children = findArrayPart(content);
+
 	if (children) {
 		return children.map((child) => collectText(child)).join('');
 	}
+
 	return '';
 }
 

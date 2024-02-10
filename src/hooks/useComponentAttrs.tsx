@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { IMLParsedNode, NodeAttributeMap } from 'types/models';
 import { mlNextBrowserUtils } from '../lib/next-browser-utils/nextBrowserUtils';
 
-export interface IComponentAttributeData {
+interface IComponentAttributeData {
 	attributes: NodeAttributeMap;
 }
+
 /**
  * Returns an object with the sanitized attribute map of the node
  * Guaranteed not null

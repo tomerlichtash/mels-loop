@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export interface ISize {
+interface ISize {
 	width: number | undefined;
 	height: number | undefined;
 }

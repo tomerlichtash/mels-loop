@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react';
 import { IParsedPageData } from 'types/models';
 import { mlNextBrowserUtils } from '../lib/next-browser-utils/nextBrowserUtils';
 
-export interface IComponentContentData {
+interface IComponentContentData {
 	content: string | object | null;
 	metaData?: string | object | null;
 }
 
-export interface IParsedComponentData {
+interface IParsedComponentData {
 	pageData: IParsedPageData[];
 	metaData: IParsedPageData[];
 }
+
 /**
  * Returns an object with (possibly cached) parsed page data and parsed metaData (embedded in pages)
  *
@@ -22,6 +23,7 @@ const usePageData = (props: IComponentContentData): IParsedComponentData => {
 	const [pageData, setPageData] = useState<IParsedPageData[]>(
 		mlNextBrowserUtils.getParsedPagedData(props.content)
 	);
+
 	const [metaData, setMetaData] = useState<IParsedPageData[]>(
 		mlNextBrowserUtils.getParsedPagedData(props.metaData)
 	);

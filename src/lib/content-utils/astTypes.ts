@@ -1,5 +1,6 @@
 import { ASTNODE_TYPES, MLNODE_TYPES } from 'types/models';
 import { MLParseModes } from 'types/parser';
+import { customMarkdownTags } from 'lib/consts';
 
 export const VALID_PARSE_MODES: Set<MLParseModes> = new Set<MLParseModes>([
 	MLParseModes.NORMAL,
@@ -82,12 +83,16 @@ export const NORMAL_MODE_AST_TYPES: Set<ASTNODE_TYPES> = new Set<ASTNODE_TYPES>(
 );
 
 /** Node types that should be promoted to a figure if their only content is an image */
-export const FIGURE_CONTAINER_TYPES: Map<MLNODE_TYPES, boolean> = new Map<
-	MLNODE_TYPES,
-	boolean
->([
-	[MLNODE_TYPES.LINE, true],
-	[MLNODE_TYPES.PARAGRAPH, true],
+// export const FIGURE_CONTAINER_TYPES: Map<MLNODE_TYPES, boolean> = new Map<
+// 	MLNODE_TYPES,
+// 	boolean
+// >([
+// 	[MLNODE_TYPES.LINE, true],
+// 	[MLNODE_TYPES.PARAGRAPH, true],
+// ]);
+
+export const MLTYPE_TO_LINK_TEXT_MAP = new Map<MLNODE_TYPES, string>([
+	[MLNODE_TYPES.FIGURE, `[[${customMarkdownTags.figureAbbr}]] %index%`],
 ]);
 
 export const HTML_VALIDATION_MAP = {

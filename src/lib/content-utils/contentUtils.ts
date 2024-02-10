@@ -11,7 +11,6 @@ import { CaseInsensitiveMap } from '../caseInsensitiveCollections';
 import { stringArrayToMap } from '../../utils';
 import { IContentUtils, IFigureInfo, ParsedNodeProcessor } from './types';
 import {
-	MLTYPE_TO_LINK_TEXT_MAP,
 	collectMLNodeText,
 	collectText,
 	extractParseMode,
@@ -25,7 +24,8 @@ import {
 	urlToContentType,
 } from './helpers';
 import {
-	FIGURE_CONTAINER_TYPES,
+	MLTYPE_TO_LINK_TEXT_MAP,
+	// FIGURE_CONTAINER_TYPES,
 	IGNORED_AST_TYPES,
 	INLINE_AST_TYPES,
 	INLINE_MLNODE_TYPES,
@@ -501,6 +501,7 @@ class ContentUtils implements IContentUtils {
 		return node;
 	}
 
+	/*
 	private promoteFiguresInNode(
 		node: IMLParsedNode,
 		context: MLParseContext
@@ -529,6 +530,7 @@ class ContentUtils implements IContentUtils {
 			}
 		}
 	}
+	*/
 
 	/**
 	 * If the node is a figure, validate it, update its caption etc.
@@ -831,4 +833,5 @@ class ContentUtils implements IContentUtils {
 			}, []);
 	}
 }
+
 export const contentUtils: IContentUtils = new ContentUtils();
