@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentComponent } from '../contentComponent';
 import { IMLParsedNode, ContentComponentProps } from 'types/models';
-import { useComponentAttrs } from '../useComponentAttrs';
+import { useComponentAttrs } from '../../../hooks/useComponentAttrs';
 import { Table } from 'components';
 
 export const TableContentBlock = ({

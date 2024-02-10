@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IParsedPageData } from 'types/models';
-import { mlNextBrowserUtils } from './nextBrowserUtils';
+import { mlNextBrowserUtils } from '../lib/next-browser-utils/nextBrowserUtils';
 
 export interface IComponentContentData {
 	content: string | object | null;

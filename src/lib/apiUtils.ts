@@ -11,6 +11,7 @@ export interface IMLApiUtils {
 	 * @param key
 	 */
 	getFromCache(key: string): Promise<string>;
+
 	/**
 	 * Save a string to cache, using `key` for later retrieval
 	 * @param key
@@ -26,10 +27,13 @@ class MLApiUtils implements IMLApiUtils {
 		if (!key) {
 			return null;
 		}
+
 		const path = this._fileMap.get(key);
+
 		if (!path) {
 			return null;
 		}
+
 		try {
 			const read = nodeUtils.promisify(fs.readFile);
 			const buffer = await read(path);
@@ -47,7 +51,9 @@ class MLApiUtils implements IMLApiUtils {
 		if (!key || !data) {
 			return false;
 		}
+
 		const mktemp = nodeUtils.promisify(tempFiles.file);
+
 		try {
 			const filePath = await mktemp();
 			if (filePath) {

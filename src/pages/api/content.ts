@@ -2,13 +2,16 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { ContentTypes } from '../../consts';
 import { mlApiUtils } from '../../lib/apiUtils';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
-import { getContentRootDir, loadContentFolder } from '../../lib/markdownDriver';
+import {
+	// getContentRootDir,
+	loadContentFolder,
+} from '../../lib/markdown-driver/markdownDriver';
 import type {
 	IMLApiResponse,
 	IMLDynamicContentParams,
 	IMLDynamicContentResponse,
 } from 'types/api';
-import { contentUtils } from '../../lib/contentUtils';
+import { contentUtils } from '../../lib/content-utils/contentUtils';
 
 const TypeMap: { [key: string]: ContentTypes } = {
 	annotation: ContentTypes.Annotation,
@@ -18,6 +21,7 @@ const TypeMap: { [key: string]: ContentTypes } = {
 import * as fsPath from 'path';
 import * as fileSystem from 'fs';
 import { arrayToMap } from 'utils';
+import { getContentRootDir } from 'lib/markdown-driver/contentRootDir';
 
 const noop = function () {
 	void 0;
@@ -96,14 +100,18 @@ async function loadContent(
 	try {
 		const contentPath = fsPath.resolve(process.cwd(), 'public');
 		console.log(`using content path ${contentPath}`);
+
 		const payload = await mlApiUtils.getFromCache(cacheKey);
+
 		if (payload) {
 			return JSON.parse(payload);
 		}
+
 		const docPath =
 			clientPath && contentType === ContentTypes.Annotation
 				? await findFirstFolder(clientPath, contentType)
 				: contentType;
+
 		if (!docPath) {
 			throw new Error(`No ${contentType} for ${clientPath}, or globally`);
 		}
@@ -118,11 +126,13 @@ async function loadContent(
 			},
 			rootFolder: process.cwd(),
 		});
+
 		const data = {
 			locale: params.locale,
 			// turn array into map
 			items: arrayToMap(docData.pages, 'id'),
 		};
+
 		// don't want to await before returning, so
 		mlApiUtils
 			.saveToCache(cacheKey, JSON.stringify({ data }))

@@ -1,83 +1,25 @@
-type IconAnimtationTypes = 'rotate' | 'frames';
-
-export interface IFavIconAnimator {
-	run(): Promise<void>;
-	abort(): void;
-}
+import {
+	AnimatorFunction,
+	IFIProps,
+	IFavIconAnimator,
+	IFavIconProps,
+} from './types';
 
 const ROTATION_FRAMES = 18;
-
-/** Properties used to initialize a favicon animation */
-export interface IFavIconProps {
-	/**
-	 * Currently "rotate" or "frames". "rotate" takes one icon and rotates it in its frame.
-	 * "frames" takes an image that should have width*height frames and moves the
-	 * favicon between them.
-	 */
-	type: IconAnimtationTypes;
-	/** Image source url, or an image instance */
-	image: HTMLImageElement | string;
-	/** Animation duration, in seconds (accepts fractions) */
-	durationSeconds: number;
-	/** Favicon width */
-	width: number;
-	/** Favicon height */
-	height: number;
-	/** Optional number of columns in a multi-frame image. Defaults to 1 */
-	cols?: number;
-	/** Optional number of rows in a multi-frame image. Defaults to 1 */
-	rows?: number;
-	/** Defaults to 15 FPS */
-	fps?: number;
-	/** Defaults to the first <link rel="icon" .../> element in the document */
-	icon?: HTMLLinkElement;
-	/** If true, output warnings to console */
-	debug?: boolean;
-}
-
-interface IFIProps extends IFavIconProps {
-	canvas: HTMLCanvasElement;
-	/** Width of a frame in the source image (full width if 1 column) */
-	frameWidth: number;
-	/** Height of a frame in the source image (full height if 1 column) */
-	frameHeight: number;
-	/** The interval number returned by `setInterval` */
-	interval: number;
-	/** Timestamp of animation start */
-	startTime: number;
-	/** Current iteration */
-	count: number;
-	/** Saved icon href, to restore when the animation is done */
-	savedIconHref: string;
-	/** Computed number of columns */
-	rows: number;
-	/** Computed number of rows */
-	cols: number;
-	/** Cache of data urls */
-	cache: { [key: string]: string };
-	/** Resolve function for the `run()` promise, to call when the animation is done */
-	resolve: ((...args: unknown[]) => void) | null;
-}
-
-/**
- * The context is assumed to be cleared
- */
-type AnimatorFunction = (
-	ctx: CanvasRenderingContext2D,
-	props: IFIProps
-) => string;
 
 export class FavIconAnimator implements IFavIconAnimator {
 	private readonly isDarkMode: boolean;
 
 	constructor(animationProps: IFavIconProps) {
 		const doc = window.top.document;
-		const icon = animationProps.icon || doc.querySelector("link[rel='icon']");
+		const icon = animationProps.icon || doc.querySelector('link[rel="icon"]');
+
 		this.warn = animationProps.debug
 			? (...args: unknown[]) => {
 					console.warn('favicon animator: ', ...args);
 			  }
 			: () => void 0;
+
 		this.props = {
 			...animationProps,
 			canvas: doc.createElement('canvas'),
@@ -94,6 +36,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 			savedIconHref: (icon && icon.href) || '',
 			icon: icon,
 		};
+
 		this.props.canvas.width = this.props.width;
 		this.props.canvas.height = this.props.height;
 
@@ -113,10 +56,12 @@ export class FavIconAnimator implements IFavIconAnimator {
 			this.warn('Missing favicon in document');
 			return Promise.resolve();
 		}
+
 		if (this.props.durationSeconds <= 0 || isNaN(this.props.durationSeconds)) {
 			this.warn(`Meaningless duration  ${this.props.durationSeconds}`);
 			return Promise.resolve();
 		}
+
 		return new Promise((resolve) => {
 			this.props.resolve = resolve;
 			this._loadImage(this.props);
@@ -128,13 +73,9 @@ export class FavIconAnimator implements IFavIconAnimator {
 
 	/////////////////// Implementation /////////////////////
 
-	/**
-	 * Provided + computed animation properties
-	 */
+	/** Provided + computed animation properties */
 	private readonly props: IFIProps;
-	/**
-	 * either noop or console warn
-	 */
+	/** either noop or console warn */
 	private readonly warn: (...args: unknown[]) => void;
 	private _abort = false;
 
@@ -144,12 +85,15 @@ export class FavIconAnimator implements IFavIconAnimator {
 	 */
 	private _loadImage(props: IFIProps): void {
 		let src = '';
+
 		if (!props.image) {
 			src = props.icon.getAttribute('href');
 		}
+
 		if (typeof props.image === 'string') {
 			src = props.image;
 		}
+
 		if (src) {
 			const img = new Image();
 			img.addEventListener('load', () => this._onImageLoaded(img, props));
@@ -160,11 +104,11 @@ export class FavIconAnimator implements IFavIconAnimator {
 		}
 	}
 
-	private _getAnimator(props: IFIProps): AnimatorFunction | null {
+	private getAnimator(props: IFIProps): AnimatorFunction | null {
 		return props.type === 'frames'
-			? this._drawIconFrame.bind(this)
+			? this.drawIconFrame.bind(this)
 			: props.type === 'rotate'
-			? this._rotateIconFrame.bind(this)
+			? this.rotateIconFrame.bind(this)
 			: null;
 	}
 
@@ -179,11 +123,14 @@ export class FavIconAnimator implements IFavIconAnimator {
 			this._abort = false; // object may be reused
 			return p.resolve();
 		}
+
 		if (!img) {
 			this.warn(`failed to load image ${String(p.image)}`);
 			return p.resolve();
 		}
+
 		p.image = img;
+
 		if (p.type === 'frames') {
 			p.frameWidth = img.width / p.cols;
 			p.frameHeight = img.height / p.rows;
@@ -191,15 +138,16 @@ export class FavIconAnimator implements IFavIconAnimator {
 			p.frameHeight = img.height;
 			p.frameWidth = img.width;
 		}
-		this._animate(p);
+
+		this.animate(p);
 	}
 
-	private _animate(p: IFIProps): void {
+	private animate(p: IFIProps): void {
 		if (p.interval) {
 			return;
 		}
 		p.startTime = Date.now();
-		const animateIt = this._getAnimator(p);
+		const animateIt = this.getAnimator(p);
 		if (!animateIt) {
 			this.warn('Missing animator for type', p.type);
 			return p.resolve();
@@ -233,7 +181,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 		);
 	}
 
-	private _drawIconFrame(ctx: CanvasRenderingContext2D, p: IFIProps): string {
+	private drawIconFrame(ctx: CanvasRenderingContext2D, p: IFIProps): string {
 		const col = p.count % p.cols,
 			row = Math.floor(p.count / p.rows) % p.rows,
 			key = [col, 'x', row].join('');
@@ -258,7 +206,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 		return (p.cache[key] = p.canvas.toDataURL('image/png'));
 	}
 
-	private _rotateIconFrame(ctx: CanvasRenderingContext2D, p: IFIProps) {
+	private rotateIconFrame(ctx: CanvasRenderingContext2D, p: IFIProps) {
 		const frame = p.count % ROTATION_FRAMES;
 		let dataUrl = p.cache[String(frame)];
 		if (dataUrl) {

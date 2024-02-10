@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { LocaleContext, PageContext } from 'context';
-import { contentUtils } from 'lib/contentUtils';
+import { contentUtils } from 'lib/content-utils/contentUtils';
 import { DynamicContentTypes } from 'lib/types';
 import { DynamicContentContext } from './contentContext';
 import {

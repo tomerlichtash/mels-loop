@@ -1,13 +1,8 @@
-import classNames from 'classnames';
+import React, { PropsWithChildren, useCallback, useMemo } from 'react';
 import { unique } from 'utils';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
-import React, {
-	PropsWithChildren,
-	useCallback,
-	useContext,
-	useMemo,
-} from 'react';
+import { useIconAnimator, useLocale, useWindowSize } from 'hooks';
 import { useDrawer } from '../drawer/useDrawer';
 import {
 	Button,
@@ -29,13 +24,11 @@ import {
 	VerticalMenuTrigger,
 	VerticalNav,
 } from '../index';
-import { Cross2Icon } from '@radix-ui/react-icons';
-import { LocaleContext } from '../../context/locale/localeContext';
-import { parseMenuItems } from '../helpers';
-import { Analytics } from './analytics';
 import { Head } from './customHead';
-import { useIconAnimator } from './useIconAnimator';
-import { useWindowSize } from './useWindowSize';
+import { Analytics } from './analytics';
+import { parseMenuItems } from '../helpers';
+import { Cross2Icon } from '@radix-ui/react-icons';
+import classNames from 'classnames';
 import styles from './Layout.module.scss';
 
 import { default as menuItemsData } from 'config/navItems.json' assert { type: 'json' };
@@ -68,14 +61,13 @@ const Layout = ({
 	const { open, toggle } = useDrawer(isMobile);
 
 	const {
-		textDirection,
-		// pageName,
 		locale,
 		locales,
+		textDirection,
 		translate,
 		getLocaleLabel,
 		getLocaleSymbol,
-	} = useContext(LocaleContext);
+	} = useLocale();
 
 	const onLocaleChange = useCallback(
 		(id: LocaleId) =>

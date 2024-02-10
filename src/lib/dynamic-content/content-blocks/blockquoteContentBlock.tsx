@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentComponent } from '../index';
 import { IMLParsedNode, ContentComponentProps } from 'types/models';
-import { useComponentAttrs } from '../useComponentAttrs';
+import { useComponentAttrs } from '../../../hooks/useComponentAttrs';
 import { Blockquote } from 'components';
 
 export const BlockquoteContentBlock = ({

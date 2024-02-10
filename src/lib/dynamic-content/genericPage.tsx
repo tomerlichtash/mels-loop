@@ -8,7 +8,7 @@ import type {
 } from 'types/models';
 import { MLNODE_TYPES } from 'types/models';
 import { ContentIterator } from './contentIterator';
-import usePageData from '../usePageData';
+import usePageData from '../../hooks/usePageData';
 import { Layout, DateFormat } from 'components';
 
 const GenericPage = (props: IContentComponentData) => {

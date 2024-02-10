@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { contentUtils } from '../contentUtils';
+import { contentUtils } from '../content-utils/contentUtils';
 import { ContentComponent } from './contentComponent';
 import { DynamicContentLayout } from './contentLayout';
 import { Text, LoadingIndicator } from 'components';

@@ -2,10 +2,10 @@ import { StringMap } from 'types/models';
 import {
 	CaseInsensitiveMap,
 	CaseInsensitiveSet,
-} from './caseInsensitiveCollections';
+} from '../caseInsensitiveCollections';
 
 /** Provides utility functions for App Specific validating HTML content */
-export interface IHTMLValidator {
+interface IHTMLValidator {
 	/**
 	 * Is the attribute name valid for the provided tag?
 	 * @param tag
@@ -43,6 +43,7 @@ interface IAttributeMap {
 
 class HTMLValidator implements IHTMLValidator {
 	private readonly attributeMap: CaseInsensitiveMap<IAttributeMap>;
+
 	constructor() {
 		this.attributeMap = new CaseInsensitiveMap();
 		Object.keys(ALLOWED_HTML_ATTRIBUTES).forEach((key) => {
@@ -55,6 +56,7 @@ class HTMLValidator implements IHTMLValidator {
 			this.attributeMap.set('*', { valid: new CaseInsensitiveSet() });
 		}
 	}
+
 	isValidAttributeFor(tag: string, key: string): boolean {
 		if (!tag) {
 			return false;

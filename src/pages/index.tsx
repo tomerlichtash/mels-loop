@@ -1,10 +1,10 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import type { IPageProps } from 'types/models';
-import { mlNextUtils } from '../lib/nextUtils';
+import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
-import { contentUtils } from '../lib/contentUtils';
-import usePageData from '../lib/usePageData';
+import { contentUtils } from '../lib/content-utils/contentUtils';
+import usePageData from '../hooks/usePageData';
 import { getMetadata, renderElements } from '../lib/dynamic-content/helpers';
 import { ContentTypes } from '../consts';
 import { Layout, Text, Heading } from 'components';

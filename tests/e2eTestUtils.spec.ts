@@ -25,14 +25,16 @@ it('getMarkdownLinks', () => {
 	]);
 });
 
-it('getFrontMatter', () => {
-	const { data, content } = getFrontMatter(
-		'docs/the-story-of-mel',
-		'codex/index',
-		'en'
-	);
-	expect(data.title, 'should return frontmatter').toEqual('The Story of Mel');
-	expect(content.length, 'should return content').toBeGreaterThan(0);
+describe('FrontMatter', () => {
+	it('getFrontMatter', () => {
+		const { data, content } = getFrontMatter(
+			'docs/the-story-of-mel',
+			'codex/index',
+			'en'
+		);
+		expect(data.title, 'should return frontmatter').toEqual('The Story of Mel');
+		expect(content.length, 'should return content').toBeGreaterThan(0);
+	});
 });
 
 describe('getLocalePath', () => {

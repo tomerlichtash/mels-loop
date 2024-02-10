@@ -1,4 +1,4 @@
-import { parseDate } from '../utils/parseDate';
+import { parseDate } from '../../utils/parseDate';
 
 const ALLOWED_MERGE_TYPES: Array<string> = [
 	'object',

@@ -1,4 +1,5 @@
 import { DynamicContentTypes } from '../lib/types';
+import { LocaleId } from './locale';
 import { IParsedPageData } from './models';
 
 export interface IMLApiResponse<T> {
@@ -7,7 +8,7 @@ export interface IMLApiResponse<T> {
 }
 
 export interface IMLDynamicContentParams {
-	readonly locale: string;
+	readonly locale: LocaleId;
 	readonly type: DynamicContentTypes;
 	readonly document?: string;
 }

@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { NextRouter } from 'next/router';
-import { FavIconAnimator, IFavIconProps } from '../../lib/faviconAnimator';
+import { FavIconAnimator } from 'lib/favicon-animator/faviconAnimator';
 import type { LocaleId } from 'types/locale';
+import type { IFavIconProps } from 'lib/favicon-animator/types';
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: 'rotate',

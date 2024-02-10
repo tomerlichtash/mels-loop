@@ -12,33 +12,21 @@ import {
 	PageSortField,
 	ParsedNode,
 } from 'types/models';
-import { contentUtils } from './contentUtils';
+import { contentUtils } from '../content-utils/contentUtils';
 import {
 	IContentParseOptions,
 	LoadContentModes,
 	LoadFolderModes,
 	MLParseModes,
 } from 'types/parser';
-
 import getConfig from 'next/config';
-import { customMarkdownTags } from './consts';
-import { parseDate } from '../utils';
+import { customMarkdownTags } from '../consts';
+import { parseDate } from '../../utils';
 import { safeMerge } from './safeMerge';
+import { getContentRootDir, setContentRootDir } from './contentRootDir';
+
 const { serverRuntimeConfig } = getConfig();
-
-const CONTENT_PATH = 'public/content/';
-
 const getIndexFileName = (locale: string): string => `index.${locale}.md`;
-
-let rootDir: string;
-
-function setContentRootDir(root: string): void {
-	rootDir = path.join(root, CONTENT_PATH);
-}
-
-export function getContentRootDir(root?: string): string {
-	return root ? path.join(root, CONTENT_PATH) : rootDir;
-}
 
 /**
  * Save setting for build time
