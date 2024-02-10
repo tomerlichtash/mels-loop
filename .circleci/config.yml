@@ -58,8 +58,11 @@ jobs:
       - run:
           name: Unit Test
           command: yarn test:unit:ci
-      - store_test_results:
-          path: unit-tests-results.xml
+      - store_artifacts:
+          path: coverage
+
+      # - store_test_results:
+      #     path: unit-tests-results.xml
   e2e:
     docker:
       - image: mcr.microsoft.com/playwright:v1.41.2-jammy

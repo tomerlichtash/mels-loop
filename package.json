@@ -47,7 +47,7 @@
 		"test:ui": "playwright test --ui",
 		"test:unit": "vitest tests",
 		"test:unit:coverage": "vitest tests --coverage",
-		"test:unit:ci": "vitest tests --reporter=junit --outputFile.junit=unit-tests-results.xml",
+		"test:unit:ci": "vitest tests --coverage --outputFile.junit=unit-tests-results.xml",
 		"upload": "npx ts-node scripts/upload-files.ts",
 		"sass:debug": "sass --load-path=src -wc .",
 		"sass:clean": "find src -type f \\( -name \"*.css\" -o -name \"*.css.map\" \\) -exec rm {} +",
