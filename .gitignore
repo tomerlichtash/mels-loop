@@ -51,3 +51,11 @@ temp/
 *.css.map
 
 playwright-report
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
