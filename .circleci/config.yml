@@ -5,26 +5,26 @@ jobs:
       - image: cimg/node:18.17
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-cache-lint-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.yarn/cache
+      # - restore_cache:
+      #     name: Restore Yarn Package Cache
+      #     keys:
+      #       - yarn-packages-cache-lint-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.yarn/cache
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-cache-lint-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-      - restore_cache:
-          name: scripts - Restore Yarn Package Cache
-          keys:
-            - yarn-packages-cache-lint-scripts-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.yarn/cache
+          command: yarn install #--frozen-lockfile --cache-folder ~/.cache/yarn
+      # - save_cache:
+      #     name: Save Yarn Package Cache
+      #     key: yarn-packages-cache-lint-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn
+      # - restore_cache:
+      #     name: scripts - Restore Yarn Package Cache
+      #     keys:
+      #       - yarn-packages-cache-lint-scripts-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.yarn/cache
       # - run:
       #     name: scripts - Install Dependencies
       #     command: cd scripts && yarn install --frozen-lockfile --cache-folder ~/.cache/yarn-scripts
@@ -34,27 +34,27 @@ jobs:
       #     paths:
       #       - ~/.cache/yarn-scripts
       - run:
-          name: ESLint
+          name: Lint
           command: yarn lint
   unit:
     docker:
       - image: cimg/node:18.17
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-unit-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.yarn/cache
+      # - restore_cache:
+      #     name: Restore Yarn Package Cache
+      #     keys:
+      #       - yarn-packages-unit-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.yarn/cache
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-unit-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+          command: yarn install #--frozen-lockfile --cache-folder ~/.cache/yarn
+      # - save_cache:
+      #     name: Save Yarn Package Cache
+      #     key: yarn-packages-unit-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn
       - run:
           name: Unit Test
           command: yarn test:unit:ci
@@ -90,6 +90,6 @@ jobs:
 workflows:
   CI:
     jobs:
-      # - lint
-      # - unit
+      - lint
+      - unit
       - e2e
