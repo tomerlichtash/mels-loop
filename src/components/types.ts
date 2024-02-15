@@ -15,8 +15,6 @@ export type * from './drawer/types';
 export type * from './figure/types';
 export type * from './HorizontalMenu/types'; // rename
 export type * from './input/types';
-export type * from './layout/types';
-export type * from './layout/types';
 export type * from './line/types';
 export type * from './link/types';
 export type * from './list/types';

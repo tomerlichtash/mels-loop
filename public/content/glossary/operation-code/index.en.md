@@ -1,5 +1,5 @@
 ---
-glossary_key: 'glossary.term.opcode'
+glossary_key: 'OPCODE'
 source_url: https://en.wikipedia.org/wiki/Opcode
 source_name: Wikipedia
 ---

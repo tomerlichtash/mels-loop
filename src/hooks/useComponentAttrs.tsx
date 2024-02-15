@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IMLParsedNode, NodeAttributeMap } from 'types/models';
-import { mlNextBrowserUtils } from '../lib/next-browser-utils/nextBrowserUtils';
+import { mlNextBrowserUtils } from '../lib/next-runtime-utils/nextRunetimeUtils';
 
 interface IComponentAttributeData {
 	attributes: NodeAttributeMap;

@@ -1,8 +1,8 @@
-import { it, describe, expect } from 'vitest';
+import { describe, expect, test } from '@jest/globals';
 import { validateRequest } from '../src/pages/api/sendgrid';
 
 describe('validateRequest', () => {
-	it('should allow normal content', () => {
+	test('should allow normal content', () => {
 		const res = validateRequest({
 			fullname: 'Ed Nather',
 			email: 'nather@astro.as.utexas.edu',
@@ -14,7 +14,7 @@ describe('validateRequest', () => {
 		expect(res.message).toEqual('Some message');
 	});
 
-	it('should allow maximum length of 100 chars to fullname', () => {
+	test('should allow maximum length of 100 chars to fullname', () => {
 		const invalid = Array(300).fill('X').join('');
 
 		const res = validateRequest({
@@ -26,7 +26,7 @@ describe('validateRequest', () => {
 		expect(res.fullname.length).toEqual(100);
 	});
 
-	it('should allow maximum length of 256 chars to email address', () => {
+	test('should allow maximum length of 256 chars to email address', () => {
 		const invalid = Array(300).fill('X').join('');
 
 		const res = validateRequest({
@@ -38,7 +38,7 @@ describe('validateRequest', () => {
 		expect(res.email.length).toEqual(256);
 	});
 
-	it('should allow maximum length of 4096 chars to message body', () => {
+	test('should allow maximum length of 4096 chars to message body', () => {
 		const invalid = Array(5000).fill('X').join('');
 
 		const res = validateRequest({

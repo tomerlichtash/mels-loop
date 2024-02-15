@@ -1,19 +1,14 @@
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { withAxiom } from 'next-axiom';
-import { default as legacyRedirects } from './legacy.json' assert { type: 'json' };
+const path = require('path');
+const nextTranslate = require('next-translate-plugin');
+const legacyRedirects = require('./legacy.json');
+const { withAxiom } = require('next-axiom');
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
 	optimizeFonts: true,
 	sassOptions: {
 		includePaths: [path.join(__dirname, 'styles')],
-	},
-	i18n: {
-		locales: ['en', 'he'],
-		defaultLocale: 'en',
 	},
 	publicRuntimeConfig: {
 		basePath: process.env.BASE_PATH || '/public/',
@@ -26,4 +21,4 @@ const nextConfig = {
 	},
 };
 
-export default withAxiom(nextConfig);
+module.exports = withAxiom(nextTranslate(nextConfig));

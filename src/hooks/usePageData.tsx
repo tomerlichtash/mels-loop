@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { IParsedPageData } from 'types/models';
-import { mlNextBrowserUtils } from '../lib/next-browser-utils/nextBrowserUtils';
+import { mlNextBrowserUtils } from '../lib/next-runtime-utils/nextRunetimeUtils';
 
 interface IComponentContentData {
 	content: string | object | null;
 	metaData?: string | object | null;
 }
 
-interface IParsedComponentData {
+export interface IParsedComponentData {
 	pageData: IParsedPageData[];
 	metaData: IParsedPageData[];
 }
@@ -19,7 +19,9 @@ interface IParsedComponentData {
  * @param props
  * @returns
  */
-const usePageData = (props: IComponentContentData): IParsedComponentData => {
+export const usePageData = (
+	props: IComponentContentData
+): IParsedComponentData => {
 	const [pageData, setPageData] = useState<IParsedPageData[]>(
 		mlNextBrowserUtils.getParsedPagedData(props.content)
 	);
@@ -33,6 +35,7 @@ const usePageData = (props: IComponentContentData): IParsedComponentData => {
 		setPageData(mlNextBrowserUtils.getParsedPagedData(props.content));
 		setMetaData(mlNextBrowserUtils.getParsedPagedData(props.metaData));
 	}, [props]);
+
 	return {
 		pageData,
 		metaData,

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { unique } from 'utils';
+import { unique } from 'utils/index';
 import Link from '../../link/Link';
 import List from '../../list/List';
 import ListItem from '../../list-item/ListItem';
@@ -32,16 +32,16 @@ export const ReferenceContentLayout = ({
 			{children}
 		</main>
 		<footer className={styles.footer}>
-			{sources.length > 0 ? (
+			{sources.length ? (
 				<List role="list" label={sourcesLabel} className={styles.list}>
 					{sources.map((source) => (
 						<ListItem key={unique.id()}>
 							{source.url ? (
-								<Link href={source.url} target={source.target}>
-									{source.label}
+								<Link href={source.url} target="_blank">
+									{source.name}
 								</Link>
 							) : (
-								<Text variant="body1">{source.label}</Text>
+								<Text variant="body1">{source.name}</Text>
 							)}
 						</ListItem>
 					))}

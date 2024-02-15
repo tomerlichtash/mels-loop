@@ -1,23 +1,20 @@
-import type { LinkTarget } from 'components';
+import { DynamicContentTypes } from 'lib/types/types';
+import { BibliographyItemProps } from 'types/components';
 import type { LocaleId, TextDirection } from 'types/locale';
 import type { IParsedPageData } from 'types/models';
 
 type ContentLayoutProps = {
-	type: string;
-	textDirection: TextDirection;
-};
-
-type SourceProps = {
-	label?: string;
-	url: string;
-	target?: LinkTarget;
+	type: DynamicContentTypes;
+	textDirection?: TextDirection;
+	term?: string;
+	sources?: BibliographyItemProps[];
 };
 
 type ReferenceContentLayoutProps = {
+	term: string;
 	caption?: string;
 	title?: string;
-	term?: string;
-	sources?: SourceProps[];
+	sources?: BibliographyItemProps[];
 	sourcesLabel?: string;
 	className?: string;
 };
@@ -39,7 +36,7 @@ type IBlogPostProps = {
 export type {
 	IBlogPostProps,
 	ContentLayoutProps,
-	SourceProps, // todo: extract
+	// SourceProps, // todo: extract
 	ReferenceContentLayoutProps,
 	NoteContentLayoutProps,
 };

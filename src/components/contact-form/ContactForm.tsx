@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as yup from 'yup';
 import * as Form from '@radix-ui/react-form';
 import { useFormik, Formik, Field } from 'formik';
-import { LocaleContext } from 'context/locale/localeContext';
 // import Recaptcha from 'components/recaptcha';
 import {
 	ChatBubbleIcon,
@@ -15,9 +14,10 @@ import Input from 'components/input/Input';
 import TextArea from 'components/text-area/TextArea';
 import classNames from 'classnames';
 import styles from './ContactForm.module.scss';
+import { useLocale } from 'hooks/index';
 
 const ContactForm = ({ title, description }) => {
-	const { translate } = useContext(LocaleContext);
+	const { t } = useLocale();
 
 	const formik = useFormik({
 		initialValues: {
@@ -76,8 +76,9 @@ const ContactForm = ({ title, description }) => {
 				}}
 			>
 				{/* errors.email && touched.emai */}
-				{({ errors, touched }) => {
-					console.log({ errors, touched });
+				{() => {
+					// {({ errors, touched }) => {
+					// console.log({ errors, touched });
 					return (
 						<div className={styles.root}>
 							<div className={styles.header}>
@@ -90,7 +91,7 @@ const ContactForm = ({ title, description }) => {
 									<Form.Field className={styles.field} name="fullName">
 										<Form.Label className={styles.label} htmlFor="fullName">
 											<PersonIcon />
-											{translate('forms.contact.field.name.label')}
+											{t('forms.contact.field.name.label')}
 										</Form.Label>
 										<div className={styles.inputField}>
 											<Form.FormControl asChild>
@@ -116,9 +117,7 @@ const ContactForm = ({ title, description }) => {
 													)}
 													match="valueMissing"
 												>
-													{translate(
-														'forms.contact.field.name.validity.missingValue'
-													)}
+													{t('forms.contact.field.name.validity.missingValue')}
 												</Form.Message>
 												<Form.Message
 													className={classNames(
@@ -135,7 +134,7 @@ const ContactForm = ({ title, description }) => {
 									<Form.Field className={styles.field} name="email">
 										<Form.Label className={styles.label} htmlFor="email">
 											<EnvelopeClosedIcon />
-											{translate('forms.contact.field.email.label')}
+											{t('forms.contact.field.email.label')}
 										</Form.Label>
 										<div className={styles.inputField}>
 											<Form.Control asChild>
@@ -144,7 +143,7 @@ const ContactForm = ({ title, description }) => {
 													className={styles.input}
 													type="email"
 													required
-													placeholder={translate(
+													placeholder={t(
 														'forms.contact.field.email.placeholder'
 													)}
 													value={formik.values.email}
@@ -159,9 +158,7 @@ const ContactForm = ({ title, description }) => {
 													)}
 													match="valueMissing"
 												>
-													{translate(
-														'forms.contact.field.email.validity.missingValue'
-													)}
+													{t('forms.contact.field.email.validity.missingValue')}
 												</Form.Message>
 												<Form.Message
 													className={classNames(
@@ -178,7 +175,7 @@ const ContactForm = ({ title, description }) => {
 									<Form.Field className={styles.field} name="message">
 										<Form.Label className={styles.label} htmlFor="message">
 											<ChatBubbleIcon />
-											{translate('forms.contact.field.message.label')}
+											{t('forms.contact.field.message.label')}
 										</Form.Label>
 										<div className={styles.inputField}>
 											<Form.Control asChild>
@@ -186,7 +183,7 @@ const ContactForm = ({ title, description }) => {
 													id="message"
 													className={classNames(styles.input, styles.textarea)}
 													required
-													placeholder={translate(
+													placeholder={t(
 														'forms.contact.field.message.placeholder'
 													)}
 													value={formik.values.message}
@@ -201,7 +198,7 @@ const ContactForm = ({ title, description }) => {
 													)}
 													match="valueMissing"
 												>
-													{translate(
+													{t(
 														'forms.contact.field.message.validity.missingValue'
 													)}
 												</Form.Message>
@@ -221,7 +218,7 @@ const ContactForm = ({ title, description }) => {
 								<Form.Submit asChild>
 									<Button className={styles.submit} data-size="sm">
 										<SunIcon />
-										{translate('button.send')}
+										{t('button.send')}
 									</Button>
 								</Form.Submit>
 							</Form.Root>

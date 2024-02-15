@@ -1,13 +1,13 @@
 import React from 'react';
-import { Layout } from 'components';
 import { GetStaticProps, NextPage } from 'next';
-import { ContentTypes } from '../consts';
+import ContentTypes from 'contentTypes';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
-import usePageData from '../hooks/usePageData';
+import { usePageData } from '../hooks/usePageData';
 import { LoadFolderModes } from 'types/parser';
-import { ContentComponent } from 'lib/dynamic-content';
-import { unique } from 'utils';
+import { ContentComponent } from 'lib/dynamic-content-utils';
+import { unique } from 'utils/index';
 import type { IMLParsedNode, IPageProps, IParsedPageData } from 'types/models';
+import Layout from 'layout/Layout';
 
 const Contribute: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);

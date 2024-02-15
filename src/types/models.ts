@@ -1,4 +1,4 @@
-import { DynamicContentTypes } from 'lib/types';
+import { DynamicContentTypes } from 'lib/types/types';
 import { MLParseModes } from './parser';
 
 /** Workaround for any */

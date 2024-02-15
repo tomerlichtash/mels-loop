@@ -1,17 +1,20 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import type { IPageProps } from 'types/models';
+import Layout from 'layout/Layout';
+import { Text, Heading } from 'components/index';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
+import { usePageData } from '../hooks/usePageData';
+import { getMetadata, renderElements } from '../lib/dynamicContentHelpers';
+import ContentTypes from '../contentTypes';
+import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
+
+import type { IPageProps } from 'types/models';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
-import { contentUtils } from '../lib/content-utils/contentUtils';
-import usePageData from '../hooks/usePageData';
-import { getMetadata, renderElements } from '../lib/dynamic-content/helpers';
-import { ContentTypes } from '../consts';
-import { Layout, Text, Heading } from 'components';
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
 	const [title, moto] = getMetadata(['title', 'moto'], pageData);
+
 	return (
 		<Layout>
 			<article>
@@ -26,18 +29,13 @@ const Index: NextPage<IPageProps> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) =>
-	/**
-	 * @param node Guaranteed link node
-	 * @param mode
-	 * @returns
-	 */
 	mlNextUtils.getFolderStaticProps(
 		`docs/the-story-of-mel/${ContentTypes.Codex}`,
 		context.locale,
 		LoadFolderModes.Folder,
 		{
 			contentMode: LoadContentModes.Full,
-			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
+			nodeProcessors: [createPopoverLinksNodeProcessor()],
 		}
 	);
 

@@ -1,0 +1,20 @@
+{
+	"pages.contact.title": "Contact Us",
+	"pages.contact.subtitle": "We’d love to hear from you about anything and everything!",
+	"pages.contact.abstract": "As our community of developers and hackers is growing we'd love to hear your thoguhts, ideas, recommendations and feedbacks. Use this contact form to deliver your message directly to us, and we will get back to you shortly via e-mail. You're also welcome to e-mail us at about@melsloop.com.",
+	"pages.contact.formtitle": "Contact Form",
+	"pages.contact.formsubtitle": "Please fill in this form and we will get back to you regarding any issue.",
+
+	"forms.contact.field.name.label": "Your Name",
+	"forms.contact.field.name.placeholder": "Enter your full name here",
+	"forms.contact.field.name.validity.missingValue": "Name cannot be blank",
+	"forms.contact.field.email.label": "Your Email",
+	"forms.contact.field.email.validity.missingValue": "Please enter a valid e-mail address",
+	"forms.contact.field.email.placeholder": "Enter a valid e-mail address",
+	"forms.contact.field.message.label": "Message",
+	"forms.contact.field.message.placeholder": "Type your message here",
+	"forms.contact.field.message.validity.missingValue": "Message cannot be empty. What's on your mind?",
+	"forms.contact.field.recaptcha.tooltip": "Please validate you're not a robot",
+	"forms.contact.success.message": "Your message was sent successfuly!",
+	"forms.contact.fail.message": "Some error occured and your message was not sent :("
+}

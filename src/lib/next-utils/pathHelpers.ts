@@ -1,8 +1,60 @@
 import * as fsPath from 'path';
 import * as fs from 'fs';
-import { DYNAMIC_ROUTE_RE } from './consts';
 import { ICollectedPath } from './types';
-import { getContentRootDir } from 'lib/markdown-driver/contentRootDir';
+import { getContentRootDir } from 'lib/contentRootDir';
+
+const DYNAMIC_ROUTE_REGEXP = /^\[([^\]]+)\]$/;
+
+/**
+ * Converts an OS path to xxx/yyy/zzz relative to the first /pages/ folder in the hierarchy
+ * @param path
+ * @returns
+ */
+export async function pathToRelativePath(path: string): Promise<string> {
+	try {
+		const stat = await fs.promises.lstat(path);
+		const contentFolder = stat.isDirectory()
+			? path
+			: fsPath.join(fsPath.dirname(path), fsPath.basename(path, '.js'));
+		return contentFolder
+			.replace(/\\/g, '/')
+			.replace(/^.*?\/pages\/(.+)$/, '$1');
+	} catch {
+		return '';
+	}
+}
+
+export async function collectPathsIn(
+	topFolder: string
+): Promise<ICollectedPath[]> {
+	try {
+		const relativePath = await pathToRelativePath(topFolder);
+		const parts = relativePath.split('/');
+
+		const root = getContentRootDir();
+		const allPaths = await _collectPaths({ root, parts });
+		const validPaths: ICollectedPath[] = [];
+		// use only valid (existing) paths to folders
+		for (let rec of allPaths) {
+			try {
+				const stat = await fs.promises.lstat(rec.path);
+				if (stat.isDirectory()) {
+					validPaths.push(rec);
+				}
+			} catch {
+				// lint
+				void 0;
+			}
+		}
+		return validPaths.map((rec) => ({
+			path: rec.path.replace(root, '').replace(/\\/g, '/').replace(/^\//, ''),
+			idMap: rec.idMap,
+		}));
+	} catch (e) {
+		console.error(`Error collecting paths in ${topFolder}:\n${String(e)}`);
+		return [];
+	}
+}
 
 /**
  * Recursively collects all the paths in the content dir along a dynamic route
@@ -22,7 +74,7 @@ async function _collectPaths(params: {
 	}
 
 	const top = parts.shift(); // parts now shorter
-	const folderMatch = top.match(DYNAMIC_ROUTE_RE),
+	const folderMatch = top.match(DYNAMIC_ROUTE_REGEXP),
 		isKey = Boolean(folderMatch?.length); // indicates that the path contains a dynamic part, /[XXX]
 	const topFolder = isKey ? params.root : fsPath.join(params.root, top);
 
@@ -75,55 +127,4 @@ async function _collectPaths(params: {
 		});
 	}
 	return [];
-}
-
-/**
- * Converts an OS path to xxx/yyy/zzz relative to the first /pages/ folder in the hierarchy
- * @param path
- * @returns
- */
-export async function pathToRelativePath(path: string): Promise<string> {
-	try {
-		const stat = await fs.promises.lstat(path);
-		const contentFolder = stat.isDirectory()
-			? path
-			: fsPath.join(fsPath.dirname(path), fsPath.basename(path, '.js'));
-		return contentFolder
-			.replace(/\\/g, '/')
-			.replace(/^.*?\/pages\/(.+)$/, '$1');
-	} catch {
-		return '';
-	}
-}
-
-export async function collectPathsIn(
-	topFolder: string
-): Promise<ICollectedPath[]> {
-	try {
-		const relativePath = await pathToRelativePath(topFolder);
-		const parts = relativePath.split('/');
-
-		const root = getContentRootDir();
-		const allPaths = await _collectPaths({ root, parts });
-		const validPaths: ICollectedPath[] = [];
-		// use only valid (existing) paths to folders
-		for (let rec of allPaths) {
-			try {
-				const stat = await fs.promises.lstat(rec.path);
-				if (stat.isDirectory()) {
-					validPaths.push(rec);
-				}
-			} catch {
-				// lint
-				void 0;
-			}
-		}
-		return validPaths.map((rec) => ({
-			path: rec.path.replace(root, '').replace(/\\/g, '/').replace(/^\//, ''),
-			idMap: rec.idMap,
-		}));
-	} catch (e) {
-		console.error(`Error collecting paths in ${topFolder}:\n${String(e)}`);
-		return [];
-	}
 }

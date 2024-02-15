@@ -1,6 +1,6 @@
 import React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import { unique } from 'utils';
+import { unique } from 'utils/unique';
 import { CaretDownIcon } from '@radix-ui/react-icons';
 import Button from 'components/button/Button';
 import NavListItem from 'components/nav-item/NavListItem';

@@ -31,7 +31,7 @@ test.describe('Annotations', () =>
 			test.afterAll(async () => await page.close());
 
 			terms.map((term: string) => {
-				test(`${locale} > ${term}`, async () => {
+				test(`[${locale}] ${term}`, async () => {
 					await page
 						.locator(
 							getTermSelector({

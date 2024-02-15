@@ -1,5 +1,5 @@
 ---
-glossary_key: 'glossary.term.opcode'
+glossary_key: 'OPCODE'
 ---
 
 מספר המייצג פעולה בסיסית אחת ביחידת העיבוד של מחשב, כמו כפל או השוואת מספרים.

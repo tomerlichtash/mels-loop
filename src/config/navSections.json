@@ -2,7 +2,7 @@
 	{
 		"id": "articles",
 		"locale": {
-			"title": "nav.sections.articles.label"
+			"title": "nav:sections:articles:label"
 		},
 		"items": [
 			"preface",
@@ -14,7 +14,7 @@
 	{
 		"id": "contact",
 		"locale": {
-			"title": "nav.sections.contact.label"
+			"title": "nav:sections:contact:label"
 		},
 		"items": ["contact", "twitter", "github"]
 	}

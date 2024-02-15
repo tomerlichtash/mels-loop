@@ -19,9 +19,12 @@
 		"baseUrl": "./src",
 		"paths": {
 			"types/*": ["types/*"],
+			"lib/*": ["lib/*"],
+			"utils/*": ["utils/*"],
 			"config/*": ["config/*"],
 			"locale/*": ["locale/*"],
 			"context/*": ["context/*"],
+			"hooks/*": ["hooks/*"],
 			"components/*": ["components/*"],
 			"styles/*": ["styles/*"]
 		}
@@ -34,7 +37,8 @@
 		"**/**/*.ts",
 		"**/**/*.tsx",
 		"src/**/*",
-		"src/pages/docs/[id]/pages/[pageId]"
+		"src/pages/docs/[id]/pages/[pageId]",
+		"locales"
 	],
 	"exclude": ["node_modules", "**/*.ignore.*", "scripts"]
 }

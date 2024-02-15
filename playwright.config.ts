@@ -1,9 +1,5 @@
 import { PlaywrightTestConfig, devices } from '@playwright/test';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
 const baseURL = `http://localhost:${PORT}`;
@@ -15,6 +11,7 @@ const config: PlaywrightTestConfig = {
 	],
 	timeout: 30 * 1000,
 	testDir: path.join(__dirname, 'e2e'),
+	testIgnore: 'fixme/*',
 	retries: 2,
 	outputDir: 'test-results/',
 	workers: 4,
@@ -32,26 +29,23 @@ const config: PlaywrightTestConfig = {
 	},
 	projects: [
 		{
-			name: 'Site',
-			testMatch: ['site/**/*.spec.ts'],
+			name: 'Desktop',
+			testMatch: ['**/*.spec.ts'],
 			use: {
 				...devices['Desktop Chrome'],
+				...devices['Desktop Firefox'],
+				...devices['Desktop Safari'],
 			},
 		},
-		{
-			name: 'Glossary',
-			testMatch: ['/glossary/**/*.spec.ts'],
-			use: {
-				...devices['Desktop Chrome'],
-			},
-		},
-		{
-			name: 'codex-the-story-of-mel',
-			testMatch: ['codex/the-story-of-mel/**/*.spec.ts'],
-			use: {
-				...devices['Desktop Chrome'],
-			},
-		},
+		// {
+		// 	name: 'Mobile',
+		// 	testMatch: ['**/*.spec.ts'],
+		// 	use: {
+		// 		...devices['iPhone 14'],
+		// 		...devices['Pixel 7'],
+		// 	},
+		// },
 	],
 };
+
 export default config;

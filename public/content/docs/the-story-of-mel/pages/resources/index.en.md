@@ -1,6 +1,6 @@
 ---
-title: "Resources"
-abstract: "Web Resources, Guides, Discussions and More"
+title: 'Resources'
+abstract: 'Web Resources, Guides, Discussions and More'
 ---
 
 ### Story Source

@@ -1,4 +1,4 @@
-import dateFormat from 'dateformat';
+import { format as dateFormat } from 'date-fns';
 import classNames from 'classnames';
 import { localeFormats } from './consts';
 import styles from './DateFormat.module.scss';

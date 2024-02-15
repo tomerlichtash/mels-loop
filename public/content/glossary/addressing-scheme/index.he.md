@@ -1,5 +1,5 @@
 ---
-glossary_key: 'glossary.term.addressingScheme'
+glossary_key: 'ADDRESSING_SCHEME'
 ---
 
 השיטה שבה מספר בינארי, או אוסף מספרים כאלה, מייצג מיקום בזיכרון המחשב.

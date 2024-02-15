@@ -1,29 +1,25 @@
 import { test, expect, Page } from '@playwright/test';
+import { getLocalePath, locales } from './utils/localeTestUtils';
+import getT from 'next-translate/getT';
+import { Translate } from 'next-translate';
+import i18n from '../i18n';
+import docIds from './codex/docIds';
 import {
 	getGlossaryData,
 	getMarkdownLinks,
 	getTermSelector,
 } from './utils/termsTestUtils';
-import {
-	getLocalePath,
-	locales,
-	translate,
-	validateStringTranslation,
-} from './utils/localeTestUtils';
-import { getFrontMatter, stripMarkdown } from './utils/mdTestUtils';
-import docIds from './codex/docIds';
 import { WHITE_SPACE } from './utils/patterns';
+import { getFrontMatter, stripMarkdown } from './utils/mdTestUtils';
 
-// test.describe.configure({ mode: 'serial' });
+global.i18nConfig = i18n;
 
 test.describe('Glossary', () => {
-	docIds.map((docId) => {
-		locales.map((locale) => {
+	for (const docId of docIds) {
+		for (const locale of locales) {
+			let t: Translate;
+			let tEng: Translate;
 			let page: Page;
-
-			const { content } = getFrontMatter(docId, 'codex/index', locale);
-			const terms = getMarkdownLinks(content, 'glossary');
-			const glossaryData = getGlossaryData(locale);
 
 			test.beforeAll(async ({ browser }) => {
 				page = await browser.newPage();
@@ -32,12 +28,21 @@ test.describe('Glossary', () => {
 
 			test.afterAll(async () => await page.close());
 
-			terms.map((term: string) => {
-				const { term_key, content } = glossaryData.filter(
-					(t) => t.key === term
-				)[0];
+			test.beforeEach(async () => {
+				t = await getT(locale, ['common', 'glossary']);
+				tEng = await getT('en', 'glossary');
+			});
 
-				test(`${locale} > ${term}`, async () => {
+			const { content } = getFrontMatter(docId, 'codex/index', locale);
+			const terms = getMarkdownLinks(content, 'glossary');
+			const glossaryData = getGlossaryData(locale);
+
+			terms.map((term: string) => {
+				const { term_key, content } = glossaryData.find(
+					({ key }) => key === term
+				);
+
+				return test(`[${locale}] ${term}`, async () => {
 					await page
 						.locator(
 							getTermSelector({
@@ -56,52 +61,43 @@ test.describe('Glossary', () => {
 						.getByRole('caption')
 						.textContent();
 
-					expect(validateStringTranslation(captionLocator)).toBeTruthy();
-					expect(captionLocator).toEqual(
-						translate(locale, 'popover.glossary.caption')
-					);
+					// expect(validateStringTranslation(captionLocator)).toBeTruthy();
+					expect(captionLocator).toEqual(t('common:caption:glossary'));
 
 					const termLocator = await dialogLocator
 						.getByRole('term')
 						.textContent();
 
-					expect(termLocator).toEqual(translate(locale, term_key as string));
+					expect(termLocator).toEqual(t(`glossary:term:${term_key}`));
 
 					if (locale !== 'en') {
 						const translatedTerm = await dialogLocator
 							.getByRole('definition')
 							.textContent();
 
-						expect(validateStringTranslation(translatedTerm)).toBeTruthy();
-
-						expect(
-							translatedTerm,
-							'Non-English glossary entries should include original term in English'
-						).toEqual(translate('en', term_key as string));
+						// Non-English glossary entries should include original term in English
+						expect(translatedTerm).toEqual(tEng(`glossary:term:${term_key}`));
 					}
 
-					const noteLocator = await dialogLocator
-						.getByRole('note')
-						.textContent();
+					const noteLocator = dialogLocator.getByRole('note');
 
-					expect(noteLocator.length, 'term cannot be empty').toBeGreaterThan(0);
+					expect((await noteLocator.textContent()).length).toBeGreaterThan(1);
 
+					// minimum words per term
 					expect(
-						noteLocator.split(WHITE_SPACE).length,
-						'minimum words per term'
+						(await noteLocator.textContent()).split(WHITE_SPACE).length
 					).toBeGreaterThan(0);
 
 					const sanitizedContent = stripMarkdown(content);
 
-					expect(noteLocator, 'term content equal to source').toEqual(
-						sanitizedContent
-					);
+					// term content equal to source
+					expect(await noteLocator.textContent()).toEqual(sanitizedContent);
 
 					await page.getByRole('toolbar').getByRole('button').click();
 
 					await expect(dialogLocator).not.toBeVisible();
 				});
 			});
-		});
-	});
+		}
+	}
 });

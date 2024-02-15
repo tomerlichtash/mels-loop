@@ -1,20 +1,22 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import { ContentTypes } from '../consts';
+import ContentTypes from 'contentTypes';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import type { IPageProps } from 'types/models';
-import usePageData from '../hooks/usePageData';
-import { LocaleContext } from '../context/locale/localeContext';
+import { usePageData } from '../hooks/usePageData';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
-import { Layout, Link } from 'components';
+import { Link } from 'components/index';
+import Layout from 'layout/Layout';
+import { useLocale } from 'hooks/index';
 
 const Glossary: NextPage<IPageProps> = (props) => {
-	const { translate } = useContext(LocaleContext);
 	const { metaData } = usePageData(props);
+	const { t } = useLocale();
+
 	return (
 		<Layout>
 			<article className="page">
-				<h1 className="title">{translate('pages.glossary.label')}</h1>
+				<h1 className="title">{t('glossary:page:title')}</h1>
 				{metaData.length && (
 					<ul className="term-list">
 						{metaData.map((page, index) => {
@@ -23,7 +25,9 @@ const Glossary: NextPage<IPageProps> = (props) => {
 							const { glossary_key } = term;
 							return glossary_key ? (
 								<li className="term" key={key}>
-									<Link href={page.path}>{translate(term.glossary_key)}</Link>
+									<Link href={page.path}>
+										{t(`glossary:term:${term.glossary_key}`)}
+									</Link>
 								</li>
 							) : (
 								<div key={key} className="error">

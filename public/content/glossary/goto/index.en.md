@@ -1,5 +1,5 @@
 ---
-glossary_key: 'glossary.term.goto'
+glossary_key: 'GOTO'
 source_url: https://en.wikipedia.org/wiki/Goto
 source_name: Wikipedia
 ---

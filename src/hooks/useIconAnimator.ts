@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { NextRouter } from 'next/router';
-import { FavIconAnimator } from 'lib/favicon-animator/faviconAnimator';
-import type { LocaleId } from 'types/locale';
-import type { IFavIconProps } from 'lib/favicon-animator/types';
+import { FavIconAnimator } from '../layout/favicon-animator/faviconAnimator';
+import type { IFavIconProps } from '../layout/favicon-animator/types';
 
 const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	type: 'rotate',
@@ -14,10 +13,10 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 	image: '/assets/logo/ml-logo-dark.png',
 };
 
-export const useIconAnimator = (router: NextRouter, locale: LocaleId) => {
+export const useIconAnimator = (router: NextRouter) => {
 	useEffect(() => {
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-	}, [router.asPath, locale]);
+	}, [router.asPath]);
 
 	useEffect(() => {
 		const handleRouteChange = () => {

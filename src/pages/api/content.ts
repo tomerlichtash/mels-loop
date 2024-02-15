@@ -1,27 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { ContentTypes } from '../../consts';
+import ContentTypes from 'contentTypes';
 import { mlApiUtils } from '../../lib/apiUtils';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
-import {
-	// getContentRootDir,
-	loadContentFolder,
-} from '../../lib/markdown-driver/markdownDriver';
+import { loadContentFolder } from '../../lib/loadFolderContent';
 import type {
 	IMLApiResponse,
 	IMLDynamicContentParams,
 	IMLDynamicContentResponse,
 } from 'types/api';
-import { contentUtils } from '../../lib/content-utils/contentUtils';
+import * as fsPath from 'path';
+import * as fileSystem from 'fs';
+import { arrayToMap } from 'utils/index';
+import { getContentRootDir } from 'lib/contentRootDir';
+import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
 
 const TypeMap: { [key: string]: ContentTypes } = {
 	annotation: ContentTypes.Annotation,
 	glossary: ContentTypes.Glossary,
 };
-
-import * as fsPath from 'path';
-import * as fileSystem from 'fs';
-import { arrayToMap } from 'utils';
-import { getContentRootDir } from 'lib/markdown-driver/contentRootDir';
 
 const noop = function () {
 	void 0;
@@ -122,7 +118,7 @@ async function loadContent(
 			loadMode: LoadFolderModes.Children,
 			mode: {
 				contentMode: LoadContentModes.Full,
-				nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
+				nodeProcessors: [createPopoverLinksNodeProcessor()],
 			},
 			rootFolder: process.cwd(),
 		});

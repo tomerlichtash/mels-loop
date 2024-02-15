@@ -1,5 +1,5 @@
 ---
-glossary_key: 'glossary.term.pessimum'
+glossary_key: 'PESSIMUM'
 ---
 
 Negative peak in memory access time.

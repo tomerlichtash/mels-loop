@@ -1,23 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
 import { GetStaticProps } from 'next';
-import { ContentTypes } from '../consts';
+import ContentTypes from 'contentTypes';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import type { IPageProps, IParsedPageData } from 'types/models';
-import usePageData from '../hooks/usePageData';
-import { LocaleContext } from '../context/locale/localeContext';
+import { usePageData } from '../hooks/usePageData';
 import orderBy from 'lodash.orderby';
 import BlogPost from '../components/content-layout/article-content-layout/BlogPost';
-import { Layout } from 'components';
-import { unique } from 'utils';
+import { unique } from 'utils/index';
+import Layout from 'layout/Layout';
+import { useLocale } from 'hooks/index';
 
 export default function Blog(props: IPageProps) {
-	const { locale, translate } = useContext(LocaleContext);
 	const { pageData } = usePageData(props);
+	const { t, lang } = useLocale();
 	return (
 		<Layout>
 			<div className="page">
-				<h1 className="title">{translate('pages.blog.label')}</h1>
+				<h1 className="title">{t('blog:page:title')}</h1>
 				{orderBy(pageData, ['metaData.date'], ['desc']).map(
 					(page: IParsedPageData) => {
 						const { metaData, path: path } = page;
@@ -28,7 +28,7 @@ export default function Blog(props: IPageProps) {
 								title={title}
 								date={date}
 								path={path}
-								locale={locale}
+								locale={lang}
 								author={author}
 								content={page}
 							/>

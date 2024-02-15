@@ -5,8 +5,8 @@
 		"url": "/docs/the-story-of-mel/pages/preface",
 		"icon": "article",
 		"locale": {
-			"title": "nav.items.articles.som.intro.label",
-			"author": "authors.tomerLichtash"
+			"title": "nav:items:articles:som:intro:label",
+			"author": "authors:tomerlichtash"
 		}
 	},
 	{
@@ -15,8 +15,8 @@
 		"url": "/docs/the-story-of-mel/pages/mel-kaye-cv",
 		"icon": "article",
 		"locale": {
-			"title": "nav.items.articles.som.bio.label",
-			"author": "authors.tomerLichtash"
+			"title": "nav:items:articles:som:bio:label",
+			"author": "authors:tomerlichtash"
 		}
 	},
 	{
@@ -25,8 +25,8 @@
 		"url": "/docs/the-story-of-mel/pages/mels-hack-the-missing-bits",
 		"icon": "article",
 		"locale": {
-			"title": "nav.items.articles.som.missingBits.label",
-			"author": "authors.dfl"
+			"title": "nav:items:articles:som:missingBits:label",
+			"author": "authors:dfl"
 		}
 	},
 	{
@@ -35,8 +35,8 @@
 		"url": "/docs/the-story-of-mel/pages/resources",
 		"icon": "list",
 		"locale": {
-			"title": "nav.items.pages.resources.label",
-			"description": "nav.items.pages.resources.desc"
+			"title": "nav:items:pages:resources:label",
+			"description": "nav:items:pages:resources:desc"
 		}
 	},
 	{
@@ -44,9 +44,9 @@
 		"type": "page",
 		"url": "/about",
 		"locale": {
-			"title": "nav.items.pages.about.label",
+			"title": "nav:items:pages:about:label",
 			"description": "MENU_ITEM_DESC_SHORT_ID_ABOUT",
-			"buttonLabel": "button.learnMore"
+			"buttonLabel": "button:learnMore"
 		}
 	},
 	{
@@ -54,9 +54,9 @@
 		"type": "page",
 		"url": "/posts",
 		"locale": {
-			"title": "nav.items.pages.blog.label",
-			"description": "nav.items.pages.blog.desc",
-			"buttonLabel": "button.learnMore"
+			"title": "nav:items:pages:blog:label",
+			"description": "nav:items:pages:blog:desc",
+			"buttonLabel": "button:learnMore"
 		}
 	},
 	{
@@ -64,9 +64,9 @@
 		"type": "page",
 		"url": "/contribute",
 		"locale": {
-			"title": "nav.items.pages.contrib.label",
-			"description": "nav.items.pages.contrib.desc",
-			"buttonLabel": "button.learnMore"
+			"title": "nav:items:pages:contrib:label",
+			"description": "nav:items:pages:contrib:desc",
+			"buttonLabel": "button:learnMore"
 		}
 	},
 	{
@@ -74,9 +74,9 @@
 		"type": "page",
 		"url": "/contribute",
 		"locale": {
-			"title": "nav.items.pages.contrib.label",
+			"title": "nav:items:pages:contrib:label",
 			"description": "MENU_ITEM_DESC_SHORT_ID_CONTRIBUTE",
-			"buttonLabel": "button.learnMore"
+			"buttonLabel": "button:learnMore"
 		}
 	},
 	{
@@ -85,29 +85,29 @@
 		"url": "/contact",
 		"icon": "pencil",
 		"locale": {
-			"title": "nav.items.pages.contact.label",
-			"description": "nav.items.pages.contact.desc"
+			"title": "nav:items:pages:contact:label",
+			"description": "nav:items:pages:contact:desc"
 		}
 	},
 	{
 		"id": "twitter",
 		"type": "external",
-		"url": "https://twitter.com/aboutmelsloop",
+		"url": "https://twitter:com/aboutmelsloop",
 		"icon": "𝕏",
 		"locale": {
-			"title": "nav.items.links.twitter.label",
-			"description": "nav.items.links.twitter.desc"
+			"title": "nav:items:links:twitter:label",
+			"description": "nav:items:links:twitter:desc"
 		}
 	},
 	{
 		"id": "github",
 		"type": "external",
-		"url": "https://github.com/tomerlichtash/mels-loop",
+		"url": "https://github:com/tomerlichtash/mels-loop",
 		"icon": "github",
 		"target": "_blank",
 		"locale": {
-			"title": "nav.items.links.github.label",
-			"description": "nav.items.links.github.desc"
+			"title": "nav:items:links:github:label",
+			"description": "nav:items:links:github:desc"
 		}
 	}
 ]

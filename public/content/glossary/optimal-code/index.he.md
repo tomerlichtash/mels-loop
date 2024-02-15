@@ -1,5 +1,5 @@
 ---
-glossary_key: 'glossary.term.optimalCode'
+glossary_key: 'OPTIMAL_CODE'
 ---
 
 קוד הנכתב בצורה היעילה ביותר הניתנת למימוש.

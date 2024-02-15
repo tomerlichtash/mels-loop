@@ -4,7 +4,7 @@ import styles from './List.module.scss';
 import Link from '../link/Link';
 import Text from '../text/Text';
 import ListItem from '../list-item/ListItem';
-import { unique } from 'utils';
+import { unique } from 'utils/index';
 import type { ListProps } from './types';
 
 const renderListItems = (items) =>

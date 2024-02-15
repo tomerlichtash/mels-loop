@@ -13,7 +13,6 @@ export { default as Figure } from './figure/Figure';
 export { default as Heading } from './heading/heading'; // exclude
 export { default as HorizontalNav } from './HorizontalMenu/HorizontalNav'; // rename
 export { default as Input } from './input/Input';
-export { default as Layout } from './layout/Layout'; // exclude
 export { default as Line } from './line/Line';
 export { default as Link } from './link/Link';
 export { default as List } from './list/List';

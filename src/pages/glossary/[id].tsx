@@ -1,18 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
-import { ContentTypes } from '../../consts';
+import ContentTypes from 'contentTypes';
 import { mlNextUtils } from '../../lib/next-utils/nextUtils';
 import { LoadFolderModes } from 'types/parser';
-import { contentUtils } from '../../lib/content-utils/contentUtils';
 import { MLNODE_TYPES } from 'types/models';
 import type { IMLParsedNode, IPageProps } from 'types/models';
-import usePageData from '../../hooks/usePageData';
-import { LocaleContext } from '../../context/locale/localeContext';
-import { Layout, Link, List } from 'components';
-import { ContentIterator } from 'lib/dynamic-content';
+import { usePageData } from '../../hooks/usePageData';
+import { Link, List } from 'components/index';
+import { ContentIterator } from 'lib/dynamic-content-utils';
+import Layout from 'layout/Layout';
+import { useLocale } from 'hooks/index';
+import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
 
 export default function GlossaryTerm(props: IPageProps) {
-	const { translate } = useContext(LocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;
@@ -22,14 +22,17 @@ export default function GlossaryTerm(props: IPageProps) {
 		line: -1,
 		type: MLNODE_TYPES.UNKNOWN,
 	};
+	const { t } = useLocale();
+
 	return (
 		<Layout title={metaData?.title}>
 			<article className="page">
 				<Link className="title" href={'/glossary'}>
-					{translate('GLOSSARY_NAV_LABEL')}
+					{t('GLOSSARY_NAV_LABEL')}
 				</Link>
-				<h1 className="title">{translate(metaData?.glossary_key)}</h1>
-				<p className="term">{translate(metaData?.glossary_key, 'en')}</p>
+				<h1 className="title">{t(metaData?.glossary_key)}</h1>
+				{/* TODO: Use forced translation */}
+				{/* <p className="term">{t(metaData?.glossary_key, 'en')}</p> */}
 				{node ? (
 					<ContentIterator componentData={{ node }} />
 				) : (
@@ -63,6 +66,6 @@ export const getStaticProps: GetStaticProps = async (
 		context.locale,
 		LoadFolderModes.Folder,
 		{
-			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
+			nodeProcessors: [createPopoverLinksNodeProcessor()],
 		}
 	);

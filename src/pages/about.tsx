@@ -1,31 +1,23 @@
 import React from 'react';
-import { Layout } from 'components';
 import { GetStaticProps, NextPage } from 'next';
-import { ContentTypes } from '../consts';
+import ContentTypes from '../contentTypes';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
-import usePageData from '../hooks/usePageData';
+import { usePageData } from '../hooks/usePageData';
 import { LoadFolderModes } from 'types/parser';
-import { ContentComponent } from 'lib/dynamic-content';
-import { unique } from 'utils';
-import type { IMLParsedNode, IPageProps, IParsedPageData } from 'types/models';
+import type { IPageProps } from 'types/models';
+import Layout from 'layout/Layout';
+import { getMetadata, renderElements } from 'lib/dynamicContentHelpers';
 
 const About: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
-	const page = pageData[0] || ({} as IParsedPageData);
-	const elements: IMLParsedNode[] = page.parsed || [];
-	const { metaData } = pageData[0];
+	const [title, abstract] = getMetadata(['title', 'abstract'], pageData);
+
 	return (
 		<Layout>
 			<article className="page">
-				<h1 className="topic">{metaData.title}</h1>
-				<p className="title">{metaData.abstract}</p>
-				<div className="section">
-					{elements.map((node) => {
-						return (
-							<ContentComponent key={unique.id()} componentData={{ node }} />
-						);
-					})}
-				</div>
+				<h1 className="topic">{title}</h1>
+				<p className="title">{abstract}</p>
+				<div className="section">{renderElements(pageData)}</div>
 			</article>
 		</Layout>
 	);

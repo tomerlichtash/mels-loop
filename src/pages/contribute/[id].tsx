@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
-import { GenericPage } from 'lib/dynamic-content';
+import { GenericPage } from 'lib/dynamic-content-utils';
 import { mlNextUtils } from 'lib/next-utils/nextUtils';
-import { ContentTypes } from 'consts';
+import ContentTypes from 'contentTypes';
 import { LoadFolderModes } from 'types/parser';
 import { IPageProps } from 'types/models';
 

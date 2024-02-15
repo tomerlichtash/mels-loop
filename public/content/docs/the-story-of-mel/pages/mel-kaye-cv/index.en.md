@@ -1,7 +1,7 @@
 ---
-title: "Mel Kaye – CV"
-abstract: "The Life and Work of Mel Kaye, A Real Programmer (1931-2018)"
-author: "Tomer Lichtash"
+title: 'Mel Kaye – CV'
+abstract: 'The Life and Work of Mel Kaye, A Real Programmer (1931-2018)'
+author: 'Tomer Lichtash'
 date: Tue May 21 2023 01:00:00 GMT+0300
 ---
 

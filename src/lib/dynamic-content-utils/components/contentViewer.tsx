@@ -1,0 +1,72 @@
+import React from 'react';
+import { ContentComponent } from '../contentComponent';
+import { DynamicContentLayout } from './contentLayout';
+import { Text, LoadingIndicator } from 'components/index';
+import { DynamicContentTypes } from '../../types/types';
+import { useDynamicContentServer } from '../hooks/useDynamicContentServer';
+import { SHOW_LOADING_INDICATOR_AFTER_MSEC } from '../consts';
+import { unique } from 'utils/index';
+import { useLocale } from 'hooks/index';
+import { BibliographyItemProps } from 'types/components';
+import { contentUtils } from 'lib/contentUtils';
+
+type DynamicContentViewerProps = {
+	url: string;
+};
+
+export const DynamicContentViewer = ({
+	url,
+}: DynamicContentViewerProps): JSX.Element => {
+	const { error, isLoading, item } = useDynamicContentServer(url);
+	const { t } = useLocale();
+
+	if (error) {
+		return <Text>{error}</Text>;
+	}
+
+	if (isLoading) {
+		return (
+			<LoadingIndicator
+				label={t('common:caption:loading')}
+				delay={SHOW_LOADING_INDICATOR_AFTER_MSEC}
+			/>
+		);
+	}
+
+	const elements = item && item.parsed;
+
+	if (!elements?.length) {
+		return <></>;
+	}
+
+	const itemData = contentUtils.urlToContentData(
+		url,
+		DynamicContentTypes.Glossary
+	);
+
+	const { type } = itemData;
+	const { metaData } = item;
+
+	const {
+		source_name: sourceName,
+		source_url: sourceUrl,
+		glossary_key: term,
+	} = metaData;
+
+	const sources: BibliographyItemProps[] = sourceName && [
+		{
+			name: sourceName,
+			url: sourceUrl,
+		},
+	];
+
+	return (
+		<DynamicContentLayout type={type} term={term} sources={sources}>
+			{elements.map((node) => (
+				<ContentComponent key={unique.id()} componentData={{ node }} />
+			))}
+		</DynamicContentLayout>
+	);
+};
+
+export default DynamicContentViewer;

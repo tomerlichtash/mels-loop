@@ -1,4 +1,4 @@
-import { flattenArray, unique } from 'utils';
+import { flattenArray, unique } from 'utils/index';
 import { default as siteFontData } from 'config/siteFonts.json' assert { type: 'json' };
 
 const fontBasePath = '/assets/fonts';
@@ -17,6 +17,17 @@ interface IFontFaceDecl extends IFontFaceLink {
 	weight: number;
 }
 
+const FontFaceLink = ({ id, href, format }: IFontFaceLink) => (
+	<link
+		key={unique.id()}
+		rel="preload"
+		href={`${fontBasePath}/${id}/${href}`}
+		as="font"
+		type={`font/${format}`}
+		crossOrigin="anonymous"
+	/>
+);
+
 const FontFaceDecl = ({ name, id, href, weight, format }: IFontFaceDecl) => {
 	const fontFaceProps = [
 		['font-family', `"${name}"`],
@@ -29,33 +40,18 @@ const FontFaceDecl = ({ name, id, href, weight, format }: IFontFaceDecl) => {
 		.join('')}}`;
 };
 
-const FontFaceLink = ({ id, href, format }: IFontFaceLink) => {
-	return (
-		<link
-			key={unique.id()}
-			rel="preload"
-			href={`${fontBasePath}/${id}/${href}`}
-			as="font"
-			type={`font/${format}`}
-			crossOrigin="anonymous"
-		/>
-	);
-};
-
 export const fontFaceDecls = siteFontData
 	.map(({ id, name, family }) => {
 		return family
-			.map(({ weight, format, href }) => {
-				return FontFaceDecl({ name, id, href, weight, format });
-			})
+			.map(({ weight, format, href }) =>
+				FontFaceDecl({ name, id, href, weight, format })
+			)
 			.join('');
 	})
 	.join('');
 
 export const fontFaceLinks = flattenArray(
-	siteFontData.map(({ id, family }) => {
-		return family.map(({ href, format }) => {
-			return FontFaceLink({ id, href, format });
-		});
-	})
+	siteFontData.map(({ id, family }) =>
+		family.map(({ href, format }) => FontFaceLink({ id, href, format }))
+	)
 );

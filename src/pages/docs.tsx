@@ -1,20 +1,21 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import { ContentTypes } from '../consts';
+import ContentTypes from 'contentTypes';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import type { IPageProps } from 'types/models';
-import usePageData from '../hooks/usePageData';
-import { LocaleContext } from '../context/locale/localeContext';
+import { usePageData } from '../hooks/usePageData';
 import { LoadContentModes, LoadFolderModes } from 'types/parser';
-import { Layout, Link } from 'components';
+import { Link } from 'components/index';
+import Layout from 'layout/Layout';
+import { useLocale } from 'hooks/index';
 
 const Docs: NextPage<IPageProps> = (props) => {
-	const { translate } = useContext(LocaleContext);
 	const { metaData } = usePageData(props);
+	const { t } = useLocale();
 	return (
 		<Layout>
 			<article className="page">
-				<h1 className="title">{translate('pages.docs.label')}</h1>
+				<h1 className="title">{t('docs:page:title')}</h1>
 				{metaData.length && (
 					<ul>
 						{metaData.map((page, index) => {

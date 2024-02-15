@@ -42,16 +42,20 @@ export const parseMenuItems = (
 	return res;
 };
 
-export const mapSources = (sources) =>
-	sources &&
-	sources.map(({ name, author, ...rest }) => {
-		const authorSuffix = author ? ` / ${author}` : '';
-		return {
-			label: `${name}${authorSuffix}`,
-			target: '_blank',
-			...rest,
-		};
-	});
+// export const mapSources: SourceProps[] = (sources: BibliographyItemProps[]) => {
+// 	if (!sources) {
+// 		return [];
+// 	}
+
+// 	return sources.map(({ name, url }) => {
+// 		// const authorSuffix = author ? ` / ${author}` : '';
+// 		return {
+// 			label: name, //`${name}${authorSuffix}`,
+// 			url,
+// 			target: '_blank',
+// 		};
+// 	}) as SourceProps[];
+// };
 
 export const serialPrefix = (
 	index: number,

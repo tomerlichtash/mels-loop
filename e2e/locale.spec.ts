@@ -1,33 +1,51 @@
 import { test, expect } from '@playwright/test';
-import { translate } from './utils/localeTestUtils';
+import getT from 'next-translate/getT';
+import { Translate } from 'next-translate';
+import i18n from '../i18n';
 
-test.describe('Locale Selector', () => {
-	// TODO: validate selected lang
-	test('should switch language to LTR', async ({ page }) => {
+global.i18nConfig = i18n;
+
+test.describe('Locale: English', () => {
+	let t: Translate;
+
+	test.beforeEach(async () => {
+		t = await getT('en', ['locale']);
+	});
+
+	test(`[en] should switch language to English`, async ({ page }) => {
 		await page.goto('http://localhost:3000/he');
-		await page.getByLabel(translate('en', 'locale.en.symbol')).click();
+		await page.getByLabel(t('locale:en:symbol')).click();
 		await expect(page).toHaveURL('http://localhost:3000');
-		await expect(page.locator('h1')).toHaveText('The Story of Mel');
+		await expect(
+			page.getByRole('heading', { name: 'The Story of Mel' })
+		).toBeInViewport();
 	});
 
 	test('[en] should not navigate to same language', async ({ page }) => {
 		await page.goto('http://localhost:3000/');
-		await page.getByLabel(translate('en', 'locale.en.symbol')).click();
+		await page.getByLabel(t('locale:en:symbol')).click();
 		await expect(page).toHaveURL('http://localhost:3000/');
-		await expect(page.locator('h1')).toHaveText('The Story of Mel');
+		await expect(
+			page.getByRole('heading', { name: 'The Story of Mel' })
+		).toBeInViewport();
 	});
 
-	test('should switch language to RTL', async ({ page }) => {
+	test('[he] should switch language to RTL', async ({ page }) => {
 		await page.goto('http://localhost:3000/');
-		await page.getByLabel(translate('en', 'locale.he.symbol')).click();
+		await page.getByLabel(t('locale:he:symbol')).click();
 		await expect(page).toHaveURL('http://localhost:3000/he');
-		await expect(page.locator('h1')).toHaveText('הסיפור על מל');
+		await expect(
+			page.getByRole('heading', { name: 'הסיפור על מל' })
+		).toBeInViewport();
 	});
 
 	test('[he] should not navigate to same language', async ({ page }) => {
 		await page.goto('http://localhost:3000/he');
-		await page.getByLabel(translate('en', 'locale.he.symbol')).click();
+		await page.getByLabel(t('locale:he:symbol')).click();
 		await expect(page).toHaveURL('http://localhost:3000/he');
-		await expect(page.locator('h1')).toHaveText('הסיפור על מל');
+		await page.pause();
+		await expect(
+			page.getByRole('heading', { name: 'הסיפור על מל' })
+		).toBeInViewport();
 	});
 });

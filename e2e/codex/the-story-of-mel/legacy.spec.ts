@@ -6,7 +6,7 @@ test.describe('Legacy Paths', () => {
 	const legacyDocs = ['preface', 'mels-hack-the-missing-bits', 'resources'];
 	legacyDocs.map((legacyDocName) => {
 		locales.map((locale) => {
-			test(`${locale} > should support single doc URL to ${legacyDocName}`, async ({
+			test(`[${locale}] should support single doc URL to ${legacyDocName}`, async ({
 				page,
 			}) => {
 				const docId = 'docs/the-story-of-mel';
