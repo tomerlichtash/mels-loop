@@ -57,7 +57,7 @@ jobs:
       #       - ~/.cache/yarn
       - run:
           name: Unit Test
-          command: yarn test:unit:ci
+          command: yarn test:unit
       - store_artifacts:
           path: coverage
 
