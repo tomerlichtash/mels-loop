@@ -1,13 +1,18 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
-import classNames from 'classnames';
-import styles from './List.module.scss';
+import { unique } from 'utils/index';
 import Link from '../link/Link';
 import Text from '../text/Text';
-import ListItem from '../list-item/ListItem';
-import { unique } from 'utils/index';
-import type { ListProps } from './types';
+import ListItem, { ListItemProps } from '../list-item/ListItem';
+import classNames from 'classnames';
+import styles from './List.module.scss';
 
-const renderListItems = (items) =>
+type ListProps = {
+	items?: ListItemProps[];
+	label?: string;
+	className: string;
+};
+
+const renderListItems = (items: ListItemProps[]) =>
 	items.map(({ label, target, url }) => {
 		return (
 			<ListItem key={unique.id()} className={styles.item}>
@@ -27,10 +32,9 @@ const List = ({
 	label,
 	children,
 	className,
-	...rest
 }: PropsWithChildren<ListProps> &
 	HTMLAttributes<HTMLDivElement>): JSX.Element => (
-	<div className={classNames(styles.root, className)} {...rest}>
+	<div className={classNames(styles.root, className)}>
 		{label && <Text className={styles.label}>{label}</Text>}
 		<ul className={styles.list}>{children || renderListItems(items)}</ul>
 	</div>

@@ -1,8 +1,15 @@
 import { format as dateFormat } from 'date-fns';
-import classNames from 'classnames';
 import { localeFormats } from './consts';
+import classNames from 'classnames';
 import styles from './DateFormat.module.scss';
-import type { DateFormatProps } from './types';
+import type { LocaleId } from 'types/locale';
+
+type DateFormatProps = {
+	date: Date;
+	locale?: LocaleId;
+	format?: string;
+	className?: string;
+};
 
 const DateFormat = ({
 	date,

@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from 'layout/Layout';
-import ContactForm from 'components/contact-form/ContactForm';
+import ContactForm from 'contact-form/ContactForm';
 
 import type { NextPage, GetStaticProps } from 'next';
 import type { IPageProps } from 'types/models';

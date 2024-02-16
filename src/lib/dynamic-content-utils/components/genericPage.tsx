@@ -10,20 +10,23 @@ import { ContentIterator } from '../contentIterator';
 import { usePageData } from '../../../hooks/usePageData';
 import { DateFormat } from 'components/index';
 import { useLocale } from 'hooks/index';
-import { MLNODE_TYPES } from 'types/models';
+import { MLNODE_TYPES } from 'types/nodes';
 
 const GenericPage = (props: IContentComponentData) => {
 	const { t, lang } = useLocale();
 	const { pageData } = usePageData(props.pageProps);
+
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData || ({} as IPageMetaData);
 	const { author, date, abstract } = metaData;
+
 	const node: IMLParsedNode = page && {
 		children: page.parsed,
 		key: page.id,
 		line: -1,
 		type: MLNODE_TYPES.UNKNOWN,
 	};
+
 	return (
 		<Layout>
 			<Head>
@@ -39,10 +42,7 @@ const GenericPage = (props: IContentComponentData) => {
 					</div>
 				</header>
 				{node ? (
-					<ContentIterator
-						componentData={{ node }}
-						className="content-component"
-					/>
+					<ContentIterator componentData={{ node }} />
 				) : (
 					<div className="no-content">(No page content)</div>
 				)}

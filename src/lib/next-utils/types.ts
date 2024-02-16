@@ -1,5 +1,5 @@
 import { GetStaticPathsResult, GetStaticPropsResult } from 'next';
-import { IContentParseOptions, LoadFolderModes } from 'types/parser';
+import { LoadFolderModes, type IContentParseOptions } from 'types/parser';
 import { ParsedUrlQuery } from 'querystring';
 
 /**************************************************

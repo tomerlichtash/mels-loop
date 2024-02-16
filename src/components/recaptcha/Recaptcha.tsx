@@ -1,6 +1,17 @@
 import React from 'react';
-import { ICaptchaProps } from './types';
 // import { default as ReCAPTCHA } from 'react-google-recaptcha';
+
+type RecaptchaProps = {
+	onChange: (value: string) => void;
+	setCaptchaError: (err: string) => void;
+	onExpired: () => void;
+	locale: string;
+	theme: string;
+	tabIndex: number;
+	highlight: boolean;
+	siteKey?: string;
+	className?: string;
+};
 
 /**
  * Swallows errors
@@ -46,7 +57,7 @@ const Recaptcha = ({
 	// highlight,
 	siteKey,
 	setCaptchaError,
-}: ICaptchaProps) => {
+}: RecaptchaProps) => {
 	if (setCaptchaError && !siteKey) {
 		setCaptchaError('Missing captcha key');
 		return;
@@ -69,3 +80,4 @@ const Recaptcha = ({
 };
 
 export default Recaptcha;
+export type { RecaptchaProps };

@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
+import classNames from 'classnames';
 import styles from './Table.module.scss';
 
-export const Table = ({ children, ...rest }) => (
-	<table className={styles.root} {...rest}>
+type TableProps = {
+	className?: string;
+};
+
+export const Table = ({
+	children,
+	className,
+}: PropsWithChildren<TableProps>) => (
+	<table className={classNames(styles.root, className)}>
 		<tbody>{children}</tbody>
 	</table>
 );
 
 export default Table;
+export type { TableProps };

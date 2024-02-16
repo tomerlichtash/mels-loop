@@ -1,8 +1,18 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, type SyntheticEvent } from 'react';
 import NextLink from 'next/link';
 import Button from '../button/Button';
 import styles from './Link.module.scss';
-import type { LinkProps } from './types';
+
+type LinkTargetProps = string;
+
+type LinkProps = {
+	label?: string;
+	title?: string;
+	href?: string;
+	target?: string;
+	onClick?: (e: SyntheticEvent) => void;
+	className?: string;
+};
 
 const Link = ({
 	label,
@@ -20,3 +30,4 @@ const Link = ({
 );
 
 export default Link;
+export type { LinkProps, LinkTargetProps };

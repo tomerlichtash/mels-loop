@@ -1,8 +1,8 @@
-import { IMLParsedNode, IPageMetaData } from 'types/models';
 import { NodeIndexer } from './nodeIndexer';
-import { IContentParseOptions, MLParseModes } from 'types/parser';
 import { clonePlainObject } from 'utils/clonePlainObject';
 import { VALID_PARSE_MODES } from './parseModes';
+import { MLParseModes, type IContentParseOptions } from 'types/parser';
+import { IMLParsedNode, IPageMetaData } from 'types/models';
 
 export class MLParseContext {
 	private _linkDefs: { [key: string]: IMLParsedNode } = {};

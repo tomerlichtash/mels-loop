@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
 import type { IPageProps } from 'types/models';
-import { LoadFolderModes } from 'types/parser';
-import ContentTypes from 'contentTypes';
+import { LoadFolderModes } from 'types/parser/modes';
+import { ContentTypes } from 'types/content';
 import { mlNextUtils } from '../../lib/next-utils/nextUtils';
 import { usePageData } from '../../hooks/usePageData';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';

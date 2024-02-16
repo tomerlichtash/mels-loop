@@ -1,9 +1,13 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './Page.module.scss';
-import { PageProps } from './types';
+import classNames from 'classnames';
 
-const Page = ({ children }: PropsWithChildren<PageProps>) => (
-	<main className={styles.root}>{children}</main>
+type PageProps = {
+	className?: string;
+};
+
+const Page = ({ children, className }: PropsWithChildren<PageProps>) => (
+	<main className={classNames(styles.root, className)}>{children}</main>
 );
 
 export default Page;

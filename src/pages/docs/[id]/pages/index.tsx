@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
 import { GenericPage } from 'lib/dynamic-content-utils';
 import { mlNextUtils } from 'lib/next-utils/nextUtils';
-import { LoadContentModes, LoadFolderModes } from 'types/parser';
+import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
 import { IPageProps } from 'types/models';
 import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
 

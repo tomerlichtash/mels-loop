@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { ContentComponentProps, NODE_DISPLAY_TYPES } from 'types/models';
+import type { ContentComponentProps } from 'types/models';
 import { LinkContentBlock } from './content-blocks';
 import { DynamicContentContext } from './context/contentContext';
 import { PopoverContentBlock } from './content-blocks/popoverContentBlock';
 import { useLocale } from 'hooks/useLocale';
+import { NODE_DISPLAY_TYPES } from 'types/nodes';
 
 export const LinkSelector = ({
 	componentData,

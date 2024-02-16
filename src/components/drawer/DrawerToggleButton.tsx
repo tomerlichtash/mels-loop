@@ -1,15 +1,20 @@
+import classNames from 'classnames';
 import Button from '../button/Button';
 import styles from './VerticalMenuTrigger.module.scss';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 
-type VerticalMenuProps = {
+type DrawerToggleButtonProps = {
 	onClick: () => void;
+	className?: string;
 };
 
-const VerticalMenuTrigger = ({ onClick }: VerticalMenuProps) => {
+const DrawerToggleButton = ({
+	onClick,
+	className,
+}: DrawerToggleButtonProps) => {
 	return (
 		<Button onClick={onClick} asChild>
-			<span className={styles.root}>
+			<span className={classNames(styles.root, className)}>
 				<span className={styles.label}>Menu</span>
 				<span className={styles.icon}>
 					<HamburgerMenuIcon />
@@ -19,4 +24,5 @@ const VerticalMenuTrigger = ({ onClick }: VerticalMenuProps) => {
 	);
 };
 
-export default VerticalMenuTrigger;
+export default DrawerToggleButton;
+export type { DrawerToggleButtonProps };

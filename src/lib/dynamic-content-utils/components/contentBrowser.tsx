@@ -4,7 +4,7 @@ import { ContentStack } from '../contentStack';
 import { DynamicContentViewer } from './contentViewer';
 import DynamicContentToolbar from './contentToolbar';
 import { IMLParsedNode, IParsedPageData } from 'types/models';
-import { IDynamicContentContext } from 'lib/types/types';
+import { IDynamicContentContext } from 'lib/types';
 
 export interface IStackBrowserProps {
 	node: IMLParsedNode;

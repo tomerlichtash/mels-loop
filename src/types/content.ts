@@ -1,4 +1,4 @@
-enum ContentTypes {
+export enum ContentTypes {
 	About = 'about',
 	Contact = 'contact',
 	Contrib = 'contribute',

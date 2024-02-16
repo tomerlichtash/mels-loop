@@ -1,7 +1,17 @@
 import React from 'react';
 import styles from './Input.module.scss';
 import classNames from 'classnames';
-import type { InputProps } from './types';
+import type { SyntheticEvent } from 'react';
+
+type InputProps = {
+	id?: string;
+	required?: boolean;
+	placeholder?: string;
+	value?: string | number;
+	type?: 'text' | 'number' | 'tel' | 'file' | 'email';
+	onChange?: (e: SyntheticEvent) => void;
+	className?: string;
+};
 
 const Input = ({
 	id,
@@ -26,3 +36,4 @@ const Input = ({
 );
 
 export default Input;
+export type { InputProps };

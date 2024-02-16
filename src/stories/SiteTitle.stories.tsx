@@ -22,10 +22,9 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
 	args: {
-		label: 'title',
 		linked: false,
 	},
-	render: function Render(args) {
-		return <TextLink {...args} />;
+	render: function Render({ children, ...args }) {
+		return <TextLink {...args}>{children}</TextLink>;
 	},
 };

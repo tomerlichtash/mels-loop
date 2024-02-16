@@ -1,4 +1,4 @@
-export interface IFetchParams {
+interface IFetchParams {
 	path: string;
 	headers: Record<string, string>;
 	method: 'POST' | 'GET' | 'PUT' | 'OPTIONS';
@@ -11,6 +11,7 @@ const SENDGRID_API: IFetchParams = {
 };
 
 export default SENDGRID_API;
+export type { IFetchParams };
 
 // export const SUBMIT_API: Record<string, IFetchParams> = {
 // 	SEND_GRID: {

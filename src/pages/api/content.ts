@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import ContentTypes from 'contentTypes';
+import { ContentTypes } from 'types/content';
 import { mlApiUtils } from '../../lib/apiUtils';
-import { LoadContentModes, LoadFolderModes } from 'types/parser';
+import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
 import { loadContentFolder } from '../../lib/loadFolderContent';
 import type {
 	IMLApiResponse,

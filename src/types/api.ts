@@ -1,4 +1,4 @@
-import { DynamicContentTypes } from '../lib/types/types';
+import { DynamicContentTypes } from '../lib/types';
 import { LocaleId } from './locale';
 import { IParsedPageData } from './models';
 

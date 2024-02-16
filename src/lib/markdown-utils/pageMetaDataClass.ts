@@ -4,7 +4,7 @@ import {
 	IParsedPageData,
 } from 'types/models';
 import { safeMerge, parseDate } from 'utils/index';
-import { MLParseModes } from 'types/parser';
+import { MLParseModes } from 'types/parser/modes';
 import { customMarkdownTags } from 'lib/customMarkdownTags';
 
 export class PageMetaData implements IPageMetaData {

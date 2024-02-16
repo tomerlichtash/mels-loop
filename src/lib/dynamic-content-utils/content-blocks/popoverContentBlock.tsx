@@ -16,7 +16,7 @@ import { Cross2Icon } from '@radix-ui/react-icons';
 import { IPopoverContext } from '../types';
 import type { LocaleId, TextDirection } from 'types/locale';
 import { ContentComponentProps, IContentComponentInitData } from 'types/models';
-import { DynamicContentTypes } from 'lib/types/types';
+import { DynamicContentTypes } from 'lib/types';
 import I18nProvider from 'next-translate/I18nProvider';
 import glossaryEN from '../../../../locales/en/glossary.json';
 

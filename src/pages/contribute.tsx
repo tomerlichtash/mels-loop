@@ -1,9 +1,9 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import ContentTypes from 'contentTypes';
+import { ContentTypes } from 'types/content';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import { usePageData } from '../hooks/usePageData';
-import { LoadFolderModes } from 'types/parser';
+import { LoadFolderModes } from 'types/parser/modes';
 import { ContentComponent } from 'lib/dynamic-content-utils';
 import { unique } from 'utils/index';
 import type { IMLParsedNode, IPageProps, IParsedPageData } from 'types/models';

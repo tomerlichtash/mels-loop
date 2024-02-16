@@ -3,7 +3,13 @@ import * as ToggleRoot from '@radix-ui/react-toggle';
 import Button from '../button/Button';
 import classNames from 'classnames';
 import styles from './Toggle.module.scss';
-import type { ToggleProps } from './types';
+
+type ToggleProps = {
+	title: string;
+	isToggled: boolean;
+	onToggle: () => void;
+	className?: string;
+};
 
 const Toggle = ({
 	isToggled,
@@ -27,3 +33,4 @@ const Toggle = ({
 );
 
 export default Toggle;
+export type { ToggleProps };

@@ -5,8 +5,16 @@ import List from '../../list/List';
 import ListItem from '../../list-item/ListItem';
 import Text from '../../text/Text';
 import styles from './ReferenceContentLayout.module.scss';
+import type { RefOrSourceProps } from 'types/components';
 
-import type { ReferenceContentLayoutProps } from '../types';
+type ReferenceContentLayoutProps = {
+	term: string;
+	caption?: string;
+	title?: string;
+	sources?: RefOrSourceProps[];
+	sourcesLabel?: string;
+	className?: string;
+};
 
 export const ReferenceContentLayout = ({
 	caption,
@@ -52,3 +60,4 @@ export const ReferenceContentLayout = ({
 );
 
 export default ReferenceContentLayout;
+export type { ReferenceContentLayoutProps };

@@ -2,12 +2,12 @@ import React from 'react';
 import { ContentComponent } from '../contentComponent';
 import { DynamicContentLayout } from './contentLayout';
 import { Text, LoadingIndicator } from 'components/index';
-import { DynamicContentTypes } from '../../types/types';
+import { DynamicContentTypes } from '../../types';
 import { useDynamicContentServer } from '../hooks/useDynamicContentServer';
 import { SHOW_LOADING_INDICATOR_AFTER_MSEC } from '../consts';
 import { unique } from 'utils/index';
 import { useLocale } from 'hooks/index';
-import { BibliographyItemProps } from 'types/components';
+import { RefOrSourceProps } from 'types/components';
 import { contentUtils } from 'lib/contentUtils';
 
 type DynamicContentViewerProps = {
@@ -53,7 +53,7 @@ export const DynamicContentViewer = ({
 		glossary_key: term,
 	} = metaData;
 
-	const sources: BibliographyItemProps[] = sourceName && [
+	const sources: RefOrSourceProps[] = sourceName && [
 		{
 			name: sourceName,
 			url: sourceUrl,

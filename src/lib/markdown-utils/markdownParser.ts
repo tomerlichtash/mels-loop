@@ -1,14 +1,14 @@
-import { ASTNODE_TYPES, MLNODE_TYPES } from 'types/models';
-import type { IMLParsedNode, IPageMetaData, ParsedNode } from 'types/models';
-import {
-	MLParseModes,
-	type IContentParseOptions,
-	type INodeProcessorContext,
-	type MLNodeProcessorFunction,
-} from 'types/parser';
 import { CaseInsensitiveMap } from '../caseInsensitiveCollections';
 import { NodeProcessorContext } from '../nodeProcessorContext';
 import { MLParseContext } from '../parserContext';
+import { ASTNODE_TYPES, MLNODE_TYPES } from 'types/nodes';
+import type { IMLParsedNode, ParsedNode, IPageMetaData } from 'types/models';
+import type {
+	IContentParseOptions,
+	INodeProcessorContext,
+	MLNodeProcessorFunction,
+} from 'types/parser';
+import { MLParseModes } from 'types/parser/modes';
 import {
 	MLTYPE_TO_LINK_TEXT_MAP,
 	// FIGURE_CONTAINER_TYPES,

@@ -2,7 +2,11 @@ import React from 'react';
 import styles from './CssVarImage.module.scss';
 import classNames from 'classnames';
 import { getCustomStyle } from './helpers';
-import type { CssVarImageProps } from './types';
+
+type CssVarImageProps = {
+	varName: string;
+	className?: string;
+};
 
 const CssVarImage = ({ varName, className }: CssVarImageProps) => (
 	<>
@@ -12,3 +16,4 @@ const CssVarImage = ({ varName, className }: CssVarImageProps) => (
 );
 
 export default CssVarImage;
+export type { CssVarImageProps };

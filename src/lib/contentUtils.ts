@@ -1,6 +1,7 @@
 import { stringArrayToMap } from '../utils';
-import { DynamicContentTypes, type IDynamicContentRecord } from './types/types';
-import { MLNODE_TYPES, type IMLParsedNode } from 'types/models';
+import { DynamicContentTypes, type IDynamicContentRecord } from './types';
+import { MLNODE_TYPES } from 'types/nodes';
+import type { IMLParsedNode } from 'types/models';
 import type {
 	INodeProcessorContext,
 	MLNodeProcessorFunction,

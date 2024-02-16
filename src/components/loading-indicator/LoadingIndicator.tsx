@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styles from './LoadingIndicator.module.scss';
-import type { LoadingIndicatorProps } from './types';
+
+type LoadingIndicatorProps = {
+	/**
+	 * Number of MILLISECONDS to wait before displaying
+	 */
+	readonly delay: number;
+	readonly label?: string;
+};
 
 const LoadingIndicator = ({
 	delay,
@@ -35,5 +42,4 @@ const LoadingIndicator = ({
 };
 
 export default LoadingIndicator;
-
 export type { LoadingIndicatorProps };

@@ -1,4 +1,4 @@
-import { ASTNODE_TYPES, MLNODE_TYPES } from 'types/models';
+import { ASTNODE_TYPES, MLNODE_TYPES } from 'types/nodes';
 import { customMarkdownTags } from 'lib/customMarkdownTags';
 
 export const AST2MLTypeMap: Map<ASTNODE_TYPES, MLNODE_TYPES> = new Map<

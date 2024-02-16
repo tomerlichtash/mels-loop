@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from './Strip.module.scss';
 import classNames from 'classnames';
-import type { StripProps } from './types';
+
+type StripProps = {
+	className?: string;
+};
 
 const Strip = ({ className }: StripProps) => (
-	<div className={classNames(styles.root, className)}></div>
+	<div className={classNames(styles.root, className)} />
 );
 
 export default Strip;
+export type { StripProps };

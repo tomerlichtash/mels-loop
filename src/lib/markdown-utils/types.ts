@@ -6,7 +6,8 @@ import {
 	PageSortField,
 	ParsedNode,
 } from 'types/models';
-import { IContentParseOptions, LoadFolderModes } from 'types/parser';
+import type { IContentParseOptions } from 'types/parser';
+import { LoadFolderModes } from 'types/parser/modes';
 
 export interface IFolderContent {
 	readonly pages: IParsedPageData[];

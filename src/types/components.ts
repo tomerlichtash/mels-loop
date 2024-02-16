@@ -1,4 +1,4 @@
-export type BibliographyItemProps = {
+export type RefOrSourceProps = {
 	name: string;
 	url?: string;
 };

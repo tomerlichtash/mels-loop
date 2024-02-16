@@ -1,6 +1,9 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './Line.module.scss';
-import type { LineProps } from './types';
+
+type LineProps = {
+	index: number;
+};
 
 export const Line = ({
 	index,
@@ -20,3 +23,4 @@ export const Line = ({
 };
 
 export default Line;
+export type { LineProps };

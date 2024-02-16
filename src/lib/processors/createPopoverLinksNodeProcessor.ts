@@ -1,10 +1,7 @@
 import { contentUtils } from '../contentUtils';
-import { DynamicContentTypes } from 'lib/types/types';
-import {
-	MLNODE_TYPES,
-	NODE_DISPLAY_TYPES,
-	type IMLParsedNode,
-} from 'types/models';
+import { DynamicContentTypes } from 'lib/types';
+import { MLNODE_TYPES, NODE_DISPLAY_TYPES } from 'types/nodes';
+import type { IMLParsedNode } from 'types/models';
 import type { MLNodeProcessorFunction } from 'types/parser';
 
 export const createPopoverLinksNodeProcessor = (

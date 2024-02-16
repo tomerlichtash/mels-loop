@@ -1,9 +1,9 @@
 import React from 'react';
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
-import ContentTypes from 'contentTypes';
+import { ContentTypes } from 'types/content';
 import { mlNextUtils } from '../../lib/next-utils/nextUtils';
-import { LoadFolderModes } from 'types/parser';
-import { MLNODE_TYPES } from 'types/models';
+import { LoadFolderModes } from 'types/parser/modes';
+import { MLNODE_TYPES } from 'types/nodes';
 import type { IMLParsedNode, IPageProps } from 'types/models';
 import { usePageData } from '../../hooks/usePageData';
 import { Link, List } from 'components/index';

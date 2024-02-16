@@ -3,7 +3,6 @@ export { default as Blockquote } from './blockquote/Blockquote';
 export { default as Button } from './button/Button';
 export { default as block } from './code-block/CodeBlock';
 export { default as inline } from './code-inline/CodeInline';
-export { default as form } from './contact-form/ContactForm';
 export { default as Container } from './container/Container';
 export { default as CssVarImage } from './css-var-image/CssVarImage';
 export { default as CustomImage } from './custom-image/CustomImage';
@@ -40,5 +39,3 @@ export { default as ToggleGroupItem } from './toggle-group-item/ToggleGroupItem'
 export * from './content-layout/index';
 export * from './popover/index';
 export * from './VerticalMenu/index'; // rename
-
-export * from './types';

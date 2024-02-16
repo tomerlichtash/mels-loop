@@ -5,17 +5,15 @@ import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import { useLocale, useWindowSize } from 'hooks/index';
 import { unique } from 'utils/unique';
-import { useDrawer } from '../components/drawer/useDrawer';
+import { useDrawer } from '../hooks/useDrawer';
 import {
 	Button,
 	Container,
 	Drawer,
 	HorizontalNav,
 	Link,
-	LinkProps,
 	List,
 	ListItem,
-	LocaleOption,
 	LocaleSelect,
 	Logo,
 	Page,
@@ -32,21 +30,17 @@ import { Head } from './customHead';
 import { Analytics } from './analytics';
 import { parseMenuItems } from '../components/helpers';
 import { Cross2Icon } from '@radix-ui/react-icons';
-import classNames from 'classnames';
-import styles from './Layout.module.scss';
-
-import { default as menuItemsData } from 'config/navItems.json' assert { type: 'json' };
-import { default as menuSectionData } from 'config/navSections.json' assert { type: 'json' };
-import { default as footerLinksData } from 'config/layoutFooterLinks.json' assert { type: 'json' };
-
-import type {
-	NavItemDataProps,
-	NavParsedNodes,
-	NavSectionDataProps,
-} from '../components/HorizontalMenu/types';
-import type { LayoutProps, LinkSectionProps } from './types';
 import { LocaleId } from 'types/locale';
 import { useRouter } from 'next/router';
+import layoutConfig from './layoutConfig';
+import classNames from 'classnames';
+import styles from './Layout.module.scss';
+import type { LocaleOptionProps } from 'components/locale-select/LocaleSelect';
+
+type RootLayoutProps = {
+	title?: string;
+	pageName?: string;
+};
 
 const IS_DEBUG = process.env.NEXT_PUBLIC_ML_DEBUG;
 const MIN_DESKTOP_WIDTH = 1024;
@@ -55,17 +49,9 @@ const Layout = ({
 	title,
 	pageName,
 	children,
-}: PropsWithChildren<LayoutProps>) => {
+}: PropsWithChildren<RootLayoutProps>) => {
 	const router = useRouter();
-
-	const setLocale = useCallback(
-		async (id: LocaleId) =>
-			router.push(router.asPath, router.asPath, {
-				locale: id,
-				scroll: true,
-			}),
-		[router]
-	);
+	const { menuItemsData, menuSectionData, footerLinksData } = layoutConfig;
 
 	const pathname = usePathname();
 	const { theme, setTheme } = useTheme();
@@ -77,23 +63,27 @@ const Layout = ({
 
 	const { open, toggle } = useDrawer(isMobile);
 
+	const setLocale = useCallback(
+		async (id: LocaleId) =>
+			router.push(router.asPath, router.asPath, {
+				locale: id,
+				scroll: true,
+			}),
+		[router]
+	);
+
 	const themeLabel = useMemo(() => {
 		return t('common:button:toggleTheme', {
 			theme: t(`common:theme:${theme === 'dark' ? 'light' : 'dark'}:name`),
 		});
 	}, [t, theme]);
 
-	const navItems: NavParsedNodes[] = useMemo(
-		() =>
-			parseMenuItems(
-				menuSectionData as NavSectionDataProps[],
-				menuItemsData as NavItemDataProps[],
-				t
-			),
-		[t]
+	const navItems = useMemo(
+		() => parseMenuItems(menuSectionData, menuItemsData, t),
+		[menuItemsData, menuSectionData, t]
 	);
 
-	const localeItems: LocaleOption[] = useMemo(
+	const localeItems: LocaleOptionProps[] = useMemo(
 		() =>
 			locales.map((id) => ({
 				id: id as LocaleId,
@@ -105,11 +95,11 @@ const Layout = ({
 
 	const footerItems = useMemo(
 		() =>
-			(footerLinksData as LinkSectionProps[]).map(({ label, items }) => (
+			footerLinksData.map(({ label, items }) => (
 				<Container className={styles.column} key={unique.id()}>
 					<List className={styles.list} label={t(label)}>
 						{items
-							.map((item: LinkProps) => {
+							.map((item) => {
 								return { ...item, label: t(item.label) };
 							})
 							.map(({ label, target, href }) => {
@@ -128,7 +118,7 @@ const Layout = ({
 					</List>
 				</Container>
 			)),
-		[t]
+		[footerLinksData, t]
 	);
 
 	const siteLicenseCurrentYear = `${new Date().getFullYear()}`;
@@ -136,6 +126,9 @@ const Layout = ({
 	const siteLicenseLabel = `${siteLicenseType}-${t(
 		'common:license:attributs'
 	)}`;
+
+	const siteTitle = t('common:site:title');
+	const siteSubtitle = t('common:site:subtitle');
 	const siteTitleWithLicense = `2021-${siteLicenseCurrentYear} ${siteLicenseLabel} ${title}`;
 
 	const verticalMenu = useMemo(
@@ -151,7 +144,9 @@ const Layout = ({
 						<Cross2Icon />
 					</Button>
 					<Logo />
-					<TextLink label={t('common:site:title')} linked={!isHome} />
+					<TextLink title={siteTitle} linked={!isHome}>
+						{siteTitle}
+					</TextLink>
 					<Strip />
 					<LocaleSelect
 						defaultValue={lang}
@@ -172,7 +167,7 @@ const Layout = ({
 			textDirection,
 			open,
 			toggle,
-			t,
+			siteTitle,
 			isHome,
 			lang,
 			localeItems,
@@ -187,8 +182,8 @@ const Layout = ({
 	return (
 		<>
 			<Head
-				siteTitle={t('common:site:title')}
-				siteSubtitle={t('common:site:subtitle')}
+				siteTitle={siteTitle}
+				siteSubtitle={siteSubtitle}
 				title={title}
 				pageName={pageName}
 			/>
@@ -210,10 +205,12 @@ const Layout = ({
 					<header data-testid="topbar">
 						<Container alignItemsCenter className={styles.siteTitle}>
 							<Logo />
-							<TextLink label={t('common:site:title')} linked={!isHome} />
+							<TextLink title={siteTitle} linked={!isHome}>
+								{siteTitle}
+							</TextLink>
 							<Separator />
 							<Text variant="subtitle2" className={styles.subtitle}>
-								{t('common:site:subtitle')}
+								{siteSubtitle}
 							</Text>
 						</Container>
 						{isMobile ? (
@@ -251,9 +248,9 @@ const Layout = ({
 									>
 										<time className="year">2021-{siteLicenseCurrentYear}</time>
 										<span className="license">{siteLicenseType}</span>
-										<span className="title">{t('common:site:title')}</span>
+										<span className="title">{siteTitle}</span>
 									</Text>
-									<Text italics={true}>{t('common:site:subtitle')}</Text>
+									<Text italics={true}>{siteSubtitle}</Text>
 									<Text lowercase>{t('common:site:shortSiteDescription')}</Text>
 								</div>
 								{footerItems}

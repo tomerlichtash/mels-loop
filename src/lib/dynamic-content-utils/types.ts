@@ -21,7 +21,7 @@ export interface IPopoverContext {
 	removeToolbarItems(ids: string | string[]): void;
 }
 
-import type { IDynamicContentServer } from '../types/types';
+import type { IDynamicContentServer } from '../types';
 
 /** Describes a content-related context, available to all rendered components under a ML page */
 export interface IDynamicContentContext {

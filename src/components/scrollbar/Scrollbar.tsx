@@ -2,7 +2,13 @@ import React from 'react';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import classNames from 'classnames';
 import styles from './Scrollbar.module.scss';
-import type { ScrollbarProps } from './types';
+import type { ScrollAreaScrollbarVisibleProps } from '@radix-ui/react-scroll-area';
+import type { TextDirection } from 'types/locale';
+
+type ScrollbarProps = {
+	height?: string;
+	textDirection: TextDirection;
+} & ScrollAreaScrollbarVisibleProps;
 
 const Scrollbar = ({
 	children,
@@ -40,5 +46,4 @@ const Scrollbar = ({
 );
 
 export default Scrollbar;
-
 export type { ScrollbarProps };

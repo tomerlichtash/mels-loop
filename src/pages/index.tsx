@@ -5,11 +5,11 @@ import { Text, Heading } from 'components/index';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import { usePageData } from '../hooks/usePageData';
 import { getMetadata, renderElements } from '../lib/dynamicContentHelpers';
-import ContentTypes from '../contentTypes';
+import ContentTypes from '../types/content';
 import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
 
 import type { IPageProps } from 'types/models';
-import { LoadContentModes, LoadFolderModes } from 'types/parser';
+import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);

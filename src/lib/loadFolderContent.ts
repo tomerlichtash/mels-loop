@@ -9,10 +9,10 @@ import { ParsedPageData } from './markdown-utils/parsedPageDataClass';
 import { PageMetaData } from './markdown-utils/pageMetaDataClass';
 import { FolderContent } from './markdown-utils/folderContentClass';
 import {
-	IContentParseOptions,
 	LoadContentModes,
 	LoadFolderModes,
 	MLParseModes,
+	type IContentParseOptions,
 } from 'types/parser';
 import { ILoadContentOptions } from './markdown-utils/types';
 import { mdUtils } from './markdown-utils/markdownUtils';

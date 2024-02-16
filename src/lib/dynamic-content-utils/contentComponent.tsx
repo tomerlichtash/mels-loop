@@ -1,11 +1,7 @@
 import React from 'react';
 import { ContentIterator } from './contentIterator';
 import { LinkSelector } from './linkSelector';
-import {
-	ContentComponentProps,
-	MLNODE_TYPES,
-	NODE_LIST_TYPES,
-} from 'types/models';
+import { ContentComponentProps } from 'types/models';
 import {
 	HeadingContentBlock,
 	ListItemContentBlock,
@@ -18,6 +14,7 @@ import {
 	CodeInlineContentBlock,
 	CodeBlockContentBlock,
 } from './content-blocks';
+import { MLNODE_TYPES, NODE_LIST_TYPES } from 'types/nodes';
 
 export const ContentComponent = ({
 	componentData,

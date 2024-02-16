@@ -1,8 +1,16 @@
 import React, { PropsWithChildren } from 'react';
 import * as ToggleGroupPrimitives from '@radix-ui/react-toggle-group';
+import { ToggleGroupItemProps } from 'components/toggle-group-item/ToggleGroupItem';
 import classNames from 'classnames';
 import styles from './ToggleGroup.module.scss';
-import type { ToggleGroupProps } from './types';
+
+type ToggleGroupProps = {
+	defaultValue: string;
+	options?: ToggleGroupItemProps[];
+	onSelect?: (val: string) => void;
+	type: 'single';
+	className?: string;
+};
 
 const ToggleGroupRoot = ToggleGroupPrimitives.Root;
 
@@ -24,3 +32,4 @@ const ToggleGroup = ({
 );
 
 export default ToggleGroup;
+export type { ToggleGroupProps };

@@ -2,12 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { getIcon } from './helpers';
 import Toggle from '../toggle/Toggle';
 import styles from './ThemeSelect.module.scss';
-import type { ThemeSelectProps } from './types';
+import classNames from 'classnames';
+
+type ThemeSelectProps = {
+	label: string;
+	theme: string;
+	setTheme: (val: string) => void;
+	className?: string;
+};
 
 const ThemeSelect = ({
 	label,
 	theme,
 	setTheme,
+	className,
 }: ThemeSelectProps): JSX.Element => {
 	const [mounted, setMounted] = useState(false);
 
@@ -22,7 +30,7 @@ const ThemeSelect = ({
 			title={label}
 			isToggled={isDark}
 			onToggle={() => setTheme(isDark ? 'light' : 'dark')}
-			className={styles.root}
+			className={classNames(styles.root, className)}
 		>
 			{getIcon(isDark)}
 		</Toggle>
@@ -30,3 +38,4 @@ const ThemeSelect = ({
 };
 
 export default ThemeSelect;
+export type { ThemeSelectProps };

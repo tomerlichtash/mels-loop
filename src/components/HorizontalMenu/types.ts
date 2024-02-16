@@ -2,7 +2,7 @@ type NavItemLocaleProps = Record<string, string>;
 
 type NavItemDataProps = {
 	id: string;
-	type: 'article' | 'page' | 'external';
+	type: string;
 	url: string;
 	locale: NavItemLocaleProps;
 	icon?: string;

@@ -2,7 +2,13 @@ import React, { PropsWithChildren, SyntheticEvent } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import classNames from 'classnames';
 import styles from './Button.module.scss';
-import type { ButtonProps } from './types';
+
+type ButtonProps = {
+	title?: string;
+	asChild?: boolean;
+	onClick?: (e: SyntheticEvent | string | number | boolean) => void;
+	className?: string;
+};
 
 const Button = ({
 	asChild,
@@ -27,3 +33,4 @@ const Button = ({
 };
 
 export default Button;
+export type { ButtonProps };

@@ -1,17 +1,30 @@
-import React, { useMemo } from 'react';
-import Text from '../text/Text';
+import React, { PropsWithChildren, useMemo } from 'react';
+import Text, { type TextVariant } from '../text/Text';
 import Link from '../link/Link';
 import styles from './TextLink.module.scss';
-import type { TextLinkProps } from './types';
+import classNames from 'classnames';
 
-const TextLink = ({ linked, label, variant }: TextLinkProps): JSX.Element => {
+export type TextLinkProps = {
+	title?: string;
+	linked?: boolean;
+	variant?: TextVariant;
+	className?: string;
+};
+
+const TextLink = ({
+	title,
+	linked,
+	variant,
+	children,
+	className,
+}: PropsWithChildren<TextLinkProps>): JSX.Element => {
 	const text = useMemo(
 		() => (
 			<Text variant={variant} className={styles.label}>
-				{label}
+				{children}
 			</Text>
 		),
-		[label, variant]
+		[children, variant]
 	);
 
 	const link = useMemo(
@@ -25,9 +38,9 @@ const TextLink = ({ linked, label, variant }: TextLinkProps): JSX.Element => {
 
 	return (
 		<div
-			title={label}
-			aria-label={label}
-			className={styles.root}
+			title={title}
+			aria-label={title}
+			className={classNames(styles.root, className)}
 			data-variant={variant}
 		>
 			{linked ? link : text}

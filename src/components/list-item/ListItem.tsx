@@ -1,6 +1,13 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './ListItem.module.scss';
-import type { ListItemProps } from './types';
+import type { LinkTargetProps } from '../link/Link';
+
+type ListItemProps = {
+	label?: string;
+	url?: string;
+	target?: LinkTargetProps;
+	className?: string;
+};
 
 const ListItem = ({ children, ...rest }: PropsWithChildren<ListItemProps>) => (
 	<li className={styles.root} {...rest}>
@@ -9,3 +16,4 @@ const ListItem = ({ children, ...rest }: PropsWithChildren<ListItemProps>) => (
 );
 
 export default ListItem;
+export type { ListItemProps };

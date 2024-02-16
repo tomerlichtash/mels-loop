@@ -4,10 +4,10 @@ import { collectPathsIn, pathToRelativePath } from './pathHelpers';
 import { loadContentFolder } from 'lib/loadFolderContent';
 import { ILocaleMap } from 'types/models';
 import {
-	IContentParseOptions,
 	MLParseModes,
 	LoadFolderModes,
 	LoadContentModes,
+	type IContentParseOptions,
 } from 'types/parser';
 import {
 	FolderStaticProps,

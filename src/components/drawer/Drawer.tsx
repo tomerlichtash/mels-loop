@@ -2,7 +2,23 @@ import React, { PropsWithChildren } from 'react';
 import { default as ModernDrawer } from 'react-modern-drawer';
 import classNames from 'classnames';
 import styles from './Drawer.module.scss';
-import type { DrawerProps } from './types';
+
+type DrawerProps = {
+	open: boolean;
+	direction: 'left' | 'right' | 'top' | 'bottom';
+	duration?: number;
+	enableOverlay?: boolean;
+	lockBackgroundScroll?: boolean;
+	overlayOpacity?: number;
+	overlayColor?: string;
+	size?: number | string;
+	zIndex?: number;
+	className?: string;
+	onClose?: () => void;
+	// customIdSuffix?: string;
+	// overlayClassName?: string;
+	// style?: React.CSSProperties;
+};
 
 const Drawer = ({
 	open,

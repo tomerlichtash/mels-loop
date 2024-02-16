@@ -1,12 +1,12 @@
 import React, { PropsWithChildren } from 'react';
 import {
 	ContentLayout,
-	ContentLayoutProps,
 	NoteContentLayout,
 	ReferenceContentLayout,
 } from 'components/index';
-import { DynamicContentTypes } from 'lib/types/types';
+import { DynamicContentTypes } from 'lib/types';
 import { useLocale } from 'hooks/index';
+import type { ContentLayoutProps } from 'components/content-layout/ContentLayout';
 
 export const DynamicContentLayout = ({
 	type,
