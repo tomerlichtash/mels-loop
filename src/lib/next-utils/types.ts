@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from 'querystring';
 import { GetStaticPathsResult, GetStaticPropsResult } from 'next';
-import type { IContentParseOptions } from 'types/parser';
+import type { IContentParseOptions } from 'types/parser/parser';
 import type { LoadFolderModes } from 'types/parser/modes';
 import type { FolderStaticProps } from 'types/folder';
 

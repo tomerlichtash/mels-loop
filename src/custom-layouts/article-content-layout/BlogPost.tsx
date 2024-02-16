@@ -1,6 +1,6 @@
 import React from 'react';
 import { unique } from 'utils/index';
-import { ContentComponent } from '../../lib/dynamic-content-utils';
+import { ContentComponent } from '../../lib/dynamic-content-utils/contentComponent';
 import { Link, DateFormat } from 'components/index';
 import { LocaleId } from 'types/locale';
 import { IParsedPageData } from 'types/models';

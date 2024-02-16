@@ -2,7 +2,7 @@ import { contentUtils } from '../contentUtils';
 import { DynamicContentTypes } from 'types/content';
 import { MLNODE_TYPES, NODE_DISPLAY_TYPES } from 'types/nodes';
 import type { IMLParsedNode } from 'types/models';
-import type { MLNodeProcessorFunction } from 'types/parser';
+import type { MLNodeProcessorFunction } from 'types/parser/parser';
 
 /**
  * Marks links as popovers for the links that match the provided dynamic content types.

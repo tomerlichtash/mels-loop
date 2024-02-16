@@ -1,7 +1,7 @@
 import { MLParseContext } from 'lib/parserContext';
 import { LoadFolderModes } from 'types/parser/modes';
 import type { IMLParsedNode, ParsedNode } from 'types/models';
-import type { IContentParseOptions } from 'types/parser';
+import type { IContentParseOptions } from 'types/parser/parser';
 
 export interface ILoadContentOptions {
 	/** Defaults to FOLDER */

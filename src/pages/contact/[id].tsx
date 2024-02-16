@@ -1,9 +1,9 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
-import { GenericPage } from 'lib/dynamic-content-utils';
 import { ContentTypes } from 'types/content';
 import { mlNextUtils } from 'lib/next-utils/nextUtils';
 import type { IPageProps } from 'types/models';
 import { LoadFolderModes } from 'types/parser/modes';
+import GenericPage from 'lib/dynamic-content-utils/components/genericPage';
 
 export default function Doc(props: IPageProps) {
 	return <GenericPage pageProps={props} />;

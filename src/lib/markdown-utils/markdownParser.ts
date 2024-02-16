@@ -7,7 +7,7 @@ import type {
 	IContentParseOptions,
 	INodeProcessorContext,
 	MLNodeProcessorFunction,
-} from 'types/parser';
+} from 'types/parser/parser';
 import { MLParseModes } from 'types/parser/modes';
 import {
 	MLTYPE_TO_LINK_TEXT_MAP,

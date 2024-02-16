@@ -28,9 +28,7 @@ export const GenericPageContentLayout = ({
 
 			{title && (
 				<Container alignItemsCenter>
-					<Text variant="caption" className={styles.title}>
-						{title}
-					</Text>
+					<Text className={styles.title}>{title}</Text>
 				</Container>
 			)}
 

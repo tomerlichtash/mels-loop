@@ -7,7 +7,7 @@ import { MLNODE_TYPES } from 'types/nodes';
 import type { IMLParsedNode, IPageProps } from 'types/models';
 import { usePageData } from '../../hooks/usePageData';
 import { Link, List } from 'components/index';
-import { ContentIterator } from 'lib/dynamic-content-utils';
+import { ContentIterator } from 'lib/dynamic-content-utils/contentIterator';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';
 import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
@@ -25,7 +25,7 @@ export default function GlossaryTerm(props: IPageProps) {
 	const { t } = useLocale();
 
 	return (
-		<Layout title={metaData?.title}>
+		<Layout>
 			<article className="page">
 				<Link className="title" href={'/glossary'}>
 					{t('GLOSSARY_NAV_LABEL')}

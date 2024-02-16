@@ -12,7 +12,7 @@ import { useLocale } from 'hooks/index';
 const Contact: NextPage<IPageProps> = () => {
 	const { t } = useLocale();
 	return (
-		<Layout title="Contact Us">
+		<Layout>
 			{/* <Article
 				title={translate('pages.contact.title')}
 				subtitle={translate('pages.contact.subtitle')}

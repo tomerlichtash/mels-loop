@@ -157,9 +157,7 @@ export interface ContentComponentProps {
 	className?: string;
 }
 
-/**
- * Site page navigation props
- */
+/** Site page navigation props */
 export interface IPageProps {
 	locale: string;
 	documentPath: string;

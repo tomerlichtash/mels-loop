@@ -4,7 +4,7 @@ import { ContentTypes } from 'types/content';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import type { IPageProps } from 'types/models';
 import { usePageData } from '../hooks/usePageData';
-import { LoadContentModes, LoadFolderModes } from 'types/parser';
+import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
 import { Link } from 'components/index';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';

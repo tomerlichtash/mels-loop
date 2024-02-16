@@ -3,18 +3,15 @@ import { ParsedUrlQuery } from 'querystring';
 import { collectPathsIn, pathToRelativePath } from './pathHelpers';
 import { loadContentFolder } from 'lib/loadFolderContent';
 import { ILocaleMap } from 'types/models';
+import type { IContentParseOptions } from 'types/parser/parser';
 import {
-	MLParseModes,
-	LoadFolderModes,
 	LoadContentModes,
-	type IContentParseOptions,
-} from 'types/parser';
-import {
-	FolderStaticProps,
-	IMLNextUtils,
-	IStaticPathsParameters,
-} from './types';
+	LoadFolderModes,
+	MLParseModes,
+} from 'types/parser/modes';
+import { FolderStaticProps } from 'types/folder';
 import { LocaleId } from 'types/locale';
+import type { IMLNextUtils, IStaticPathsParameters } from './types';
 
 class MLNextUtils implements IMLNextUtils {
 	/**

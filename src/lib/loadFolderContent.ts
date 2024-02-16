@@ -8,12 +8,12 @@ import { markdownParser } from './markdown-utils/markdownParser';
 import { ParsedPageData } from './markdown-utils/parsedPageDataClass';
 import { PageMetaData } from './markdown-utils/pageMetaDataClass';
 import { FolderContent } from './markdown-utils/folderContentClass';
+import type { IContentParseOptions } from 'types/parser/parser';
 import {
 	LoadContentModes,
 	LoadFolderModes,
 	MLParseModes,
-	type IContentParseOptions,
-} from 'types/parser';
+} from 'types/parser/modes';
 import { ILoadContentOptions } from './markdown-utils/types';
 import { mdUtils } from './markdown-utils/markdownUtils';
 

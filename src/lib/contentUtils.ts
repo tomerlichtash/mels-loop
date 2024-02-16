@@ -5,7 +5,7 @@ import type { IMLParsedNode } from 'types/models';
 import type {
 	INodeProcessorContext,
 	MLNodeProcessorFunction,
-} from 'types/parser';
+} from 'types/parser/parser';
 
 /** describes a dynamic content item: its type and id */
 interface IDynamicContentRecord {
