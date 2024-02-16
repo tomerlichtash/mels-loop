@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import styles from './heading.module.scss';
+import classNames from 'classnames';
 
-export const Heading = ({ level, children, ...rest }): JSX.Element => {
+type HeadingProps = {
+	level: number | string;
+	className?: string;
+};
+
+export const Heading = ({
+	level,
+	className,
+	children,
+}: PropsWithChildren<HeadingProps>): JSX.Element => {
 	const Tag = `h${level}` as keyof JSX.IntrinsicElements;
-
-	return (
-		<Tag className={styles.root} {...rest}>
-			{children}
-		</Tag>
-	);
+	return <Tag className={classNames(styles.root, className)}>{children}</Tag>;
 };
 
 export default Heading;

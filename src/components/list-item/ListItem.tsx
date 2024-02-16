@@ -9,10 +9,8 @@ type ListItemProps = {
 	className?: string;
 };
 
-const ListItem = ({ children, ...rest }: PropsWithChildren<ListItemProps>) => (
-	<li className={styles.root} {...rest}>
-		{children}
-	</li>
+const ListItem = ({ children }: PropsWithChildren<ListItemProps>) => (
+	<li className={styles.root}>{children}</li>
 );
 
 export default ListItem;

@@ -8,14 +8,13 @@ type LineProps = {
 export const Line = ({
 	index,
 	children,
-	...rest
 }: PropsWithChildren<LineProps>): JSX.Element => {
 	if (!children) {
 		return <span className="empty text-line"></span>;
 	}
 
 	return (
-		<span className={styles.root} data-line-index={index} {...rest}>
+		<span className={styles.root} data-line-index={index}>
 			<a id={`line${index + 1}`}></a>
 			{children}
 		</span>

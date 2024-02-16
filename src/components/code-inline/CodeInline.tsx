@@ -9,11 +9,8 @@ type CodeInlineProps = {
 const CodeInline = ({
 	children,
 	className,
-	...rest
 }: PropsWithChildren<CodeInlineProps>): JSX.Element => (
-	<code className={classNames(styles.root, className)} {...rest}>
-		{children}
-	</code>
+	<code className={classNames(styles.root, className)}>{children}</code>
 );
 
 export default CodeInline;

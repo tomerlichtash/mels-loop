@@ -9,11 +9,8 @@ type ParagraphProps = {
 export const Paragraph = ({
 	children,
 	className,
-	...rest
 }: PropsWithChildren<ParagraphProps>): JSX.Element => (
-	<p className={classNames(styles.root, className)} {...rest}>
-		{children}
-	</p>
+	<p className={classNames(styles.root, className)}>{children}</p>
 );
 
 export default Paragraph;

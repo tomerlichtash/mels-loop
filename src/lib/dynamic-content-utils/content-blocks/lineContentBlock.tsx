@@ -9,8 +9,6 @@ export const LineContentBlock = ({
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { line, children } = node;
-	// const children = node.children || [];
-	// const { line } = node;
 	const anchor = <a id={`line${line + 1}`}></a>;
 
 	if (!children?.length) {
@@ -23,10 +21,6 @@ export const LineContentBlock = ({
 				{anchor}
 				{node.children[0].text}
 			</Line>
-			// <span key={node.key} className={styles.root} data-line-index={line + 1}>
-			// 	{anchor}
-			// 	{node.children[0].text}
-			// </span>
 		);
 	}
 
@@ -37,13 +31,6 @@ export const LineContentBlock = ({
 				<ContentComponent key={node.key} componentData={{ node }} />
 			))}
 		</Line>
-
-		// <span key={node.key} className={styles.root} data-line-index={line + 1}>
-		// 	{anchor}
-		// 	{children.map((node) => (
-		// 		<ContentComponent key={node.key} componentData={{ node }} />
-		// 	))}
-		// </span>
 	);
 };
 
