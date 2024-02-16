@@ -14,7 +14,7 @@ const config: PlaywrightTestConfig = {
 	testIgnore: 'fixme/*',
 	retries: 2,
 	outputDir: 'test-results/',
-	workers: 6,
+	workers: 3,
 	fullyParallel: true,
 	webServer: {
 		command: 'yarn run dev',
