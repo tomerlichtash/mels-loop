@@ -5,7 +5,7 @@ import { Text, Heading } from 'components/index';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import { usePageData } from '../hooks/usePageData';
 import { getMetadata, renderElements } from '../lib/dynamicContentHelpers';
-import ContentTypes from '../types/content';
+import { ContentTypes } from '../types/content';
 import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
 
 import type { IPageProps } from 'types/models';

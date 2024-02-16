@@ -1,5 +1,5 @@
 import { contentUtils } from '../contentUtils';
-import { DynamicContentTypes } from 'lib/types';
+import { DynamicContentTypes } from 'types/content';
 import { MLNODE_TYPES, NODE_DISPLAY_TYPES } from 'types/nodes';
 import type { IMLParsedNode } from 'types/models';
 import type { MLNodeProcessorFunction } from 'types/parser';

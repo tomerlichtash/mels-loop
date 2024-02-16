@@ -2,7 +2,7 @@ import React from 'react';
 import { ContentComponent } from '../contentComponent';
 import { DynamicContentLayout } from './contentLayout';
 import { Text, LoadingIndicator } from 'components/index';
-import { DynamicContentTypes } from '../../types';
+import { DynamicContentTypes } from 'types/content';
 import { useDynamicContentServer } from '../hooks/useDynamicContentServer';
 import { SHOW_LOADING_INDICATOR_AFTER_MSEC } from '../consts';
 import { unique } from 'utils/index';

@@ -1,8 +1,5 @@
-import {
-	DynamicContentTypes,
-	type IDynamicContentRequest,
-	type IDynamicContentServer,
-} from '../types';
+import { DynamicContentTypes } from 'types/content';
+import type { IDynamicContentRequest, IDynamicContentServer } from '../types';
 import { IParsedPageData } from 'types/models';
 
 interface LocalizedContentMap {

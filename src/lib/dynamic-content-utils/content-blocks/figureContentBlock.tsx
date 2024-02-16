@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentComponent } from '../index';
+import { ContentComponent } from '../contentComponent';
 import { IMLParsedNode, ContentComponentProps } from 'types/models';
 import { useComponentAttrs } from '../../../hooks/useComponentAttrs';
 import { Figure } from 'components/index';

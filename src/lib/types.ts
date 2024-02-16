@@ -1,22 +1,5 @@
-import { IMLParsedNode, IParsedPageData } from 'types/models';
-
-/** Types of dynamic content */
-export enum DynamicContentTypes {
-	Glossary = 'glossary',
-	Annotation = 'annotation',
-	/** Must remain an empty string, so it can be used in truthy/falsy tests */
-	None = '',
-}
-
-/** describes a dynamic content item: its type and id */
-export interface IDynamicContentRecord {
-	/** Annotation, gloassary etc */
-	readonly type: DynamicContentTypes;
-	/** The id of the item to fetch */
-	readonly id: string;
-	/** Is the url relative, or does it start with `/` */
-	readonly isRelative: boolean;
-}
+import { DynamicContentTypes } from 'types/content';
+import type { IMLParsedNode, IParsedPageData } from 'types/models';
 
 export interface IDynamicContentRequest {
 	type: DynamicContentTypes;

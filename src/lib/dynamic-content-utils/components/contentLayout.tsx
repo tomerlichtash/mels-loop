@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { DynamicContentTypes } from 'lib/types';
+import { DynamicContentTypes } from 'types/content';
 import { useLocale } from 'hooks/index';
 import type { ContentLayoutProps } from 'custom-layouts/dynamic-content-layout/ContentLayout';
 import NoteContentLayout from 'custom-layouts/note-content-layout/NoteContentLayout';

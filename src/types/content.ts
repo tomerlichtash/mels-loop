@@ -9,4 +9,10 @@ export enum ContentTypes {
 	Annotation = 'annotations',
 }
 
-export default ContentTypes;
+/** Types of dynamic content */
+export enum DynamicContentTypes {
+	Glossary = 'glossary',
+	Annotation = 'annotation',
+	/** Must remain an empty string, so it can be used in truthy/falsy tests */
+	None = '',
+}

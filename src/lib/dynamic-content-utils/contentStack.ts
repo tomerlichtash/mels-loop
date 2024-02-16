@@ -1,26 +1,32 @@
 /** A stack of parsed nodes */
 interface IContentStack<T> {
 	readonly count: number;
-	/** returns the topmost node, null when the stack is empty. */
+
+	/** Returns the topmost node, null when the stack is empty. */
 	readonly current: T | null;
-	/**  Returns a copy of the stack array */
+
+	/** Returns a copy of the stack array */
 	readonly stack: Array<T>;
+
 	/**
 	 * Pushes the node only if its not null and different (by key) from the top node
 	 * @param node
 	 * @returns the content stack object, e.g. for chaining
 	 */
 	push(node: T): IContentStack<T>;
+
 	/**
 	 * Set the tip of the stack to the provided index, if legal (bad input is ignored)
 	 * @param index
 	 */
 	setIndex(index: number): IContentStack<T>;
+
 	/**
-	 * returns the topmost node, after removing it from the stack
+	 * Returns the topmost node, after removing it from the stack
 	 * Null when the stack is empty.
 	 */
 	pop(): T | null;
+
 	clear(): IContentStack<T>;
 }
 
@@ -54,11 +60,14 @@ export class ContentStack<T> implements IContentStack<T> {
 		if (!node) {
 			return this;
 		}
+
 		const key = this.key,
 			current = this.current;
+
 		if (!key || !current || node[key] !== current[key]) {
 			this._nodes.push(node);
 		}
+
 		return this;
 	}
 

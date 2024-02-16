@@ -1,11 +1,21 @@
 import { stringArrayToMap } from '../utils';
-import { DynamicContentTypes, type IDynamicContentRecord } from './types';
 import { MLNODE_TYPES } from 'types/nodes';
+import { DynamicContentTypes } from 'types/content';
 import type { IMLParsedNode } from 'types/models';
 import type {
 	INodeProcessorContext,
 	MLNodeProcessorFunction,
 } from 'types/parser';
+
+/** describes a dynamic content item: its type and id */
+interface IDynamicContentRecord {
+	/** Annotation, gloassary etc */
+	readonly type: DynamicContentTypes;
+	/** The id of the item to fetch */
+	readonly id: string;
+	/** Is the url relative, or does it start with `/` */
+	readonly isRelative: boolean;
+}
 
 const ANNOTATION_RE = /annotations?\//i;
 const GLOSSARY_RE = /glossary\//i;

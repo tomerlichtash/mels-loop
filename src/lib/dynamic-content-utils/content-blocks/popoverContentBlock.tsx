@@ -15,7 +15,7 @@ import {
 import { IPopoverContext } from '../types';
 import type { LocaleId, TextDirection } from 'types/locale';
 import { ContentComponentProps, IContentComponentInitData } from 'types/models';
-import { DynamicContentTypes } from 'lib/types';
+import { DynamicContentTypes } from 'types/content';
 import I18nProvider from 'next-translate/I18nProvider';
 import glossaryEN from '../../../../locales/en/glossary.json';
 import { getIcon } from 'components/icons';

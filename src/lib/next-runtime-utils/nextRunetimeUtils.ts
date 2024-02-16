@@ -8,7 +8,7 @@ import { htmlValidator } from './htmlValidator';
  * Guaranteed not null
  * @param pageData
  */
-export interface IMLNextBrowserUtils {
+interface IMLNextBrowserUtils {
 	getParsedPagedData<T>(pageData: string | object | null): T[];
 
 	/**

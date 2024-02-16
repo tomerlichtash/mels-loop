@@ -1,6 +1,6 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import ContentTypes from '../types/content';
+import { ContentTypes } from '../types/content';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import { usePageData } from '../hooks/usePageData';
 import { LoadFolderModes } from 'types/parser/modes';

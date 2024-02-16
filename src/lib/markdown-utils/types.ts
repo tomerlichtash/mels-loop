@@ -1,19 +1,7 @@
 import { MLParseContext } from 'lib/parserContext';
-import {
-	ILocaleMap,
-	IMLParsedNode,
-	IParsedPageData,
-	PageSortField,
-	ParsedNode,
-} from 'types/models';
-import type { IContentParseOptions } from 'types/parser';
 import { LoadFolderModes } from 'types/parser/modes';
-
-export interface IFolderContent {
-	readonly pages: IParsedPageData[];
-	readonly ids: ILocaleMap[];
-	sortOn(field: PageSortField): IParsedPageData[];
-}
+import type { IMLParsedNode, ParsedNode } from 'types/models';
+import type { IContentParseOptions } from 'types/parser';
 
 export interface ILoadContentOptions {
 	/** Defaults to FOLDER */

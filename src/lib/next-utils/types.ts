@@ -1,20 +1,13 @@
-import { GetStaticPathsResult, GetStaticPropsResult } from 'next';
-import { LoadFolderModes, type IContentParseOptions } from 'types/parser';
 import { ParsedUrlQuery } from 'querystring';
+import { GetStaticPathsResult, GetStaticPropsResult } from 'next';
+import type { IContentParseOptions } from 'types/parser';
+import type { LoadFolderModes } from 'types/parser/modes';
+import type { FolderStaticProps } from 'types/folder';
 
 /**************************************************
  * Extended Next.js types
  **************************************************/
-export interface FolderStaticProps {
-	/**
-	 * Typically the stringified ParsedPageData
-	 */
-	content: string | object;
-	/**
-	 * The path of the first page in the document data
-	 */
-	documentPath: string;
-}
+
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
  * Will load either the index in the folder, or all the indices in the child folders,
