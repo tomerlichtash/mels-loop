@@ -1,6 +1,5 @@
 import { MLParseContext } from 'lib/parserContext';
 import { VALID_PARSE_MODES } from 'lib/parseModes';
-import getT from 'next-translate/getT';
 import * as mdParser from 'simple-markdown';
 import { ASTNODE_TYPES, MLNODE_TYPES } from 'types/nodes';
 import {
@@ -11,6 +10,29 @@ import {
 } from './nodeTypes';
 import { MLParseModes } from 'types/parser/modes';
 import type { IMLParsedNode, ParsedNode } from 'types/models';
+
+export interface IMarkdownUtils {
+	/**
+	 * Strips xml comments from the string
+	 * @param source
+	 */
+	stripComments(source: string): string;
+	getIndexFileName(locale: string): string;
+	toValue<T>(val: T, defaultValue: T | null): T | null;
+	collectText(content: string | ParsedNode): string;
+	collectMLNodeText(node: IMLParsedNode): string;
+	nodeTypeToMLType(
+		nodeName: ASTNODE_TYPES,
+		context: MLParseContext
+	): MLNODE_TYPES;
+	extractParseMode(node: ParsedNode, context: MLParseContext): MLParseModes;
+	removeNullChildren(node: IMLParsedNode): IMLParsedNode;
+	findArrayPart(node: ParsedNode): Array<ParsedNode> | null;
+	collectMLNodeText(node: IMLParsedNode): string;
+	translateString(str: string): string;
+	sanitizeHTML(node: ParsedNode): ParsedNode;
+	createHtmlMDParser(): mdParser.Parser;
+}
 
 // const TRANSLATED_STRING_REGEXP = /\[\[(.+?)\]\]/g;
 
@@ -33,7 +55,7 @@ const parseAttributes = (attrStr: string): Map<string, string> => {
 	return attrMap;
 };
 
-class MarkdownUtils {
+class MarkdownUtils implements IMarkdownUtils {
 	public getIndexFileName(locale: string): string {
 		return `index.${locale}.md`;
 	}
@@ -162,23 +184,23 @@ class MarkdownUtils {
 		// });
 	}
 
-	public async asyncTranslateString(
-		str: string,
-		locale: string
-	): Promise<string> {
-		if (!str) {
-			return Promise.resolve('');
-		}
+	// public async asyncTranslateString(
+	// 	str: string,
+	// 	locale: string
+	// ): Promise<string> {
+	// 	if (!str) {
+	// 		return Promise.resolve('');
+	// 	}
 
-		const t = await getT(locale, 'common');
+	// 	const t = await getT(locale, 'common');
 
-		return Promise.resolve(t('common:site:title'));
-		// return str.replace(TRANSLATED_STRING_REGEXP, (m, key: string) => {
-		// 	return key; //t(key); // TODO: fix translation
-		// );
-	}
+	// 	return Promise.resolve(t('common:site:title'));
+	// 	// return str.replace(TRANSLATED_STRING_REGEXP, (m, key: string) => {
+	// 	// 	return key; //t(key); // TODO: fix translation
+	// 	// );
+	// }
 
-	public findArrayPart = (node: ParsedNode): Array<ParsedNode> | null => {
+	public findArrayPart(node: ParsedNode): Array<ParsedNode> | null {
 		if (Array.isArray(node.items)) {
 			return node.items;
 		}
@@ -192,7 +214,7 @@ class MarkdownUtils {
 		}
 
 		return null;
-	};
+	}
 
 	public sanitizeHTML(node: ParsedNode): ParsedNode {
 		if (node.type === ASTNODE_TYPES.HTML) {
@@ -201,25 +223,6 @@ class MarkdownUtils {
 
 		const children = this.findArrayPart(node);
 		children && children.forEach((child) => this.sanitizeHTML(child));
-
-		return node;
-	}
-
-	private validateHTMLNode(node: ParsedNode): ParsedNode {
-		const tag: string = ((node.tag as string) || '').toUpperCase();
-		const children: Array<ParsedNode> = node.content;
-		const rec = Array.isArray(children) && HTML_VALIDATION_MAP[tag];
-
-		if (rec && rec.valid) {
-			const filtered = children.filter((child) => {
-				return rec.valid.includes((child.tag || child.type).toUpperCase());
-			});
-
-			if (filtered.length !== children.length) {
-				node.content.length = 0;
-				node.content.push(...filtered);
-			}
-		}
 
 		return node;
 	}
@@ -265,8 +268,28 @@ class MarkdownUtils {
 				order: 0,
 			},
 		};
+
 		return mdParser.parserFor(rules);
+	}
+
+	private validateHTMLNode(node: ParsedNode): ParsedNode {
+		const tag: string = ((node.tag as string) || '').toUpperCase();
+		const children: Array<ParsedNode> = node.content;
+		const rec = Array.isArray(children) && HTML_VALIDATION_MAP[tag];
+
+		if (rec && rec.valid) {
+			const filtered = children.filter((child) => {
+				return rec.valid.includes((child.tag || child.type).toUpperCase());
+			});
+
+			if (filtered.length !== children.length) {
+				node.content.length = 0;
+				node.content.push(...filtered);
+			}
+		}
+
+		return node;
 	}
 }
 
-export const mdUtils = new MarkdownUtils();
+export const mdUtils: IMarkdownUtils = new MarkdownUtils();

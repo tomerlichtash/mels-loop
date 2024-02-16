@@ -11,8 +11,10 @@ import type {
 interface IDynamicContentRecord {
 	/** Annotation, gloassary etc */
 	readonly type: DynamicContentTypes;
+
 	/** The id of the item to fetch */
 	readonly id: string;
+
 	/** Is the url relative, or does it start with `/` */
 	readonly isRelative: boolean;
 }
@@ -20,7 +22,29 @@ interface IDynamicContentRecord {
 const ANNOTATION_RE = /annotations?\//i;
 const GLOSSARY_RE = /glossary\//i;
 
-class ContentUtils {
+export interface IContentUtils {
+	/**
+	 * Creates a content mapping function (maps node => node) only for the provided types
+	 * @param filter
+	 * @param types
+	 */
+	createNodeMappingFilter(
+		filter: MLNodeProcessorFunction,
+		...types: Array<MLNODE_TYPES>
+	): MLNodeProcessorFunction;
+
+	/**
+	 * Extract content type and id from a url, with a default content type
+	 * @param url
+	 * @param defaultType
+	 */
+	urlToContentData(
+		url: string,
+		defaultType?: DynamicContentTypes
+	): IDynamicContentRecord;
+}
+
+class ContentUtils implements IContentUtils {
 	public createNodeMappingFilter(
 		filter: MLNodeProcessorFunction,
 		...types: Array<MLNODE_TYPES>
@@ -86,4 +110,4 @@ class ContentUtils {
 	}
 }
 
-export const contentUtils = new ContentUtils();
+export const contentUtils: IContentUtils = new ContentUtils();

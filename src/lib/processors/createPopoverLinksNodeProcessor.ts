@@ -4,6 +4,11 @@ import { MLNODE_TYPES, NODE_DISPLAY_TYPES } from 'types/nodes';
 import type { IMLParsedNode } from 'types/models';
 import type { MLNodeProcessorFunction } from 'types/parser';
 
+/**
+ * Marks links as popovers for the links that match the provided dynamic content types.
+ * If not types are provided, glossary and annotations are assumed
+ * @param types
+ */
 export const createPopoverLinksNodeProcessor = (
 	...types: DynamicContentTypes[]
 ): MLNodeProcessorFunction => {

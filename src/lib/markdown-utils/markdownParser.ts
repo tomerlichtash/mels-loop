@@ -24,7 +24,20 @@ import { mdUtils } from './markdownUtils';
 
 const INDEX_REGEXP = /%index%/i;
 
-class MarkdownParser {
+interface IMarkdownParser {
+	/**
+	 * Convert a markdown parse tree (tree of AST nodes) to a ML parse tree (tree of IMLParsedNode)
+	 * @param nodes
+	 * @param mode Various parse options
+	 */
+	processParseTree(
+		nodes: ParsedNode[],
+		metaData: IPageMetaData,
+		mode: IContentParseOptions
+	): IMLParsedNode[];
+}
+
+class MarkdownParser implements IMarkdownParser {
 	private readonly nodeProcessorMap: { [name: string]: ParsedNodeProcessor };
 
 	constructor() {
@@ -786,7 +799,7 @@ class MarkdownParser {
 	}
 }
 
-export const markdownParser = new MarkdownParser();
+export const markdownParser: IMarkdownParser = new MarkdownParser();
 
 // private promoteFiguresInNode(
 // 	node: IMLParsedNode,
