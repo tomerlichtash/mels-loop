@@ -4,12 +4,12 @@ import { LoadFolderModes } from 'types/parser/modes';
 import { ContentTypes } from 'types/content';
 import { mlNextUtils } from '../../lib/next-utils/nextUtils';
 import { usePageData } from '../../hooks/usePageData';
-import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
-import BlogPost from 'components/content-layout/article-content-layout/BlogPost';
+import BlogPost from 'custom-layouts/article-content-layout/BlogPost';
 import { Link } from 'components/index';
 import { unique } from 'utils/index';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';
+import { getIcon } from 'components/icons';
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);
@@ -17,10 +17,11 @@ export default function Doc(props: IPageProps) {
 	const { t, lang, textDirection } = useLocale();
 	const { metaData } = page;
 	const { title, date, author } = metaData;
-	const backIcon =
-		textDirection === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />;
+	const backIcon = getIcon(
+		`chevron${textDirection === 'ltr' ? 'Left' : 'Right'}`
+	);
 	return (
-		<Layout title={title}>
+		<Layout>
 			<div className="page">
 				<Link href={'/posts'}>
 					{backIcon} {t('blog:button:back')}

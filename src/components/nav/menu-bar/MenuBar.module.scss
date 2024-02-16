@@ -1,0 +1,68 @@
+@use './menuBarMixins.scss';
+@use '../nav-item/navListItemMixin.scss';
+@import 'styles/baseComponentStyle';
+@import 'styles/lib/themeVars';
+@import 'styles/lib/states';
+@import 'styles/lib/merge';
+
+$__stylesheet__: (
+	name: site-horizontal-menu,
+);
+
+$states: deep(
+	$COMPONENT_STATES,
+	(
+		opened: open,
+	)
+);
+
+.root {
+	width: 250px;
+
+	.list {
+		@include menuBarMixins.ListMixin;
+	}
+
+	.items {
+		width: 100%;
+		margin: 0;
+		@include useInnerGutter(name(list));
+	}
+
+	.trigger {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		@include menuBarMixins.MenuTriggerButtonMixin;
+		@include menuBarMixins.TriggerButtonMixin(name(trigger), $states);
+	}
+
+	.content {
+		@include menuBarMixins.ContentMixin(name());
+	}
+
+	.indicator {
+		@include menuBarMixins.IndicatorMixin(name());
+	}
+
+	.viewport {
+		@include menuBarMixins.ViewPortMixin(name());
+	}
+
+	.viewportPosition {
+		@include menuBarMixins.ViewPortPosition;
+	}
+
+	@include menuBarMixins.ButtonCaret(name(trigger-caret));
+
+	.arrow {
+		@include menuBarMixins.ArrowMixin;
+	}
+
+	.listItem {
+		list-style: none;
+	}
+
+	@include navListItemMixin.ListItemMixin(name(item), $states);
+}

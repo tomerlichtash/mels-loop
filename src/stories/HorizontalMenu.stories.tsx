@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import HorizontalNav from 'components/HorizontalMenu/HorizontalNav';
+import MenuBar from 'components/nav/menu-bar/MenuBar';
 
 const meta = {
-	title: 'HorizontalNav',
-	component: HorizontalNav,
+	title: 'MenuBar',
+	component: MenuBar,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
@@ -12,7 +12,7 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof HorizontalNav>;
+} satisfies Meta<typeof MenuBar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -22,7 +22,7 @@ const Desktop: Story = {
 		items: [],
 	},
 	render: function Render() {
-		return <HorizontalNav items={[]} />;
+		return <MenuBar items={[]} />;
 	},
 };
 

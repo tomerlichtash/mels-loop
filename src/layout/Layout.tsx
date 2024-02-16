@@ -10,7 +10,7 @@ import {
 	Button,
 	Container,
 	Drawer,
-	HorizontalNav,
+	MenuBar,
 	Link,
 	List,
 	ListItem,
@@ -23,13 +23,12 @@ import {
 	Text,
 	TextLink,
 	ThemeSelect,
-	VerticalMenuTrigger,
-	VerticalNav,
+	MenuDrawer,
 } from '../components/index';
-import { Head } from './customHead';
+import { getIcon } from 'components/icons';
+import CustomHead from './customHead';
 import { Analytics } from './analytics';
-import { parseMenuItems } from '../components/helpers';
-import { Cross2Icon } from '@radix-ui/react-icons';
+import { parseMenuItems } from './helpers';
 import { LocaleId } from 'types/locale';
 import { useRouter } from 'next/router';
 import layoutConfig from './layoutConfig';
@@ -38,18 +37,13 @@ import styles from './Layout.module.scss';
 import type { LocaleOptionProps } from 'components/locale-select/LocaleSelect';
 
 type RootLayoutProps = {
-	title?: string;
-	pageName?: string;
+	className?: string;
 };
 
 const IS_DEBUG = process.env.NEXT_PUBLIC_ML_DEBUG;
 const MIN_DESKTOP_WIDTH = 1024;
 
-const Layout = ({
-	title,
-	pageName,
-	children,
-}: PropsWithChildren<RootLayoutProps>) => {
+const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 	const router = useRouter();
 	const { menuItemsData, menuSectionData, footerLinksData } = layoutConfig;
 
@@ -61,7 +55,7 @@ const Layout = ({
 	const isHome = pathname === '/';
 	const isMobile = screenWidth <= MIN_DESKTOP_WIDTH;
 
-	const { open, toggle } = useDrawer(isMobile);
+	const { open: drawerOpen, toggle: toggleDrawer } = useDrawer(isMobile);
 
 	const setLocale = useCallback(
 		async (id: LocaleId) =>
@@ -86,7 +80,7 @@ const Layout = ({
 	const localeItems: LocaleOptionProps[] = useMemo(
 		() =>
 			locales.map((id) => ({
-				id: id as LocaleId,
+				id: id,
 				label: t(`locale:${id}:symbol`),
 				title: t(`locale:${id}:label`),
 			})),
@@ -129,19 +123,19 @@ const Layout = ({
 
 	const siteTitle = t('common:site:title');
 	const siteSubtitle = t('common:site:subtitle');
-	const siteTitleWithLicense = `2021-${siteLicenseCurrentYear} ${siteLicenseLabel} ${title}`;
+	const siteTitleWithLicense = `2021-${siteLicenseCurrentYear} ${siteLicenseLabel} ${siteTitle}`;
 
-	const verticalMenu = useMemo(
+	const menuDrawer = useMemo(
 		() => (
 			<Drawer
 				direction={textDirection === 'ltr' ? 'right' : 'left'}
-				open={open}
-				onClose={toggle}
+				open={drawerOpen}
+				onClose={toggleDrawer}
 				className={styles.root}
 			>
 				<Scrollbar className={styles.root} textDirection={textDirection}>
-					<Button onClick={toggle} asChild>
-						<Cross2Icon />
+					<Button onClick={toggleDrawer} asChild>
+						{getIcon('close')}
 					</Button>
 					<Logo />
 					<TextLink title={siteTitle} linked={!isHome}>
@@ -152,40 +146,38 @@ const Layout = ({
 						defaultValue={lang}
 						options={localeItems}
 						onSelect={(id) => void setLocale(id)}
-						// onSelect={(id) => void setLocale(id)}
 					/>
 					<ThemeSelect
 						label={themeLabel}
 						theme={theme}
 						setTheme={setTheme}
 					></ThemeSelect>
-					<VerticalNav items={navItems} onClose={toggle} />
+					<MenuDrawer items={navItems} onClose={toggleDrawer} />
 				</Scrollbar>
 			</Drawer>
 		),
 		[
 			textDirection,
-			open,
-			toggle,
+			drawerOpen,
 			siteTitle,
 			isHome,
 			lang,
 			localeItems,
 			themeLabel,
 			theme,
-			setTheme,
 			navItems,
+			toggleDrawer,
+			setTheme,
 			setLocale,
 		]
 	);
 
 	return (
 		<>
-			<Head
-				siteTitle={siteTitle}
-				siteSubtitle={siteSubtitle}
-				title={title}
-				pageName={pageName}
+			<CustomHead
+				title={`${siteTitle} – ${siteSubtitle}`}
+				name={siteTitle}
+				description={siteSubtitle}
 			/>
 			<Scrollbar
 				textDirection={textDirection}
@@ -201,6 +193,7 @@ const Layout = ({
 					alignItemsCenter
 					horizontalGutter
 					position="top"
+					className={styles.topBar}
 				>
 					<header data-testid="topbar">
 						<Container alignItemsCenter className={styles.siteTitle}>
@@ -214,10 +207,12 @@ const Layout = ({
 							</Text>
 						</Container>
 						{isMobile ? (
-							<VerticalMenuTrigger onClick={toggle} />
+							<Button onClick={toggleDrawer} asChild>
+								{getIcon('hamburger')}
+							</Button>
 						) : (
 							<Container alignItemsCenter>
-								<HorizontalNav items={navItems} />
+								<MenuBar items={navItems} />
 								<>
 									<LocaleSelect
 										defaultValue={lang}
@@ -236,7 +231,7 @@ const Layout = ({
 				</Container>
 				<Page>{children}</Page>
 				<Strip />
-				<Container fullWidth asChild>
+				<Container fullWidth asChild className={styles.footer}>
 					<footer className={styles.footer}>
 						<div className={styles.pageContainer}>
 							<div className={styles.footerLayout}>
@@ -246,9 +241,9 @@ const Layout = ({
 										uppercase={true}
 										aria-label={siteTitleWithLicense}
 									>
-										<time className="year">2021-{siteLicenseCurrentYear}</time>
-										<span className="license">{siteLicenseType}</span>
-										<span className="title">{siteTitle}</span>
+										<time>2021-{siteLicenseCurrentYear}</time>
+										<span>{siteLicenseType}</span>
+										<span>{siteTitle}</span>
 									</Text>
 									<Text italics={true}>{siteSubtitle}</Text>
 									<Text lowercase>{t('common:site:shortSiteDescription')}</Text>
@@ -258,7 +253,7 @@ const Layout = ({
 						</div>
 					</footer>
 				</Container>
-				{isMobile && verticalMenu}
+				{isMobile && menuDrawer}
 			</Scrollbar>
 			{!IS_DEBUG ?? <Analytics />}
 		</>

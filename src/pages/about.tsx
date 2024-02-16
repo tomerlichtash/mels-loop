@@ -7,18 +7,24 @@ import { LoadFolderModes } from 'types/parser/modes';
 import type { IPageProps } from 'types/models';
 import Layout from 'layout/Layout';
 import { getMetadata, renderElements } from 'lib/dynamicContentHelpers';
+import Head from 'next/head';
+import { useLocale } from 'hooks/useLocale';
+import { GenericPageContentLayout } from 'custom-layouts/generic-page-content-layout/GenericPageContentLayout';
 
 const About: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
 	const [title, abstract] = getMetadata(['title', 'abstract'], pageData);
+	const { t } = useLocale();
+	const pageTitle = `${t('common:site:title')} – ${t('pages:about:title')}`;
 
 	return (
 		<Layout>
-			<article className="page">
-				<h1 className="topic">{title}</h1>
-				<p className="title">{abstract}</p>
-				<div className="section">{renderElements(pageData)}</div>
-			</article>
+			<Head>
+				<title>{pageTitle}</title>
+			</Head>
+			<GenericPageContentLayout title={title} abstract={abstract}>
+				{renderElements(pageData)}
+			</GenericPageContentLayout>
 		</Layout>
 	);
 };

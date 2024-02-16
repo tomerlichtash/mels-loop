@@ -1,0 +1,8 @@
+@import '../../../../baseThemeStyle';
+@import '../../../../lib/refs';
+
+$index: (
+	background-color: ref(color-surface-main),
+	// padding-right: 2em,
+	// padding-left: 2em,,
+);

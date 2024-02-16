@@ -6,16 +6,24 @@ import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import type { IPageProps, IParsedPageData } from 'types/models';
 import { usePageData } from '../hooks/usePageData';
 import orderBy from 'lodash.orderby';
-import BlogPost from '../components/content-layout/article-content-layout/BlogPost';
+import BlogPost from '../custom-layouts/article-content-layout/BlogPost';
 import { unique } from 'utils/index';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';
+import Head from 'next/head';
 
 export default function Blog(props: IPageProps) {
 	const { pageData } = usePageData(props);
 	const { t, lang } = useLocale();
+
+	const pageTitle = `${t('common:site:title')} – ${t('pages:blog:title')}`;
+
 	return (
 		<Layout>
+			<Head>
+				<title>{pageTitle}</title>
+			</Head>
+
 			<div className="page">
 				<h1 className="title">{t('blog:page:title')}</h1>
 				{orderBy(pageData, ['metaData.date'], ['desc']).map(

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Annotation.module.scss';
-import { leadingZero } from '../helpers';
+import { leadingZero } from './helpers';
 import classNames from 'classnames';
 
 type AnnotationProps = {

@@ -1,0 +1,39 @@
+.root {
+	user-select: text;
+
+	.label {
+		background-color: lightgoldenrodyellow;
+	}
+
+	.title {
+		background-color: lightgreen;
+	}
+
+	.abstract {
+		background-color: lightblue;
+	}
+
+	.section {
+		background-color: lightpink;
+	}
+	// padding: 1em;
+
+	// .header {
+	// 	padding-bottom: 1em;
+
+	// 	.topic {
+	// 		display: inline-flex;
+	// 		border-radius: 4px;
+	// 		font-weight: 100;
+	// 		background-color: red;
+	// 		color: #fff;
+	// 		font-size: 1em;
+	// 		padding: 0 0.25em;
+	// 		margin-bottom: 1em;
+	// 	}
+
+	// 	.title {
+	// 		font-size: 2em;
+	// 	}
+	// }
+}

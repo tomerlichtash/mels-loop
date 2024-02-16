@@ -6,11 +6,14 @@ $__stylesheet__: (
 );
 
 .root {
-	display: inline-flex;
+	display: flex;
 	box-sizing: border-box;
 
 	min-height: 48px;
-	@include useBackgroundColor(name());
+
+	// @include useBackgroundColor(name());
+	&[data-background-color] {
+	}
 
 	&[data-fixed-position='true'] {
 		position: fixed;

@@ -10,13 +10,21 @@ import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLin
 
 import type { IPageProps } from 'types/models';
 import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
+import Head from 'next/head';
+import { useLocale } from 'hooks/useLocale';
 
 const Index: NextPage<IPageProps> = (props) => {
+	const { t } = useLocale();
 	const { pageData } = usePageData(props);
 	const [title, moto] = getMetadata(['title', 'moto'], pageData);
 
+	const pageTitle = `${t('common:site:title')} – ${t('common:site:subtitle')}`;
+
 	return (
 		<Layout>
+			<Head>
+				<title>{pageTitle}</title>
+			</Head>
 			<article>
 				<Heading level={1} className="title">
 					{title}

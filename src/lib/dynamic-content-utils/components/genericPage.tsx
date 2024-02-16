@@ -11,6 +11,7 @@ import { usePageData } from '../../../hooks/usePageData';
 import { DateFormat } from 'components/index';
 import { useLocale } from 'hooks/index';
 import { MLNODE_TYPES } from 'types/nodes';
+import { localeDateFormat } from 'layout/consts';
 
 const GenericPage = (props: IContentComponentData) => {
 	const { t, lang } = useLocale();
@@ -27,10 +28,14 @@ const GenericPage = (props: IContentComponentData) => {
 		type: MLNODE_TYPES.UNKNOWN,
 	};
 
+	const pageTitle = `${t('common:site:title')} – ${t(
+		'common:site:subtitle'
+	)} – ${metaData?.title}`;
+
 	return (
 		<Layout>
 			<Head>
-				{t('site:title')} - {t('site:subtitle')} - {metaData?.title}
+				<title>{pageTitle}</title>
 			</Head>
 			<article className="generic-page">
 				<header className="header">
@@ -38,7 +43,7 @@ const GenericPage = (props: IContentComponentData) => {
 					{abstract && <div className="subtitle">{abstract}</div>}
 					<div className="meta" data-has-content={!!author || !!date}>
 						{author && <div className="byline">{author}</div>}
-						{date && <DateFormat date={date} locale={lang} />}
+						{date && <DateFormat date={date} format={localeDateFormat[lang]} />}
 					</div>
 				</header>
 				{node ? (

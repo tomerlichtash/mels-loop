@@ -3,9 +3,9 @@ import { IParsedPageData } from 'types/models';
 import { DynamicContentContext } from '../context/contentContext';
 import { PopoverContext } from 'lib/dynamic-content-utils/context/popoverContext';
 import Button from 'components/button/Button';
-import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 import { unique } from 'utils/index';
 import { useLocale } from 'hooks/index';
+import { getIcon } from 'components/icons';
 
 export interface IDynamicContentToolbarProps {
 	pages: IParsedPageData[];
@@ -50,7 +50,7 @@ export default function DynamicContentToolbar({
 					onClick={() => dynamicContentContext.setPageIndex(idx)}
 					className="back-button"
 				>
-					{textDirection === 'ltr' ? <ArrowLeftIcon /> : <ArrowRightIcon />}
+					{getIcon(`arrow${textDirection === 'ltr' ? 'Left' : 'Right'}`)}
 				</Button>
 			),
 			id: backButtonKey,

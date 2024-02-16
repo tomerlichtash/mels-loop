@@ -8,15 +8,21 @@ import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
 import { Link } from 'components/index';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';
+import Head from 'next/head';
 
 const Glossary: NextPage<IPageProps> = (props) => {
 	const { metaData } = usePageData(props);
 	const { t } = useLocale();
 
+	const pageTitle = `${t('common:site:title')} – ${t('pages:glossary:title')}`;
+
 	return (
 		<Layout>
+			<Head>
+				<title>{pageTitle}</title>
+			</Head>
 			<article className="page">
-				<h1 className="title">{t('glossary:page:title')}</h1>
+				<h1 className="title">{t('pages:glossary:title')}</h1>
 				{metaData.length && (
 					<ul className="term-list">
 						{metaData.map((page, index) => {

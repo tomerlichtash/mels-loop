@@ -11,6 +11,10 @@ $__stylesheet__: (
 .root {
 	@include useBackgroundColor();
 
+	.topBar {
+		@include useBackgroundColor(name(top-bar));
+	}
+
 	.siteTitle {
 		@include useGap(name(logo));
 	}
@@ -18,6 +22,7 @@ $__stylesheet__: (
 	.footer {
 		display: flex;
 		flex-direction: row;
+		@include useBackgroundColor(name(footer));
 	}
 
 	.footerSiteTitle {

@@ -16,8 +16,14 @@ $index: (
 	// 	background-color: ref(color-secondary-dark),
 	// 	text-color: ref(color-secondary-contrast),
 	// ),
-	logo:
+	top-bar:
 		(
-			gap: 1em,
+			background-color: ref(color-surface-main),
 		),
+	footer: (
+		background-color: ref(color-surface-main),
+	),
+	logo: (
+		gap: 1em,
+	),
 );

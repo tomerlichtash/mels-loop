@@ -220,7 +220,6 @@ class MarkdownParser {
 		const text = tmpl
 			? mdUtils.translateString(
 					tmpl.replace(INDEX_REGEXP, String(target.sequence))
-					// context.mode.locale as LocaleId
 			  )
 			: String(target.sequence);
 
@@ -551,7 +550,6 @@ class MarkdownParser {
 
 			const newText = mdUtils.translateString(
 				node.text.replace(INDEX_REGEXP, ind.toString())
-				// context.mode.locale as LocaleId
 			);
 
 			Object.assign(node, { text: newText });

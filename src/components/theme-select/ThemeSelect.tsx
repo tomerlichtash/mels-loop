@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getIcon } from './helpers';
+import { getIcon } from 'components/icons';
 import Toggle from '../toggle/Toggle';
 import styles from './ThemeSelect.module.scss';
 import classNames from 'classnames';
@@ -32,7 +32,7 @@ const ThemeSelect = ({
 			onToggle={() => setTheme(isDark ? 'light' : 'dark')}
 			className={classNames(styles.root, className)}
 		>
-			{getIcon(isDark)}
+			{getIcon(theme)}
 		</Toggle>
 	);
 };

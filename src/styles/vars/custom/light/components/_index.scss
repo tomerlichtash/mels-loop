@@ -25,9 +25,9 @@
 @use 'components/locale-select/LocaleSelect.module' as LocaleSelect;
 @use 'components/theme-select/ThemeSelect.module' as ThemeSelector;
 // @use "components/site/button" as buttonComponent;
-@use 'components/HorizontalMenu/HorizontalNav.module' as HorizontalNav;
-@use 'components/VerticalMenu/VerticalNav.module' as VerticalMenu;
-@use 'components/nav-item-content/NavItemContent.module' as NavItemContent;
+@use 'components/nav/menu-bar/MenuBar.module' as MenuBar;
+@use 'components/nav/menu-drawer/MenuDrawer.module' as MenuDrawer;
+@use 'components/nav/nav-item-content/NavItemContent.module' as NavItemContent;
 @use 'components/text/Text.module' as Text;
 
 @use 'layout' as layoutTheme;
@@ -44,8 +44,8 @@
 @use 'localeSelect' as localeSelectTheme;
 @use 'themeSelector' as themeSelectorTheme;
 @use 'button' as buttonTheme;
-@use 'horizontalNav' as horizontalNavTheme;
-@use 'verticalNav' as verticalNavTheme;
+@use 'menuBar' as menuBarTheme;
+@use 'menuDrawer' as menuDrawerTheme;
 @use 'navItemContent' as navItemContentTheme;
 @use 'text' as textTheme;
 @use 'line' as lineTheme;
@@ -86,8 +86,8 @@ $index: (
 	Container.name(): containerTheme.vars(),
 	Logo.name(): logoTheme.vars(),
 	TextLink.name(): textLinkTheme.vars(),
-	HorizontalNav.name(): horizontalNavTheme.vars(),
-	VerticalMenu.name(): verticalNavTheme.vars(),
+	MenuBar.name(): menuBarTheme.vars(),
+	MenuDrawer.name(): menuDrawerTheme.vars(),
 	NavItemContent.name(): navItemContentTheme.vars(),
 	ThemeSelector.name(): themeSelectorTheme.vars(),
 	LocaleSelect.name(): localeSelectTheme.vars(),

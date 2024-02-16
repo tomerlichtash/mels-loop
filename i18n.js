@@ -8,10 +8,9 @@ module.exports = {
 	localesToIgnore: [],
 	logBuild: false,
 	pages: {
-		'*': ['common', 'locale', 'nav', 'authors'],
+		'*': ['common', 'locale', 'nav', 'pages', 'authors'],
 		'/': ['glossary'],
 		'/glossary': ['glossary'],
-		'/docs': ['docs'],
 		'/pages/docs/[id]/codex': ['docs'],
 		'/posts': ['blog'],
 		'/posts/[id]': ['blog'],
