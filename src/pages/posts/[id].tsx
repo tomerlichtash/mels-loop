@@ -4,7 +4,7 @@ import { LoadFolderModes } from 'types/parser/modes';
 import { ContentTypes } from 'types/content';
 import { mlNextUtils } from '../../lib/next-utils/nextUtils';
 import { usePageData } from '../../hooks/usePageData';
-import BlogPost from 'custom-layouts/article-content-layout/BlogPost';
+import BlogPost from '../../custom-layouts/article-content-layout/BlogPost';
 import { Link } from 'components/index';
 import { unique } from 'utils/index';
 import Layout from 'layout/Layout';

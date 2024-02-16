@@ -9,7 +9,7 @@ import Layout from 'layout/Layout';
 import { getMetadata, renderElements } from 'lib/dynamicContentHelpers';
 import Head from 'next/head';
 import { useLocale } from 'hooks/useLocale';
-import { GenericPageContentLayout } from 'custom-layouts/generic-page-content-layout/GenericPageContentLayout';
+import { GenericPageContentLayout } from '../custom-layouts/generic-page-content-layout/GenericPageContentLayout';
 
 const Contribute: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
