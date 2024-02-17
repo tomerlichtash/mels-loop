@@ -12,7 +12,7 @@ describe('App', () => {
 	let usePageDataMock;
 
 	beforeEach(async () => {
-		t = await getT('en', 'common');
+		t = await getT('en', ['common', 'pages']);
 
 		watchMediaMock();
 

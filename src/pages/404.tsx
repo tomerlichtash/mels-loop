@@ -6,11 +6,11 @@ import { useLocale } from 'hooks/useLocale';
 
 const Error404: NextPage = () => {
 	const { t } = useLocale();
-	const pageTitle = `${t('pages:404:title')}`;
+
 	return (
 		<Layout>
 			<Head>
-				<title>{pageTitle}</title>
+				<title>{t('pages:404:title')}</title>
 			</Head>
 			<div className="error">
 				<h1>404 - Page Not Found</h1>

@@ -3,37 +3,44 @@ import Text, { type TextVariant } from '../text/Text';
 import Link from '../link/Link';
 import styles from './TextLink.module.scss';
 import classNames from 'classnames';
+import { Slot } from '@radix-ui/react-slot';
 
 export type TextLinkProps = {
+	href: string;
 	title?: string;
 	linked?: boolean;
 	variant?: TextVariant;
+	asChild?: boolean;
 	className?: string;
 };
 
 const TextLink = ({
+	href,
 	title,
 	linked,
 	variant,
 	children,
+	asChild,
 	className,
 }: PropsWithChildren<TextLinkProps>): JSX.Element => {
+	const Comp = asChild ? Slot : 'span';
+
 	const text = useMemo(
 		() => (
 			<Text variant={variant} className={styles.label}>
-				{children}
+				<Comp>{children}</Comp>
 			</Text>
 		),
-		[children, variant]
+		[Comp, children, variant]
 	);
 
 	const link = useMemo(
 		() => (
-			<Link href="/" className={styles.link}>
-				{text}
+			<Link href={href} className={styles.link}>
+				<Comp>{text}</Comp>
 			</Link>
 		),
-		[text]
+		[href, Comp, text]
 	);
 
 	return (

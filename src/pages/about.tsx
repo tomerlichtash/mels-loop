@@ -9,22 +9,22 @@ import Layout from 'layout/Layout';
 import { getMetadata, renderElements } from 'lib/dynamicContentHelpers';
 import Head from 'next/head';
 import { useLocale } from 'hooks/useLocale';
-import { GenericPageContentLayout } from '../custom-layouts/generic-page-content-layout/GenericPageContentLayout';
+import { GenericContentLayout } from '../custom-layouts/generic-content-layout/GenericContentLayout';
+import { Container } from 'components/index';
 
 const About: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
 	const [title, abstract] = getMetadata(['title', 'abstract'], pageData);
 	const { t } = useLocale();
-	const pageTitle = `${t('common:site:title')} – ${t('pages:about:title')}`;
 
 	return (
 		<Layout>
 			<Head>
-				<title>{pageTitle}</title>
+				<title>{`${t('common:site:title')} – ${t('pages:about:title')}`}</title>
 			</Head>
-			<GenericPageContentLayout title={title} abstract={abstract}>
-				{renderElements(pageData)}
-			</GenericPageContentLayout>
+			<GenericContentLayout caption={title} title={abstract}>
+				<Container flexDirection="column">{renderElements(pageData)}</Container>
+			</GenericContentLayout>
 		</Layout>
 	);
 };

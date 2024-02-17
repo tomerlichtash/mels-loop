@@ -8,6 +8,8 @@ $__stylesheet__: (
 	name: layout,
 );
 
+$footerMinheight: 20vh;
+
 .root {
 	@include useBackgroundColor();
 
@@ -17,6 +19,12 @@ $__stylesheet__: (
 
 	.siteTitle {
 		@include useGap(name(logo));
+	}
+
+	.page {
+		@include layoutMixins.PageContainerMixin(name());
+		@include useMarginTop(name('page'));
+		min-height: calc(100vh - $footerMinheight);
 	}
 
 	.footer {
@@ -33,7 +41,6 @@ $__stylesheet__: (
 	}
 
 	.pageContainer {
-		// @include layoutMixins.PageContainerMixin(site-footer-container);
 		@include layoutMixins.PageContainerMixin(name());
 	}
 
@@ -42,6 +49,7 @@ $__stylesheet__: (
 		flex-direction: row;
 		justify-content: space-between;
 		gap: 2em;
+		min-height: $footerMinheight;
 	}
 
 	.column {

@@ -21,24 +21,26 @@ export const ReferenceContentLayout = ({
 	sourcesLabel,
 	children,
 }: PropsWithChildren<ReferenceContentLayoutProps>): JSX.Element => (
-	<div className={styles.root}>
+	<article className={styles.root}>
 		<header className={styles.header}>
 			<div role="caption" className={styles.caption}>
-				{caption}
+				<span className={styles.label}>{caption}</span>
 			</div>
 			<div role="term" className={styles.term}>
 				{title}
 			</div>
-			<div role="definition" className={styles.defintion}>
+			<div role="definition" className={styles.definition}>
 				{term}
 			</div>
 		</header>
+
 		<main role="note" className={styles.content}>
 			{children}
 		</main>
+
 		<footer className={styles.footer}>
 			{sources.length ? (
-				<List role="list" label={sourcesLabel} className={styles.list}>
+				<List role="list" label={sourcesLabel} className={styles.sources}>
 					{sources.map((source) => (
 						<ListItem key={unique.id()}>
 							{source.url ? (
@@ -53,7 +55,7 @@ export const ReferenceContentLayout = ({
 				</List>
 			) : null}
 		</footer>
-	</div>
+	</article>
 );
 
 export default ReferenceContentLayout;

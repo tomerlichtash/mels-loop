@@ -1,57 +1,48 @@
 import React from 'react';
 import Layout from 'layout/Layout';
 import Head from 'next/head';
-import type {
-	IContentComponentData,
-	IMLParsedNode,
-	IPageMetaData,
-} from 'types/models';
+import type { IContentComponentData, IMLParsedNode } from 'types/models';
 import { ContentIterator } from '../contentIterator';
 import { usePageData } from '../../../hooks/usePageData';
-import { DateFormat } from 'components/index';
 import { useLocale } from 'hooks/index';
 import { MLNODE_TYPES } from 'types/nodes';
-import { localeDateFormat } from 'layout/consts';
+import { GenericContentLayout } from 'custom-layouts/generic-content-layout/GenericContentLayout';
+import { getMetadata } from 'lib/dynamicContentHelpers';
 
-const GenericPage = (props: IContentComponentData) => {
-	const { t, lang } = useLocale();
-	const { pageData } = usePageData(props.pageProps);
-
+const GenericPage = ({ pageProps, className }: IContentComponentData) => {
+	const { pageData } = usePageData(pageProps);
 	const page = pageData && pageData[0];
-	const metaData = page?.metaData || ({} as IPageMetaData);
-	const { author, date, abstract } = metaData;
-
 	const node: IMLParsedNode = page && {
 		children: page.parsed,
 		key: page.id,
 		line: -1,
 		type: MLNODE_TYPES.UNKNOWN,
 	};
+	const { t } = useLocale();
 
-	const pageTitle = `${t('common:site:title')} – ${t(
-		'common:site:subtitle'
-	)} – ${metaData?.title}`;
+	const [title, abstract, author, date] = getMetadata(
+		['title', 'abstract', 'author', 'date'],
+		pageData
+	);
+
+	const pageTitle = `
+		${t('common:site:title')} – ${t('common:site:subtitle')} – ${title}
+	`;
 
 	return (
 		<Layout>
 			<Head>
 				<title>{pageTitle}</title>
 			</Head>
-			<article className="generic-page">
-				<header className="header">
-					<h1 className="title">{metaData?.title}</h1>
-					{abstract && <div className="subtitle">{abstract}</div>}
-					<div className="meta" data-has-content={!!author || !!date}>
-						{author && <div className="byline">{author}</div>}
-						{date && <DateFormat date={date} format={localeDateFormat[lang]} />}
-					</div>
-				</header>
-				{node ? (
-					<ContentIterator componentData={{ node }} />
-				) : (
-					<div className="no-content">(No page content)</div>
-				)}
-			</article>
+			<GenericContentLayout
+				title={title}
+				abstract={abstract}
+				author={author}
+				date={date}
+				className={className}
+			>
+				<ContentIterator componentData={{ node }} />
+			</GenericContentLayout>
 		</Layout>
 	);
 };

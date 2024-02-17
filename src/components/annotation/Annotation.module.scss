@@ -1,5 +1,6 @@
-@use 'styles/mixins/typographyMixins' as Typography;
-@use 'styles/mixins/popoverMixin' as Popover;
+@use 'styles/mixins/typographyMixins';
+@use 'styles/mixins/popoverMixin';
+@use '../popover/PopoverTrigger.module.scss' as PopoverTrigger;
 @import 'styles/baseComponentStyle';
 @import 'styles/lib/themeVars';
 @import 'styles/lib/states';
@@ -19,21 +20,24 @@ $__stylesheet__: (
 
 	position: relative;
 
-	@include Popover.PopoverTrigger(name());
-
 	@include useFontSize();
 	@include useLineHeight();
 	@include useOffsetTop();
 
+	@include popoverMixin.PopoverTrigger(PopoverTrigger.name());
+
 	.content {
-		@include Typography.SuffixDataContentMixin(name(), var(--data-content));
+		@include typographyMixins.SuffixDataContentMixin(
+			name(),
+			var(--data-content)
+		);
 	}
 
 	&:before {
-		@include Typography.PrefixMixin(name());
+		@include typographyMixins.PrefixMixin(name());
 	}
 
 	&:after {
-		@include Typography.SuffixMixin(name());
+		@include typographyMixins.SuffixMixin(name());
 	}
 }

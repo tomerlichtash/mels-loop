@@ -16,11 +16,12 @@ export const useLocale: LocaleProps = (id) => {
 	const current = lang as LocaleId;
 	const locales = i18n['locales'] as LocaleId[];
 	const directions = i18n['direction'] as Record<LocaleId, TextDirection>;
+	const textDirection = directions[id || current];
 
 	return {
 		lang: current,
 		locales,
-		textDirection: directions[id || current],
+		textDirection,
 		t,
 	};
 };

@@ -3,39 +3,12 @@
 @import '../../../../lib/refs';
 
 $index: (
-	trigger: (
-		text-color: ref(link-text-color),
-		radius: globalRef(radius-md),
-		astriek-color: ref(link-text-color),
-		PopoverTrigger.state(hovered): (
-			text-color: ref(color-secondary-main),
-			astriek-color: ref(color-secondary-main),
-		),
-		PopoverTrigger.state(clicked): (
-			background-color: ref(color-secondary-main),
-			text-color: ref(color-secondary-contrast),
-		),
-		PopoverTrigger.state(selected): (
-			background-color: ref(color-secondary-main),
-			text-color: ref(color-secondary-contrast),
-			astriek-color: ref(color-secondary-main),
-		),
-		PopoverTrigger.state(selected-hovered): (
-			background-color: ref(color-secondary-main),
-			text-color: ref(color-secondary-contrast),
-		),
-		PopoverTrigger.state(selected-clicked): (
-			background-color: ref(color-secondary-main),
-			text-color: ref(color-secondary-contrast),
-		),
-	),
-	dialog: (
-		background-color: ref(color-surface-dark),
-		border-radius: globalRef(radius-md),
-		width: 25em,
-		fadeIn-animation: (
-			duration: globalRef(animation-duration-sm),
-			easing: globalRef(animation-easing-in),
-		),
+	background-color: ref(color-surface-light),
+	radius: globalRef(radius-xs),
+	border-color: ref(color-surface-dark),
+	width: 29.5em,
+	fadeIn-animation: (
+		duration: globalRef(animation-duration-sm),
+		easing: globalRef(animation-easing-in),
 	),
 );

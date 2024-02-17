@@ -4,9 +4,10 @@ import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
 import { IPageProps } from 'types/models';
 import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
 import GenericPage from 'lib/dynamic-content-utils/components/genericPage';
+import styles from '../../../../../custom-layouts/generic-content-layout/mixins/CodexArticleLayoutMixin.module.scss';
 
 export default function Doc(props: IPageProps) {
-	return <GenericPage pageProps={props} />;
+	return <GenericPage pageProps={props} className={styles.root} />;
 }
 
 export const getStaticPaths: GetStaticPaths = async (context) => {

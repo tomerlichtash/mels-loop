@@ -139,6 +139,7 @@ export interface IFolderContent {
  */
 export interface IContentComponentData {
 	pageProps: IGenericPageProps;
+	className?: string;
 }
 
 export interface IGenericPageProps {

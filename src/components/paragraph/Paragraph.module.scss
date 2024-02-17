@@ -1,10 +1,15 @@
+@use 'styles/mixins/typographyMixins';
 @import 'styles/baseComponentStyle';
-@import 'styles/mixins/typographyMixins';
 
 $__stylesheet__: (
 	name: paragraph,
 );
 
 .root {
-	@include RunningTextMixin(name());
+	@include typographyMixins.RunningTextMixin(name());
+	margin-top: 0;
+	// margin-block-end: 0;
+	// &:not(:last-child),
+	// &:not(:only-child) {
+	// }
 }

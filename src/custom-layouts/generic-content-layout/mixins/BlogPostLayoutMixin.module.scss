@@ -1,0 +1,22 @@
+@use 'styles/lib/refs';
+@import '../../generic-content-layout/GenericContentLayout.module';
+
+.root {
+	&:not(:last-child) {
+		margin-bottom: 2em;
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+	@include GenericContentLayoutMixin(
+		$rootPaddingTop: 2em,
+		$rootPaddingBottom: 2em,
+		$rootPaddingLeft: 2em,
+		$rootPaddingRight: 2em,
+		$rootBoxShadow: refs.globalRef(shadow-md),
+		$rootRadius: 30px,
+		$titleBgColor: pink
+	);
+}

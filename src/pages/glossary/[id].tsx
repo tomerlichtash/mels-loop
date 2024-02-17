@@ -28,9 +28,15 @@ export default function GlossaryTerm(props: IPageProps) {
 		<Layout>
 			<article className="page">
 				<Link className="title" href={'/glossary'}>
-					{t('GLOSSARY_NAV_LABEL')}
+					{t('common:button:backToTarget', {
+						sep: t('common:to'),
+						target: t('pages:glossary:title'),
+					})}
 				</Link>
-				<h1 className="title">{t(metaData?.glossary_key)}</h1>
+				<h1 className="title">{t('pages:glossary:title')}</h1>
+				<h2 className="title">
+					{t(`glossary:term:${metaData?.glossary_key}`)}
+				</h2>
 				{/* TODO: Use forced translation */}
 				{/* <p className="term">{t(metaData?.glossary_key, 'en')}</p> */}
 				{node ? (

@@ -6,17 +6,19 @@ import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import type { IPageProps, IParsedPageData } from 'types/models';
 import { usePageData } from '../hooks/usePageData';
 import orderBy from 'lodash.orderby';
-import BlogPost from '../custom-layouts/article-content-layout/BlogPost';
 import { unique } from 'utils/index';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';
 import Head from 'next/head';
+import { getMetadata, renderElements } from 'lib/dynamicContentHelpers';
+import { GenericContentLayout } from 'custom-layouts/generic-content-layout/GenericContentLayout';
+import styles from '../custom-layouts/generic-content-layout/mixins/BlogPostLayoutMixin.module.scss';
 
 export default function Blog(props: IPageProps) {
 	const { pageData } = usePageData(props);
 	const { t, lang } = useLocale();
-
 	const pageTitle = `${t('common:site:title')} – ${t('pages:blog:title')}`;
+	const sortedItems = orderBy(pageData, ['metaData.date'], ['desc']);
 
 	return (
 		<Layout>
@@ -24,26 +26,29 @@ export default function Blog(props: IPageProps) {
 				<title>{pageTitle}</title>
 			</Head>
 
-			<div className="page">
-				<h1 className="title">{t('blog:page:title')}</h1>
-				{orderBy(pageData, ['metaData.date'], ['desc']).map(
-					(page: IParsedPageData) => {
-						const { metaData, path: path } = page;
-						const { title, date, author } = metaData;
-						return (
-							<BlogPost
-								key={unique.id()}
-								title={title}
-								date={date}
-								path={path}
-								locale={lang}
-								author={author}
-								content={page}
-							/>
-						);
-					}
-				)}
-			</div>
+			<GenericContentLayout caption={t('pages:blog:title')} title={'Posts'}>
+				{sortedItems.map((page: IParsedPageData) => {
+					const { path } = page;
+					const [title, date, author] = getMetadata(
+						['title', 'date', 'author'],
+						[page]
+					);
+					return (
+						<GenericContentLayout
+							key={unique.id()}
+							title={title}
+							date={date}
+							author={author}
+							path={path}
+							locale={lang}
+							className={styles.root}
+							pageStyles={styles}
+						>
+							{renderElements([page])}
+						</GenericContentLayout>
+					);
+				})}
+			</GenericContentLayout>
 		</Layout>
 	);
 }

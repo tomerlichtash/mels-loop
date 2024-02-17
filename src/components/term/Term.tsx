@@ -11,7 +11,7 @@ export const Term = ({
 	className,
 }: PropsWithChildren<TermProps>): JSX.Element => (
 	<span className={classNames(styles.root, className)}>
-		<span className={styles.popoverTrigger}>{children}</span>
+		<span className={styles.label}>{children}</span>
 	</span>
 );
 

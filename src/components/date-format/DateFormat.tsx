@@ -10,7 +10,7 @@ type DateFormatProps = {
 
 const DateFormat = ({
 	date,
-	format = 'mm/d/yy',
+	format = 'MM/dd/yy',
 	className,
 }: DateFormatProps): JSX.Element => (
 	<time className={classNames(styles.root, className)}>

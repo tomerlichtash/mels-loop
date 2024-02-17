@@ -1,5 +1,6 @@
 @use 'layout/Layout.module' as Layout;
 
+@use 'components/popover/Popover.module' as Popover;
 @use 'components/popover/PopoverTrigger.module' as PopoverTrigger;
 @use 'components/popover/PopoverDialog.module' as PopoverDialog;
 @use 'components/line/Line.module' as Line;
@@ -11,7 +12,7 @@
 @use 'components/figure/Figure.module' as Figure;
 @use 'components/custom-image/CustomImage.module' as CustomImage;
 @use 'components/annotation/Annotation.module' as Annotation;
-@use 'components/term/Term.module' as GlossaryTerm;
+@use 'components/term/Term.module' as Term;
 @use 'components/code-inline/CodeInline.module' as CodeInline;
 @use 'components/code-block/CodeBlock.module' as CodeBlock;
 @use 'components/list-item/ListItem.module' as ListItem;
@@ -19,7 +20,6 @@
 @use 'components/loading-indicator/LoadingIndicator.module' as LoadingIndicator;
 @use 'components/strip/Strip.module' as Strip;
 @use 'components/container/Container.module' as Container;
-@use 'components/page/Page.module' as Page;
 @use 'components/logo/Logo.module' as Logo;
 @use 'components/text-link/TextLink.module' as TextLink;
 @use 'components/locale-select/LocaleSelect.module' as LocaleSelect;
@@ -32,12 +32,12 @@
 
 @use 'layout' as layoutTheme;
 @use 'scrollbar' as scrollbarTheme;
+@use 'popover' as popoverTheme;
 @use 'popoverTrigger' as popoverTriggerTheme;
 @use 'popoverDialog' as popoverDialogTheme;
 @use 'strip' as stripTheme;
 @use 'loadingIndicator' as loadingIndicatorTheme;
 @use 'container' as containerTheme;
-@use 'page' as pageTheme;
 @use 'logo' as logoTheme;
 @use 'footer' as footerTheme;
 @use 'textLink' as textLinkTheme;
@@ -57,7 +57,7 @@
 @use 'figure' as figureTheme;
 @use 'customImage' as customImageTheme;
 @use 'annotation' as annotationTheme;
-@use 'glossary' as glossaryTheme;
+@use 'term' as termTheme;
 @use 'codeInline' as codeInlineTheme;
 @use 'codeBlock' as codeBlockTheme;
 @use 'listItem' as listItemTheme;
@@ -72,7 +72,7 @@ $index: (
 	Link.name(): linkTheme.vars(),
 	Blockquote.name(): blockquoteTheme.vars(),
 	Annotation.name(): annotationTheme.vars(),
-	GlossaryTerm.name(): glossaryTheme.vars(),
+	Term.name(): termTheme.vars(),
 	// Cite.name(): citeTheme.vars(),
 	// Heading.name(): heading.vars(),
 	ListItem.name(): listItemTheme.vars(),
@@ -82,7 +82,6 @@ $index: (
 	Figure.name(): figureTheme.vars(),
 	CustomImage.name(): customImageTheme.vars(),
 	Layout.name(): layoutTheme.vars(),
-	Page.name(): pageTheme.vars(),
 	Container.name(): containerTheme.vars(),
 	Logo.name(): logoTheme.vars(),
 	TextLink.name(): textLinkTheme.vars(),
@@ -91,6 +90,7 @@ $index: (
 	NavItemContent.name(): navItemContentTheme.vars(),
 	ThemeSelector.name(): themeSelectorTheme.vars(),
 	LocaleSelect.name(): localeSelectTheme.vars(),
+	Popover.name(): popoverTheme.vars(),
 	PopoverTrigger.name(): popoverTriggerTheme.vars(),
 	PopoverDialog.name(): popoverDialogTheme.vars(),
 	Text.name(): textTheme.vars(),

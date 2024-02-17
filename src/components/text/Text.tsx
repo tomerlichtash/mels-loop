@@ -30,7 +30,6 @@ const Text = ({
 	weight,
 	lowercase,
 	uppercase,
-	// locale = "en",
 	children,
 	className,
 }: PropsWithChildren<TextProps>) => {
@@ -43,7 +42,6 @@ const Text = ({
 			data-lowercase={lowercase}
 			data-uppercase={uppercase}
 			data-weight={weight}
-			// data-locale={locale}
 			className={classNames(styles.root, className)}
 		>
 			{children}

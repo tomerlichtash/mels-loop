@@ -4,8 +4,11 @@ import type { PopoverTriggerProps } from './types';
 
 const PopoverTrigger = ({
 	children,
+	...rest
 }: PropsWithChildren<PopoverTriggerProps>): JSX.Element => (
-	<span className={styles.root}>{children}</span>
+	<span className={styles.root} {...rest}>
+		{children}
+	</span>
 );
 
 export default PopoverTrigger;

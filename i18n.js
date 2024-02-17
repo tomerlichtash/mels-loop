@@ -5,14 +5,14 @@ module.exports = {
 		en: 'ltr',
 		he: 'rtl',
 	},
-	localesToIgnore: [],
 	logBuild: false,
 	pages: {
 		'*': ['common', 'locale', 'nav', 'pages', 'authors'],
 		'/': ['glossary'],
 		'/glossary': ['glossary'],
+		'/glossary/[id]': ['glossary'],
 		'/pages/docs/[id]/codex': ['docs'],
-		'/posts': ['blog'],
+		'he/posts': ['blog'],
 		'/posts/[id]': ['blog'],
 	},
 	loadLocaleFrom: (lang, ns) =>

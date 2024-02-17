@@ -9,24 +9,27 @@ import Layout from 'layout/Layout';
 import { getMetadata, renderElements } from 'lib/dynamicContentHelpers';
 import Head from 'next/head';
 import { useLocale } from 'hooks/useLocale';
-import { GenericPageContentLayout } from '../custom-layouts/generic-page-content-layout/GenericPageContentLayout';
+import { GenericContentLayout } from '../custom-layouts/generic-content-layout/GenericContentLayout';
 
 const Contribute: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
 	const [title] = getMetadata(['title'], pageData);
 	const { t } = useLocale();
-	const pageTitle = `${t('common:site:title')} – ${t(
-		'pages:contribute:title'
-	)}`;
+	const pageTitle = `
+		${t('common:site:title')} – ${t('pages:contribute:title')}
+	`;
 
 	return (
 		<Layout>
 			<Head>
 				<title>{pageTitle}</title>
 			</Head>
-			<GenericPageContentLayout title={title}>
+			<GenericContentLayout
+				caption={title}
+				title={'Contribute and Participate'}
+			>
 				{renderElements(pageData)}
-			</GenericPageContentLayout>
+			</GenericContentLayout>
 		</Layout>
 	);
 };

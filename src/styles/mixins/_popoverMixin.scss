@@ -7,13 +7,6 @@
 	@include useTextColor($comp);
 	@include useRadius($comp);
 
-	&:hover {
-		@include textUnderline;
-
-		@include useBackgroundColor($comp, $state);
-		@include useTextColor($comp, __hover);
-	}
-
 	&:active {
 		@include disableUserSelection;
 	}

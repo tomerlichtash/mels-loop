@@ -23,6 +23,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
 	args: {
 		linked: false,
+		href: '#',
 	},
 	render: function Render({ children, ...args }) {
 		return <TextLink {...args}>{children}</TextLink>;

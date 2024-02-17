@@ -5,6 +5,7 @@ import I18nProvider from 'next-translate/I18nProvider';
 import commonEN from '../locales/en/common.json';
 import localeEN from '../locales/en/locale.json';
 import navEN from '../locales/en/nav.json';
+import pagesEN from '../locales/en/pages.json';
 import authorsEN from '../locales/en/authors.json';
 import { NextPage } from 'next';
 import { IPageProps } from 'types/models';
@@ -13,6 +14,7 @@ const locale = 'en';
 const translateEN = {
 	common: commonEN,
 	nav: navEN,
+	pages: pagesEN,
 	locale: localeEN,
 	authors: authorsEN,
 };

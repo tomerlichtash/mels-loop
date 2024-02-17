@@ -3,15 +3,17 @@
 @import '../../../../lib/refs';
 
 $index: (
+	dada: false,
 	text-color: ref(link-text-color),
-	radius: globalRef(radius-md),
+	radius: globalRef(radius-sm),
 	astriek-color: ref(link-text-color),
 	PopoverTrigger.state(hovered): (
 		text-color: ref(color-secondary-main),
 		astriek-color: ref(color-secondary-main),
 	),
 	PopoverTrigger.state(clicked): (
-		background-color: ref(color-secondary-main),
+		astriek-color: ref(color-primary-dark),
+		background-color: ref(color-primary-dark),
 		text-color: ref(color-secondary-contrast),
 	),
 	PopoverTrigger.state(selected): (
@@ -20,10 +22,12 @@ $index: (
 		astriek-color: ref(color-secondary-main),
 	),
 	PopoverTrigger.state(selected-hovered): (
-		background-color: ref(color-secondary-main),
+		astriek-color: ref(color-secondary-dark),
+		background-color: ref(color-secondary-dark),
 		text-color: ref(color-secondary-contrast),
 	),
 	PopoverTrigger.state(selected-clicked): (
+		astriek-color: ref(color-secondary-main),
 		background-color: ref(color-secondary-main),
 		text-color: ref(color-secondary-contrast),
 	),

@@ -1,17 +1,16 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import Layout from 'layout/Layout';
-import { Text, Heading } from 'components/index';
 import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import { usePageData } from '../hooks/usePageData';
-import { getMetadata, renderElements } from '../lib/dynamicContentHelpers';
+import Head from 'next/head';
+import Layout from 'layout/Layout';
+import { GenericContentLayout } from 'custom-layouts/generic-content-layout/GenericContentLayout';
 import { ContentTypes } from '../types/content';
 import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
-
-import type { IPageProps } from 'types/models';
+import { getMetadata, renderElements } from '../lib/dynamicContentHelpers';
 import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
-import Head from 'next/head';
 import { useLocale } from 'hooks/useLocale';
+import type { IPageProps } from 'types/models';
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { t } = useLocale();
@@ -25,13 +24,9 @@ const Index: NextPage<IPageProps> = (props) => {
 			<Head>
 				<title>{pageTitle}</title>
 			</Head>
-			<article>
-				<Heading level={1} className="title">
-					{title}
-				</Heading>
-				<Text variant="h2">{moto}</Text>
+			<GenericContentLayout title={title} abstract={moto}>
 				{renderElements(pageData)}
-			</article>
+			</GenericContentLayout>
 		</Layout>
 	);
 };

@@ -3,7 +3,6 @@ import type { ContentComponentProps } from 'types/models';
 import { LinkContentBlock } from './content-blocks';
 import { DynamicContentContext } from './context/contentContext';
 import { PopoverContentBlock } from './content-blocks/popoverContentBlock';
-import { useLocale } from 'hooks/useLocale';
 import { NODE_DISPLAY_TYPES } from 'types/nodes';
 
 export const LinkSelector = ({
@@ -12,7 +11,6 @@ export const LinkSelector = ({
 	const { node } = componentData;
 	const { displayType, key } = node;
 	const ctx = useContext(DynamicContentContext);
-	const { textDirection, lang } = useLocale();
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
 		return <LinkContentBlock key={key} componentData={componentData} />;
@@ -37,11 +35,9 @@ export const LinkSelector = ({
 
 	return (
 		<PopoverContentBlock
-			data-testid={`${node.linkType}_${node.target.split(`/`)[1]}`}
 			type={node.linkType}
 			componentData={componentData}
-			textDirection={textDirection}
-			locale={lang}
+			data-testid={`${node.linkType}_${node.target.split(`/`)[1]}`}
 		/>
 	);
 };

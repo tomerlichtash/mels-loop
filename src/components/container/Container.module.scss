@@ -11,10 +11,6 @@ $__stylesheet__: (
 
 	min-height: 48px;
 
-	// @include useBackgroundColor(name());
-	&[data-background-color] {
-	}
-
 	&[data-fixed-position='true'] {
 		position: fixed;
 		z-index: 1;
@@ -27,6 +23,16 @@ $__stylesheet__: (
 			&[data-position-top='top'] {
 				top: 0;
 			}
+		}
+	}
+
+	&[data-flex-direction] {
+		&[data-flex-direction='row'] {
+			flex-direction: row;
+		}
+
+		&[data-flex-direction='column'] {
+			flex-direction: column;
 		}
 	}
 

@@ -1,0 +1,70 @@
+@use 'styles/lib/refs';
+@import 'styles/baseComponentStyle';
+@import 'styles/lib/themeVars';
+
+$__stylesheet__: (
+	name: generic-content-layout,
+);
+
+.root {
+	user-select: text;
+
+	@include useRadius();
+	@include useShadow();
+	@include usePadding();
+	@include useMargin();
+
+	.article {
+		width: 100%;
+		display: block;
+	}
+
+	.caption {
+	}
+
+	.title {
+		@include useBackgroundColor(name('title'));
+	}
+
+	.abstract {
+	}
+
+	.section {
+	}
+
+	.content {
+		img {
+			display: block;
+			max-width: 100%;
+		}
+	}
+}
+
+@mixin GenericContentLayoutMixin(
+	$rootRadius: inherit,
+	$rootBoxShadow: inherit,
+	$rootPaddingTop: inherit,
+	$rootPaddingBottom: inherit,
+	$rootPaddingLeft: inherit,
+	$rootPaddingRight: inherit,
+	$rootMarginTop: inherit,
+	$rootMarginBottom: inherit,
+	$rootMarginLeft: inherit,
+	$rootMarginRight: inherit,
+	$titleBgColor: inherit
+) {
+	#{refs.varName(generic-content-layout-radius)}: $rootRadius;
+	#{refs.varName(generic-content-layout-shadow)}: $rootBoxShadow;
+
+	#{refs.varName(generic-content-layout-padding-top)}: $rootPaddingTop;
+	#{refs.varName(generic-content-layout-padding-bottom)}: $rootPaddingBottom;
+	#{refs.varName(generic-content-layout-padding-left)}: $rootPaddingLeft;
+	#{refs.varName(generic-content-layout-padding-right)}: $rootPaddingRight;
+
+	#{refs.varName(generic-content-layout-margin-top)}: $rootMarginTop;
+	#{refs.varName(generic-content-layout-margin-bottom)}: $rootMarginBottom;
+	#{refs.varName(generic-content-layout-margin-left)}: $rootMarginLeft;
+	#{refs.varName(generic-content-layout-margin-right)}: $rootMarginRight;
+
+	#{refs.varName(generic-content-layout-title-background-color)}: $titleBgColor;
+}

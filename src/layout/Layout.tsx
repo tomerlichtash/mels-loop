@@ -16,7 +16,6 @@ import {
 	ListItem,
 	LocaleSelect,
 	Logo,
-	Page,
 	Scrollbar,
 	Separator,
 	Strip,
@@ -138,7 +137,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 						{getIcon('close')}
 					</Button>
 					<Logo />
-					<TextLink title={siteTitle} linked={!isHome}>
+					<TextLink title={siteTitle} linked={!isHome} href="/">
 						{siteTitle}
 					</TextLink>
 					<Strip />
@@ -198,7 +197,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 					<header data-testid="topbar">
 						<Container alignItemsCenter className={styles.siteTitle}>
 							<Logo />
-							<TextLink title={siteTitle} linked={!isHome}>
+							<TextLink title={siteTitle} linked={!isHome} href="/">
 								{siteTitle}
 							</TextLink>
 							<Separator />
@@ -229,7 +228,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 						)}
 					</header>
 				</Container>
-				<Page>{children}</Page>
+				<Container className={styles.page}>{children}</Container>
 				<Strip />
 				<Container fullWidth asChild className={styles.footer}>
 					<footer className={styles.footer}>

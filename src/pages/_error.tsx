@@ -6,10 +6,10 @@ import { useLocale } from 'hooks/useLocale';
 
 const CustomError: NextPage = () => {
 	const { t } = useLocale();
-	const pageTitle = `${t('pages:error:title')}`;
+
 	return (
 		<Layout>
-			<Head>{pageTitle}</Head>
+			<Head>{t('pages:error:title')}</Head>
 			<div className="error">
 				<h1>Error</h1>
 			</div>

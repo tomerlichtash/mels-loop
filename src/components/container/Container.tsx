@@ -22,6 +22,8 @@ type ContainerProps = {
 	/** Add horizontal gutter */
 	horizontalGutter?: boolean;
 
+	flexDirection?: 'row' | 'column';
+
 	/** Render container as slot  */
 	asChild?: boolean;
 
@@ -33,6 +35,7 @@ const Container = ({
 	sticky,
 	position,
 	spaceBetween,
+	flexDirection,
 	alignItemsCenter,
 	fullWidth,
 	horizontalGutter,
@@ -51,6 +54,7 @@ const Container = ({
 			data-align-items-center={alignItemsCenter}
 			data-full-width={fullWidth}
 			data-horizontal-gutter={horizontalGutter}
+			data-flex-direction={flexDirection}
 			className={classNames(styles.root, className)}
 			{...rest}
 		>

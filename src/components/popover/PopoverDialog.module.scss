@@ -10,7 +10,7 @@ $__stylesheet__: (
 	--animation-type: fadeIn;
 	--animation-duration: 250ms;
 	--animation-easing: ease-out forwards;
-	--width: 25em;
+	--width: 20em;
 	--border-width: 1px;
 	--border-style: solid;
 	--border-color: #808080;
@@ -20,14 +20,14 @@ $__stylesheet__: (
 
 	overflow: hidden;
 
-	@include useWidth(popver-dialog);
-	@include useBackgroundColor(popver-dialog);
-	@include useShadow(popover-dialog);
-	@include useBorderSize(popover-dialog);
-	@include useBorderStyle(popover-dialog);
-	@include useBorderColor(popover-dialog);
-	@include useRadius(popover-dialog);
-	@include useFadeIn(popover-dialog);
+	@include useWidth();
+	@include useBackgroundColor();
+	@include useShadow();
+	@include useBorderSize();
+	@include useBorderStyle();
+	@include useBorderColor();
+	@include useRadius();
+	@include useFadeIn(name());
 
 	.content {
 		@include useBackgroundColor(popover-dialog);

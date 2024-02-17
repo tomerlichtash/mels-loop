@@ -5,16 +5,29 @@ import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import type { IPageProps } from 'types/models';
 import { usePageData } from '../hooks/usePageData';
 import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
-import { Link } from 'components/index';
+import { Link, Text } from 'components/index';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';
 import Head from 'next/head';
+import { unique } from 'utils/unique';
 
 const Glossary: NextPage<IPageProps> = (props) => {
 	const { metaData } = usePageData(props);
 	const { t } = useLocale();
-
 	const pageTitle = `${t('common:site:title')} – ${t('pages:glossary:title')}`;
+
+	const getItem = (page, index) => {
+		const term = page.metaData;
+		const key = `term-${index}`;
+		const { glossary_key } = term;
+		return glossary_key ? (
+			<Link href={page.path}>{t(`glossary:term:${term.glossary_key}`)}</Link>
+		) : (
+			<Text key={key} className="error">
+				Missing glossary term data {page.id}
+			</Text>
+		);
+	};
 
 	return (
 		<Layout>
@@ -25,22 +38,9 @@ const Glossary: NextPage<IPageProps> = (props) => {
 				<h1 className="title">{t('pages:glossary:title')}</h1>
 				{metaData.length && (
 					<ul className="term-list">
-						{metaData.map((page, index) => {
-							const term = page.metaData;
-							const key = `term-${index}`;
-							const { glossary_key } = term;
-							return glossary_key ? (
-								<li className="term" key={key}>
-									<Link href={page.path}>
-										{t(`glossary:term:${term.glossary_key}`)}
-									</Link>
-								</li>
-							) : (
-								<div key={key} className="error">
-									Missing glossary term data {page.id}
-								</div>
-							);
-						})}
+						{metaData.map((page, index) => (
+							<li key={unique.id()}>{getItem(page, index)}</li>
+						))}
 					</ul>
 				)}
 			</article>
