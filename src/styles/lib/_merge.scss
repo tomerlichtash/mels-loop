@@ -1,19 +1,21 @@
+@use 'sass:map';
+
 @function deep($maps...) {
 	$result: ();
 
 	@each $map in $maps {
 		@each $key, $value in $map {
-			$existing-value: map-get($result, $key);
+			$existing-value: map.get($result, $key);
 
 			@if type-of($value) == map and type-of($existing-value) == map {
-				$result: map-merge(
+				$result: map.merge(
 					$result,
 					(
 						$key: deep($existing-value, $value),
 					)
 				);
 			} @else {
-				$result: map-merge(
+				$result: map.merge(
 					$result,
 					(
 						$key: $value,

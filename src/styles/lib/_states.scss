@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use 'sass:list';
+@use 'sass:string';
 @import '../config/consts';
 @import './merge';
 
@@ -9,19 +10,20 @@ $COMPONENT_STATES: (
 	clicked: active,
 	selected: selected,
 );
-
 $states: $COMPONENT_STATES;
 
 @function _strReplace($string, $search, $replace: '') {
-	$index: str-index($string, $search);
+	$index: string.index($string, $search);
 
 	@if $index {
-		@return str-slice($string, 1, $index - 1) + $replace +
-			_strReplace(
-				str-slice($string, $index + str-length($search)),
-				$search,
-				$replace
-			);
+		$searchLn: string.length($search);
+		$replaced: _strReplace(
+			string.slice($string, $index + $searchLn),
+			$search,
+			$replace
+		);
+
+		@return string.slice($string, 1, $index - 1) + $replace + $replaced;
 	}
 
 	@return $string;
@@ -30,12 +32,13 @@ $states: $COMPONENT_STATES;
 @function customStates($states) {
 	$output-map: ();
 
-	@each $key in map-keys($states) {
-		$state: map-get($states, $key);
+	@each $key in map.keys($states) {
+		$state: map.get($states, $key);
 		$val: $state;
 
-		@if (type-of($state) == 'list') {
+		@if type-of($state) == 'list' {
 			$s: '';
+
 			@each $stateMap in $state {
 				@each $st in $stateMap {
 					$idx: list.index($stateMap, $st);
@@ -43,12 +46,12 @@ $states: $COMPONENT_STATES;
 					$s: #{$s}#{$stateDelim}#{$st};
 				}
 			}
+
 			$val: $s;
 		}
 
 		$transformed-value: _strReplace($val, $val, #{$theme-state-delim}#{$val});
-
-		$output-map: map-merge(
+		$output-map: map.merge(
 			$output-map,
 			(
 				$key: $transformed-value,
@@ -60,12 +63,13 @@ $states: $COMPONENT_STATES;
 }
 
 @function state($state, $customStateMap: ()) {
-	$compState: map-get(customStates(deep($states, $customStateMap)), $state);
+	$compState: map.get(customStates(deep($states, $customStateMap)), $state);
 
+	/* stylelint-disable scss/at-if-no-null */
 	@if $compState != null {
 		@return $compState;
 	}
 
-	@warn Undefined state "#{$state}" in component;
+	@warn #{Undefined state "#{$state}" in component};
 	@return $state;
 }

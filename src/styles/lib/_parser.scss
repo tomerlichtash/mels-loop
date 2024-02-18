@@ -1,9 +1,10 @@
+@use 'sass:map';
 @use 'sass:string';
 @use 'sass:list';
 @use './refs';
 @use '../config';
 
-$defaultStateDelim: config.$theme-state-delim;
+$default-state-delim: config.$theme-state-delim;
 
 @function _isEmptyVarMap($vars) {
 	@return (type-of($vars) == 'list') and (length($vars) == 0);
@@ -11,13 +12,13 @@ $defaultStateDelim: config.$theme-state-delim;
 
 @function _removeNth($list, $nth) {
 	$result: ();
-	$nth: if($nth < 0, length($list) + $nth + 1, $nth);
+	$nth: if($nth < 0, list.length($list) + $nth + 1, $nth);
 	$bracketed: is-bracketed($list);
-	$separator: list-separator($list);
+	$separator: list.separator($list);
 
 	@for $i from 1 through length($list) {
 		@if $i != $nth {
-			$result: append($result, nth($list, $i));
+			$result: list.append($result, list.nth($list, $i));
 		}
 	}
 
@@ -28,7 +29,7 @@ $defaultStateDelim: config.$theme-state-delim;
 	@return str-index($val, '-content') != null;
 }
 
-@function transform($map, $path, $delim: $defaultStateDelim) {
+@function transform($map, $path, $delim: $default-state-delim) {
 	$result: ();
 
 	@each $key, $value in $map {
@@ -41,7 +42,7 @@ $defaultStateDelim: config.$theme-state-delim;
 		// handle states path
 		@if str-index($path, $delim) {
 			$split: string.split($path, $delim);
-			$prefix: nth($split, 1);
+			$prefix: list.nth($split, 1);
 			$stateList: _removeNth($split, 1);
 			$states: '';
 
@@ -53,7 +54,7 @@ $defaultStateDelim: config.$theme-state-delim;
 		}
 
 		@if type-of($value) == map {
-			$result: map-merge($result, transform($value, $variable-name));
+			$result: map.merge($result, transform($value, $variable-name));
 		} @else {
 			// unquote all values, except special case of `content` properties,
 			// that should be in quotes. This is to support handling of quoted strings
@@ -62,7 +63,7 @@ $defaultStateDelim: config.$theme-state-delim;
 				$value: string.unquote($value);
 			}
 
-			$result: map-merge(
+			$result: map.merge(
 				$result,
 				(
 					refs.cssVar(#{$variable-name}): $value,
@@ -84,7 +85,7 @@ $defaultStateDelim: config.$theme-state-delim;
 	}
 }
 
-@mixin compile($exports, $prefix: '', $delim: $defaultStateDelim) {
+@mixin compile($exports, $prefix: '', $delim: $default-state-delim) {
 	@each $vars in $exports {
 		@include _parse((transform($vars, refs.prefix($prefix), $delim)));
 	}

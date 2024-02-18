@@ -2,8 +2,9 @@
 @use 'sass:string';
 
 @function name($part: '') {
-	@if (string.length($part) > 0) {
-		@return #{map-get($__stylesheet__, name)}-#{$part};
+	@if string.length($part) > 0 {
+		@return #{map.get($__stylesheet__, name)}-#{$part};
 	}
-	@return map-get($__stylesheet__, name);
+
+	@return map.get($__stylesheet__, name);
 }

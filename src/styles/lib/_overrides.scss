@@ -25,17 +25,19 @@
 }
 
 @mixin transform($module, $map) {
-	$compName: map-get($map, comp);
-	$overrides: map-get($map, overrides);
+	$compName: map.get($map, comp);
+	$overrides: map.get($map, overrides);
 
 	@each $key, $refs in $overrides {
 		// extract root vars
-		$rootVars: map-get($refs, _);
+		$rootVars: map.get($refs, _);
+
 		// if key is `_` (root) then use empty string
 		$partName: if($key == '_', '', $key);
 
 		@each $ref in map.keys($refs) {
 			$state: if($ref == '_', '', $ref);
+
 			@include _mapVars($compName, $module, $rootVars, $partName, $state);
 		}
 	}
