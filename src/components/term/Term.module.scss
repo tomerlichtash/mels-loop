@@ -17,7 +17,7 @@ $__stylesheet__: (
 		@include popoverMixin.PopoverTrigger(PopoverTrigger.name());
 	}
 
-	&:after {
+	&::after {
 		position: relative;
 
 		@include cursorPointer;

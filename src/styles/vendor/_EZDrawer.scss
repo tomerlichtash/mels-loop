@@ -1,4 +1,24 @@
 .EZDrawer {
+	.EZDrawer__overlay {
+		display: none;
+		height: 100vh;
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		transition: 125ms all ease-in-out;
+
+		// opacity: 1;
+	}
+
+	.EZDrawer__container {
+		position: fixed;
+		visibility: hidden;
+		background: var(--ml-color-surface-main);
+		transition: all;
+		box-shadow: 0 0 10px 5px rgb(0 0 0 / 10%);
+	}
+
 	.EZDrawer__checkbox {
 		display: none;
 
@@ -13,24 +33,5 @@
 				transform: translate3d(0, 0, 0) !important;
 			}
 		}
-	}
-
-	.EZDrawer__overlay {
-		display: none;
-		height: 100vh;
-		position: fixed;
-		left: 0;
-		top: 0;
-		width: 100%;
-		transition: 125ms all ease-in-out;
-		// opacity: 1;
-	}
-
-	.EZDrawer__container {
-		position: fixed;
-		visibility: hidden;
-		background: var(--ml-color-surface-main);
-		transition: all;
-		box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
 	}
 }

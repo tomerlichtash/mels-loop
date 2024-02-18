@@ -1,42 +1,34 @@
-@use '../../../../../components/nav/menu-bar/MenuBar.module.scss' as MenuBar;
+@use '../../../../../components/nav/menu-bar/MenuBar.module.scss' as component;
 @import '../../../../baseThemeStyle';
 @import '../../../../lib/refs';
 
 $__stylesheet__: (
 	name: menu-bar,
 );
-
-$growthAnimation: (
+$growth-animation: (
 	duration: globalRef(animation-duration-sm),
 	easing: globalRef(animation-easing-default),
 );
-
-$stageAnimation: (
+$stage-animation: (
 	duration: globalRef(animation-duration-sm),
 	easing: globalRef(animation-easing-default),
 );
-
-$hovered: MenuBar.state(hovered);
-$opened: MenuBar.state(opened);
-
 $index: (
 	trigger: (
-		// font-weight: 900,
-		caret:
-			(
+		caret: (
+			text-color: ref(color-surface-contrast),
+			component.state(hovered): (
 				text-color: ref(color-surface-contrast),
-				#{$hovered}: (
-						text-color: ref(color-surface-contrast),
-					),
 			),
-		#{$hovered}: (
-				background-color: ref(color-surface-dark),
-				text-color: ref(color-primary-dark),
-			),
-		#{$opened}: (
-				background-color: ref(color-surface-dark),
-				text-color: ref(color-primary-dark),
-			),
+		),
+		component.state(hovered): (
+			background-color: ref(color-surface-dark),
+			text-color: ref(color-primary-dark),
+		),
+		component.state(opened): (
+			background-color: ref(color-surface-dark),
+			text-color: ref(color-primary-dark),
+		),
 	),
 
 	list: (
@@ -48,10 +40,10 @@ $index: (
 		radius: globalRef(radius-sm),
 		gutter: 1em,
 
-		#{$hovered}: (
-				text-color: ref(color-secondary-main),
-				background-color: ref(color-container-main),
-			),
+		component.state(hovered): (
+			text-color: ref(color-secondary-main),
+			background-color: ref(color-container-main),
+		),
 
 		content: (
 			gap: 0.5em,
@@ -72,12 +64,12 @@ $index: (
 		),
 	),
 
-	scaleIn-animation: $growthAnimation,
-	scaleOut-animation: $growthAnimation,
-	fadeIn-animation: $growthAnimation,
-	fadeOut-animation: $growthAnimation,
-	enterFromRight-animation: $stageAnimation,
-	enterFromLeft-animation: $stageAnimation,
-	exitToRight-animation: $stageAnimation,
-	exitToLeft-animation: $stageAnimation,
+	scaleIn-animation: $growth-animation,
+	scaleOut-animation: $growth-animation,
+	fadeIn-animation: $growth-animation,
+	fadeOut-animation: $growth-animation,
+	enterFromRight-animation: $stage-animation,
+	enterFromLeft-animation: $stage-animation,
+	exitToRight-animation: $stage-animation,
+	exitToLeft-animation: $stage-animation,
 );

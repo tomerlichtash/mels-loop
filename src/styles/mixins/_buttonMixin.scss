@@ -30,6 +30,7 @@ $fontWeightVar: varName(site-button-toggle-font-weight);
 	.icon {
 		@include useIconColor($var);
 	}
+
 	&:hover {
 		.icon {
 			@include useIconColor($var, state(hovered));
@@ -39,6 +40,7 @@ $fontWeightVar: varName(site-button-toggle-font-weight);
 
 @mixin TextLinkMixin {
 	@include useTextColor(link);
+
 	&:hover {
 		@include useTextColor(link, state(hovered));
 	}
@@ -79,19 +81,20 @@ $fontWeightVar: varName(site-button-toggle-font-weight);
 }
 
 @mixin IconButtonWithLabelMixin {
-	@include disableUserSelection;
 	overflow: hidden;
+
+	@include disableUserSelection;
 
 	.icon {
 		color: #000;
 		border-radius: 6px;
 		display: flex;
-		// padding: 4px;
 		height: 32px;
 		width: 32px;
-		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		// padding: 4px;
 	}
 
 	.label {

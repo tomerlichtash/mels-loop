@@ -1,12 +1,11 @@
 @import '../../../../baseThemeStyle';
 @import '../../../../lib/refs';
 
-$annotationSuffix: "'\203B'";
-$annotationAffixOpacity: 0.65;
-
+$annotation-suffix: "'\203B'";
+$annotation-suffix-opacity: 0.65;
 $index: (
 	suffix: (
-		content: $annotationSuffix,
-		opacity: $annotationAffixOpacity,
+		content: $annotation-suffix,
+		opacity: $annotation-suffix-opacity,
 	),
 );

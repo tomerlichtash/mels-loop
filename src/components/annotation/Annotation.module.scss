@@ -33,11 +33,11 @@ $__stylesheet__: (
 		);
 	}
 
-	&:before {
+	&::before {
 		@include typographyMixins.PrefixMixin(name());
 	}
 
-	&:after {
+	&::after {
 		@include typographyMixins.SuffixMixin(name());
 	}
 }

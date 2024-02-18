@@ -27,7 +27,9 @@ $__stylesheet__: (
 
 .label {
 	--margin-top: var(--label-margin);
+
 	display: block;
+
 	@include useVerticalMargin(name(label));
 }
 
@@ -35,6 +37,7 @@ $__stylesheet__: (
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(359deg);
 	}

@@ -7,7 +7,6 @@
 $__stylesheet__: (
 	name: layout,
 );
-
 $footerMinheight: 20vh;
 
 .root {
@@ -24,6 +23,7 @@ $footerMinheight: 20vh;
 	.page {
 		@include layoutMixins.PageContainerMixin(name());
 		@include useMarginTop(name('page'));
+
 		min-height: calc(100vh - $footerMinheight);
 	}
 
@@ -55,6 +55,7 @@ $footerMinheight: 20vh;
 	.column {
 		display: flex;
 		flex-direction: column;
+
 		&:first-child {
 			gap: 0.5em;
 			max-width: 50%;

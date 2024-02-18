@@ -8,14 +8,18 @@ $__stylesheet__: (
 
 .root {
 	--size: 24px;
-	--url: url(https://placehold.co/40x40);
+	--url: url('https://placehold.co/40x40');
 
 	@include useContentUrl();
 	@include useSize();
 }
 
+// Export properties to make them available in JS
+// see: CSSVarImage - getCustomStyle helper
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable property-no-unknown */
 :export {
-	theme_prefix: #{$theme-namespace-prefix};
-	component_name: name();
+	theme-prefix: #{$theme-namespace-prefix};
+	component-name: name();
 	property: url;
 }

@@ -1,11 +1,13 @@
-@import './menuBarAnimationMixin.scss';
-@import 'styles/mixins/buttonMixin.scss';
+@import './menuBarAnimationMixin';
+@import 'styles/mixins/buttonMixin';
 
 @mixin ButtonCaret($var) {
 	.caretDown {
-		@include useTextColor($var);
 		transition: transform 250ms ease;
+
+		@include useTextColor($var);
 	}
+
 	[data-state='open'] > .caretDown {
 		transform: rotate(-180deg);
 	}
@@ -18,6 +20,7 @@
 	align-items: flex-end;
 	justify-content: center;
 	height: var(--indicator-height);
+
 	// todo: fix calc
 	top: calc(var(--bar-height) - var(--indicator-height) - 8px);
 	overflow: hidden;
@@ -32,12 +35,13 @@
 	position: relative;
 	transform-origin: top center;
 	overflow: hidden;
-	// margin-top: 0;
 	background-color: white;
 	border-radius: 6px;
 	box-shadow: globalRef(shadow-md);
 	height: var(--radix-navigation-menu-viewport-height);
 	transition: width, height, 300ms ease;
+
+	// margin-top: 0;
 
 	@include viewportAnimations($var);
 }
@@ -92,6 +96,7 @@
 	&[data-state='open'],
 	&:hover {
 		@include useBackgroundColor($module, state(opened, $states));
+
 		.caretDown {
 			@include useTextColor(#{$module}-caret, state(hovered, $states));
 		}

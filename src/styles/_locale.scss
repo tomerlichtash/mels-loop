@@ -5,6 +5,7 @@
 @each $locale in locales.$index {
 	[data-locale='#{$locale}'] {
 		@include typographyMixins.BaseTypographyMixin(locale-#{$locale});
+
 		#{refs.varName(locale-direction)}: #{refs.compRef(
 				locale-#{$locale},
 				direction

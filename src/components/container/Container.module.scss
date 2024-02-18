@@ -8,7 +8,6 @@ $__stylesheet__: (
 .root {
 	display: flex;
 	box-sizing: border-box;
-
 	min-height: 48px;
 
 	&[data-fixed-position='true'] {

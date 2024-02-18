@@ -21,8 +21,9 @@ $__stylesheet__: (
 
 	&[data-variant] {
 		&[data-variant='h1'] {
-			// font-size: 1.2em;
 			@include typographyMixins.RunningTextMixin(name(h1));
+
+			// font-size: 1.2em;
 			// @include useTextColor(name(h1));
 			// @include useLineHeight(name(h1));
 			// @include useTextTransform(name(h1));

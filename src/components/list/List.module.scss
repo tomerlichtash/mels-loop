@@ -1,14 +1,13 @@
 .root {
-}
+	.list {
+		margin: 0;
+		padding: 0;
+	}
 
-.label {
-}
+	.item {
+		list-style: none;
+	}
 
-.list {
-	margin: 0;
-	padding: 0;
-}
-
-.item {
-	list-style: none;
+	// .label {
+	// }
 }

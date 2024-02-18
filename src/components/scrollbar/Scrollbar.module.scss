@@ -23,14 +23,15 @@ $__stylesheet__: (
 	}
 
 	.ScrollAreaScrollbar {
-		@include disableUserSelection;
 		display: flex;
-
 		touch-action: none;
 		padding: 2px;
-		// background: var(--black-a6);
 		transition: background 160ms ease-out;
 		z-index: 1;
+
+		@include disableUserSelection;
+
+		// background: var(--black-a6);
 	}
 
 	.ScrollAreaScrollbar:hover {
@@ -38,8 +39,9 @@ $__stylesheet__: (
 	}
 
 	.ScrollAreaScrollbar[data-orientation='vertical'] {
-		// padding: 0.1em 0.25em;
 		width: 0.5715em;
+
+		// padding: 0.1em 0.25em;
 		// padding: 0 0.85em;
 	}
 
@@ -51,14 +53,16 @@ $__stylesheet__: (
 
 	.ScrollAreaThumb {
 		flex: 1;
-		cursor: pointer;
-		@include useBackgroundColor(site-layout-scrollbar);
 		position: relative;
-		// box-shadow: 0 0 1px #333;
 		border-radius: 1px;
 		transition: 75ms background-color ease-in-out;
+		cursor: pointer;
+
+		@include useBackgroundColor(site-layout-scrollbar);
+
 		&:hover {
-			box-shadow: 0 0 1px currentColor;
+			box-shadow: 0 0 1px currentcolor;
+
 			@include useBackgroundColor(site-layout-scrollbar, state(hovered));
 		}
 	}

@@ -27,10 +27,6 @@
 	@include useThemeVar(border-top-color, border-top-color, $var, $state);
 }
 
-@mixin useBorderBottomColor($var: name(), $state: '') {
-	@include useThemeVar(border-bottom-color, border-bottom-color, $var, $state);
-}
-
 @mixin useBorderRightColor($var: name(), $state: '') {
 	@include useThemeVar(border-right-color, border-right-color, $var, $state);
 }

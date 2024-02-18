@@ -1,5 +1,5 @@
-@import '../nav-item/navListItemMixin.scss';
-@import '../nav-item-content/navItemContentMixin.scss';
+@import '../nav-item/navListItemMixin';
+@import '../nav-item-content/navItemContentMixin';
 
 @mixin VerticalNavMixin($var, $states) {
 	@include ListItemMixin(site-vertical-menu-item, $states);

@@ -21,14 +21,17 @@ $__stylesheet__: (
 	@include useBorderSize(popover-dialog);
 	@include useBorderStyle(popover-dialog);
 	@include useBorderColor(popover-dialog);
+
+	// toolbar displays only a bottom-border
 	border-top: none;
 	border-left: none;
 	border-right: none;
 
-	.panel {
-	}
-	.closeButton {
-	}
+	// .panel {
+	// }
+
+	// .closeButton {
+	// }
 
 	.closePopoverButton {
 		@include ToolbarItem.ToolbarButtonMixin;

@@ -1,7 +1,7 @@
-@use '../nav-item/NavListItem.module.scss' as NavListItem;
+@use '../nav-item/NavListItem.module' as NavListItem;
 @import './menuDrawerMixin';
-@import '../nav-item/navListItemMixin.scss';
-@import '../nav-item-content/navItemContentMixin.scss';
+@import '../nav-item/navListItemMixin';
+@import '../nav-item-content/navItemContentMixin';
 @import 'styles/baseComponentStyle';
 @import 'styles/lib/states';
 

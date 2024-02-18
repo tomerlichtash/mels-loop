@@ -4,6 +4,37 @@
 		"stylelint-config-prettier-scss"
 	],
 	"rules": {
-		"selector-class-pattern": null
+		"selector-class-pattern": null,
+		"function-name-case": null,
+		"scss/at-function-pattern": null,
+		"scss/at-mixin-pattern": null,
+		"scss/dollar-variable-pattern": null,
+		"keyframes-name-pattern": null,
+		"value-keyword-case": null,
+		"scss/at-mixin-argumentless-call-parentheses": null,
+
+		"number-max-precision": null,
+		"length-zero-no-unit": null
+	},
+	"complianceWith": {
+		"selector-pseudo-element-colon-notation": null,
+		"selector-pseudo-class-no-unknown": null,
+		"color-function-notation": null,
+		"function-url-quotes": null,
+		"scss/no-global-function-names": null,
+		"scss/double-slash-comment-empty-line-before": null,
+		"scss/load-no-partial-leading-underscore": null,
+		"scss/at-import-partial-extension": null,
+		"scss/at-rule-conditional-no-parentheses": null,
+		"scss/at-if-no-null": null,
+		"declaration-block-no-duplicate-properties": null,
+		"no-descending-specificity": null,
+		"alpha-value-notation": null,
+		"property-no-unknown": null,
+		"declaration-empty-line-before": null,
+		"custom-property-empty-line-before": null,
+		"rule-empty-line-before": null,
+		"block-no-empty": null,
+		"scss/dollar-variable-empty-line-before": null
 	}
 }

@@ -4,7 +4,6 @@
 @use 'components/line/Line.module' as Line;
 @use 'components/paragraph/Paragraph.module' as Paragraph;
 @use 'components/blockquote/Blockquote.module' as Blockquote;
-// @use "components/cite" as Cite;
 @use 'components/link/Link.module' as Link;
 @use 'components/table/Table.module' as Table;
 @use 'components/figure/Figure.module' as Figure;
@@ -22,11 +21,13 @@
 @use 'components/text-link/TextLink.module' as TextLink;
 @use 'components/locale-select/LocaleSelect.module' as LocaleSelect;
 @use 'components/theme-select/ThemeSelect.module' as ThemeSelector;
-// @use "components/site/button" as buttonComponent;
 @use 'components/nav/menu-bar/MenuBar.module' as MenuBar;
 @use 'components/nav/menu-drawer/MenuDrawer.module' as MenuDrawer;
 @use 'components/nav/nav-item-content/NavItemContent.module' as NavItemContent;
 @use 'components/text/Text.module' as Text;
+
+// @use "components/cite" as Cite;
+// @use "components/site/button" as buttonComponent;
 
 @use 'layout' as layoutTheme;
 @use 'scrollbar' as scrollbarTheme;
@@ -62,15 +63,12 @@ $index: (
 	Scrollbar.name(): scrollbarTheme.vars(),
 	Strip.name(): stripTheme.vars(),
 	LoadingIndicator.name(): loadingIndicatorTheme.vars(),
-	// SiteButton.name(): buttonTheme.vars(),
 	Line.name(): lineTheme.vars(),
 	Paragraph.name(): paragraphTheme.vars(),
 	Link.name(): linkTheme.vars(),
 	Blockquote.name(): blockquoteTheme.vars(),
 	Annotation.name(): annotationTheme.vars(),
 	Term.name(): termTheme.vars(),
-	// Cite.name(): citeTheme.vars(),
-	// Heading.name(): heading.vars(),
 	ListItem.name(): listItemTheme.vars(),
 	CodeInline.name(): codeInlineTheme.vars(),
 	CodeBlock.name(): codeBlockTheme.vars(),
@@ -89,3 +87,7 @@ $index: (
 	Popover.name(): popoverTheme.vars(),
 	Text.name(): textTheme.vars(),
 );
+
+// SiteButton.name(): buttonTheme.vars(),
+// Cite.name(): citeTheme.vars(),
+// Heading.name(): heading.vars(),,
