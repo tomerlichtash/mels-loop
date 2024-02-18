@@ -21,9 +21,8 @@ $__stylesheet__: (
 		position: relative;
 
 		@include cursorPointer;
-
-		@include typographyMixins.SuffixMixin(name());
 		@include useTextColor(name(suffix));
 		@include useOffsetTop(name(suffix));
+		@include typographyMixins.SuffixMixin(name());
 	}
 }

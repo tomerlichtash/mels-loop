@@ -6,7 +6,7 @@ $__stylesheet__: (
 );
 
 .root {
-	--background-color: pink;
+	--background-color: #808080;
 	--height: 6px;
 
 	@include useGradient();

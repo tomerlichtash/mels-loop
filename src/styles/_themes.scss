@@ -2,6 +2,7 @@
 @use './lib/parser';
 @use './vars/common';
 @use './vars/custom/light';
+
 // @use "./vars/custom/dark";
 
 [data-ml-theme] {
@@ -9,9 +10,10 @@
 }
 
 [data-ml-theme='light'] {
+	--ml-logo-url: url('../../public/assets/logo/ml-logo-dark.png');
+	--ml-loading-indicator-url: url('../../public/assets/logo/ml-logo-dark.png');
+
 	@include parser.compile(light.$index);
-	--ml-logo-url: url(../../public/assets/logo/ml-logo-dark.png);
-	--ml-loading-indicator-url: url(../../public/assets/logo/ml-logo-dark.png);
 }
 
 // [data-ml-theme="dark"] {

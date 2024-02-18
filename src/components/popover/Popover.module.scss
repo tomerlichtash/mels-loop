@@ -17,7 +17,6 @@ $__stylesheet__: (
 	justify-content: space-between;
 
 	@include useInnerGutter(popover-toolbar);
-
 	@include useBorderSize(popover-dialog);
 	@include useBorderStyle(popover-dialog);
 	@include useBorderColor(popover-dialog);

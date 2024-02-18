@@ -23,7 +23,6 @@ $__stylesheet__: (
 	@include useFontSize();
 	@include useLineHeight();
 	@include useOffsetTop();
-
 	@include popoverMixin.PopoverTrigger(PopoverTrigger.name());
 
 	.content {

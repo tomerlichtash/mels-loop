@@ -11,6 +11,7 @@ $__stylesheet__: (
 
 @mixin iconMixin($module) {
 	--background-color: transparent;
+
 	@include useBorderSize($module);
 	@include useBorderStyle($module);
 	@include useBorderColor($module);
@@ -35,11 +36,13 @@ $__stylesheet__: (
 
 	.icon {
 		display: flex;
+
 		@include iconMixin(item-content-variant-base-icon);
 	}
 
 	.title {
 		display: flex;
+
 		@include titleMixin(item-content-variant-base-title);
 	}
 

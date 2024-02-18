@@ -54,9 +54,11 @@
 @mixin useBorderBottomSize($var: name(), $state: '') {
 	@include useThemeVar(border-bottom-width, border-bottom-size, $var, $state);
 }
+
 @mixin useBorderBottomStyle($var: name(), $state: '') {
 	@include useThemeVar(border-bottom-style, border-bottom-style, $var, $state);
 }
+
 @mixin useBorderBottomColor($var: name(), $state: '') {
 	@include useThemeVar(border-bottom-color, border-bottom-color, $var, $state);
 }
@@ -95,6 +97,7 @@
 @mixin useContent($var: name(), $state: '') {
 	@include useThemeVar(content, content, $var, $state);
 }
+
 @mixin useContentUrl($var: name(), $state: '') {
 	@include useThemeVar(content, url, $var, $state);
 }

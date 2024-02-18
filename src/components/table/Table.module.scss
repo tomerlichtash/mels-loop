@@ -29,11 +29,9 @@ $__stylesheet__: (
 	// }
 
 	@include useRadius();
-
 	@include useBorderTopSize();
 	@include useBorderTopStyle();
 	@include useBorderTopColor();
-
 	@include useBorderLeftSize();
 	@include useBorderLeftStyle();
 	@include useBorderLeftColor();
@@ -45,7 +43,6 @@ $__stylesheet__: (
 		@include useBorderRightSize();
 		@include useBorderRightStyle();
 		@include useBorderRightColor();
-
 		@include useBorderBottomSize();
 		@include useBorderBottomStyle();
 		@include useBorderBottomColor();

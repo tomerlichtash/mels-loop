@@ -6,7 +6,6 @@
 $__stylesheet__: (
 	name: popover-trigger,
 );
-
 $states: merge.deep(
 	$COMPONENT_STATES,
 	(
@@ -39,6 +38,7 @@ $suffixColor: varName(term-suffix-text-color);
 .root {
 	&[data-popover-state='closed'] {
 		#{$suffixColor}: refSuffixColor();
+
 		&:hover {
 			#{$color}: refTextColor(hovered);
 			#{$suffixColor}: refSuffixColor(hovered);

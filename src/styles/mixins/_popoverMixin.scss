@@ -2,7 +2,6 @@
 
 @mixin PopoverTrigger($comp: '', $state: '') {
 	@include cursorPointer;
-
 	@include useBackgroundColor($comp);
 	@include useTextColor($comp);
 	@include useRadius($comp);

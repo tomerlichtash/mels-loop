@@ -30,6 +30,7 @@ $footerMinheight: 20vh;
 	.footer {
 		display: flex;
 		flex-direction: row;
+
 		@include useBackgroundColor(name(footer));
 	}
 
@@ -37,6 +38,7 @@ $footerMinheight: 20vh;
 		display: flex;
 		flex-direction: row;
 		gap: 0.25em;
+
 		@include typographyMixins.RunningTextMixin(site-footer-primary-label);
 	}
 

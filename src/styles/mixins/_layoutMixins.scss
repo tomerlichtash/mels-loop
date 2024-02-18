@@ -3,5 +3,6 @@
 @mixin PageContainerMixin($var) {
 	margin: 0 auto;
 	max-width: 800px;
+
 	@include themeVars.useInnerGutter($var);
 }
