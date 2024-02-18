@@ -1,0 +1,5 @@
+@use './ToolbarItem.module.scss';
+
+.root {
+	@include ToolbarItem.ToolbarButtonMixin;
+}

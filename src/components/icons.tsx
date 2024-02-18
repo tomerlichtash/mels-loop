@@ -14,19 +14,6 @@ import {
 	ArrowRightIcon,
 } from '@radix-ui/react-icons';
 
-export type SupportedIcons =
-	| 'article'
-	| 'list'
-	| 'github'
-	| 'pencil'
-	| 'light'
-	| 'dark'
-	| 'close'
-	| 'hamburger'
-	| 'caretDown'
-	| 'chevronLeft'
-	| 'chevronRight';
-
 export const getIcon = (icon: string, className?: string) => {
 	switch (icon) {
 		case 'article':
@@ -55,7 +42,6 @@ export const getIcon = (icon: string, className?: string) => {
 			return <ArrowLeftIcon className={className} />;
 		case 'arrowRight':
 			return <ArrowRightIcon className={className} />;
-
 		default:
 			return icon;
 	}

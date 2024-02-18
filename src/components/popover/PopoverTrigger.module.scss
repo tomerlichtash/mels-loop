@@ -20,15 +20,15 @@ $states: merge.deep(
 	)
 );
 
-@function refTextColor($state) {
+@function refTextColor($state: '') {
 	@return compRef(name(), text-color, state($state));
 }
 
-@function refBgColor($state) {
+@function refBgColor($state: '') {
 	@return compRef(name(), background-color, state($state));
 }
 
-@function refSuffixColor($state) {
+@function refSuffixColor($state: '') {
 	@return compRef(name(), astriek-color, state($state));
 }
 
@@ -38,6 +38,7 @@ $suffixColor: varName(term-suffix-text-color);
 
 .root {
 	&[data-popover-state='closed'] {
+		#{$suffixColor}: refSuffixColor();
 		&:hover {
 			#{$color}: refTextColor(hovered);
 			#{$suffixColor}: refSuffixColor(hovered);

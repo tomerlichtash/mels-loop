@@ -17,9 +17,18 @@ export { default as Term } from './term/Term';
 export { default as Toggle } from './toggle/Toggle';
 export { default as ToggleGroup } from './toggle-group/ToggleGroup';
 export { default as ToggleGroupItem } from './toggle-group-item/ToggleGroupItem';
+export { default as ToolbarItem } from './toolbar-item/ToolbarItem';
+export { default as ToolbarButton } from './toolbar-item/ToolbarButton';
 export { default as Text } from './text/Text';
 export { default as Link } from './link/Link';
 export { default as TextLink } from './text-link/TextLink';
+
+// Composition Components
+export { default as Logo } from './logo/Logo';
+export { default as MenuBar } from './nav/menu-bar/MenuBar';
+export { default as MenuDrawer } from './nav/menu-drawer/MenuDrawer';
+export { default as LocaleSelect } from './locale-select/LocaleSelect';
+export { default as ThemeSelect } from './theme-select/ThemeSelect';
 
 // Semantic Components
 export { default as Blockquote } from './blockquote/Blockquote';
@@ -33,10 +42,3 @@ export { default as Paragraph } from './paragraph/Paragraph'; // exclude
 export { default as Heading } from './heading/heading'; // exclude
 export { default as CustomImage } from './custom-image/CustomImage';
 export { default as ListItem } from './list-item/ListItem';
-
-// Composition Components
-export { default as Logo } from './logo/Logo';
-export { default as MenuBar } from './nav/menu-bar/MenuBar';
-export { default as MenuDrawer } from './nav/menu-drawer/MenuDrawer';
-export { default as LocaleSelect } from './locale-select/LocaleSelect';
-export { default as ThemeSelect } from './theme-select/ThemeSelect';

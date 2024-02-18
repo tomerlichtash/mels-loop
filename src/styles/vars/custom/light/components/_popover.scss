@@ -1,43 +1,51 @@
-@use '../../../../../components/popover/Popover.module' as Popover;
+@use '../../../../../components/popover/PopoverTrigger.module' as PopoverTrigger;
 @import '../../../../baseThemeStyle';
 @import '../../../../lib/refs';
 
 $index: (
-	dada: false,
-	// trigger: (
-	// 	text-color: ref(link-text-color),
-	// 	radius: globalRef(radius-md),
-	// 	astriek-color: red,
-	// 	//ref(link-text-color),
-	// 	// Popover.state(hovered): (
-	// 	// 	text-color: ref(color-secondary-main),
-	// 	// 	astriek-color: ref(color-secondary-main),
-	// 	// ),
-	// 	// Popover.state(clicked): (
-	// 	// 	background-color: ref(color-secondary-main),
-	// 	// 	text-color: ref(color-secondary-contrast),
-	// 	// ),
-	// 	// Popover.state(selected): (
-	// 	// 	background-color: ref(color-secondary-main),
-	// 	// 	astriek-color: ref(color-secondary-main),
-	// 	// ),
-	// 	// Popover.state(selected-hovered): (
-	// 	// 	background-color: ref(color-secondary-main),
-	// 	// 	text-color: ref(color-secondary-contrast),
-	// 	// ),
-	// 	// Popover.state(selected-clicked): (
-	// 	// 	background-color: ref(color-secondary-main),
-	// 	// 	text-color: ref(color-secondary-contrast),
-	// 	// ),,,,,
-	// ),
-	// dialog: (
-	// 	background-color: ref(color-surface-dark),
-	// 	border-radius: globalRef(radius-md),
-	// 	shadow: globalRef(shadow-md),
-	// 	width: 25em,
-	// 	fadeIn-animation: (
-	// 		duration: globalRef(animation-duration-sm),
-	// 		easing: globalRef(animation-easing-in),
-	// 	),
-	// ),,,,
+	trigger: (
+		text-color: ref(link-text-color),
+		astriek-color: ref(link-text-color),
+		radius: globalRef(radius-sm),
+		PopoverTrigger.state(hovered): (
+			text-color: ref(color-secondary-main),
+			astriek-color: ref(color-secondary-main),
+		),
+		PopoverTrigger.state(clicked): (
+			background-color: ref(color-primary-dark),
+			text-color: ref(color-secondary-contrast),
+			astriek-color: ref(color-primary-dark),
+		),
+		PopoverTrigger.state(selected): (
+			background-color: ref(color-secondary-main),
+			text-color: ref(color-secondary-contrast),
+			astriek-color: ref(color-secondary-main),
+		),
+		PopoverTrigger.state(selected-hovered): (
+			background-color: ref(color-secondary-dark),
+			text-color: ref(color-secondary-contrast),
+			astriek-color: ref(color-secondary-dark),
+		),
+		PopoverTrigger.state(selected-clicked): (
+			background-color: ref(color-secondary-main),
+			text-color: ref(color-secondary-contrast),
+			astriek-color: ref(color-secondary-main),
+		),
+	),
+	dialog: (
+		background-color: ref(color-surface-light),
+		radius: globalRef(radius-xs),
+		shadow: globalRef(shadow-md),
+		border-color: ref(color-surface-dark),
+		border-style: solid,
+		border-size: 1px,
+		width: 29.5em,
+		fadeIn-animation: (
+			duration: globalRef(animation-duration-sm),
+			easing: globalRef(animation-easing-in),
+		),
+	),
+	toolbar: (
+		gutter: 0.25em,
+	),
 );

@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { IParsedPageData } from 'types/models';
 import { DynamicContentContext } from '../context/contentContext';
 import { PopoverContext } from 'lib/dynamic-content-utils/context/popoverContext';
-import Button from 'components/button/Button';
 import { unique } from 'utils/index';
 import { useLocale } from 'hooks/index';
 import { getIcon } from 'components/icons';
+import { ToolbarButton } from 'components/index';
 
 export interface IDynamicContentToolbarProps {
 	pages: IParsedPageData[];
@@ -37,21 +37,19 @@ export default function DynamicContentToolbar({
 
 		setPrevPageId(prevPage.id);
 
-		const backButtonLabel =
-			prevPage.metaData.title ||
-			t(prevPage.metaData.glossary_key) ||
-			prevPage.id;
-
 		popoverContext.addToolbarItems({
 			element: (
-				<Button
+				<ToolbarButton
 					key={unique.id(backButtonKey)}
-					title={backButtonLabel}
+					title={
+						prevPage.metaData.title ||
+						t(prevPage.metaData.glossary_key) ||
+						prevPage.id
+					}
 					onClick={() => dynamicContentContext.setPageIndex(idx)}
-					className="back-button"
 				>
 					{getIcon(`arrow${textDirection === 'ltr' ? 'Left' : 'Right'}`)}
-				</Button>
+				</ToolbarButton>
 			),
 			id: backButtonKey,
 			enabled: true,

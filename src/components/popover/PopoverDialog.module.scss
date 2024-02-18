@@ -30,6 +30,6 @@ $__stylesheet__: (
 	@include useFadeIn(name());
 
 	.content {
-		@include useBackgroundColor(popover-dialog);
+		@include useBackgroundColor();
 	}
 }

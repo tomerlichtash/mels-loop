@@ -1,8 +1,6 @@
 @use 'layout/Layout.module' as Layout;
 
 @use 'components/popover/Popover.module' as Popover;
-@use 'components/popover/PopoverTrigger.module' as PopoverTrigger;
-@use 'components/popover/PopoverDialog.module' as PopoverDialog;
 @use 'components/line/Line.module' as Line;
 @use 'components/paragraph/Paragraph.module' as Paragraph;
 @use 'components/blockquote/Blockquote.module' as Blockquote;
@@ -33,8 +31,6 @@
 @use 'layout' as layoutTheme;
 @use 'scrollbar' as scrollbarTheme;
 @use 'popover' as popoverTheme;
-@use 'popoverTrigger' as popoverTriggerTheme;
-@use 'popoverDialog' as popoverDialogTheme;
 @use 'strip' as stripTheme;
 @use 'loadingIndicator' as loadingIndicatorTheme;
 @use 'container' as containerTheme;
@@ -91,7 +87,5 @@ $index: (
 	ThemeSelector.name(): themeSelectorTheme.vars(),
 	LocaleSelect.name(): localeSelectTheme.vars(),
 	Popover.name(): popoverTheme.vars(),
-	PopoverTrigger.name(): popoverTriggerTheme.vars(),
-	PopoverDialog.name(): popoverDialogTheme.vars(),
 	Text.name(): textTheme.vars(),
 );

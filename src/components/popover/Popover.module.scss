@@ -1,4 +1,6 @@
+@use '../toolbar-item/ToolbarItem.module.scss';
 @import 'styles/baseComponentStyle';
+@import 'styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: popover,
@@ -11,10 +13,24 @@ $__stylesheet__: (
 }
 
 .toolbar {
-	border-bottom: 1px solid red;
-	padding: 0.5em;
-}
+	display: flex;
+	justify-content: space-between;
 
-.toolbarButton {
-	border: 2px solid blue;
+	@include useInnerGutter(popover-toolbar);
+
+	@include useBorderSize(popover-dialog);
+	@include useBorderStyle(popover-dialog);
+	@include useBorderColor(popover-dialog);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+
+	.panel {
+	}
+	.closeButton {
+	}
+
+	.closePopoverButton {
+		@include ToolbarItem.ToolbarButtonMixin;
+	}
 }

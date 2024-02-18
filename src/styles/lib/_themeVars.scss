@@ -43,10 +43,6 @@
 	@include useThemeVar(border-top-width, border-top-size, $var, $state);
 }
 
-@mixin useBorderBottomSize($var: name(), $state: '') {
-	@include useThemeVar(border-bottom-width, border-bottom-size, $var, $state);
-}
-
 @mixin useBorderRightSize($var: name(), $state: '') {
 	@include useThemeVar(border-right-width, border-right-size, $var, $state);
 }
@@ -59,8 +55,14 @@
 	@include useThemeVar(border-top-style, border-top-style, $var, $state);
 }
 
+@mixin useBorderBottomSize($var: name(), $state: '') {
+	@include useThemeVar(border-bottom-width, border-bottom-size, $var, $state);
+}
 @mixin useBorderBottomStyle($var: name(), $state: '') {
 	@include useThemeVar(border-bottom-style, border-bottom-style, $var, $state);
+}
+@mixin useBorderBottomColor($var: name(), $state: '') {
+	@include useThemeVar(border-bottom-color, border-bottom-color, $var, $state);
 }
 
 @mixin useBorderRightStyle($var: name(), $state: '') {

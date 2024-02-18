@@ -1,0 +1,21 @@
+@mixin ToolbarButtonMixin {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	border: none;
+	background: none;
+	box-sizing: border-box;
+
+	border-radius: 4px;
+
+	width: 30px;
+	height: 30px;
+	&:hover {
+		background-color: pink;
+	}
+}
+
+.root {
+}

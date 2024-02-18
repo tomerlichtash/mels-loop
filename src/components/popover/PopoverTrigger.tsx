@@ -1,12 +1,21 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './PopoverTrigger.module.scss';
-import type { PopoverTriggerProps } from './types';
+import classNames from 'classnames';
+
+type PopoverTriggerProps = {
+	opened?: boolean;
+	className?: string;
+};
 
 const PopoverTrigger = ({
+	opened,
 	children,
-	...rest
+	className,
 }: PropsWithChildren<PopoverTriggerProps>): JSX.Element => (
-	<span className={styles.root} {...rest}>
+	<span
+		data-popover-state={opened ? 'open' : 'closed'}
+		className={classNames(styles.root, className)}
+	>
 		{children}
 	</span>
 );
