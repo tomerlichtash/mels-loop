@@ -1,6 +1,6 @@
 @use '../../../../../components/theme-select/ThemeSelect.module.scss' as
 	ThemeSelector;
-@import '../../../../baseThemeStyle';
+@import '../../../../lib/theme';
 
 $index: (
 	// mixins: (

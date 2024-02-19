@@ -1,4 +1,4 @@
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 
 $__stylesheet__: (
@@ -7,10 +7,10 @@ $__stylesheet__: (
 
 .root {
 	.pre {
-		@include useBackgroundColor();
-		@include useRadius();
-		@include useInnerGutter();
-		@include useBorderColor();
+		@include useBackgroundColor;
+		@include useRadius;
+		@include useInnerGutter;
+		@include useBorderColor;
 
 		text-align: left;
 
@@ -19,8 +19,8 @@ $__stylesheet__: (
 
 			// @include useTextColor(code-inline);
 			// @include useBackgroundColor(code-inline);
-			@include useFontWeight();
-			@include useFontFamily();
+			@include useFontWeight;
+			@include useFontFamily;
 
 			// @include useHorizontalPadding(code-inline);
 			// @include useRadius(code-inline);

@@ -1,4 +1,4 @@
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/states';
 @import 'styles/mixins/typographyMixins';
 
@@ -9,16 +9,16 @@ $__stylesheet__: (
 .root {
 	margin: 0;
 
-	@include useVerticalPadding();
-	@include useHorizontalPadding();
+	@include useVerticalPadding;
+	@include useHorizontalPadding;
 
 	p {
 		@include RunningTextMixin(name());
 	}
 
 	cite {
-		@include useVerticalPadding();
-		@include useHorizontalPadding();
-		@include RunningTextMixin(cite);
+		@include useVerticalPadding(name(cite));
+		@include useHorizontalPadding(name(cite));
+		@include RunningTextMixin(name(cite));
 	}
 }

@@ -1,6 +1,6 @@
 @use './menuBarMixins.scss';
 @use '../nav-item/navListItemMixin.scss';
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 @import 'styles/lib/states';
 @import 'styles/lib/merge';

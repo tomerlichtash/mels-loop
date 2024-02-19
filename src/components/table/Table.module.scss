@@ -1,4 +1,4 @@
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 
 $__stylesheet__: (
@@ -28,23 +28,23 @@ $__stylesheet__: (
 	// 	padding: 1em;
 	// }
 
-	@include useRadius();
-	@include useBorderTopSize();
-	@include useBorderTopStyle();
-	@include useBorderTopColor();
-	@include useBorderLeftSize();
-	@include useBorderLeftStyle();
-	@include useBorderLeftColor();
+	@include useRadius;
+	@include useBorderTopSize;
+	@include useBorderTopStyle;
+	@include useBorderTopColor;
+	@include useBorderLeftSize;
+	@include useBorderLeftStyle;
+	@include useBorderLeftColor;
 
 	td,
 	th {
 		padding: 1rem 2rem;
 
-		@include useBorderRightSize();
-		@include useBorderRightStyle();
-		@include useBorderRightColor();
-		@include useBorderBottomSize();
-		@include useBorderBottomStyle();
-		@include useBorderBottomColor();
+		@include useBorderRightSize;
+		@include useBorderRightStyle;
+		@include useBorderRightColor;
+		@include useBorderBottomSize;
+		@include useBorderBottomStyle;
+		@include useBorderBottomColor;
 	}
 }

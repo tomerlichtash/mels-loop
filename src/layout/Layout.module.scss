@@ -1,6 +1,6 @@
 @use 'styles/mixins/typographyMixins.scss';
 @use 'styles/mixins/layoutMixins.scss';
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 @import 'styles/lib/states';
 
@@ -10,7 +10,7 @@ $__stylesheet__: (
 $footerMinheight: 20vh;
 
 .root {
-	@include useBackgroundColor();
+	@include useBackgroundColor;
 
 	.topBar {
 		@include useBackgroundColor(name(top-bar));

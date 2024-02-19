@@ -1,4 +1,4 @@
-@import '../../../../baseThemeStyle';
+@import '../../../../lib/theme';
 @import '../../../../lib/refs';
 
 $index: (
@@ -9,4 +9,8 @@ $index: (
 	text-color: ref(color-container-contrast),
 	line-height: 2em,
 	font-weight: 700,
+
+	cite: (
+		background-color: red,
+	),
 );

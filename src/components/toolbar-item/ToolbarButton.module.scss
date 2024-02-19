@@ -1,4 +1,9 @@
 @use './ToolbarItem.module.scss';
+@import 'styles/lib/component';
+
+$__stylesheet__: (
+	name: toolbar-item,
+);
 
 .root {
 	@include ToolbarItem.ToolbarButtonMixin;

@@ -1,4 +1,4 @@
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 
 $__stylesheet__: (
@@ -13,13 +13,13 @@ $__stylesheet__: (
 	--border-size: 1px;
 	--border-style: solid;
 
-	@include useHorizontalPadding();
-	@include useFontFamily();
-	@include useFontWeight();
-	@include useTextColor();
-	@include useBackgroundColor();
-	@include useBorderSize();
-	@include useBorderStyle();
-	@include useBorderColor();
-	@include useRadius();
+	@include useHorizontalPadding;
+	@include useFontFamily;
+	@include useFontWeight;
+	@include useTextColor;
+	@include useBackgroundColor;
+	@include useBorderSize;
+	@include useBorderStyle;
+	@include useBorderColor;
+	@include useRadius;
 }

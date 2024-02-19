@@ -1,5 +1,9 @@
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
+
+$__stylesheet__: (
+	name: button,
+);
 
 .root {
 	display: inline-flex;

@@ -1,4 +1,4 @@
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 
 $__stylesheet__: (
@@ -9,6 +9,6 @@ $__stylesheet__: (
 	--background-color: #808080;
 	--height: 6px;
 
-	@include useGradient();
-	@include useHeight();
+	@include useGradient;
+	@include useHeight;
 }

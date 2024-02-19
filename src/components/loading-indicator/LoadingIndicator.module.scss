@@ -1,4 +1,4 @@
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 
 $__stylesheet__: (
@@ -15,13 +15,13 @@ $__stylesheet__: (
 	justify-content: center;
 	flex-direction: column;
 
-	@include useHeight();
+	@include useHeight;
 
 	.image {
 		animation: rotation 2s infinite linear;
 
-		@include useSize();
-		@include useContentUrl();
+		@include useSize;
+		@include useContentUrl;
 	}
 }
 

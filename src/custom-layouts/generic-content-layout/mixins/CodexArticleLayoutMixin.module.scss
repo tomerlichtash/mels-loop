@@ -1,3 +1,9 @@
+@import 'styles/lib/component';
+
+$__stylesheet__: (
+	name: generic-layout-codex-article,
+);
+
 .root {
 	border: 1px solid darkseagreen;
 	padding: 2em;

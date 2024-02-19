@@ -1,6 +1,6 @@
 @use '../../../../../components/nav/menu-drawer/MenuDrawer.module.scss' as
 	MenuDrawer;
-@import '../../../../baseThemeStyle';
+@import '../../../../lib/theme';
 @import '../../../../lib/refs';
 
 $index: (

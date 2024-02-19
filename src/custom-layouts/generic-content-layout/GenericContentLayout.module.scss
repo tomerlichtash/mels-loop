@@ -1,5 +1,5 @@
 @use 'styles/lib/refs';
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 
 $__stylesheet__: (
@@ -9,10 +9,10 @@ $__stylesheet__: (
 .root {
 	user-select: text;
 
-	@include useRadius();
-	@include useShadow();
-	@include usePadding();
-	@include useMargin();
+	@include useRadius;
+	@include useShadow;
+	@include usePadding;
+	@include useMargin;
 
 	.article {
 		width: 100%;

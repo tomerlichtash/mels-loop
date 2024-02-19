@@ -2,7 +2,7 @@
 @import './menuDrawerMixin';
 @import '../nav-item/navListItemMixin';
 @import '../nav-item-content/navItemContentMixin';
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/states';
 
 $__stylesheet__: (

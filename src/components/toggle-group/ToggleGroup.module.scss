@@ -1,5 +1,5 @@
 @use 'styles/mixins/buttonMixin.scss';
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/states';
 @import 'styles/lib/themeVars';
 
@@ -12,7 +12,7 @@ $__stylesheet__: (
 
 	display: flex;
 
-	@include useGap();
+	@include useGap;
 
 	.item {
 		background-color: transparent;

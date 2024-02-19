@@ -1,7 +1,7 @@
 @use 'styles/mixins/typographyMixins';
 @use 'styles/mixins/popoverMixin';
 @use '../popover/PopoverTrigger.module.scss' as PopoverTrigger;
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 @import 'styles/lib/states';
 
@@ -20,9 +20,9 @@ $__stylesheet__: (
 
 	position: relative;
 
-	@include useFontSize();
-	@include useLineHeight();
-	@include useOffsetTop();
+	@include useFontSize;
+	@include useLineHeight;
+	@include useOffsetTop;
 	@include popoverMixin.PopoverTrigger(PopoverTrigger.name());
 
 	.content {

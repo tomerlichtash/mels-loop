@@ -1,5 +1,10 @@
 @use 'styles/lib/refs';
-@import '../../generic-content-layout/GenericContentLayout.module';
+@use '../../generic-content-layout/GenericContentLayout.module' as CustomLayout;
+@import 'styles/lib/component';
+
+$__stylesheet__: (
+	name: custom-layout-blog-post,
+);
 
 .root {
 	&:not(:last-child) {
@@ -10,7 +15,7 @@
 		max-width: 100%;
 	}
 
-	@include GenericContentLayoutMixin(
+	@include CustomLayout.GenericContentLayoutMixin(
 		$rootPaddingTop: 2em,
 		$rootPaddingBottom: 2em,
 		$rootPaddingLeft: 2em,

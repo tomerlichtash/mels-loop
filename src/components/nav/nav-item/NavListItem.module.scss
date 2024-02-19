@@ -1,6 +1,10 @@
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 @import 'styles/lib/states';
+
+$__stylesheet__: (
+	name: nav-list-item,
+);
 
 .root {
 	.item {

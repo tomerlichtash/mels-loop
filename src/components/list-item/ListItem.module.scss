@@ -1,5 +1,5 @@
-@import 'styles/baseComponentStyle';
-@import 'styles/mixins/typographyMixins';
+@use 'styles/mixins/typographyMixins';
+@import 'styles/lib/component';
 
 $__stylesheet__: (
 	name: list-item,
@@ -8,5 +8,5 @@ $__stylesheet__: (
 .root {
 	margin: 0;
 
-	@include RunningTextMixin();
+	@include typographyMixins.RunningTextMixin;
 }

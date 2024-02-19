@@ -1,5 +1,5 @@
-@use '../toolbar-item/ToolbarItem.module.scss';
-@import 'styles/baseComponentStyle';
+@use '../toolbar-item/ToolbarItem.module';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 
 $__stylesheet__: (

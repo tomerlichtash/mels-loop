@@ -1,4 +1,4 @@
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 @import 'styles/lib/states';
 
@@ -20,16 +20,16 @@ $__stylesheet__: (
 
 	overflow: hidden;
 
-	@include useWidth();
-	@include useBackgroundColor();
-	@include useShadow();
-	@include useBorderSize();
-	@include useBorderStyle();
-	@include useBorderColor();
-	@include useRadius();
+	@include useWidth;
+	@include useBackgroundColor;
+	@include useShadow;
+	@include useBorderSize;
+	@include useBorderStyle;
+	@include useBorderColor;
+	@include useRadius;
 	@include useFadeIn(name());
 
 	.content {
-		@include useBackgroundColor();
+		@include useBackgroundColor;
 	}
 }

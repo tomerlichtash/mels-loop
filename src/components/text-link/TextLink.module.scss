@@ -1,6 +1,6 @@
 @use 'styles/mixins/typographyMixins.scss';
 @import 'styles/lib/themeVars';
-@import 'styles/baseComponentStyle';
+@import 'styles/lib/component';
 
 $__stylesheet__: (
 	name: text-link,
