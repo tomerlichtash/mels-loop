@@ -65,7 +65,7 @@ $states: $COMPONENT_STATES;
 @function state($state, $customStateMap: ()) {
 	$compState: map.get(custom-states(deep($states, $customStateMap)), $state);
 
-	/* stylelint-disable scss/at-if-no-null */
+	// stylelint-disable scss/at-if-no-null
 	@if $compState != null {
 		@return $compState;
 	}

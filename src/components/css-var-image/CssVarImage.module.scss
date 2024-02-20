@@ -16,8 +16,8 @@ $__stylesheet__: (
 
 // Export properties to make them available in JS
 // see: CSSVarImage - getCustomStyle helper
-/* stylelint-disable selector-pseudo-class-no-unknown */
-/* stylelint-disable property-no-unknown */
+// stylelint-disable selector-pseudo-class-no-unknown
+// stylelint-disable property-no-unknown
 :export {
 	theme-prefix: #{$theme-namespace-prefix};
 	component-name: name();
