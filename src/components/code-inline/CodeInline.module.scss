@@ -13,13 +13,13 @@ $__stylesheet__: (
 	--border-size: 1px;
 	--border-style: solid;
 
-	@include useHorizontalPadding;
-	@include useFontFamily;
-	@include useFontWeight;
-	@include useTextColor;
-	@include useBackgroundColor;
-	@include useBorderSize;
-	@include useBorderStyle;
-	@include useBorderColor;
-	@include useRadius;
+	@include use-horizontal-padding;
+	@include use-font-family;
+	@include use-font-weight;
+	@include use-text-color;
+	@include use-background-color;
+	@include use-border-size;
+	@include use-border-style;
+	@include use-border-color;
+	@include use-radius;
 }

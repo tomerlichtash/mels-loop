@@ -1,13 +1,14 @@
 @import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 @import 'styles/lib/states';
+@import 'styles/mixins/animationMixins';
 
 $__stylesheet__: (
 	name: popover-dialog,
 );
 
 .root {
-	--animation-type: fadeIn;
+	--animation-type: fade-in;
 	--animation-duration: 250ms;
 	--animation-easing: ease-out forwards;
 	--width: 20em;
@@ -20,16 +21,16 @@ $__stylesheet__: (
 
 	overflow: hidden;
 
-	@include useWidth;
-	@include useBackgroundColor;
-	@include useShadow;
-	@include useBorderSize;
-	@include useBorderStyle;
-	@include useBorderColor;
-	@include useRadius;
-	@include useFadeIn(name());
+	@include use-width;
+	@include use-background-color;
+	@include use-shadow;
+	@include use-border-size;
+	@include use-border-style;
+	@include use-border-color;
+	@include use-radius;
+	@include fade-in(name());
 
 	.content {
-		@include useBackgroundColor;
+		@include use-background-color;
 	}
 }

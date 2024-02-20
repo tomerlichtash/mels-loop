@@ -9,6 +9,6 @@ $__stylesheet__: (
 	--background-color: #808080;
 	--height: 6px;
 
-	@include useGradient;
-	@include useHeight;
+	@include use-gradient;
+	@include use-height;
 }

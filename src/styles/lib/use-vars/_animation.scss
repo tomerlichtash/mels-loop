@@ -1,0 +1,17 @@
+@use '../../mixins/keyframesMixins' as key-frames-mixins;
+@use '../refs' as refs;
+
+// ANIMATIONS
+@mixin use-animation($anim, $comp) {
+	animation: $anim;
+	animation-duration: compRef($comp, animation-duration);
+	animation-timing-function: compRef($comp, animation-easing);
+}
+
+@mixin use-keyframe($anim, $comp) {
+	@include use-animation($anim, #{$comp}-#{$anim});
+}
+
+// TODO:
+// useTransition
+// useTransform

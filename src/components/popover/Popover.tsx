@@ -55,7 +55,7 @@ const Popover = ({
 										<PopoverPrimitive.Close asChild>
 											<Button
 												onClick={() => setVisible(false)}
-												className={styles.closePopoverButton}
+												className={styles.close}
 											>
 												{getIcon('close')}
 											</Button>

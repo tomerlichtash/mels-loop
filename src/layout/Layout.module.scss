@@ -10,19 +10,19 @@ $__stylesheet__: (
 $footerMinheight: 20vh;
 
 .root {
-	@include useBackgroundColor;
+	@include use-background-color;
 
-	.topBar {
-		@include useBackgroundColor(name(top-bar));
-	}
+	.topbar {
+		@include use-background-color(name(top-bar));
 
-	.siteTitle {
-		@include useGap(name(logo));
+		.title {
+			@include use-gap(name(logo));
+		}
 	}
 
 	.page {
-		@include layoutMixins.PageContainerMixin(name());
-		@include useMarginTop(name('page'));
+		@include layoutMixins.page-container-mixin(name());
+		@include use-margin-top(name('page'));
 
 		min-height: calc(100vh - $footerMinheight);
 	}
@@ -31,36 +31,28 @@ $footerMinheight: 20vh;
 		display: flex;
 		flex-direction: row;
 
-		@include useBackgroundColor(name(footer));
-	}
+		@include use-background-color(name(footer));
 
-	.footerSiteTitle {
-		display: flex;
-		flex-direction: row;
-		gap: 0.25em;
+		.container {
+			@include layoutMixins.page-container-mixin(name());
+		}
 
-		@include typographyMixins.RunningTextMixin(site-footer-primary-label);
-	}
+		.columns {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			gap: 2em;
+			min-height: $footerMinheight;
+		}
 
-	.pageContainer {
-		@include layoutMixins.PageContainerMixin(name());
-	}
+		.column {
+			display: flex;
+			flex-direction: column;
 
-	.footerLayout {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		gap: 2em;
-		min-height: $footerMinheight;
-	}
-
-	.column {
-		display: flex;
-		flex-direction: column;
-
-		&:first-child {
-			gap: 0.5em;
-			max-width: 50%;
+			&:first-child {
+				gap: 0.5em;
+				max-width: 50%;
+			}
 		}
 	}
 }

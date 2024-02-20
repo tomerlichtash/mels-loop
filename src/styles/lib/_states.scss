@@ -12,12 +12,12 @@ $COMPONENT_STATES: (
 );
 $states: $COMPONENT_STATES;
 
-@function _strReplace($string, $search, $replace: '') {
+@function -str-replace($string, $search, $replace: '') {
 	$index: string.index($string, $search);
 
 	@if $index {
 		$searchLn: string.length($search);
-		$replaced: _strReplace(
+		$replaced: -str-replace(
 			string.slice($string, $index + $searchLn),
 			$search,
 			$replace
@@ -29,7 +29,7 @@ $states: $COMPONENT_STATES;
 	@return $string;
 }
 
-@function customStates($states) {
+@function custom-states($states) {
 	$output-map: ();
 
 	@each $key in map.keys($states) {
@@ -50,7 +50,7 @@ $states: $COMPONENT_STATES;
 			$val: $s;
 		}
 
-		$transformed-value: _strReplace($val, $val, #{$theme-state-delim}#{$val});
+		$transformed-value: -str-replace($val, $val, #{$theme-state-delim}#{$val});
 		$output-map: map.merge(
 			$output-map,
 			(
@@ -63,7 +63,7 @@ $states: $COMPONENT_STATES;
 }
 
 @function state($state, $customStateMap: ()) {
-	$compState: map.get(customStates(deep($states, $customStateMap)), $state);
+	$compState: map.get(custom-states(deep($states, $customStateMap)), $state);
 
 	/* stylelint-disable scss/at-if-no-null */
 	@if $compState != null {

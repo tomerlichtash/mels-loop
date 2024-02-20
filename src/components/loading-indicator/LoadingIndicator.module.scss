@@ -15,13 +15,15 @@ $__stylesheet__: (
 	justify-content: center;
 	flex-direction: column;
 
-	@include useHeight;
+	@include use-height;
+
+	// TODO: use rotation mixin
 
 	.image {
 		animation: rotation 2s infinite linear;
 
-		@include useSize;
-		@include useContentUrl;
+		@include use-size;
+		@include use-content-url;
 	}
 }
 
@@ -30,7 +32,7 @@ $__stylesheet__: (
 
 	display: block;
 
-	@include useVerticalMargin(name(label));
+	@include use-vertical-margin(name(label));
 }
 
 @keyframes rotation {

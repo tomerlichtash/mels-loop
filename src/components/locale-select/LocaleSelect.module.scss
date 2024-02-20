@@ -12,7 +12,7 @@ $__stylesheet__: (
 
 	display: flex;
 
-	@include useGap;
+	@include use-gap;
 
 	.item {
 		background-color: transparent;
@@ -20,7 +20,7 @@ $__stylesheet__: (
 		padding: 0;
 
 		.button {
-			@include buttonMixin.ToggleButtonMixin;
+			@include buttonMixin.toggle-button-mixin;
 		}
 	}
 }

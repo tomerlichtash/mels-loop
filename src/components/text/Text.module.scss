@@ -21,13 +21,13 @@ $__stylesheet__: (
 
 	&[data-variant] {
 		&[data-variant='h1'] {
-			@include typographyMixins.RunningTextMixin(name(h1));
+			@include typographyMixins.running-text-mixin(name(h1));
 
 			// font-size: 1.2em;
-			// @include useTextColor(name(h1));
-			// @include useLineHeight(name(h1));
-			// @include useTextTransform(name(h1));
-			// @include useLetterSpacing(name(h1));
+			// @include use-text-color(name(h1));
+			// @include use-line-height(name(h1));
+			// @include use-text-transform(name(h1));
+			// @include use-letter-spacing(name(h1));
 		}
 
 		&[data-variant='h2'] {

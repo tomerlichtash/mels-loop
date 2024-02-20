@@ -1,7 +1,7 @@
 @use '../nav-item/NavListItem.module' as NavListItem;
-@import './menuDrawerMixin';
-@import '../nav-item/navListItemMixin';
-@import '../nav-item-content/navItemContentMixin';
+@use '../nav-item/navListItemMixin' as nav-list-item-mixin;
+@use '../nav-item-content/navItemContentMixin' as nav-item-content-mixin;
+
 @import 'styles/lib/component';
 @import 'styles/lib/states';
 
@@ -15,6 +15,8 @@ $__stylesheet__: (
 		margin: 0;
 	}
 
-	@include ListItemMixin(name(item), $states);
-	@include NavItemContentMixin(site-item-content-variant-base);
+	@include nav-list-item-mixin.list-item-mixin(name(item), $states);
+	@include nav-item-content-mixin.nav-item-content-mixin(
+		site-item-content-variant-base
+	);
 }

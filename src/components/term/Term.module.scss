@@ -1,5 +1,5 @@
 @use 'styles/mixins/popoverMixin';
-@use '../popover/PopoverTrigger.module.scss' as PopoverTrigger;
+@use '../popover/PopoverTrigger.module.scss' as trigger;
 @use 'styles/mixins/typographyMixins';
 @import 'styles/lib/component';
 @import 'styles/lib/themeVars';
@@ -10,19 +10,19 @@ $__stylesheet__: (
 
 .root {
 	--content: '*';
-	--offset-top: -0.3em;
+	--offset-y: -0.3em;
 	--decoration-color: #000;
 
 	.label {
-		@include popoverMixin.PopoverTrigger(PopoverTrigger.name());
+		@include popoverMixin.trigger(trigger.name());
 	}
 
 	&::after {
 		position: relative;
+		cursor: pointer;
 
-		@include cursorPointer;
-		@include useTextColor(name(suffix));
-		@include useOffsetTop(name(suffix));
-		@include typographyMixins.SuffixMixin(name());
+		@include use-text-color(name(suffix));
+		@include use-offset-y(name(suffix));
+		@include typographyMixins.suffix(name());
 	}
 }

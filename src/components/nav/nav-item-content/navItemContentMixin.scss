@@ -1,7 +1,7 @@
 @use 'styles/lib/overrides';
 @use './NavItemContent.module.scss';
 
-@mixin NavItemContentMixin($module) {
+@mixin nav-item-content-mixin($module) {
 	@include overrides.transform(
 		$module,
 		(

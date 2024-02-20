@@ -6,7 +6,7 @@ $__stylesheet__: (
 );
 
 .root {
-	@include typographyMixins.RunningTextMixin(name());
+	@include typographyMixins.running-text-mixin(name());
 
 	margin-top: 0;
 

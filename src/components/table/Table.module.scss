@@ -28,23 +28,23 @@ $__stylesheet__: (
 	// 	padding: 1em;
 	// }
 
-	@include useRadius;
-	@include useBorderTopSize;
-	@include useBorderTopStyle;
-	@include useBorderTopColor;
-	@include useBorderLeftSize;
-	@include useBorderLeftStyle;
-	@include useBorderLeftColor;
+	@include use-radius;
+	@include use-border-top-size;
+	@include use-border-top-style;
+	@include use-border-top-color;
+	@include use-border-left-size;
+	@include use-border-left-style;
+	@include use-border-left-color;
 
 	td,
 	th {
 		padding: 1rem 2rem;
 
-		@include useBorderRightSize;
-		@include useBorderRightStyle;
-		@include useBorderRightColor;
-		@include useBorderBottomSize;
-		@include useBorderBottomStyle;
-		@include useBorderBottomColor;
+		@include use-border-right-size;
+		@include use-border-right-style;
+		@include use-border-right-color;
+		@include use-border-bottom-size;
+		@include use-border-bottom-style;
+		@include use-border-bottom-color;
 	}
 }

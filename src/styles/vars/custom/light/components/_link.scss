@@ -1,13 +1,13 @@
-@use '../../../../../components/link/Link.module.scss' as Link;
+@use '../../../../../components/link/Link.module.scss' as link;
 @import '../../../../lib/theme';
 @import '../../../../lib/refs';
 
 $index: (
 	text-color: ref(color-primary-main),
-	Link.state(hovered): (
+	link.state(hovered): (
 		text-color: ref(color-secondary-main),
 	),
-	Link.state(clicked): (
+	link.state(clicked): (
 		text-color: ref(color-secondary-light),
 	),
 );

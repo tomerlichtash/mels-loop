@@ -1,5 +1,5 @@
 @use '../../../../../components/nav/menu-drawer/MenuDrawer.module.scss' as
-	MenuDrawer;
+	menu-drawer;
 @import '../../../../lib/theme';
 @import '../../../../lib/refs';
 
@@ -21,7 +21,7 @@ $index: (
 			gutter: 1em,
 		),
 
-		MenuDrawer.state(hovered): (
+		menu-drawer.state(hovered): (
 			text-color: ref(color-secondary-main),
 			background-color: ref(color-surface-contrast),
 		),

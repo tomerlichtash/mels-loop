@@ -1,5 +1,5 @@
 @use '../../../../../components/theme-select/ThemeSelect.module.scss' as
-	ThemeSelector;
+	theme-select;
 @import '../../../../lib/theme';
 
 $index: (
@@ -29,7 +29,7 @@ $index: (
 	icon:
 		(
 			text-color: ref(color-surface-contrast),
-			ThemeSelector.state(hovered): (
+			theme-select.state(hovered): (
 				text-color: ref(color-surface-contrast),
 			),
 		)

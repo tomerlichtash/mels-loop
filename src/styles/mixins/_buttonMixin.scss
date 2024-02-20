@@ -10,15 +10,15 @@ $states: deep(
 	)
 );
 
-@function getBgColor($var, $state) {
+@function -get-bg-color($var, $state) {
 	@return compRef($var, background-color, $state);
 }
 
-@function getTextColor($var, $state) {
+@function -get-text-color($var, $state) {
 	@return compRef($var, text-color, $state);
 }
 
-@function getFontWeight($var, $state) {
+@function -get-font-weight($var, $state) {
 	@return compRef($var, font-weight, $state);
 }
 
@@ -26,95 +26,51 @@ $bgVar: varName(site-button-toggle-background-color);
 $textColorVar: varName(site-button-toggle-text-color);
 $fontWeightVar: varName(site-button-toggle-font-weight);
 
-@mixin IconMixin($var) {
+@mixin icon-mixin($var) {
 	.icon {
-		@include useIconColor($var);
+		@include use-icon-color($var);
 	}
 
 	&:hover {
 		.icon {
-			@include useIconColor($var, state(hovered));
+			@include use-icon-color($var, state(hovered));
 		}
 	}
 }
 
-@mixin TextLinkMixin {
-	@include useTextColor(link);
+@mixin menu-trigger-button-mixin($var: site-mixins-toggle-button) {
+	user-select: none;
+	border: none;
 
-	&:hover {
-		@include useTextColor(link, state(hovered));
-	}
+	@include use-height($var);
+	@include use-radius($var);
+	@include use-text-color($var);
+	@include use-background-color($var);
+	@include use-font-weight($var);
+	@include icon-mixin($var);
 }
 
-@mixin MenuTriggerButtonMixin($var: site-mixins-toggle-button) {
-	@include clearBorder;
-	@include disableUserSelection;
-	@include useHeight($var);
-	@include useRadius($var);
-	@include useTextColor($var);
-	@include useBackgroundColor($var);
-	@include useFontWeight($var);
-	@include IconMixin($var);
-}
-
-@mixin ToggleButtonMixin($var: site-button-toggle) {
+@mixin toggle-button-mixin($var: site-button-toggle) {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 
-	@include MenuTriggerButtonMixin;
-	@include useWidth($var);
-	@include useTextColor($var);
+	@include menu-trigger-button-mixin;
+	@include use-width($var);
+	@include use-text-color($var);
 
 	&:not([data-state='selected']):hover {
-		@include cursorPointer;
-		@include useTextColor($var, state(hovered));
-		@include useBackgroundColor($var, state(hovered));
+		cursor: pointer;
+
+		@include use-text-color($var, state(hovered));
+		@include use-background-color($var, state(hovered));
 	}
 
 	// `selected` state overrides
 	&[data-state='selected'] {
-		#{$bgVar}: #{getBgColor($var, state(selected))};
-		#{$textColorVar}: #{getTextColor($var, state(selected))};
-		#{$fontWeightVar}: #{getFontWeight($var, state(selected))};
-	}
-}
-
-@mixin IconButtonWithLabelMixin {
-	overflow: hidden;
-
-	@include disableUserSelection;
-
-	.icon {
-		color: #000;
-		border-radius: 6px;
-		display: flex;
-		height: 32px;
-		width: 32px;
-		align-items: center;
-		justify-content: center;
-
-		// padding: 4px;
-	}
-
-	.label {
-		position: relative;
-		top: -10px;
-		margin: 0 0.5em;
-		opacity: 0;
-		transition: 125ms all ease-in-out;
-	}
-
-	&:hover {
-		.icon {
-			background-color: ref(color-container-main);
-		}
-
-		.label {
-			top: 0;
-			display: block;
-			opacity: 1;
-		}
+		#{$bgVar}: #{-get-bg-color($var, state(selected))};
+		#{$textColorVar}: #{-get-text-color($var, state(selected))};
+		#{$fontWeightVar}: #{-get-font-weight($var, state(selected))};
 	}
 }
 

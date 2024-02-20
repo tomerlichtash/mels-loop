@@ -1,0 +1,47 @@
+@use 'styles/lib/themeVars' as themeVars;
+@use '../mixins/keyframesMixins' as keyframes;
+
+@mixin enter-from-left($var) {
+	@include keyframes.enter-from-left;
+	@include themeVars.use-keyframe(enter-from-left, $var);
+}
+
+@mixin enter-from-right($var) {
+	@include keyframes.enter-from-right;
+	@include themeVars.use-keyframe(enter-from-right, $var);
+}
+
+@mixin exit-to-left($var) {
+	@include keyframes.exit-to-left;
+	@include themeVars.use-keyframe(exit-to-left, $var);
+}
+
+@mixin exit-to-right($var) {
+	@include keyframes.exit-to-right;
+	@include themeVars.use-keyframe(exit-to-right, $var);
+}
+
+@mixin fade-in($var) {
+	@include keyframes.fade-in;
+	@include themeVars.use-keyframe(fade-in, $var);
+}
+
+@mixin fade-out($var) {
+	@include keyframes.fade-out;
+	@include themeVars.use-keyframe(fade-out, $var);
+}
+
+@mixin scale-in($var) {
+	@include keyframes.scale-in;
+	@include themeVars.use-keyframe(scale-in, $var);
+}
+
+@mixin scale-out($var) {
+	@include keyframes.scale-out;
+	@include themeVars.use-keyframe(scale-out, $var);
+}
+
+@mixin rotation($var) {
+	@include keyframes.rotation;
+	@include themeVars.use-keyframe(rotation, $var);
+}

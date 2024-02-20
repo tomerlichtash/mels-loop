@@ -3,7 +3,7 @@
 @use 'sass:math';
 @use 'sass:color';
 
-@function hexToRgb($hex) {
+@function -hex-to-rgb($hex) {
 	$r: color.red($hex);
 	$g: color.green($hex);
 	$b: color.blue($hex);
@@ -11,8 +11,8 @@
 	@return ($r, $g, $b);
 }
 
-@function luminance($hex) {
-	$rgb: hexToRgb($hex);
+@function -luminance($hex) {
+	$rgb: -hex-to-rgb($hex);
 	$r: calc(list.nth($rgb, 1) / 255);
 	$g: calc(list.nth($rgb, 2) / 255);
 	$b: calc(list.nth($rgb, 3) / 255);
@@ -29,9 +29,9 @@
 	@return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
 }
 
-@function contrastRatio($color1, $color2) {
-	$l1: luminance($color1) + 0.05;
-	$l2: luminance($color2) + 0.05;
+@function -contrast-ratio($color1, $color2) {
+	$l1: -luminance($color1) + 0.05;
+	$l2: -luminance($color2) + 0.05;
 	$contrast: if($l1 > $l2, calc($l1 / $l2), calc($l2 / $l1));
 
 	@return $contrast;
@@ -48,7 +48,7 @@
 		// $light: lighten($primary, 20%);
 		// $dark: darken($primary, 20%);
 
-		$contrastRatio: contrastRatio($value, #000);
+		$contrastRatio: -contrast-ratio($value, #000);
 		$contrast: if($contrastRatio >= 12.95, #000, #fff);
 		$color-palette: map.merge(
 			$color-palette,

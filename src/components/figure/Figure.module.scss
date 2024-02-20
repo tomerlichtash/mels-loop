@@ -21,10 +21,10 @@ $__stylesheet__: (
 
 	padding: 1em;
 
-	@include useBorderSize;
-	@include useBorderStyle;
-	@include useBorderColor;
-	@include useRadius;
+	@include use-border-size;
+	@include use-border-style;
+	@include use-border-color;
+	@include use-radius;
 
 	// variant mixins
 	&[data-type='no-border'] {

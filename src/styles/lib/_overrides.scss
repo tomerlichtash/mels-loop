@@ -1,21 +1,22 @@
+/* stylelint-disable scss/at-mixin-pattern */
 @use 'sass:map';
 @use 'sass:string';
 @import './refs';
 @import './states';
 
-@function _getPartVar($comp, $part) {
+@function -get-part-var($comp, $part) {
 	@return #{$comp}-#{$part};
 }
 
-@function _getModulePartVar($comp, $module, $part) {
+@function -get-module-part-var($comp, $module, $part) {
 	@return #{$module}-#{$part};
 }
 
-@mixin _mapVars($comp, $module, $props, $part: '', $state: '') {
-	$var: if(string.length($part) > 0, _getPartVar($comp, $part), $comp);
+@mixin _map-vars($comp, $module, $props, $part: '', $state: '') {
+	$var: if(string.length($part) > 0, -get-part-var($comp, $part), $comp);
 	$ref: if(
 		string.length($part) > 0,
-		_getModulePartVar($comp, $module, $part),
+		-get-module-part-var($comp, $module, $part),
 		$module
 	);
 
@@ -38,7 +39,7 @@
 		@each $ref in map.keys($refs) {
 			$state: if($ref == '_', '', $ref);
 
-			@include _mapVars($compName, $module, $rootVars, $partName, $state);
+			@include _map-vars($compName, $module, $rootVars, $partName, $state);
 		}
 	}
 }

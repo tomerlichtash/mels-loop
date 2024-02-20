@@ -4,7 +4,7 @@ $__stylesheet__: (
 	name: toolbar-item,
 );
 
-@mixin ToolbarButtonMixin {
+@mixin toolbar-button-mixin {
 	display: flex;
 	align-items: center;
 	justify-content: center;

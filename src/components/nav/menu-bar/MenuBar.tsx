@@ -7,11 +7,13 @@ import NavListItem from '../nav-item/NavListItem';
 import NavItemContent from '../nav-item-content/NavItemContent';
 import styles from './MenuBar.module.scss';
 import type { NavItemDataProps, NavParsedNodes, NavProps } from '../types';
+import ListItem from 'components/list-item/ListItem';
 
 const renderItems = (items: NavItemDataProps[]) =>
 	items.map((item) => (
 		<NavigationMenu.Link asChild key={unique.id()}>
-			<li className={styles.listItem}>
+			{/* <li className={styles.listItem}> */}
+			<ListItem>
 				<NavListItem key={unique.id()} className={styles.item} {...item}>
 					<NavItemContent
 						title={item.locale.title}
@@ -20,7 +22,8 @@ const renderItems = (items: NavItemDataProps[]) =>
 						icon={item.icon}
 					/>
 				</NavListItem>
-			</li>
+				{/* </li> */}
+			</ListItem>
 		</NavigationMenu.Link>
 	));
 
@@ -30,7 +33,7 @@ const renderSections = (sections: NavParsedNodes[]) =>
 			<Button asChild className={styles.trigger}>
 				<NavigationMenu.Trigger>
 					{section.locale.title}
-					{getIcon('caretDown', styles.caretDown)}
+					{getIcon('caretDown', styles.caret)}
 				</NavigationMenu.Trigger>
 			</Button>
 			<NavigationMenu.Content className={styles.content}>

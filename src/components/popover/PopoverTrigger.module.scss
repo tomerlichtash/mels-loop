@@ -19,15 +19,15 @@ $states: merge.deep(
 	)
 );
 
-@function refTextColor($state: '') {
+@function -text-color($state: '') {
 	@return compRef(name(), text-color, state($state));
 }
 
-@function refBgColor($state: '') {
+@function -bg-color($state: '') {
 	@return compRef(name(), background-color, state($state));
 }
 
-@function refSuffixColor($state: '') {
+@function -suffix-color($state: '') {
 	@return compRef(name(), astriek-color, state($state));
 }
 
@@ -37,35 +37,35 @@ $suffixColor: varName(term-suffix-text-color);
 
 .root {
 	&[data-popover-state='closed'] {
-		#{$suffixColor}: refSuffixColor();
+		#{$suffixColor}: -suffix-color();
 
 		&:hover {
-			#{$color}: refTextColor(hovered);
-			#{$suffixColor}: refSuffixColor(hovered);
+			#{$color}: -text-color(hovered);
+			#{$suffixColor}: -suffix-color(hovered);
 		}
 
 		&:active {
-			#{$color}: refTextColor(clicked);
-			#{$bgColor}: refBgColor(clicked);
-			#{$suffixColor}: refSuffixColor(clicked);
+			#{$color}: -text-color(clicked);
+			#{$bgColor}: -bg-color(clicked);
+			#{$suffixColor}: -suffix-color(clicked);
 		}
 	}
 
 	&[data-popover-state='open'] {
-		#{$color}: refTextColor(selected);
-		#{$bgColor}: refBgColor(selected);
-		#{$suffixColor}: refSuffixColor(selected);
+		#{$color}: -text-color(selected);
+		#{$bgColor}: -bg-color(selected);
+		#{$suffixColor}: -suffix-color(selected);
 
 		&:hover {
-			#{$color}: refTextColor(selected-hovered);
-			#{$bgColor}: refBgColor(selected-hovered);
-			#{$suffixColor}: refSuffixColor(selected-hovered);
+			#{$color}: -text-color(selected-hovered);
+			#{$bgColor}: -bg-color(selected-hovered);
+			#{$suffixColor}: -suffix-color(selected-hovered);
 		}
 
 		&:active {
-			#{$color}: refTextColor(selected-clicked);
-			#{$bgColor}: refBgColor(selected-clicked);
-			#{$suffixColor}: refSuffixColor(selected-clicked);
+			#{$color}: -text-color(selected-clicked);
+			#{$bgColor}: -bg-color(selected-clicked);
+			#{$suffixColor}: -suffix-color(selected-clicked);
 		}
 	}
 }

@@ -5,11 +5,11 @@
 $__stylesheet__: (
 	name: menu-bar,
 );
-$growth-animation: (
+$growth-animation-props: (
 	duration: globalRef(animation-duration-sm),
 	easing: globalRef(animation-easing-default),
 );
-$stage-animation: (
+$stage-animation-props: (
 	duration: globalRef(animation-duration-sm),
 	easing: globalRef(animation-easing-default),
 );
@@ -64,12 +64,12 @@ $index: (
 		),
 	),
 
-	scaleIn-animation: $growth-animation,
-	scaleOut-animation: $growth-animation,
-	fadeIn-animation: $growth-animation,
-	fadeOut-animation: $growth-animation,
-	enterFromRight-animation: $stage-animation,
-	enterFromLeft-animation: $stage-animation,
-	exitToRight-animation: $stage-animation,
-	exitToLeft-animation: $stage-animation,
+	scale-in-animation: $growth-animation-props,
+	scale-out-animation: $growth-animation-props,
+	fade-in-animation: $growth-animation-props,
+	fade-out-animation: $growth-animation-props,
+	enter-from-right-animation: $stage-animation-props,
+	enter-from-left-animation: $stage-animation-props,
+	exit-to-right-animation: $stage-animation-props,
+	exit-to-left-animation: $stage-animation-props,
 );

@@ -1,4 +1,4 @@
-@use '../../../../../components/popover/PopoverTrigger.module' as PopoverTrigger;
+@use '../../../../../components/popover/PopoverTrigger.module' as trigger;
 @import '../../../../lib/theme';
 @import '../../../../lib/refs';
 
@@ -7,26 +7,26 @@ $index: (
 		text-color: ref(link-text-color),
 		astriek-color: ref(link-text-color),
 		radius: globalRef(radius-sm),
-		PopoverTrigger.state(hovered): (
+		trigger.state(hovered): (
 			text-color: ref(color-secondary-main),
 			astriek-color: ref(color-secondary-main),
 		),
-		PopoverTrigger.state(clicked): (
+		trigger.state(clicked): (
 			background-color: ref(color-primary-dark),
 			text-color: ref(color-secondary-contrast),
 			astriek-color: ref(color-primary-dark),
 		),
-		PopoverTrigger.state(selected): (
+		trigger.state(selected): (
 			background-color: ref(color-secondary-main),
 			text-color: ref(color-secondary-contrast),
 			astriek-color: ref(color-secondary-main),
 		),
-		PopoverTrigger.state(selected-hovered): (
+		trigger.state(selected-hovered): (
 			background-color: ref(color-secondary-dark),
 			text-color: ref(color-secondary-contrast),
 			astriek-color: ref(color-secondary-dark),
 		),
-		PopoverTrigger.state(selected-clicked): (
+		trigger.state(selected-clicked): (
 			background-color: ref(color-secondary-main),
 			text-color: ref(color-secondary-contrast),
 			astriek-color: ref(color-secondary-main),
@@ -40,7 +40,7 @@ $index: (
 		border-style: solid,
 		border-size: 1px,
 		width: 29.5em,
-		fadeIn-animation: (
+		fade-in-animation: (
 			duration: globalRef(animation-duration-sm),
 			easing: globalRef(animation-easing-in),
 		),

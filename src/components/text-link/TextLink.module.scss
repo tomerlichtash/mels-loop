@@ -20,13 +20,13 @@ $__stylesheet__: (
 	align-items: center;
 
 	// .label {
-	// 	@include useTextTransform(name(primary));
-	// 	@include typographyMixins.RunningTextMixin(name(primary));
+	// 	@include use-text-transform(name(primary));
+	// 	@include typographyMixins.running-text-mixin(name(primary));
 	// }
 
 	// .subtitle {
-	// 	@include useTextTransform(name(secondary));
-	// 	@include typographyMixins.RunningTextMixin(name(secondary));
+	// 	@include use-text-transform(name(secondary));
+	// 	@include typographyMixins.running-text-mixin(name(secondary));
 	// 	@include typographyMixins.SeparatorMixin(name(separator));
 	// }
 

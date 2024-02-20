@@ -7,25 +7,25 @@ $__stylesheet__: (
 
 .root {
 	.pre {
-		@include useBackgroundColor;
-		@include useRadius;
-		@include useInnerGutter;
-		@include useBorderColor;
+		@include use-background-color;
+		@include use-radius;
+		@include use-inner-gutter;
+		@include use-border-color;
 
 		text-align: left;
 
 		.code {
 			// @include Code();
 
-			// @include useTextColor(code-inline);
-			// @include useBackgroundColor(code-inline);
-			@include useFontWeight;
-			@include useFontFamily;
+			// @include use-text-color(code-inline);
+			// @include use-background-color(code-inline);
+			@include use-font-weight;
+			@include use-font-family;
 
-			// @include useHorizontalPadding(code-inline);
-			// @include useRadius(code-inline);
-			// @include useBorderSize(code-inline);
-			// @include useBorderStyle(code-inline);
+			// @include use-horizontal-padding(code-inline);
+			// @include use-radius(code-inline);
+			// @include use-border-size(code-inline);
+			// @include use-border-style(code-inline);
 		}
 	}
 }

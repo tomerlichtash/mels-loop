@@ -1,0 +1,9 @@
+// offset x
+@mixin use-offset-x($var: name(), $state: '') {
+	@include use(left, offset-x, $var, $state);
+}
+
+// offset y
+@mixin use-offset-y($var: name(), $state: '') {
+	@include use(top, offset-y, $var, $state);
+}

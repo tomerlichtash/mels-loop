@@ -9,10 +9,10 @@ $__stylesheet__: (
 .root {
 	user-select: text;
 
-	@include useRadius;
-	@include useShadow;
-	@include usePadding;
-	@include useMargin;
+	@include use-radius;
+	@include use-shadow;
+	@include use-padding;
+	@include use-margin;
 
 	.article {
 		width: 100%;
@@ -23,7 +23,7 @@ $__stylesheet__: (
 	// }
 
 	.title {
-		@include useBackgroundColor(name('title'));
+		@include use-background-color(name('title'));
 	}
 
 	// .abstract {
@@ -40,7 +40,7 @@ $__stylesheet__: (
 	}
 }
 
-@mixin GenericContentLayoutMixin(
+@mixin generic-content-layout-mixin(
 	$rootRadius: inherit,
 	$rootBoxShadow: inherit,
 	$rootPaddingTop: inherit,

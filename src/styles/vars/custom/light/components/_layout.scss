@@ -1,4 +1,4 @@
-@use '../../../../../layout/Layout.module.scss' as Layout;
+@use '../../../../../layout/Layout.module.scss' as layout;
 @import '../../../../lib/theme';
 @import '../../../../lib/refs';
 @import '../../../../lib/states';
@@ -8,7 +8,7 @@ $index: (
 	gutter: 2em,
 	scrollbar: (
 		background-color: ref(color-container-main),
-		Layout.state(hovered): (
+		layout.state(hovered): (
 			background-color: ref(color-surface-dark),
 		),
 	),

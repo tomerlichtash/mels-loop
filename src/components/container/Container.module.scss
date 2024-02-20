@@ -52,6 +52,6 @@ $__stylesheet__: (
 	}
 
 	&[data-horizontal-gutter='true'] {
-		@include useHorizontalPadding(name());
+		@include use-horizontal-padding(name());
 	}
 }

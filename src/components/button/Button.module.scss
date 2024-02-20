@@ -8,8 +8,7 @@ $__stylesheet__: (
 .root {
 	display: inline-flex;
 	align-items: center;
-
-	@include cursorPointer;
+	cursor: pointer;
 
 	&[data-size] {
 		padding: 0.5em 0.75em;

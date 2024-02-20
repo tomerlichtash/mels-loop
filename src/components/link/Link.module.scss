@@ -10,19 +10,19 @@ $__stylesheet__: (
 	--color#{state(hovered)}: #00a;
 	--color#{state(clicked)}: #a00;
 
-	@include cursorPointer;
+	cursor: pointer;
 
 	&:link,
 	&:visited {
-		@include useTextColor;
-		@include useBackgroundColor;
+		@include use-text-color;
+		@include use-background-color;
 	}
 
 	&:hover {
-		@include useTextColor(name(), state(hovered));
+		@include use-text-color(name(), state(hovered));
 	}
 
 	&:active {
-		@include useTextColor(name(), state(clicked));
+		@include use-text-color(name(), state(clicked));
 	}
 }

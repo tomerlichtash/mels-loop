@@ -192,10 +192,10 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 					alignItemsCenter
 					horizontalGutter
 					position="top"
-					className={styles.topBar}
+					className={styles.topbar}
 				>
 					<header data-testid="topbar">
-						<Container alignItemsCenter className={styles.siteTitle}>
+						<Container alignItemsCenter className={styles.title}>
 							<Logo />
 							<TextLink title={siteTitle} linked={!isHome} href="/">
 								{siteTitle}
@@ -232,8 +232,8 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 				<Strip />
 				<Container fullWidth asChild className={styles.footer}>
 					<footer className={styles.footer}>
-						<div className={styles.pageContainer}>
-							<div className={styles.footerLayout}>
+						<div className={styles.container}>
+							<div className={styles.columns}>
 								<div className={classNames(styles.column)}>
 									<Text
 										variant="h1"

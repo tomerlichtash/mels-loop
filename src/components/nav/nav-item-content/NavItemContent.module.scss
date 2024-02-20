@@ -5,49 +5,49 @@ $__stylesheet__: (
 	name: site-item-content,
 );
 
-@mixin rootMixin($module) {
-	@include useBackgroundColor($module);
+@mixin root-mixin($module) {
+	@include use-background-color($module);
 }
 
-@mixin iconMixin($module) {
+@mixin icon-mixin($module) {
 	--background-color: transparent;
 
-	@include useBorderSize($module);
-	@include useBorderStyle($module);
-	@include useBorderColor($module);
-	@include useRadius($module);
-	@include useInnerGutter($module);
-	@include useGap($module);
-	@include useBackgroundColor($module);
+	@include use-border-size($module);
+	@include use-border-style($module);
+	@include use-border-color($module);
+	@include use-radius($module);
+	@include use-inner-gutter($module);
+	@include use-gap($module);
+	@include use-background-color($module);
 }
 
-@mixin titleMixin($module) {
-	@include useFontWeight($module);
-	@include useTextTransform($module);
-	@include useLineHeight($module);
+@mixin title-mixin($module) {
+	@include use-font-weight($module);
+	@include use-text-transform($module);
+	@include use-line-height($module);
 }
 
-@mixin descriptionMixin($module) {
-	@include useTextColor($module);
+@mixin description-mixin($module) {
+	@include use-text-color($module);
 }
 
 .root {
-	@include rootMixin(item-content-variant-base);
+	@include root-mixin(item-content-variant-base);
 
 	.icon {
 		display: flex;
 
-		@include iconMixin(item-content-variant-base-icon);
+		@include icon-mixin(item-content-variant-base-icon);
 	}
 
 	.title {
 		display: flex;
 
-		@include titleMixin(item-content-variant-base-title);
+		@include title-mixin(item-content-variant-base-title);
 	}
 
 	.author,
 	.description {
-		@include descriptionMixin(item-content-variant-base-description);
+		@include description-mixin(item-content-variant-base-description);
 	}
 }

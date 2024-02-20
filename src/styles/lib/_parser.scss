@@ -1,3 +1,4 @@
+/* stylelint-disable scss/at-mixin-pattern */
 @use 'sass:map';
 @use 'sass:string';
 @use 'sass:list';
@@ -6,11 +7,11 @@
 
 $default-state-delim: config.$theme-state-delim;
 
-@function _isEmptyVarMap($vars) {
+@function -is-empty-var-map($vars) {
 	@return (type-of($vars) == 'list') and (length($vars) == 0);
 }
 
-@function _removeNth($list, $nth) {
+@function -remove-nth($list, $nth) {
 	$result: ();
 	$nth: if($nth < 0, list.length($list) + $nth + 1, $nth);
 	$bracketed: is-bracketed($list);
@@ -25,8 +26,18 @@ $default-state-delim: config.$theme-state-delim;
 	@return join((), $result, $separator, $bracketed);
 }
 
-@function isContentProp($val) {
+@function -is-content-prop($val) {
 	@return str-index($val, '-content') != null;
+}
+
+@mixin -parse($vars) {
+	@each $key, $val in $vars {
+		@if -is-empty-var-map($val) {
+			@error #{empty theme vars object #{":"}$key};
+		} @else {
+			#{$key}: $val;
+		}
+	}
 }
 
 @function transform($map, $path, $delim: $default-state-delim) {
@@ -43,7 +54,7 @@ $default-state-delim: config.$theme-state-delim;
 		@if str-index($path, $delim) {
 			$split: string.split($path, $delim);
 			$prefix: list.nth($split, 1);
-			$stateList: _removeNth($split, 1);
+			$stateList: -remove-nth($split, 1);
 			$states: '';
 
 			@each $state in $stateList {
@@ -59,14 +70,14 @@ $default-state-delim: config.$theme-state-delim;
 			// unquote all values, except special case of `content` properties,
 			// that should be in quotes. This is to support handling of quoted strings
 			// (e.g. font families)
-			@if type-of($value) == 'string' and not isContentProp($key) {
+			@if type-of($value) == 'string' and not -is-content-prop($key) {
 				$value: string.unquote($value);
 			}
 
 			$result: map.merge(
 				$result,
 				(
-					refs.cssVar(#{$variable-name}): $value,
+					refs.to-css-var(#{$variable-name}): $value,
 				)
 			);
 		}
@@ -75,18 +86,8 @@ $default-state-delim: config.$theme-state-delim;
 	@return $result;
 }
 
-@mixin _parse($vars) {
-	@each $key, $val in $vars {
-		@if _isEmptyVarMap($val) {
-			@error #{empty theme vars object #{":"}$key};
-		} @else {
-			#{$key}: $val;
-		}
-	}
-}
-
 @mixin compile($exports, $prefix: '', $delim: $default-state-delim) {
 	@each $vars in $exports {
-		@include _parse((transform($vars, refs.prefix($prefix), $delim)));
+		@include -parse((transform($vars, refs.prefix($prefix), $delim)));
 	}
 }

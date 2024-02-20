@@ -1,3 +1,4 @@
+/* stylelint-disable scss/at-function-pattern */
 @use 'sass:string';
 @import '../config';
 
@@ -11,48 +12,49 @@
 	@return $path;
 }
 
-@function cssVar($var) {
+// @private create-css-ref
+@function -to-css-ref($key, $prefix: '') {
+	@return to-css-var(#{$prefix}-#{$key});
+}
+
+// @public create-css-var
+@function to-css-var($var) {
 	@return #{'--'}#{$var};
 }
 
-@function cssRef($key, $prefix: '') {
-	@return cssVar(#{$prefix}-#{$key});
-}
-
+// @public create
 @function varName($key, $prefix: '') {
-	@return cssRef($key, prefix($prefix));
+	@return -to-css-ref($key, prefix($prefix));
 }
 
-@function varNameState($key, $state: '', $prefix: '') {
-	@return cssRef(#{$key}#{$state}, prefix($prefix));
-}
-
+// @public ref
+// create a css ref, used to populate pre-declared theme points
 @function ref($key, $prefix: '') {
-	@return #{var(cssRef($key, prefix($prefix)))};
+	@return #{var(-to-css-ref($key, prefix($prefix)))};
 }
 
+// global-ref
+// create a css var which is mapped to a global variable
 @function globalRef($key) {
 	@return ref($key, $theme-global-prefix);
 }
 
+// ref with component-specific namespace and states
 @function compRef($ns, $key, $state: '', $prefix: $theme-namespace-prefix) {
 	$compState: '';
 
-	@if str-length($state) > 0 {
+	@if string.length($state) > 0 {
 		$compState: $state;
 	}
 
 	@return #{var(
-			cssRef(#{$key}#{$compState}, #{$prefix}-#{$ns}),
-			var(cssVar(#{$key}#{$compState}))
+			-to-css-ref(#{$key}#{$compState}, #{$prefix}-#{$ns}),
+			var(to-css-var(#{$key}#{$compState}))
 		)};
 }
 
-@mixin useThemeVar(
-	$cssProperty,
-	$themeProperty,
-	$varName: '__generic__',
-	$state: ''
-) {
+// create property decleration mapped to component specific css ref with states
+// used to define theme points in component style implementation
+@mixin use($cssProperty, $themeProperty, $varName: 'generic', $state: '') {
 	#{$cssProperty}: compRef($varName, $themeProperty, $state);
 }

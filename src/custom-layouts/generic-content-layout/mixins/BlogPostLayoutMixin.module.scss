@@ -1,5 +1,5 @@
 @use 'styles/lib/refs';
-@use '../../generic-content-layout/GenericContentLayout.module' as CustomLayout;
+@use '../../generic-content-layout/GenericContentLayout.module' as custom-layout;
 @import 'styles/lib/component';
 
 $__stylesheet__: (
@@ -15,7 +15,7 @@ $__stylesheet__: (
 		max-width: 100%;
 	}
 
-	@include CustomLayout.GenericContentLayoutMixin(
+	@include custom-layout.generic-content-layout-mixin(
 		$rootPaddingTop: 2em,
 		$rootPaddingBottom: 2em,
 		$rootPaddingLeft: 2em,

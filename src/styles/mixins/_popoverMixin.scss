@@ -1,12 +1,13 @@
 @import '../lib/themeVars';
 
-@mixin PopoverTrigger($comp: '', $state: '') {
-	@include cursorPointer;
-	@include useBackgroundColor($comp);
-	@include useTextColor($comp);
-	@include useRadius($comp);
+@mixin trigger($comp: '', $state: '') {
+	cursor: pointer;
+
+	@include use-background-color($comp);
+	@include use-text-color($comp);
+	@include use-radius($comp);
 
 	&:active {
-		@include disableUserSelection;
+		user-select: none;
 	}
 }

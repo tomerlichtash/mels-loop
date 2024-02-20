@@ -2,7 +2,7 @@
 @use 'styles/lib/overrides';
 @import 'styles/lib/states';
 
-@mixin ListItemMixin($module, $states: ()) {
+@mixin list-item-mixin($module, $states: ()) {
 	@include overrides.transform(
 		$module,
 		(

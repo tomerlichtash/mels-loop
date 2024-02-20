@@ -23,25 +23,22 @@ const Scrollbar = ({
 		dir={textDirection}
 		style={{ height }}
 	>
-		<ScrollAreaPrimitive.Viewport
-			className={styles.ScrolLAreaViewport}
-			{...rest}
-		>
+		<ScrollAreaPrimitive.Viewport className={styles.viewport} {...rest}>
 			{children}
 		</ScrollAreaPrimitive.Viewport>
 		<ScrollAreaPrimitive.Scrollbar
-			className={styles.ScrollAreaScrollbar}
+			className={styles.scrollbar}
 			orientation="vertical"
 		>
-			<ScrollAreaPrimitive.Thumb className={styles.ScrollAreaThumb} />
+			<ScrollAreaPrimitive.Thumb className={styles.thumb} />
 		</ScrollAreaPrimitive.Scrollbar>
 		<ScrollAreaPrimitive.Scrollbar
-			className={styles.ScrollAreaScrollbar}
+			className={styles.scrollbar}
 			orientation="horizontal"
 		>
-			<ScrollAreaPrimitive.Thumb className={styles.ScrollAreaThumb} />
+			<ScrollAreaPrimitive.Thumb className={styles.thumb} />
 		</ScrollAreaPrimitive.Scrollbar>
-		<ScrollAreaPrimitive.Corner className={styles.ScrollAreaCorner} />
+		<ScrollAreaPrimitive.Corner className={styles.scrollAreaCorner} />
 	</ScrollAreaPrimitive.Root>
 );
 

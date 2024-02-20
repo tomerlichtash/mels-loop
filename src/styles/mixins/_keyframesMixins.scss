@@ -1,5 +1,5 @@
-@mixin enterFromLeft {
-	@keyframes enterFromLeft {
+@mixin enter-from-left {
+	@keyframes enter-from-left {
 		from {
 			opacity: 0;
 			transform: translateX(-200px);
@@ -12,8 +12,8 @@
 	}
 }
 
-@mixin enterFromRight {
-	@keyframes enterFromRight {
+@mixin enter-from-right {
+	@keyframes enter-from-right {
 		from {
 			opacity: 0;
 			transform: translateX(200px);
@@ -26,8 +26,8 @@
 	}
 }
 
-@mixin exitToLeft {
-	@keyframes exitToLeft {
+@mixin exit-to-left {
+	@keyframes exit-to-left {
 		from {
 			opacity: 1;
 			transform: translateX(0);
@@ -40,8 +40,8 @@
 	}
 }
 
-@mixin exitToRight {
-	@keyframes exitToRight {
+@mixin exit-to-right {
+	@keyframes exit-to-right {
 		from {
 			opacity: 1;
 			transform: translateX(0);
@@ -54,15 +54,15 @@
 	}
 }
 
-@mixin fadeIn {
-	@keyframes fadeIn {
+@mixin fade-in {
+	@keyframes fade-in {
 		0% {
 			opacity: 0;
 		}
 
-		50% {
-			opacity: 0.75;
-		}
+		// 50% {
+		// 	opacity: 0.75;
+		// }
 
 		100% {
 			opacity: 1;
@@ -70,8 +70,8 @@
 	}
 }
 
-@mixin fadeOut {
-	@keyframes fadeOut {
+@mixin fade-out {
+	@keyframes fade-out {
 		from {
 			opacity: 1;
 		}
@@ -82,8 +82,8 @@
 	}
 }
 
-@mixin scaleIn {
-	@keyframes scaleIn {
+@mixin scale-in {
+	@keyframes scale-in {
 		from {
 			opacity: 0;
 			transform: rotateX(-30deg) scale(0.9);
@@ -96,8 +96,8 @@
 	}
 }
 
-@mixin scaleOut {
-	@keyframes scaleOut {
+@mixin scale-out {
+	@keyframes scale-out {
 		from {
 			opacity: 1;
 			transform: rotateX(0deg) scale(1);

@@ -9,16 +9,16 @@ $__stylesheet__: (
 .root {
 	margin: 0;
 
-	@include useVerticalPadding;
-	@include useHorizontalPadding;
+	@include use-vertical-padding;
+	@include use-horizontal-padding;
 
 	p {
-		@include RunningTextMixin(name());
+		@include running-text-mixin(name());
 	}
 
 	cite {
-		@include useVerticalPadding(name(cite));
-		@include useHorizontalPadding(name(cite));
-		@include RunningTextMixin(name(cite));
+		@include use-vertical-padding(name(cite));
+		@include use-horizontal-padding(name(cite));
+		@include running-text-mixin(name(cite));
 	}
 }

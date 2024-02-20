@@ -1,4 +1,4 @@
-@use '../toolbar-item/ToolbarItem.module';
+@use '../toolbar-item/ToolbarItem.module' as toolbar-item;
 @import 'styles/lib/component';
 @import 'styles/lib/themeVars';
 
@@ -16,10 +16,10 @@ $__stylesheet__: (
 	display: flex;
 	justify-content: space-between;
 
-	@include useInnerGutter(popover-toolbar);
-	@include useBorderSize(popover-dialog);
-	@include useBorderStyle(popover-dialog);
-	@include useBorderColor(popover-dialog);
+	@include use-inner-gutter(popover-toolbar);
+	@include use-border-size(popover-dialog);
+	@include use-border-style(popover-dialog);
+	@include use-border-color(popover-dialog);
 
 	// toolbar displays only a bottom-border
 	border-top: none;
@@ -32,7 +32,7 @@ $__stylesheet__: (
 	// .closeButton {
 	// }
 
-	.closePopoverButton {
-		@include ToolbarItem.ToolbarButtonMixin;
+	.close {
+		@include toolbar-item.toolbar-button-mixin;
 	}
 }

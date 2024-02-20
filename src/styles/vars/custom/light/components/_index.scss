@@ -1,90 +1,91 @@
-@use 'layout/Layout.module' as Layout;
-@use 'components/popover/Popover.module' as Popover;
-@use 'components/line/Line.module' as Line;
-@use 'components/paragraph/Paragraph.module' as Paragraph;
-@use 'components/blockquote/Blockquote.module' as Blockquote;
-@use 'components/link/Link.module' as Link;
-@use 'components/table/Table.module' as Table;
-@use 'components/figure/Figure.module' as Figure;
-@use 'components/custom-image/CustomImage.module' as CustomImage;
-@use 'components/annotation/Annotation.module' as Annotation;
-@use 'components/term/Term.module' as Term;
-@use 'components/code-inline/CodeInline.module' as CodeInline;
-@use 'components/code-block/CodeBlock.module' as CodeBlock;
-@use 'components/list-item/ListItem.module' as ListItem;
-@use 'components/scrollbar/Scrollbar.module' as Scrollbar;
-@use 'components/loading-indicator/LoadingIndicator.module' as LoadingIndicator;
-@use 'components/strip/Strip.module' as Strip;
-@use 'components/container/Container.module' as Container;
-@use 'components/logo/Logo.module' as Logo;
-@use 'components/text-link/TextLink.module' as TextLink;
-@use 'components/locale-select/LocaleSelect.module' as LocaleSelect;
-@use 'components/theme-select/ThemeSelect.module' as ThemeSelector;
-@use 'components/nav/menu-bar/MenuBar.module' as MenuBar;
-@use 'components/nav/menu-drawer/MenuDrawer.module' as MenuDrawer;
-@use 'components/nav/nav-item-content/NavItemContent.module' as NavItemContent;
-@use 'components/text/Text.module' as Text;
+@use 'layout/Layout.module' as layout;
+@use 'components/popover/Popover.module' as popover;
+@use 'components/line/Line.module' as line;
+@use 'components/paragraph/Paragraph.module' as paragraph;
+@use 'components/blockquote/Blockquote.module' as blockquote;
+@use 'components/link/Link.module' as link;
+@use 'components/table/Table.module' as table;
+@use 'components/figure/Figure.module' as figure;
+@use 'components/custom-image/CustomImage.module' as customimage;
+@use 'components/annotation/Annotation.module' as annotation;
+@use 'components/term/Term.module' as term;
+@use 'components/code-inline/CodeInline.module' as codeinline;
+@use 'components/code-block/CodeBlock.module' as codeblock;
+@use 'components/list-item/ListItem.module' as listitem;
+@use 'components/scrollbar/Scrollbar.module' as scrollbar;
+@use 'components/loading-indicator/LoadingIndicator.module' as loadingindicator;
+@use 'components/strip/Strip.module' as strip;
+@use 'components/container/Container.module' as container;
+@use 'components/logo/Logo.module' as logo;
+@use 'components/text-link/TextLink.module' as textlink;
+@use 'components/locale-select/LocaleSelect.module' as localeselect;
+@use 'components/theme-select/ThemeSelect.module' as themeselector;
+@use 'components/nav/menu-bar/MenuBar.module' as menubar;
+@use 'components/nav/menu-drawer/MenuDrawer.module' as menudrawer;
+@use 'components/nav/nav-item-content/NavItemContent.module' as navitemcontent;
+@use 'components/text/Text.module' as text;
 
 // @use "components/cite" as Cite;
 // @use "components/site/button" as buttonComponent;
 
-@use 'layout' as layoutTheme;
-@use 'scrollbar' as scrollbarTheme;
-@use 'popover' as popoverTheme;
-@use 'strip' as stripTheme;
-@use 'loadingIndicator' as loadingIndicatorTheme;
-@use 'container' as containerTheme;
-@use 'logo' as logoTheme;
-@use 'footer' as footerTheme;
-@use 'textLink' as textLinkTheme;
-@use 'localeSelect' as localeSelectTheme;
-@use 'themeSelector' as themeSelectorTheme;
-@use 'button' as buttonTheme;
-@use 'menuBar' as menuBarTheme;
-@use 'menuDrawer' as menuDrawerTheme;
-@use 'navItemContent' as navItemContentTheme;
-@use 'text' as textTheme;
-@use 'line' as lineTheme;
-@use 'paragraph' as paragraphTheme;
-@use 'blockquote' as blockquoteTheme;
-@use 'cite' as citeTheme;
-@use 'link' as linkTheme;
-@use 'table' as tableTheme;
-@use 'figure' as figureTheme;
-@use 'customImage' as customImageTheme;
-@use 'annotation' as annotationTheme;
-@use 'term' as termTheme;
-@use 'codeInline' as codeInlineTheme;
-@use 'codeBlock' as codeBlockTheme;
-@use 'listItem' as listItemTheme;
+@use 'layout' as layout-theme;
+@use 'scrollbar' as scrollbar-theme;
+@use 'popover' as popover-theme;
+@use 'strip' as strip-theme;
+@use 'loadingIndicator' as loading-indicator-theme;
+@use 'container' as container-theme;
+@use 'logo' as logo-theme;
+@use 'footer' as footer-theme;
+@use 'textLink' as text-link-theme;
+@use 'localeSelect' as locale-select-theme;
+@use 'themeSelector' as theme-select-theme;
+@use 'button' as button-theme;
+@use 'menuBar' as menu-bar-theme;
+@use 'menuDrawer' as menu-drawer-theme;
+@use 'navItemContent' as nav-item-content-theme;
+@use 'text' as text-theme;
+@use 'annotation' as annotation-theme;
+@use 'term' as term-theme;
+@use 'codeInline' as code-inline-theme;
+@use 'codeBlock' as code-block-theme;
+@use 'listItem' as list-item-theme;
+
+@use 'line' as line-theme;
+@use 'paragraph' as paragraph-theme;
+@use 'blockquote' as blockquote-theme;
+@use 'cite' as cite-theme;
+@use 'link' as link-theme;
+@use 'table' as table-theme;
+@use 'figure' as figure-theme;
+@use 'customImage' as custom-image-theme;
 
 $index: (
-	Scrollbar.name(): scrollbarTheme.vars(),
-	Strip.name(): stripTheme.vars(),
-	LoadingIndicator.name(): loadingIndicatorTheme.vars(),
-	Line.name(): lineTheme.vars(),
-	Paragraph.name(): paragraphTheme.vars(),
-	Link.name(): linkTheme.vars(),
-	Blockquote.name(): blockquoteTheme.vars(),
-	Annotation.name(): annotationTheme.vars(),
-	Term.name(): termTheme.vars(),
-	ListItem.name(): listItemTheme.vars(),
-	CodeInline.name(): codeInlineTheme.vars(),
-	CodeBlock.name(): codeBlockTheme.vars(),
-	Table.name(): tableTheme.vars(),
-	Figure.name(): figureTheme.vars(),
-	CustomImage.name(): customImageTheme.vars(),
-	Layout.name(): layoutTheme.vars(),
-	Container.name(): containerTheme.vars(),
-	Logo.name(): logoTheme.vars(),
-	TextLink.name(): textLinkTheme.vars(),
-	MenuBar.name(): menuBarTheme.vars(),
-	MenuDrawer.name(): menuDrawerTheme.vars(),
-	NavItemContent.name(): navItemContentTheme.vars(),
-	ThemeSelector.name(): themeSelectorTheme.vars(),
-	LocaleSelect.name(): localeSelectTheme.vars(),
-	Popover.name(): popoverTheme.vars(),
-	Text.name(): textTheme.vars(),
+	scrollbar.name(): scrollbar-theme.vars(),
+	strip.name(): strip-theme.vars(),
+	loadingindicator.name(): loading-indicator-theme.vars(),
+	line.name(): line-theme.vars(),
+	paragraph.name(): paragraph-theme.vars(),
+	link.name(): link-theme.vars(),
+	blockquote.name(): blockquote-theme.vars(),
+	annotation.name(): annotation-theme.vars(),
+	term.name(): term-theme.vars(),
+	listitem.name(): list-item-theme.vars(),
+	codeinline.name(): code-inline-theme.vars(),
+	codeblock.name(): code-block-theme.vars(),
+	table.name(): table-theme.vars(),
+	figure.name(): figure-theme.vars(),
+	customimage.name(): custom-image-theme.vars(),
+	layout.name(): layout-theme.vars(),
+	container.name(): container-theme.vars(),
+	logo.name(): logo-theme.vars(),
+	textlink.name(): text-link-theme.vars(),
+	menubar.name(): menu-bar-theme.vars(),
+	menudrawer.name(): menu-drawer-theme.vars(),
+	navitemcontent.name(): nav-item-content-theme.vars(),
+	themeselector.name(): theme-select-theme.vars(),
+	localeselect.name(): locale-select-theme.vars(),
+	popover.name(): popover-theme.vars(),
+	text.name(): text-theme.vars(),
 );
 
 // SiteButton.name(): buttonTheme.vars(),

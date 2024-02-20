@@ -16,21 +16,21 @@ $index: (
 
 // 		display: flex;
 
-// 		@include useBorderSize(site-nav-item-icon);
-// 		@include useBorderStyle(site-nav-item-icon);
-// 		@include useBorderColor(site-nav-item-icon);
-// 		@include useRadius(site-nav-item-icon);
-// 		@include useInnerGutter(site-nav-item-icon);
-// 		@include useGap(site-nav-item-icon);
-// 		@include useBackgroundColor(site-nav-item-icon);
+// 		@include use-border-size(site-nav-item-icon);
+// 		@include use-border-style(site-nav-item-icon);
+// 		@include use-border-color(site-nav-item-icon);
+// 		@include use-radius(site-nav-item-icon);
+// 		@include use-inner-gutter(site-nav-item-icon);
+// 		@include use-gap(site-nav-item-icon);
+// 		@include use-background-color(site-nav-item-icon);
 // 	}
 
 // 	.title {
 // 		display: flex;
 
-// 		@include useFontWeight(site-nav-item-title);
-// 		@include useTextTransform(site-nav-item-title);
-// 		@include useLineHeight(site-nav-item-title);
+// 		@include use-font-weight(site-nav-item-title);
+// 		@include use-text-transform(site-nav-item-title);
+// 		@include use-line-height(site-nav-item-title);
 // 	}
 
 // 	.description {

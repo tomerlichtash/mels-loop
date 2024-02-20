@@ -1,4 +1,4 @@
-@import 'styles/mixins/buttonMixin';
+@use 'styles/mixins/buttonMixin' as button-mixin;
 @import 'styles/lib/component';
 
 $__stylesheet__: (
@@ -6,5 +6,5 @@ $__stylesheet__: (
 );
 
 .root {
-	@include ToggleButtonMixin;
+	@include button-mixin.toggle-button-mixin;
 }

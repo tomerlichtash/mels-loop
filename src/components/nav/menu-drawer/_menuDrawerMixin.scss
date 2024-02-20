@@ -1,7 +1,0 @@
-@import '../nav-item/navListItemMixin';
-@import '../nav-item-content/navItemContentMixin';
-
-@mixin VerticalNavMixin($var, $states) {
-	@include ListItemMixin(site-vertical-menu-item, $states);
-	@include NavItemContentMixin(site-item-content-variant-base);
-}

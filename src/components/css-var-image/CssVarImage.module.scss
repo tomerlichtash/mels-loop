@@ -10,8 +10,8 @@ $__stylesheet__: (
 	--size: 24px;
 	--url: url('https://placehold.co/40x40');
 
-	@include useContentUrl;
-	@include useSize;
+	@include use-content-url;
+	@include use-size;
 }
 
 // Export properties to make them available in JS
