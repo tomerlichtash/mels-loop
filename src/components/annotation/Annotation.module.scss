@@ -1,9 +1,9 @@
-@use 'styles/mixins/typographyMixins' as typography-mixin;
-@use 'styles/mixins/popoverMixin' as popover-mixin;
+@use '../../styles/mixins/typographyMixins' as typography-mixin;
+@use '../../styles/mixins/popoverMixin' as popover-mixin;
 @use '../popover/PopoverTrigger.module.scss' as trigger;
-@import 'styles/lib/component';
-@import 'styles/lib/states';
-@import 'styles/lib/themeVars';
+@import '../../styles/lib/component';
+@import '../../styles/lib/states';
+@import '../../styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: annotation,

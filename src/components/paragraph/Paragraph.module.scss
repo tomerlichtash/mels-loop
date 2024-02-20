@@ -1,5 +1,5 @@
-@use 'styles/mixins/typographyMixins';
-@import 'styles/lib/component';
+@use '../../styles/mixins/typographyMixins';
+@import '../../styles/lib/component';
 
 $__stylesheet__: (
 	name: paragraph,

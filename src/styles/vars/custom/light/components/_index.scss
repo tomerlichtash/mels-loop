@@ -1,29 +1,33 @@
-@use 'layout/Layout.module' as layout;
-@use 'components/popover/Popover.module' as popover;
-@use 'components/line/Line.module' as line;
-@use 'components/paragraph/Paragraph.module' as paragraph;
-@use 'components/blockquote/Blockquote.module' as blockquote;
-@use 'components/link/Link.module' as link;
-@use 'components/table/Table.module' as table;
-@use 'components/figure/Figure.module' as figure;
-@use 'components/custom-image/CustomImage.module' as customimage;
-@use 'components/annotation/Annotation.module' as annotation;
-@use 'components/term/Term.module' as term;
-@use 'components/code-inline/CodeInline.module' as codeinline;
-@use 'components/code-block/CodeBlock.module' as codeblock;
-@use 'components/list-item/ListItem.module' as listitem;
-@use 'components/scrollbar/Scrollbar.module' as scrollbar;
-@use 'components/loading-indicator/LoadingIndicator.module' as loadingindicator;
-@use 'components/strip/Strip.module' as strip;
-@use 'components/container/Container.module' as container;
-@use 'components/logo/Logo.module' as logo;
-@use 'components/text-link/TextLink.module' as textlink;
-@use 'components/locale-select/LocaleSelect.module' as localeselect;
-@use 'components/theme-select/ThemeSelect.module' as themeselector;
-@use 'components/nav/menu-bar/MenuBar.module' as menubar;
-@use 'components/nav/menu-drawer/MenuDrawer.module' as menudrawer;
-@use 'components/nav/nav-item-content/NavItemContent.module' as navitemcontent;
-@use 'components/text/Text.module' as text;
+@use '../../../../../layout/Layout.module.scss' as layout;
+@use '../../../../../components/popover/Popover.module' as popover;
+@use '../../../../../components/line/Line.module' as line;
+@use '../../../../../components/paragraph/Paragraph.module' as paragraph;
+@use '../../../../../components/blockquote/Blockquote.module' as blockquote;
+@use '../../../../../components/link/Link.module' as link;
+@use '../../../../../components/table/Table.module' as table;
+@use '../../../../../components/figure/Figure.module' as figure;
+@use '../../../../../components/custom-image/CustomImage.module' as customimage;
+@use '../../../../../components/annotation/Annotation.module' as annotation;
+@use '../../../../../components/term/Term.module' as term;
+@use '../../../../../components/code-inline/CodeInline.module' as codeinline;
+@use '../../../../../components/code-block/CodeBlock.module' as codeblock;
+@use '../../../../../components/list-item/ListItem.module' as listitem;
+@use '../../../../../components/scrollbar/Scrollbar.module' as scrollbar;
+@use '../../../../../components/loading-indicator/LoadingIndicator.module' as
+	loadingindicator;
+@use '../../../../../components/strip/Strip.module' as strip;
+@use '../../../../../components/container/Container.module' as container;
+@use '../../../../../components/logo/Logo.module' as logo;
+@use '../../../../../components/text-link/TextLink.module' as textlink;
+@use '../../../../../components/locale-select/LocaleSelect.module' as
+	localeselect;
+@use '../../../../../components/theme-select/ThemeSelect.module' as
+	themeselector;
+@use '../../../../../components/nav/menu-bar/MenuBar.module' as menubar;
+@use '../../../../../components/nav/menu-drawer/MenuDrawer.module' as menudrawer;
+@use '../../../../../components/nav/nav-item-content/NavItemContent.module' as
+	navitemcontent;
+@use '../../../../../components/text/Text.module' as text;
 
 // @use "components/cite" as Cite;
 // @use "components/site/button" as buttonComponent;

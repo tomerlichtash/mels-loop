@@ -5,7 +5,7 @@ import { ThemeProvider } from 'next-themes';
 import { PageProvider } from 'lib/dynamic-content-utils/context/pageContext';
 import { fontFaceDecls } from '../siteFonts';
 import 'normalize.css/normalize.css';
-import 'styles/app.scss';
+import '../styles/app.scss';
 import type { IPageProps } from 'types/models';
 
 const App = ({ Component, pageProps }: AppProps<IPageProps>) => {

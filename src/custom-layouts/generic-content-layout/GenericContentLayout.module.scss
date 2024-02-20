@@ -1,6 +1,6 @@
-@use 'styles/lib/refs';
-@import 'styles/lib/component';
-@import 'styles/lib/themeVars';
+@use '../../styles/lib/refs';
+@import '../../styles/lib/component';
+@import '../../styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: generic-content-layout,

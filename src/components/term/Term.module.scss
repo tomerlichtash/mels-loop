@@ -1,8 +1,8 @@
-@use 'styles/mixins/popoverMixin';
+@use '../../styles/mixins/popoverMixin';
 @use '../popover/PopoverTrigger.module.scss' as trigger;
-@use 'styles/mixins/typographyMixins';
-@import 'styles/lib/component';
-@import 'styles/lib/themeVars';
+@use '../../styles/mixins/typographyMixins';
+@import '../../styles/lib/component';
+@import '../../styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: term,

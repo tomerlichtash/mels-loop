@@ -1,9 +1,9 @@
 @use './menuBarMixins.scss' as menu-bar-mixins;
 @use '../nav-item/navListItemMixin.scss' as nav-list-item-mixin;
-@import 'styles/lib/component';
-@import 'styles/lib/themeVars';
-@import 'styles/lib/states';
-@import 'styles/lib/merge';
+@import '../../../styles/lib/component';
+@import '../../../styles/lib/themeVars';
+@import '../../../styles/lib/states';
+@import '../../../styles/lib/merge';
 
 $__stylesheet__: (
 	name: site-horizontal-menu,

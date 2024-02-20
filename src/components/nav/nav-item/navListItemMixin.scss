@@ -1,6 +1,6 @@
 @use './NavListItem.module.scss';
-@use 'styles/lib/overrides';
-@import 'styles/lib/states';
+@use '../../../styles/lib/overrides';
+@import '../../../styles/lib/states';
 
 @mixin list-item-mixin($module, $states: ()) {
 	@include overrides.transform(

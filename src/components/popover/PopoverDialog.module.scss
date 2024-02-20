@@ -1,7 +1,7 @@
-@import 'styles/lib/component';
-@import 'styles/lib/themeVars';
-@import 'styles/lib/states';
-@import 'styles/mixins/animationMixins';
+@import '../../styles/lib/component';
+@import '../../styles/lib/themeVars';
+@import '../../styles/lib/states';
+@import '../../styles/mixins/animationMixins';
 
 $__stylesheet__: (
 	name: popover-dialog,

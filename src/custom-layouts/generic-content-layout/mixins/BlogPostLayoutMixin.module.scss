@@ -1,6 +1,6 @@
-@use 'styles/lib/refs';
+@use '../../../styles/lib/refs';
 @use '../../generic-content-layout/GenericContentLayout.module' as custom-layout;
-@import 'styles/lib/component';
+@import '../../../styles/lib/component';
 
 $__stylesheet__: (
 	name: custom-layout-blog-post,

@@ -1,8 +1,8 @@
-@use 'styles/mixins/typographyMixins.scss';
-@use 'styles/mixins/layoutMixins.scss';
-@import 'styles/lib/component';
-@import 'styles/lib/themeVars';
-@import 'styles/lib/states';
+@use '../styles/mixins/typographyMixins.scss';
+@use '../styles/mixins/layoutMixins.scss';
+@import '../styles/lib/component';
+@import '../styles/lib/themeVars';
+@import '../styles/lib/states';
 
 $__stylesheet__: (
 	name: layout,

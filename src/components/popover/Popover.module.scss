@@ -1,6 +1,6 @@
 @use '../toolbar-item/ToolbarItem.module' as toolbar-item;
-@import 'styles/lib/component';
-@import 'styles/lib/themeVars';
+@import '../../styles/lib/component';
+@import '../../styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: popover,

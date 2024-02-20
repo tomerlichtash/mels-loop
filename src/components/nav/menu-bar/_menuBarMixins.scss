@@ -1,5 +1,5 @@
 @use './menuBarAnimationMixin' as animations;
-@import 'styles/mixins/buttonMixin';
+@import '../../../styles/mixins/buttonMixin';
 
 @mixin caret-mixin($var) {
 	.caret {
