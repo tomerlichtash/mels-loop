@@ -12,7 +12,7 @@ const Annotation = ({ index, className }: AnnotationProps): JSX.Element => (
 	<span className={classNames(styles.root, className)}>
 		<span
 			className={styles.content}
-			data-prefix={leadingZero(index)}
+			data-prefix-content={leadingZero(index)}
 			data-seq={index}
 		></span>
 	</span>

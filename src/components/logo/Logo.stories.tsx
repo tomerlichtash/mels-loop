@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import Strip from '../components/strip/Strip';
+import Logo from 'components/logo/Logo';
 
 const meta = {
-	title: 'Strip',
-	component: Strip,
+	title: 'Site/Logo',
+	component: Logo,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
@@ -12,7 +12,7 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof Strip>;
+} satisfies Meta<typeof Logo>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 const BaseStory: Story = {
 	args: {},
 	render: function Render() {
-		return <Strip />;
+		return <Logo />;
 	},
 };
 

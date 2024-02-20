@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import Logo from 'components/logo/Logo';
+import LoadingIndicator from 'components/loading-indicator/LoadingIndicator';
 
 const meta = {
-	title: 'Logo',
-	component: Logo,
+	title: 'UI/LoadingIndicator',
+	component: LoadingIndicator,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
@@ -12,15 +12,18 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof Logo>;
+} satisfies Meta<typeof LoadingIndicator>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const BaseStory: Story = {
-	args: {},
-	render: function Render() {
-		return <Logo />;
+	args: {
+		label: 'Loading...',
+		delay: 0,
+	},
+	render: function Render({ label }) {
+		return <LoadingIndicator label={label} delay={0} />;
 	},
 };
 

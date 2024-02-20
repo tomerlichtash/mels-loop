@@ -3,7 +3,7 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import ThemeSelect from 'components/theme-select/ThemeSelect';
 
 const meta = {
-	title: 'ThemeSelect',
+	title: 'Site/ThemeSelect',
 	component: ThemeSelect,
 	parameters: {
 		viewport: {

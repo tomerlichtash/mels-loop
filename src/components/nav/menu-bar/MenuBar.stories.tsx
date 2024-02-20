@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import LoadingIndicator from 'components/loading-indicator/LoadingIndicator';
+import MenuBar from 'components/nav/menu-bar/MenuBar';
 
 const meta = {
-	title: 'LoadingIndicator',
-	component: LoadingIndicator,
+	title: 'Site/MenuBar',
+	component: MenuBar,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
@@ -12,25 +12,22 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof LoadingIndicator>;
+} satisfies Meta<typeof MenuBar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const BaseStory: Story = {
+const Desktop: Story = {
 	args: {
-		label: 'Loading...',
-		delay: 0,
+		items: [],
 	},
-	render: function Render({ label }) {
-		return <LoadingIndicator label={label} delay={0} />;
+	render: function Render() {
+		return <MenuBar items={[]} />;
 	},
 };
 
-export const Desktop: Story = BaseStory;
-
 export const Mobile: Story = {
-	...BaseStory,
+	...Desktop,
 	parameters: {
 		viewport: {
 			defaultViewport: 'iphonex',

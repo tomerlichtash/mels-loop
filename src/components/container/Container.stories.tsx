@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Container from '../components/container/Container';
+import Container from './Container';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 const meta = {
-	title: 'Container',
+	title: 'UI/Container',
 	component: Container,
 	parameters: {
 		viewport: {

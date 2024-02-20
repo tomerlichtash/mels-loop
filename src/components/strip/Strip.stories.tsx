@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import Scrollbar from 'components/scrollbar/Scrollbar';
+import Strip from './Strip';
 
 const meta = {
-	title: 'Scrollbar',
-	component: Scrollbar,
+	title: 'UI/Strip',
+	component: Strip,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
@@ -12,24 +12,15 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof Scrollbar>;
+} satisfies Meta<typeof Strip>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const BaseStory: Story = {
-	args: {
-		children: [],
-		textDirection: 'rtl',
-	},
+	args: {},
 	render: function Render() {
-		return (
-			<Scrollbar height="100vh" textDirection="ltr">
-				<div style={{ height: '1000px' }}>
-					<div>Content</div>
-				</div>
-			</Scrollbar>
-		);
+		return <Strip />;
 	},
 };
 

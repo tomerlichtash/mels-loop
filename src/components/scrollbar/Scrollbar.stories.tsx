@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import MenuBar from 'components/nav/menu-bar/MenuBar';
+import Scrollbar from './Scrollbar';
 
 const meta = {
-	title: 'MenuBar',
-	component: MenuBar,
+	title: 'UI/Scrollbar',
+	component: Scrollbar,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
@@ -12,22 +12,31 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof MenuBar>;
+} satisfies Meta<typeof Scrollbar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const Desktop: Story = {
+const BaseStory: Story = {
 	args: {
-		items: [],
+		children: [],
+		textDirection: 'rtl',
 	},
 	render: function Render() {
-		return <MenuBar items={[]} />;
+		return (
+			<Scrollbar height="100vh" textDirection="ltr">
+				<div style={{ height: '1000px' }}>
+					<div>Content</div>
+				</div>
+			</Scrollbar>
+		);
 	},
 };
 
+export const Desktop: Story = BaseStory;
+
 export const Mobile: Story = {
-	...Desktop,
+	...BaseStory,
 	parameters: {
 		viewport: {
 			defaultViewport: 'iphonex',

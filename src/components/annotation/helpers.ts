@@ -1,7 +1,4 @@
-const serialPrefix = (index: number, limit: number, customPrefix: string) => {
-	return index <= limit ? customPrefix : '';
-};
+const serialPrefix = (index: number, limit: number, customPrefix: string) =>
+	index <= limit ? customPrefix : '';
 
-export const leadingZero = (index: number) => {
-	return serialPrefix(index, 9, '0');
-};
+export const leadingZero = (index: number) => serialPrefix(index, 9, '0');
