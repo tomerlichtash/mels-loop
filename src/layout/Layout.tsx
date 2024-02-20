@@ -3,7 +3,7 @@
 import React, { PropsWithChildren, useCallback, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
-import { useLocale, useWindowSize } from 'hooks/index';
+import { useIconAnimator, useLocale, useWindowSize } from 'hooks/index';
 import { unique } from 'utils/unique';
 import { useDrawer } from '../hooks/useDrawer';
 import {
@@ -44,6 +44,9 @@ const MIN_DESKTOP_WIDTH = 1024;
 
 const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 	const router = useRouter();
+
+	useIconAnimator(router);
+
 	const { menuItemsData, menuSectionData, footerLinksData } = layoutConfig;
 
 	const pathname = usePathname();
