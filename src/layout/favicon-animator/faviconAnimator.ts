@@ -16,7 +16,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 
 		this.warn = animationProps.debug
 			? (...args: unknown[]) => {
-					console.warn('favicon animator: ', ...args);
+					console.log('favicon animator: ', ...args);
 			  }
 			: () => void 0;
 
@@ -71,7 +71,9 @@ export class FavIconAnimator implements IFavIconAnimator {
 		});
 	}
 
-	/////////////////// Implementation /////////////////////
+	/**
+	 * Implementation
+	 */
 
 	/** Provided + computed animation properties */
 	private readonly props: IFIProps;

@@ -15,9 +15,11 @@ type DrawerProps = {
 	zIndex?: number;
 	className?: string;
 	onClose?: () => void;
-	// customIdSuffix?: string;
-	// overlayClassName?: string;
-	// style?: React.CSSProperties;
+	/*
+	customIdSuffix?: string;
+	overlayClassName?: string;
+	style?: React.CSSProperties;
+	*/
 };
 
 const Drawer = ({

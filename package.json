@@ -37,6 +37,7 @@
 		"dev": "next dev",
 		"start": "next start",
 		"build:sitemap": "next-sitemap",
+		"health": "yarn format:check && yarn lint && yarn lint:style && yarn test:unit && yarn test:e2e",
 		"lint": "eslint . -f codeframe",
 		"lint:style": "stylelint --allow-empty-input \"**/*.{css,scss}\"",
 		"format:check": "npx prettier --config .prettierrc --ignore-path .prettierignore --check src",

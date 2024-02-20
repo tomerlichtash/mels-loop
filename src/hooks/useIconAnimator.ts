@@ -15,14 +15,24 @@ const ICON_ANIMATOR_PROPS: IFavIconProps = {
 
 export const useIconAnimator = (router: NextRouter) => {
 	useEffect(() => {
+		if (!router.events) {
+			return;
+		}
+
 		new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
-	}, [router.asPath]);
+	}, [router.asPath, router.events]);
 
 	useEffect(() => {
+		if (!router.events) {
+			return;
+		}
+
 		const handleRouteChange = () => {
 			new FavIconAnimator(ICON_ANIMATOR_PROPS).run().catch(() => void 0);
 		};
+
 		router.events.on('routeChangeStart', handleRouteChange);
+
 		return () => router.events.off('routeChangeStart', handleRouteChange);
 	}, [router.events]);
 
