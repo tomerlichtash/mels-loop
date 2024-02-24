@@ -180,25 +180,9 @@ class MarkdownUtils implements IMarkdownUtils {
 
 		// // TODO: fix translation
 		// return str.replace(TRANSLATED_STRING_REGEXP, function (m, key: string) {
-		// 	return key; //t(key); // TODO: fix translation
+		// 	return key; //t(key);
 		// });
 	}
-
-	// public async asyncTranslateString(
-	// 	str: string,
-	// 	locale: string
-	// ): Promise<string> {
-	// 	if (!str) {
-	// 		return Promise.resolve('');
-	// 	}
-
-	// 	const t = await getT(locale, 'common');
-
-	// 	return Promise.resolve(t('common:site:title'));
-	// 	// return str.replace(TRANSLATED_STRING_REGEXP, (m, key: string) => {
-	// 	// 	return key; //t(key); // TODO: fix translation
-	// 	// );
-	// }
 
 	public findArrayPart(node: ParsedNode): Array<ParsedNode> | null {
 		if (Array.isArray(node.items)) {

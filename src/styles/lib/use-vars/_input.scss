@@ -1,0 +1,5 @@
+@use '../refs' as refs;
+
+@mixin use-text-color($var: name(), $state: '') {
+	@include refs.use(color, text-color, $var, $state);
+}

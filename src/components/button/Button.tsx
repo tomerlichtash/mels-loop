@@ -6,12 +6,15 @@ import styles from './Button.module.scss';
 type ButtonProps = {
 	title?: string;
 	asChild?: boolean;
+	disabled?: boolean;
 	onClick?: (e: SyntheticEvent | string | number | boolean) => void;
+	type?: 'submit';
 	className?: string;
 };
 
 const Button = ({
 	asChild,
+	disabled,
 	children,
 	className,
 	title,
@@ -24,6 +27,7 @@ const Button = ({
 		<Comp
 			className={classNames(styles.root, className)}
 			onClick={(e: SyntheticEvent) => onClick?.(e)}
+			disabled={disabled}
 			title={title}
 			{...props}
 		>

@@ -1,3 +1,4 @@
+@use '../../styles/mixins/keyframesMixins' as keyframes;
 @import '../../styles/lib/component';
 @import '../../styles/lib/themeVars';
 
@@ -13,34 +14,27 @@ $__stylesheet__: (
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-direction: column;
+	flex-direction: row;
 
 	@include use-height;
 
-	// TODO: use rotation mixin
-
 	.image {
-		animation: rotation 2s infinite linear;
+		@include keyframes.rotation;
+		@include use-keyframe(rotation, name());
+
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+		animation-duration: 2s;
 
 		@include use-size;
 		@include use-content-url;
 	}
-}
 
-.label {
-	--margin-top: var(--label-margin);
+	.label {
+		--margin-top: var(--label-margin);
 
-	display: block;
+		display: block;
 
-	@include use-vertical-margin(name(label));
-}
-
-@keyframes rotation {
-	from {
-		transform: rotate(0deg);
-	}
-
-	to {
-		transform: rotate(359deg);
+		@include use-vertical-margin(name(label));
 	}
 }

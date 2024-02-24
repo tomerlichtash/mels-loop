@@ -8,6 +8,7 @@ module.exports = {
 		'ml-sasslib/module-metadata': true,
 		'ml-sasslib/module-imports': true,
 
+		'selector-class-pattern': null, // don't enforce kebab-case classnames
 		'scss/dollar-variable-pattern': null,
 		'function-name-case': null,
 	},

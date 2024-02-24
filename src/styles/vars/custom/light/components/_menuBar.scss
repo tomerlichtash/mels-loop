@@ -17,6 +17,7 @@ $index: (
 	trigger: (
 		caret: (
 			text-color: ref(color-surface-contrast),
+			transform: rotate(-180deg),
 			component.state(hovered): (
 				text-color: ref(color-surface-contrast),
 			),
@@ -29,6 +30,10 @@ $index: (
 			background-color: ref(color-surface-dark),
 			text-color: ref(color-primary-dark),
 		),
+	),
+
+	arrow: (
+		transform: rotate(45deg),
 	),
 
 	list: (

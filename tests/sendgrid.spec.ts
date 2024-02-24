@@ -4,12 +4,12 @@ import { validateRequest } from '../src/pages/api/sendgrid';
 describe('validateRequest', () => {
 	test('should allow normal content', () => {
 		const res = validateRequest({
-			fullname: 'Ed Nather',
+			fullName: 'Ed Nather',
 			email: 'nather@astro.as.utexas.edu',
 			message: 'Some message',
 		});
 
-		expect(res.fullname).toEqual('Ed Nather');
+		expect(res.fullName).toEqual('Ed Nather');
 		expect(res.email).toEqual('nather@astro.as.utexas.edu');
 		expect(res.message).toEqual('Some message');
 	});
@@ -18,19 +18,19 @@ describe('validateRequest', () => {
 		const invalid = Array(300).fill('X').join('');
 
 		const res = validateRequest({
-			fullname: invalid,
+			fullName: invalid,
 			email: 'nather@astro.as.utexas.edu',
 			message: 'Some message',
 		});
 
-		expect(res.fullname.length).toEqual(100);
+		expect(res.fullName.length).toEqual(100);
 	});
 
 	test('should allow maximum length of 256 chars to email address', () => {
 		const invalid = Array(300).fill('X').join('');
 
 		const res = validateRequest({
-			fullname: 'Ed Nather',
+			fullName: 'Ed Nather',
 			email: invalid,
 			message: 'Some message',
 		});
@@ -42,7 +42,7 @@ describe('validateRequest', () => {
 		const invalid = Array(5000).fill('X').join('');
 
 		const res = validateRequest({
-			fullname: 'Ed Nather',
+			fullName: 'Ed Nather',
 			email: 'nather@astro.as.utexas.edu',
 			message: invalid,
 		});

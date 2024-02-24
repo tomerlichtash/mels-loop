@@ -5,6 +5,10 @@
 	@include refs.use(background-color, background-color, $v, $s);
 }
 
+@mixin use-outline($v: name(), $s: '') {
+	@include refs.use(outline, outline, $v, $s);
+}
+
 // gradient-color
 @mixin use-gradient($v: name(), $s: '') {
 	@include refs.use(background, background-color, $v, $s);

@@ -47,6 +47,14 @@ $__stylesheet__: (
 		align-items: center;
 	}
 
+	&[data-align-content-right='true'] {
+		justify-content: right;
+	}
+
+	&[data-align-content-left='true'] {
+		justify-content: left;
+	}
+
 	&[data-full-width='true'] {
 		width: 100%;
 	}

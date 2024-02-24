@@ -1,83 +1,64 @@
+// eslint-disable @typescript-eslint/no-floating-promises
+import Script from 'next/script';
 import React from 'react';
-// import { default as ReCAPTCHA } from 'react-google-recaptcha';
 
 type RecaptchaProps = {
-	onChange: (value: string) => void;
-	setCaptchaError: (err: string) => void;
-	onExpired: () => void;
-	locale: string;
-	theme: string;
-	tabIndex: number;
-	highlight: boolean;
-	siteKey?: string;
-	className?: string;
+	siteKey: string;
 };
 
-/**
- * Swallows errors
- * @param value
- * @returns
- */
-export const fetchCaptcha = async (value: string) => {
-	try {
-		const res = await fetch('/api/captcha', {
-			body: JSON.stringify({ value }),
-			headers: { 'Content-Type': 'application/json' },
-			method: 'POST',
-		});
-		if (res.status !== 200) {
-			return { error: `Bad status ${res.status}` };
-		}
-		return await res.json();
-	} catch (e) {
-		return { error: String(e) };
-	}
+type RecaptchaHandleSubmitProps = {
+	siteKey: string;
+	action: string;
+	path: string;
+	values: Record<string, unknown>;
+	onResponseSuccess?: (res: Record<string, string>) => void;
+	onResponseFail?: (res) => void;
+	onError?: (e: unknown) => void;
 };
 
-export const onCaptchaChange = async (
-	value: string,
-	onSuccess: () => void
-): Promise<boolean> => {
-	const { error } = await fetchCaptcha(value);
-	if (error) {
-		console.error(error);
-		return false;
-	} else {
-		onSuccess();
-		return true;
-	}
-};
-
-const Recaptcha = ({
-	// onChange,
-	// onExpired,
-	// locale,
-	// theme,
-	tabIndex,
-	// highlight,
+const handleSubmit = ({
 	siteKey,
-	setCaptchaError,
-}: RecaptchaProps) => {
-	if (setCaptchaError && !siteKey) {
-		setCaptchaError('Missing captcha key');
-		return;
-	}
-	return (
-		<div className="captcha" tabIndex={tabIndex}>
-			{/* <ReCAPTCHA
-				sitekey={siteKey}
-				// eslint-disable-next-line @typescript-eslint/no-misused-promises
-				onChange={(value: string) =>
-					onCaptchaChange(value, () => onChange(value))
+	action,
+	path,
+	values,
+	onResponseSuccess,
+	onResponseFail,
+	onError,
+}: RecaptchaHandleSubmitProps) => {
+	window.grecaptcha.ready(() => {
+		try {
+			void window.grecaptcha.execute(siteKey, { action }).then(async () => {
+				try {
+					const response = await fetch(path, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json;charset=utf-8' },
+						body: JSON.stringify(values),
+					});
+					if (response.ok) {
+						const json = (await response.json()) as Record<string, string>;
+						onResponseSuccess?.({ ...json });
+					} else {
+						onResponseFail?.(response);
+						throw new Error(response.statusText);
+					}
+				} catch (e: unknown) {
+					console.error('Recaptcha error', e);
+					onError(e);
 				}
-				onExpired={onExpired}
-				size="normal"
-				hl={locale}
-				// theme={theme === "dark" ? "dark" : "light"}
-			/> */}
-		</div>
+			});
+		} catch (e: unknown) {
+			console.error('Recaptcha error', e);
+			onError?.(e);
+		}
+	});
+};
+
+const Recaptcha = ({ siteKey }: RecaptchaProps) => {
+	return (
+		<Script src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`} />
 	);
 };
 
 export default Recaptcha;
+export { handleSubmit };
 export type { RecaptchaProps };

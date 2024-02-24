@@ -8,6 +8,7 @@
 $COMPONENT_STATES: (
 	hovered: hover,
 	clicked: active,
+	focused: focused,
 	selected: selected,
 );
 $states: $COMPONENT_STATES;

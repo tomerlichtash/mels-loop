@@ -8,6 +8,7 @@ $__stylesheet__: (
 
 .root {
 	user-select: text;
+	width: 100%;
 
 	@include use-radius;
 	@include use-shadow;

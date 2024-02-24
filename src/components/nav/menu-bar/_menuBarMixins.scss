@@ -9,7 +9,8 @@
 	}
 
 	[data-state='open'] > .caret {
-		transform: rotate(-180deg);
+		// transform: rotate(-180deg);
+		@include use-transform($var);
 	}
 }
 
@@ -20,8 +21,6 @@
 	align-items: flex-end;
 	justify-content: center;
 	height: var(--indicator-height);
-
-	// todo: fix calc
 	top: calc(var(--bar-height) - var(--indicator-height) - 8px);
 	overflow: hidden;
 	z-index: 2;
@@ -56,14 +55,15 @@
 	perspective: 2000px;
 }
 
-@mixin arrow-mixin {
+@mixin arrow-mixin($var) {
 	position: relative;
 	top: 70%;
 	background-color: white;
 	width: 12px;
 	height: 12px;
-	transform: rotate(45deg);
 	border-top-left-radius: 2px;
+
+	@include use-transform($var);
 }
 
 @mixin content-mixin($var) {

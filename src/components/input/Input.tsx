@@ -8,7 +8,7 @@ type InputProps = {
 	required?: boolean;
 	placeholder?: string;
 	value?: string | number;
-	type?: 'text' | 'number' | 'tel' | 'file' | 'email';
+	type?: 'text' | 'number' | 'tel' | 'email';
 	onChange?: (e: SyntheticEvent) => void;
 	className?: string;
 };

@@ -1,9 +1,24 @@
+@use '../input/Input.module.scss' as input;
 @import '../../styles/lib/component';
+@import '../../styles/lib/themeVars';
+@import '../../styles/lib/states';
 
 $__stylesheet__: (
 	name: text-area,
 );
+$states: deep(
+	$COMPONENT_STATES,
+	(
+		valid: valid,
+		invalid: invalid,
+	)
+);
 
 .root {
-	border: 2px solid red;
+	width: 100%;
+	box-sizing: border-box;
+	min-height: 10em;
+	resize: vertical;
+
+	@include input.input-field-mixin(name());
 }

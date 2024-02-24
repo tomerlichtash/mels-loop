@@ -58,7 +58,7 @@ $states: deep(
 	}
 
 	.arrow {
-		@include menu-bar-mixins.arrow-mixin;
+		@include menu-bar-mixins.arrow-mixin(name(arrow));
 	}
 
 	@include nav-list-item-mixin.list-item-mixin(name(item), $states);

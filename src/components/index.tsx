@@ -22,6 +22,7 @@ export { default as ToolbarButton } from './toolbar-item/ToolbarButton';
 export { default as Text } from './text/Text';
 export { default as Link } from './link/Link';
 export { default as TextLink } from './text-link/TextLink';
+export { default as Form } from './form/Form';
 
 // Composition Components
 export { default as Logo } from './logo/Logo';
@@ -42,3 +43,4 @@ export { default as Paragraph } from './paragraph/Paragraph'; // exclude
 export { default as Heading } from './heading/heading'; // exclude
 export { default as CustomImage } from './custom-image/CustomImage';
 export { default as ListItem } from './list-item/ListItem';
+export { default as ErrorMessage } from './error-message/ErrorMessage';

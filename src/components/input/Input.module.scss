@@ -1,8 +1,74 @@
 @import '../../styles/lib/component';
+@import '../../styles/lib/themeVars';
+@import '../../styles/lib/states';
 
 $__stylesheet__: (
 	name: input,
 );
+$states: deep(
+	$COMPONENT_STATES,
+	(
+		valid: valid,
+		invalid: invalid,
+		invalid-focused: (
+			(invalid, focused),
+		),
+		invalid-hovered: (
+			(invalid, hovered),
+		),
+		invalid-focused-hovered: (
+			(invalid, focused, hovered),
+		),
+	)
+);
 
-// .root {
-// }
+@mixin input-field-mixin($module) {
+	@include use-background-color($module);
+	@include use-border-size($module);
+	@include use-shadow($module);
+	@include use-padding-top($module);
+	@include use-padding-bottom($module);
+	@include use-padding-right($module);
+	@include use-padding-left($module);
+	@include use-radius($module);
+
+	box-sizing: border-box;
+	outline: 0 solid transparent;
+	transition: outline 75ms ease-in-out;
+
+	&::placeholder {
+		@include use-text-color(#{$module}-placeholder);
+	}
+
+	&:hover {
+		@include use-outline(name(), state(hovered));
+	}
+
+	&:focus {
+		@include use-outline(name(), state(focused));
+		@include use-background-color(name(), state(focused));
+	}
+
+	&[data-is-invalid='true'] {
+		@include use-outline(name(), state(invalid));
+
+		&:hover {
+			@include use-outline(name(), state(invalid-hovered));
+		}
+
+		&:focus {
+			@include use-outline(name(), state(invalid-focused));
+
+			&:hover {
+				@include use-outline(name(), state(invalid-focused-hovered));
+			}
+		}
+	}
+}
+
+.root {
+	box-sizing: border-box;
+	width: 100%;
+
+	@include input-field-mixin(name());
+}

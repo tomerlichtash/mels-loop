@@ -28,6 +28,8 @@
 @use '../../../../../components/nav/nav-item-content/NavItemContent.module' as
 	navitemcontent;
 @use '../../../../../components/text/Text.module' as text;
+@use '../../../../../components/error-message/ErrorMessage.module' as
+	error-message;
 
 // @use "components/cite" as Cite;
 // @use "components/site/button" as buttonComponent;
@@ -53,6 +55,7 @@
 @use 'codeInline' as code-inline-theme;
 @use 'codeBlock' as code-block-theme;
 @use 'listItem' as list-item-theme;
+@use 'errorMessage' as error-message-theme;
 
 @use 'line' as line-theme;
 @use 'paragraph' as paragraph-theme;
@@ -90,6 +93,7 @@ $index: (
 	localeselect.name(): locale-select-theme.vars(),
 	popover.name(): popover-theme.vars(),
 	text.name(): text-theme.vars(),
+	error-message.name(): error-message-theme.vars(),
 );
 
 // SiteButton.name(): buttonTheme.vars(),

@@ -9,6 +9,7 @@ module.exports = {
 	pages: {
 		'*': ['common', 'locale', 'nav', 'pages', 'authors'],
 		'/': ['glossary'],
+		'/contact': ['contact'],
 		'/glossary': ['glossary'],
 		'/glossary/[id]': ['glossary'],
 		'/pages/docs/[id]/codex': ['docs'],

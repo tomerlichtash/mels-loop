@@ -12,6 +12,12 @@ import {
 	ChevronRightIcon,
 	ArrowLeftIcon,
 	ArrowRightIcon,
+	PersonIcon,
+	EnvelopeClosedIcon,
+	CheckIcon,
+	CrossCircledIcon,
+	CheckboxIcon,
+	FileTextIcon,
 } from '@radix-ui/react-icons';
 
 export const getIcon = (icon: string, className?: string) => {
@@ -42,6 +48,18 @@ export const getIcon = (icon: string, className?: string) => {
 			return <ArrowLeftIcon className={className} />;
 		case 'arrowRight':
 			return <ArrowRightIcon className={className} />;
+		case 'person':
+			return <PersonIcon className={className} />;
+		case 'closed-envelope':
+			return <EnvelopeClosedIcon className={className} />;
+		case 'check':
+			return <CheckIcon className={className} />;
+		case 'cross':
+			return <CrossCircledIcon className={className} />;
+		case 'checkbox':
+			return <CheckboxIcon className={className} />;
+		case 'file-text':
+			return <FileTextIcon className={className} />;
 		default:
 			return icon;
 	}

@@ -12,6 +12,10 @@
 	@include use-animation($anim, #{$comp}-#{$anim});
 }
 
+@mixin use-transform($var: name(), $state: '') {
+	@include use(transform, transform, $var, $state);
+}
+
 // TODO:
 // useTransition
 // useTransform

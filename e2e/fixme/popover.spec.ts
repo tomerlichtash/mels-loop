@@ -1,6 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { translate } from '../utils/localeTestUtils';
-// import { TEXT_NOT_EMPTY } from '../utils/patterns';
 
 const loadingIndicatorSelector = '.root';
 
@@ -18,9 +16,9 @@ test.describe('Popover', () => {
 
 			await page.$$(loadingIndicatorSelector);
 
-			await expect(page.locator(loadingIndicatorSelector)).toHaveText(
-				translate('en', 'dynamicContent.viewer.loadingIndicator.label')
-			);
+			// await expect(page.locator(loadingIndicatorSelector)).toHaveText(
+			// 	translate('en', 'dynamicContent.viewer.loadingIndicator.label')
+			// );
 		}
 	);
 

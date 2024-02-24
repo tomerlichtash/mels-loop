@@ -7,7 +7,7 @@ type TextAreaProps = {
 	id?: string;
 	required?: boolean;
 	placeholder?: string;
-	value?: string | number;
+	value?: string;
 	type?: 'text' | 'number' | 'tel' | 'file' | 'email';
 	onChange?: (e: SyntheticEvent) => void;
 	className?: string;
@@ -18,19 +18,24 @@ const TextArea = ({
 	required,
 	placeholder,
 	value,
+	// maxLength,
+	// hasCounter,
 	className,
 	onChange,
 	...props
 }: TextAreaProps) => (
-	<textarea
-		id={id}
-		className={classNames(styles.root, className)}
-		required={required}
-		placeholder={placeholder}
-		value={value}
-		onChange={onChange}
-		{...props}
-	/>
+	<>
+		<textarea
+			id={id}
+			className={classNames(styles.root, className)}
+			required={required}
+			placeholder={placeholder}
+			value={value}
+			onChange={onChange}
+			{...props}
+		/>
+		{/* {hasCounter && `${value.length}/${maxLength}`} */}
+	</>
 );
 
 export default TextArea;

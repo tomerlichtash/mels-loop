@@ -1,0 +1,14 @@
+@import '../../styles/lib/component';
+@import '../../styles/lib/themeVars';
+
+$__stylesheet__: (
+	name: error-message,
+);
+
+.root {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+
+	@include use-text-color;
+}
