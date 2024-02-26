@@ -1,4 +1,4 @@
-@use '../../styles/mixins/typographyMixins';
+@use './Text.variants' as variants;
 @import '../../styles/lib/component';
 @import '../../styles/lib/themeVars';
 
@@ -7,35 +7,5 @@ $__stylesheet__: (
 );
 
 .root {
-	&[data-italics] {
-		font-style: italic;
-	}
-
-	&[data-uppercase] {
-		text-transform: uppercase;
-	}
-
-	&[data-lowecase] {
-		text-transform: lowercase;
-	}
-
-	&[data-variant] {
-		&[data-variant='h1'] {
-			@include typographyMixins.running-text-mixin(name(h1));
-
-			// font-size: 1.2em;
-			// @include use-text-color(name(h1));
-			// @include use-line-height(name(h1));
-			// @include use-text-transform(name(h1));
-			// @include use-letter-spacing(name(h1));
-		}
-
-		&[data-variant='h2'] {
-			font-size: 1.2em;
-		}
-
-		&[data-variant='h3'] {
-			font-size: 1.2em;
-		}
-	}
+	@include variants.variants(name(variants));
 }

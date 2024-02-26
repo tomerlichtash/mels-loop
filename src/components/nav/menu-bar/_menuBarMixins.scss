@@ -1,5 +1,6 @@
+@use '../../button/Button.variants' as buttons;
 @use './menuBarAnimationMixin' as animations;
-@import '../../../styles/mixins/buttonMixin';
+@import '../../../styles/lib/themeVars';
 
 @mixin caret-mixin($var) {
 	.caret {
@@ -88,17 +89,17 @@
 }
 
 @mixin trigger-button-mixin($module, $states) {
-	@include menu-trigger-button-mixin;
+	@include buttons.menu-trigger-button-mixin;
 
 	// this `hover` state aims to fix the slight delay in applying
 	// background-color to the menu trigger which his based on its
 	// `open` state
-	&[data-state='open'],
-	&:hover {
-		@include use-background-color($module, state(opened, $states));
+	// &[data-state='open'],
+	// &:hover {
+	// 	@include use-background-color($module, state(opened, $states));
 
-		.caret {
-			@include use-text-color(#{$module}-caret, state(hovered, $states));
-		}
-	}
+	// 	.caret {
+	// 		@include use-text-color(#{$module}-caret, state(hovered, $states));
+	// 	}
+	// }
 }

@@ -1,13 +1,10 @@
-@use '../../styles/mixins/typographyMixins';
 @import '../../styles/lib/component';
+@import '../../styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: list-item,
 );
 
 .root {
-	margin: 0;
-	list-style: none;
-
-	@include typographyMixins.running-text-mixin;
+	@include use-text-color(paragraph);
 }

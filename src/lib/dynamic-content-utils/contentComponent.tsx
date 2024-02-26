@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentIterator } from './contentIterator';
+import { MLNODE_TYPES } from 'types/nodes';
 import { LinkSelector } from './linkSelector';
-import { ContentComponentProps } from 'types/models';
 import {
 	HeadingContentBlock,
 	ListItemContentBlock,
@@ -13,8 +13,11 @@ import {
 	CustomImageContentBlock,
 	CodeInlineContentBlock,
 	CodeBlockContentBlock,
+	ListContentBlock,
+	TextContentBlock,
 } from './content-blocks';
-import { MLNODE_TYPES, NODE_LIST_TYPES } from 'types/nodes';
+import type { ContentComponentProps } from 'types/models';
+import { ErrorMessage } from 'components/index';
 
 export const ContentComponent = ({
 	componentData,
@@ -25,6 +28,8 @@ export const ContentComponent = ({
 	if (!key) {
 		console.warn('missing key on', node);
 	}
+
+	const props = { key, componentData };
 
 	switch (type) {
 		case MLNODE_TYPES.DEL:
@@ -44,60 +49,37 @@ export const ContentComponent = ({
 					componentData={{ tag: type, ...componentData }}
 				/>
 			);
-		case MLNODE_TYPES.PARAGRAPH:
-			return <ParagraphContentBlock key={key} componentData={componentData} />;
-		case MLNODE_TYPES.LINE:
-			return <LineContentBlock key={key} componentData={componentData} />;
-		case MLNODE_TYPES.CODE:
-			return <CodeInlineContentBlock key={key} componentData={componentData} />;
-		case MLNODE_TYPES.CODEBLOCK:
-			return <CodeBlockContentBlock key={key} componentData={componentData} />;
-		case MLNODE_TYPES.BLOCKQUOTE:
-			return <BlockquoteContentBlock key={key} componentData={componentData} />;
-		case MLNODE_TYPES.TEXT:
-			const { text } = node;
-			return <span key={key}>{text}</span>;
-		case MLNODE_TYPES.LIST:
-			return (
-				<ContentIterator
-					key={key}
-					componentData={{
-						...componentData,
-						tag: node.ordered
-							? NODE_LIST_TYPES.ORDERED
-							: NODE_LIST_TYPES.UNORDERED,
-					}}
-				/>
-			);
-		case MLNODE_TYPES.LIST_ITEM:
-			return <ListItemContentBlock key={key} componentData={componentData} />;
 		case MLNODE_TYPES.LINK:
-			return <LinkSelector key={key} componentData={componentData} />;
+			return <LinkSelector {...props} />;
+		case MLNODE_TYPES.TEXT:
+			return <TextContentBlock {...props} />;
+		case MLNODE_TYPES.PARAGRAPH:
+			return <ParagraphContentBlock {...props} />;
+		case MLNODE_TYPES.LINE:
+			return <LineContentBlock {...props} />;
+		case MLNODE_TYPES.CODE:
+			return <CodeInlineContentBlock {...props} />;
+		case MLNODE_TYPES.CODEBLOCK:
+			return <CodeBlockContentBlock {...props} />;
+		case MLNODE_TYPES.BLOCKQUOTE:
+			return <BlockquoteContentBlock {...props} />;
+		case MLNODE_TYPES.LIST:
+			return <ListContentBlock {...props} />;
+		case MLNODE_TYPES.LIST_ITEM:
+			return <ListItemContentBlock {...props} />;
 		case MLNODE_TYPES.IMAGE:
-			return (
-				<CustomImageContentBlock key={key} componentData={componentData} />
-			);
+			return <CustomImageContentBlock {...props} />;
 		case MLNODE_TYPES.FIGURE:
-			return <FigureContentBlock key={key} componentData={componentData} />;
+			return <FigureContentBlock {...props} />;
 		case MLNODE_TYPES.TABLE:
-			return <TableContentBlock key={key} componentData={componentData} />;
+			return <TableContentBlock {...props} />;
 		case MLNODE_TYPES.HR:
 			return <hr />;
 		default:
 			if (/heading/i.test(type)) {
-				return (
-					<HeadingContentBlock
-						key={key}
-						componentData={componentData}
-						className={`content-component-heading-${node.level}`}
-					/>
-				);
+				return <HeadingContentBlock {...props} />;
 			}
-			return (
-				<div className="error" key={key}>
-					<pre>Type "{node.type}" not found</pre>
-				</div>
-			);
+			return <ErrorMessage message={`Type "${node.type}" not found`} />;
 	}
 };
 

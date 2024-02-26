@@ -98,19 +98,22 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 							.map((item) => {
 								return { ...item, label: t(item.label) };
 							})
-							.map(({ label, target, href }) => {
-								return (
-									<ListItem key={unique.id()} className={styles.item}>
-										{href ? (
-											<Link href={href} target={target} className={styles.link}>
-												{label}
-											</Link>
-										) : (
-											label
-										)}
-									</ListItem>
-								);
-							})}
+							.map(({ label, target, href }) => (
+								<ListItem key={unique.id()} className={styles.item}>
+									{href ? (
+										<Link
+											href={href}
+											target={target}
+											className={styles.link}
+											asChild={true}
+										>
+											{label}
+										</Link>
+									) : (
+										label
+									)}
+								</ListItem>
+							))}
 					</List>
 				</Container>
 			)),
@@ -200,11 +203,16 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 					<header data-testid="topbar">
 						<Container alignItemsCenter className={styles.title}>
 							<Logo />
-							<TextLink title={siteTitle} linked={!isHome} href="/">
+							<TextLink
+								variant="subtitle1"
+								title={siteTitle}
+								linked={!isHome}
+								href="/"
+							>
 								{siteTitle}
 							</TextLink>
 							<Separator />
-							<Text variant="subtitle2" className={styles.subtitle}>
+							<Text variant="subtitle4" className={styles.subtitle}>
 								{siteSubtitle}
 							</Text>
 						</Container>
@@ -238,17 +246,13 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 						<div className={styles.container}>
 							<div className={styles.columns}>
 								<div className={classNames(styles.column)}>
-									<Text
-										variant="h1"
-										uppercase={true}
-										aria-label={siteTitleWithLicense}
-									>
+									<Text variant="h1" aria-label={siteTitleWithLicense}>
 										<time>2021-{siteLicenseCurrentYear}</time>
 										<span>{siteLicenseType}</span>
 										<span>{siteTitle}</span>
 									</Text>
-									<Text italics={true}>{siteSubtitle}</Text>
-									<Text lowercase>{t('common:site:shortSiteDescription')}</Text>
+									<Text>{siteSubtitle}</Text>
+									<Text>{t('common:site:shortSiteDescription')}</Text>
 								</div>
 								{footerItems}
 							</div>

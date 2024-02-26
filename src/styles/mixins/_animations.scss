@@ -1,5 +1,5 @@
-@use '../lib/themeVars' as themeVars;
-@use './keyframesMixins' as keyframes;
+@use '../lib/themeVars';
+@use './keyframes';
 
 @mixin enter-from-left($var) {
 	@include keyframes.enter-from-left;

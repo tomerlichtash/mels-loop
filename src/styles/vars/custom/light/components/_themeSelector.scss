@@ -1,5 +1,4 @@
-@use '../../../../../components/theme-select/ThemeSelect.module.scss' as
-	theme-select;
+@use '../../../../../components/theme-select/ThemeSelect.module' as theme-select;
 @import '../../../../lib/theme';
 
 $index: (

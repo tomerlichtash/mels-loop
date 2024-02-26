@@ -74,6 +74,8 @@ const Form = ({
 			<Formik
 				initialValues={initialValues}
 				validationSchema={yup.object().shape(validationSchema)}
+				// validateOnBlur={false}
+				// validateOnChange={true}
 				onSubmit={(values: Record<string, unknown>, { resetForm }) => {
 					setSubmitting(true);
 					handleSubmit({

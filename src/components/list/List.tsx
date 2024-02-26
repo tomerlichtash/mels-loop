@@ -9,7 +9,8 @@ import styles from './List.module.scss';
 type ListProps = {
 	items?: ListItemProps[];
 	label?: string;
-	className: string;
+	ordered?: boolean;
+	className?: string;
 };
 
 const renderListItems = (items: ListItemProps[]) =>
@@ -30,14 +31,18 @@ const renderListItems = (items: ListItemProps[]) =>
 const List = ({
 	items,
 	label,
+	ordered,
 	children,
 	className,
 }: PropsWithChildren<ListProps> &
-	HTMLAttributes<HTMLDivElement>): JSX.Element => (
-	<div className={classNames(styles.root, className)}>
-		{label && <Text className={styles.label}>{label}</Text>}
-		<ul className={styles.list}>{children || renderListItems(items)}</ul>
-	</div>
-);
+	HTMLAttributes<HTMLDivElement>): JSX.Element => {
+	const Tag = ordered ? 'ol' : 'ul';
+	return (
+		<div className={classNames(styles.root, className)}>
+			{label && <Text className={styles.label}>{label}</Text>}
+			<Tag className={styles.items}>{children || renderListItems(items)}</Tag>
+		</div>
+	);
+};
 
 export default List;

@@ -1,6 +1,5 @@
 import React, { PropsWithChildren, type SyntheticEvent } from 'react';
 import NextLink from 'next/link';
-import Button from '../button/Button';
 import styles from './Link.module.scss';
 import { Slot } from '@radix-ui/react-slot';
 
@@ -25,10 +24,10 @@ const Link = ({
 	onClick,
 	children,
 }: PropsWithChildren<LinkProps>): JSX.Element => {
-	const Comp = asChild ? Slot : Button;
+	const Comp = asChild ? Slot : 'span';
 
 	return (
-		<Comp onClick={onClick} className={styles.root} asChild title={title}>
+		<Comp onClick={onClick} className={styles.root} title={title}>
 			<NextLink href={href} target={target}>
 				{children || label}
 			</NextLink>

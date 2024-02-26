@@ -1,3 +1,4 @@
+@use './Figure.variants' as variants;
 @import '../../styles/lib/component';
 @import '../../styles/lib/themeVars';
 
@@ -14,30 +15,23 @@ $__stylesheet__: (
 	max-width: 100%;
 	text-align: center;
 	margin: 0;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	padding: 0.25em;
 
 	img {
 		max-width: 100%;
 	}
 
-	padding: 1em;
+	// .figureContent {
+	// }
 
 	@include use-border-size;
 	@include use-border-style;
 	@include use-border-color;
 	@include use-radius;
 
-	// variant mixins
-	&[data-type='no-border'] {
-		border: none;
-	}
-
-	&[data-type='codeblock'] {
-		border: none;
-		margin: 0;
-		padding-right: 0;
-		padding-left: 0;
-	}
-
-	// .figureContent {
-	// }
+	// variants
+	@include variants.no-border;
+	@include variants.code-block;
 }

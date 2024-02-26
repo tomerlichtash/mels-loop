@@ -1,5 +1,6 @@
-@import '../../styles/mixins/buttonMixin';
+@use '../../components/button/Button.variants' as buttons;
 @import '../../styles/lib/component';
+@import '../../styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: reference-content-layout,
@@ -44,18 +45,18 @@ $__stylesheet__: (
 			font-size: 2em;
 		}
 
-		.definition {
-			// background-color: darkcyan;
-		}
+		// .definition {
+		// 	// background-color: darkcyan;
+		// }
 	}
 
-	.content {
-		// background-color: darkkhaki;
-	}
+	// .content {
+	// 	// background-color: darkkhaki;
+	// }
 
-	.footer {
-		.sources {
-			// background-color: aquamarine;
-		}
-	}
+	// .footer {
+	// 	.sources {
+	// 		// background-color: aquamarine;
+	// 	}
+	// }
 }

@@ -34,6 +34,7 @@ const LocaleSelect = ({
 				value={id}
 				data-locale={id}
 				key={unique.id()}
+				className={styles.item}
 			>
 				{label}
 			</ToggleGroupItem>

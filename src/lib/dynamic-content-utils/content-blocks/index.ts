@@ -11,6 +11,8 @@ import { ListItemContentBlock } from './listItemContentBlock';
 import { ParagraphContentBlock } from './paragraphContentBlock';
 import { TableContentBlock } from './tableContentBlock';
 import { TermLinkContentBlock } from './termLinkContentBlock';
+import { ListContentBlock } from './listContentBlock';
+import { TextContentBlock } from './textContentBlock';
 
 export {
 	AnnotationContentBlock,
@@ -26,4 +28,6 @@ export {
 	ParagraphContentBlock,
 	TableContentBlock,
 	TermLinkContentBlock,
+	ListContentBlock,
+	TextContentBlock,
 };

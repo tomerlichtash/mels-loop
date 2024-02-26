@@ -1,6 +1,6 @@
 @import '../../styles/lib/component';
 @import '../../styles/lib/states';
-@import '../../styles/mixins/typographyMixins';
+@import '../../styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: blockquote,
@@ -12,13 +12,14 @@ $__stylesheet__: (
 	@include use-vertical-padding;
 	@include use-horizontal-padding;
 
-	p {
-		@include running-text-mixin(name());
-	}
+	// p {
+	// 	// @include variant(name());
+	// }
 
 	cite {
 		@include use-vertical-padding(name(cite));
 		@include use-horizontal-padding(name(cite));
-		@include running-text-mixin(name(cite));
+
+		// @include variant(name(cite));
 	}
 }

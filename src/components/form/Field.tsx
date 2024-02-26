@@ -39,6 +39,10 @@ const FormField = ({
 							'data-is-valid': isValid ? 'true' : 'false',
 							'data-error-message': meta.error,
 							required,
+							// onBlur: (e) => {
+							// 	setTouched({ [name]: true });
+							// 	console.log('blur');
+							// },
 						},
 					});
 				}
@@ -78,6 +82,7 @@ const FormField = ({
 							<span className={classNames(styles.inputField)}>
 								<span className={styles.inputFieldContainer}>
 									{childrenWithProps}
+									{/* {JSON.stringify(meta)} */}
 									{meta.touched && meta.error && (
 										<div
 											className={classNames(

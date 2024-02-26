@@ -1,6 +1,6 @@
-@use '../../styles/mixins/typographyMixins' as typography-mixin;
-@use '../../styles/mixins/popoverMixin' as popover-mixin;
-@use '../popover/PopoverTrigger.module.scss' as trigger;
+@use '../popover/PopoverTrigger.module' as trigger;
+@use '../popover/Popover.mixin' as popover;
+@use './Annotation.mixin' as mixin;
 @import '../../styles/lib/component';
 @import '../../styles/lib/states';
 @import '../../styles/lib/themeVars';
@@ -23,17 +23,17 @@ $__stylesheet__: (
 	@include use-font-size;
 	@include use-line-height;
 	@include use-offset-y;
-	@include popover-mixin.trigger(trigger.name());
+	@include popover.trigger(trigger.name());
 
 	.content {
-		@include typography-mixin.suffix-content-data(name(), var(--data-content));
+		@include mixin.suffix-content-data(name(), var(--data-content));
 	}
 
 	&::before {
-		@include typography-mixin.prefix(name());
+		@include mixin.prefix(name());
 	}
 
 	&::after {
-		@include typography-mixin.suffix(name());
+		@include mixin.suffix(name());
 	}
 }

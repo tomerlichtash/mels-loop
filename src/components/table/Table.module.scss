@@ -23,11 +23,6 @@ $__stylesheet__: (
 	margin: 0 auto;
 	border-spacing: 0;
 
-	// &[data-type="bit-layout"] {
-	// 	border: 1px solid blue;
-	// 	padding: 1em;
-	// }
-
 	@include use-radius;
 	@include use-border-top-size;
 	@include use-border-top-style;
@@ -47,4 +42,9 @@ $__stylesheet__: (
 		@include use-border-bottom-style;
 		@include use-border-bottom-color;
 	}
+
+	// &[data-type="bit-layout"] {
+	// 	border: 1px solid blue;
+	// 	padding: 1em;
+	// }
 }

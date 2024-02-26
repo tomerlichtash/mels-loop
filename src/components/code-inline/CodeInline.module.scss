@@ -16,6 +16,7 @@ $__stylesheet__: (
 	@include use-horizontal-padding;
 	@include use-font-family;
 	@include use-font-weight;
+	@include use-font-size;
 	@include use-text-color;
 	@include use-background-color;
 	@include use-border-size;

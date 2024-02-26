@@ -19,6 +19,11 @@
 	@include refs.use(font-weight, font-weight, $var, $state);
 }
 
+// font-style
+@mixin use-font-style($var: name(), $state: '') {
+	@include refs.use(font-style, font-style, $var, $state);
+}
+
 // line-height
 @mixin use-line-height($var: name(), $state: '') {
 	@include refs.use(line-height, line-height, $var, $state);

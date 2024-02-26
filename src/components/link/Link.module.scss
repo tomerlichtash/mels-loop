@@ -1,3 +1,5 @@
+// stylelint-disable selector-no-vendor-prefix
+
 @import '../../styles/lib/component';
 @import '../../styles/lib/themeVars';
 @import '../../styles/lib/states';
@@ -12,17 +14,27 @@ $__stylesheet__: (
 
 	cursor: pointer;
 
+	@include use-text-color;
+
+	a:-webkit-any-link {
+		@include use-text-color;
+	}
+
 	&:link,
-	&:visited {
+	&:visited,
+	a:-webkit-any-link:link,
+	a:-webkit-any-link:visited {
 		@include use-text-color;
 		@include use-background-color;
 	}
 
-	&:hover {
+	&:hover,
+	a:-webkit-any-link:hover {
 		@include use-text-color(name(), state(hovered));
 	}
 
-	&:active {
+	&:active,
+	a:-webkit-any-link:active {
 		@include use-text-color(name(), state(clicked));
 	}
 }

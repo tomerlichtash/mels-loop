@@ -8,20 +8,25 @@ $__stylesheet__: (
 .root {
 	display: inline-flex;
 	align-items: center;
+	border: none;
+	padding: 0;
+	background: none;
 	cursor: pointer;
 
+	// height: 1.5em;
+	// width: 1.5em;
 	// width: 5em;
 	// padding: 0 1em;
 	// height: 2em;
 	// justify-content: center;
 	// gap: 0.5em;
 	// border-radius: 4px;
-	border: none;
-
-	&:not([disabled]):hover {
-		background-color: #808080;
-		outline: 2px solid red;
-	}
+	// border: 2px solid magenta;
+	// outline: 1px solid magenta;
+	// &:not([disabled]):hover {
+	// 	background-color: #808080;
+	// 	outline: 2px solid red;
+	// }
 
 	&[disabled] {
 		cursor: default;

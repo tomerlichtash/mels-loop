@@ -1,7 +1,5 @@
-@use '../../mixins/keyframesMixins' as key-frames-mixins;
 @use '../refs' as refs;
 
-// ANIMATIONS
 @mixin use-animation($anim, $comp) {
 	animation: $anim;
 	animation-duration: compRef($comp, animation-duration);

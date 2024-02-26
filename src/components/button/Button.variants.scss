@@ -1,7 +1,7 @@
-@import '../lib/themeVars';
-@import '../lib/refs';
-@import '../lib/states';
-@import '../lib/merge';
+@import '../../styles/lib/themeVars';
+@import '../../styles/lib/refs';
+@import '../../styles/lib/states';
+@import '../../styles/lib/merge';
 
 $states: deep(
 	$COMPONENT_STATES,
@@ -93,3 +93,18 @@ $fontWeightVar: varName(site-button-toggle-font-weight);
 // 		background-color: var(--button-background-color__active);
 // 	}
 // }
+
+@mixin topbar-item {
+	background-color: green;
+	height: 2.5em;
+	width: 2.5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+
+	&:hover {
+		background-color: pink;
+		cursor: pointer;
+	}
+}

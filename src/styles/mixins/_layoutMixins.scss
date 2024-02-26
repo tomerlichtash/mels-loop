@@ -1,8 +1,0 @@
-@use '../lib/themeVars';
-
-@mixin page-container-mixin($var) {
-	margin: 0 auto;
-	max-width: 800px;
-
-	@include themeVars.use-inner-gutter($var);
-}

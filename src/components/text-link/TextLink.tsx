@@ -1,15 +1,18 @@
 import React, { PropsWithChildren, useMemo } from 'react';
-import Text, { type TextVariant } from '../text/Text';
+import Text, {
+	HeadingVariant,
+	SubtitleVariant,
+	type TextVariant,
+} from '../text/Text';
 import Link from '../link/Link';
 import styles from './TextLink.module.scss';
 import classNames from 'classnames';
-import { Slot } from '@radix-ui/react-slot';
 
 export type TextLinkProps = {
 	href: string;
 	title?: string;
 	linked?: boolean;
-	variant?: TextVariant;
+	variant?: TextVariant | HeadingVariant | SubtitleVariant;
 	asChild?: boolean;
 	className?: string;
 };
@@ -23,35 +26,33 @@ const TextLink = ({
 	asChild,
 	className,
 }: PropsWithChildren<TextLinkProps>): JSX.Element => {
-	const Comp = asChild ? Slot : 'span';
-
 	const text = useMemo(
 		() => (
 			<Text variant={variant} className={styles.label}>
-				<Comp>{children}</Comp>
+				{children}
 			</Text>
 		),
-		[Comp, children, variant]
+		[children, variant]
 	);
 
 	const link = useMemo(
 		() => (
-			<Link href={href} className={styles.link}>
-				<Comp>{text}</Comp>
+			<Link href={href} className={styles.link} asChild={asChild}>
+				{text}
 			</Link>
 		),
-		[href, Comp, text]
+		[href, text, asChild]
 	);
 
 	return (
-		<div
+		<span
 			title={title}
 			aria-label={title}
 			className={classNames(styles.root, className)}
 			data-variant={variant}
 		>
 			{linked ? link : text}
-		</div>
+		</span>
 	);
 };
 

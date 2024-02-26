@@ -10,7 +10,7 @@ export const Table = ({
 	children,
 	className,
 }: PropsWithChildren<TableProps>) => (
-	<table className={classNames(styles.root, className)}>
+	<table key={'dada'} className={classNames(styles.root, className)}>
 		<tbody>{children}</tbody>
 	</table>
 );

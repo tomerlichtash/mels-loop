@@ -1,4 +1,4 @@
-@use '../../styles/mixins/keyframesMixins' as keyframes;
+@use '../../styles/mixins/animations' as keyframes;
 @import '../../styles/lib/component';
 @import '../../styles/lib/themeVars';
 
@@ -19,8 +19,7 @@ $__stylesheet__: (
 	@include use-height;
 
 	.image {
-		@include keyframes.rotation;
-		@include use-keyframe(rotation, name());
+		@include keyframes.rotation(name());
 
 		animation-iteration-count: infinite;
 		animation-timing-function: linear;

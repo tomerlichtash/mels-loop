@@ -1,5 +1,3 @@
-@use '../styles/mixins/typographyMixins.scss';
-@use '../styles/mixins/layoutMixins.scss';
 @import '../styles/lib/component';
 @import '../styles/lib/themeVars';
 @import '../styles/lib/states';
@@ -9,11 +7,19 @@ $__stylesheet__: (
 );
 $footerMinheight: 20vh;
 
+@mixin page-container-mixin($var) {
+	margin: 0 auto;
+	max-width: 800px;
+
+	@include use-inner-gutter($var);
+}
+
 .root {
 	@include use-background-color;
 
 	.topbar {
 		@include use-background-color(name(top-bar));
+		@include use-height(name(top-bar));
 
 		.title {
 			@include use-gap(name(logo));
@@ -21,7 +27,7 @@ $footerMinheight: 20vh;
 	}
 
 	.page {
-		@include layoutMixins.page-container-mixin(name());
+		@include page-container-mixin(name());
 		@include use-margin-top(name('page'));
 
 		min-height: calc(100vh - $footerMinheight);
@@ -34,7 +40,7 @@ $footerMinheight: 20vh;
 		@include use-background-color(name(footer));
 
 		.container {
-			@include layoutMixins.page-container-mixin(name());
+			@include page-container-mixin(name());
 		}
 
 		.columns {

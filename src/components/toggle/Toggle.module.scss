@@ -1,4 +1,4 @@
-@use '../../styles/mixins/buttonMixin' as button-mixin;
+@use '../button/Button.variants' as buttons;
 @import '../../styles/lib/component';
 
 $__stylesheet__: (
@@ -6,5 +6,14 @@ $__stylesheet__: (
 );
 
 .root {
-	@include button-mixin.toggle-button-mixin;
+	@include buttons.topbar-item;
+
+	display: flex;
+	padding: 0;
+	border: none;
+
+	// img {
+	// 	// width: 100%;
+	// 	// border: 2px solid blue;
+	// }
 }

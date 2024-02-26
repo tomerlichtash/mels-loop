@@ -12,8 +12,7 @@ import ListItem from 'components/list-item/ListItem';
 const renderItems = (items: NavItemDataProps[]) =>
 	items.map((item) => (
 		<NavigationMenu.Link asChild key={unique.id()}>
-			{/* <li className={styles.listItem}> */}
-			<ListItem>
+			<ListItem className={styles.listItem}>
 				<NavListItem key={unique.id()} className={styles.item} {...item}>
 					<NavItemContent
 						title={item.locale.title}
@@ -22,7 +21,6 @@ const renderItems = (items: NavItemDataProps[]) =>
 						icon={item.icon}
 					/>
 				</NavListItem>
-				{/* </li> */}
 			</ListItem>
 		</NavigationMenu.Link>
 	));

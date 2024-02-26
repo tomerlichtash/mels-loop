@@ -1,10 +1,13 @@
 @import '../../styles/lib/component';
-@import '../../styles/mixins/typographyMixins';
 
 $__stylesheet__: (
-	name: paragraph,
+	name: heading,
 );
 
 .root {
-	@include running-text-mixin(name());
+	// @include variant;
+	&:not(:first-child) {
+		margin-top: 3em;
+		margin-bottom: 1em;
+	}
 }

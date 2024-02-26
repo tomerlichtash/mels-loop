@@ -1,6 +1,6 @@
-@use '../../styles/mixins/popoverMixin';
-@use '../popover/PopoverTrigger.module.scss' as trigger;
-@use '../../styles/mixins/typographyMixins';
+@use '../annotation/Annotation.mixin' as annotation;
+@use '../popover/Popover.mixin' as popover;
+@use '../popover/PopoverTrigger.module' as trigger;
 @import '../../styles/lib/component';
 @import '../../styles/lib/themeVars';
 
@@ -14,7 +14,7 @@ $__stylesheet__: (
 	--decoration-color: #000;
 
 	.label {
-		@include popoverMixin.trigger(trigger.name());
+		@include popover.trigger(trigger.name());
 	}
 
 	&::after {
@@ -23,6 +23,6 @@ $__stylesheet__: (
 
 		@include use-text-color(name(suffix));
 		@include use-offset-y(name(suffix));
-		@include typographyMixins.suffix(name());
+		@include annotation.suffix(name());
 	}
 }

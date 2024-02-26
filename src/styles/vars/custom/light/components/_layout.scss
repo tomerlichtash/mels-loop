@@ -1,4 +1,4 @@
-@use '../../../../../layout/Layout.module.scss' as layout;
+@use '../../../../../layout/Layout.module' as layout;
 @import '../../../../lib/theme';
 @import '../../../../lib/refs';
 @import '../../../../lib/states';
@@ -19,6 +19,7 @@ $index: (
 	top-bar:
 		(
 			background-color: ref(color-surface-main),
+			height: 48px,
 		),
 	footer: (
 		background-color: ref(color-surface-main),

@@ -1,26 +1,18 @@
 import React from 'react';
-import { ContentComponent } from '../contentComponent';
-import { IMLParsedNode, ContentComponentProps } from 'types/models';
+import { ContentComponentProps } from 'types/models';
 import { useComponentAttrs } from '../../../hooks/useComponentAttrs';
-import { Blockquote } from 'components/index';
+import { Blockquote, Paragraph } from 'components/index';
+import { renderNodes } from 'lib/dynamicContentHelpers';
 
 export const BlockquoteContentBlock = ({
 	componentData,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { attributes } = useComponentAttrs(node);
-
-	const elements: IMLParsedNode[] = Array.isArray(node.children)
-		? node.children
-		: [];
-
+	const { key, children } = node;
 	return (
-		<Blockquote key={node.key} {...attributes}>
-			<p>
-				{elements.map((node) => (
-					<ContentComponent key={node.key} componentData={{ node }} />
-				))}
-			</p>
+		<Blockquote key={key} {...attributes}>
+			<Paragraph>{renderNodes(children)}</Paragraph>
 		</Blockquote>
 	);
 };

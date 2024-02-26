@@ -4,7 +4,7 @@ import { LoadFolderModes } from 'types/parser/modes';
 import { ContentTypes } from 'types/content';
 import { mlNextUtils } from '../../lib/next-utils/nextUtils';
 import { usePageData } from '../../hooks/usePageData';
-import { Link } from 'components/index';
+import { Container, Link } from 'components/index';
 import { unique } from 'utils/index';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';
@@ -25,13 +25,15 @@ export default function Doc(props: IPageProps) {
 	return (
 		<Layout>
 			<div className="page">
-				<Link href={'/posts'}>
-					{backIcon}{' '}
-					{t('common:button:backToTarget', {
-						sep: t('common:to'),
-						target: t('pages:blog:title'),
-					})}
-				</Link>
+				<Container alignItemsCenter>
+					<Link href={'/posts'}>
+						{backIcon}
+						{t('common:button:backToTarget', {
+							sep: t('common:to'),
+							target: t('pages:blog:title'),
+						})}
+					</Link>
+				</Container>
 				<GenericContentLayout
 					key={unique.id()}
 					title={title}

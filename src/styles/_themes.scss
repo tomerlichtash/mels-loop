@@ -3,7 +3,7 @@
 @use './vars/common';
 @use './vars/custom/light';
 
-// @use "./vars/custom/dark";
+// @use './vars/custom/dark';
 
 [data-ml-theme] {
 	@include parser.compile(common.$index, config.$theme-global-prefix);
@@ -16,6 +16,9 @@
 	@include parser.compile(light.$index);
 }
 
-// [data-ml-theme="dark"] {
+// [data-ml-theme='dark'] {
+// 	--ml-logo-url: url('../../public/assets/logo/ml-logo-light.png');
+// 	--ml-loading-indicator-url: url('../../public/assets/logo/ml-logo-light.png');
+
 // 	@include parser.compile(dark.$index);
 // }

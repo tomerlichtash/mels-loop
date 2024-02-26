@@ -1,8 +1,8 @@
 import React from 'react';
-import { ContentComponent } from './contentComponent';
 import { ContentComponentProps, IMLParsedNode } from 'types/models';
 import { useComponentAttrs } from '../../hooks/useComponentAttrs';
 import { unique } from 'utils/unique';
+import { renderNodes } from 'lib/dynamicContentHelpers';
 
 /**
  * Displays the content of a Content Node, optionally wrapping
@@ -24,7 +24,6 @@ export const ContentIterator = ({
 	}
 
 	const elements: IMLParsedNode[] = Array.isArray(children) && children;
-
 	const Tag = componentData.tag as keyof JSX.IntrinsicElements;
 
 	if (!elements?.length) {
@@ -46,20 +45,12 @@ export const ContentIterator = ({
 	if (Tag) {
 		return (
 			<Tag key={unique.id()} {...attributes}>
-				{elements.map((node) => (
-					<ContentComponent key={unique.id()} componentData={{ node }} />
-				))}
+				{renderNodes(elements)}
 			</Tag>
 		);
 	}
 
-	return (
-		<>
-			{elements.map((node) => {
-				return <ContentComponent key={unique.id()} componentData={{ node }} />;
-			})}
-		</>
-	);
+	return <>{renderNodes(elements)}</>;
 };
 
 export default ContentIterator;

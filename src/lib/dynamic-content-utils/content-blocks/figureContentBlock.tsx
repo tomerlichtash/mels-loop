@@ -1,23 +1,18 @@
 import React from 'react';
-import { ContentComponent } from '../contentComponent';
-import { IMLParsedNode, ContentComponentProps } from 'types/models';
+import { ContentComponentProps } from 'types/models';
 import { useComponentAttrs } from '../../../hooks/useComponentAttrs';
 import { Figure } from 'components/index';
+import { renderNodes } from 'lib/dynamicContentHelpers';
 
 export const FigureContentBlock = ({
 	componentData,
 }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { attributes } = useComponentAttrs(node);
-
-	const elements: IMLParsedNode[] = Array.isArray(node.children)
-		? node.children
-		: [];
+	const { key, children, elementId } = node;
 	return (
-		<Figure elementId={node.elementId} {...attributes}>
-			{elements.map((node) => {
-				return <ContentComponent key={node.key} componentData={{ node }} />;
-			})}
+		<Figure key={key} elementId={elementId} {...attributes}>
+			{renderNodes(children)}
 		</Figure>
 	);
 };

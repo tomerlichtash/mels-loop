@@ -1,7 +1,7 @@
+@use '../../styles/mixins/animations' as animations;
 @import '../../styles/lib/component';
 @import '../../styles/lib/themeVars';
 @import '../../styles/lib/states';
-@import '../../styles/mixins/animationMixins';
 
 $__stylesheet__: (
 	name: popover-dialog,
@@ -28,7 +28,7 @@ $__stylesheet__: (
 	@include use-border-style;
 	@include use-border-color;
 	@include use-radius;
-	@include fade-in(name());
+	@include animations.fade-in(name());
 
 	.content {
 		@include use-background-color;

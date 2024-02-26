@@ -3,22 +3,15 @@ import { Slot } from '@radix-ui/react-slot';
 import classNames from 'classnames';
 import styles from './Text.module.scss';
 
-type TextVariant =
-	| 'h1'
-	| 'h2'
-	| 'h3'
-	| 'subtitle1'
-	| 'subtitle2'
-	| 'body1'
-	| 'body2';
+type HeadingVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type SubtitleVariant = 'subtitle1' | 'subtitle2' | 'subtitle3' | 'subtitle4';
+type TextVariant = 'body1' | 'body2';
 
 type TextProps = {
 	asChild?: boolean;
-	variant?: TextVariant;
+	variant?: TextVariant | HeadingVariant | SubtitleVariant;
 	italics?: boolean;
 	weight?: number;
-	lowercase?: boolean;
-	uppercase?: boolean;
 	locale?: string;
 	className?: string;
 };
@@ -26,28 +19,17 @@ type TextProps = {
 const Text = ({
 	asChild,
 	variant,
-	italics,
-	weight,
-	lowercase,
-	uppercase,
 	children,
 	className,
 }: PropsWithChildren<TextProps>) => {
 	const Comp = asChild ? Slot : 'span';
 
 	return (
-		<Comp
-			data-variant={variant}
-			data-italics={italics}
-			data-lowercase={lowercase}
-			data-uppercase={uppercase}
-			data-weight={weight}
-			className={classNames(styles.root, className)}
-		>
+		<Comp data-variant={variant} className={classNames(styles.root, className)}>
 			{children}
 		</Comp>
 	);
 };
 
 export default Text;
-export type { TextProps, TextVariant };
+export type { TextProps, TextVariant, HeadingVariant, SubtitleVariant };

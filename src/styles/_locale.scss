@@ -1,10 +1,16 @@
 @use './config/locales';
-@use './mixins/typographyMixins';
 @use './lib/refs';
+@import './lib/themeVars';
+
+@mixin base($var) {
+	@include use-font-family($var);
+	@include use-font-size($var);
+	@include use-font-weight($var);
+}
 
 @each $locale in locales.$index {
 	[data-locale='#{$locale}'] {
-		@include typographyMixins.base-typography-mixin(locale-#{$locale});
+		@include base(locale-#{$locale});
 
 		#{refs.varName(locale-direction)}: #{refs.compRef(
 				locale-#{$locale},

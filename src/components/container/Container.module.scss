@@ -8,7 +8,6 @@ $__stylesheet__: (
 .root {
 	display: flex;
 	box-sizing: border-box;
-	min-height: 48px;
 
 	&[data-fixed-position='true'] {
 		position: fixed;
@@ -33,10 +32,6 @@ $__stylesheet__: (
 		&[data-flex-direction='column'] {
 			flex-direction: column;
 		}
-	}
-
-	&[data-position='bottom'] {
-		bottom: 0;
 	}
 
 	&[data-space-between='true'] {

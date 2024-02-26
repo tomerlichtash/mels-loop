@@ -5,13 +5,16 @@ $__stylesheet__: (
 );
 
 .root {
-	.list {
-		margin: 0;
-		padding: 0;
+	margin-bottom: 1em;
+	padding: 0 2em;
+
+	.items {
+		// margin: 0;
+		// padding: 0;
 	}
 
 	.item {
-		list-style: none;
+		border: 1px solid red;
 	}
 
 	// .label {

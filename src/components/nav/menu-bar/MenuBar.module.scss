@@ -1,5 +1,5 @@
-@use './menuBarMixins.scss' as menu-bar-mixins;
-@use '../nav-item/navListItemMixin.scss' as nav-list-item-mixin;
+@use './menuBarMixins' as mixins;
+@use '../nav-item/navListItemMixin' as nav-list-item-mixin;
 @import '../../../styles/lib/component';
 @import '../../../styles/lib/themeVars';
 @import '../../../styles/lib/states';
@@ -18,10 +18,10 @@ $states: deep(
 .root {
 	width: 250px;
 
-	@include menu-bar-mixins.caret-mixin(name(trigger-caret));
+	@include mixins.caret-mixin(name(trigger-caret));
 
 	.list {
-		@include menu-bar-mixins.list-mixin;
+		@include mixins.list-mixin;
 	}
 
 	.items {
@@ -36,29 +36,29 @@ $states: deep(
 		align-items: center;
 		justify-content: space-between;
 
-		@include menu-bar-mixins.menu-trigger-button-mixin;
-		@include menu-bar-mixins.trigger-button-mixin(name(trigger), $states);
+		// @include buttons.menu-trigger-button-mixin;
+		@include mixins.trigger-button-mixin(name(trigger), $states);
 	}
 
 	.content {
-		@include menu-bar-mixins.content-mixin(name());
+		@include mixins.content-mixin(name());
 	}
 
 	.indicator {
-		@include menu-bar-mixins.indicator-mixin(name());
+		@include mixins.indicator-mixin(name());
 	}
 
 	.viewport {
-		@include menu-bar-mixins.viewport-mixin(name());
+		@include mixins.viewport-mixin(name());
 	}
 
 	// stylelint-disable-next-line selector-class-pattern
 	.viewportPosition {
-		@include menu-bar-mixins.viewport-position-mixin;
+		@include mixins.viewport-position-mixin;
 	}
 
 	.arrow {
-		@include menu-bar-mixins.arrow-mixin(name(arrow));
+		@include mixins.arrow-mixin(name(arrow));
 	}
 
 	@include nav-list-item-mixin.list-item-mixin(name(item), $states);

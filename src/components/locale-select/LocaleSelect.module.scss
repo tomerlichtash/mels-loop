@@ -1,4 +1,4 @@
-@use '../../styles/mixins/buttonMixin.scss';
+@use '../button/Button.variants' as buttons;
 @import '../../styles/lib/component';
 @import '../../styles/lib/states';
 @import '../../styles/lib/themeVars';
@@ -10,17 +10,19 @@ $__stylesheet__: (
 .root {
 	--gap: 4px;
 
-	display: flex;
-
 	@include use-gap;
+
+	display: flex;
 
 	.item {
 		background-color: transparent;
 		border: none;
 		padding: 0;
 
-		.button {
-			@include buttonMixin.toggle-button-mixin;
-		}
+		@include buttons.topbar-item;
+
+		// @include buttonMixin.toggle-button-mixin;
+		// .button {
+		// }
 	}
 }

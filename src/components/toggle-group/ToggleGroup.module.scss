@@ -1,4 +1,4 @@
-@use '../../styles/mixins/buttonMixin.scss';
+@use '../button/Button.variants' as buttons;
 @import '../../styles/lib/component';
 @import '../../styles/lib/states';
 @import '../../styles/lib/themeVars';
@@ -19,8 +19,8 @@ $__stylesheet__: (
 		border: none;
 		padding: 0;
 
-		.button {
-			@include buttonMixin.toggle-button-mixin;
-		}
+		// .button {
+		// 	// @include buttonMixin.toggle-button-mixin;
+		// }
 	}
 }

@@ -1,14 +1,16 @@
 import React from 'react';
 import { ContentComponentProps } from 'types/models';
 import { ContentIterator } from '../contentIterator';
-import { ListItem } from 'components/index';
+import { ListItem, Text } from 'components/index';
 
 export const ListItemContentBlock = ({
 	componentData,
 }: ContentComponentProps): JSX.Element => {
 	return (
 		<ListItem>
-			<ContentIterator componentData={componentData} />
+			<Text variant="body1">
+				<ContentIterator componentData={componentData} />
+			</Text>
 		</ListItem>
 	);
 };

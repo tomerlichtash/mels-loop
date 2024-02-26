@@ -1,3 +1,5 @@
+/* eslint-disable react/display-name */
+import React from 'react';
 import Link from 'next/link';
 import Button from '../../button/Button';
 import classNames from 'classnames';
