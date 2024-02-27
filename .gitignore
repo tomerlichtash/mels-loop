@@ -59,3 +59,5 @@ playwright-report
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+.swc

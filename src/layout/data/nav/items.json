@@ -40,6 +40,15 @@
 		}
 	},
 	{
+		"id": "about",
+		"type": "page",
+		"url": "/about",
+		"locale": {
+			"title": "nav:items:pages:about:label",
+			"description": "MENU_ITEM_DESC_SHORT_ID_ABOUT"
+		}
+	},
+	{
 		"id": "about-mobile",
 		"type": "page",
 		"url": "/about",
@@ -70,16 +79,6 @@
 		}
 	},
 	{
-		"id": "contribute-mobile",
-		"type": "page",
-		"url": "/contribute",
-		"locale": {
-			"title": "nav:items:pages:contrib:label",
-			"description": "MENU_ITEM_DESC_SHORT_ID_CONTRIBUTE",
-			"buttonLabel": "button:learnMore"
-		}
-	},
-	{
 		"id": "contact",
 		"type": "page",
 		"url": "/contact",
@@ -92,7 +91,7 @@
 	{
 		"id": "twitter",
 		"type": "external",
-		"url": "https://twitter:com/aboutmelsloop",
+		"url": "https://twitter.com/aboutmelsloop",
 		"icon": "𝕏",
 		"locale": {
 			"title": "nav:items:links:twitter:label",
@@ -102,7 +101,7 @@
 	{
 		"id": "github",
 		"type": "external",
-		"url": "https://github:com/tomerlichtash/mels-loop",
+		"url": "https://github.com/tomerlichtash/mels-loop",
 		"icon": "github",
 		"target": "_blank",
 		"locale": {

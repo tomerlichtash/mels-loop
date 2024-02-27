@@ -2,12 +2,11 @@ import React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { unique } from 'utils/unique';
 import { getIcon } from 'components/icons';
-import Button from 'components/button/Button';
 import NavListItem from '../nav-item/NavListItem';
 import NavItemContent from '../nav-item-content/NavItemContent';
+import { Button, ListItem } from 'components/index';
 import styles from './MenuBar.module.scss';
 import type { NavItemDataProps, NavParsedNodes, NavProps } from '../types';
-import ListItem from 'components/list-item/ListItem';
 
 const renderItems = (items: NavItemDataProps[]) =>
 	items.map((item) => (

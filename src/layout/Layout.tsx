@@ -30,7 +30,7 @@ import { Analytics } from './analytics';
 import { parseMenuItems } from './helpers';
 import { LocaleId } from 'types/locale';
 import { useRouter } from 'next/router';
-import layoutConfig from './layoutConfig';
+import layoutConfig from './data/nav';
 import classNames from 'classnames';
 import styles from './Layout.module.scss';
 import type { LocaleOptionProps } from 'components/locale-select/LocaleSelect';
@@ -47,7 +47,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 
 	useIconAnimator(router);
 
-	const { menuItemsData, menuSectionData, footerLinksData } = layoutConfig;
+	const { menuItemsData, menuSectionData } = layoutConfig;
 
 	const pathname = usePathname();
 	const { theme, setTheme } = useTheme();
@@ -74,8 +74,8 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 		});
 	}, [t, theme]);
 
-	const navItems = useMemo(
-		() => parseMenuItems(menuSectionData, menuItemsData, t),
+	const navItems = useCallback(
+		(id: string) => parseMenuItems(menuSectionData[id], menuItemsData, t),
 		[menuItemsData, menuSectionData, t]
 	);
 
@@ -89,35 +89,30 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 		[locales, t]
 	);
 
-	const footerItems = useMemo(
+	const footerLinkSections = useMemo(
 		() =>
-			footerLinksData.map(({ label, items }) => (
+			navItems('footer').map((section) => (
 				<Container className={styles.column} key={unique.id()}>
-					<List className={styles.list} label={t(label)}>
-						{items
-							.map((item) => {
-								return { ...item, label: t(item.label) };
-							})
-							.map(({ label, target, href }) => (
-								<ListItem key={unique.id()} className={styles.item}>
-									{href ? (
-										<Link
-											href={href}
-											target={target}
-											className={styles.link}
-											asChild={true}
-										>
-											{label}
-										</Link>
-									) : (
-										label
-									)}
-								</ListItem>
-							))}
+					<List className={styles.list} label={t(section.locale.title)}>
+						{section.items.map((item) => (
+							<ListItem
+								key={`footer-links-item-${item.id}`}
+								className={styles.item}
+							>
+								<Link
+									href={item.url}
+									target={item.target}
+									className={styles.link}
+									asChild={true}
+								>
+									{t(item.locale.title)}
+								</Link>
+							</ListItem>
+						))}
 					</List>
 				</Container>
 			)),
-		[footerLinksData, t]
+		[navItems, t]
 	);
 
 	const siteLicenseCurrentYear = `${new Date().getFullYear()}`;
@@ -157,7 +152,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 						theme={theme}
 						setTheme={setTheme}
 					></ThemeSelect>
-					<MenuDrawer items={navItems} onClose={toggleDrawer} />
+					<MenuDrawer items={navItems('topbar')} onClose={toggleDrawer} />
 				</Scrollbar>
 			</Drawer>
 		),
@@ -222,7 +217,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 							</Button>
 						) : (
 							<Container alignItemsCenter>
-								<MenuBar items={navItems} />
+								<MenuBar items={navItems('topbar')} />
 								<>
 									<LocaleSelect
 										defaultValue={lang}
@@ -254,7 +249,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 									<Text>{siteSubtitle}</Text>
 									<Text>{t('common:site:shortSiteDescription')}</Text>
 								</div>
-								{footerItems}
+								{footerLinkSections}
 							</div>
 						</div>
 					</footer>

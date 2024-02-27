@@ -1,5 +1,5 @@
 import { flattenArray, unique } from 'utils/index';
-import { default as siteFontData } from 'config/siteFonts.json' assert { type: 'json' };
+import { default as siteFontData } from './layout/data/typography';
 
 const fontBasePath = '/assets/fonts';
 
