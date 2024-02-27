@@ -6,11 +6,11 @@ type DrawerState = {
 	toggle: (val?: boolean) => void;
 };
 
-const useDrawer = (reset): DrawerState => {
+const useDrawer = (initialState: boolean): DrawerState => {
 	const [open, setDrawerState] = useState(false);
 
 	// reset drawer state
-	useEffect(() => setDrawerState(false), [reset, setDrawerState]);
+	useEffect(() => setDrawerState(false), [initialState, setDrawerState]);
 
 	useEffect(() => {
 		if (!open) return;

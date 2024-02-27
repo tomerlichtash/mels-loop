@@ -20,11 +20,11 @@
 			"items": ["contact", "twitter", "github"]
 		}
 	],
-	"drawer": [
+	"sidebar": [
 		{
 			"id": "articles",
 			"locale": {
-				"title": "nav.sections.articles.label"
+				"title": "nav:sections:articles:label"
 			},
 			"items": [
 				"preface",
@@ -36,14 +36,14 @@
 		{
 			"id": "about",
 			"locale": {
-				"title": "nav.sections.info.label"
+				"title": "nav:sections:about:label"
 			},
 			"items": ["about-mobile", "blog"]
 		},
 		{
 			"id": "contact",
 			"locale": {
-				"title": "nav.sections.contact.label"
+				"title": "nav:sections:contact:label"
 			},
 			"items": ["contact", "twitter", "github"]
 		}

@@ -5,8 +5,14 @@ import type {
 	NavSectionDataProps,
 } from '../../../components/nav/types';
 
+export enum NavSectionId {
+	TOPBAR = 'topbar',
+	SIDEBAR = 'sidebar',
+	FOOTER = 'footer',
+}
+
 type LayoutConfig = {
-	menuSectionData: Record<string, NavSectionDataProps[]>;
+	menuSectionData: Record<NavSectionId, NavSectionDataProps[]>;
 	menuItemsData: NavItemDataProps[];
 };
 

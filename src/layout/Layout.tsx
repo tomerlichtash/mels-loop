@@ -30,7 +30,7 @@ import { Analytics } from './analytics';
 import { parseMenuItems } from './helpers';
 import { LocaleId } from 'types/locale';
 import { useRouter } from 'next/router';
-import layoutConfig from './data/nav';
+import navData, { NavSectionId } from './data/nav';
 import classNames from 'classnames';
 import styles from './Layout.module.scss';
 import type { LocaleOptionProps } from 'components/locale-select/LocaleSelect';
@@ -47,7 +47,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 
 	useIconAnimator(router);
 
-	const { menuItemsData, menuSectionData } = layoutConfig;
+	const { menuItemsData, menuSectionData } = navData;
 
 	const pathname = usePathname();
 	const { theme, setTheme } = useTheme();
@@ -89,9 +89,9 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 		[locales, t]
 	);
 
-	const footerLinkSections = useMemo(
+	const footerLinks = useMemo(
 		() =>
-			navItems('footer').map((section) => (
+			navItems(NavSectionId.FOOTER).map((section) => (
 				<Container className={styles.column} key={unique.id()}>
 					<List className={styles.list} label={t(section.locale.title)}>
 						{section.items.map((item) => (
@@ -152,7 +152,10 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 						theme={theme}
 						setTheme={setTheme}
 					></ThemeSelect>
-					<MenuDrawer items={navItems('topbar')} onClose={toggleDrawer} />
+					<MenuDrawer
+						items={navItems(NavSectionId.SIDEBAR)}
+						onClose={toggleDrawer}
+					/>
 				</Scrollbar>
 			</Drawer>
 		),
@@ -217,7 +220,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 							</Button>
 						) : (
 							<Container alignItemsCenter>
-								<MenuBar items={navItems('topbar')} />
+								<MenuBar items={navItems(NavSectionId.TOPBAR)} />
 								<>
 									<LocaleSelect
 										defaultValue={lang}
@@ -249,7 +252,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 									<Text>{siteSubtitle}</Text>
 									<Text>{t('common:site:shortSiteDescription')}</Text>
 								</div>
-								{footerLinkSections}
+								{footerLinks}
 							</div>
 						</div>
 					</footer>

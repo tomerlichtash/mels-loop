@@ -30,9 +30,9 @@ $__stylesheet__: (
 		z-index: 1;
 		user-select: none;
 
-		&:hover {
-			background: blue;
-		}
+		// &:hover {
+		// 	background: blue;
+		// }
 
 		&[data-orientation='vertical'] {
 			width: 0.5715em;
@@ -55,13 +55,13 @@ $__stylesheet__: (
 		transition: 75ms background-color ease-in-out;
 		cursor: pointer;
 
-		@include use-background-color(site-layout-scrollbar);
+		@include use-background-color;
 
-		&:hover {
-			box-shadow: 0 0 1px currentcolor;
+		// &:hover {
+		// 	// box-shadow: 0 0 1px currentcolor;
 
-			@include use-background-color(site-layout-scrollbar, state(hovered));
-		}
+		// 	@include use-background-color(name(), state(hovered));
+		// }
 	}
 
 	// .ScrollAreaCorner {
