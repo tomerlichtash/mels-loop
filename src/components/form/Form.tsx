@@ -7,11 +7,11 @@ import {
 	Button,
 	LoadingIndicator,
 	Recaptcha,
+	CustomField
 } from 'components/index';
 import { handleSubmit } from 'components/recaptcha/Recaptcha';
 import { ApiRoutes } from '../../apiRoutes';
 import styles from './Form.module.scss';
-import CustomField from 'components/custom-field/CustomField';
 
 type FormFieldProps = {
 	name: string;

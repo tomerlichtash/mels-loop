@@ -22,6 +22,7 @@ export { default as Text } from './text/Text';
 export { default as Link } from './link/Link';
 export { default as TextLink } from './text-link/TextLink';
 export { default as Form } from './form/Form';
+export { default as CustomField } from './custom-field/CustomField';
 
 // Composition Components
 export { default as Logo } from './logo/Logo';

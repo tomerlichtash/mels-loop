@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
+import Text from '../text/Text';
 import styles from './Paragraph.module.scss';
 import classNames from 'classnames';
-import { Text } from '..';
 
 type ParagraphProps = {
 	className?: string;
