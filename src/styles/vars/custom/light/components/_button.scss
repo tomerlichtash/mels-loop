@@ -1,7 +1,6 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+@use '../../../../lib/refs';
 
-$index: (
+$vars: (
 	empty: true,
 	/*
 	toggle: (

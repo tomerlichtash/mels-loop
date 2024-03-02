@@ -1,7 +1,6 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+// @use '../../../../lib/refs';
 
-$index: (
-	background-color: ref(color-surface-main),
-	height: 148px,
-);
+// $vars: (
+// 	background-color: refs.ref(color-surface-main),
+// 	height: 148px,
+// );

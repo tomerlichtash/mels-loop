@@ -1,7 +1,5 @@
 @use '../button/Button.variants' as buttons;
-@import '../../styles/lib/component';
-@import '../../styles/lib/states';
-@import '../../styles/lib/themeVars';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: locale-select,

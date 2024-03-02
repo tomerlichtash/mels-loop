@@ -1,6 +1,4 @@
-@import '../../styles/lib/component';
-@import '../../styles/lib/states';
-@import '../../styles/lib/themeVars';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: blockquote,
@@ -9,17 +7,12 @@ $__stylesheet__: (
 .root {
 	margin: 0;
 
+	@include use-text-color;
 	@include use-vertical-padding;
 	@include use-horizontal-padding;
-
-	// p {
-	// 	// @include variant(name());
-	// }
 
 	cite {
 		@include use-vertical-padding(name(cite));
 		@include use-horizontal-padding(name(cite));
-
-		// @include variant(name(cite));
 	}
 }

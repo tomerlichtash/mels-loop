@@ -29,7 +29,7 @@ const ThemeSelect = ({
 		<Toggle
 			title={label}
 			isToggled={isDark}
-			onToggle={() => setTheme(isDark ? 'light' : 'dark')}
+			onClick={() => setTheme(isDark ? 'light' : 'dark')}
 			className={classNames(styles.root, className)}
 		>
 			{getIcon(theme)}

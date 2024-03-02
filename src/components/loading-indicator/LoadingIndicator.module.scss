@@ -1,6 +1,5 @@
 @use '../../styles/mixins/animations' as keyframes;
-@import '../../styles/lib/component';
-@import '../../styles/lib/themeVars';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: loading-indicator,
@@ -14,7 +13,7 @@ $__stylesheet__: (
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-direction: row;
+	flex-direction: column;
 
 	@include use-height;
 

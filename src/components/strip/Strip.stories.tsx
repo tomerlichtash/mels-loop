@@ -17,20 +17,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const BaseStory: Story = {
-	args: {},
+export const Primary: Story = {
 	render: function Render() {
 		return <Strip />;
-	},
-};
-
-export const Desktop: Story = BaseStory;
-
-export const Mobile: Story = {
-	...BaseStory,
-	parameters: {
-		viewport: {
-			defaultViewport: 'iphonex',
-		},
 	},
 };

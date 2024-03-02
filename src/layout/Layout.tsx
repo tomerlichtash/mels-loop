@@ -75,7 +75,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 	}, [t, theme]);
 
 	const navItems = useCallback(
-		(id: string) => parseMenuItems(menuSectionData[id], menuItemsData, t),
+		(id: NavSectionId) => parseMenuItems(menuSectionData[id], menuItemsData, t),
 		[menuItemsData, menuSectionData, t]
 	);
 

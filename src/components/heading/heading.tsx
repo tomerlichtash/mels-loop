@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import styles from './heading.module.scss';
+import styles from './Heading.module.scss';
 import classNames from 'classnames';
 import Text, { type HeadingVariant } from '../text/Text';
 

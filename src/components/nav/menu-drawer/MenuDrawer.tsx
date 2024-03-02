@@ -8,7 +8,7 @@ import type { NavParsedNodes } from '../types';
 
 type VerticalNavProps = {
 	items: NavParsedNodes[];
-	onClose: () => void;
+	onClose?: () => void;
 };
 
 const MenuDrawer = ({ items, onClose }: VerticalNavProps) =>

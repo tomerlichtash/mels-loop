@@ -1,6 +1,6 @@
-@use 'assets';
+// @use 'assets';
 @use 'colors';
 @use 'locale';
 @use 'components';
 
-$index: locale.$index, colors.$index, components.$index;
+$vars: locale.$vars, colors.$vars, components.$index;

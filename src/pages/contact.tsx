@@ -3,14 +3,7 @@ import Layout from 'layout/Layout';
 import * as yup from 'yup';
 import { useLocale } from 'hooks/index';
 import { GenericContentLayout } from 'custom-layouts/generic-content-layout/GenericContentLayout';
-import {
-	Form,
-	Input,
-	TextArea,
-	ErrorMessage,
-	Link,
-	Text,
-} from 'components/index';
+import { Form, ErrorMessage, Link, Text } from 'components/index';
 import type { NextPage, GetStaticProps } from 'next';
 import type { IPageProps } from 'types/models';
 import type { FormFieldProps } from 'components/form/Form';
@@ -21,8 +14,8 @@ export const MAX_MESSAGE_LENGTH = 4096;
 
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
 
-const EMAIL_REGEXP = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-const NOT_EMAIL_REGEXP =
+const VALID_EMAIL_REGEXP = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+const EMAIL_NOT_ALLOWED_REGEXP =
 	/^(?![a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$).*$/;
 
 const fieldLocalePrefix = 'contact:form:fields';
@@ -38,13 +31,14 @@ const Contact: NextPage<IPageProps> = () => {
 
 	const contactFormFields: FormFieldProps[] = [
 		{
-			id: 'fullName',
+			name: 'fullName',
 			initialValue: '',
 			required: true,
 			label: t(`${fieldLocalePrefix}:fullName:label`),
 			placeholder: t(`${fieldLocalePrefix}:fullName:placeholder`),
 			icon: 'person',
-			input: <Input />,
+			component: 'input',
+			type: 'text',
 			validation: yup
 				.string()
 				.max(
@@ -54,23 +48,24 @@ const Contact: NextPage<IPageProps> = () => {
 					})
 				)
 				.matches(
-					NOT_EMAIL_REGEXP,
+					EMAIL_NOT_ALLOWED_REGEXP,
 					t(`${fieldLocalePrefix}:fullName:validity:typeMismatch`)
 				)
 				.required(t(`${fieldLocalePrefix}:fullName:validity:valueMissing`)),
 		},
 		{
-			id: 'email',
+			name: 'email',
 			initialValue: '',
 			required: true,
 			label: t(`${fieldLocalePrefix}:email:label`),
 			placeholder: t(`${fieldLocalePrefix}:email:placeholder`),
 			icon: 'closed-envelope',
-			input: <Input />,
+			component: 'input',
+			type: 'email',
 			validation: yup
 				.string()
 				.matches(
-					EMAIL_REGEXP,
+					VALID_EMAIL_REGEXP,
 					t(`${fieldLocalePrefix}:email:validity:typeMismatch`)
 				)
 				.max(
@@ -82,13 +77,14 @@ const Contact: NextPage<IPageProps> = () => {
 				.required(t(`${fieldLocalePrefix}:email:validity:valueMissing`)),
 		},
 		{
-			id: 'message',
+			name: 'message',
 			initialValue: '',
 			required: true,
 			label: t(`${fieldLocalePrefix}:message:label`),
 			placeholder: t(`${fieldLocalePrefix}:message:placeholder`),
 			icon: 'file-text',
-			input: <TextArea />,
+			component: 'textarea',
+			type: 'textarea',
 			validation: yup
 				.string()
 				.max(
@@ -104,12 +100,10 @@ const Contact: NextPage<IPageProps> = () => {
 	return (
 		<Layout>
 			<GenericContentLayout
-				title={t('contact:page:title')}
-				abstract={t('contact:page:subtitle')}
+				caption={t('contact:page:title')}
+				title={t('contact:page:subtitle')}
+				abstract={t('contact:page:abstract')}
 			>
-				{t('contact:page:abstract')}
-				<br />
-
 				{completed ? (
 					<div>
 						<Text>{t('contact:form:success:title')}</Text>

@@ -1,8 +1,8 @@
 @use 'sass:map';
 @use 'sass:list';
 @use 'sass:string';
-@import '../config/consts';
-@import './merge';
+@use './merge';
+@use '../config/consts';
 
 // base component states
 $COMPONENT_STATES: (
@@ -43,7 +43,7 @@ $states: $COMPONENT_STATES;
 			@each $stateMap in $state {
 				@each $st in $stateMap {
 					$idx: list.index($stateMap, $st);
-					$stateDelim: if($idx == 1, '', $theme-state-delim);
+					$stateDelim: if($idx == 1, '', consts.$theme-state-delim);
 					$s: #{$s}#{$stateDelim}#{$st};
 				}
 			}
@@ -51,7 +51,11 @@ $states: $COMPONENT_STATES;
 			$val: $s;
 		}
 
-		$transformed-value: -str-replace($val, $val, #{$theme-state-delim}#{$val});
+		$transformed-value: -str-replace(
+			$val,
+			$val,
+			#{consts.$theme-state-delim}#{$val}
+		);
 		$output-map: map.merge(
 			$output-map,
 			(
@@ -64,7 +68,10 @@ $states: $COMPONENT_STATES;
 }
 
 @function state($state, $customStateMap: ()) {
-	$compState: map.get(custom-states(deep($states, $customStateMap)), $state);
+	$compState: map.get(
+		custom-states(merge.deep($states, $customStateMap)),
+		$state
+	);
 
 	// stylelint-disable scss/at-if-no-null
 	@if $compState != null {

@@ -1,7 +1,5 @@
 @use '../../styles/lib/merge';
-@import '../../styles/lib/component';
-@import '../../styles/lib/states';
-@import '../../styles/lib/themeVars';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: popover-trigger,

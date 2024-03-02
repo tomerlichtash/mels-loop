@@ -1,6 +1,6 @@
-@use '../../components/button/Button.variants' as buttons;
+@use '../../styles/lib/hooks';
+// @use '../../components/button/Button.variants' as buttons;
 @import '../../styles/lib/component';
-@import '../../styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: reference-content-layout,
@@ -31,7 +31,7 @@ $__stylesheet__: (
 			color: #fff;
 			font-size: 1em;
 
-			@include use-text-color;
+			@include hooks.use-text-color;
 
 			// padding: 0 0.25em;
 			// margin-bottom: 1em;

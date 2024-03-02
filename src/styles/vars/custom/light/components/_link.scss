@@ -1,13 +1,12 @@
 @use '../../../../../components/link/Link.module' as link;
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+@use '../../../../lib/refs';
 
-$index: (
-	text-color: ref(color-primary-main),
+$vars: (
+	text-color: refs.ref(color-primary-main),
 	link.state(hovered): (
-		text-color: ref(color-secondary-main),
+		text-color: refs.ref(color-secondary-main),
 	),
 	link.state(clicked): (
-		text-color: ref(color-secondary-light),
+		text-color: refs.ref(color-secondary-light),
 	),
 );

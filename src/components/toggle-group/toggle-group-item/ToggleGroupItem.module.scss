@@ -1,7 +1,5 @@
-@use '../button/Button.variants' as buttons;
-@import '../../styles/lib/component';
-@import '../../styles/lib/states';
-@import '../../styles/lib/themeVars';
+@use '../../button/Button.variants' as buttons;
+@import '../../component.scss';
 
 $__stylesheet__: (
 	name: toggle-group-item,

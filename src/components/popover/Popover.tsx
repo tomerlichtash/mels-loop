@@ -12,7 +12,7 @@ type CustomPopoverProps = {
 	locale: string;
 	toolbarItems?: React.ReactNode[];
 	open?: boolean;
-	'data-testid': string;
+	'data-testid'?: string;
 };
 
 const Popover = ({

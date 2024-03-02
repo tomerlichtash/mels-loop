@@ -1,6 +1,4 @@
-@import '../styles/lib/component';
-@import '../styles/lib/themeVars';
-@import '../styles/lib/states';
+@import '../components/component';
 
 $__stylesheet__: (
 	name: layout,
@@ -18,8 +16,8 @@ $footerMinheight: 20vh;
 	@include use-background-color;
 
 	.topbar {
-		@include use-background-color(name(top-bar));
-		@include use-height(name(top-bar));
+		@include use-background-color(name(header));
+		@include use-height(name(header));
 
 		.title {
 			@include use-gap(name(logo));
@@ -28,7 +26,7 @@ $footerMinheight: 20vh;
 
 	.page {
 		@include page-container-mixin(name());
-		@include use-margin-top(name('page'));
+		@include use-margin-top(name(page));
 
 		min-height: calc(100vh - $footerMinheight);
 	}

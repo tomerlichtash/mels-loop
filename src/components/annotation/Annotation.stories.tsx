@@ -21,11 +21,12 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
 	args: {
 		index: 1,
+		hasPrefix: true,
 	},
-	render: function Render({ index }) {
+	render: function Render({ index, hasPrefix }) {
 		return (
 			<>
-				Some text<Annotation index={index}></Annotation>
+				Some text<Annotation index={index} hasPrefix={hasPrefix}></Annotation>
 			</>
 		);
 	},

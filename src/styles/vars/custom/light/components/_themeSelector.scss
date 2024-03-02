@@ -1,7 +1,7 @@
 @use '../../../../../components/theme-select/ThemeSelect.module' as theme-select;
-@import '../../../../lib/theme';
+@use '../../../../lib/refs';
 
-$index: (
+$vars: (
 	// mixins: (
 	// 	toggle-button: (
 	// 		height: 2.2855em,
@@ -27,9 +27,9 @@ $index: (
 	// ),
 	icon:
 		(
-			text-color: ref(color-surface-contrast),
+			text-color: refs.ref(color-surface-contrast),
 			theme-select.state(hovered): (
-				text-color: ref(color-surface-contrast),
+				text-color: refs.ref(color-surface-contrast),
 			),
 		)
 );

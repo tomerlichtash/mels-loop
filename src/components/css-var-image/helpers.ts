@@ -1,6 +1,7 @@
 export const getCustomStyle = (
 	styles: Record<string, string>,
-	varName: string
+	varName: string,
+	size?: string
 ) => {
 	const {
 		'theme-prefix': themePrefix,
@@ -8,6 +9,13 @@ export const getCustomStyle = (
 		property,
 	} = styles;
 	const cssVarName = `--${themePrefix}-${componentName}-${property}`;
+	const cssVarNameSize = `--${themePrefix}-${componentName}-size`;
 	const cssVarTarget = `var(--${themePrefix}-${varName})`;
-	return `:root{ ${cssVarName}: ${cssVarTarget} }`;
+
+	const cssVarSize = size ? `${cssVarNameSize}: ${size};` : '';
+
+	return `:root{
+		${cssVarName}: ${cssVarTarget};
+		${cssVarSize};
+	}`;
 };

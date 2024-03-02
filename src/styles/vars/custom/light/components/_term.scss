@@ -1,9 +1,6 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
-
 $annotation-suffix: "'\203B'";
 $annotation-suffix-opacity: 0.65;
-$index: (
+$vars: (
 	suffix: (
 		content: $annotation-suffix,
 		opacity: $annotation-suffix-opacity,

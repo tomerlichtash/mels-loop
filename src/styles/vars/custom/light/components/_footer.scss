@@ -1,15 +1,14 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+// @use '../../../../lib/refs';
 
-$index: (
-	background-color: ref(color-surface-main),
-	container: (
-		gutter: 2em,
-	),
+// $vars: (
+// 	background-color: refs.ref(color-surface-main),
+// 	container: (
+// 		gutter: 2em,
+// 	),
 
-	primary-label: (
-		text-transform: uppercase,
-		font-weight: 700,
-		letter-spacing: 0.05em,
-	),
-);
+// 	primary-label: (
+// 		text-transform: uppercase,
+// 		font-weight: 700,
+// 		letter-spacing: 0.05em,
+// 	),
+// );

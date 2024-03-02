@@ -1,74 +1,90 @@
-@import '../../styles/lib/component';
-@import '../../styles/lib/themeVars';
-@import '../../styles/lib/states';
+@use '../../styles/lib/merge';
+@use '../../styles/lib/refs';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: input,
 );
-$states: deep(
-	$COMPONENT_STATES,
-	(
-		valid: valid,
-		invalid: invalid,
-		invalid-focused: (
-			(invalid, focused),
-		),
-		invalid-hovered: (
-			(invalid, hovered),
-		),
-		invalid-focused-hovered: (
-			(invalid, focused, hovered),
-		),
-	)
-);
+// $states: merge.deep(
+// 	$COMPONENT_STATES,
+// 	(
+// 		valid: valid,
+// 		invalid: invalid,
+// 		invalid-focused: (
+// 			(invalid, focused),
+// 		),
+// 		invalid-hovered: (
+// 			(invalid, hovered),
+// 		),
+// 		invalid-focused-hovered: (
+// 			(invalid, focused, hovered),
+// 		),
+// 	)
+// );
 
-@mixin input-field-mixin($module) {
-	@include use-background-color($module);
-	@include use-border-size($module);
-	@include use-shadow($module);
-	@include use-padding-top($module);
-	@include use-padding-bottom($module);
-	@include use-padding-right($module);
-	@include use-padding-left($module);
-	@include use-radius($module);
+// @mixin input-field-mixin($module) {
+// 	@include use-background-color($module);
+// 	@include use-border-size($module);
+// 	@include use-shadow($module);
+// 	@include use-padding-top($module);
+// 	@include use-padding-bottom($module);
+// 	@include use-padding-right($module);
+// 	@include use-padding-left($module);
+// 	@include use-radius($module);
 
-	box-sizing: border-box;
-	outline: 0 solid transparent;
-	transition: outline 75ms ease-in-out;
+// 	box-sizing: border-box;
+// 	outline: 0 solid transparent;
+// 	transition: outline 75ms ease-in-out;
 
-	&::placeholder {
-		@include use-text-color(#{$module}-placeholder);
-	}
+// 	&::placeholder {
+// 		@include use-text-color(#{$module}-placeholder);
+// 	}
 
-	&:hover {
-		@include use-outline(name(), state(hovered));
-	}
+// 	&:hover {
+// 		@include use-outline(name(), state(hovered));
+// 	}
 
-	&:focus {
-		@include use-outline(name(), state(focused));
-		@include use-background-color(name(), state(focused));
-	}
+// 	&:focus {
+// 		@include use-outline(name(), state(focused));
+// 		@include use-background-color(name(), state(focused));
+// 	}
 
-	&[data-is-invalid='true'] {
-		@include use-outline(name(), state(invalid));
+// 	&[data-is-invalid='true'] {
+// 		@include use-outline(name(), state(invalid));
 
-		&:hover {
-			@include use-outline(name(), state(invalid-hovered));
-		}
+// 		&:hover {
+// 			@include use-outline(name(), state(invalid-hovered));
+// 		}
 
-		&:focus {
-			@include use-outline(name(), state(invalid-focused));
+// 		&:focus {
+// 			@include use-outline(name(), state(invalid-focused));
 
-			&:hover {
-				@include use-outline(name(), state(invalid-focused-hovered));
-			}
-		}
-	}
-}
+// 			&:hover {
+// 				@include use-outline(name(), state(invalid-focused-hovered));
+// 			}
+// 		}
+// 	}
+// }
 
 .root {
 	box-sizing: border-box;
-	width: 100%;
+	// width: 100%;
 
-	@include input-field-mixin(name());
+	// @include input-field-mixin(name());
+
+	// #{refs.varName(input-background-color)}: #fff;
+	// #{refs.varName(input-border-size)}: 0;
+	// #{refs.varName(input-shadow)}: 0 0 1em lightgray;
+	// #{refs.varName(input-placeholder-text-color)}: #f0f0f0;
+	// #{refs.varName(input-padding-top)}: 1em;
+	// #{refs.varName(input-padding-bottom)}: 1em;
+	// #{refs.varName(input-padding-right)}: 1em;
+	// #{refs.varName(input-padding-left)}: 1em;
+	// #{refs.varName(input-radius)}: 6px;
+	// #{refs.varName(input-outline__hover)}: 2px solid #b0b0b0;
+	// #{refs.varName(input-outline__focused)}: 2px solid #d0d0d0;
+	// #{refs.varName(input-outline__invalid)}: 1px solid #c00;
+	// #{refs.varName(input-outline__invalid__focused)}: 2px solid red;
+	// #{refs.varName(input-outline__invalid__hovered)}: 2px solid #f00;
+	// #{refs.varName(input-outline__invalid__focused__hovered)}: 2px solid #a00;
 }

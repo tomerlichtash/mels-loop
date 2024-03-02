@@ -1,12 +1,11 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+@use '../../../../lib/refs';
 
-$index: (
+$vars: (
 	padding-top: 0,
 	padding-bottom: 0,
 	padding-right: 1em,
 	padding-left: 1em,
-	text-color: ref(color-container-contrast),
+	text-color: refs.ref(color-container-contrast),
 	line-height: 2em,
 	font-weight: 700,
 

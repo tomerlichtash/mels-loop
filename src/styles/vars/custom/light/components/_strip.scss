@@ -1,8 +1,7 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+@use '../../../../lib/refs';
 
-$index: (
-	background-color: ref(gradient-primary-main),
+$vars: (
+	background-color: refs.ref(gradient-primary-main),
 	height: 4px,
 	border-color: blue,
 	border-size: 4px,

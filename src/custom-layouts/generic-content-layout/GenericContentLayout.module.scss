@@ -1,6 +1,6 @@
 @use '../../styles/lib/refs';
+@use '../../styles/lib/hooks';
 @import '../../styles/lib/component';
-@import '../../styles/lib/themeVars';
 
 $__stylesheet__: (
 	name: generic-content-layout,
@@ -10,10 +10,10 @@ $__stylesheet__: (
 	user-select: text;
 	width: 100%;
 
-	@include use-radius;
-	@include use-shadow;
-	@include use-padding;
-	@include use-margin;
+	@include hooks.use-radius;
+	@include hooks.use-shadow;
+	@include hooks.use-padding;
+	@include hooks.use-margin;
 
 	.article {
 		width: 100%;
@@ -24,7 +24,7 @@ $__stylesheet__: (
 	// }
 
 	.title {
-		@include use-background-color(name('title'));
+		@include hooks.use-background-color(name('title'));
 	}
 
 	// .abstract {

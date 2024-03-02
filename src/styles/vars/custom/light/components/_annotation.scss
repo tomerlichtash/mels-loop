@@ -1,13 +1,12 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+@use '../../../../lib/refs';
 
 $annotationPrefix: "'['";
 $annotationSuffix: "']'";
 $annotationAffixOpacity: 0.65;
-$index: (
+$vars: (
 	// font-size: globalRef(typography-font-size-xs),
 	// font-weight: globalRef(typography-font-weight-regular),
-	text-color: ref(link-text-color),
+	text-color: refs.ref(link-text-color),
 	prefix: (
 		content: $annotationPrefix,
 		opacity: $annotationAffixOpacity,

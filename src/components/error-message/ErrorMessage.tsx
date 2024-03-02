@@ -5,7 +5,7 @@ import styles from './ErrorMessage.module.scss';
 import { Link } from '..';
 
 type ErrorMessageProps = {
-	message: string;
+	message?: string;
 	icon?: string;
 	label?: string;
 	reportIssueUrl?: string;

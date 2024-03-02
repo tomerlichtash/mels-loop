@@ -1,6 +1,5 @@
-@import '../../styles/lib/component';
-@import '../../styles/lib/themeVars';
-@import '../../styles/config/consts';
+@use '../../styles/config/consts';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: css-var-image,
@@ -19,7 +18,7 @@ $__stylesheet__: (
 // stylelint-disable selector-pseudo-class-no-unknown
 // stylelint-disable property-no-unknown
 :export {
-	theme-prefix: #{$theme-namespace-prefix};
+	theme-prefix: #{consts.$theme-namespace-prefix};
 	component-name: name();
 	property: url;
 }

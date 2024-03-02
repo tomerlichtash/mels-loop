@@ -1,6 +1,6 @@
 import React from 'react';
 import ToggleGroup from '../toggle-group/ToggleGroup';
-import ToggleGroupItem from '../toggle-group-item/ToggleGroupItem';
+import ToggleGroupItem from '../toggle-group/toggle-group-item/ToggleGroupItem';
 import { unique } from 'utils/index';
 import styles from './LocaleSelect.module.scss';
 import type { LocaleId } from 'types/locale';

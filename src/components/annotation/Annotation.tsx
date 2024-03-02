@@ -5,14 +5,19 @@ import classNames from 'classnames';
 
 type AnnotationProps = {
 	index: number;
+	hasPrefix?: boolean;
 	className?: string;
 };
 
-const Annotation = ({ index, className }: AnnotationProps): JSX.Element => (
+const Annotation = ({
+	index,
+	hasPrefix = true,
+	className,
+}: AnnotationProps): JSX.Element => (
 	<span className={classNames(styles.root, className)}>
 		<span
 			className={styles.content}
-			data-prefix-content={leadingZero(index)}
+			data-prefix-content={hasPrefix ? leadingZero(index) : ''}
 			data-seq={index}
 		></span>
 	</span>

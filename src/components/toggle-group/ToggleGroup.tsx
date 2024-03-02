@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import * as ToggleGroupPrimitives from '@radix-ui/react-toggle-group';
-import { ToggleGroupItemProps } from 'components/toggle-group-item/ToggleGroupItem';
+import { ToggleGroupItemProps } from './toggle-group-item/ToggleGroupItem';
 import classNames from 'classnames';
 import styles from './ToggleGroup.module.scss';
 

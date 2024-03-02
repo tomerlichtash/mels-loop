@@ -1,9 +1,7 @@
 @use '../nav-item/NavListItem.module' as NavListItem;
 @use '../nav-item/navListItemMixin' as nav-list-item-mixin;
 @use '../nav-item-content/navItemContentMixin' as nav-item-content-mixin;
-
-@import '../../../styles/lib/component';
-@import '../../../styles/lib/states';
+@import '../../component.scss';
 
 $__stylesheet__: (
 	name: menu-drawer,

@@ -1,10 +1,9 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+@use '../../../../lib/refs';
 
-$index: (
-	background-color: ref(color-container-main),
-	text-color: ref(color-surface-contrast),
-	border-color: ref(color-surface-dark),
+$vars: (
+	background-color: refs.ref(color-surface-main),
+	text-color: refs.ref(color-surface-contrast),
+	border-color: refs.ref(color-surface-dark),
 	radius: globalRef(radius-sm),
 	font-family: 'monospace',
 	font-weight: 500,

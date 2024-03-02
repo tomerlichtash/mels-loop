@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import MenuBar from 'components/nav/menu-bar/MenuBar';
+import TextLink from 'components/text-link/TextLink';
 
 const meta = {
-	title: 'Site/MenuBar',
-	component: MenuBar,
+	title: 'UI/TextLink',
+	component: TextLink,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
@@ -12,17 +12,23 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof MenuBar>;
+} satisfies Meta<typeof TextLink>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const Desktop: Story = {
 	args: {
-		items: [],
+		linked: false,
+		href: 'http://example.com',
+		variant: 'h1',
 	},
-	render: function Render() {
-		return <MenuBar items={[]} />;
+	render: function Render({ href, linked, variant }) {
+		return (
+			<TextLink href={href} linked={linked} variant={variant}>
+				Text Link
+			</TextLink>
+		);
 	},
 };
 

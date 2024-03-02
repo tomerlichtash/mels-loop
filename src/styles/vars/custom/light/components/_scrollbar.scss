@@ -1,10 +1,9 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
-@import '../../../../lib/states';
+@use '../../../../lib/refs';
+// @import '../../../../lib/states';
 
-$index: (
-	background-color: ref(color-surface-dark),
+$vars: (
+	background-color: refs.ref(color-surface-dark),
 	// #{state(hovered)}: (
 	// 		background-color: ref(color-surface-light),
-	// 	) //,,,,,,
+	// 	) //,,,,,,,,,,
 );

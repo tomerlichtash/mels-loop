@@ -16,7 +16,6 @@ export { default as Strip } from './strip/Strip';
 export { default as Term } from './term/Term';
 export { default as Toggle } from './toggle/Toggle';
 export { default as ToggleGroup } from './toggle-group/ToggleGroup';
-export { default as ToggleGroupItem } from './toggle-group-item/ToggleGroupItem';
 export { default as ToolbarItem } from './toolbar-item/ToolbarItem';
 export { default as ToolbarButton } from './toolbar-item/ToolbarButton';
 export { default as Text } from './text/Text';
@@ -38,9 +37,8 @@ export { default as CodeInline } from './code-inline/CodeInline';
 export { default as Figure } from './figure/Figure';
 export { default as Line } from './line/Line';
 export { default as Table } from './table/Table';
-export { default as TextArea } from './text-area/TextArea';
 export { default as Paragraph } from './paragraph/Paragraph'; // exclude
-export { default as Heading } from './heading/heading'; // exclude
+export { default as Heading } from './heading/Heading'; // exclude
 export { default as CustomImage } from './custom-image/CustomImage';
 export { default as ListItem } from './list-item/ListItem';
 export { default as ErrorMessage } from './error-message/ErrorMessage';

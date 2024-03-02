@@ -12,7 +12,7 @@ type RecaptchaHandleSubmitProps = {
 	path: string;
 	values: Record<string, unknown>;
 	onResponseSuccess?: (res: Record<string, string>) => void;
-	onResponseFail?: (res) => void;
+	onResponseFail?: (res: Response) => void;
 	onError?: (e: unknown) => void;
 };
 

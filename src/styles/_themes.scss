@@ -6,14 +6,14 @@
 // @use './vars/custom/dark';
 
 [data-ml-theme] {
-	@include parser.compile(common.$index, config.$theme-global-prefix);
+	@include parser.compile(common.$vars, config.$theme-global-prefix);
 }
 
 [data-ml-theme='light'] {
 	--ml-logo-url: url('../../public/assets/logo/ml-logo-dark.png');
 	--ml-loading-indicator-url: url('../../public/assets/logo/ml-logo-dark.png');
 
-	@include parser.compile(light.$index);
+	@include parser.compile(light.$vars);
 }
 
 // [data-ml-theme='dark'] {

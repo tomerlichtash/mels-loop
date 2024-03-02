@@ -5,12 +5,13 @@ import { getCustomStyle } from './helpers';
 
 type CssVarImageProps = {
 	varName: string;
+	size?: string;
 	className?: string;
 };
 
-const CssVarImage = ({ varName, className }: CssVarImageProps) => (
+const CssVarImage = ({ varName, size, className }: CssVarImageProps) => (
 	<>
-		<style>{getCustomStyle(styles, varName)}</style>
+		<style>{getCustomStyle(styles, varName, size)}</style>
 		<span className={classNames(styles.root, className)}></span>
 	</>
 );

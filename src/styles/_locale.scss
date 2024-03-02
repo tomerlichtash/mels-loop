@@ -1,11 +1,11 @@
 @use './config/locales';
 @use './lib/refs';
-@import './lib/themeVars';
+@use './lib/hooks';
 
 @mixin base($var) {
-	@include use-font-family($var);
-	@include use-font-size($var);
-	@include use-font-weight($var);
+	@include hooks.use-font-family($var);
+	@include hooks.use-font-size($var);
+	@include hooks.use-font-weight($var);
 }
 
 @each $locale in locales.$index {

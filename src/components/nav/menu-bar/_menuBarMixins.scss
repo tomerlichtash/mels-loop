@@ -1,6 +1,7 @@
+@use '../../../styles/lib/refs';
 @use '../../button/Button.variants' as buttons;
 @use './menuBarAnimationMixin' as animations;
-@import '../../../styles/lib/themeVars';
+@import '../../../styles/lib/hooks';
 
 @mixin caret-mixin($var) {
 	.caret {
@@ -37,7 +38,7 @@
 	overflow: hidden;
 	background-color: white;
 	border-radius: 6px;
-	box-shadow: globalRef(shadow-md);
+	box-shadow: refs.globalRef(shadow-md);
 	height: var(--radix-navigation-menu-viewport-height);
 	transition: width, height, 300ms ease;
 

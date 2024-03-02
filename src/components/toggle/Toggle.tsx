@@ -6,7 +6,7 @@ import styles from './Toggle.module.scss';
 type ToggleProps = {
 	title: string;
 	isToggled: boolean;
-	onToggle: () => void;
+	onClick?: () => void;
 	className?: string;
 };
 
@@ -14,13 +14,13 @@ const Toggle = ({
 	isToggled,
 	title,
 	children,
-	onToggle,
+	onClick,
 	className,
 	...rest
 }: PropsWithChildren<ToggleProps>): JSX.Element => (
 	<div className={styles.root}>
 		<ToggleRoot.Root
-			onPressedChange={onToggle}
+			onPressedChange={onClick}
 			defaultPressed={isToggled}
 			title={title}
 			className={classNames(styles.root, className)}

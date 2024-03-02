@@ -1,8 +1,6 @@
 // stylelint-disable selector-no-vendor-prefix
 
-@import '../../styles/lib/component';
-@import '../../styles/lib/themeVars';
-@import '../../styles/lib/states';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: link,

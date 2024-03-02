@@ -1,5 +1,5 @@
 @use './ToolbarItem.module' as toolbar-item;
-@import '../../styles/lib/component';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: toolbar-item,

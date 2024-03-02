@@ -1,6 +1,5 @@
 @use '../button/Button.variants' as buttons;
-@import '../../styles/lib/component';
-@import '../../styles/lib/states';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: site-theme-selector,

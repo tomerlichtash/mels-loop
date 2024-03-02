@@ -1,4 +1,4 @@
-@import '../../styles/lib/themeVars';
+@import '../../styles/lib/hooks';
 
 @mixin prefix($module: default) {
 	@include use-content(#{$module}-#{prefix});

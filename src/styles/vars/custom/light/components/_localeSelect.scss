@@ -1,11 +1,10 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+@use '../../../../lib/refs';
 
-$index: (
+$vars: (
 	gap: 20px,
 
 	button: (
-		background-color: ref(color-surface-dark),
-		text-color: ref(color-primary-dark),
+		background-color: refs.ref(color-surface-dark),
+		text-color: refs.ref(color-primary-dark),
 	),
 );

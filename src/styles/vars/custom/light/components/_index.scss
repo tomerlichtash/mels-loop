@@ -1,24 +1,28 @@
 @use '../../../../../layout/Layout.module' as layout;
 @use '../../../../../components/popover/Popover.module' as popover;
-@use '../../../../../components/line/Line.module' as line;
-@use '../../../../../components/paragraph/Paragraph.module' as paragraph;
-@use '../../../../../components/blockquote/Blockquote.module' as blockquote;
+
+@use '../../../../../components/text/Text.module' as text;
 @use '../../../../../components/link/Link.module' as link;
+@use '../../../../../components/text-link/TextLink.module' as textlink;
+@use '../../../../../components/code-inline/CodeInline.module' as codeinline;
+@use '../../../../../components/code-block/CodeBlock.module' as codeblock;
+@use '../../../../../components/term/Term.module' as term;
+@use '../../../../../components/annotation/Annotation.module' as annotation;
+@use '../../../../../components/blockquote/Blockquote.module' as blockquote;
+@use '../../../../../components/paragraph/Paragraph.module' as paragraph;
+
+@use '../../../../../components/line/Line.module' as line;
 @use '../../../../../components/table/Table.module' as table;
 @use '../../../../../components/figure/Figure.module' as figure;
 @use '../../../../../components/custom-image/CustomImage.module' as customimage;
-@use '../../../../../components/annotation/Annotation.module' as annotation;
-@use '../../../../../components/term/Term.module' as term;
-@use '../../../../../components/code-inline/CodeInline.module' as codeinline;
-@use '../../../../../components/code-block/CodeBlock.module' as codeblock;
 @use '../../../../../components/list-item/ListItem.module' as listitem;
 @use '../../../../../components/scrollbar/Scrollbar.module' as scrollbar;
-@use '../../../../../components/loading-indicator/LoadingIndicator.module' as
-	loadingindicator;
 @use '../../../../../components/strip/Strip.module' as strip;
 @use '../../../../../components/container/Container.module' as container;
+
 @use '../../../../../components/logo/Logo.module' as logo;
-@use '../../../../../components/text-link/TextLink.module' as textlink;
+@use '../../../../../components/loading-indicator/LoadingIndicator.module' as
+	loadingindicator;
 @use '../../../../../components/locale-select/LocaleSelect.module' as
 	localeselect;
 @use '../../../../../components/theme-select/ThemeSelect.module' as
@@ -27,7 +31,6 @@
 @use '../../../../../components/nav/menu-drawer/MenuDrawer.module' as menudrawer;
 @use '../../../../../components/nav/nav-item-content/NavItemContent.module' as
 	navitemcontent;
-@use '../../../../../components/text/Text.module' as text;
 @use '../../../../../components/error-message/ErrorMessage.module' as
 	error-message;
 
@@ -41,7 +44,6 @@
 @use 'loadingIndicator' as loading-indicator-theme;
 @use 'container' as container-theme;
 @use 'logo' as logo-theme;
-@use 'footer' as footer-theme;
 @use 'textLink' as text-link-theme;
 @use 'localeSelect' as locale-select-theme;
 @use 'themeSelector' as theme-select-theme;
@@ -56,7 +58,6 @@
 @use 'codeBlock' as code-block-theme;
 @use 'listItem' as list-item-theme;
 @use 'errorMessage' as error-message-theme;
-
 @use 'line' as line-theme;
 @use 'paragraph' as paragraph-theme;
 @use 'blockquote' as blockquote-theme;
@@ -67,35 +68,40 @@
 @use 'customImage' as custom-image-theme;
 
 $index: (
-	scrollbar.name(): scrollbar-theme.vars(),
-	strip.name(): strip-theme.vars(),
-	loadingindicator.name(): loading-indicator-theme.vars(),
-	line.name(): line-theme.vars(),
-	paragraph.name(): paragraph-theme.vars(),
-	link.name(): link-theme.vars(),
-	blockquote.name(): blockquote-theme.vars(),
-	annotation.name(): annotation-theme.vars(),
-	term.name(): term-theme.vars(),
-	listitem.name(): list-item-theme.vars(),
-	codeinline.name(): code-inline-theme.vars(),
-	codeblock.name(): code-block-theme.vars(),
-	table.name(): table-theme.vars(),
-	figure.name(): figure-theme.vars(),
-	customimage.name(): custom-image-theme.vars(),
-	layout.name(): layout-theme.vars(),
-	container.name(): container-theme.vars(),
-	logo.name(): logo-theme.vars(),
-	textlink.name(): text-link-theme.vars(),
-	menubar.name(): menu-bar-theme.vars(),
-	menudrawer.name(): menu-drawer-theme.vars(),
-	navitemcontent.name(): nav-item-content-theme.vars(),
-	themeselector.name(): theme-select-theme.vars(),
-	localeselect.name(): locale-select-theme.vars(),
-	popover.name(): popover-theme.vars(),
-	text.name(): text-theme.vars(),
-	error-message.name(): error-message-theme.vars(),
+	// text
+	text.name(): text-theme.$vars,
+	link.name(): link-theme.$vars,
+	textlink.name(): text-link-theme.$vars,
+	paragraph.name(): paragraph-theme.$vars,
+	blockquote.name(): blockquote-theme.$vars,
+	annotation.name(): annotation-theme.$vars,
+	term.name(): term-theme.$vars,
+	codeinline.name(): code-inline-theme.$vars,
+	codeblock.name(): code-block-theme.$vars,
+	error-message.name(): error-message-theme.$vars,
+	// boxes content
+	table.name(): table-theme.$vars,
+	figure.name(): figure-theme.$vars,
+	listitem.name(): list-item-theme.$vars,
+	customimage.name(): custom-image-theme.$vars,
+	// boxes layout
+	layout.name(): layout-theme.$vars,
+	popover.name(): popover-theme.$vars,
+	scrollbar.name(): scrollbar-theme.$vars,
+	container.name(): container-theme.$vars,
+	// complex components
+	loadingindicator.name(): loading-indicator-theme.$vars,
+	menubar.name(): menu-bar-theme.$vars,
+	menudrawer.name(): menu-drawer-theme.$vars,
+	navitemcontent.name(): nav-item-content-theme.$vars,
+	themeselector.name(): theme-select-theme.$vars,
+	localeselect.name(): locale-select-theme.$vars,
+	// other
+	line.name(): line-theme.$vars,
+	logo.name(): logo-theme.$vars,
+	strip.name(): strip-theme.$vars
 );
 
-// SiteButton.name(): buttonTheme.vars(),
-// Cite.name(): citeTheme.vars(),
-// Heading.name(): heading.vars(),,
+// Heading.name(): heading.$vars,,
+// SiteButton.name(): buttonTheme.$vars,
+// Cite.name(): citeTheme.$vars,

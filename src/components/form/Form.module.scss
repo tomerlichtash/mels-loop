@@ -1,5 +1,5 @@
-@import '../../styles/lib/component';
-@import '../../styles/lib/refs';
+@use '../../styles/lib/refs';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: contact-form,
@@ -7,21 +7,28 @@ $__stylesheet__: (
 
 .root {
 	width: 100%;
-	padding: 4em;
 	display: flex;
-	border-radius: 10px;
+	// border-radius: 10px;
 	flex-direction: column;
-	gap: 2em;
+	// width: 100%;
+	// gap: 2em;
 
 	.fieldset {
+		padding: 2em;
 		display: flex;
 		flex-direction: column;
-		gap: 1em;
+		gap: 2em;
+	}
+
+	.panel {
+		display: flex;
+		padding: 2em;
 	}
 
 	.submitButton {
 		flex: 1;
-		align-self: flex-end;
+		display: flex;
+		justify-content: flex-end;
 	}
 
 	.error {
@@ -32,41 +39,41 @@ $__stylesheet__: (
 	}
 
 	// form field mixin
-	#{varName(form-field-text-color)}: #000;
-	#{varName(form-field-label-text-color__invalid)}: #c00;
-	#{varName(form-field-validation-text-color)}: #c00;
+	// #{refs.varName(form-field-text-color)}: #000;
+	// #{refs.varName(form-field-label-text-color__invalid)}: #c00;
+	// #{refs.varName(form-field-validation-text-color)}: #c00;
 
-	// input mixin
-	#{varName(input-background-color)}: #fff;
-	#{varName(input-border-size)}: 0;
-	#{varName(input-shadow)}: 0 0 1em lightgray;
-	#{varName(input-placeholder-text-color)}: #f0f0f0;
-	#{varName(input-padding-top)}: 1em;
-	#{varName(input-padding-bottom)}: 1em;
-	#{varName(input-padding-right)}: 1em;
-	#{varName(input-padding-left)}: 1em;
-	#{varName(input-radius)}: 6px;
-	#{varName(input-outline__hover)}: 2px solid #b0b0b0;
-	#{varName(input-outline__focused)}: 2px solid #d0d0d0;
-	#{varName(input-outline__invalid)}: 1px solid #c00;
-	#{varName(input-outline__invalid__focused)}: 2px solid red;
-	#{varName(input-outline__invalid__hovered)}: 2px solid #f00;
-	#{varName(input-outline__invalid__focused__hovered)}: 2px solid #a00;
+	// // input mixin
+	// #{refs.varName(input-background-color)}: #fff;
+	// #{refs.varName(input-border-size)}: 0;
+	// #{refs.varName(input-shadow)}: 0 0 1em lightgray;
+	// #{refs.varName(input-placeholder-text-color)}: #f0f0f0;
+	// #{refs.varName(input-padding-top)}: 1em;
+	// #{refs.varName(input-padding-bottom)}: 1em;
+	// #{refs.varName(input-padding-right)}: 1em;
+	// #{refs.varName(input-padding-left)}: 1em;
+	// #{refs.varName(input-radius)}: 6px;
+	// #{refs.varName(input-outline__hover)}: 2px solid #b0b0b0;
+	// #{refs.varName(input-outline__focused)}: 2px solid #d0d0d0;
+	// #{refs.varName(input-outline__invalid)}: 1px solid #c00;
+	// #{refs.varName(input-outline__invalid__focused)}: 2px solid red;
+	// #{refs.varName(input-outline__invalid__hovered)}: 2px solid #f00;
+	// #{refs.varName(input-outline__invalid__focused__hovered)}: 2px solid #a00;
 
-	// text-area mixin
-	#{varName(text-area-background-color)}: #fff;
-	#{varName(text-area-border-size)}: 0;
-	#{varName(text-area-shadow)}: 0 0 1em lightgray;
-	#{varName(text-area-placeholder-text-color)}: #f0f0f0;
-	#{varName(text-area-padding-top)}: 1em;
-	#{varName(text-area-padding-bottom)}: 1em;
-	#{varName(text-area-padding-right)}: 1em;
-	#{varName(text-area-padding-left)}: 1em;
-	#{varName(text-area-radius)}: 6px;
-	#{varName(text-area-outline__hover)}: 2px solid #b0b0b0;
-	#{varName(text-area-outline__focused)}: 2px solid #d0d0d0;
-	#{varName(text-area-outline__invalid)}: 1px solid #c00;
-	#{varName(text-area-outline__invalid__focused)}: 2px solid red;
-	#{varName(text-area-outline__invalid__hovered)}: 2px solid #f00;
-	#{varName(text-area-outline__invalid__focused__hovered)}: 2px solid #a00;
+	// // text-area mixin
+	// #{refs.varName(text-area-background-color)}: #fff;
+	// #{refs.varName(text-area-border-size)}: 0;
+	// #{refs.varName(text-area-shadow)}: 0 0 1em lightgray;
+	// #{refs.varName(text-area-placeholder-text-color)}: #f0f0f0;
+	// #{refs.varName(text-area-padding-top)}: 1em;
+	// #{refs.varName(text-area-padding-bottom)}: 1em;
+	// #{refs.varName(text-area-padding-right)}: 1em;
+	// #{refs.varName(text-area-padding-left)}: 1em;
+	// #{refs.varName(text-area-radius)}: 6px;
+	// #{refs.varName(text-area-outline__hover)}: 2px solid #b0b0b0;
+	// #{refs.varName(text-area-outline__focused)}: 2px solid #d0d0d0;
+	// #{refs.varName(text-area-outline__invalid)}: 1px solid #c00;
+	// #{refs.varName(text-area-outline__invalid__focused)}: 2px solid red;
+	// #{refs.varName(text-area-outline__invalid__hovered)}: 2px solid #f00;
+	// #{refs.varName(text-area-outline__invalid__focused__hovered)}: 2px solid #a00;
 }

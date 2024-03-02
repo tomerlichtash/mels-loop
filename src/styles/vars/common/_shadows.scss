@@ -1,13 +1,12 @@
-@import '../../lib/theme';
-@import '../../lib/themeVars';
+@use '../../lib/refs';
 
-$index: (
+$vars: (
 	shadow: (
 		color: (
 			hsla1: 'hsl(206deg 22% 7% / 35%) 0 10px 38px -10px',
 			hsla2: 'hsl(206deg 22% 7% / 20%) 0 10px 20px -15px',
 		),
-		md: #{globalRef(shadow-color-hsla1),
-		globalRef(shadow-color-hsla2)},
+		md: #{refs.globalRef(shadow-color-hsla1),
+		refs.globalRef(shadow-color-hsla2)},
 	),
 );

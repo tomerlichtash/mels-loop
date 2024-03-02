@@ -1,7 +1,6 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+// @use '../../../../lib/refs';
 
-$index: (
+$vars: (
 	// url: ref(assets-logo-url),
 	size: 1.65em
 );

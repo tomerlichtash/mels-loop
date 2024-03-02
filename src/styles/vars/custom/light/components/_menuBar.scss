@@ -1,34 +1,33 @@
 @use '../../../../../components/nav/menu-bar/MenuBar.module' as component;
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+@use '../../../../lib/refs';
 
 $__stylesheet__: (
 	name: menu-bar,
 );
 $growth-animation-props: (
-	duration: globalRef(animation-duration-sm),
-	easing: globalRef(animation-easing-default),
+	duration: refs.globalRef(animation-duration-sm),
+	easing: refs.globalRef(animation-easing-default),
 );
 $stage-animation-props: (
-	duration: globalRef(animation-duration-sm),
-	easing: globalRef(animation-easing-default),
+	duration: refs.globalRef(animation-duration-sm),
+	easing: refs.globalRef(animation-easing-default),
 );
-$index: (
+$vars: (
 	trigger: (
 		caret: (
-			text-color: ref(color-surface-contrast),
+			text-color: refs.ref(color-surface-contrast),
 			transform: rotate(-180deg),
 			component.state(hovered): (
-				text-color: ref(color-surface-contrast),
+				text-color: refs.ref(color-surface-contrast),
 			),
 		),
 		component.state(hovered): (
-			background-color: ref(color-surface-dark),
-			text-color: ref(color-primary-dark),
+			background-color: refs.ref(color-surface-dark),
+			text-color: refs.ref(color-primary-dark),
 		),
 		component.state(opened): (
-			background-color: ref(color-surface-dark),
-			text-color: ref(color-primary-dark),
+			background-color: refs.ref(color-surface-dark),
+			text-color: refs.ref(color-primary-dark),
 		),
 	),
 
@@ -41,13 +40,13 @@ $index: (
 	),
 
 	item: (
-		text-color: ref(color-primary-main),
-		radius: globalRef(radius-sm),
+		text-color: refs.ref(color-primary-main),
+		radius: refs.globalRef(radius-sm),
 		gutter: 1em,
 
 		component.state(hovered): (
-			text-color: ref(color-secondary-main),
-			background-color: ref(color-container-main),
+			text-color: refs.ref(color-secondary-main),
+			background-color: refs.ref(color-container-main),
 		),
 
 		content: (
@@ -58,7 +57,7 @@ $index: (
 			border-size: 1px,
 			border-style: solid,
 			border-color: transparent,
-			radius: globalRef(radius-md),
+			radius: refs.globalRef(radius-md),
 			gutter: 0.4em,
 		),
 

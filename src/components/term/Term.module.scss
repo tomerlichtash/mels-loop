@@ -1,8 +1,7 @@
 @use '../annotation/Annotation.mixin' as annotation;
 @use '../popover/Popover.mixin' as popover;
 @use '../popover/PopoverTrigger.module' as trigger;
-@import '../../styles/lib/component';
-@import '../../styles/lib/themeVars';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: term,

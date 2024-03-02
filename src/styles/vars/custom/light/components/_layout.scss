@@ -1,28 +1,14 @@
-@use '../../../../../layout/Layout.module' as layout;
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
-@import '../../../../lib/states';
+@use '../../../../lib/refs';
 
-$index: (
-	background-color: ref(color-surface-light),
+$vars: (
+	background-color: refs.ref(color-surface-light),
 	gutter: 2em,
-	scrollbar: (
-		background-color: ref(color-container-main),
-		layout.state(hovered): (
-			background-color: ref(color-surface-dark),
-		),
+	header: (
+		background-color: refs.ref(color-surface-main),
+		height: 48px,
 	),
-	// selection: (
-	// 	background-color: ref(color-secondary-dark),
-	// 	text-color: ref(color-secondary-contrast),
-	// ),
-	top-bar:
-		(
-			background-color: ref(color-surface-main),
-			height: 48px,
-		),
 	footer: (
-		background-color: ref(color-surface-main),
+		background-color: refs.ref(color-surface-main),
 	),
 	page: (
 		margin-top: 4em,

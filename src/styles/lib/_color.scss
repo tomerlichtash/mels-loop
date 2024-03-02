@@ -50,13 +50,19 @@
 
 		$contrastRatio: -contrast-ratio($value, #000);
 		$contrast: if($contrastRatio >= 12.95, #000, #fff);
+		$name: #{$prefix}-#{$key};
 		$color-palette: map.merge(
 			$color-palette,
 			(
 				#{$prefix}-#{$key}-main: $primary,
-				#{$prefix}-#{$key}-light: $light,
-				#{$prefix}-#{$key}-dark: $dark,
-				#{$prefix}-#{$key}-contrast: $contrast
+				#{$prefix}-#{$key}-light: $primary,
+				//$light,
+				#{$prefix}-#{$key}-dark:
+					$primary,
+				//$dark,
+				#{$prefix}-#{$key}-contrast:
+					$primary,
+				//$contrast
 			)
 		);
 	}

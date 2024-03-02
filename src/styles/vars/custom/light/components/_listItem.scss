@@ -1,7 +1,6 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+@use '../../../../lib/refs';
 
-$index: (
+$vars: (
 	padding-top: 0,
 	padding-bottom: 0,
 	padding-right: 1em,

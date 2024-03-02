@@ -4,7 +4,7 @@ import styles from './DateFormat.module.scss';
 
 type DateFormatProps = {
 	date: Date;
-	format?: string;
+	format?: 'MM/dd/yy' | 'dd/MM/yy';
 	className?: string;
 };
 

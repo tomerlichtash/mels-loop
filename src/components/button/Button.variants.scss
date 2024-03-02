@@ -1,9 +1,9 @@
-@import '../../styles/lib/themeVars';
-@import '../../styles/lib/refs';
+@use '../../styles/lib/hooks';
+@use '../../styles/lib/refs';
+@use '../../styles/lib/merge';
 @import '../../styles/lib/states';
-@import '../../styles/lib/merge';
 
-$states: deep(
+$states: merge.deep(
 	$COMPONENT_STATES,
 	(
 		selected: selected,
@@ -11,29 +11,29 @@ $states: deep(
 );
 
 @function -get-bg-color($var, $state) {
-	@return compRef($var, background-color, $state);
+	@return refs.compRef($var, background-color, $state);
 }
 
 @function -get-text-color($var, $state) {
-	@return compRef($var, text-color, $state);
+	@return refs.compRef($var, text-color, $state);
 }
 
 @function -get-font-weight($var, $state) {
-	@return compRef($var, font-weight, $state);
+	@return refs.compRef($var, font-weight, $state);
 }
 
-$bgVar: varName(site-button-toggle-background-color);
-$textColorVar: varName(site-button-toggle-text-color);
-$fontWeightVar: varName(site-button-toggle-font-weight);
+$bgVar: refs.varName(site-button-toggle-background-color);
+$textColorVar: refs.varName(site-button-toggle-text-color);
+$fontWeightVar: refs.varName(site-button-toggle-font-weight);
 
 @mixin icon-mixin($var) {
 	.icon {
-		@include use-icon-color($var);
+		@include hooks.use-icon-color($var);
 	}
 
 	&:hover {
 		.icon {
-			@include use-icon-color($var, state(hovered));
+			@include hooks.use-icon-color($var, state(hovered));
 		}
 	}
 }
@@ -42,11 +42,11 @@ $fontWeightVar: varName(site-button-toggle-font-weight);
 	user-select: none;
 	border: none;
 
-	@include use-height($var);
-	@include use-radius($var);
-	@include use-text-color($var);
-	@include use-background-color($var);
-	@include use-font-weight($var);
+	@include hooks.use-height($var);
+	@include hooks.use-radius($var);
+	@include hooks.use-text-color($var);
+	@include hooks.use-background-color($var);
+	@include hooks.use-font-weight($var);
 	@include icon-mixin($var);
 }
 
@@ -56,14 +56,14 @@ $fontWeightVar: varName(site-button-toggle-font-weight);
 	justify-content: center;
 
 	@include menu-trigger-button-mixin;
-	@include use-width($var);
-	@include use-text-color($var);
+	@include hooks.use-width($var);
+	@include hooks.use-text-color($var);
 
 	&:not([data-state='selected']):hover {
 		cursor: pointer;
 
-		@include use-text-color($var, state(hovered));
-		@include use-background-color($var, state(hovered));
+		@include hooks.use-text-color($var, state(hovered));
+		@include hooks.use-background-color($var, state(hovered));
 	}
 
 	// `selected` state overrides

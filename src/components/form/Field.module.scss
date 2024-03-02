@@ -1,11 +1,10 @@
-@import '../../styles/lib/component';
-@import '../../styles/lib/themeVars';
-@import '../../styles/lib/states';
+@use '../../styles/lib/merge';
+@import '../component.scss';
 
 $__stylesheet__: (
 	name: form-field,
 );
-$states: deep(
+$states: merge.deep(
 	$COMPONENT_STATES,
 	(
 		invalid: invalid,

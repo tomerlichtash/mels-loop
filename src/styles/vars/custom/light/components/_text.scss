@@ -1,10 +1,9 @@
-@import '../../../../lib/theme';
-@import '../../../../lib/refs';
+@use '../../../../lib/refs';
 
-$index: (
+$vars: (
 	variants: (
 		h1: (
-			text-color: ref(color-surface-contrast),
+			text-color: refs.ref(color-surface-contrast),
 			// font-family: arial,
 			// font-size: 3vmax,
 			font-weight: 900,
@@ -13,7 +12,7 @@ $index: (
 			letter-spacing: 2px,
 		),
 		h2: (
-			text-color: ref(color-surface-contrast),
+			text-color: refs.ref(color-surface-contrast),
 			font-size: 1vmax,
 			font-weight: 100,
 			font-style: italic,
@@ -28,7 +27,7 @@ $index: (
 			text-transform: lowercase,
 		),
 		body1: (
-			text-color: ref(color-container-contrast),
+			text-color: refs.ref(color-container-contrast),
 			line-height: 1.5em,
 			// margin-bottom: 1em,
 		),

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
-import { Formik, Form as FormikForm } from 'formik';
+import { Field, Formik, Form as FormikForm } from 'formik';
 import { getIcon } from 'components/icons';
 import {
 	Container,
@@ -9,19 +9,21 @@ import {
 	Recaptcha,
 } from 'components/index';
 import { handleSubmit } from 'components/recaptcha/Recaptcha';
-import FormField from './Field';
 import { ApiRoutes } from '../../apiRoutes';
 import styles from './Form.module.scss';
+import CustomField from 'components/custom-field/CustomField';
 
 type FormFieldProps = {
-	id: string;
+	name: string;
+	type: 'text' | 'number' | 'tel' | 'email' | 'textarea';
 	initialValue: unknown;
 	required?: boolean;
 	label?: string;
 	placeholder?: string;
 	icon?: string;
-	validation: yup.Schema;
-	input: React.ReactNode;
+	validation?: yup.Schema;
+	input?: React.ReactNode;
+	component?: 'input' | 'textarea' | 'select';
 };
 
 type FormProps = {
@@ -36,7 +38,6 @@ type FormProps = {
 };
 
 const Form = ({
-	name,
 	fields,
 	recaptchaSiteKey,
 	submitButtonLabel,
@@ -47,26 +48,12 @@ const Form = ({
 }: FormProps) => {
 	const [submitting, setSubmitting] = useState(false);
 
-	// TODO: restore keyboard functionality
-	// useEffect(() => {
-	// 	const keyDownHandler = (e: KeyboardEvent) => {
-	// 		const enterWithMeta =
-	// 			(e.key === 'Enter' && e.metaKey) || (e.key === 'Enter' && e.ctrlKey);
-	// 		if (enterWithMeta) {
-	// 			e.preventDefault();
-	// 			buttonRef.current.click();
-	// 		}
-	// 	};
-	// 	document.addEventListener('keydown', keyDownHandler);
-	// 	return () => document.removeEventListener('keydown', keyDownHandler);
-	// }, []);
-
 	const initialValues = Object.fromEntries(
-		fields.map(({ id, initialValue }) => [id, initialValue])
+		fields.map(({ name, initialValue }) => [name, initialValue])
 	);
 
 	const validationSchema = Object.fromEntries(
-		fields.map(({ id, validation }) => [id, validation])
+		fields.map(({ name, validation }) => [name, validation])
 	);
 
 	return (
@@ -74,8 +61,6 @@ const Form = ({
 			<Formik
 				initialValues={initialValues}
 				validationSchema={yup.object().shape(validationSchema)}
-				// validateOnBlur={false}
-				// validateOnChange={true}
 				onSubmit={(values: Record<string, unknown>, { resetForm }) => {
 					setSubmitting(true);
 					handleSubmit({
@@ -93,27 +78,45 @@ const Form = ({
 					});
 				}}
 			>
-				{({ dirty, isValid }) => {
+				{({ dirty, isValid, touched, errors }) => {
 					return (
 						<FormikForm>
 							<div className={styles.fieldset}>
 								{fields.map(
-									({ id, label, placeholder, icon, required, input }) => (
-										<FormField
-											key={`form_${name}_field_${id}`}
-											name={id}
-											label={label}
-											placeholder={placeholder}
-											icon={icon}
-											required={required}
-											className={styles.field}
-										>
-											{input}
-										</FormField>
-									)
+									({
+										name,
+										label,
+										placeholder,
+										icon,
+										required,
+										type,
+										component,
+									}) => {
+										return (
+											<CustomField
+												key={name}
+												name={name}
+												label={label}
+												icon={icon}
+												placeholder={placeholder}
+												type={type}
+												isInvalid={!!touched[name] && !!errors[name]?.length}
+												isValid={touched[name] && !errors[name]?.length}
+												errorMessage={errors[name]}
+												required={required}
+											>
+												<Field name={name} type={type} component={component} />
+											</CustomField>
+										);
+									}
 								)}
 							</div>
-							<Container spaceBetween fullWidth alignContentRight>
+							<Container
+								className={styles.panel}
+								spaceBetween
+								fullWidth
+								alignContentRight
+							>
 								<Button
 									className={styles.submitButton}
 									type="submit"
