@@ -1,4 +1,5 @@
 import React, { forwardRef, PropsWithChildren } from 'react';
+import classNames from 'classnames';
 import styles from './ListItem.module.scss';
 import type { LinkTargetProps } from '../link/Link';
 
@@ -10,8 +11,8 @@ type ListItemProps = {
 };
 
 const ListItem = forwardRef<HTMLLIElement, PropsWithChildren<ListItemProps>>(
-	({ children }: PropsWithChildren<ListItemProps>, ref) => (
-		<li ref={ref} className={styles.root}>
+	({ children, className }: PropsWithChildren<ListItemProps>, ref) => (
+		<li ref={ref} className={classNames(styles.root, className)}>
 			{children}
 		</li>
 	)

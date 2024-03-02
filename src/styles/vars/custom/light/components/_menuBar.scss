@@ -33,6 +33,7 @@ $vars: (
 
 	arrow: (
 		transform: rotate(45deg),
+		background-color: refs.ref(color-surface-light),
 	),
 
 	list: (
@@ -46,7 +47,7 @@ $vars: (
 
 		component.state(hovered): (
 			text-color: refs.ref(color-secondary-main),
-			background-color: refs.ref(color-container-main),
+			background-color: refs.ref(color-surface-main),
 		),
 
 		content: (

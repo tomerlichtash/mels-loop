@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
 	args: {},
-	render: function Render({}) {
+	render: function Render() {
 		return (
 			<List>
 				<ListItem>Item 1</ListItem>

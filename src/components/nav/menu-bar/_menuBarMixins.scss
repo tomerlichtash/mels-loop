@@ -23,7 +23,7 @@
 	align-items: flex-end;
 	justify-content: center;
 	height: var(--indicator-height);
-	top: calc(var(--bar-height) - var(--indicator-height) - 8px);
+	top: 37px; //calc(var(--bar-height) - var(--indicator-height) - 0px);
 	overflow: hidden;
 	z-index: 2;
 	transition: width, transform 250ms ease;
@@ -51,9 +51,9 @@
 	position: absolute;
 	display: flex;
 	justify-content: center;
-	width: 100%;
+	width: 400px;
 	top: 100%;
-	left: 0;
+	right: 10em;
 	perspective: 2000px;
 }
 
@@ -66,6 +66,7 @@
 	border-top-left-radius: 2px;
 
 	@include use-transform($var);
+	@include use-background-color($var);
 }
 
 @mixin content-mixin($var) {
@@ -90,17 +91,17 @@
 }
 
 @mixin trigger-button-mixin($module, $states) {
-	@include buttons.menu-trigger-button-mixin;
+	@include buttons.topbar-item-base;
 
 	// this `hover` state aims to fix the slight delay in applying
 	// background-color to the menu trigger which his based on its
 	// `open` state
-	// &[data-state='open'],
-	// &:hover {
-	// 	@include use-background-color($module, state(opened, $states));
+	&[data-state='open'],
+	&:hover {
+		// @include use-background-color($module, state(opened, $states));
 
-	// 	.caret {
-	// 		@include use-text-color(#{$module}-caret, state(hovered, $states));
-	// 	}
-	// }
+		.caret {
+			// @include use-text-color(#{$module}-caret, state(hovered, $states));
+		}
+	}
 }

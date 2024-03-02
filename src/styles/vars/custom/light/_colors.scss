@@ -17,20 +17,22 @@ $vars: (
 			main: refs.globalRef(color-level2-main),
 			light: refs.globalRef(color-level1-main),
 			dark: refs.globalRef(color-level4-main),
+			mid: refs.globalRef(color-level3-main),
 			contrast: refs.globalRef(color-level8-main),
 		),
-		container: (
-			main: refs.globalRef(color-level3-main),
-			// light: globalRef(color-a2-main),
-			dark: refs.globalRef(color-level4-dark),
-			contrast: refs.globalRef(color-level6-main),
-		),
-		primary: (
-			main: refs.globalRef(color-accent1-main),
-			light: refs.globalRef(color-accent2-light),
-			dark: refs.globalRef(color-accent3-dark),
-			contrast: refs.globalRef(color-accent3-contrast),
-		),
+		// container: (
+		// 	main: refs.globalRef(color-level3-main),
+		// 	// light: globalRef(color-a2-main),
+		// 	dark: refs.globalRef(color-level4-dark),
+		// 	contrast: refs.globalRef(color-level6-main),
+		// ),
+		primary:
+			(
+				main: refs.globalRef(color-accent1-main),
+				light: refs.globalRef(color-accent2-light),
+				dark: refs.globalRef(color-accent3-dark),
+				contrast: refs.globalRef(color-accent3-contrast),
+			),
 		secondary: (
 			main: refs.globalRef(color-primary2-main),
 			light: refs.globalRef(color-primary3-light),

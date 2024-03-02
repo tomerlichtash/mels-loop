@@ -1,37 +1,11 @@
+@use '../../../../lib/refs';
+
 $vars: (
-	variant: (
-		base: (
-			title: (
-				text-transform: uppercase,
-			),
-		),
+	title: (
+		text-transform: uppercase,
+		font-weight: 700,
 	),
+	// subtitle: (
+	// 	text-color: refs.ref(color-primary-main),
+	// ),,
 );
-
-// .ItemContent {
-// 	.icon {
-// 		--background-color: transparent;
-
-// 		display: flex;
-
-// 		@include use-border-size(site-nav-item-icon);
-// 		@include use-border-style(site-nav-item-icon);
-// 		@include use-border-color(site-nav-item-icon);
-// 		@include use-radius(site-nav-item-icon);
-// 		@include use-inner-gutter(site-nav-item-icon);
-// 		@include use-gap(site-nav-item-icon);
-// 		@include use-background-color(site-nav-item-icon);
-// 	}
-
-// 	.title {
-// 		display: flex;
-
-// 		@include use-font-weight(site-nav-item-title);
-// 		@include use-text-transform(site-nav-item-title);
-// 		@include use-line-height(site-nav-item-title);
-// 	}
-
-// 	.description {
-// 		color: #fff;
-// 	}
-// }

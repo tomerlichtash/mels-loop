@@ -40,7 +40,7 @@ const List = ({
 	return (
 		<div className={classNames(styles.root, className)}>
 			{label && <Text className={styles.label}>{label}</Text>}
-			<Tag className={styles.items}>{children || renderListItems(items)}</Tag>
+			<Tag className={styles.list}>{children || renderListItems(items)}</Tag>
 		</div>
 	);
 };

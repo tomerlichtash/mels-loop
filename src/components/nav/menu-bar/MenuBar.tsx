@@ -4,7 +4,7 @@ import { unique } from 'utils/unique';
 import { getIcon } from 'components/icons';
 import NavListItem from '../nav-item/NavListItem';
 import NavItemContent from '../nav-item-content/NavItemContent';
-import { Button, ListItem } from 'components/index';
+import { Button, List, ListItem } from 'components/index';
 import styles from './MenuBar.module.scss';
 import type { NavItemDataProps, NavParsedNodes, NavProps } from '../types';
 
@@ -34,9 +34,7 @@ const renderSections = (sections: NavParsedNodes[]) =>
 				</NavigationMenu.Trigger>
 			</Button>
 			<NavigationMenu.Content className={styles.content}>
-				<ul data-list-grid-size="1" className={styles.items}>
-					{renderItems(section.items)}
-				</ul>
+				<List className={styles.list}>{renderItems(section.items)}</List>
 			</NavigationMenu.Content>
 		</NavigationMenu.Item>
 	));

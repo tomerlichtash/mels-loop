@@ -1,7 +1,7 @@
 @import '../../component.scss';
 
 $__stylesheet__: (
-	name: site-item-content,
+	name: nav-item-content,
 );
 
 @mixin root-mixin($module) {
@@ -32,21 +32,28 @@ $__stylesheet__: (
 
 .root {
 	@include root-mixin(item-content-variant-base);
+	display: flex;
+	gap: 0.5em;
 
 	.icon {
-		display: flex;
-
-		@include icon-mixin(item-content-variant-base-icon);
+		// display: flex;
+		// @include icon-mixin(name(icon));
 	}
 
-	.title {
+	.content {
 		display: flex;
+		flex-direction: column;
+		gap: 0.25em;
 
-		@include title-mixin(item-content-variant-base-title);
-	}
+		.title {
+			display: flex;
 
-	.author,
-	.description {
-		@include description-mixin(item-content-variant-base-description);
+			@include title-mixin(name(title));
+		}
+
+		.author,
+		.description {
+			@include description-mixin(name(subtitle));
+		}
 	}
 }

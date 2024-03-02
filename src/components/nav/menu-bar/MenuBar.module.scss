@@ -22,11 +22,18 @@ $states: merge.deep(
 		@include mixins.list-mixin;
 	}
 
-	.items {
+	.list {
 		width: 100%;
-		margin: 0;
+		// margin: 0;
+		// padding: 0;
 
 		@include use-inner-gutter(name(list));
+
+		.listItem {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
 	}
 
 	.trigger {
@@ -34,7 +41,6 @@ $states: merge.deep(
 		align-items: center;
 		justify-content: space-between;
 
-		// @include buttons.menu-trigger-button-mixin;
 		@include mixins.trigger-button-mixin(name(trigger), $states);
 	}
 

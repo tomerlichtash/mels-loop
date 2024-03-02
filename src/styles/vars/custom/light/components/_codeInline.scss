@@ -1,11 +1,11 @@
 @use '../../../../lib/refs';
 
 $vars: (
-	background-color: refs.ref(color-container-main),
+	background-color: refs.ref(color-surface-mid),
 	text-color: refs.ref(color-surface-contrast),
 	border-color: refs.ref(color-surface-dark),
 	radius: refs.globalRef(radius-sm),
-	font-family: 'monospace',
+	font-family: monospace,
 	font-weight: 100,
 	padding-left: 0.15em,
 	padding-right: 0.15em,

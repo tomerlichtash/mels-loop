@@ -1,7 +1,7 @@
 @use '../../../../lib/refs';
 
 $vars: (
-	gap: 20px,
+	gap: 4px,
 
 	button: (
 		background-color: refs.ref(color-surface-dark),

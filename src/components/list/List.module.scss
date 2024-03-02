@@ -5,18 +5,14 @@ $__stylesheet__: (
 );
 
 .root {
-	margin-bottom: 1em;
-	padding: 0 2em;
+	display: flex;
+	flex-direction: column;
 
-	.items {
-		// margin: 0;
-		// padding: 0;
+	.label {
 	}
 
-	.item {
-		border: 1px solid red;
+	.list {
+		.item {
+		}
 	}
-
-	// .label {
-	// }
 }

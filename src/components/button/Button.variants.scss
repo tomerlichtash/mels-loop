@@ -26,53 +26,53 @@ $bgVar: refs.varName(site-button-toggle-background-color);
 $textColorVar: refs.varName(site-button-toggle-text-color);
 $fontWeightVar: refs.varName(site-button-toggle-font-weight);
 
-@mixin icon-mixin($var) {
-	.icon {
-		@include hooks.use-icon-color($var);
-	}
+// @mixin icon-mixin($var) {
+// 	.icon {
+// 		@include hooks.use-icon-color($var);
+// 	}
 
-	&:hover {
-		.icon {
-			@include hooks.use-icon-color($var, state(hovered));
-		}
-	}
-}
+// 	&:hover {
+// 		.icon {
+// 			@include hooks.use-icon-color($var, state(hovered));
+// 		}
+// 	}
+// }
 
-@mixin menu-trigger-button-mixin($var: site-mixins-toggle-button) {
-	user-select: none;
-	border: none;
+// @mixin menu-trigger-button-mixin($var: site-mixins-toggle-button) {
+// 	user-select: none;
+// 	border: none;
 
-	@include hooks.use-height($var);
-	@include hooks.use-radius($var);
-	@include hooks.use-text-color($var);
-	@include hooks.use-background-color($var);
-	@include hooks.use-font-weight($var);
-	@include icon-mixin($var);
-}
+// 	@include hooks.use-height($var);
+// 	@include hooks.use-radius($var);
+// 	@include hooks.use-text-color($var);
+// 	@include hooks.use-background-color($var);
+// 	@include hooks.use-font-weight($var);
+// 	@include icon-mixin($var);
+// }
 
-@mixin toggle-button-mixin($var: site-button-toggle) {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+// @mixin toggle-button-mixin($var: site-button-toggle) {
+// 	display: inline-flex;
+// 	align-items: center;
+// 	justify-content: center;
 
-	@include menu-trigger-button-mixin;
-	@include hooks.use-width($var);
-	@include hooks.use-text-color($var);
+// 	@include menu-trigger-button-mixin;
+// 	@include hooks.use-width($var);
+// 	@include hooks.use-text-color($var);
 
-	&:not([data-state='selected']):hover {
-		cursor: pointer;
+// 	&:not([data-state='selected']):hover {
+// 		cursor: pointer;
 
-		@include hooks.use-text-color($var, state(hovered));
-		@include hooks.use-background-color($var, state(hovered));
-	}
+// 		@include hooks.use-text-color($var, state(hovered));
+// 		@include hooks.use-background-color($var, state(hovered));
+// 	}
 
-	// `selected` state overrides
-	&[data-state='selected'] {
-		#{$bgVar}: #{-get-bg-color($var, state(selected))};
-		#{$textColorVar}: #{-get-text-color($var, state(selected))};
-		#{$fontWeightVar}: #{-get-font-weight($var, state(selected))};
-	}
-}
+// 	// `selected` state overrides
+// 	&[data-state='selected'] {
+// 		#{$bgVar}: #{-get-bg-color($var, state(selected))};
+// 		#{$textColorVar}: #{-get-text-color($var, state(selected))};
+// 		#{$fontWeightVar}: #{-get-font-weight($var, state(selected))};
+// 	}
+// }
 
 // @mixin Default {
 // 	--text-color: magenta;
@@ -94,17 +94,45 @@ $fontWeightVar: refs.varName(site-button-toggle-font-weight);
 // 	}
 // }
 
+@mixin topbar-item-base {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	height: 2.286em;
+	padding: 0 6px;
+
+	&:hover {
+		background-color: refs.ref(color-surface-mid);
+		cursor: pointer;
+	}
+
+	&[data-state='open'],
+	&:hover {
+		// @include use-background-color($module, state(opened, $states));
+		background-color: refs.ref(color-surface-mid);
+
+		.caret {
+			// @include use-text-color(#{$module}-caret, state(hovered, $states));
+		}
+	}
+}
+
 @mixin topbar-item {
-	background-color: green;
-	height: 2.5em;
-	width: 2.5em;
+	height: 2.286em;
+	padding: 0 6px;
+	min-width: 32px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	border-radius: 4px;
 
 	&:hover {
-		background-color: pink;
+		background-color: refs.ref(color-surface-mid);
 		cursor: pointer;
+	}
+
+	&[data-state='on'] {
+		background-color: refs.ref(color-surface-dark);
 	}
 }

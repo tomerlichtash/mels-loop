@@ -16,7 +16,7 @@ const NavItemContent = ({
 }: NavItemContentProps) => (
 	<span className={styles.root}>
 		{icon && <span className={styles.icon}>{getIcon(icon)}</span>}
-		<span>
+		<span className={styles.content}>
 			<span className={styles.title}>{title}</span>
 			<span className={styles.description}>{description}</span>
 			<span className={styles.author}>{author}</span>

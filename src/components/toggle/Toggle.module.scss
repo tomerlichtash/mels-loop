@@ -1,10 +1,16 @@
 @use '../button/Button.variants' as buttons;
+@use '../../styles/lib/merge';
 @import '../component.scss';
 
 $__stylesheet__: (
 	name: toggle,
 );
-
+// $states: merge.deep(
+// 	$COMPONENT_STATES,
+// 	(
+// 		valid: valid,
+// 	)
+// );
 .root {
 	@include buttons.topbar-item;
 
