@@ -1,5 +1,5 @@
 @use '../../styles/lib/merge';
-@import '../component.scss';
+@import '../component';
 
 $__stylesheet__: (
 	name: popover-trigger,
@@ -42,11 +42,12 @@ $suffixColor: varName(term-suffix-text-color);
 			#{$suffixColor}: -suffix-color(hovered);
 		}
 
-		&:active {
-			#{$color}: -text-color(clicked);
-			#{$bgColor}: -bg-color(clicked);
-			#{$suffixColor}: -suffix-color(clicked);
-		}
+		// todo: expand theme to support this state
+		// &:active {
+		// 	#{$color}: -text-color(clicked);
+		// 	#{$bgColor}: -bg-color(clicked);
+		// 	#{$suffixColor}: -suffix-color(clicked);
+		// }
 	}
 
 	&[data-popover-state='open'] {
@@ -54,16 +55,18 @@ $suffixColor: varName(term-suffix-text-color);
 		#{$bgColor}: -bg-color(selected);
 		#{$suffixColor}: -suffix-color(selected);
 
-		&:hover {
-			#{$color}: -text-color(selected-hovered);
-			#{$bgColor}: -bg-color(selected-hovered);
-			#{$suffixColor}: -suffix-color(selected-hovered);
-		}
+		// todo: expand theme to support this state
+		// &:hover {
+		// 	#{$color}: -text-color(selected-hovered);
+		// 	#{$bgColor}: -bg-color(selected-hovered);
+		// 	#{$suffixColor}: -suffix-color(selected-hovered);
+		// }
 
-		&:active {
-			#{$color}: -text-color(selected-clicked);
-			#{$bgColor}: -bg-color(selected-clicked);
-			#{$suffixColor}: -suffix-color(selected-clicked);
-		}
+		// todo: expand theme to support this state
+		// &:active {
+		// 	#{$color}: -text-color(selected-clicked);
+		// 	#{$bgColor}: -bg-color(selected-clicked);
+		// 	#{$suffixColor}: -suffix-color(selected-clicked);
+		// }
 	}
 }

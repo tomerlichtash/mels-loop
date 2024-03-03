@@ -1,4 +1,4 @@
-@import '../component.scss';
+@import '../component';
 
 @mixin trigger($comp: '', $state: '') {
 	cursor: pointer;

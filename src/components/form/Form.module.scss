@@ -1,5 +1,5 @@
 @use '../../styles/lib/refs';
-@import '../component.scss';
+@import '../component';
 
 $__stylesheet__: (
 	name: contact-form,
@@ -8,10 +8,7 @@ $__stylesheet__: (
 .root {
 	width: 100%;
 	display: flex;
-	// border-radius: 10px;
 	flex-direction: column;
-	// width: 100%;
-	// gap: 2em;
 
 	.fieldset {
 		padding: 2em;
@@ -37,43 +34,4 @@ $__stylesheet__: (
 		gap: 0.5em;
 		color: red;
 	}
-
-	// form field mixin
-	// #{refs.varName(form-field-text-color)}: #000;
-	// #{refs.varName(form-field-label-text-color__invalid)}: #c00;
-	// #{refs.varName(form-field-validation-text-color)}: #c00;
-
-	// // input mixin
-	// #{refs.varName(input-background-color)}: #fff;
-	// #{refs.varName(input-border-size)}: 0;
-	// #{refs.varName(input-shadow)}: 0 0 1em lightgray;
-	// #{refs.varName(input-placeholder-text-color)}: #f0f0f0;
-	// #{refs.varName(input-padding-top)}: 1em;
-	// #{refs.varName(input-padding-bottom)}: 1em;
-	// #{refs.varName(input-padding-right)}: 1em;
-	// #{refs.varName(input-padding-left)}: 1em;
-	// #{refs.varName(input-radius)}: 6px;
-	// #{refs.varName(input-outline__hover)}: 2px solid #b0b0b0;
-	// #{refs.varName(input-outline__focused)}: 2px solid #d0d0d0;
-	// #{refs.varName(input-outline__invalid)}: 1px solid #c00;
-	// #{refs.varName(input-outline__invalid__focused)}: 2px solid red;
-	// #{refs.varName(input-outline__invalid__hovered)}: 2px solid #f00;
-	// #{refs.varName(input-outline__invalid__focused__hovered)}: 2px solid #a00;
-
-	// // text-area mixin
-	// #{refs.varName(text-area-background-color)}: #fff;
-	// #{refs.varName(text-area-border-size)}: 0;
-	// #{refs.varName(text-area-shadow)}: 0 0 1em lightgray;
-	// #{refs.varName(text-area-placeholder-text-color)}: #f0f0f0;
-	// #{refs.varName(text-area-padding-top)}: 1em;
-	// #{refs.varName(text-area-padding-bottom)}: 1em;
-	// #{refs.varName(text-area-padding-right)}: 1em;
-	// #{refs.varName(text-area-padding-left)}: 1em;
-	// #{refs.varName(text-area-radius)}: 6px;
-	// #{refs.varName(text-area-outline__hover)}: 2px solid #b0b0b0;
-	// #{refs.varName(text-area-outline__focused)}: 2px solid #d0d0d0;
-	// #{refs.varName(text-area-outline__invalid)}: 1px solid #c00;
-	// #{refs.varName(text-area-outline__invalid__focused)}: 2px solid red;
-	// #{refs.varName(text-area-outline__invalid__hovered)}: 2px solid #f00;
-	// #{refs.varName(text-area-outline__invalid__focused__hovered)}: 2px solid #a00;
 }

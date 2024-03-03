@@ -1,6 +1,6 @@
 @use '../../styles/lib/merge';
 @use '../../styles/lib/refs';
-@import '../component.scss';
+@import '../component';
 
 $__stylesheet__: (
 	name: custom-field,
@@ -89,7 +89,7 @@ $states: merge.deep(
 		align-content: center;
 		gap: 0.5em;
 		user-select: none;
-		padding: 0 0 0.5em 0;
+		padding: 0 0 0.5em;
 		cursor: pointer;
 
 		@include use-text-color(name(label));
@@ -147,6 +147,7 @@ $states: merge.deep(
 		.label {
 			@include use-text-color(name(label), state(invalid));
 		}
+
 		.input {
 			@include use-outline(name(input), state(invalid));
 		}
@@ -169,7 +170,6 @@ $states: merge.deep(
 	#{refs.varName(custom-field-background-color)}: #fff;
 	#{refs.varName(custom-field-label-text-color)}: #da0;
 	#{refs.varName(custom-field-validation-text-color)}: #f00;
-
 	#{refs.varName(custom-field-input-placeholder-text-color)}: #c0c0c0;
 	#{refs.varName(custom-field-input-border-size)}: 0;
 	#{refs.varName(custom-field-input-shadow)}: 0 0 1em lightgray;
@@ -178,7 +178,6 @@ $states: merge.deep(
 	#{refs.varName(custom-field-input-padding-right)}: 1em;
 	#{refs.varName(custom-field-input-padding-left)}: 1em;
 	#{refs.varName(custom-field-input-radius)}: 6px;
-
 	#{refs.varName(custom-field-input-outline)}: 2px solid #b0b0b0;
 	#{refs.varName(custom-field-input-outline__hover)}: 2px solid #b0b0b0;
 	#{refs.varName(custom-field-input-outline__focused)}: 2px solid #d0d0d0;

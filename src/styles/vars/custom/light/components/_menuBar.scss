@@ -1,4 +1,4 @@
-@use '../../../../../components/nav/menu-bar/MenuBar.module' as component;
+@use '../../../../../components/nav/menu-bar/MenuBar.module' as comp;
 @use '../../../../lib/refs';
 
 $__stylesheet__: (
@@ -12,69 +12,37 @@ $stage-animation-props: (
 	duration: refs.globalRef(animation-duration-sm),
 	easing: refs.globalRef(animation-easing-default),
 );
+$viewportColor: refs.ref(color-surface-light);
 $vars: (
+	indicator-fade-in-animation: $growth-animation-props,
+	indicator-fade-out-animation: $growth-animation-props,
+	viewport-scale-in-animation: $growth-animation-props,
+	viewport-scale-out-animation: $growth-animation-props,
+	viewport-enter-from-right-animation: $stage-animation-props,
+	viewport-enter-from-left-animation: $stage-animation-props,
+	viewport-exit-to-right-animation: $stage-animation-props,
+	viewport-exit-to-left-animation: $stage-animation-props,
+
+	viewport: (
+		width: 500px,
+		background-color: $viewportColor,
+		radius: refs.globalRef(radius-md),
+		shadow: refs.globalRef(shadow-md),
+	),
+
 	trigger: (
 		caret: (
 			text-color: refs.ref(color-surface-contrast),
 			transform: rotate(-180deg),
-			component.state(hovered): (
-				text-color: refs.ref(color-surface-contrast),
-			),
-		),
-		component.state(hovered): (
-			background-color: refs.ref(color-surface-dark),
-			text-color: refs.ref(color-primary-dark),
-		),
-		component.state(opened): (
-			background-color: refs.ref(color-surface-dark),
-			text-color: refs.ref(color-primary-dark),
 		),
 	),
 
-	arrow: (
+	arrow-indicator: (
 		transform: rotate(45deg),
-		background-color: refs.ref(color-surface-light),
+		background-color: $viewportColor,
 	),
 
 	list: (
 		gutter: 0.5em,
 	),
-
-	item: (
-		text-color: refs.ref(color-primary-main),
-		radius: refs.globalRef(radius-sm),
-		gutter: 1em,
-
-		component.state(hovered): (
-			text-color: refs.ref(color-secondary-main),
-			background-color: refs.ref(color-surface-main),
-		),
-
-		content: (
-			gap: 0.5em,
-		),
-
-		icon: (
-			border-size: 1px,
-			border-style: solid,
-			border-color: transparent,
-			radius: refs.globalRef(radius-md),
-			gutter: 0.4em,
-		),
-
-		title: (
-			text-transform: uppercase,
-			line-height: 2em,
-			font-weight: 700,
-		),
-	),
-
-	scale-in-animation: $growth-animation-props,
-	scale-out-animation: $growth-animation-props,
-	fade-in-animation: $growth-animation-props,
-	fade-out-animation: $growth-animation-props,
-	enter-from-right-animation: $stage-animation-props,
-	enter-from-left-animation: $stage-animation-props,
-	exit-to-right-animation: $stage-animation-props,
-	exit-to-left-animation: $stage-animation-props,
 );

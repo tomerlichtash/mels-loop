@@ -1,47 +1,53 @@
 import React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { unique } from 'utils/unique';
-import { getIcon } from 'components/icons';
-import NavListItem from '../nav-item/NavListItem';
-import NavItemContent from '../nav-item-content/NavItemContent';
-import { Button, List, ListItem } from 'components/index';
+import { getIcon } from '../../icons';
+import ListItem from '../../list-item/ListItem';
+import Button from '../../button/Button';
+import List from '../../list/List';
+import NavItem from '../nav-item/NavItem';
 import styles from './MenuBar.module.scss';
 import type { NavItemDataProps, NavParsedNodes, NavProps } from '../types';
 
 const renderItems = (items: NavItemDataProps[]) =>
 	items.map((item) => (
 		<NavigationMenu.Link asChild key={unique.id()}>
-			<ListItem className={styles.listItem}>
-				<NavListItem key={unique.id()} className={styles.item} {...item}>
-					<NavItemContent
-						title={item.locale.title}
-						description={item.locale.description}
-						author={item.locale.author}
-						icon={item.icon}
-					/>
-				</NavListItem>
+			<ListItem className={styles.menuListItem}>
+				<NavItem
+					{...item}
+					title={item.locale.title}
+					description={item.locale.description}
+					author={item.locale.author}
+					icon={item.icon}
+				/>
 			</ListItem>
 		</NavigationMenu.Link>
 	));
 
 const renderSections = (sections: NavParsedNodes[]) =>
 	sections.map((section) => (
-		<NavigationMenu.Item key={section.id}>
-			<Button asChild className={styles.trigger}>
-				<NavigationMenu.Trigger>
-					{section.locale.title}
-					{getIcon('caretDown', styles.caret)}
-				</NavigationMenu.Trigger>
-			</Button>
-			<NavigationMenu.Content className={styles.content}>
-				<List className={styles.list}>{renderItems(section.items)}</List>
-			</NavigationMenu.Content>
+		<NavigationMenu.Item key={section.id} asChild>
+			<ListItem className={styles.menuSectionTriggerItem} key={unique.id()}>
+				<>
+					<Button className={styles.menuSectionTriggerButton} asChild>
+						<NavigationMenu.Trigger>
+							{section.locale.title}
+							{getIcon('caretDown', styles.caret)}
+						</NavigationMenu.Trigger>
+					</Button>
+					<NavigationMenu.Content className={styles.content}>
+						<List className={styles.sectionItemsList}>
+							{renderItems(section.items)}
+						</List>
+					</NavigationMenu.Content>
+				</>
+			</ListItem>
 		</NavigationMenu.Item>
 	));
 
-const MenuBar = ({ items }: NavProps) => (
-	<NavigationMenu.Root className={styles.root}>
-		<NavigationMenu.List className={styles.list}>
+const MenuBar = ({ items, textDirection }: NavProps) => (
+	<NavigationMenu.Root className={styles.root} data-direction={textDirection}>
+		<NavigationMenu.List className={styles.menuSectionTriggers}>
 			{renderSections(items)}
 			<NavigationMenu.Indicator className={styles.indicator}>
 				<div className={styles.arrow}></div>

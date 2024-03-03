@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import NavItemContent from './NavItemContent';
+import NavItem from './NavItem';
 
 const meta = {
-	title: 'Site/Nav/NavItemContent',
-	component: NavItemContent,
+	title: 'Site/Nav/NavItem',
+	component: NavItem,
 	parameters: {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
@@ -12,7 +12,7 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof NavItemContent>;
+} satisfies Meta<typeof NavItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -26,7 +26,7 @@ export const NavBar: Story = {
 	},
 	render: function Render({ icon, title, description, author }) {
 		return (
-			<NavItemContent
+			<NavItem
 				icon={icon}
 				title={title}
 				description={description}

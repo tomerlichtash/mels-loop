@@ -1,5 +1,5 @@
 @use '../button/Button.variants' as buttons;
-@import '../component.scss';
+@import '../component';
 
 $__stylesheet__: (
 	name: locale-select,
@@ -17,7 +17,7 @@ $__stylesheet__: (
 		border: none;
 		padding: 0;
 
-		@include buttons.topbar-item;
+		@include buttons.topbar-item-toggle;
 
 		// @include buttonMixin.toggle-button-mixin;
 		// .button {

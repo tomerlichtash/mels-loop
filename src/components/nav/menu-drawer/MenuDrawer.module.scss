@@ -1,7 +1,4 @@
-@use '../nav-item/NavListItem.module' as NavListItem;
-@use '../nav-item/navListItemMixin' as nav-list-item-mixin;
-@use '../nav-item-content/navItemContentMixin' as nav-item-content-mixin;
-@import '../../component.scss';
+@import '../../component';
 
 $__stylesheet__: (
 	name: menu-drawer,
@@ -12,9 +9,4 @@ $__stylesheet__: (
 		padding: 0;
 		margin: 0;
 	}
-
-	@include nav-list-item-mixin.list-item-mixin(name(item), $states);
-	@include nav-item-content-mixin.nav-item-content-mixin(
-		site-item-content-variant-base
-	);
 }

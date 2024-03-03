@@ -36,7 +36,7 @@ const LocaleSelect = ({
 				key={unique.id()}
 				className={styles.item}
 			>
-				{label}
+				<span data-locale={id}>{label}</span>
 			</ToggleGroupItem>
 		))}
 	</ToggleGroup>

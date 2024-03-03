@@ -1,5 +1,5 @@
 @use '../button/Button.variants' as buttons;
-@import '../component.scss';
+@import '../component';
 
 $__stylesheet__: (
 	name: toggle-group,
@@ -16,9 +16,5 @@ $__stylesheet__: (
 		background-color: transparent;
 		border: none;
 		padding: 0;
-
-		// .button {
-		// 	// @include buttonMixin.toggle-button-mixin;
-		// }
 	}
 }

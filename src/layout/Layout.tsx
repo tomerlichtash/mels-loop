@@ -220,8 +220,11 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 							</Button>
 						) : (
 							<Container alignItemsCenter>
-								<MenuBar items={navItems(NavSectionId.TOPBAR)} />
-								<>
+								<Container className={styles.panel}>
+									<MenuBar
+										items={navItems(NavSectionId.TOPBAR)}
+										textDirection={textDirection}
+									/>
 									<LocaleSelect
 										defaultValue={lang}
 										options={localeItems}
@@ -232,7 +235,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 										theme={theme}
 										setTheme={setTheme}
 									></ThemeSelect>
-								</>
+								</Container>
 							</Container>
 						)}
 					</header>

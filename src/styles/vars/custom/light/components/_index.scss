@@ -29,8 +29,7 @@
 	themeselector;
 @use '../../../../../components/nav/menu-bar/MenuBar.module' as menubar;
 @use '../../../../../components/nav/menu-drawer/MenuDrawer.module' as menudrawer;
-@use '../../../../../components/nav/nav-item-content/NavItemContent.module' as
-	navitemcontent;
+@use '../../../../../components/nav/nav-item/NavItem.module' as nav-item;
 @use '../../../../../components/error-message/ErrorMessage.module' as
 	error-message;
 
@@ -50,7 +49,7 @@
 @use 'button' as button-theme;
 @use 'menuBar' as menu-bar-theme;
 @use 'menuDrawer' as menu-drawer-theme;
-@use 'navItemContent' as nav-item-content-theme;
+@use 'navItem' as nav-item-theme;
 @use 'text' as text-theme;
 @use 'annotation' as annotation-theme;
 @use 'term' as term-theme;
@@ -93,7 +92,7 @@ $index: (
 	loadingindicator.name(): loading-indicator-theme.$vars,
 	menubar.name(): menu-bar-theme.$vars,
 	menudrawer.name(): menu-drawer-theme.$vars,
-	navitemcontent.name(): nav-item-content-theme.$vars,
+	nav-item.name(): nav-item-theme.$vars,
 	themeselector.name(): theme-select-theme.$vars,
 	localeselect.name(): locale-select-theme.$vars,
 	// other

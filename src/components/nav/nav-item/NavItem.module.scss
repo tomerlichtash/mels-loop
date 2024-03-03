@@ -1,0 +1,56 @@
+@import '../../component';
+
+$__stylesheet__: (
+	name: nav-item,
+);
+
+@mixin text-mixin($var) {
+	@include use-font-weight($var);
+	@include use-text-transform($var);
+	@include use-text-color($var);
+	@include use-background-color($var);
+}
+
+.root {
+	text-decoration: none;
+	display: block;
+
+	@include use-background-color;
+	@include use-radius;
+
+	.content {
+		display: flex;
+		flex-direction: row;
+
+		@include use-gap(name(item));
+		@include use-padding-top(name(item));
+		@include use-padding-bottom(name(item));
+		@include use-padding-right(name(item));
+		@include use-padding-left(name(item));
+
+		.icon {
+			position: relative;
+			top: 0.1em; // todo: use offset
+		}
+
+		.meta {
+			display: flex;
+			flex-direction: column;
+
+			@include use-gap(name(content));
+
+			.title {
+				@include text-mixin(name(title));
+			}
+
+			.author,
+			.description {
+				@include text-mixin(name(subtitle));
+			}
+		}
+	}
+
+	&:hover {
+		@include use-background-color(name(), state(hovered));
+	}
+}

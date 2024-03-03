@@ -7,7 +7,7 @@ import {
 	Button,
 	LoadingIndicator,
 	Recaptcha,
-	CustomField
+	CustomField,
 } from 'components/index';
 import { handleSubmit } from 'components/recaptcha/Recaptcha';
 import { ApiRoutes } from '../../apiRoutes';
@@ -78,66 +78,59 @@ const Form = ({
 					});
 				}}
 			>
-				{({ dirty, isValid, touched, errors }) => {
-					return (
-						<FormikForm>
-							<div className={styles.fieldset}>
-								{fields.map(
-									({
-										name,
-										label,
-										placeholder,
-										icon,
-										required,
-										type,
-										component,
-									}) => {
-										return (
-											<CustomField
-												key={name}
-												name={name}
-												label={label}
-												icon={icon}
-												placeholder={placeholder}
-												type={type}
-												isInvalid={!!touched[name] && !!errors[name]?.length}
-												isValid={touched[name] && !errors[name]?.length}
-												errorMessage={errors[name]}
-												required={required}
-											>
-												<Field name={name} type={type} component={component} />
-											</CustomField>
-										);
-									}
-								)}
-							</div>
-							<Container
-								className={styles.panel}
-								spaceBetween
-								fullWidth
-								alignContentRight
+				{({ dirty, isValid, touched, errors }) => (
+					<FormikForm>
+						<div className={styles.fieldset}>
+							{fields.map(
+								({
+									name,
+									label,
+									placeholder,
+									icon,
+									required,
+									type,
+									component,
+								}) => (
+									<CustomField
+										key={name}
+										name={name}
+										label={label}
+										icon={icon}
+										placeholder={placeholder}
+										type={type}
+										isInvalid={!!touched[name] && !!errors[name]?.length}
+										isValid={touched[name] && !errors[name]?.length}
+										errorMessage={errors[name]}
+										required={required}
+									>
+										<Field name={name} type={type} component={component} />
+									</CustomField>
+								)
+							)}
+						</div>
+						<Container
+							className={styles.panel}
+							spaceBetween
+							fullWidth
+							alignContentRight
+						>
+							<Button
+								className={styles.submitButton}
+								type="submit"
+								disabled={!dirty || (dirty && !isValid)}
 							>
-								<Button
-									className={styles.submitButton}
-									type="submit"
-									disabled={!dirty || (dirty && !isValid)}
-								>
-									{submitting ? (
-										<LoadingIndicator
-											delay={0}
-											label={submitButtonLabelActive}
-										/>
-									) : (
-										<>
-											{submitButtonIcon && getIcon(submitButtonIcon)}
-											{submitButtonLabel}
-										</>
-									)}
-								</Button>
-							</Container>
-						</FormikForm>
-					);
-				}}
+								{submitting ? (
+									<LoadingIndicator delay={0} label={submitButtonLabelActive} />
+								) : (
+									<>
+										{submitButtonIcon && getIcon(submitButtonIcon)}
+										{submitButtonLabel}
+									</>
+								)}
+							</Button>
+						</Container>
+					</FormikForm>
+				)}
 			</Formik>
 
 			{recaptchaSiteKey && <Recaptcha siteKey={recaptchaSiteKey} />}

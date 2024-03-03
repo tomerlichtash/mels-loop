@@ -1,25 +1,14 @@
 @use '../button/Button.variants' as buttons;
-@use '../../styles/lib/merge';
-@import '../component.scss';
+@import '../component';
 
 $__stylesheet__: (
 	name: toggle,
 );
-// $states: merge.deep(
-// 	$COMPONENT_STATES,
-// 	(
-// 		valid: valid,
-// 	)
-// );
+
 .root {
-	@include buttons.topbar-item;
+	@include buttons.topbar-item-toggle;
 
 	display: flex;
 	padding: 0;
 	border: none;
-
-	// img {
-	// 	// width: 100%;
-	// 	// border: 2px solid blue;
-	// }
 }

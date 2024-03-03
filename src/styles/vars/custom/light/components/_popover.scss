@@ -10,16 +10,20 @@ $vars: (
 			text-color: refs.ref(color-secondary-main),
 			astriek-color: refs.ref(color-secondary-main),
 		),
+		/*
 		trigger.state(clicked): (
 			background-color: refs.ref(color-primary-dark),
 			text-color: refs.ref(color-secondary-contrast),
 			astriek-color: refs.ref(color-primary-dark),
 		),
-		trigger.state(selected): (
-			background-color: refs.ref(color-secondary-main),
-			text-color: refs.ref(color-sur-sur1),
-			astriek-color: refs.ref(color-secondary-main),
-		),
+		*/
+			trigger.state(selected):
+			(
+				background-color: refs.ref(color-secondary-main),
+				text-color: refs.ref(color-surface-light),
+				astriek-color: refs.ref(color-secondary-main),
+			),
+		/*
 		trigger.state(selected-hovered): (
 			background-color: refs.ref(color-secondary-dark),
 			text-color: refs.ref(color-secondary-contrast),
@@ -29,7 +33,8 @@ $vars: (
 			background-color: refs.ref(color-secondary-main),
 			text-color: refs.ref(color-secondary-contrast),
 			astriek-color: refs.ref(color-secondary-main),
-		),
+		)
+		*/
 	),
 	dialog: (
 		background-color: refs.ref(color-surface-light),

@@ -46,6 +46,7 @@
 		$dark: color.adjust($primary, $lightness: -20%);
 
 		// $light: lighten($primary, 20%);
+
 		// $dark: darken($primary, 20%);
 
 		$contrastRatio: -contrast-ratio($value, #000);
@@ -56,13 +57,8 @@
 			(
 				#{$prefix}-#{$key}-main: $primary,
 				#{$prefix}-#{$key}-light: $primary,
-				//$light,
-				#{$prefix}-#{$key}-dark:
-					$primary,
-				//$dark,
-				#{$prefix}-#{$key}-contrast:
-					$primary,
-				//$contrast
+				#{$prefix}-#{$key}-dark: $primary,
+				#{$prefix}-#{$key}-contrast: $primary
 			)
 		);
 	}

@@ -1,5 +1,5 @@
 @use './Figure.variants' as variants;
-@import '../component.scss';
+@import '../component';
 
 $__stylesheet__: (
 	name: figure,

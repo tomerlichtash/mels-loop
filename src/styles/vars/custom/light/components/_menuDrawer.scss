@@ -7,11 +7,11 @@ $vars: (
 		text-color: refs.ref(color-surface-light),
 	),
 
+	/*
 	item: (
 		text-color: refs.ref(color-secondary-main),
 		// radius: globalRef(radius-xs),
 		gutter: 1.375em,
-
 		border-bottom-size: 1px,
 		border-bottom-style: solid,
 		border-bottom-color: refs.ref(color-surface-dark),
@@ -19,10 +19,10 @@ $vars: (
 			gap: 1em,
 			gutter: 1em,
 		),
-
 		menu-drawer.state(hovered): (
 			text-color: refs.ref(color-secondary-main),
 			background-color: refs.ref(color-surface-contrast),
 		),
-	),
+	)
+	*/
 );

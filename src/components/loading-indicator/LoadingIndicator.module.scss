@@ -1,5 +1,5 @@
 @use '../../styles/mixins/animations' as keyframes;
-@import '../component.scss';
+@import '../component';
 
 $__stylesheet__: (
 	name: loading-indicator,

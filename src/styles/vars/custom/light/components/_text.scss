@@ -27,7 +27,7 @@ $vars: (
 			text-transform: lowercase,
 		),
 		body1: (
-			text-color: refs.ref(color-container-contrast),
+			text-color: refs.ref(color-surface-body),
 			line-height: 1.5em,
 			// margin-bottom: 1em,
 		),

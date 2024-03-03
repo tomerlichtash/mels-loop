@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { unique } from 'utils/index';
-import NavListItem from '../nav-item/NavListItem';
-import NavItemContent from '../nav-item-content/NavItemContent';
-import { List, ListItem } from 'components/index';
+import NavItem from '../nav-item/NavItem';
+import List from '../../list/List';
+import ListItem from '../../list-item/ListItem';
 import styles from './MenuDrawer.module.scss';
 import type { NavParsedNodes } from '../types';
 
@@ -20,19 +20,16 @@ const MenuDrawer = ({ items, onClose }: VerticalNavProps) =>
 					<List className={styles.list}>
 						{section.items.map((item) => (
 							<ListItem key={`menu-drawer-item-${item.id}`}>
-								<NavListItem
+								<NavItem
 									{...item}
+									onClick={onClose}
 									key={unique.id()}
 									className={styles.item}
-									onClick={onClose}
-								>
-									<NavItemContent
-										title={item.locale.title}
-										description={item.locale.description}
-										author={item.locale.author}
-										icon={item.icon}
-									/>
-								</NavListItem>
+									title={item.locale.title}
+									description={item.locale.description}
+									author={item.locale.author}
+									icon={item.icon}
+								/>
 							</ListItem>
 						))}
 					</List>

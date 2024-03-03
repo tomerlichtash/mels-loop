@@ -11,19 +11,19 @@
 	}
 
 	[data-state='open'] > .caret {
-		// transform: rotate(-180deg);
 		@include use-transform($var);
 	}
 }
 
 @mixin indicator-mixin($var) {
 	--indicator-height: 10px;
+	--bar-height: 40px;
 
 	display: flex;
 	align-items: flex-end;
 	justify-content: center;
 	height: var(--indicator-height);
-	top: 37px; //calc(var(--bar-height) - var(--indicator-height) - 0px);
+	top: calc(var(--bar-height) - var(--indicator-height));
 	overflow: hidden;
 	z-index: 2;
 	transition: width, transform 250ms ease;
@@ -31,42 +31,39 @@
 	@include animations.indicator-animations($var);
 }
 
-@mixin viewport-mixin($var) {
-	width: 100%;
-	position: relative;
-	transform-origin: top center;
-	overflow: hidden;
-	background-color: white;
-	border-radius: 6px;
-	box-shadow: refs.globalRef(shadow-md);
-	height: var(--radix-navigation-menu-viewport-height);
-	transition: width, height, 300ms ease;
-
-	// margin-top: 0;
-
-	@include animations.viewport-animations($var);
-}
-
-@mixin viewport-position-mixin {
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	width: 400px;
-	top: 100%;
-	right: 10em;
-	perspective: 2000px;
-}
-
 @mixin arrow-mixin($var) {
 	position: relative;
 	top: 70%;
-	background-color: white;
 	width: 12px;
 	height: 12px;
 	border-top-left-radius: 2px;
 
 	@include use-transform($var);
 	@include use-background-color($var);
+}
+
+@mixin viewport-mixin($var) {
+	width: 100%;
+	position: relative;
+	transform-origin: top center;
+	overflow: hidden;
+	height: var(--radix-navigation-menu-viewport-height);
+	transition: width, height, 300ms ease;
+
+	@include animations.viewport-animations($var);
+	@include use-background-color($var);
+	@include use-radius($var);
+	@include use-shadow($var);
+}
+
+@mixin viewport-position-mixin($var) {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	top: 100%;
+	perspective: 2000px;
+
+	@include use-width($var);
 }
 
 @mixin content-mixin($var) {
@@ -81,7 +78,7 @@
 }
 
 @mixin list-mixin {
-	@include use-direction(locale);
+	// @include use-direction(locale);
 
 	display: flex;
 	justify-content: center;
@@ -91,17 +88,17 @@
 }
 
 @mixin trigger-button-mixin($module, $states) {
-	@include buttons.topbar-item-base;
+	@include buttons.topbar-menu-trigger;
 
-	// this `hover` state aims to fix the slight delay in applying
-	// background-color to the menu trigger which his based on its
-	// `open` state
-	&[data-state='open'],
-	&:hover {
-		// @include use-background-color($module, state(opened, $states));
+	// // this `hover` state aims to fix the slight delay in applying
+	// // background-color to the menu trigger which his based on its
+	// // `open` state
+	// &[data-state='open'],
+	// &:hover {
+	// 	// @include use-background-color($module, state(opened, $states));
 
-		.caret {
-			// @include use-text-color(#{$module}-caret, state(hovered, $states));
-		}
-	}
+	// 	// .caret {
+	// 	// 	// @include use-text-color(#{$module}-caret, state(hovered, $states));
+	// 	// }
+	// }
 }

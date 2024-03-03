@@ -1,7 +1,10 @@
+import { TextDirection } from 'types/locale';
+
 export type NavItemLocaleProps = Record<string, string>;
 
 export type NavProps = {
 	items: NavParsedNodes[];
+	textDirection: TextDirection;
 };
 
 export type NavItemDataProps = {

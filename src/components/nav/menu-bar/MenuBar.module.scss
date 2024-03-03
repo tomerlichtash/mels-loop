@@ -1,7 +1,6 @@
 @use './menuBarMixins' as mixins;
-@use '../nav-item/navListItemMixin' as nav-list-item-mixin;
 @use '../../../styles/lib/merge';
-@import '../../component.scss';
+@import '../../component';
 
 $__stylesheet__: (
 	name: site-horizontal-menu,
@@ -14,56 +13,66 @@ $states: merge.deep(
 );
 
 .root {
-	width: 250px;
-
 	@include mixins.caret-mixin(name(trigger-caret));
 
-	.list {
-		@include mixins.list-mixin;
-	}
+	.menuSectionTriggers {
+		display: flex;
 
-	.list {
-		width: 100%;
-		// margin: 0;
-		// padding: 0;
+		@include use-direction(locale);
 
-		@include use-inner-gutter(name(list));
-
-		.listItem {
+		.menuSectionTriggerItem {
 			list-style: none;
-			padding: 0;
-			margin: 0;
+		}
+
+		.menuSectionTriggerButton {
+			@include mixins.trigger-button-mixin(name(trigger), $states);
 		}
 	}
 
-	.trigger {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+	.sectionItemsList {
+		@include use-inner-gutter(name(list));
+		@include use-direction(locale);
 
-		@include mixins.trigger-button-mixin(name(trigger), $states);
+		ul {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.menuListItem {
+			list-style: none;
+		}
 	}
 
 	.content {
-		@include mixins.content-mixin(name());
+		@include mixins.content-mixin(name(viewport));
 	}
 
 	.indicator {
-		@include mixins.indicator-mixin(name());
+		@include mixins.indicator-mixin(name(indicator));
+	}
+
+	.arrow {
+		@include mixins.arrow-mixin(name(arrow-indicator));
 	}
 
 	.viewport {
-		@include mixins.viewport-mixin(name());
+		@include mixins.viewport-mixin(name(viewport));
 	}
 
 	// stylelint-disable-next-line selector-class-pattern
 	.viewportPosition {
-		@include mixins.viewport-position-mixin;
+		@include mixins.viewport-position-mixin(name(viewport));
 	}
 
-	.arrow {
-		@include mixins.arrow-mixin(name(arrow));
+	&[data-direction='ltr'] {
+		.viewportPosition {
+			right: 10em;
+		}
 	}
 
-	@include nav-list-item-mixin.list-item-mixin(name(item), $states);
+	&[data-direction='rtl'] {
+		.viewportPosition {
+			left: 10em;
+		}
+	}
 }
