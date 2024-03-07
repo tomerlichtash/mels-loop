@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getIcon } from 'components/icons';
-import Toggle from '../toggle/Toggle';
+import ToggleButton from '../toggle/toggle-button/ToggleButton';
 import styles from './ThemeSelect.module.scss';
 import classNames from 'classnames';
 
@@ -26,14 +26,14 @@ const ThemeSelect = ({
 	const isDark = theme === 'dark';
 
 	return (
-		<Toggle
+		<ToggleButton
 			title={label}
 			isToggled={isDark}
 			onClick={() => setTheme(isDark ? 'light' : 'dark')}
 			className={classNames(styles.root, className)}
 		>
 			{getIcon(theme)}
-		</Toggle>
+		</ToggleButton>
 	);
 };
 

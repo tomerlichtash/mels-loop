@@ -1,0 +1,11 @@
+@use '../Layout.meta' as layout;
+
+// menu ref values
+@function menuProp($prop, $state: '') {
+	@return layout.name(drawer-nav-item-#{$prop}, $state);
+}
+
+// toggle button ref values
+@function toggleBtnProp($prop, $state: '') {
+	@return layout.name(drawer-toggle-item-#{$prop}, $state);
+}

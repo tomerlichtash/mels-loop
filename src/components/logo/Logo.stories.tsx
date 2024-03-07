@@ -18,8 +18,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-	args: {},
-	render: function Render() {
-		return <Logo />;
+	args: {
+		mode: 'light',
+	},
+	render: function Render({ mode }) {
+		return <Logo mode={mode} />;
 	},
 };

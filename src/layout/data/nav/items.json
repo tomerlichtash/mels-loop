@@ -45,7 +45,7 @@
 		"url": "/about",
 		"locale": {
 			"title": "nav:items:pages:about:label",
-			"description": "MENU_ITEM_DESC_SHORT_ID_ABOUT"
+			"description": "nav:items:pages:about:desc"
 		}
 	},
 	{
@@ -54,8 +54,7 @@
 		"url": "/about",
 		"locale": {
 			"title": "nav:items:pages:about:label",
-			"description": "MENU_ITEM_DESC_SHORT_ID_ABOUT",
-			"buttonLabel": "button:learnMore"
+			"description": "nav:items:pages:about:desc"
 		}
 	},
 	{
@@ -64,8 +63,7 @@
 		"url": "/posts",
 		"locale": {
 			"title": "nav:items:pages:blog:label",
-			"description": "nav:items:pages:blog:desc",
-			"buttonLabel": "button:learnMore"
+			"description": "nav:items:pages:blog:desc"
 		}
 	},
 	{
@@ -74,8 +72,7 @@
 		"url": "/contribute",
 		"locale": {
 			"title": "nav:items:pages:contrib:label",
-			"description": "nav:items:pages:contrib:desc",
-			"buttonLabel": "button:learnMore"
+			"description": "nav:items:pages:contrib:desc"
 		}
 	},
 	{

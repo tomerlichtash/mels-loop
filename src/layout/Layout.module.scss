@@ -1,8 +1,6 @@
-@import '../components/component';
+@use './sidebar-menu/sidebarMenuMixin' as sidebar-mixin;
+@import './Layout.meta';
 
-$__stylesheet__: (
-	name: layout,
-);
 $footerMinheight: 20vh;
 
 @mixin page-container-mixin($var) {
@@ -14,6 +12,10 @@ $footerMinheight: 20vh;
 
 .root {
 	@include use-background-color;
+
+	.logo {
+		width: 20px;
+	}
 
 	.topbar {
 		@include use-background-color(name(header));
@@ -58,7 +60,7 @@ $footerMinheight: 20vh;
 			flex-direction: column;
 
 			&:first-child {
-				gap: 0.5em;
+				// gap: 0.5em;
 				max-width: 50%;
 			}
 
@@ -69,6 +71,24 @@ $footerMinheight: 20vh;
 					list-style: none;
 				}
 			}
+		}
+	}
+
+	.drawer {
+		@include sidebar-mixin.menu();
+
+		.menuHeader {
+			padding: 1em;
+			display: flex;
+			align-items: center;
+			gap: 1em;
+		}
+
+		.panel {
+			display: flex;
+			align-items: center;
+			gap: 1em;
+			padding: 1em;
 		}
 	}
 }

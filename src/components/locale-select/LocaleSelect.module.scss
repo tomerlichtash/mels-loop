@@ -13,11 +13,11 @@ $__stylesheet__: (
 	display: flex;
 
 	.item {
-		background-color: transparent;
-		border: none;
-		padding: 0;
+		// background-color: transparent;
+		// border: none;
+		// padding: 0;
 
-		@include buttons.topbar-item-toggle;
+		// @include buttons.topbar-item-toggle;
 
 		// @include buttonMixin.toggle-button-mixin;
 		// .button {

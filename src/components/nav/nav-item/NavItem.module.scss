@@ -1,15 +1,5 @@
-@import '../../component';
-
-$__stylesheet__: (
-	name: nav-item,
-);
-
-@mixin text-mixin($var) {
-	@include use-font-weight($var);
-	@include use-text-transform($var);
-	@include use-text-color($var);
-	@include use-background-color($var);
-}
+@use './NavItem.mixin' as mixins;
+@import './NavItem.meta';
 
 .root {
 	text-decoration: none;
@@ -31,6 +21,8 @@ $__stylesheet__: (
 		.icon {
 			position: relative;
 			top: 0.1em; // todo: use offset
+
+			@include use-text-color(name(icon));
 		}
 
 		.meta {
@@ -40,17 +32,31 @@ $__stylesheet__: (
 			@include use-gap(name(content));
 
 			.title {
-				@include text-mixin(name(title));
+				@include mixins.text-hooks-mixin(name(title));
 			}
 
 			.author,
 			.description {
-				@include text-mixin(name(subtitle));
+				@include mixins.text-hooks-mixin(name(subtitle));
 			}
 		}
 	}
 
 	&:hover {
 		@include use-background-color(name(), state(hovered));
+		.content {
+			.title {
+				@include use-text-color(name(title), state(hovered));
+			}
+
+			.author,
+			.description {
+				@include use-text-color(name(subtitle), state(hovered));
+			}
+
+			.icon {
+				@include use-text-color(name(icon), state(hovered));
+			}
+		}
 	}
 }

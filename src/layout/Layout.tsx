@@ -56,6 +56,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 
 	const isHome = pathname === '/';
 	const isMobile = screenWidth <= MIN_DESKTOP_WIDTH;
+	const oppositeTheme = theme === 'dark' ? 'light' : 'dark';
 
 	const { open: drawerOpen, toggle: toggleDrawer } = useDrawer(isMobile);
 
@@ -70,9 +71,9 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 
 	const themeLabel = useMemo(() => {
 		return t('common:button:toggleTheme', {
-			theme: t(`common:theme:${theme === 'dark' ? 'light' : 'dark'}:name`),
+			theme: t(`common:theme:${oppositeTheme}:name`),
 		});
-	}, [t, theme]);
+	}, [oppositeTheme, t]);
 
 	const navItems = useCallback(
 		(id: NavSectionId) => parseMenuItems(menuSectionData[id], menuItemsData, t),
@@ -93,7 +94,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 		() =>
 			navItems(NavSectionId.FOOTER).map((section) => (
 				<Container className={styles.column} key={unique.id()}>
-					<List className={styles.list} label={t(section.locale.title)}>
+					<List className={styles.list} label={section.locale.title}>
 						{section.items.map((item) => (
 							<ListItem
 								key={`footer-links-item-${item.id}`}
@@ -105,25 +106,21 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 									className={styles.link}
 									asChild={true}
 								>
-									{t(item.locale.title)}
+									{item.locale.title}
 								</Link>
 							</ListItem>
 						))}
 					</List>
 				</Container>
 			)),
-		[navItems, t]
+		[navItems]
 	);
-
-	const siteLicenseCurrentYear = `${new Date().getFullYear()}`;
-	const siteLicenseType = t('common:license:label');
-	const siteLicenseLabel = `${siteLicenseType}-${t(
-		'common:license:attributs'
-	)}`;
 
 	const siteTitle = t('common:site:title');
 	const siteSubtitle = t('common:site:subtitle');
-	const siteTitleWithLicense = `2021-${siteLicenseCurrentYear} ${siteLicenseLabel} ${siteTitle}`;
+	const siteLicense = t('common:site:license', {
+		toYear: new Date().getFullYear(),
+	});
 
 	const menuDrawer = useMemo(
 		() => (
@@ -131,30 +128,38 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 				direction={textDirection === 'ltr' ? 'right' : 'left'}
 				open={drawerOpen}
 				onClose={toggleDrawer}
-				className={styles.root}
+				className={styles.drawer}
 			>
-				<Scrollbar className={styles.root} textDirection={textDirection}>
+				<Scrollbar textDirection={textDirection} height="100vh">
 					<Button onClick={toggleDrawer} asChild>
 						{getIcon('close')}
 					</Button>
-					<Logo />
-					<TextLink title={siteTitle} linked={!isHome} href="/">
-						{siteTitle}
-					</TextLink>
+					<div className={styles.menuHeader}>
+						<Logo mode={oppositeTheme} className={styles.logo} />
+						<TextLink title={siteTitle} linked={!isHome} href="/" variant="h1">
+							{siteTitle}
+						</TextLink>
+					</div>
 					<Strip />
-					<LocaleSelect
-						defaultValue={lang}
-						options={localeItems}
-						onSelect={(id) => void setLocale(id)}
-					/>
-					<ThemeSelect
-						label={themeLabel}
-						theme={theme}
-						setTheme={setTheme}
-					></ThemeSelect>
+					<div className={styles.panel}>
+						<LocaleSelect
+							defaultValue={lang}
+							options={localeItems}
+							onSelect={(id) => id !== lang && void setLocale(id)}
+							className={styles.localeSelect}
+						/>
+						<Separator className={styles.separator} />
+						<ThemeSelect
+							label={themeLabel}
+							theme={theme}
+							setTheme={setTheme}
+							className={styles.themeSelect}
+						/>
+					</div>
 					<MenuDrawer
 						items={navItems(NavSectionId.SIDEBAR)}
 						onClose={toggleDrawer}
+						className={styles.menu}
 					/>
 				</Scrollbar>
 			</Drawer>
@@ -162,15 +167,16 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 		[
 			textDirection,
 			drawerOpen,
+			toggleDrawer,
+			oppositeTheme,
 			siteTitle,
 			isHome,
 			lang,
 			localeItems,
 			themeLabel,
 			theme,
-			navItems,
-			toggleDrawer,
 			setTheme,
+			navItems,
 			setLocale,
 		]
 	);
@@ -200,7 +206,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 				>
 					<header data-testid="topbar">
 						<Container alignItemsCenter className={styles.title}>
-							<Logo />
+							<Logo mode={theme || 'light'} className={styles.logo} />
 							<TextLink
 								variant="subtitle1"
 								title={siteTitle}
@@ -234,7 +240,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 										label={themeLabel}
 										theme={theme}
 										setTheme={setTheme}
-									></ThemeSelect>
+									/>
 								</Container>
 							</Container>
 						)}
@@ -247,10 +253,8 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 						<div className={styles.container}>
 							<div className={styles.columns}>
 								<div className={classNames(styles.column)}>
-									<Text variant="h1" aria-label={siteTitleWithLicense}>
-										<time>2021-{siteLicenseCurrentYear}</time>
-										<span>{siteLicenseType}</span>
-										<span>{siteTitle}</span>
+									<Text variant="h1" aria-label={siteLicense}>
+										{siteLicense}
 									</Text>
 									<Text>{siteSubtitle}</Text>
 									<Text>{t('common:site:shortSiteDescription')}</Text>

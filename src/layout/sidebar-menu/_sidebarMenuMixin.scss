@@ -1,0 +1,86 @@
+@use '../../components/toggle/toggle-button/ToggleButton.mixin' as
+	toggle-button-mixin;
+@use '../../components/toggle/toggle-group/ToggleGroup.mixin' as
+	toggle-group-mixin;
+@use '../../components/nav/nav-item/NavItem.mixin' as nav-item-mixin;
+@use '../../components/nav/menu-drawer/MenuDrawer.mixin' as drawer-mixin;
+@use '../../components/separator/Separator.mixin' as separator-mixin;
+@use './../Layout.meta' as layout;
+@use '../../styles/lib/refs';
+@use './helpers';
+
+@import '../../components/component';
+
+// toggle button ref values
+$toggle-text-color: refs.ref(helpers.toggleBtnProp(text-color));
+$toggle-text-color-hover: refs.ref(
+	helpers.toggleBtnProp(text-color, state(hovered))
+);
+$toggle-text-color-selected: refs.ref(
+	helpers.toggleBtnProp(text-color, state(selected))
+);
+$toggle-bg-color: refs.ref(helpers.toggleBtnProp(background-color));
+$toggle-bg-color-hover: refs.ref(
+	helpers.toggleBtnProp(background-color, state(hovered))
+);
+$toggle-bg-color-selected: refs.ref(
+	helpers.toggleBtnProp(background-color, state(selected))
+);
+
+@mixin menu {
+	@include use-background-color(layout.name(drawer));
+
+	@include drawer-mixin.list-item(
+		$border-size: 1px,
+		$border-style: solid,
+		$border-color: #a0a0a0
+	);
+
+	@include separator-mixin.color(
+		refs.ref(layout.name(drawer-panel-separator-color))
+	);
+
+	.menu {
+		@include nav-item-mixin.item(
+			$radius: refs.ref(helpers.menuProp(radius)),
+			$bg-color-hover:
+				refs.ref(helpers.menuProp(background-color, state(hovered)))
+		);
+
+		@include nav-item-mixin.title(
+			$text-transform: refs.ref(helpers.menuProp(title-text-transform)),
+			$font-weight: refs.ref(helpers.menuProp(title-font-weight)),
+			$text-color: refs.ref(helpers.menuProp(title-text-color)),
+			$text-color-hover:
+				refs.ref(helpers.menuProp(title-text-color, state(hovered)))
+		);
+
+		@include nav-item-mixin.subtitle(
+			$text-color: refs.ref(helpers.menuProp(subtitle-text-color)),
+			$text-color-hover:
+				refs.ref(helpers.menuProp(subtitle-text-color, state(hovered)))
+		);
+	}
+
+	.themeSelect {
+		@include toggle-button-mixin.button(
+			$text-color: $toggle-text-color,
+			$text-color-hover: $toggle-text-color-hover,
+			$text-color-selected: $toggle-text-color-selected,
+			$bg-color: $toggle-bg-color,
+			$bg-color-hover: $toggle-bg-color-hover,
+			$bg-color-selected: $toggle-bg-color-selected
+		);
+	}
+
+	.localeSelect {
+		@include toggle-group-mixin.button(
+			$text-color: $toggle-text-color,
+			$text-color-hover: $toggle-text-color-hover,
+			$text-color-selected: $toggle-text-color-selected,
+			$bg-color: $toggle-bg-color,
+			$bg-color-hover: $toggle-bg-color-hover,
+			$bg-color-selected: $toggle-bg-color-selected
+		);
+	}
+}

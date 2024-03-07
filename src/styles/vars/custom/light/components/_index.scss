@@ -23,12 +23,12 @@
 @use '../../../../../components/logo/Logo.module' as logo;
 @use '../../../../../components/loading-indicator/LoadingIndicator.module' as
 	loadingindicator;
-@use '../../../../../components/locale-select/LocaleSelect.module' as
-	localeselect;
-@use '../../../../../components/theme-select/ThemeSelect.module' as
-	themeselector;
+// @use '../../../../../components/locale-select/LocaleSelect.module' as
+// 	localeselect;
+// @use '../../../../../components/theme-select/ThemeSelect.module' as
+// 	themeselector;
 @use '../../../../../components/nav/menu-bar/MenuBar.module' as menubar;
-@use '../../../../../components/nav/menu-drawer/MenuDrawer.module' as menudrawer;
+// @use '../../../../../components/nav/menu-drawer/MenuDrawer.module' as menudrawer;
 @use '../../../../../components/nav/nav-item/NavItem.module' as nav-item;
 @use '../../../../../components/error-message/ErrorMessage.module' as
 	error-message;
@@ -44,11 +44,11 @@
 @use 'container' as container-theme;
 @use 'logo' as logo-theme;
 @use 'textLink' as text-link-theme;
-@use 'localeSelect' as locale-select-theme;
-@use 'themeSelector' as theme-select-theme;
+// @use 'localeSelect' as locale-select-theme;
+// @use 'themeSelector' as theme-select-theme;
 @use 'button' as button-theme;
 @use 'menuBar' as menu-bar-theme;
-@use 'menuDrawer' as menu-drawer-theme;
+// @use 'menuDrawer' as menu-drawer-theme;
 @use 'navItem' as nav-item-theme;
 @use 'text' as text-theme;
 @use 'annotation' as annotation-theme;
@@ -91,10 +91,10 @@ $index: (
 	// complex components
 	loadingindicator.name(): loading-indicator-theme.$vars,
 	menubar.name(): menu-bar-theme.$vars,
-	menudrawer.name(): menu-drawer-theme.$vars,
+	// menudrawer.name(): menu-drawer-theme.$vars,
 	nav-item.name(): nav-item-theme.$vars,
-	themeselector.name(): theme-select-theme.$vars,
-	localeselect.name(): locale-select-theme.$vars,
+	// themeselector.name(): theme-select-theme.$vars,
+	// localeselect.name(): locale-select-theme.$vars,
 	// other
 	line.name(): line-theme.$vars,
 	logo.name(): logo-theme.$vars,

@@ -4,5 +4,15 @@ $__stylesheet__: (
 	name: logo,
 );
 
-// .root {
-// }
+.root {
+	@include use-width;
+	@include use-height;
+
+	&[data-mode='light'] {
+		content: var(--ml-logo-dark-url);
+	}
+
+	&[data-mode='dark'] {
+		content: var(--ml-logo-light-url);
+	}
+}

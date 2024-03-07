@@ -1,11 +1,7 @@
-@import '../component';
-
-$__stylesheet__: (
-	name: separator,
-);
+@import './Separator.meta';
 
 .root {
-	background-color: black;
+	@include use-background-color;
 
 	&[data-orientation='vertical'] {
 		width: 1px;

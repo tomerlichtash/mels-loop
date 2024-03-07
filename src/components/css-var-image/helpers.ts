@@ -10,12 +10,11 @@ export const getCustomStyle = (
 	} = styles;
 	const cssVarName = `--${themePrefix}-${componentName}-${property}`;
 	const cssVarNameSize = `--${themePrefix}-${componentName}-size`;
-	const cssVarTarget = `var(--${themePrefix}-${varName})`;
 
 	const cssVarSize = size ? `${cssVarNameSize}: ${size};` : '';
 
 	return `:root{
-		${cssVarName}: ${cssVarTarget};
+		${cssVarName}--${varName}: ${`var(--${themePrefix}-${varName})`};
 		${cssVarSize};
 	}`;
 };

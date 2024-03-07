@@ -54,15 +54,15 @@ $__stylesheet__: (
 	$rootMarginRight: inherit,
 	$titleBgColor: inherit
 ) {
-	#{refs.varName(generic-content-layout-radius)}: $rootRadius;
-	#{refs.varName(generic-content-layout-shadow)}: $rootBoxShadow;
-	#{refs.varName(generic-content-layout-padding-top)}: $rootPaddingTop;
-	#{refs.varName(generic-content-layout-padding-bottom)}: $rootPaddingBottom;
-	#{refs.varName(generic-content-layout-padding-left)}: $rootPaddingLeft;
-	#{refs.varName(generic-content-layout-padding-right)}: $rootPaddingRight;
-	#{refs.varName(generic-content-layout-margin-top)}: $rootMarginTop;
-	#{refs.varName(generic-content-layout-margin-bottom)}: $rootMarginBottom;
-	#{refs.varName(generic-content-layout-margin-left)}: $rootMarginLeft;
-	#{refs.varName(generic-content-layout-margin-right)}: $rootMarginRight;
-	#{refs.varName(generic-content-layout-title-background-color)}: $titleBgColor;
+	#{refs.use(generic-content-layout-radius)}: $rootRadius;
+	#{refs.use(generic-content-layout-shadow)}: $rootBoxShadow;
+	#{refs.use(generic-content-layout-padding-top)}: $rootPaddingTop;
+	#{refs.use(generic-content-layout-padding-bottom)}: $rootPaddingBottom;
+	#{refs.use(generic-content-layout-padding-left)}: $rootPaddingLeft;
+	#{refs.use(generic-content-layout-padding-right)}: $rootPaddingRight;
+	#{refs.use(generic-content-layout-margin-top)}: $rootMarginTop;
+	#{refs.use(generic-content-layout-margin-bottom)}: $rootMarginBottom;
+	#{refs.use(generic-content-layout-margin-left)}: $rootMarginLeft;
+	#{refs.use(generic-content-layout-margin-right)}: $rootMarginRight;
+	#{refs.use(generic-content-layout-title-background-color)}: $titleBgColor;
 }

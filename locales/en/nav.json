@@ -1,11 +1,13 @@
 {
 	"sections:articles:label": "Articles",
 	"sections:contact:label": "Contact",
+	"sections:about:label": "About",
 
 	"items:articles:som:intro:label": "Preface",
 	"items:articles:som:bio:label": "Mel Kaye – CV",
 	"items:articles:som:missingBits:label": "Mel's Hack – The Missing Bits",
 	"items:pages:about:label": "About",
+	"items:pages:about:desc": "About Mel's Loop",
 	"items:pages:blog:label": "Blog",
 	"items:pages:blog:desc": "News and Updates",
 	"items:pages:resources:label": "Resources",

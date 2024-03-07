@@ -12,7 +12,7 @@
 	[data-locale='#{$locale}'] {
 		@include base(locale-#{$locale});
 
-		#{refs.varName(locale-direction)}: #{refs.compRef(
+		#{refs.use(locale-direction)}: #{refs.compRef(
 				locale-#{$locale},
 				direction
 			)};

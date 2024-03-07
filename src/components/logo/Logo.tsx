@@ -1,18 +1,17 @@
 import React from 'react';
 import styles from './Logo.module.scss';
 import classNames from 'classnames';
-import CssVarImage from '../css-var-image/CssVarImage';
 
 type LogoProps = {
+	mode: string;
 	className?: string;
 };
 
-const Logo = ({ className }: LogoProps) => (
-	<CssVarImage
-		varName="logo-url"
-		className={classNames(styles.root, className)}
-	/>
-);
+const Logo = ({ mode, className }: LogoProps) => {
+	return (
+		<div data-mode={mode} className={classNames(styles.root, className)} />
+	);
+};
 
 export default Logo;
 export type { LogoProps };

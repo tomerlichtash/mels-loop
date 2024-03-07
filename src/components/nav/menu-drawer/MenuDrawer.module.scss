@@ -1,12 +1,24 @@
-@import '../../component';
+@import './MenuDrawer.meta';
 
 $__stylesheet__: (
 	name: menu-drawer,
 );
 
 .root {
+	.sectionTitle {
+		padding: 1em;
+
+		@include use-border-top-style(name(section-title));
+		@include use-border-top-color(name(section-title));
+		@include use-border-top-size(name(section-title));
+		@include use-text-color;
+	}
+
 	.list {
-		padding: 0;
-		margin: 0;
+		.listItem:not(:last-child) {
+			@include use-border-bottom-style(name(list-item));
+			@include use-border-bottom-color(name(list-item));
+			@include use-border-bottom-size(name(list-item));
+		}
 	}
 }

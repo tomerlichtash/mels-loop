@@ -18,15 +18,15 @@ $states: merge.deep(
 );
 
 @function -text-color($state: '') {
-	@return compRef(name(), text-color, state($state));
+	@return compRef(name(), text-color, $state);
 }
 
 @function -bg-color($state: '') {
-	@return compRef(name(), background-color, state($state));
+	@return compRef(name(), background-color, $state);
 }
 
 @function -suffix-color($state: '') {
-	@return compRef(name(), astriek-color, state($state));
+	@return compRef(name(), astriek-color, $state);
 }
 
 $color: varName(popover-trigger-text-color);
@@ -38,8 +38,8 @@ $suffixColor: varName(term-suffix-text-color);
 		#{$suffixColor}: -suffix-color();
 
 		&:hover {
-			#{$color}: -text-color(hovered);
-			#{$suffixColor}: -suffix-color(hovered);
+			#{$color}: -text-color(state(hovered));
+			#{$suffixColor}: -suffix-color(state(hovered));
 		}
 
 		// todo: expand theme to support this state
@@ -51,9 +51,9 @@ $suffixColor: varName(term-suffix-text-color);
 	}
 
 	&[data-popover-state='open'] {
-		#{$color}: -text-color(selected);
-		#{$bgColor}: -bg-color(selected);
-		#{$suffixColor}: -suffix-color(selected);
+		#{$color}: -text-color(state(selected));
+		#{$bgColor}: -bg-color(state(selected));
+		#{$suffixColor}: -suffix-color(state(selected));
 
 		// todo: expand theme to support this state
 		// &:hover {

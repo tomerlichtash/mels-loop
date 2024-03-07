@@ -6,19 +6,19 @@
 // @use './vars/custom/dark';
 
 [data-ml-theme] {
+	// global assets
+	--ml-logo-light-url: url('../../public/assets/logo/ml-logo-light.png');
+	--ml-logo-dark-url: url('../../public/assets/logo/ml-logo-dark.png');
+	--ml-loading-indicator-url: url('../../public/assets/logo/ml-logo-dark.png');
+
+	// global vars
 	@include parser.compile(common.$vars, config.$theme-global-prefix);
 }
 
 [data-ml-theme='light'] {
-	--ml-logo-url: url('../../public/assets/logo/ml-logo-dark.png');
-	--ml-loading-indicator-url: url('../../public/assets/logo/ml-logo-dark.png');
-
 	@include parser.compile(light.$vars);
 }
 
 // [data-ml-theme='dark'] {
-// 	--ml-logo-url: url('../../public/assets/logo/ml-logo-light.png');
-// 	--ml-loading-indicator-url: url('../../public/assets/logo/ml-logo-light.png');
-
-// 	@include parser.compile(dark.$index);
+// 	// 	@include parser.compile(dark.$index);
 // }

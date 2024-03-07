@@ -11,7 +11,7 @@ export const Term = ({
 	className,
 }: PropsWithChildren<TermProps>): JSX.Element => (
 	<span className={classNames(styles.root, className)}>
-		<span className={styles.label}>{children}</span>
+		<dfn className={styles.label}>{children}</dfn>
 	</span>
 );
 

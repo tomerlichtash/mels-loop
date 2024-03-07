@@ -13,6 +13,7 @@ $__stylesheet__: (
 	--decoration-color: #000;
 
 	.label {
+		@include use-font-style;
 		@include popover.trigger(trigger.name());
 	}
 

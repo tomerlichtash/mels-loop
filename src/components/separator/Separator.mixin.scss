@@ -1,0 +1,7 @@
+@use './Separator.meta' as meta;
+@use '../../styles/lib/refs';
+
+@mixin color($color: blue) {
+	#{refs.use(meta.name(background-color))}: $color;
+	// --ml-separator-background-color: #{$color};
+}

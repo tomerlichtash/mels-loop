@@ -8,11 +8,7 @@ $__stylesheet__: (
 	display: flex;
 	flex-direction: column;
 
-	// .label {
-	// }
-
-	// .list {
-	// 	.item {
-	// 	}
-	// }
+	.list {
+		@include use-background-color;
+	}
 }

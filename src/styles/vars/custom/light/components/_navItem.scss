@@ -17,6 +17,9 @@ $vars: (
 		text-transform: uppercase,
 		font-weight: 700,
 	),
+	subtitle: (
+		text-tranform: uppercase,
+	),
 	comp.state(hovered): (
 		background-color: refs.ref(color-surface-main),
 	),

@@ -8,6 +8,7 @@ import List from '../../list/List';
 import NavItem from '../nav-item/NavItem';
 import styles from './MenuBar.module.scss';
 import type { NavItemDataProps, NavParsedNodes, NavProps } from '../types';
+import classNames from 'classnames';
 
 const renderItems = (items: NavItemDataProps[]) =>
 	items.map((item) => (
@@ -45,8 +46,11 @@ const renderSections = (sections: NavParsedNodes[]) =>
 		</NavigationMenu.Item>
 	));
 
-const MenuBar = ({ items, textDirection }: NavProps) => (
-	<NavigationMenu.Root className={styles.root} data-direction={textDirection}>
+const MenuBar = ({ items, textDirection, className }: NavProps) => (
+	<NavigationMenu.Root
+		className={classNames(styles.root, className)}
+		data-direction={textDirection}
+	>
 		<NavigationMenu.List className={styles.menuSectionTriggers}>
 			{renderSections(items)}
 			<NavigationMenu.Indicator className={styles.indicator}>

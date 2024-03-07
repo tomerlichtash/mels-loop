@@ -11,7 +11,7 @@ type CssVarImageProps = {
 
 const CssVarImage = ({ varName, size, className }: CssVarImageProps) => (
 	<>
-		<style>{getCustomStyle(styles, varName, size)}</style>
+		<style>{getCustomStyle(styles, varName, size)};</style>
 		<span className={classNames(styles.root, className)}></span>
 	</>
 );

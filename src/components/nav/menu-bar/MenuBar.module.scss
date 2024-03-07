@@ -1,16 +1,6 @@
 @use './menuBarMixins' as mixins;
 @use '../../../styles/lib/merge';
-@import '../../component';
-
-$__stylesheet__: (
-	name: site-horizontal-menu,
-);
-$states: merge.deep(
-	$COMPONENT_STATES,
-	(
-		opened: open,
-	)
-);
+@import './MenuBar.meta';
 
 .root {
 	@include mixins.caret-mixin(name(trigger-caret));

@@ -11,27 +11,28 @@
 	height: 2.286em;
 	padding: 0 6px;
 	min-width: 32px;
-	background: none;
+	// background: none;
 
-	&:hover {
-		background-color: refs.ref(color-surface-mid);
-		cursor: pointer;
-	}
+	// &:hover {
+	// 	background-color: refs.ref(color-surface-mid);
+	// 	cursor: pointer;
+	// }
 }
 
-@mixin topbar-menu-trigger {
+@mixin topbar-menu-trigger($var: refs.ref(color-surface-mid)) {
 	@include topbar-item-base;
 
 	&[data-state='open'],
 	&:hover {
-		background-color: refs.ref(color-surface-mid);
+		background-color: $var;
 	}
 }
 
-@mixin topbar-item-toggle {
-	@include topbar-item-base;
+@mixin topbar-item-toggle($var: refs.ref(color-surface-dark)) {
+	// @include topbar-item-base;
 
-	&[data-state='on'] {
-		background-color: refs.ref(color-surface-dark);
-	}
+	// &[data-state='on'] {
+	// 	background-color: $var;
+	// 	@include hooks.use-background-color(toggle-group-button);
+	// }
 }

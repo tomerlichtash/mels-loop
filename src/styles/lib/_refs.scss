@@ -22,8 +22,8 @@
 	@return #{'--'}#{$var};
 }
 
-// @public create
-@function varName($key, $prefix: '') {
+// @public use existing ref
+@function use($key, $prefix: '') {
 	@return -to-css-ref($key, prefix($prefix));
 }
 
