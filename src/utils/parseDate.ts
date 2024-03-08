@@ -1,6 +1,4 @@
-export const parseDate = (
-	dateString: string | number | null | undefined
-): Date => {
+export const parseDate = (dateString: string | number | null | undefined): Date => {
 	const t = typeof dateString;
 	if (t === 'number') {
 		return new Date(dateString);

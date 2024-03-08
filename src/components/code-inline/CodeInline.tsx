@@ -6,10 +6,7 @@ type CodeInlineProps = {
 	className?: string;
 };
 
-const CodeInline = ({
-	children,
-	className,
-}: PropsWithChildren<CodeInlineProps>): JSX.Element => (
+const CodeInline = ({ children, className }: PropsWithChildren<CodeInlineProps>): JSX.Element => (
 	<code className={classNames(styles.root, className)}>{children}</code>
 );
 

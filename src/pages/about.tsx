@@ -22,7 +22,10 @@ const About: NextPage<IPageProps> = (props) => {
 			<Head>
 				<title>{`${t('common:site:title')} – ${t('pages:about:title')}`}</title>
 			</Head>
-			<GenericContentLayout caption={title} title={abstract}>
+			<GenericContentLayout
+				caption={title}
+				title={abstract}
+			>
 				<Container flexDirection="column">{renderElements(pageData)}</Container>
 			</GenericContentLayout>
 		</Layout>
@@ -30,10 +33,6 @@ const About: NextPage<IPageProps> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) =>
-	mlNextUtils.getFolderStaticProps(
-		ContentTypes.About,
-		context.locale,
-		LoadFolderModes.Folder
-	);
+	mlNextUtils.getFolderStaticProps(ContentTypes.About, context.locale, LoadFolderModes.Folder);
 
 export default About;

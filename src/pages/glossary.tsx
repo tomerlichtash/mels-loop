@@ -22,7 +22,10 @@ const Glossary: NextPage<IPageProps> = (props) => {
 		return glossary_key ? (
 			<Link href={page.path}>{t(`glossary:term:${term.glossary_key}`)}</Link>
 		) : (
-			<Text key={key} className="error">
+			<Text
+				key={key}
+				className="error"
+			>
 				Missing glossary term data {page.id}
 			</Text>
 		);

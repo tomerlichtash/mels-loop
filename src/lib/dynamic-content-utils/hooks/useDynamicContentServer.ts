@@ -33,10 +33,7 @@ export const useDynamicContentServer = (url: string) => {
 
 		const queryTime = Date.now();
 
-		const itemData = contentUtils.urlToContentData(
-			url,
-			DynamicContentTypes.Glossary
-		);
+		const itemData = contentUtils.urlToContentData(url, DynamicContentTypes.Glossary);
 
 		if (itemData.type === DynamicContentTypes.None) {
 			setError(`Bad url ${url}`);
@@ -93,15 +90,7 @@ export const useDynamicContentServer = (url: string) => {
 		return () => {
 			removed = true;
 		};
-	}, [
-		url,
-		dynamicContentContext,
-		lang,
-		dynamicContentServer,
-		documentPath,
-		router.asPath,
-		t,
-	]);
+	}, [url, dynamicContentContext, lang, dynamicContentServer, documentPath, router.asPath, t]);
 
 	return { error, isLoading, item };
 };

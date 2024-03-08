@@ -19,9 +19,7 @@ export interface IParsedComponentData {
  * @param props
  * @returns
  */
-export const usePageData = (
-	props: IComponentContentData
-): IParsedComponentData => {
+export const usePageData = (props: IComponentContentData): IParsedComponentData => {
 	const [pageData, setPageData] = useState<IParsedPageData[]>(
 		mlNextBrowserUtils.getParsedPagedData(props.content)
 	);

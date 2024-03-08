@@ -3,11 +3,7 @@ import { ContentTypes } from 'types/content';
 import { mlApiUtils } from '../../lib/apiUtils';
 import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
 import { loadContentFolder } from '../../lib/loadFolderContent';
-import type {
-	IMLApiResponse,
-	IMLDynamicContentParams,
-	IMLDynamicContentResponse,
-} from 'types/api';
+import type { IMLApiResponse, IMLDynamicContentParams, IMLDynamicContentResponse } from 'types/api';
 import * as fsPath from 'path';
 import * as fileSystem from 'fs';
 import { arrayToMap } from 'utils/index';
@@ -65,10 +61,7 @@ const findFirstFolder = async (
  * @param res
  * @returns
  */
-export default async function handler(
-	_req: NextApiRequest,
-	res: NextApiResponse
-) {
+export default async function handler(_req: NextApiRequest, res: NextApiResponse) {
 	const params = _req.query as unknown as IMLDynamicContentParams;
 	try {
 		const response = await loadContent(params || {});
@@ -90,9 +83,7 @@ async function loadContent(
 		};
 	}
 	const clientPath = params.document || '';
-	const cacheKey = `dc-${contentType}-${clientPath}${clientPath && '-'}${
-		params.locale
-	}`;
+	const cacheKey = `dc-${contentType}-${clientPath}${clientPath && '-'}${params.locale}`;
 	try {
 		const contentPath = fsPath.resolve(process.cwd(), 'public');
 		console.log(`using content path ${contentPath}`);
@@ -130,10 +121,7 @@ async function loadContent(
 		};
 
 		// don't want to await before returning, so
-		mlApiUtils
-			.saveToCache(cacheKey, JSON.stringify({ data }))
-			.then(noop)
-			.catch(noop);
+		mlApiUtils.saveToCache(cacheKey, JSON.stringify({ data })).then(noop).catch(noop);
 		return Object.assign({ data }, { cache: false });
 	} catch (error) {
 		return { data: null, error: String(error) };

@@ -92,8 +92,14 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 	const footerLinks = useMemo(
 		() =>
 			navItems(NavSectionId.FOOTER).map((section) => (
-				<Container className={styles.column} key={`container-${section.id}`}>
-					<List className={styles.list} label={section.locale.title}>
+				<Container
+					className={styles.column}
+					key={`container-${section.id}`}
+				>
+					<List
+						className={styles.list}
+						label={section.locale.title}
+					>
 						{section.items.map((item) => (
 							<ListItem
 								key={`footer-links-item-${item.id}`}
@@ -129,13 +135,27 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 				onClose={toggleDrawer}
 				className={styles.drawer}
 			>
-				<Scrollbar textDirection={textDirection} height="100vh">
-					<Button onClick={toggleDrawer} asChild>
+				<Scrollbar
+					textDirection={textDirection}
+					height="100vh"
+				>
+					<Button
+						onClick={toggleDrawer}
+						asChild
+					>
 						{getIcon('close')}
 					</Button>
 					<div className={styles.menuHeader}>
-						<Logo mode={oppositeTheme} className={styles.logo} />
-						<TextLink title={siteTitle} linked={!isHome} href="/" variant="h1">
+						<Logo
+							mode={oppositeTheme}
+							className={styles.logo}
+						/>
+						<TextLink
+							title={siteTitle}
+							linked={!isHome}
+							href="/"
+							variant="h1"
+						>
 							{siteTitle}
 						</TextLink>
 					</div>
@@ -204,8 +224,14 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 					className={styles.topbar}
 				>
 					<header data-testid="topbar">
-						<Container alignItemsCenter className={styles.title}>
-							<Logo mode={theme || 'light'} className={styles.logo} />
+						<Container
+							alignItemsCenter
+							className={styles.title}
+						>
+							<Logo
+								mode={theme || 'light'}
+								className={styles.logo}
+							/>
 							<TextLink
 								variant="subtitle1"
 								title={siteTitle}
@@ -215,12 +241,18 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 								{siteTitle}
 							</TextLink>
 							<Separator />
-							<Text variant="subtitle4" className={styles.subtitle}>
+							<Text
+								variant="subtitle4"
+								className={styles.subtitle}
+							>
 								{siteSubtitle}
 							</Text>
 						</Container>
 						{isMobile ? (
-							<Button onClick={toggleDrawer} asChild>
+							<Button
+								onClick={toggleDrawer}
+								asChild
+							>
 								{getIcon('hamburger')}
 							</Button>
 						) : (
@@ -249,12 +281,19 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 				</Container>
 				<Container className={styles.page}>{children}</Container>
 				<Strip />
-				<Container fullWidth asChild className={styles.footer}>
+				<Container
+					fullWidth
+					asChild
+					className={styles.footer}
+				>
 					<footer className={styles.footer}>
 						<div className={styles.container}>
 							<div className={styles.columns}>
 								<div className={classNames(styles.column)}>
-									<Text variant="h1" aria-label={siteLicense}>
+									<Text
+										variant="h1"
+										aria-label={siteLicense}
+									>
 										{siteLicense}
 									</Text>
 									<Text>{siteSubtitle}</Text>

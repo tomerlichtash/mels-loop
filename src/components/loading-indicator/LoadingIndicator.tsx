@@ -9,10 +9,7 @@ type LoadingIndicatorProps = {
 	readonly label?: string;
 };
 
-const LoadingIndicator = ({
-	delay,
-	label,
-}: LoadingIndicatorProps): JSX.Element => {
+const LoadingIndicator = ({ delay, label }: LoadingIndicatorProps): JSX.Element => {
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {

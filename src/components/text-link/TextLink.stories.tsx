@@ -25,7 +25,11 @@ const Desktop: Story = {
 	},
 	render: function Render({ href, linked, variant }) {
 		return (
-			<TextLink href={href} linked={linked} variant={variant}>
+			<TextLink
+				href={href}
+				linked={linked}
+				variant={variant}
+			>
 				Text Link
 			</TextLink>
 		);

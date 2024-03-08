@@ -18,21 +18,9 @@
 	$b: calc(list.nth($rgb, 3) / 255);
 
 	// calculate luminance
-	$r: if(
-		$r <= 0.0393,
-		calc($r / 12.92),
-		math.pow(calc(($r + 0.055) / 1.055), 2.4)
-	);
-	$g: if(
-		$g <= 0.0393,
-		calc($g / 12.92),
-		math.div($g + 0.055, 1.055)
-	);
-	$b: if(
-		$b <= 0.0393,
-		calc($b / 12.92),
-		math.div($b + 0.055, 1.055)
-	);
+	$r: if($r <= 0.0393, calc($r / 12.92), math.pow(calc(($r + 0.055) / 1.055), 2.4));
+	$g: if($g <= 0.0393, calc($g / 12.92), math.div($g + 0.055, 1.055));
+	$b: if($b <= 0.0393, calc($b / 12.92), math.div($b + 0.055, 1.055));
 
 	@return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
 }
@@ -40,19 +28,12 @@
 @function -contrast-ratio($color1, $color2) {
 	$l1: -luminance($color1) + 0.05;
 	$l2: -luminance($color2) + 0.05;
-	$contrast: if(
-		$l1 > $l2,
-		calc($l1 / $l2),
-		calc($l2 / $l1)
-	);
+	$contrast: if($l1 > $l2, calc($l1 / $l2), calc($l2 / $l1));
 
 	@return $contrast;
 }
 
-@function generate(
-	$colors,
-	$prefix: config.$theme-namespace-prefix
-) {
+@function generate($colors, $prefix: config.$theme-namespace-prefix) {
 	$color-palette: ();
 
 	@each $key, $value in $colors {

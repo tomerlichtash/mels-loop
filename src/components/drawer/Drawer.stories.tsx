@@ -21,7 +21,10 @@ export const Primary: Story = {
 	},
 	render: function Render({ open, direction }) {
 		return (
-			<Drawer open={open} direction={direction}>
+			<Drawer
+				open={open}
+				direction={direction}
+			>
 				Drawer content
 			</Drawer>
 		);

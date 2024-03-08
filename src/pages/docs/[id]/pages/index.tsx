@@ -18,9 +18,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 	return paths;
 };
 
-export const getStaticProps: GetStaticProps = async (
-	context: GetStaticPropsContext
-) => {
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
 	const relativePath = await mlNextUtils.populateDynamicPath(
 		__filename,
 		context.params as { [key: string]: string }

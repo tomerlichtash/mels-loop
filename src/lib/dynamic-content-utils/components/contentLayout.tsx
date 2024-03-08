@@ -28,11 +28,7 @@ export const DynamicContentLayout = ({
 					title={t(`glossary:term:${term}`)}
 					term={lang !== 'en' && t(`glossaryEN:term:${term}`)}
 					sources={sources}
-					sourcesLabel={t(
-						`common:caption:source:${
-							sources.length > 1 ? 'multiple' : 'single'
-						}`
-					)}
+					sourcesLabel={t(`common:caption:source:${sources.length > 1 ? 'multiple' : 'single'}`)}
 				>
 					{children}
 				</ReferenceContentLayout>
@@ -44,7 +40,10 @@ export const DynamicContentLayout = ({
 	}
 
 	return (
-		<ContentLayout type={type} textDirection={textDirection}>
+		<ContentLayout
+			type={type}
+			textDirection={textDirection}
+		>
 			{dynamicLayout}
 		</ContentLayout>
 	);

@@ -3,10 +3,7 @@ export type IconAnimtationTypes = 'rotate' | 'frames';
 /**
  * The context is assumed to be cleared
  */
-export type AnimatorFunction = (
-	ctx: CanvasRenderingContext2D,
-	props: IFIProps
-) => string;
+export type AnimatorFunction = (ctx: CanvasRenderingContext2D, props: IFIProps) => string;
 
 export interface IFavIconAnimator {
 	run(): Promise<void>;

@@ -2,10 +2,7 @@ import { stringArrayToMap } from '../utils';
 import { MLNODE_TYPES } from 'types/nodes';
 import { DynamicContentTypes } from 'types/content';
 import type { IMLParsedNode } from 'types/models';
-import type {
-	INodeProcessorContext,
-	MLNodeProcessorFunction,
-} from 'types/parser/parser';
+import type { INodeProcessorContext, MLNodeProcessorFunction } from 'types/parser/parser';
 
 /** describes a dynamic content item: its type and id */
 interface IDynamicContentRecord {
@@ -38,10 +35,7 @@ export interface IContentUtils {
 	 * @param url
 	 * @param defaultType
 	 */
-	urlToContentData(
-		url: string,
-		defaultType?: DynamicContentTypes
-	): IDynamicContentRecord;
+	urlToContentData(url: string, defaultType?: DynamicContentTypes): IDynamicContentRecord;
 }
 
 class ContentUtils implements IContentUtils {
@@ -64,10 +58,7 @@ class ContentUtils implements IContentUtils {
 		};
 	}
 
-	public urlToContentData(
-		url: string,
-		defaultType?: DynamicContentTypes
-	): IDynamicContentRecord {
+	public urlToContentData(url: string, defaultType?: DynamicContentTypes): IDynamicContentRecord {
 		const contentData = {
 			type: this.urlToContentType(url, defaultType),
 			id: this.urlToContentId(url),
@@ -90,10 +81,7 @@ class ContentUtils implements IContentUtils {
 		return (id && id.replace('#', '')) || '';
 	}
 
-	private urlToContentType(
-		url: string,
-		defaultType: DynamicContentTypes
-	): DynamicContentTypes {
+	private urlToContentType(url: string, defaultType: DynamicContentTypes): DynamicContentTypes {
 		if (!url) {
 			return defaultType || DynamicContentTypes.None;
 		}

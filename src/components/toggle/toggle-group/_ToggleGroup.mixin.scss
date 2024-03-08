@@ -18,9 +18,7 @@
 
 	$bgColor: refs.use(item.name(button-background-color));
 	$bgColorHovered: refs.use(item.name(button-background-color, state(hovered)));
-	$bgColorSelected: refs.use(
-		item.name(button-background-color, state(selected))
-	);
+	$bgColorSelected: refs.use(item.name(button-background-color, state(selected)));
 
 	#{$textColor}: $text-color;
 	#{$textColorHovered}: $text-color-hover;

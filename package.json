@@ -41,6 +41,7 @@
 		"lint": "eslint . -f codeframe",
 		"lint:style": "stylelint --allow-empty-input \"**/*.{css,scss}\"",
 		"format:check": "npx prettier --config .prettierrc --ignore-path .prettierignore --check src",
+		"format:all": "npx prettier --config .prettierrc --ignore-path .prettierignore --write src",
 		"test:unit": "jest",
 		"test:unit:coverage": "jest --coverage",
 		"test:e2e": "NODE_OPTIONS='--no-warnings' playwright test",

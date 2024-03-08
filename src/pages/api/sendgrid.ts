@@ -20,9 +20,7 @@ const tpl = ({ fullName, email, message }: IEmailTemplate) => {
 	`;
 };
 
-export const validateRequest = (
-	body: Partial<IEmailTemplate>
-): Partial<IEmailTemplate> => {
+export const validateRequest = (body: Partial<IEmailTemplate>): Partial<IEmailTemplate> => {
 	const trim = (s: string, len: number) => String(s || '').substring(0, len);
 	body = body || {};
 	return {
@@ -49,9 +47,7 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 		res.status(200).json({ ...req.body });
 	} catch (error) {
 		console.warn('sendgrid error');
-		return res
-			.status((error.statusCode as number) || 500)
-			.json({ error: error.message });
+		return res.status((error.statusCode as number) || 500).json({ error: error.message });
 	}
 
 	return res.status(200).json({ error: '' });

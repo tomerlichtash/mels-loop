@@ -16,9 +16,7 @@ export class MLParseContext {
 
 		this._mode = {
 			...mode,
-			parseMode: VALID_PARSE_MODES.has(parseMode)
-				? parseMode
-				: MLParseModes.NORMAL,
+			parseMode: VALID_PARSE_MODES.has(parseMode) ? parseMode : MLParseModes.NORMAL,
 		};
 
 		this._metaData = clonePlainObject(metaData);
@@ -29,10 +27,7 @@ export class MLParseContext {
 	}
 
 	public clone(mode: Partial<IContentParseOptions>): MLParseContext {
-		const newMode: IContentParseOptions = Object.assign(
-			Object.assign({}, this.mode),
-			mode
-		);
+		const newMode: IContentParseOptions = Object.assign(Object.assign({}, this.mode), mode);
 
 		const ret = new MLParseContext(newMode, this._metaData);
 

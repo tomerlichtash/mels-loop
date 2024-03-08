@@ -2,10 +2,7 @@ type GetErrorMessageProps = {
 	validity: ValidityState;
 	translateFn?: (s: string) => string;
 };
-export const getValidityErrorMessage = ({
-	validity,
-	translateFn,
-}: GetErrorMessageProps) => {
+export const getValidityErrorMessage = ({ validity, translateFn }: GetErrorMessageProps) => {
 	const {
 		valueMissing,
 		typeMismatch,

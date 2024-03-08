@@ -1,11 +1,6 @@
 import { parseDate } from './parseDate';
 
-const ALLOWED_MERGE_TYPES: Array<string> = [
-	'object',
-	'string',
-	'number',
-	'boolean',
-];
+const ALLOWED_MERGE_TYPES: Array<string> = ['object', 'string', 'number', 'boolean'];
 
 /**
  * Sort-of-safely merge data into an object.
@@ -41,18 +36,14 @@ export const safeMerge = (into: object, data: object | string): object => {
 			} else if (myVal instanceof Date && tSource === 'string') {
 				into[key] = parseDate(val as string);
 			} else {
-				console.warn(
-					`merge data: cannot merge field ${key} of type ${tSource} into object`
-				);
+				console.warn(`merge data: cannot merge field ${key} of type ${tSource} into object`);
 			}
 		} else {
 			// target field is primitive, check source field
 			if (tSource !== 'object') {
 				into[key] = val;
 			} else {
-				console.warn(
-					`merge data: cannot merge field ${key} of type ${tSource} into ${tTarget}}`
-				);
+				console.warn(`merge data: cannot merge field ${key} of type ${tSource} into ${tTarget}}`);
 			}
 		}
 	});

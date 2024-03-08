@@ -35,17 +35,13 @@ const FontFaceDecl = ({ name, id, href, weight, format }: IFontFaceDecl) => {
 		['font-weight', weight],
 		['font-display', 'swap'],
 	];
-	return `@font-face{${fontFaceProps
-		.map((keyVal) => `${keyVal[0]}: ${keyVal[1]};`)
-		.join('')}}`;
+	return `@font-face{${fontFaceProps.map((keyVal) => `${keyVal[0]}: ${keyVal[1]};`).join('')}}`;
 };
 
 export const fontFaceDecls = siteFontData
 	.map(({ id, name, family }) => {
 		return family
-			.map(({ weight, format, href }) =>
-				FontFaceDecl({ name, id, href, weight, format })
-			)
+			.map(({ weight, format, href }) => FontFaceDecl({ name, id, href, weight, format }))
 			.join('');
 	})
 	.join('');

@@ -13,9 +13,7 @@ type DynamicContentViewerProps = {
 	url: string;
 };
 
-export const DynamicContentViewer = ({
-	url,
-}: DynamicContentViewerProps): JSX.Element => {
+export const DynamicContentViewer = ({ url }: DynamicContentViewerProps): JSX.Element => {
 	const { error, isLoading, item } = useDynamicContentServer(url);
 	const { t } = useLocale();
 
@@ -38,19 +36,12 @@ export const DynamicContentViewer = ({
 		return <></>;
 	}
 
-	const itemData = contentUtils.urlToContentData(
-		url,
-		DynamicContentTypes.Glossary
-	);
+	const itemData = contentUtils.urlToContentData(url, DynamicContentTypes.Glossary);
 
 	const { type } = itemData;
 	const { metaData } = item;
 
-	const {
-		source_name: sourceName,
-		source_url: sourceUrl,
-		glossary_key: term,
-	} = metaData;
+	const { source_name: sourceName, source_url: sourceUrl, glossary_key: term } = metaData;
 
 	const sources: RefOrSourceProps[] = sourceName && [
 		{
@@ -60,7 +51,11 @@ export const DynamicContentViewer = ({
 	];
 
 	return (
-		<DynamicContentLayout type={type} term={term} sources={sources}>
+		<DynamicContentLayout
+			type={type}
+			term={term}
+			sources={sources}
+		>
 			{renderNodes(elements)}
 		</DynamicContentLayout>
 	);

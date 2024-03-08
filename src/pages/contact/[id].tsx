@@ -12,9 +12,7 @@ export default function Doc(props: IPageProps) {
 export const getStaticPaths: GetStaticPaths = async (context) =>
 	mlNextUtils.getFolderStaticPaths(ContentTypes.Contact, context.locales);
 
-export const getStaticProps: GetStaticProps = async (
-	context: GetStaticPropsContext
-) =>
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) =>
 	mlNextUtils.getFolderStaticProps(
 		`${ContentTypes.Contact}/${context.params.id as string}`,
 		context.locale,

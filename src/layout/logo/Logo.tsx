@@ -9,7 +9,10 @@ type LogoProps = {
 
 const Logo = ({ mode, className }: LogoProps) => {
 	return (
-		<div data-mode={mode} className={classNames(styles.root, className)} />
+		<div
+			data-mode={mode}
+			className={classNames(styles.root, className)}
+		/>
 	);
 };
 

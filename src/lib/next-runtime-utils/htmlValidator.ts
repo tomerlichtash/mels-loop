@@ -1,8 +1,5 @@
 import { StringMap } from 'types/models';
-import {
-	CaseInsensitiveMap,
-	CaseInsensitiveSet,
-} from '../caseInsensitiveCollections';
+import { CaseInsensitiveMap, CaseInsensitiveSet } from '../caseInsensitiveCollections';
 
 /** Provides utility functions for App Specific validating HTML content */
 interface IHTMLValidator {
@@ -53,7 +50,9 @@ class HTMLValidator implements IHTMLValidator {
 			});
 		});
 		if (!this.attributeMap.has('*')) {
-			this.attributeMap.set('*', { valid: new CaseInsensitiveSet() });
+			this.attributeMap.set('*', {
+				valid: new CaseInsensitiveSet(),
+			});
 		}
 	}
 
@@ -61,10 +60,7 @@ class HTMLValidator implements IHTMLValidator {
 		if (!tag) {
 			return false;
 		}
-		return (
-			this.attributeMap.get('*').valid.has(key) ||
-			this.attributeMap.get(tag)?.valid.has(key)
-		);
+		return this.attributeMap.get('*').valid.has(key) || this.attributeMap.get(tag)?.valid.has(key);
 	}
 
 	filterAttributesFor(tag: string, attributes: StringMap): StringMap {

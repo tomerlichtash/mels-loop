@@ -21,7 +21,10 @@ const Docs: NextPage<IPageProps> = (props) => {
 						{metaData.map((page, index) => {
 							const key = `doc-${index}`;
 							return (
-								<li className="item" key={key}>
+								<li
+									className="item"
+									key={key}
+								>
 									<Link href={page.path}>{page.metaData.title}</Link>
 								</li>
 							);

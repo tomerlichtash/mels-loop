@@ -20,7 +20,10 @@ const App = ({ Component, pageProps }: AppProps<IPageProps>) => {
 			attribute="data-ml-theme"
 		>
 			<PageProvider documentPath={pageProps.documentPath}>
-				<style jsx global>
+				<style
+					jsx
+					global
+				>
 					{fontStyles}
 				</style>
 				<Component {...pageProps} />

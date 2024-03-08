@@ -6,10 +6,7 @@ type CodeProps = {
 	className?: string;
 };
 
-const CodeBlock = ({
-	children,
-	className,
-}: PropsWithChildren<CodeProps>): JSX.Element => (
+const CodeBlock = ({ children, className }: PropsWithChildren<CodeProps>): JSX.Element => (
 	<div className={classNames(styles.root, className)}>
 		<pre className={styles.pre}>
 			<code className={styles.code}>{children}</code>

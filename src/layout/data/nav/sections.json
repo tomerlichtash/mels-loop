@@ -5,12 +5,7 @@
 			"locale": {
 				"title": "nav:sections:articles:label"
 			},
-			"items": [
-				"preface",
-				"mel-kaye-bio",
-				"mels-hack-the-missing-bits",
-				"resources"
-			]
+			"items": ["preface", "mel-kaye-bio", "mels-hack-the-missing-bits", "resources"]
 		},
 		{
 			"id": "contact",
@@ -26,12 +21,7 @@
 			"locale": {
 				"title": "nav:sections:articles:label"
 			},
-			"items": [
-				"preface",
-				"mel-kaye-bio",
-				"mels-hack-the-missing-bits",
-				"resources"
-			]
+			"items": ["preface", "mel-kaye-bio", "mels-hack-the-missing-bits", "resources"]
 		},
 		{
 			"id": "about",

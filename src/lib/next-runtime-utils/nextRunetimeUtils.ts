@@ -24,8 +24,7 @@ class MLNextRuntimeUtils implements IMLNextBrowserUtils {
 		if (!pageData) {
 			return [];
 		}
-		const parsedData =
-			typeof pageData === 'string' ? JSON.parse(pageData) : pageData;
+		const parsedData = typeof pageData === 'string' ? JSON.parse(pageData) : pageData;
 
 		return Array.isArray(parsedData) ? parsedData : [];
 	}

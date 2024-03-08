@@ -38,7 +38,9 @@ interface IMarkdownParser {
 }
 
 class MarkdownParser implements IMarkdownParser {
-	private readonly nodeProcessorMap: { [name: string]: ParsedNodeProcessor };
+	private readonly nodeProcessorMap: {
+		[name: string]: ParsedNodeProcessor;
+	};
 
 	constructor() {
 		this.nodeProcessorMap = {
@@ -59,9 +61,7 @@ class MarkdownParser implements IMarkdownParser {
 		const ctx = new MLParseContext(mode, metaData);
 		const ids = new CaseInsensitiveMap<IMLParsedNode>();
 
-		const result = nodes
-			.map((node) => this.processOneASTNode(node, ctx))
-			.filter(Boolean);
+		const result = nodes.map((node) => this.processOneASTNode(node, ctx)).filter(Boolean);
 
 		result.forEach((res) => this.updateLinksInNode(res, ctx));
 		result.forEach((res) => this.promoteInlinesInNode(res, ctx)); // this.promoteInlines(result, ctx);
@@ -72,10 +72,7 @@ class MarkdownParser implements IMarkdownParser {
 		return this.applyNodeProcessors(result, ctx);
 	}
 
-	private processListNode(
-		node: ParsedNode,
-		context: MLParseContext
-	): IMLParsedNode {
+	private processListNode(node: ParsedNode, context: MLParseContext): IMLParsedNode {
 		const resultNode: IMLParsedNode = {
 			type: mdUtils.nodeTypeToMLType(node.type, context),
 			ordered: Boolean(node.ordered),
@@ -115,10 +112,7 @@ class MarkdownParser implements IMarkdownParser {
 	 * @param context
 	 * @returns
 	 */
-	private processLinkDefinition(
-		node: ParsedNode,
-		context: MLParseContext
-	): IMLParsedNode {
+	private processLinkDefinition(node: ParsedNode, context: MLParseContext): IMLParsedNode {
 		const def = (node.def || '').toLowerCase();
 
 		context.linkDefs[def] = {
@@ -132,10 +126,7 @@ class MarkdownParser implements IMarkdownParser {
 		return null;
 	}
 
-	private processOneASTNode(
-		node: ParsedNode,
-		context: MLParseContext
-	): IMLParsedNode {
+	private processOneASTNode(node: ParsedNode, context: MLParseContext): IMLParsedNode {
 		if (this.isIgnoredASTNode(node)) {
 			return null;
 		}
@@ -143,10 +134,7 @@ class MarkdownParser implements IMarkdownParser {
 		node = mdUtils.sanitizeHTML(node);
 
 		if (Array.isArray(node.items || node.content)) {
-			return this.parsedNodeToMLNode(
-				this.processTextChildren(node, context),
-				context
-			);
+			return this.parsedNodeToMLNode(this.processTextChildren(node, context), context);
 		} else {
 			const processor = this.nodeProcessorMap[node.type];
 
@@ -171,20 +159,20 @@ class MarkdownParser implements IMarkdownParser {
 		const id = node.attributes?.id;
 
 		if (id) {
-			Object.assign(node, { elementId: `${node.type}-${id}` });
+			Object.assign(node, {
+				elementId: `${node.type}-${id}`,
+			});
 
 			if (map.has(id)) {
 				console.warn(`
-				Document contains more than one element with id ${id}, previous: ${
-					map.get(id).type
-				} current ${node.type}`);
+				Document contains more than one element with id ${id}, previous: ${map.get(id).type} current ${
+					node.type
+				}`);
 			}
 			map.set(id, node);
 		}
 
-		(node.children || []).forEach((n) =>
-			this.processElementIds(n, context, map)
-		);
+		(node.children || []).forEach((n) => this.processElementIds(n, context, map));
 	}
 
 	/**
@@ -206,14 +194,14 @@ class MarkdownParser implements IMarkdownParser {
 			if (match) {
 				const target = map.get(match[1]);
 				if (target) {
-					Object.assign(node, { target: `#${target.elementId}` });
+					Object.assign(node, {
+						target: `#${target.elementId}`,
+					});
 					this.processAnchorLinkText(node, target, context);
 				}
 			}
 		} else {
-			(node.children || []).forEach((n) =>
-				this.processIdLinks(n, context, map)
-			);
+			(node.children || []).forEach((n) => this.processIdLinks(n, context, map));
 		}
 	}
 
@@ -231,9 +219,7 @@ class MarkdownParser implements IMarkdownParser {
 		const tmpl = MLTYPE_TO_LINK_TEXT_MAP.get(target.type);
 
 		const text = tmpl
-			? mdUtils.translateString(
-					tmpl.replace(INDEX_REGEXP, String(target.sequence))
-			  )
+			? mdUtils.translateString(tmpl.replace(INDEX_REGEXP, String(target.sequence)))
 			: String(target.sequence);
 
 		node.children.length = 0;
@@ -263,10 +249,7 @@ class MarkdownParser implements IMarkdownParser {
 		}
 	}
 
-	private promoteInlinesInNode(
-		node: IMLParsedNode,
-		context: MLParseContext
-	): void {
+	private promoteInlinesInNode(node: IMLParsedNode, context: MLParseContext): void {
 		const children = node.children;
 
 		if (!Array.isArray(children) || children.length < 1) {
@@ -288,10 +271,7 @@ class MarkdownParser implements IMarkdownParser {
 	 * @param node
 	 * @param context
 	 */
-	private promoteParagraphContent(
-		node: IMLParsedNode,
-		context: MLParseContext
-	): void {
+	private promoteParagraphContent(node: IMLParsedNode, context: MLParseContext): void {
 		void context; // prevent warning, maintain general function signature
 		const children = node.children;
 		const newChildren: IMLParsedNode[] = this.collectInlines(node);
@@ -312,10 +292,7 @@ class MarkdownParser implements IMarkdownParser {
 		return inlines;
 	}
 
-	private parsedNodeToMLNode(
-		node: ParsedNode,
-		context: MLParseContext
-	): IMLParsedNode {
+	private parsedNodeToMLNode(node: ParsedNode, context: MLParseContext): IMLParsedNode {
 		if (this.isIgnoredASTNode(node)) {
 			return null;
 		}
@@ -348,9 +325,7 @@ class MarkdownParser implements IMarkdownParser {
 		const parseMode = mdUtils.extractParseMode(node, context);
 
 		const newContext =
-			parseMode !== context.mode.parseMode
-				? context.clone({ parseMode })
-				: context;
+			parseMode !== context.mode.parseMode ? context.clone({ parseMode }) : context;
 
 		const resultNode: IMLParsedNode = {
 			type: mlType,
@@ -361,9 +336,7 @@ class MarkdownParser implements IMarkdownParser {
 			target: mdUtils.toValue(node.target, null),
 			level: mdUtils.toValue(node.level, null),
 			text: typeof node.content === 'string' ? node.content : null,
-			attributes:
-				(isHTML && node.attributes && Object.fromEntries(node.attributes)) ||
-				null,
+			attributes: (isHTML && node.attributes && Object.fromEntries(node.attributes)) || null,
 		};
 
 		const children = mdUtils.findArrayPart(node);
@@ -372,11 +345,9 @@ class MarkdownParser implements IMarkdownParser {
 			return resultNode;
 		}
 
-		let currentLine: IMLParsedNode =
-			parseMode === MLParseModes.VERSE ? null : resultNode;
+		let currentLine: IMLParsedNode = parseMode === MLParseModes.VERSE ? null : resultNode;
 
-		const isInlineContainer =
-			this.isInlineParsedNode(node) || this.isTextContainer(node);
+		const isInlineContainer = this.isInlineParsedNode(node) || this.isTextContainer(node);
 
 		for (let i = 0, len = children.length; i < len; ++i) {
 			const child = children[i];
@@ -423,10 +394,7 @@ class MarkdownParser implements IMarkdownParser {
 	 * @param context
 	 * @returns
 	 */
-	private applyNodeProcessors(
-		nodes: IMLParsedNode[],
-		context: MLParseContext
-	): IMLParsedNode[] {
+	private applyNodeProcessors(nodes: IMLParsedNode[], context: MLParseContext): IMLParsedNode[] {
 		const mode = context.mode;
 
 		if (!mode.nodeProcessors || !mode.nodeProcessors.length) {
@@ -444,9 +412,7 @@ class MarkdownParser implements IMarkdownParser {
 
 		const processorContext = new NodeProcessorContext(context);
 
-		return nodes.map((node) =>
-			this.applyProcessorsToNode(node, processorContext, processor)
-		);
+		return nodes.map((node) => this.applyProcessorsToNode(node, processorContext, processor));
 	}
 
 	/**
@@ -484,10 +450,7 @@ class MarkdownParser implements IMarkdownParser {
 	 * @param node
 	 * @param context
 	 */
-	private processOneFigure(
-		node: IMLParsedNode,
-		context: MLParseContext
-	): IFigureInfo {
+	private processOneFigure(node: IMLParsedNode, context: MLParseContext): IFigureInfo {
 		const config = context.metaData.figures;
 
 		const attributes = node.attributes || {},
@@ -495,9 +458,7 @@ class MarkdownParser implements IMarkdownParser {
 			tmpl = customCaption || config.template;
 
 		// 0. Find a caption child
-		const captionNodes = node.children?.filter(
-				(c) => c.type === MLNODE_TYPES.FIGCAPTION
-			),
+		const captionNodes = node.children?.filter((c) => c.type === MLNODE_TYPES.FIGCAPTION),
 			nCaptions = captionNodes?.length;
 
 		// 2. If more than one, throw
@@ -532,7 +493,9 @@ class MarkdownParser implements IMarkdownParser {
 		}
 
 		const figIndex = context.indexer.nextIndex('figure');
-		Object.assign(node, { sequence: figIndex + context.metaData.figures.base });
+		Object.assign(node, {
+			sequence: figIndex + context.metaData.figures.base,
+		});
 		this.processCaptionNode(captionNode, context);
 
 		// 1.2 otherwise Create a caption child and append to node1
@@ -549,21 +512,15 @@ class MarkdownParser implements IMarkdownParser {
 	 * @param context
 	 * @returns
 	 */
-	private processCaptionNode(
-		node: IMLParsedNode,
-		context: MLParseContext
-	): IMLParsedNode {
+	private processCaptionNode(node: IMLParsedNode, context: MLParseContext): IMLParsedNode {
 		if (!node) {
 			return node;
 		}
 
 		if (node.text) {
-			const ind =
-				context.indexer.currentIndex('figure') + context.metaData.figures.base;
+			const ind = context.indexer.currentIndex('figure') + context.metaData.figures.base;
 
-			const newText = mdUtils.translateString(
-				node.text.replace(INDEX_REGEXP, ind.toString())
-			);
+			const newText = mdUtils.translateString(node.text.replace(INDEX_REGEXP, ind.toString()));
 
 			Object.assign(node, { text: newText });
 		} else if (node.children?.length) {
@@ -584,10 +541,7 @@ class MarkdownParser implements IMarkdownParser {
 	 * @param node
 	 * @param context
 	 */
-	private updateLinksInNode(
-		node: IMLParsedNode,
-		context: MLParseContext
-	): void {
+	private updateLinksInNode(node: IMLParsedNode, context: MLParseContext): void {
 		const children = node.children;
 
 		if (!Array.isArray(children) || children.length < 1) {
@@ -676,10 +630,7 @@ class MarkdownParser implements IMarkdownParser {
 	/**********************************************************
 	 * PROCESS TEXT CHILDREN
 	 *********************************************************/
-	private processTextChildren(
-		node: ParsedNode,
-		context: MLParseContext
-	): ParsedNode {
+	private processTextChildren(node: ParsedNode, context: MLParseContext): ParsedNode {
 		if (!node) {
 			return node;
 		}
@@ -693,9 +644,7 @@ class MarkdownParser implements IMarkdownParser {
 		const parseMode = mdUtils.extractParseMode(node, context);
 
 		const newContext: MLParseContext =
-			parseMode !== context.mode.parseMode
-				? context.clone({ parseMode })
-				: context;
+			parseMode !== context.mode.parseMode ? context.clone({ parseMode }) : context;
 
 		const processText =
 			parseMode === MLParseModes.VERSE
@@ -780,8 +729,7 @@ class MarkdownParser implements IMarkdownParser {
 	 * NODE TYPE MATCHERS
 	 ******************************************/
 	private isTextContainer(nodeOrType: ParsedNode | ASTNODE_TYPES): boolean {
-		const type: ASTNODE_TYPES =
-			typeof nodeOrType === 'string' ? nodeOrType : nodeOrType.type;
+		const type: ASTNODE_TYPES = typeof nodeOrType === 'string' ? nodeOrType : nodeOrType.type;
 		return TEXT_CONTAINER_TYPES.has(type);
 	}
 

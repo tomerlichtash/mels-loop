@@ -4,8 +4,7 @@ const ruleName = 'ml-sasslib/module-metadata';
 const moduleMetaNamespace = `$__stylesheet__`;
 
 const messages = stylelint.utils.ruleMessages(ruleName, {
-	expectedVariable: (variableName) =>
-		`Expected module to define "${variableName}"`,
+	expectedVariable: (variableName) => `Expected module to define "${variableName}"`,
 	expectedMap: () => `Variable "${moduleMetaNamespace}" must be a map`,
 	expectedStringProperty: () =>
 		`Property 'name' of variable "${moduleMetaNamespace}" must be a string`,
@@ -41,10 +40,7 @@ module.exports = stylelint.createPlugin(ruleName, (isEnabled) => {
 			});
 		} else {
 			// Check if the variable is a map
-			if (
-				!stylesheetVariable.startsWith('(') ||
-				!stylesheetVariable.endsWith(')')
-			) {
+			if (!stylesheetVariable.startsWith('(') || !stylesheetVariable.endsWith(')')) {
 				stylelint.utils.report({
 					message: messages.expectedMap(),
 					node: root,
@@ -56,9 +52,7 @@ module.exports = stylelint.createPlugin(ruleName, (isEnabled) => {
 
 			// Parse the variable value as a map
 			const mapValue = stylesheetVariable.slice(1, -1);
-			const mapItems = mapValue
-				.split(',')
-				.map((item) => item.trim().split(':'));
+			const mapItems = mapValue.split(',').map((item) => item.trim().split(':'));
 			const map = Object.fromEntries(mapItems);
 
 			// Check if the map contains a 'name' property

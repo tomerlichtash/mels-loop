@@ -8,14 +8,8 @@ type DateFormatProps = {
 	className?: string;
 };
 
-const DateFormat = ({
-	date,
-	format = 'MM/dd/yy',
-	className,
-}: DateFormatProps): JSX.Element => (
-	<time className={classNames(styles.root, className)}>
-		{dateFormat(date, format)}
-	</time>
+const DateFormat = ({ date, format = 'MM/dd/yy', className }: DateFormatProps): JSX.Element => (
+	<time className={classNames(styles.root, className)}>{dateFormat(date, format)}</time>
 );
 
 export default DateFormat;

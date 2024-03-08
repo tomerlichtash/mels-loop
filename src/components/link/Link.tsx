@@ -34,7 +34,10 @@ const Link = ({
 			className={classNames(styles.root, className)}
 			title={title}
 		>
-			<NextLink href={href} target={target}>
+			<NextLink
+				href={href}
+				target={target}
+			>
 				{children || label}
 			</NextLink>
 		</Comp>

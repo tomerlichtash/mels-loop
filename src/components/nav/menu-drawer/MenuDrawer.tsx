@@ -19,7 +19,10 @@ const MenuDrawer = ({ items, onClose, className }: VerticalNavProps) => (
 				<div className={styles.sectionTitle}>{section.locale.title}</div>
 				<List className={styles.list}>
 					{section.items.map((item) => (
-						<ListItem key={`list-item-${item.id}`} className={styles.listItem}>
+						<ListItem
+							key={`list-item-${item.id}`}
+							className={styles.listItem}
+						>
 							<NavItem
 								{...item}
 								onClick={onClose}

@@ -21,7 +21,10 @@ export const Primary: Story = {
 	},
 	render: function Render({ message, issueTrackerUrl }) {
 		return (
-			<ErrorMessage message={message} issueTrackerUrl={issueTrackerUrl}>
+			<ErrorMessage
+				message={message}
+				issueTrackerUrl={issueTrackerUrl}
+			>
 				Report
 			</ErrorMessage>
 		);

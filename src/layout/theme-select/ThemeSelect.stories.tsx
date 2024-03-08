@@ -23,7 +23,13 @@ const Desktop: Story = {
 		theme: 'light',
 	},
 	render: function Render({ label }) {
-		return <ThemeSelect label={label} theme="light" setTheme={() => {}} />;
+		return (
+			<ThemeSelect
+				label={label}
+				theme="light"
+				setTheme={() => {}}
+			/>
+		);
 	},
 };
 

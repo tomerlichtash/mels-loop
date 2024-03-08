@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import { Field, Formik, Form as FormikForm } from 'formik';
 import { getIcon } from 'components/icons';
-import {
-	Container,
-	Button,
-	LoadingIndicator,
-	Recaptcha,
-	CustomField,
-} from 'components/index';
+import { Container, Button, LoadingIndicator, Recaptcha, CustomField } from 'components/index';
 import { handleSubmit } from 'components/recaptcha/Recaptcha';
 import { ApiRoutes } from '../../apiRoutes';
 import styles from './Form.module.scss';
@@ -73,40 +67,33 @@ const Form = ({
 							resetForm();
 							onSuccess?.();
 						},
-						onError: (e) =>
-							onError((e as Error)?.message || 'Form submit error'),
+						onError: (e) => onError((e as Error)?.message || 'Form submit error'),
 					});
 				}}
 			>
 				{({ dirty, isValid, touched, errors }) => (
 					<FormikForm>
 						<div className={styles.fieldset}>
-							{fields.map(
-								({
-									name,
-									label,
-									placeholder,
-									icon,
-									required,
-									type,
-									component,
-								}) => (
-									<CustomField
-										key={name}
+							{fields.map(({ name, label, placeholder, icon, required, type, component }) => (
+								<CustomField
+									key={name}
+									name={name}
+									label={label}
+									icon={icon}
+									placeholder={placeholder}
+									type={type}
+									isInvalid={!!touched[name] && !!errors[name]?.length}
+									isValid={touched[name] && !errors[name]?.length}
+									errorMessage={errors[name]}
+									required={required}
+								>
+									<Field
 										name={name}
-										label={label}
-										icon={icon}
-										placeholder={placeholder}
 										type={type}
-										isInvalid={!!touched[name] && !!errors[name]?.length}
-										isValid={touched[name] && !errors[name]?.length}
-										errorMessage={errors[name]}
-										required={required}
-									>
-										<Field name={name} type={type} component={component} />
-									</CustomField>
-								)
-							)}
+										component={component}
+									/>
+								</CustomField>
+							))}
 						</div>
 						<Container
 							className={styles.panel}
@@ -120,7 +107,10 @@ const Form = ({
 								disabled={!dirty || (dirty && !isValid)}
 							>
 								{submitting ? (
-									<LoadingIndicator delay={0} label={submitButtonLabelActive} />
+									<LoadingIndicator
+										delay={0}
+										label={submitButtonLabelActive}
+									/>
 								) : (
 									<>
 										{submitButtonIcon && getIcon(submitButtonIcon)}

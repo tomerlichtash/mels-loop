@@ -13,7 +13,9 @@ interface ContentMap {
 const normalizeId = (id: string) => (id || '').trim().toLowerCase();
 
 export class DynamicContentServer implements IDynamicContentServer {
-	private readonly contentMap: { [type: string]: ContentMap };
+	private readonly contentMap: {
+		[type: string]: ContentMap;
+	};
 
 	constructor() {
 		this.contentMap = {};
@@ -47,8 +49,7 @@ export class DynamicContentServer implements IDynamicContentServer {
 
 		try {
 			const path = this.dynamicContentTypeToURL(type);
-			const docParam =
-				(docPath && `&document=${encodeURIComponent(docPath)}`) || '';
+			const docParam = (docPath && `&document=${encodeURIComponent(docPath)}`) || '';
 			const url = `/api/content?type=${path}&locale=${locale}${docParam}`;
 			const response = await fetch(url, {
 				method: 'GET',

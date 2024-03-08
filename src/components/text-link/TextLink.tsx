@@ -1,9 +1,5 @@
 import React, { PropsWithChildren, useMemo } from 'react';
-import Text, {
-	HeadingVariant,
-	SubtitleVariant,
-	type TextVariant,
-} from '../text/Text';
+import Text, { HeadingVariant, SubtitleVariant, type TextVariant } from '../text/Text';
 import Link from '../link/Link';
 import styles from './TextLink.module.scss';
 import classNames from 'classnames';
@@ -28,7 +24,10 @@ const TextLink = ({
 }: PropsWithChildren<TextLinkProps>): JSX.Element => {
 	const text = useMemo(
 		() => (
-			<Text variant={variant} className={styles.label}>
+			<Text
+				variant={variant}
+				className={styles.label}
+			>
 				{children}
 			</Text>
 		),
@@ -37,7 +36,11 @@ const TextLink = ({
 
 	const link = useMemo(
 		() => (
-			<Link href={href} className={styles.link} asChild={asChild}>
+			<Link
+				href={href}
+				className={styles.link}
+				asChild={asChild}
+			>
 				{text}
 			</Link>
 		),

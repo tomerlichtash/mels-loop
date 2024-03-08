@@ -31,7 +31,9 @@ const handleSubmit = ({
 				try {
 					const response = await fetch(path, {
 						method: 'POST',
-						headers: { 'Content-Type': 'application/json;charset=utf-8' },
+						headers: {
+							'Content-Type': 'application/json;charset=utf-8',
+						},
 						body: JSON.stringify(values),
 					});
 					if (response.ok) {
@@ -54,9 +56,7 @@ const handleSubmit = ({
 };
 
 const Recaptcha = ({ siteKey }: RecaptchaProps) => {
-	return (
-		<Script src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`} />
-	);
+	return <Script src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`} />;
 };
 
 export default Recaptcha;

@@ -9,11 +9,7 @@ import { ParsedPageData } from './markdown-utils/parsedPageDataClass';
 import { PageMetaData } from './markdown-utils/pageMetaDataClass';
 import { FolderContent } from './markdown-utils/folderContentClass';
 import type { IContentParseOptions } from 'types/parser/parser';
-import {
-	LoadContentModes,
-	LoadFolderModes,
-	MLParseModes,
-} from 'types/parser/modes';
+import { LoadContentModes, LoadFolderModes, MLParseModes } from 'types/parser/modes';
 import { ILoadContentOptions } from './markdown-utils/types';
 import { mdUtils } from './markdown-utils/markdownUtils';
 
@@ -29,19 +25,14 @@ const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	locale: undefined,
 };
 
-export const loadContentFolder = (
-	options: ILoadContentOptions
-): IFolderContent => {
+export const loadContentFolder = (options: ILoadContentOptions): IFolderContent => {
 	const mode: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
 		...options.mode,
 		locale: options.locale,
 	};
 
-	const contentDir = path.join(
-		getContentRootDir(options.rootFolder),
-		options.relativePath
-	);
+	const contentDir = path.join(getContentRootDir(options.rootFolder), options.relativePath);
 
 	const folderContentData = new FolderContent();
 

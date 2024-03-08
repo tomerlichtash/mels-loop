@@ -25,7 +25,10 @@ const ErrorMessage = ({
 		{getIcon(icon)} {message}
 		{children ?? children}
 		{!children && (
-			<Link target="_blank" href={issueTrackerUrl}>
+			<Link
+				target="_blank"
+				href={issueTrackerUrl}
+			>
 				{label}
 			</Link>
 		)}

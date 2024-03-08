@@ -20,6 +20,11 @@ export const Primary: Story = {
 		format: 'MM/dd/yy',
 	},
 	render: function Render({ date, format }) {
-		return <DateFormat date={date} format={format} />;
+		return (
+			<DateFormat
+				date={date}
+				format={format}
+			/>
+		);
 	},
 };

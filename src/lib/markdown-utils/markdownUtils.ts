@@ -21,10 +21,7 @@ export interface IMarkdownUtils {
 	toValue<T>(val: T, defaultValue: T | null): T | null;
 	collectText(content: string | ParsedNode): string;
 	collectMLNodeText(node: IMLParsedNode): string;
-	nodeTypeToMLType(
-		nodeName: ASTNODE_TYPES,
-		context: MLParseContext
-	): MLNODE_TYPES;
+	nodeTypeToMLType(nodeName: ASTNODE_TYPES, context: MLParseContext): MLNODE_TYPES;
 	extractParseMode(node: ParsedNode, context: MLParseContext): MLParseModes;
 	removeNullChildren(node: IMLParsedNode): IMLParsedNode;
 	findArrayPart(node: ParsedNode): Array<ParsedNode> | null;
@@ -109,26 +106,19 @@ class MarkdownUtils implements IMarkdownUtils {
 		}
 
 		if (node.children) {
-			return node.children
-				.map((child) => this.collectMLNodeText(child))
-				.join('');
+			return node.children.map((child) => this.collectMLNodeText(child)).join('');
 		}
 
 		return '';
 	}
 
-	public nodeTypeToMLType(
-		nodeName: ASTNODE_TYPES,
-		context: MLParseContext
-	): MLNODE_TYPES {
+	public nodeTypeToMLType(nodeName: ASTNODE_TYPES, context: MLParseContext): MLNODE_TYPES {
 		void context;
 		if (!nodeName) {
 			return MLNODE_TYPES.UNKNOWN;
 		}
 
-		return (
-			AST2MLTypeMap.get(nodeName) || nodeName
-		).toLowerCase() as MLNODE_TYPES;
+		return (AST2MLTypeMap.get(nodeName) || nodeName).toLowerCase() as MLNODE_TYPES;
 	}
 
 	/**
@@ -138,10 +128,7 @@ class MarkdownUtils implements IMarkdownUtils {
 	 * @param context
 	 * @returns
 	 */
-	public extractParseMode(
-		node: ParsedNode,
-		context: MLParseContext
-	): MLParseModes {
+	public extractParseMode(node: ParsedNode, context: MLParseContext): MLParseModes {
 		if (node.attributes) {
 			const attr = node.attributes.get('data-parse-mode');
 			if (attr && VALID_PARSE_MODES.has(attr as MLParseModes)) {
@@ -245,8 +232,7 @@ class MarkdownUtils implements IMarkdownUtils {
 					return {
 						tag: capture[1],
 						attributes: parseAttributes(capture[2]),
-						content:
-							(capture[3] && recurseParse(capture[3], state)) || undefined,
+						content: (capture[3] && recurseParse(capture[3], state)) || undefined,
 					};
 				},
 				order: 0,

@@ -3,9 +3,7 @@ import { ContentComponentProps } from 'types/models';
 import { ContentIterator } from '../contentIterator';
 import { ListItem, Text } from 'components/index';
 
-export const ListItemContentBlock = ({
-	componentData,
-}: ContentComponentProps): JSX.Element => {
+export const ListItemContentBlock = ({ componentData }: ContentComponentProps): JSX.Element => {
 	return (
 		<ListItem>
 			<Text variant="body1">

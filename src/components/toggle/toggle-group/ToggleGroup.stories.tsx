@@ -24,7 +24,10 @@ export const Primary: Story = {
 	},
 	render: function Render({ type, defaultValue }) {
 		return (
-			<ToggleGroup type={type} defaultValue={defaultValue}>
+			<ToggleGroup
+				type={type}
+				defaultValue={defaultValue}
+			>
 				<span data-value="1">Item 1</span>
 				<span data-value="2">Item 2</span>
 				<span data-value="3">Item 3</span>

@@ -14,14 +14,15 @@ const linkAttrs = {
 
 const isAnchor = (target: string) => target && target[0] === '#';
 
-export const LinkContentBlock = ({
-	componentData,
-	onClick,
-}: ILinkProps): JSX.Element => {
+export const LinkContentBlock = ({ componentData, onClick }: ILinkProps): JSX.Element => {
 	const { node } = componentData;
 	const targetAttrs = isAnchor(node.target) ? {} : linkAttrs;
 	return (
-		<Link href={node.target} onClick={onClick} {...targetAttrs}>
+		<Link
+			href={node.target}
+			onClick={onClick}
+			{...targetAttrs}
+		>
 			<ContentIterator componentData={componentData} />
 		</Link>
 	);

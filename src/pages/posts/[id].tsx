@@ -18,9 +18,7 @@ export default function Doc(props: IPageProps) {
 	const { t, textDirection } = useLocale();
 	const { metaData } = page;
 	const { title, date, author } = metaData;
-	const backIcon = getIcon(
-		`chevron${textDirection === 'ltr' ? 'Left' : 'Right'}`
-	);
+	const backIcon = getIcon(`chevron${textDirection === 'ltr' ? 'Left' : 'Right'}`);
 	return (
 		<Layout>
 			<div className="page">
@@ -50,9 +48,7 @@ export default function Doc(props: IPageProps) {
 export const getStaticPaths: GetStaticPaths = async (context) =>
 	mlNextUtils.getFolderStaticPaths(ContentTypes.Posts, context.locales);
 
-export const getStaticProps: GetStaticProps = async (
-	context: GetStaticPropsContext
-) =>
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) =>
 	mlNextUtils.getFolderStaticProps(
 		`${ContentTypes.Posts}/${context.params.id as string}`,
 		context.locale,

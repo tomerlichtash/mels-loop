@@ -23,6 +23,11 @@ export const Primary: Story = {
 		title: 'Toggle Button',
 	},
 	render: function Render({ title, isToggled }) {
-		return <ToggleButton title={title} isToggled={isToggled} />;
+		return (
+			<ToggleButton
+				title={title}
+				isToggled={isToggled}
+			/>
+		);
 	},
 };

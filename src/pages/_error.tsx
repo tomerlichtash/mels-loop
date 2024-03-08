@@ -17,6 +17,8 @@ const CustomError: NextPage = () => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async () => ({ props: {} });
+export const getStaticProps: GetStaticProps = async () => ({
+	props: {},
+});
 
 export default CustomError;

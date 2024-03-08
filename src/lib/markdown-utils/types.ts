@@ -14,10 +14,7 @@ export interface ILoadContentOptions {
 	readonly rootFolder?: string;
 }
 
-export type ParsedNodeProcessor = (
-	node: ParsedNode,
-	context: MLParseContext
-) => IMLParsedNode;
+export type ParsedNodeProcessor = (node: ParsedNode, context: MLParseContext) => IMLParsedNode;
 
 export interface IFigureInfo {
 	readonly index: number;

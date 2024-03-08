@@ -27,16 +27,17 @@ export default function GlossaryTerm(props: IPageProps) {
 	return (
 		<Layout>
 			<article className="page">
-				<Link className="title" href={'/glossary'}>
+				<Link
+					className="title"
+					href={'/glossary'}
+				>
 					{t('common:button:backToTarget', {
 						sep: t('common:to'),
 						target: t('pages:glossary:title'),
 					})}
 				</Link>
 				<h1 className="title">{t('pages:glossary:title')}</h1>
-				<h2 className="title">
-					{t(`glossary:term:${metaData?.glossary_key}`)}
-				</h2>
+				<h2 className="title">{t(`glossary:term:${metaData?.glossary_key}`)}</h2>
 				{/* TODO: Use forced translation */}
 				{/* <p className="term">{t(metaData?.glossary_key, 'en')}</p> */}
 				{node ? (
@@ -64,9 +65,7 @@ export default function GlossaryTerm(props: IPageProps) {
 export const getStaticPaths: GetStaticPaths = async (context) =>
 	mlNextUtils.getFolderStaticPaths(ContentTypes.Glossary, context.locales);
 
-export const getStaticProps: GetStaticProps = async (
-	context: GetStaticPropsContext
-) =>
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) =>
 	mlNextUtils.getFolderStaticProps(
 		`${ContentTypes.Glossary}/${context.params.id as string}`,
 		context.locale,

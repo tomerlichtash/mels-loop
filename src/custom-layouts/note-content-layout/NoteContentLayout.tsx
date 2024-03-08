@@ -10,7 +10,10 @@ const NoteContentLayout = ({
 	children,
 	className,
 }: PropsWithChildren<NoteContentLayoutProps>): JSX.Element => (
-	<div role="note" className={classNames(styles.root, className)}>
+	<div
+		role="note"
+		className={classNames(styles.root, className)}
+	>
 		{children}
 	</div>
 );

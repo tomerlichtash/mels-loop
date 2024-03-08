@@ -7,11 +7,11 @@ type CustomImageProps = {
 	className?: string;
 };
 
-export const CustomImage = ({
-	src,
-	className,
-}: CustomImageProps): JSX.Element => (
-	<img className={classNames(styles.root, className)} src={src} />
+export const CustomImage = ({ src, className }: CustomImageProps): JSX.Element => (
+	<img
+		className={classNames(styles.root, className)}
+		src={src}
+	/>
 );
 
 export default CustomImage;

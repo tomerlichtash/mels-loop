@@ -18,9 +18,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 	return paths;
 };
 
-export const getStaticProps: GetStaticProps = async (
-	context: GetStaticPropsContext
-) => {
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
 	const params = context.params || {};
 
 	const relativePath = await mlNextUtils.populateDynamicPath(
@@ -28,13 +26,8 @@ export const getStaticProps: GetStaticProps = async (
 		params as { [key: string]: string }
 	);
 
-	return mlNextUtils.getFolderStaticProps(
-		relativePath,
-		context.locale,
-		LoadFolderModes.Folder,
-		{
-			contentMode: LoadContentModes.Full,
-			nodeProcessors: [createPopoverLinksNodeProcessor()],
-		}
-	);
+	return mlNextUtils.getFolderStaticProps(relativePath, context.locale, LoadFolderModes.Folder, {
+		contentMode: LoadContentModes.Full,
+		nodeProcessors: [createPopoverLinksNodeProcessor()],
+	});
 };

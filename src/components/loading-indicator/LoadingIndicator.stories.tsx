@@ -23,7 +23,12 @@ const BaseStory: Story = {
 		delay: 0,
 	},
 	render: function Render({ label }) {
-		return <LoadingIndicator label={label} delay={0} />;
+		return (
+			<LoadingIndicator
+				label={label}
+				delay={0}
+			/>
+		);
 	},
 };
 

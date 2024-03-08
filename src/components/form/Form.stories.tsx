@@ -46,6 +46,11 @@ export const Primary: Story = {
 		fields: formFields,
 	},
 	render: function Render({ name, fields }) {
-		return <Form name={name} fields={fields} />;
+		return (
+			<Form
+				name={name}
+				fields={fields}
+			/>
+		);
 	},
 };

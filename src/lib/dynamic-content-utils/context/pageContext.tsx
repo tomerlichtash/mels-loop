@@ -16,9 +16,7 @@ export const PageContext: Context<IPageContext> = ctx;
 
 export const PageProvider = ({ documentPath, children }) => (
 	<PageContext.Provider
-		value={
-			new PageContextClass(new DynamicContentServer(), documentPath as string)
-		}
+		value={new PageContextClass(new DynamicContentServer(), documentPath as string)}
 	>
 		{children}
 	</PageContext.Provider>

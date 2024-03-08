@@ -15,7 +15,11 @@ const ToolbarButton = ({
 	children,
 }: PropsWithChildren<ToolbarButtonProps>): JSX.Element => (
 	<PopoverToolbarItem>
-		<Button title={title} onClick={onClick} className={styles.root}>
+		<Button
+			title={title}
+			onClick={onClick}
+			className={styles.root}
+		>
 			{children}
 		</Button>
 	</PopoverToolbarItem>

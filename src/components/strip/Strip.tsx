@@ -6,9 +6,7 @@ type StripProps = {
 	className?: string;
 };
 
-const Strip = ({ className }: StripProps) => (
-	<div className={classNames(styles.root, className)} />
-);
+const Strip = ({ className }: StripProps) => <div className={classNames(styles.root, className)} />;
 
 export default Strip;
 export type { StripProps };

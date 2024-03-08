@@ -11,7 +11,10 @@ import classNames from 'classnames';
 
 const renderItems = (items: NavItemDataProps[]) =>
 	items.map((item) => (
-		<NavigationMenu.Link asChild key={`list-item-${item.id}`}>
+		<NavigationMenu.Link
+			asChild
+			key={`list-item-${item.id}`}
+		>
 			<ListItem className={styles.menuListItem}>
 				<NavItem
 					{...item}
@@ -26,22 +29,26 @@ const renderItems = (items: NavItemDataProps[]) =>
 
 const renderSections = (sections: NavParsedNodes[]) =>
 	sections.map((section) => (
-		<NavigationMenu.Item key={section.id} asChild>
+		<NavigationMenu.Item
+			key={section.id}
+			asChild
+		>
 			<ListItem
 				className={styles.menuSectionTriggerItem}
 				key={`list-item-${section.id}`}
 			>
 				<>
-					<Button className={styles.menuSectionTriggerButton} asChild>
+					<Button
+						className={styles.menuSectionTriggerButton}
+						asChild
+					>
 						<NavigationMenu.Trigger>
 							{section.locale.title}
 							{getIcon('caretDown', styles.caret)}
 						</NavigationMenu.Trigger>
 					</Button>
 					<NavigationMenu.Content className={styles.content}>
-						<List className={styles.sectionItemsList}>
-							{renderItems(section.items)}
-						</List>
+						<List className={styles.sectionItemsList}>{renderItems(section.items)}</List>
 					</NavigationMenu.Content>
 				</>
 			</ListItem>

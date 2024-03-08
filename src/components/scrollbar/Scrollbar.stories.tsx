@@ -24,7 +24,10 @@ const BaseStory: Story = {
 	},
 	render: function Render() {
 		return (
-			<Scrollbar height="100vh" textDirection="ltr">
+			<Scrollbar
+				height="100vh"
+				textDirection="ltr"
+			>
 				<div style={{ height: '1000px' }}>
 					<div>Content</div>
 				</div>

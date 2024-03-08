@@ -61,10 +61,7 @@ $states: merge.deep(
 			@include use-outline(name(#{$module}-input), state(invalid-focused));
 
 			&:hover {
-				@include use-outline(
-					name(#{$module}-input),
-					state(invalid-focused-hovered)
-				);
+				@include use-outline(name(#{$module}-input), state(invalid-focused-hovered));
 			}
 		}
 	}
@@ -184,6 +181,5 @@ $states: merge.deep(
 	#{refs.use(custom-field-input-outline__invalid)}: 1px solid #c00;
 	#{refs.use(custom-field-input-outline__invalid__focused)}: 2px solid red;
 	#{refs.use(custom-field-input-outline__invalid__hovered)}: 2px solid #f00;
-	#{refs.use(custom-field-input-outline__invalid__focused__hovered)}: 2px solid
-		#a00;
+	#{refs.use(custom-field-input-outline__invalid__focused__hovered)}: 2px solid #a00;
 }

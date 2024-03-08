@@ -12,7 +12,11 @@ type ListItemProps = {
 
 const ListItem = forwardRef<HTMLLIElement, PropsWithChildren<ListItemProps>>(
 	({ children, className, ...rest }: PropsWithChildren<ListItemProps>, ref) => (
-		<li ref={ref} className={classNames(styles.root, className)} {...rest}>
+		<li
+			ref={ref}
+			className={classNames(styles.root, className)}
+			{...rest}
+		>
 			{children}
 		</li>
 	)

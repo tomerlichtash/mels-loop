@@ -81,9 +81,7 @@ class Toolbar {
 
 export const useToolbar = (): IUseToolbar => {
 	const [toolbar] = useState<Toolbar>(new Toolbar());
-	const [toolbarItems, setToolbarItems] = useState<IToolbarItem[]>(
-		toolbar.items
-	);
+	const [toolbarItems, setToolbarItems] = useState<IToolbarItem[]>(toolbar.items);
 
 	return {
 		items: toolbarItems,

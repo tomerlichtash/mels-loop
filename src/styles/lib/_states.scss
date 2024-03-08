@@ -18,11 +18,7 @@ $states: $COMPONENT_STATES;
 
 	@if $index {
 		$searchLn: string.length($search);
-		$replaced: -str-replace(
-			string.slice($string, $index + $searchLn),
-			$search,
-			$replace
-		);
+		$replaced: -str-replace(string.slice($string, $index + $searchLn), $search, $replace);
 
 		@return string.slice($string, 1, $index - 1) + $replace + $replaced;
 	}
@@ -51,11 +47,7 @@ $states: $COMPONENT_STATES;
 			$val: $s;
 		}
 
-		$transformed-value: -str-replace(
-			$val,
-			$val,
-			#{consts.$theme-state-delim}#{$val}
-		);
+		$transformed-value: -str-replace($val, $val, #{consts.$theme-state-delim}#{$val});
 		$output-map: map.merge(
 			$output-map,
 			(
@@ -68,10 +60,7 @@ $states: $COMPONENT_STATES;
 }
 
 @function state($state, $customStateMap: ()) {
-	$compState: map.get(
-		custom-states(merge.deep($states, $customStateMap)),
-		$state
-	);
+	$compState: map.get(custom-states(merge.deep($states, $customStateMap)), $state);
 
 	// stylelint-disable scss/at-if-no-null
 	@if $compState != null {

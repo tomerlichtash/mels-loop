@@ -1,8 +1,4 @@
-import {
-	IFigureConfiguration,
-	IPageMetaData,
-	IParsedPageData,
-} from 'types/models';
+import { IFigureConfiguration, IPageMetaData, IParsedPageData } from 'types/models';
 import { safeMerge, parseDate } from 'utils/index';
 import { MLParseModes } from 'types/parser/modes';
 import { customMarkdownTags } from 'lib/customMarkdownTags';

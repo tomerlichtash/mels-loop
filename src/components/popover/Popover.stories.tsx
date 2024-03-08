@@ -22,7 +22,11 @@ export const Primary: Story = {
 	},
 	render: function Render({ trigger, locale, side }) {
 		return (
-			<Popover trigger={trigger} locale={locale} side={side}>
+			<Popover
+				trigger={trigger}
+				locale={locale}
+				side={side}
+			>
 				Content
 			</Popover>
 		);

@@ -5,15 +5,18 @@ import { DynamicContentContext } from './context/contentContext';
 import { PopoverContentBlock } from './content-blocks/popoverContentBlock';
 import { NODE_DISPLAY_TYPES } from 'types/nodes';
 
-export const LinkSelector = ({
-	componentData,
-}: ContentComponentProps): JSX.Element => {
+export const LinkSelector = ({ componentData }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { displayType, key } = node;
 	const ctx = useContext(DynamicContentContext);
 
 	if (displayType !== NODE_DISPLAY_TYPES.POPOVER) {
-		return <LinkContentBlock key={key} componentData={componentData} />;
+		return (
+			<LinkContentBlock
+				key={key}
+				componentData={componentData}
+			/>
+		);
 	}
 
 	if (ctx) {

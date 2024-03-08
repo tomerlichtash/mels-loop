@@ -16,17 +16,13 @@ export async function pathToRelativePath(path: string): Promise<string> {
 		const contentFolder = stat.isDirectory()
 			? path
 			: fsPath.join(fsPath.dirname(path), fsPath.basename(path, '.js'));
-		return contentFolder
-			.replace(/\\/g, '/')
-			.replace(/^.*?\/pages\/(.+)$/, '$1');
+		return contentFolder.replace(/\\/g, '/').replace(/^.*?\/pages\/(.+)$/, '$1');
 	} catch {
 		return '';
 	}
 }
 
-export async function collectPathsIn(
-	topFolder: string
-): Promise<ICollectedPath[]> {
+export async function collectPathsIn(topFolder: string): Promise<ICollectedPath[]> {
 	try {
 		const relativePath = await pathToRelativePath(topFolder);
 		const parts = relativePath.split('/');
@@ -96,7 +92,10 @@ async function _collectPaths(params: {
 						root: fsPath.join(params.root, folder.name),
 						paths: paths.map((rec) => ({
 							path: fsPath.join(rec.path, folder.name),
-							idMap: { ...nextFolder.idMap, [key]: folder.name },
+							idMap: {
+								...nextFolder.idMap,
+								[key]: folder.name,
+							},
 						})),
 					});
 					allPaths.push(...subPaths);

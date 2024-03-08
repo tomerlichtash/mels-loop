@@ -28,9 +28,7 @@ type MLGetStaticProps = (
 type MLGetStaticPaths = (
 	folderRelativePath: string,
 	locales: string[]
-) =>
-	| Promise<GetStaticPathsResult<ParsedUrlQuery>>
-	| GetStaticPathsResult<ParsedUrlQuery>;
+) => Promise<GetStaticPathsResult<ParsedUrlQuery>> | GetStaticPathsResult<ParsedUrlQuery>;
 
 export interface IStaticPathsParameters {
 	readonly contentFolder?: string;
@@ -61,10 +59,7 @@ export interface IMLNextUtils {
 		params: IStaticPathsParameters
 	): Promise<GetStaticPathsResult<ParsedUrlQuery>>;
 
-	populateDynamicPath(
-		path: string,
-		dict: { [key: string]: string }
-	): Promise<string>;
+	populateDynamicPath(path: string, dict: { [key: string]: string }): Promise<string>;
 }
 
 export interface ICollectedPath {

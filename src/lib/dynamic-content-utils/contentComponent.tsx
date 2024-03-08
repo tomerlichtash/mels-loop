@@ -19,9 +19,7 @@ import {
 import type { ContentComponentProps } from 'types/models';
 import { ErrorMessage } from 'components/index';
 
-export const ContentComponent = ({
-	componentData,
-}: ContentComponentProps): JSX.Element => {
+export const ContentComponent = ({ componentData }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { key, type } = node;
 

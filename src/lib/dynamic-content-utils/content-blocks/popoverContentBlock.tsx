@@ -10,10 +10,7 @@ import I18nProvider from 'next-translate/I18nProvider';
 import { DynamicContentTypes } from 'types/content';
 import glossaryEN from '../../../../locales/en/glossary.json';
 import { Popover } from 'components/index';
-import type {
-	ContentComponentProps,
-	IContentComponentInitData,
-} from 'types/models';
+import type { ContentComponentProps, IContentComponentInitData } from 'types/models';
 
 type PopoverContentBlockProps = {
 	type: DynamicContentTypes;
@@ -28,11 +25,17 @@ const getContentBlock = (
 	switch (type) {
 		case DynamicContentTypes.Annotation:
 			return (
-				<AnnotationContentBlock className={className} componentData={data} />
+				<AnnotationContentBlock
+					className={className}
+					componentData={data}
+				/>
 			);
 		default:
 			return (
-				<TermLinkContentBlock className={className} componentData={data} />
+				<TermLinkContentBlock
+					className={className}
+					componentData={data}
+				/>
 			);
 	}
 };

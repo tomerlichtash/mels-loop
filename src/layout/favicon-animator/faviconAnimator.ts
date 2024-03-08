@@ -1,9 +1,4 @@
-import type {
-	AnimatorFunction,
-	IFIProps,
-	IFavIconAnimator,
-	IFavIconProps,
-} from './types';
+import type { AnimatorFunction, IFIProps, IFavIconAnimator, IFavIconProps } from './types';
 
 const ROTATION_FRAMES = 18;
 
@@ -41,8 +36,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 		this.props.canvas.height = this.props.height;
 
 		this.isDarkMode = Boolean(
-			window.matchMedia &&
-				window.matchMedia('(prefers-color-scheme: dark)').matches
+			window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 		);
 	}
 
@@ -158,11 +152,7 @@ export class FavIconAnimator implements IFavIconAnimator {
 		p.interval = window.setInterval(
 			(p: IFIProps) => {
 				const ic = window.top.document.querySelector("link[rel='icon']");
-				if (
-					!ic ||
-					this._abort ||
-					Date.now() - p.startTime >= p.durationSeconds * 1000
-				) {
+				if (!ic || this._abort || Date.now() - p.startTime >= p.durationSeconds * 1000) {
 					clearInterval(p.interval);
 					this._abort = false;
 					p.icon.href = p.savedIconHref;

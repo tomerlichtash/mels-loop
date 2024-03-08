@@ -23,7 +23,10 @@ export const Primary: Story = {
 		return (
 			<>
 				<style>{`:root{--ml-some-var: url(http://dummyimage.com/500x500/a6a49c/20201e&text=Image)}`}</style>
-				<CssVarImage varName={varName} size={size} />
+				<CssVarImage
+					varName={varName}
+					size={size}
+				/>
 			</>
 		);
 	},

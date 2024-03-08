@@ -4,11 +4,7 @@ import { collectPathsIn, pathToRelativePath } from './pathHelpers';
 import { loadContentFolder } from 'lib/loadFolderContent';
 import { ILocaleMap } from 'types/models';
 import type { IContentParseOptions } from 'types/parser/parser';
-import {
-	LoadContentModes,
-	LoadFolderModes,
-	MLParseModes,
-} from 'types/parser/modes';
+import { LoadContentModes, LoadFolderModes, MLParseModes } from 'types/parser/modes';
 import { FolderStaticProps } from 'types/folder';
 import { LocaleId } from 'types/locale';
 import type { IMLNextUtils, IStaticPathsParameters } from './types';
@@ -20,10 +16,7 @@ class MLNextUtils implements IMLNextUtils {
 	 * @param dict
 	 * @returns
 	 */
-	public async populateDynamicPath(
-		path: string,
-		dict: { [key: string]: string }
-	): Promise<string> {
+	public async populateDynamicPath(path: string, dict: { [key: string]: string }): Promise<string> {
 		let relative = await pathToRelativePath(path);
 
 		if (!relative) {

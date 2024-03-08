@@ -25,13 +25,13 @@ export default function Blog(props: IPageProps) {
 				<title>{pageTitle}</title>
 			</Head>
 
-			<GenericContentLayout caption={t('pages:blog:title')} title={'Posts'}>
+			<GenericContentLayout
+				caption={t('pages:blog:title')}
+				title={'Posts'}
+			>
 				{sortedItems.map((page: IParsedPageData) => {
 					const { path } = page;
-					const [title, date, author] = getMetadata(
-						['title', 'date', 'author'],
-						[page]
-					);
+					const [title, date, author] = getMetadata(['title', 'date', 'author'], [page]);
 					return (
 						<GenericContentLayout
 							key={title}

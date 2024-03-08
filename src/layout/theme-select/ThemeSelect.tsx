@@ -11,12 +11,7 @@ type ThemeSelectProps = {
 	className?: string;
 };
 
-const ThemeSelect = ({
-	label,
-	theme,
-	setTheme,
-	className,
-}: ThemeSelectProps): JSX.Element => {
+const ThemeSelect = ({ label, theme, setTheme, className }: ThemeSelectProps): JSX.Element => {
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => setMounted(true), []);

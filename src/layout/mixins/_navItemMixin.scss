@@ -2,7 +2,10 @@
 @use '../../components/nav/nav-item/NavItem.mixin' as mixin;
 
 @mixin item($vars) {
-	@include mixin.item($radius: map.get($vars, item-radius), $bg-color-hover: map.get($vars, item-bg-color-hover));
+	@include mixin.item(
+		$radius: map.get($vars, item-radius),
+		$bg-color-hover: map.get($vars, item-bg-color-hover)
+	);
 
 	@include mixin.title(
 		$text-transform: map.get($vars, title-text-transform),

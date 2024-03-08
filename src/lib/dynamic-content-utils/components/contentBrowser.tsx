@@ -10,9 +10,7 @@ export interface IStackBrowserProps {
 	node: IMLParsedNode;
 }
 
-export default function DynamicContentBrowser(
-	props: IStackBrowserProps
-): JSX.Element {
+export default function DynamicContentBrowser(props: IStackBrowserProps): JSX.Element {
 	const [currentNode, setCurrentNode] = useState<IMLParsedNode>(props.node);
 	const [currentPage, setCurrentPage] = useState<IParsedPageData>(null);
 	// always one less than the contentstack's length, which starts at 0

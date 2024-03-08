@@ -15,9 +15,16 @@ type ListProps = {
 const renderListItems = (items: ListItemProps[]) =>
 	items.map(({ label, target, url }) => {
 		return (
-			<ListItem key={label} className={styles.item}>
+			<ListItem
+				key={label}
+				className={styles.item}
+			>
 				{url ? (
-					<Link href={url} target={target} className={styles.link}>
+					<Link
+						href={url}
+						target={target}
+						className={styles.link}
+					>
 						{label}
 					</Link>
 				) : (
@@ -33,8 +40,7 @@ const List = ({
 	ordered,
 	children,
 	className,
-}: PropsWithChildren<ListProps> &
-	HTMLAttributes<HTMLDivElement>): JSX.Element => {
+}: PropsWithChildren<ListProps> & HTMLAttributes<HTMLDivElement>): JSX.Element => {
 	const Tag = ordered ? 'ol' : 'ul';
 	return (
 		<div className={classNames(styles.root, className)}>

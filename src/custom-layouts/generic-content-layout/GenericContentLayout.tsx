@@ -49,7 +49,10 @@ export const GenericContentLayout = ({
 		)}
 
 		{abstract && (
-			<Text variant="h2" className={styles.abstract}>
+			<Text
+				variant="h2"
+				className={styles.abstract}
+			>
 				{abstract}
 			</Text>
 		)}

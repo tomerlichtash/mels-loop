@@ -12,16 +12,11 @@ interface IComponentAttributeData {
  * @param node
  * @returns
  */
-export const useComponentAttrs = (
-	node: IMLParsedNode
-): IComponentAttributeData => {
+export const useComponentAttrs = (node: IMLParsedNode): IComponentAttributeData => {
 	const [attributes, setAttributes] = useState<NodeAttributeMap>({});
 
 	// If the node changed, reparse the attributes
-	useEffect(
-		() => setAttributes(mlNextBrowserUtils.extractNodeAttributes(node)),
-		[node]
-	);
+	useEffect(() => setAttributes(mlNextBrowserUtils.extractNodeAttributes(node)), [node]);
 
 	return {
 		attributes,

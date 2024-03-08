@@ -18,12 +18,8 @@
 	$textColorSelected: refs.use(toggle.name(button-text-color, state(selected)));
 
 	$bgColor: refs.use(toggle.name(button-background-color));
-	$bgColorHovered: refs.use(
-		toggle.name(button-background-color, state(hovered))
-	);
-	$bgColorSelected: refs.use(
-		toggle.name(button-background-color, state(selected))
-	);
+	$bgColorHovered: refs.use(toggle.name(button-background-color, state(hovered)));
+	$bgColorSelected: refs.use(toggle.name(button-background-color, state(selected)));
 
 	#{$textColor}: $text-color;
 	#{$textColorHovered}: $text-color-hover;

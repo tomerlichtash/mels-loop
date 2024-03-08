@@ -29,14 +29,21 @@ export const ContentIterator = ({
 	if (!elements?.length) {
 		if (Tag) {
 			return (
-				<Tag className={className} key={unique.id()} {...attributes}>
+				<Tag
+					className={className}
+					key={unique.id()}
+					{...attributes}
+				>
 					{text || ''}
 				</Tag>
 			);
 		}
 
 		return (
-			<span className={className} key={unique.id()}>
+			<span
+				className={className}
+				key={unique.id()}
+			>
 				{text || ''}
 			</span>
 		);
@@ -44,7 +51,10 @@ export const ContentIterator = ({
 
 	if (Tag) {
 		return (
-			<Tag key={unique.id()} {...attributes}>
+			<Tag
+				key={unique.id()}
+				{...attributes}
+			>
 				{renderNodes(elements)}
 			</Tag>
 		);

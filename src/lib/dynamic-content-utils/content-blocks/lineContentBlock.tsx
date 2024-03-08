@@ -4,9 +4,7 @@ import { ContentComponent } from '../contentComponent';
 import { Line } from 'components/index';
 import { MLNODE_TYPES } from 'types/nodes';
 
-export const LineContentBlock = ({
-	componentData,
-}: ContentComponentProps): JSX.Element => {
+export const LineContentBlock = ({ componentData }: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { line, children } = node;
 	const anchor = <a id={`line${line + 1}`}></a>;
@@ -28,7 +26,10 @@ export const LineContentBlock = ({
 		<Line index={line + 1}>
 			{anchor}
 			{children.map((node) => (
-				<ContentComponent key={node.key} componentData={{ node }} />
+				<ContentComponent
+					key={node.key}
+					componentData={{ node }}
+				/>
 			))}
 		</Line>
 	);

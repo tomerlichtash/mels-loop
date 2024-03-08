@@ -15,8 +15,7 @@ export const MAX_MESSAGE_LENGTH = 4096;
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_KEY;
 
 const VALID_EMAIL_REGEXP = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-const EMAIL_NOT_ALLOWED_REGEXP =
-	/^(?![a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$).*$/;
+const EMAIL_NOT_ALLOWED_REGEXP = /^(?![a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$).*$/;
 
 const fieldLocalePrefix = 'contact:form:fields';
 
@@ -47,10 +46,7 @@ const Contact: NextPage<IPageProps> = () => {
 						maxLength: MAX_FULL_NAME_LENGTH,
 					})
 				)
-				.matches(
-					EMAIL_NOT_ALLOWED_REGEXP,
-					t(`${fieldLocalePrefix}:fullName:validity:typeMismatch`)
-				)
+				.matches(EMAIL_NOT_ALLOWED_REGEXP, t(`${fieldLocalePrefix}:fullName:validity:typeMismatch`))
 				.required(t(`${fieldLocalePrefix}:fullName:validity:valueMissing`)),
 		},
 		{
@@ -64,10 +60,7 @@ const Contact: NextPage<IPageProps> = () => {
 			type: 'email',
 			validation: yup
 				.string()
-				.matches(
-					VALID_EMAIL_REGEXP,
-					t(`${fieldLocalePrefix}:email:validity:typeMismatch`)
-				)
+				.matches(VALID_EMAIL_REGEXP, t(`${fieldLocalePrefix}:email:validity:typeMismatch`))
 				.max(
 					MAX_EMAIL_LENGTH,
 					t(`${fieldLocalePrefix}:email:validity:maxLength`, {
@@ -119,9 +112,7 @@ const Contact: NextPage<IPageProps> = () => {
 							submitButtonIcon="light"
 							onSuccess={() => setCompleted(true)}
 							submitButtonLabel={t('contact:form:submit:button:label')}
-							submitButtonLabelActive={t(
-								'contact:form:submit:button:label:active'
-							)}
+							submitButtonLabelActive={t('contact:form:submit:button:label:active')}
 							onError={(e: string) => setError(e)}
 						/>
 					</>
@@ -139,6 +130,8 @@ const Contact: NextPage<IPageProps> = () => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async () => ({ props: {} });
+export const getStaticProps: GetStaticProps = async () => ({
+	props: {},
+});
 
 export default Contact;

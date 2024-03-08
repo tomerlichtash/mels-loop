@@ -12,9 +12,7 @@ export interface IDynamicContentToolbarProps {
 
 const backButtonKey = 'popover-toolbar-back-button';
 
-export default function DynamicContentToolbar({
-	pages,
-}: IDynamicContentToolbarProps): JSX.Element {
+export default function DynamicContentToolbar({ pages }: IDynamicContentToolbarProps): JSX.Element {
 	const [prevPageId, setPrevPageId] = useState('');
 	const { t, textDirection } = useLocale();
 	const popoverContext = useContext(PopoverContext);
@@ -40,11 +38,7 @@ export default function DynamicContentToolbar({
 			element: (
 				<ToolbarButton
 					key={`back-button-key-${prevPage.metaData.glossary_key}`}
-					title={
-						prevPage.metaData.title ||
-						t(prevPage.metaData.glossary_key) ||
-						prevPage.id
-					}
+					title={prevPage.metaData.title || t(prevPage.metaData.glossary_key) || prevPage.id}
 					onClick={() => dynamicContentContext.setPageIndex(idx)}
 				>
 					{getIcon(`arrow${textDirection === 'ltr' ? 'Left' : 'Right'}`)}
@@ -53,14 +47,7 @@ export default function DynamicContentToolbar({
 			id: backButtonKey,
 			enabled: true,
 		});
-	}, [
-		pages,
-		prevPageId,
-		dynamicContentContext,
-		popoverContext,
-		textDirection,
-		t,
-	]);
+	}, [pages, prevPageId, dynamicContentContext, popoverContext, textDirection, t]);
 
 	return <></>;
 }

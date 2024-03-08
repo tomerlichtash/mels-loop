@@ -19,6 +19,8 @@ const Error404: NextPage = () => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async () => ({ props: {} });
+export const getStaticProps: GetStaticProps = async () => ({
+	props: {},
+});
 
 export default Error404;

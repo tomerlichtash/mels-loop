@@ -6,15 +6,8 @@ type BlockquoteProps = {
 	className?: string;
 };
 
-const Blockquote = ({
-	children,
-	className,
-}: PropsWithChildren<BlockquoteProps>): JSX.Element => (
-	<blockquote
-		className={classNames(styles.root, className)}
-	>
-		{children}
-	</blockquote>
+const Blockquote = ({ children, className }: PropsWithChildren<BlockquoteProps>): JSX.Element => (
+	<blockquote className={classNames(styles.root, className)}>{children}</blockquote>
 );
 
 export default Blockquote;

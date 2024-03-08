@@ -5,16 +5,16 @@ type LineProps = {
 	index: number;
 };
 
-export const Line = ({
-	index,
-	children,
-}: PropsWithChildren<LineProps>): JSX.Element => {
+export const Line = ({ index, children }: PropsWithChildren<LineProps>): JSX.Element => {
 	if (!children) {
 		return <span className="empty text-line"></span>;
 	}
 
 	return (
-		<span className={styles.root} data-line-index={index}>
+		<span
+			className={styles.root}
+			data-line-index={index}
+		>
 			<a id={`line${index + 1}`}></a>
 			{children}
 		</span>

@@ -24,7 +24,10 @@ const Index: NextPage<IPageProps> = (props) => {
 			<Head>
 				<title>{pageTitle}</title>
 			</Head>
-			<GenericContentLayout title={title} abstract={moto}>
+			<GenericContentLayout
+				title={title}
+				abstract={moto}
+			>
 				{renderElements(pageData)}
 			</GenericContentLayout>
 		</Layout>

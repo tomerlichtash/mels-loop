@@ -6,10 +6,7 @@ type PopoverDialogProps = {
 	className?: string;
 };
 
-const PopoverDialog = ({
-	className,
-	children,
-}: PropsWithChildren<PopoverDialogProps>) => {
+const PopoverDialog = ({ className, children }: PropsWithChildren<PopoverDialogProps>) => {
 	return <div className={classNames(styles.root, className)}>{children}</div>;
 };
 

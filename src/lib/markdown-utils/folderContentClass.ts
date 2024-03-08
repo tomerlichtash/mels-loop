@@ -1,9 +1,4 @@
-import {
-	IFolderContent,
-	ILocaleMap,
-	IParsedPageData,
-	PageSortField,
-} from 'types/models';
+import { IFolderContent, ILocaleMap, IParsedPageData, PageSortField } from 'types/models';
 
 export class FolderContent implements IFolderContent {
 	public pages: IParsedPageData[] = [];

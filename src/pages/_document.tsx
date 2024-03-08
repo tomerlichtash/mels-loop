@@ -1,10 +1,4 @@
-import Document, {
-	Html,
-	Head,
-	Main,
-	NextScript,
-	DocumentInitialProps,
-} from 'next/document';
+import Document, { Html, Head, Main, NextScript, DocumentInitialProps } from 'next/document';
 import { fontFaceLinks } from '../siteFonts';
 
 class CustomDocument extends Document<DocumentInitialProps> {

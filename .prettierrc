@@ -2,6 +2,9 @@
 	"tabWidth": 2,
 	"useTabs": true,
 	"singleQuote": true,
-	"printWidth": 60,
-	"singleAttributePerLine": true
+	"printWidth": 100,
+	"bracketSpacing": true,
+	"arrowParens": "always",
+	"singleAttributePerLine": true,
+	"proseWrap": "never"
 }

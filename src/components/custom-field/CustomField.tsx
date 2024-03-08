@@ -68,15 +68,14 @@ const CustomField = ({
 
 	return (
 		<div className={styles.root}>
-			<label data-is-invalid={isInvalid} data-is-valid={isValid}>
+			<label
+				data-is-invalid={isInvalid}
+				data-is-valid={isValid}
+			>
 				<span className={styles.layout}>
 					<span className={styles.container}>
 						<span className={styles.label}>
-							{icon && (
-								<span className={styles.icon}>
-									{getIcon(icon, styles.icon)}
-								</span>
-							)}
+							{icon && <span className={styles.icon}>{getIcon(icon, styles.icon)}</span>}
 							<span className={styles.text}>
 								{label}
 								{required && <span className={styles.requiredIndicator}></span>}

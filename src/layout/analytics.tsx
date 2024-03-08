@@ -10,7 +10,10 @@ export const Analytics = () => {
 				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"
 				strategy="afterInteractive"
 			/>
-			<Script id="google-analytics" strategy="afterInteractive">
+			<Script
+				id="google-analytics"
+				strategy="afterInteractive"
+			>
 				{`
 					window.dataLayer = window.dataLayer || [];
 					function gtag(){window.dataLayer.push(arguments);}

@@ -48,7 +48,10 @@ const Popover = ({
 				>
 					<PopoverDialog>
 						{toolbarItems && (
-							<div role="toolbar" className={styles.toolbar}>
+							<div
+								role="toolbar"
+								className={styles.toolbar}
+							>
 								<div className={styles.panel}>{toolbarItems}</div>
 								<div className={styles.closeButton}>
 									<ToolbarItem>

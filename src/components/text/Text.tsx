@@ -16,16 +16,14 @@ type TextProps = {
 	className?: string;
 };
 
-const Text = ({
-	asChild,
-	variant,
-	children,
-	className,
-}: PropsWithChildren<TextProps>) => {
+const Text = ({ asChild, variant, children, className }: PropsWithChildren<TextProps>) => {
 	const Comp = asChild ? Slot : 'span';
 
 	return (
-		<Comp data-variant={variant} className={classNames(styles.root, className)}>
+		<Comp
+			data-variant={variant}
+			className={classNames(styles.root, className)}
+		>
 			{children}
 		</Comp>
 	);

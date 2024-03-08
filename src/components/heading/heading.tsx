@@ -17,7 +17,10 @@ export const Heading = ({
 }: PropsWithChildren<HeadingProps>): JSX.Element => {
 	const Tag = `h${level}` as keyof JSX.IntrinsicElements;
 	return (
-		<Tag role="heading" className={classNames(styles.root, className)}>
+		<Tag
+			role="heading"
+			className={classNames(styles.root, className)}
+		>
 			<Text variant={Tag as HeadingVariant}>{children}</Text>
 		</Tag>
 	);

@@ -5,22 +5,12 @@ import {
 	NavSectionDataProps,
 } from '../components/nav/types';
 
-const translateKeys = (
-	keys: NavItemLocaleProps,
-	translateFn: (s: string) => string
-) =>
-	Object.fromEntries(
-		Object.keys(keys).map((key) => [key, translateFn(keys[key])])
-	);
+const translateKeys = (keys: NavItemLocaleProps, translateFn: (s: string) => string) =>
+	Object.fromEntries(Object.keys(keys).map((key) => [key, translateFn(keys[key])]));
 
-const getSectionItems = (
-	section: NavSectionDataProps,
-	items: NavItemDataProps[]
-) => {
+const getSectionItems = (section: NavSectionDataProps, items: NavItemDataProps[]) => {
 	return section.items
-		? section.items.map(
-				(itemId) => items.filter((item) => item.id === itemId)[0]
-		  )
+		? section.items.map((itemId) => items.filter((item) => item.id === itemId)[0])
 		: null;
 };
 

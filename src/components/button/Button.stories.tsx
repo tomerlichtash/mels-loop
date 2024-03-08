@@ -32,7 +32,10 @@ export const Primary: Story = {
 	},
 	render: function Render({ title, children, asChild }) {
 		return (
-			<Button title={title} asChild={asChild}>
+			<Button
+				title={title}
+				asChild={asChild}
+			>
 				{children}
 			</Button>
 		);

@@ -3,12 +3,7 @@
 @import '../config';
 
 @function prefix($prefix) {
-	$path: #{$theme-namespace-prefix}#{if(
-			string.length($prefix) > 0,
-			-#{$prefix},
-			''
-		)};
-
+	$path: #{$theme-namespace-prefix}#{if(string.length($prefix) > 0, -#{$prefix}, '')};
 	@return $path;
 }
 

@@ -1,7 +1,5 @@
 import React from 'react';
-import CustomField, {
-	type CustomFieldProps,
-} from 'components/custom-field/CustomField';
+import CustomField, { type CustomFieldProps } from 'components/custom-field/CustomField';
 import { getValidityErrorMessage } from 'components/custom-field/helpers';
 import { useInputValidation } from '../../hooks/useInputValidation';
 import classNames from 'classnames';
@@ -28,8 +26,7 @@ const Input = ({
 			translateFn,
 		});
 
-	const { valid, invalid, errorMessage, validate } =
-		useInputValidation(trErrorMessage);
+	const { valid, invalid, errorMessage, validate } = useInputValidation(trErrorMessage);
 
 	const CustomInput = type === 'textarea' ? 'textarea' : 'input';
 
@@ -47,7 +44,10 @@ const Input = ({
 			errorMessage={errorMessage}
 			{...rest}
 		>
-			<CustomInput onChange={validate} onBlur={validate} />
+			<CustomInput
+				onChange={validate}
+				onBlur={validate}
+			/>
 		</CustomField>
 	);
 };

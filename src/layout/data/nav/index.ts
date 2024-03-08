@@ -1,9 +1,6 @@
 import { default as menuSectionData } from './sections.json' assert { type: 'json' };
 import { default as menuItemsData } from './items.json' assert { type: 'json' };
-import type {
-	NavItemDataProps,
-	NavSectionDataProps,
-} from '../../../components/nav/types';
+import type { NavItemDataProps, NavSectionDataProps } from '../../../components/nav/types';
 
 export enum NavSectionId {
 	TOPBAR = 'topbar',
