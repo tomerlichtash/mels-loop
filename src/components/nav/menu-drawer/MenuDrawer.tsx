@@ -1,5 +1,4 @@
 import React from 'react';
-import { unique } from 'utils/index';
 import NavItem from '../nav-item/NavItem';
 import List from '../../list/List';
 import ListItem from '../../list-item/ListItem';
@@ -16,15 +15,15 @@ type VerticalNavProps = {
 const MenuDrawer = ({ items, onClose, className }: VerticalNavProps) => (
 	<div className={classNames(styles.root, className)}>
 		{items.map((section) => (
-			<span key={unique.id()}>
+			<span key={section.id}>
 				<div className={styles.sectionTitle}>{section.locale.title}</div>
 				<List className={styles.list}>
 					{section.items.map((item) => (
-						<ListItem key={unique.id()} className={styles.listItem}>
+						<ListItem key={`list-item-${item.id}`} className={styles.listItem}>
 							<NavItem
 								{...item}
 								onClick={onClose}
-								key={unique.id()}
+								// key={`nav-item-${item.id}`}
 								title={item.locale.title}
 								description={item.locale.description}
 								author={item.locale.author}

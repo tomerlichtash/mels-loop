@@ -5,7 +5,6 @@ import { ContentTypes } from 'types/content';
 import { mlNextUtils } from '../../lib/next-utils/nextUtils';
 import { usePageData } from '../../hooks/usePageData';
 import { Container, Link } from 'components/index';
-import { unique } from 'utils/index';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';
 import { getIcon } from 'components/icons';
@@ -35,7 +34,7 @@ export default function Doc(props: IPageProps) {
 					</Link>
 				</Container>
 				<GenericContentLayout
-					key={unique.id()}
+					key={title}
 					title={title}
 					date={date}
 					author={author}

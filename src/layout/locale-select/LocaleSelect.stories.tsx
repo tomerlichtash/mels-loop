@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import LocaleSelect from 'components/locale-select/LocaleSelect';
+import LocaleSelect from './LocaleSelect';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 const meta = {

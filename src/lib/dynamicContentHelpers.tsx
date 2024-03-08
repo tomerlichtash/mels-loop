@@ -1,5 +1,4 @@
 import { ContentComponent } from './dynamic-content-utils/contentComponent';
-import { unique } from 'utils/index';
 import type { IMLParsedNode, IParsedPageData } from 'types/models';
 
 export const renderElements = (pageData: IParsedPageData[]) => {
@@ -10,7 +9,10 @@ export const renderElements = (pageData: IParsedPageData[]) => {
 
 export const renderNodes = (elements: IMLParsedNode[]) =>
 	(Array.isArray(elements) ? elements : []).map((node: IMLParsedNode) => (
-		<ContentComponent key={unique.id()} componentData={{ node }} />
+		<ContentComponent
+			key={`content-component-${node.type}-${node.line}-${node.key}`}
+			componentData={{ node }}
+		/>
 	));
 
 export const getMetadata = (keys: string[], pageData: IParsedPageData[]) => {

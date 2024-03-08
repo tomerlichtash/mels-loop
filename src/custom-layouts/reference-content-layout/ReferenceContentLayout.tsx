@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from 'react';
-import { unique } from 'utils/index';
 import { Link, List, ListItem, Text } from '../../components/index';
 import styles from './ReferenceContentLayout.module.scss';
 import type { RefOrSourceProps } from 'types/components';
@@ -42,7 +41,7 @@ export const ReferenceContentLayout = ({
 			{sources.length ? (
 				<List role="list" label={sourcesLabel} className={styles.sources}>
 					{sources.map((source) => (
-						<ListItem key={unique.id()}>
+						<ListItem key={`list-item-${source.name}`}>
 							{source.url ? (
 								<Link href={source.url} target="_blank">
 									{source.name}

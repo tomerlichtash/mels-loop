@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { IParsedPageData } from 'types/models';
 import { DynamicContentContext } from '../context/contentContext';
 import { PopoverContext } from 'lib/dynamic-content-utils/context/popoverContext';
-import { unique } from 'utils/index';
 import { useLocale } from 'hooks/index';
 import { getIcon } from 'components/icons';
 import { ToolbarButton } from 'components/index';
@@ -40,7 +39,7 @@ export default function DynamicContentToolbar({
 		popoverContext.addToolbarItems({
 			element: (
 				<ToolbarButton
-					key={unique.id(backButtonKey)}
+					key={`back-button-key-${prevPage.metaData.glossary_key}`}
 					title={
 						prevPage.metaData.title ||
 						t(prevPage.metaData.glossary_key) ||

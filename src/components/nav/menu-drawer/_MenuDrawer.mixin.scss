@@ -6,5 +6,10 @@
 	#{refs.use(menu-drawer-list-item-border-bottom-size)}: $border-size;
 	#{refs.use(menu-drawer-list-item-border-bottom-style)}: $border-style;
 	#{refs.use(menu-drawer-list-item-border-bottom-color)}: $border-color;
+
+	#{refs.use(menu-drawer-section-title-border-bottom-size)}: $border-size;
+	#{refs.use(menu-drawer-section-title-border-bottom-style)}: $border-style;
+	#{refs.use(menu-drawer-section-title-border-bottom-color)}: $border-color;
+
 	// border: 5px solid red;
 }

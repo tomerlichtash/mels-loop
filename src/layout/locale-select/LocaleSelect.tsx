@@ -1,6 +1,5 @@
 import React from 'react';
-import ToggleGroup from '../toggle/toggle-group/ToggleGroup';
-import { unique } from 'utils/index';
+import ToggleGroup from '../../components/toggle/toggle-group/ToggleGroup';
 import classNames from 'classnames';
 import styles from './LocaleSelect.module.scss';
 import type { LocaleId } from 'types/locale';
@@ -31,7 +30,12 @@ const LocaleSelect = ({
 		className={classNames(styles.root, className)}
 	>
 		{options.map(({ id, label, title }) => (
-			<span key={unique.id()} title={title} data-value={id} data-locale={id}>
+			<span
+				key={`locale-item-${id}`}
+				title={title}
+				data-value={id}
+				data-locale={id}
+			>
 				{label}
 			</span>
 		))}

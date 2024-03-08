@@ -23,9 +23,7 @@
 	$textTransformVar: refs.use(#{meta.name(#{$var}-text-transform)});
 	$fontWeightVar: refs.use(#{meta.name(#{$var}-font-weight)});
 	$textColorVar: refs.use(#{meta.name(#{$var}-text-color)});
-	$textColorHoverVar: refs.use(
-		#{meta.name(#{$var}-text-color, state(hovered))}
-	);
+	$textColorHoverVar: refs.use(#{meta.name(#{$var}-text-color, state(hovered))});
 
 	#{$textTransformVar}: $text-transform;
 	#{$fontWeightVar}: $font-weight;
@@ -42,12 +40,7 @@
 }
 
 // public mixin api
-@mixin title(
-	$text-transform: capitalize,
-	$font-weight: 300,
-	$text-color: blue,
-	$text-color-hover: green
-) {
+@mixin title($text-transform: capitalize, $font-weight: 300, $text-color: red, $text-color-hover: green) {
 	@include -text-refs-mixin(
 		title,
 		$text-transform: $text-transform,
@@ -57,15 +50,10 @@
 	);
 }
 
-@mixin subtitle(
-	// $text-transform,
-	$font-weight: 300,
-	$text-color: blue,
-	$text-color-hover: green
-) {
+@mixin subtitle($text-transform, $font-weight: 300, $text-color: blue, $text-color-hover: green) {
 	@include -text-refs-mixin(
 		subtitle,
-		// $text-transform: $text-transform,
+		$text-transform: $text-transform,
 		$font-weight: $font-weight,
 		$text-color: $text-color,
 		$text-color-hover: $text-color-hover

@@ -37,8 +37,8 @@ export { default as ListItem } from './list-item/ListItem';
 export { default as ErrorMessage } from './error-message/ErrorMessage';
 
 // Composition Components
-export { default as Logo } from './logo/Logo';
+export { default as Logo } from '../layout/logo/Logo';
 export { default as MenuBar } from './nav/menu-bar/MenuBar';
 export { default as MenuDrawer } from './nav/menu-drawer/MenuDrawer';
-export { default as LocaleSelect } from './locale-select/LocaleSelect';
-export { default as ThemeSelect } from './theme-select/ThemeSelect';
+export { default as LocaleSelect } from '../layout/locale-select/LocaleSelect';
+export { default as ThemeSelect } from '../layout/theme-select/ThemeSelect';

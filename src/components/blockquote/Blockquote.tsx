@@ -10,7 +10,9 @@ const Blockquote = ({
 	children,
 	className,
 }: PropsWithChildren<BlockquoteProps>): JSX.Element => (
-	<blockquote className={classNames(styles.root, className)}>
+	<blockquote
+		className={classNames(styles.root, className)}
+	>
 		{children}
 	</blockquote>
 );

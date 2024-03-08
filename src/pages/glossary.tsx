@@ -9,7 +9,6 @@ import { Link, Text } from 'components/index';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';
 import Head from 'next/head';
-import { unique } from 'utils/unique';
 
 const Glossary: NextPage<IPageProps> = (props) => {
 	const { metaData } = usePageData(props);
@@ -39,7 +38,7 @@ const Glossary: NextPage<IPageProps> = (props) => {
 				{metaData.length && (
 					<ul className="term-list">
 						{metaData.map((page, index) => (
-							<li key={unique.id()}>{getItem(page, index)}</li>
+							<li key={`glossary-item-${page.id}`}>{getItem(page, index)}</li>
 						))}
 					</ul>
 				)}

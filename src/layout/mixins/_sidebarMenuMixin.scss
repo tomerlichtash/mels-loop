@@ -1,0 +1,28 @@
+@use 'sass:map';
+
+@use '../../styles/lib/refs' as refs;
+@use '../../styles/lib/hooks' as hooks;
+@use './../Layout.meta' as layout;
+
+@use '../../components/nav/nav-item/NavItem.mixin' as nav-item-mixin;
+@use '../../components/separator/Separator.mixin' as separator-mixin;
+@use '../../components/nav/menu-drawer/MenuDrawer.mixin' as drawer-mixin;
+
+@mixin background-color {
+	@include hooks.use-background-color(layout.name(drawer));
+
+	// @include drawer-mixin.list-item(
+	// 	$border-size: 1px,
+	// 	$border-style: solid,
+	// 	$border-color: #a0a0a0
+	// );
+}
+
+@mixin panel() {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	padding: 1em;
+
+	@include separator-mixin.color(refs.ref(layout.name(drawer-panel-separator-color)));
+}

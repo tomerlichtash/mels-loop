@@ -4,7 +4,6 @@ import React, { PropsWithChildren, useCallback, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import { useIconAnimator, useLocale, useWindowSize } from 'hooks/index';
-import { unique } from 'utils/unique';
 import { useDrawer } from '../hooks/useDrawer';
 import {
 	Button,
@@ -33,7 +32,7 @@ import { useRouter } from 'next/router';
 import navData, { NavSectionId } from './data/nav';
 import classNames from 'classnames';
 import styles from './Layout.module.scss';
-import type { LocaleOptionProps } from 'components/locale-select/LocaleSelect';
+import type { LocaleOptionProps } from 'layout/locale-select/LocaleSelect';
 
 type RootLayoutProps = {
 	className?: string;
@@ -93,7 +92,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 	const footerLinks = useMemo(
 		() =>
 			navItems(NavSectionId.FOOTER).map((section) => (
-				<Container className={styles.column} key={unique.id()}>
+				<Container className={styles.column} key={`container-${section.id}`}>
 					<List className={styles.list} label={section.locale.title}>
 						{section.items.map((item) => (
 							<ListItem
@@ -235,11 +234,13 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 										defaultValue={lang}
 										options={localeItems}
 										onSelect={(id) => void setLocale(id)}
+										className={styles.localeSelect}
 									/>
 									<ThemeSelect
 										label={themeLabel}
 										theme={theme}
 										setTheme={setTheme}
+										className={styles.themeSelect}
 									/>
 								</Container>
 							</Container>

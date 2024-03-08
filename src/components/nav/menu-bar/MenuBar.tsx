@@ -1,6 +1,5 @@
 import React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import { unique } from 'utils/unique';
 import { getIcon } from '../../icons';
 import ListItem from '../../list-item/ListItem';
 import Button from '../../button/Button';
@@ -12,7 +11,7 @@ import classNames from 'classnames';
 
 const renderItems = (items: NavItemDataProps[]) =>
 	items.map((item) => (
-		<NavigationMenu.Link asChild key={unique.id()}>
+		<NavigationMenu.Link asChild key={`list-item-${item.id}`}>
 			<ListItem className={styles.menuListItem}>
 				<NavItem
 					{...item}
@@ -28,7 +27,10 @@ const renderItems = (items: NavItemDataProps[]) =>
 const renderSections = (sections: NavParsedNodes[]) =>
 	sections.map((section) => (
 		<NavigationMenu.Item key={section.id} asChild>
-			<ListItem className={styles.menuSectionTriggerItem} key={unique.id()}>
+			<ListItem
+				className={styles.menuSectionTriggerItem}
+				key={`list-item-${section.id}`}
+			>
 				<>
 					<Button className={styles.menuSectionTriggerButton} asChild>
 						<NavigationMenu.Trigger>

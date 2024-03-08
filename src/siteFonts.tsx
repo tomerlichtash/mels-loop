@@ -1,4 +1,4 @@
-import { flattenArray, unique } from 'utils/index';
+import { flattenArray } from 'utils/index';
 import { default as siteFontData } from './layout/data/typography';
 
 const fontBasePath = '/assets/fonts';
@@ -19,7 +19,7 @@ interface IFontFaceDecl extends IFontFaceLink {
 
 const FontFaceLink = ({ id, href, format }: IFontFaceLink) => (
 	<link
-		key={unique.id()}
+		key={`fontfacelink_${format}_${id}`}
 		rel="preload"
 		href={`${fontBasePath}/${id}/${href}`}
 		as="font"

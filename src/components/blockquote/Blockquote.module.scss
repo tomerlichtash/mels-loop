@@ -11,6 +11,7 @@ $__stylesheet__: (
 	@include use-vertical-padding;
 	@include use-horizontal-padding;
 
+	// todo: implement cite properly
 	cite {
 		@include use-vertical-padding(name(cite));
 		@include use-horizontal-padding(name(cite));

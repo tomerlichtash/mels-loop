@@ -9,11 +9,7 @@ type AnnotationProps = {
 	className?: string;
 };
 
-const Annotation = ({
-	index,
-	hasPrefix = true,
-	className,
-}: AnnotationProps): JSX.Element => (
+const Annotation = ({ index, hasPrefix = true, className }: AnnotationProps): JSX.Element => (
 	<span className={classNames(styles.root, className)}>
 		<span
 			className={styles.content}

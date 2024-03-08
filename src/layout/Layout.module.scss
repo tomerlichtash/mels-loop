@@ -1,4 +1,12 @@
-@use './sidebar-menu/sidebarMenuMixin' as sidebar-mixin;
+@use 'sass:map';
+@use '../styles/lib/refs';
+@use './locale-select/LocaleSelectMixin' as locale-select-mixin;
+@use './theme-select/ThemeSelectMixin' as theme-select-mixin;
+@use './mixins/sidebarMenuMixin' as sidebar-mixins;
+@use './mixins/navItemMixin' as nav-item-mixin;
+@use './refs/toggleRefs' as toggle-refs;
+@use './refs/navItemRefs' as nav-item-refs;
+
 @import './Layout.meta';
 
 $footerMinheight: 20vh;
@@ -27,6 +35,16 @@ $footerMinheight: 20vh;
 
 		.panel {
 			gap: 1em;
+			display: flex;
+			align-items: center;
+
+			.localeSelect {
+				@include locale-select-mixin.button(map.get(toggle-refs.$toggle, default));
+			}
+
+			.themeSelect {
+				@include theme-select-mixin.button(map.get(toggle-refs.$toggle, default));
+			}
 		}
 	}
 
@@ -60,7 +78,6 @@ $footerMinheight: 20vh;
 			flex-direction: column;
 
 			&:first-child {
-				// gap: 0.5em;
 				max-width: 50%;
 			}
 
@@ -75,7 +92,7 @@ $footerMinheight: 20vh;
 	}
 
 	.drawer {
-		@include sidebar-mixin.menu();
+		@include sidebar-mixins.background-color;
 
 		.menuHeader {
 			padding: 1em;
@@ -85,10 +102,19 @@ $footerMinheight: 20vh;
 		}
 
 		.panel {
-			display: flex;
-			align-items: center;
-			gap: 1em;
-			padding: 1em;
+			// @include sidebar-mixins.panel;
+
+			.localeSelect {
+				@include locale-select-mixin.button(map.get(toggle-refs.$toggle, sidebar-menu));
+			}
+
+			.themeSelect {
+				@include theme-select-mixin.button(map.get(toggle-refs.$toggle, sidebar-menu));
+			}
+		}
+
+		.menu {
+			@include nav-item-mixin.item(map.get(nav-item-refs.$nav-item, sidebar-menu));
 		}
 	}
 }

@@ -1,5 +1,4 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
-import { unique } from 'utils/index';
 import Link from '../link/Link';
 import Text from '../text/Text';
 import ListItem, { ListItemProps } from '../list-item/ListItem';
@@ -16,7 +15,7 @@ type ListProps = {
 const renderListItems = (items: ListItemProps[]) =>
 	items.map(({ label, target, url }) => {
 		return (
-			<ListItem key={unique.id()} className={styles.item}>
+			<ListItem key={label} className={styles.item}>
 				{url ? (
 					<Link href={url} target={target} className={styles.link}>
 						{label}

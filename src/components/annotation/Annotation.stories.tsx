@@ -26,7 +26,11 @@ export const Primary: Story = {
 	render: function Render({ index, hasPrefix }) {
 		return (
 			<>
-				Some text<Annotation index={index} hasPrefix={hasPrefix}></Annotation>
+				Some text
+				<Annotation
+					index={index}
+					hasPrefix={hasPrefix}
+				></Annotation>
 			</>
 		);
 	},

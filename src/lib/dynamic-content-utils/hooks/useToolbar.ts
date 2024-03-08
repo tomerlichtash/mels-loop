@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { unique } from 'utils/index';
 
 export interface IToolbarItem {
 	element: React.ReactNode;
@@ -42,7 +41,7 @@ class Toolbar {
 			.filter((item) => item?.element)
 			.map((item) => ({
 				...item,
-				key: unique.id('toolbar'),
+				key: `toolbar-item-${item.id}`,
 			}))
 			.forEach((item) => {
 				const ind = this.findItemIndex(item);

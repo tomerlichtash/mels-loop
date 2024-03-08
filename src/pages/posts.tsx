@@ -6,7 +6,6 @@ import { mlNextUtils } from '../lib/next-utils/nextUtils';
 import type { IPageProps, IParsedPageData } from 'types/models';
 import { usePageData } from '../hooks/usePageData';
 import orderBy from 'lodash.orderby';
-import { unique } from 'utils/index';
 import Layout from 'layout/Layout';
 import { useLocale } from 'hooks/index';
 import Head from 'next/head';
@@ -35,7 +34,7 @@ export default function Blog(props: IPageProps) {
 					);
 					return (
 						<GenericContentLayout
-							key={unique.id()}
+							key={title}
 							title={title}
 							date={date}
 							author={author}

@@ -20,7 +20,7 @@
 @use '../../../../../components/strip/Strip.module' as strip;
 @use '../../../../../components/container/Container.module' as container;
 
-@use '../../../../../components/logo/Logo.module' as logo;
+// @use '../../../../../components/logo/Logo.module' as logo;
 @use '../../../../../components/loading-indicator/LoadingIndicator.module' as
 	loadingindicator;
 // @use '../../../../../components/locale-select/LocaleSelect.module' as
@@ -42,7 +42,7 @@
 @use 'strip' as strip-theme;
 @use 'loadingIndicator' as loading-indicator-theme;
 @use 'container' as container-theme;
-@use 'logo' as logo-theme;
+// @use 'logo' as logo-theme;
 @use 'textLink' as text-link-theme;
 // @use 'localeSelect' as locale-select-theme;
 // @use 'themeSelector' as theme-select-theme;
@@ -97,7 +97,7 @@ $index: (
 	// localeselect.name(): locale-select-theme.$vars,
 	// other
 	line.name(): line-theme.$vars,
-	logo.name(): logo-theme.$vars,
+	// logo.name(): logo-theme.$vars,
 	strip.name(): strip-theme.$vars
 );
 
