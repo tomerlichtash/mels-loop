@@ -200,6 +200,38 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 		]
 	);
 
+	const mobileMenutrigger = (
+		<Button
+			onClick={toggleDrawer}
+			asChild
+		>
+			{getIcon('hamburger')}
+		</Button>
+	);
+
+	const panel = (
+		<Container alignItemsCenter>
+			<Container className={styles.panel}>
+				<MenuBar
+					items={navItems(NavSectionId.TOPBAR)}
+					textDirection={textDirection}
+				/>
+				<LocaleSelect
+					defaultValue={lang}
+					options={localeItems}
+					onSelect={(id) => void setLocale(id)}
+					className={styles.localeSelect}
+				/>
+				<ThemeSelect
+					label={themeLabel}
+					theme={theme}
+					setTheme={setTheme}
+					className={styles.themeSelect}
+				/>
+			</Container>
+		</Container>
+	);
+
 	return (
 		<>
 			<CustomHead
@@ -248,35 +280,7 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 								{siteSubtitle}
 							</Text>
 						</Container>
-						{isMobile ? (
-							<Button
-								onClick={toggleDrawer}
-								asChild
-							>
-								{getIcon('hamburger')}
-							</Button>
-						) : (
-							<Container alignItemsCenter>
-								<Container className={styles.panel}>
-									<MenuBar
-										items={navItems(NavSectionId.TOPBAR)}
-										textDirection={textDirection}
-									/>
-									<LocaleSelect
-										defaultValue={lang}
-										options={localeItems}
-										onSelect={(id) => void setLocale(id)}
-										className={styles.localeSelect}
-									/>
-									<ThemeSelect
-										label={themeLabel}
-										theme={theme}
-										setTheme={setTheme}
-										className={styles.themeSelect}
-									/>
-								</Container>
-							</Container>
-						)}
+						{isMobile ? mobileMenutrigger : panel}
 					</header>
 				</Container>
 				<Container className={styles.page}>{children}</Container>

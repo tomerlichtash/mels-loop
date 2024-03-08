@@ -9,6 +9,7 @@
 	@include use-gap;
 
 	.item {
+		user-select: none;
 		@include base.toggle-button(name(button));
 	}
 }
