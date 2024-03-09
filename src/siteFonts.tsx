@@ -35,7 +35,9 @@ const FontFaceDecl = ({ name, id, href, weight, format }: IFontFaceDecl) => {
 		['font-weight', weight],
 		['font-display', 'swap'],
 	];
-	return `@font-face{${fontFaceProps.map((keyVal) => `${keyVal[0]}: ${keyVal[1]};`).join('')}}`;
+	return `@font-face{${fontFaceProps
+		.map((keyVal) => `${keyVal[0]}: ${keyVal[1]};`)
+		.join('')}}`;
 };
 
 export const fontFaceDecls = siteFontData

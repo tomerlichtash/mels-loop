@@ -394,7 +394,10 @@ class MarkdownParser implements IMarkdownParser {
 	 * @param context
 	 * @returns
 	 */
-	private applyNodeProcessors(nodes: IMLParsedNode[], context: MLParseContext): IMLParsedNode[] {
+	private applyNodeProcessors(
+		nodes: IMLParsedNode[],
+		context: MLParseContext
+	): IMLParsedNode[] {
 		const mode = context.mode;
 
 		if (!mode.nodeProcessors || !mode.nodeProcessors.length) {

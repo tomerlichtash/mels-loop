@@ -43,7 +43,9 @@ export const safeMerge = (into: object, data: object | string): object => {
 			if (tSource !== 'object') {
 				into[key] = val;
 			} else {
-				console.warn(`merge data: cannot merge field ${key} of type ${tSource} into ${tTarget}}`);
+				console.warn(
+					`merge data: cannot merge field ${key} of type ${tSource} into ${tTarget}}`
+				);
 			}
 		}
 	});

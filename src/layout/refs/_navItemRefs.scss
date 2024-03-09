@@ -4,21 +4,21 @@
 @use '../../styles/lib/refs';
 @import '../../styles/lib/states';
 
-@function sidebar-menu-nav-item($prop, $state: '') {
+@function sidebar-menu($prop, $state: '') {
 	@return layout.name(#{nav-item.name()}-variants-sidebar-menu-#{$prop}, $state);
 }
 
 $nav-item: (
 	sidebar-menu: (
-		item-radius: refs.ref(sidebar-menu-nav-item(item-radius)),
-		item-bg-color-hover: refs.ref(sidebar-menu-nav-item(background-color, state(hovered))),
-		title-font-weight: refs.ref(sidebar-menu-nav-item(title-font-weight)),
-		title-text-transform: refs.ref(sidebar-menu-nav-item(title-text-transform)),
-		title-text-color: refs.ref(sidebar-menu-nav-item(title-text-color)),
-		title-text-color-hover: refs.ref(sidebar-menu-nav-item(title-text-color, state(hovered))),
-		subtitle-font-weight: refs.ref(sidebar-menu-nav-item(subtitle-font-weight)),
-		subtitle-text-transform: refs.ref(sidebar-menu-nav-item(subtitle-text-transform)),
-		subtitle-text-color: refs.ref(sidebar-menu-nav-item(subtitle-text-color)),
-		subtitle-text-color-hover: refs.ref(sidebar-menu-nav-item(subtitle-text-color, state(hovered))),
+		item-radius: refs.ref(sidebar-menu(item-radius)),
+		item-bg-color-hover: refs.ref(sidebar-menu(background-color, state(hovered))),
+		title-font-weight: refs.ref(sidebar-menu(title-font-weight)),
+		title-text-transform: refs.ref(sidebar-menu(title-text-transform)),
+		title-text-color: refs.ref(sidebar-menu(title-text-color)),
+		title-text-color-hover: refs.ref(sidebar-menu(title-text-color, state(hovered))),
+		subtitle-font-weight: refs.ref(sidebar-menu(subtitle-font-weight)),
+		subtitle-text-transform: refs.ref(sidebar-menu(subtitle-text-transform)),
+		subtitle-text-color: refs.ref(sidebar-menu(subtitle-text-color)),
+		subtitle-text-color-hover: refs.ref(sidebar-menu(subtitle-text-color, state(hovered))),
 	),
 );

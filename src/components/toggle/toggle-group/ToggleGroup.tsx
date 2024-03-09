@@ -7,31 +7,32 @@ type ToggleGroupProps = {
 	defaultValue: string;
 	onSelect?: (val: string) => void;
 	type: 'single';
-  noEmptyValue?: boolean;
+	noEmptyValue?: boolean;
 	className?: string;
 };
-
 
 const ToggleGroup = ({
 	defaultValue,
 	type,
 	onSelect,
-  noEmptyValue = true,
+	noEmptyValue = true,
 	children,
 	className,
 }: PropsWithChildren<ToggleGroupProps>): JSX.Element => {
-
-const childrenWithProps = useMemo(
+	const childrenWithProps = useMemo(
 		() =>
 			React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-        const isDisabled = child.props.disabled || noEmptyValue ? child.props['data-value'] === defaultValue : false
+				if (React.isValidElement(child)) {
+					const isDisabled =
+						child.props.disabled || noEmptyValue
+							? child.props['data-value'] === defaultValue
+							: false;
 					return (
 						<ToggleGroupPrimitives.Item
 							className={styles.item}
 							value={child.props['data-value']}
 							asChild
-              disabled={isDisabled}
+							disabled={isDisabled}
 						>
 							{React.cloneElement(child, {})}
 						</ToggleGroupPrimitives.Item>
@@ -47,7 +48,7 @@ const childrenWithProps = useMemo(
 			type={type}
 			defaultValue={defaultValue}
 			onValueChange={(val) => {
-				console.log(defaultValue)
+				console.log(defaultValue);
 				val && onSelect(val);
 			}}
 			className={classNames(styles.root, className)}

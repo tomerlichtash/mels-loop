@@ -4,7 +4,9 @@ import { useComponentAttrs } from '../../../hooks/useComponentAttrs';
 import { Blockquote, Paragraph } from 'components/index';
 import { renderNodes } from 'lib/dynamicContentHelpers';
 
-export const BlockquoteContentBlock = ({ componentData }: ContentComponentProps): JSX.Element => {
+export const BlockquoteContentBlock = ({
+	componentData,
+}: ContentComponentProps): JSX.Element => {
 	const { node } = componentData;
 	const { attributes } = useComponentAttrs(node);
 	const { key, children } = node;

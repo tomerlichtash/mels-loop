@@ -10,7 +10,13 @@ type ScrollbarProps = {
 	textDirection: TextDirection;
 } & ScrollAreaScrollbarVisibleProps;
 
-const Scrollbar = ({ children, height, textDirection, className, ...rest }: ScrollbarProps) => (
+const Scrollbar = ({
+	children,
+	height,
+	textDirection,
+	className,
+	...rest
+}: ScrollbarProps) => (
 	<ScrollAreaPrimitive.Root
 		className={classNames(styles.root, className)}
 		type="always"

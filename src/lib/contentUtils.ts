@@ -58,7 +58,10 @@ class ContentUtils implements IContentUtils {
 		};
 	}
 
-	public urlToContentData(url: string, defaultType?: DynamicContentTypes): IDynamicContentRecord {
+	public urlToContentData(
+		url: string,
+		defaultType?: DynamicContentTypes
+	): IDynamicContentRecord {
 		const contentData = {
 			type: this.urlToContentType(url, defaultType),
 			id: this.urlToContentId(url),
@@ -81,7 +84,10 @@ class ContentUtils implements IContentUtils {
 		return (id && id.replace('#', '')) || '';
 	}
 
-	private urlToContentType(url: string, defaultType: DynamicContentTypes): DynamicContentTypes {
+	private urlToContentType(
+		url: string,
+		defaultType: DynamicContentTypes
+	): DynamicContentTypes {
 		if (!url) {
 			return defaultType || DynamicContentTypes.None;
 		}

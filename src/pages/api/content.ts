@@ -3,7 +3,11 @@ import { ContentTypes } from 'types/content';
 import { mlApiUtils } from '../../lib/apiUtils';
 import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
 import { loadContentFolder } from '../../lib/loadFolderContent';
-import type { IMLApiResponse, IMLDynamicContentParams, IMLDynamicContentResponse } from 'types/api';
+import type {
+	IMLApiResponse,
+	IMLDynamicContentParams,
+	IMLDynamicContentResponse,
+} from 'types/api';
 import * as fsPath from 'path';
 import * as fileSystem from 'fs';
 import { arrayToMap } from 'utils/index';

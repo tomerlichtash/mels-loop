@@ -60,7 +60,9 @@ class HTMLValidator implements IHTMLValidator {
 		if (!tag) {
 			return false;
 		}
-		return this.attributeMap.get('*').valid.has(key) || this.attributeMap.get(tag)?.valid.has(key);
+		return (
+			this.attributeMap.get('*').valid.has(key) || this.attributeMap.get(tag)?.valid.has(key)
+		);
 	}
 
 	filterAttributesFor(tag: string, attributes: StringMap): StringMap {

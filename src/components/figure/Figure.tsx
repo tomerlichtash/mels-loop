@@ -7,7 +7,12 @@ type FigureProps = {
 	className?: string;
 };
 
-const Figure = ({ elementId, children, className, ...rest }: PropsWithChildren<FigureProps>) => (
+const Figure = ({
+	elementId,
+	children,
+	className,
+	...rest
+}: PropsWithChildren<FigureProps>) => (
 	<figure
 		className={classNames(styles.root, className)}
 		{...rest}

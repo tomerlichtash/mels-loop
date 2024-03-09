@@ -2,7 +2,7 @@
 	"tabWidth": 2,
 	"useTabs": true,
 	"singleQuote": true,
-	"printWidth": 100,
+	"printWidth": 95,
 	"bracketSpacing": true,
 	"arrowParens": "always",
 	"singleAttributePerLine": true,

@@ -12,7 +12,9 @@ export interface IDynamicContentToolbarProps {
 
 const backButtonKey = 'popover-toolbar-back-button';
 
-export default function DynamicContentToolbar({ pages }: IDynamicContentToolbarProps): JSX.Element {
+export default function DynamicContentToolbar({
+	pages,
+}: IDynamicContentToolbarProps): JSX.Element {
 	const [prevPageId, setPrevPageId] = useState('');
 	const { t, textDirection } = useLocale();
 	const popoverContext = useContext(PopoverContext);

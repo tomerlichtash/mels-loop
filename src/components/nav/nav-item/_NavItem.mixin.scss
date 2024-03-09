@@ -55,7 +55,12 @@
 	);
 }
 
-@mixin subtitle($text-transform, $font-weight: 300, $text-color: blue, $text-color-hover: green) {
+@mixin subtitle(
+	$text-transform,
+	$font-weight: 300,
+	$text-color: blue,
+	$text-color-hover: green
+) {
 	@include -text-refs-mixin(
 		subtitle,
 		$text-transform: $text-transform,

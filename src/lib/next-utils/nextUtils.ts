@@ -16,7 +16,10 @@ class MLNextUtils implements IMLNextUtils {
 	 * @param dict
 	 * @returns
 	 */
-	public async populateDynamicPath(path: string, dict: { [key: string]: string }): Promise<string> {
+	public async populateDynamicPath(
+		path: string,
+		dict: { [key: string]: string }
+	): Promise<string> {
 		let relative = await pathToRelativePath(path);
 
 		if (!relative) {

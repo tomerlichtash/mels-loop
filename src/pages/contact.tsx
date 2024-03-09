@@ -46,7 +46,10 @@ const Contact: NextPage<IPageProps> = () => {
 						maxLength: MAX_FULL_NAME_LENGTH,
 					})
 				)
-				.matches(EMAIL_NOT_ALLOWED_REGEXP, t(`${fieldLocalePrefix}:fullName:validity:typeMismatch`))
+				.matches(
+					EMAIL_NOT_ALLOWED_REGEXP,
+					t(`${fieldLocalePrefix}:fullName:validity:typeMismatch`)
+				)
 				.required(t(`${fieldLocalePrefix}:fullName:validity:valueMissing`)),
 		},
 		{
