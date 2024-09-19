@@ -11,7 +11,7 @@ import styles from './Popover.module.css';
 import type { IParsedNode } from 'lib/types/models';
 import type { IPopoverContext } from 'context/popover/types';
 import { useEffectOnce } from 'hooks/useEffectOnce';
-import PopoverCloseButton from './toolbarItems/PopoverCloseButton/PopoverCloseButton';
+import PopoverCloseButton from './PopoverCloseButton/PopoverCloseButton';
 
 type PopoverComponentProps = {
 	node: IParsedNode;
