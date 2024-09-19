@@ -1,13 +1,11 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import { ContentTypes } from 'types/content';
-import { mlNextUtils } from '../lib/next-utils/nextUtils';
-import type { IPageProps } from 'types/models';
-import { usePageData } from '../hooks/usePageData';
-import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
-import { Link } from 'components/index';
+import { ContentTypes, type IPageProps } from 'types';
+import { getFolderStaticProps } from '../lib/next-utils';
+import { useLocale, usePageData } from 'hooks';
+import { Link } from '@melsloop/ml-components';
 import Layout from 'layout/Layout';
-import { useLocale } from 'hooks/index';
+import { LoadContentModes, LoadFolderModes } from 'lib/types/modes';
 
 const Docs: NextPage<IPageProps> = (props) => {
 	const { metaData } = usePageData(props);
@@ -37,18 +35,18 @@ const Docs: NextPage<IPageProps> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-	const indexProps = mlNextUtils.getFolderStaticProps(
+	const indexProps = getFolderStaticProps(
 		ContentTypes.Docs,
 		context.locale,
 		LoadFolderModes.Folder
 	);
 
-	const childrenProps = mlNextUtils.getFolderStaticProps(
+	const childrenProps = getFolderStaticProps(
 		ContentTypes.Docs,
 		context.locale,
 		LoadFolderModes.Children,
 		{
-			contentMode: LoadContentModes.Metadata,
+			contentMode: LoadContentModes.Metadata
 		}
 	);
 
@@ -56,8 +54,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	const props = {
 		props: {
 			...(indexProps as any).props,
-			metaData: (childrenProps as any).props.content,
-		},
+			metaData: (childrenProps as any).props.content
+		}
 	};
 
 	return props;

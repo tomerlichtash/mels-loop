@@ -1,0 +1,21 @@
+.root {
+	--ml-container-background-color: var(--ml-color-surface-light);
+}
+
+.logo {
+	width: 20px;
+	height: 20px;
+	background-size: contain;
+	background-image: var(--ml-logo);
+	margin-inline-end: 0.5em;
+}
+
+.siteTitle {
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.siteSubtitle {
+	text-transform: lowercase;
+}

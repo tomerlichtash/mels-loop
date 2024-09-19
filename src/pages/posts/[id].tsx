@@ -1,33 +1,30 @@
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
-import type { IPageProps } from 'types/models';
-import { LoadFolderModes } from 'types/parser/modes';
-import { ContentTypes } from 'types/content';
-import { mlNextUtils } from '../../lib/next-utils/nextUtils';
-import { usePageData } from '../../hooks/usePageData';
-import { Container, Link } from 'components/index';
+import { ContentTypes, type IPageProps } from 'types';
+import { getFolderStaticPaths, getFolderStaticProps } from '../../lib/next-utils';
+import { useLocale, usePageData } from 'hooks';
+import { Container, Link } from '@melsloop/ml-components';
 import Layout from 'layout/Layout';
-import { useLocale } from 'hooks/index';
-import { getIcon } from 'components/icons';
-import { GenericContentLayout } from 'custom-layouts/generic-content-layout/GenericContentLayout';
-import { renderElements } from 'lib/dynamicContentHelpers';
-import styles from '../../custom-layouts/generic-content-layout/mixins/BlogPostLayoutMixin.module.scss';
+import { renderElements } from 'helpers';
+import styles from 'components/GenericContentLayout/mixins/BlogPostLayoutMixin.module.css';
+import { GenericContentLayout } from 'components/GenericContentLayout/GenericContentLayout';
+import { LoadFolderModes } from 'lib/types/modes';
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
-	const { t, textDirection } = useLocale();
+	const { t } = useLocale();
 	const { metaData } = page;
 	const { title, date, author } = metaData;
-	const backIcon = getIcon(`chevron${textDirection === 'ltr' ? 'Left' : 'Right'}`);
+	// const backIcon = getIcon(`chevron${textDirection === 'ltr' ? 'Left' : 'Right'}`);
 	return (
 		<Layout>
 			<div className="page">
-				<Container alignItemsCenter>
+				<Container>
 					<Link href={'/posts'}>
-						{backIcon}
+						{/* {backIcon} */}
 						{t('common:button:backToTarget', {
 							sep: t('common:to'),
-							target: t('pages:blog:title'),
+							target: t('pages:blog:title')
 						})}
 					</Link>
 				</Container>
@@ -46,10 +43,10 @@ export default function Doc(props: IPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async (context) =>
-	mlNextUtils.getFolderStaticPaths(ContentTypes.Posts, context.locales);
+	getFolderStaticPaths(ContentTypes.Posts, context.locales);
 
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) =>
-	mlNextUtils.getFolderStaticProps(
+	getFolderStaticProps(
 		`${ContentTypes.Posts}/${context.params.id as string}`,
 		context.locale,
 		LoadFolderModes.Folder

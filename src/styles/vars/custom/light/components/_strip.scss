@@ -1,9 +1,0 @@
-@use '../../../../lib/refs';
-
-$vars: (
-	background-color: refs.ref(gradient-primary-main),
-	height: 4px,
-	border-color: blue,
-	border-size: 4px,
-	border-style: dashed,
-);

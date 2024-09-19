@@ -1,0 +1,14 @@
+import type { IDynamicContentServer } from '../types';
+
+// Describes a content-related context, available to all rendered components under a ML page
+export interface IPageContext {
+	readonly dynamicContentServer: IDynamicContentServer;
+
+	// The path of the document displayed in the current component
+	readonly documentPath: string;
+}
+
+export type RefOrSourceProps = {
+	name: string;
+	url?: string;
+};

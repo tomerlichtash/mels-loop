@@ -1,0 +1,7 @@
+.root {
+	width: 24px;
+	height: 24px;
+	background-size: contain;
+	background-image: var(--ml-logo);
+	margin-inline-end: 0.5em;
+}

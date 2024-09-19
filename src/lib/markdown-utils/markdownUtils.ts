@@ -1,36 +1,41 @@
-import { MLParseContext } from 'lib/parserContext';
-import { VALID_PARSE_MODES } from 'lib/parseModes';
+// import { MLParseContext } from 'lib/parserContext';
+import { VALID_PARSE_MODES } from 'lib/markdown-utils/lib/parseModes';
 import * as mdParser from 'simple-markdown';
-import { ASTNODE_TYPES, MLNODE_TYPES } from 'types/nodes';
+// import { ASTNODE_TYPES, MLNODE_TYPES } from 'lib/types/nodes';
 import {
 	AST2MLTypeMap,
 	HTML_VALIDATION_MAP,
 	NORMAL_MODE_AST_TYPES,
-	VERSE_MODE_AST_TYPES,
+	VERSE_MODE_AST_TYPES
 } from './nodeTypes';
-import { MLParseModes } from 'types/parser/modes';
-import type { IMLParsedNode, ParsedNode } from 'types/models';
+// import { MLParseModes } from 'types/parser/modes';
+import { ASTNODE_TYPES, MLNODE_TYPES } from 'lib/types/nodes';
+import { ParseModes } from 'lib/types/modes';
+import type { ParseContext } from './lib/parserContextClass';
+import type { IParsedNode } from 'lib/types/models';
+import type { ParsedNode } from './types';
 
 export interface IMarkdownUtils {
-	/**
-	 * Strips xml comments from the string
-	 * @param source
-	 */
 	stripComments(source: string): string;
 	getIndexFileName(locale: string): string;
 	toValue<T>(val: T, defaultValue: T | null): T | null;
 	collectText(content: string | ParsedNode): string;
-	collectMLNodeText(node: IMLParsedNode): string;
-	nodeTypeToMLType(nodeName: ASTNODE_TYPES, context: MLParseContext): MLNODE_TYPES;
-	extractParseMode(node: ParsedNode, context: MLParseContext): MLParseModes;
-	removeNullChildren(node: IMLParsedNode): IMLParsedNode;
+	collectMLNodeText(node: IParsedNode): string;
+	nodeTypeToMLType(nodeName: ASTNODE_TYPES, context: ParseContext): MLNODE_TYPES;
+	extractParseMode(node: ParsedNode, context: ParseContext): ParseModes;
+	removeNullChildren(node: IParsedNode): IParsedNode;
 	findArrayPart(node: ParsedNode): Array<ParsedNode> | null;
-	collectMLNodeText(node: IMLParsedNode): string;
+	collectMLNodeText(node: IParsedNode): string;
 	translateString(str: string): string;
 	sanitizeHTML(node: ParsedNode): ParsedNode;
 	createHtmlMDParser(): mdParser.Parser;
 }
 
+const HTML_RE = /^\s*<([a-z]+)([^>]+)*>([\s\S]*?)<\/\1>/i;
+const HTML_SELFCLOSE_RE = /^\s*<([a-z]+)([^/>]+)*\/>/i;
+const ATTR_RE = /\s*([a-z][a-z0-9\-_.]+)="([^"]*)"/gi;
+const COMMENT_RE = /<!---?\s.*\s-?-->/g;
+const TRIPLE_SLASH_COMMENTS_RE = /^\s*\/\/\/([^\n\r]*)/;
 // const TRANSLATED_STRING_REGEXP = /\[\[(.+?)\]\]/g;
 
 /**
@@ -41,14 +46,15 @@ export interface IMarkdownUtils {
  */
 const parseAttributes = (attrStr: string): Map<string, string> => {
 	const attrMap = new Map<string, string>();
-	if (!attrStr) {
-		return attrMap;
-	}
-	const re = /\s*([a-z][a-z0-9\-_.]+)="([^"]*)"/gi;
+
+	if (!attrStr) return attrMap;
+
 	let match: RegExpExecArray;
-	while ((match = re.exec(attrStr)) != null) {
+
+	while ((match = ATTR_RE.exec(attrStr)) != null) {
 		attrMap.set(match[1], match[2]);
 	}
+
 	return attrMap;
 };
 
@@ -67,7 +73,7 @@ class MarkdownUtils implements IMarkdownUtils {
 	 * @returns stripped string
 	 */
 	public stripComments(source: string): string {
-		return (source || '').replace(/<!---?\s.*\s-?-->/g, '');
+		return (source || '').replace(COMMENT_RE, '');
 	}
 
 	public collectText(content: string | ParsedNode): string {
@@ -92,7 +98,7 @@ class MarkdownUtils implements IMarkdownUtils {
 		return '';
 	}
 
-	public collectMLNodeText(node: IMLParsedNode): string {
+	public collectMLNodeText(node: IParsedNode): string {
 		if (!node) {
 			return '';
 		}
@@ -112,7 +118,7 @@ class MarkdownUtils implements IMarkdownUtils {
 		return '';
 	}
 
-	public nodeTypeToMLType(nodeName: ASTNODE_TYPES, context: MLParseContext): MLNODE_TYPES {
+	public nodeTypeToMLType(nodeName: ASTNODE_TYPES, context: ParseContext): MLNODE_TYPES {
 		void context;
 		if (!nodeName) {
 			return MLNODE_TYPES.UNKNOWN;
@@ -128,28 +134,25 @@ class MarkdownUtils implements IMarkdownUtils {
 	 * @param context
 	 * @returns
 	 */
-	public extractParseMode(node: ParsedNode, context: MLParseContext): MLParseModes {
+	public extractParseMode(node: ParsedNode, context: ParseContext): ParseModes {
 		if (node.attributes) {
 			const attr = node.attributes.get('data-parse-mode');
-			if (attr && VALID_PARSE_MODES.has(attr as MLParseModes)) {
-				return attr as MLParseModes;
+			if (attr && VALID_PARSE_MODES.has(attr as ParseModes)) {
+				return attr as ParseModes;
 			}
 		}
 		const type = node.type === ASTNODE_TYPES.HTML ? node.tag : node.type;
 		if (VERSE_MODE_AST_TYPES.has(type as ASTNODE_TYPES)) {
-			return MLParseModes.VERSE;
+			return ParseModes.VERSE;
 		}
 		if (NORMAL_MODE_AST_TYPES.has(type as ASTNODE_TYPES)) {
-			return MLParseModes.NORMAL;
+			return ParseModes.NORMAL;
 		}
 
 		return context.mode.parseMode;
 	}
 
-	/**
-	 * @param node
-	 */
-	public removeNullChildren(node: IMLParsedNode): IMLParsedNode {
+	public removeNullChildren(node: IParsedNode): IParsedNode {
 		if (!node?.children) {
 			return node;
 		}
@@ -193,50 +196,46 @@ class MarkdownUtils implements IMarkdownUtils {
 		}
 
 		const children = this.findArrayPart(node);
+
 		children && children.forEach((child) => this.sanitizeHTML(child));
 
 		return node;
 	}
 
 	public createHtmlMDParser() {
-		const HTML_RE = /^\s*<([a-z]+)([^>]+)*>([\s\S]*?)<\/\1>/i;
-		const HTML_SELFCLOSE_RE = /^\s*<([a-z]+)([^/>]+)*\/>/i;
 		const rules = {
 			...mdParser.defaultRules,
 			// Triple slash comments
 			comment: {
-				match: function (source: string) {
-					return /^\s*\/\/\/([^\n\r]*)/.exec(source);
+				match: (source: string) => {
+					return TRIPLE_SLASH_COMMENTS_RE.exec(source);
 				},
-
-				parse: function (capture: RegExpExecArray /*, recurseParse, state */) {
+				parse: (capture: RegExpExecArray /*, recurseParse, state */) => {
 					return {
-						content: capture[1],
+						content: capture[1]
 					};
 				},
-				order: 0,
+				order: 0
 			},
 			// html parser
 			HTML: {
-				match: function (source: string /*, state, lookbehind */) {
+				match: (source: string /*, state, lookbehind */) => {
 					const res = HTML_RE.exec(source) || HTML_SELFCLOSE_RE.exec(source);
-
 					return res;
 				},
-
-				parse: function (
+				parse: (
 					capture: RegExpExecArray,
 					recurseParse: (content: string, state: object) => Array<object>,
 					state: object
-				) {
+				) => {
 					return {
 						tag: capture[1],
 						attributes: parseAttributes(capture[2]),
-						content: (capture[3] && recurseParse(capture[3], state)) || undefined,
+						content: (capture[3] && recurseParse(capture[3], state)) || undefined
 					};
 				},
-				order: 0,
-			},
+				order: 0
+			}
 		};
 
 		return mdParser.parserFor(rules);

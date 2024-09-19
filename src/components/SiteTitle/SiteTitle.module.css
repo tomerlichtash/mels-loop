@@ -1,0 +1,19 @@
+.root {
+}
+
+.title {
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.subtitle {
+	text-transform: lowercase;
+}
+
+.link {
+	--ml-link-text-decoration: none;
+}
+.link:hover {
+	--ml-link-text-decoration: underline;
+}

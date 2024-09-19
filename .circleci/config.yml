@@ -6,58 +6,58 @@ jobs:
     steps:
       - checkout
       # - restore_cache:
-      #     name: Restore Yarn Package Cache
+      #     name: Restore npm Package Cache
       #     keys:
-      #       - yarn-packages-cache-lint-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #       - npm-packages-cache-lint-{{ .Branch }}-{{ checksum "npm.lock" }}
       #     paths:
-      #       - ~/.yarn/cache
+      #       - ~/.npm/cache
       - run:
           name: Install Dependencies
-          command: yarn install #--frozen-lockfile --cache-folder ~/.cache/yarn
+          command: npm install #--frozen-lockfile --cache-folder ~/.cache/npm
       # - save_cache:
-      #     name: Save Yarn Package Cache
-      #     key: yarn-packages-cache-lint-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     name: Save npm Package Cache
+      #     key: npm-packages-cache-lint-{{ .Branch }}-{{ checksum "npm.lock" }}
       #     paths:
-      #       - ~/.cache/yarn
+      #       - ~/.cache/npm
       # - restore_cache:
-      #     name: scripts - Restore Yarn Package Cache
+      #     name: scripts - Restore npm Package Cache
       #     keys:
-      #       - yarn-packages-cache-lint-scripts-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #       - npm-packages-cache-lint-scripts-{{ .Branch }}-{{ checksum "npm.lock" }}
       #     paths:
-      #       - ~/.yarn/cache
+      #       - ~/.npm/cache
       # - run:
       #     name: scripts - Install Dependencies
-      #     command: cd scripts && yarn install --frozen-lockfile --cache-folder ~/.cache/yarn-scripts
+      #     command: cd scripts && npm install --frozen-lockfile --cache-folder ~/.cache/npm-scripts
       # - save_cache:
-      #     name: scripts - Save Yarn Package Cache
-      #     key: yarn-packages-cache-lint-scripts-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     name: scripts - Save npm Package Cache
+      #     key: npm-packages-cache-lint-scripts-{{ .Branch }}-{{ checksum "npm.lock" }}
       #     paths:
-      #       - ~/.cache/yarn-scripts
+      #       - ~/.cache/npm-scripts
       - run:
           name: Lint
-          command: yarn lint
+          command: npm lint
   unit:
     docker:
       - image: cimg/node:18.17
     steps:
       - checkout
       # - restore_cache:
-      #     name: Restore Yarn Package Cache
+      #     name: Restore npm Package Cache
       #     keys:
-      #       - yarn-packages-unit-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #       - npm-packages-unit-{{ .Branch }}-{{ checksum "npm.lock" }}
       #     paths:
-      #       - ~/.yarn/cache
+      #       - ~/.npm/cache
       - run:
           name: Install Dependencies
-          command: yarn install #--frozen-lockfile --cache-folder ~/.cache/yarn
+          command: npm install #--frozen-lockfile --cache-folder ~/.cache/npm
       # - save_cache:
-      #     name: Save Yarn Package Cache
-      #     key: yarn-packages-unit-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     name: Save npm Package Cache
+      #     key: npm-packages-unit-{{ .Branch }}-{{ checksum "npm.lock" }}
       #     paths:
-      #       - ~/.cache/yarn
+      #       - ~/.cache/npm
       - run:
           name: Unit Test
-          command: yarn test:unit
+          command: npm test:unit
       - store_artifacts:
           path: coverage
 
@@ -70,22 +70,22 @@ jobs:
     steps:
       - checkout
       # - restore_cache:
-      #     name: Restore Yarn Package Cache
+      #     name: Restore npm Package Cache
       #     keys:
-      #       - yarn-packages-playwright-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #       - npm-packages-playwright-{{ .Branch }}-{{ checksum "npm.lock" }}
       #     paths:
-      #       - ~/.yarn/cache
+      #       - ~/.npm/cache
       - run:
           name: Install Dependencies
-          command: yarn install #--frozen-lockfile --cache-folder ~/.cache/yarn
+          command: npm install #--frozen-lockfile --cache-folder ~/.cache/npm
       # - save_cache:
-      #     name: Save Yarn Package Cache
-      #     key: yarn-packages-playwright-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     name: Save npm Package Cache
+      #     key: npm-packages-playwright-{{ .Branch }}-{{ checksum "npm.lock" }}
       #     paths:
-      #       - ~/.cache/yarn
+      #       - ~/.cache/npm
       - run:
           name: E2E Test
-          command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; yarn test:e2e --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
+          command: SHARD="$((${CIRCLE_NODE_INDEX}+1))"; npm test:e2e --shard=${SHARD}/${CIRCLE_NODE_TOTAL}
       # - store_artifacts:
       #     path: playwright-report
       #     destination: playwright-report

@@ -1,9 +1,0 @@
-@use '../../lib/color';
-@use './colors';
-@use './typography';
-@use './shadows';
-@use './radius';
-@use './animations';
-
-$pallette: color.generate(colors.$vars, 'color');
-$vars: $pallette, typography.$vars, shadows.$vars, radius.$vars, animations.$vars;

@@ -1,26 +1,37 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { ContentTypes } from 'types/content';
-import { mlApiUtils } from '../../lib/apiUtils';
-import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
-import { loadContentFolder } from '../../lib/loadFolderContent';
-import type {
-	IMLApiResponse,
-	IMLDynamicContentParams,
-	IMLDynamicContentResponse,
-} from 'types/api';
 import * as fsPath from 'path';
 import * as fileSystem from 'fs';
-import { arrayToMap } from 'utils/index';
+import { ContentTypes } from 'types';
+import {
+	mlApiUtils,
+	type IMLApiResponse,
+	type IMLDynamicContentParams,
+	type IMLDynamicContentResponse
+} from 'api/apiUtils';
 import { getContentRootDir } from 'lib/contentRootDir';
-import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
+import { createPopoverLinksNodeProcessor } from 'lib/next-utils/processors/createPopoverLinksNodeProcessor';
+import { LoadContentModes, LoadFolderModes } from 'lib/types/modes';
+import { loadFolderContent } from 'lib/markdown-utils/loadFolderContent';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 const TypeMap: { [key: string]: ContentTypes } = {
 	annotation: ContentTypes.Annotation,
-	glossary: ContentTypes.Glossary,
+	glossary: ContentTypes.Glossary
 };
 
 const noop = function () {
 	void 0;
+};
+
+export const arrayToMap = <T>(array: Array<T>, field: string): { [key: string]: T } => {
+	const map: { [key: string]: T } = array.reduce((acc, elem) => {
+		const value = elem && elem[field];
+		if (value !== null && value !== undefined) {
+			acc[String(value)] = elem;
+		}
+		return acc;
+	}, {});
+
+	return map;
 };
 
 /**
@@ -82,8 +93,7 @@ async function loadContent(
 	if (!params?.locale || !contentType) {
 		return {
 			data: null,
-			error: `Bad content params, locale ${params?.locale} type ${params.type} 
-(expected one of ${Object.keys(TypeMap).toString()})`,
+			error: `Bad content params, locale ${params?.locale} type ${params.type} (expected one of ${Object.keys(TypeMap).toString()})`
 		};
 	}
 	const clientPath = params.document || '';
@@ -107,21 +117,21 @@ async function loadContent(
 			throw new Error(`No ${contentType} for ${clientPath}, or globally`);
 		}
 
-		const docData = loadContentFolder({
+		const docData = loadFolderContent({
 			relativePath: docPath,
 			locale: params.locale,
 			loadMode: LoadFolderModes.Children,
 			mode: {
 				contentMode: LoadContentModes.Full,
-				nodeProcessors: [createPopoverLinksNodeProcessor()],
+				nodeProcessors: [createPopoverLinksNodeProcessor()]
 			},
-			rootFolder: process.cwd(),
+			rootFolder: process.cwd()
 		});
 
 		const data = {
 			locale: params.locale,
 			// turn array into map
-			items: arrayToMap(docData.pages, 'id'),
+			items: arrayToMap(docData.pages, 'id')
 		};
 
 		// don't want to await before returning, so

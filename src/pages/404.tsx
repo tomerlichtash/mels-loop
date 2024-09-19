@@ -20,7 +20,7 @@ const Error404: NextPage = () => {
 };
 
 export const getStaticProps: GetStaticProps = async () => ({
-	props: {},
+	props: {}
 });
 
 export default Error404;

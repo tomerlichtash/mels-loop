@@ -47,7 +47,6 @@ results.xml
 unit-tests.xml
 temp/
 
-*.css
 *.css.map
 
 playwright-report

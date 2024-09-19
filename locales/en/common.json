@@ -14,5 +14,6 @@
 	"button:toggleTheme": "Switch to {{ theme }}",
 	"theme:light:name": "Light Theme",
 	"theme:dark:name": "Dark Theme",
-	"markdown:tags:figure:abbr": "Fig."
+	"markdown:tags:figure:abbr": "Fig.",
+	"button:close": "Close"
 }

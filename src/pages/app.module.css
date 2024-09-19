@@ -1,0 +1,40 @@
+/* @import './vendor/radix-overrides.css'; */
+
+/* .grecaptcha-badge {
+	visibility: hidden;
+} */
+
+.root {
+	--ml-logo-light: url(/assets/logo/ml-logo-light.png);
+	--ml-logo-dark: url(/assets/logo/ml-logo-dark.png);
+}
+
+[data-ml-theme='light'] .root {
+	--ml-logo: var(--ml-logo-dark);
+}
+
+[data-ml-theme='dark'] .root {
+	--ml-logo: var(--ml-logo-light);
+}
+
+/* theme overrides */
+.root {
+	/* term */
+	--ml-term-suffix: '\203B'; /* ※ */
+	--ml-term-radius: var(--ml-radius-sm);
+	/* annotation */
+	--ml-annotation-radius: var(--ml-radius-sm);
+	/* blockquote */
+	--ml-blockquote-border-width: 0;
+	/* text */
+	--ml-text-line-height: 1.5em;
+	/* paragraph */
+	--ml-paragraph-margin-bottom: 1em;
+}
+
+.root [data-popover-state='open'] {
+	--ml-term-text-background-color: var(--ml-color-primary-dark);
+	--ml-term-text-color: var(--ml-color-primary-light);
+	--ml-annotation-text-background-color: var(--ml-color-primary-dark);
+	--ml-annotation-text-color: var(--ml-color-primary-light);
+}

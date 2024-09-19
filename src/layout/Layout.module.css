@@ -1,0 +1,17 @@
+.root {
+	--ml-container-background-color: var(--ml-color-overlay-main);
+	--ml-scrollbar-background-color: var(--ml-color-surface-light);
+	--ml-page-width: 800px;
+}
+
+.page {
+	max-width: var(--ml-page-width);
+	margin: 5em auto 0;
+	min-height: 80vh;
+}
+
+.footer {
+	max-width: var(--ml-page-width);
+	margin: 0 auto;
+	--ml-container-background-color: none;
+}

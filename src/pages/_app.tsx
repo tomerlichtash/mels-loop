@@ -1,34 +1,31 @@
 import React from 'react';
-import css from 'styled-jsx/css';
-import { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 import { ThemeProvider } from 'next-themes';
-import { PageProvider } from 'lib/dynamic-content-utils/context/pageContext';
-import { fontFaceDecls } from '../siteFonts';
+import { PageProvider } from 'context/page/PageProvider';
+import { THEME_NAMESPACE } from 'theme/consts';
+import localeFonts from '../theme/fonts';
+import classNames from 'classnames';
 import 'normalize.css/normalize.css';
-import '../styles/app.scss';
-import type { IPageProps } from 'types/models';
+import styles from './app.module.css';
+import type { AppProps } from 'next/app';
+import type { IPageProps } from 'types';
 
 const App = ({ Component, pageProps }: AppProps<IPageProps>) => {
-	const fontStyles = css`
-		${fontFaceDecls}
-	`;
+	const { locale } = useRouter();
+	const { className: localeFontClassname } = localeFonts[locale];
 
 	return (
-		<ThemeProvider
-			defaultTheme="light"
-			storageKey="ml-theme"
-			attribute="data-ml-theme"
-		>
-			<PageProvider documentPath={pageProps.documentPath}>
-				<style
-					jsx
-					global
-				>
-					{fontStyles}
-				</style>
-				<Component {...pageProps} />
-			</PageProvider>
-		</ThemeProvider>
+		<div className={classNames(styles.root, localeFontClassname)}>
+			<ThemeProvider
+				defaultTheme="light"
+				storageKey="ml-theme"
+				attribute={THEME_NAMESPACE}
+			>
+				<PageProvider documentPath={pageProps.documentPath}>
+					<Component {...pageProps} />
+				</PageProvider>
+			</ThemeProvider>
+		</div>
 	);
 };
 

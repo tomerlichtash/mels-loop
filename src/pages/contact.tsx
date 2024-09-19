@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Layout from 'layout/Layout';
 import * as yup from 'yup';
 import { useLocale } from 'hooks/index';
-import { GenericContentLayout } from 'custom-layouts/generic-content-layout/GenericContentLayout';
-import { Form, ErrorMessage, Link, Text } from 'components/index';
+import { Link, Text } from '@melsloop/ml-components';
 import type { NextPage, GetStaticProps } from 'next';
-import type { IPageProps } from 'types/models';
-import type { FormFieldProps } from 'components/form/Form';
+import type { IPageProps } from 'types';
+import { GenericContentLayout } from 'components/GenericContentLayout/GenericContentLayout';
+// import type { FormFieldProps } from 'components/form/Form';
 
 export const MAX_FULL_NAME_LENGTH = 100;
 export const MAX_EMAIL_LENGTH = 256;
@@ -28,7 +28,8 @@ const Contact: NextPage<IPageProps> = () => {
 
 	const { t } = useLocale();
 
-	const contactFormFields: FormFieldProps[] = [
+	// const contactFormFields: FormFieldProps[] = [
+	const contactFormFields: any[] = [
 		{
 			name: 'fullName',
 			initialValue: '',
@@ -43,14 +44,14 @@ const Contact: NextPage<IPageProps> = () => {
 				.max(
 					MAX_FULL_NAME_LENGTH,
 					t(`${fieldLocalePrefix}:fullName:validity:maxLength`, {
-						maxLength: MAX_FULL_NAME_LENGTH,
+						maxLength: MAX_FULL_NAME_LENGTH
 					})
 				)
 				.matches(
 					EMAIL_NOT_ALLOWED_REGEXP,
 					t(`${fieldLocalePrefix}:fullName:validity:typeMismatch`)
 				)
-				.required(t(`${fieldLocalePrefix}:fullName:validity:valueMissing`)),
+				.required(t(`${fieldLocalePrefix}:fullName:validity:valueMissing`))
 		},
 		{
 			name: 'email',
@@ -67,10 +68,10 @@ const Contact: NextPage<IPageProps> = () => {
 				.max(
 					MAX_EMAIL_LENGTH,
 					t(`${fieldLocalePrefix}:email:validity:maxLength`, {
-						maxLength: MAX_EMAIL_LENGTH,
+						maxLength: MAX_EMAIL_LENGTH
 					})
 				)
-				.required(t(`${fieldLocalePrefix}:email:validity:valueMissing`)),
+				.required(t(`${fieldLocalePrefix}:email:validity:valueMissing`))
 		},
 		{
 			name: 'message',
@@ -86,11 +87,11 @@ const Contact: NextPage<IPageProps> = () => {
 				.max(
 					MAX_MESSAGE_LENGTH,
 					t(`${fieldLocalePrefix}:message:validity:maxLength`, {
-						maxLength: MAX_MESSAGE_LENGTH,
+						maxLength: MAX_MESSAGE_LENGTH
 					})
 				)
-				.required(t(`${fieldLocalePrefix}:message:validity:valueMissing`)),
-		},
+				.required(t(`${fieldLocalePrefix}:message:validity:valueMissing`))
+		}
 	];
 
 	return (
@@ -108,7 +109,8 @@ const Contact: NextPage<IPageProps> = () => {
 				) : (
 					<>
 						<Text>{t('contact:form:title')}</Text>
-						<Form
+						{/* <Form
+              path=""
 							name="contact"
 							fields={contactFormFields}
 							recaptchaSiteKey={recaptchaSiteKey}
@@ -117,24 +119,24 @@ const Contact: NextPage<IPageProps> = () => {
 							submitButtonLabel={t('contact:form:submit:button:label')}
 							submitButtonLabelActive={t('contact:form:submit:button:label:active')}
 							onError={(e: string) => setError(e)}
-						/>
+						/> */}
 					</>
 				)}
 
-				{error && (
+				{/* {error && (
 					<ErrorMessage
 						message={t('contact:form:error:message')}
 						label={t('contact:form:error:report:label')}
 						issueTrackerUrl={issueTrackerUrl}
 					/>
-				)}
+				)} */}
 			</GenericContentLayout>
 		</Layout>
 	);
 };
 
 export const getStaticProps: GetStaticProps = async () => ({
-	props: {},
+	props: {}
 });
 
 export default Contact;

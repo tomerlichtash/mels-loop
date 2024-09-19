@@ -1,79 +1,69 @@
-import React, { PropsWithChildren, useState } from 'react';
-import * as PopoverPrimitive from '@radix-ui/react-popover';
-import { getIcon } from 'components/icons';
-import { Button, ToolbarItem } from '..';
-import styles from './Popover.module.scss';
-import PopoverTrigger from './PopoverTrigger';
-import PopoverDialog from './PopoverDialog';
+import React, { useEffect } from 'react';
+import I18nProvider from 'next-translate/I18nProvider';
+import glossaryEN from '../../../locales/en/glossary.json';
+import DynamicContentProvider from 'context/content/DynamicContentProvider';
+import PopoverProvider from 'context/popover/PopoverProvider';
+import { useToolbar } from 'context/content/hooks/useToolbar';
+import { useLocale } from 'hooks/useLocale';
+import { Popover } from '@melsloop/ml-components';
+import PopoverCloseButton from './toolbarItems/closeButton/PopoverCloseButton';
+import classNames from 'classnames';
+import styles from './Popover.module.css';
+import type { IParsedNode } from 'lib/types/models';
+import type { IPopoverContext } from 'context/popover/types';
+import { useEffectOnce } from 'hooks/useEffectOnce';
 
-type CustomPopoverProps = {
+type PopoverComponentProps = {
+	node: IParsedNode;
 	trigger: React.ReactNode;
-	side: 'top' | 'right' | 'bottom' | 'left';
-	locale: string;
-	toolbarItems?: React.ReactNode[];
-	open?: boolean;
+	className?: string;
 	'data-testid'?: string;
 };
 
-const Popover = ({
-	open,
+export const PopoverComponent = ({
 	trigger,
-	side,
-	locale,
-	toolbarItems,
-	children,
-	'data-testid': dataTestId,
-}: PropsWithChildren<CustomPopoverProps>) => {
-	const [visible, setVisible] = useState(false);
+	node,
+	className,
+	'data-testid': dataTestId
+}: PopoverComponentProps): JSX.Element => {
+	const { lang, textDirection } = useLocale();
 
-	const isOpen = open || visible;
+	const toolbar = useToolbar();
+	const toolbarItems = toolbar.items.map((item) => item.element);
 
+	const ctx: IPopoverContext = {
+		toolbar: toolbar.items,
+		addToolbarItems: toolbar.addItems,
+		removeToolbarItems: toolbar.removeItemsById
+	};
+
+	useEffectOnce(() => {
+		toolbar.addItems([
+			{
+				element: <PopoverCloseButton key={`popover-close-${node.key}`} />,
+				id: 'popover-close',
+				enabled: true,
+				position: 'last'
+			}
+		]);
+	});
+
+	// We need to wrap the popover with locale provider and supply glossaryEn
+	// so we can always access the original term in english
 	return (
-		<PopoverPrimitive.Root
-			onOpenChange={(opened) => setVisible(opened)}
-			open={isOpen}
-		>
-			<PopoverPrimitive.Trigger
-				data-testid={dataTestId}
-				className={styles.trigger}
-			>
-				<PopoverTrigger opened={isOpen}>{trigger}</PopoverTrigger>
-			</PopoverPrimitive.Trigger>
-
-			<PopoverPrimitive.Portal>
-				<PopoverPrimitive.Content
-					side={side}
-					data-locale={locale}
-					className={styles.dialog}
+		<I18nProvider namespaces={{ glossaryEN }}>
+			<PopoverProvider value={ctx}>
+				<Popover
+					trigger={trigger}
+					side={textDirection === 'ltr' ? 'right' : 'left'}
+					toolbarItems={toolbarItems}
+					locale={lang}
+					data-testid={dataTestId}
+					className={classNames(styles.root, className)}
 				>
-					<PopoverDialog>
-						{toolbarItems && (
-							<div
-								role="toolbar"
-								className={styles.toolbar}
-							>
-								<div className={styles.panel}>{toolbarItems}</div>
-								<div className={styles.closeButton}>
-									<ToolbarItem>
-										<PopoverPrimitive.Close asChild>
-											<Button
-												onClick={() => setVisible(false)}
-												className={styles.close}
-											>
-												{getIcon('close')}
-											</Button>
-										</PopoverPrimitive.Close>
-									</ToolbarItem>
-								</div>
-							</div>
-						)}
-						{children}
-					</PopoverDialog>
-					<PopoverPrimitive.Arrow />
-				</PopoverPrimitive.Content>
-			</PopoverPrimitive.Portal>
-		</PopoverPrimitive.Root>
+					<DynamicContentProvider node={node} />
+				</Popover>
+			</PopoverProvider>
+		</I18nProvider>
 	);
 };
-
-export default Popover;

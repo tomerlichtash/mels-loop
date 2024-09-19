@@ -1,16 +1,14 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import { ContentTypes } from '../types/content';
-import { mlNextUtils } from '../lib/next-utils/nextUtils';
-import { usePageData } from '../hooks/usePageData';
-import { LoadFolderModes } from 'types/parser/modes';
-import type { IPageProps } from 'types/models';
-import Layout from 'layout/Layout';
-import { getMetadata, renderElements } from 'lib/dynamicContentHelpers';
 import Head from 'next/head';
-import { useLocale } from 'hooks/useLocale';
-import { GenericContentLayout } from '../custom-layouts/generic-content-layout/GenericContentLayout';
-import { Container } from 'components/index';
+import { getFolderStaticProps } from '../lib/next-utils';
+import { useLocale, usePageData } from 'hooks';
+import { ContentTypes, type IPageProps } from 'types';
+import Layout from 'layout/Layout';
+import { Container } from '@melsloop/ml-components';
+import { GenericContentLayout } from 'components/GenericContentLayout/GenericContentLayout';
+import { LoadFolderModes } from 'lib/types/modes';
+import { getMetadata, renderElements } from 'helpers';
 
 const About: NextPage<IPageProps> = (props) => {
 	const { pageData } = usePageData(props);
@@ -33,6 +31,6 @@ const About: NextPage<IPageProps> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) =>
-	mlNextUtils.getFolderStaticProps(ContentTypes.About, context.locale, LoadFolderModes.Folder);
+	getFolderStaticProps(ContentTypes.About, context.locale, LoadFolderModes.Folder);
 
 export default About;

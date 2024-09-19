@@ -1,8 +1,9 @@
 import { ParsedUrlQuery } from 'querystring';
 import { GetStaticPathsResult, GetStaticPropsResult } from 'next';
-import type { IContentParseOptions } from 'types/parser/parser';
-import type { LoadFolderModes } from 'types/parser/modes';
-import type { FolderStaticProps } from 'types/folder';
+// import type { IContentParseOptions } from 'lib/types/parser';
+import type { LoadFolderModes } from 'lib/types/modes';
+import type { StringMap } from 'lib/types/models';
+import type { IContentParseOptions } from 'lib/markdown-utils/types';
 
 /**************************************************
  * Extended Next.js types
@@ -14,8 +15,7 @@ import type { FolderStaticProps } from 'types/folder';
  * depending on the type parameter
  * @param type `"folder"`: scan the index in the folder, `"children"`: scan indices in child folders
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-type MLGetStaticProps = (
+export type MLGetStaticProps = (
 	folderRelativePath: string,
 	locale: string, //GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
 	loadMode: LoadFolderModes,
@@ -25,7 +25,7 @@ type MLGetStaticProps = (
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
  */
-type MLGetStaticPaths = (
+export type MLGetStaticPaths = (
 	folderRelativePath: string,
 	locales: string[]
 ) => Promise<GetStaticPathsResult<ParsedUrlQuery>> | GetStaticPathsResult<ParsedUrlQuery>;
@@ -65,4 +65,17 @@ export interface IMLNextUtils {
 export interface ICollectedPath {
 	readonly path: string;
 	readonly idMap: { [key: string]: string };
+}
+
+export interface FolderStaticProps {
+	/** Typically the stringified ParsedPageData */
+	content: string | object;
+
+	/** The path of the first page in the document data */
+	documentPath: string;
+}
+
+export interface ILocaleMap {
+	readonly params: StringMap;
+	locale: string;
 }

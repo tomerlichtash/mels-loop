@@ -2,8 +2,7 @@
 	"site:title": "לולאת מל",
 	"site:subtitle": "מדריך מקיף לסיפור על מל",
 	"site:shortSiteDescription": "לולאת מל הוא מדריך לאפוס הפולקלור ההאקרים ״הסיפור על מל״. באתר זה נרכז את הסיפורים, המקורות, החומרים והדמויות אשר סובבים את ״הסיפור על מל״, כמו גם חומרים אחרים הנוגעים לפולקלור ההאקרים.",
-	"license:label": "cc",
-	"license:attributs": "by-sa",
+	"site:license": "2021-{{toYear}} (cc-by-sa) Mel's Loop",
 	"footer:sections:pages:label": "דפים",
 	"footer:sections:links:label": "קישורים",
 	"caption:loading": "טוען...",
@@ -16,5 +15,6 @@
 	"button:back": "Back",
 	"theme:light:name": "מואר",
 	"theme:dark:name": "אפל",
-	"markdown:tags:figure:abbr": "תרשים"
+	"markdown:tags:figure:abbr": "תרשים",
+	"button:close": "סגירה"
 }

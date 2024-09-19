@@ -1,0 +1,23 @@
+.root {
+	height: 20em;
+	user-select: text;
+}
+.root .article {
+	padding: 1em;
+}
+.root .article .header {
+	padding-bottom: 1em;
+}
+.root .article .header .topic {
+	display: inline-flex;
+	border-radius: 4px;
+	font-weight: 100;
+	background-color: red;
+	color: #fff;
+	font-size: 1em;
+	padding: 0 0.25em;
+	margin-bottom: 1em;
+}
+.root .article .header .title {
+	font-size: 2em;
+}

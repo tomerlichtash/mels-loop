@@ -1,12 +1,13 @@
 import Document, { Html, Head, Main, NextScript, DocumentInitialProps } from 'next/document';
-import { fontFaceLinks } from '../siteFonts';
+import { siteTheme } from 'theme/theme';
 
 class CustomDocument extends Document<DocumentInitialProps> {
 	render() {
 		return (
 			<Html>
-				<Head>{fontFaceLinks}</Head>
+				<Head />
 				<body>
+					{siteTheme}
 					<Main />
 					<NextScript />
 				</body>

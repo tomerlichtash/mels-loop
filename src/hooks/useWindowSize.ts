@@ -10,7 +10,7 @@ export function useWindowSize(): ISize {
 	// Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
 	const [windowSize, setWindowSize] = useState<ISize>({
 		width: undefined,
-		height: undefined,
+		height: undefined
 	});
 
 	useEffect(() => {
@@ -19,7 +19,7 @@ export function useWindowSize(): ISize {
 			// Set window width/height to state
 			setWindowSize({
 				width: window.innerWidth,
-				height: window.innerHeight,
+				height: window.innerHeight
 			});
 		}
 		// Add event listener

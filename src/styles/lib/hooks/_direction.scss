@@ -1,4 +1,0 @@
-// direction
-@mixin use-direction($var: name(), $state: '') {
-	@include use(direction, direction, $var, $state);
-}

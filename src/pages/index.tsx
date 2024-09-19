@@ -1,16 +1,14 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import { mlNextUtils } from '../lib/next-utils/nextUtils';
-import { usePageData } from '../hooks/usePageData';
+import { getFolderStaticProps } from 'lib/next-utils';
+import { useLocale, usePageData } from 'hooks';
 import Head from 'next/head';
 import Layout from 'layout/Layout';
-import { GenericContentLayout } from 'custom-layouts/generic-content-layout/GenericContentLayout';
-import { ContentTypes } from '../types/content';
-import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
-import { getMetadata, renderElements } from '../lib/dynamicContentHelpers';
-import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
-import { useLocale } from 'hooks/useLocale';
-import type { IPageProps } from 'types/models';
+import { ContentTypes, type IPageProps } from 'types';
+import { createPopoverLinksNodeProcessor } from 'lib/next-utils/processors/createPopoverLinksNodeProcessor';
+import { getMetadata, renderElements } from 'helpers';
+import { GenericContentLayout } from 'components/GenericContentLayout/GenericContentLayout';
+import { LoadContentModes, LoadFolderModes } from 'lib/types/modes';
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { t } = useLocale();
@@ -35,13 +33,13 @@ const Index: NextPage<IPageProps> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) =>
-	mlNextUtils.getFolderStaticProps(
+	getFolderStaticProps(
 		`docs/the-story-of-mel/${ContentTypes.Codex}`,
 		context.locale,
 		LoadFolderModes.Folder,
 		{
 			contentMode: LoadContentModes.Full,
-			nodeProcessors: [createPopoverLinksNodeProcessor()],
+			nodeProcessors: [createPopoverLinksNodeProcessor()]
 		}
 	);
 

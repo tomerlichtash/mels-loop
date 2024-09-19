@@ -1,0 +1,32 @@
+/* .root {
+	user-select: text;
+	width: 100%;
+	border-radius: var(--ml-name()-radius, var(--radius));
+	box-shadow: var(--ml-name()-shadow, var(--shadow));
+	padding-top: var(--ml-name()-padding-top, var(--padding-top));
+	padding-right: var(--ml-name()-padding-right, var(--padding-right));
+	padding-bottom: var(--ml-name()-padding-bottom, var(--padding-bottom));
+	padding-left: var(--ml-name()-padding-left, var(--padding-left));
+	margin-top: var(--ml-name()-margin-top, var(--margin-top));
+	margin-right: var(--ml-name()-margin-right, var(--margin-right));
+	margin-bottom: var(--ml-name()-margin-bottom, var(--margin-bottom));
+	margin-left: var(--ml-name()-margin-left, var(--margin-left));
+}
+.root .article {
+	width: 100%;
+	display: block;
+}
+.root .title {
+	background-color: var(
+		--ml-generic-content-layout-title-background-color,
+		var(--background-color)
+	);
+}
+.root .content img {
+	display: block;
+	max-width: 100%;
+}
+
+.root img {
+	max-width: 100%;
+} */

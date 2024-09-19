@@ -1,6 +1,0 @@
-@use '../mixin' as base;
-@import './ToggleButton.meta';
-
-.root {
-	@include base.toggle-button(name(button));
-}

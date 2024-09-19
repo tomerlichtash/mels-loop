@@ -1,9 +1,0 @@
-@import '../component';
-
-$__stylesheet__: (
-	name: list-item,
-);
-
-.root {
-	@include use-text-color(paragraph);
-}

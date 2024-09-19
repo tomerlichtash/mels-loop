@@ -27,7 +27,7 @@ export const validateRequest = (body: Partial<IEmailTemplate>): Partial<IEmailTe
 		...body,
 		fullName: trim(body.fullName, 100),
 		email: trim(body.email, 256),
-		message: trim(body.message, 4096),
+		message: trim(body.message, 4096)
 	};
 };
 
@@ -38,10 +38,10 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 			to: 'aboutmelsloop@gmail.com',
 			from: {
 				email: 'contact@melsloop.com', // must be an email registered with sendgrid
-				name: `${emailData.fullName}`,
+				name: `${emailData.fullName}`
 			},
 			subject: `New message from ${emailData.fullName}`,
-			html: tpl(emailData as IEmailTemplate),
+			html: tpl(emailData as IEmailTemplate)
 		});
 
 		res.status(200).json({ ...req.body });

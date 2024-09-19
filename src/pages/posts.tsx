@@ -1,17 +1,16 @@
 import React from 'react';
-import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
-import { GetStaticProps } from 'next';
-import { ContentTypes } from 'types/content';
-import { mlNextUtils } from '../lib/next-utils/nextUtils';
-import type { IPageProps, IParsedPageData } from 'types/models';
-import { usePageData } from '../hooks/usePageData';
-import orderBy from 'lodash.orderby';
-import Layout from 'layout/Layout';
-import { useLocale } from 'hooks/index';
 import Head from 'next/head';
-import { getMetadata, renderElements } from 'lib/dynamicContentHelpers';
-import { GenericContentLayout } from 'custom-layouts/generic-content-layout/GenericContentLayout';
-import styles from '../custom-layouts/generic-content-layout/mixins/BlogPostLayoutMixin.module.scss';
+import { GetStaticProps } from 'next';
+import { getFolderStaticProps } from '../lib/next-utils';
+import orderBy from 'lodash.orderby';
+import { useLocale, usePageData } from 'hooks';
+import Layout from 'layout/Layout';
+import { getMetadata, renderElements } from 'helpers';
+import { GenericContentLayout } from 'components/GenericContentLayout/GenericContentLayout';
+import { ContentTypes, type IPageProps } from 'types';
+import { LoadContentModes, LoadFolderModes } from 'lib/types/modes';
+import type { IParsedPage } from 'lib/types/models';
+// import styles from '../custom-layouts/GenericContentLayout/mixins/BlogPostLayoutMixin.module.css';
 
 export default function Blog(props: IPageProps) {
 	const { pageData } = usePageData(props);
@@ -29,7 +28,7 @@ export default function Blog(props: IPageProps) {
 				caption={t('pages:blog:title')}
 				title={'Posts'}
 			>
-				{sortedItems.map((page: IParsedPageData) => {
+				{sortedItems.map((page: IParsedPage) => {
 					const { path } = page;
 					const [title, date, author] = getMetadata(['title', 'date', 'author'], [page]);
 					return (
@@ -40,8 +39,8 @@ export default function Blog(props: IPageProps) {
 							author={author}
 							path={path}
 							locale={lang}
-							className={styles.root}
-							pageStyles={styles}
+							// className={styles.root}
+							// pageStyles={styles}
 						>
 							{renderElements([page])}
 						</GenericContentLayout>
@@ -53,18 +52,18 @@ export default function Blog(props: IPageProps) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-	const indexProps = mlNextUtils.getFolderStaticProps(
+	const indexProps = getFolderStaticProps(
 		ContentTypes.Posts,
 		context.locale,
 		LoadFolderModes.Children
 	);
 
-	const childrenProps = mlNextUtils.getFolderStaticProps(
+	const childrenProps = getFolderStaticProps(
 		ContentTypes.Posts,
 		context.locale,
 		LoadFolderModes.Children,
 		{
-			contentMode: LoadContentModes.Metadata,
+			contentMode: LoadContentModes.Metadata
 		}
 	);
 
@@ -72,8 +71,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	const props = {
 		props: {
 			...(indexProps as any).props,
-			metaData: (childrenProps as any).props.content,
-		},
+			metaData: (childrenProps as any).props.content
+		}
 	};
 
 	return props;

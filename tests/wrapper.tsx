@@ -1,14 +1,15 @@
 import { render } from '@testing-library/react';
 import { ThemeProvider } from 'next-themes';
-import PageProvider from 'lib/dynamic-content-utils/context/pageContext';
 import I18nProvider from 'next-translate/I18nProvider';
+import PageProvider from 'context/page/PageProvider';
 import commonEN from '../locales/en/common.json';
 import localeEN from '../locales/en/locale.json';
 import navEN from '../locales/en/nav.json';
 import pagesEN from '../locales/en/pages.json';
 import authorsEN from '../locales/en/authors.json';
 import { NextPage } from 'next';
-import { IPageProps } from 'types/models';
+import { THEME_NAMESPACE } from 'theme/consts';
+import type { IPageProps } from 'types';
 
 const locale = 'en';
 const translateEN = {
@@ -16,15 +17,18 @@ const translateEN = {
 	nav: navEN,
 	pages: pagesEN,
 	locale: localeEN,
-	authors: authorsEN,
+	authors: authorsEN
 };
 
 const Providers = ({ children: Component, ...props }) => (
-	<I18nProvider lang={locale} namespaces={translateEN}>
+	<I18nProvider
+		lang={locale}
+		namespaces={translateEN}
+	>
 		<ThemeProvider
 			defaultTheme="light"
 			storageKey="ml-theme"
-			attribute="data-ml-theme"
+			attribute={THEME_NAMESPACE}
 		>
 			<PageProvider documentPath={props.pageProps.documentPath}>
 				<Component {...props} />
@@ -33,19 +37,19 @@ const Providers = ({ children: Component, ...props }) => (
 	</I18nProvider>
 );
 
-const customRender = (
-	ui: React.ReactNode | NextPage<IPageProps>,
-	options = {}
-) =>
+const customRender = (ui: React.ReactNode | NextPage<IPageProps>, options = {}) =>
 	render(ui as React.ReactNode, {
 		wrapper: ({ children, ...wrapperProps }) => {
 			return (
-				<Providers {...wrapperProps} {...options}>
+				<Providers
+					{...wrapperProps}
+					{...options}
+				>
 					{children}
 				</Providers>
 			);
 		},
-		...options,
+		...options
 	});
 
 export * from '@testing-library/react';

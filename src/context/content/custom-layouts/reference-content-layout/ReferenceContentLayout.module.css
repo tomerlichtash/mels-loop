@@ -1,0 +1,25 @@
+.root {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	padding: 1em;
+}
+
+.root .header {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+}
+
+.root .header .caption {
+	display: inline-flex;
+	border-radius: 4px;
+	font-weight: 100;
+	color: #fff;
+	font-size: 1em;
+	color: var(--ml-name()-text-color, var(--text-color));
+}
+
+.root .header .term {
+	font-size: 2em;
+}
