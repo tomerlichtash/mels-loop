@@ -8,6 +8,7 @@ import styles from './PopoverCloseButton.module.css';
 type PopoverCloseButtonProps = {
 	className?: string;
 };
+
 const PopoverCloseButton = ({ className }: PopoverCloseButtonProps): JSX.Element => {
 	const { t } = useLocale();
 	return (

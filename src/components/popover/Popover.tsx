@@ -6,12 +6,12 @@ import PopoverProvider from 'context/popover/PopoverProvider';
 import { useToolbar } from 'context/content/hooks/useToolbar';
 import { useLocale } from 'hooks/useLocale';
 import { Popover } from '@melsloop/ml-components';
-import PopoverCloseButton from './toolbarItems/closeButton/PopoverCloseButton';
 import classNames from 'classnames';
 import styles from './Popover.module.css';
 import type { IParsedNode } from 'lib/types/models';
 import type { IPopoverContext } from 'context/popover/types';
 import { useEffectOnce } from 'hooks/useEffectOnce';
+import PopoverCloseButton from './toolbarItems/PopoverCloseButton/PopoverCloseButton';
 
 type PopoverComponentProps = {
 	node: IParsedNode;

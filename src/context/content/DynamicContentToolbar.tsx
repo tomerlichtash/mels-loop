@@ -1,8 +1,8 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import DynamicContentContext from './DynamicContentContext';
 import { PopoverContext } from '../popover/PopoverContext';
+import PopoverBackButton from 'components/popover/toolbarItems/PopoverBackButton/PopoverBackButton';
 import type { IParsedPage } from 'lib/types/models';
-import PopoverBackButton from 'components/Popover/toolbarItems/backButton/PopoverBackButton';
 
 export interface IDynamicContentToolbarProps {
 	pages: IParsedPage[];
