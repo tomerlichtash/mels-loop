@@ -1,0 +1,4 @@
+// opacity
+@mixin use-opacity($var: name(), $state: '') {
+	@include use(opacity, opacity, $var, $state);
+}

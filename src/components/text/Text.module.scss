@@ -1,0 +1,10 @@
+@use './Text.variants' as variants;
+@import '../component';
+
+$__stylesheet__: (
+	name: text,
+);
+
+.root {
+	@include variants.variants(name(variants));
+}

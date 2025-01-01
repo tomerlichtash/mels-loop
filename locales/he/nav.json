@@ -1,0 +1,21 @@
+{
+	"sections:articles:label": "מאמרים",
+	"sections:contact:label": "יצירת קשר",
+
+	"items:articles:som:intro:label": "מבוא",
+	"items:articles:som:bio:label": "מל קיי – קו״ח",
+	"items:articles:som:missingBits:label": "לולאת מל – הביטים הנעדרים",
+	"items:pages:about:label": "אודות",
+	"items:pages:blog:label": "בלוג",
+	"items:pages:blog:desc": "חדשות ועדכונים",
+	"items:pages:resources:label": "מקורות",
+	"items:pages:resources:desc": "מידע נוסף ברשת על הסיפור על מל",
+	"items:pages:contrib:label": "השתתפות",
+	"items:pages:contrib:desc": "כיצד להשתתף או לתרום לפרויקט",
+	"items:pages:contact:label": "יצירת קשר",
+	"items:pages:contact:desc": "כתבו אלינו!",
+	"items:links:twitter:label": "טוויטר",
+	"items:links:twitter:desc": "עקבו אחרינו ב-@aboutmelsloop",
+	"items:links:github:label": "גיטהאב",
+	"items:links:github:desc": "קוד המקור של הפרויקט"
+}

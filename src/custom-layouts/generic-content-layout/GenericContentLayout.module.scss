@@ -1,0 +1,68 @@
+@use '../../styles/lib/refs';
+@use '../../styles/lib/hooks';
+@import '../../styles/lib/component';
+
+$__stylesheet__: (
+	name: generic-content-layout,
+);
+
+.root {
+	user-select: text;
+	width: 100%;
+
+	@include hooks.use-radius;
+	@include hooks.use-shadow;
+	@include hooks.use-padding;
+	@include hooks.use-margin;
+
+	.article {
+		width: 100%;
+		display: block;
+	}
+
+	// .caption {
+	// }
+
+	.title {
+		@include hooks.use-background-color(name('title'));
+	}
+
+	// .abstract {
+	// }
+
+	// .section {
+	// }
+
+	.content {
+		img {
+			display: block;
+			max-width: 100%;
+		}
+	}
+}
+
+@mixin generic-content-layout-mixin(
+	$rootRadius: inherit,
+	$rootBoxShadow: inherit,
+	$rootPaddingTop: inherit,
+	$rootPaddingBottom: inherit,
+	$rootPaddingLeft: inherit,
+	$rootPaddingRight: inherit,
+	$rootMarginTop: inherit,
+	$rootMarginBottom: inherit,
+	$rootMarginLeft: inherit,
+	$rootMarginRight: inherit,
+	$titleBgColor: inherit
+) {
+	#{refs.use(generic-content-layout-radius)}: $rootRadius;
+	#{refs.use(generic-content-layout-shadow)}: $rootBoxShadow;
+	#{refs.use(generic-content-layout-padding-top)}: $rootPaddingTop;
+	#{refs.use(generic-content-layout-padding-bottom)}: $rootPaddingBottom;
+	#{refs.use(generic-content-layout-padding-left)}: $rootPaddingLeft;
+	#{refs.use(generic-content-layout-padding-right)}: $rootPaddingRight;
+	#{refs.use(generic-content-layout-margin-top)}: $rootMarginTop;
+	#{refs.use(generic-content-layout-margin-bottom)}: $rootMarginBottom;
+	#{refs.use(generic-content-layout-margin-left)}: $rootMarginLeft;
+	#{refs.use(generic-content-layout-margin-right)}: $rootMarginRight;
+	#{refs.use(generic-content-layout-title-background-color)}: $titleBgColor;
+}

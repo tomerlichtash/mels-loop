@@ -1,0 +1,36 @@
+@use './Figure.variants' as variants;
+@import '../component';
+
+$__stylesheet__: (
+	name: figure,
+);
+
+.root {
+	--border-size: 2px;
+	--border-color: #000;
+	--border-style: solid;
+	--radius: 4px;
+
+	max-width: 100%;
+	text-align: center;
+	margin: 0;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	padding: 0.25em;
+
+	img {
+		max-width: 100%;
+	}
+
+	// .figureContent {
+	// }
+
+	@include use-border-size;
+	@include use-border-style;
+	@include use-border-color;
+	@include use-radius;
+
+	// variants
+	@include variants.no-border;
+	@include variants.code-block;
+}

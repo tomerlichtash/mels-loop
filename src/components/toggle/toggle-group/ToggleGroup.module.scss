@@ -1,0 +1,14 @@
+@use '../mixin' as base;
+@import './ToggleGroup.meta';
+
+.root {
+	--gap: 4px;
+
+	display: flex;
+
+	@include use-gap;
+
+	.item {
+		@include base.toggle-button(name(button));
+	}
+}

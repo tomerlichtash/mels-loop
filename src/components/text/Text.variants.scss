@@ -1,0 +1,70 @@
+@use '../../styles/lib/hooks';
+@import '../../styles/lib/component';
+
+@mixin variant($var: default-text-variant) {
+	--line-height: 1em;
+	--font-size: 1em;
+	--font-weight: 300;
+
+	@include hooks.use-font-size($var);
+	@include hooks.use-text-color($var);
+	@include hooks.use-line-height($var);
+	@include hooks.use-text-transform($var);
+	@include hooks.use-letter-spacing($var);
+	@include hooks.use-font-style($var);
+}
+
+@mixin variants($var: default-text-variant) {
+	&[data-variant='h1'] {
+		@include variant(#{$var}-h1);
+	}
+
+	&[data-variant='h2'] {
+		@include variant(#{$var}-h2);
+	}
+
+	&[data-variant='h3'] {
+		@include variant(#{$var}-h3);
+	}
+
+	&[data-variant='h4'] {
+		@include variant(#{$var}-h4);
+	}
+
+	&[data-variant='h5'] {
+		@include variant(#{$var}-h5);
+	}
+
+	&[data-variant='h6'] {
+		@include variant(#{$var}-h6);
+	}
+
+	&[data-variant='subtitle1'] {
+		@include variant(#{$var}-subtitle1);
+	}
+
+	&[data-variant='subtitle2'] {
+		@include variant(#{$var}-subtitle2);
+	}
+
+	&[data-variant='subtitle3'] {
+		@include variant(#{$var}-subtitle3);
+	}
+
+	&[data-variant='subtitle4'] {
+		@include variant(#{$var}-subtitle4);
+	}
+
+	&[data-variant='body1'] {
+		@include variant(#{$var}-body1);
+	}
+}
+
+// @mixin contentSelection {
+// --background-color: #f0f0f0;
+// --text-color: #333;
+// ::selection {
+// 	@include use-text-color(site-layout-selection);
+// 	@include use-background-color(site-layout-selection);
+// }
+// }

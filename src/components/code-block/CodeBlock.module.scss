@@ -1,0 +1,30 @@
+@import '../component';
+
+$__stylesheet__: (
+	name: code-block,
+);
+
+.root {
+	.pre {
+		@include use-background-color;
+		@include use-radius;
+		@include use-inner-gutter;
+		@include use-border-color;
+
+		text-align: left;
+
+		.code {
+			// @include Code();
+
+			// @include use-text-color(code-inline);
+			// @include use-background-color(code-inline);
+			@include use-font-weight;
+			@include use-font-family;
+
+			// @include use-horizontal-padding(code-inline);
+			// @include use-radius(code-inline);
+			// @include use-border-size(code-inline);
+			// @include use-border-style(code-inline);
+		}
+	}
+}

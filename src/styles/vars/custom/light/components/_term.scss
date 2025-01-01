@@ -1,0 +1,8 @@
+$annotation-suffix: "'\203B'";
+$annotation-suffix-opacity: 0.65;
+$vars: (
+	suffix: (
+		content: $annotation-suffix,
+		opacity: $annotation-suffix-opacity,
+	),
+);

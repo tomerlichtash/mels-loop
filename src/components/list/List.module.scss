@@ -1,0 +1,14 @@
+@import '../component';
+
+$__stylesheet__: (
+	name: list,
+);
+
+.root {
+	display: flex;
+	flex-direction: column;
+
+	.list {
+		@include use-background-color;
+	}
+}

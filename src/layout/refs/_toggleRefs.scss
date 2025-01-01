@@ -1,0 +1,35 @@
+@use 'sass:map';
+@use '../Layout.meta' as layout;
+@use '../../components/toggle/toggle-button/ToggleButton.meta' as toggle-button;
+@use '../../styles/lib/refs';
+@import '../../styles/lib/states';
+
+// toggle
+$toggleRef: toggle-button.name();
+
+@function default($prop, $state: '') {
+	@return layout.name(#{$toggleRef}-default-#{$prop}, $state);
+}
+
+@function sidebar-menu($prop, $state: '') {
+	@return layout.name(#{$toggleRef}-variants-sidebar-menu-#{$prop}, $state);
+}
+
+$toggle: (
+	default: (
+		text-color: refs.ref(default(text-color)),
+		text-color-hover: refs.ref(default(text-color, state(hovered))),
+		text-color-selected: refs.ref(default(text-color, state(selected))),
+		bg-color: refs.ref(default(background-color)),
+		bg-color-hover: refs.ref(default(background-color, state(hovered))),
+		bg-color-selected: refs.ref(default(background-color, state(selected))),
+	),
+	sidebar-menu: (
+		text-color: refs.ref(sidebar-menu(text-color)),
+		text-color-hover: refs.ref(sidebar-menu(text-color, state(hovered))),
+		text-color-selected: refs.ref(sidebar-menu(text-color, state(selected))),
+		bg-color: refs.ref(sidebar-menu(background-color)),
+		bg-color-hover: refs.ref(sidebar-menu(background-color, state(hovered))),
+		bg-color-selected: refs.ref(sidebar-menu(background-color, state(selected))),
+	),
+);

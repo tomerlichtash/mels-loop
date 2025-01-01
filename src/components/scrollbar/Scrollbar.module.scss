@@ -1,0 +1,49 @@
+@import '../component';
+
+$__stylesheet__: (
+	name: scrollbar,
+);
+
+.root {
+	.viewport {
+		width: 100%;
+		height: 100%;
+		border-radius: inherit;
+	}
+
+	.scrollbar {
+		display: flex;
+		touch-action: none;
+		padding: 2px;
+		transition: background 160ms ease-out;
+		z-index: 1;
+		user-select: none;
+
+		&[data-orientation='vertical'] {
+			@include use-width(name(thumb-vertical));
+			@include use-margin-right(name(thumb-vertical));
+			@include use-margin-left(name(thumb-vertical));
+		}
+
+		&[data-orientation='horizontal'] {
+			@include use-width(name(thumb-horizontal));
+			@include use-margin-right(name(thumb-horizontal));
+			@include use-margin-left(name(thumb-horizontal));
+		}
+	}
+
+	.thumb {
+		flex: 1;
+		transition: 75ms background-color ease-in-out;
+		cursor: pointer;
+
+		@include use-background-color;
+		@include use-border-right-size;
+		@include use-border-right-color;
+		@include use-border-right-style;
+
+		@include use-border-left-size;
+		@include use-border-left-color;
+		@include use-border-left-style;
+	}
+}

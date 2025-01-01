@@ -1,0 +1,15 @@
+@import './Separator.meta';
+
+.root {
+	@include use-background-color;
+
+	&[data-orientation='vertical'] {
+		width: 1px;
+		height: 16px;
+	}
+
+	&[data-orientation='horizontal'] {
+		width: 16px;
+		height: 1px;
+	}
+}

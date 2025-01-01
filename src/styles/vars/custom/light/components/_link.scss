@@ -1,0 +1,12 @@
+@use '../../../../../components/link/Link.module' as link;
+@use '../../../../lib/refs';
+
+$vars: (
+	text-color: refs.ref(color-primary-main),
+	link.state(hovered): (
+		text-color: refs.ref(color-secondary-main),
+	),
+	link.state(clicked): (
+		text-color: refs.ref(color-secondary-light),
+	),
+);

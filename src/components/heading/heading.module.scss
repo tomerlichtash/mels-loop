@@ -1,0 +1,12 @@
+@import '../component';
+
+$__stylesheet__: (
+	name: heading,
+);
+
+.root {
+	&:not(:first-child) {
+		margin-top: 3em;
+		margin-bottom: 1em;
+	}
+}

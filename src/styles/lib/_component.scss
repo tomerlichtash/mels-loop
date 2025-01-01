@@ -1,0 +1,10 @@
+@use 'sass:map';
+@use 'sass:string';
+
+@function name($part: '', $state: '') {
+	@if string.length($part) > 0 {
+		@return #{map.get($__stylesheet__, name)}-#{$part}#{$state};
+	}
+
+	@return map.get($__stylesheet__, name);
+}

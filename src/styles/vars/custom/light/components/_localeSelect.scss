@@ -1,0 +1,10 @@
+@use '../../../../lib/refs';
+
+$vars: (
+	gap: 4px,
+
+	button: (
+		background-color: refs.ref(color-surface-dark),
+		text-color: refs.ref(color-primary-dark),
+	),
+);

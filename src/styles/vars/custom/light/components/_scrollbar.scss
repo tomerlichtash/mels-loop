@@ -1,0 +1,12 @@
+@use '../../../../lib/refs';
+
+$vars: (
+	background-color: refs.ref(color-surface-mid),
+	thumb: (
+		vertical: (
+			width: 0.5em,
+			margin-right: 0.5em,
+			margin-left: 0.5em,
+		),
+	),
+);

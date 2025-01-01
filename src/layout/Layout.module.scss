@@ -1,0 +1,125 @@
+@use 'sass:map';
+@use '../styles/lib/refs';
+@use './locale-select/LocaleSelectMixin' as locale-select-mixin;
+@use './theme-select/ThemeSelectMixin' as theme-select-mixin;
+@use './mixins/sidebarMenuMixin' as sidebar-mixins;
+@use './mixins/navItemMixin' as nav-item-mixin;
+@use './refs/toggleRefs' as toggle-refs;
+@use './refs/navItemRefs' as nav-item-refs;
+
+@import './Layout.meta';
+
+$footerMinheight: 20vh;
+
+@mixin page-container-mixin($var) {
+	margin: 0 auto;
+	max-width: 800px;
+
+	@include use-inner-gutter($var);
+}
+
+.root {
+	@include use-background-color;
+
+	.logo {
+		width: 20px;
+	}
+
+	.topbar {
+		@include use-background-color(name(header));
+		@include use-height(name(header));
+
+		.title {
+			@include use-gap(name(logo));
+		}
+
+		.panel {
+			gap: 1em;
+			display: flex;
+			align-items: center;
+
+			.localeSelect {
+				@include locale-select-mixin.button(map.get(toggle-refs.$toggle, default));
+			}
+
+			.themeSelect {
+				@include theme-select-mixin.button(map.get(toggle-refs.$toggle, default));
+			}
+		}
+	}
+
+	.page {
+		@include page-container-mixin(name());
+		@include use-margin-top(name(page));
+
+		min-height: calc(100vh - $footerMinheight);
+	}
+
+	.footer {
+		display: flex;
+		flex-direction: row;
+
+		@include use-background-color(name(footer));
+
+		.container {
+			@include page-container-mixin(name());
+		}
+
+		.columns {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			gap: 2em;
+			min-height: $footerMinheight;
+			max-width: 800px;
+		}
+
+		.column {
+			display: flex;
+			flex-direction: column;
+
+			&:first-child {
+				max-width: 40%;
+			}
+
+			.list {
+				padding: 0;
+
+				.item {
+					list-style: none;
+				}
+			}
+
+			span:not([data-variant]) {
+				font-size: 0.85em;
+			}
+		}
+	}
+
+	.drawer {
+		@include sidebar-mixins.background-color;
+
+		.menuHeader {
+			padding: 1em;
+			display: flex;
+			align-items: center;
+			gap: 1em;
+		}
+
+		.panel {
+			// @include sidebar-mixins.panel;
+
+			.localeSelect {
+				@include locale-select-mixin.button(map.get(toggle-refs.$toggle, sidebar-menu));
+			}
+
+			.themeSelect {
+				@include theme-select-mixin.button(map.get(toggle-refs.$toggle, sidebar-menu));
+			}
+		}
+
+		.menu {
+			@include nav-item-mixin.item(map.get(nav-item-refs.$nav-item, sidebar-menu));
+		}
+	}
+}

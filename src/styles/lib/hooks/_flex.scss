@@ -1,0 +1,6 @@
+@use '../refs' as refs;
+
+// gap
+@mixin use-gap($var: name(), $state: '') {
+	@include refs.use(gap, gap, $var, $state);
+}

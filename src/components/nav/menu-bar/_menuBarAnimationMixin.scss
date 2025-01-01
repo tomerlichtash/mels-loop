@@ -1,0 +1,66 @@
+@use '../../../styles/mixins/animations' as animations;
+
+@mixin from-start-animation-mixin($var) {
+	&[data-motion='from-start'] {
+		@include animations.enter-from-left($var);
+	}
+}
+
+@mixin from-end-animation-mixin($var) {
+	&[data-motion='from-end'] {
+		@include animations.enter-from-right($var);
+	}
+}
+
+@mixin to-start-animation-mixin($var) {
+	&[data-motion='to-start'] {
+		@include animations.exit-to-left($var);
+	}
+}
+
+@mixin to-end-animation-mixin($var) {
+	&[data-motion='to-end'] {
+		@include animations.exit-to-right($var);
+	}
+}
+
+@mixin visible-animation-mixin($var) {
+	&[data-state='visible'] {
+		@include animations.fade-in($var);
+	}
+}
+
+@mixin hidden-animation-mixin($var) {
+	&[data-state='hidden'] {
+		@include animations.fade-out($var);
+	}
+}
+
+@mixin open-animation-mixin($var) {
+	&[data-state='open'] {
+		@include animations.scale-in($var);
+	}
+}
+
+@mixin closed-animation-mixin($var) {
+	&[data-state='closed'] {
+		@include animations.scale-out($var);
+	}
+}
+
+@mixin content-animations($var) {
+	@include from-start-animation-mixin($var);
+	@include to-start-animation-mixin($var);
+	@include to-end-animation-mixin($var);
+	@include from-end-animation-mixin($var);
+}
+
+@mixin indicator-animations($var) {
+	@include visible-animation-mixin($var);
+	@include hidden-animation-mixin($var);
+}
+
+@mixin viewport-animations($var) {
+	@include open-animation-mixin($var);
+	@include closed-animation-mixin($var);
+}

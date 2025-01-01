@@ -1,0 +1,10 @@
+@use './ToolbarItem.module' as toolbar-item;
+@import '../component';
+
+$__stylesheet__: (
+	name: toolbar-item,
+);
+
+.root {
+	@include toolbar-item.toolbar-button-mixin;
+}

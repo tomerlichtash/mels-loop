@@ -1,0 +1,38 @@
+@use 'sass:meta';
+@use './ToggleButton.meta' as toggle;
+@use '../../../styles/lib/refs';
+@import '../../../styles/lib/hooks';
+@import '../../../styles/lib/states';
+
+@mixin -button-refs-mixin(
+	$text-color: white,
+	$text-color-hover: lightblue,
+	$text-color-selected: green,
+	$bg-color: black,
+	$bg-color-hover: darkblue,
+	$bg-color-selected: pink
+) {
+	// hooks helper sass variables
+	$textColor: refs.use(toggle.name(button-text-color));
+	$textColorHovered: refs.use(toggle.name(button-text-color, state(hovered)));
+	$textColorSelected: refs.use(toggle.name(button-text-color, state(selected)));
+
+	$bgColor: refs.use(toggle.name(button-background-color));
+	$bgColorHovered: refs.use(
+		toggle.name(button-background-color, state(hovered))
+	);
+	$bgColorSelected: refs.use(
+		toggle.name(button-background-color, state(selected))
+	);
+
+	#{$textColor}: $text-color;
+	#{$textColorHovered}: $text-color-hover;
+	#{$textColorSelected}: $text-color-selected;
+	#{$bgColor}: $bg-color;
+	#{$bgColorHovered}: $bg-color-hover;
+	#{$bgColorSelected}: $bg-color-selected;
+}
+
+@mixin button($args...) {
+	@include -button-refs-mixin($args...);
+}

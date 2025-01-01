@@ -1,0 +1,13 @@
+@import '../../components/component';
+
+$__stylesheet__: (
+	name: locale-select,
+);
+
+.root {
+	--gap: 4px;
+
+	@include use-gap;
+
+	display: flex;
+}

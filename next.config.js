@@ -16,9 +16,6 @@ const nextConfig = {
 	serverRuntimeConfig: {
 		PROJECT_ROOT: __dirname,
 	},
-	experimental: {
-		serverActions: true,
-	},
 	async redirects() {
 		return legacyRedirects;
 	},

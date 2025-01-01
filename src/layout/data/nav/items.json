@@ -1,0 +1,109 @@
+[
+	{
+		"id": "preface",
+		"type": "article",
+		"url": "/docs/the-story-of-mel/pages/preface",
+		"icon": "article",
+		"locale": {
+			"title": "nav:items:articles:som:intro:label",
+			"author": "authors:tomerlichtash"
+		}
+	},
+	{
+		"id": "mel-kaye-bio",
+		"type": "article",
+		"url": "/docs/the-story-of-mel/pages/mel-kaye-cv",
+		"icon": "article",
+		"locale": {
+			"title": "nav:items:articles:som:bio:label",
+			"author": "authors:tomerlichtash"
+		}
+	},
+	{
+		"id": "mels-hack-the-missing-bits",
+		"type": "article",
+		"url": "/docs/the-story-of-mel/pages/mels-hack-the-missing-bits",
+		"icon": "article",
+		"locale": {
+			"title": "nav:items:articles:som:missingBits:label",
+			"author": "authors:dfl"
+		}
+	},
+	{
+		"id": "resources",
+		"type": "page",
+		"url": "/docs/the-story-of-mel/pages/resources",
+		"icon": "list",
+		"locale": {
+			"title": "nav:items:pages:resources:label",
+			"description": "nav:items:pages:resources:desc"
+		}
+	},
+	{
+		"id": "about",
+		"type": "page",
+		"url": "/about",
+		"locale": {
+			"title": "nav:items:pages:about:label",
+			"description": "nav:items:pages:about:desc"
+		}
+	},
+	{
+		"id": "about-mobile",
+		"type": "page",
+		"url": "/about",
+		"locale": {
+			"title": "nav:items:pages:about:label",
+			"description": "nav:items:pages:about:desc"
+		}
+	},
+	{
+		"id": "blog",
+		"type": "page",
+		"url": "/posts",
+		"locale": {
+			"title": "nav:items:pages:blog:label",
+			"description": "nav:items:pages:blog:desc"
+		}
+	},
+	{
+		"id": "contribute",
+		"type": "page",
+		"url": "/contribute",
+		"locale": {
+			"title": "nav:items:pages:contrib:label",
+			"description": "nav:items:pages:contrib:desc"
+		}
+	},
+	{
+		"id": "contact",
+		"type": "page",
+		"url": "/contact",
+		"icon": "pencil",
+		"locale": {
+			"title": "nav:items:pages:contact:label",
+			"description": "nav:items:pages:contact:desc"
+		}
+	},
+	{
+		"id": "twitter",
+		"type": "external",
+		"url": "https://twitter.com/aboutmelsloop",
+		"icon": "𝕏",
+		"locale": {
+			"title": "nav:items:links:twitter:label",
+			"description": "nav:items:links:twitter:desc"
+		}
+	},
+	{
+		"id": "github",
+		"type": "external",
+		"url": "https://github.com/tomerlichtash/mels-loop",
+		"icon": "github",
+		"target": "_blank",
+		"locale": {
+			"title": "nav:items:links:github:label",
+			"description": "nav:items:links:github:desc"
+		}
+	}
+]

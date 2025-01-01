@@ -1,0 +1,12 @@
+$vars: (
+	animation: (
+		duration: (
+			sm: 200ms,
+			md: 250ms,
+		),
+		easing: (
+			default: 'ease',
+			in: 'ease-in',
+		),
+	),
+);

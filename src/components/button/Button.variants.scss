@@ -1,0 +1,38 @@
+@use '../../styles/lib/hooks';
+@use '../../styles/lib/refs';
+@use '../../styles/lib/merge';
+@import '../../styles/lib/states';
+
+@mixin topbar-item-base {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	height: 2.286em;
+	padding: 0 6px;
+	min-width: 32px;
+	// background: none;
+
+	// &:hover {
+	// 	background-color: refs.ref(color-surface-mid);
+	// 	cursor: pointer;
+	// }
+}
+
+@mixin topbar-menu-trigger($var: refs.ref(color-surface-mid)) {
+	@include topbar-item-base;
+
+	&[data-state='open'],
+	&:hover {
+		background-color: $var;
+	}
+}
+
+@mixin topbar-item-toggle($var: refs.ref(color-surface-dark)) {
+	// @include topbar-item-base;
+
+	// &[data-state='on'] {
+	// 	background-color: $var;
+	// 	@include hooks.use-background-color(toggle-group-button);
+	// }
+}

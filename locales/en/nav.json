@@ -1,0 +1,23 @@
+{
+	"sections:articles:label": "Articles",
+	"sections:contact:label": "Contact",
+	"sections:about:label": "About",
+
+	"items:articles:som:intro:label": "Preface",
+	"items:articles:som:bio:label": "Mel Kaye – CV",
+	"items:articles:som:missingBits:label": "Mel's Hack – The Missing Bits",
+	"items:pages:about:label": "About",
+	"items:pages:about:desc": "About Mel's Loop",
+	"items:pages:blog:label": "Blog",
+	"items:pages:blog:desc": "News and Updates",
+	"items:pages:resources:label": "Resources",
+	"items:pages:resources:desc": "Web Resources for The Story of Mel",
+	"items:pages:contrib:label": "Contribute",
+	"items:pages:contrib:desc": "TBD",
+	"items:pages:contact:label": "Contact",
+	"items:pages:contact:desc": "Drop us a line!",
+	"items:links:twitter:label": "Twitter",
+	"items:links:twitter:desc": "Follow us @aboutmelsloop",
+	"items:links:github:label": "Github",
+	"items:links:github:desc": "Project source code"
+}
