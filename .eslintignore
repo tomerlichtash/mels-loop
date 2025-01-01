@@ -3,3 +3,6 @@ node_modules
 out
 public
 bak
+scripts/media
+tests/fixme
+e2e/fixme

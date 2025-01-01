@@ -1,7 +1,7 @@
 ---
-title: "Mel Kaye – CV"
-abstract: "The Life and Work of Mel Kaye, A Real Programmer (1931-2018)"
-author: "Tomer Lichtash"
+title: 'Mel Kaye – CV'
+abstract: 'The Life and Work of Mel Kaye, A Real Programmer (1931-2018)'
+author: 'Tomer Lichtash'
 date: Tue May 21 2023 01:00:00 GMT+0300
 ---
 
@@ -96,7 +96,7 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 </figure>
 
 <figure>
-![](https://mels-loop-media.s3.eu-north-1.amazonaws.com/mel-kaye-code-evaluation-of-4th-degree-polynomial-fixed-point-june-16th-1959-source-_lgp-30-subroutine-manual-oct-60_wgoukq.jpg)
+![]https://mels-loop-media.s3.eu-north-1.amazonaws.com/mel-kaye-code-evaluation-of-4th-degree-polynomial-fixed-point-june-16th-1959-source-_lgp-30-subroutine-manual-oct-60_wgoukq.jpg)
 
 <figcaption>Evaluation of 4th Degree Polynomial Fixed Point, June 1959, Signed by Mel Kaye</figcaption>
 </figure>

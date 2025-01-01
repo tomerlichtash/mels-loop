@@ -1,30 +1,28 @@
-import React, { useContext } from "react";
-import Layout from "../components/layout/layout";
-import { GetStaticProps, NextPage } from "next";
-import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
-import { IPageProps } from "../interfaces/models";
-import { usePageData } from "../components/usePageData";
-import { ReactLocaleContext } from "../contexts/locale-context";
-import { Button } from "../components/ui";
-import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import { st, classes } from "./page-base.st.css";
+import React from 'react';
+import { GetStaticProps, NextPage } from 'next';
+import { ContentTypes } from 'types/content';
+import { mlNextUtils } from '../lib/next-utils/nextUtils';
+import type { IPageProps } from 'types/models';
+import { usePageData } from '../hooks/usePageData';
+import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
+import { Link } from 'components/index';
+import Layout from 'layout/Layout';
+import { useLocale } from 'hooks/index';
 
 const Docs: NextPage<IPageProps> = (props) => {
-	const { pageName } = useContext(ReactLocaleContext);
-	const { className } = props;
 	const { metaData } = usePageData(props);
+	const { t } = useLocale();
 	return (
 		<Layout>
-			<article className={st(classes.root, className)}>
-				<h1 className={classes.title}>{pageName}</h1>
+			<article className="page">
+				<h1 className="title">{t('docs:page:title')}</h1>
 				{metaData.length && (
 					<ul>
 						{metaData.map((page, index) => {
 							const key = `doc-${index}`;
 							return (
-								<li className={classes.item} key={key}>
-									<Button label={page.metaData.title} link={page.path} />
+								<li className="item" key={key}>
+									<Link href={page.path}>{page.metaData.title}</Link>
 								</li>
 							);
 						})}
@@ -37,18 +35,20 @@ const Docs: NextPage<IPageProps> = (props) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.DOCS,
+		ContentTypes.Docs,
 		context.locale,
-		LoadFolderModes.FOLDER
+		LoadFolderModes.Folder
 	);
+
 	const childrenProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.DOCS,
+		ContentTypes.Docs,
 		context.locale,
-		LoadFolderModes.CHILDREN,
+		LoadFolderModes.Children,
 		{
-			contentMode: LoadContentModes.METADATA,
+			contentMode: LoadContentModes.Metadata,
 		}
 	);
+
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const props = {
 		props: {
@@ -56,6 +56,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 			metaData: (childrenProps as any).props.content,
 		},
 	};
+
 	return props;
 };
 

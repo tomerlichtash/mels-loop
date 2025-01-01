@@ -1,5 +1,5 @@
 ---
-glossary_key: "OPTIMUM"
+glossary_key: 'OPTIMUM'
 ---
 
 שיא חיובי במשך זמן הגישה לזיכרון.

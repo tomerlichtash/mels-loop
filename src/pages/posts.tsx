@@ -1,62 +1,73 @@
-import React, { useContext } from "react";
-import Layout from "../components/layout/layout";
-import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import { GetStaticProps } from "next";
-import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
-import { IPageProps, IParsedPageData } from "../interfaces/models";
-import { usePageData } from "../components/usePageData";
-import { ReactLocaleContext } from "../contexts/locale-context";
-import orderBy from "lodash.orderby";
-import Post from "../components/post";
-import { mlUtils } from "../lib/ml-utils";
-import { st, classes } from "./page-base.st.css";
-import { classes as postsClasses } from "./posts.st.css";
+import React from 'react';
+import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
+import { GetStaticProps } from 'next';
+import { ContentTypes } from 'types/content';
+import { mlNextUtils } from '../lib/next-utils/nextUtils';
+import type { IPageProps, IParsedPageData } from 'types/models';
+import { usePageData } from '../hooks/usePageData';
+import orderBy from 'lodash.orderby';
+import Layout from 'layout/Layout';
+import { useLocale } from 'hooks/index';
+import Head from 'next/head';
+import { getMetadata, renderElements } from 'lib/dynamicContentHelpers';
+import { GenericContentLayout } from 'custom-layouts/generic-content-layout/GenericContentLayout';
+import styles from '../custom-layouts/generic-content-layout/mixins/BlogPostLayoutMixin.module.scss';
 
 export default function Blog(props: IPageProps) {
-	const { locale, sectionName } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
+	const { t, lang } = useLocale();
+	const pageTitle = `${t('common:site:title')} – ${t('pages:blog:title')}`;
+	const sortedItems = orderBy(pageData, ['metaData.date'], ['desc']);
+
 	return (
 		<Layout>
-			<div className={st(classes.root, postsClasses.root)}>
-				<h1 className={classes.title}>{sectionName}</h1>
-				{orderBy(pageData, ["metaData.date"], ["desc"]).map(
-					(page: IParsedPageData) => {
-						const { metaData, path: path } = page;
-						const { title, date, author } = metaData;
-						return (
-							<Post
-								key={mlUtils.uniqueId()}
-								title={title}
-								date={date}
-								path={path}
-								locale={locale}
-								author={author}
-								content={page}
-								className={postsClasses.post}
-							/>
-						);
-					}
-				)}
-			</div>
+			<Head>
+				<title>{pageTitle}</title>
+			</Head>
+
+			<GenericContentLayout caption={t('pages:blog:title')} title={'Posts'}>
+				{sortedItems.map((page: IParsedPageData) => {
+					const { path } = page;
+					const [title, date, author] = getMetadata(
+						['title', 'date', 'author'],
+						[page]
+					);
+					return (
+						<GenericContentLayout
+							key={title}
+							title={title}
+							date={date}
+							author={author}
+							path={path}
+							locale={lang}
+							className={styles.root}
+							pageStyles={styles}
+						>
+							{renderElements([page])}
+						</GenericContentLayout>
+					);
+				})}
+			</GenericContentLayout>
 		</Layout>
 	);
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.POSTS,
+		ContentTypes.Posts,
 		context.locale,
-		LoadFolderModes.CHILDREN
+		LoadFolderModes.Children
 	);
+
 	const childrenProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.POSTS,
+		ContentTypes.Posts,
 		context.locale,
-		LoadFolderModes.CHILDREN,
+		LoadFolderModes.Children,
 		{
-			contentMode: LoadContentModes.METADATA,
+			contentMode: LoadContentModes.Metadata,
 		}
 	);
+
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const props = {
 		props: {
@@ -64,5 +75,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 			metaData: (childrenProps as any).props.content,
 		},
 	};
+
 	return props;
 };

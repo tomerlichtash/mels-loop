@@ -1,5 +1,5 @@
 ---
-glossary_key: "REAL_PROGRAMMER"
+glossary_key: 'REAL_PROGRAMMER'
 source_url: http://www.catb.org/jargon/html/R/Real-Programmer.html
 source_name: The Jargon File
 ---

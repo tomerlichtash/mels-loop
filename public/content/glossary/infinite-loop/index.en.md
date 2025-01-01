@@ -1,5 +1,5 @@
 ---
-glossary_key: "INFINITE_LOOP"
+glossary_key: 'INFINITE_LOOP'
 source_url: https://en.wikipedia.org/wiki/Infinite_loop
 source_name: Wikipedia
 ---

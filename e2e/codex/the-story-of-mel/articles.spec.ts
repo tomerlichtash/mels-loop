@@ -1,90 +1,82 @@
-import { test, expect } from "@playwright/test";
-import {
-	getLocalePath,
-	locales,
-	getFrontMatter,
-	translate,
-} from "../../utils/test-utils";
+import { test, expect } from '@playwright/test';
+import { getFrontMatter } from '../../utils/mdTestUtils';
+import { getLocalePath, locales } from '../../utils/localeTestUtils';
+import getT from 'next-translate/getT';
+import { Translate } from 'next-translate';
+import i18n from '../../../i18n';
+import docIds from '../docIds';
 
-test.describe("Articles", () => {
-	const docId = "docs/the-story-of-mel";
-	locales.map((locale) => {
-		test(`${locale} > should navigate to the Preface article`, async ({
-			page,
-		}) => {
-			const path = "pages/preface";
-			const filename = "index";
-			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
+global.i18nConfig = i18n;
 
-			await page.goto(getLocalePath(locale, docId));
-			await page.hover(
-				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
-			);
-			await page.click(
-				`text=${translate(locale, "MENU_ITEM_LABEL_ID_PREFACE")}`
-			);
+test.describe('Articles', () => {
+	for (const docId of docIds) {
+		for (const locale of locales) {
+			let t: Translate;
 
-			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
-			await expect(page.locator("h1")).toHaveText(data.title as string);
-		});
+			test.beforeEach(async () => {
+				t = await getT(locale, ['common', 'nav']);
+			});
 
-		test(`${locale} > should navigate to the Missing Bits article`, async ({
-			page,
-		}) => {
-			const path = "pages/mels-hack-the-missing-bits";
-			const filename = "index";
-			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
+			test(`[${locale}] navigate to the Preface article`, async ({ page }) => {
+				const path = 'pages/preface';
+				const filename = 'index';
+				const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
 
-			await page.goto(getLocalePath(locale, docId));
-			await page.hover(
-				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
-			);
-			await page.click(
-				`text=${translate(
-					locale,
-					"MENU_ITEM_LABEL_ID_MELS_HACK_THE_MISSING_BITS"
-				)}`
-			);
+				await page.goto(getLocalePath(locale, docId));
 
-			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
-			await expect(page.locator("h1")).toHaveText(data.title as string);
-		});
+				await page.hover(`text=${t('nav:sections:articles:label')}`);
+				await page.click(`text=${t('nav:items:articles:som:intro:label')}`);
 
-		test(`${locale} > should navigate to the CV article`, async ({ page }) => {
-			const path = "pages/mel-kaye-cv";
-			const filename = "index";
-			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
+				await expect(page).toHaveURL(getLocalePath(locale, docId, path));
+				await expect(page.locator('h1')).toHaveText(data.title as string);
+			});
 
-			await page.goto(getLocalePath(locale, docId));
-			await page.hover(
-				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
-			);
-			await page.click(
-				`text=${translate(locale, "MENU_ITEM_LABEL_ID_MEL_KAYE_BIO")}`
-			);
+			test(`[${locale}] navigate to the Missing Bits article`, async ({
+				page,
+			}) => {
+				const path = 'pages/mels-hack-the-missing-bits';
+				const filename = 'index';
+				const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
 
-			await expect(page).toHaveURL(getLocalePath(locale, docId, path));
-			await expect(page.locator("h1")).toHaveText(data.title as string);
-		});
+				await page.goto(getLocalePath(locale, docId));
 
-		test(`${locale} > should navigate to the Resources page`, async ({
-			page,
-		}) => {
-			const path = "pages/resources";
-			const filename = "index";
-			const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
-			const localePath = getLocalePath(locale, docId, path);
+				await page.hover(`text=${t('nav:sections:articles:label')}`);
+				await page.click(
+					`text=${t('nav:items:articles:som:missingBits:label')}`
+				);
 
-			await page.goto(localePath);
-			await page.hover(
-				`text=${translate(locale, "MENU_SECTION_LABEL_ARTICLES")}`
-			);
-			await page.click(
-				`text=${translate(locale, "MENU_ITEM_LABEL_ID_RESOURCES")}`
-			);
+				await expect(page).toHaveURL(getLocalePath(locale, docId, path));
+				await expect(page.locator('h1')).toHaveText(data.title as string);
+			});
 
-			await expect(page).toHaveURL(localePath);
-			await expect(page.locator("h1")).toHaveText(data.title as string);
-		});
-	});
+			test(`[${locale}] navigate to the CV article`, async ({ page }) => {
+				const path = 'pages/mel-kaye-cv';
+				const filename = 'index';
+				const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
+
+				await page.goto(getLocalePath(locale, docId));
+
+				await page.hover(`text=${t('nav:sections:articles:label')}`);
+				await page.click(`text=${t('nav:items:articles:som:bio:label')}`);
+
+				await expect(page).toHaveURL(getLocalePath(locale, docId, path));
+				await expect(page.locator('h1')).toHaveText(data.title as string);
+			});
+
+			test(`[${locale}] navigate to the Resources page`, async ({ page }) => {
+				const path = 'pages/resources';
+				const filename = 'index';
+				const { data } = getFrontMatter(docId, `${path}/${filename}`, locale);
+				const localePath = getLocalePath(locale, docId, path);
+
+				await page.goto(localePath);
+
+				await page.hover(`text=${t('nav:sections:articles:label')}`);
+				await page.click(`text=${t('nav:items:pages:resources:label')}`);
+
+				await expect(page).toHaveURL(localePath);
+				await expect(page.locator('h1')).toHaveText(data.title as string);
+			});
+		}
+	}
 });

@@ -1,34 +1,46 @@
-import React, { useContext } from "react";
-import { ReactLocaleContext } from "../../contexts/locale-context";
-import { st, classes } from "./scrollbar.st.css";
+import React from 'react';
+import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
+import classNames from 'classnames';
+import styles from './Scrollbar.module.scss';
+import type { ScrollAreaScrollbarVisibleProps } from '@radix-ui/react-scroll-area';
+import type { TextDirection } from 'types/locale';
 
-import {
-	StyledScrollArea,
-	ScrollViewport,
-	ScrollBar,
-	ScrollBarThumb,
-	ScrollAreaProps,
-} from "../radix-primitives";
+type ScrollbarProps = {
+	height?: string;
+	textDirection: TextDirection;
+} & ScrollAreaScrollbarVisibleProps;
 
-export function ScrollArea({
+const Scrollbar = ({
 	children,
-	orientation = "vertical",
-	height = "100vh",
+	height,
+	textDirection,
 	className,
-}: ScrollAreaProps) {
-	const { textDirection } = useContext(ReactLocaleContext);
-	return (
-		<StyledScrollArea
-			className={st(classes.root, className)}
-			type="always"
-			dir={textDirection}
+	...rest
+}: ScrollbarProps) => (
+	<ScrollAreaPrimitive.Root
+		className={classNames(styles.root, className)}
+		type="always"
+		dir={textDirection}
+		style={{ height }}
+	>
+		<ScrollAreaPrimitive.Viewport className={styles.viewport} {...rest}>
+			{children}
+		</ScrollAreaPrimitive.Viewport>
+		<ScrollAreaPrimitive.Scrollbar
+			className={styles.scrollbar}
+			orientation="vertical"
 		>
-			<ScrollViewport style={{ height: `${height}` }}>
-				{children}
-			</ScrollViewport>
-			<ScrollBar orientation={orientation} className={classes.scrollbar}>
-				<ScrollBarThumb className={classes.thumb} />
-			</ScrollBar>
-		</StyledScrollArea>
-	);
-}
+			<ScrollAreaPrimitive.Thumb className={styles.thumb} />
+		</ScrollAreaPrimitive.Scrollbar>
+		<ScrollAreaPrimitive.Scrollbar
+			className={styles.scrollbar}
+			orientation="horizontal"
+		>
+			<ScrollAreaPrimitive.Thumb className={styles.thumb} />
+		</ScrollAreaPrimitive.Scrollbar>
+		<ScrollAreaPrimitive.Corner className={styles.scrollAreaCorner} />
+	</ScrollAreaPrimitive.Root>
+);
+
+export default Scrollbar;
+export type { ScrollbarProps };

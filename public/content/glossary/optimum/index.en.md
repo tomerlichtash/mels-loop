@@ -1,5 +1,5 @@
 ---
-glossary_key: "OPTIMUM"
+glossary_key: 'OPTIMUM'
 ---
 
 Positive peak in memory access time.

@@ -1,5 +1,5 @@
 ---
-glossary_key: "ADDRESSING_SCHEME"
+glossary_key: 'ADDRESSING_SCHEME'
 ---
 
 השיטה שבה מספר בינארי, או אוסף מספרים כאלה, מייצג מיקום בזיכרון המחשב.

@@ -1,75 +1,75 @@
-import React, { useState } from "react";
-import { PopoverToolbar } from "./popover-toolbar";
-import { IPopoverContext } from "../../interfaces/IPopoverContext";
-import { Direction } from "../../interfaces/locale-context";
-import { ReactPopoverContext } from "../../contexts/popover-context";
-import { useToolbar } from "./useToolbar";
-import { ComponentProps } from "../../interfaces/models";
-import {
-	PopoverRoot,
-	PopoverTrigger,
-	PopoverContent,
-	PopoverArrow,
-} from "../radix-primitives";
-import { st, classes } from "./popover.st.css";
+import React, { PropsWithChildren, useState } from 'react';
+import * as PopoverPrimitive from '@radix-ui/react-popover';
+import { getIcon } from 'components/icons';
+import { Button, ToolbarItem } from '..';
+import styles from './Popover.module.scss';
+import PopoverTrigger from './PopoverTrigger';
+import PopoverDialog from './PopoverDialog';
 
-export interface IPopoverProps extends ComponentProps {
-	id: string;
-	type: string;
+type CustomPopoverProps = {
 	trigger: React.ReactNode;
-	side: Direction;
-}
+	side: 'top' | 'right' | 'bottom' | 'left';
+	locale: string;
+	toolbarItems?: React.ReactNode[];
+	open?: boolean;
+	'data-testid'?: string;
+};
 
-export const Popover = ({
-	type,
+const Popover = ({
+	open,
 	trigger,
-	children,
 	side,
-	className,
-}: IPopoverProps): JSX.Element => {
-	const toolbar = useToolbar();
-	const ctx: IPopoverContext = {
-		toolbar: toolbar.items,
-		addToolbarItems: toolbar.addItems,
-		removeToolbarItems: toolbar.removeItemsById,
-	};
+	locale,
+	toolbarItems,
+	children,
+	'data-testid': dataTestId,
+}: PropsWithChildren<CustomPopoverProps>) => {
+	const [visible, setVisible] = useState(false);
 
-	const [popoverVisible, setPopoverVisible] = useState(false);
+	const isOpen = open || visible;
 
 	return (
-		<ReactPopoverContext.Provider value={ctx}>
-			<span className={st(classes.root, { type })}>
-				<PopoverRoot
-					onOpenChange={(state: boolean) => setPopoverVisible(state)}
+		<PopoverPrimitive.Root
+			onOpenChange={(opened) => setVisible(opened)}
+			open={isOpen}
+		>
+			<PopoverPrimitive.Trigger
+				data-testid={dataTestId}
+				className={styles.trigger}
+			>
+				<PopoverTrigger opened={isOpen}>{trigger}</PopoverTrigger>
+			</PopoverPrimitive.Trigger>
+
+			<PopoverPrimitive.Portal>
+				<PopoverPrimitive.Content
+					side={side}
+					data-locale={locale}
+					className={styles.dialog}
 				>
-					<PopoverTrigger asChild>
-						<span
-							className={st(classes.trigger, { popoverVisible })}
-							tabIndex={1}
-						>
-							<span className={st(classes.triggerWrapper, { popoverVisible })}>
-								{trigger}
-							</span>
-						</span>
-					</PopoverTrigger>
-					<PopoverContent
-						side={side}
-						avoidCollisions={true}
-						align="center"
-						sideOffset={5}
-					>
-						<div className={st(classes.content, className)}>
-							<PopoverToolbar
-								items={toolbar.items}
-								className={st(classes.toolbar, className)}
-							/>
-							{children}
-						</div>
-						<PopoverArrow />
-					</PopoverContent>
-				</PopoverRoot>
-			</span>
-		</ReactPopoverContext.Provider>
+					<PopoverDialog>
+						{toolbarItems && (
+							<div role="toolbar" className={styles.toolbar}>
+								<div className={styles.panel}>{toolbarItems}</div>
+								<div className={styles.closeButton}>
+									<ToolbarItem>
+										<PopoverPrimitive.Close asChild>
+											<Button
+												onClick={() => setVisible(false)}
+												className={styles.close}
+											>
+												{getIcon('close')}
+											</Button>
+										</PopoverPrimitive.Close>
+									</ToolbarItem>
+								</div>
+							</div>
+						)}
+						{children}
+					</PopoverDialog>
+					<PopoverPrimitive.Arrow />
+				</PopoverPrimitive.Content>
+			</PopoverPrimitive.Portal>
+		</PopoverPrimitive.Root>
 	);
 };
 

@@ -1,42 +1,45 @@
-import React, { useContext } from "react";
-import Layout from "../components/layout/layout";
-import { GetStaticProps, NextPage } from "next";
-import { CONTENT_TYPES } from "../consts";
-import { mlNextUtils } from "../lib/next-utils";
-import { IPageProps } from "../interfaces/models";
-import { usePageData } from "../components/usePageData";
-import { ReactLocaleContext } from "../contexts/locale-context";
-import { Button } from "../components/ui";
-import { LoadContentModes, LoadFolderModes } from "../interfaces/parser";
-import { st, classes } from "./page-base.st.css";
+import React from 'react';
+import { GetStaticProps, NextPage } from 'next';
+import { ContentTypes } from 'types/content';
+import { mlNextUtils } from '../lib/next-utils/nextUtils';
+import type { IPageProps } from 'types/models';
+import { usePageData } from '../hooks/usePageData';
+import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
+import { Link, Text } from 'components/index';
+import Layout from 'layout/Layout';
+import { useLocale } from 'hooks/index';
+import Head from 'next/head';
 
 const Glossary: NextPage<IPageProps> = (props) => {
-	const { translate, pageName } = useContext(ReactLocaleContext);
-	const { className } = props;
 	const { metaData } = usePageData(props);
+	const { t } = useLocale();
+	const pageTitle = `${t('common:site:title')} – ${t('pages:glossary:title')}`;
+
+	const getItem = (page, index) => {
+		const term = page.metaData;
+		const key = `term-${index}`;
+		const { glossary_key } = term;
+		return glossary_key ? (
+			<Link href={page.path}>{t(`glossary:term:${term.glossary_key}`)}</Link>
+		) : (
+			<Text key={key} className="error">
+				Missing glossary term data {page.id}
+			</Text>
+		);
+	};
+
 	return (
 		<Layout>
-			<article className={st(classes.root, className)}>
-				<h1 className={classes.title}>{pageName}</h1>
+			<Head>
+				<title>{pageTitle}</title>
+			</Head>
+			<article className="page">
+				<h1 className="title">{t('pages:glossary:title')}</h1>
 				{metaData.length && (
-					<ul className={classes.termList}>
-						{metaData.map((page, index) => {
-							const term = page.metaData;
-							const key = `term-${index}`;
-							const { glossary_key } = term;
-							return glossary_key ? (
-								<li className={classes.term} key={key}>
-									<Button
-										label={translate(term.glossary_key)}
-										link={page.path}
-									/>
-								</li>
-							) : (
-								<div key={key} className={classes.error}>
-									Missing glossary term data {page.id}
-								</div>
-							);
-						})}
+					<ul className="term-list">
+						{metaData.map((page, index) => (
+							<li key={`glossary-item-${page.id}`}>{getItem(page, index)}</li>
+						))}
 					</ul>
 				)}
 			</article>
@@ -46,18 +49,20 @@ const Glossary: NextPage<IPageProps> = (props) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const indexProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.GLOSSARY,
+		ContentTypes.Glossary,
 		context.locale,
-		LoadFolderModes.FOLDER
+		LoadFolderModes.Folder
 	);
+
 	const childrenProps = mlNextUtils.getFolderStaticProps(
-		CONTENT_TYPES.GLOSSARY,
+		ContentTypes.Glossary,
 		context.locale,
-		LoadFolderModes.CHILDREN,
+		LoadFolderModes.Children,
 		{
-			contentMode: LoadContentModes.FULL,
+			contentMode: LoadContentModes.Full,
 		}
 	);
+
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const props = {
 		props: {
@@ -65,6 +70,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 			metaData: (childrenProps as any).props.content,
 		},
 	};
+
 	return props;
 };
 

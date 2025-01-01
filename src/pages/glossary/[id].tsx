@@ -1,24 +1,18 @@
-import React, { useContext } from "react";
-import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
-import { CONTENT_TYPES } from "../../consts";
-import { mlNextUtils } from "../../lib/next-utils";
-import { LoadFolderModes } from "../../interfaces/parser";
-import { contentUtils } from "../../lib/content-utils";
-import {
-	IMLParsedNode,
-	IPageProps,
-	MLNODE_TYPES,
-} from "../../interfaces/models";
-import Layout from "../../components/layout";
-import ContentIterator from "../../components/content/content-iterator";
-import { usePageData } from "../../components/usePageData";
-import { ReactLocaleContext } from "../../contexts/locale-context";
-import { Button } from "../../components/ui";
-import Bibliography from "../../components/bibliography";
-import { classes } from "./glossary-item.st.css";
+import React from 'react';
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
+import { ContentTypes } from 'types/content';
+import { mlNextUtils } from '../../lib/next-utils/nextUtils';
+import { LoadFolderModes } from 'types/parser/modes';
+import { MLNODE_TYPES } from 'types/nodes';
+import type { IMLParsedNode, IPageProps } from 'types/models';
+import { usePageData } from '../../hooks/usePageData';
+import { Link, List } from 'components/index';
+import { ContentIterator } from 'lib/dynamic-content-utils/contentIterator';
+import Layout from 'layout/Layout';
+import { useLocale } from 'hooks/index';
+import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
 
 export default function GlossaryTerm(props: IPageProps) {
-	const { translate } = useContext(ReactLocaleContext);
 	const { pageData } = usePageData(props);
 	const page = pageData && pageData[0];
 	const metaData = page?.metaData;
@@ -28,31 +22,37 @@ export default function GlossaryTerm(props: IPageProps) {
 		line: -1,
 		type: MLNODE_TYPES.UNKNOWN,
 	};
+	const { t } = useLocale();
+
 	return (
-		<Layout title={metaData?.title}>
-			<article className={classes.root}>
-				<Button
-					className={classes.title}
-					label={translate("GLOSSARY_NAV_LABEL")}
-					link={"/glossary"}
-				/>
-				<h1 className={classes.title}>{translate(metaData?.glossary_key)}</h1>
-				<p className={classes.term}>
-					{translate(metaData?.glossary_key, "en")}
-				</p>
+		<Layout>
+			<article className="page">
+				<Link className="title" href={'/glossary'}>
+					{t('common:button:backToTarget', {
+						sep: t('common:to'),
+						target: t('pages:glossary:title'),
+					})}
+				</Link>
+				<h1 className="title">{t('pages:glossary:title')}</h1>
+				<h2 className="title">
+					{t(`glossary:term:${metaData?.glossary_key}`)}
+				</h2>
+				{/* TODO: Use forced translation */}
+				{/* <p className="term">{t(metaData?.glossary_key, 'en')}</p> */}
 				{node ? (
 					<ContentIterator componentData={{ node }} />
 				) : (
-					<div className={classes.noContent}>(No page content)</div>
+					<div className="no-content">(No page content)</div>
 				)}
-				<Bibliography
-					className={classes.bibliography}
-					label={""}
-					sources={[
+				<List
+					className="bibliography"
+					label={''}
+					items={[
 						{
-							author: metaData.source_name,
+							label: `${metaData.source_name}${
+								metaData.source_name ? ` / ${metaData.source_name}` : ''
+							}`,
 							url: metaData.source_url,
-							name: metaData.source_name,
 						},
 					]}
 				/>
@@ -61,22 +61,17 @@ export default function GlossaryTerm(props: IPageProps) {
 	);
 }
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-	return mlNextUtils.getFolderStaticPaths(
-		CONTENT_TYPES.GLOSSARY,
-		context.locales
-	);
-};
+export const getStaticPaths: GetStaticPaths = async (context) =>
+	mlNextUtils.getFolderStaticPaths(ContentTypes.Glossary, context.locales);
 
 export const getStaticProps: GetStaticProps = async (
 	context: GetStaticPropsContext
-) => {
-	return mlNextUtils.getFolderStaticProps(
-		`${CONTENT_TYPES.GLOSSARY}/${context.params.id as string}`,
+) =>
+	mlNextUtils.getFolderStaticProps(
+		`${ContentTypes.Glossary}/${context.params.id as string}`,
 		context.locale,
-		LoadFolderModes.FOLDER,
+		LoadFolderModes.Folder,
 		{
-			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
+			nodeProcessors: [createPopoverLinksNodeProcessor()],
 		}
 	);
-};

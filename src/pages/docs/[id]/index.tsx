@@ -1,32 +1,27 @@
-import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
-import { contentUtils } from "../../../lib/content-utils";
-import { IPageProps } from "../../../interfaces/models";
-import { CONTENT_TYPES } from "../../../consts";
-import { mlNextUtils } from "../../../lib/next-utils";
-import { GenericPage } from "../../../components/content";
-import {
-	LoadContentModes,
-	LoadFolderModes,
-} from "../../../interfaces/parser";
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
+import { mlNextUtils } from 'lib/next-utils/nextUtils';
+import { ContentTypes } from 'types/content';
+import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
+import { IPageProps } from 'types/models';
+import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
+import GenericPage from 'lib/dynamic-content-utils/components/genericPage';
 
 export default function Doc(props: IPageProps) {
 	return <GenericPage pageProps={props} />;
 }
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-	return mlNextUtils.getFolderStaticPaths(CONTENT_TYPES.DOCS, context.locales);
-};
+export const getStaticPaths: GetStaticPaths = async (context) =>
+	mlNextUtils.getFolderStaticPaths(ContentTypes.Docs, context.locales);
 
 export const getStaticProps: GetStaticProps = async (
 	context: GetStaticPropsContext
-) => {
-	return mlNextUtils.getFolderStaticProps(
-		`${CONTENT_TYPES.DOCS}/${context.params.id as string}`,
+) =>
+	mlNextUtils.getFolderStaticProps(
+		`${ContentTypes.Docs}/${context.params.id as string}`,
 		context.locale,
-		LoadFolderModes.FOLDER,
+		LoadFolderModes.Folder,
 		{
-			contentMode: LoadContentModes.FULL,
-			nodeProcessors: [contentUtils.createPopoverLinksMappingFilter()],
+			contentMode: LoadContentModes.Full,
+			nodeProcessors: [createPopoverLinksNodeProcessor()],
 		}
 	);
-};
