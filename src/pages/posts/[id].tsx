@@ -14,7 +14,7 @@ import styles from '../../custom-layouts/generic-content-layout/mixins/BlogPostL
 
 export default function Doc(props: IPageProps) {
 	const { pageData } = usePageData(props);
-	const page = pageData && pageData[0];
+	const page = pageData?.[0];
 	const { t, textDirection } = useLocale();
 	const { metaData } = page;
 	const { title, date, author } = metaData;
@@ -25,7 +25,7 @@ export default function Doc(props: IPageProps) {
 		<Layout>
 			<div className="page">
 				<Container alignItemsCenter>
-					<Link href={'/posts'}>
+					<Link href="/posts">
 						{backIcon}
 						{t('common:button:backToTarget', {
 							sep: t('common:to'),

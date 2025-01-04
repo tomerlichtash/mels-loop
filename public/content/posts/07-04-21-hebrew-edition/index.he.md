@@ -8,12 +8,6 @@ date: Wed Apr 7 2021 13:45 GMT+0300
 
 לצד התרגום הוספנו כ-50 הערות שוליים המבארות את הסיפור על חלקיו הטכניים וההיסטוריים השונים, לצד [מאמר מבוא, המצורף כאן באתר במלואו](/he/docs/preface).
 
-<figure>
-
 ![](https://mels-loop-media.s3.eu-north-1.amazonaws.com/9f8e9214adaaa4b57b29_yx777b.jpg)
 
-<caption>
-כריכת כתב העת ״דחק״ #13
-</caption>
-
-</figure>
+_כריכת כתב העת ״דחק״ #13_

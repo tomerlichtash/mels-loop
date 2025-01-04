@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import type { ContentComponentProps } from 'types/models';
 import { LinkContentBlock } from './content-blocks';
-import { DynamicContentContext } from './context/contentContext';
+import { DynamicContentContext } from '@contexts/contentContext';
 import { PopoverContentBlock } from './content-blocks/popoverContentBlock';
 import { NODE_DISPLAY_TYPES } from 'types/nodes';
 

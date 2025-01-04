@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import { PageContext } from '../context/pageContext';
+import { PageContext } from '@contexts/pageContext';
 import { DynamicContentTypes } from 'types/content';
-import { DynamicContentContext } from '../context/contentContext';
+import { DynamicContentContext } from '@contexts/contentContext';
 import {
 	LOADING_INDICATOR_MIN_DISPLAY_TIME_MSEC,
 	SHOW_LOADING_INDICATOR_AFTER_MSEC,

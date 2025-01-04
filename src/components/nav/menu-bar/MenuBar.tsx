@@ -8,6 +8,7 @@ import NavItem from '../nav-item/NavItem';
 import styles from './MenuBar.module.scss';
 import type { NavItemDataProps, NavParsedNodes, NavProps } from '../types';
 import classNames from 'classnames';
+import { useLocale } from '../../../hooks';
 
 const renderItems = (items: NavItemDataProps[]) =>
 	items.map((item) => (
@@ -48,10 +49,11 @@ const renderSections = (sections: NavParsedNodes[]) =>
 		</NavigationMenu.Item>
 	));
 
-const MenuBar = ({ items, textDirection, className }: NavProps) => (
-	<NavigationMenu.Root
+const MenuBar = ({ items, textDirection, className }: NavProps) => {
+	const locale = useLocale();
+	return <NavigationMenu.Root
 		className={classNames(styles.root, className)}
-		data-direction={textDirection}
+		data-direction={textDirection || locale.textDirection}
 	>
 		<NavigationMenu.List className={styles.menuSectionTriggers}>
 			{renderSections(items)}
@@ -63,6 +65,6 @@ const MenuBar = ({ items, textDirection, className }: NavProps) => (
 			<NavigationMenu.Viewport className={styles.viewport} />
 		</div>
 	</NavigationMenu.Root>
-);
+}
 
 export default MenuBar;

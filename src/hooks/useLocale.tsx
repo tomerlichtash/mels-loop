@@ -1,4 +1,4 @@
-import { LocaleId, TextDirection } from 'types/locale';
+import { LocaleId, TextDirection } from 'types';
 // import i18n from '../../i18n.json' with { type: 'json'};
 import useTranslation from 'next-translate/useTranslation';
 import i18n from '../../i18n';

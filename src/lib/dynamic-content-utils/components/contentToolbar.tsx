@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { IParsedPageData } from 'types/models';
-import { DynamicContentContext } from '../context/contentContext';
-import { PopoverContext } from 'lib/dynamic-content-utils/context/popoverContext';
+import { DynamicContentContext } from '@contexts/contentContext';
+import { PopoverContext } from '@contexts/popoverContext';
 import { useLocale } from 'hooks/index';
 import { getIcon } from 'components/icons';
 import { ToolbarButton } from 'components/index';

@@ -2,7 +2,7 @@ import React from 'react';
 import DynamicContentBrowser from '../components/contentBrowser';
 import { AnnotationContentBlock } from './annotationLinkContentBlock';
 import { TermLinkContentBlock } from './termLinkContentBlock';
-import { PopoverProvider } from 'lib/dynamic-content-utils/context/popoverContext';
+import { PopoverProvider } from '@contexts/popoverContext';
 import { useLocale } from 'hooks/useLocale';
 import { useToolbar } from '../hooks/useToolbar';
 import { IPopoverContext } from '../types';

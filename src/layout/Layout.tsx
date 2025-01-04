@@ -1,6 +1,6 @@
 'use client';
 
-import React, { PropsWithChildren, useCallback, useMemo } from 'react';
+import React, { PropsWithChildren, useCallback, useContext, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import { useIconAnimator, useLocale, useWindowSize } from 'hooks/index';
@@ -27,12 +27,13 @@ import { getIcon } from 'components/icons';
 import CustomHead from './customHead';
 import { Analytics } from './analytics';
 import { parseMenuItems } from './helpers';
-import { LocaleId } from 'types/locale';
+import { LocaleId } from 'types';
 import { useRouter } from 'next/router';
 import navData, { NavSectionId } from './data/nav';
 import classNames from 'classnames';
 import styles from './Layout.module.scss';
 import type { LocaleOptionProps } from 'layout/locale-select/LocaleSelect';
+import { LocaleContext } from '../contexts/localeContext';
 
 type RootLayoutProps = {
 	className?: string;
@@ -59,13 +60,17 @@ const Layout = ({ children }: PropsWithChildren<RootLayoutProps>) => {
 
 	const { open: drawerOpen, toggle: toggleDrawer } = useDrawer(isMobile);
 
+	const localeContext = useContext(LocaleContext);
+
 	const setLocale = useCallback(
-		async (id: LocaleId) =>
-			router.push(router.asPath, router.asPath, {
-				locale: id,
-				scroll: true,
-			}),
-		[router]
+		async (id: LocaleId) => {
+			await localeContext.setLocale(id);
+			// return router.push(router.asPath, router.asPath, {
+			// 	locale: id,
+			// 	scroll: true,
+			// })
+		},
+		[localeContext]
 	);
 
 	const themeLabel = useMemo(() => {

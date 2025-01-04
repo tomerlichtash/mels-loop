@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { ThemeProvider } from 'next-themes';
-import PageProvider from 'lib/dynamic-content-utils/context/pageContext';
+import PageProvider from '@contexts/pageContext';
 import I18nProvider from 'next-translate/I18nProvider';
 import commonEN from '../locales/en/common.json';
 import localeEN from '../locales/en/locale.json';

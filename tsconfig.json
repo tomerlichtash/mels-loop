@@ -19,7 +19,7 @@
 		"baseUrl": "./src",
 		"paths": {
 			"types/*": ["types/*"],
-			"lib/*": ["lib/*"],
+			"@lib/*": ["lib/*"],
 			"utils/*": ["utils/*"],
 			"config/*": ["config/*"],
 			"locale/*": ["locale/*"],
@@ -28,7 +28,9 @@
 			"components/*": ["components/*"],
 			"styles/*": ["styles/*"],
 			"@public/*": ["../public/*"],
-			"@locales/*": ["../locales/*"]
+			"@locales/*": ["../locales/*"],
+			"@dynamicContent/*": ["lib/dynamic-content-utils/*"],
+			"@contexts/*": ["contexts/*"]
 		}
 	},
 	"include": [

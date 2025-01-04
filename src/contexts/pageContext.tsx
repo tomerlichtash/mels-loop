@@ -1,7 +1,7 @@
 import React, { Context, createContext } from 'react';
 import { DynamicContentServer } from 'lib/dynamic-content-utils/dynamicContentServer';
 import type { IDynamicContentServer } from 'lib/types';
-import type { IPageContext } from '../types';
+import type { IPageContext } from '../types/contexts';
 
 export class PageContextClass implements IPageContext {
 	constructor(

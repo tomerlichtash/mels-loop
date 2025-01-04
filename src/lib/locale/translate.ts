@@ -1,4 +1,4 @@
-import { LocaleId } from "./locale-context";
+import { LocaleId } from "../../types";
 
 export const TRANS_DELIM = "%";
 export const wrapStr = (str: string) => `${TRANS_DELIM}${str}${TRANS_DELIM}`;

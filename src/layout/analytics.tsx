@@ -3,13 +3,16 @@ import Script from 'next/script';
 
 export const Analytics = () => {
 	const analyticsId = process.env.NEXT_PUBLIC_ANALYTICS_ID;
-
+	const gtagId = process.env.NEXT_PUBLIC_GTAG_ID; // G-XLWMW4QLVE
 	return (
 		<>
-			<Script
-				src="https://www.googletagmanager.com/gtag/js?id=G-XLWMW4QLVE"
-				strategy="afterInteractive"
-			/>
+			{gtagId && (
+				<Script
+					src={`https://www.googletagmanager.com/gtag/js?id=${gtagId}`}
+					strategy="afterInteractive"
+				/>
+			)}
+			{analyticsId && (
 			<Script id="google-analytics" strategy="afterInteractive">
 				{`
 					window.dataLayer = window.dataLayer || [];
@@ -17,7 +20,7 @@ export const Analytics = () => {
 					gtag('js', new Date());
 					gtag('config', '${analyticsId}');
 				`}
-			</Script>
+			</Script>)}
 		</>
 	);
 };

@@ -1,5 +1,5 @@
 import { Context, createContext } from 'react';
-import { IPopoverContext } from '../types';
+import { IPopoverContext } from '@dynamicContent/types';
 
 const ctx = createContext<IPopoverContext>(null);
 

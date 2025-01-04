@@ -4,8 +4,8 @@ export type NavItemLocaleProps = Record<string, string>;
 
 export type NavProps = {
 	items: NavParsedNodes[];
-	textDirection: TextDirection;
 	className?: string;
+	textDirection?: TextDirection;
 };
 
 export type NavItemDataProps = {

@@ -18,6 +18,7 @@ export default function Blog(props: IPageProps) {
 	const { t, lang } = useLocale();
 	const pageTitle = `${t('common:site:title')} – ${t('pages:blog:title')}`;
 	const sortedItems = orderBy(pageData, ['metaData.date'], ['desc']);
+	const items = sortedItems || pageData;
 
 	return (
 		<Layout>
@@ -26,12 +27,15 @@ export default function Blog(props: IPageProps) {
 			</Head>
 
 			<GenericContentLayout caption={t('pages:blog:title')} title={'Posts'}>
-				{sortedItems.map((page: IParsedPageData) => {
+				{items.map((page: IParsedPageData) => {
 					const { path } = page;
 					const [title, date, author] = getMetadata(
 						['title', 'date', 'author'],
 						[page]
 					);
+					// return (
+					// 	<div key={page.id}>Nothing</div>
+					// )
 					return (
 						<GenericContentLayout
 							key={title}

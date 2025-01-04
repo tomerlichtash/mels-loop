@@ -97,7 +97,7 @@ export interface IPageMetaData {
 	 * Guaranteed not null. Each metadata object is created with at least the default
 	 * `figure` configuration, which may be overridden by the document metadata
 	 */
-	readonly captions: Partial<Record<MLNODE_TYPES, ICaptionConfiguration>>;
+	readonly captions: Readonly<Partial<Record<MLNODE_TYPES, ICaptionConfiguration>>>;
 
 	readonly parse_mode?: MLParseModes;
 }
