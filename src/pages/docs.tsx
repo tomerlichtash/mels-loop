@@ -34,13 +34,13 @@ const Docs: NextPage<IPageProps> = (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-	const indexProps = mlNextUtils.getFolderStaticProps(
+	const indexProps = await mlNextUtils.getFolderStaticProps(
 		ContentTypes.Docs,
 		context.locale,
 		LoadFolderModes.Folder
 	);
 
-	const childrenProps = mlNextUtils.getFolderStaticProps(
+	const childrenProps = await mlNextUtils.getFolderStaticProps(
 		ContentTypes.Docs,
 		context.locale,
 		LoadFolderModes.Children,

@@ -20,7 +20,7 @@ type MLGetStaticProps = (
 	locale: string, //GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
 	loadMode: LoadFolderModes,
 	mode?: Partial<IContentParseOptions>
-) => GetStaticPropsResult<FolderStaticProps>;
+) => Promise<GetStaticPropsResult<FolderStaticProps>>;
 
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path
@@ -28,9 +28,7 @@ type MLGetStaticProps = (
 type MLGetStaticPaths = (
 	folderRelativePath: string,
 	locales: string[]
-) =>
-	| Promise<GetStaticPathsResult<ParsedUrlQuery>>
-	| GetStaticPathsResult<ParsedUrlQuery>;
+) => Promise<GetStaticPathsResult<ParsedUrlQuery>>;
 
 export interface IStaticPathsParameters {
 	readonly contentFolder?: string;

@@ -38,13 +38,13 @@ class MLNextUtils implements IMLNextUtils {
 		return relative;
 	}
 
-	public getFolderStaticProps(
+	public async getFolderStaticProps(
 		folderPath: string,
 		locale: LocaleId,
 		loadMode: LoadFolderModes,
 		mode?: Partial<IContentParseOptions>
-	): GetStaticPropsResult<FolderStaticProps> {
-		const docData = loadContentFolder({
+	): Promise<GetStaticPropsResult<FolderStaticProps>> {
+		const docData = await loadContentFolder({
 			relativePath: folderPath,
 			loadMode,
 			locale,
@@ -63,14 +63,13 @@ class MLNextUtils implements IMLNextUtils {
 		};
 	}
 
-	public getFolderStaticPaths(
+	public async getFolderStaticPaths(
 		folderPath: string,
 		locales: LocaleId[]
-	): GetStaticPathsResult<ParsedUrlQuery> {
+	): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
 		const paths: ILocaleMap[] = [];
-
-		(locales || []).forEach((locale) => {
-			const folderData = loadContentFolder({
+		for await (const locale of (locales || [])) {
+			const folderData = await loadContentFolder({
 				locale,
 				relativePath: folderPath,
 				loadMode: LoadFolderModes.Children,
@@ -80,7 +79,7 @@ class MLNextUtils implements IMLNextUtils {
 				},
 			});
 			paths.push(...folderData.ids);
-		});
+		}
 
 		return {
 			paths,
@@ -96,7 +95,7 @@ class MLNextUtils implements IMLNextUtils {
 
 		for (let rec of allPaths) {
 			for (let locale of options.locales) {
-				const folderData = loadContentFolder({
+				const folderData = await loadContentFolder({
 					locale,
 					relativePath: rec.path,
 					loadMode: LoadFolderModes.Folder,

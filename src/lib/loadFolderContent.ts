@@ -1,4 +1,4 @@
-import fs, { Dirent } from 'fs';
+import { Dirent, promises as fs } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import getConfig from 'next/config';
@@ -15,6 +15,7 @@ import { ILoadContentOptions } from './markdown-utils/types';
 import { mdUtils } from './markdown-utils/markdownUtils';
 import { MLNODE_TYPES } from '../types';
 import { parseDate, safeMerge } from '../utils';
+import { fileUtils } from './fileUtils';
 
 /** Save setting for build time */
 const { serverRuntimeConfig } = getConfig();
@@ -28,9 +29,9 @@ const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 	locale: undefined,
 };
 
-export const loadContentFolder = (
+export const loadContentFolder = async (
 	options: ILoadContentOptions
-): IFolderContent => {
+): Promise<IFolderContent> => {
 	const mode: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
 		...options.mode,
@@ -44,7 +45,7 @@ export const loadContentFolder = (
 
 	const folderContentData = new FolderContent();
 
-	if (!fs.existsSync(contentDir)) {
+	if (!await fileUtils.isFolder(contentDir)) {
 		console.warn(
 			`Cannot read files in ${options.relativePath} (mapped to ${contentDir}). In dynamic paths, this is not an error`
 		);
@@ -52,7 +53,7 @@ export const loadContentFolder = (
 	}
 
 	// Get file names under /posts
-	const contentNames: Dirent[] = fs.readdirSync(contentDir, {
+	const folderContent: Dirent[] = await fs.readdir(contentDir, {
 		withFileTypes: true,
 	});
 
@@ -60,7 +61,7 @@ export const loadContentFolder = (
 
 	const targetFileName = mdUtils.getIndexFileName(options.locale);
 
-	contentNames.forEach((rec: Dirent) => {
+	for await (const rec of folderContent) {
 		const name = rec.name;
 		//log.info(`process - content ID "${name}"`);
 
@@ -68,25 +69,27 @@ export const loadContentFolder = (
 
 		if (options.loadMode as string === LoadFolderModes.Folder as string) {
 			if (targetFileName !== name) {
-				return;
+				continue;
 			}
 			fullPath = path.join(contentDir, name);
-		} else {
+		}
+		else {
 			if (!rec.isDirectory()) {
-				return;
+				continue;
 			}
 
 			fullPath = path.join(contentDir, name, targetFileName);
 		}
 
-		if (!fs.existsSync(fullPath)) {
+		if (!await fileUtils.isFile(fullPath)) {
 			// return error without disclosing OS path
 			// console.warn(`error - Path not found: "${fullPath}"`);
-			return folderContentData.pages.push(
+			folderContentData.pages.push(
 				new ParsedPageData({
 					error: `${fullPath.split(/\/|\\/).slice(-3).join('/')} not found`,
 				})
 			);
+			continue;
 		}
 
 		folderContentData.ids.push({
@@ -95,11 +98,11 @@ export const loadContentFolder = (
 		});
 
 		if (mode.contentMode === LoadContentModes.None) {
-			return;
+			continue;
 		}
 
 		try {
-			const fileContents = fs.readFileSync(fullPath, 'utf8');
+			const fileContents = await fs.readFile(fullPath, 'utf8');
 			//log.info(`parse - parsed "${fullPath}"`);
 
 			// Use gray-matter to parse the post metadata section
@@ -132,7 +135,7 @@ export const loadContentFolder = (
 			console.error(`Error processing ${fullPath}`, e);
 			folderContentData.pages.push(new ParsedPageData({ error: String(e) }));
 		}
-	});
+	};
 
 	return folderContentData;
 };
