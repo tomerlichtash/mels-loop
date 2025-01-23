@@ -4,6 +4,7 @@ import type { IMLParsedNode, ParsedNode } from 'types/models';
 import type { IContentParseOptions } from 'types/parser/parser';
 
 export interface ILoadContentOptions {
+	readonly rootFolder: string;
 	/** Defaults to FOLDER */
 	readonly loadMode: LoadFolderModes;
 	/** The content path, relative to the content folder */
@@ -11,7 +12,6 @@ export interface ILoadContentOptions {
 	/** If true, iterate over children folders */
 	readonly locale: string;
 	readonly mode?: Partial<IContentParseOptions>;
-	readonly rootFolder?: string;
 }
 
 export type ParsedNodeProcessor = (

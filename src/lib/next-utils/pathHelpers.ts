@@ -1,7 +1,6 @@
 import * as fsPath from 'path';
 import * as fs from 'fs';
 import { ICollectedPath } from './types';
-import { getContentRootDir } from 'lib/contentRootDir';
 
 const DYNAMIC_ROUTE_REGEXP = /^\[([^\]]+)\]$/;
 
@@ -25,13 +24,13 @@ export async function pathToRelativePath(path: string): Promise<string> {
 }
 
 export async function collectPathsIn(
+	root: string,
 	topFolder: string
 ): Promise<ICollectedPath[]> {
 	try {
 		const relativePath = await pathToRelativePath(topFolder);
 		const parts = relativePath.split('/');
 
-		const root = getContentRootDir();
 		const allPaths = await _collectPaths({ root, parts });
 		const validPaths: ICollectedPath[] = [];
 		// use only valid (existing) paths to folders

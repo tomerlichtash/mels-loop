@@ -11,8 +11,8 @@ import type {
 import * as fsPath from 'path';
 import * as fileSystem from 'fs';
 import { arrayToMap } from 'utils/index';
-import { getContentRootDir } from 'lib/contentRootDir';
 import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
+import { initYaspp, IYasppApp } from '../../lib/app';
 
 const TypeMap: { [key: string]: ContentTypes } = {
 	annotation: ContentTypes.Annotation,
@@ -32,13 +32,14 @@ const noop = function () {
  */
 const findFirstFolder = async (
 	relativePath: string,
-	contentPath: string
+	contentPath: string,
+	app: IYasppApp
 ): Promise<string | null> => {
 	if (!relativePath || !contentPath) {
 		return null;
 	}
 	const parts = relativePath.split('/').filter(Boolean); // in case there was a / prefix
-	const root = getContentRootDir(process.cwd());
+	const root = app.contentPath; //getContentRootDir(process.cwd());
 
 	while (parts.length >= 2) {
 		// at least docs/xxx, posts/yyy
@@ -94,8 +95,8 @@ async function loadContent(
 		params.locale
 	}`;
 	try {
-		const contentPath = fsPath.resolve(process.cwd(), 'public');
-		console.log(`using content path ${contentPath}`);
+		// const contentPath = fsPath.resolve(process.cwd(), 'public');
+		// console.log(`using content path ${contentPath}`);
 
 		const payload = await mlApiUtils.getFromCache(cacheKey);
 
@@ -103,15 +104,15 @@ async function loadContent(
 			return JSON.parse(payload);
 		}
 
+		const app = await initYaspp(process.cwd());
 		const docPath =
 			clientPath && contentType === ContentTypes.Annotation
-				? await findFirstFolder(clientPath, contentType)
+				? await findFirstFolder(clientPath, contentType, app)
 				: contentType;
 
 		if (!docPath) {
 			throw new Error(`No ${contentType} for ${clientPath}, or globally`);
 		}
-
 		const docData = await loadContentFolder({
 			relativePath: docPath,
 			locale: params.locale,
@@ -120,7 +121,7 @@ async function loadContent(
 				contentMode: LoadContentModes.Full,
 				nodeProcessors: [createPopoverLinksNodeProcessor()],
 			},
-			rootFolder: process.cwd(),
+			rootFolder: app.contentPath,
 		});
 
 		const data = {

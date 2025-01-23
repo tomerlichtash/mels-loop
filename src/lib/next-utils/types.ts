@@ -61,7 +61,7 @@ export interface IMLNextUtils {
 
 	populateDynamicPath(
 		path: string,
-		dict: { [key: string]: string }
+		dict: Record<string, string>
 	): Promise<string>;
 }
 

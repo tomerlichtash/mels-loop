@@ -1,8 +1,8 @@
 import { Dirent, promises as fs } from 'fs';
-import path from 'path';
+import fsPath from 'path';
 import matter from 'gray-matter';
 import getConfig from 'next/config';
-import { getContentRootDir, setContentRootDir } from './contentRootDir';
+import { setContentRootDir } from './contentRootDir';
 import type { ICaptionConfiguration, IFolderContent, ILocaleMap, IMLParsedNode, IPageMetaData, IParsedPageData, PageSortField, ParsedNode } from 'types/models';
 import { markdownParser } from './markdown-utils/markdownParser';
 import type { IContentParseOptions } from 'types/parser/parser';
@@ -11,7 +11,7 @@ import {
 	LoadFolderModes,
 	MLParseModes,
 } from 'types/parser/modes';
-import { ILoadContentOptions } from './markdown-utils/types';
+import type { ILoadContentOptions } from './markdown-utils/types';
 import { mdUtils } from './markdown-utils/markdownUtils';
 import { MLNODE_TYPES } from '../types';
 import { parseDate, safeMerge } from '../utils';
@@ -30,24 +30,28 @@ const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {
 };
 
 export const loadContentFolder = async (
-	options: ILoadContentOptions
+	{ relativePath, mode, loadMode,locale, rootFolder }: ILoadContentOptions
 ): Promise<IFolderContent> => {
-	const mode: IContentParseOptions = {
+	if (!rootFolder) {
+		throw new Error(`can't load content folder with neither app nor root`);
+	}
+	const parseOptions: IContentParseOptions = {
 		...DEFAULT_PARSE_OPTIONS,
-		...options.mode,
-		locale: options.locale,
+		...mode,
+		locale,
 	};
 
-	const contentDir = path.join(
-		getContentRootDir(options.rootFolder),
-		options.relativePath
+	const contentDir = fsPath.join(
+		// getContentRootDir(options.rootFolder),
+		rootFolder,
+		relativePath
 	);
 
 	const folderContentData = new FolderContent();
 
 	if (!await fileUtils.isFolder(contentDir)) {
 		console.warn(
-			`Cannot read files in ${options.relativePath} (mapped to ${contentDir}). In dynamic paths, this is not an error`
+			`Cannot read files in ${relativePath} (mapped to ${contentDir}). In dynamic paths, this is not an error`
 		);
 		return folderContentData;
 	}
@@ -59,7 +63,7 @@ export const loadContentFolder = async (
 
 	// console.log(`collect - sorted content in "${contentDir}" for locale "${options.locale}"`);
 
-	const targetFileName = mdUtils.getIndexFileName(options.locale);
+	const targetFileName = mdUtils.getIndexFileName(locale);
 
 	for await (const rec of folderContent) {
 		const name = rec.name;
@@ -67,18 +71,18 @@ export const loadContentFolder = async (
 
 		let fullPath: string;
 
-		if (options.loadMode as string === LoadFolderModes.Folder as string) {
+		if (loadMode === LoadFolderModes.Folder) {
 			if (targetFileName !== name) {
 				continue;
 			}
-			fullPath = path.join(contentDir, name);
+			fullPath = fsPath.join(contentDir, name);
 		}
 		else {
 			if (!rec.isDirectory()) {
 				continue;
 			}
 
-			fullPath = path.join(contentDir, name, targetFileName);
+			fullPath = fsPath.join(contentDir, name, targetFileName);
 		}
 
 		if (!await fileUtils.isFile(fullPath)) {
@@ -94,10 +98,10 @@ export const loadContentFolder = async (
 
 		folderContentData.ids.push({
 			params: { id: name },
-			locale: options.locale,
+			locale: locale,
 		});
 
-		if (mode.contentMode === LoadContentModes.None) {
+		if (parseOptions.contentMode === LoadContentModes.None) {
 			continue;
 		}
 
@@ -113,17 +117,17 @@ export const loadContentFolder = async (
 			const parsedPageData = new ParsedPageData({
 				metaData: metaData.toObject(),
 				id: name,
-				path: `${options.relativePath}/${name}`, // don't use path.join, it's os specific
+				path: `${relativePath}/${name}`, // don't use path.join, it's os specific
 			});
 
-			if (mode.contentMode === LoadContentModes.Full) {
+			if (parseOptions.contentMode === LoadContentModes.Full) {
 				// parse markdown and process
 				const mdParse = mdUtils.createHtmlMDParser(); //mdParser.defaultBlockParse;
 
 				const tree = markdownParser.processParseTree(
 					mdParse(mdUtils.stripComments(content)) as ParsedNode[],
 					metaData,
-					mode
+					parseOptions
 				);
 
 				// Combine the data with the id

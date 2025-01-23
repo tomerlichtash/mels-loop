@@ -12,6 +12,7 @@ import {
 import { FolderStaticProps } from 'types/folder';
 import { LocaleId } from 'types/locale';
 import type { IMLNextUtils, IStaticPathsParameters } from './types';
+import { initYaspp } from '../app';
 
 class MLNextUtils implements IMLNextUtils {
 	/**
@@ -22,7 +23,7 @@ class MLNextUtils implements IMLNextUtils {
 	 */
 	public async populateDynamicPath(
 		path: string,
-		dict: { [key: string]: string }
+		dict:  Record<string, string>
 	): Promise<string> {
 		let relative = await pathToRelativePath(path);
 
@@ -44,11 +45,13 @@ class MLNextUtils implements IMLNextUtils {
 		loadMode: LoadFolderModes,
 		mode?: Partial<IContentParseOptions>
 	): Promise<GetStaticPropsResult<FolderStaticProps>> {
+		const app = await initYaspp();
 		const docData = await loadContentFolder({
 			relativePath: folderPath,
 			loadMode,
 			locale,
 			mode,
+			rootFolder: app.contentPath,
 		});
 
 		const page = docData.pages[0];
@@ -68,6 +71,7 @@ class MLNextUtils implements IMLNextUtils {
 		locales: LocaleId[]
 	): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
 		const paths: ILocaleMap[] = [];
+		const app = await initYaspp();
 		for await (const locale of (locales || [])) {
 			const folderData = await loadContentFolder({
 				locale,
@@ -77,6 +81,7 @@ class MLNextUtils implements IMLNextUtils {
 					contentMode: LoadContentModes.None,
 					parseMode: MLParseModes.NORMAL,
 				},
+				rootFolder: app.contentPath,
 			});
 			paths.push(...folderData.ids);
 		}
@@ -90,8 +95,9 @@ class MLNextUtils implements IMLNextUtils {
 	public async getNestedStaticPaths(
 		options: IStaticPathsParameters
 	): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
+		const app = await initYaspp();
 		const paths: ILocaleMap[] = [];
-		const allPaths = await collectPathsIn(options.contentFolder);
+		const allPaths = await collectPathsIn(app.contentPath, options.contentFolder);
 
 		for (let rec of allPaths) {
 			for (let locale of options.locales) {
@@ -103,6 +109,7 @@ class MLNextUtils implements IMLNextUtils {
 						contentMode: LoadContentModes.None,
 						parseMode: MLParseModes.NORMAL,
 					},
+					rootFolder: app.contentPath
 				});
 
 				if (folderData.ids.length) {
