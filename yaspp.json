@@ -1,5 +1,6 @@
 {
 	"content": {
-		"root": "public/content"
+		"root": "public/content",
+		"index": "docs/the-story-of-mel/codex"
 	}
 }

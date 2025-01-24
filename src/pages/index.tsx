@@ -5,12 +5,13 @@ import { usePageData } from '../hooks/usePageData';
 import Head from 'next/head';
 import Layout from 'layout/Layout';
 import { GenericContentLayout } from 'custom-layouts/generic-content-layout/GenericContentLayout';
-import { ContentTypes } from '../types/content';
+// import { ContentTypes } from '../types/content';
 import { createPopoverLinksNodeProcessor } from 'lib/processors/createPopoverLinksNodeProcessor';
 import { getMetadata, renderElements } from '../lib/dynamicContentHelpers';
 import { LoadContentModes, LoadFolderModes } from 'types/parser/modes';
 import { useLocale } from 'hooks/useLocale';
 import type { IPageProps } from 'types/models';
+import { initYaspp } from '../lib/app';
 
 const Index: NextPage<IPageProps> = (props) => {
 	const { t } = useLocale();
@@ -31,9 +32,11 @@ const Index: NextPage<IPageProps> = (props) => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async (context) =>
-	mlNextUtils.getFolderStaticProps(
-		`docs/the-story-of-mel/${ContentTypes.Codex}`,
+export const getStaticProps: GetStaticProps = async (context) => {
+	const app = await initYaspp();
+	return mlNextUtils.getFolderStaticProps(
+		app.indexPath,
+		// `docs/the-story-of-mel/${ContentTypes.Codex}`,
 		context.locale,
 		LoadFolderModes.Folder,
 		{
@@ -41,5 +44,6 @@ export const getStaticProps: GetStaticProps = async (context) =>
 			nodeProcessors: [createPopoverLinksNodeProcessor()],
 		}
 	);
+}
 
 export default Index;

@@ -1,6 +1,6 @@
 import getConfig from 'next/config';
 import * as fsPath from 'path';
-import { promises as fs} from 'fs';
+import { promises as fs } from 'fs';
 import { fileUtils } from '../fileUtils';
 import { parse as parseJSON } from 'json5';
 
@@ -8,13 +8,28 @@ import { parse as parseJSON } from 'json5';
  * App object that contains data about the current build
  */
 export interface IYasppApp {
+	/**
+	 * The full root path of this app
+	 */
 	readonly rootPath: string;
+	/**
+	 * The full path of the content folder
+	 */
 	readonly contentPath: string;
+	/**
+	 * The relative (to the content path) path of the index page
+	 */
+	readonly indexPath: string;
+	/**
+	 * True if this app was initialized successfully and found all its paths
+	 */
+	readonly isValid: boolean;
 }
 
 interface IYasppConfig {
 	readonly content: {
 		readonly root: string;
+		readonly index: string;
 	}
 }
 
@@ -23,10 +38,15 @@ const CONFIG_FILE = "yaspp.json";
 class YasppApp implements IYasppApp {
 	private _root = "";
 	private _content = "";
+	private _indexPage = "";
 	private _isLoading = false;
 
 	public get isLoading() {
 		return this._isLoading;
+	}
+
+	public get isValid(): boolean {
+		return Boolean(this._indexPage)
 	}
 	public async init(cwd: string): Promise<string> {
 		if (this._isLoading) {
@@ -52,10 +72,20 @@ class YasppApp implements IYasppApp {
 				return `Content path indicated by config not found: ${contentPath}`;
 			}
 			this._content = contentPath;
-		} 
+			const indexPath = fsPath.resolve(contentPath, config.content.index);
+			if (!await fileUtils.isFileOrFolder(indexPath)) {
+				return `Failed to find index pag/folder at ${indexPath}`;
+			}
+			this._indexPage = config.content.index;
+			return "";
+		}
 		catch (err) {
 			return `Error loading configuration from ${configPath}: ${err}`;
 		}
+	}
+
+	public get indexPath() {
+		return this._indexPage;
 	}
 
 	public get contentPath() {
@@ -67,45 +97,48 @@ class YasppApp implements IYasppApp {
 	}
 
 	private _validateConfig(config: Partial<IYasppConfig>): IYasppConfig {
-		if (!config?.content?.root) {
-			return {
-				content: {
-					root: ""
-				}
-			};
-		}
-		return config as IYasppConfig
+		return {
+			content: {
+				root: config?.content?.root || "",
+				index: config?.content?.index || ""
+			}
+		};
 	}
 }
 
-let _instance: YasppApp | null = null;
+const _instances: Map<string, {
+	app: YasppApp;
+	resolvers: InitCallback[];
+}> = new Map();
 type InitCallback = (app: IYasppApp) => unknown;
-const resolvers: InitCallback[] = [];
 
 export const initYaspp = async function (root?: string): Promise<IYasppApp> {
-
-	if (_instance) {
-		if (!_instance.isLoading) {
-			return _instance;
-		}
+	if (!root) {
+		const { serverRuntimeConfig } = getConfig();
+		root = String(serverRuntimeConfig.PROJECT_ROOT);
+	}
+	const { app, resolvers } = _instances.get(root) ?? {
+		app: new YasppApp(),
+		resolvers: []
+	}
+	if (app.isValid) {
+		return app;
+	}
+	if (app.isLoading) {
 		const p = new Promise<IYasppApp>(resolve => {
 			resolvers.push(resolve);
 		});
 		return p;
 	}
-	const app = _instance = new YasppApp();
-	if (!root) {
-		const { serverRuntimeConfig } = getConfig();
-		root = String(serverRuntimeConfig.PROJECT_ROOT);
-	}
+	_instances.set(root, { app, resolvers });
 	const error = await app.init(root);
 	if (error) {
 		const err = `Error loading yaspp: ${error}`;
 		console.log(err);
 		// throw new Error(`Error loading yaspp: ${error}`);
 	}
+	_instances.set(root, { app, resolvers: []});
 	resolvers.forEach(resolve => resolve(app));
-	resolvers.length = 0;
 	return app;
 
 }

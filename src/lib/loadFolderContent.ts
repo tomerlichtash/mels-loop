@@ -1,8 +1,8 @@
 import { Dirent, promises as fs } from 'fs';
 import fsPath from 'path';
 import matter from 'gray-matter';
-import getConfig from 'next/config';
-import { setContentRootDir } from './contentRootDir';
+// import getConfig from 'next/config';
+// import { setContentRootDir } from './contentRootDir';
 import type { ICaptionConfiguration, IFolderContent, ILocaleMap, IMLParsedNode, IPageMetaData, IParsedPageData, PageSortField, ParsedNode } from 'types/models';
 import { markdownParser } from './markdown-utils/markdownParser';
 import type { IContentParseOptions } from 'types/parser/parser';
@@ -18,8 +18,8 @@ import { parseDate, safeMerge } from '../utils';
 import { fileUtils } from './fileUtils';
 
 /** Save setting for build time */
-const { serverRuntimeConfig } = getConfig();
-setContentRootDir(String(serverRuntimeConfig.PROJECT_ROOT));
+// const { serverRuntimeConfig } = getConfig();
+// setContentRootDir(String(serverRuntimeConfig.PROJECT_ROOT));
 
 /** Options for unspecified parse properties */
 const DEFAULT_PARSE_OPTIONS: IContentParseOptions = {

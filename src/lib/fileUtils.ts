@@ -14,6 +14,11 @@ export interface IFileUtils {
 	 * @param fspath: file system path
 	 */
 	isFile(fspath: string): Promise<boolean>;
+	/**
+	 * resolves to true if the provided path points to an existing file or folder
+	 * @param fspath: file system path
+	 */
+	isFileOrFolder(fspath: string): Promise<boolean>;
 
 }
 
@@ -31,6 +36,16 @@ class FileUtils implements IFileUtils {
         try {
             const info = await fs.lstat(fspath);
             return Boolean(info?.isFile());
+        }
+        catch (e) {
+            return false;
+        }
+	}
+
+    public async isFileOrFolder(fspath: string): Promise<boolean> {
+        try {
+            const info = await fs.lstat(fspath);
+            return Boolean(info?.isFile() || info?.isDirectory());
         }
         catch (e) {
             return false;
