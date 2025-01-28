@@ -47,9 +47,12 @@ function copyContent(srcPath: string, targetPath: string): Promise<string> {
 		}
 		const rmargs = ["-rf", '*'];
 		const rmCode = await runProcess("rm", rmargs, targetPath);
+		if (rmCode !== 0) {
+			resolve(`Failed to delete content of ${targetPath}`);
+		}
 		const cpargs = ["-r", '*', targetPath]
-		const code = await runProcess("cp", cpargs, srcPath);
-		resolve(code ===0 ? "" : `Error copying content, exit code ${code}`);
+		const cpCode = await runProcess("cp", cpargs, srcPath);
+		resolve(cpCode ===0 ? "" : `Error copying content, exit code ${cpCode}`);
 	});
 }
 

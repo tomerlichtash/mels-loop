@@ -48,7 +48,7 @@ class YasppApp implements IYasppApp {
 	public get isValid(): boolean {
 		return Boolean(this._indexPage)
 	}
-	public async init(cwd: string): Promise<string> {
+	public async init(cwd: string, useRoot: string | null): Promise<string> {
 		if (this._isLoading) {
 			throw new Error("Can't call yaspp app init when it's loading");
 		}
@@ -67,7 +67,8 @@ class YasppApp implements IYasppApp {
 			if (!config.content.root) {
 				return `Invalid content root in yaspp.json`;
 			}
-			const contentPath = fsPath.resolve(cwd, config.content.root)
+			const contentPath = fsPath.resolve(cwd, useRoot ?? config.content.root);
+			console.log("yaspp using content path", contentPath);
 			if (!await fileUtils.isFolder(contentPath)) {
 				return `Content path indicated by config not found: ${contentPath}`;
 			}
@@ -131,7 +132,7 @@ export const initYaspp = async function (root?: string): Promise<IYasppApp> {
 		return p;
 	}
 	_instances.set(root, { app, resolvers });
-	const error = await app.init(root);
+	const error = await app.init(root, process.env.NODE_ENV === "development" ? null : "public/content");
 	if (error) {
 		const err = `Error loading yaspp: ${error}`;
 		console.log(err);
