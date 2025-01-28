@@ -1,14 +1,14 @@
 {
-	"name": "mels-loop",
-	"version": "1.2.3",
-	"description": "A Comprehensive Guide to The Story of Mel",
+	"name": "yaspp",
+	"version": "0.1.0",
+	"description": "Yet Another Self Publishing Platform",
 	"engines": {
 		"node": ">=18.17"
 	},
 	"keywords": [
-		"hacker",
-		"folklore",
-		"nextjs"
+		"publishing",
+		"platform",
+		"authoring"
 	],
 	"homepage": "https://melsloop.com",
 	"bugs": {
@@ -34,6 +34,7 @@
 	"scripts": {
 		"clean": "rm -rf .next",
 		"build": "next build",
+		"prebuild": "node scripts/build/copy-content.js",
 		"dev": "next dev",
 		"start": "next start",
 		"build:sitemap": "next-sitemap",
@@ -136,6 +137,5 @@
 		"extends": [
 			"plugin:storybook/recommended"
 		]
-	},
-	"packageManager": "yarn@4.1.0"
+	}
 }

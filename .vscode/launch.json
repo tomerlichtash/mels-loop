@@ -22,6 +22,15 @@
 			}
 		},
 		{
+			"name": "Copy Content",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "node scripts/build/copy-content.js",
+			"env": {
+				"NODE_OPTIONS": "--inspect"
+			}
+		},
+		{
 			"type": "node",
 			"request": "attach",
 			"name": "Attach to Next",

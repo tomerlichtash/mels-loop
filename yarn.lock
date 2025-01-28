@@ -11626,9 +11626,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mels-loop@workspace:.":
+"yaspp@workspace:.":
   version: 0.0.0-use.local
-  resolution: "mels-loop@workspace:."
+  resolution: "yaspp@workspace:."
   dependencies:
     "@next/env": "npm:14.1.0"
     "@next/eslint-plugin-next": "npm:14.1.0"

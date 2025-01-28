@@ -44,5 +44,5 @@
 		"src/pages/docs/[id]/pages/[pageId]",
 		"locales"
 	],
-	"exclude": ["node_modules", "**/*.ignore.*", "scripts"]
+	"exclude": ["node_modules", "**/*.ignore.*", "scripts", "temp"]
 }

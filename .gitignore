@@ -6,6 +6,10 @@ node_modules
 /.pnp
 .pnp.js
 
+# local stuff
+
+/temp
+
 # artifacts
 **/*.js.map
 
