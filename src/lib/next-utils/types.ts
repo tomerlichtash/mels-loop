@@ -2,7 +2,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { GetStaticPathsResult, GetStaticPropsResult } from 'next';
 import type { IContentParseOptions } from 'types/parser/parser';
 import type { LoadFolderModes } from 'types/parser/modes';
-import type { FolderStaticProps } from 'types/folder';
+import type { IFolderStaticProps } from 'types/folder';
 
 /**************************************************
  * Extended Next.js types
@@ -20,7 +20,7 @@ type MLGetStaticProps = (
 	locale: string, //GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
 	loadMode: LoadFolderModes,
 	mode?: Partial<IContentParseOptions>
-) => Promise<GetStaticPropsResult<FolderStaticProps>>;
+) => Promise<GetStaticPropsResult<IFolderStaticProps>>;
 
 /**
  * Same as Next's GetStaticProps, parameterized by a content folder relative path

@@ -9,7 +9,7 @@ import {
 	LoadFolderModes,
 	MLParseModes,
 } from 'types/parser/modes';
-import { FolderStaticProps } from 'types/folder';
+import { IFolderStaticProps } from 'types/folder';
 import { LocaleId } from 'types/locale';
 import type { IMLNextUtils, IStaticPathsParameters } from './types';
 import { initYaspp } from '../app';
@@ -44,7 +44,7 @@ class MLNextUtils implements IMLNextUtils {
 		locale: LocaleId,
 		loadMode: LoadFolderModes,
 		mode?: Partial<IContentParseOptions>
-	): Promise<GetStaticPropsResult<FolderStaticProps>> {
+	): Promise<GetStaticPropsResult<IFolderStaticProps>> {
 		const app = await initYaspp();
 		const docData = await loadContentFolder({
 			relativePath: folderPath,

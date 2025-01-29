@@ -3,35 +3,8 @@ import * as fsPath from 'path';
 import { promises as fs } from 'fs';
 import { fileUtils } from '../fileUtils';
 import { parse as parseJSON } from 'json5';
+import { IYasppApp, IYasppConfig } from 'types/app';
 
-/**
- * App object that contains data about the current build
- */
-export interface IYasppApp {
-	/**
-	 * The full root path of this app
-	 */
-	readonly rootPath: string;
-	/**
-	 * The full path of the content folder
-	 */
-	readonly contentPath: string;
-	/**
-	 * The relative (to the content path) path of the index page
-	 */
-	readonly indexPath: string;
-	/**
-	 * True if this app was initialized successfully and found all its paths
-	 */
-	readonly isValid: boolean;
-}
-
-interface IYasppConfig {
-	readonly content: {
-		readonly root: string;
-		readonly index: string;
-	}
-}
 
 const CONFIG_FILE = "yaspp.json";
 
@@ -68,7 +41,6 @@ class YasppApp implements IYasppApp {
 				return `Invalid content root in yaspp.json`;
 			}
 			const contentPath = fsPath.resolve(cwd, useRoot ?? config.content.root);
-			console.log("yaspp using content path", contentPath);
 			if (!await fileUtils.isFolder(contentPath)) {
 				return `Content path indicated by config not found: ${contentPath}`;
 			}
@@ -98,10 +70,17 @@ class YasppApp implements IYasppApp {
 	}
 
 	private _validateConfig(config: Partial<IYasppConfig>): IYasppConfig {
+		config = config ?? {};
+		const langs = Array.isArray(config.locales?.langs) ? config.locales.langs : ["en"];
 		return {
 			content: {
 				root: config?.content?.root || "",
 				index: config?.content?.index || ""
+			},
+			locales: {
+				langs: Array.isArray(config.locales?.langs) ? config.locales.langs : ["en"],
+				defaultLocale: config.locales?.defaultLocale && langs.includes(config.locales.defaultLocale) ?
+					config.locales.defaultLocale : undefined
 			}
 		};
 	}

@@ -28,9 +28,12 @@
 			"components/*": ["components/*"],
 			"styles/*": ["styles/*"],
 			"@public/*": ["../public/*"],
+			"@types/*": ["../public/*"],
 			"@locales/*": ["../locales/*"],
 			"@dynamicContent/*": ["lib/dynamic-content-utils/*"],
-			"@contexts/*": ["contexts/*"]
+			"@contexts/*": ["contexts/*"],
+			"@root/*": ["../*"]
+
 		}
 	},
 	"include": [

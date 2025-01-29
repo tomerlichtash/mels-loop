@@ -16,8 +16,10 @@ module.exports = {
 		'he/posts': ['blog'],
 		'/posts/[id]': ['blog'],
 	},
-	loadLocaleFrom: (lang, ns) =>
+	loadLocaleFrom: async (lang, ns) => {
 		// You can use a dynamic import, fetch, whatever. You should
 		// return a Promise with the JSON file.
-		import(`./locales/${lang}/${ns}.json`).then((m) => m.default),
+		const m = await import(`./locales/${lang}/${ns}.json`);
+		return  m.default
+	},
 };

@@ -1,4 +1,4 @@
-export interface FolderStaticProps {
+export interface IFolderStaticProps {
 	/** Typically the stringified ParsedPageData */
 	content: string | object;
 
