@@ -1,0 +1,1 @@
+Mel implemented a loop by using the _mechanichal_ structure of the machine, rather by implementing it with code. Thus, he designed it by a re-arranging the moving parts of the problem in a new logic, which doesn't necessarily reflect the original design.

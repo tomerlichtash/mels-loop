@@ -1,0 +1,11 @@
+.codeBlock {
+  background-color: var(--ml-code-bg);
+  color: var(--ml-code-text);
+  border-radius: var(--ml-border-radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  font-family: var(--ml-font-mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}

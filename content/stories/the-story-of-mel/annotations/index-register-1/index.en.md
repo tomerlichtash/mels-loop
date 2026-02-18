@@ -1,0 +1,1 @@
+This operation increases by one the value stored in the index register. The result is then added to the operand’s address. This mechanism supports the common case where the same instruction(s) should be applied to a series of data. Essentially, the code simply needs to increment the index-register and the repeat.

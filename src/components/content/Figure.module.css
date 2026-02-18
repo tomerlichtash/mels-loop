@@ -1,0 +1,17 @@
+.figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--ml-border-radius);
+}
+
+.figure figcaption {
+  font-size: var(--ml-font-size-body);
+  font-style: italic;
+  color: var(--ml-text-secondary);
+  margin-top: 0.5rem;
+}

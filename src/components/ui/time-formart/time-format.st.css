@@ -1,5 +1,0 @@
-@namespace "TimeFormat";
-
-.root {
-	-st-states: locale(string);
-}

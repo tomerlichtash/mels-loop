@@ -1,0 +1,1 @@
+Mel's write-up ends with a note: After the program tape has been stored in memory, control is transferred to 00000. Since the Blackjack Program begins at location 000000 it is very easy to transfer to it. (Depress SET INPUT, EXECUTE LOWER, and START.)

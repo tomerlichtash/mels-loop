@@ -1,0 +1,173 @@
+/* ============================================================
+   Design Tokens — Mel's Loop
+   ============================================================ */
+
+:root {
+  /* ---- Color Palette ---- */
+  --ml-white: #ffffff;
+  --ml-cream-100: #fcfbf9;
+  --ml-cream-200: #f2efe4;
+  --ml-cream-300: #e6e3d8;
+  --ml-gray-100: #ccc9c0;
+  --ml-gray-200: #a6a49c;
+  --ml-gray-300: #666560;
+  --ml-gray-400: #434440;
+  --ml-gray-500: #20201e;
+
+  /* Accent / Brand */
+  --ml-pink: #fd658a;
+  --ml-pink-light: #f178b6;
+  --ml-mauve: #bd5e91;
+  --ml-purple: #70538a;
+  --ml-indigo: #4e4a7a;
+  --ml-blue: #3770c5;
+  --ml-blue-dark: #274f8c;
+  --ml-navy: #1a355f;
+  --ml-navy-deep: #00173a;
+
+  /* Functional */
+  --ml-success: #0a0;
+  --ml-error: #c00;
+
+  /* ---- Semantic Colors (Light) ---- */
+  --ml-bg: var(--ml-cream-100);
+  --ml-bg-alt: var(--ml-cream-200);
+  --ml-bg-surface: var(--ml-white);
+  --ml-text: var(--ml-gray-500);
+  --ml-text-secondary: var(--ml-gray-300);
+  --ml-text-muted: var(--ml-gray-100);
+  --ml-heading: var(--ml-gray-500);
+  --ml-heading-secondary: var(--ml-gray-300);
+  --ml-body-text: var(--ml-gray-300);
+  --ml-link: var(--ml-blue);
+  --ml-link-hover: var(--ml-mauve);
+  --ml-border: var(--ml-gray-100);
+  --ml-code-bg: var(--ml-cream-300);
+  --ml-code-text: var(--ml-gray-500);
+  --ml-code-border: var(--ml-gray-100);
+
+  /* Popover / Dialog */
+  --ml-popover-bg: var(--ml-cream-100);
+  --ml-popover-topic-bg: var(--ml-cream-200);
+  --ml-popover-topic-text: var(--ml-mauve);
+  --ml-popover-icon: var(--ml-gray-200);
+  --ml-popover-icon-hover: var(--ml-gray-500);
+
+  /* Annotation trigger */
+  --ml-annotation-text: var(--ml-white);
+  --ml-annotation-bg: var(--ml-mauve);
+
+  /* Gradient */
+  --ml-gradient-start: var(--ml-pink);
+  --ml-gradient-mid: var(--ml-purple);
+  --ml-gradient-end: var(--ml-indigo);
+
+  /* Header */
+  --ml-header-bg: var(--ml-white);
+
+  /* Footer */
+  --ml-footer-bg: var(--ml-cream-200);
+
+  /* Form */
+  --ml-input-border: var(--ml-gray-100);
+  --ml-input-border-focus: var(--ml-blue);
+  --ml-input-placeholder: var(--ml-gray-200);
+  --ml-submit-bg: var(--ml-blue);
+  --ml-submit-bg-hover: var(--ml-blue-dark);
+  --ml-submit-text: var(--ml-cream-100);
+
+  /* Menu */
+  --ml-menu-hover-bg: var(--ml-cream-300);
+  --ml-mobile-menu-bg: var(--ml-gray-400);
+  --ml-mobile-menu-text: var(--ml-pink-light);
+  --ml-mobile-menu-subtitle: var(--ml-white);
+  --ml-mobile-menu-hover-bg: var(--ml-gray-500);
+  --ml-mobile-menu-border: var(--ml-gray-300);
+  --ml-mobile-menu-section-title: var(--ml-gray-200);
+
+  /* ---- Shadow ---- */
+  --ml-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+
+  /* ---- Typography ---- */
+  --ml-font-latin: "Roboto Slab", serif;
+  --ml-font-hebrew: "Assistant", sans-serif;
+  --ml-font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
+    Consolas, "DejaVu Sans Mono", monospace;
+  --ml-font-weight-light: 300;
+  --ml-font-weight-regular: 400;
+  --ml-font-weight-medium: 500;
+  --ml-font-weight-bold: 700;
+
+  /* Body text */
+  --ml-font-size-body: 0.875rem;
+  --ml-line-height-body: 1.5rem;
+
+  /* ---- Spacing ---- */
+  --ml-space-xs: 0.25rem;
+  --ml-space-sm: 0.5rem;
+  --ml-space-md: 1rem;
+  --ml-space-lg: 1.5rem;
+  --ml-space-xl: 2rem;
+  --ml-space-2xl: 3rem;
+  --ml-space-3xl: 4rem;
+
+  /* ---- Layout ---- */
+  --ml-content-max-width: 720px;
+  --ml-page-max-width: 1200px;
+  --ml-header-height: 60px;
+  --ml-border-radius: 6px;
+}
+
+/* ---- Dark Theme Overrides ---- */
+[data-mantine-color-scheme="dark"] {
+  --ml-bg: var(--ml-gray-400);
+  --ml-bg-alt: var(--ml-gray-500);
+  --ml-bg-surface: var(--ml-gray-500);
+  --ml-text: var(--ml-cream-200);
+  --ml-text-secondary: var(--ml-gray-200);
+  --ml-text-muted: var(--ml-gray-200);
+  --ml-heading: var(--ml-cream-100);
+  --ml-heading-secondary: var(--ml-cream-200);
+  --ml-body-text: var(--ml-cream-100);
+  --ml-link: var(--ml-pink-light);
+  --ml-link-hover: var(--ml-blue);
+  --ml-border: var(--ml-gray-100);
+  --ml-code-bg: var(--ml-gray-400);
+  --ml-code-text: var(--ml-cream-200);
+  --ml-code-border: var(--ml-gray-300);
+
+  --ml-popover-bg: var(--ml-gray-500);
+  --ml-popover-topic-bg: var(--ml-pink);
+  --ml-popover-topic-text: var(--ml-cream-200);
+  --ml-popover-icon: var(--ml-cream-200);
+  --ml-popover-icon-hover: var(--ml-gray-500);
+
+  --ml-annotation-text: var(--ml-white);
+  --ml-annotation-bg: var(--ml-blue);
+
+  --ml-gradient-start: var(--ml-indigo);
+  --ml-gradient-mid: var(--ml-purple);
+  --ml-gradient-end: var(--ml-pink);
+
+  --ml-header-bg: var(--ml-gray-500);
+  --ml-footer-bg: var(--ml-gray-500);
+
+  --ml-input-border: var(--ml-pink);
+  --ml-input-border-focus: var(--ml-blue);
+  --ml-input-placeholder: var(--ml-gray-200);
+  --ml-submit-bg: var(--ml-pink);
+  --ml-submit-bg-hover: var(--ml-blue-dark);
+  --ml-submit-text: var(--ml-cream-100);
+
+  --ml-menu-hover-bg: var(--ml-pink);
+  --ml-mobile-menu-bg: var(--ml-gray-400);
+  --ml-mobile-menu-text: var(--ml-pink-light);
+  --ml-mobile-menu-subtitle: var(--ml-white);
+  --ml-mobile-menu-hover-bg: var(--ml-gray-500);
+  --ml-mobile-menu-border: var(--ml-gray-300);
+  --ml-mobile-menu-section-title: var(--ml-gray-200);
+
+  --ml-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+}

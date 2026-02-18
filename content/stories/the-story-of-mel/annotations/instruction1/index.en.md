@@ -1,0 +1,1 @@
+This sentence refers to the method that determines the memory address of the next instruction to execute. Normally, digital computers load instructions from consecutive memory locations, unless instructed to jump to a different address. The RPC-4000 had an optional addressing mode in which every instruction included the address of the next instruction to execute.

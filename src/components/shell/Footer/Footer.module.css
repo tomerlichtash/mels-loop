@@ -1,0 +1,5 @@
+.footer {
+  background-color: var(--ml-footer-bg);
+  border-top: 1px solid var(--ml-border);
+  margin-top: var(--ml-space-3xl);
+}

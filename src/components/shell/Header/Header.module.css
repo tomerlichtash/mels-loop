@@ -1,0 +1,13 @@
+.header {
+  background-color: var(--ml-header-bg);
+  border-bottom: 1px solid var(--ml-border);
+}
+
+.logoLink {
+  text-decoration: none;
+  color: var(--ml-heading);
+}
+
+.logoLink:hover {
+  color: var(--ml-link-hover);
+}

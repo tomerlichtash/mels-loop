@@ -1,0 +1,23 @@
+{
+  "slug": "the-story-of-mel",
+  "title": {
+    "en": "The Story of Mel",
+    "he": "הסיפור על מל"
+  },
+  "abstract": {
+    "en": "A Comprehensive Guide to The Story of Mel, a Programmer",
+    "he": "מדריך מקיף לסיפור על מל"
+  },
+  "featured": true,
+  "articles": [
+    "preface",
+    "mel-kaye-cv",
+    "mels-hack-the-missing-bits",
+    "blackjack-writeup"
+  ],
+  "sections": ["articles", "codex", "resources"],
+  "figures": {
+    "auto": true,
+    "template": "Fig. %index%"
+  }
+}
