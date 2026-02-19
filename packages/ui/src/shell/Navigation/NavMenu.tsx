@@ -11,7 +11,7 @@ interface NavMenuProps {
 }
 
 export function NavMenu({ navItems }: NavMenuProps) {
-  const { locale, t } = useTranslation();
+  const { t } = useTranslation();
   const pathname = usePathname();
 
   return (
@@ -33,15 +33,56 @@ export function NavMenu({ navItems }: NavMenuProps) {
                   </NavigationMenu.Trigger>
                   <NavigationMenu.Content className={styles.content}>
                     <div className={styles.contentPanel}>
-                      <p className={styles.contentTitle}>
-                        {t("featured.title")}
-                      </p>
-                      <p className={styles.contentDescription}>
-                        {t("featured.subtitle")}
-                      </p>
-                      <a href={href} className={styles.contentCta}>
-                        {t("featured.linkPrefix")} &rarr;
-                      </a>
+                      {(() => {
+                        const featuredStory = item.stories?.find((s) => s.featured);
+                        const featuredHref = featuredStory
+                          ? `/stories/${featuredStory.slug}`
+                          : href;
+                        return (
+                          <a href={featuredHref} className={styles.featured}>
+                            {featuredStory?.image && (
+                              /* eslint-disable-next-line @next/next/no-img-element */
+                              <img
+                                src={featuredStory.image}
+                                alt=""
+                                className={styles.featuredImage}
+                              />
+                            )}
+                            <div className={styles.featuredBody}>
+                              <span className={styles.contentTitle}>
+                                {t("featured.title")}
+                              </span>
+                              <span className={styles.contentDescription}>
+                                {t("featured.subtitle")}
+                              </span>
+                              <span className={styles.contentCta}>
+                                {t("featured.linkPrefix")} &rarr;
+                              </span>
+                            </div>
+                          </a>
+                        );
+                      })()}
+                      {(() => {
+                        const otherStories = item.stories?.filter((s) => !s.featured);
+                        if (!otherStories || otherStories.length === 0) return null;
+                        return (
+                          <>
+                            <p className={styles.sectionTitle}>{t("nav.moreStories")}</p>
+                            <div className={styles.storyList}>
+                              {otherStories.map((story) => (
+                                <a
+                                  key={story.slug}
+                                  href={`/stories/${story.slug}`}
+                                  className={styles.storyLink}
+                                >
+                                  <span className={styles.storyTitle}>{story.title}</span>
+                                  <span className={styles.storySubtitle}>{story.abstract}</span>
+                                </a>
+                              ))}
+                            </div>
+                          </>
+                        );
+                      })()}
                     </div>
                   </NavigationMenu.Content>
                 </>

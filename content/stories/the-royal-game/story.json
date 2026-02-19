@@ -1,0 +1,16 @@
+{
+  "slug": "the-royal-game",
+  "title": {
+    "en": "The Royal Game",
+    "he": "המשחק המלכותי"
+  },
+  "abstract": {
+    "en": "A tale of obsession, chess, and the limits of the human mind",
+    "he": "סיפור על אובססיה, שחמט, וגבולות התודעה האנושית"
+  },
+  "featured": false,
+  "sections": ["codex", "articles", "resources"],
+  "articles": [
+    "introduction"
+  ]
+}

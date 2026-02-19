@@ -10,6 +10,7 @@ import {
 import { getDictionary } from "@mels-loop/i18n/server";
 import { I18nProvider } from "@mels-loop/i18n/client";
 import { AppShell } from "./shell/AppShell/AppShell";
+import { FaviconAnimator } from "./shell/FaviconAnimator/FaviconAnimator";
 import type { NavItem, FooterLinkColumn } from "./shell/types";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -19,6 +20,7 @@ interface LayoutConfig {
   footerLinks?: FooterLinkColumn[];
   titlePrefix?: string;
   titleTemplate?: string;
+  resolveNavItems?: (navItems: NavItem[], locale: Locale) => Promise<NavItem[]>;
 }
 
 export function createLocaleLayout(config: LayoutConfig) {
@@ -75,6 +77,9 @@ export function createLocaleLayout(config: LayoutConfig) {
 
     const dir = getDirection(locale);
     const messages = await getDictionary(locale);
+    const navItems = config.resolveNavItems
+      ? await config.resolveNavItems(config.navItems, locale)
+      : config.navItems;
 
     return (
       <html
@@ -83,11 +88,14 @@ export function createLocaleLayout(config: LayoutConfig) {
         suppressHydrationWarning
       >
         <head>
+          <link rel="icon" href="/favicon-light.png" media="(prefers-color-scheme: light)" />
+          <link rel="icon" href="/favicon-dark.png" media="(prefers-color-scheme: dark)" />
           <ColorSchemeScript />
         </head>
         <body className={`${robotoSlab.variable} ${assistant.variable}`}>
           <I18nProvider locale={locale} messages={messages}>
-            <AppShell navItems={config.navItems} footerLinks={config.footerLinks}>{children}</AppShell>
+            <FaviconAnimator />
+            <AppShell navItems={navItems} footerLinks={config.footerLinks}>{children}</AppShell>
           </I18nProvider>
         </body>
       </html>

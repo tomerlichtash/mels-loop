@@ -7,4 +7,4 @@ export { ThemeSwitcher } from "./ThemeSwitcher/ThemeSwitcher";
 export { LocaleSwitcher } from "./LocaleSwitcher/LocaleSwitcher";
 export { Breadcrumb } from "./Breadcrumb/Breadcrumb";
 export type { BreadcrumbItem } from "./Breadcrumb/Breadcrumb";
-export type { NavItem } from "./types";
+export type { NavItem, NavStoryItem } from "./types";

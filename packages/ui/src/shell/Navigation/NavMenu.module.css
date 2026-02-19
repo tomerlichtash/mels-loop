@@ -151,9 +151,6 @@
   position: absolute;
   top: calc(100% + 9px);
   left: 0;
-  display: flex;
-  justify-content: center;
-  width: 100%;
   z-index: 200;
   perspective: 2000px;
 }
@@ -211,25 +208,52 @@
   transform: rotate(45deg);
 }
 
-/* ── Content panel (featured story card) ──────── */
+/* ── Content panel ────────────────────────────── */
 
 .contentPanel {
-  padding: var(--ml-space-lg);
-  width: 320px;
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+
+/* ── Featured story card ─────────────────────── */
+
+.featured {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  text-decoration: none;
+  border-bottom: 1px solid var(--ml-border);
+  transition: background-color 150ms ease;
+}
+
+.featured:hover {
+  background-color: var(--ml-header-item-hover);
+}
+
+.featuredImage {
+  width: 120px;
+  object-fit: cover;
+  flex-shrink: 0;
+  order: 1;
+  border-inline-start: 1px solid var(--ml-border);
+}
+
+.featuredBody {
   display: flex;
   flex-direction: column;
   gap: var(--ml-space-sm);
+  padding: var(--ml-space-lg);
+  min-width: 0;
 }
 
 .contentTitle {
-  margin: 0;
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--ml-text);
 }
 
 .contentDescription {
-  margin: 0;
   font-size: 0.875rem;
   color: var(--ml-text-secondary);
   line-height: 1.5;
@@ -243,9 +267,58 @@
   font-size: 0.875rem;
   font-weight: 700;
   color: var(--ml-accent);
-  text-decoration: none;
 }
 
-.contentCta:hover {
+.featured:hover .contentCta {
   text-decoration: underline;
+}
+
+/* ── Section title ───────────────────────────── */
+
+.sectionTitle {
+  margin: 0;
+  padding: var(--ml-space-sm) var(--ml-space-lg);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ml-text-dimmed);
+  border-bottom: 1px solid var(--ml-border);
+}
+
+/* ── Story list ──────────────────────────────── */
+
+.storyList {
+  display: flex;
+  flex-direction: column;
+}
+
+.storyLink {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--ml-space-md) var(--ml-space-lg);
+  text-decoration: none;
+  transition: background-color 150ms ease;
+  border-bottom: 1px solid var(--ml-border);
+}
+
+.storyLink:last-child {
+  border-bottom: none;
+}
+
+.storyLink:hover {
+  background-color: var(--ml-header-item-hover);
+}
+
+.storyTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--ml-text);
+}
+
+.storySubtitle {
+  font-size: 0.8125rem;
+  color: var(--ml-text-secondary);
+  line-height: 1.4;
 }
