@@ -15,7 +15,7 @@ interface HeaderProps {
 }
 
 export function Header({ onMenuClick, navItems }: HeaderProps) {
-  const { t, locale } = useTranslation();
+  const { t } = useTranslation();
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -35,9 +35,7 @@ export function Header({ onMenuClick, navItems }: HeaderProps) {
         {isHome ? (
           <span className={styles.logo}>
             <span className={styles.logoIcon}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/ml-logo-light.png" alt="" className={styles.logoImgLight} />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/ml-logo-dark.png" alt="" className={styles.logoImgDark} />
             </span>
             <span className={styles.logoText}>{t("siteTitle")}</span>
@@ -45,9 +43,7 @@ export function Header({ onMenuClick, navItems }: HeaderProps) {
         ) : (
           <a href="/" className={styles.logoLink}>
             <span className={styles.logoIcon}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/ml-logo-light.png" alt="" className={styles.logoImgLight} />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/ml-logo-dark.png" alt="" className={styles.logoImgDark} />
             </span>
             <span className={styles.logoText}>{t("siteTitle")}</span>

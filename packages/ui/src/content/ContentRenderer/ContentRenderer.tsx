@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
-import type { Root as HastRoot, Element, ElementContent } from "hast";
+import type { Root as HastRoot, ElementContent } from "hast";
 import { Figure } from "../Figure/Figure";
 import { CodeBlock } from "../CodeBlock/CodeBlock";
 import { StyledTable } from "../StyledTable/StyledTable";

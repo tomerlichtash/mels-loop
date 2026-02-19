@@ -7,6 +7,7 @@ export default function NotFound() {
         <div>
           <h1>404</h1>
           <p>Page not found</p>
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/en/posts" className={styles.link}>
             Go to Blog
           </a>

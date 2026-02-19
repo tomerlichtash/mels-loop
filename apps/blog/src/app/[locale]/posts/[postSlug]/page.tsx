@@ -4,6 +4,7 @@ import type { Locale } from "@mels-loop/i18n/config";
 import { locales } from "@mels-loop/i18n/config";
 import { getPost, getAllPosts } from "@mels-loop/content-pipeline/loaders";
 import { ContentRenderer } from "@mels-loop/ui/content";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 interface PageProps {
@@ -26,9 +27,9 @@ export default async function PostPage({ params }: PageProps) {
   return (
     <Container size="md">
       <Stack gap="lg">
-        <a href="/posts" className={styles.backLink}>
+        <Link href="/posts" className={styles.backLink}>
           &larr; {locale === "he" ? "חזרה לבלוג" : "Back"}
-        </a>
+        </Link>
         {content.metadata.title && (
           <Title order={1}>{content.metadata.title}</Title>
         )}

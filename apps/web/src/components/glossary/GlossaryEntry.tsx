@@ -6,7 +6,7 @@ interface GlossaryEntryProps {
   locale: string;
 }
 
-export function GlossaryEntry({ slug, locale }: GlossaryEntryProps) {
+export function GlossaryEntry({ slug }: GlossaryEntryProps) {
   const displayName = slug
     .replace(/-/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase());

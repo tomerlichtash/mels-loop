@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "lint": "eslint ."
+  },
   "exports": {
     "./config": "./src/config.ts",
     "./server": "./src/server.ts",
@@ -13,5 +16,8 @@
   "peerDependencies": {
     "next": "^16.0.0",
     "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@mels-loop/eslint-config": "workspace:*"
   }
 }

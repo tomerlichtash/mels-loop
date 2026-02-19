@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "lint": "eslint ."
+  },
   "exports": {
     "./fonts": "./src/fonts.ts",
     "./styles/globals.css": "./src/styles/globals.css",
@@ -28,5 +31,8 @@
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-tooltip": "^1.2.8",
     "hast-util-to-jsx-runtime": "^2.3.6"
+  },
+  "devDependencies": {
+    "@mels-loop/eslint-config": "workspace:*"
   }
 }

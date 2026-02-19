@@ -8,7 +8,7 @@ interface PostCardProps {
   date?: string;
 }
 
-export function PostCard({ slug, locale, title, date }: PostCardProps) {
+export function PostCard({ slug, title, date }: PostCardProps) {
   const displayTitle = title || slug.replace(/-/g, " ");
 
   return (

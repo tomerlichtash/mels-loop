@@ -41,7 +41,6 @@ export function NavMenu({ navItems }: NavMenuProps) {
                         return (
                           <a href={featuredHref} className={styles.featured}>
                             {featuredStory?.image && (
-                              /* eslint-disable-next-line @next/next/no-img-element */
                               <img
                                 src={featuredStory.image}
                                 alt=""

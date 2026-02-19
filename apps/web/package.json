@@ -7,7 +7,7 @@
     "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start --port 3000",
-    "lint": "next lint",
+    "lint": "eslint .",
     "test:e2e": "playwright test"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@mels-loop/eslint-config": "workspace:*",
     "@mels-loop/test-utils": "workspace:*",
     "@playwright/test": "^1.51.1",
     "@types/react": "^19.2.14",

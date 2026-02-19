@@ -19,7 +19,6 @@ export function OptimizedImage({
   if (!src) return null;
 
   if (src.startsWith("http") || src.endsWith(".svg")) {
-    // eslint-disable-next-line @next/next/no-img-element
     return <img src={src} alt={alt} {...props} />;
   }
 

@@ -12,7 +12,7 @@ interface MobileDrawerProps {
 }
 
 export function MobileDrawer({ opened, onClose, navItems }: MobileDrawerProps) {
-  const { locale, t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Dialog.Root open={opened} onOpenChange={(open) => !open && onClose()}>
