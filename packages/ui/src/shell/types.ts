@@ -1,6 +1,7 @@
 export interface NavItem {
   key: string;
   href: string;
+  hasContent?: boolean;
 }
 
 export interface FooterLink {

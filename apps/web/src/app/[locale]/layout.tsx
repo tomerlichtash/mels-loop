@@ -3,7 +3,7 @@ import "../../content-init";
 
 const { Layout, generateMetadata } = createLocaleLayout({
   navItems: [
-    { key: "stories", href: "/stories" },
+    { key: "stories", href: "/stories", hasContent: true },
     { key: "nav.about", href: "/about" },
     { key: "nav.contact", href: "/contact" },
   ],
