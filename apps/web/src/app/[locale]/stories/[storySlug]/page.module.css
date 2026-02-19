@@ -1,0 +1,7 @@
+.header {
+  margin-bottom: var(--ml-space-xl);
+}
+
+.header h1 {
+  margin-bottom: var(--ml-space-sm);
+}

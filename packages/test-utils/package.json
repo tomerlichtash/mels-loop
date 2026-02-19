@@ -1,0 +1,10 @@
+{
+  "name": "@mels-loop/test-utils",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./i18n": "./src/i18n.ts",
+    "./locale": "./src/locale.ts"
+  }
+}

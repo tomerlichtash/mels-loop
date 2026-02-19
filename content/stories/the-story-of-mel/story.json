@@ -9,13 +9,13 @@
     "he": "מדריך מקיף לסיפור על מל"
   },
   "featured": true,
+  "sections": ["codex", "articles", "documents", "resources"],
   "articles": [
     "preface",
     "mel-kaye-cv",
-    "mels-hack-the-missing-bits",
-    "blackjack-writeup"
+    "mels-hack-the-missing-bits"
   ],
-  "sections": ["articles", "codex", "resources"],
+  "documents": ["blackjack-writeup"],
   "figures": {
     "auto": true,
     "template": "Fig. %index%"

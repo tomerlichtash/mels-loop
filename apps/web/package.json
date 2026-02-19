@@ -1,0 +1,30 @@
+{
+  "name": "@mels-loop/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "lint": "next lint",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@mels-loop/content-pipeline": "workspace:*",
+    "@mels-loop/forms": "workspace:*",
+    "@mels-loop/i18n": "workspace:*",
+    "@mels-loop/ui": "workspace:*",
+    "react-google-recaptcha": "^3.1.0",
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@mels-loop/test-utils": "workspace:*",
+    "@playwright/test": "^1.51.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-google-recaptcha": "^2.1.9"
+  }
+}

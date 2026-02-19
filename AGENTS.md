@@ -58,7 +58,8 @@ These principles guide every decision in this codebase. Follow them strictly.
 ### 6. CSS with purpose
 - All styling via CSS Modules (`.module.css`) and CSS custom properties.
 - Use CSS logical properties (`margin-inline-start`, not `margin-left`) for RTL support.
-- No utility classes. No inline styles unless truly one-off.
+- **Never use inline styles** unless there is absolutely no other choice. All styling must go through CSS Modules (`.module.css`) or CSS classes in `globals.css`.
+- No utility classes.
 - Keep selectors simple. One class per element is usually enough. Avoid nesting beyond two levels.
 - Design tokens live in `src/styles/tokens.css` as CSS custom properties with `--ml-` prefix.
 

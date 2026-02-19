@@ -1,0 +1,25 @@
+.card {
+  padding: var(--ml-space-md) 0;
+  border-bottom: 1px solid var(--ml-border);
+}
+
+.card:last-child {
+  border-bottom: none;
+}
+
+.title {
+  display: block;
+  margin-bottom: var(--ml-space-xs);
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--ml-heading);
+  text-decoration: none;
+}
+
+.title:hover {
+  color: var(--ml-link-hover);
+}
+
+.abstract {
+  margin: 0;
+}

@@ -1,0 +1,42 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: var(--ml-border-radius);
+  cursor: pointer;
+  color: var(--ml-text);
+  min-width: 32px;
+  height: 30px;
+  padding: 0 var(--ml-space-xs);
+}
+
+.button:hover {
+  background-color: var(--ml-header-item-hover);
+}
+
+.light,
+.dark {
+  display: none;
+  line-height: 0;
+}
+
+.light svg,
+.dark svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.light {
+  display: inline-flex;
+}
+
+
+[data-color-scheme="dark"] .light {
+  display: none;
+}
+
+[data-color-scheme="dark"] .dark {
+  display: inline;
+}

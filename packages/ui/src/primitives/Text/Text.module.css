@@ -1,0 +1,57 @@
+.text {
+  margin: 0;
+  color: var(--ml-text);
+  line-height: 1.55;
+}
+
+.size-xs {
+  font-size: 0.75rem;
+}
+
+.size-sm {
+  font-size: 0.875rem;
+}
+
+.size-md {
+  font-size: 1rem;
+}
+
+.size-lg {
+  font-size: 1.125rem;
+}
+
+.dimmed {
+  color: var(--ml-text-muted);
+}
+
+.error {
+  color: var(--ml-error);
+}
+
+.italic {
+  font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.weight-400 {
+  font-weight: 400;
+}
+
+.weight-500 {
+  font-weight: 500;
+}
+
+.weight-600 {
+  font-weight: 600;
+}
+
+.weight-700 {
+  font-weight: 700;
+}

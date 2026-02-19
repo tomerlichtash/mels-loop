@@ -1,0 +1,40 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--ml-popover-topic-bg);
+  border-bottom: 1px solid var(--ml-border);
+  font-size: 0.7rem;
+  line-height: 1.3;
+  flex-wrap: wrap;
+}
+
+.crumb {
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: var(--ml-link);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.7rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.crumb:hover {
+  color: var(--ml-link-hover);
+}
+
+.separator {
+  color: var(--ml-text-muted);
+  font-size: 0.6rem;
+  user-select: none;
+}
+
+.current {
+  color: var(--ml-text-muted);
+  font-size: 0.7rem;
+}

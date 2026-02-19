@@ -1,0 +1,17 @@
+{
+  "name": "@mels-loop/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./config": "./src/config.ts",
+    "./server": "./src/server.ts",
+    "./client": "./src/client.tsx",
+    "./middleware": "./src/middleware.ts",
+    "./locale-cookie": "./src/locale-cookie.ts"
+  },
+  "peerDependencies": {
+    "next": "^16.0.0",
+    "react": "^19.0.0"
+  }
+}

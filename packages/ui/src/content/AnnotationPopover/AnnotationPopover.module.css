@@ -1,0 +1,72 @@
+.trigger {
+  display: inline;
+  background: var(--ml-annotation-bg);
+  color: var(--ml-annotation-text);
+  border: none;
+  border-radius: 3px;
+  padding: 0 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  vertical-align: super;
+  line-height: 1;
+  margin: 0 1px;
+}
+
+.trigger:hover {
+  opacity: 0.85;
+}
+
+.trigger::before {
+  content: "[";
+  font-weight: 300;
+}
+
+.trigger::after {
+  content: "]";
+  font-weight: 300;
+}
+
+.dropdown {
+  width: 360px;
+  background-color: var(--ml-popover-bg);
+  border: 1px solid var(--ml-border);
+  border-radius: var(--ml-border-radius);
+  box-shadow: var(--ml-shadow);
+  z-index: 1000;
+  animation: fadeIn 0.15s ease;
+}
+
+.arrow {
+  fill: var(--ml-popover-bg);
+}
+
+.scrollArea {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.bodyWrap {
+  padding: var(--ml-space-xs);
+}
+
+.body {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.source {
+  margin: var(--ml-space-xs) 0 0;
+  font-size: 0.75rem;
+  color: var(--ml-text-muted);
+}
+
+.sourceLink {
+  font-size: 0.75rem;
+  color: var(--ml-link);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}

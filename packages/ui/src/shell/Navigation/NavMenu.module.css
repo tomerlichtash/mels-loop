@@ -1,0 +1,35 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--ml-space-lg);
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  text-decoration: none;
+  color: var(--ml-text);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0 var(--ml-space-sm);
+  border-radius: var(--ml-border-radius);
+}
+
+.navLink:hover:not(.active) {
+  background-color: var(--ml-header-item-hover);
+  color: var(--ml-text);
+}
+
+.navLink:active {
+  transform: none;
+}
+
+.navLink.active {
+  background-color: var(--ml-header-item-active);
+  border-radius: var(--ml-border-radius);
+  color: var(--ml-text);
+  cursor: default;
+}
