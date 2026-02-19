@@ -79,7 +79,9 @@
     "links": "Links"
   },
   "theme": {
-    "toggle": "Toggle Theme"
+    "toggle": "Toggle Theme",
+    "switchToDark": "Switch to dark mode",
+    "switchToLight": "Switch to light mode"
   },
   "hero": {
     "title": "Welcome to Mel's Loop",

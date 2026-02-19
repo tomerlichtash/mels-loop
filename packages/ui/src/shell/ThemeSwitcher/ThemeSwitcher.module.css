@@ -40,3 +40,24 @@
 [data-color-scheme="dark"] .dark {
   display: inline;
 }
+
+.tooltip {
+  z-index: 200;
+  background-color: var(--ml-text);
+  color: var(--ml-bg);
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: var(--ml-border-radius);
+  line-height: 1.4;
+  user-select: none;
+  animation: fadeIn 150ms ease-out;
+}
+
+.tooltipArrow {
+  fill: var(--ml-text);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
