@@ -1,38 +1,38 @@
 {
-  "name": "@mels-loop/ui",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "lint": "eslint ."
-  },
-  "exports": {
-    "./fonts": "./src/fonts.ts",
-    "./styles/globals.css": "./src/styles/globals.css",
-    "./styles/tokens.css": "./src/styles/tokens.css",
-    "./shell": "./src/shell/index.ts",
-    "./content": "./src/content/index.ts",
-    "./layout": "./src/layout.tsx",
-    "./primitives": "./src/primitives/index.ts",
-    "./color-scheme": "./src/color-scheme/index.ts"
-  },
-  "peerDependencies": {
-    "@mels-loop/content-pipeline": "workspace:*",
-    "@mels-loop/i18n": "workspace:*",
-    "next": "^16.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "dependencies": {
-    "@radix-ui/react-dialog": "^1.1.4",
-    "@radix-ui/react-navigation-menu": "^1.2.5",
-    "@radix-ui/react-icons": "^1.3.2",
-    "@radix-ui/react-popover": "^1.1.4",
-    "@radix-ui/react-separator": "^1.1.8",
-    "@radix-ui/react-tooltip": "^1.2.8",
-    "hast-util-to-jsx-runtime": "^2.3.6"
-  },
-  "devDependencies": {
-    "@mels-loop/eslint-config": "workspace:*"
-  }
+	"name": "@mels-loop/ui",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint": "eslint ."
+	},
+	"exports": {
+		"./fonts": "./src/fonts.ts",
+		"./styles/globals.css": "./src/styles/globals.css",
+		"./styles/tokens.css": "./src/styles/tokens.css",
+		"./shell": "./src/shell/index.ts",
+		"./content": "./src/content/index.ts",
+		"./layout": "./src/layout.tsx",
+		"./primitives": "./src/primitives/index.ts",
+		"./color-scheme": "./src/color-scheme/index.ts"
+	},
+	"peerDependencies": {
+		"@mels-loop/content-pipeline": "workspace:*",
+		"@mels-loop/i18n": "workspace:*",
+		"next": "^16.0.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"dependencies": {
+		"@radix-ui/react-dialog": "^1.1.4",
+		"@radix-ui/react-navigation-menu": "^1.2.5",
+		"@radix-ui/react-icons": "^1.3.2",
+		"@radix-ui/react-popover": "^1.1.4",
+		"@radix-ui/react-separator": "^1.1.8",
+		"@radix-ui/react-tooltip": "^1.2.8",
+		"hast-util-to-jsx-runtime": "^2.3.6"
+	},
+	"devDependencies": {
+		"@mels-loop/eslint-config": "workspace:*"
+	}
 }

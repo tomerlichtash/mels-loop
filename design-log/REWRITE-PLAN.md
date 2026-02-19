@@ -7,6 +7,7 @@ Mel's Loop is a Next.js site that renders markdown content into richly annotated
 **Why rewrite:** The current architecture (Pages Router, Stylable CSS-in-JS, simple-markdown, single-story design) has reached its limits. We want to transform it into a **multi-story platform** where each story is a self-contained collection of artifacts (annotations, articles, resources, codex). The tech stack needs modernizing — CSS-in-JS replaced with CSS variables, a proper UI library, a robust markdown pipeline, and App Router.
 
 **Decisions made:**
+
 - **pnpm** (package manager)
 - **Next.js App Router** (latest)
 - **Mantine v8** (UI library — CSS Modules, CSS variables, built-in RTL, light/dark)
@@ -53,17 +54,18 @@ content/
 ```
 
 Each story gets a `story.json`:
+
 ```json
 {
-  "slug": "the-story-of-mel",
-  "order": 1,
-  "featured": true,
-  "artifacts": ["annotations", "articles", "resources", "codex"],
-  "navigation": [
-    { "type": "article", "id": "preface" },
-    { "type": "article", "id": "mels-hack-the-missing-bits" },
-    { "type": "resource", "id": "resources" }
-  ]
+	"slug": "the-story-of-mel",
+	"order": 1,
+	"featured": true,
+	"artifacts": ["annotations", "articles", "resources", "codex"],
+	"navigation": [
+		{ "type": "article", "id": "preface" },
+		{ "type": "article", "id": "mels-hack-the-missing-bits" },
+		{ "type": "resource", "id": "resources" }
+	]
 }
 ```
 
@@ -107,21 +109,22 @@ middleware.ts                    # Locale detection & redirect
 
 ### URL examples
 
-| URL | What it shows |
-|-----|--------------|
-| `/en` | Home — featured story or stories list |
-| `/he` | Home in Hebrew |
-| `/en/stories/the-story-of-mel` | Story landing page |
-| `/en/stories/the-story-of-mel/articles/preface` | Preface article |
-| `/en/stories/the-story-of-mel/resources` | Resources page |
-| `/en/stories/the-story-of-mel/codex` | Codex landing |
-| `/en/glossary` | Glossary index |
-| `/en/glossary/drum-memory` | Glossary term |
-| `/en/posts` | Blog listing |
+| URL                                             | What it shows                         |
+| ----------------------------------------------- | ------------------------------------- |
+| `/en`                                           | Home — featured story or stories list |
+| `/he`                                           | Home in Hebrew                        |
+| `/en/stories/the-story-of-mel`                  | Story landing page                    |
+| `/en/stories/the-story-of-mel/articles/preface` | Preface article                       |
+| `/en/stories/the-story-of-mel/resources`        | Resources page                        |
+| `/en/stories/the-story-of-mel/codex`            | Codex landing                         |
+| `/en/glossary`                                  | Glossary index                        |
+| `/en/glossary/drum-memory`                      | Glossary term                         |
+| `/en/posts`                                     | Blog listing                          |
 
 ### Redirects for backward compatibility
 
 All current URLs get 301 redirects in `next.config.ts`:
+
 - `/docs/*` → `/en/stories/*`
 - `/docs/the-story-of-mel/pages/:slug` → `/en/stories/the-story-of-mel/articles/:slug`
 - `/glossary/:id` → `/en/glossary/:id`
@@ -135,6 +138,7 @@ All current URLs get 301 redirects in `next.config.ts`:
 Replace `simple-markdown` + the 1,257-line `content-utils.ts` with the unified ecosystem.
 
 ### Packages
+
 - `unified`, `remark-parse`, `remark-gfm` (tables, strikethrough)
 - `remark-frontmatter`, `gray-matter` (frontmatter)
 - `remark-directive` (custom directives)
@@ -142,6 +146,7 @@ Replace `simple-markdown` + the 1,257-line `content-utils.ts` with the unified e
 - `hast-util-to-jsx-runtime` (hast → React elements)
 
 ### Pipeline flow
+
 ```
 .md file
   → gray-matter (extract frontmatter + body)
@@ -175,11 +180,11 @@ Instead of a custom recursive `ContentComponent` dispatcher, pass a `components`
 
 ```typescript
 const components = {
-  a: AnnotationAwareLink,   // Routes annotation/glossary/regular links
-  figure: Figure,
-  pre: CodeBlock,
-  table: StyledTable,
-  img: OptimizedImage,
+	a: AnnotationAwareLink, // Routes annotation/glossary/regular links
+	figure: Figure,
+	pre: CodeBlock,
+	table: StyledTable,
+	img: OptimizedImage,
 };
 toJsxRuntime(hast, { Fragment, jsx, jsxs, components });
 ```
@@ -200,70 +205,75 @@ The content volume is small (~26 annotations, ~35 glossary terms), so embedding 
 
 ```css
 :root {
-  /* Colors (semantic, remapped in dark theme) */
-  --ml-color-bg: #ffffff;
-  --ml-color-bg-surface: #f8f9fa;
-  --ml-color-text-primary: #212529;
-  --ml-color-text-secondary: #868e96;
-  --ml-color-text-muted: #ced4da;
-  --ml-color-border: #e9ecef;
-  --ml-color-link: #0050b3;
-  --ml-color-link-hover: #1890ff;
-  --ml-color-annotation: #fa8c16;
+	/* Colors (semantic, remapped in dark theme) */
+	--ml-color-bg: #ffffff;
+	--ml-color-bg-surface: #f8f9fa;
+	--ml-color-text-primary: #212529;
+	--ml-color-text-secondary: #868e96;
+	--ml-color-text-muted: #ced4da;
+	--ml-color-border: #e9ecef;
+	--ml-color-link: #0050b3;
+	--ml-color-link-hover: #1890ff;
+	--ml-color-annotation: #fa8c16;
 
-  /* Typography */
-  --ml-font-family-latin: 'Roboto Slab', Georgia, serif;
-  --ml-font-family-hebrew: 'Assistant', 'Segoe UI', sans-serif;
-  --ml-font-family-mono: 'JetBrains Mono', monospace;
-  --ml-font-size-xs: 0.75rem;    /* 12px */
-  --ml-font-size-sm: 0.875rem;   /* 14px */
-  --ml-font-size-md: 1rem;       /* 16px */
-  --ml-font-size-lg: 1.125rem;   /* 18px */
-  --ml-font-size-xl: 1.25rem;    /* 20px */
-  --ml-font-size-2xl: 1.5rem;    /* 24px */
-  --ml-font-size-3xl: 1.875rem;  /* 30px */
-  --ml-font-size-4xl: 2.25rem;   /* 36px */
-  --ml-line-height-tight: 1.3;
-  --ml-line-height-normal: 1.6;
-  --ml-line-height-loose: 1.8;
-  --ml-font-weight-light: 300;
-  --ml-font-weight-regular: 400;
-  --ml-font-weight-medium: 500;
-  --ml-font-weight-bold: 700;
+	/* Typography */
+	--ml-font-family-latin: 'Roboto Slab', Georgia, serif;
+	--ml-font-family-hebrew: 'Assistant', 'Segoe UI', sans-serif;
+	--ml-font-family-mono: 'JetBrains Mono', monospace;
+	--ml-font-size-xs: 0.75rem; /* 12px */
+	--ml-font-size-sm: 0.875rem; /* 14px */
+	--ml-font-size-md: 1rem; /* 16px */
+	--ml-font-size-lg: 1.125rem; /* 18px */
+	--ml-font-size-xl: 1.25rem; /* 20px */
+	--ml-font-size-2xl: 1.5rem; /* 24px */
+	--ml-font-size-3xl: 1.875rem; /* 30px */
+	--ml-font-size-4xl: 2.25rem; /* 36px */
+	--ml-line-height-tight: 1.3;
+	--ml-line-height-normal: 1.6;
+	--ml-line-height-loose: 1.8;
+	--ml-font-weight-light: 300;
+	--ml-font-weight-regular: 400;
+	--ml-font-weight-medium: 500;
+	--ml-font-weight-bold: 700;
 
-  /* Spacing */
-  --ml-space-xs: 0.25rem;  --ml-space-sm: 0.5rem;
-  --ml-space-md: 1rem;     --ml-space-lg: 1.5rem;
-  --ml-space-xl: 2rem;     --ml-space-2xl: 3rem;
-  --ml-space-3xl: 4rem;
+	/* Spacing */
+	--ml-space-xs: 0.25rem;
+	--ml-space-sm: 0.5rem;
+	--ml-space-md: 1rem;
+	--ml-space-lg: 1.5rem;
+	--ml-space-xl: 2rem;
+	--ml-space-2xl: 3rem;
+	--ml-space-3xl: 4rem;
 
-  /* Layout */
-  --ml-content-max-width: 48rem;
-  --ml-page-max-width: 72rem;
-  --ml-header-height: 4rem;
+	/* Layout */
+	--ml-content-max-width: 48rem;
+	--ml-page-max-width: 72rem;
+	--ml-header-height: 4rem;
 
-  /* Borders, Radius, Shadows */
-  --ml-radius-sm: 4px;  --ml-radius-md: 8px;  --ml-radius-lg: 12px;
-  --ml-shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --ml-shadow-md: 0 4px 6px rgba(0,0,0,0.07);
-  --ml-shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-  --ml-transition-fast: 150ms ease;
-  --ml-transition-normal: 250ms ease;
+	/* Borders, Radius, Shadows */
+	--ml-radius-sm: 4px;
+	--ml-radius-md: 8px;
+	--ml-radius-lg: 12px;
+	--ml-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--ml-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+	--ml-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+	--ml-transition-fast: 150ms ease;
+	--ml-transition-normal: 250ms ease;
 }
 ```
 
 ### Dark theme
 
 ```css
-[data-mantine-color-scheme="dark"] {
-  --ml-color-bg: #1a1b1e;
-  --ml-color-bg-surface: #25262b;
-  --ml-color-text-primary: #c1c2c5;
-  --ml-color-text-secondary: #909296;
-  --ml-color-border: #373a40;
-  --ml-color-link: #74b3ff;
-  --ml-color-annotation: #ffa940;
-  /* ... etc */
+[data-mantine-color-scheme='dark'] {
+	--ml-color-bg: #1a1b1e;
+	--ml-color-bg-surface: #25262b;
+	--ml-color-text-primary: #c1c2c5;
+	--ml-color-text-secondary: #909296;
+	--ml-color-border: #373a40;
+	--ml-color-link: #74b3ff;
+	--ml-color-annotation: #ffa940;
+	/* ... etc */
 }
 ```
 
@@ -272,8 +282,16 @@ The content volume is small (~26 annotations, ~35 glossary terms), so embedding 
 ```typescript
 // src/lib/fonts.ts
 import { Roboto_Slab, Assistant } from 'next/font/google';
-export const robotoSlab = Roboto_Slab({ subsets: ['latin'], variable: '--ml-font-family-latin', display: 'swap' });
-export const assistant = Assistant({ subsets: ['hebrew', 'latin'], variable: '--ml-font-family-hebrew', display: 'swap' });
+export const robotoSlab = Roboto_Slab({
+	subsets: ['latin'],
+	variable: '--ml-font-family-latin',
+	display: 'swap',
+});
+export const assistant = Assistant({
+	subsets: ['hebrew', 'latin'],
+	variable: '--ml-font-family-hebrew',
+	display: 'swap',
+});
 ```
 
 ### Mantine theme
@@ -281,6 +299,7 @@ export const assistant = Assistant({ subsets: ['hebrew', 'latin'], variable: '--
 Custom theme pointing to our CSS variables for `fontFamily`, `headings.fontFamily`, `fontFamilyMonospace`.
 
 ### RTL strategy
+
 - `dir="rtl"` on `<html>` for Hebrew locale
 - CSS logical properties (`margin-inline-start`, `padding-inline-end`) in all CSS Modules
 - `--ml-font-family-body` set per locale (Latin vs Hebrew font)
@@ -374,6 +393,7 @@ mels-loop/
 ## 8. Migration Strategy (Phased)
 
 ### Phase 1: Foundation
+
 - Init new Next.js project (pnpm, TypeScript strict, App Router)
 - Install + configure Mantine v8
 - Set up design system tokens (`tokens.css`, dark theme)
@@ -383,6 +403,7 @@ mels-loop/
 - **Verify**: renders a hello-world page with correct locale, theme, fonts
 
 ### Phase 2: Markdown Pipeline
+
 - Copy content files to new `content/` structure (rename `pages/` → `articles/`)
 - Create `story.json` for The Story of Mel
 - Build unified pipeline with standard plugins
@@ -395,6 +416,7 @@ mels-loop/
 - **Verify**: preface article renders correctly, compare to current site
 
 ### Phase 3: Annotations & Glossary
+
 - Build content loaders for annotations + glossary
 - Build `AnnotationProvider` context
 - Build `AnnotationPopover` + `GlossaryPopover` with Mantine Popover
@@ -402,12 +424,14 @@ mels-loop/
 - **Verify**: codex page renders with working annotation popovers
 
 ### Phase 4: All Routes
+
 - Build all page routes (story, articles, resources, codex, glossary, posts, about, contact, contribute)
 - Implement contact form with SendGrid + reCAPTCHA
 - Set up URL redirects for old routes
 - **Verify**: all current pages accessible and rendering correctly
 
 ### Phase 5: Multi-Story Architecture
+
 - Build story listing page (home)
 - Implement `story.json` loading and story card components
 - Ensure `generateStaticParams` iterates all stories
@@ -415,6 +439,7 @@ mels-loop/
 - **Verify**: adding a new story folder + `story.json` produces a new set of pages
 
 ### Phase 6: Polish & Testing
+
 - E2E tests (Playwright, adapt existing scenarios)
 - Unit tests for markdown plugins (Vitest)
 - RTL testing with Hebrew content
@@ -444,14 +469,14 @@ mels-loop/
 
 ## 10. Reference: Current Files → New Equivalents
 
-| Current file | What it contains | New equivalent |
-|---|---|---|
-| `src/lib/content-utils.ts` (1257 lines) | All content processing | Individual plugins in `src/lib/markdown/plugins/` |
-| `src/lib/markdown-driver.ts` | Content loading + parsing | `src/lib/content/loaders.ts` + `src/lib/markdown/pipeline.ts` |
-| `src/components/content/content-component/` | Recursive node→component dispatch | `components` map in `hast-util-to-jsx-runtime` |
-| `src/components/content/link-selector/` | Annotation/glossary/regular link routing | `src/components/content/AnnotationAwareLink.tsx` |
-| `src/interfaces/models.ts` | `IMLParsedNode`, `IPageMetaData`, types | `src/lib/content/types.ts` + hast types |
-| `src/contexts/` | Theme, locale, page, popover contexts | Mantine providers + i18n context + annotation context |
-| `src/lib/next-utils.ts` | `getFolderStaticProps/Paths` | `generateStaticParams()` + content loaders per page |
-| `src/theme/` (Stylable) | Design tokens + light/dark themes | `src/styles/tokens.css` + Mantine theme |
-| `src/locales/` | Translation files + keymap | `src/i18n/messages/en.json` + `he.json` |
+| Current file                                | What it contains                         | New equivalent                                                |
+| ------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------- |
+| `src/lib/content-utils.ts` (1257 lines)     | All content processing                   | Individual plugins in `src/lib/markdown/plugins/`             |
+| `src/lib/markdown-driver.ts`                | Content loading + parsing                | `src/lib/content/loaders.ts` + `src/lib/markdown/pipeline.ts` |
+| `src/components/content/content-component/` | Recursive node→component dispatch        | `components` map in `hast-util-to-jsx-runtime`                |
+| `src/components/content/link-selector/`     | Annotation/glossary/regular link routing | `src/components/content/AnnotationAwareLink.tsx`              |
+| `src/interfaces/models.ts`                  | `IMLParsedNode`, `IPageMetaData`, types  | `src/lib/content/types.ts` + hast types                       |
+| `src/contexts/`                             | Theme, locale, page, popover contexts    | Mantine providers + i18n context + annotation context         |
+| `src/lib/next-utils.ts`                     | `getFolderStaticProps/Paths`             | `generateStaticParams()` + content loaders per page           |
+| `src/theme/` (Stylable)                     | Design tokens + light/dark themes        | `src/styles/tokens.css` + Mantine theme                       |
+| `src/locales/`                              | Translation files + keymap               | `src/i18n/messages/en.json` + `he.json`                       |

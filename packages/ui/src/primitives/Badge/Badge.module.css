@@ -1,21 +1,21 @@
 .badge {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 0.2em 0.6em;
-  border-radius: 999px;
-  line-height: 1.4;
+	display: inline-flex;
+	align-items: center;
+	font-size: 0.7rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	padding: 0.2em 0.6em;
+	border-radius: 999px;
+	line-height: 1.4;
 }
 
 .pink {
-  background-color: var(--ml-pink);
-  color: var(--ml-white);
+	background-color: var(--ml-pink);
+	color: var(--ml-white);
 }
 
 .blue {
-  background-color: var(--ml-blue);
-  color: var(--ml-white);
+	background-color: var(--ml-blue);
+	color: var(--ml-white);
 }

@@ -1,16 +1,14 @@
 {
-  "slug": "the-last-question",
-  "title": {
-    "en": "The Last Question",
-    "he": "השאלה האחרונה"
-  },
-  "abstract": {
-    "en": "Can entropy ever be reversed? A journey across the ages of the universe",
-    "he": "האם אנטרופיה ניתנת להיפוך? מסע לאורך עידני היקום"
-  },
-  "featured": false,
-  "sections": ["codex", "articles", "resources"],
-  "articles": [
-    "prologue"
-  ]
+	"slug": "the-last-question",
+	"title": {
+		"en": "The Last Question",
+		"he": "השאלה האחרונה"
+	},
+	"abstract": {
+		"en": "Can entropy ever be reversed? A journey across the ages of the universe",
+		"he": "האם אנטרופיה ניתנת להיפוך? מסע לאורך עידני היקום"
+	},
+	"featured": false,
+	"sections": ["codex", "articles", "resources"],
+	"articles": ["prologue"]
 }

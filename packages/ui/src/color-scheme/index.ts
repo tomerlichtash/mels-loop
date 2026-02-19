@@ -1,2 +1,2 @@
-export { ColorSchemeScript } from "./ColorSchemeScript";
-export { useColorScheme } from "./useColorScheme";
+export { ColorSchemeScript } from './ColorSchemeScript';
+export { useColorScheme } from './useColorScheme';

@@ -1,10 +1,10 @@
 .nav {
-  display: flex;
-  gap: var(--ml-space-lg);
-  padding: var(--ml-space-sm) 0;
+	display: flex;
+	gap: var(--ml-space-lg);
+	padding: var(--ml-space-sm) 0;
 }
 
 .link {
-  font-size: 0.875rem;
-  font-weight: 500;
+	font-size: 0.875rem;
+	font-weight: 500;
 }

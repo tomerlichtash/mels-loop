@@ -1,80 +1,86 @@
 .trigger {
-  display: inline;
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--ml-link);
-  cursor: pointer;
-  font: inherit;
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-underline-offset: 2px;
+	display: inline;
+	background: none;
+	border: none;
+	padding: 0;
+	color: var(--ml-link);
+	cursor: pointer;
+	font: inherit;
+	text-decoration: underline;
+	text-decoration-style: dotted;
+	text-underline-offset: 2px;
 }
 
 .trigger:hover {
-  color: var(--ml-link-hover);
+	color: var(--ml-link-hover);
 }
 
 .dropdown {
-  width: 320px;
-  background-color: var(--ml-popover-bg);
-  border: 1px solid var(--ml-border);
-  border-radius: var(--ml-border-radius);
-  box-shadow: var(--ml-shadow);
-  z-index: 1000;
-  animation: fadeIn 0.15s ease;
+	width: 320px;
+	background-color: var(--ml-popover-bg);
+	border: 1px solid var(--ml-border);
+	border-radius: var(--ml-border-radius);
+	box-shadow: var(--ml-shadow);
+	z-index: 1000;
+	animation: fadeIn 0.15s ease;
 }
 
 .arrow {
-  fill: var(--ml-popover-bg);
+	fill: var(--ml-popover-bg);
 }
 
 .header {
-  background-color: var(--ml-popover-topic-bg);
-  color: var(--ml-popover-topic-text);
-  border-bottom: 1px solid var(--ml-border);
-  padding: var(--ml-space-xs);
+	background-color: var(--ml-popover-topic-bg);
+	color: var(--ml-popover-topic-text);
+	border-bottom: 1px solid var(--ml-border);
+	padding: var(--ml-space-xs);
 }
 
 .headerTitle {
-  margin: 0;
-  font-weight: 700;
-  font-size: 0.875rem;
-  text-transform: uppercase;
+	margin: 0;
+	font-weight: 700;
+	font-size: 0.875rem;
+	text-transform: uppercase;
 }
 
 .headerSub {
-  margin: 0;
-  font-size: 0.75rem;
-  color: var(--ml-text-muted);
+	margin: 0;
+	font-size: 0.75rem;
+	color: var(--ml-text-muted);
 }
 
 .scrollArea {
-  max-height: 250px;
-  overflow-y: auto;
+	max-height: 250px;
+	overflow-y: auto;
 }
 
 .bodyWrap {
-  padding: var(--ml-space-xs);
+	padding: var(--ml-space-xs);
 }
 
 .body {
-  font-size: 0.8rem;
-  line-height: 1.4;
+	font-size: 0.8rem;
+	line-height: 1.4;
 }
 
 .source {
-  margin: var(--ml-space-xs) 0 0;
-  font-size: 0.75rem;
-  color: var(--ml-text-muted);
+	margin: var(--ml-space-xs) 0 0;
+	font-size: 0.75rem;
+	color: var(--ml-text-muted);
 }
 
 .sourceLink {
-  font-size: 0.75rem;
-  color: var(--ml-link);
+	font-size: 0.75rem;
+	color: var(--ml-link);
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-2px); }
-  to { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(-2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }

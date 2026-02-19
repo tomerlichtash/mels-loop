@@ -1,55 +1,55 @@
 .field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
 }
 
 .label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--ml-text);
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--ml-text);
 }
 
 .required {
-  color: var(--ml-error);
-  margin-inline-start: 2px;
+	color: var(--ml-error);
+	margin-inline-start: 2px;
 }
 
 .input,
 .textarea {
-  width: 100%;
-  padding: var(--ml-space-sm) var(--ml-space-sm);
-  font-size: 0.875rem;
-  font-family: inherit;
-  color: var(--ml-text);
-  background-color: var(--ml-bg-surface);
-  border: 1px solid var(--ml-input-border);
-  border-radius: var(--ml-border-radius);
-  outline: none;
-  transition: border-color 0.15s;
+	width: 100%;
+	padding: var(--ml-space-sm) var(--ml-space-sm);
+	font-size: 0.875rem;
+	font-family: inherit;
+	color: var(--ml-text);
+	background-color: var(--ml-bg-surface);
+	border: 1px solid var(--ml-input-border);
+	border-radius: var(--ml-border-radius);
+	outline: none;
+	transition: border-color 0.15s;
 }
 
 .input:focus,
 .textarea:focus {
-  border-color: var(--ml-input-border-focus);
+	border-color: var(--ml-input-border-focus);
 }
 
 .input::placeholder,
 .textarea::placeholder {
-  color: var(--ml-input-placeholder);
+	color: var(--ml-input-placeholder);
 }
 
 .textarea {
-  resize: vertical;
-  min-height: 120px;
+	resize: vertical;
+	min-height: 120px;
 }
 
 .error {
-  font-size: 0.75rem;
-  color: var(--ml-error);
-  margin: 0;
+	font-size: 0.75rem;
+	color: var(--ml-error);
+	margin: 0;
 }
 
 .inputError {
-  border-color: var(--ml-error);
+	border-color: var(--ml-error);
 }

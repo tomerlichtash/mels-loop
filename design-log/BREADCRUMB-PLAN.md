@@ -13,12 +13,14 @@ A `Breadcrumb` component in `packages/ui/` built on Mantine's `Breadcrumbs`. Eac
 Add `nav.articles` and `nav.codex` to both locale files. All other labels (`nav.home`, `nav.about`, `nav.contact`, `nav.contribute`, `nav.glossary`, `nav.resources`) already exist.
 
 **Edit:** `packages/i18n/src/messages/en.json` — add to `nav`:
+
 ```json
 "articles": "Articles",
 "codex": "Codex"
 ```
 
 **Edit:** `packages/i18n/src/messages/he.json` — add to `nav`:
+
 ```json
 "articles": "מאמרים",
 "codex": "קודקס"
@@ -29,26 +31,30 @@ Add `nav.articles` and `nav.codex` to both locale files. All other labels (`nav.
 **Create:** `packages/ui/src/shell/Breadcrumb.tsx`
 
 ```tsx
-import { Breadcrumbs, Anchor, Text } from "@mantine/core";
+import { Breadcrumbs, Anchor, Text } from '@mantine/core';
 
 export interface BreadcrumbItem {
-  label: string;
-  href?: string;
+	label: string;
+	href?: string;
 }
 
 export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
-  if (items.length <= 1) return null;
-  return (
-    <Breadcrumbs mb="md">
-      {items.map((item, index) =>
-        index === items.length - 1 || !item.href ? (
-          <Text key={index} size="sm" c="dimmed">{item.label}</Text>
-        ) : (
-          <Anchor key={index} href={item.href} size="sm">{item.label}</Anchor>
-        )
-      )}
-    </Breadcrumbs>
-  );
+	if (items.length <= 1) return null;
+	return (
+		<Breadcrumbs mb="md">
+			{items.map((item, index) =>
+				index === items.length - 1 || !item.href ? (
+					<Text key={index} size="sm" c="dimmed">
+						{item.label}
+					</Text>
+				) : (
+					<Anchor key={index} href={item.href} size="sm">
+						{item.label}
+					</Anchor>
+				),
+			)}
+		</Breadcrumbs>
+	);
 }
 ```
 
@@ -63,22 +69,22 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
 **Create:** `apps/web/src/lib/breadcrumbs.ts`
 
 ```ts
-import type { BreadcrumbItem } from "@mels-loop/ui/shell";
+import type { BreadcrumbItem } from '@mels-loop/ui/shell';
 
 export function homeItem(locale: string, homeLabel: string): BreadcrumbItem {
-  return { label: homeLabel, href: `/${locale}` };
+	return { label: homeLabel, href: `/${locale}` };
 }
 
 /** Safely resolve a dot-notation key from the dict */
 export function dictGet(dict: Record<string, unknown>, key: string): string {
-  const parts = key.split(".");
-  let current: unknown = dict;
-  for (const part of parts) {
-    if (current && typeof current === "object" && part in current) {
-      current = (current as Record<string, unknown>)[part];
-    } else return key;
-  }
-  return typeof current === "string" ? current : key;
+	const parts = key.split('.');
+	let current: unknown = dict;
+	for (const part of parts) {
+		if (current && typeof current === 'object' && part in current) {
+			current = (current as Record<string, unknown>)[part];
+		} else return key;
+	}
+	return typeof current === 'string' ? current : key;
 }
 ```
 
@@ -93,7 +99,9 @@ Add optional `breadcrumbs?: BreadcrumbItem[]` prop. Render `<Breadcrumb items={b
 ### 5. Wire breadcrumbs into each page
 
 #### Static pages (about, contribute)
+
 Already have `dict`. Add `Breadcrumb` + `homeItem` before `<Title>`:
+
 - `Home > About`
 - `Home > Contribute`
 
@@ -101,80 +109,98 @@ Already have `dict`. Add `Breadcrumb` + `homeItem` before `<Title>`:
 **Edit:** `apps/web/src/app/[locale]/contribute/page.tsx`
 
 #### Contact page
+
 Currently just delegates to `<ContactPage>`. Wrap with a container for the breadcrumb above:
+
 - `Home > Contact`
 
 **Edit:** `apps/web/src/app/[locale]/contact/page.tsx` — add `getDictionary`, render breadcrumb in a `Container` before `<ContactPage>`
 
 #### Glossary index
+
 Already has `dict`:
+
 - `Home > Glossary`
 
 **Edit:** `apps/web/src/app/[locale]/glossary/page.tsx`
 
 #### Glossary term
+
 Add `getDictionary`. Remove the hardcoded "← Back to Glossary" link (breadcrumb replaces it):
+
 - `Home > Glossary > [Term Name]`
 
 **Edit:** `apps/web/src/app/[locale]/glossary/[termSlug]/page.tsx`
 
 #### Story landing
+
 Add `getDictionary`:
+
 - `Home > [Story Title]`
 
 **Edit:** `apps/web/src/app/[locale]/stories/[storySlug]/page.tsx`
 
 #### Articles listing
+
 Add `getDictionary`:
+
 - `Home > [Story Title] > Articles`
 
 **Edit:** `apps/web/src/app/[locale]/stories/[storySlug]/articles/page.tsx`
 
 #### Single article (via ArticleLayout)
+
 Add `getStoryConfig` to `Promise.all`, add `getDictionary`, pass `breadcrumbs` prop:
+
 - `Home > [Story Title] > Articles > [Article Title]`
 
 **Edit:** `apps/web/src/app/[locale]/stories/[storySlug]/articles/[articleSlug]/page.tsx`
 
 #### Codex root (via ArticleLayout)
+
 Add `getStoryConfig` to `Promise.all`, add `getDictionary`, pass `breadcrumbs` prop:
+
 - `Home > [Story Title] > Codex`
 
 **Edit:** `apps/web/src/app/[locale]/stories/[storySlug]/codex/page.tsx`
 
 #### Codex sub-page (via ArticleLayout)
+
 Add `getStoryConfig`, add `getDictionary`, pass `breadcrumbs` prop:
+
 - `Home > [Story Title] > Codex > [Page Title]`
 
 **Edit:** `apps/web/src/app/[locale]/stories/[storySlug]/codex/[pageSlug]/page.tsx`
 
 #### Resources
+
 Add `getStoryConfig`, add `getDictionary`:
+
 - `Home > [Story Title] > Resources`
 
 **Edit:** `apps/web/src/app/[locale]/stories/[storySlug]/resources/page.tsx`
 
 ## Files summary
 
-| Action | File |
-|--------|------|
-| **Create** | `packages/ui/src/shell/Breadcrumb.tsx` |
-| **Create** | `apps/web/src/lib/breadcrumbs.ts` |
-| **Edit** | `packages/ui/src/shell/index.ts` |
-| **Edit** | `packages/i18n/src/messages/en.json` |
-| **Edit** | `packages/i18n/src/messages/he.json` |
-| **Edit** | `apps/web/src/components/story/ArticleLayout.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/about/page.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/contact/page.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/contribute/page.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/glossary/page.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/glossary/[termSlug]/page.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/stories/[storySlug]/page.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/stories/[storySlug]/articles/page.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/stories/[storySlug]/articles/[articleSlug]/page.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/stories/[storySlug]/codex/page.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/stories/[storySlug]/codex/[pageSlug]/page.tsx` |
-| **Edit** | `apps/web/src/app/[locale]/stories/[storySlug]/resources/page.tsx` |
+| Action     | File                                                                            |
+| ---------- | ------------------------------------------------------------------------------- |
+| **Create** | `packages/ui/src/shell/Breadcrumb.tsx`                                          |
+| **Create** | `apps/web/src/lib/breadcrumbs.ts`                                               |
+| **Edit**   | `packages/ui/src/shell/index.ts`                                                |
+| **Edit**   | `packages/i18n/src/messages/en.json`                                            |
+| **Edit**   | `packages/i18n/src/messages/he.json`                                            |
+| **Edit**   | `apps/web/src/components/story/ArticleLayout.tsx`                               |
+| **Edit**   | `apps/web/src/app/[locale]/about/page.tsx`                                      |
+| **Edit**   | `apps/web/src/app/[locale]/contact/page.tsx`                                    |
+| **Edit**   | `apps/web/src/app/[locale]/contribute/page.tsx`                                 |
+| **Edit**   | `apps/web/src/app/[locale]/glossary/page.tsx`                                   |
+| **Edit**   | `apps/web/src/app/[locale]/glossary/[termSlug]/page.tsx`                        |
+| **Edit**   | `apps/web/src/app/[locale]/stories/[storySlug]/page.tsx`                        |
+| **Edit**   | `apps/web/src/app/[locale]/stories/[storySlug]/articles/page.tsx`               |
+| **Edit**   | `apps/web/src/app/[locale]/stories/[storySlug]/articles/[articleSlug]/page.tsx` |
+| **Edit**   | `apps/web/src/app/[locale]/stories/[storySlug]/codex/page.tsx`                  |
+| **Edit**   | `apps/web/src/app/[locale]/stories/[storySlug]/codex/[pageSlug]/page.tsx`       |
+| **Edit**   | `apps/web/src/app/[locale]/stories/[storySlug]/resources/page.tsx`              |
 
 ## Verification
 

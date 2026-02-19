@@ -1,23 +1,19 @@
 {
-  "slug": "the-story-of-mel",
-  "title": {
-    "en": "The Story of Mel",
-    "he": "הסיפור על מל"
-  },
-  "abstract": {
-    "en": "A Comprehensive Guide to The Story of Mel, a Programmer",
-    "he": "מדריך מקיף לסיפור על מל"
-  },
-  "featured": true,
-  "sections": ["codex", "articles", "documents", "resources"],
-  "articles": [
-    "preface",
-    "mel-kaye-cv",
-    "mels-hack-the-missing-bits"
-  ],
-  "documents": ["blackjack-writeup"],
-  "figures": {
-    "auto": true,
-    "template": "Fig. %index%"
-  }
+	"slug": "the-story-of-mel",
+	"title": {
+		"en": "The Story of Mel",
+		"he": "הסיפור על מל"
+	},
+	"abstract": {
+		"en": "A Comprehensive Guide to The Story of Mel, a Programmer",
+		"he": "מדריך מקיף לסיפור על מל"
+	},
+	"featured": true,
+	"sections": ["codex", "articles", "documents", "resources"],
+	"articles": ["preface", "mel-kaye-cv", "mels-hack-the-missing-bits"],
+	"documents": ["blackjack-writeup"],
+	"figures": {
+		"auto": true,
+		"template": "Fig. %index%"
+	}
 }

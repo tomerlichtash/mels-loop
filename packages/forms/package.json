@@ -1,29 +1,29 @@
 {
-  "name": "@mels-loop/forms",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "lint": "eslint ."
-  },
-  "exports": {
-    "./ContactForm": "./src/ContactForm.tsx",
-    "./ContactPage": "./src/ContactPage.tsx",
-    "./handlers/sendgrid": "./src/handlers/sendgrid.ts",
-    "./handlers/captcha": "./src/handlers/captcha.ts"
-  },
-  "peerDependencies": {
-    "@mels-loop/i18n": "workspace:*",
-    "@mels-loop/ui": "workspace:*",
-    "next": "^16.0.0",
-    "react": "^19.0.0"
-  },
-  "dependencies": {
-    "react-google-recaptcha": "^3.1.0",
-    "react-hook-form": "^7.54.0"
-  },
-  "devDependencies": {
-    "@mels-loop/eslint-config": "workspace:*",
-    "@types/react-google-recaptcha": "^2.1.9"
-  }
+	"name": "@mels-loop/forms",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint": "eslint ."
+	},
+	"exports": {
+		"./ContactForm": "./src/ContactForm.tsx",
+		"./ContactPage": "./src/ContactPage.tsx",
+		"./handlers/sendgrid": "./src/handlers/sendgrid.ts",
+		"./handlers/captcha": "./src/handlers/captcha.ts"
+	},
+	"peerDependencies": {
+		"@mels-loop/i18n": "workspace:*",
+		"@mels-loop/ui": "workspace:*",
+		"next": "^16.0.0",
+		"react": "^19.0.0"
+	},
+	"dependencies": {
+		"react-google-recaptcha": "^3.1.0",
+		"react-hook-form": "^7.54.0"
+	},
+	"devDependencies": {
+		"@mels-loop/eslint-config": "workspace:*",
+		"@types/react-google-recaptcha": "^2.1.9"
+	}
 }

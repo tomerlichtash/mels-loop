@@ -1,17 +1,18 @@
 {
-  "name": "@mels-loop/eslint-config",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "exports": {
-    "./base": "./base.mjs",
-    "./react": "./react.mjs",
-    "./next": "./next.mjs"
-  },
-  "dependencies": {
-    "@next/eslint-plugin-next": "^16.1.6",
-    "eslint": "^9.27.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "typescript-eslint": "^8.34.0"
-  }
+	"name": "@mels-loop/eslint-config",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./base": "./base.mjs",
+		"./react": "./react.mjs",
+		"./next": "./next.mjs"
+	},
+	"dependencies": {
+		"@next/eslint-plugin-next": "^16.1.6",
+		"eslint": "^9.27.0",
+		"eslint-plugin-react-hooks": "^5.2.0",
+		"eslint-config-prettier": "^10.1.5",
+		"typescript-eslint": "^8.34.0"
+	}
 }

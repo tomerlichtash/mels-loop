@@ -1,7 +1,7 @@
-import type { FigureConfig } from "../types";
+import type { FigureConfig } from '../types';
 
 export interface MarkdownProcessOptions {
-  parseMode?: "verse" | "normal";
-  figures?: FigureConfig;
-  figureIndex?: number;
+	parseMode?: 'verse' | 'normal';
+	figures?: FigureConfig;
+	figureIndex?: number;
 }

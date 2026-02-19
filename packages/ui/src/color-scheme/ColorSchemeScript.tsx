@@ -13,10 +13,10 @@ const script = `
 `;
 
 export function ColorSchemeScript() {
-  return (
-    <script
-      dangerouslySetInnerHTML={{ __html: script }}
-      suppressHydrationWarning
-    />
-  );
+	return (
+		<script
+			dangerouslySetInnerHTML={{ __html: script }}
+			suppressHydrationWarning
+		/>
+	);
 }

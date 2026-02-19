@@ -1,6 +1,6 @@
 /** @type {import('postcss').Config} */
 const config = {
-  plugins: {},
+	plugins: {},
 };
 
 export default config;

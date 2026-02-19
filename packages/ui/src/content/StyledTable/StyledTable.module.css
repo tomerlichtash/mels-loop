@@ -1,26 +1,26 @@
 .wrapper {
-  overflow-x: auto;
+	overflow-x: auto;
 }
 
 .table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-  font-size: var(--ml-font-size-body);
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 1rem;
+	font-size: var(--ml-font-size-body);
 }
 
 .table th,
 .table td {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--ml-border);
-  text-align: start;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--ml-border);
+	text-align: start;
 }
 
 .table th {
-  font-weight: var(--ml-font-weight-medium);
-  background-color: var(--ml-bg-alt);
+	font-weight: var(--ml-font-weight-medium);
+	background-color: var(--ml-bg-alt);
 }
 
 .table tr:nth-child(even) {
-  background-color: var(--ml-bg-alt);
+	background-color: var(--ml-bg-alt);
 }

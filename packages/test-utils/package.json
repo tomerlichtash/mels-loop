@@ -1,16 +1,16 @@
 {
-  "name": "@mels-loop/test-utils",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "lint": "eslint ."
-  },
-  "exports": {
-    "./i18n": "./src/i18n.ts",
-    "./locale": "./src/locale.ts"
-  },
-  "devDependencies": {
-    "@mels-loop/eslint-config": "workspace:*"
-  }
+	"name": "@mels-loop/test-utils",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint": "eslint ."
+	},
+	"exports": {
+		"./i18n": "./src/i18n.ts",
+		"./locale": "./src/locale.ts"
+	},
+	"devDependencies": {
+		"@mels-loop/eslint-config": "workspace:*"
+	}
 }

@@ -1,11 +1,11 @@
 .shell {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 .main {
-  flex: 1;
-  padding: var(--ml-space-md);
-  padding-top: calc(var(--ml-header-height) + var(--ml-space-md));
+	flex: 1;
+	padding: var(--ml-space-md);
+	padding-top: calc(var(--ml-header-height) + var(--ml-space-md));
 }

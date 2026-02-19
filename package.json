@@ -1,23 +1,26 @@
 {
-  "name": "mels-loop",
-  "version": "2.0.0",
-  "private": true,
-  "packageManager": "pnpm@10.29.2",
-  "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "lint": "turbo lint",
-    "test:e2e": "turbo test:e2e"
-  },
-  "devDependencies": {
-    "@types/hast": "^3.0.4",
-    "@types/mdast": "^4.0.4",
-    "@types/node": "^25.2.3",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "postcss": "^8.5.6",
-    "eslint": "^9.27.0",
-    "turbo": "^2.5.0",
-    "typescript": "^5.9.3"
-  }
+	"name": "mels-loop",
+	"version": "2.0.0",
+	"private": true,
+	"packageManager": "pnpm@10.29.2",
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"lint": "turbo lint",
+		"test:e2e": "turbo test:e2e",
+		"format": "prettier --write .",
+		"format:check": "prettier --check ."
+	},
+	"devDependencies": {
+		"@types/hast": "^3.0.4",
+		"@types/mdast": "^4.0.4",
+		"@types/node": "^25.2.3",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"postcss": "^8.5.6",
+		"eslint": "^9.27.0",
+		"prettier": "^3.5.3",
+		"turbo": "^2.5.0",
+		"typescript": "^5.9.3"
+	}
 }
