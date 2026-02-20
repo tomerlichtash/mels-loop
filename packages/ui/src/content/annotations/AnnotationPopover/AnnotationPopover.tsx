@@ -4,7 +4,7 @@ import { useId, useRef, useEffect, useMemo } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
 import { useAnnotations } from '../AnnotationProvider/AnnotationProvider';
-import { ContentRenderer } from '../ContentRenderer/ContentRenderer';
+import { ContentRenderer } from '../../ContentRenderer/ContentRenderer';
 import { PopoverNavBar } from '../PopoverNavBar/PopoverNavBar';
 import { PopoverInternalLink } from '../PopoverInternalLink/PopoverInternalLink';
 import { usePopoverContent } from '../usePopoverContent/usePopoverContent';

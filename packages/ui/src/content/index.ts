@@ -2,15 +2,15 @@ export { ContentRenderer } from './ContentRenderer/ContentRenderer';
 export {
 	AnnotationProvider,
 	useAnnotations,
-} from './AnnotationProvider/AnnotationProvider';
-export type { NavStackEntry } from './AnnotationProvider/AnnotationProvider';
-export { AnnotationPopover } from './AnnotationPopover/AnnotationPopover';
-export { AnnotationAwareLink } from './AnnotationAwareLink/AnnotationAwareLink';
-export { GlossaryPopover } from './GlossaryPopover/GlossaryPopover';
-export { PopoverNavBar } from './PopoverNavBar/PopoverNavBar';
-export { PopoverInternalLink } from './PopoverInternalLink/PopoverInternalLink';
-export { usePopoverContent } from './usePopoverContent/usePopoverContent';
-export { Figure } from './Figure/Figure';
-export { CodeBlock } from './CodeBlock/CodeBlock';
-export { StyledTable } from './StyledTable/StyledTable';
-export { OptimizedImage } from './OptimizedImage/OptimizedImage';
+} from './annotations/AnnotationProvider/AnnotationProvider';
+export type { NavStackEntry } from './annotations/AnnotationProvider/AnnotationProvider';
+export { AnnotationPopover } from './annotations/AnnotationPopover/AnnotationPopover';
+export { AnnotationAwareLink } from './annotations/AnnotationAwareLink/AnnotationAwareLink';
+export { GlossaryPopover } from './annotations/GlossaryPopover/GlossaryPopover';
+export { PopoverNavBar } from './annotations/PopoverNavBar/PopoverNavBar';
+export { PopoverInternalLink } from './annotations/PopoverInternalLink/PopoverInternalLink';
+export { usePopoverContent } from './annotations/usePopoverContent/usePopoverContent';
+export { Figure } from './components/Figure/Figure';
+export { CodeBlock } from './components/CodeBlock/CodeBlock';
+export { StyledTable } from './components/StyledTable/StyledTable';
+export { OptimizedImage } from './components/OptimizedImage/OptimizedImage';

@@ -4,10 +4,10 @@ import { useMemo } from 'react';
 import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import type { Root as HastRoot, ElementContent } from 'hast';
-import { Figure } from '../Figure/Figure';
-import { CodeBlock } from '../CodeBlock/CodeBlock';
-import { StyledTable } from '../StyledTable/StyledTable';
-import { OptimizedImage } from '../OptimizedImage/OptimizedImage';
+import { Figure } from '../components/Figure/Figure';
+import { CodeBlock } from '../components/CodeBlock/CodeBlock';
+import { StyledTable } from '../components/StyledTable/StyledTable';
+import { OptimizedImage } from '../components/OptimizedImage/OptimizedImage';
 import styles from './ContentRenderer.module.css';
 
 type ComponentOverrides = Record<
