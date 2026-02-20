@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@mels-loop/eslint-config':
+        specifier: workspace:*
+        version: link:packages/eslint-config
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
