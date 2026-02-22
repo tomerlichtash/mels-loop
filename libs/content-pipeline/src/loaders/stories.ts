@@ -2,11 +2,15 @@ import fs from 'fs/promises';
 import matter from 'gray-matter';
 import path from 'path';
 
-import type {
-	ArticleMeta,
-	Locale,
-	ProcessedContent,
-	StoryConfig,
+import {
+	type ArticleMeta,
+	type Locale,
+	type ProcessedContent,
+	type ResolvedSource,
+	resolveSource,
+	type Source,
+	type SourceMessages,
+	type StoryConfig,
 } from '../types';
 import {
 	contentPath,
@@ -14,6 +18,75 @@ import {
 	loadMarkdownFile,
 	localeFileName,
 } from './base';
+
+/** Matches ![alt](sources/id) or ![alt](source/id) */
+const SOURCE_IMAGE_RE = /!\[[^\]]*\]\(sources?\/([^)]+)\)/gi;
+/** Matches {{sources/id:field}} or {{source/id:field}} */
+const SOURCE_VAR_RE = /\{\{sources?\/([^:}]+):[^}]+\}\}/gi;
+
+/**
+ * Scans raw markdown content for all `sources/id` references (image embeds and
+ * template vars) and returns the unique IDs. Used to pre-load sources before
+ * processing.
+ */
+function extractSourceIds(raw: string): string[] {
+	const ids = new Set<string>();
+	let match: RegExpExecArray | null;
+	SOURCE_IMAGE_RE.lastIndex = 0;
+	while ((match = SOURCE_IMAGE_RE.exec(raw)) !== null) {
+		ids.add(match[1]);
+	}
+	SOURCE_VAR_RE.lastIndex = 0;
+	while ((match = SOURCE_VAR_RE.exec(raw)) !== null) {
+		ids.add(match[1]);
+	}
+	return [...ids];
+}
+
+const FALLBACK_LOCALE: Locale = 'en';
+
+/**
+ * Loads and resolves sources by ID directly, without going through sources.ts,
+ * to avoid a circular module dependency (sources.ts imports stories.ts).
+ * Reads both `index.json` (archival data) and `index.{locale}.json` (messages)
+ * then merges them into a ResolvedSource.
+ */
+async function loadResolvedSourcesById(
+	ids: string[],
+	locale: Locale,
+): Promise<Record<string, ResolvedSource>> {
+	if (ids.length === 0) return {};
+	const entries = await Promise.all(
+		ids.map(async (id) => {
+			const basePath = contentPath('sources', id, 'index.json');
+			if (!(await fileExists(basePath))) return null;
+
+			const msgPath = contentPath('sources', id, `index.${locale}.json`);
+			const fallbackPath = contentPath(
+				'sources',
+				id,
+				`index.${FALLBACK_LOCALE}.json`,
+			);
+
+			const [baseRaw, msgRaw] = await Promise.all([
+				fs.readFile(basePath, 'utf-8'),
+				(async () => {
+					if (await fileExists(msgPath)) return fs.readFile(msgPath, 'utf-8');
+					if (await fileExists(fallbackPath))
+						return fs.readFile(fallbackPath, 'utf-8');
+					return null;
+				})(),
+			]);
+
+			const source = JSON.parse(baseRaw) as Source;
+			const messages: SourceMessages = msgRaw
+				? (JSON.parse(msgRaw) as SourceMessages)
+				: { title: id };
+			return [id, resolveSource(source, messages)] as const;
+		}),
+	);
+	return Object.fromEntries(entries.filter((e) => e !== null));
+}
 
 export async function getStoryConfig(slug: string): Promise<StoryConfig> {
 	const configPath = contentPath('stories', slug, 'story.json');
@@ -50,8 +123,13 @@ export async function getStoryArticle(
 	);
 	if (!(await fileExists(filePath))) return null;
 
-	const config = await getStoryConfig(storySlug);
-	return loadMarkdownFile(filePath, config.figures);
+	const rawFile = await fs.readFile(filePath, 'utf-8');
+	const sourceIds = extractSourceIds(rawFile);
+	const [config, sources] = await Promise.all([
+		getStoryConfig(storySlug),
+		loadResolvedSourcesById(sourceIds, locale),
+	]);
+	return loadMarkdownFile(filePath, config.figures, sources);
 }
 
 export async function getStoryArticles(storySlug: string): Promise<string[]> {
@@ -117,8 +195,13 @@ export async function getCodex(
 	);
 	if (!(await fileExists(filePath))) return null;
 
-	const config = await getStoryConfig(storySlug);
-	return loadMarkdownFile(filePath, config.figures);
+	const rawFile = await fs.readFile(filePath, 'utf-8');
+	const sourceIds = extractSourceIds(rawFile);
+	const [config, sources] = await Promise.all([
+		getStoryConfig(storySlug),
+		loadResolvedSourcesById(sourceIds, locale),
+	]);
+	return loadMarkdownFile(filePath, config.figures, sources);
 }
 
 export async function getResources(
@@ -170,8 +253,13 @@ export async function getStoryDocument(
 	);
 	if (!(await fileExists(filePath))) return null;
 
-	const config = await getStoryConfig(storySlug);
-	return loadMarkdownFile(filePath, config.figures);
+	const rawFile = await fs.readFile(filePath, 'utf-8');
+	const sourceIds = extractSourceIds(rawFile);
+	const [config, sources] = await Promise.all([
+		getStoryConfig(storySlug),
+		loadResolvedSourcesById(sourceIds, locale),
+	]);
+	return loadMarkdownFile(filePath, config.figures, sources);
 }
 
 export async function getStoryDocuments(storySlug: string): Promise<string[]> {

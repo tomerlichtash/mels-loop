@@ -16,6 +16,7 @@
 		"contribute": "Contribute",
 		"articles": "Articles",
 		"codex": "Codex",
+		"sources": "Sources",
 		"moreStories": "More stories",
 		"toggleMenu": "Toggle navigation",
 		"closeMenu": "Close navigation"
@@ -103,6 +104,18 @@
 		"title": "Welcome to Mel's Loop",
 		"description": "Mel's Loop is a guide to the epic hacker folklore tale \"The Story of Mel\". It also aims to collect the stories and sub-stories around the tale, its author, and its main characters, as well as early computing era stories and other related tales.",
 		"cta": "Dive In"
+	},
+	"sources": {
+		"image": "Image",
+		"pdf": "PDF",
+		"audio": "Audio",
+		"video": "Video",
+		"link": "Link",
+		"text": "Text",
+		"archive": "Archive",
+		"other": "Other",
+		"openSource": "Open source",
+		"noSources": "No sources yet"
 	},
 	"stories": "Stories",
 	"loading": "Loading...",

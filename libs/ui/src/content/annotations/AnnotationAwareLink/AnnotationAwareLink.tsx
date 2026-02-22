@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
+import { SourcePopover } from '../../sources/SourcePopover/SourcePopover';
 import { AnnotationPopover } from '../AnnotationPopover/AnnotationPopover';
 import { GlossaryPopover } from '../GlossaryPopover/GlossaryPopover';
 import styles from './AnnotationAwareLink.module.css';
@@ -34,6 +35,10 @@ export function AnnotationAwareLink({
 				{children}
 			</GlossaryPopover>
 		);
+	}
+
+	if (linkType === 'source' && linkTarget) {
+		return <SourcePopover id={linkTarget} label={children} />;
 	}
 
 	if (!href) {

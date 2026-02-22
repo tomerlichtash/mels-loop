@@ -7,6 +7,13 @@ export {
 export { getPage } from './pages';
 export { getAllPosts, getPost } from './posts';
 export {
+	getAllResolvedSources,
+	getResolvedSource,
+	getResolvedStorySources,
+	getSource,
+	getSourceMessages,
+} from './sources';
+export {
 	getAllAnnotations,
 	getAllStories,
 	getAnnotation,

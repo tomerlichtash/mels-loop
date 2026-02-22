@@ -1,6 +1,9 @@
 'use client';
 
-import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
+import type {
+	ProcessedContent,
+	ResolvedSource,
+} from '@mels-loop/content-pipeline/types';
 import {
 	createContext,
 	type ReactNode,
@@ -13,7 +16,7 @@ import {
 } from 'react';
 
 export interface NavStackEntry {
-	type: 'glossary' | 'annotation';
+	type: 'glossary' | 'annotation' | 'source';
 	key: string;
 	label: string;
 }
@@ -21,9 +24,11 @@ export interface NavStackEntry {
 interface PopoverContextValue {
 	annotations: Record<string, ProcessedContent>;
 	glossary: Record<string, ProcessedContent>;
+	sources: Record<string, ResolvedSource>;
 	loadingKeys: Set<string>;
 	loadAnnotation: (key: string) => void;
 	loadGlossaryTerm: (key: string) => void;
+	loadResolvedSource: (id: string) => void;
 	activePopover: string | null;
 	openPopover: (id: string) => void;
 	closePopover: () => void;
@@ -36,9 +41,11 @@ interface PopoverContextValue {
 const PopoverContext = createContext<PopoverContextValue>({
 	annotations: {},
 	glossary: {},
+	sources: {},
 	loadingKeys: new Set(),
 	loadAnnotation: () => {},
 	loadGlossaryTerm: () => {},
+	loadResolvedSource: () => {},
 	activePopover: null,
 	openPopover: () => {},
 	closePopover: () => {},
@@ -51,36 +58,46 @@ const PopoverContext = createContext<PopoverContextValue>({
 interface PopoverProviderProps {
 	annotations?: Record<string, ProcessedContent>;
 	glossary?: Record<string, ProcessedContent>;
+	sources?: Record<string, ResolvedSource>;
 	fetchAnnotation?: (key: string) => Promise<ProcessedContent | null>;
 	fetchGlossary?: (key: string) => Promise<ProcessedContent | null>;
+	fetchResolvedSource?: (id: string) => Promise<ResolvedSource | null>;
 	children: ReactNode;
 }
 
 export function PopoverProvider({
 	annotations: initialAnnotations = {},
 	glossary: initialGlossary = {},
+	sources: initialResolvedSources = {},
 	fetchAnnotation,
 	fetchGlossary,
+	fetchResolvedSource,
 	children,
 }: PopoverProviderProps) {
 	const [annotations, setAnnotations] =
 		useState<Record<string, ProcessedContent>>(initialAnnotations);
 	const [glossary, setGlossary] =
 		useState<Record<string, ProcessedContent>>(initialGlossary);
+	const [sources, setResolvedSources] = useState<
+		Record<string, ResolvedSource>
+	>(initialResolvedSources);
 	const [loadingKeys, setLoadingKeys] = useState<Set<string>>(new Set());
 	const [activePopover, setActivePopover] = useState<string | null>(null);
 	const [navStack, setNavStack] = useState<NavStackEntry[]>([]);
 	const triggersRef = useRef<Map<string, HTMLElement>>(new Map());
 
 	// Always-fresh refs — stable function identities without stale closures
-	const stateRef = useRef({ annotations, glossary, loadingKeys });
-	stateRef.current = { annotations, glossary, loadingKeys };
+	const stateRef = useRef({ annotations, glossary, sources, loadingKeys });
+	stateRef.current = { annotations, glossary, sources, loadingKeys };
 
 	const fetchAnnotationRef = useRef(fetchAnnotation);
 	fetchAnnotationRef.current = fetchAnnotation;
 
 	const fetchGlossaryRef = useRef(fetchGlossary);
 	fetchGlossaryRef.current = fetchGlossary;
+
+	const fetchResolvedSourceRef = useRef(fetchResolvedSource);
+	fetchResolvedSourceRef.current = fetchResolvedSource;
 
 	const loadAnnotation = useCallback((key: string) => {
 		const { annotations: ann, loadingKeys: lk } = stateRef.current;
@@ -105,6 +122,20 @@ export function PopoverProvider({
 			setLoadingKeys((prev) => {
 				const next = new Set(prev);
 				next.delete(key);
+				return next;
+			});
+		});
+	}, []);
+
+	const loadResolvedSource = useCallback((id: string) => {
+		const { sources: src, loadingKeys: lk } = stateRef.current;
+		if (src[id] || lk.has(id) || !fetchResolvedSourceRef.current) return;
+		setLoadingKeys((prev) => new Set(prev).add(id));
+		fetchResolvedSourceRef.current(id).then((source) => {
+			if (source) setResolvedSources((prev) => ({ ...prev, [id]: source }));
+			setLoadingKeys((prev) => {
+				const next = new Set(prev);
+				next.delete(id);
 				return next;
 			});
 		});
@@ -167,9 +198,11 @@ export function PopoverProvider({
 		() => ({
 			annotations,
 			glossary,
+			sources,
 			loadingKeys,
 			loadAnnotation,
 			loadGlossaryTerm,
+			loadResolvedSource,
 			activePopover,
 			openPopover,
 			closePopover,
@@ -181,11 +214,13 @@ export function PopoverProvider({
 		[
 			annotations,
 			glossary,
+			sources,
 			loadingKeys,
 			activePopover,
 			navStack,
 			loadAnnotation,
 			loadGlossaryTerm,
+			loadResolvedSource,
 			openPopover,
 			closePopover,
 			registerTrigger,

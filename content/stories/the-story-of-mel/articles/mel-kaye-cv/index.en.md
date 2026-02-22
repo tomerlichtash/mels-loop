@@ -5,10 +5,11 @@ author: "Tomer Lichtash"
 date: Tue May 21 2023 01:00:00 GMT+0300
 ---
 
-<figure>
-![](https://mels-loop-media.s3.eu-north-1.amazonaws.com/mel-kaye-profile-picture-1951_aark5e.jpg)
+<figure data-max-width="50%">
+![Mel Kaye, 1952](sources/mel-kaye-photo-1952)
 
-<figcaption>Mel Kaye, 1952</figcaption>
+  <figcaption>{{sources/mel-kaye-photo-1952:description}}
+</figcaption>
 </figure>
 
 Mel Kaye (Melvin Kornitzky) was a software engineer, employed at Librascope and at Royal McBee in New York and Los Angeles between the years 1956-1960. Among other programs, he developed a Blackjack game for two models of first-generation digital computers – the LGP-30 and the RPC-4000. His Blackjack game was highly regarded by fellow engineers and computer science students. Mel also conceived the ingenious hack described in The Story of Mel by Ed Nather, which was published on the internet in 1983. Ed Nather’s story won Mel world fame in the hacking community and is regarded as a seminal epic in hacking folklore.

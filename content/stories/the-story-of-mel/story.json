@@ -9,11 +9,16 @@
 		"he": "מדריך מקיף לסיפור על מל"
 	},
 	"featured": true,
-	"sections": ["codex", "articles", "documents", "resources"],
+	"sections": ["codex", "articles", "documents", "resources", "sources"],
 	"articles": ["preface", "mel-kaye-cv", "mels-hack-the-missing-bits"],
 	"documents": ["blackjack-writeup"],
 	"figures": {
 		"auto": true,
 		"template": "Fig. %index%"
-	}
+	},
+	"sources": [
+		"mel-kaye-photo-1952",
+		"librascope-lgp-30-manual",
+		"story-of-mel-original-usenet"
+	]
 }

@@ -1,0 +1,15 @@
+.group {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+}
+
+.groupHeading {
+	text-transform: capitalize;
+}
+
+.cards {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+}

@@ -7,6 +7,26 @@ interface FigureOptions {
 	baseIndex?: number;
 }
 
+const FIGURE_ATTR_KEYS = new Set([
+	'width',
+	'height',
+	'max-width',
+	'max-height',
+]);
+
+function parseFigureAttrs(title: string | null | undefined): string {
+	if (!title) return '';
+	const attrs: string[] = [];
+	for (const pair of title.trim().split(/\s+/)) {
+		const eq = pair.indexOf('=');
+		if (eq < 0) continue;
+		const key = pair.slice(0, eq).toLowerCase();
+		if (!FIGURE_ATTR_KEYS.has(key)) continue;
+		attrs.push(`data-${key}="${pair.slice(eq + 1)}"`);
+	}
+	return attrs.length ? ' ' + attrs.join(' ') : '';
+}
+
 /**
  * Promotes paragraphs containing only an image into <figure> + <figcaption>.
  * When auto=true, generates captions from the template (e.g., "Fig. %index%").
@@ -36,7 +56,7 @@ export function remarkFigures(options: FigureOptions = {}) {
 			// Replace paragraph with figure HTML
 			const figureHtml = {
 				type: 'html' as const,
-				value: `<figure data-figure-index="${figureIndex}"><img src="${image.url}" alt="${image.alt || ''}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`,
+				value: `<figure data-figure-index="${figureIndex}"${parseFigureAttrs(image.title)}><img src="${image.url}" alt="${image.alt || ''}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`,
 			};
 
 			parent.children[index] = figureHtml;

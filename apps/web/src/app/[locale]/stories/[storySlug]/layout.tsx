@@ -23,6 +23,7 @@ const sectionDictKeys: Record<string, string> = {
 	documents: 'nav.documents',
 	codex: 'nav.codex',
 	resources: 'nav.resources',
+	sources: 'nav.sources',
 };
 
 export default async function StorySlugLayout({

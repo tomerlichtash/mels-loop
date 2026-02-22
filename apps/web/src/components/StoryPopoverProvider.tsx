@@ -5,6 +5,7 @@ import { PopoverProvider } from '@mels-loop/ui/content';
 import { type ReactNode, useCallback } from 'react';
 
 import { fetchAnnotation, fetchGlossaryTerm } from '@/actions/annotations';
+import { fetchSourceAction } from '@/actions/sources';
 
 interface StoryPopoverProviderProps {
 	storySlug: string;
@@ -27,10 +28,16 @@ export function StoryPopoverProvider({
 		[locale],
 	);
 
+	const fetchSourceFn = useCallback(
+		(id: string) => fetchSourceAction(id, locale),
+		[locale],
+	);
+
 	return (
 		<PopoverProvider
 			fetchAnnotation={fetchAnnotationFn}
 			fetchGlossary={fetchGlossaryFn}
+			fetchResolvedSource={fetchSourceFn}
 		>
 			{children}
 		</PopoverProvider>

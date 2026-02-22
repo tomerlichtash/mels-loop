@@ -8,9 +8,12 @@ import { unified } from 'unified';
 
 import { rehypeFigureImages } from './plugins/rehype-figure-images';
 import { rehypeLines } from './plugins/rehype-lines';
+import { rehypeSourceImages } from './plugins/rehype-source-images';
 import { remarkAnnotationLinks } from './plugins/remark-annotation-links';
 import { remarkFigures } from './plugins/remark-figures';
 import { remarkGlossaryLinks } from './plugins/remark-glossary-links';
+import { remarkSourceLinks } from './plugins/remark-source-links';
+import { remarkSourceVars } from './plugins/remark-source-vars';
 import { remarkStripComments } from './plugins/remark-strip-comments';
 import { remarkVerse } from './plugins/remark-verse';
 import type { MarkdownProcessOptions } from './types';
@@ -33,9 +36,11 @@ export async function processMarkdown(
 		.use(remarkParse)
 		.use(remarkFrontmatter)
 		.use(remarkStripComments)
+		.use(remarkSourceVars, { sources: options.sources ?? {} })
 		.use(remarkGfm)
 		.use(remarkAnnotationLinks)
 		.use(remarkGlossaryLinks)
+		.use(remarkSourceLinks)
 		.use(remarkFigures, {
 			auto: options.figures?.auto,
 			template: options.figures?.template,
@@ -45,6 +50,7 @@ export async function processMarkdown(
 		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeRaw)
 		.use(rehypeFigureImages)
+		.use(rehypeSourceImages, { sources: options.sources ?? {} })
 		.use(rehypeLines);
 
 	const mdast = processor.parse(sanitized);

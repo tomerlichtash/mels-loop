@@ -1,0 +1,32 @@
+.root {
+	display: inline-block;
+	padding: 0.1rem 0.4rem;
+	border-radius: var(--ml-radius-sm);
+	font-size: var(--ml-font-size-xs);
+	font-weight: var(--ml-font-weight-bold);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	background-color: var(--ml-popover-topic-bg);
+	color: var(--ml-popover-topic-text);
+	border: 1px solid var(--ml-border-color);
+}
+
+.root[data-type='image'] {
+	background-color: color-mix(in srgb, var(--ml-accent) 15%, transparent);
+}
+
+.root[data-type='pdf'] {
+	background-color: color-mix(in srgb, #e74c3c 15%, transparent);
+}
+
+.root[data-type='audio'] {
+	background-color: color-mix(in srgb, #9b59b6 15%, transparent);
+}
+
+.root[data-type='video'] {
+	background-color: color-mix(in srgb, #3498db 15%, transparent);
+}
+
+.root[data-type='link'] {
+	background-color: color-mix(in srgb, #27ae60 15%, transparent);
+}

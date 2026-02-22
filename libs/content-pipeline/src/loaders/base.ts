@@ -3,7 +3,12 @@ import matter from 'gray-matter';
 import path from 'path';
 
 import { processMarkdown } from '../markdown/pipeline';
-import type { ContentMetadata, Locale, ProcessedContent } from '../types';
+import type {
+	ContentMetadata,
+	Locale,
+	ProcessedContent,
+	ResolvedSource,
+} from '../types';
 
 const ENV_KEY = 'CONTENT_PIPELINE_DIR';
 
@@ -33,6 +38,7 @@ export async function fileExists(filePath: string): Promise<boolean> {
 export async function loadMarkdownFile(
 	filePath: string,
 	figureOptions?: { auto?: boolean; template?: string; base_index?: number },
+	sources?: Record<string, ResolvedSource>,
 ): Promise<ProcessedContent> {
 	const raw = await fs.readFile(filePath, 'utf-8');
 	const { data, content } = matter(raw);
@@ -41,6 +47,7 @@ export async function loadMarkdownFile(
 	const hast = await processMarkdown(content, {
 		parseMode: metadata.parse_mode,
 		figures: figureOptions ?? metadata.figures,
+		sources,
 	});
 
 	return { metadata, hast, raw: content };
