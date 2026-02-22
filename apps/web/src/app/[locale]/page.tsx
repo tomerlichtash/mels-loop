@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Container, Heading, Button } from '@mels-loop/ui/primitives';
 import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@mels-loop/i18n/server';
+import { getDictionary } from '@/i18n';
 import {
 	getAllStories,
 	getStoryConfig,

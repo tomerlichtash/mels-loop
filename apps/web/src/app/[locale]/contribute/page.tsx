@@ -1,5 +1,5 @@
 import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@mels-loop/i18n/server';
+import { getDictionary } from '@/i18n';
 import { getPage } from '@mels-loop/content-pipeline/loaders';
 import { StaticPage } from '@/components/StaticPage/StaticPage';
 import { homeItem, dictGet } from '@/lib/breadcrumbs';

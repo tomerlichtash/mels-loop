@@ -1,6 +1,5 @@
 import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
-import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@mels-loop/i18n/server';
+import { getDictionary } from '@/i18n';
 import { ContactPage } from '@mels-loop/forms/ContactPage';
 
 interface PageProps {
@@ -9,23 +8,14 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
 	const { locale } = await params;
-	const dict = await getDictionary(locale as Locale);
-
-	const title =
-		typeof dict === 'object' &&
-		dict !== null &&
-		'contact' in dict &&
-		typeof dict.contact === 'object' &&
-		dict.contact !== null &&
-		'pageTitle' in dict.contact
-			? String(dict.contact.pageTitle)
-			: 'Contact';
+	const dict = await getDictionary(locale);
+	const contact = dict.contact as Record<string, string>;
 
 	return (
 		<Container>
 			<Stack gap="lg">
-				<Heading order={1}>{title}</Heading>
-				<ContactPage locale={locale} />
+				<Heading order={1}>{contact.pageTitle ?? 'Contact'}</Heading>
+				<ContactPage subtitle={contact.pageSubtitle} text={contact.pageText} />
 			</Stack>
 		</Container>
 	);

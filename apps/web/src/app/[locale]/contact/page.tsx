@@ -1,5 +1,5 @@
 import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@mels-loop/i18n/server';
+import { getDictionary } from '@/i18n';
 import { StaticPage } from '@/components/StaticPage/StaticPage';
 import { ContactPage } from '@mels-loop/forms/ContactPage';
 import { homeItem, dictGet } from '@/lib/breadcrumbs';
@@ -23,7 +23,13 @@ export default async function Page({ params }: PageProps) {
 				{ label: title },
 			]}
 		>
-			<ContactPage locale={locale} />
+			<ContactPage
+				subtitle={dictGet(
+					dict as Record<string, unknown>,
+					'contact.pageSubtitle',
+				)}
+				text={dictGet(dict as Record<string, unknown>, 'contact.pageText')}
+			/>
 		</StaticPage>
 	);
 }

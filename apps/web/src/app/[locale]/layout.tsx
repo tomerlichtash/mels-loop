@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import { getDirection, isValidLocale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@mels-loop/i18n/server';
+import { getDictionary } from '@/i18n';
 import { I18nProvider } from '@mels-loop/i18n/client';
 import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
 import { SiteLayout } from '@mels-loop/ui/layout';

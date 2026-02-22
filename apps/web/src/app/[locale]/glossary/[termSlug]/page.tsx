@@ -7,7 +7,7 @@ import {
 	getGlossaryTerm,
 	getAllGlossarySlugs,
 } from '@mels-loop/content-pipeline/loaders';
-import { getDictionary } from '@mels-loop/i18n/server';
+import { getDictionary } from '@/i18n';
 import { ContentRenderer } from '@mels-loop/ui/content';
 import { homeItem, dictGet } from '@/lib/breadcrumbs';
 import styles from './page.module.css';

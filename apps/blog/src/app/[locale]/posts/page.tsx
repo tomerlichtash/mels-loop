@@ -1,6 +1,6 @@
 import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
 import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@mels-loop/i18n/server';
+import { getDictionary } from '@/i18n';
 import { getAllPosts, getPost } from '@mels-loop/content-pipeline/loaders';
 import { PostList } from '@/components/posts/PostList';
 

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Heading, Stack, Card, Group, Text } from '@mels-loop/ui/primitives';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
 import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@mels-loop/i18n/server';
+import { getDictionary } from '@/i18n';
 import {
 	getStoryConfig,
 	getStoryArticles,

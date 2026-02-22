@@ -3,7 +3,7 @@ import { Heading, Text, Stack } from '@mels-loop/ui/primitives';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
 import type { Locale } from '@mels-loop/i18n/config';
 import { locales } from '@mels-loop/i18n/config';
-import { getDictionary } from '@mels-loop/i18n/server';
+import { getDictionary } from '@/i18n';
 import {
 	getStoryArticle,
 	getStoryArticles,

@@ -8,7 +8,6 @@
 	},
 	"exports": {
 		"./config": "./src/config.ts",
-		"./server": "./src/server.ts",
 		"./client": "./src/client.tsx",
 		"./middleware": "./src/middleware.ts",
 		"./locale-cookie": "./src/locale-cookie.ts"

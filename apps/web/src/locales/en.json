@@ -1,0 +1,120 @@
+{
+	"siteTitle": "Mel's Loop",
+	"siteSubtitle": "A Comprehensive Guide to The Story of Mel",
+	"siteLicenseLabel": "cc",
+	"siteLicenseAttrs": "by-sa",
+	"error404": "Page not found",
+	"errorGeneral": "Error",
+	"nav": {
+		"home": "Home",
+		"about": "About",
+		"blog": "Blog",
+		"resources": "Resources",
+		"glossary": "Glossary",
+		"documents": "Documents",
+		"contact": "Contact",
+		"contribute": "Contribute",
+		"articles": "Articles",
+		"codex": "Codex",
+		"moreStories": "More stories",
+		"toggleMenu": "Toggle navigation",
+		"closeMenu": "Close navigation"
+	},
+	"menu": {
+		"articles": "Articles",
+		"info": "Info",
+		"contact": "Contact"
+	},
+	"menuItems": {
+		"preface": "Preface",
+		"melKayeBio": "Mel Kaye – CV",
+		"melsHack": "Mel's Hack – The Missing Bits",
+		"about": "About",
+		"blog": "Blog",
+		"resources": "Resources",
+		"contribute": "Contribute",
+		"contact": "Contact",
+		"twitter": "Twitter",
+		"github": "Github"
+	},
+	"menuDescriptions": {
+		"about": "Mel's Loop is a guide to the epic hacker folklore tale \"The Story of Mel\". It also aims to collect the stories and sub-stories around the tale, its author, and its main characters, as well as early computing era stories and other related tales.",
+		"blog": "News and Updates",
+		"resources": "Web Resources for The Story of Mel",
+		"contribute": "TBD",
+		"contact": "Drop us a line!",
+		"twitter": "Follow us @aboutmelsloop",
+		"github": "Project source code"
+	},
+	"contact": {
+		"pageTitle": "Contact Us",
+		"pageSubtitle": "We'd love to hear from you about anything and everything!",
+		"pageText": "As our community of developers and hackers is growing we'd love to hear your thoughts, ideas, recommendations and feedbacks. Use this contact form to deliver your message directly to us, and we will get back to you shortly via e-mail. You're also welcome to e-mail us at about@melsloop.com.",
+		"formTitle": "Contact Form",
+		"formSubtitle": "Please fill in this form and we will get back to you regarding any issue.",
+		"labelName": "Your Name",
+		"labelEmail": "Your Email",
+		"labelMessage": "Message",
+		"placeholderName": "Enter your full name here",
+		"placeholderEmail": "Enter a valid e-mail address",
+		"placeholderMessage": "Type your message here",
+		"successBackHome": "Back to homepage",
+		"failReportProblem": "We will appreciate if you report problem to support@melsloop.com",
+		"invalidName": "Name cannot be blank",
+		"invalidEmail": "Please enter a valid e-mail address",
+		"invalidMessage": "Message cannot be empty. What's on your mind?",
+		"successMessage": "Your message was sent successfully!",
+		"failMessage": "Some error occurred and your message was not sent :(",
+		"send": "Send",
+		"sending": "Sending...",
+		"captchaTooltip": "Please validate you're not a robot"
+	},
+	"content": {
+		"figure": "Figure",
+		"figureAbbr": "Fig.",
+		"glossaryLabel": "Glossary",
+		"sourceLabel": "Source",
+		"sourcesLabel": "Sources",
+		"copied": "Copied!"
+	},
+	"footer": {
+		"pages": "Pages",
+		"links": "Links"
+	},
+	"locale": {
+		"group": "Switch language",
+		"label": {
+			"en": "EN",
+			"he": "ע"
+		},
+		"switchTo": {
+			"en": "Switch to English",
+			"he": "Switch to Hebrew"
+		}
+	},
+	"theme": {
+		"toggle": "Toggle Theme",
+		"switchTo": {
+			"dark": "Switch to dark mode",
+			"light": "Switch to light mode"
+		}
+	},
+	"hero": {
+		"title": "Welcome to Mel's Loop",
+		"description": "Mel's Loop is a guide to the epic hacker folklore tale \"The Story of Mel\". It also aims to collect the stories and sub-stories around the tale, its author, and its main characters, as well as early computing era stories and other related tales.",
+		"cta": "Dive In"
+	},
+	"stories": "Stories",
+	"loading": "Loading...",
+	"learnMore": "Learn More",
+	"back": "Back",
+	"featured": {
+		"date": "May 21st 2023",
+		"title": "The Story of Mel – 40th Anniversary",
+		"subtitle": "A fictional character or a real programmer? Finally, a biographical article unfolds the life of Mel Kaye, who hacked his way to greener pa$ture$ to become a hacking legend",
+		"linkPrefix": "Read full article",
+		"linkText": "Mel Kaye – CV",
+		"imageAlt": "Photo of Mel Kaye, 1952",
+		"badge": "New!"
+	}
+}
