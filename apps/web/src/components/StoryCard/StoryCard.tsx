@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Text } from '@mels-loop/ui/primitives';
 import type { Locale, StoryConfig } from '@mels-loop/content-pipeline/types';
 import styles from './StoryCard.module.css';
@@ -10,9 +11,9 @@ interface StoryCardProps {
 export function StoryCard({ config, locale }: StoryCardProps) {
 	return (
 		<div className={styles.root}>
-			<a href={`/stories/${config.slug}`} className={styles.title}>
+			<Link href={`/stories/${config.slug}`} className={styles.title}>
 				{config.title[locale]}
-			</a>
+			</Link>
 			<Text size="sm" color="dimmed" component="p" className={styles.abstract}>
 				{config.abstract[locale]}
 			</Text>

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Heading, Stack, Card, Group, Text } from '@mels-loop/ui/primitives';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
 import type { Locale } from '@mels-loop/i18n/config';
@@ -47,7 +48,7 @@ export default async function ArticlesListingPage({ params }: PageProps) {
 						<Text weight={500} component="span" capitalize>
 							{slug.replace(/-/g, ' ')}
 						</Text>
-						<a href={`/stories/${storySlug}/articles/${slug}`}>Read</a>
+						<Link href={`/stories/${storySlug}/articles/${slug}`}>Read</Link>
 					</Group>
 				</Card>
 			))}

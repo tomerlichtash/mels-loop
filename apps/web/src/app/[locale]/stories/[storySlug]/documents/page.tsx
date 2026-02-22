@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Heading, Stack, Card, Group, Text } from '@mels-loop/ui/primitives';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
 import type { Locale } from '@mels-loop/i18n/config';
@@ -55,7 +56,9 @@ export default async function DocumentsListingPage({ params }: PageProps) {
 								</Text>
 							)}
 						</div>
-						<a href={`/stories/${storySlug}/documents/${doc.slug}`}>Read</a>
+						<Link href={`/stories/${storySlug}/documents/${doc.slug}`}>
+							Read
+						</Link>
 					</Group>
 				</Card>
 			))}

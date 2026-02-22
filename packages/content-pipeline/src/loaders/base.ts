@@ -4,19 +4,20 @@ import matter from 'gray-matter';
 import { processMarkdown } from '../markdown/pipeline';
 import type { ProcessedContent, ContentMetadata, Locale } from '../types';
 
-let _contentDir: string | null = null;
+const ENV_KEY = 'CONTENT_PIPELINE_DIR';
 
 export function setContentDir(dir: string): void {
-	_contentDir = dir;
+	process.env[ENV_KEY] = dir;
 }
 
 export function getContentDir(): string {
-	if (!_contentDir) {
+	const dir = process.env[ENV_KEY];
+	if (!dir) {
 		throw new Error(
 			'Content directory not set. Call setContentDir() before using loaders.',
 		);
 	}
-	return _contentDir;
+	return dir;
 }
 
 export async function fileExists(filePath: string): Promise<boolean> {

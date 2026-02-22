@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Card, Text, Group } from '@mels-loop/ui/primitives';
 import styles from './GlossaryEntry.module.css';
 
@@ -16,9 +17,9 @@ export function GlossaryEntry({ slug }: GlossaryEntryProps) {
 				<Text weight={500} component="span">
 					{displayName}
 				</Text>
-				<a href={`/glossary/${slug}`} className={styles.link}>
+				<Link href={`/glossary/${slug}`} className={styles.link}>
 					View
-				</a>
+				</Link>
 			</Group>
 		</Card>
 	);

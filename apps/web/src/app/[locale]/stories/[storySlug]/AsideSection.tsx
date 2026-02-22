@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { AsideSection } from './Asides';
 import styles from './Asides.module.css';
 
@@ -12,7 +13,7 @@ export function AsideSection({ section, pathname }: AsideSectionProps) {
 	return (
 		<div className={styles.section}>
 			<h3 className={styles.sectionTitle}>
-				<a
+				<Link
 					href={section.href}
 					className={[styles.sectionLink, isSectionActive ? styles.active : '']
 						.filter(Boolean)
@@ -20,7 +21,7 @@ export function AsideSection({ section, pathname }: AsideSectionProps) {
 					aria-current={isSectionActive ? 'page' : undefined}
 				>
 					{section.label}
-				</a>
+				</Link>
 			</h3>
 			{section.items.length > 0 && (
 				<ul className={styles.list}>
@@ -28,7 +29,7 @@ export function AsideSection({ section, pathname }: AsideSectionProps) {
 						const isActive = pathname.endsWith(item.href);
 						return (
 							<li key={item.slug}>
-								<a
+								<Link
 									href={item.href}
 									className={[styles.link, isActive ? styles.active : '']
 										.filter(Boolean)
@@ -36,7 +37,7 @@ export function AsideSection({ section, pathname }: AsideSectionProps) {
 									aria-current={isActive ? 'page' : undefined}
 								>
 									{item.title}
-								</a>
+								</Link>
 								{item.author && (
 									<span className={styles.author}>{item.author}</span>
 								)}

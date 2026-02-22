@@ -16,7 +16,9 @@
 		"contribute": "Contribute",
 		"articles": "Articles",
 		"codex": "Codex",
-		"moreStories": "More stories"
+		"moreStories": "More stories",
+		"toggleMenu": "Toggle navigation",
+		"closeMenu": "Close navigation"
 	},
 	"menu": {
 		"articles": "Articles",
@@ -92,8 +94,10 @@
 	},
 	"theme": {
 		"toggle": "Toggle Theme",
-		"switchToDark": "Switch to dark mode",
-		"switchToLight": "Switch to light mode"
+		"switchTo": {
+			"dark": "Switch to dark mode",
+			"light": "Switch to light mode"
+		}
 	},
 	"hero": {
 		"title": "Welcome to Mel's Loop",

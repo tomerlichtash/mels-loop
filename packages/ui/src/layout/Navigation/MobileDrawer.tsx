@@ -24,7 +24,10 @@ export function MobileDrawer({ opened, onClose, navItems }: MobileDrawerProps) {
 						<Dialog.Title className={styles.title}>
 							{t('siteTitle')}
 						</Dialog.Title>
-						<Dialog.Close className={styles.close} aria-label="Close">
+						<Dialog.Close
+							className={styles.close}
+							aria-label={t('nav.closeMenu')}
+						>
 							&times;
 						</Dialog.Close>
 					</div>

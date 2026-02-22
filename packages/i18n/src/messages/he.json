@@ -16,7 +16,9 @@
 		"contribute": "תרומה והשתתפות",
 		"articles": "מאמרים",
 		"codex": "קודקס",
-		"moreStories": "סיפורים נוספים"
+		"moreStories": "סיפורים נוספים",
+		"toggleMenu": "פתיחת תפריט",
+		"closeMenu": "סגירת תפריט"
 	},
 	"menu": {
 		"articles": "מאמרים",
@@ -92,8 +94,10 @@
 	},
 	"theme": {
 		"toggle": "החלפת צבע אתר",
-		"switchToDark": "מעבר למצב כהה",
-		"switchToLight": "מעבר למצב בהיר"
+		"switchTo": {
+			"dark": "מעבר למצב כהה",
+			"light": "מעבר למצב בהיר"
+		}
 	},
 	"hero": {
 		"title": "ברוכים הבאים ללולאת מל",
