@@ -7,7 +7,7 @@ import { useEffect, useId, useRef } from 'react';
 import { Loader } from '../../../primitives/Loader/Loader';
 import { NavBar } from '../../annotations/internal/NavBar/NavBar';
 import { useAnnotations } from '../../annotations/PopoverProvider/PopoverProvider';
-import { SourceBadge } from '../SourceBadge/SourceBadge';
+import { SourceDetail } from '../SourceDetail/SourceDetail';
 import styles from './SourcePopover.module.css';
 
 interface SourcePopoverProps {
@@ -76,7 +76,7 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 										<Loader size="md" />
 									</div>
 								) : (
-									<SourceContent source={source} />
+									<SourceDetail source={source} />
 								)}
 							</div>
 						</div>
@@ -84,70 +84,5 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 				</Popover.Content>
 			</Popover.Portal>
 		</Popover.Root>
-	);
-}
-
-function SourceContent({ source }: { source: ResolvedSource }) {
-	return (
-		<div className={styles.content}>
-			<div className={styles.header}>
-				<SourceBadge type={source.type} />
-				<p className={styles.title}>{source.title}</p>
-			</div>
-			{source.type === 'image' && source.url && (
-				<div className={styles.imageWrap}>
-					<img src={source.url} alt={source.title} className={styles.image} />
-				</div>
-			)}
-			{source.description && (
-				<p className={styles.description}>{source.description}</p>
-			)}
-			<dl className={styles.meta}>
-				{source.author && (
-					<>
-						<dt>Author</dt>
-						<dd>{source.author}</dd>
-					</>
-				)}
-				{source.date && (
-					<>
-						<dt>Date</dt>
-						<dd>{source.date}</dd>
-					</>
-				)}
-				{source.credit && (
-					<>
-						<dt>Credit</dt>
-						<dd>{source.credit}</dd>
-					</>
-				)}
-				{source.license && (
-					<>
-						<dt>License</dt>
-						<dd>{source.license}</dd>
-					</>
-				)}
-			</dl>
-			{source.type !== 'image' && source.url && (
-				<a
-					href={source.url}
-					className={styles.openLink}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Open source ↗
-				</a>
-			)}
-			{source.type === 'image' && source.url && (
-				<a
-					href={source.url}
-					className={styles.openLink}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					View full image ↗
-				</a>
-			)}
-		</div>
 	);
 }

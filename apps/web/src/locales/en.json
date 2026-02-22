@@ -106,6 +106,7 @@
 		"cta": "Dive In"
 	},
 	"sources": {
+		"all": "All",
 		"image": "Image",
 		"pdf": "PDF",
 		"audio": "Audio",

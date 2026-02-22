@@ -1,5 +1,6 @@
 import type { Root as HastRoot } from 'hast';
 import rehypeRaw from 'rehype-raw';
+import remarkDirective from 'remark-directive';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
@@ -7,9 +8,11 @@ import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 
 import { rehypeFigureImages } from './plugins/rehype-figure-images';
+import { rehypeFigureIndex } from './plugins/rehype-figure-index';
 import { rehypeLines } from './plugins/rehype-lines';
 import { rehypeSourceImages } from './plugins/rehype-source-images';
 import { remarkAnnotationLinks } from './plugins/remark-annotation-links';
+import { remarkColsDirective } from './plugins/remark-cols-directive';
 import { remarkFigures } from './plugins/remark-figures';
 import { remarkGlossaryLinks } from './plugins/remark-glossary-links';
 import { remarkSourceLinks } from './plugins/remark-source-links';
@@ -41,16 +44,19 @@ export async function processMarkdown(
 		.use(remarkAnnotationLinks)
 		.use(remarkGlossaryLinks)
 		.use(remarkSourceLinks)
-		.use(remarkFigures, {
-			auto: options.figures?.auto,
-			template: options.figures?.template,
-			baseIndex: options.figures?.base_index ?? options.figureIndex ?? 0,
-		})
+		.use(remarkFigures)
+		.use(remarkDirective)
+		.use(remarkColsDirective)
 		.use(remarkVerse, { parseMode: options.parseMode })
 		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeRaw)
 		.use(rehypeFigureImages)
 		.use(rehypeSourceImages, { sources: options.sources ?? {} })
+		.use(rehypeFigureIndex, {
+			auto: options.figures?.auto,
+			template: options.figures?.template,
+			baseIndex: options.figures?.base_index ?? options.figureIndex ?? 0,
+		})
 		.use(rehypeLines);
 
 	const mdast = processor.parse(sanitized);

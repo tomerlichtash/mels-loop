@@ -1,3 +1,40 @@
+.filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--ml-space-xs);
+}
+
+.filterButton {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: 0.3rem 0.7rem;
+	border: 1px solid var(--ml-border-color);
+	border-radius: var(--ml-radius-sm);
+	background: none;
+	font: inherit;
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-color);
+	cursor: pointer;
+	transition:
+		background-color var(--ml-duration-fast) ease,
+		border-color var(--ml-duration-fast) ease;
+}
+
+.filterButton:hover {
+	background-color: var(--ml-background-color-alt);
+}
+
+.filterButton[data-active] {
+	background-color: var(--ml-popover-topic-bg);
+	border-color: var(--ml-text-muted-color);
+}
+
+.filterCount {
+	font-size: var(--ml-font-size-xs);
+	color: var(--ml-text-muted-color);
+}
+
 .group {
 	display: flex;
 	flex-direction: column;
@@ -6,6 +43,9 @@
 
 .groupHeading {
 	text-transform: capitalize;
+	margin: 0;
+	font-size: var(--ml-font-size-md);
+	font-weight: var(--ml-font-weight-bold);
 }
 
 .cards {

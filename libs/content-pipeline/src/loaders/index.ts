@@ -8,6 +8,7 @@ export { getPage } from './pages';
 export { getAllPosts, getPost } from './posts';
 export {
 	getAllResolvedSources,
+	getAllSourceIds,
 	getResolvedSource,
 	getResolvedStorySources,
 	getSource,

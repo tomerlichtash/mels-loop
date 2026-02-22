@@ -11,7 +11,8 @@ import {
 	Blockquote,
 	Code,
 	CodeBlock,
-	Figure,
+	ContentLayout,
+	FigureDialog,
 	Heading,
 	HorizontalDivider,
 	Image,
@@ -51,11 +52,12 @@ function defaultComponents(): ComponentOverrides {
 		a: AnnotationAwareLink,
 		code: Code,
 		hr: HorizontalDivider,
-		figure: Figure,
+		figure: FigureDialog,
 		pre: CodeBlock,
 		table: Table,
 		img: Image,
 		line: Line,
+		div: ContentLayout,
 	};
 }
 

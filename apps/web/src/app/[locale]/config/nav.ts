@@ -7,7 +7,7 @@ import type {
 
 export const navItems: NavItem[] = [
 	{ key: 'stories', href: '/stories', hasContent: true },
-	{ key: 'nav.blog', href: '/posts' },
+	{ key: 'nav.sources', href: '/sources' },
 	{ key: 'nav.about', href: '/about' },
 	{ key: 'nav.contact', href: '/contact' },
 ];

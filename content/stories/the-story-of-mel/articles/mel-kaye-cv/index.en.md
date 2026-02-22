@@ -5,24 +5,29 @@ author: "Tomer Lichtash"
 date: Tue May 21 2023 01:00:00 GMT+0300
 ---
 
-<figure data-max-width="50%">
+:::cols{ratio=1-2}
+<figure>
 ![Mel Kaye, 1952](sources/mel-kaye-photo-1952)
-
-  <figcaption>{{sources/mel-kaye-photo-1952:description}}
-</figcaption>
+<figcaption>{{sources/mel-kaye-photo-1952:description}}</figcaption>
 </figure>
 
-Mel Kaye (Melvin Kornitzky) was a software engineer, employed at Librascope and at Royal McBee in New York and Los Angeles between the years 1956-1960. Among other programs, he developed a Blackjack game for two models of first-generation digital computers – the LGP-30 and the RPC-4000. His Blackjack game was highly regarded by fellow engineers and computer science students. Mel also conceived the ingenious hack described in The Story of Mel by Ed Nather, which was published on the internet in 1983. Ed Nather’s story won Mel world fame in the hacking community and is regarded as a seminal epic in hacking folklore.
+Mel Kaye (Melvin Kornitzky) was a software engineer, employed at Librascope and at Royal McBee in New York and Los Angeles between the years 1956-1960. Among other programs, he developed a Blackjack game for two models of first-generation digital computers – the LGP-30 and the RPC-4000. His Blackjack game was highly regarded by fellow engineers and c omputer science students. Mel also conceived the ingenious hack described in The Story of Mel by Ed Nather, which was published on the internet in 1983. Ed Nather’s story won Mel world fame in the hacking community and is regarded as a seminal epic in hacking folklore.
+:::
 
+::::cols{ratio=2-1}
+:::col
 Mel was born on January 14th, 1931, in Brooklyn, NY, as Melvin Kornitzky, son of Esther and Herman Kaye, and younger sibling of Shirley (born April 27th, 1926). During his early childhood, the family relocated to the West Coast and later settled in Lemon Grove, Los Angeles.
 
 After passing away in 2018, Mel was buried in Pierce Brothers Valley Oaks-Griffin Memorial Park, Los Angeles.
+:::
 
+:::col
 <figure>
 ![](https://mels-loop-media.s3.eu-north-1.amazonaws.com/mel-kaye-grave-at-pierce-brothers-valley-oaks-griffin-memorial-park-los-angeles_kmkoie.jpg)
-
 <figcaption>Mel’s grave at the Pierce Brothers Valley Oaks-Griffin Memorial Park, Los Angeles. Photo: Mel’s Loop</figcaption>
 </figure>
+:::
+::::
 
 ## The University Years
 

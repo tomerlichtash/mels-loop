@@ -70,6 +70,11 @@ async function getAllSources(): Promise<Source[]> {
 	}
 }
 
+export async function getAllSourceIds(): Promise<string[]> {
+	const sources = await getAllSources();
+	return sources.map((s) => s.id);
+}
+
 export async function getAllResolvedSources(
 	locale: Locale,
 ): Promise<ResolvedSource[]> {

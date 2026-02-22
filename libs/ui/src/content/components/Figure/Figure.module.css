@@ -21,3 +21,13 @@
 	color: var(--ml-figure-caption-color);
 	margin-top: var(--ml-space-sm);
 }
+
+.root figcaption[data-align='left'] {
+	text-align: left;
+}
+.root figcaption[data-align='right'] {
+	text-align: right;
+}
+.root figcaption[data-align='center'] {
+	text-align: center;
+}

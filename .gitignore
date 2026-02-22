@@ -50,3 +50,5 @@ temp/
 .next
 
 storybook-static
+
+.playwright-mcp

@@ -1,12 +1,6 @@
 import type { Image, Paragraph, Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 
-interface FigureOptions {
-	auto?: boolean;
-	template?: string;
-	baseIndex?: number;
-}
-
 const FIGURE_ATTR_KEYS = new Set([
 	'width',
 	'height',
@@ -29,15 +23,10 @@ function parseFigureAttrs(title: string | null | undefined): string {
 
 /**
  * Promotes paragraphs containing only an image into <figure> + <figcaption>.
- * When auto=true, generates captions from the template (e.g., "Fig. %index%").
+ * Indexing is handled separately by rehypeFigureIndex.
  */
-export function remarkFigures(options: FigureOptions = {}) {
-	const { auto = false, template = 'Fig. %index%', baseIndex = 0 } = options;
-	let figureIndex = baseIndex;
-
+export function remarkFigures() {
 	return (tree: Root) => {
-		figureIndex = baseIndex;
-
 		visit(tree, 'paragraph', (node: Paragraph, index, parent) => {
 			if (!parent || typeof index !== 'number') return;
 
@@ -47,16 +36,12 @@ export function remarkFigures(options: FigureOptions = {}) {
 			}
 
 			const image = node.children[0] as Image;
-			figureIndex++;
-
-			const caption = auto
-				? template.replace('%index%', String(figureIndex))
-				: image.alt || '';
+			const caption = image.alt || '';
 
 			// Replace paragraph with figure HTML
 			const figureHtml = {
 				type: 'html' as const,
-				value: `<figure data-figure-index="${figureIndex}"${parseFigureAttrs(image.title)}><img src="${image.url}" alt="${image.alt || ''}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`,
+				value: `<figure${parseFigureAttrs(image.title)}><img src="${image.url}" alt="${image.alt || ''}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`,
 			};
 
 			parent.children[index] = figureHtml;

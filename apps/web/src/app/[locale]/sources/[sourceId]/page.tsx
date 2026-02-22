@@ -1,0 +1,53 @@
+import {
+	getAllSourceIds,
+	getResolvedSource,
+} from '@mels-loop/content-pipeline/loaders';
+import { type Locale, locales } from '@mels-loop/i18n/config';
+import { dictGet } from '@mels-loop/i18n/dict';
+import { Breadcrumbs } from '@mels-loop/ui/layout';
+import { Heading, Stack } from '@mels-loop/ui/primitives';
+import { notFound } from 'next/navigation';
+
+import { getDictionary } from '@/i18n';
+import { homeItemFromDict } from '@/lib/breadcrumbs';
+
+import { SourceDetailView } from './SourceDetailView';
+
+interface PageProps {
+	params: Promise<{ locale: string; sourceId: string }>;
+}
+
+export async function generateStaticParams() {
+	const ids = await getAllSourceIds();
+	return ids.flatMap((sourceId) =>
+		locales.map((locale) => ({ locale, sourceId })),
+	);
+}
+
+export default async function SourceDetailPage({ params }: PageProps) {
+	const { locale, sourceId } = await params;
+	const typedLocale = locale as Locale;
+
+	const [source, dict] = await Promise.all([
+		getResolvedSource(sourceId, typedLocale),
+		getDictionary(typedLocale),
+	]);
+
+	if (!source) notFound();
+
+	const sourcesLabel = dictGet(dict, 'nav.sources');
+
+	return (
+		<Stack gap="lg">
+			<Breadcrumbs
+				items={[
+					homeItemFromDict(dict),
+					{ label: sourcesLabel, href: '/sources' },
+					{ label: source.title },
+				]}
+			/>
+			<Heading order={1}>{source.title}</Heading>
+			<SourceDetailView source={source} />
+		</Stack>
+	);
+}

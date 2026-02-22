@@ -1,7 +1,9 @@
 export { default as Blockquote } from './Blockquote/Blockquote';
 export { default as Code } from './Code/Code';
 export { default as CodeBlock } from './CodeBlock/CodeBlock';
+export { default as ContentLayout } from './ContentLayout/ContentLayout';
 export { default as Figure } from './Figure/Figure';
+export { default as FigureDialog } from './FigureDialog/FigureDialog';
 export type { HeadingLevel } from './Heading/Heading';
 export { default as Heading } from './Heading/Heading';
 export { default as HorizontalDivider } from './HorizontalDivider/HorizontalDivider';
