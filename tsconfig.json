@@ -3,11 +3,11 @@
 	"compilerOptions": {},
 	"include": [],
 	"references": [
-		{ "path": "packages/i18n" },
-		{ "path": "packages/content-pipeline" },
-		{ "path": "packages/ui" },
-		{ "path": "packages/forms" },
-		{ "path": "packages/test-utils" },
+		{ "path": "libs/i18n" },
+		{ "path": "libs/content-pipeline" },
+		{ "path": "libs/ui" },
+		{ "path": "libs/forms" },
+		{ "path": "libs/test-utils" },
 		{ "path": "apps/blog" },
 		{ "path": "apps/web" }
 	]

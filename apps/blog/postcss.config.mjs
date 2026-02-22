@@ -6,9 +6,7 @@ import postcssCustomMedia from 'postcss-custom-media';
 const config = {
 	plugins: [
 		postcssGlobalData({
-			files: [
-				join(process.cwd(), '../../packages/ui/src/styles/tokens/media.css'),
-			],
+			files: [join(process.cwd(), '../../libs/ui/src/styles/tokens/media.css')],
 		}),
 		postcssCustomMedia(),
 	],
