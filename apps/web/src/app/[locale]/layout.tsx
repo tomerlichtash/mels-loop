@@ -7,7 +7,7 @@ import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
 import { SiteLayout } from '@mels-loop/ui/layout';
 import { robotoSlab, assistant } from '@mels-loop/ui/fonts';
 import '@mels-loop/ui/styles/globals.css';
-import { FaviconAnimator } from '@/components/FaviconAnimator';
+// import { FaviconAnimator } from '@/components/FaviconAnimator';
 import { footerLinks, localeOptions } from './config/nav';
 import { resolveNavItems } from './resolveNavItems';
 import '../../content-init';
@@ -51,7 +51,7 @@ export default async function Layout({
 						footerLinks={footerLinks}
 						locales={localeOptions}
 					>
-						<FaviconAnimator />
+						{/* <FaviconAnimator /> */}
 						{children}
 					</SiteLayout>
 				</I18nProvider>

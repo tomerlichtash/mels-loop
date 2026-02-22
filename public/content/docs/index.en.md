@@ -1,5 +1,0 @@
----
-title: "Docs"
----
-
-Main Docs
