@@ -116,7 +116,13 @@
 		"archive": "ארכיון",
 		"other": "אחר",
 		"openSource": "פתיחת מקור",
-		"noSources": "אין מקורות עדיין"
+		"noSources": "אין מקורות עדיין",
+		"colName": "שם",
+		"colDescription": "תיאור",
+		"colType": "סוג",
+		"colDate": "תאריך",
+		"colSource": "מקור",
+		"searchPlaceholder": "חיפוש מקורות..."
 	},
 	"stories": "סיפורים",
 	"loading": "טוען...",

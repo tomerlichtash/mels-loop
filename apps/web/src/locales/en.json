@@ -116,7 +116,13 @@
 		"archive": "Archive",
 		"other": "Other",
 		"openSource": "Open source",
-		"noSources": "No sources yet"
+		"noSources": "No sources yet",
+		"colName": "Name",
+		"colDescription": "Description",
+		"colType": "Type",
+		"colDate": "Date",
+		"colSource": "Source",
+		"searchPlaceholder": "Search sources..."
 	},
 	"stories": "Stories",
 	"loading": "Loading...",

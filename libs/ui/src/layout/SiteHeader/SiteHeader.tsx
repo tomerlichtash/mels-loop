@@ -93,15 +93,7 @@ export function SiteHeader({
 				<nav className={styles.desktopNav}>
 					<NavMenu navItems={navItems} />
 				</nav>
-				<Separator.Root
-					orientation="vertical"
-					className={styles.rightDivider}
-				/>
 				<LocaleSwitcher locales={locales} />
-				<Separator.Root
-					orientation="vertical"
-					className={styles.rightDivider}
-				/>
 				<Tooltip label={themeLabel}>
 					<ThemeSwitcher aria-label={themeLabel} />
 				</Tooltip>

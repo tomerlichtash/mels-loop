@@ -12,10 +12,16 @@
 		"sitemap": "tsx scripts/generate-sitemap.ts"
 	},
 	"dependencies": {
+		"@dnd-kit/core": "^6.3.1",
+		"@dnd-kit/sortable": "^10.0.0",
+		"@dnd-kit/utilities": "^3.2.2",
 		"@mels-loop/content-pipeline": "workspace:*",
 		"@mels-loop/forms": "workspace:*",
 		"@mels-loop/i18n": "workspace:*",
 		"@mels-loop/ui": "workspace:*",
+		"@radix-ui/react-scroll-area": "^1.2.10",
+		"@tanstack/react-table": "^8.21.3",
+		"@tanstack/react-virtual": "^3.13.18",
 		"next": "^16.1.6",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
