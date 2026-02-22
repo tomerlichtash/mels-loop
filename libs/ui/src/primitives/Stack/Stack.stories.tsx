@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { Stack } from './Stack';
 
 const items = ['Item one', 'Item two', 'Item three'];

@@ -1,24 +1,26 @@
-import type { ReactNode } from 'react';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import '@mels-loop/ui/styles/globals.css';
+import '../../content-init';
+
+import { I18nProvider } from '@mels-loop/i18n/client';
 import {
 	getDirection,
 	isValidLocale,
-	locales as localeCodes,
 	type Locale,
+	locales as localeCodes,
 } from '@mels-loop/i18n/config';
-import { getDictionary } from '@/i18n';
-import { I18nProvider } from '@mels-loop/i18n/client';
 import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
-import { SiteLayout } from '@mels-loop/ui/layout';
-import type {
-	NavItem,
-	FooterLinkColumn,
-	LocaleOption,
+import { assistant, robotoSlab } from '@mels-loop/ui/fonts';
+import {
+	type FooterLinkColumn,
+	type LocaleOption,
+	type NavItem,
+	SiteLayout,
 } from '@mels-loop/ui/layout';
-import { robotoSlab, assistant } from '@mels-loop/ui/fonts';
-import '@mels-loop/ui/styles/globals.css';
-import '../../content-init';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import type { ReactNode } from 'react';
+
+import { getDictionary } from '@/i18n';
 
 const navItems: NavItem[] = [
 	{ key: 'nav.home', href: '' },

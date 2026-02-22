@@ -1,16 +1,16 @@
 'use client';
 
+import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
 import {
 	createContext,
-	useContext,
-	useState,
-	useCallback,
-	useEffect,
-	useRef,
-	useMemo,
 	type ReactNode,
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
 } from 'react';
-import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
 
 export interface NavStackEntry {
 	type: 'glossary' | 'annotation';
@@ -178,7 +178,20 @@ export function PopoverProvider({
 			pushNav,
 			popNavTo,
 		}),
-		[annotations, glossary, loadingKeys, activePopover, navStack],
+		[
+			annotations,
+			glossary,
+			loadingKeys,
+			activePopover,
+			navStack,
+			loadAnnotation,
+			loadGlossaryTerm,
+			openPopover,
+			closePopover,
+			registerTrigger,
+			pushNav,
+			popNavTo,
+		],
 	);
 
 	return (

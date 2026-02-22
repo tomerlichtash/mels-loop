@@ -1,6 +1,7 @@
-import Link from 'next/link';
-import { Text } from '@mels-loop/ui/primitives';
 import type { Locale, StoryConfig } from '@mels-loop/content-pipeline/types';
+import { Text } from '@mels-loop/ui/primitives';
+import Link from 'next/link';
+
 import styles from './StoryCard.module.css';
 
 interface StoryCardProps {

@@ -1,11 +1,11 @@
 'use client';
 
 import {
+	Button,
 	Container,
 	Heading,
-	Text,
-	Button,
 	Stack,
+	Text,
 } from '@mels-loop/ui/primitives';
 
 export default function LocaleError({

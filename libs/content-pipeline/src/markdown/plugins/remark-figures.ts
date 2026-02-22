@@ -1,4 +1,4 @@
-import type { Root, Paragraph, Image } from 'mdast';
+import type { Image, Paragraph, Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 
 interface FigureOptions {

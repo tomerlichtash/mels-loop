@@ -1,12 +1,14 @@
-import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@/i18n';
 import {
 	getAllStories,
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
+import type { Locale } from '@mels-loop/i18n/config';
+import { dictGet } from '@mels-loop/i18n/dict';
+
 import { StaticPage } from '@/components/StaticPage/StaticPage';
 import { StoryCard } from '@/components/StoryCard/StoryCard';
-import { homeItem, dictGet } from '@/lib/breadcrumbs';
+import { getDictionary } from '@/i18n';
+import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 interface PageProps {
 	params: Promise<{ locale: string }>;
@@ -29,15 +31,12 @@ export default async function StoriesPage({ params }: PageProps) {
 		a.featured === b.featured ? 0 : a.featured ? -1 : 1,
 	);
 
-	const title = dictGet(dict as Record<string, unknown>, 'stories');
+	const title = dictGet(dict, 'stories');
 
 	return (
 		<StaticPage
 			title={title}
-			breadcrumbs={[
-				homeItem(locale, dictGet(dict as Record<string, unknown>, 'nav.home')),
-				{ label: title },
-			]}
+			breadcrumbs={[homeItemFromDict(dict), { label: title }]}
 		>
 			<div>
 				{sorted.map((config) => (

@@ -1,9 +1,8 @@
-import type { ReactNode } from 'react';
-import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
-import { Breadcrumbs } from '@mels-loop/ui/layout';
-import type { BreadcrumbItem } from '@mels-loop/ui/layout';
 import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
 import { ContentRenderer } from '@mels-loop/ui/content';
+import { type BreadcrumbItem, Breadcrumbs } from '@mels-loop/ui/layout';
+import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
+import type { ReactNode } from 'react';
 
 interface StaticPageProps {
 	title: string;

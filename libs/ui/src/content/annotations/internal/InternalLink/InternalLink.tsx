@@ -1,7 +1,8 @@
 'use client';
 
-import { isValidElement, type ReactNode } from 'react';
 import Link from 'next/link';
+import { isValidElement, type ReactNode } from 'react';
+
 import { useAnnotations } from '../../PopoverProvider/PopoverProvider';
 import styles from './InternalLink.module.css';
 

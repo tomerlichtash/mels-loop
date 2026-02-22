@@ -1,10 +1,10 @@
-import { notFound } from 'next/navigation';
-import { Container, Heading, Text, Stack } from '@mels-loop/ui/primitives';
-import type { Locale } from '@mels-loop/i18n/config';
-import { locales } from '@mels-loop/i18n/config';
-import { getPost, getAllPosts } from '@mels-loop/content-pipeline/loaders';
+import { getAllPosts, getPost } from '@mels-loop/content-pipeline/loaders';
+import { type Locale, locales } from '@mels-loop/i18n/config';
 import { ContentRenderer } from '@mels-loop/ui/content';
+import { Container, Heading, Stack, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
 import styles from './page.module.css';
 
 interface PageProps {

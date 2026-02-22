@@ -1,8 +1,9 @@
 'use client';
 
+import { useTranslation } from '@mels-loop/i18n/client';
 import * as Dialog from '@radix-ui/react-dialog';
 import Link from 'next/link';
-import { useTranslation } from '@mels-loop/i18n/client';
+
 import type { NavItem } from '../types';
 import styles from './MobileDrawer.module.css';
 

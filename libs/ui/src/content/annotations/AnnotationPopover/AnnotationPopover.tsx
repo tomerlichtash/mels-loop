@@ -1,13 +1,14 @@
 'use client';
 
-import { useId, useRef, useEffect, useMemo } from 'react';
 import * as Popover from '@radix-ui/react-popover';
-import { useAnnotations } from '../PopoverProvider/PopoverProvider';
-import { ContentRenderer } from '../../ContentRenderer/ContentRenderer';
-import { NavBar } from '../internal/NavBar/NavBar';
-import { InternalLink } from '../internal/InternalLink/InternalLink';
-import { useContent } from '../internal/useContent/useContent';
+import { useEffect, useId, useMemo, useRef } from 'react';
+
 import { Loader } from '../../../primitives/Loader/Loader';
+import { ContentRenderer } from '../../ContentRenderer/ContentRenderer';
+import { InternalLink } from '../internal/InternalLink/InternalLink';
+import { NavBar } from '../internal/NavBar/NavBar';
+import { useContent } from '../internal/useContent/useContent';
+import { useAnnotations } from '../PopoverProvider/PopoverProvider';
 import styles from './AnnotationPopover.module.css';
 
 interface AnnotationPopoverProps {

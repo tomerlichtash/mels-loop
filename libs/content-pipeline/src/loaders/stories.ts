@@ -1,16 +1,17 @@
 import fs from 'fs/promises';
-import path from 'path';
 import matter from 'gray-matter';
+import path from 'path';
+
 import type {
-	ProcessedContent,
-	StoryConfig,
 	ArticleMeta,
 	Locale,
+	ProcessedContent,
+	StoryConfig,
 } from '../types';
 import {
+	contentPath,
 	fileExists,
 	loadMarkdownFile,
-	contentPath,
 	localeFileName,
 } from './base';
 

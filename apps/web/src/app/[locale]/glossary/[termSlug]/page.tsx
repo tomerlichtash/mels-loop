@@ -1,15 +1,17 @@
-import { notFound } from 'next/navigation';
-import { Container, Heading, Text, Stack } from '@mels-loop/ui/primitives';
-import { Breadcrumbs } from '@mels-loop/ui/layout';
-import type { Locale } from '@mels-loop/i18n/config';
-import { locales } from '@mels-loop/i18n/config';
 import {
-	getGlossaryTerm,
 	getAllGlossarySlugs,
+	getGlossaryTerm,
 } from '@mels-loop/content-pipeline/loaders';
-import { getDictionary } from '@/i18n';
+import { type Locale, locales } from '@mels-loop/i18n/config';
+import { dictGet } from '@mels-loop/i18n/dict';
 import { ContentRenderer } from '@mels-loop/ui/content';
-import { homeItem, dictGet } from '@/lib/breadcrumbs';
+import { Breadcrumbs } from '@mels-loop/ui/layout';
+import { Container, Heading, Stack, Text } from '@mels-loop/ui/primitives';
+import { notFound } from 'next/navigation';
+
+import { getDictionary } from '@/i18n';
+import { homeItemFromDict } from '@/lib/breadcrumbs';
+
 import styles from './page.module.css';
 
 interface PageProps {
@@ -39,12 +41,9 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 			<Stack gap="lg">
 				<Breadcrumbs
 					items={[
-						homeItem(
-							locale,
-							dictGet(dict as Record<string, unknown>, 'nav.home'),
-						),
+						homeItemFromDict(dict),
 						{
-							label: dictGet(dict as Record<string, unknown>, 'nav.glossary'),
+							label: dictGet(dict, 'nav.glossary'),
 							href: `/glossary`,
 						},
 						{ label: displayName },

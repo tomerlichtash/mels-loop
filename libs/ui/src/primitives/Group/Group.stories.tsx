@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { Group } from './Group';
 
 const items = ['Alpha', 'Beta', 'Gamma', 'Delta'];

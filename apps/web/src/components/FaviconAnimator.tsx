@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+
 import { animateFavicon } from './favicon-animator';
 
 const ANIMATOR_OPTIONS = {

@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
 import { Container } from '@mels-loop/ui/primitives';
+import type { ReactNode } from 'react';
+
 import styles from './Story.module.css';
 
 interface StoryProps {

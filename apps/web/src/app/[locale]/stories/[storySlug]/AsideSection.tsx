@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import type { AsideSection } from './Asides';
 import styles from './Asides.module.css';
 

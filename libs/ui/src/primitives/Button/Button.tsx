@@ -1,6 +1,7 @@
-import type { ReactNode, ButtonHTMLAttributes } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import cn from 'classnames';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+
 import { Loader } from '../Loader/Loader';
 import styles from './Button.module.css';
 

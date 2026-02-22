@@ -1,5 +1,6 @@
+import { Card, Group, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
-import { Card, Text, Group } from '@mels-loop/ui/primitives';
+
 import styles from './GlossaryEntry.module.css';
 
 interface GlossaryEntryProps {

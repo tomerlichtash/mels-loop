@@ -1,9 +1,10 @@
-import { type Locale } from '@mels-loop/i18n/config';
-import type { NavItem } from '@mels-loop/ui/layout';
 import {
 	getAllStories,
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
+import { type Locale } from '@mels-loop/i18n/config';
+import type { NavItem } from '@mels-loop/ui/layout';
+
 import { navItems } from './config/nav';
 
 export async function resolveNavItems(locale: Locale): Promise<NavItem[]> {

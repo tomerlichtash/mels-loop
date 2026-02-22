@@ -1,4 +1,5 @@
 import { Text } from '@mels-loop/ui/primitives';
+
 import { ContactForm } from './ContactForm';
 
 interface ContactPageProps {

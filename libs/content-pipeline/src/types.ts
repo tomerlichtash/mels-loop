@@ -1,5 +1,5 @@
-import type { Root as HastRoot } from 'hast';
 import type { Locale } from '@mels-loop/i18n/config';
+import type { Root as HastRoot } from 'hast';
 
 export type { Locale };
 

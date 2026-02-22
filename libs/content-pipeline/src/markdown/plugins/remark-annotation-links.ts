@@ -1,4 +1,4 @@
-import type { Root, Link } from 'mdast';
+import type { Link, Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 
 const ANNOTATION_RE = /^annotations?\//i;

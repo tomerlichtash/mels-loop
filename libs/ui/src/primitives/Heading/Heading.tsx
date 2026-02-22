@@ -1,5 +1,6 @@
-import type { ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
+import type { HTMLAttributes, ReactNode } from 'react';
+
 import styles from './Heading.module.css';
 
 type HeadingOrder = 1 | 2 | 3 | 4 | 5 | 6;

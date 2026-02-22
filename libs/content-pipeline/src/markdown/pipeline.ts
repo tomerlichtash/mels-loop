@@ -1,18 +1,19 @@
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkGfm from 'remark-gfm';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkRehype from 'remark-rehype';
-import rehypeRaw from 'rehype-raw';
 import type { Root as HastRoot } from 'hast';
-import type { MarkdownProcessOptions } from './types';
-import { remarkStripComments } from './plugins/remark-strip-comments';
-import { remarkAnnotationLinks } from './plugins/remark-annotation-links';
-import { remarkGlossaryLinks } from './plugins/remark-glossary-links';
-import { remarkFigures } from './plugins/remark-figures';
-import { remarkVerse } from './plugins/remark-verse';
+import rehypeRaw from 'rehype-raw';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkGfm from 'remark-gfm';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import { unified } from 'unified';
+
 import { rehypeFigureImages } from './plugins/rehype-figure-images';
 import { rehypeLines } from './plugins/rehype-lines';
+import { remarkAnnotationLinks } from './plugins/remark-annotation-links';
+import { remarkFigures } from './plugins/remark-figures';
+import { remarkGlossaryLinks } from './plugins/remark-glossary-links';
+import { remarkStripComments } from './plugins/remark-strip-comments';
+import { remarkVerse } from './plugins/remark-verse';
+import type { MarkdownProcessOptions } from './types';
 
 /**
  * Escape angle brackets around email-like addresses so rehype-raw

@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo } from 'react';
 import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
+import { useMemo } from 'react';
+
 import { useAnnotations } from '../../PopoverProvider/PopoverProvider';
 
 interface ContentResult {

@@ -1,12 +1,14 @@
-import { notFound } from 'next/navigation';
-import { Heading, Text, Stack } from '@mels-loop/ui/primitives';
-import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@/i18n';
 import { getCodex, getStoryConfig } from '@mels-loop/content-pipeline/loaders';
+import type { Locale } from '@mels-loop/i18n/config';
+import { dictGet } from '@mels-loop/i18n/dict';
 import { ContentRenderer } from '@mels-loop/ui/content';
-import { homeItem, dictGet } from '@/lib/breadcrumbs';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
+import { Heading, Stack, Text } from '@mels-loop/ui/primitives';
+import { notFound } from 'next/navigation';
+
 import { StoryPopoverProvider } from '@/components/StoryPopoverProvider';
+import { getDictionary } from '@/i18n';
+import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string }>;
@@ -25,16 +27,13 @@ export default async function CodexPage({ params }: PageProps) {
 	if (!content) notFound();
 
 	const storyTitle = config.title[typedLocale];
-	const codexLabel = dictGet(dict as Record<string, unknown>, 'nav.codex');
+	const codexLabel = dictGet(dict, 'nav.codex');
 
 	return (
 		<Stack gap="lg">
 			<Breadcrumbs
 				items={[
-					homeItem(
-						locale,
-						dictGet(dict as Record<string, unknown>, 'nav.home'),
-					),
+					homeItemFromDict(dict),
 					{ label: storyTitle, href: `/stories/${storySlug}` },
 					{ label: codexLabel },
 				]}

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+
 import styles from './Table.module.css';
 
 interface TableProps {

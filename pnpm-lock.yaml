@@ -218,6 +218,10 @@ importers:
       typescript-eslint:
         specifier: ^8.34.0
         version: 8.56.0(eslint@9.39.2)(typescript@5.9.3)
+    devDependencies:
+      eslint-plugin-simple-import-sort:
+        specifier: ^12.1.1
+        version: 12.1.1(eslint@9.39.2)
 
   libs/forms:
     dependencies:
@@ -2181,6 +2185,11 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
+
+  eslint-plugin-simple-import-sort@12.1.1:
+    resolution: {integrity: sha512-6nuzu4xwQtE3332Uz0to+TxDQYRLTKRESSc2hefVT48Zc8JthmN23Gx9lnYhu0FtkRSL1oxny3kJ2aveVhmOVA==}
+    peerDependencies:
+      eslint: '>=5.0.0'
 
   eslint-scope@8.4.0:
     resolution: {integrity: sha512-sNXOfKCn74rt8RICKMvJS7XKV/Xk9kA7DyJr8mJik3S7Cwgy3qlkkmyS2uQB3jiJg6VNdZd/pDBJu0nvG2NlTg==}
@@ -5143,6 +5152,10 @@ snapshots:
       eslint: 9.39.2
 
   eslint-plugin-react-hooks@5.2.0(eslint@9.39.2):
+    dependencies:
+      eslint: 9.39.2
+
+  eslint-plugin-simple-import-sort@12.1.1(eslint@9.39.2):
     dependencies:
       eslint: 9.39.2
 

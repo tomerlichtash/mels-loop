@@ -1,7 +1,8 @@
 'use client';
 
-import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { useTranslation } from '@mels-loop/i18n/client';
+import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
+
 import { useColorScheme } from '../../color-scheme/useColorScheme';
 import { Tooltip } from '../../primitives/Tooltip/Tooltip';
 import styles from './ThemeSwitcher.module.css';

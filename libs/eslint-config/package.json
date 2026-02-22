@@ -11,8 +11,11 @@
 	"dependencies": {
 		"@next/eslint-plugin-next": "^16.1.6",
 		"eslint": "^9.27.0",
-		"eslint-plugin-react-hooks": "^5.2.0",
 		"eslint-config-prettier": "^10.1.5",
+		"eslint-plugin-react-hooks": "^5.2.0",
 		"typescript-eslint": "^8.34.0"
+	},
+	"devDependencies": {
+		"eslint-plugin-simple-import-sort": "^12.1.1"
 	}
 }

@@ -1,9 +1,10 @@
 import fs from 'fs/promises';
-import type { ProcessedContent, Locale } from '../types';
+
+import type { Locale, ProcessedContent } from '../types';
 import {
+	contentPath,
 	fileExists,
 	loadMarkdownFile,
-	contentPath,
 	localeFileName,
 } from './base';
 

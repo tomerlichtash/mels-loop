@@ -1,5 +1,6 @@
-import type { ReactNode, HTMLAttributes, ElementType } from 'react';
 import cn from 'classnames';
+import type { ElementType, HTMLAttributes, ReactNode } from 'react';
+
 import styles from './Text.module.css';
 
 type TextSize = 'xs' | 'sm' | 'md' | 'lg';

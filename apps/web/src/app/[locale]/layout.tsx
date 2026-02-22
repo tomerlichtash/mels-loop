@@ -1,16 +1,19 @@
-import type { ReactNode } from 'react';
-import { notFound } from 'next/navigation';
-import { getDirection, isValidLocale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@/i18n';
-import { I18nProvider } from '@mels-loop/i18n/client';
-import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
-import { SiteLayout } from '@mels-loop/ui/layout';
-import { robotoSlab, assistant } from '@mels-loop/ui/fonts';
 import '@mels-loop/ui/styles/globals.css';
+import '../../content-init';
+
+import { I18nProvider } from '@mels-loop/i18n/client';
+import { getDirection, isValidLocale } from '@mels-loop/i18n/config';
+import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
+import { assistant, robotoSlab } from '@mels-loop/ui/fonts';
+import { SiteLayout } from '@mels-loop/ui/layout';
+import { notFound } from 'next/navigation';
+import type { ReactNode } from 'react';
+
+import { getDictionary } from '@/i18n';
+
 // import { FaviconAnimator } from '@/components/FaviconAnimator';
 import { footerLinks, localeOptions } from './config/nav';
 import { resolveNavItems } from './resolveNavItems';
-import '../../content-init';
 
 export { generateMetadata } from './config/metadata';
 

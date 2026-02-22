@@ -1,5 +1,6 @@
-import type { Metadata } from 'next';
 import { type Locale } from '@mels-loop/i18n/config';
+import type { Metadata } from 'next';
+
 import { getDictionary } from '@/i18n';
 
 export async function generateMetadata({
@@ -9,12 +10,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
 	const { locale } = await params;
 	const dict = await getDictionary(locale as Locale);
-	const siteTitle = String(
-		(dict as Record<string, unknown>).siteTitle ?? "Mel's Loop",
-	);
+	const siteTitle = String(dict.siteTitle ?? "Mel's Loop");
 	const description = String(
-		(dict as Record<string, unknown>).siteSubtitle ??
-			'A Comprehensive Guide to The Story of Mel',
+		dict.siteSubtitle ?? 'A Comprehensive Guide to The Story of Mel',
 	);
 
 	return {

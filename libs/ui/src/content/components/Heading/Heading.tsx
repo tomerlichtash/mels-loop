@@ -1,5 +1,6 @@
-import type { ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
+import type { HTMLAttributes, ReactNode } from 'react';
+
 import { Heading as HeadingPrimitive } from '../../../primitives/Heading/Heading';
 import styles from './Heading.module.css';
 

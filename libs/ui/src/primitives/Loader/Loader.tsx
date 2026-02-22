@@ -1,5 +1,6 @@
-import type { HTMLAttributes } from 'react';
 import cn from 'classnames';
+import type { HTMLAttributes } from 'react';
+
 import styles from './Loader.module.css';
 
 interface LoaderProps extends HTMLAttributes<HTMLSpanElement> {

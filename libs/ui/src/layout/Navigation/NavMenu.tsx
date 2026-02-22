@@ -1,9 +1,10 @@
 'use client';
 
+import { useTranslation } from '@mels-loop/i18n/client';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import Link from 'next/link';
-import { useTranslation } from '@mels-loop/i18n/client';
 import { usePathname } from 'next/navigation';
+
 import type { NavItem } from '../types';
 import styles from './NavMenu.module.css';
 

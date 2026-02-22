@@ -1,12 +1,14 @@
-import Link from 'next/link';
-import { Container, Heading, Button } from '@mels-loop/ui/primitives';
-import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@/i18n';
 import {
 	getAllStories,
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
+import type { Locale } from '@mels-loop/i18n/config';
+import { Button, Container, Heading } from '@mels-loop/ui/primitives';
+import Link from 'next/link';
+
 import { StoryCard } from '@/components/StoryCard/StoryCard';
+import { getDictionary } from '@/i18n';
+
 import styles from './page.module.css';
 
 interface PageProps {

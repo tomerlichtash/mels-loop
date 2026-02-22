@@ -1,6 +1,7 @@
-import { Stack } from '@mels-loop/ui/primitives';
-import { PostCard } from './PostCard';
 import type { ContentMetadata } from '@mels-loop/content-pipeline/types';
+import { Stack } from '@mels-loop/ui/primitives';
+
+import { PostCard } from './PostCard';
 
 interface PostListProps {
 	posts: Array<{ slug: string; metadata: ContentMetadata }>;

@@ -1,4 +1,4 @@
-import type { Root, Element, Text } from 'hast';
+import type { Element, Root, Text } from 'hast';
 import { visit } from 'unist-util-visit';
 
 const IMAGE_RE = /!\[([^\]]*)\]\(([^)]+)\)/g;

@@ -1,18 +1,19 @@
-import { notFound } from 'next/navigation';
-import { Heading, Text, Stack } from '@mels-loop/ui/primitives';
-import { Breadcrumbs } from '@mels-loop/ui/layout';
-import type { Locale } from '@mels-loop/i18n/config';
-import { locales } from '@mels-loop/i18n/config';
-import { getDictionary } from '@/i18n';
 import {
+	getAllStories,
+	getStoryConfig,
 	getStoryDocument,
 	getStoryDocuments,
-	getStoryConfig,
-	getAllStories,
 } from '@mels-loop/content-pipeline/loaders';
+import { type Locale, locales } from '@mels-loop/i18n/config';
+import { dictGet } from '@mels-loop/i18n/dict';
 import { ContentRenderer } from '@mels-loop/ui/content';
-import { homeItem, dictGet } from '@/lib/breadcrumbs';
+import { Breadcrumbs } from '@mels-loop/ui/layout';
+import { Heading, Stack, Text } from '@mels-loop/ui/primitives';
+import { notFound } from 'next/navigation';
+
 import { StoryPopoverProvider } from '@/components/StoryPopoverProvider';
+import { getDictionary } from '@/i18n';
+import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string; docSlug: string }>;
@@ -47,10 +48,7 @@ export default async function DocumentPage({ params }: PageProps) {
 	if (!content) notFound();
 
 	const storyTitle = config.title[typedLocale];
-	const documentsLabel = dictGet(
-		dict as Record<string, unknown>,
-		'nav.documents',
-	);
+	const documentsLabel = dictGet(dict, 'nav.documents');
 	const docTitle =
 		content.metadata.title ||
 		docSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
@@ -59,10 +57,7 @@ export default async function DocumentPage({ params }: PageProps) {
 		<Stack gap="lg">
 			<Breadcrumbs
 				items={[
-					homeItem(
-						locale,
-						dictGet(dict as Record<string, unknown>, 'nav.home'),
-					),
+					homeItemFromDict(dict),
 					{ label: storyTitle, href: `/stories/${storySlug}` },
 					{ label: documentsLabel, href: `/stories/${storySlug}/documents` },
 					{ label: docTitle },

@@ -1,8 +1,9 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { AsideSection } from './AsideSection';
+
 import styles from './Asides.module.css';
+import { AsideSection } from './AsideSection';
 
 export interface AsideItem {
 	slug: string;

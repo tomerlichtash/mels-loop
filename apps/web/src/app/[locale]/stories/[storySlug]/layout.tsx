@@ -1,16 +1,17 @@
-import type { ReactNode } from 'react';
-import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@/i18n';
 import {
-	getStoryConfig,
 	getArticleMeta,
 	getDocumentMeta,
+	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
-import { Story } from './Story';
-import { Asides } from './Asides';
-import type { AsideSection } from './Asides';
 import type { ArticleMeta } from '@mels-loop/content-pipeline/types';
-import { dictGet } from '@/lib/breadcrumbs';
+import type { Locale } from '@mels-loop/i18n/config';
+import { dictGet } from '@mels-loop/i18n/dict';
+import type { ReactNode } from 'react';
+
+import { getDictionary } from '@/i18n';
+
+import { Asides, type AsideSection } from './Asides';
+import { Story } from './Story';
 
 interface LayoutProps {
 	children: ReactNode;
@@ -45,10 +46,7 @@ export default async function StorySlugLayout({
 
 	const sections: AsideSection[] = config.sections.map((section) => ({
 		key: section,
-		label: dictGet(
-			dict as Record<string, unknown>,
-			sectionDictKeys[section] ?? section,
-		),
+		label: dictGet(dict, sectionDictKeys[section] ?? section),
 		href: `/stories/${storySlug}/${section}`,
 		items: (metaBySection[section] ?? []).map((item) => ({
 			slug: item.slug,

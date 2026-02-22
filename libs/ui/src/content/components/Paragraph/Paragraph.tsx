@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
 import cn from 'classnames';
+import type { ReactNode } from 'react';
+
 import styles from './Paragraph.module.css';
 
 interface ParagraphProps {

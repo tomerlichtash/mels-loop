@@ -1,4 +1,5 @@
-import { Card, Text, Group } from '@mels-loop/ui/primitives';
+import { Card, Group, Text } from '@mels-loop/ui/primitives';
+
 import styles from './PostCard.module.css';
 
 interface PostCardProps {

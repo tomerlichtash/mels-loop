@@ -1,23 +1,23 @@
-export { setContentDir, getContentDir, loadMarkdownFile } from './base';
+export { getContentDir, loadMarkdownFile, setContentDir } from './base';
 export {
-	getStoryConfig,
-	getStory,
-	getAllStories,
-	getStoryArticle,
-	getStoryArticles,
-	getArticleMeta,
-	getDocumentMeta,
-	getStoryDocument,
-	getStoryDocuments,
-	getAnnotation,
-	getAllAnnotations,
-	getCodex,
-	getResources,
-} from './stories';
-export {
+	getAllGlossarySlugs,
 	getAllGlossaryTerms,
 	getGlossaryTerm,
-	getAllGlossarySlugs,
 } from './glossary';
-export { getPost, getAllPosts } from './posts';
 export { getPage } from './pages';
+export { getAllPosts, getPost } from './posts';
+export {
+	getAllAnnotations,
+	getAllStories,
+	getAnnotation,
+	getArticleMeta,
+	getCodex,
+	getDocumentMeta,
+	getResources,
+	getStory,
+	getStoryArticle,
+	getStoryArticles,
+	getStoryConfig,
+	getStoryDocument,
+	getStoryDocuments,
+} from './stories';

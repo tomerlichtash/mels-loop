@@ -1,7 +1,8 @@
 'use client';
 
-import type { ReactNode } from 'react';
 import Link from 'next/link';
+import type { ReactNode } from 'react';
+
 import { AnnotationPopover } from '../AnnotationPopover/AnnotationPopover';
 import { GlossaryPopover } from '../GlossaryPopover/GlossaryPopover';
 import styles from './AnnotationAwareLink.module.css';

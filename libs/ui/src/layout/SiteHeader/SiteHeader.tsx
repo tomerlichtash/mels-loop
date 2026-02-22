@@ -1,14 +1,15 @@
 'use client';
 
-import { memo } from 'react';
 import { useTranslation } from '@mels-loop/i18n/client';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 import * as Separator from '@radix-ui/react-separator';
-import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { memo } from 'react';
+
 import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
 import { NavMenu } from '../Navigation/NavMenu';
-import type { NavItem, LocaleOption } from '../types';
+import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
+import type { LocaleOption, NavItem } from '../types';
 import styles from './SiteHeader.module.css';
 
 interface SiteHeaderProps {

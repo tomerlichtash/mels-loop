@@ -1,25 +1,26 @@
 'use client';
 
-import { useMemo } from 'react';
 import cn from 'classnames';
+import type { ElementContent, Root as HastRoot } from 'hast';
 import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
-import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
-import type { Root as HastRoot, ElementContent } from 'hast';
+import { useMemo } from 'react';
+import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
+
+import { AnnotationAwareLink } from '../annotations/AnnotationAwareLink/AnnotationAwareLink';
 import {
-	Heading,
-	Paragraph,
 	Blockquote,
-	List,
-	ListItem,
 	Code,
-	HorizontalDivider,
-	Figure,
 	CodeBlock,
-	Table,
+	Figure,
+	Heading,
+	HorizontalDivider,
 	Image,
 	Line,
+	List,
+	ListItem,
+	Paragraph,
+	Table,
 } from '../components';
-import { AnnotationAwareLink } from '../annotations/AnnotationAwareLink/AnnotationAwareLink';
 import styles from './ContentRenderer.module.css';
 
 type ComponentOverrides = Record<

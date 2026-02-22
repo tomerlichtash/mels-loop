@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
 import cn from 'classnames';
+import type { ReactNode } from 'react';
+
 import styles from './Code.module.css';
 
 interface CodeProps {

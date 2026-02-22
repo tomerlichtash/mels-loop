@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, useContext, useCallback, type ReactNode } from 'react';
+import { createContext, type ReactNode, useCallback, useContext } from 'react';
+
 import type { Locale } from './config';
 
 type Messages = Record<string, unknown>;

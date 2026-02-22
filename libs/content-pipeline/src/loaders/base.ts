@@ -1,8 +1,9 @@
 import fs from 'fs/promises';
-import path from 'path';
 import matter from 'gray-matter';
+import path from 'path';
+
 import { processMarkdown } from '../markdown/pipeline';
-import type { ProcessedContent, ContentMetadata, Locale } from '../types';
+import type { ContentMetadata, Locale, ProcessedContent } from '../types';
 
 const ENV_KEY = 'CONTENT_PIPELINE_DIR';
 

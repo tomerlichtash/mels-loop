@@ -10,7 +10,8 @@
 		"./config": "./src/config.ts",
 		"./client": "./src/client.tsx",
 		"./middleware": "./src/middleware.ts",
-		"./locale-cookie": "./src/locale-cookie.ts"
+		"./locale-cookie": "./src/locale-cookie.ts",
+		"./dict": "./src/dict.ts"
 	},
 	"peerDependencies": {
 		"next": "^16.0.0",

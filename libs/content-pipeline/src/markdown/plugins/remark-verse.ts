@@ -1,4 +1,4 @@
-import type { Root, Text, Paragraph } from 'mdast';
+import type { Paragraph, Root, Text } from 'mdast';
 import { visit } from 'unist-util-visit';
 
 interface VerseOptions {

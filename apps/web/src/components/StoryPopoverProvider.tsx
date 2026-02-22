@@ -1,8 +1,9 @@
 'use client';
 
-import { useCallback, type ReactNode } from 'react';
 import type { Locale } from '@mels-loop/i18n/config';
 import { PopoverProvider } from '@mels-loop/ui/content';
+import { type ReactNode, useCallback } from 'react';
+
 import { fetchAnnotation, fetchGlossaryTerm } from '@/actions/annotations';
 
 interface StoryPopoverProviderProps {

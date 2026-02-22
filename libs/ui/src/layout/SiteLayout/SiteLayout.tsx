@@ -1,10 +1,11 @@
 'use client';
 
 import { type ReactNode, useState } from 'react';
-import { SiteHeader } from '../SiteHeader/SiteHeader';
-import { SiteFooter } from '../SiteFooter/SiteFooter';
+
 import { MobileDrawer } from '../Navigation/MobileDrawer';
-import type { NavItem, FooterLinkColumn, LocaleOption } from '../types';
+import { SiteFooter } from '../SiteFooter/SiteFooter';
+import { SiteHeader } from '../SiteHeader/SiteHeader';
+import type { FooterLinkColumn, LocaleOption, NavItem } from '../types';
 import styles from './SiteLayout.module.css';
 
 interface SiteLayoutProps {

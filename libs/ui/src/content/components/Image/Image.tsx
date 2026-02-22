@@ -1,4 +1,5 @@
 import NextImage from 'next/image';
+
 import styles from './Image.module.css';
 
 const OPTIMIZED_HOSTS = ['mels-loop-media.s3.eu-north-1.amazonaws.com'];

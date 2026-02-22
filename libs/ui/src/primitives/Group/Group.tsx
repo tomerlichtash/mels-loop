@@ -1,5 +1,6 @@
-import type { ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
+import type { HTMLAttributes, ReactNode } from 'react';
+
 import styles from './Group.module.css';
 
 type GapSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';

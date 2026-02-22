@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
 import { t } from '@mels-loop/test-utils/i18n';
 import { getLocalePath } from '@mels-loop/test-utils/locale';
+import { expect, test } from '@playwright/test';
 
 test.describe('Locale Switcher', () => {
 	test('switches from English to Hebrew', async ({ page }) => {

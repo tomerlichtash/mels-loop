@@ -1,11 +1,11 @@
-import Link from 'next/link';
 import {
+	Button,
 	Container,
 	Heading,
-	Text,
-	Button,
 	Stack,
+	Text,
 } from '@mels-loop/ui/primitives';
+import Link from 'next/link';
 
 export default function LocaleNotFound() {
 	return (

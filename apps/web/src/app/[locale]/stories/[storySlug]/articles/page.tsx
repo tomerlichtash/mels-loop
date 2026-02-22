@@ -1,13 +1,15 @@
-import Link from 'next/link';
-import { Heading, Stack, Card, Group, Text } from '@mels-loop/ui/primitives';
-import { Breadcrumbs } from '@mels-loop/ui/layout';
-import type { Locale } from '@mels-loop/i18n/config';
-import { getDictionary } from '@/i18n';
 import {
-	getStoryConfig,
 	getStoryArticles,
+	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
-import { homeItem, dictGet } from '@/lib/breadcrumbs';
+import type { Locale } from '@mels-loop/i18n/config';
+import { dictGet } from '@mels-loop/i18n/dict';
+import { Breadcrumbs } from '@mels-loop/ui/layout';
+import { Card, Group, Heading, Stack, Text } from '@mels-loop/ui/primitives';
+import Link from 'next/link';
+
+import { getDictionary } from '@/i18n';
+import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string }>;
@@ -22,19 +24,13 @@ export default async function ArticlesListingPage({ params }: PageProps) {
 	]);
 
 	const storyTitle = config.title[typedLocale];
-	const articlesLabel = dictGet(
-		dict as Record<string, unknown>,
-		'nav.articles',
-	);
+	const articlesLabel = dictGet(dict, 'nav.articles');
 
 	return (
 		<Stack gap="lg">
 			<Breadcrumbs
 				items={[
-					homeItem(
-						locale,
-						dictGet(dict as Record<string, unknown>, 'nav.home'),
-					),
+					homeItemFromDict(dict),
 					{ label: storyTitle, href: `/stories/${storySlug}` },
 					{ label: articlesLabel },
 				]}

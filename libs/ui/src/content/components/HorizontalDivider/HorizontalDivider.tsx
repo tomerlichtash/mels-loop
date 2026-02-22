@@ -1,4 +1,5 @@
 import cn from 'classnames';
+
 import styles from './HorizontalDivider.module.css';
 
 interface HorizontalDividerProps {

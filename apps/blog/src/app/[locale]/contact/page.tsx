@@ -1,6 +1,7 @@
-import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
-import { getDictionary } from '@/i18n';
 import { ContactPage } from '@mels-loop/forms/ContactPage';
+import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
+
+import { getDictionary } from '@/i18n';
 
 interface PageProps {
 	params: Promise<{ locale: string }>;

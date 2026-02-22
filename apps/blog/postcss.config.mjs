@@ -1,5 +1,5 @@
-import { join } from 'path';
 import postcssGlobalData from '@csstools/postcss-global-data';
+import { join } from 'path';
 import postcssCustomMedia from 'postcss-custom-media';
 
 /** @type {import('postcss').Config} */

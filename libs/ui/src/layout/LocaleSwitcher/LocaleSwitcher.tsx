@@ -1,8 +1,9 @@
 'use client';
 
-import cn from 'classnames';
 import { useTranslation } from '@mels-loop/i18n/client';
 import { setLocaleCookie } from '@mels-loop/i18n/locale-cookie';
+import cn from 'classnames';
+
 import type { LocaleOption } from '../types';
 import styles from './LocaleSwitcher.module.css';
 

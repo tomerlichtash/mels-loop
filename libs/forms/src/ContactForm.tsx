@@ -1,10 +1,11 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useTranslation } from '@mels-loop/i18n/client';
-import { Stack, Alert, Button, Text } from '@mels-loop/ui/primitives';
+import { Alert, Button, Stack, Text } from '@mels-loop/ui/primitives';
+import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { useForm } from 'react-hook-form';
+
 import styles from './ContactForm.module.css';
 
 interface FormValues {

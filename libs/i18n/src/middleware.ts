@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { locales, defaultLocale, isValidLocale, LOCALE_COOKIE } from './config';
+
+import { defaultLocale, isValidLocale, LOCALE_COOKIE, locales } from './config';
 
 export function createLocaleMiddleware() {
 	return function middleware(request: NextRequest) {

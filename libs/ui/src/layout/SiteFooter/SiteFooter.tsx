@@ -2,13 +2,14 @@
 
 import { useTranslation } from '@mels-loop/i18n/client';
 import {
-	GitHubLogoIcon,
-	TwitterLogoIcon,
 	EnvelopeClosedIcon,
+	GitHubLogoIcon,
+	HeartIcon,
 	InfoCircledIcon,
 	ReaderIcon,
-	HeartIcon,
+	TwitterLogoIcon,
 } from '@radix-ui/react-icons';
+
 import type { FooterLinkColumn } from '../types';
 import styles from './SiteFooter.module.css';
 

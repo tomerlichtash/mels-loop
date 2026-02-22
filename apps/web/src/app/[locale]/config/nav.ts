@@ -1,8 +1,8 @@
 import { locales as localeCodes } from '@mels-loop/i18n/config';
 import type {
-	NavItem,
 	FooterLinkColumn,
 	LocaleOption,
+	NavItem,
 } from '@mels-loop/ui/layout';
 
 export const navItems: NavItem[] = [
