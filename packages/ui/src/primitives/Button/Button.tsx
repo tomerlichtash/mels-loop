@@ -22,24 +22,28 @@ export function Button({
 	disabled,
 	...props
 }: ButtonProps) {
-	const Component = asChild ? Slot : 'button';
+	const classes = cn(
+		styles.root,
+		styles[`variant-${variant}`],
+		styles[`size-${size}`],
+		loading && styles.loading,
+		className,
+	);
+
+	if (asChild) {
+		return (
+			<Slot className={classes} {...props}>
+				{children}
+			</Slot>
+		);
+	}
 
 	return (
-		<Component
-			className={cn(
-				styles.root,
-				styles[`variant-${variant}`],
-				styles[`size-${size}`],
-				loading && styles.loading,
-				className,
-			)}
-			disabled={disabled || loading}
-			{...props}
-		>
+		<button className={classes} disabled={disabled || loading} {...props}>
 			{loading && <Loader size="sm" aria-hidden />}
 			<span className={loading ? styles.labelHidden : undefined}>
 				{children}
 			</span>
-		</Component>
+		</button>
 	);
 }
