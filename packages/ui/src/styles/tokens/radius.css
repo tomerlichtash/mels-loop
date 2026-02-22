@@ -1,0 +1,10 @@
+/* ---- Border Radius ---- */
+
+:root {
+	--ml-radius-none: 0;
+	--ml-radius-sm: 3px;
+	--ml-radius-md: 6px;
+	--ml-radius-lg: 12px;
+	--ml-radius-pill: 999px;
+	--ml-radius-full: 50%;
+}

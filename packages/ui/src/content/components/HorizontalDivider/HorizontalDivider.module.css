@@ -1,0 +1,5 @@
+.root {
+	border: none;
+	border-top: 1px solid var(--ml-border-color);
+	margin: var(--ml-space-xl) 0;
+}

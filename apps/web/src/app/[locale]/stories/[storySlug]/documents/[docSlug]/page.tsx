@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
-import { Title, Text, Stack } from '@mels-loop/ui/primitives';
+import { Heading, Text, Stack } from '@mels-loop/ui/primitives';
+import { Breadcrumbs } from '@mels-loop/ui/layout';
 import type { Locale } from '@mels-loop/i18n/config';
 import { locales } from '@mels-loop/i18n/config';
 import { getDictionary } from '@mels-loop/i18n/server';
@@ -8,16 +9,10 @@ import {
 	getStoryDocuments,
 	getStoryConfig,
 	getAllStories,
-	getAllAnnotations,
-	getAllGlossaryTerms,
 } from '@mels-loop/content-pipeline/loaders';
-import {
-	ContentRenderer,
-	AnnotationProvider,
-	AnnotationAwareLink,
-} from '@mels-loop/ui/content';
+import { ContentRenderer } from '@mels-loop/ui/content';
 import { homeItem, dictGet } from '@/lib/breadcrumbs';
-import { StoryShell } from '@/components/story/StoryShell';
+import { StoryPopoverProvider } from '@/components/StoryPopoverProvider';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string; docSlug: string }>;
@@ -43,10 +38,8 @@ export default async function DocumentPage({ params }: PageProps) {
 	const { locale, storySlug, docSlug } = await params;
 	const typedLocale = locale as Locale;
 
-	const [content, annotations, glossary, config, dict] = await Promise.all([
+	const [content, config, dict] = await Promise.all([
 		getStoryDocument(storySlug, docSlug, typedLocale),
-		getAllAnnotations(storySlug, typedLocale),
-		getAllGlossaryTerms(typedLocale),
 		getStoryConfig(storySlug),
 		getDictionary(typedLocale),
 	]);
@@ -63,48 +56,44 @@ export default async function DocumentPage({ params }: PageProps) {
 		docSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
 	return (
-		<StoryShell
-			storySlug={storySlug}
-			locale={typedLocale}
-			activePath={`documents/${docSlug}`}
-			breadcrumbs={[
-				homeItem(locale, dictGet(dict as Record<string, unknown>, 'nav.home')),
-				{ label: storyTitle, href: `/stories/${storySlug}` },
-				{ label: documentsLabel, href: `/stories/${storySlug}/documents` },
-				{ label: docTitle },
-			]}
-		>
-			<Stack gap="lg">
-				{content.metadata.title && (
-					<Title order={1}>{content.metadata.title}</Title>
-				)}
-				{content.metadata.abstract && (
-					<Text size="lg" color="dimmed" italic>
-						{content.metadata.abstract}
-					</Text>
-				)}
-				{content.metadata.moto && (
-					<Text size="sm" color="dimmed" italic>
-						{content.metadata.moto}
-					</Text>
-				)}
-				{content.metadata.credits && (
-					<Text size="xs" color="dimmed">
-						{content.metadata.credits}
-					</Text>
-				)}
-				{content.metadata.author && (
-					<Text size="sm" color="dimmed" uppercase>
-						{content.metadata.author}
-					</Text>
-				)}
-				<AnnotationProvider annotations={annotations} glossary={glossary}>
-					<ContentRenderer
-						hast={content.hast}
-						components={{ a: AnnotationAwareLink }}
-					/>
-				</AnnotationProvider>
-			</Stack>
-		</StoryShell>
+		<Stack gap="lg">
+			<Breadcrumbs
+				items={[
+					homeItem(
+						locale,
+						dictGet(dict as Record<string, unknown>, 'nav.home'),
+					),
+					{ label: storyTitle, href: `/stories/${storySlug}` },
+					{ label: documentsLabel, href: `/stories/${storySlug}/documents` },
+					{ label: docTitle },
+				]}
+			/>
+			{content.metadata.title && (
+				<Heading order={1}>{content.metadata.title}</Heading>
+			)}
+			{content.metadata.abstract && (
+				<Text size="lg" color="dimmed" italic>
+					{content.metadata.abstract}
+				</Text>
+			)}
+			{content.metadata.moto && (
+				<Text size="sm" color="dimmed" italic>
+					{content.metadata.moto}
+				</Text>
+			)}
+			{content.metadata.credits && (
+				<Text size="xs" color="dimmed">
+					{content.metadata.credits}
+				</Text>
+			)}
+			{content.metadata.author && (
+				<Text size="sm" color="dimmed" uppercase>
+					{content.metadata.author}
+				</Text>
+			)}
+			<StoryPopoverProvider storySlug={storySlug} locale={typedLocale}>
+				<ContentRenderer hast={content.hast} />
+			</StoryPopoverProvider>
+		</Stack>
 	);
 }

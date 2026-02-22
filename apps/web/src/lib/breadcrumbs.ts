@@ -1,4 +1,4 @@
-import type { BreadcrumbItem } from '@mels-loop/ui/shell';
+import type { BreadcrumbItem } from '@mels-loop/ui/layout';
 
 export function homeItem(locale: string, homeLabel: string): BreadcrumbItem {
 	return { label: homeLabel, href: '/' };

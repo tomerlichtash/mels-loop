@@ -1,4 +1,4 @@
-import { Container, Title, Stack } from '@mels-loop/ui/primitives';
+import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
 import type { Locale } from '@mels-loop/i18n/config';
 import { getDictionary } from '@mels-loop/i18n/server';
 import { getAllPosts, getPost } from '@mels-loop/content-pipeline/loaders';
@@ -35,9 +35,9 @@ export default async function PostsListingPage({ params }: PageProps) {
 			: 'Blog';
 
 	return (
-		<Container size="md">
+		<Container>
 			<Stack gap="lg">
-				<Title order={1}>{title}</Title>
+				<Heading order={1}>{title}</Heading>
 				<PostList
 					posts={
 						posts as Array<{

@@ -1,20 +1,30 @@
-.card {
-	background-color: var(--ml-bg-surface);
-	border-radius: var(--ml-border-radius);
+:root {
+	--ml-card-radius: var(--ml-radius-md);
+	--ml-card-padding: var(--ml-space-md);
+	/* color */
+	--ml-card-background-color: var(--ml-surface-background-color);
+	--ml-card-border-color: transparent;
 }
 
-.withBorder {
-	border: 1px solid var(--ml-border);
+.root {
+	background-color: var(--ml-card-background-color);
+	border-radius: var(--ml-card-radius);
+	padding: var(--ml-card-padding);
 }
 
 .padding-sm {
-	padding: var(--ml-space-sm);
+	--ml-card-padding: var(--ml-space-sm);
 }
 
 .padding-md {
-	padding: var(--ml-space-md);
+	--ml-card-padding: var(--ml-space-md);
 }
 
 .padding-lg {
-	padding: var(--ml-space-lg);
+	--ml-card-padding: var(--ml-space-lg);
+}
+
+.withBorder {
+	--ml-card-border-color: var(--ml-border-color);
+	border: 1px solid var(--ml-card-border-color);
 }

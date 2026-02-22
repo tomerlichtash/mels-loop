@@ -1,0 +1,28 @@
+.root {
+	display: inline-block;
+	border: 2px solid currentColor;
+	border-right-color: transparent;
+	border-radius: var(--ml-radius-full);
+	animation: spin var(--ml-duration-spin, 0.6s) linear infinite;
+}
+
+.size-sm {
+	width: 0.875rem;
+	height: 0.875rem;
+}
+
+.size-md {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.size-lg {
+	width: 1.75rem;
+	height: 1.75rem;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}

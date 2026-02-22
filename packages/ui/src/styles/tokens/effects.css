@@ -1,0 +1,21 @@
+/* ---- Effects ---- */
+
+:root {
+	/* Shadows */
+	--ml-shadow:
+		hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+		hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+	--ml-shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.12);
+
+	/* Overlay */
+	--ml-overlay-bg: rgba(0, 0, 0, 0.5);
+
+	/* Durations */
+	--ml-duration-fast: 150ms;
+	--ml-duration-normal: 200ms;
+	--ml-duration-slow: 250ms;
+
+	/* Easing */
+	--ml-ease-default: ease;
+	--ml-ease-out: ease-out;
+}

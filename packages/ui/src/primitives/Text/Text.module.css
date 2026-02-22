@@ -1,31 +1,39 @@
-.text {
+:root {
+	--ml-text-font-size: var(--ml-font-size-md);
+	--ml-text-line-height: var(--ml-line-height-relaxed);
+	/* color */
+	--ml-text-text-color: var(--ml-text-color);
+}
+
+.root {
 	margin: 0;
-	color: var(--ml-text);
-	line-height: 1.55;
+	color: var(--ml-text-text-color);
+	font-size: var(--ml-text-font-size);
+	line-height: var(--ml-text-line-height);
 }
 
 .size-xs {
-	font-size: 0.75rem;
+	--ml-text-font-size: var(--ml-font-size-sm);
 }
 
 .size-sm {
-	font-size: 0.875rem;
+	--ml-text-font-size: var(--ml-font-size-body);
 }
 
 .size-md {
-	font-size: 1rem;
+	--ml-text-font-size: var(--ml-font-size-md);
 }
 
 .size-lg {
-	font-size: 1.125rem;
+	--ml-text-font-size: var(--ml-font-size-lg);
 }
 
 .dimmed {
-	color: var(--ml-text-muted);
+	--ml-text-text-color: var(--ml-text-muted-color);
 }
 
 .error {
-	color: var(--ml-error);
+	--ml-text-text-color: var(--ml-error-text-color);
 }
 
 .italic {
@@ -41,17 +49,17 @@
 }
 
 .weight-400 {
-	font-weight: 400;
+	font-weight: var(--ml-font-weight-regular);
 }
 
 .weight-500 {
-	font-weight: 500;
+	font-weight: var(--ml-font-weight-medium);
 }
 
 .weight-600 {
-	font-weight: 600;
+	font-weight: var(--ml-font-weight-semibold);
 }
 
 .weight-700 {
-	font-weight: 700;
+	font-weight: var(--ml-font-weight-bold);
 }

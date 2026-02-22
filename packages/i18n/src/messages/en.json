@@ -79,6 +79,17 @@
 		"pages": "Pages",
 		"links": "Links"
 	},
+	"locale": {
+		"group": "Switch language",
+		"label": {
+			"en": "EN",
+			"he": "ע"
+		},
+		"switchTo": {
+			"en": "Switch to English",
+			"he": "Switch to Hebrew"
+		}
+	},
 	"theme": {
 		"toggle": "Toggle Theme",
 		"switchToDark": "Switch to dark mode",

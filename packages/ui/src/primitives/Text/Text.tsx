@@ -1,4 +1,5 @@
 import type { ReactNode, HTMLAttributes, ElementType } from 'react';
+import cn from 'classnames';
 import styles from './Text.module.css';
 
 type TextSize = 'xs' | 'sm' | 'md' | 'lg';
@@ -27,22 +28,20 @@ export function Text({
 	className,
 	...props
 }: TextProps) {
-	const classes = [
-		styles.text,
-		styles[`size-${size}`],
-		color === 'dimmed' ? styles.dimmed : '',
-		color === 'error' ? styles.error : '',
-		italic ? styles.italic : '',
-		uppercase ? styles.uppercase : '',
-		capitalize ? styles.capitalize : '',
-		weight ? styles[`weight-${weight}`] : '',
-		className ?? '',
-	]
-		.filter(Boolean)
-		.join(' ');
-
 	return (
-		<Component className={classes} {...props}>
+		<Component
+			className={cn(
+				styles.root,
+				styles[`size-${size}`],
+				color && styles[color],
+				weight && styles[`weight-${weight}`],
+				italic && styles.italic,
+				uppercase && styles.uppercase,
+				capitalize && styles.capitalize,
+				className,
+			)}
+			{...props}
+		>
 			{children}
 		</Component>
 	);

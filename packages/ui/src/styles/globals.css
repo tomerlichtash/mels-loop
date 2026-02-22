@@ -1,16 +1,12 @@
-@import './tokens.css';
+@import './tokens/index.css';
+@import './themes/dark.css';
+@import './reset.css';
 
-/* ---- CSS Reset ---- */
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
+/* ---- Base styles ---- */
 
 body {
-	margin: 0;
-	background-color: var(--ml-bg);
-	color: var(--ml-text);
+	background-color: var(--ml-background-color);
+	color: var(--ml-text-color);
 	font-family: var(--font-roboto-slab, var(--ml-font-latin));
 	font-size: var(--ml-font-size-body);
 	line-height: var(--ml-line-height-body);
@@ -23,20 +19,15 @@ body {
 }
 
 a {
-	color: var(--ml-link);
+	color: var(--ml-link-color);
 	text-decoration: none;
 }
 a:hover {
-	color: var(--ml-link-hover);
-}
-
-img {
-	max-width: 100%;
-	height: auto;
+	color: var(--ml-link-hover-color);
 }
 
 /* Scrollbar styling */
 :root {
-	scrollbar-color: var(--ml-border) transparent;
+	scrollbar-color: var(--ml-border-color) transparent;
 	scrollbar-width: thin;
 }

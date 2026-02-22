@@ -1,12 +1,12 @@
-import { Container, Title } from '@mels-loop/ui/primitives';
+import { Container, Heading, Button } from '@mels-loop/ui/primitives';
 import type { Locale } from '@mels-loop/i18n/config';
 import { getDictionary } from '@mels-loop/i18n/server';
 import {
 	getAllStories,
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
-import { StoryCard } from '@/components/story/StoryCard';
-import { Hero } from '@/components/hero/Hero';
+import { StoryCard } from '@/components/StoryCard/StoryCard';
+import styles from './page.module.css';
 
 interface PageProps {
 	params: Promise<{ locale: string }>;
@@ -25,14 +25,28 @@ export default async function HomePage({ params }: PageProps) {
 		a.featured === b.featured ? 0 : a.featured ? -1 : 1,
 	);
 
-	const ctaHref = '/stories';
 	const dict = await getDictionary(typedLocale);
+	const hero = dict.hero as Record<string, string>;
 
 	return (
-		<Container size="md">
-			<Hero locale={typedLocale} ctaHref={ctaHref} />
+		<Container paddingHorizontal="xl" paddingVertical="xl">
+			<div className={styles.hero}>
+				<p className={styles.heroDescription}>{hero.description}</p>
+				<div className={styles.heroCta}>
+					<Button
+						asChild
+						variant="primary"
+						size="xl"
+						className={styles.heroCtaButton}
+					>
+						<a href="/stories">{hero.cta}</a>
+					</Button>
+				</div>
+			</div>
 			<section>
-				<Title order={2}>{String(dict.stories)}</Title>
+				<Heading order={2} className={styles.storiesHeading}>
+					{String(dict.stories)}
+				</Heading>
 				<div>
 					{sorted.map((config) => (
 						<StoryCard key={config.slug} config={config} locale={typedLocale} />

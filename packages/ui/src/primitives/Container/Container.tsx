@@ -1,20 +1,32 @@
 import type { ReactNode, HTMLAttributes } from 'react';
+import cn from 'classnames';
 import styles from './Container.module.css';
+
+type SpacingSize = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
-	size?: 'sm' | 'md' | 'lg';
+	paddingHorizontal?: SpacingSize;
+	paddingVertical?: SpacingSize;
 }
 
 export function Container({
 	children,
-	size = 'md',
+	paddingHorizontal,
+	paddingVertical,
 	className,
 	...props
 }: ContainerProps) {
 	return (
 		<div
-			className={`${styles.container} ${styles[size]}${className ? ` ${className}` : ''}`}
+			className={cn(
+				styles.root,
+				{
+					[styles[`horizontalPadding-${paddingHorizontal}`]]: paddingHorizontal,
+					[styles[`verticalPadding-${paddingVertical}`]]: paddingVertical,
+				},
+				className,
+			)}
 			{...props}
 		>
 			{children}

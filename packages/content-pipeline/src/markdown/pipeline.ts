@@ -12,6 +12,7 @@ import { remarkGlossaryLinks } from './plugins/remark-glossary-links';
 import { remarkFigures } from './plugins/remark-figures';
 import { remarkVerse } from './plugins/remark-verse';
 import { rehypeFigureImages } from './plugins/rehype-figure-images';
+import { rehypeLines } from './plugins/rehype-lines';
 
 /**
  * Escape angle brackets around email-like addresses so rehype-raw
@@ -42,7 +43,8 @@ export async function processMarkdown(
 		.use(remarkVerse, { parseMode: options.parseMode })
 		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeRaw)
-		.use(rehypeFigureImages);
+		.use(rehypeFigureImages)
+		.use(rehypeLines);
 
 	const mdast = processor.parse(sanitized);
 	const hast = (await processor.run(mdast)) as HastRoot;

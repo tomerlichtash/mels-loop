@@ -1,13 +1,13 @@
 .field {
 	display: flex;
 	flex-direction: column;
-	gap: 0.25rem;
+	gap: var(--ml-space-xs);
 }
 
 .label {
-	font-size: 0.875rem;
-	font-weight: 500;
-	color: var(--ml-text);
+	font-size: var(--ml-font-size-body);
+	font-weight: var(--ml-font-weight-medium);
+	color: var(--ml-text-color);
 }
 
 .required {
@@ -19,14 +19,14 @@
 .textarea {
 	width: 100%;
 	padding: var(--ml-space-sm) var(--ml-space-sm);
-	font-size: 0.875rem;
+	font-size: var(--ml-font-size-body);
 	font-family: inherit;
-	color: var(--ml-text);
-	background-color: var(--ml-bg-surface);
+	color: var(--ml-text-color);
+	background-color: var(--ml-surface-background-color);
 	border: 1px solid var(--ml-input-border);
-	border-radius: var(--ml-border-radius);
+	border-radius: var(--ml-radius-md);
 	outline: none;
-	transition: border-color 0.15s;
+	transition: border-color var(--ml-duration-fast);
 }
 
 .input:focus,
@@ -45,7 +45,7 @@
 }
 
 .error {
-	font-size: 0.75rem;
+	font-size: var(--ml-font-size-sm);
 	color: var(--ml-error);
 	margin: 0;
 }

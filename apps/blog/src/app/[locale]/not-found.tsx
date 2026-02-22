@@ -1,6 +1,6 @@
 import {
 	Container,
-	Title,
+	Heading,
 	Text,
 	Button,
 	Stack,
@@ -8,14 +8,14 @@ import {
 
 export default function LocaleNotFound() {
 	return (
-		<Container size="sm">
+		<Container>
 			<Stack gap="lg" align="center" textAlign="center">
-				<Title order={1}>404</Title>
+				<Heading order={1}>404</Heading>
 				<Text size="lg" color="dimmed">
 					Page not found
 				</Text>
-				<Button component="a" href="/" variant="outline">
-					Go Home
+				<Button asChild variant="outline">
+					<a href="/">Go Home</a>
 				</Button>
 			</Stack>
 		</Container>

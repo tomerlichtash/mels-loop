@@ -1,0 +1,40 @@
+.hero {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--ml-space-md);
+}
+
+.heroDescription {
+	margin: 0;
+	font-size: clamp(1.75rem, 4vw, 2.75rem);
+	font-weight: var(--ml-font-weight-light);
+	line-height: 1.35;
+	color: var(--ml-heading-color);
+	letter-spacing: -0.5px;
+}
+
+.heroCta {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: var(--ml-space-xl);
+}
+
+.heroCtaButton {
+	background: linear-gradient(
+		to right,
+		var(--ml-gradient-start),
+		var(--ml-gradient-mid),
+		var(--ml-gradient-end)
+	);
+	color: #fff;
+}
+
+.heroCtaButton:hover {
+	opacity: 0.9;
+}
+
+.storiesHeading {
+	margin-bottom: var(--ml-space-md);
+}

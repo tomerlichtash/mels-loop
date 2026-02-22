@@ -1,4 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react';
+import cn from 'classnames';
 import styles from './Badge.module.css';
 
 interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
@@ -14,7 +15,7 @@ export function Badge({
 }: BadgeProps) {
 	return (
 		<span
-			className={`${styles.badge} ${styles[color]}${className ? ` ${className}` : ''}`}
+			className={cn(styles.root, styles[`color-${color}`], className)}
 			{...props}
 		>
 			{children}

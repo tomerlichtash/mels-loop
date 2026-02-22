@@ -9,6 +9,7 @@ export {
 	getDocumentMeta,
 	getStoryDocument,
 	getStoryDocuments,
+	getAnnotation,
 	getAllAnnotations,
 	getCodex,
 	getResources,

@@ -1,4 +1,8 @@
-import { StaticPage } from '@/components/StaticPage';
+import type { Locale } from '@mels-loop/i18n/config';
+import { getDictionary } from '@mels-loop/i18n/server';
+import { getPage } from '@mels-loop/content-pipeline/loaders';
+import { StaticPage } from '@/components/StaticPage/StaticPage';
+import { homeItem, dictGet } from '@/lib/breadcrumbs';
 
 interface PageProps {
 	params: Promise<{ locale: string }>;
@@ -6,7 +10,25 @@ interface PageProps {
 
 export default async function ContributePage({ params }: PageProps) {
 	const { locale } = await params;
+	const typedLocale = locale as Locale;
+
+	const [content, dict] = await Promise.all([
+		getPage('contribute', typedLocale),
+		getDictionary(typedLocale),
+	]);
+
+	const title =
+		content?.metadata.title ||
+		dictGet(dict as Record<string, unknown>, 'nav.contribute');
+
 	return (
-		<StaticPage locale={locale} slug="contribute" navKey="nav.contribute" />
+		<StaticPage
+			title={title}
+			content={content}
+			breadcrumbs={[
+				homeItem(locale, dictGet(dict as Record<string, unknown>, 'nav.home')),
+				{ label: title },
+			]}
+		/>
 	);
 }

@@ -1,17 +1,23 @@
-.figure {
-	margin: 1.5rem 0;
+:root {
+	--ml-figure-margin: var(--ml-space-lg);
+	--ml-figure-caption-font-size: var(--ml-font-size-body);
+	--ml-figure-caption-color: var(--ml-text-secondary-color);
+}
+
+.root {
+	margin: var(--ml-figure-margin) 0;
 	text-align: center;
 }
 
-.figure img {
+.root img {
 	max-width: 100%;
 	height: auto;
-	border-radius: var(--ml-border-radius);
+	border-radius: var(--ml-radius-md);
 }
 
-.figure figcaption {
-	font-size: var(--ml-font-size-body);
+.root figcaption {
+	font-size: var(--ml-figure-caption-font-size);
 	font-style: italic;
-	color: var(--ml-text-secondary);
-	margin-top: 0.5rem;
+	color: var(--ml-figure-caption-color);
+	margin-top: var(--ml-space-sm);
 }

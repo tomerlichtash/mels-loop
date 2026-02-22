@@ -7,9 +7,9 @@ interface FigureProps {
 	[key: string]: unknown;
 }
 
-export function Figure({ children, ...props }: FigureProps) {
+export default function Figure({ children, ...props }: FigureProps) {
 	return (
-		<figure className={styles.figure} {...props}>
+		<figure className={styles.root} {...props}>
 			{children}
 		</figure>
 	);

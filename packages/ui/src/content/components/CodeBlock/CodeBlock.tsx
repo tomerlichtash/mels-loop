@@ -6,9 +6,9 @@ interface CodeBlockProps {
 	[key: string]: unknown;
 }
 
-export function CodeBlock({ children, ...props }: CodeBlockProps) {
+export default function CodeBlock({ children, ...props }: CodeBlockProps) {
 	return (
-		<pre className={styles.codeBlock} {...props}>
+		<pre className={styles.root} {...props}>
 			{children}
 		</pre>
 	);

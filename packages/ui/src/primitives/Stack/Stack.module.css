@@ -1,26 +1,31 @@
-.stack {
+:root {
+	--ml-stack-gap: var(--ml-space-md);
+}
+
+.root {
 	display: flex;
 	flex-direction: column;
+	gap: var(--ml-stack-gap);
 }
 
 .gap-xs {
-	gap: var(--ml-space-xs);
+	--ml-stack-gap: var(--ml-space-xs);
 }
 
 .gap-sm {
-	gap: var(--ml-space-sm);
+	--ml-stack-gap: var(--ml-space-sm);
 }
 
 .gap-md {
-	gap: var(--ml-space-md);
+	--ml-stack-gap: var(--ml-space-md);
 }
 
 .gap-lg {
-	gap: var(--ml-space-lg);
+	--ml-stack-gap: var(--ml-space-lg);
 }
 
 .gap-xl {
-	gap: var(--ml-space-xl);
+	--ml-stack-gap: var(--ml-space-xl);
 }
 
 .align-start {

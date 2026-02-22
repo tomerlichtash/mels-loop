@@ -60,6 +60,22 @@ export async function getStoryArticles(storySlug: string): Promise<string[]> {
 	return entries.filter((e) => e.isDirectory()).map((e) => e.name);
 }
 
+export async function getAnnotation(
+	storySlug: string,
+	key: string,
+	locale: Locale,
+): Promise<ProcessedContent | null> {
+	const filePath = contentPath(
+		'stories',
+		storySlug,
+		'annotations',
+		key,
+		localeFileName(locale),
+	);
+	if (!(await fileExists(filePath))) return null;
+	return loadMarkdownFile(filePath);
+}
+
 export async function getAllAnnotations(
 	storySlug: string,
 	locale: Locale,

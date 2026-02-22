@@ -15,17 +15,19 @@
 		"@mels-loop/forms": "workspace:*",
 		"@mels-loop/i18n": "workspace:*",
 		"@mels-loop/ui": "workspace:*",
-		"react-google-recaptcha": "^3.1.0",
 		"next": "^16.1.6",
 		"react": "^19.2.4",
-		"react-dom": "^19.2.4"
+		"react-dom": "^19.2.4",
+		"react-google-recaptcha": "^3.1.0"
 	},
 	"devDependencies": {
+		"@csstools/postcss-global-data": "^4.0.0",
 		"@mels-loop/eslint-config": "workspace:*",
 		"@mels-loop/test-utils": "workspace:*",
 		"@playwright/test": "^1.51.1",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
-		"@types/react-google-recaptcha": "^2.1.9"
+		"@types/react-google-recaptcha": "^2.1.9",
+		"postcss-custom-media": "^12.0.0"
 	}
 }

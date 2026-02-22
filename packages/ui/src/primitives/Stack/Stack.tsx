@@ -1,4 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react';
+import cn from 'classnames';
 import styles from './Stack.module.css';
 
 type GapSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -19,18 +20,17 @@ export function Stack({
 	className,
 	...props
 }: StackProps) {
-	const classes = [
-		styles.stack,
-		styles[`gap-${gap}`],
-		align ? styles[`align-${align}`] : '',
-		textAlign ? styles[`text-${textAlign}`] : '',
-		className ?? '',
-	]
-		.filter(Boolean)
-		.join(' ');
-
 	return (
-		<div className={classes} {...props}>
+		<div
+			className={cn(
+				styles.root,
+				styles[`gap-${gap}`],
+				align && styles[`align-${align}`],
+				textAlign && styles[`text-${textAlign}`],
+				className,
+			)}
+			{...props}
+		>
 			{children}
 		</div>
 	);

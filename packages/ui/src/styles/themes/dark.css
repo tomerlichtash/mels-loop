@@ -1,0 +1,64 @@
+/* ---- Dark Theme Overrides ---- */
+
+[data-color-scheme='dark'] {
+	--ml-background-color: var(--ml-gray-400);
+	--ml-background-color-alt: var(--ml-gray-500);
+	--ml-surface-background-color: var(--ml-gray-500);
+	--ml-text-color: var(--ml-cream-200);
+	--ml-text-secondary-color: var(--ml-gray-200);
+	--ml-text-muted-color: var(--ml-gray-200);
+	--ml-heading-color: var(--ml-cream-100);
+	--ml-heading-secondary-color: var(--ml-cream-200);
+	--ml-body-text-color: var(--ml-cream-100);
+	--ml-link-color: var(--ml-pink-light);
+	--ml-link-hover-color: var(--ml-blue);
+	--ml-border-color: var(--ml-gray-100);
+	--ml-code-bg: var(--ml-gray-400);
+	--ml-code-text: var(--ml-cream-200);
+	--ml-code-border: var(--ml-gray-300);
+
+	--ml-popover-bg: var(--ml-gray-500);
+	--ml-popover-topic-bg: var(--ml-pink);
+	--ml-popover-topic-text: var(--ml-cream-200);
+	--ml-popover-icon: var(--ml-cream-200);
+	--ml-popover-icon-hover: var(--ml-gray-500);
+
+	--ml-annotation-text: var(--ml-white);
+	--ml-annotation-bg: var(--ml-blue);
+
+	--ml-gradient-start: var(--ml-indigo);
+	--ml-gradient-mid: var(--ml-purple);
+	--ml-gradient-end: var(--ml-pink);
+
+	--ml-header-bg: var(--ml-gray-500);
+	--ml-header-item-hover: var(--ml-gray-400);
+	--ml-header-item-active: var(--ml-gray-400);
+	--ml-footer-bg: var(--ml-gray-500);
+
+	--ml-input-border: var(--ml-pink);
+	--ml-input-border-focus: var(--ml-blue);
+	--ml-input-placeholder: var(--ml-gray-200);
+	--ml-submit-bg: var(--ml-pink);
+	--ml-submit-bg-hover: var(--ml-blue-dark);
+	--ml-submit-text: var(--ml-cream-100);
+
+	--ml-menu-hover-bg: var(--ml-pink);
+	--ml-mobile-menu-bg: var(--ml-gray-400);
+	--ml-mobile-menu-text: var(--ml-pink-light);
+	--ml-mobile-menu-subtitle: var(--ml-white);
+	--ml-mobile-menu-hover-bg: var(--ml-gray-500);
+	--ml-mobile-menu-border: var(--ml-gray-300);
+	--ml-mobile-menu-section-title: var(--ml-gray-200);
+
+	--ml-shadow:
+		hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+		hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+
+	--ml-interactive-background-color-hover: var(--ml-pink-light);
+
+	--ml-success-background-color: var(--ml-success-subtle);
+	--ml-success-text-color: var(--ml-success-light);
+
+	--ml-error-background-color: var(--ml-error-subtle);
+	--ml-error-text-color: var(--ml-error-light);
+}

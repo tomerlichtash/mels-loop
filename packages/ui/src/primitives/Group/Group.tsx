@@ -1,4 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react';
+import cn from 'classnames';
 import styles from './Group.module.css';
 
 type GapSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -22,19 +23,18 @@ export function Group({
 	className,
 	...props
 }: GroupProps) {
-	const classes = [
-		styles.group,
-		styles[`gap-${gap}`],
-		justify ? styles[`justify-${justify}`] : '',
-		align ? styles[`align-${align}`] : '',
-		wrap === 'nowrap' ? styles.nowrap : '',
-		className ?? '',
-	]
-		.filter(Boolean)
-		.join(' ');
-
 	return (
-		<div className={classes} {...props}>
+		<div
+			className={cn(
+				styles.root,
+				styles[`gap-${gap}`],
+				justify && styles[`justify-${justify}`],
+				align && styles[`align-${align}`],
+				wrap === 'nowrap' && styles.nowrap,
+				className,
+			)}
+			{...props}
+		>
 			{children}
 		</div>
 	);

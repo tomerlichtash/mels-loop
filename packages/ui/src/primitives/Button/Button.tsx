@@ -1,39 +1,42 @@
-import type { ReactNode, ButtonHTMLAttributes, ElementType } from 'react';
+import type { ReactNode, ButtonHTMLAttributes } from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import cn from 'classnames';
+import { Loader } from '../Loader/Loader';
 import styles from './Button.module.css';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode;
-	variant?: 'default' | 'subtle' | 'outline';
+	variant?: 'primary' | 'subtle' | 'outline' | 'ghost';
 	size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 	loading?: boolean;
-	component?: ElementType;
-	href?: string;
+	asChild?: boolean;
 }
 
 export function Button({
 	children,
-	variant = 'default',
+	variant = 'ghost',
 	size = 'md',
 	loading,
-	component,
+	asChild,
 	className,
 	disabled,
 	...props
 }: ButtonProps) {
-	const Component = component || 'button';
-	const classes = [
-		styles.button,
-		styles[variant],
-		styles[`size-${size}`],
-		loading ? styles.loading : '',
-		className ?? '',
-	]
-		.filter(Boolean)
-		.join(' ');
+	const Component = asChild ? Slot : 'button';
 
 	return (
-		<Component className={classes} disabled={disabled || loading} {...props}>
-			{loading && <span className={styles.spinner} aria-hidden />}
+		<Component
+			className={cn(
+				styles.root,
+				styles[`variant-${variant}`],
+				styles[`size-${size}`],
+				loading && styles.loading,
+				className,
+			)}
+			disabled={disabled || loading}
+			{...props}
+		>
+			{loading && <Loader size="sm" aria-hidden />}
 			<span className={loading ? styles.labelHidden : undefined}>
 				{children}
 			</span>

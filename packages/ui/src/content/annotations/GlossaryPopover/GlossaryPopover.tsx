@@ -2,49 +2,65 @@
 
 import { useId, useRef, useEffect, useMemo } from 'react';
 import * as Popover from '@radix-ui/react-popover';
-import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
-import { useAnnotations } from '../AnnotationProvider/AnnotationProvider';
+import { useAnnotations } from '../PopoverProvider/PopoverProvider';
 import { useTranslation } from '@mels-loop/i18n/client';
 import { ContentRenderer } from '../../ContentRenderer/ContentRenderer';
-import { PopoverNavBar } from '../PopoverNavBar/PopoverNavBar';
-import { PopoverInternalLink } from '../PopoverInternalLink/PopoverInternalLink';
-import { usePopoverContent } from '../usePopoverContent/usePopoverContent';
+import { NavBar } from '../internal/NavBar/NavBar';
+import { InternalLink } from '../internal/InternalLink/InternalLink';
+import { useContent } from '../internal/useContent/useContent';
+import { Loader } from '../../../primitives/Loader/Loader';
 import styles from './GlossaryPopover.module.css';
 
 interface GlossaryPopoverProps {
 	term: string;
-	content: ProcessedContent;
 	label?: React.ReactNode;
 	children: React.ReactNode;
 }
 
 export function GlossaryPopover({
 	term,
-	content,
 	label,
 	children,
 }: GlossaryPopoverProps) {
 	const id = useId();
 	const { locale } = useTranslation();
-	const { activePopover, openPopover, registerTrigger } = useAnnotations();
+	const {
+		activePopover,
+		openPopover,
+		registerTrigger,
+		glossary,
+		loadingKeys,
+		loadGlossaryTerm,
+	} = useAnnotations();
 	const opened = activePopover === id;
 	const triggerRef = useRef<HTMLButtonElement>(null);
 
+	const baseContent = glossary[term] ?? null;
+	const isLoading = loadingKeys.has(term);
+
 	const originalLabel =
-		typeof label === 'string' ? label : content.metadata.glossary_key || term;
+		typeof label === 'string'
+			? label
+			: baseContent?.metadata.glossary_key || term;
 
 	const {
 		content: displayContent,
 		term: displayTerm,
 		label: displayLabel,
-	} = usePopoverContent(content, term, originalLabel);
+	} = useContent(baseContent, term, originalLabel);
 
-	const componentOverrides = useMemo(() => ({ a: PopoverInternalLink }), []);
+	const componentOverrides = useMemo(() => ({ a: InternalLink }), []);
 
 	useEffect(() => {
 		registerTrigger(id, triggerRef.current);
 		return () => registerTrigger(id, null);
 	}, [id, registerTrigger]);
+
+	useEffect(() => {
+		if (opened && !baseContent && !isLoading) {
+			loadGlossaryTerm(term);
+		}
+	}, [opened, baseContent, isLoading, loadGlossaryTerm, term]);
 
 	return (
 		<Popover.Root open={opened}>
@@ -52,7 +68,7 @@ export function GlossaryPopover({
 				<button
 					ref={triggerRef}
 					type="button"
-					className={styles.trigger}
+					className={styles.root}
 					onClick={() => openPopover(id)}
 					aria-label={`Glossary: ${term}`}
 				>
@@ -70,7 +86,7 @@ export function GlossaryPopover({
 					<div data-popover-content>
 						<div className={styles.header}>
 							<p className={styles.headerTitle}>{displayLabel}</p>
-							{locale === 'he' && (
+							{locale === 'he' && displayTerm && (
 								<p className={styles.headerSub} dir="ltr">
 									{displayTerm
 										.replace(/-/g, ' ')
@@ -78,28 +94,36 @@ export function GlossaryPopover({
 								</p>
 							)}
 						</div>
-						<PopoverNavBar rootLabel={originalLabel} />
+						<NavBar rootLabel={originalLabel} />
 						<div className={styles.scrollArea}>
 							<div className={styles.bodyWrap}>
-								<ContentRenderer
-									hast={displayContent.hast}
-									className={styles.body}
-									components={componentOverrides}
-								/>
-								{displayContent.metadata.source_name && (
-									<p className={styles.source}>
-										{displayContent.metadata.source_url ? (
-											<a
-												href={displayContent.metadata.source_url}
-												className={styles.sourceLink}
-												target="_blank"
-											>
-												{displayContent.metadata.source_name}
-											</a>
-										) : (
-											displayContent.metadata.source_name
+								{!displayContent ? (
+									<div className={styles.loader}>
+										<Loader size="md" />
+									</div>
+								) : (
+									<>
+										<ContentRenderer
+											hast={displayContent.hast}
+											className={styles.body}
+											components={componentOverrides}
+										/>
+										{displayContent.metadata.source_name && (
+											<p className={styles.source}>
+												{displayContent.metadata.source_url ? (
+													<a
+														href={displayContent.metadata.source_url}
+														className={styles.sourceLink}
+														target="_blank"
+													>
+														{displayContent.metadata.source_name}
+													</a>
+												) : (
+													displayContent.metadata.source_name
+												)}
+											</p>
 										)}
-									</p>
+									</>
 								)}
 							</div>
 						</div>

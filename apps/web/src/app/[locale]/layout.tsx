@@ -1,70 +1,61 @@
-import { createLocaleLayout } from '@mels-loop/ui/layout';
-import {
-	getAllStories,
-	getStoryConfig,
-} from '@mels-loop/content-pipeline/loaders';
-import type { NavItem } from '@mels-loop/ui/shell';
-import type { Locale } from '@mels-loop/i18n/config';
+import type { ReactNode } from 'react';
+import { notFound } from 'next/navigation';
+import { getDirection, isValidLocale } from '@mels-loop/i18n/config';
+import { getDictionary } from '@mels-loop/i18n/server';
+import { I18nProvider } from '@mels-loop/i18n/client';
+import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
+import { SiteLayout } from '@mels-loop/ui/layout';
+import { robotoSlab, assistant } from '@mels-loop/ui/fonts';
+import '@mels-loop/ui/styles/globals.css';
+import { FaviconAnimator } from '@/components/FaviconAnimator';
+import { footerLinks, localeOptions } from './config/nav';
+import { resolveNavItems } from './resolveNavItems';
 import '../../content-init';
 
-const { Layout, generateMetadata } = createLocaleLayout({
-	navItems: [
-		{ key: 'stories', href: '/stories', hasContent: true },
-		{ key: 'nav.about', href: '/about' },
-		{ key: 'nav.contact', href: '/contact' },
-	],
-	async resolveNavItems(navItems: NavItem[], locale: Locale) {
-		const slugs = await getAllStories();
-		const configs = await Promise.all(slugs.map((s) => getStoryConfig(s)));
+export { generateMetadata } from './config/metadata';
 
-		return navItems.map((item) => {
-			if (!item.hasContent) return item;
-			return {
-				...item,
-				stories: configs.map((c) => ({
-					slug: c.slug,
-					title: c.title[locale],
-					abstract: c.abstract[locale],
-					featured: c.featured,
-					...(c.featured ? { image: '/assets/featured-story-of-mel.svg' } : {}),
-				})),
-			};
-		});
-	},
-	footerLinks: [
-		{
-			titleKey: 'footer.pages',
-			links: [
-				{ label: 'nav.about', href: '/about', icon: 'info' },
-				{
-					label: 'nav.blog',
-					href: 'https://blog.melsloop.com',
-					external: true,
-					icon: 'reader',
-				},
-				{ label: 'nav.contribute', href: '/contribute', icon: 'heart' },
-			],
-		},
-		{
-			titleKey: 'footer.links',
-			links: [
-				{
-					label: 'menuItems.github',
-					href: 'https://github.com/mels-loop',
-					external: true,
-					icon: 'github',
-				},
-				{
-					label: 'menuItems.twitter',
-					href: 'https://x.com/aboutmelsloop',
-					external: true,
-					icon: 'twitter',
-				},
-				{ label: 'nav.contact', href: '/contact', icon: 'envelope' },
-			],
-		},
-	],
-});
+export default async function Layout({
+	children,
+	params,
+}: {
+	children: ReactNode;
+	params: Promise<{ locale: string }>;
+}) {
+	const { locale } = await params;
 
-export { generateMetadata };
-export default Layout;
+	if (!isValidLocale(locale)) notFound();
+
+	const dir = getDirection(locale);
+	const messages = await getDictionary(locale);
+	const navItems = await resolveNavItems(locale);
+
+	return (
+		<html lang={locale} dir={dir} suppressHydrationWarning>
+			<head>
+				<link
+					rel="icon"
+					href="/favicon-light.png"
+					media="(prefers-color-scheme: light)"
+				/>
+				<link
+					rel="icon"
+					href="/favicon-dark.png"
+					media="(prefers-color-scheme: dark)"
+				/>
+				<ColorSchemeScript />
+			</head>
+			<body className={`${robotoSlab.variable} ${assistant.variable}`}>
+				<I18nProvider locale={locale} messages={messages}>
+					<SiteLayout
+						navItems={navItems}
+						footerLinks={footerLinks}
+						locales={localeOptions}
+					>
+						<FaviconAnimator />
+						{children}
+					</SiteLayout>
+				</I18nProvider>
+			</body>
+		</html>
+	);
+}

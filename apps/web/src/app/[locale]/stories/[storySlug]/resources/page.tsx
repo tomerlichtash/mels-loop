@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { Title, Stack } from '@mels-loop/ui/primitives';
+import { Heading, Stack } from '@mels-loop/ui/primitives';
 import type { Locale } from '@mels-loop/i18n/config';
 import { getDictionary } from '@mels-loop/i18n/server';
 import {
@@ -8,7 +8,7 @@ import {
 } from '@mels-loop/content-pipeline/loaders';
 import { ContentRenderer } from '@mels-loop/ui/content';
 import { homeItem, dictGet } from '@/lib/breadcrumbs';
-import { StoryShell } from '@/components/story/StoryShell';
+import { Breadcrumbs } from '@mels-loop/ui/layout';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string }>;
@@ -33,22 +33,21 @@ export default async function ResourcesPage({ params }: PageProps) {
 	);
 
 	return (
-		<StoryShell
-			storySlug={storySlug}
-			locale={typedLocale}
-			activePath="resources"
-			breadcrumbs={[
-				homeItem(locale, dictGet(dict as Record<string, unknown>, 'nav.home')),
-				{ label: storyTitle, href: `/stories/${storySlug}` },
-				{ label: resourcesLabel },
-			]}
-		>
-			<Stack gap="lg">
-				{content.metadata.title && (
-					<Title order={1}>{content.metadata.title}</Title>
-				)}
-				<ContentRenderer hast={content.hast} />
-			</Stack>
-		</StoryShell>
+		<Stack gap="lg">
+			<Breadcrumbs
+				items={[
+					homeItem(
+						locale,
+						dictGet(dict as Record<string, unknown>, 'nav.home'),
+					),
+					{ label: storyTitle, href: `/stories/${storySlug}` },
+					{ label: resourcesLabel },
+				]}
+			/>
+			{content.metadata.title && (
+				<Heading order={1}>{content.metadata.title}</Heading>
+			)}
+			<ContentRenderer hast={content.hast} />
+		</Stack>
 	);
 }

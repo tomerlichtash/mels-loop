@@ -1,0 +1,25 @@
+.root {
+	padding: var(--ml-space-md) 0;
+	border-bottom: 1px solid var(--ml-border-color);
+}
+
+.root:last-child {
+	border-bottom: none;
+}
+
+.title {
+	display: block;
+	margin-bottom: var(--ml-space-xs);
+	font-weight: var(--ml-font-weight-semibold);
+	font-size: var(--ml-font-size-lg);
+	color: var(--ml-heading-color);
+	text-decoration: none;
+}
+
+.title:hover {
+	color: var(--ml-link-hover-color);
+}
+
+.abstract {
+	margin: 0;
+}

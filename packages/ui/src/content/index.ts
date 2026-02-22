@@ -1,16 +1,22 @@
 export { ContentRenderer } from './ContentRenderer/ContentRenderer';
 export {
-	AnnotationProvider,
+	PopoverProvider,
 	useAnnotations,
-} from './annotations/AnnotationProvider/AnnotationProvider';
-export type { NavStackEntry } from './annotations/AnnotationProvider/AnnotationProvider';
-export { AnnotationPopover } from './annotations/AnnotationPopover/AnnotationPopover';
+} from './annotations/PopoverProvider/PopoverProvider';
+export type { NavStackEntry } from './annotations/PopoverProvider/PopoverProvider';
 export { AnnotationAwareLink } from './annotations/AnnotationAwareLink/AnnotationAwareLink';
-export { GlossaryPopover } from './annotations/GlossaryPopover/GlossaryPopover';
-export { PopoverNavBar } from './annotations/PopoverNavBar/PopoverNavBar';
-export { PopoverInternalLink } from './annotations/PopoverInternalLink/PopoverInternalLink';
-export { usePopoverContent } from './annotations/usePopoverContent/usePopoverContent';
-export { Figure } from './components/Figure/Figure';
-export { CodeBlock } from './components/CodeBlock/CodeBlock';
-export { StyledTable } from './components/StyledTable/StyledTable';
-export { OptimizedImage } from './components/OptimizedImage/OptimizedImage';
+export {
+	Heading,
+	Paragraph,
+	Blockquote,
+	List,
+	ListItem,
+	Code,
+	HorizontalDivider,
+	Figure,
+	CodeBlock,
+	Table,
+	Image,
+	Line,
+} from './components';
+export type { HeadingLevel } from './components';

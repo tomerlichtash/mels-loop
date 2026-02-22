@@ -1,21 +1,36 @@
-.badge {
+:root {
+	--ml-badge-font-size: var(--ml-font-size-xs);
+	--ml-badge-font-weight: var(--ml-font-weight-bold);
+	--ml-badge-letter-spacing: var(--ml-letter-spacing-tight);
+	--ml-badge-line-height: var(--ml-line-height-snug);
+	--ml-badge-radius: var(--ml-radius-pill);
+	--ml-badge-padding-horizontal: var(--ml-space-sm);
+	--ml-badge-padding-vertical: var(--ml-space-xs);
+	/* color */
+	--ml-badge-background-color: var(--ml-accent-primary-background-color);
+	--ml-badge-text-color: var(--ml-accent-text-color);
+}
+
+.root {
 	display: inline-flex;
 	align-items: center;
-	font-size: 0.7rem;
-	font-weight: 700;
+	font-size: var(--ml-badge-font-size);
+	font-weight: var(--ml-badge-font-weight);
 	text-transform: uppercase;
-	letter-spacing: 0.5px;
-	padding: 0.2em 0.6em;
-	border-radius: 999px;
-	line-height: 1.4;
+	letter-spacing: var(--ml-badge-letter-spacing);
+	line-height: var(--ml-badge-line-height);
+	padding: var(--ml-badge-padding-vertical) var(--ml-badge-padding-horizontal);
+	border-radius: var(--ml-badge-radius);
+	background-color: var(--ml-badge-background-color);
+	color: var(--ml-badge-text-color);
 }
 
-.pink {
-	background-color: var(--ml-pink);
-	color: var(--ml-white);
+.color-pink {
+	--ml-badge-background-color: var(--ml-accent-primary-background-color);
+	--ml-badge-text-color: var(--ml-accent-text-color);
 }
 
-.blue {
-	background-color: var(--ml-blue);
-	color: var(--ml-white);
+.color-blue {
+	--ml-badge-background-color: var(--ml-accent-secondary-background-color);
+	--ml-badge-text-color: var(--ml-accent-text-color);
 }

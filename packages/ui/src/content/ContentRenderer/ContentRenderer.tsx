@@ -1,13 +1,25 @@
 'use client';
 
 import { useMemo } from 'react';
+import cn from 'classnames';
 import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import type { Root as HastRoot, ElementContent } from 'hast';
-import { Figure } from '../components/Figure/Figure';
-import { CodeBlock } from '../components/CodeBlock/CodeBlock';
-import { StyledTable } from '../components/StyledTable/StyledTable';
-import { OptimizedImage } from '../components/OptimizedImage/OptimizedImage';
+import {
+	Heading,
+	Paragraph,
+	Blockquote,
+	List,
+	ListItem,
+	Code,
+	HorizontalDivider,
+	Figure,
+	CodeBlock,
+	Table,
+	Image,
+	Line,
+} from '../components';
+import { AnnotationAwareLink } from '../annotations/AnnotationAwareLink/AnnotationAwareLink';
 import styles from './ContentRenderer.module.css';
 
 type ComponentOverrides = Record<
@@ -24,10 +36,25 @@ interface ContentRendererProps {
 
 function defaultComponents(): ComponentOverrides {
 	return {
+		h1: (props) => <Heading level={1} {...props} />,
+		h2: (props) => <Heading level={2} {...props} />,
+		h3: (props) => <Heading level={3} {...props} />,
+		h4: (props) => <Heading level={4} {...props} />,
+		h5: (props) => <Heading level={5} {...props} />,
+		h6: (props) => <Heading level={6} {...props} />,
+		p: Paragraph,
+		blockquote: Blockquote,
+		ul: (props) => <List {...props} />,
+		ol: (props) => <List ordered {...props} />,
+		li: ListItem,
+		a: AnnotationAwareLink,
+		code: Code,
+		hr: HorizontalDivider,
 		figure: Figure,
 		pre: CodeBlock,
-		table: StyledTable,
-		img: OptimizedImage,
+		table: Table,
+		img: Image,
+		line: Line,
 	};
 }
 
@@ -56,7 +83,5 @@ export function ContentRenderer({
 		}
 	}, [hast, components]);
 
-	return (
-		<div className={`${styles.content} ${className || ''}`}>{content}</div>
-	);
+	return <div className={cn(styles.root, className)}>{content}</div>;
 }

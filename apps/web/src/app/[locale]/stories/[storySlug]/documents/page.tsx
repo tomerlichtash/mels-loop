@@ -1,4 +1,5 @@
-import { Title, Stack, Card, Group, Text } from '@mels-loop/ui/primitives';
+import { Heading, Stack, Card, Group, Text } from '@mels-loop/ui/primitives';
+import { Breadcrumbs } from '@mels-loop/ui/layout';
 import type { Locale } from '@mels-loop/i18n/config';
 import { getDictionary } from '@mels-loop/i18n/server';
 import {
@@ -6,7 +7,6 @@ import {
 	getDocumentMeta,
 } from '@mels-loop/content-pipeline/loaders';
 import { homeItem, dictGet } from '@/lib/breadcrumbs';
-import { StoryShell } from '@/components/story/StoryShell';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string }>;
@@ -28,38 +28,37 @@ export default async function DocumentsListingPage({ params }: PageProps) {
 	);
 
 	return (
-		<StoryShell
-			storySlug={storySlug}
-			locale={typedLocale}
-			activePath="documents"
-			breadcrumbs={[
-				homeItem(locale, dictGet(dict as Record<string, unknown>, 'nav.home')),
-				{ label: storyTitle, href: `/stories/${storySlug}` },
-				{ label: documentsLabel },
-			]}
-		>
-			<Stack gap="lg">
-				<Title order={1}>
-					{documentsLabel} &mdash; {storyTitle}
-				</Title>
-				{documentsMeta.map((doc) => (
-					<Card key={doc.slug} withBorder padding="md">
-						<Group justify="space-between">
-							<div>
-								<Text weight={500} component="span">
-									{doc.title}
+		<Stack gap="lg">
+			<Breadcrumbs
+				items={[
+					homeItem(
+						locale,
+						dictGet(dict as Record<string, unknown>, 'nav.home'),
+					),
+					{ label: storyTitle, href: `/stories/${storySlug}` },
+					{ label: documentsLabel },
+				]}
+			/>
+			<Heading order={1}>
+				{documentsLabel} &mdash; {storyTitle}
+			</Heading>
+			{documentsMeta.map((doc) => (
+				<Card key={doc.slug} withBorder padding="md">
+					<Group justify="space-between">
+						<div>
+							<Text weight={500} component="span">
+								{doc.title}
+							</Text>
+							{doc.author && (
+								<Text size="sm" color="dimmed">
+									{doc.author}
 								</Text>
-								{doc.author && (
-									<Text size="sm" color="dimmed">
-										{doc.author}
-									</Text>
-								)}
-							</div>
-							<a href={`/stories/${storySlug}/documents/${doc.slug}`}>Read</a>
-						</Group>
-					</Card>
-				))}
-			</Stack>
-		</StoryShell>
+							)}
+						</div>
+						<a href={`/stories/${storySlug}/documents/${doc.slug}`}>Read</a>
+					</Group>
+				</Card>
+			))}
+		</Stack>
 	);
 }

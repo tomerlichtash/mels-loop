@@ -1,0 +1,39 @@
+/* ---- Typography ---- */
+
+:root {
+	/* Font Families */
+	--ml-font-latin: 'Roboto Slab', serif;
+	--ml-font-hebrew: 'Assistant', sans-serif;
+	--ml-font-mono:
+		ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
+		'DejaVu Sans Mono', monospace;
+
+	/* Font Weights */
+	--ml-font-weight-light: 300;
+	--ml-font-weight-regular: 400;
+	--ml-font-weight-medium: 500;
+	--ml-font-weight-semibold: 600;
+	--ml-font-weight-bold: 700;
+
+	/* Font Size Scale */
+	--ml-font-size-2xs: 0.6rem;
+	--ml-font-size-xs: 0.7rem;
+	--ml-font-size-sm: 0.75rem;
+	--ml-font-size-body: 0.875rem;
+	--ml-font-size-md: 1rem;
+	--ml-font-size-lg: 1.125rem;
+	--ml-font-size-xl: 1.25rem;
+	--ml-font-size-2xl: 1.5rem;
+	--ml-font-size-3xl: 2rem;
+
+	/* Line Height Scale */
+	--ml-line-height-none: 1;
+	--ml-line-height-tight: 1.3;
+	--ml-line-height-snug: 1.4;
+	--ml-line-height-body: 1.5;
+	--ml-line-height-relaxed: 1.55;
+
+	/* Letter Spacing */
+	--ml-letter-spacing-tight: 0.5px;
+	--ml-letter-spacing-wide: 1px;
+}

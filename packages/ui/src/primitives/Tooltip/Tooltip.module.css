@@ -1,0 +1,26 @@
+.content {
+	z-index: 200;
+	background-color: var(--ml-text-color);
+	color: var(--ml-background-color);
+	font-size: var(--ml-font-size-sm);
+	padding: var(--ml-space-xs) var(--ml-space-sm);
+	border-radius: var(--ml-radius-md);
+	line-height: var(--ml-line-height-snug);
+	user-select: none;
+	animation: tooltipFadeIn var(--ml-duration-fast) var(--ml-ease-out);
+}
+
+.arrow {
+	fill: var(--ml-text-color);
+}
+
+@keyframes tooltipFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

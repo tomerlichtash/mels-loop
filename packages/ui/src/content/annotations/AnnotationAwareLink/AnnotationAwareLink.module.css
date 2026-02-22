@@ -1,0 +1,8 @@
+.link {
+	color: var(--ml-link-color);
+	text-decoration: none;
+}
+
+.link:hover {
+	color: var(--ml-link-hover-color);
+}

@@ -1,4 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react';
+import cn from 'classnames';
 import styles from './Alert.module.css';
 
 interface AlertProps extends HTMLAttributes<HTMLDivElement> {
@@ -17,7 +18,7 @@ export function Alert({
 	return (
 		<div
 			role="alert"
-			className={`${styles.alert} ${styles[color]}${className ? ` ${className}` : ''}`}
+			className={cn(styles.root, styles[`color-${color}`], className)}
 			{...props}
 		>
 			{title && <div className={styles.title}>{title}</div>}

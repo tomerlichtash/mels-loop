@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { Container, Title, Text, Stack } from '@mels-loop/ui/primitives';
+import { Container, Heading, Text, Stack } from '@mels-loop/ui/primitives';
 import type { Locale } from '@mels-loop/i18n/config';
 import { locales } from '@mels-loop/i18n/config';
 import { getPost, getAllPosts } from '@mels-loop/content-pipeline/loaders';
@@ -25,13 +25,13 @@ export default async function PostPage({ params }: PageProps) {
 	if (!content) notFound();
 
 	return (
-		<Container size="md">
+		<Container>
 			<Stack gap="lg">
 				<Link href="/posts" className={styles.backLink}>
 					&larr; {locale === 'he' ? 'חזרה לבלוג' : 'Back'}
 				</Link>
 				{content.metadata.title && (
-					<Title order={1}>{content.metadata.title}</Title>
+					<Heading order={1}>{content.metadata.title}</Heading>
 				)}
 				{content.metadata.date && (
 					<Text size="sm" color="dimmed">

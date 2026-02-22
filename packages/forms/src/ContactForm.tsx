@@ -155,7 +155,7 @@ export function ContactForm() {
 						{t('contact.captchaTooltip')}
 					</Text>
 				)}
-				<Button type="submit" loading={status === 'sending'}>
+				<Button type="submit" variant="primary" loading={status === 'sending'}>
 					{status === 'sending' ? t('contact.sending') : t('contact.send')}
 				</Button>
 			</Stack>

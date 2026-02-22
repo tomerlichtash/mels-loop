@@ -1,10 +1,12 @@
 import type { Locale } from '@mels-loop/i18n/config';
+import { getDictionary } from '@mels-loop/i18n/server';
 import {
 	getAllStories,
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
-import { StaticPage } from '@/components/StaticPage';
-import { StoryCard } from '@/components/story/StoryCard';
+import { StaticPage } from '@/components/StaticPage/StaticPage';
+import { StoryCard } from '@/components/StoryCard/StoryCard';
+import { homeItem, dictGet } from '@/lib/breadcrumbs';
 
 interface PageProps {
 	params: Promise<{ locale: string }>;
@@ -14,7 +16,11 @@ export default async function StoriesPage({ params }: PageProps) {
 	const { locale } = await params;
 	const typedLocale = locale as Locale;
 
-	const storySlugs = await getAllStories();
+	const [storySlugs, dict] = await Promise.all([
+		getAllStories(),
+		getDictionary(typedLocale),
+	]);
+
 	const stories = await Promise.all(
 		storySlugs.map((slug) => getStoryConfig(slug)),
 	);
@@ -23,8 +29,16 @@ export default async function StoriesPage({ params }: PageProps) {
 		a.featured === b.featured ? 0 : a.featured ? -1 : 1,
 	);
 
+	const title = dictGet(dict as Record<string, unknown>, 'stories');
+
 	return (
-		<StaticPage locale={locale} navKey="stories">
+		<StaticPage
+			title={title}
+			breadcrumbs={[
+				homeItem(locale, dictGet(dict as Record<string, unknown>, 'nav.home')),
+				{ label: title },
+			]}
+		>
 			<div>
 				{sorted.map((config) => (
 					<StoryCard key={config.slug} config={config} locale={typedLocale} />

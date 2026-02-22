@@ -1,83 +1,115 @@
-.button {
+:root {
+	--ml-button-font-size: var(--ml-font-size-md);
+	--ml-button-font-weight: var(--ml-font-weight-medium);
+	--ml-button-line-height: var(--ml-line-height-none);
+	--ml-button-radius: var(--ml-radius-md);
+	--ml-button-padding-horizontal: var(--ml-space-md);
+	--ml-button-padding-vertical: var(--ml-space-sm);
+	--ml-button-gap: var(--ml-space-xs);
+	--ml-button-duration: var(--ml-duration-fast);
+	--ml-button-height: 40px;
+	--ml-button-background-color: transparent;
+	--ml-button-background-color-hover: transparent;
+	--ml-button-text-color: inherit;
+	--ml-button-border-color: transparent;
+}
+
+.root {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	gap: var(--ml-space-xs);
-	border: none;
-	border-radius: var(--ml-border-radius);
-	cursor: pointer;
-	font-weight: 500;
+	gap: var(--ml-button-gap);
+	height: var(--ml-button-height);
+	padding: var(--ml-button-padding-vertical) var(--ml-button-padding-horizontal);
+	font-size: var(--ml-button-font-size);
+	font-weight: var(--ml-button-font-weight);
+	line-height: var(--ml-button-line-height);
+	border-radius: var(--ml-button-radius);
+	border: 1px solid var(--ml-button-border-color);
+	background-color: var(--ml-button-background-color);
+	color: var(--ml-button-text-color);
 	text-decoration: none;
-	line-height: 1;
+	cursor: pointer;
 	position: relative;
 	transition:
-		background-color 0.15s,
-		color 0.15s;
+		background-color var(--ml-button-duration),
+		color var(--ml-button-duration);
 }
 
-.button:disabled {
+.root:disabled {
 	opacity: 0.6;
 	cursor: not-allowed;
 }
 
+.root:hover:not(:disabled) {
+	background-color: var(--ml-button-background-color-hover);
+}
+
 /* Sizes */
 .size-xs {
-	font-size: 0.75rem;
-	padding: 0.3em 0.75em;
-	height: 28px;
+	--ml-button-font-size: var(--ml-font-size-sm);
+	--ml-button-padding-horizontal: var(--ml-space-sm);
+	--ml-button-padding-vertical: var(--ml-space-xs);
+	--ml-button-height: 28px;
 }
 
 .size-sm {
-	font-size: 0.875rem;
-	padding: 0.4em 1em;
-	height: 34px;
+	--ml-button-font-size: var(--ml-font-size-body);
+	--ml-button-padding-horizontal: var(--ml-space-sm);
+	--ml-button-padding-vertical: var(--ml-space-xs);
+	--ml-button-height: 34px;
 }
 
 .size-md {
-	font-size: 1rem;
-	padding: 0.5em 1.25em;
-	height: 40px;
+	--ml-button-font-size: var(--ml-font-size-md);
+	--ml-button-padding-horizontal: var(--ml-space-md);
+	--ml-button-padding-vertical: var(--ml-space-sm);
+	--ml-button-height: 40px;
 }
 
 .size-lg {
-	font-size: 1.25rem;
-	padding: 0.75em 2em;
-	height: 56px;
+	--ml-button-font-size: var(--ml-font-size-xl);
+	--ml-button-padding-horizontal: var(--ml-space-lg);
+	--ml-button-padding-vertical: var(--ml-space-md);
+	--ml-button-height: 56px;
 }
 
 .size-xl {
-	font-size: 1.5rem;
-	padding: 0.85em 2.5em;
-	height: 68px;
+	--ml-button-font-size: var(--ml-font-size-2xl);
+	--ml-button-padding-horizontal: var(--ml-space-xl);
+	--ml-button-padding-vertical: var(--ml-space-lg);
+	--ml-button-height: 68px;
 }
 
 /* Variants */
-.default {
-	background-color: var(--ml-submit-bg);
-	color: var(--ml-submit-text);
+.variant-ghost {
+	--ml-button-background-color: transparent;
+	--ml-button-background-color-hover: var(--ml-background-color-alt);
+	--ml-button-text-color: inherit;
+	--ml-button-border-color: transparent;
 }
 
-.default:hover:not(:disabled) {
-	background-color: var(--ml-submit-bg-hover);
+.variant-primary {
+	--ml-button-background-color: var(--ml-interactive-background-color);
+	--ml-button-background-color-hover: var(
+		--ml-interactive-background-color-hover
+	);
+	--ml-button-text-color: var(--ml-interactive-text-color);
+	--ml-button-border-color: transparent;
 }
 
-.subtle {
-	background-color: transparent;
-	color: var(--ml-link);
+.variant-subtle {
+	--ml-button-background-color: transparent;
+	--ml-button-background-color-hover: var(--ml-background-color-alt);
+	--ml-button-text-color: var(--ml-link-color);
+	--ml-button-border-color: transparent;
 }
 
-.subtle:hover:not(:disabled) {
-	background-color: var(--ml-bg-alt);
-}
-
-.outline {
-	background-color: transparent;
-	color: var(--ml-link);
-	border: 1px solid var(--ml-border);
-}
-
-.outline:hover:not(:disabled) {
-	background-color: var(--ml-bg-alt);
+.variant-outline {
+	--ml-button-background-color: transparent;
+	--ml-button-background-color-hover: var(--ml-background-color-alt);
+	--ml-button-text-color: var(--ml-link-color);
+	--ml-button-border-color: var(--ml-border-color);
 }
 
 /* Loading */
@@ -85,22 +117,6 @@
 	pointer-events: none;
 }
 
-.spinner {
-	position: absolute;
-	width: 1em;
-	height: 1em;
-	border: 2px solid currentColor;
-	border-right-color: transparent;
-	border-radius: 50%;
-	animation: spin 0.6s linear infinite;
-}
-
 .labelHidden {
 	visibility: hidden;
-}
-
-@keyframes spin {
-	to {
-		transform: rotate(360deg);
-	}
 }

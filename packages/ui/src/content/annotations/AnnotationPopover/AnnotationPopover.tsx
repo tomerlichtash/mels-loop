@@ -2,44 +2,57 @@
 
 import { useId, useRef, useEffect, useMemo } from 'react';
 import * as Popover from '@radix-ui/react-popover';
-import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
-import { useAnnotations } from '../AnnotationProvider/AnnotationProvider';
+import { useAnnotations } from '../PopoverProvider/PopoverProvider';
 import { ContentRenderer } from '../../ContentRenderer/ContentRenderer';
-import { PopoverNavBar } from '../PopoverNavBar/PopoverNavBar';
-import { PopoverInternalLink } from '../PopoverInternalLink/PopoverInternalLink';
-import { usePopoverContent } from '../usePopoverContent/usePopoverContent';
+import { NavBar } from '../internal/NavBar/NavBar';
+import { InternalLink } from '../internal/InternalLink/InternalLink';
+import { useContent } from '../internal/useContent/useContent';
+import { Loader } from '../../../primitives/Loader/Loader';
 import styles from './AnnotationPopover.module.css';
 
 interface AnnotationPopoverProps {
 	sequence: string;
 	target: string;
-	content: ProcessedContent;
 }
 
 export function AnnotationPopover({
 	sequence,
 	target,
-	content,
 }: AnnotationPopoverProps) {
 	const id = useId();
-	const { activePopover, openPopover, registerTrigger } = useAnnotations();
+	const {
+		activePopover,
+		openPopover,
+		registerTrigger,
+		annotations,
+		loadingKeys,
+		loadAnnotation,
+	} = useAnnotations();
 	const opened = activePopover === id;
 	const triggerRef = useRef<HTMLButtonElement>(null);
 
 	const originalLabel = `[${sequence}]`;
+	const baseContent = annotations[target] ?? null;
+	const isLoading = loadingKeys.has(target);
 
-	const { content: displayContent, label: displayLabel } = usePopoverContent(
-		content,
+	const { content: displayContent, label: displayLabel } = useContent(
+		baseContent,
 		target,
 		originalLabel,
 	);
 
-	const componentOverrides = useMemo(() => ({ a: PopoverInternalLink }), []);
+	const componentOverrides = useMemo(() => ({ a: InternalLink }), []);
 
 	useEffect(() => {
 		registerTrigger(id, triggerRef.current);
 		return () => registerTrigger(id, null);
 	}, [id, registerTrigger]);
+
+	useEffect(() => {
+		if (opened && !baseContent && !isLoading) {
+			loadAnnotation(target);
+		}
+	}, [opened, baseContent, isLoading, loadAnnotation, target]);
 
 	return (
 		<Popover.Root open={opened}>
@@ -47,7 +60,7 @@ export function AnnotationPopover({
 				<button
 					ref={triggerRef}
 					type="button"
-					className={styles.trigger}
+					className={styles.root}
 					onClick={() => openPopover(id)}
 					aria-label={`Annotation ${sequence}`}
 				>
@@ -63,27 +76,35 @@ export function AnnotationPopover({
 				>
 					<Popover.Arrow className={styles.arrow} />
 					<div data-popover-content>
-						<PopoverNavBar rootLabel={displayLabel} />
+						<NavBar rootLabel={displayLabel} />
 						<div className={styles.scrollArea}>
 							<div className={styles.bodyWrap}>
-								<ContentRenderer
-									hast={displayContent.hast}
-									className={styles.body}
-									components={componentOverrides}
-								/>
-								{displayContent.metadata.source_name && (
-									<p className={styles.source}>
-										{displayContent.metadata.source_url ? (
-											<a
-												href={displayContent.metadata.source_url}
-												className={styles.sourceLink}
-											>
-												{displayContent.metadata.source_name}
-											</a>
-										) : (
-											displayContent.metadata.source_name
+								{!displayContent ? (
+									<div className={styles.loader}>
+										<Loader size="md" />
+									</div>
+								) : (
+									<>
+										<ContentRenderer
+											hast={displayContent.hast}
+											className={styles.body}
+											components={componentOverrides}
+										/>
+										{displayContent.metadata.source_name && (
+											<p className={styles.source}>
+												{displayContent.metadata.source_url ? (
+													<a
+														href={displayContent.metadata.source_url}
+														className={styles.sourceLink}
+													>
+														{displayContent.metadata.source_name}
+													</a>
+												) : (
+													displayContent.metadata.source_name
+												)}
+											</p>
 										)}
-									</p>
+									</>
 								)}
 							</div>
 						</div>

@@ -1,4 +1,4 @@
-import { Container, Title, Stack } from '@mels-loop/ui/primitives';
+import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
 import type { Locale } from '@mels-loop/i18n/config';
 import { getDictionary } from '@mels-loop/i18n/server';
 import { ContactPage } from '@mels-loop/forms/ContactPage';
@@ -22,9 +22,9 @@ export default async function Page({ params }: PageProps) {
 			: 'Contact';
 
 	return (
-		<Container size="sm">
+		<Container>
 			<Stack gap="lg">
-				<Title order={1}>{title}</Title>
+				<Heading order={1}>{title}</Heading>
 				<ContactPage locale={locale} />
 			</Stack>
 		</Container>

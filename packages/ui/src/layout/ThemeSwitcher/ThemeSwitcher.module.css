@@ -1,0 +1,41 @@
+.root {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border: none;
+	border-radius: var(--ml-radius-md);
+	cursor: pointer;
+	color: var(--ml-text-color);
+	min-width: 32px;
+	height: 30px;
+	padding: 0 var(--ml-space-xs);
+}
+
+.root:hover {
+	background-color: var(--ml-header-item-hover);
+}
+
+.light,
+.dark {
+	display: none;
+	line-height: 0;
+}
+
+.light svg,
+.dark svg {
+	width: var(--ml-font-size-body);
+	height: var(--ml-font-size-body);
+}
+
+.light {
+	display: inline-flex;
+}
+
+[data-color-scheme='dark'] .light {
+	display: none;
+}
+
+[data-color-scheme='dark'] .dark {
+	display: inline;
+}

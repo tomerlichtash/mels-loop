@@ -1,0 +1,20 @@
+.root {
+	display: block;
+	position: relative;
+}
+
+.anchor {
+	position: absolute;
+	inset-inline-end: 100%;
+	padding-inline-end: var(--ml-space-xs);
+	color: var(--ml-text-muted-color);
+	text-decoration: none;
+	opacity: 0;
+	transition: opacity var(--ml-duration-fast);
+	white-space: nowrap;
+	user-select: none;
+}
+
+.root:hover .anchor {
+	opacity: 1;
+}

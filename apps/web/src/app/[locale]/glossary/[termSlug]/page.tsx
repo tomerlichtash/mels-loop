@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
-import { Container, Title, Text, Stack } from '@mels-loop/ui/primitives';
-import { Breadcrumb } from '@mels-loop/ui/shell';
+import { Container, Heading, Text, Stack } from '@mels-loop/ui/primitives';
+import { Breadcrumbs } from '@mels-loop/ui/layout';
 import type { Locale } from '@mels-loop/i18n/config';
 import { locales } from '@mels-loop/i18n/config';
 import {
@@ -35,9 +35,9 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 		termSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
 	return (
-		<Container size="md">
+		<Container>
 			<Stack gap="lg">
-				<Breadcrumb
+				<Breadcrumbs
 					items={[
 						homeItem(
 							locale,
@@ -50,7 +50,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 						{ label: displayName },
 					]}
 				/>
-				<Title order={1}>{displayName}</Title>
+				<Heading order={1}>{displayName}</Heading>
 				<ContentRenderer hast={content.hast} />
 				{content.metadata.source_name && (
 					<div>

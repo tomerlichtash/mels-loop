@@ -1,0 +1,7 @@
+/* ---- Layout ---- */
+
+:root {
+	--ml-content-max-width: 800px;
+	--ml-page-max-width: 1200px;
+	--ml-header-height: 48px;
+}

@@ -1,11 +1,24 @@
-.codeBlock {
-	background-color: var(--ml-code-bg);
-	color: var(--ml-code-text);
-	border-radius: var(--ml-border-radius);
-	padding: 0.75rem 1rem;
-	margin-bottom: 1rem;
+:root {
+	--ml-code-block-background-color: var(--ml-code-bg);
+	--ml-code-block-text-color: var(--ml-code-text);
+	--ml-code-block-font-family: var(--ml-font-mono);
+	--ml-code-block-font-size: var(--ml-font-size-sm);
+	--ml-code-block-line-height: var(--ml-line-height-body);
+	--ml-code-block-radius: var(--ml-radius-md);
+	--ml-code-block-padding-vertical: 0.75rem;
+	--ml-code-block-padding-horizontal: var(--ml-space-md);
+	--ml-code-block-margin-bottom: var(--ml-space-md);
+}
+
+.root {
+	background-color: var(--ml-code-block-background-color);
+	color: var(--ml-code-block-text-color);
+	border-radius: var(--ml-code-block-radius);
+	padding: var(--ml-code-block-padding-vertical)
+		var(--ml-code-block-padding-horizontal);
+	margin-bottom: var(--ml-code-block-margin-bottom);
 	overflow-x: auto;
-	font-family: var(--ml-font-mono);
-	font-size: 0.8rem;
-	line-height: 1.5;
+	font-family: var(--ml-code-block-font-family);
+	font-size: var(--ml-code-block-font-size);
+	line-height: var(--ml-code-block-line-height);
 }

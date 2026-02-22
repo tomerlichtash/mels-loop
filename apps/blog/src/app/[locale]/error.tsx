@@ -2,7 +2,7 @@
 
 import {
 	Container,
-	Title,
+	Heading,
 	Text,
 	Button,
 	Stack,
@@ -16,9 +16,9 @@ export default function LocaleError({
 	reset: () => void;
 }) {
 	return (
-		<Container size="sm">
+		<Container>
 			<Stack gap="lg" align="center" textAlign="center">
-				<Title order={1}>Something went wrong</Title>
+				<Heading order={1}>Something went wrong</Heading>
 				<Text size="lg" color="dimmed">
 					{error.message || 'An unexpected error occurred'}
 				</Text>

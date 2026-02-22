@@ -1,0 +1,40 @@
+.root {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-xs);
+	padding: var(--ml-space-xs) var(--ml-space-sm);
+	background-color: var(--ml-popover-topic-bg);
+	border-bottom: 1px solid var(--ml-border-color);
+	font-size: var(--ml-font-size-xs);
+	line-height: var(--ml-line-height-tight);
+	flex-wrap: wrap;
+}
+
+.crumb {
+	display: inline;
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	color: var(--ml-link-color);
+	cursor: pointer;
+	font: inherit;
+	font-size: var(--ml-font-size-xs);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.crumb:hover {
+	color: var(--ml-link-hover-color);
+}
+
+.separator {
+	color: var(--ml-text-muted-color);
+	font-size: var(--ml-font-size-2xs);
+	user-select: none;
+}
+
+.current {
+	color: var(--ml-text-muted-color);
+	font-size: var(--ml-font-size-xs);
+}

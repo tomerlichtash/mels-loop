@@ -1,9 +1,9 @@
-import { Container, Title, Stack } from '@mels-loop/ui/primitives';
-import { Breadcrumb } from '@mels-loop/ui/shell';
+import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
+import { Breadcrumbs } from '@mels-loop/ui/layout';
 import type { Locale } from '@mels-loop/i18n/config';
 import { getDictionary } from '@mels-loop/i18n/server';
 import { getAllGlossarySlugs } from '@mels-loop/content-pipeline/loaders';
-import { GlossaryList } from '@/components/glossary/GlossaryList';
+import { GlossaryEntry } from './GlossaryEntry';
 import { homeItem, dictGet } from '@/lib/breadcrumbs';
 
 interface PageProps {
@@ -18,9 +18,9 @@ export default async function GlossaryIndexPage({ params }: PageProps) {
 	const title = dictGet(dict as Record<string, unknown>, 'nav.glossary');
 
 	return (
-		<Container size="md">
+		<Container>
 			<Stack gap="lg">
-				<Breadcrumb
+				<Breadcrumbs
 					items={[
 						homeItem(
 							locale,
@@ -29,8 +29,12 @@ export default async function GlossaryIndexPage({ params }: PageProps) {
 						{ label: title },
 					]}
 				/>
-				<Title order={1}>{title}</Title>
-				<GlossaryList slugs={slugs} locale={locale} />
+				<Heading order={1}>{title}</Heading>
+				<Stack gap="sm">
+					{[...slugs].sort().map((slug) => (
+						<GlossaryEntry key={slug} slug={slug} />
+					))}
+				</Stack>
 			</Stack>
 		</Container>
 	);

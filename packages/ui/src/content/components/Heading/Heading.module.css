@@ -1,0 +1,14 @@
+.h1 {
+	--ml-title-color: var(--ml-heading-color);
+}
+
+.h2,
+.h3 {
+	--ml-title-color: var(--ml-heading-secondary-color);
+}
+
+.h4,
+.h5,
+.h6 {
+	--ml-title-color: var(--ml-text-secondary-color);
+}
