@@ -1,5 +1,6 @@
 import { getAllPosts, getPost } from '@mels-loop/content-pipeline/loaders';
 import type { Locale } from '@mels-loop/i18n/config';
+import { dictGet } from '@mels-loop/i18n/dict';
 import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
 
 import { PostList } from '@/components/posts/PostList';
@@ -25,27 +26,12 @@ export default async function PostsListingPage({ params }: PageProps) {
 		.filter(Boolean)
 		.reverse();
 
-	const title =
-		typeof dict === 'object' &&
-		dict !== null &&
-		'nav' in dict &&
-		typeof dict.nav === 'object' &&
-		dict.nav !== null &&
-		'blog' in dict.nav
-			? String(dict.nav.blog)
-			: 'Blog';
-
 	return (
 		<Container>
 			<Stack gap="lg">
-				<Heading order={1}>{title}</Heading>
+				<Heading order={1}>{dictGet(dict, 'nav.blog')}</Heading>
 				<PostList
-					posts={
-						posts as Array<{
-							slug: string;
-							metadata: { title?: string; date?: string };
-						}>
-					}
+					posts={posts as Parameters<typeof PostList>[0]['posts']}
 					locale={locale}
 				/>
 			</Stack>

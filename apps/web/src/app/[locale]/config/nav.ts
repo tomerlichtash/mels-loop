@@ -7,6 +7,7 @@ import type {
 
 export const navItems: NavItem[] = [
 	{ key: 'stories', href: '/stories', hasContent: true },
+	{ key: 'nav.blog', href: '/posts' },
 	{ key: 'nav.about', href: '/about' },
 	{ key: 'nav.contact', href: '/contact' },
 ];
@@ -16,12 +17,7 @@ export const footerLinks: FooterLinkColumn[] = [
 		titleKey: 'footer.pages',
 		links: [
 			{ label: 'nav.about', href: '/about', icon: 'info' },
-			{
-				label: 'nav.blog',
-				href: 'https://blog.melsloop.com',
-				external: true,
-				icon: 'reader',
-			},
+			{ label: 'nav.blog', href: '/posts', icon: 'reader' },
 			{ label: 'nav.contribute', href: '/contribute', icon: 'heart' },
 		],
 	},

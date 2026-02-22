@@ -10,7 +10,7 @@ interface PostCardProps {
 }
 
 export function PostCard({ slug, title, date }: PostCardProps) {
-	const displayTitle = title || slug.replace(/-/g, ' ');
+	const displayTitle = title ?? slug.replace(/-/g, ' ');
 
 	return (
 		<Card withBorder padding="md">

@@ -54,58 +54,6 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
-  apps/blog:
-    dependencies:
-      '@mels-loop/content-pipeline':
-        specifier: workspace:*
-        version: link:../../libs/content-pipeline
-      '@mels-loop/forms':
-        specifier: workspace:*
-        version: link:../../libs/forms
-      '@mels-loop/i18n':
-        specifier: workspace:*
-        version: link:../../libs/i18n
-      '@mels-loop/ui':
-        specifier: workspace:*
-        version: link:../../libs/ui
-      next:
-        specifier: ^16.1.6
-        version: 16.1.6(@babel/core@7.29.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      react:
-        specifier: ^19.2.4
-        version: 19.2.4
-      react-dom:
-        specifier: ^19.2.4
-        version: 19.2.4(react@19.2.4)
-      react-google-recaptcha:
-        specifier: ^3.1.0
-        version: 3.1.0(react@19.2.4)
-    devDependencies:
-      '@csstools/postcss-global-data':
-        specifier: ^4.0.0
-        version: 4.0.0(postcss@8.5.6)
-      '@mels-loop/eslint-config':
-        specifier: workspace:*
-        version: link:../../libs/eslint-config
-      '@mels-loop/test-utils':
-        specifier: workspace:*
-        version: link:../../libs/test-utils
-      '@playwright/test':
-        specifier: ^1.51.1
-        version: 1.58.2
-      '@types/react':
-        specifier: ^19.2.14
-        version: 19.2.14
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.14)
-      '@types/react-google-recaptcha':
-        specifier: ^2.1.9
-        version: 2.1.9
-      postcss-custom-media:
-        specifier: ^12.0.0
-        version: 12.0.0(postcss@8.5.6)
-
   apps/web:
     dependencies:
       '@mels-loop/content-pipeline':

@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { memo } from 'react';
 
+import { useColorScheme } from '../../color-scheme/useColorScheme';
+import { Tooltip } from '../../primitives/Tooltip/Tooltip';
 import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
 import { NavMenu } from '../Navigation/NavMenu';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
@@ -73,8 +75,10 @@ export function SiteHeader({
 	locales,
 }: SiteHeaderProps) {
 	const { t } = useTranslation();
+	const { colorScheme } = useColorScheme();
 	const pathname = usePathname();
 	const isHome = pathname === '/';
+	const themeLabel = t(`theme.switchTo.${colorScheme}`);
 
 	return (
 		<header className={styles.root}>
@@ -98,7 +102,9 @@ export function SiteHeader({
 					orientation="vertical"
 					className={styles.rightDivider}
 				/>
-				<ThemeSwitcher />
+				<Tooltip label={themeLabel}>
+					<ThemeSwitcher aria-label={themeLabel} />
+				</Tooltip>
 			</div>
 		</header>
 	);
