@@ -2,6 +2,7 @@
 
 import { useTranslation } from '@mels-loop/i18n/client';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import * as Separator from '@radix-ui/react-separator';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
@@ -58,7 +59,7 @@ export function SiteHeader({
 						<span className={styles.logoText}>{t('siteTitle')}</span>
 					</span>
 				) : (
-					<a href="/" className={styles.logoLink}>
+					<Link href="/" className={styles.logoLink}>
 						<span className={styles.logoIcon}>
 							<img
 								src="/assets/ml-logo-light.png"
@@ -72,7 +73,7 @@ export function SiteHeader({
 							/>
 						</span>
 						<span className={styles.logoText}>{t('siteTitle')}</span>
-					</a>
+					</Link>
 				)}
 				<Separator.Root orientation="vertical" className={styles.logoDivider} />
 				<span className={styles.logoSubtitle}>{t('siteSubtitle')}</span>

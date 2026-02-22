@@ -1,6 +1,7 @@
 'use client';
 
 import * as Dialog from '@radix-ui/react-dialog';
+import Link from 'next/link';
 import { useTranslation } from '@mels-loop/i18n/client';
 import type { NavItem } from '../types';
 import styles from './MobileDrawer.module.css';
@@ -34,18 +35,26 @@ export function MobileDrawer({ opened, onClose, navItems }: MobileDrawerProps) {
 								item.href.startsWith('https://');
 							const href = isAbsolute ? item.href : item.href || '/';
 
-							return (
+							return isAbsolute ? (
 								<a
 									key={item.key}
 									href={href}
 									className={styles.navLink}
 									onClick={onClose}
-									{...(isAbsolute
-										? { target: '_blank', rel: 'noopener noreferrer' }
-										: {})}
+									target="_blank"
+									rel="noopener noreferrer"
 								>
 									{t(item.key)}
 								</a>
+							) : (
+								<Link
+									key={item.key}
+									href={href}
+									className={styles.navLink}
+									onClick={onClose}
+								>
+									{t(item.key)}
+								</Link>
 							);
 						})}
 					</nav>

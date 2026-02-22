@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
 	Container,
 	Heading,
@@ -15,7 +16,7 @@ export default function LocaleNotFound() {
 					Page not found
 				</Text>
 				<Button asChild variant="outline">
-					<a href="/">Go Home</a>
+					<Link href="/">Go Home</Link>
 				</Button>
 			</Stack>
 		</Container>

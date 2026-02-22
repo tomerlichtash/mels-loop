@@ -1,6 +1,7 @@
 'use client';
 
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import Link from 'next/link';
 import { useTranslation } from '@mels-loop/i18n/client';
 import { usePathname } from 'next/navigation';
 import type { NavItem } from '../types';
@@ -40,7 +41,7 @@ export function NavMenu({ navItems }: NavMenuProps) {
 													? `/stories/${featuredStory.slug}`
 													: href;
 												return (
-													<a href={featuredHref} className={styles.featured}>
+													<Link href={featuredHref} className={styles.featured}>
 														{featuredStory?.image && (
 															<img
 																src={featuredStory.image}
@@ -59,7 +60,7 @@ export function NavMenu({ navItems }: NavMenuProps) {
 																{t('featured.linkPrefix')} &rarr;
 															</span>
 														</div>
-													</a>
+													</Link>
 												);
 											})()}
 											{(() => {
@@ -75,7 +76,7 @@ export function NavMenu({ navItems }: NavMenuProps) {
 														</p>
 														<div className={styles.storyList}>
 															{otherStories.map((story) => (
-																<a
+																<Link
 																	key={story.slug}
 																	href={`/stories/${story.slug}`}
 																	className={styles.storyLink}
@@ -86,7 +87,7 @@ export function NavMenu({ navItems }: NavMenuProps) {
 																	<span className={styles.storySubtitle}>
 																		{story.abstract}
 																	</span>
-																</a>
+																</Link>
 															))}
 														</div>
 													</>
@@ -97,15 +98,20 @@ export function NavMenu({ navItems }: NavMenuProps) {
 								</>
 							) : (
 								<NavigationMenu.Link asChild active={isActive}>
-									<a
-										href={href}
-										className={styles.link}
-										{...(isAbsolute
-											? { target: '_blank', rel: 'noopener noreferrer' }
-											: {})}
-									>
-										{t(item.key)}
-									</a>
+									{isAbsolute ? (
+										<a
+											href={href}
+											className={styles.link}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											{t(item.key)}
+										</a>
+									) : (
+										<Link href={href} className={styles.link}>
+											{t(item.key)}
+										</Link>
+									)}
 								</NavigationMenu.Link>
 							)}
 						</NavigationMenu.Item>

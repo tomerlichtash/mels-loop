@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Container, Heading, Button } from '@mels-loop/ui/primitives';
 import type { Locale } from '@mels-loop/i18n/config';
 import { getDictionary } from '@mels-loop/i18n/server';
@@ -39,7 +40,7 @@ export default async function HomePage({ params }: PageProps) {
 						size="xl"
 						className={styles.heroCtaButton}
 					>
-						<a href="/stories">{hero.cta}</a>
+						<Link href="/stories">{hero.cta}</Link>
 					</Button>
 				</div>
 			</div>
