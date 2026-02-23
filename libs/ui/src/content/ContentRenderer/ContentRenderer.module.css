@@ -9,7 +9,7 @@
 	font-size: var(--ml-content-renderer-font-size);
 	line-height: var(--ml-content-renderer-line-height);
 	color: var(--ml-content-renderer-text-color);
-	max-width: var(--ml-content-renderer-max-width);
+	/* max-width: var(--ml-content-renderer-max-width); */
 	margin: 0 auto;
 }
 

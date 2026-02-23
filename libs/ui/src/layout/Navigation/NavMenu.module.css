@@ -93,7 +93,7 @@
 .list {
 	display: flex;
 	align-items: center;
-	gap: var(--ml-space-lg);
+	gap: var(--ml-space-sm);
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -108,7 +108,7 @@
 	height: 30px;
 	text-decoration: none;
 	color: var(--ml-text-color);
-	font-size: var(--ml-font-size-body);
+	font-size: var(--ml-font-size-sm);
 	font-weight: var(--ml-font-weight-bold);
 	text-transform: uppercase;
 	line-height: var(--ml-line-height-none);

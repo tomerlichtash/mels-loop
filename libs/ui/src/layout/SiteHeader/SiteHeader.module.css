@@ -4,12 +4,18 @@
 	left: 0;
 	right: 0;
 	z-index: 100;
+	height: var(--ml-header-height);
+	background-color: var(--ml-header-bg);
+}
+
+.inner {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	height: var(--ml-header-height);
-	padding: 0 var(--ml-space-xl);
-	background-color: var(--ml-header-bg);
+	height: 100%;
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	padding: 0 var(--ml-page-padding-horizontal);
 }
 
 .left {
@@ -113,7 +119,8 @@
 .logoSubtitle {
 	font-size: var(--ml-font-size-md);
 	font-weight: var(--ml-font-weight-regular);
-	color: var(--ml-text-muted-color);
+	color: var(--ml-text-color);
+	opacity: 0.6;
 	letter-spacing: 0;
 	text-transform: lowercase;
 }

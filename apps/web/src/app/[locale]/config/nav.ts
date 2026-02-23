@@ -8,8 +8,6 @@ import type {
 export const navItems: NavItem[] = [
 	{ key: 'stories', href: '/stories', hasContent: true },
 	{ key: 'nav.sources', href: '/sources' },
-	{ key: 'nav.about', href: '/about' },
-	{ key: 'nav.contact', href: '/contact' },
 ];
 
 export const footerLinks: FooterLinkColumn[] = [

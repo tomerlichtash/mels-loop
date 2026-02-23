@@ -7,8 +7,8 @@
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	padding: var(--ml-container-padding-vertical)
-		var(--ml-container-padding-horizontal);
+	/* padding: var(--ml-container-padding-vertical)
+		var(--ml-container-padding-horizontal); */
 }
 
 /* Padding horizontal */

@@ -16,9 +16,9 @@
 }
 
 .inner {
-	max-width: var(--ml-content-max-width);
+	max-width: var(--ml-page-max-width);
 	margin: 0 auto;
-	padding: var(--ml-space-3xl) var(--ml-space-md);
+	padding: var(--ml-space-3xl) var(--ml-page-padding-horizontal);
 }
 
 .columns {

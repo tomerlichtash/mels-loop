@@ -82,21 +82,26 @@ export function SiteHeader({
 
 	return (
 		<header className={styles.root}>
-			<div className={styles.left}>
-				<BurgerButton onClick={onMenuClick} />
-				<Logo isHome={isHome} siteTitle={t('siteTitle')} />
-				<Separator.Root orientation="vertical" className={styles.logoDivider} />
-				<span className={styles.logoSubtitle}>{t('siteSubtitle')}</span>
-			</div>
+			<div className={styles.inner}>
+				<div className={styles.left}>
+					<BurgerButton onClick={onMenuClick} />
+					<Logo isHome={isHome} siteTitle={t('siteTitle')} />
+					<Separator.Root
+						orientation="vertical"
+						className={styles.logoDivider}
+					/>
+					<span className={styles.logoSubtitle}>{t('siteSubtitle')}</span>
+				</div>
 
-			<div className={styles.right}>
-				<nav className={styles.desktopNav}>
-					<NavMenu navItems={navItems} />
-				</nav>
-				<LocaleSwitcher locales={locales} />
-				<Tooltip label={themeLabel}>
-					<ThemeSwitcher aria-label={themeLabel} />
-				</Tooltip>
+				<div className={styles.right}>
+					<nav className={styles.desktopNav}>
+						<NavMenu navItems={navItems} />
+					</nav>
+					<LocaleSwitcher locales={locales} />
+					<Tooltip label={themeLabel}>
+						<ThemeSwitcher aria-label={themeLabel} />
+					</Tooltip>
+				</div>
 			</div>
 		</header>
 	);
