@@ -3,6 +3,8 @@
  * Builds per-locale Orama search indexes and writes them to apps/web/public/.
  * Run: pnpm search-index (from apps/web) or pnpm --filter @mels-loop/web search-index
  */
+import { createHash } from 'node:crypto';
+
 import {
 	getAllGlossaryTerms,
 	getAllPosts,
@@ -26,6 +28,12 @@ const OUTPUT_DIR = path.resolve(__dirname, '../public');
 const CONTENT_DIR = path.resolve(__dirname, '../../../content');
 
 setContentDir(CONTENT_DIR);
+
+function wrapWithVersion(raw: ReturnType<typeof save>) {
+	const json = JSON.stringify(raw);
+	const version = createHash('sha256').update(json).digest('hex').slice(0, 16);
+	return { version, data: raw };
+}
 
 const schema = {
 	type: 'string' as const,
@@ -295,21 +303,37 @@ function createHebrewTokenizer() {
 
 for (const locale of locales) {
 	const docs = await collectDocs(locale);
-
-	const components =
-		locale === 'he' ? { tokenizer: createHebrewTokenizer() } : undefined;
-
-	const db = create({
-		schema,
-		...(locale !== 'he' ? { language: 'english' } : {}),
-		...(components ? { components } : {}),
-	});
-
-	insertMultiple(db, docs);
-
-	const raw = save(db);
-	const outPath = path.join(OUTPUT_DIR, `search-index.${locale}.json`);
 	await fs.mkdir(OUTPUT_DIR, { recursive: true });
-	await fs.writeFile(outPath, JSON.stringify(raw), 'utf-8');
-	console.log(`[${locale}] Indexed ${docs.length} documents → ${outPath}`);
+
+	const langOpts =
+		locale === 'he'
+			? { components: { tokenizer: createHebrewTokenizer() } }
+			: { language: 'english' as const };
+
+	// Light index — same docs but with empty body (metadata only)
+	const lightDocs = docs.map((d) => ({ ...d, body: '' }));
+	const lightDb = create({ schema, ...langOpts });
+	insertMultiple(lightDb, lightDocs);
+	const lightRaw = save(lightDb);
+	const lightPath = path.join(OUTPUT_DIR, `search-index.${locale}.light.json`);
+	await fs.writeFile(
+		lightPath,
+		JSON.stringify(wrapWithVersion(lightRaw)),
+		'utf-8',
+	);
+
+	// Full index — includes body text for deep search
+	const fullDb = create({ schema, ...langOpts });
+	insertMultiple(fullDb, docs);
+	const fullRaw = save(fullDb);
+	const fullPath = path.join(OUTPUT_DIR, `search-index.${locale}.full.json`);
+	await fs.writeFile(
+		fullPath,
+		JSON.stringify(wrapWithVersion(fullRaw)),
+		'utf-8',
+	);
+
+	console.log(
+		`[${locale}] Indexed ${docs.length} documents → light: ${lightPath}, full: ${fullPath}`,
+	);
 }

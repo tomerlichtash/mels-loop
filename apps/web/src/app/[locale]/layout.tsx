@@ -4,13 +4,7 @@ import '../../content-init';
 import { I18nProvider } from '@mels-loop/i18n/client';
 import { getDirection, isValidLocale } from '@mels-loop/i18n/config';
 import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
-import {
-	assistant,
-	lekton,
-	robotoMono,
-	robotoSlab,
-	vt323,
-} from '@mels-loop/ui/fonts';
+import { assistant, lekton, robotoSlab } from '@mels-loop/ui/fonts';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 
@@ -54,7 +48,7 @@ export default async function Layout({
 				<ColorSchemeScript />
 			</head>
 			<body
-				className={`${robotoSlab.variable} ${assistant.variable} ${robotoMono.variable} ${vt323.variable} ${lekton.variable}`}
+				className={`${robotoSlab.variable} ${assistant.variable} ${lekton.variable}`}
 			>
 				<I18nProvider locale={locale} messages={messages}>
 					<SearchableLayout

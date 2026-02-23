@@ -1,10 +1,4 @@
-import {
-	Assistant,
-	Lekton,
-	Roboto_Mono,
-	Roboto_Slab,
-	VT323,
-} from 'next/font/google';
+import { Assistant, Lekton, Roboto_Slab } from 'next/font/google';
 
 export const robotoSlab = Roboto_Slab({
 	subsets: ['latin'],
@@ -13,24 +7,10 @@ export const robotoSlab = Roboto_Slab({
 	display: 'swap',
 });
 
-export const robotoMono = Roboto_Mono({
-	subsets: ['latin'],
-	weight: ['400', '700'],
-	variable: '--font-roboto-mono',
-	display: 'swap',
-});
-
 export const lekton = Lekton({
 	subsets: ['latin'],
 	weight: ['400', '700'],
 	variable: '--font-lekton',
-	display: 'swap',
-});
-
-export const vt323 = VT323({
-	subsets: ['latin'],
-	weight: '400',
-	variable: '--font-vt323',
 	display: 'swap',
 });
 

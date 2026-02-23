@@ -1,7 +1,14 @@
 'use client';
 
 import { useTranslation } from '@mels-loop/i18n/client';
-import { type AnyOrama, create, load, type Result, search } from '@orama/orama';
+import {
+	type AnyOrama,
+	create,
+	load,
+	type RawData,
+	type Result,
+	search,
+} from '@orama/orama';
 import * as Dialog from '@radix-ui/react-dialog';
 import {
 	FileIcon,
@@ -13,6 +20,8 @@ import {
 } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
+
+import { getCache, setCache } from '@/lib/search-cache';
 
 import styles from './SearchDialog.module.css';
 
@@ -106,28 +115,58 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
 	const [loading, setLoading] = useState(false);
 	const [hasSearched, setHasSearched] = useState(false);
 	const [activeIndex, setActiveIndex] = useState(-1);
-	const dbRef = useRef<AnyOrama | null>(null);
+	const lightDbRef = useRef<AnyOrama | null>(null);
+	const fullDbRef = useRef<AnyOrama | null>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 	const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 	const resultRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
-	// Load index on first open
+	// Load search indexes with IndexedDB cache-first strategy
 	useEffect(() => {
-		if (!open || dbRef.current) return;
+		if (!open || lightDbRef.current) return;
 		let cancelled = false;
 		setLoading(true);
-		fetch(`/search-index.${locale}.json`)
-			.then((res) => res.json())
-			.then((raw) => {
-				if (cancelled) return;
+
+		async function loadTier(
+			tier: 'light' | 'full',
+			dbRef: React.RefObject<AnyOrama | null>,
+		) {
+			const cacheKey = `${tier}-${locale}`;
+			const url = `/search-index.${locale}.${tier}.json`;
+
+			// 1. Try cache first
+			const cached = await getCache(cacheKey);
+			if (cached && !cancelled) {
 				const db = create({ schema });
-				load(db, raw);
+				load(db, cached.data as RawData);
 				dbRef.current = db;
-				setLoading(false);
-			})
-			.catch(() => {
-				if (!cancelled) setLoading(false);
-			});
+				if (tier === 'light') setLoading(false);
+			}
+
+			// 2. Fetch from network for freshness check
+			try {
+				const res = await fetch(url);
+				const envelope = await res.json();
+				if (cancelled) return;
+
+				// 3. Compare versions — skip reload if unchanged
+				if (cached && cached.version === envelope.version) return;
+
+				// 4. New data — reload DB and update cache
+				const db = create({ schema });
+				load(db, envelope.data as RawData);
+				dbRef.current = db;
+				if (tier === 'light') setLoading(false);
+				setCache(cacheKey, { version: envelope.version, data: envelope.data });
+			} catch {
+				// 5. Network failed — if cache existed, search still works
+				if (!cached && !cancelled && tier === 'light') setLoading(false);
+			}
+		}
+
+		loadTier('light', lightDbRef);
+		loadTier('full', fullDbRef);
+
 		return () => {
 			cancelled = true;
 		};
@@ -150,7 +189,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
 		}
 	}, [open]);
 
-	// Debounced search
+	// Debounced search — uses full index when available, falls back to light
 	const doSearch = useCallback((term: string) => {
 		clearTimeout(timerRef.current);
 		if (!term.trim()) {
@@ -160,8 +199,9 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
 			return;
 		}
 		timerRef.current = setTimeout(() => {
-			if (!dbRef.current) return;
-			const res = search(dbRef.current, {
+			const db = fullDbRef.current ?? lightDbRef.current;
+			if (!db) return;
+			const res = search(db, {
 				term,
 				limit: 50,
 			}) as { hits: Result<SearchDoc>[] };
