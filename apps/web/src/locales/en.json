@@ -101,8 +101,9 @@
 		}
 	},
 	"hero": {
-		"title": "Welcome to Mel's Loop",
-		"description": "Mel's Loop is a guide to the epic hacker folklore tale \"The Story of Mel\". It also aims to collect the stories and sub-stories around the tale, its author, and its main characters, as well as early computing era stories and other related tales.",
+		"title_p1": "Meet the legends of",
+		"title_p2": "hacking folklore",
+		"description": "Explore the stories, people, and culture that shaped the hacker community.",
 		"cta": "Dive In"
 	},
 	"sources": {

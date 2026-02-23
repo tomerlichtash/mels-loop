@@ -1,7 +1,7 @@
 /* ---- Dark Theme Overrides ---- */
 
 [data-color-scheme='dark'] {
-	--ml-background-color: var(--ml-gray-400);
+	--ml-background-color: var(--ml-gray-500);
 	--ml-background-color-alt: var(--ml-gray-500);
 	--ml-surface-background-color: var(--ml-gray-500);
 	--ml-text-color: var(--ml-cream-200);
@@ -33,7 +33,7 @@
 	--ml-header-bg: var(--ml-gray-500);
 	--ml-header-item-hover: var(--ml-gray-400);
 	--ml-header-item-active: var(--ml-gray-400);
-	--ml-footer-bg: var(--ml-gray-500);
+	--ml-footer-bg: var(--ml-gray-400);
 
 	--ml-input-border: var(--ml-pink);
 	--ml-input-border-focus: var(--ml-blue);

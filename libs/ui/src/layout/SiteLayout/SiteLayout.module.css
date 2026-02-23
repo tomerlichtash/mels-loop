@@ -9,3 +9,10 @@
 	/* padding: var(--ml-space-md); */
 	/* padding-top: calc(var(--ml-header-height) + var(--ml-space-md)); */
 }
+
+.content {
+	position: relative;
+	top: var(--ml-header-height);
+	max-width: 1100px;
+	margin: 0 auto;
+}

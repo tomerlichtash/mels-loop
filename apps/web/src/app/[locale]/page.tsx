@@ -6,6 +6,7 @@ import type { Locale } from '@mels-loop/i18n/config';
 import { Button, Container, Heading } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
+import { GlyphShift } from '@/components/GlyphShift/GlyphShift';
 import { StoryCard } from '@/components/StoryCard/StoryCard';
 import { getDictionary } from '@/i18n';
 
@@ -33,7 +34,16 @@ export default async function HomePage({ params }: PageProps) {
 
 	return (
 		<Container paddingHorizontal="xl" paddingVertical="xl">
-			<div className={styles.hero}>
+			<section className={styles.hero}>
+				<Heading order={1} className={styles.heroTitle}>
+					{hero.title_p1}
+					<br />
+					<GlyphShift
+						text={hero.title_p2}
+						className={styles.heroTitleHighlight}
+						speed={1000}
+					/>
+				</Heading>
 				<p className={styles.heroDescription}>{hero.description}</p>
 				<div className={styles.heroCta}>
 					<Button
@@ -45,7 +55,7 @@ export default async function HomePage({ params }: PageProps) {
 						<Link href="/stories">{hero.cta}</Link>
 					</Button>
 				</div>
-			</div>
+			</section>
 			<section>
 				<Heading order={2} className={styles.storiesHeading}>
 					{String(dict.stories)}

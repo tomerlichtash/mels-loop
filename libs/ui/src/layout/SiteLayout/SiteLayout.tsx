@@ -31,7 +31,9 @@ export function SiteLayout({
 				locales={locales}
 			/>
 
-			<main className={styles.main}>{children}</main>
+			<main className={styles.main}>
+				<div className={styles.content}>{children}</div>
+			</main>
 
 			<SiteFooter linkColumns={footerLinks} />
 
