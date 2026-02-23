@@ -52,3 +52,6 @@ temp/
 storybook-static
 
 .playwright-mcp
+
+# search index (generated)
+apps/web/public/search-index.*.json

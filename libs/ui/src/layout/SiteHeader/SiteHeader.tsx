@@ -4,7 +4,7 @@ import { useTranslation } from '@mels-loop/i18n/client';
 import * as Separator from '@radix-ui/react-separator';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import { useColorScheme } from '../../color-scheme/useColorScheme';
 import { Tooltip } from '../../primitives/Tooltip/Tooltip';
@@ -16,6 +16,7 @@ import styles from './SiteHeader.module.css';
 
 interface SiteHeaderProps {
 	onMenuClick: () => void;
+	onSearchClick?: () => void;
 	navItems: NavItem[];
 	locales: LocaleOption[];
 }
@@ -69,8 +70,53 @@ const Logo = memo(function Logo({
 	);
 });
 
+function SearchTrigger({
+	onClick,
+	placeholder,
+	label,
+}: {
+	onClick: () => void;
+	placeholder: string;
+	label: string;
+}) {
+	const [isMac, setIsMac] = useState(false);
+	useEffect(() => {
+		setIsMac(/Mac|iPhone|iPod|iPad/i.test(navigator.userAgent));
+	}, []);
+
+	return (
+		<button
+			type="button"
+			className={styles.searchTrigger}
+			onClick={onClick}
+			aria-label={label}
+		>
+			<svg
+				className={styles.searchIcon}
+				width="14"
+				height="14"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
+				<circle cx="11" cy="11" r="8" />
+				<line x1="21" y1="21" x2="16.65" y2="16.65" />
+			</svg>
+			<span className={styles.searchPlaceholder}>{placeholder}</span>
+			<span className={styles.searchKbd}>
+				<kbd>{isMac ? '\u2318' : 'Ctrl'}</kbd>
+				<kbd>K</kbd>
+			</span>
+		</button>
+	);
+}
+
 export function SiteHeader({
 	onMenuClick,
+	onSearchClick,
 	navItems,
 	locales,
 }: SiteHeaderProps) {
@@ -97,6 +143,13 @@ export function SiteHeader({
 					<nav className={styles.desktopNav}>
 						<NavMenu navItems={navItems} />
 					</nav>
+					{onSearchClick && (
+						<SearchTrigger
+							onClick={onSearchClick}
+							placeholder={t('search.triggerPlaceholder')}
+							label={t('search.open')}
+						/>
+					)}
 					<LocaleSwitcher locales={locales} />
 					<Tooltip label={themeLabel}>
 						<ThemeSwitcher aria-label={themeLabel} />

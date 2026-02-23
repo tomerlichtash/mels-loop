@@ -13,6 +13,8 @@ interface SiteLayoutProps {
 	navItems: NavItem[];
 	footerLinks?: FooterLinkColumn[];
 	locales: LocaleOption[];
+	searchSlot?: ReactNode;
+	onSearchClick?: () => void;
 }
 
 export function SiteLayout({
@@ -20,6 +22,8 @@ export function SiteLayout({
 	navItems,
 	footerLinks,
 	locales,
+	searchSlot,
+	onSearchClick,
 }: SiteLayoutProps) {
 	const [drawerOpened, setDrawerOpened] = useState(false);
 
@@ -27,6 +31,7 @@ export function SiteLayout({
 		<div className={styles.root}>
 			<SiteHeader
 				onMenuClick={() => setDrawerOpened(true)}
+				onSearchClick={onSearchClick}
 				navItems={navItems}
 				locales={locales}
 			/>
@@ -42,6 +47,8 @@ export function SiteLayout({
 				onClose={() => setDrawerOpened(false)}
 				navItems={navItems}
 			/>
+
+			{searchSlot}
 		</div>
 	);
 }

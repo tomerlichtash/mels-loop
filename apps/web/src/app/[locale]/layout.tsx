@@ -11,10 +11,10 @@ import {
 	robotoSlab,
 	vt323,
 } from '@mels-loop/ui/fonts';
-import { SiteLayout } from '@mels-loop/ui/layout';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 
+import { SearchableLayout } from '@/components/SearchableLayout';
 import { getDictionary } from '@/i18n';
 
 // import { FaviconAnimator } from '@/components/FaviconAnimator';
@@ -57,14 +57,14 @@ export default async function Layout({
 				className={`${robotoSlab.variable} ${assistant.variable} ${robotoMono.variable} ${vt323.variable} ${lekton.variable}`}
 			>
 				<I18nProvider locale={locale} messages={messages}>
-					<SiteLayout
+					<SearchableLayout
 						navItems={navItems}
 						footerLinks={footerLinks}
 						locales={localeOptions}
 					>
 						{/* <FaviconAnimator /> */}
 						{children}
-					</SiteLayout>
+					</SearchableLayout>
 				</I18nProvider>
 			</body>
 		</html>

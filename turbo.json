@@ -15,6 +15,10 @@
 		"test:e2e": {
 			"dependsOn": ["^build"],
 			"cache": false
+		},
+		"search-index": {
+			"dependsOn": ["^build"],
+			"outputs": ["public/search-index.*.json"]
 		}
 	}
 }

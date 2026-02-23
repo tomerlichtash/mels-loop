@@ -125,6 +125,26 @@
 		"colSource": "Source",
 		"searchPlaceholder": "Search sources..."
 	},
+	"search": {
+		"title": "Search",
+		"placeholder": "Search articles, glossary, sources...",
+		"triggerPlaceholder": "Search...",
+		"open": "Open search",
+		"close": "Close search",
+		"navigate": "navigate",
+		"openHint": "open",
+		"closeHint": "close",
+		"noResults": "No results found",
+		"resultsFound": "results found",
+		"categories": {
+			"article": "Articles",
+			"glossary": "Glossary",
+			"post": "Posts",
+			"page": "Pages",
+			"source": "Sources",
+			"story": "Stories"
+		}
+	},
 	"stories": "Stories",
 	"loading": "Loading...",
 	"learnMore": "Learn More",

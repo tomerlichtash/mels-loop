@@ -125,6 +125,26 @@
 		"colSource": "מקור",
 		"searchPlaceholder": "חיפוש מקורות..."
 	},
+	"search": {
+		"title": "חיפוש",
+		"placeholder": "חיפוש מאמרים, מילון מונחים, מקורות...",
+		"triggerPlaceholder": "חיפוש...",
+		"open": "פתיחת חיפוש",
+		"close": "סגירת חיפוש",
+		"navigate": "ניווט",
+		"openHint": "פתיחה",
+		"closeHint": "סגירה",
+		"noResults": "לא נמצאו תוצאות",
+		"resultsFound": "תוצאות נמצאו",
+		"categories": {
+			"article": "מאמרים",
+			"glossary": "מילון מונחים",
+			"post": "פוסטים",
+			"page": "עמודים",
+			"source": "מקורות",
+			"story": "סיפורים"
+		}
+	},
 	"stories": "סיפורים",
 	"loading": "טוען...",
 	"learnMore": "עוד",
