@@ -17,10 +17,7 @@ const RATIO_CLASSES: Record<string, string> = {
 	'3-1': styles['cols-3-1'],
 };
 
-export default function ContentLayout({
-	children,
-	...props
-}: ContentLayoutProps) {
+export function ContentLayout({ children, ...props }: ContentLayoutProps) {
 	const layout = props['data-layout'] as string | undefined;
 	const ratio = props['data-cols-ratio'] as string | undefined;
 	delete props['data-layout'];

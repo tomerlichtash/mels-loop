@@ -7,6 +7,7 @@
 		"dev": "turbo dev",
 		"build": "turbo build",
 		"lint": "turbo lint",
+		"test": "turbo test:e2e",
 		"test:e2e": "turbo test:e2e",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
@@ -21,6 +22,7 @@
 	},
 	"devDependencies": {
 		"@mels-loop/eslint-config": "workspace:*",
+		"@playwright/test": "^1.51.1",
 		"@types/hast": "^3.0.4",
 		"@types/mdast": "^4.0.4",
 		"@types/node": "^25.2.3",

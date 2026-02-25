@@ -9,6 +9,7 @@
 		"start": "next start --port 3000",
 		"lint": "eslint .",
 		"test:e2e": "playwright test",
+		"test:e2e:debug": "PWDEBUG=1 playwright test",
 		"sitemap": "tsx scripts/generate-sitemap.ts",
 		"search-index": "tsx scripts/generate-search-index.ts"
 	},
@@ -35,7 +36,6 @@
 		"@csstools/postcss-global-data": "^4.0.0",
 		"@mels-loop/eslint-config": "workspace:*",
 		"@mels-loop/test-utils": "workspace:*",
-		"@playwright/test": "^1.51.1",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
 		"@types/react-google-recaptcha": "^2.1.9",

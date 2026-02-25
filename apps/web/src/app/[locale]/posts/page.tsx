@@ -29,7 +29,7 @@ export default async function PostsListingPage({ params }: PageProps) {
 	return (
 		<Container>
 			<Stack gap="lg">
-				<Heading order={1}>{dictGet(dict, 'nav.blog')}</Heading>
+				<Heading level={1}>{dictGet(dict, 'nav.blog')}</Heading>
 				<PostList
 					posts={posts as Parameters<typeof PostList>[0]['posts']}
 					locale={locale}

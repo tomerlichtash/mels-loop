@@ -9,7 +9,7 @@ interface CodeProps {
 	[key: string]: unknown;
 }
 
-export default function Code({ children, className, ...props }: CodeProps) {
+export function Code({ children, className, ...props }: CodeProps) {
 	return (
 		<code className={cn(styles.root, className)} {...props}>
 			{children}

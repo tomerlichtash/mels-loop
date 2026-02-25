@@ -18,7 +18,7 @@ export default function LocaleError({
 	return (
 		<Container>
 			<Stack gap="lg" align="center" textAlign="center">
-				<Heading order={1}>Something went wrong</Heading>
+				<Heading level={1}>Something went wrong</Heading>
 				<Text size="lg" color="dimmed">
 					{error.message || 'An unexpected error occurred'}
 				</Text>

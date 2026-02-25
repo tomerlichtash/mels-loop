@@ -31,7 +31,7 @@ export default async function PostPage({ params }: PageProps) {
 					&larr; {locale === 'he' ? 'חזרה לבלוג' : 'Back'}
 				</Link>
 				{content.metadata.title && (
-					<Heading order={1}>{content.metadata.title}</Heading>
+					<Heading level={1}>{content.metadata.title}</Heading>
 				)}
 				{content.metadata.date && (
 					<Text size="sm" color="dimmed">

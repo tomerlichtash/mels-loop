@@ -11,7 +11,7 @@ export default function LocaleNotFound() {
 	return (
 		<Container>
 			<Stack gap="lg" align="center" textAlign="center">
-				<Heading order={1}>404</Heading>
+				<Heading level={1}>404</Heading>
 				<Text size="lg" color="dimmed">
 					Page not found
 				</Text>

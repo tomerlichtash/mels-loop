@@ -21,7 +21,7 @@ export function StaticPage({
 		<Container>
 			<Stack gap="lg">
 				<Breadcrumbs items={breadcrumbs} />
-				<Heading order={1}>{title}</Heading>
+				<Heading level={1}>{title}</Heading>
 				{content && <ContentRenderer hast={content.hast} />}
 				{children}
 			</Stack>

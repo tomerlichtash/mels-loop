@@ -21,7 +21,7 @@ function toUnit(v: unknown): string | undefined {
 	return /^\d+(\.\d+)?$/.test(s) ? `${s}px` : s;
 }
 
-export default function Figure({ children, ...props }: FigureProps) {
+export function Figure({ children, ...props }: FigureProps) {
 	const sizeStyle: React.CSSProperties = {};
 	for (const [attr, cssProp] of Object.entries(CSS_PROP_MAP)) {
 		const unit = toUnit(props[attr]);

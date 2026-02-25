@@ -62,7 +62,7 @@ export default async function CodexSubPage({ params }: PageProps) {
 				]}
 			/>
 			{content.metadata.title && (
-				<Heading order={1}>{content.metadata.title}</Heading>
+				<Heading level={1}>{content.metadata.title}</Heading>
 			)}
 			{content.metadata.abstract && (
 				<Text size="lg" color="dimmed" italic>

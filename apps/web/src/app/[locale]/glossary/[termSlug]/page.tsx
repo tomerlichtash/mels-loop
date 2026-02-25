@@ -49,7 +49,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 						{ label: displayName },
 					]}
 				/>
-				<Heading order={1}>{displayName}</Heading>
+				<Heading level={1}>{displayName}</Heading>
 				<ContentRenderer hast={content.hast} />
 				{content.metadata.source_name && (
 					<div>

@@ -36,7 +36,7 @@ export default async function DocumentsListingPage({ params }: PageProps) {
 					{ label: documentsLabel },
 				]}
 			/>
-			<Heading order={1}>
+			<Heading level={1}>
 				{documentsLabel} &mdash; {storyTitle}
 			</Heading>
 			{documentsMeta.map((doc) => (

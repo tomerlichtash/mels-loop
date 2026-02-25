@@ -9,11 +9,7 @@ interface ParagraphProps {
 	[key: string]: unknown;
 }
 
-export default function Paragraph({
-	children,
-	className,
-	...props
-}: ParagraphProps) {
+export function Paragraph({ children, className, ...props }: ParagraphProps) {
 	return (
 		<p className={cn(styles.root, className)} {...props}>
 			{children}

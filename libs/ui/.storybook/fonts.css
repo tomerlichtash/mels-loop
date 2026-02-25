@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&family=Assistant:wght@300;400;500;700&family=Lekton:wght@400;700&display=swap');
+
+/*
+ * next/font sets these CSS variables at runtime via injected classes.
+ * In Storybook we load the fonts directly and wire up the same variables
+ * so globals.css (which references them) works identically.
+ */
+:root {
+	--font-roboto-slab: 'Roboto Slab', serif;
+	--font-assistant: 'Assistant', sans-serif;
+	--font-lekton: 'Lekton', monospace;
+}

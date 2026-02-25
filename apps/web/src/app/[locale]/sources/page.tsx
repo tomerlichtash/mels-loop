@@ -118,7 +118,7 @@ export default async function GlobalSourcesPage({
 	return (
 		<Stack gap="lg">
 			<Breadcrumbs items={[homeItemFromDict(dict), { label: sourcesLabel }]} />
-			<Heading order={1}>{sourcesLabel}</Heading>
+			<Heading level={1}>{sourcesLabel}</Heading>
 			{sourceGroups.length === 0 ? (
 				<p>{dictGet(dict, 'sources.noSources')}</p>
 			) : (

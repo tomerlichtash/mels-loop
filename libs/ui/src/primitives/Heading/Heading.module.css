@@ -14,26 +14,26 @@
 	line-height: var(--ml-title-line-height);
 }
 
-.order-1 {
+.level-1 {
 	--ml-title-font-size: var(--ml-font-size-3xl);
 }
 
-.order-2 {
+.level-2 {
 	--ml-title-font-size: var(--ml-font-size-2xl);
 }
 
-.order-3 {
+.level-3 {
 	--ml-title-font-size: var(--ml-font-size-xl);
 }
 
-.order-4 {
+.level-4 {
 	--ml-title-font-size: var(--ml-font-size-lg);
 }
 
-.order-5 {
+.level-5 {
 	--ml-title-font-size: var(--ml-font-size-md);
 }
 
-.order-6 {
+.level-6 {
 	--ml-title-font-size: var(--ml-font-size-body);
 }

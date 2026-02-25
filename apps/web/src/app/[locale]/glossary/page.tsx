@@ -24,7 +24,7 @@ export default async function GlossaryIndexPage({ params }: PageProps) {
 		<Container>
 			<Stack gap="lg">
 				<Breadcrumbs items={[homeItemFromDict(dict), { label: title }]} />
-				<Heading order={1}>{title}</Heading>
+				<Heading level={1}>{title}</Heading>
 				<Stack gap="sm">
 					{[...slugs].sort().map((slug) => (
 						<GlossaryEntry key={slug} slug={slug} />

@@ -10,7 +10,7 @@ interface LineProps {
 	[key: string]: unknown;
 }
 
-export default function Line({ id, children, className, ...props }: LineProps) {
+export function Line({ id, children, className, ...props }: LineProps) {
 	return (
 		<span id={id} className={cn(styles.root, className)} {...props}>
 			{id && (

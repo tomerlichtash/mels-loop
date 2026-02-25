@@ -6,15 +6,12 @@ import { useEffect, useRef, useState } from 'react';
 import { Loader } from '../../../primitives/Loader/Loader';
 import { useAnnotations } from '../../annotations/PopoverProvider/PopoverProvider';
 import { SourceDetail } from '../../sources/SourceDetail/SourceDetail';
-import Figure from '../Figure/Figure';
+import { Figure } from '../Figure/Figure';
 import styles from './FigureDialog.module.css';
 
 type FigureDialogProps = React.ComponentProps<typeof Figure>;
 
-export default function FigureDialog({
-	children,
-	...props
-}: FigureDialogProps) {
+export function FigureDialog({ children, ...props }: FigureDialogProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [sourceId, setSourceId] = useState<string | null>(null);
 	const [dialogOpen, setDialogOpen] = useState(false);

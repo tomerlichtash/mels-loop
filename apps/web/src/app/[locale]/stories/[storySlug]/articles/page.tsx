@@ -35,7 +35,7 @@ export default async function ArticlesListingPage({ params }: PageProps) {
 					{ label: articlesLabel },
 				]}
 			/>
-			<Heading order={1}>
+			<Heading level={1}>
 				{articlesLabel} &mdash; {storyTitle}
 			</Heading>
 			{(await getStoryArticles(storySlug)).map((slug) => (

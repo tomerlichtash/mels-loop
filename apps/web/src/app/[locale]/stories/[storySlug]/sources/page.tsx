@@ -80,13 +80,13 @@ export default async function SourcesPage({ params }: PageProps) {
 					{ label: sourcesLabel },
 				]}
 			/>
-			<Heading order={1}>{sourcesLabel}</Heading>
+			<Heading level={1}>{sourcesLabel}</Heading>
 			{orderedTypes.map((type) => {
 				const typeSources = groups.get(type)!;
 				const typeLabel = dictGet(dict, `sources.${type}`);
 				return (
 					<section key={type} className={styles.group}>
-						<Heading order={2} className={styles.groupHeading}>
+						<Heading level={2} className={styles.groupHeading}>
 							{typeLabel}
 						</Heading>
 						<div className={styles.cards}>

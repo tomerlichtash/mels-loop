@@ -7,7 +7,7 @@ interface HorizontalDividerProps {
 	[key: string]: unknown;
 }
 
-export default function HorizontalDivider({
+export function HorizontalDivider({
 	className,
 	...props
 }: HorizontalDividerProps) {

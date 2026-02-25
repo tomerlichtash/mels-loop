@@ -21,13 +21,7 @@ interface ImageProps {
 	[key: string]: unknown;
 }
 
-export default function Image({
-	src,
-	alt = '',
-	width,
-	height,
-	...props
-}: ImageProps) {
+export function Image({ src, alt = '', width, height, ...props }: ImageProps) {
 	if (!src) return null;
 
 	if (src.endsWith('.svg')) {

@@ -7,7 +7,7 @@ interface TableProps {
 	[key: string]: unknown;
 }
 
-export default function Table({ children, ...props }: TableProps) {
+export function Table({ children, ...props }: TableProps) {
 	return (
 		<div className={styles.root}>
 			<table className={styles.table} {...props}>

@@ -3,24 +3,24 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './Heading.module.css';
 
-type HeadingOrder = 1 | 2 | 3 | 4 | 5 | 6;
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
 	children: ReactNode;
-	order?: HeadingOrder;
+	level?: HeadingLevel;
 }
 
 export function Heading({
 	children,
-	order = 1,
+	level = 1,
 	className,
 	...props
 }: HeadingProps) {
-	const Tag = `h${order}` as const;
+	const Tag = `h${level}` as const;
 
 	return (
 		<Tag
-			className={cn(styles.root, styles[`order-${order}`], className)}
+			className={cn(styles.root, styles[`level-${level}`], className)}
 			{...props}
 		>
 			{children}

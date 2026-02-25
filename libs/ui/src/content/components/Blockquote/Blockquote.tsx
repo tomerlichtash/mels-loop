@@ -9,11 +9,7 @@ interface BlockquoteProps {
 	[key: string]: unknown;
 }
 
-export default function Blockquote({
-	children,
-	className,
-	...props
-}: BlockquoteProps) {
+export function Blockquote({ children, className, ...props }: BlockquoteProps) {
 	return (
 		<blockquote className={cn(styles.root, className)} {...props}>
 			{children}

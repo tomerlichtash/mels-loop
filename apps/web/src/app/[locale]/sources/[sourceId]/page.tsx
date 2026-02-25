@@ -46,7 +46,7 @@ export default async function SourceDetailPage({ params }: PageProps) {
 					{ label: source.title },
 				]}
 			/>
-			<Heading order={1}>{source.title}</Heading>
+			<Heading level={1}>{source.title}</Heading>
 			<SourceDetailView source={source} />
 		</Stack>
 	);

@@ -51,7 +51,7 @@ export default async function StoryLandingPage({ params }: PageProps) {
 				]}
 			/>
 			<div className={styles.header}>
-				<Heading order={1}>{storyTitle}</Heading>
+				<Heading level={1}>{storyTitle}</Heading>
 				{storySubtitle && (
 					<Text size="lg" color="dimmed">
 						{storySubtitle}

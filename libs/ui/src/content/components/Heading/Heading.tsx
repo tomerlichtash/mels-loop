@@ -1,10 +1,13 @@
 import cn from 'classnames';
 import type { HTMLAttributes, ReactNode } from 'react';
 
-import { Heading as HeadingPrimitive } from '../../../primitives/Heading/Heading';
+import {
+	Heading as HeadingPrimitive,
+	type HeadingLevel,
+} from '../../../primitives/Heading/Heading';
 import styles from './Heading.module.css';
 
-export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+export type { HeadingLevel };
 
 interface HeadingProps {
 	level: HeadingLevel;
@@ -13,7 +16,7 @@ interface HeadingProps {
 	[key: string]: unknown;
 }
 
-export default function Heading({
+export function Heading({
 	level,
 	children,
 	className,
@@ -23,7 +26,7 @@ export default function Heading({
 
 	return (
 		<HeadingPrimitive
-			order={level}
+			level={level}
 			className={cn(levelClass, className)}
 			{...(props as HTMLAttributes<HTMLHeadingElement>)}
 		>

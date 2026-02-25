@@ -41,7 +41,7 @@ export default async function ResourcesPage({ params }: PageProps) {
 				]}
 			/>
 			{content.metadata.title && (
-				<Heading order={1}>{content.metadata.title}</Heading>
+				<Heading level={1}>{content.metadata.title}</Heading>
 			)}
 			<ContentRenderer hast={content.hast} />
 		</Stack>

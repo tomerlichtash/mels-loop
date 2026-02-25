@@ -9,11 +9,7 @@ interface ListItemProps {
 	[key: string]: unknown;
 }
 
-export default function ListItem({
-	children,
-	className,
-	...props
-}: ListItemProps) {
+export function ListItem({ children, className, ...props }: ListItemProps) {
 	return (
 		<li className={cn(styles.root, className)} {...props}>
 			{children}

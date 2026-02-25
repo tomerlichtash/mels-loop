@@ -35,7 +35,7 @@ export default async function HomePage({ params }: PageProps) {
 	return (
 		<Container paddingHorizontal="xl" paddingVertical="xl">
 			<section className={styles.hero}>
-				<Heading order={1} className={styles.heroTitle}>
+				<Heading level={1} className={styles.heroTitle}>
 					{hero.title_p1}
 					<br />
 					<GlyphShift
@@ -57,7 +57,7 @@ export default async function HomePage({ params }: PageProps) {
 				</div>
 			</section>
 			<section>
-				<Heading order={2} className={styles.storiesHeading}>
+				<Heading level={2} className={styles.storiesHeading}>
 					{String(dict.stories)}
 				</Heading>
 				<div>

@@ -10,7 +10,7 @@ interface ListProps {
 	[key: string]: unknown;
 }
 
-export default function List({
+export function List({
 	ordered = false,
 	children,
 	className,
