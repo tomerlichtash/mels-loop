@@ -6,7 +6,6 @@ import { List } from './List';
 const meta: Meta<typeof List> = {
 	title: 'Content/List',
 	component: List,
-	tags: ['autodocs'],
 };
 
 export default meta;

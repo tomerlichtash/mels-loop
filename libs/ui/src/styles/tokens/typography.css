@@ -36,4 +36,85 @@
 	/* Letter Spacing */
 	--ml-letter-spacing-tight: 0.5px;
 	--ml-letter-spacing-wide: 1px;
+
+	/* ---- Typography Variants ---- */
+
+	/* Headings */
+	--ml-typography-h1-font-family: var(--ml-font-latin);
+	--ml-typography-h1-font-size: var(--ml-font-size-3xl);
+	--ml-typography-h1-font-weight: var(--ml-font-weight-bold);
+	--ml-typography-h1-line-height: var(--ml-line-height-tight);
+	--ml-typography-h1-letter-spacing: normal;
+
+	--ml-typography-h2-font-family: var(--ml-font-latin);
+	--ml-typography-h2-font-size: var(--ml-font-size-2xl);
+	--ml-typography-h2-font-weight: var(--ml-font-weight-bold);
+	--ml-typography-h2-line-height: var(--ml-line-height-tight);
+	--ml-typography-h2-letter-spacing: normal;
+
+	--ml-typography-h3-font-family: var(--ml-font-latin);
+	--ml-typography-h3-font-size: var(--ml-font-size-xl);
+	--ml-typography-h3-font-weight: var(--ml-font-weight-semibold);
+	--ml-typography-h3-line-height: var(--ml-line-height-snug);
+	--ml-typography-h3-letter-spacing: normal;
+
+	--ml-typography-h4-font-family: var(--ml-font-latin);
+	--ml-typography-h4-font-size: var(--ml-font-size-lg);
+	--ml-typography-h4-font-weight: var(--ml-font-weight-semibold);
+	--ml-typography-h4-line-height: var(--ml-line-height-snug);
+	--ml-typography-h4-letter-spacing: normal;
+
+	/* Subtitles */
+	--ml-typography-subtitle1-font-family: var(--ml-font-latin);
+	--ml-typography-subtitle1-font-size: var(--ml-font-size-md);
+	--ml-typography-subtitle1-font-weight: var(--ml-font-weight-medium);
+	--ml-typography-subtitle1-line-height: var(--ml-line-height-snug);
+	--ml-typography-subtitle1-letter-spacing: normal;
+
+	--ml-typography-subtitle2-font-family: var(--ml-font-latin);
+	--ml-typography-subtitle2-font-size: var(--ml-font-size-body);
+	--ml-typography-subtitle2-font-weight: var(--ml-font-weight-medium);
+	--ml-typography-subtitle2-line-height: var(--ml-line-height-snug);
+	--ml-typography-subtitle2-letter-spacing: normal;
+
+	/* Body */
+	--ml-typography-body1-font-family: var(--ml-font-latin);
+	--ml-typography-body1-font-size: var(--ml-font-size-md);
+	--ml-typography-body1-font-weight: var(--ml-font-weight-regular);
+	--ml-typography-body1-line-height: var(--ml-line-height-body);
+	--ml-typography-body1-letter-spacing: normal;
+
+	--ml-typography-body2-font-family: var(--ml-font-latin);
+	--ml-typography-body2-font-size: var(--ml-font-size-body);
+	--ml-typography-body2-font-weight: var(--ml-font-weight-regular);
+	--ml-typography-body2-line-height: var(--ml-line-height-body);
+	--ml-typography-body2-letter-spacing: normal;
+
+	/* Caption */
+	--ml-typography-caption-font-family: var(--ml-font-latin);
+	--ml-typography-caption-font-size: var(--ml-font-size-sm);
+	--ml-typography-caption-font-weight: var(--ml-font-weight-regular);
+	--ml-typography-caption-line-height: var(--ml-line-height-snug);
+	--ml-typography-caption-letter-spacing: normal;
+
+	/* Label (buttons, badges, form labels) */
+	--ml-typography-label-font-family: var(--ml-font-latin);
+	--ml-typography-label-font-size: var(--ml-font-size-body);
+	--ml-typography-label-font-weight: var(--ml-font-weight-regular);
+	--ml-typography-label-line-height: var(--ml-line-height-none);
+	--ml-typography-label-letter-spacing: normal;
+}
+
+/* RTL: override font-family for all variants */
+[dir='rtl'] {
+	--ml-typography-h1-font-family: var(--ml-font-hebrew);
+	--ml-typography-h2-font-family: var(--ml-font-hebrew);
+	--ml-typography-h3-font-family: var(--ml-font-hebrew);
+	--ml-typography-h4-font-family: var(--ml-font-hebrew);
+	--ml-typography-subtitle1-font-family: var(--ml-font-hebrew);
+	--ml-typography-subtitle2-font-family: var(--ml-font-hebrew);
+	--ml-typography-body1-font-family: var(--ml-font-hebrew);
+	--ml-typography-body2-font-family: var(--ml-font-hebrew);
+	--ml-typography-caption-font-family: var(--ml-font-hebrew);
+	--ml-typography-label-font-family: var(--ml-font-hebrew);
 }

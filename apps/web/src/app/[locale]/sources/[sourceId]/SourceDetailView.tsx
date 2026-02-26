@@ -1,5 +1,6 @@
 import type { ResolvedSource } from '@mels-loop/content-pipeline/types';
 import { SourceBadge } from '@mels-loop/ui/content';
+import Image from 'next/image';
 
 import styles from './page.module.css';
 
@@ -24,7 +25,13 @@ export function SourceDetailView({ source }: SourceDetailViewProps) {
 			</div>
 			{source.type === 'image' && source.url && (
 				<div className={styles.imageWrap}>
-					<img src={source.url} alt={source.title} className={styles.image} />
+					<Image
+						src={source.url}
+						alt={source.title}
+						width={800}
+						height={400}
+						className={styles.image}
+					/>
 				</div>
 			)}
 			{source.description && (

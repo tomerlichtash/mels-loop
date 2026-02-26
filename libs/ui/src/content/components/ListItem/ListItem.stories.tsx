@@ -5,7 +5,6 @@ import { ListItem } from './ListItem';
 const meta: Meta<typeof ListItem> = {
 	title: 'Content/ListItem',
 	component: ListItem,
-	tags: ['autodocs'],
 	args: {
 		children: 'A list item.',
 	},

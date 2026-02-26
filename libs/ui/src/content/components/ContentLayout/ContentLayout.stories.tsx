@@ -5,7 +5,6 @@ import { ContentLayout } from './ContentLayout';
 const meta: Meta<typeof ContentLayout> = {
 	title: 'Content/ContentLayout',
 	component: ContentLayout,
-	tags: ['autodocs'],
 };
 
 export default meta;

@@ -5,7 +5,6 @@ import { Table } from './Table';
 const meta: Meta<typeof Table> = {
 	title: 'Content/Table',
 	component: Table,
-	tags: ['autodocs'],
 };
 
 export default meta;

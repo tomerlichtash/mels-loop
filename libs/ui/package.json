@@ -8,7 +8,11 @@
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"test-storybook": "test-storybook",
-		"test-storybook:ci": "test-storybook --url http://127.0.0.1:6006"
+		"test-storybook:ci": "test-storybook --url http://127.0.0.1:6006",
+		"test:e2e": "sh scripts/docker-e2e.sh",
+		"test:e2e:update": "sh scripts/docker-e2e.sh --update-snapshots",
+		"test:e2e:ui": "playwright test --config playwright.config.ts --ui",
+		"test:e2e:ui:debug": "playwright test --config playwright.config.ts --ui --debug"
 	},
 	"exports": {
 		"./fonts": "./src/fonts.ts",

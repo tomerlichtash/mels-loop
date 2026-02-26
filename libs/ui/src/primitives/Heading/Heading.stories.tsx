@@ -5,7 +5,6 @@ import { Heading } from './Heading';
 const meta: Meta<typeof Heading> = {
 	title: 'Primitives/Heading',
 	component: Heading,
-	tags: ['autodocs'],
 	args: {
 		children: 'The quick brown fox',
 	},

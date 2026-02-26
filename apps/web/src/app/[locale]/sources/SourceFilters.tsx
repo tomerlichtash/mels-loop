@@ -34,6 +34,7 @@ import {
 	useReactTable,
 } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
+import Image from 'next/image';
 import { type CSSProperties, useMemo, useRef, useState } from 'react';
 
 import styles from './page.module.css';
@@ -81,7 +82,13 @@ function createColumns(
 			cell: ({ row }) => {
 				const source = row.original;
 				return source.type === 'image' && source.url ? (
-					<img src={source.url} alt="" className={styles.thumbnail} />
+					<Image
+						src={source.url}
+						alt=""
+						width={48}
+						height={48}
+						className={styles.thumbnail}
+					/>
 				) : (
 					<span className={styles.thumbPlaceholder}>
 						{source.type.charAt(0).toUpperCase()}

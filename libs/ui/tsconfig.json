@@ -1,4 +1,9 @@
 {
 	"extends": "../../tsconfig.base.json",
-	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"]
+	"compilerOptions": {
+		"paths": {
+			"@e2e/*": ["./e2e/*"]
+		}
+	},
+	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "e2e/**/*.ts"]
 }

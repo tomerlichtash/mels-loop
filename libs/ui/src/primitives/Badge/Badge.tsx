@@ -1,22 +1,40 @@
 import cn from 'classnames';
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 
 import styles from './Badge.module.css';
 
+type BadgeRadius = 'none' | 'sm' | 'md' | 'lg' | 'pill';
+
 interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 	children: ReactNode;
-	color?: 'pink' | 'blue';
+	color?: string;
+	radius?: BadgeRadius;
+	bordered?: boolean;
 }
 
 export function Badge({
 	children,
-	color = 'pink',
+	color,
+	radius = 'pill',
+	bordered,
 	className,
+	style,
 	...props
 }: BadgeProps) {
+	const vars = {
+		...(color && { '--ml-badge-background-color': color }),
+	} as CSSProperties;
+
 	return (
 		<span
-			className={cn(styles.root, styles[`color-${color}`], className)}
+			className={cn(
+				styles.root,
+				styles[`radius-${radius}`],
+				{ [styles.colored]: color, [styles.bordered]: bordered },
+				'ml-badge',
+				className,
+			)}
+			style={{ ...vars, ...style }}
 			{...props}
 		>
 			{children}

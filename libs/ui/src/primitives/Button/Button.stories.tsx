@@ -5,10 +5,33 @@ import { Button } from './Button';
 const meta: Meta<typeof Button> = {
 	title: 'Primitives/Button',
 	component: Button,
-	tags: ['autodocs'],
 	args: {
 		children: 'Button',
 	},
+	argTypes: {
+		children: { control: 'text' },
+		variant: {
+			control: 'select',
+			options: ['contained', 'outlined', 'text'],
+		},
+		size: {
+			control: 'select',
+			options: ['xs', 'sm', 'md', 'lg', 'xl'],
+		},
+		radius: {
+			control: 'select',
+			options: ['none', 'sm', 'md', 'lg', 'pill'],
+		},
+		loading: { control: 'boolean' },
+		disabled: { control: 'boolean' },
+		fullWidth: { control: 'boolean' },
+		asChild: { control: 'boolean' },
+	},
+	render: ({ children, asChild, ...args }) => (
+		<Button asChild={asChild} {...args}>
+			{asChild ? <a href="#">{children}</a> : children}
+		</Button>
+	),
 };
 
 export default meta;
@@ -16,30 +39,12 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {};
 
-export const Subtle: Story = {
-	args: { variant: 'subtle' },
-};
-
-export const Outline: Story = {
-	args: { variant: 'outline' },
-};
-
-export const Sizes: Story = {
-	render: () => (
-		<div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-			<Button size="xs">xs</Button>
-			<Button size="sm">sm</Button>
-			<Button size="md">md</Button>
-			<Button size="lg">lg</Button>
-			<Button size="xl">xl</Button>
-		</div>
-	),
-};
-
-export const Loading: Story = {
-	args: { loading: true },
-};
-
-export const Disabled: Story = {
-	args: { disabled: true },
+Default.args = {
+	variant: 'contained',
+	size: 'md',
+	radius: 'md',
+	loading: false,
+	asChild: false,
+	fullWidth: false,
+	disabled: false,
 };

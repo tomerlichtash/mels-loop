@@ -34,6 +34,16 @@
 	--ml-error-dark: #991b1b;
 	--ml-error-subtle: #2e0a0a;
 	--ml-error-light: #fca5a5;
+	--ml-warning: #ca8a04;
+	--ml-warning-tint: #fef9e7;
+	--ml-warning-dark: #854d0e;
+	--ml-warning-subtle: #2e1f0a;
+	--ml-warning-light: #fde68a;
+	--ml-info: #2563eb;
+	--ml-info-tint: #e8f0fe;
+	--ml-info-dark: #1e40af;
+	--ml-info-subtle: #0a1a2e;
+	--ml-info-light: #93c5fd;
 
 	/* Alpha */
 	--ml-black-alpha-50: rgba(0, 0, 0, 0.5);

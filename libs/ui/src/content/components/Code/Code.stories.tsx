@@ -6,7 +6,6 @@ import { Code } from './Code';
 const meta: Meta<typeof Code> = {
 	title: 'Content/Code',
 	component: Code,
-	tags: ['autodocs'],
 	args: {
 		children: 'console.log("hello")',
 	},

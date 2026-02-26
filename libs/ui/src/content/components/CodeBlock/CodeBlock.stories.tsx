@@ -6,7 +6,6 @@ import { CodeBlock } from './CodeBlock';
 const meta: Meta<typeof CodeBlock> = {
 	title: 'Content/CodeBlock',
 	component: CodeBlock,
-	tags: ['autodocs'],
 };
 
 export default meta;

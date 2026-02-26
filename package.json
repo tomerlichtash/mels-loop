@@ -10,6 +10,7 @@
 		"test": "turbo test:e2e",
 		"test:e2e": "turbo test:e2e",
 		"test-storybook": "turbo test-storybook",
+		"test:ui:e2e": "turbo --filter @mels-loop/ui test:e2e",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"prepare": "husky"

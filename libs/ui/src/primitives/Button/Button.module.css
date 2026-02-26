@@ -1,7 +1,5 @@
 :root {
-	--ml-button-font-size: var(--ml-font-size-md);
-	--ml-button-font-weight: var(--ml-font-weight-medium);
-	--ml-button-line-height: var(--ml-line-height-none);
+	--ml-button-font-size: var(--ml-typography-label-font-size);
 	--ml-button-radius: var(--ml-radius-md);
 	--ml-button-padding-horizontal: var(--ml-space-md);
 	--ml-button-padding-vertical: var(--ml-space-sm);
@@ -10,7 +8,6 @@
 	--ml-button-height: 40px;
 	--ml-button-background-color: transparent;
 	--ml-button-background-color-hover: transparent;
-	--ml-button-text-color: inherit;
 	--ml-button-border-color: transparent;
 }
 
@@ -21,13 +18,17 @@
 	gap: var(--ml-button-gap);
 	height: var(--ml-button-height);
 	padding: var(--ml-button-padding-vertical) var(--ml-button-padding-horizontal);
+	font-family: var(--ml-typography-label-font-family);
 	font-size: var(--ml-button-font-size);
-	font-weight: var(--ml-button-font-weight);
-	line-height: var(--ml-button-line-height);
+	font-weight: var(--ml-typography-label-font-weight);
+	line-height: var(--ml-typography-label-line-height);
+	letter-spacing: var(--ml-typography-label-letter-spacing);
 	border-radius: var(--ml-button-radius);
 	border: 1px solid var(--ml-button-border-color);
 	background-color: var(--ml-button-background-color);
-	color: var(--ml-button-text-color);
+	color: oklch(
+		from var(--ml-button-background-color) clamp(0, (0.5 - l) * 1000, 1) 0 0
+	);
 	text-decoration: none;
 	cursor: pointer;
 	position: relative;
@@ -82,34 +83,52 @@
 }
 
 /* Variants */
-.variant-ghost {
-	--ml-button-background-color: transparent;
-	--ml-button-background-color-hover: var(--ml-background-color-alt);
-	--ml-button-text-color: inherit;
-	--ml-button-border-color: transparent;
-}
-
-.variant-primary {
+.variant-contained {
 	--ml-button-background-color: var(--ml-interactive-background-color);
 	--ml-button-background-color-hover: var(
 		--ml-interactive-background-color-hover
 	);
-	--ml-button-text-color: var(--ml-interactive-text-color);
 	--ml-button-border-color: transparent;
 }
 
-.variant-subtle {
+.variant-outlined {
 	--ml-button-background-color: transparent;
 	--ml-button-background-color-hover: var(--ml-background-color-alt);
-	--ml-button-text-color: var(--ml-link-color);
-	--ml-button-border-color: transparent;
+	--ml-button-border-color: var(--ml-interactive-background-color);
+	color: var(--ml-interactive-background-color);
 }
 
-.variant-outline {
+.variant-text {
 	--ml-button-background-color: transparent;
 	--ml-button-background-color-hover: var(--ml-background-color-alt);
-	--ml-button-text-color: var(--ml-link-color);
-	--ml-button-border-color: var(--ml-border-color);
+	--ml-button-border-color: transparent;
+	color: var(--ml-interactive-background-color);
+}
+
+/* Radius */
+.radius-none {
+	--ml-button-radius: var(--ml-radius-none);
+}
+
+.radius-sm {
+	--ml-button-radius: var(--ml-radius-sm);
+}
+
+.radius-md {
+	--ml-button-radius: var(--ml-radius-md);
+}
+
+.radius-lg {
+	--ml-button-radius: var(--ml-radius-lg);
+}
+
+.radius-pill {
+	--ml-button-radius: var(--ml-radius-pill);
+}
+
+/* Full width */
+.fullWidth {
+	width: 100%;
 }
 
 /* Loading */

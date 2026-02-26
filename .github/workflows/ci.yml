@@ -25,3 +25,33 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+
+  ui-e2e:
+    name: UI E2E
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build Storybook
+        run: pnpm --filter @mels-loop/ui build-storybook
+
+      - name: Run UI E2E tests
+        run: pnpm --filter @mels-loop/ui test:e2e
+
+      - name: Upload diff artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-e2e-diffs
+          path: libs/ui/e2e/test-results/
+          retention-days: 14

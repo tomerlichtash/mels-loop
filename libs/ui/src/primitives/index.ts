@@ -1,7 +1,17 @@
 export { Alert } from './Alert/Alert';
 export { Badge } from './Badge/Badge';
 export { Button } from './Button/Button';
-export { Card } from './Card/Card';
+export {
+	Card,
+	CardActions,
+	CardBody,
+	CardContent,
+	CardFooter,
+	CardGrid,
+	CardHeader,
+	CardMedia,
+	CardSkeleton,
+} from './Card';
 export { Container } from './Container/Container';
 export { Group } from './Group/Group';
 export { Heading } from './Heading/Heading';

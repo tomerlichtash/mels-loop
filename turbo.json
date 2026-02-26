@@ -22,6 +22,10 @@
 		"search-index": {
 			"dependsOn": ["^build"],
 			"outputs": ["public/search-index.*.json"]
+		},
+		"build-storybook": {
+			"dependsOn": ["^build"],
+			"outputs": ["storybook-static/**"]
 		}
 	}
 }

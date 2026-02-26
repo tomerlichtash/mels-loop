@@ -5,7 +5,6 @@ import { Line } from './Line';
 const meta: Meta<typeof Line> = {
 	title: 'Content/Line',
 	component: Line,
-	tags: ['autodocs'],
 	args: {
 		children: 'This is a line of content.',
 	},

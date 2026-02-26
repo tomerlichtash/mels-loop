@@ -5,7 +5,6 @@ import { Paragraph } from './Paragraph';
 const meta: Meta<typeof Paragraph> = {
 	title: 'Content/Paragraph',
 	component: Paragraph,
-	tags: ['autodocs'],
 	args: {
 		children:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',

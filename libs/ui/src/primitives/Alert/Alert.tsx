@@ -3,15 +3,20 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './Alert.module.css';
 
+type AlertStatus = 'success' | 'error' | 'warning' | 'info';
+type AlertRadius = 'none' | 'sm' | 'md' | 'lg' | 'pill';
+
 interface AlertProps extends HTMLAttributes<HTMLDivElement> {
 	children?: ReactNode;
-	color?: 'green' | 'red';
+	status?: AlertStatus;
+	radius?: AlertRadius;
 	title?: string;
 }
 
 export function Alert({
 	children,
-	color = 'green',
+	status = 'info',
+	radius = 'md',
 	title,
 	className,
 	...props
@@ -19,7 +24,13 @@ export function Alert({
 	return (
 		<div
 			role="alert"
-			className={cn(styles.root, styles[`color-${color}`], className)}
+			className={cn(
+				styles.root,
+				styles[status],
+				styles[`radius-${radius}`],
+				'ml-alert',
+				className,
+			)}
 			{...props}
 		>
 			{title && <div className={styles.title}>{title}</div>}

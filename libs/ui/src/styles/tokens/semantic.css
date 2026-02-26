@@ -68,8 +68,8 @@
 	--ml-mobile-menu-section-title: var(--ml-gray-200);
 
 	/* Interactive / Primary */
-	--ml-interactive-background-color: var(--ml-pink);
-	--ml-interactive-background-color-hover: var(--ml-mauve);
+	--ml-interactive-background-color: var(--ml-gray-500);
+	--ml-interactive-background-color-hover: var(--ml-gray-400);
 	--ml-interactive-text-color: var(--ml-white);
 
 	/* Status — success */
@@ -81,6 +81,16 @@
 	--ml-error-background-color: var(--ml-error-tint);
 	--ml-error-text-color: var(--ml-error-dark);
 	--ml-error-border-color: var(--ml-error);
+
+	/* Status — warning */
+	--ml-warning-background-color: var(--ml-warning-tint);
+	--ml-warning-text-color: var(--ml-warning-dark);
+	--ml-warning-border-color: var(--ml-warning);
+
+	/* Status — info */
+	--ml-info-background-color: var(--ml-info-tint);
+	--ml-info-text-color: var(--ml-info-dark);
+	--ml-info-border-color: var(--ml-info);
 
 	/* Accent */
 	--ml-accent-primary-background-color: var(--ml-pink);
