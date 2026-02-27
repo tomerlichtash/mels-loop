@@ -11,6 +11,7 @@ import { rehypeFigureImages } from './plugins/rehype-figure-images';
 import { rehypeFigureIndex } from './plugins/rehype-figure-index';
 import { rehypeLines } from './plugins/rehype-lines';
 import { rehypeSourceImages } from './plugins/rehype-source-images';
+import { rehypeTableVariants } from './plugins/rehype-table-variants';
 import { remarkAnnotationLinks } from './plugins/remark-annotation-links';
 import { remarkColsDirective } from './plugins/remark-cols-directive';
 import { remarkFigures } from './plugins/remark-figures';
@@ -18,6 +19,7 @@ import { remarkGlossaryLinks } from './plugins/remark-glossary-links';
 import { remarkSourceLinks } from './plugins/remark-source-links';
 import { remarkSourceVars } from './plugins/remark-source-vars';
 import { remarkStripComments } from './plugins/remark-strip-comments';
+import { remarkTableDirective } from './plugins/remark-table-directive';
 import { remarkVerse } from './plugins/remark-verse';
 import type { MarkdownProcessOptions } from './types';
 
@@ -47,9 +49,11 @@ export async function processMarkdown(
 		.use(remarkFigures)
 		.use(remarkDirective)
 		.use(remarkColsDirective)
+		.use(remarkTableDirective)
 		.use(remarkVerse, { parseMode: options.parseMode })
 		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeRaw)
+		.use(rehypeTableVariants)
 		.use(rehypeFigureImages)
 		.use(rehypeSourceImages, { sources: options.sources ?? {} })
 		.use(rehypeFigureIndex, {

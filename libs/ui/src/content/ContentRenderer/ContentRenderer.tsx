@@ -45,7 +45,7 @@ function defaultComponents(): ComponentOverrides {
 		h4: (props) => <Text variant="h4" {...props} />,
 		h5: (props) => <Text variant="subtitle1" component="h5" {...props} />,
 		h6: (props) => <Text variant="subtitle2" component="h6" {...props} />,
-		p: (props) => <Text variant="body1" {...props} />,
+		p: (props) => <Text variant="body2" {...props} />,
 		blockquote: Blockquote,
 		ul: (props) => <List {...props} />,
 		ol: (props) => <List ordered {...props} />,

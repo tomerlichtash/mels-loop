@@ -51,3 +51,27 @@
 	border: 1px solid var(--ml-table-border-color);
 	text-align: start;
 }
+
+/* ── Variant: bit-layout ── */
+
+.root[data-table-variant='bit-layout'] {
+	--ml-table-margin-bottom: 0;
+}
+
+.root[data-table-variant='bit-layout'] .headerCell {
+	font-family: var(--ml-font-family-mono);
+	font-size: var(--ml-font-size-sm);
+	text-align: center;
+	background-color: transparent;
+}
+
+.root[data-table-variant='bit-layout'] .cell {
+	font-size: var(--ml-font-size-xs);
+	text-align: center;
+	border: none;
+	color: var(--ml-text-subtle-color);
+}
+
+.root[data-table-variant='bit-layout'] .row:nth-child(even) {
+	background-color: transparent;
+}
