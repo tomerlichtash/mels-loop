@@ -2,6 +2,7 @@ import './fonts.css';
 import '../src/styles/globals.css';
 
 import type { Preview } from '@storybook/react';
+import React from 'react';
 
 const preview: Preview = {
 	tags: ['!autodocs'],
@@ -34,7 +35,9 @@ const preview: Preview = {
 	decorators: [
 		(Story, context) => {
 			const colorScheme = context.globals.colorScheme || 'light';
-			document.documentElement.dataset.colorScheme = colorScheme;
+			React.useEffect(() => {
+				document.documentElement.dataset.colorScheme = colorScheme;
+			}, [colorScheme]);
 			return Story();
 		},
 	],
