@@ -1,6 +1,8 @@
 export { Alert } from './Alert/Alert';
 export { Badge } from './Badge/Badge';
 export { Blockquote } from './Blockquote/Blockquote';
+export type { BreadcrumbItem } from './Breadcrumbs';
+export { Breadcrumbs } from './Breadcrumbs';
 export { Button } from './Button/Button';
 export {
 	Card,

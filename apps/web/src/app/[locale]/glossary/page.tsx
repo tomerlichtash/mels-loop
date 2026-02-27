@@ -1,8 +1,7 @@
 import { getAllGlossarySlugs } from '@mels-loop/content-pipeline/loaders';
 import type { Locale } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
-import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Container, Text } from '@mels-loop/ui/primitives';
+import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
 
 import { getDictionary } from '@/i18n';
 import { homeItemFromDict } from '@/lib/breadcrumbs';

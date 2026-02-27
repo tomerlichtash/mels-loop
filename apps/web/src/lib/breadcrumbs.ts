@@ -1,5 +1,5 @@
 import { dictGet } from '@mels-loop/i18n/dict';
-import type { BreadcrumbItem } from '@mels-loop/ui/layout';
+import type { BreadcrumbItem } from '@mels-loop/ui/primitives';
 
 export function homeItem(homeLabel: string): BreadcrumbItem {
 	return { label: homeLabel, href: '/' };

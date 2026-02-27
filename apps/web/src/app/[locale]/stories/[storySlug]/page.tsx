@@ -6,8 +6,7 @@ import {
 import { ContentRenderer } from '@mels-loop/content-ui';
 import { type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
-import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Text } from '@mels-loop/ui/primitives';
+import { Breadcrumbs, Text } from '@mels-loop/ui/primitives';
 
 import { StoryPopoverProvider } from '@/components/StoryPopoverProvider';
 import { getDictionary } from '@/i18n';

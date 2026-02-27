@@ -1,5 +1,3 @@
-export type { BreadcrumbItem } from './Breadcrumbs/Breadcrumbs';
-export { Breadcrumbs } from './Breadcrumbs/Breadcrumbs';
 export { LocaleSwitcher } from './LocaleSwitcher/LocaleSwitcher';
 export { MobileDrawer } from './Navigation/MobileDrawer';
 export { NavMenu } from './Navigation/NavMenu';

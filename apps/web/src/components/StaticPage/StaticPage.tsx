@@ -1,7 +1,11 @@
 import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
 import { ContentRenderer } from '@mels-loop/content-ui';
-import { type BreadcrumbItem, Breadcrumbs } from '@mels-loop/ui/layout';
-import { Container, Text } from '@mels-loop/ui/primitives';
+import {
+	type BreadcrumbItem,
+	Breadcrumbs,
+	Container,
+	Text,
+} from '@mels-loop/ui/primitives';
 import type { ReactNode } from 'react';
 
 interface StaticPageProps {

@@ -5,8 +5,7 @@ import {
 import { ContentRenderer } from '@mels-loop/content-ui';
 import type { Locale } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
-import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Container, Text } from '@mels-loop/ui/primitives';
+import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 
 import { getDictionary } from '@/i18n';

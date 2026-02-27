@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 import styles from './Breadcrumbs.module.css';
 
 export interface BreadcrumbItem {
@@ -5,11 +7,16 @@ export interface BreadcrumbItem {
 	href?: string;
 }
 
-export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+interface BreadcrumbsProps {
+	items: BreadcrumbItem[];
+	className?: string;
+}
+
+export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
 	if (items.length <= 1) return null;
 
 	return (
-		<nav className={styles.root} aria-label="Breadcrumb">
+		<nav className={cn(styles.root, className)} aria-label="Breadcrumb">
 			<ol className={styles.list}>
 				{items.map((item, index) => {
 					const isLast = index === items.length - 1;
