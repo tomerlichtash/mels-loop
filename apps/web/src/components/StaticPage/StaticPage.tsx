@@ -1,5 +1,4 @@
 import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
-import { ContentRenderer } from '@mels-loop/content-ui';
 import {
 	type BreadcrumbItem,
 	Breadcrumbs,
@@ -7,6 +6,8 @@ import {
 	Text,
 } from '@mels-loop/ui/primitives';
 import type { ReactNode } from 'react';
+
+import { ContentRenderer } from '@/content';
 
 interface StaticPageProps {
 	title: string;

@@ -118,11 +118,11 @@
 }
 
 .interactive:hover {
-	--ml-card-shadow: var(--ml-shadow-md);
+	box-shadow: var(--ml-shadow-md);
 }
 
 .interactive:active {
-	--ml-card-shadow: var(--ml-shadow-xs);
+	box-shadow: var(--ml-shadow-xs);
 }
 
 .interactive:focus-visible {

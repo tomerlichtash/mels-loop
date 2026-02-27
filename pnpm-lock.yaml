@@ -71,9 +71,6 @@ importers:
       '@mels-loop/content-pipeline':
         specifier: workspace:*
         version: link:../../libs/content-pipeline
-      '@mels-loop/content-ui':
-        specifier: workspace:*
-        version: link:../../libs/content-ui
       '@mels-loop/forms':
         specifier: workspace:*
         version: link:../../libs/forms
@@ -104,6 +101,12 @@ importers:
       '@tanstack/react-virtual':
         specifier: ^3.13.18
         version: 3.13.18(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
+      hast-util-to-jsx-runtime:
+        specifier: ^2.3.6
+        version: 2.3.6
       next:
         specifier: ^16.1.6
         version: 16.1.6(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -187,37 +190,6 @@ importers:
       mdast-util-directive:
         specifier: ^3.1.0
         version: 3.1.0
-
-  libs/content-ui:
-    dependencies:
-      '@mels-loop/content-pipeline':
-        specifier: workspace:*
-        version: link:../content-pipeline
-      '@mels-loop/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@mels-loop/ui':
-        specifier: workspace:*
-        version: link:../ui
-      classnames:
-        specifier: ^2.5.1
-        version: 2.5.1
-      hast-util-to-jsx-runtime:
-        specifier: ^2.3.6
-        version: 2.3.6
-      next:
-        specifier: ^16.0.0
-        version: 16.1.6(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      react:
-        specifier: ^19.0.0
-        version: 19.2.4
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.2.4(react@19.2.4)
-    devDependencies:
-      '@mels-loop/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
 
   libs/eslint-config:
     dependencies:

@@ -3,7 +3,7 @@ import {
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
 import type { Locale } from '@mels-loop/i18n/config';
-import { Button, Container, Text } from '@mels-loop/ui/primitives';
+import { Button, Container, Grid, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
 import { GlyphShift } from '@/components/GlyphShift/GlyphShift';
@@ -60,11 +60,11 @@ export default async function HomePage({ params }: PageProps) {
 				<Text variant="h2" className={styles.storiesHeading}>
 					{String(dict.stories)}
 				</Text>
-				<div>
+				<Grid columns={3} gap="md">
 					{sorted.map((config) => (
 						<StoryCard key={config.slug} config={config} locale={typedLocale} />
 					))}
-				</div>
+				</Grid>
 			</section>
 		</Container>
 	);

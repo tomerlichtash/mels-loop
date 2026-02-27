@@ -1,6 +1,7 @@
+'use client';
+
 import type { Locale, StoryConfig } from '@mels-loop/content-pipeline/types';
-import { Text } from '@mels-loop/ui/primitives';
-import Link from 'next/link';
+import { Card, CardBody, CardHeader, Text } from '@mels-loop/ui/primitives';
 
 import styles from './StoryCard.module.css';
 
@@ -11,18 +12,21 @@ interface StoryCardProps {
 
 export function StoryCard({ config, locale }: StoryCardProps) {
 	return (
-		<div className={styles.root}>
-			<Link href={`/stories/${config.slug}`} className={styles.title}>
-				{config.title[locale]}
-			</Link>
-			<Text
-				variant="body2"
-				color="muted"
-				component="p"
-				className={styles.abstract}
-			>
-				{config.abstract[locale]}
-			</Text>
-		</div>
+		<Card
+			variant="outlined"
+			shadow="lg"
+			padding="md"
+			interactive
+			href={`/stories/${config.slug}`}
+		>
+			<CardHeader>
+				<Text className={styles.title}>{config.title[locale]}</Text>
+			</CardHeader>
+			<CardBody>
+				<Text variant="body2" color="muted" component="p">
+					{config.abstract[locale]}
+				</Text>
+			</CardBody>
+		</Card>
 	);
 }
