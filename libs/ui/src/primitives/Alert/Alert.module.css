@@ -2,6 +2,7 @@
 	--ml-alert-padding: var(--ml-space-md);
 	--ml-alert-radius: var(--ml-radius-md);
 	--ml-alert-title-font-weight: var(--ml-font-weight-bold);
+	--ml-alert-title-margin-bottom: var(--ml-space-xs);
 	--ml-alert-body-font-size: var(--ml-font-size-body);
 	--ml-alert-background-color: var(--ml-info-background-color);
 	--ml-alert-border-color: var(--ml-info-border-color);
@@ -63,7 +64,7 @@
 
 .title {
 	font-weight: var(--ml-alert-title-font-weight);
-	margin-bottom: var(--ml-space-xs);
+	margin-bottom: var(--ml-alert-title-margin-bottom);
 }
 
 .body {

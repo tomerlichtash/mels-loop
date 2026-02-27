@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import { Button } from '../Button/Button';
+import { Grid } from '../Grid/Grid';
 import {
 	CardActions,
 	CardBody,
 	CardContent,
 	CardFooter,
-	CardGrid,
 	CardHeader,
 	CardMedia,
 	CardSkeleton,
@@ -162,11 +162,11 @@ const gridArgTypes = {
 	numOfItems: { control: { type: 'number' as const, min: 1, max: 24 } },
 };
 
-export const Grid: Story = {
+export const CardInGrid: Story = {
 	argTypes: gridArgTypes,
 	args: { numOfItems: 6 },
 	render: ({ numOfItems = 6 }: CardStoryArgs) => (
-		<CardGrid gap="md">
+		<Grid gap="md">
 			{Array.from({ length: numOfItems }, (_, i) => (
 				<Card key={i} variant="outlined">
 					<CardMedia
@@ -177,7 +177,7 @@ export const Grid: Story = {
 					<CardBody>Sample card content for grid layout.</CardBody>
 				</Card>
 			))}
-		</CardGrid>
+		</Grid>
 	),
 };
 
@@ -202,7 +202,7 @@ export const Masonry: Story = {
 	},
 	args: { numOfItems: 8 },
 	render: ({ numOfItems = 8, lines }: CardStoryArgs) => (
-		<CardGrid layout="masonry" gap="md">
+		<Grid layout="masonry" gap="md">
 			{Array.from({ length: numOfItems }, (_, i) => (
 				<Card key={i} variant="outlined">
 					<CardHeader>{`Card ${i + 1}`}</CardHeader>
@@ -211,6 +211,6 @@ export const Masonry: Story = {
 					</CardBody>
 				</Card>
 			))}
-		</CardGrid>
+		</Grid>
 	),
 };

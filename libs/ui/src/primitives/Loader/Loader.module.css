@@ -1,6 +1,7 @@
 .root {
 	--ml-loader-size: 1.25rem;
 	--ml-loader-color: currentColor;
+	--ml-loader-radius: var(--ml-radius-full);
 
 	display: inline-flex;
 	align-items: center;
@@ -15,7 +16,7 @@
 	height: var(--ml-loader-size);
 	border: var(--ml-loader-border-width) solid var(--ml-loader-color);
 	border-right-color: transparent;
-	border-radius: var(--ml-radius-full);
+	border-radius: var(--ml-loader-radius);
 	animation: spin 0.6s linear infinite;
 }
 
@@ -27,7 +28,7 @@
 .dot {
 	width: var(--ml-loader-size);
 	height: var(--ml-loader-size);
-	border-radius: var(--ml-radius-full);
+	border-radius: var(--ml-loader-radius);
 	background-color: var(--ml-loader-color);
 	animation: pulse 1.4s ease-in-out infinite;
 }
@@ -44,7 +45,7 @@
 .variant-pulse {
 	width: var(--ml-loader-size);
 	height: var(--ml-loader-size);
-	border-radius: var(--ml-radius-full);
+	border-radius: var(--ml-loader-radius);
 	background-color: var(--ml-loader-color);
 	animation: breathe 1.6s ease-in-out infinite;
 }

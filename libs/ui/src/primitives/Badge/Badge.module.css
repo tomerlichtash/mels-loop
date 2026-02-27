@@ -6,6 +6,7 @@
 	--ml-badge-radius: var(--ml-radius-pill);
 	--ml-badge-padding-horizontal: var(--ml-space-sm);
 	--ml-badge-padding-vertical: var(--ml-space-xs);
+	--ml-badge-border-color: var(--ml-border-color);
 }
 
 .root {
@@ -18,7 +19,7 @@
 	line-height: var(--ml-badge-line-height);
 	padding: var(--ml-badge-padding-vertical) var(--ml-badge-padding-horizontal);
 	border-radius: var(--ml-badge-radius);
-	border: 1px solid var(--ml-border-color);
+	border: 1px solid var(--ml-badge-border-color);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -36,7 +37,7 @@
 
 /* Bordered */
 .bordered {
-	border-color: var(--ml-border-color);
+	border-color: var(--ml-badge-border-color);
 }
 
 /* Radius */

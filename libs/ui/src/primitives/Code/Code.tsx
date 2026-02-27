@@ -1,17 +1,15 @@
 import cn from 'classnames';
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './Code.module.css';
 
-interface CodeProps {
+interface CodeProps extends HTMLAttributes<HTMLElement> {
 	children?: ReactNode;
-	className?: string;
-	[key: string]: unknown;
 }
 
 export function Code({ children, className, ...props }: CodeProps) {
 	return (
-		<code className={cn(styles.root, className)} {...props}>
+		<code className={cn(styles.root, 'ml-code', className)} {...props}>
 			{children}
 		</code>
 	);

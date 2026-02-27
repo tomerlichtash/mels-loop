@@ -1,13 +1,13 @@
 import cn from 'classnames';
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './List.module.css';
 
-interface ListProps {
+interface ListProps extends HTMLAttributes<
+	HTMLUListElement | HTMLOListElement
+> {
 	ordered?: boolean;
 	children?: ReactNode;
-	className?: string;
-	[key: string]: unknown;
 }
 
 export function List({
@@ -19,7 +19,7 @@ export function List({
 	const Tag = ordered ? 'ol' : 'ul';
 
 	return (
-		<Tag className={cn(styles.root, className)} {...props}>
+		<Tag className={cn(styles.root, 'ml-list', className)} {...props}>
 			{children}
 		</Tag>
 	);

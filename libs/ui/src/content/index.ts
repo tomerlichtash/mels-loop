@@ -4,21 +4,7 @@ export {
 	PopoverProvider,
 	useAnnotations,
 } from './annotations/PopoverProvider/PopoverProvider';
-export type { HeadingLevel } from './components';
-export {
-	Blockquote,
-	Code,
-	CodeBlock,
-	Figure,
-	Heading,
-	HorizontalDivider,
-	Image,
-	Line,
-	List,
-	ListItem,
-	Paragraph,
-	Table,
-} from './components';
+export { Figure, Image, Line, Table } from './components';
 export { ContentRenderer } from './ContentRenderer/ContentRenderer';
 export { SourceBadge } from './sources/SourceBadge/SourceBadge';
 export { SourceCard } from './sources/SourceCard/SourceCard';

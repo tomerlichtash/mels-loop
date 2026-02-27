@@ -6,22 +6,17 @@ import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
 import { useMemo } from 'react';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 
-import { AnnotationAwareLink } from '../annotations/AnnotationAwareLink/AnnotationAwareLink';
 import {
 	Blockquote,
 	Code,
 	CodeBlock,
-	ContentLayout,
-	FigureDialog,
-	Heading,
-	HorizontalDivider,
-	Image,
-	Line,
 	List,
 	ListItem,
-	Paragraph,
-	Table,
-} from '../components';
+	Separator,
+	Text,
+} from '../../primitives';
+import { AnnotationAwareLink } from '../annotations/AnnotationAwareLink/AnnotationAwareLink';
+import { ContentLayout, FigureDialog, Image, Line, Table } from '../components';
 import styles from './ContentRenderer.module.css';
 
 type ComponentOverrides = Record<
@@ -38,20 +33,20 @@ interface ContentRendererProps {
 
 function defaultComponents(): ComponentOverrides {
 	return {
-		h1: (props) => <Heading level={1} {...props} />,
-		h2: (props) => <Heading level={2} {...props} />,
-		h3: (props) => <Heading level={3} {...props} />,
-		h4: (props) => <Heading level={4} {...props} />,
-		h5: (props) => <Heading level={5} {...props} />,
-		h6: (props) => <Heading level={6} {...props} />,
-		p: Paragraph,
+		h1: (props) => <Text variant="h1" {...props} />,
+		h2: (props) => <Text variant="h2" {...props} />,
+		h3: (props) => <Text variant="h3" {...props} />,
+		h4: (props) => <Text variant="h4" {...props} />,
+		h5: (props) => <Text variant="subtitle1" component="h5" {...props} />,
+		h6: (props) => <Text variant="subtitle2" component="h6" {...props} />,
+		p: (props) => <Text variant="body1" {...props} />,
 		blockquote: Blockquote,
 		ul: (props) => <List {...props} />,
 		ol: (props) => <List ordered {...props} />,
 		li: ListItem,
 		a: AnnotationAwareLink,
 		code: Code,
-		hr: HorizontalDivider,
+		hr: Separator,
 		figure: FigureDialog,
 		pre: CodeBlock,
 		table: Table,

@@ -1,0 +1,27 @@
+.root {
+	--ml-code-font-family: var(--ml-font-mono);
+	--ml-code-font-size: var(--ml-font-size-sm);
+	--ml-code-font-weight: var(--ml-font-weight-medium);
+	--ml-code-radius: var(--ml-radius-md);
+	--ml-code-border-color: var(--ml-code-border);
+	--ml-code-text-color: var(--ml-code-text);
+	--ml-code-padding: 0 var(--ml-space-xs);
+
+	font-family: var(--ml-code-font-family);
+	font-size: var(--ml-code-font-size);
+	font-weight: var(--ml-code-font-weight);
+	border-radius: var(--ml-code-radius);
+	border: 1px solid var(--ml-code-border-color);
+	padding: var(--ml-code-padding);
+	color: var(--ml-code-text-color);
+}
+
+/* reset when Code appears inside a CodeBlock (pre) */
+pre .root {
+	border: none;
+	padding: 0;
+	font-size: inherit;
+	font-weight: inherit;
+	color: inherit;
+	border-radius: 0;
+}

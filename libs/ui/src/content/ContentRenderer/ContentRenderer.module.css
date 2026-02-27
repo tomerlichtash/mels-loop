@@ -13,6 +13,25 @@
 	margin: 0 auto;
 }
 
+.root h1 {
+	--ml-text-color-override: var(--ml-heading-color);
+}
+
+.root h2,
+.root h3 {
+	--ml-text-color-override: var(--ml-heading-subtle-color);
+}
+
+.root h4,
+.root h5,
+.root h6 {
+	--ml-text-color-override: var(--ml-text-subtle-color);
+}
+
+.root p {
+	margin-bottom: var(--ml-space-md);
+}
+
 .root strong {
 	font-weight: var(--ml-font-weight-bold);
 }

@@ -1,17 +1,18 @@
 import cn from 'classnames';
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './Blockquote.module.css';
 
-interface BlockquoteProps {
+interface BlockquoteProps extends HTMLAttributes<HTMLQuoteElement> {
 	children?: ReactNode;
-	className?: string;
-	[key: string]: unknown;
 }
 
 export function Blockquote({ children, className, ...props }: BlockquoteProps) {
 	return (
-		<blockquote className={cn(styles.root, className)} {...props}>
+		<blockquote
+			className={cn(styles.root, 'ml-blockquote', className)}
+			{...props}
+		>
 			{children}
 		</blockquote>
 	);

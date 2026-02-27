@@ -4,7 +4,7 @@ import { useTranslation } from '@mels-loop/i18n/client';
 import * as Popover from '@radix-ui/react-popover';
 import { useEffect, useId, useMemo, useRef } from 'react';
 
-import { Loader } from '../../../primitives/Loader/Loader';
+import { Loader } from '../../../primitives';
 import { ContentRenderer } from '../../ContentRenderer/ContentRenderer';
 import { InternalLink } from '../internal/InternalLink/InternalLink';
 import { NavBar } from '../internal/NavBar/NavBar';

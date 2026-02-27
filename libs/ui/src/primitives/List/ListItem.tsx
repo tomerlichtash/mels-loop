@@ -1,17 +1,15 @@
 import cn from 'classnames';
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './ListItem.module.css';
 
-interface ListItemProps {
+interface ListItemProps extends HTMLAttributes<HTMLLIElement> {
 	children?: ReactNode;
-	className?: string;
-	[key: string]: unknown;
 }
 
 export function ListItem({ children, className, ...props }: ListItemProps) {
 	return (
-		<li className={cn(styles.root, className)} {...props}>
+		<li className={cn(styles.root, 'ml-list-item', className)} {...props}>
 			{children}
 		</li>
 	);

@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { memo, useEffect, useState } from 'react';
 
 import { useColorScheme } from '../../color-scheme/useColorScheme';
-import { Tooltip } from '../../primitives/Tooltip/Tooltip';
+import { Tooltip } from '../../primitives';
 import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
 import { NavMenu } from '../Navigation/NavMenu';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';

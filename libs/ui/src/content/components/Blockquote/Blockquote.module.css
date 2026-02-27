@@ -1,6 +1,0 @@
-.root {
-	padding: 0 var(--ml-space-md);
-	border-inline-start: 3px solid var(--ml-border-color);
-	color: var(--ml-text-subtle-color);
-	margin: var(--ml-space-md) 0;
-}

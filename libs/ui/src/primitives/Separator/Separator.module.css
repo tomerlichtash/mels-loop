@@ -1,0 +1,22 @@
+.root {
+	--ml-separator-color: var(--ml-border-color);
+	--ml-separator-size: 1px;
+	--ml-separator-spacing: var(--ml-space-xl);
+
+	border: none;
+	margin: 0;
+	flex-shrink: 0;
+}
+
+.orientation-horizontal {
+	border-top: var(--ml-separator-size) solid var(--ml-separator-color);
+	margin: var(--ml-separator-spacing) 0;
+	width: 100%;
+}
+
+.orientation-vertical {
+	border-left: var(--ml-separator-size) solid var(--ml-separator-color);
+	margin: 0 var(--ml-separator-spacing);
+	height: 100%;
+	align-self: stretch;
+}

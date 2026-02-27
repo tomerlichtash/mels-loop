@@ -1,15 +1,6 @@
-export { Blockquote } from './Blockquote/Blockquote';
-export { Code } from './Code/Code';
-export { CodeBlock } from './CodeBlock/CodeBlock';
 export { ContentLayout } from './ContentLayout/ContentLayout';
 export { Figure } from './Figure/Figure';
 export { FigureDialog } from './FigureDialog/FigureDialog';
-export type { HeadingLevel } from './Heading/Heading';
-export { Heading } from './Heading/Heading';
-export { HorizontalDivider } from './HorizontalDivider/HorizontalDivider';
 export { Image } from './Image/Image';
 export { Line } from './Line/Line';
-export { List } from './List/List';
-export { ListItem } from './ListItem/ListItem';
-export { Paragraph } from './Paragraph/Paragraph';
 export { Table } from './Table/Table';

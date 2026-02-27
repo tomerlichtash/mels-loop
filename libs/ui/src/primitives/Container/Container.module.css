@@ -2,6 +2,7 @@
 	--ml-container-padding-horizontal: 0;
 	--ml-container-padding-vertical: 0;
 	--ml-container-gap: 0;
+	--ml-container-shadow: none;
 }
 
 .root {
@@ -11,6 +12,7 @@
 	padding: var(--ml-container-padding-vertical)
 		var(--ml-container-padding-horizontal);
 	gap: var(--ml-container-gap);
+	box-shadow: var(--ml-container-shadow);
 }
 
 /* Padding Horizontal */
@@ -137,19 +139,19 @@
 }
 
 .shadow-xs {
-	box-shadow: var(--ml-shadow-xs);
+	--ml-container-shadow: var(--ml-shadow-xs);
 }
 
 .shadow-sm {
-	box-shadow: var(--ml-shadow-sm);
+	--ml-container-shadow: var(--ml-shadow-sm);
 }
 
 .shadow-md {
-	box-shadow: var(--ml-shadow-md);
+	--ml-container-shadow: var(--ml-shadow-md);
 }
 
 .shadow-lg {
-	box-shadow: var(--ml-shadow-lg);
+	--ml-container-shadow: var(--ml-shadow-lg);
 }
 
 /* Wrap */

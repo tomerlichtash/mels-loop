@@ -4,7 +4,7 @@ import type { ResolvedSource } from '@mels-loop/content-pipeline/types';
 import * as Popover from '@radix-ui/react-popover';
 import { useEffect, useId, useRef } from 'react';
 
-import { Loader } from '../../../primitives/Loader/Loader';
+import { Loader } from '../../../primitives';
 import { NavBar } from '../../annotations/internal/NavBar/NavBar';
 import { useAnnotations } from '../../annotations/PopoverProvider/PopoverProvider';
 import { SourceDetail } from '../SourceDetail/SourceDetail';

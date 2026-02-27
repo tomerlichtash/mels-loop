@@ -3,7 +3,7 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { useEffect, useRef, useState } from 'react';
 
-import { Loader } from '../../../primitives/Loader/Loader';
+import { Loader } from '../../../primitives';
 import { useAnnotations } from '../../annotations/PopoverProvider/PopoverProvider';
 import { SourceDetail } from '../../sources/SourceDetail/SourceDetail';
 import { Figure } from '../Figure/Figure';

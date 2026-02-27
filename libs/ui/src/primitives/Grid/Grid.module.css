@@ -1,0 +1,68 @@
+.root {
+	--ml-grid-gap: var(--ml-space-md);
+	--ml-grid-columns: 3;
+}
+
+/* Grid layout */
+.layout-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--ml-grid-columns), 1fr);
+	gap: var(--ml-grid-gap);
+}
+
+/* Masonry layout (CSS columns) */
+.layout-masonry {
+	columns: var(--ml-grid-columns);
+	column-gap: var(--ml-grid-gap);
+}
+
+.layout-masonry > * {
+	break-inside: avoid;
+	margin-bottom: var(--ml-grid-gap);
+}
+
+/* Columns */
+.columns-1 {
+	--ml-grid-columns: 1;
+}
+
+.columns-2 {
+	--ml-grid-columns: 2;
+}
+
+.columns-3 {
+	--ml-grid-columns: 3;
+}
+
+.columns-4 {
+	--ml-grid-columns: 4;
+}
+
+.columns-5 {
+	--ml-grid-columns: 5;
+}
+
+.columns-6 {
+	--ml-grid-columns: 6;
+}
+
+/* Gap */
+.gap-xs {
+	--ml-grid-gap: var(--ml-space-xs);
+}
+
+.gap-sm {
+	--ml-grid-gap: var(--ml-space-sm);
+}
+
+.gap-md {
+	--ml-grid-gap: var(--ml-space-md);
+}
+
+.gap-lg {
+	--ml-grid-gap: var(--ml-space-lg);
+}
+
+.gap-xl {
+	--ml-grid-gap: var(--ml-space-xl);
+}
