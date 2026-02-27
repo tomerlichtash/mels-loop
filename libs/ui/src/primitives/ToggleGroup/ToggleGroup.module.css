@@ -1,0 +1,46 @@
+:root {
+	--ml-toggle-group-gap: 2px;
+	--ml-toggle-group-item-min-width: 32px;
+	--ml-toggle-group-item-height: 30px;
+	--ml-toggle-group-item-padding: 0 var(--ml-space-xs);
+	--ml-toggle-group-item-font-size: var(--ml-font-size-sm);
+	--ml-toggle-group-item-font-weight: var(--ml-font-weight-medium);
+	--ml-toggle-group-item-color: var(--ml-text-color);
+	--ml-toggle-group-item-radius: var(--ml-radius-md);
+	--ml-toggle-group-hover-bg: var(--ml-color-surface-deep);
+	--ml-toggle-group-active-bg: var(--ml-color-surface-muted);
+	--ml-toggle-group-active-font-weight: var(--ml-font-weight-bold);
+}
+
+.root {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-toggle-group-gap);
+}
+
+.item {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: var(--ml-toggle-group-item-min-width);
+	height: var(--ml-toggle-group-item-height);
+	padding: var(--ml-toggle-group-item-padding);
+	font-size: var(--ml-toggle-group-item-font-size);
+	font-weight: var(--ml-toggle-group-item-font-weight);
+	color: var(--ml-toggle-group-item-color);
+	text-decoration: none;
+	cursor: pointer;
+	background: none;
+	border: none;
+	border-radius: var(--ml-toggle-group-item-radius);
+}
+
+.item:hover:not([data-state='on']) {
+	background-color: var(--ml-toggle-group-hover-bg);
+}
+
+.item[data-state='on'] {
+	background-color: var(--ml-toggle-group-active-bg);
+	font-weight: var(--ml-toggle-group-active-font-weight);
+	cursor: default;
+}

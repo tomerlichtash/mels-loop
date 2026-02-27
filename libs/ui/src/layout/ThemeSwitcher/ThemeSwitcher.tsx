@@ -3,6 +3,7 @@
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 
 import { useColorScheme } from '../../color-scheme/useColorScheme';
+import { ToggleButton } from '../../primitives/ToggleButton';
 import styles from './ThemeSwitcher.module.css';
 
 interface ThemeSwitcherProps {
@@ -10,21 +11,17 @@ interface ThemeSwitcherProps {
 }
 
 export function ThemeSwitcher({ 'aria-label': ariaLabel }: ThemeSwitcherProps) {
-	const { toggleColorScheme } = useColorScheme();
+	const { colorScheme, toggleColorScheme } = useColorScheme();
+	const isDark = colorScheme === 'dark';
 
 	return (
-		<button
-			type="button"
+		<ToggleButton
+			pressed={isDark}
+			onPressedChange={() => toggleColorScheme()}
 			className={styles.root}
-			onClick={toggleColorScheme}
 			aria-label={ariaLabel}
 		>
-			<span className={styles.light}>
-				<MoonIcon />
-			</span>
-			<span className={styles.dark}>
-				<SunIcon />
-			</span>
-		</button>
+			<span className={styles.icon}>{isDark ? <SunIcon /> : <MoonIcon />}</span>
+		</ToggleButton>
 	);
 }

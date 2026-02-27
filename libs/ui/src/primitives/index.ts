@@ -34,4 +34,7 @@ export {
 	TableRow,
 } from './Table';
 export { Text } from './Text/Text';
+export { ToggleButton } from './ToggleButton';
+export type { ToggleGroupItemProps } from './ToggleGroup';
+export { ToggleGroup } from './ToggleGroup';
 export { Tooltip } from './Tooltip/Tooltip';

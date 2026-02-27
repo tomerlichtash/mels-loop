@@ -16,7 +16,10 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
 	if (items.length <= 1) return null;
 
 	return (
-		<nav className={cn(styles.root, className)} aria-label="Breadcrumb">
+		<nav
+			className={cn(styles.root, 'ml-breadcrumbs', className)}
+			aria-label="Breadcrumb"
+		>
 			<ol className={styles.list}>
 				{items.map((item, index) => {
 					const isLast = index === items.length - 1;

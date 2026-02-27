@@ -1,0 +1,31 @@
+:root {
+	--ml-toggle-button-min-width: 32px;
+	--ml-toggle-button-height: 30px;
+	--ml-toggle-button-padding: 0 var(--ml-space-xs);
+	--ml-toggle-button-color: var(--ml-text-color);
+	--ml-toggle-button-radius: var(--ml-radius-md);
+	--ml-toggle-button-hover-bg: var(--ml-color-surface-deep);
+	--ml-toggle-button-active-bg: var(--ml-color-surface-muted);
+}
+
+.root {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: var(--ml-toggle-button-min-width);
+	height: var(--ml-toggle-button-height);
+	padding: var(--ml-toggle-button-padding);
+	color: var(--ml-toggle-button-color);
+	background: none;
+	border: none;
+	border-radius: var(--ml-toggle-button-radius);
+	cursor: pointer;
+}
+
+.root:hover {
+	background-color: var(--ml-toggle-button-hover-bg);
+}
+
+.root[data-state='on'] {
+	background-color: var(--ml-toggle-button-active-bg);
+}
