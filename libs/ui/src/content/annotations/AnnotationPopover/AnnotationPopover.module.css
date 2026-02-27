@@ -1,4 +1,4 @@
-.root {
+.trigger {
 	display: inline;
 	background: var(--ml-annotation-bg);
 	color: var(--ml-annotation-text);
@@ -13,40 +13,22 @@
 	margin: 0 1px;
 }
 
-.root:hover {
+.trigger:hover {
 	opacity: 0.85;
 }
 
-.root::before {
+.trigger::before {
 	content: '[';
 	font-weight: var(--ml-font-weight-light);
 }
 
-.root::after {
+.trigger::after {
 	content: ']';
 	font-weight: var(--ml-font-weight-light);
 }
 
 .dropdown {
-	width: 360px;
-	background-color: var(--ml-popover-bg);
-	border: 1px solid var(--ml-border-color);
-	border-radius: var(--ml-radius-md);
-	box-shadow: var(--ml-shadow);
-	z-index: 1000;
-}
-
-.arrow {
-	fill: var(--ml-popover-bg);
-}
-
-.scrollArea {
-	max-height: 300px;
-	overflow-y: auto;
-}
-
-.bodyWrap {
-	padding: var(--ml-space-xs);
+	--ml-popover-width: 360px;
 }
 
 .loader {

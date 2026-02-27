@@ -1,10 +1,9 @@
 'use client';
 
 import type { ResolvedSource } from '@mels-loop/content-pipeline/types';
-import * as Popover from '@radix-ui/react-popover';
 import { useEffect, useId, useRef } from 'react';
 
-import { Loader } from '../../../primitives';
+import { Loader, Popover } from '../../../primitives';
 import { NavBar } from '../../annotations/internal/NavBar/NavBar';
 import { useAnnotations } from '../../annotations/PopoverProvider/PopoverProvider';
 import { SourceDetail } from '../SourceDetail/SourceDetail';
@@ -45,44 +44,31 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 	const displayLabel = label ?? id;
 
 	return (
-		<Popover.Root open={opened}>
-			<Popover.Trigger asChild>
+		<Popover
+			open={opened}
+			triggerRef={triggerRef}
+			className={styles.dropdown}
+			trigger={
 				<button
-					ref={triggerRef}
 					type="button"
-					className={styles.root}
+					className={styles.trigger}
 					onClick={() => openPopover(popoverId)}
 					aria-label={`Source: ${id}`}
 				>
 					{displayLabel}
 				</button>
-			</Popover.Trigger>
-			<Popover.Portal>
-				<Popover.Content
-					className={styles.dropdown}
-					side="bottom"
-					align="center"
-					sideOffset={4}
-				>
-					<Popover.Arrow className={styles.arrow} />
-					<div data-popover-content>
-						<NavBar
-							rootLabel={typeof displayLabel === 'string' ? displayLabel : id}
-						/>
-						<div className={styles.scrollArea}>
-							<div className={styles.bodyWrap}>
-								{!source ? (
-									<div className={styles.loader}>
-										<Loader size="md" />
-									</div>
-								) : (
-									<SourceDetail source={source} />
-								)}
-							</div>
-						</div>
-					</div>
-				</Popover.Content>
-			</Popover.Portal>
-		</Popover.Root>
+			}
+		>
+			<NavBar
+				rootLabel={typeof displayLabel === 'string' ? displayLabel : id}
+			/>
+			{!source ? (
+				<div className={styles.loader}>
+					<Loader size="md" />
+				</div>
+			) : (
+				<SourceDetail source={source} />
+			)}
+		</Popover>
 	);
 }

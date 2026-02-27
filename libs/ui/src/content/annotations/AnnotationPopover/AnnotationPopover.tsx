@@ -1,9 +1,8 @@
 'use client';
 
-import * as Popover from '@radix-ui/react-popover';
 import { useEffect, useId, useMemo, useRef } from 'react';
 
-import { Loader } from '../../../primitives';
+import { Loader, Popover } from '../../../primitives';
 import { ContentRenderer } from '../../ContentRenderer/ContentRenderer';
 import { InternalLink } from '../internal/InternalLink/InternalLink';
 import { NavBar } from '../internal/NavBar/NavBar';
@@ -56,62 +55,49 @@ export function AnnotationPopover({
 	}, [opened, baseContent, isLoading, loadAnnotation, target]);
 
 	return (
-		<Popover.Root open={opened}>
-			<Popover.Trigger asChild>
+		<Popover
+			open={opened}
+			triggerRef={triggerRef}
+			className={styles.dropdown}
+			trigger={
 				<button
-					ref={triggerRef}
 					type="button"
-					className={styles.root}
+					className={styles.trigger}
 					onClick={() => openPopover(id)}
 					aria-label={`Annotation ${sequence}`}
 				>
 					{sequence}
 				</button>
-			</Popover.Trigger>
-			<Popover.Portal>
-				<Popover.Content
-					className={styles.dropdown}
-					side="bottom"
-					align="center"
-					sideOffset={4}
-				>
-					<Popover.Arrow className={styles.arrow} />
-					<div data-popover-content>
-						<NavBar rootLabel={displayLabel} />
-						<div className={styles.scrollArea}>
-							<div className={styles.bodyWrap}>
-								{!displayContent ? (
-									<div className={styles.loader}>
-										<Loader size="md" />
-									</div>
-								) : (
-									<>
-										<ContentRenderer
-											hast={displayContent.hast}
-											className={styles.body}
-											components={componentOverrides}
-										/>
-										{displayContent.metadata.source_name && (
-											<p className={styles.source}>
-												{displayContent.metadata.source_url ? (
-													<a
-														href={displayContent.metadata.source_url}
-														className={styles.sourceLink}
-													>
-														{displayContent.metadata.source_name}
-													</a>
-												) : (
-													displayContent.metadata.source_name
-												)}
-											</p>
-										)}
-									</>
-								)}
-							</div>
-						</div>
-					</div>
-				</Popover.Content>
-			</Popover.Portal>
-		</Popover.Root>
+			}
+		>
+			<NavBar rootLabel={displayLabel} />
+			{!displayContent ? (
+				<div className={styles.loader}>
+					<Loader size="md" />
+				</div>
+			) : (
+				<>
+					<ContentRenderer
+						hast={displayContent.hast}
+						className={styles.body}
+						components={componentOverrides}
+					/>
+					{displayContent.metadata.source_name && (
+						<p className={styles.source}>
+							{displayContent.metadata.source_url ? (
+								<a
+									href={displayContent.metadata.source_url}
+									className={styles.sourceLink}
+								>
+									{displayContent.metadata.source_name}
+								</a>
+							) : (
+								displayContent.metadata.source_name
+							)}
+						</p>
+					)}
+				</>
+			)}
+		</Popover>
 	);
 }

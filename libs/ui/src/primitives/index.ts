@@ -21,6 +21,7 @@ export { Grid } from './Grid/Grid';
 export { List } from './List/List';
 export { ListItem } from './List/ListItem';
 export { Loader } from './Loader/Loader';
+export { Popover } from './Popover';
 export { Separator } from './Separator/Separator';
 export {
 	Table,

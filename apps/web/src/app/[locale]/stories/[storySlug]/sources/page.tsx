@@ -9,9 +9,9 @@ import type {
 } from '@mels-loop/content-pipeline/types';
 import { type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
-import { SourceCard } from '@mels-loop/ui/content';
+import { SourceDetail } from '@mels-loop/ui/content';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Container, Text } from '@mels-loop/ui/primitives';
+import { Card, Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 
 import { getDictionary } from '@/i18n';
@@ -91,7 +91,18 @@ export default async function SourcesPage({ params }: PageProps) {
 						</Text>
 						<div className={styles.cards}>
 							{typeSources.map((source) => (
-								<SourceCard key={source.id} source={source} />
+								<Card key={source.id} direction="horizontal" padding="sm">
+									{source.type === 'image' && source.url && (
+										<div className={styles.thumbnail}>
+											<img
+												src={source.url}
+												alt={source.title}
+												className={styles.thumbnailImage}
+											/>
+										</div>
+									)}
+									<SourceDetail source={source} />
+								</Card>
 							))}
 						</div>
 					</section>

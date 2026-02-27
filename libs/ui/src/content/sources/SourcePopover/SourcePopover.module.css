@@ -1,4 +1,4 @@
-.root {
+.trigger {
 	display: inline;
 	background: none;
 	border: none;
@@ -11,30 +11,12 @@
 	text-underline-offset: 2px;
 }
 
-.root:hover {
+.trigger:hover {
 	color: var(--ml-link-hover-color);
 }
 
 .dropdown {
-	width: 340px;
-	background-color: var(--ml-popover-bg);
-	border: 1px solid var(--ml-border-color);
-	border-radius: var(--ml-radius-md);
-	box-shadow: var(--ml-shadow);
-	z-index: 1000;
-}
-
-.arrow {
-	fill: var(--ml-popover-bg);
-}
-
-.scrollArea {
-	max-height: 360px;
-	overflow-y: auto;
-}
-
-.bodyWrap {
-	padding: var(--ml-space-xs);
+	--ml-popover-max-height: 360px;
 }
 
 .loader {

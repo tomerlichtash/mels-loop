@@ -1,4 +1,4 @@
-.root {
+.trigger {
 	display: inline;
 	background: none;
 	border: none;
@@ -11,21 +11,14 @@
 	text-underline-offset: 2px;
 }
 
-.root:hover {
+.trigger:hover {
 	color: var(--ml-link-hover-color);
 }
 
 .dropdown {
-	width: 320px;
-	background-color: var(--ml-popover-bg);
-	border: 1px solid var(--ml-border-color);
-	border-radius: var(--ml-radius-md);
-	box-shadow: var(--ml-shadow);
-	z-index: 1000;
-}
-
-.arrow {
-	fill: var(--ml-popover-bg);
+	--ml-popover-width: 320px;
+	--ml-popover-max-height: 250px;
+	--ml-popover-padding: 0;
 }
 
 .header {
@@ -48,15 +41,6 @@
 	color: var(--ml-text-muted-color);
 }
 
-.scrollArea {
-	max-height: 250px;
-	overflow-y: auto;
-}
-
-.bodyWrap {
-	padding: var(--ml-space-xs);
-}
-
 .loader {
 	display: flex;
 	justify-content: center;
@@ -66,12 +50,14 @@
 .body {
 	font-size: var(--ml-font-size-sm);
 	line-height: var(--ml-line-height-snug);
+	padding: var(--ml-space-xs);
 }
 
 .source {
 	margin: var(--ml-space-xs) 0 0;
 	font-size: var(--ml-font-size-sm);
 	color: var(--ml-text-muted-color);
+	padding: 0 var(--ml-space-xs) var(--ml-space-xs);
 }
 
 .sourceLink {
