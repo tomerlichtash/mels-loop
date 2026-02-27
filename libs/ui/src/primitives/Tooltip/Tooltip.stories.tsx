@@ -51,24 +51,3 @@ export const Default: Story = {
 		</div>
 	),
 };
-
-export const Sides: Story = {
-	render: () => (
-		<div
-			style={{
-				padding: 100,
-				display: 'flex',
-				gap: 24,
-				justifyContent: 'center',
-				alignItems: 'center',
-				minHeight: 300,
-			}}
-		>
-			{(['top', 'right', 'bottom', 'left'] as const).map((side) => (
-				<Tooltip key={side} label={`${side} tooltip`} side={side}>
-					<Button>{side}</Button>
-				</Tooltip>
-			))}
-		</div>
-	),
-};

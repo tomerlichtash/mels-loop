@@ -2,7 +2,7 @@
 
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import cn from 'classnames';
-import type { CSSProperties, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import styles from './Tooltip.module.css';
 
@@ -27,28 +27,21 @@ export function Tooltip({
 	paddingVertical,
 	className,
 }: TooltipProps) {
-	const style: CSSProperties | undefined =
-		paddingHorizontal || paddingVertical
-			? {
-					...(paddingHorizontal && {
-						'--ml-tooltip-padding-horizontal': `var(--ml-space-${paddingHorizontal})`,
-					}),
-					...(paddingVertical && {
-						'--ml-tooltip-padding-vertical': `var(--ml-space-${paddingVertical})`,
-					}),
-				}
-			: undefined;
-
 	return (
 		<TooltipPrimitive.Provider delayDuration={delayDuration}>
 			<TooltipPrimitive.Root>
 				<TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
 				<TooltipPrimitive.Portal>
 					<TooltipPrimitive.Content
-						className={cn(styles.content, className)}
+						className={cn(
+							styles.root,
+							paddingHorizontal &&
+								styles[`paddingHorizontal-${paddingHorizontal}`],
+							paddingVertical && styles[`paddingVertical-${paddingVertical}`],
+							className,
+						)}
 						side={side}
 						sideOffset={5}
-						style={style as CSSProperties}
 					>
 						{label}
 						<TooltipPrimitive.Arrow className={styles.arrow} />

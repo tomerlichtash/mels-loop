@@ -10,16 +10,18 @@ const sides = ['top', 'right', 'bottom', 'left'] as const;
 
 for (const theme of THEMES) {
 	test.describe(theme, () => {
-		for (const side of sides) {
-			test(`side-${side}`, async ({ page }) => {
-				await loadStory(page, STORY_ID, theme, {
-					args: { side },
+		test.describe('side', () => {
+			for (const side of sides) {
+				test(`${side}`, async ({ page }) => {
+					await loadStory(page, STORY_ID, theme, {
+						args: { side },
+					});
+					const driver = new TooltipDriver(page, TRIGGER_SELECTOR);
+					await driver.open();
+					await expect(page).toHaveScreenshot();
 				});
-				const driver = new TooltipDriver(page, TRIGGER_SELECTOR);
-				await driver.open();
-				await expect(page).toHaveScreenshot();
-			});
-		}
+			}
+		});
 
 		test('long-text', async ({ page }) => {
 			await loadStory(page, STORY_ID, theme, {

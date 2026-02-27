@@ -1,28 +1,156 @@
 .root {
-	display: inline-block;
-	border: 2px solid currentColor;
+	--ml-loader-size: 1.25rem;
+	--ml-loader-color: currentColor;
+
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Variant: spinner */
+.variant-spinner {
+	--ml-loader-border-width: 2px;
+
+	width: var(--ml-loader-size);
+	height: var(--ml-loader-size);
+	border: var(--ml-loader-border-width) solid var(--ml-loader-color);
 	border-right-color: transparent;
 	border-radius: var(--ml-radius-full);
-	animation: spin var(--ml-duration-spin, 0.6s) linear infinite;
+	animation: spin 0.6s linear infinite;
+}
+
+/* Variant: dots */
+.variant-dots {
+	gap: calc(var(--ml-loader-size) * 0.4);
+}
+
+.dot {
+	width: var(--ml-loader-size);
+	height: var(--ml-loader-size);
+	border-radius: var(--ml-radius-full);
+	background-color: var(--ml-loader-color);
+	animation: pulse 1.4s ease-in-out infinite;
+}
+
+.dot:nth-child(2) {
+	animation-delay: 0.16s;
+}
+
+.dot:nth-child(3) {
+	animation-delay: 0.32s;
+}
+
+/* Variant: pulse */
+.variant-pulse {
+	width: var(--ml-loader-size);
+	height: var(--ml-loader-size);
+	border-radius: var(--ml-radius-full);
+	background-color: var(--ml-loader-color);
+	animation: breathe 1.6s ease-in-out infinite;
+}
+
+/* Sizes */
+.size-xs {
+	--ml-loader-size: 0.375rem;
 }
 
 .size-sm {
-	width: 0.875rem;
-	height: 0.875rem;
+	--ml-loader-size: 0.5rem;
 }
 
 .size-md {
-	width: 1.25rem;
-	height: 1.25rem;
+	--ml-loader-size: 0.625rem;
 }
 
 .size-lg {
-	width: 1.75rem;
-	height: 1.75rem;
+	--ml-loader-size: 0.875rem;
+}
+
+.size-xl {
+	--ml-loader-size: 1.25rem;
+}
+
+.variant-spinner.size-xs {
+	--ml-loader-size: 0.625rem;
+}
+
+.variant-spinner.size-sm {
+	--ml-loader-size: 0.875rem;
+}
+
+.variant-spinner.size-md {
+	--ml-loader-size: 1.25rem;
+}
+
+.variant-spinner.size-lg {
+	--ml-loader-size: 1.75rem;
+}
+
+.variant-spinner.size-xl {
+	--ml-loader-size: 2.5rem;
+	--ml-loader-border-width: 3px;
+}
+
+.variant-pulse.size-xs {
+	--ml-loader-size: 0.5rem;
+}
+
+.variant-pulse.size-sm {
+	--ml-loader-size: 0.75rem;
+}
+
+.variant-pulse.size-md {
+	--ml-loader-size: 1rem;
+}
+
+.variant-pulse.size-lg {
+	--ml-loader-size: 1.5rem;
+}
+
+.variant-pulse.size-xl {
+	--ml-loader-size: 2rem;
+}
+
+/* Colors */
+.color-primary {
+	--ml-loader-color: var(--ml-color-primary);
+}
+
+.color-secondary {
+	--ml-loader-color: var(--ml-color-secondary);
+}
+
+.color-surface {
+	--ml-loader-color: var(--ml-color-surface-contrast);
 }
 
 @keyframes spin {
 	to {
 		transform: rotate(360deg);
+	}
+}
+
+@keyframes pulse {
+	0%,
+	80%,
+	100% {
+		opacity: 0.3;
+		transform: scale(0.8);
+	}
+	40% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes breathe {
+	0%,
+	100% {
+		opacity: 0.3;
+		transform: scale(0.6);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1);
 	}
 }

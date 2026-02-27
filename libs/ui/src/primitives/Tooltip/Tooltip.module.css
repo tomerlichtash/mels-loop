@@ -1,19 +1,63 @@
-.content {
+.root {
+	--ml-tooltip-padding-horizontal: var(--ml-space-sm);
+	--ml-tooltip-padding-vertical: var(--ml-space-xs);
+	--ml-tooltip-background-color: var(--ml-text-color);
+	--ml-tooltip-text-color: var(--ml-background-color);
+	--ml-tooltip-font-size: var(--ml-font-size-sm);
+	--ml-tooltip-radius: var(--ml-radius-md);
+	--ml-tooltip-line-height: var(--ml-line-height-snug);
+	--ml-tooltip-max-width: 280px;
+	--ml-tooltip-duration: var(--ml-duration-fast);
+
 	z-index: 200;
-	background-color: var(--ml-text-color);
-	color: var(--ml-background-color);
-	font-size: var(--ml-font-size-sm);
-	padding: var(--ml-tooltip-padding-vertical, var(--ml-space-xs))
-		var(--ml-tooltip-padding-horizontal, var(--ml-space-sm));
-	border-radius: var(--ml-radius-md);
-	line-height: var(--ml-line-height-snug);
-	max-width: 280px;
+	background-color: var(--ml-tooltip-background-color);
+	color: var(--ml-tooltip-text-color);
+	font-size: var(--ml-tooltip-font-size);
+	padding: var(--ml-tooltip-padding-vertical)
+		var(--ml-tooltip-padding-horizontal);
+	border-radius: var(--ml-tooltip-radius);
+	line-height: var(--ml-tooltip-line-height);
+	max-width: var(--ml-tooltip-max-width);
 	user-select: none;
-	animation: tooltipFadeIn var(--ml-duration-fast) var(--ml-ease-out);
+	animation: tooltipFadeIn var(--ml-tooltip-duration) var(--ml-ease-out);
+}
+
+/* Horizontal padding */
+.paddingHorizontal-xs {
+	--ml-tooltip-padding-horizontal: var(--ml-space-xs);
+}
+
+.paddingHorizontal-sm {
+	--ml-tooltip-padding-horizontal: var(--ml-space-sm);
+}
+
+.paddingHorizontal-md {
+	--ml-tooltip-padding-horizontal: var(--ml-space-md);
+}
+
+.paddingHorizontal-lg {
+	--ml-tooltip-padding-horizontal: var(--ml-space-lg);
+}
+
+/* Vertical padding */
+.paddingVertical-xs {
+	--ml-tooltip-padding-vertical: var(--ml-space-xs);
+}
+
+.paddingVertical-sm {
+	--ml-tooltip-padding-vertical: var(--ml-space-sm);
+}
+
+.paddingVertical-md {
+	--ml-tooltip-padding-vertical: var(--ml-space-md);
+}
+
+.paddingVertical-lg {
+	--ml-tooltip-padding-vertical: var(--ml-space-lg);
 }
 
 .arrow {
-	fill: var(--ml-text-color);
+	fill: var(--ml-tooltip-background-color);
 }
 
 @keyframes tooltipFadeIn {
