@@ -171,7 +171,7 @@
 }
 
 .resultSnippet {
-	color: var(--ml-text-secondary-color);
+	color: var(--ml-text-subtle-color);
 	font-size: var(--ml-font-size-sm);
 	line-height: var(--ml-line-height-snug);
 	display: -webkit-box;

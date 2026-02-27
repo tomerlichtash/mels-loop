@@ -8,7 +8,7 @@ import { type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { ContentRenderer } from '@mels-loop/ui/content';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Heading, Stack, Text } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 
 import { StoryPopoverProvider } from '@/components/StoryPopoverProvider';
@@ -54,7 +54,7 @@ export default async function ArticlePage({ params }: PageProps) {
 		articleSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
 	return (
-		<Stack gap="lg">
+		<Container gap="lg">
 			<Breadcrumbs
 				items={[
 					homeItemFromDict(dict),
@@ -64,31 +64,31 @@ export default async function ArticlePage({ params }: PageProps) {
 				]}
 			/>
 			{content.metadata.title && (
-				<Heading level={1}>{content.metadata.title}</Heading>
+				<Text variant="h1">{content.metadata.title}</Text>
 			)}
 			{content.metadata.abstract && (
-				<Text size="lg" color="dimmed" italic>
+				<Text variant="subtitle2" color="muted" italic>
 					{content.metadata.abstract}
 				</Text>
 			)}
 			{content.metadata.moto && (
-				<Text size="sm" color="dimmed" italic>
+				<Text variant="body2" color="muted" italic>
 					{content.metadata.moto}
 				</Text>
 			)}
 			{content.metadata.credits && (
-				<Text size="xs" color="dimmed">
+				<Text variant="caption" color="muted">
 					{content.metadata.credits}
 				</Text>
 			)}
 			{content.metadata.author && (
-				<Text size="sm" color="dimmed" uppercase>
+				<Text variant="body2" color="muted" uppercase>
 					{content.metadata.author}
 				</Text>
 			)}
 			<StoryPopoverProvider storySlug={storySlug} locale={typedLocale}>
 				<ContentRenderer hast={content.hast} />
 			</StoryPopoverProvider>
-		</Stack>
+		</Container>
 	);
 }

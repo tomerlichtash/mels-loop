@@ -303,7 +303,7 @@
 
 .contentDescription {
 	font-size: var(--ml-font-size-body);
-	color: var(--ml-text-secondary-color);
+	color: var(--ml-text-subtle-color);
 	line-height: var(--ml-line-height-body);
 }
 
@@ -367,6 +367,6 @@
 
 .storySubtitle {
 	font-size: var(--ml-font-size-sm);
-	color: var(--ml-text-secondary-color);
+	color: var(--ml-text-subtle-color);
 	line-height: var(--ml-line-height-snug);
 }

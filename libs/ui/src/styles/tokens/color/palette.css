@@ -1,0 +1,75 @@
+/*
+ * ---- Color Palette ----
+ *
+ * Layer 1 of the color system. Raw color values in oklch.
+ *
+ * These are the building blocks — never referenced directly by components.
+ * Instead, the intent layer (intent.css) and semantic layer (semantic.css)
+ * compose these into meaningful, theme-aware tokens.
+ *
+ * oklch(L C H) — Lightness [0–1], Chroma [0–0.4], Hue [0–360]
+ * Perceptually uniform: equal L steps look equally different to the eye.
+ */
+
+:root {
+	/* ---- Neutrals ---- */
+	/* Warm-tinted neutral scale from white to near-black. */
+	/* Low chroma (~0.01) with a warm hue gives the cream/parchment feel. */
+	--ml-white: oklch(1 0 0);
+	--ml-cream-100: oklch(0.988 0.003 85);
+	--ml-cream-200: oklch(0.951 0.015 94);
+	--ml-cream-300: oklch(0.915 0.015 94);
+	--ml-gray-100: oklch(0.836 0.013 92);
+	--ml-gray-200: oklch(0.718 0.012 95);
+	--ml-gray-300: oklch(0.506 0.008 98);
+	--ml-gray-400: oklch(0.384 0.007 118);
+	--ml-gray-500: oklch(0.243 0.004 107);
+
+	/* ---- Brand ---- */
+	/* The brand gradient runs from blue (H≈258) through purple/indigo */
+	/* to the signature pink (H≈8). */
+	--ml-pink: oklch(0.708 0.187 8);
+	--ml-pink-light: oklch(0.729 0.163 350);
+	--ml-mauve: oklch(0.611 0.136 348);
+	--ml-purple: oklch(0.495 0.091 308);
+	--ml-indigo: oklch(0.435 0.078 287);
+	--ml-blue: oklch(0.551 0.145 258);
+	--ml-blue-dark: oklch(0.432 0.111 259);
+	--ml-navy: oklch(0.332 0.082 259);
+	--ml-navy-deep: oklch(0.212 0.075 257);
+
+	/* ---- Status ---- */
+	/* Each status color has a full tonal range for use in backgrounds, */
+	/* text, and borders across both light and dark themes. */
+
+	/* Success — H≈143 (green) */
+	--ml-success: oklch(0.639 0.218 143);
+	--ml-success-tint: oklch(0.963 0.032 145);
+	--ml-success-dark: oklch(0.507 0.156 143);
+	--ml-success-subtle: oklch(0.266 0.073 143);
+	--ml-success-light: oklch(0.871 0.136 154);
+
+	/* Error — H≈27 (red) */
+	--ml-error: oklch(0.531 0.218 27);
+	--ml-error-tint: oklch(0.948 0.023 18);
+	--ml-error-dark: oklch(0.444 0.161 27);
+	--ml-error-subtle: oklch(0.209 0.059 24);
+	--ml-error-light: oklch(0.808 0.103 20);
+
+	/* Warning — H≈76 (amber) */
+	--ml-warning: oklch(0.681 0.142 76);
+	--ml-warning-tint: oklch(0.981 0.024 94);
+	--ml-warning-dark: oklch(0.476 0.103 62);
+	--ml-warning-subtle: oklch(0.253 0.041 73);
+	--ml-warning-light: oklch(0.924 0.115 96);
+
+	/* Info — H≈263 (blue) */
+	--ml-info: oklch(0.546 0.215 263);
+	--ml-info-tint: oklch(0.953 0.021 262);
+	--ml-info-dark: oklch(0.424 0.181 266);
+	--ml-info-subtle: oklch(0.216 0.045 255);
+	--ml-info-light: oklch(0.809 0.096 252);
+
+	/* ---- Alpha ---- */
+	--ml-black-alpha-50: oklch(0 0 0 / 0.5);
+}

@@ -7,7 +7,7 @@ import type { Locale } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { ContentRenderer } from '@mels-loop/ui/content';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Heading, Stack, Text } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 import fs from 'fs/promises';
 import { notFound } from 'next/navigation';
 import path from 'path';
@@ -52,7 +52,7 @@ export default async function CodexSubPage({ params }: PageProps) {
 		pageSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
 	return (
-		<Stack gap="lg">
+		<Container gap="lg">
 			<Breadcrumbs
 				items={[
 					homeItemFromDict(dict),
@@ -62,16 +62,16 @@ export default async function CodexSubPage({ params }: PageProps) {
 				]}
 			/>
 			{content.metadata.title && (
-				<Heading level={1}>{content.metadata.title}</Heading>
+				<Text variant="h1">{content.metadata.title}</Text>
 			)}
 			{content.metadata.abstract && (
-				<Text size="lg" color="dimmed" italic>
+				<Text variant="subtitle2" color="muted" italic>
 					{content.metadata.abstract}
 				</Text>
 			)}
 			<StoryPopoverProvider storySlug={storySlug} locale={typedLocale}>
 				<ContentRenderer hast={content.hast} />
 			</StoryPopoverProvider>
-		</Stack>
+		</Container>
 	);
 }

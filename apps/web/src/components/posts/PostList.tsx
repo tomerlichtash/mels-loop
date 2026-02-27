@@ -1,5 +1,5 @@
 import type { ContentMetadata } from '@mels-loop/content-pipeline/types';
-import { Stack } from '@mels-loop/ui/primitives';
+import { Container } from '@mels-loop/ui/primitives';
 
 import { PostCard } from './PostCard';
 
@@ -10,7 +10,7 @@ interface PostListProps {
 
 export function PostList({ posts, locale }: PostListProps) {
 	return (
-		<Stack gap="sm">
+		<Container gap="sm">
 			{posts.map((post) => (
 				<PostCard
 					key={post.slug}
@@ -20,6 +20,6 @@ export function PostList({ posts, locale }: PostListProps) {
 					date={post.metadata.date}
 				/>
 			))}
-		</Stack>
+		</Container>
 	);
 }

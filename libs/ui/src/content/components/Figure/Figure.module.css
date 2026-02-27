@@ -1,7 +1,7 @@
 :root {
 	--ml-figure-margin: var(--ml-space-lg);
 	--ml-figure-caption-font-size: var(--ml-font-size-body);
-	--ml-figure-caption-color: var(--ml-text-secondary-color);
+	--ml-figure-caption-color: var(--ml-text-subtle-color);
 }
 
 .root {

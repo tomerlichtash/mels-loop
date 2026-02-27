@@ -3,7 +3,7 @@ import {
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
 import type { Locale } from '@mels-loop/i18n/config';
-import { Button, Container, Heading } from '@mels-loop/ui/primitives';
+import { Button, Container, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
 import { GlyphShift } from '@/components/GlyphShift/GlyphShift';
@@ -35,7 +35,7 @@ export default async function HomePage({ params }: PageProps) {
 	return (
 		<Container paddingHorizontal="xl" paddingVertical="xl">
 			<section className={styles.hero}>
-				<Heading level={1} className={styles.heroTitle}>
+				<Text variant="h1" className={styles.heroTitle}>
 					{hero.title_p1}
 					<br />
 					<GlyphShift
@@ -43,12 +43,12 @@ export default async function HomePage({ params }: PageProps) {
 						className={styles.heroTitleHighlight}
 						speed={1000}
 					/>
-				</Heading>
+				</Text>
 				<p className={styles.heroDescription}>{hero.description}</p>
 				<div className={styles.heroCta}>
 					<Button
 						asChild
-						variant="primary"
+						variant="contained"
 						size="xl"
 						className={styles.heroCtaButton}
 					>
@@ -57,9 +57,9 @@ export default async function HomePage({ params }: PageProps) {
 				</div>
 			</section>
 			<section>
-				<Heading level={2} className={styles.storiesHeading}>
+				<Text variant="h2" className={styles.storiesHeading}>
 					{String(dict.stories)}
-				</Heading>
+				</Text>
 				<div>
 					{sorted.map((config) => (
 						<StoryCard key={config.slug} config={config} locale={typedLocale} />

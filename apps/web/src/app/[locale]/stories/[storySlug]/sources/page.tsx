@@ -11,7 +11,7 @@ import { type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { SourceCard } from '@mels-loop/ui/content';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Heading, Stack } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 
 import { getDictionary } from '@/i18n';
@@ -72,7 +72,7 @@ export default async function SourcesPage({ params }: PageProps) {
 	const orderedTypes = TYPE_ORDER.filter((t) => groups.has(t));
 
 	return (
-		<Stack gap="lg">
+		<Container gap="lg">
 			<Breadcrumbs
 				items={[
 					homeItemFromDict(dict),
@@ -80,15 +80,15 @@ export default async function SourcesPage({ params }: PageProps) {
 					{ label: sourcesLabel },
 				]}
 			/>
-			<Heading level={1}>{sourcesLabel}</Heading>
+			<Text variant="h1">{sourcesLabel}</Text>
 			{orderedTypes.map((type) => {
 				const typeSources = groups.get(type)!;
 				const typeLabel = dictGet(dict, `sources.${type}`);
 				return (
 					<section key={type} className={styles.group}>
-						<Heading level={2} className={styles.groupHeading}>
+						<Text variant="h2" className={styles.groupHeading}>
 							{typeLabel}
-						</Heading>
+						</Text>
 						<div className={styles.cards}>
 							{typeSources.map((source) => (
 								<SourceCard key={source.id} source={source} />
@@ -97,6 +97,6 @@ export default async function SourcesPage({ params }: PageProps) {
 					</section>
 				);
 			})}
-		</Stack>
+		</Container>
 	);
 }

@@ -26,9 +26,7 @@
 	border-radius: var(--ml-button-radius);
 	border: 1px solid var(--ml-button-border-color);
 	background-color: var(--ml-button-background-color);
-	color: oklch(
-		from var(--ml-button-background-color) clamp(0, (0.5 - l) * 1000, 1) 0 0
-	);
+	color: var(--ml-button-text-color, inherit);
 	text-decoration: none;
 	cursor: pointer;
 	position: relative;
@@ -88,21 +86,22 @@
 	--ml-button-background-color-hover: var(
 		--ml-interactive-background-color-hover
 	);
+	--ml-button-text-color: var(--ml-interactive-text-color);
 	--ml-button-border-color: transparent;
 }
 
 .variant-outlined {
 	--ml-button-background-color: transparent;
 	--ml-button-background-color-hover: var(--ml-background-color-alt);
+	--ml-button-text-color: var(--ml-interactive-background-color);
 	--ml-button-border-color: var(--ml-interactive-background-color);
-	color: var(--ml-interactive-background-color);
 }
 
 .variant-text {
 	--ml-button-background-color: transparent;
 	--ml-button-background-color-hover: var(--ml-background-color-alt);
+	--ml-button-text-color: var(--ml-interactive-background-color);
 	--ml-button-border-color: transparent;
-	color: var(--ml-interactive-background-color);
 }
 
 /* Radius */

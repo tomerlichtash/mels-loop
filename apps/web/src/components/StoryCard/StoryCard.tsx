@@ -15,7 +15,12 @@ export function StoryCard({ config, locale }: StoryCardProps) {
 			<Link href={`/stories/${config.slug}`} className={styles.title}>
 				{config.title[locale]}
 			</Link>
-			<Text size="sm" color="dimmed" component="p" className={styles.abstract}>
+			<Text
+				variant="body2"
+				color="muted"
+				component="p"
+				className={styles.abstract}
+			>
 				{config.abstract[locale]}
 			</Text>
 		</div>

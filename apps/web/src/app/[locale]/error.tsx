@@ -1,12 +1,6 @@
 'use client';
 
-import {
-	Button,
-	Container,
-	Heading,
-	Stack,
-	Text,
-} from '@mels-loop/ui/primitives';
+import { Button, Container, Text } from '@mels-loop/ui/primitives';
 
 export default function LocaleError({
 	error,
@@ -16,16 +10,14 @@ export default function LocaleError({
 	reset: () => void;
 }) {
 	return (
-		<Container>
-			<Stack gap="lg" align="center" textAlign="center">
-				<Heading level={1}>Something went wrong</Heading>
-				<Text size="lg" color="dimmed">
-					{error.message || 'An unexpected error occurred'}
-				</Text>
-				<Button onClick={reset} variant="outline">
-					Try again
-				</Button>
-			</Stack>
+		<Container gap="lg" align="center" style={{ textAlign: 'center' }}>
+			<Text variant="h1">Something went wrong</Text>
+			<Text variant="subtitle2" color="muted">
+				{error.message || 'An unexpected error occurred'}
+			</Text>
+			<Button onClick={reset} variant="outlined">
+				Try again
+			</Button>
 		</Container>
 	);
 }

@@ -6,7 +6,7 @@ import { type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { ContentRenderer } from '@mels-loop/ui/content';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Container, Heading, Stack, Text } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 
 import { getDictionary } from '@/i18n';
@@ -38,7 +38,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 
 	return (
 		<Container>
-			<Stack gap="lg">
+			<Container gap="lg">
 				<Breadcrumbs
 					items={[
 						homeItemFromDict(dict),
@@ -49,11 +49,11 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 						{ label: displayName },
 					]}
 				/>
-				<Heading level={1}>{displayName}</Heading>
+				<Text variant="h1">{displayName}</Text>
 				<ContentRenderer hast={content.hast} />
 				{content.metadata.source_name && (
 					<div>
-						<Text size="sm" color="dimmed" component="span">
+						<Text variant="body2" color="muted" component="span">
 							Source:{' '}
 							{content.metadata.source_url ? (
 								<a
@@ -69,7 +69,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 						</Text>
 					</div>
 				)}
-			</Stack>
+			</Container>
 		</Container>
 	);
 }

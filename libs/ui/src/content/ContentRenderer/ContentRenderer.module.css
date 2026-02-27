@@ -1,7 +1,7 @@
 :root {
 	--ml-content-renderer-font-size: var(--ml-font-size-body);
 	--ml-content-renderer-line-height: var(--ml-line-height-body);
-	--ml-content-renderer-text-color: var(--ml-body-text-color);
+	--ml-content-renderer-text-color: var(--ml-text-subtle-color);
 	--ml-content-renderer-max-width: var(--ml-content-max-width);
 }
 

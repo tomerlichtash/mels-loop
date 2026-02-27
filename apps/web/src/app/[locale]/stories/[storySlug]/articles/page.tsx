@@ -5,7 +5,7 @@ import {
 import type { Locale } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Card, Group, Heading, Stack, Text } from '@mels-loop/ui/primitives';
+import { Card, Container, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
 import { getDictionary } from '@/i18n';
@@ -27,7 +27,7 @@ export default async function ArticlesListingPage({ params }: PageProps) {
 	const articlesLabel = dictGet(dict, 'nav.articles');
 
 	return (
-		<Stack gap="lg">
+		<Container gap="lg">
 			<Breadcrumbs
 				items={[
 					homeItemFromDict(dict),
@@ -35,19 +35,19 @@ export default async function ArticlesListingPage({ params }: PageProps) {
 					{ label: articlesLabel },
 				]}
 			/>
-			<Heading level={1}>
+			<Text variant="h1">
 				{articlesLabel} &mdash; {storyTitle}
-			</Heading>
+			</Text>
 			{(await getStoryArticles(storySlug)).map((slug) => (
-				<Card key={slug} withBorder padding="md">
-					<Group justify="space-between">
+				<Card key={slug} variant="outlined" padding="md">
+					<Container direction="row" justify="between">
 						<Text weight={500} component="span" capitalize>
 							{slug.replace(/-/g, ' ')}
 						</Text>
 						<Link href={`/stories/${storySlug}/articles/${slug}`}>Read</Link>
-					</Group>
+					</Container>
 				</Card>
 			))}
-		</Stack>
+		</Container>
 	);
 }

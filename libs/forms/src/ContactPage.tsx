@@ -10,8 +10,8 @@ interface ContactPageProps {
 export function ContactPage({ subtitle, text }: ContactPageProps) {
 	return (
 		<>
-			{subtitle && <Text color="dimmed">{subtitle}</Text>}
-			{text && <Text size="sm">{text}</Text>}
+			{subtitle && <Text color="muted">{subtitle}</Text>}
+			{text && <Text variant="body2">{text}</Text>}
 			<ContactForm />
 		</>
 	);

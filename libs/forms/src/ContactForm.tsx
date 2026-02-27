@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslation } from '@mels-loop/i18n/client';
-import { Alert, Button, Stack, Text } from '@mels-loop/ui/primitives';
+import { Alert, Button, Container, Text } from '@mels-loop/ui/primitives';
 import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'react-hook-form';
@@ -81,7 +81,7 @@ export function ContactForm() {
 	if (status === 'success') {
 		return (
 			<Alert color="green" title={t('contact.successMessage')}>
-				<Button variant="subtle" size="xs" onClick={() => setStatus('idle')}>
+				<Button variant="text" size="xs" onClick={() => setStatus('idle')}>
 					{t('contact.successBackHome')}
 				</Button>
 			</Alert>
@@ -90,7 +90,7 @@ export function ContactForm() {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<Stack gap="md">
+			<Container gap="md">
 				{status === 'error' && (
 					<Alert color="red" title={t('contact.failMessage')}>
 						{t('contact.failReportProblem')}
@@ -152,14 +152,18 @@ export function ContactForm() {
 				</div>
 				{siteKey && <ReCAPTCHA ref={recaptchaRef} sitekey={siteKey} />}
 				{captchaError && (
-					<Text size="sm" color="error" component="span">
+					<Text variant="body2" color="error" component="span">
 						{t('contact.captchaTooltip')}
 					</Text>
 				)}
-				<Button type="submit" variant="primary" loading={status === 'sending'}>
+				<Button
+					type="submit"
+					variant="contained"
+					loading={status === 'sending'}
+				>
 					{status === 'sending' ? t('contact.sending') : t('contact.send')}
 				</Button>
-			</Stack>
+			</Container>
 		</form>
 	);
 }

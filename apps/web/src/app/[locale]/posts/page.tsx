@@ -1,7 +1,7 @@
 import { getAllPosts, getPost } from '@mels-loop/content-pipeline/loaders';
 import type { Locale } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
-import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 
 import { PostList } from '@/components/posts/PostList';
 import { getDictionary } from '@/i18n';
@@ -28,13 +28,13 @@ export default async function PostsListingPage({ params }: PageProps) {
 
 	return (
 		<Container>
-			<Stack gap="lg">
-				<Heading level={1}>{dictGet(dict, 'nav.blog')}</Heading>
+			<Container gap="lg">
+				<Text variant="h1">{dictGet(dict, 'nav.blog')}</Text>
 				<PostList
 					posts={posts as Parameters<typeof PostList>[0]['posts']}
 					locale={locale}
 				/>
-			</Stack>
+			</Container>
 		</Container>
 	);
 }

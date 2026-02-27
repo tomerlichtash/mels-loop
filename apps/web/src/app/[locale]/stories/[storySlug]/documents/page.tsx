@@ -5,7 +5,7 @@ import {
 import type { Locale } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Card, Group, Heading, Stack, Text } from '@mels-loop/ui/primitives';
+import { Card, Container, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
 import { getDictionary } from '@/i18n';
@@ -28,7 +28,7 @@ export default async function DocumentsListingPage({ params }: PageProps) {
 	const documentsLabel = dictGet(dict, 'nav.documents');
 
 	return (
-		<Stack gap="lg">
+		<Container gap="lg">
 			<Breadcrumbs
 				items={[
 					homeItemFromDict(dict),
@@ -36,18 +36,18 @@ export default async function DocumentsListingPage({ params }: PageProps) {
 					{ label: documentsLabel },
 				]}
 			/>
-			<Heading level={1}>
+			<Text variant="h1">
 				{documentsLabel} &mdash; {storyTitle}
-			</Heading>
+			</Text>
 			{documentsMeta.map((doc) => (
-				<Card key={doc.slug} withBorder padding="md">
-					<Group justify="space-between">
+				<Card key={doc.slug} variant="outlined" padding="md">
+					<Container direction="row" justify="between">
 						<div>
 							<Text weight={500} component="span">
 								{doc.title}
 							</Text>
 							{doc.author && (
-								<Text size="sm" color="dimmed">
+								<Text variant="body2" color="muted">
 									{doc.author}
 								</Text>
 							)}
@@ -55,9 +55,9 @@ export default async function DocumentsListingPage({ params }: PageProps) {
 						<Link href={`/stories/${storySlug}/documents/${doc.slug}`}>
 							Read
 						</Link>
-					</Group>
+					</Container>
 				</Card>
 			))}
-		</Stack>
+		</Container>
 	);
 }

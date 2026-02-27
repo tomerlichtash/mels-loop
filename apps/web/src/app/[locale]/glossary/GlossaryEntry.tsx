@@ -1,4 +1,4 @@
-import { Card, Group, Text } from '@mels-loop/ui/primitives';
+import { Card, Container, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
 import styles from './GlossaryEntry.module.css';
@@ -13,15 +13,15 @@ export function GlossaryEntry({ slug }: GlossaryEntryProps) {
 		.replace(/\b\w/g, (c) => c.toUpperCase());
 
 	return (
-		<Card withBorder padding="sm">
-			<Group justify="space-between">
+		<Card variant="outlined" padding="sm">
+			<Container direction="row" justify="between">
 				<Text weight={500} component="span">
 					{displayName}
 				</Text>
 				<Link href={`/glossary/${slug}`} className={styles.link}>
 					View
 				</Link>
-			</Group>
+			</Container>
 		</Card>
 	);
 }

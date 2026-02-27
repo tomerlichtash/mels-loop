@@ -1,7 +1,7 @@
 import { getAllPosts, getPost } from '@mels-loop/content-pipeline/loaders';
 import { type Locale, locales } from '@mels-loop/i18n/config';
 import { ContentRenderer } from '@mels-loop/ui/content';
-import { Container, Heading, Stack, Text } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -26,25 +26,25 @@ export default async function PostPage({ params }: PageProps) {
 
 	return (
 		<Container>
-			<Stack gap="lg">
+			<Container gap="lg">
 				<Link href="/posts" className={styles.backLink}>
 					&larr; {locale === 'he' ? 'חזרה לבלוג' : 'Back'}
 				</Link>
 				{content.metadata.title && (
-					<Heading level={1}>{content.metadata.title}</Heading>
+					<Text variant="h1">{content.metadata.title}</Text>
 				)}
 				{content.metadata.date && (
-					<Text size="sm" color="dimmed">
+					<Text variant="body2" color="muted">
 						{content.metadata.date}
 					</Text>
 				)}
 				{content.metadata.author && (
-					<Text size="sm" color="dimmed" uppercase>
+					<Text variant="body2" color="muted" uppercase>
 						{content.metadata.author}
 					</Text>
 				)}
 				<ContentRenderer hast={content.hast} />
-			</Stack>
+			</Container>
 		</Container>
 	);
 }

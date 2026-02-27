@@ -1,9 +1,15 @@
-@import './palette.css';
-@import './typography.css';
-@import './spacing.css';
+/* Color system (layered — palette → intent → semantic) */
+@import './color/palette.css';
+@import './color/intent.css';
+@import './color/semantic.css';
+
+/* Base design tokens */
+@import './base/typography.css';
+@import './base/spacing.css';
+@import './base/radius.css';
+@import './base/shadow.css';
+@import './base/effects.css';
+
+/* Structural */
 @import './layout.css';
-@import './radius.css';
-@import './shadow.css';
-@import './effects.css';
-@import './semantic.css';
 @import './media.css';

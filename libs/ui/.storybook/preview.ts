@@ -14,6 +14,30 @@ const preview: Preview = {
 			},
 		},
 	},
+	globalTypes: {
+		colorScheme: {
+			description: 'Color scheme',
+			toolbar: {
+				title: 'Theme',
+				icon: 'mirror',
+				items: [
+					{ value: 'light', title: 'Light', icon: 'sun' },
+					{ value: 'dark', title: 'Dark', icon: 'moon' },
+				],
+				dynamicTitle: true,
+			},
+		},
+	},
+	initialGlobals: {
+		colorScheme: 'light',
+	},
+	decorators: [
+		(Story, context) => {
+			const colorScheme = context.globals.colorScheme || 'light';
+			document.documentElement.dataset.colorScheme = colorScheme;
+			return Story();
+		},
+	],
 };
 
 export default preview;

@@ -6,7 +6,7 @@ import type {
 import { getDirection, type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Heading, Stack } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 
 import { getDictionary } from '@/i18n';
 import { homeItemFromDict } from '@/lib/breadcrumbs';
@@ -116,9 +116,9 @@ export default async function GlobalSourcesPage({
 	};
 
 	return (
-		<Stack gap="lg">
+		<Container gap="lg">
 			<Breadcrumbs items={[homeItemFromDict(dict), { label: sourcesLabel }]} />
-			<Heading level={1}>{sourcesLabel}</Heading>
+			<Text variant="h1">{sourcesLabel}</Text>
 			{sourceGroups.length === 0 ? (
 				<p>{dictGet(dict, 'sources.noSources')}</p>
 			) : (
@@ -130,6 +130,6 @@ export default async function GlobalSourcesPage({
 					dir={getDirection(typedLocale)}
 				/>
 			)}
-		</Stack>
+		</Container>
 	);
 }

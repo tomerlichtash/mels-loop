@@ -1,7 +1,7 @@
 import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
 import { ContentRenderer } from '@mels-loop/ui/content';
 import { type BreadcrumbItem, Breadcrumbs } from '@mels-loop/ui/layout';
-import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 import type { ReactNode } from 'react';
 
 interface StaticPageProps {
@@ -19,12 +19,12 @@ export function StaticPage({
 }: StaticPageProps) {
 	return (
 		<Container>
-			<Stack gap="lg">
+			<Container gap="lg">
 				<Breadcrumbs items={breadcrumbs} />
-				<Heading level={1}>{title}</Heading>
+				<Text variant="h1">{title}</Text>
 				{content && <ContentRenderer hast={content.hast} />}
 				{children}
-			</Stack>
+			</Container>
 		</Container>
 	);
 }

@@ -5,7 +5,7 @@ import {
 import { type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Heading, Stack } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 
 import { getDictionary } from '@/i18n';
@@ -38,7 +38,7 @@ export default async function SourceDetailPage({ params }: PageProps) {
 	const sourcesLabel = dictGet(dict, 'nav.sources');
 
 	return (
-		<Stack gap="lg">
+		<Container gap="lg">
 			<Breadcrumbs
 				items={[
 					homeItemFromDict(dict),
@@ -46,8 +46,8 @@ export default async function SourceDetailPage({ params }: PageProps) {
 					{ label: source.title },
 				]}
 			/>
-			<Heading level={1}>{source.title}</Heading>
+			<Text variant="h1">{source.title}</Text>
 			<SourceDetailView source={source} />
-		</Stack>
+		</Container>
 	);
 }

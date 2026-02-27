@@ -7,7 +7,7 @@ import { type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { ContentRenderer } from '@mels-loop/ui/content';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Heading, Text } from '@mels-loop/ui/primitives';
+import { Text } from '@mels-loop/ui/primitives';
 
 import { StoryPopoverProvider } from '@/components/StoryPopoverProvider';
 import { getDictionary } from '@/i18n';
@@ -51,9 +51,9 @@ export default async function StoryLandingPage({ params }: PageProps) {
 				]}
 			/>
 			<div className={styles.header}>
-				<Heading level={1}>{storyTitle}</Heading>
+				<Text variant="h1">{storyTitle}</Text>
 				{storySubtitle && (
-					<Text size="lg" color="dimmed">
+					<Text variant="subtitle2" color="muted">
 						{storySubtitle}
 					</Text>
 				)}

@@ -2,7 +2,7 @@ import { getAllGlossarySlugs } from '@mels-loop/content-pipeline/loaders';
 import type { Locale } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
-import { Container, Heading, Stack } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 
 import { getDictionary } from '@/i18n';
 import { homeItemFromDict } from '@/lib/breadcrumbs';
@@ -22,15 +22,15 @@ export default async function GlossaryIndexPage({ params }: PageProps) {
 
 	return (
 		<Container>
-			<Stack gap="lg">
+			<Container gap="lg">
 				<Breadcrumbs items={[homeItemFromDict(dict), { label: title }]} />
-				<Heading level={1}>{title}</Heading>
-				<Stack gap="sm">
+				<Text variant="h1">{title}</Text>
+				<Container gap="sm">
 					{[...slugs].sort().map((slug) => (
 						<GlossaryEntry key={slug} slug={slug} />
 					))}
-				</Stack>
-			</Stack>
+				</Container>
+			</Container>
 		</Container>
 	);
 }
