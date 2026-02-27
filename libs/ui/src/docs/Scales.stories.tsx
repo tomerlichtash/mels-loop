@@ -314,7 +314,7 @@ function ScalesPage() {
 }
 
 const meta: Meta = {
-	title: 'Foundations/Scales',
+	title: 'Style Guide/Scales',
 	parameters: {
 		layout: 'fullscreen',
 		controls: { disable: true },

@@ -263,7 +263,7 @@ function ColorsPage() {
 }
 
 const meta: Meta = {
-	title: 'Foundations/Colors',
+	title: 'Style Guide/Colors',
 	parameters: {
 		layout: 'fullscreen',
 		controls: { disable: true },

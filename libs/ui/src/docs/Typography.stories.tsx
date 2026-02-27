@@ -214,7 +214,7 @@ function TypographyPage() {
 }
 
 const meta: Meta = {
-	title: 'Foundations/Typography',
+	title: 'Style Guide/Typography',
 	parameters: {
 		layout: 'fullscreen',
 		controls: { disable: true },

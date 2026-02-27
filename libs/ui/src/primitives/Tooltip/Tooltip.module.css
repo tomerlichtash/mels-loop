@@ -3,9 +3,11 @@
 	background-color: var(--ml-text-color);
 	color: var(--ml-background-color);
 	font-size: var(--ml-font-size-sm);
-	padding: var(--ml-space-xs) var(--ml-space-sm);
+	padding: var(--ml-tooltip-padding-vertical, var(--ml-space-xs))
+		var(--ml-tooltip-padding-horizontal, var(--ml-space-sm));
 	border-radius: var(--ml-radius-md);
 	line-height: var(--ml-line-height-snug);
+	max-width: 280px;
 	user-select: none;
 	animation: tooltipFadeIn var(--ml-duration-fast) var(--ml-ease-out);
 }
