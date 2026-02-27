@@ -1,12 +1,13 @@
 'use client';
 
+import { type ReactNode, useState } from 'react';
+
 import {
 	type FooterLinkColumn,
 	type LocaleOption,
 	type NavItem,
 	SiteLayout,
-} from '@mels-loop/ui/layout';
-import { type ReactNode, useState } from 'react';
+} from '@/layout';
 
 import { SearchDialog } from './SearchDialog/SearchDialog';
 import { useSearchShortcut } from './SearchDialog/useSearchShortcut';

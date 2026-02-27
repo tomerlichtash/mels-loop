@@ -1,28 +1,29 @@
+import * as RadixSeparator from '@radix-ui/react-separator';
 import cn from 'classnames';
-import type { HTMLAttributes } from 'react';
 
 import styles from './Separator.module.css';
 
-type SeparatorOrientation = 'horizontal' | 'vertical';
-
-interface SeparatorProps extends HTMLAttributes<HTMLHRElement> {
-	orientation?: SeparatorOrientation;
+interface SeparatorProps {
+	orientation?: 'horizontal' | 'vertical';
+	decorative?: boolean;
+	className?: string;
 }
 
 export function Separator({
 	orientation = 'horizontal',
+	decorative = true,
 	className,
-	...props
 }: SeparatorProps) {
 	return (
-		<hr
+		<RadixSeparator.Root
+			orientation={orientation}
+			decorative={decorative}
 			className={cn(
 				styles.root,
 				styles[`orientation-${orientation}`],
 				'ml-separator',
 				className,
 			)}
-			{...props}
 		/>
 	);
 }

@@ -1,9 +1,9 @@
 'use client';
 
+import { useColorScheme } from '@mels-loop/ui/color-scheme';
+import { ToggleButton } from '@mels-loop/ui/primitives';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 
-import { useColorScheme } from '../../color-scheme/useColorScheme';
-import { ToggleButton } from '../../primitives/ToggleButton';
 import styles from './ThemeSwitcher.module.css';
 
 interface ThemeSwitcherProps {

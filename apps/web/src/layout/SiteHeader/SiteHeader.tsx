@@ -1,13 +1,12 @@
 'use client';
 
 import { useTranslation } from '@mels-loop/i18n/client';
-import * as Separator from '@radix-ui/react-separator';
+import { useColorScheme } from '@mels-loop/ui/color-scheme';
+import { Separator, Tooltip } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { memo, useEffect, useState } from 'react';
 
-import { useColorScheme } from '../../color-scheme/useColorScheme';
-import { Tooltip } from '../../primitives';
 import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
 import { NavMenu } from '../Navigation/NavMenu';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
@@ -132,10 +131,7 @@ export function SiteHeader({
 				<div className={styles.left}>
 					<BurgerButton onClick={onMenuClick} />
 					<Logo isHome={isHome} siteTitle={t('siteTitle')} />
-					<Separator.Root
-						orientation="vertical"
-						className={styles.logoDivider}
-					/>
+					<Separator orientation="vertical" className={styles.logoDivider} />
 					<span className={styles.logoSubtitle}>{t('siteSubtitle')}</span>
 				</div>
 

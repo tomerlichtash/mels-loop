@@ -15,24 +15,18 @@
 		"test:e2e:ui:debug": "playwright test --config playwright.config.ts --ui --debug"
 	},
 	"exports": {
-		"./fonts": "./src/fonts.ts",
 		"./styles/globals.css": "./src/styles/globals.css",
 		"./styles/tokens": "./src/styles/tokens/index.css",
 		"./styles/tokens/media.css": "./src/styles/tokens/media.css",
-		"./layout": "./src/layout/index.ts",
 		"./primitives": "./src/primitives/index.ts",
 		"./color-scheme": "./src/color-scheme/index.ts"
 	},
 	"peerDependencies": {
-		"@mels-loop/i18n": "workspace:*",
-		"next": "^16.0.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
 	},
 	"dependencies": {
 		"@radix-ui/react-dialog": "^1.1.4",
-		"@radix-ui/react-icons": "^1.3.2",
-		"@radix-ui/react-navigation-menu": "^1.2.5",
 		"@radix-ui/react-popover": "^1.1.4",
 		"@radix-ui/react-separator": "^1.1.8",
 		"@radix-ui/react-slot": "^1.2.4",
@@ -44,6 +38,7 @@
 	"devDependencies": {
 		"@csstools/postcss-global-data": "^4.0.0",
 		"@mels-loop/eslint-config": "workspace:*",
+		"@radix-ui/react-icons": "^1.3.2",
 		"@storybook/addon-essentials": "^8",
 		"@storybook/react": "^8.6.17",
 		"@storybook/react-vite": "^8.6.17",

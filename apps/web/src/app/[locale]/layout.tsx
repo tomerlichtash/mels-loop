@@ -4,11 +4,11 @@ import '../../content-init';
 import { I18nProvider } from '@mels-loop/i18n/client';
 import { getDirection, isValidLocale } from '@mels-loop/i18n/config';
 import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
-import { assistant, lekton, robotoSlab } from '@mels-loop/ui/fonts';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 
 import { SearchableLayout } from '@/components/SearchableLayout';
+import { assistant, lekton, robotoSlab } from '@/fonts';
 import { getDictionary } from '@/i18n';
 
 // import { FaviconAnimator } from '@/components/FaviconAnimator';

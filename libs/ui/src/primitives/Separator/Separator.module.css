@@ -1,22 +1,25 @@
-.root {
+:root {
 	--ml-separator-color: var(--ml-border-color);
 	--ml-separator-size: 1px;
-	--ml-separator-spacing: var(--ml-space-xl);
+	--ml-separator-spacing: 0;
+}
 
+.root {
 	border: none;
 	margin: 0;
+	padding: 0;
 	flex-shrink: 0;
+	background-color: var(--ml-separator-color);
 }
 
 .orientation-horizontal {
-	border-top: var(--ml-separator-size) solid var(--ml-separator-color);
-	margin: var(--ml-separator-spacing) 0;
+	height: var(--ml-separator-size);
 	width: 100%;
+	margin: var(--ml-separator-spacing) 0;
 }
 
 .orientation-vertical {
-	border-left: var(--ml-separator-size) solid var(--ml-separator-color);
-	margin: 0 var(--ml-separator-spacing);
-	height: 100%;
+	width: var(--ml-separator-size);
 	align-self: stretch;
+	margin: 0 var(--ml-separator-spacing);
 }

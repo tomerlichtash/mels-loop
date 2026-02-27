@@ -7,8 +7,8 @@
 	--ml-toggle-group-item-font-weight: var(--ml-font-weight-medium);
 	--ml-toggle-group-item-color: var(--ml-text-color);
 	--ml-toggle-group-item-radius: var(--ml-radius-md);
-	--ml-toggle-group-hover-bg: var(--ml-color-surface-deep);
-	--ml-toggle-group-active-bg: var(--ml-color-surface-muted);
+	--ml-toggle-group-hover-bg: var(--ml-color-surface-muted);
+	--ml-toggle-group-active-bg: var(--ml-color-surface-deep);
 	--ml-toggle-group-active-font-weight: var(--ml-font-weight-bold);
 }
 
