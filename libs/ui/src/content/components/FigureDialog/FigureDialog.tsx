@@ -1,12 +1,10 @@
 'use client';
 
-import * as Dialog from '@radix-ui/react-dialog';
 import { useEffect, useRef, useState } from 'react';
 
-import { Loader } from '../../../primitives';
+import { Dialog, Figure, Loader } from '../../../primitives';
 import { useAnnotations } from '../../annotations/PopoverProvider/PopoverProvider';
 import { SourceDetail } from '../../sources/SourceDetail/SourceDetail';
-import { Figure } from '../Figure/Figure';
 import styles from './FigureDialog.module.css';
 
 type FigureDialogProps = React.ComponentProps<typeof Figure>;
@@ -49,29 +47,19 @@ export function FigureDialog({ children, ...props }: FigureDialogProps) {
 				<Figure {...props}>{children}</Figure>
 			</div>
 			{sourceId && (
-				<Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
-					<Dialog.Portal>
-						<Dialog.Overlay className={styles.overlay} />
-						<Dialog.Content
-							className={styles.dialog}
-							aria-describedby={undefined}
-						>
-							<Dialog.Title className={styles.visuallyHidden}>
-								{source?.title ?? 'Source'}
-							</Dialog.Title>
-							<Dialog.Close className={styles.close} aria-label="Close">
-								&times;
-							</Dialog.Close>
-							{!source ? (
-								<div className={styles.loader}>
-									<Loader size="md" />
-								</div>
-							) : (
-								<SourceDetail source={source} />
-							)}
-						</Dialog.Content>
-					</Dialog.Portal>
-				</Dialog.Root>
+				<Dialog
+					open={dialogOpen}
+					onOpenChange={setDialogOpen}
+					title={source?.title ?? 'Source'}
+				>
+					{!source ? (
+						<div className={styles.loader}>
+							<Loader size="md" />
+						</div>
+					) : (
+						<SourceDetail source={source} />
+					)}
+				</Dialog>
 			)}
 		</>
 	);

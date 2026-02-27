@@ -4,7 +4,7 @@ export {
 	PopoverProvider,
 	useAnnotations,
 } from './annotations/PopoverProvider/PopoverProvider';
-export { Figure, Image, Line } from './components';
+export { Image, Line } from './components';
 export { ContentRenderer } from './ContentRenderer/ContentRenderer';
 export { SourceBadge } from './sources/SourceBadge/SourceBadge';
 export { SourceCard } from './sources/SourceCard/SourceCard';

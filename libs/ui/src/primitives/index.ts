@@ -15,6 +15,8 @@ export {
 export { Code } from './Code/Code';
 export { CodeBlock } from './CodeBlock/CodeBlock';
 export { Container } from './Container/Container';
+export { Dialog } from './Dialog';
+export { Figure, FigureCaption } from './Figure';
 export { Grid } from './Grid/Grid';
 export { List } from './List/List';
 export { ListItem } from './List/ListItem';
