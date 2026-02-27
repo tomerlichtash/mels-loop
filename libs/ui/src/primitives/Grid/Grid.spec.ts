@@ -1,6 +1,8 @@
 import { loadStory, THEMES } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
+import { GridDriver } from './Grid.driver';
+
 const STORY_ID = 'primitives-grid--default';
 
 const columns = [1, 2, 3, 4, 5, 6] as const;
@@ -15,7 +17,8 @@ for (const theme of THEMES) {
 					await loadStory(page, STORY_ID, theme, {
 						args: { columns: col },
 					});
-					await expect(page).toHaveScreenshot();
+					const grid = new GridDriver(page);
+					await expect(grid.locator).toHaveScreenshot();
 				});
 			}
 		});
@@ -26,7 +29,8 @@ for (const theme of THEMES) {
 					await loadStory(page, STORY_ID, theme, {
 						args: { gap },
 					});
-					await expect(page).toHaveScreenshot();
+					const grid = new GridDriver(page);
+					await expect(grid.locator).toHaveScreenshot();
 				});
 			}
 		});
@@ -37,7 +41,8 @@ for (const theme of THEMES) {
 					await loadStory(page, STORY_ID, theme, {
 						args: { layout },
 					});
-					await expect(page).toHaveScreenshot();
+					const grid = new GridDriver(page);
+					await expect(grid.locator).toHaveScreenshot();
 				});
 			}
 		});

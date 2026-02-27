@@ -13,10 +13,16 @@ import {
 	List,
 	ListItem,
 	Separator,
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeaderCell,
+	TableRow,
 	Text,
 } from '../../primitives';
 import { AnnotationAwareLink } from '../annotations/AnnotationAwareLink/AnnotationAwareLink';
-import { ContentLayout, FigureDialog, Image, Line, Table } from '../components';
+import { ContentLayout, FigureDialog, Image, Line } from '../components';
 import styles from './ContentRenderer.module.css';
 
 type ComponentOverrides = Record<
@@ -50,6 +56,11 @@ function defaultComponents(): ComponentOverrides {
 		figure: FigureDialog,
 		pre: CodeBlock,
 		table: Table,
+		thead: TableHead,
+		tbody: TableBody,
+		tr: TableRow,
+		th: TableHeaderCell,
+		td: TableCell,
 		img: Image,
 		line: Line,
 		div: ContentLayout,

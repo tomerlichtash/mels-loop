@@ -1,0 +1,53 @@
+.root {
+	--ml-table-font-size: var(--ml-font-size-body);
+	--ml-table-border-color: var(--ml-border-color);
+	--ml-table-margin-bottom: var(--ml-space-md);
+	--ml-table-cell-padding-vertical: var(--ml-space-sm);
+	--ml-table-cell-padding-horizontal: 0.75rem;
+	--ml-table-header-font-weight: var(--ml-font-weight-medium);
+	--ml-table-header-background-color: var(--ml-background-color-alt);
+	--ml-table-stripe-background-color: var(--ml-background-color-alt);
+
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: var(--ml-table-margin-bottom);
+	font-size: var(--ml-table-font-size);
+}
+
+.wrapper {
+	overflow-x: auto;
+}
+
+/* Head */
+.head {
+}
+
+/* Body */
+.body {
+}
+
+/* Row */
+.row {
+}
+
+.body .row:nth-child(even) {
+	background-color: var(--ml-table-stripe-background-color);
+}
+
+/* Header cell */
+.headerCell {
+	padding: var(--ml-table-cell-padding-vertical)
+		var(--ml-table-cell-padding-horizontal);
+	border: 1px solid var(--ml-table-border-color);
+	text-align: start;
+	font-weight: var(--ml-table-header-font-weight);
+	background-color: var(--ml-table-header-background-color);
+}
+
+/* Cell */
+.cell {
+	padding: var(--ml-table-cell-padding-vertical)
+		var(--ml-table-cell-padding-horizontal);
+	border: 1px solid var(--ml-table-border-color);
+	text-align: start;
+}

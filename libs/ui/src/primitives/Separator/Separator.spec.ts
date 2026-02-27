@@ -1,6 +1,8 @@
 import { loadStory, THEMES } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
+import { SeparatorDriver } from './Separator.driver';
+
 const STORY_ID = 'primitives-separator--default';
 
 const orientations = ['horizontal', 'vertical'] as const;
@@ -13,7 +15,8 @@ for (const theme of THEMES) {
 					await loadStory(page, STORY_ID, theme, {
 						args: { orientation },
 					});
-					await expect(page).toHaveScreenshot();
+					const separator = new SeparatorDriver(page);
+					await expect(separator.locator).toHaveScreenshot();
 				});
 			}
 		});

@@ -1,6 +1,8 @@
 import { loadStory, THEMES } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
+import { ListDriver } from './List.driver';
+
 const STORY_ID = 'primitives-list--default';
 
 for (const theme of THEMES) {
@@ -9,14 +11,16 @@ for (const theme of THEMES) {
 			await loadStory(page, STORY_ID, theme, {
 				args: { ordered: false },
 			});
-			await expect(page).toHaveScreenshot();
+			const list = new ListDriver(page);
+			await expect(list.locator).toHaveScreenshot();
 		});
 
 		test('ordered', async ({ page }) => {
 			await loadStory(page, STORY_ID, theme, {
 				args: { ordered: true },
 			});
-			await expect(page).toHaveScreenshot();
+			const list = new ListDriver(page);
+			await expect(list.locator).toHaveScreenshot();
 		});
 	});
 }

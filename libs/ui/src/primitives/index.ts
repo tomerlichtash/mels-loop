@@ -20,5 +20,13 @@ export { List } from './List/List';
 export { ListItem } from './List/ListItem';
 export { Loader } from './Loader/Loader';
 export { Separator } from './Separator/Separator';
+export {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeaderCell,
+	TableRow,
+} from './Table';
 export { Text } from './Text/Text';
 export { Tooltip } from './Tooltip/Tooltip';
