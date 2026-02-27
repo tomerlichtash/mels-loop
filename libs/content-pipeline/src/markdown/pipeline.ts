@@ -13,7 +13,9 @@ import { rehypeLines } from './plugins/rehype-lines';
 import { rehypeSourceImages } from './plugins/rehype-source-images';
 import { rehypeTableVariants } from './plugins/rehype-table-variants';
 import { remarkAnnotationLinks } from './plugins/remark-annotation-links';
+import { remarkBlockquoteDirective } from './plugins/remark-blockquote-directive';
 import { remarkColsDirective } from './plugins/remark-cols-directive';
+import { remarkFigureDirective } from './plugins/remark-figure-directive';
 import { remarkFigures } from './plugins/remark-figures';
 import { remarkGlossaryLinks } from './plugins/remark-glossary-links';
 import { remarkSourceLinks } from './plugins/remark-source-links';
@@ -48,7 +50,9 @@ export async function processMarkdown(
 		.use(remarkSourceLinks)
 		.use(remarkFigures)
 		.use(remarkDirective)
+		.use(remarkBlockquoteDirective)
 		.use(remarkColsDirective)
+		.use(remarkFigureDirective)
 		.use(remarkTableDirective)
 		.use(remarkVerse, { parseMode: options.parseMode })
 		.use(remarkRehype, { allowDangerousHtml: true })
