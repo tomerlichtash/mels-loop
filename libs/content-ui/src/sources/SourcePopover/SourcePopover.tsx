@@ -1,9 +1,9 @@
 'use client';
 
 import type { ResolvedSource } from '@mels-loop/content-pipeline/types';
+import { Loader, Popover } from '@mels-loop/ui/primitives';
 import { useEffect, useId, useRef } from 'react';
 
-import { Loader, Popover } from '../../../primitives';
 import { NavBar } from '../../annotations/internal/NavBar/NavBar';
 import { useAnnotations } from '../../annotations/PopoverProvider/PopoverProvider';
 import { SourceDetail } from '../SourceDetail/SourceDetail';

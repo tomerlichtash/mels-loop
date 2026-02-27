@@ -1,6 +1,6 @@
 import type { ResolvedSource } from '@mels-loop/content-pipeline/types';
+import { Badge } from '@mels-loop/ui/primitives';
 
-import { Badge } from '../../../primitives';
 import { SOURCE_TYPE_COLORS, SOURCE_TYPE_LABELS } from '../source-types';
 import styles from './SourceDetail.module.css';
 

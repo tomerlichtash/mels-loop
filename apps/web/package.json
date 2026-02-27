@@ -18,6 +18,7 @@
 		"@dnd-kit/sortable": "^10.0.0",
 		"@dnd-kit/utilities": "^3.2.2",
 		"@mels-loop/content-pipeline": "workspace:*",
+		"@mels-loop/content-ui": "workspace:*",
 		"@mels-loop/forms": "workspace:*",
 		"@mels-loop/i18n": "workspace:*",
 		"@mels-loop/ui": "workspace:*",

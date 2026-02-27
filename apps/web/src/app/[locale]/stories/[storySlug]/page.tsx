@@ -3,9 +3,9 @@ import {
 	getCodex,
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
+import { ContentRenderer } from '@mels-loop/content-ui';
 import { type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
-import { ContentRenderer } from '@mels-loop/ui/content';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
 import { Text } from '@mels-loop/ui/primitives';
 

@@ -1,8 +1,8 @@
 'use client';
 
+import { Dialog, Figure, Loader } from '@mels-loop/ui/primitives';
 import { useEffect, useRef, useState } from 'react';
 
-import { Dialog, Figure, Loader } from '../../../primitives';
 import { useAnnotations } from '../../annotations/PopoverProvider/PopoverProvider';
 import { SourceDetail } from '../../sources/SourceDetail/SourceDetail';
 import styles from './FigureDialog.module.css';

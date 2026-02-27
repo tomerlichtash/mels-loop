@@ -1,6 +1,6 @@
 import { getAllPosts, getPost } from '@mels-loop/content-pipeline/loaders';
+import { ContentRenderer } from '@mels-loop/content-ui';
 import { type Locale, locales } from '@mels-loop/i18n/config';
-import { ContentRenderer } from '@mels-loop/ui/content';
 import { Container, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';

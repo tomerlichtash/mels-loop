@@ -1,11 +1,5 @@
 'use client';
 
-import cn from 'classnames';
-import type { ElementContent, Root as HastRoot } from 'hast';
-import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
-import { useMemo } from 'react';
-import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
-
 import {
 	Blockquote,
 	Code,
@@ -21,7 +15,13 @@ import {
 	TableHeaderCell,
 	TableRow,
 	Text,
-} from '../../primitives';
+} from '@mels-loop/ui/primitives';
+import cn from 'classnames';
+import type { ElementContent, Root as HastRoot } from 'hast';
+import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
+import { useMemo } from 'react';
+import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
+
 import { AnnotationAwareLink } from '../annotations/AnnotationAwareLink/AnnotationAwareLink';
 import { ContentLayout, FigureDialog, Image, Line } from '../components';
 import styles from './ContentRenderer.module.css';

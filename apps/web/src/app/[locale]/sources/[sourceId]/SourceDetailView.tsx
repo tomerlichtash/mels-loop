@@ -1,5 +1,5 @@
 import type { ResolvedSource } from '@mels-loop/content-pipeline/types';
-import { SOURCE_TYPE_COLORS, SOURCE_TYPE_LABELS } from '@mels-loop/ui/content';
+import { SOURCE_TYPE_COLORS, SOURCE_TYPE_LABELS } from '@mels-loop/content-ui';
 import { Badge } from '@mels-loop/ui/primitives';
 import Image from 'next/image';
 

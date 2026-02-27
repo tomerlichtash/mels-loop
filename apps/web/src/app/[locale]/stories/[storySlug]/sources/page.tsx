@@ -7,9 +7,9 @@ import type {
 	ResolvedSource,
 	SourceType,
 } from '@mels-loop/content-pipeline/types';
+import { SourceDetail } from '@mels-loop/content-ui';
 import { type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
-import { SourceDetail } from '@mels-loop/ui/content';
 import { Breadcrumbs } from '@mels-loop/ui/layout';
 import { Card, Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';

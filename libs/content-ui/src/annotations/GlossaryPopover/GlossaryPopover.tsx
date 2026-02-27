@@ -1,45 +1,53 @@
 'use client';
 
+import { useTranslation } from '@mels-loop/i18n/client';
+import { Loader, Popover } from '@mels-loop/ui/primitives';
 import { useEffect, useId, useMemo, useRef } from 'react';
 
-import { Loader, Popover } from '../../../primitives';
 import { ContentRenderer } from '../../ContentRenderer/ContentRenderer';
 import { InternalLink } from '../internal/InternalLink/InternalLink';
 import { NavBar } from '../internal/NavBar/NavBar';
 import { useContent } from '../internal/useContent/useContent';
 import { useAnnotations } from '../PopoverProvider/PopoverProvider';
-import styles from './AnnotationPopover.module.css';
+import styles from './GlossaryPopover.module.css';
 
-interface AnnotationPopoverProps {
-	sequence: string;
-	target: string;
+interface GlossaryPopoverProps {
+	term: string;
+	label?: React.ReactNode;
+	children: React.ReactNode;
 }
 
-export function AnnotationPopover({
-	sequence,
-	target,
-}: AnnotationPopoverProps) {
+export function GlossaryPopover({
+	term,
+	label,
+	children,
+}: GlossaryPopoverProps) {
 	const id = useId();
+	const { locale } = useTranslation();
 	const {
 		activePopover,
 		openPopover,
 		registerTrigger,
-		annotations,
+		glossary,
 		loadingKeys,
-		loadAnnotation,
+		loadGlossaryTerm,
 	} = useAnnotations();
 	const opened = activePopover === id;
 	const triggerRef = useRef<HTMLButtonElement>(null);
 
-	const originalLabel = `[${sequence}]`;
-	const baseContent = annotations[target] ?? null;
-	const isLoading = loadingKeys.has(target);
+	const baseContent = glossary[term] ?? null;
+	const isLoading = loadingKeys.has(term);
 
-	const { content: displayContent, label: displayLabel } = useContent(
-		baseContent,
-		target,
-		originalLabel,
-	);
+	const originalLabel =
+		typeof label === 'string'
+			? label
+			: baseContent?.metadata.glossary_key || term;
+
+	const {
+		content: displayContent,
+		term: displayTerm,
+		label: displayLabel,
+	} = useContent(baseContent, term, originalLabel);
 
 	const componentOverrides = useMemo(() => ({ a: InternalLink }), []);
 
@@ -50,9 +58,9 @@ export function AnnotationPopover({
 
 	useEffect(() => {
 		if (opened && !baseContent && !isLoading) {
-			loadAnnotation(target);
+			loadGlossaryTerm(term);
 		}
-	}, [opened, baseContent, isLoading, loadAnnotation, target]);
+	}, [opened, baseContent, isLoading, loadGlossaryTerm, term]);
 
 	return (
 		<Popover
@@ -64,13 +72,23 @@ export function AnnotationPopover({
 					type="button"
 					className={styles.trigger}
 					onClick={() => openPopover(id)}
-					aria-label={`Annotation ${sequence}`}
+					aria-label={`Glossary: ${term}`}
 				>
-					{sequence}
+					{children}
 				</button>
 			}
 		>
-			<NavBar rootLabel={displayLabel} />
+			<div className={styles.header}>
+				<p className={styles.headerTitle}>{displayLabel}</p>
+				{locale === 'he' && displayTerm && (
+					<p className={styles.headerSub} dir="ltr">
+						{displayTerm
+							.replace(/-/g, ' ')
+							.replace(/\b\w/g, (c) => c.toUpperCase())}
+					</p>
+				)}
+			</div>
+			<NavBar rootLabel={originalLabel} />
 			{!displayContent ? (
 				<div className={styles.loader}>
 					<Loader size="md" />
@@ -88,6 +106,7 @@ export function AnnotationPopover({
 								<a
 									href={displayContent.metadata.source_url}
 									className={styles.sourceLink}
+									target="_blank"
 								>
 									{displayContent.metadata.source_name}
 								</a>
