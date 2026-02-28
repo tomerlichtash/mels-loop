@@ -2,7 +2,7 @@
 
 import { type ReactNode, useState } from 'react';
 
-import { MobileDrawer } from '../Navigation/MobileDrawer';
+import { MobileDrawer } from '../MobileDrawer/MobileDrawer';
 import { SiteFooter } from '../SiteFooter/SiteFooter';
 import { SiteHeader } from '../SiteHeader/SiteHeader';
 import type { FooterLinkColumn, LocaleOption, NavItem } from '../types';

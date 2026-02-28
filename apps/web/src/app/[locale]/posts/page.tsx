@@ -3,7 +3,7 @@ import type { Locale } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Container, Text } from '@mels-loop/ui/primitives';
 
-import { PostList } from '@/components/posts/PostList';
+import { PostList } from '@/components/PostList/PostList';
 import { getDictionary } from '@/i18n';
 
 interface PageProps {

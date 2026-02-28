@@ -10,7 +10,7 @@ import {
 	TwitterLogoIcon,
 } from '@radix-ui/react-icons';
 
-import type { FooterLinkColumn } from '../types';
+import type { FooterLink as FooterLinkType, FooterLinkColumn } from '../types';
 import styles from './SiteFooter.module.css';
 
 const iconMap = {
@@ -21,6 +21,24 @@ const iconMap = {
 	reader: ReaderIcon,
 	heart: HeartIcon,
 } as const;
+
+function FooterLink({ link }: { link: FooterLinkType }) {
+	const { t } = useTranslation();
+	const Icon = link.icon ? iconMap[link.icon] : null;
+
+	return (
+		<a
+			href={link.href}
+			className={styles.link}
+			{...(link.external
+				? { target: '_blank', rel: 'noopener noreferrer' }
+				: {})}
+		>
+			{Icon && <Icon className={styles.linkIcon} />}
+			{t(link.label)}
+		</a>
+	);
+}
 
 interface SiteFooterProps {
 	linkColumns?: FooterLinkColumn[];
@@ -55,21 +73,7 @@ export function SiteFooter({ linkColumns }: SiteFooterProps) {
 							<ul className={styles.linkList}>
 								{col.links.map((link) => (
 									<li key={link.href}>
-										<a
-											href={link.href}
-											className={styles.link}
-											{...(link.external
-												? { target: '_blank', rel: 'noopener noreferrer' }
-												: {})}
-										>
-											{link.icon &&
-												iconMap[link.icon] &&
-												(() => {
-													const Icon = iconMap[link.icon!];
-													return <Icon className={styles.linkIcon} />;
-												})()}
-											{t(link.label)}
-										</a>
+										<FooterLink link={link} />
 									</li>
 								))}
 							</ul>

@@ -1,11 +1,14 @@
-export { AnnotationAwareLink } from './annotations/AnnotationAwareLink/AnnotationAwareLink';
-export type { NavStackEntry } from './annotations/PopoverProvider/PopoverProvider';
+export type { NavStackEntry } from './popover/providers/PopoverProvider';
 export {
 	PopoverProvider,
 	useAnnotations,
-} from './annotations/PopoverProvider/PopoverProvider';
-export { Image, Line } from './components';
-export { ContentRenderer } from './ContentRenderer/ContentRenderer';
-export { SOURCE_TYPE_COLORS, SOURCE_TYPE_LABELS } from './sources/source-types';
+} from './popover/providers/PopoverProvider';
+export { StoryPopoverProvider } from './popover/providers/StoryPopoverProvider';
+export { SourcePopover } from './popover/views/SourcePopover/SourcePopover';
+export { ContentRenderer } from './renderer/core/ContentRenderer';
+export { AnnotationAwareLink } from './renderer/elements/AnnotationAwareLink/AnnotationAwareLink';
+export { Image } from './renderer/elements/Image/Image';
+export { Line } from './renderer/elements/Line/Line';
+export { SOURCE_TYPE_LABELS } from './sources/source-types';
+export { SourceBadge } from './sources/SourceBadge/SourceBadge';
 export { SourceDetail } from './sources/SourceDetail/SourceDetail';
-export { SourcePopover } from './sources/SourcePopover/SourcePopover';

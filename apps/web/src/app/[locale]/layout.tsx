@@ -7,11 +7,11 @@ import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 
-import { SearchableLayout } from '@/components/SearchableLayout';
 import { assistant, lekton, robotoSlab } from '@/fonts';
 import { getDictionary } from '@/i18n';
+import { SearchableLayout } from '@/layout/SearchableLayout/SearchableLayout';
 
-// import { FaviconAnimator } from '@/components/FaviconAnimator';
+// import { FaviconAnimator } from '@/layout/FaviconAnimator/FaviconAnimator';
 import { footerLinks, localeOptions } from './config/nav';
 import { resolveNavItems } from './resolveNavItems';
 

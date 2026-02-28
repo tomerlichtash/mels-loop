@@ -1,8 +1,7 @@
 import type { ResolvedSource } from '@mels-loop/content-pipeline/types';
-import { Badge } from '@mels-loop/ui/primitives';
 import Image from 'next/image';
 
-import { SOURCE_TYPE_COLORS, SOURCE_TYPE_LABELS } from '@/content';
+import { SourceBadge } from '@/content';
 
 import styles from './page.module.css';
 
@@ -23,9 +22,7 @@ export function SourceDetailView({ source }: SourceDetailViewProps) {
 	return (
 		<div className={styles.detail}>
 			<div className={styles.badge}>
-				<Badge color={SOURCE_TYPE_COLORS[source.type]} radius="sm" bordered>
-					{SOURCE_TYPE_LABELS[source.type] ?? source.type}
-				</Badge>
+				<SourceBadge type={source.type} />
 			</div>
 			{source.type === 'image' && source.url && (
 				<div className={styles.imageWrap}>

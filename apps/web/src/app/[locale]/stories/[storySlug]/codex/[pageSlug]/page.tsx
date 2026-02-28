@@ -10,8 +10,7 @@ import fs from 'fs/promises';
 import { notFound } from 'next/navigation';
 import path from 'path';
 
-import { StoryPopoverProvider } from '@/components/StoryPopoverProvider';
-import { ContentRenderer } from '@/content';
+import { ContentRenderer, StoryPopoverProvider } from '@/content';
 import { getDictionary } from '@/i18n';
 import { homeItemFromDict } from '@/lib/breadcrumbs';
 
