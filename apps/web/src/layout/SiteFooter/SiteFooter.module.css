@@ -93,7 +93,7 @@
 	align-items: center;
 	gap: 6px;
 	font-size: var(--ml-font-size-body);
-	color: var(--ml-link-color);
+	color: var(--ml-color-primary);
 	text-decoration: none;
 }
 
