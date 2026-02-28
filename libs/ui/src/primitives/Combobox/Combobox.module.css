@@ -1,0 +1,298 @@
+:root {
+	--ml-combobox-dropdown-background: var(--ml-surface-background-color);
+	--ml-combobox-dropdown-border-color: var(--ml-border-color);
+	--ml-combobox-dropdown-border-radius: var(--ml-radius-md);
+	--ml-combobox-dropdown-shadow: var(--ml-shadow);
+	--ml-combobox-dropdown-padding: var(--ml-space-xs);
+	--ml-combobox-dropdown-max-height: 240px;
+
+	--ml-combobox-option-padding-horizontal: var(--ml-space-sm);
+	--ml-combobox-option-padding-vertical: var(--ml-space-xs);
+	--ml-combobox-option-border-radius: var(--ml-radius-sm);
+	--ml-combobox-option-color: var(--ml-text-color);
+	--ml-combobox-option-color-highlighted: var(--ml-text-color);
+	--ml-combobox-option-background-highlighted: var(--ml-color-primary-muted);
+	--ml-combobox-option-color-selected: var(--ml-color-on-primary);
+	--ml-combobox-option-background-selected: var(--ml-color-primary);
+	--ml-combobox-option-color-disabled: var(--ml-text-muted-color);
+
+	--ml-combobox-empty-padding: var(--ml-space-md);
+	--ml-combobox-empty-color: var(--ml-text-muted-color);
+
+	--ml-combobox-actions-gap: var(--ml-space-xs);
+}
+
+/* Wrapper */
+.root {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	width: var(--ml-input-width);
+	min-width: var(--ml-input-min-width);
+}
+
+/* Input */
+.input {
+	display: block;
+	width: 100%;
+	min-width: 0;
+	height: var(--ml-input-height);
+	padding: var(--ml-input-padding-vertical) var(--ml-input-padding-horizontal);
+	padding-inline-end: calc(
+		var(--ml-input-padding-horizontal) + 2em + var(--ml-combobox-actions-gap)
+	);
+	font-family: var(--ml-typography-body-font-family);
+	font-size: var(--ml-input-font-size);
+	line-height: var(--ml-typography-body-line-height);
+	color: var(--ml-text-color);
+	background-color: var(--ml-background-color);
+	border: 1px solid var(--ml-input-border-color);
+	border-radius: var(--ml-input-radius);
+	outline: none;
+	transition:
+		border-color var(--ml-input-duration),
+		box-shadow var(--ml-input-duration);
+}
+
+.input::placeholder {
+	color: var(--ml-input-placeholder);
+}
+
+.input:hover:not(:disabled):not(:focus) {
+	border-color: var(--ml-input-border-color-hover);
+}
+
+.input:focus {
+	border-color: var(--ml-input-border-color-focus);
+	box-shadow: 0 0 0 1px var(--ml-input-border-color-focus);
+}
+
+.input:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+/* Multi-select input wrapper */
+.inputWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--ml-space-xs);
+	height: auto;
+	min-height: var(--ml-input-height);
+	cursor: text;
+}
+
+.inputWrapper:hover:not(:focus-within) {
+	border-color: var(--ml-input-border-color-hover);
+}
+
+.inputWrapper:focus-within {
+	border-color: var(--ml-input-border-color-focus);
+	box-shadow: 0 0 0 1px var(--ml-input-border-color-focus);
+}
+
+/* Bare input inside multi wrapper */
+.inputBare {
+	flex: 1 1 60px;
+	min-width: 60px;
+	border: none;
+	background: none;
+	outline: none;
+	padding: 0;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+}
+
+.inputBare::placeholder {
+	color: var(--ml-input-placeholder);
+}
+
+/* Sizes */
+.size-sm {
+	--ml-input-font-size: var(--ml-font-size-sm);
+	--ml-input-padding-horizontal: var(--ml-space-xs);
+	--ml-input-padding-vertical: var(--ml-space-xs);
+	--ml-input-height: 32px;
+	--ml-input-min-width: 16ch;
+}
+
+.size-md {
+	--ml-input-font-size: var(--ml-font-size-body);
+	--ml-input-height: 40px;
+	--ml-input-min-width: 20ch;
+}
+
+.size-lg {
+	--ml-input-font-size: var(--ml-font-size-md);
+	--ml-input-padding-horizontal: var(--ml-space-md);
+	--ml-input-padding-vertical: var(--ml-space-sm);
+	--ml-input-height: 48px;
+	--ml-input-min-width: 24ch;
+}
+
+/* Radius */
+.radius-none {
+	--ml-input-radius: var(--ml-radius-none);
+}
+
+.radius-sm {
+	--ml-input-radius: var(--ml-radius-sm);
+}
+
+.radius-md {
+	--ml-input-radius: var(--ml-radius-md);
+}
+
+.radius-lg {
+	--ml-input-radius: var(--ml-radius-lg);
+}
+
+/* Error */
+.error {
+	--ml-input-border-color: var(--ml-error-border-color);
+}
+
+.error:focus,
+.error:focus-within {
+	--ml-input-border-color-focus: var(--ml-error-border-color);
+}
+
+/* Full width */
+.fullWidth {
+	--ml-input-width: 100%;
+}
+
+/* Actions slot */
+.actions {
+	position: absolute;
+	top: 0;
+	inset-inline-end: var(--ml-input-padding-horizontal);
+	height: var(--ml-input-height);
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-combobox-actions-gap);
+}
+
+/* Chevron */
+.chevron {
+	transition: transform var(--ml-duration-fast);
+}
+
+.chevronOpen {
+	transform: rotate(180deg);
+}
+
+/* Dropdown */
+.listbox {
+	width: var(--radix-popover-trigger-width);
+	background-color: var(--ml-combobox-dropdown-background);
+	border: 1px solid var(--ml-combobox-dropdown-border-color);
+	border-radius: var(--ml-combobox-dropdown-border-radius);
+	box-shadow: var(--ml-combobox-dropdown-shadow);
+	padding: var(--ml-combobox-dropdown-padding);
+	max-height: var(--ml-combobox-dropdown-max-height);
+	overflow-y: auto;
+}
+
+/* Option */
+.option {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-xs);
+	padding: var(--ml-combobox-option-padding-vertical)
+		var(--ml-combobox-option-padding-horizontal);
+	border-radius: var(--ml-combobox-option-border-radius);
+	color: var(--ml-combobox-option-color);
+	font-size: var(--ml-input-font-size);
+	cursor: pointer;
+	user-select: none;
+}
+
+.option[data-highlighted='true'] {
+	background-color: var(--ml-combobox-option-background-highlighted);
+	color: var(--ml-combobox-option-color-highlighted);
+}
+
+.option[data-selected='true'] {
+	background-color: var(--ml-combobox-option-background-selected);
+	color: var(--ml-combobox-option-color-selected);
+}
+
+.option[data-selected='true'][data-highlighted='true'] {
+	background-color: var(--ml-combobox-option-background-selected);
+	color: var(--ml-combobox-option-color-selected);
+}
+
+.option[data-disabled='true'] {
+	color: var(--ml-combobox-option-color-disabled);
+	pointer-events: none;
+}
+
+/* Multi-select: selected options use checkmark instead of primary background */
+.listbox[aria-multiselectable] .option[data-selected='true'] {
+	background-color: transparent;
+	color: var(--ml-combobox-option-color);
+}
+
+.listbox[aria-multiselectable]
+	.option[data-selected='true'][data-highlighted='true'] {
+	background-color: var(--ml-combobox-option-background-highlighted);
+	color: var(--ml-combobox-option-color-highlighted);
+}
+
+/* Chip drag states */
+.chipDraggable {
+	cursor: grab;
+}
+
+.chipDragging {
+	opacity: 0.4;
+	cursor: grabbing;
+}
+
+.chipDropBefore,
+.chipDropAfter {
+	position: relative;
+}
+
+.chipDropBefore::before {
+	content: '';
+	position: absolute;
+	inset-inline-start: -4px;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background-color: var(--ml-color-primary);
+	border-radius: 1px;
+}
+
+.chipDropAfter::after {
+	content: '';
+	position: absolute;
+	inset-inline-end: -4px;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background-color: var(--ml-color-primary);
+	border-radius: 1px;
+}
+
+/* Check icon */
+.checkIcon {
+	flex-shrink: 0;
+	visibility: hidden;
+}
+
+.checkIconVisible {
+	visibility: visible;
+}
+
+/* Empty state */
+.empty {
+	padding: var(--ml-combobox-empty-padding);
+	color: var(--ml-combobox-empty-color);
+	text-align: center;
+	font-size: var(--ml-input-font-size);
+}

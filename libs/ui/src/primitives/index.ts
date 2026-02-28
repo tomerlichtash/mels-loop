@@ -15,8 +15,11 @@ export {
 	CardMedia,
 	CardSkeleton,
 } from './Card';
+export { Chip } from './Chip/Chip';
 export { Code } from './Code/Code';
 export { CodeBlock } from './CodeBlock/CodeBlock';
+export type { ComboboxOption } from './Combobox/Combobox';
+export { Combobox } from './Combobox/Combobox';
 export { Container } from './Container/Container';
 export { Dialog } from './Dialog';
 export { Figure, FigureCaption } from './Figure';
