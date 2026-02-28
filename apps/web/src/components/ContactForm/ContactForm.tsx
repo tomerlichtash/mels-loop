@@ -1,18 +1,31 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from '@mels-loop/i18n/client';
-import { Alert, Button, Container, Text } from '@mels-loop/ui/primitives';
+import {
+	Alert,
+	Button,
+	Container,
+	FormField,
+	Label,
+	Text,
+	Textarea,
+	TextInput,
+} from '@mels-loop/ui/primitives';
 import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import styles from './ContactForm.module.css';
 
-interface FormValues {
-	name: string;
-	email: string;
-	message: string;
-}
+const contactSchema = z.object({
+	name: z.string().trim().min(1),
+	email: z.email(),
+	message: z.string().trim().min(1),
+});
+
+type FormValues = z.infer<typeof contactSchema>;
 
 export function ContactForm() {
 	const { t } = useTranslation();
@@ -30,6 +43,7 @@ export function ContactForm() {
 		formState: { errors },
 		reset,
 	} = useForm<FormValues>({
+		resolver: zodResolver(contactSchema),
 		defaultValues: { name: '', email: '', message: '' },
 	});
 
@@ -89,67 +103,49 @@ export function ContactForm() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form onSubmit={handleSubmit(onSubmit)} className={styles.root}>
 			<Container gap="md">
 				{status === 'error' && (
 					<Alert color="red" title={t('contact.failMessage')}>
 						{t('contact.failReportProblem')}
 					</Alert>
 				)}
-				<div className={styles.field}>
-					<label className={styles.label}>
+				<FormField error={errors.name?.message}>
+					<Label htmlFor="contact-name" required>
 						{t('contact.labelName')}
-						<span className={styles.required}>*</span>
-					</label>
-					<input
-						className={`${styles.input}${errors.name ? ` ${styles.inputError}` : ''}`}
+					</Label>
+					<TextInput
+						id="contact-name"
 						placeholder={t('contact.placeholderName')}
-						{...register('name', {
-							required: t('contact.invalidName'),
-							validate: (v) => (v.trim() ? true : t('contact.invalidName')),
-						})}
+						error={!!errors.name}
+						fullWidth
+						{...register('name')}
 					/>
-					{errors.name && <p className={styles.error}>{errors.name.message}</p>}
-				</div>
-				<div className={styles.field}>
-					<label className={styles.label}>
+				</FormField>
+				<FormField error={errors.email?.message}>
+					<Label htmlFor="contact-email" required>
 						{t('contact.labelEmail')}
-						<span className={styles.required}>*</span>
-					</label>
-					<input
-						className={`${styles.input}${errors.email ? ` ${styles.inputError}` : ''}`}
+					</Label>
+					<TextInput
+						id="contact-email"
 						type="email"
 						placeholder={t('contact.placeholderEmail')}
-						{...register('email', {
-							required: t('contact.invalidEmail'),
-							pattern: {
-								value: /^\S+@\S+\.\S+$/,
-								message: t('contact.invalidEmail'),
-							},
-						})}
+						error={!!errors.email}
+						fullWidth
+						{...register('email')}
 					/>
-					{errors.email && (
-						<p className={styles.error}>{errors.email.message}</p>
-					)}
-				</div>
-				<div className={styles.field}>
-					<label className={styles.label}>
+				</FormField>
+				<FormField error={errors.message?.message}>
+					<Label htmlFor="contact-message" required>
 						{t('contact.labelMessage')}
-						<span className={styles.required}>*</span>
-					</label>
-					<textarea
-						className={`${styles.textarea}${errors.message ? ` ${styles.inputError}` : ''}`}
+					</Label>
+					<Textarea
+						id="contact-message"
 						placeholder={t('contact.placeholderMessage')}
-						rows={5}
-						{...register('message', {
-							required: t('contact.invalidMessage'),
-							validate: (v) => (v.trim() ? true : t('contact.invalidMessage')),
-						})}
+						error={!!errors.message}
+						{...register('message')}
 					/>
-					{errors.message && (
-						<p className={styles.error}>{errors.message.message}</p>
-					)}
-				</div>
+				</FormField>
 				{siteKey && <ReCAPTCHA ref={recaptchaRef} sitekey={siteKey} />}
 				{captchaError && (
 					<Text variant="body2" color="error" component="span">

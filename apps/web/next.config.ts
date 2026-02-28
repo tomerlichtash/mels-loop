@@ -13,7 +13,6 @@ const nextConfig: NextConfig = {
 		'@mels-loop/ui',
 		'@mels-loop/i18n',
 		'@mels-loop/content-pipeline',
-		'@mels-loop/forms',
 	],
 	async redirects() {
 		return [

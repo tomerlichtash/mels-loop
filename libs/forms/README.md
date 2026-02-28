@@ -1,3 +1,0 @@
-# Forms
-
-Shared form components.

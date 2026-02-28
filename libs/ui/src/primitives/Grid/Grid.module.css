@@ -66,3 +66,10 @@
 .gap-xl {
 	--ml-grid-gap: var(--ml-space-xl);
 }
+
+/* Mobile: stack vertically */
+@media (--ml-bp-mobile) {
+	.root {
+		--ml-grid-columns: 1;
+	}
+}

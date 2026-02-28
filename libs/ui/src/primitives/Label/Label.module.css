@@ -1,0 +1,23 @@
+:root {
+	--ml-label-font-family: var(--ml-typography-label-font-family);
+	--ml-label-font-size: var(--ml-typography-label-font-size);
+	--ml-label-font-weight: var(--ml-typography-label-font-weight);
+	--ml-label-line-height: var(--ml-typography-label-line-height);
+	--ml-label-letter-spacing: var(--ml-typography-label-letter-spacing);
+	--ml-label-color: var(--ml-text-color);
+}
+
+.root {
+	display: block;
+	font-family: var(--ml-label-font-family);
+	font-size: var(--ml-label-font-size);
+	font-weight: var(--ml-label-font-weight);
+	line-height: var(--ml-label-line-height);
+	letter-spacing: var(--ml-label-letter-spacing);
+	color: var(--ml-label-color);
+}
+
+.required::after {
+	content: ' *';
+	color: var(--ml-color-error);
+}
