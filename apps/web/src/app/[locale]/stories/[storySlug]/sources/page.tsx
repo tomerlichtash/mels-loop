@@ -10,6 +10,7 @@ import type {
 import { type Locale, locales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Card, Container, Text } from '@mels-loop/ui/primitives';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 import { SourceDetail } from '@/content';
@@ -93,9 +94,11 @@ export default async function SourcesPage({ params }: PageProps) {
 								<Card key={source.id} direction="horizontal" padding="sm">
 									{source.type === 'image' && source.url && (
 										<div className={styles.thumbnail}>
-											<img
+											<Image
 												src={source.url}
 												alt={source.title}
+												width={120}
+												height={80}
 												className={styles.thumbnailImage}
 											/>
 										</div>

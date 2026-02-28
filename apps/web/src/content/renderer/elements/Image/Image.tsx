@@ -24,22 +24,19 @@ interface ImageProps {
 export function Image({ src, alt = '', width, height, ...props }: ImageProps) {
 	if (!src) return null;
 
-	if (src.endsWith('.svg')) {
-		return <img src={src} alt={alt} {...props} />;
-	}
+	const optimized =
+		!src.endsWith('.svg') &&
+		(!src.startsWith('http') || isOptimizedRemote(src));
 
-	if (!src.startsWith('http') || isOptimizedRemote(src)) {
-		return (
-			<NextImage
-				src={src}
-				alt={alt}
-				width={width || 720}
-				height={height || 400}
-				className={styles.root}
-				{...props}
-			/>
-		);
-	}
-
-	return <img src={src} alt={alt} {...props} />;
+	return (
+		<NextImage
+			src={src}
+			alt={alt}
+			width={width || 720}
+			height={height || 400}
+			className={styles.root}
+			unoptimized={!optimized}
+			{...props}
+		/>
+	);
 }
