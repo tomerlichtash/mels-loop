@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
 import { useTranslation } from '@mels-loop/i18n/client';
 import {
 	Alert,
@@ -13,7 +14,6 @@ import {
 	TextInput,
 } from '@mels-loop/ui/primitives';
 import { useRef, useState } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -32,10 +32,11 @@ export function ContactForm() {
 	const [status, setStatus] = useState<
 		'idle' | 'sending' | 'success' | 'error'
 	>('idle');
+	const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 	const [captchaError, setCaptchaError] = useState(false);
-	const recaptchaRef = useRef<ReCAPTCHA>(null);
+	const turnstileRef = useRef<TurnstileInstance>(null);
 
-	const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_KEY ?? '';
+	const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
 
 	const {
 		register,
@@ -50,27 +51,24 @@ export function ContactForm() {
 	async function onSubmit(values: FormValues) {
 		setCaptchaError(false);
 
-		if (siteKey) {
-			const captchaToken = recaptchaRef.current?.getValue();
-			if (!captchaToken) {
-				setCaptchaError(true);
-				return;
-			}
+		if (siteKey && !turnstileToken) {
+			setCaptchaError(true);
+			return;
 		}
 
 		setStatus('sending');
 		try {
-			if (siteKey) {
-				const captchaToken = recaptchaRef.current?.getValue();
+			if (siteKey && turnstileToken) {
 				const captchaRes = await fetch('/api/captcha', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ token: captchaToken }),
+					body: JSON.stringify({ token: turnstileToken }),
 				});
 				const captchaData = await captchaRes.json();
 				if (!captchaData.success) {
 					setStatus('error');
-					recaptchaRef.current?.reset();
+					turnstileRef.current?.reset();
+					setTurnstileToken(null);
 					return;
 				}
 			}
@@ -83,7 +81,8 @@ export function ContactForm() {
 			if (res.ok) {
 				setStatus('success');
 				reset();
-				recaptchaRef.current?.reset();
+				turnstileRef.current?.reset();
+				setTurnstileToken(null);
 			} else {
 				setStatus('error');
 			}
@@ -94,7 +93,7 @@ export function ContactForm() {
 
 	if (status === 'success') {
 		return (
-			<Alert color="green" title={t('contact.successMessage')}>
+			<Alert status="success" title={t('contact.successMessage')}>
 				<Button variant="text" size="xs" onClick={() => setStatus('idle')}>
 					{t('contact.successBackHome')}
 				</Button>
@@ -106,7 +105,7 @@ export function ContactForm() {
 		<form onSubmit={handleSubmit(onSubmit)} className={styles.root}>
 			<Container gap="md">
 				{status === 'error' && (
-					<Alert color="red" title={t('contact.failMessage')}>
+					<Alert status="error" title={t('contact.failMessage')}>
 						{t('contact.failReportProblem')}
 					</Alert>
 				)}
@@ -146,7 +145,14 @@ export function ContactForm() {
 						{...register('message')}
 					/>
 				</FormField>
-				{siteKey && <ReCAPTCHA ref={recaptchaRef} sitekey={siteKey} />}
+				{siteKey && (
+					<Turnstile
+						ref={turnstileRef}
+						siteKey={siteKey}
+						onSuccess={setTurnstileToken}
+						onExpire={() => setTurnstileToken(null)}
+					/>
+				)}
 				{captchaError && (
 					<Text variant="body2" color="error" component="span">
 						{t('contact.captchaTooltip')}

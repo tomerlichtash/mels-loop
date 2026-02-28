@@ -18,6 +18,7 @@
 		"@dnd-kit/sortable": "^10.0.0",
 		"@dnd-kit/utilities": "^3.2.2",
 		"@hookform/resolvers": "^5.2.2",
+		"@marsidev/react-turnstile": "^1.4.2",
 		"@mels-loop/content-pipeline": "workspace:*",
 		"@mels-loop/i18n": "workspace:*",
 		"@mels-loop/ui": "workspace:*",
@@ -33,7 +34,6 @@
 		"next": "^16.1.6",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
-		"react-google-recaptcha": "^3.1.0",
 		"react-hook-form": "^7.71.1",
 		"zod": "^4.3.6"
 	},
@@ -43,7 +43,6 @@
 		"@mels-loop/test-utils": "workspace:*",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
-		"@types/react-google-recaptcha": "^2.1.9",
 		"postcss-custom-media": "^12.0.0"
 	}
 }
