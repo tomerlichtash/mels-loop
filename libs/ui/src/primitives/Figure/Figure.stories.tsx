@@ -4,7 +4,7 @@ import { Figure } from './Figure';
 import { FigureCaption } from './FigureCaption';
 
 const meta: Meta<typeof Figure> = {
-	title: 'Primitives/Figure',
+	title: 'Content/Figure',
 	component: Figure,
 };
 

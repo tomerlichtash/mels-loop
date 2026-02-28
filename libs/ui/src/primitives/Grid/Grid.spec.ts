@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { GridDriver } from './Grid.driver';
 
-const STORY_ID = 'primitives-grid--default';
+const STORY_ID = 'layout-grid--default';
 
 const columns = [1, 2, 3, 4, 5, 6] as const;
 const gaps = ['xs', 'sm', 'md', 'lg', 'xl'] as const;

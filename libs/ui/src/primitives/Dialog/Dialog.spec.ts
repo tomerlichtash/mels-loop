@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { DialogDriver } from './Dialog.driver';
 
-const STORY_ID = 'primitives-dialog--default';
+const STORY_ID = 'overlay-dialog--default';
 
 for (const theme of THEMES) {
 	test.describe(theme, () => {

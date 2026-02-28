@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ToggleGroup } from './ToggleGroup';
 
 const meta: Meta<typeof ToggleGroup> = {
-	title: 'Primitives/ToggleGroup',
+	title: 'Action/ToggleGroup',
 	component: ToggleGroup,
 };
 

@@ -18,9 +18,16 @@
 }
 
 .separator {
+	display: inline-flex;
+	align-items: center;
 	margin: 0 var(--ml-space-xs);
 	color: var(--ml-text-muted-color);
 	user-select: none;
+	line-height: 1;
+}
+
+:dir(rtl) .separator {
+	transform: scaleX(-1);
 }
 
 .link {

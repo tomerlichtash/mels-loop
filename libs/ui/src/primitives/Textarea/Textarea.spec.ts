@@ -1,9 +1,9 @@
 import { loadStory, THEMES } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
-import { TextareaDriver } from './Textarea.driver';
+import { TextAreaDriver } from './TextArea.driver';
 
-const STORY_ID = 'primitives-textarea--default';
+const STORY_ID = 'input-textarea--default';
 
 const cases = {
 	size: ['sm', 'md', 'lg'],
@@ -20,7 +20,7 @@ for (const theme of THEMES) {
 						await loadStory(page, STORY_ID, theme, {
 							args: { [prop]: value },
 						});
-						const textarea = new TextareaDriver(page);
+						const textarea = new TextAreaDriver(page);
 						await expect(textarea.locator).toHaveScreenshot();
 					});
 
@@ -28,7 +28,7 @@ for (const theme of THEMES) {
 						await loadStory(page, STORY_ID, theme, {
 							args: { [prop]: value },
 						});
-						const textarea = new TextareaDriver(page);
+						const textarea = new TextAreaDriver(page);
 						await textarea.locator.focus();
 						await expect(textarea.locator).toHaveScreenshot();
 					});

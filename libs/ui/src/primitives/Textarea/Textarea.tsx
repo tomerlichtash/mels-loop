@@ -1,29 +1,61 @@
 import cn from 'classnames';
-import { forwardRef, type TextareaHTMLAttributes } from 'react';
+import { forwardRef, type TextareaHTMLAttributes, useId } from 'react';
 
-import styles from './Textarea.module.css';
+import { FormField } from '../_internal/FormField/FormField';
+import { Label } from '../_internal/Label/Label';
+import styles from './TextArea.module.css';
 
-type TextareaSize = 'sm' | 'md' | 'lg';
+type TextAreaSize = 'sm' | 'md' | 'lg';
 
-interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-	size?: TextareaSize;
+interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+	size?: TextAreaSize;
+	label?: string;
 	error?: boolean;
+	errorMessage?: string;
 }
 
-export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-	function Textarea({ size = 'md', error, className, ...props }, ref) {
-		return (
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+	function TextArea(
+		{
+			size = 'md',
+			label,
+			error,
+			errorMessage,
+			className,
+			id: idProp,
+			required,
+			...props
+		},
+		ref,
+	) {
+		const autoId = useId();
+		const id = idProp ?? autoId;
+
+		const textareaElement = (
 			<textarea
 				ref={ref}
+				id={id}
+				required={required}
 				className={cn(
 					styles.root,
 					styles[`size-${size}`],
 					{ [styles.error]: error },
-					'ml-textarea',
-					className,
+					'ml-text-area',
+					!label && className,
 				)}
 				{...props}
 			/>
+		);
+
+		if (!label) return textareaElement;
+
+		return (
+			<FormField error={errorMessage} className={className}>
+				<Label htmlFor={id} required={required}>
+					{label}
+				</Label>
+				{textareaElement}
+			</FormField>
 		);
 	},
 );

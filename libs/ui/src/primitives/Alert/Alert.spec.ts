@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { AlertDriver } from './Alert.driver';
 
-const STORY_ID = 'primitives-alert--default';
+const STORY_ID = 'feedback-alert--default';
 
 const cases = {
 	status: ['success', 'error', 'warning', 'info'],

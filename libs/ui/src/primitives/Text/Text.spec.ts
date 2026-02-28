@@ -1,7 +1,7 @@
 import { loadStory, THEMES } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
-const STORY_ID = 'primitives-text--default';
+const STORY_ID = 'content-text--default';
 
 const cases = {
 	variant: [

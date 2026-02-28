@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { TooltipDriver } from './Tooltip.driver';
 
-const STORY_ID = 'primitives-tooltip--default';
+const STORY_ID = 'overlay-tooltip--default';
 const TRIGGER_SELECTOR = 'ml-button';
 
 const sides = ['top', 'right', 'bottom', 'left'] as const;

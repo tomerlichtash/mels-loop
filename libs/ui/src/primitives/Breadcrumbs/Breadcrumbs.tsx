@@ -1,3 +1,4 @@
+import { ChevronRightIcon } from '@radix-ui/react-icons';
 import cn from 'classnames';
 
 import styles from './Breadcrumbs.module.css';
@@ -9,16 +10,21 @@ export interface BreadcrumbItem {
 
 interface BreadcrumbsProps {
 	items: BreadcrumbItem[];
+	'aria-label'?: string;
 	className?: string;
 }
 
-export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
+export function Breadcrumbs({
+	items,
+	'aria-label': ariaLabel = 'Breadcrumb',
+	className,
+}: BreadcrumbsProps) {
 	if (items.length <= 1) return null;
 
 	return (
 		<nav
 			className={cn(styles.root, 'ml-breadcrumbs', className)}
-			aria-label="Breadcrumb"
+			aria-label={ariaLabel}
 		>
 			<ol className={styles.list}>
 				{items.map((item, index) => {
@@ -27,7 +33,7 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
 						<li key={index} className={styles.item}>
 							{index > 0 && (
 								<span className={styles.separator} aria-hidden>
-									/
+									<ChevronRightIcon />
 								</span>
 							)}
 							{isLast || !item.href ? (

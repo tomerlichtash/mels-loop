@@ -4,7 +4,7 @@ import { Code } from '../Code/Code';
 import { CodeBlock } from './CodeBlock';
 
 const meta: Meta<typeof CodeBlock> = {
-	title: 'Primitives/CodeBlock',
+	title: 'Content/CodeBlock',
 	component: CodeBlock,
 };
 

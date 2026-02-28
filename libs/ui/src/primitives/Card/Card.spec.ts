@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { CardDriver } from './Card.driver';
 
-const STORY_ID = 'primitives-card--default';
+const STORY_ID = 'layout-card--default';
 const CLIP_PADDING = 20;
 
 const cases = {
@@ -107,12 +107,12 @@ for (const theme of THEMES) {
 		});
 
 		test('grid', async ({ page }) => {
-			await loadStory(page, 'primitives-card--grid', theme);
+			await loadStory(page, 'layout-card--grid', theme);
 			await expect(page).toHaveScreenshot();
 		});
 
 		test('masonry', async ({ page }) => {
-			await loadStory(page, 'primitives-card--masonry', theme);
+			await loadStory(page, 'layout-card--masonry', theme);
 			await expect(page).toHaveScreenshot();
 		});
 	});

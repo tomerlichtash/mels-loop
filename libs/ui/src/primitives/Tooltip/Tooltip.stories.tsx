@@ -4,7 +4,7 @@ import { Button } from '../Button/Button';
 import { Tooltip } from './Tooltip';
 
 const meta: Meta<typeof Tooltip> = {
-	title: 'Primitives/Tooltip',
+	title: 'Overlay/Tooltip',
 	component: Tooltip,
 	args: {
 		label: 'Tooltip content',

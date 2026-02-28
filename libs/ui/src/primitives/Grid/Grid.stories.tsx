@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Grid } from './Grid';
 
 const meta: Meta<typeof Grid> = {
-	title: 'Primitives/Grid',
+	title: 'Layout/Grid',
 	component: Grid,
 	args: {
 		columns: 3,

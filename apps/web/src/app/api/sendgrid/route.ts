@@ -16,6 +16,14 @@ export async function POST(request: NextRequest) {
 		const fromEmail = process.env.SENDGRID_FROM_EMAIL || 'noreply@melsloop.com';
 
 		if (!apiKey) {
+			if (process.env.NODE_ENV === 'development') {
+				console.log('[mock] Contact form submission:', {
+					name,
+					email,
+					message,
+				});
+				return NextResponse.json({ success: true });
+			}
 			console.error('SENDGRID_API_KEY not configured');
 			return NextResponse.json(
 				{ error: 'Email service not configured' },

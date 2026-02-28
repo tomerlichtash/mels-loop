@@ -27,7 +27,7 @@ type CardStoryArgs = ComponentProps<typeof Card> & {
 };
 
 const meta: Meta<CardStoryArgs> = {
-	title: 'Primitives/Card',
+	title: 'Layout/Card',
 	component: Card,
 	argTypes: {
 		children: { control: false },

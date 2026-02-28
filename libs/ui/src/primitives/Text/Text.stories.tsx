@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Text } from './Text';
 
 const meta: Meta<typeof Text> = {
-	title: 'Primitives/Text',
+	title: 'Content/Text',
 	component: Text,
 	args: {
 		children: 'The quick brown fox jumps over the lazy dog.',

@@ -1,7 +1,7 @@
 import { loadStory, THEMES } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
-const STORY_ID = 'primitives-container--default';
+const STORY_ID = 'layout-container--default';
 
 const cases = {
 	paddingHorizontal: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],

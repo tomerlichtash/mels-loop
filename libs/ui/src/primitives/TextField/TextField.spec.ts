@@ -1,9 +1,9 @@
 import { loadStory, THEMES } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
-import { TextInputDriver } from './TextInput.driver';
+import { TextFieldDriver } from './TextField.driver';
 
-const STORY_ID = 'primitives-textinput--default';
+const STORY_ID = 'input-textfield--default';
 
 const cases = {
 	size: ['sm', 'md', 'lg'],
@@ -22,7 +22,7 @@ for (const theme of THEMES) {
 						await loadStory(page, STORY_ID, theme, {
 							args: { [prop]: value },
 						});
-						const input = new TextInputDriver(page);
+						const input = new TextFieldDriver(page);
 						await expect(input.locator).toHaveScreenshot();
 					});
 
@@ -30,7 +30,7 @@ for (const theme of THEMES) {
 						await loadStory(page, STORY_ID, theme, {
 							args: { [prop]: value },
 						});
-						const input = new TextInputDriver(page);
+						const input = new TextFieldDriver(page);
 						await input.locator.focus();
 						await expect(input.locator).toHaveScreenshot();
 					});

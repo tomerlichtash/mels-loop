@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { ToggleButton } from './ToggleButton';
 
 const meta: Meta<typeof ToggleButton> = {
-	title: 'Primitives/ToggleButton',
+	title: 'Action/ToggleButton',
 	component: ToggleButton,
 };
 

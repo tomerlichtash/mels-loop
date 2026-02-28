@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { BlockquoteDriver } from './Blockquote.driver';
 
-const STORY_ID = 'primitives-blockquote--default';
+const STORY_ID = 'content-blockquote--default';
 
 for (const theme of THEMES) {
 	test.describe(theme, () => {

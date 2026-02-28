@@ -6,7 +6,7 @@ import { Text } from '../Text/Text';
 import { Dialog } from './Dialog';
 
 const meta: Meta<typeof Dialog> = {
-	title: 'Primitives/Dialog',
+	title: 'Overlay/Dialog',
 	component: Dialog,
 };
 

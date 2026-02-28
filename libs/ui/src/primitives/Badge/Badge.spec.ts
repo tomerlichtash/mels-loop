@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { BadgeDriver } from './Badge.driver';
 
-const STORY_ID = 'primitives-badge--default';
+const STORY_ID = 'content-badge--default';
 
 const cases = {
 	radius: ['none', 'sm', 'md', 'lg', 'pill'],

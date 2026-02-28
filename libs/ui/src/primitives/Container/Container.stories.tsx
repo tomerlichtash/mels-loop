@@ -24,7 +24,7 @@ const Placeholder = ({ label }: { label: string }) => (
 );
 
 const meta: Meta<ContainerStoryArgs> = {
-	title: 'Primitives/Container',
+	title: 'Layout/Container',
 	component: Container,
 	argTypes: {
 		children: { control: false },

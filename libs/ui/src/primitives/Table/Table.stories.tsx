@@ -8,7 +8,7 @@ import { TableHeaderCell } from './TableHeaderCell';
 import { TableRow } from './TableRow';
 
 const meta: Meta<typeof Table> = {
-	title: 'Primitives/Table',
+	title: 'Content/Table',
 	component: Table,
 };
 

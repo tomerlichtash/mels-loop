@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { BreadcrumbsDriver } from './Breadcrumbs.driver';
 
-const STORY_ID = 'primitives-breadcrumbs--default';
+const STORY_ID = 'navigation-breadcrumbs--default';
 
 for (const theme of THEMES) {
 	test.describe(theme, () => {

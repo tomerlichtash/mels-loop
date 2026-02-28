@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Loader } from './Loader';
 
 const meta: Meta<typeof Loader> = {
-	title: 'Primitives/Loader',
+	title: 'Feedback/Loader',
 	component: Loader,
 	args: {
 		variant: 'spinner',

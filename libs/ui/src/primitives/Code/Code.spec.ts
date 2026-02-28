@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { CodeDriver } from './Code.driver';
 
-const STORY_ID = 'primitives-code--default';
+const STORY_ID = 'content-code--default';
 
 for (const theme of THEMES) {
 	test.describe(theme, () => {

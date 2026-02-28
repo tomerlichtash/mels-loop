@@ -1,3 +1,21 @@
+:root {
+	--contact-form-border-color: var(--ml-border-color);
+	--contact-form-radius: var(--ml-radius-md);
+	--contact-form-padding: var(--ml-space-lg);
+	--contact-form-background: var(--ml-surface-background-color);
+}
+
 .root {
+	width: 100%;
+	border: 1px solid var(--contact-form-border-color);
+	border-radius: var(--contact-form-radius);
+	padding: var(--contact-form-padding);
+	background-color: var(--contact-form-background);
+}
+
+.actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	width: 100%;
 }

@@ -1,7 +1,7 @@
 import { loadStory, THEMES } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
-const STORY_ID = 'primitives-loader--default';
+const STORY_ID = 'feedback-loader--default';
 
 const variants = ['spinner', 'dots', 'pulse'] as const;
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;

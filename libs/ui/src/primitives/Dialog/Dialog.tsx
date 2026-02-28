@@ -10,6 +10,7 @@ interface DialogProps {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
 	title: string;
+	closeLabel?: string;
 	children: ReactNode;
 	className?: string;
 }
@@ -18,6 +19,7 @@ export function Dialog({
 	open,
 	onOpenChange,
 	title,
+	closeLabel = 'Close',
 	children,
 	className,
 }: DialogProps) {
@@ -32,7 +34,7 @@ export function Dialog({
 					<RadixDialog.Title className={styles.visuallyHidden}>
 						{title}
 					</RadixDialog.Title>
-					<RadixDialog.Close className={styles.close} aria-label="Close">
+					<RadixDialog.Close className={styles.close} aria-label={closeLabel}>
 						&times;
 					</RadixDialog.Close>
 					{children}

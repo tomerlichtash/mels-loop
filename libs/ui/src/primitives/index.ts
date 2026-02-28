@@ -1,3 +1,4 @@
+export { InputAction } from './_internal/InputAction/InputAction';
 export { Alert } from './Alert/Alert';
 export { Badge } from './Badge/Badge';
 export { Blockquote } from './Blockquote/Blockquote';
@@ -19,12 +20,11 @@ export { CodeBlock } from './CodeBlock/CodeBlock';
 export { Container } from './Container/Container';
 export { Dialog } from './Dialog';
 export { Figure, FigureCaption } from './Figure';
-export { FormField } from './FormField/FormField';
 export { Grid } from './Grid/Grid';
-export { Label } from './Label/Label';
 export { List } from './List/List';
 export { ListItem } from './List/ListItem';
 export { Loader } from './Loader/Loader';
+export { PasswordField } from './PasswordField/PasswordField';
 export { Popover } from './Popover';
 export { Separator } from './Separator/Separator';
 export {
@@ -36,8 +36,8 @@ export {
 	TableRow,
 } from './Table';
 export { Text } from './Text/Text';
-export { Textarea } from './Textarea/Textarea';
-export { TextInput } from './TextInput/TextInput';
+export { TextArea } from './TextArea/TextArea';
+export { TextField } from './TextField/TextField';
 export { ToggleButton } from './ToggleButton';
 export type { ToggleGroupItemProps } from './ToggleGroup';
 export { ToggleGroup } from './ToggleGroup';

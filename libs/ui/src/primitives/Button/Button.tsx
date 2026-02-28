@@ -50,9 +50,7 @@ export function Button({
 	return (
 		<button className={classes} disabled={disabled || loading} {...props}>
 			{loading && <Loader size="sm" aria-hidden />}
-			<span className={loading ? styles.labelHidden : undefined}>
-				{children}
-			</span>
+			{children}
 		</button>
 	);
 }

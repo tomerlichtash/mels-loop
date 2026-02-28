@@ -4,7 +4,7 @@ import { List } from './List';
 import { ListItem } from './ListItem';
 
 const meta: Meta<typeof List> = {
-	title: 'Primitives/List',
+	title: 'Content/List',
 	component: List,
 	argTypes: {
 		ordered: { control: 'boolean' },

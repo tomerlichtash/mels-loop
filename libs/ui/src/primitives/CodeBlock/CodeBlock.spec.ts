@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { CodeBlockDriver } from './CodeBlock.driver';
 
-const STORY_ID = 'primitives-codeblock--default';
+const STORY_ID = 'content-codeblock--default';
 
 for (const theme of THEMES) {
 	test.describe(theme, () => {

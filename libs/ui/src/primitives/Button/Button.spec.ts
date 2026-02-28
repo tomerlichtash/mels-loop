@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { ButtonDriver } from './Button.driver';
 
-const STORY_ID = 'primitives-button--default';
+const STORY_ID = 'action-button--default';
 
 const cases = {
 	size: ['xs', 'sm', 'md', 'lg', 'xl'],

@@ -6,7 +6,7 @@ import { Text } from '../Text/Text';
 import { Popover } from './Popover';
 
 const meta: Meta<typeof Popover> = {
-	title: 'Primitives/Popover',
+	title: 'Overlay/Popover',
 	component: Popover,
 };
 

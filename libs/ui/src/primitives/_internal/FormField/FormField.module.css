@@ -1,5 +1,5 @@
 :root {
-	--ml-form-field-gap: var(--ml-space-xs);
+	--ml-form-field-gap: var(--ml-space-sm);
 	--ml-form-field-error-font-size: var(--ml-font-size-sm);
 	--ml-form-field-error-color: var(--ml-error-text-color);
 }

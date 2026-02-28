@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { PopoverDriver } from './Popover.driver';
 
-const STORY_ID = 'primitives-popover--default';
+const STORY_ID = 'overlay-popover--default';
 
 for (const theme of THEMES) {
 	test.describe(theme, () => {

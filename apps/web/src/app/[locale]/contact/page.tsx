@@ -16,16 +16,15 @@ export default async function Page({ params }: PageProps) {
 	const typedLocale = locale as Locale;
 
 	const dict = await getDictionary(typedLocale);
-	const title = dictGet(dict, 'nav.contact');
+	const navTitle = dictGet(dict, 'nav.contact');
 	const subtitle = dictGet(dict, 'contact.pageSubtitle');
 	const text = dictGet(dict, 'contact.pageText');
 
 	return (
 		<StaticPage
-			title={title}
-			breadcrumbs={[homeItemFromDict(dict), { label: title }]}
+			title={subtitle}
+			breadcrumbs={[homeItemFromDict(dict), { label: navTitle }]}
 		>
-			{subtitle && <Text color="muted">{subtitle}</Text>}
 			{text && <Text variant="body2">{text}</Text>}
 			<ContactForm />
 		</StaticPage>

@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { FigureDriver } from './Figure.driver';
 
-const STORY_ID = 'primitives-figure--default';
+const STORY_ID = 'content-figure--default';
 
 for (const theme of THEMES) {
 	test.describe(theme, () => {

@@ -11,6 +11,8 @@ type TooltipPadding = 'xs' | 'sm' | 'md' | 'lg';
 interface TooltipProps {
 	label: string;
 	children: ReactNode;
+	open?: boolean;
+	onOpenChange?: (open: boolean) => void;
 	side?: 'top' | 'right' | 'bottom' | 'left';
 	delayDuration?: number;
 	paddingHorizontal?: TooltipPadding;
@@ -21,6 +23,8 @@ interface TooltipProps {
 export function Tooltip({
 	label,
 	children,
+	open,
+	onOpenChange,
 	side = 'bottom',
 	delayDuration = 0,
 	paddingHorizontal,
@@ -29,7 +33,7 @@ export function Tooltip({
 }: TooltipProps) {
 	return (
 		<TooltipPrimitive.Provider delayDuration={delayDuration}>
-			<TooltipPrimitive.Root>
+			<TooltipPrimitive.Root open={open} onOpenChange={onOpenChange}>
 				<TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
 				<TooltipPrimitive.Portal>
 					<TooltipPrimitive.Content

@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { SeparatorDriver } from './Separator.driver';
 
-const STORY_ID = 'primitives-separator--default';
+const STORY_ID = 'layout-separator--default';
 
 const orientations = ['horizontal', 'vertical'] as const;
 

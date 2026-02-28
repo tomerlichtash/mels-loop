@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 import { ToggleButtonDriver } from './ToggleButton.driver';
 
-const STORY_ID = 'primitives-togglebutton--default';
+const STORY_ID = 'action-togglebutton--default';
 
 for (const theme of THEMES) {
 	test.describe(theme, () => {
