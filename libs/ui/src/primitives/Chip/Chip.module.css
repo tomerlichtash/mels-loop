@@ -1,11 +1,11 @@
 :root {
-	--ml-chip-background: var(--ml-color-primary-muted);
-	--ml-chip-color: var(--ml-text-color);
-	--ml-chip-border-color: var(--ml-border-color);
+	--ml-chip-background: var(--ml-color-primary);
+	--ml-chip-color: var(--ml-color-primary-contrast);
+	--ml-chip-border-color: var(--ml-color-primary);
 	--ml-chip-radius: var(--ml-radius-pill);
 	--ml-chip-gap: var(--ml-space-xs);
-	--ml-chip-dismiss-color: var(--ml-text-muted-color);
-	--ml-chip-dismiss-color-hover: var(--ml-text-color);
+	--ml-chip-dismiss-color: var(--ml-color-primary-contrast);
+	--ml-chip-dismiss-color-hover: var(--ml-color-primary-contrast);
 }
 
 .root {
@@ -68,6 +68,10 @@
 	cursor: pointer;
 	line-height: 1;
 	border-radius: var(--ml-radius-sm);
+}
+
+.dismiss svg {
+	transform: scale(0.8);
 }
 
 .dismiss:hover {

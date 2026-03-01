@@ -1,23 +1,18 @@
 'use client';
 
-import { CheckIcon, ChevronDownIcon, Cross2Icon } from '@radix-ui/react-icons';
+import { ChevronDownIcon, Cross2Icon } from '@radix-ui/react-icons';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import cn from 'classnames';
-import {
-	forwardRef,
-	type KeyboardEvent,
-	useCallback,
-	useId,
-	useMemo,
-	useRef,
-	useState,
-} from 'react';
+import { forwardRef, useCallback } from 'react';
 
 import { FormField } from '../_internal/FormField/FormField';
 import { InputAction } from '../_internal/InputAction/InputAction';
 import { Label } from '../_internal/Label/Label';
 import { Chip } from '../Chip/Chip';
 import styles from './Combobox.module.css';
+import { ComboboxListbox } from './ComboboxListbox';
+import { useCombobox } from './useCombobox';
+import { useReorder } from './useReorder';
 
 export interface ComboboxOption {
 	value: string;
@@ -63,9 +58,6 @@ interface ComboboxMultiProps extends ComboboxBaseProps {
 
 export type ComboboxProps = ComboboxSingleProps | ComboboxMultiProps;
 
-const defaultFilter: ComboboxFilterFn = (option, query) =>
-	option.label.toLowerCase().includes(query.toLowerCase());
-
 const chipSizeMap: Record<ComboboxSize, 'sm' | 'md'> = {
 	sm: 'sm',
 	md: 'sm',
@@ -90,386 +82,103 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 			emptyMessage = 'No results found',
 			clearLabel = 'Clear',
 			toggleLabel = 'Toggle',
-			id: idProp,
 			className,
 			name,
 		} = props;
 
-		const isMulti = !!multiple;
-		const value = props.value;
-		const onValueChange = props.onValueChange;
+		const combobox = useCombobox({
+			options,
+			value: props.value,
+			onValueChange: props.onValueChange,
+			multiple,
+			disabled,
+			filter,
+			id: props.id,
+		});
 
-		const autoId = useId();
-		const id = idProp ?? autoId;
-		const listboxId = `${id}-listbox`;
+		const reorder = useReorder({
+			values: combobox.selectedValues,
+			onReorder: props.onValueChange as (v: string[]) => void,
+		});
 
-		const [open, setOpen] = useState(false);
-		const [query, setQuery] = useState<string | null>(null);
-		const [highlightedIndex, setHighlightedIndex] = useState(-1);
-
-		const innerRef = useRef<HTMLInputElement>(null);
 		const mergedRef = useCallback(
 			(node: HTMLInputElement | null) => {
-				innerRef.current = node;
+				(
+					combobox.inputRef as React.RefObject<HTMLInputElement | null>
+				).current = node;
 				if (typeof ref === 'function') ref(node);
 				else if (ref)
 					(ref as React.RefObject<HTMLInputElement | null>).current = node;
 			},
-			[ref],
+			[ref, combobox.inputRef],
 		);
-
-		const filterFn = filter ?? defaultFilter;
-
-		const selectedValues = useMemo(
-			() =>
-				isMulti
-					? (value as string[])
-					: (value as string)
-						? [value as string]
-						: [],
-			[isMulti, value],
-		);
-
-		const isSelected = useCallback(
-			(optionValue: string) => selectedValues.includes(optionValue),
-			[selectedValues],
-		);
-
-		const filteredOptions = useMemo(
-			() =>
-				query
-					? options.filter((o) => !o.disabled && filterFn(o, query))
-					: options,
-			[options, query, filterFn],
-		);
-
-		const selectedLabel = useMemo(
-			() =>
-				isMulti
-					? ''
-					: (options.find((o) => o.value === (value as string))?.label ?? ''),
-			[isMulti, options, value],
-		);
-
-		const openDropdown = useCallback(() => {
-			if (disabled) return;
-			setOpen(true);
-			setQuery(null);
-			setHighlightedIndex(-1);
-		}, [disabled]);
-
-		const closeDropdown = useCallback(() => {
-			setOpen(false);
-			setQuery(null);
-			setHighlightedIndex(-1);
-		}, []);
-
-		const selectOption = useCallback(
-			(option: ComboboxOption) => {
-				if (option.disabled) return;
-				if (isMulti) {
-					const current = value as string[];
-					const onChange = onValueChange as (v: string[]) => void;
-					if (current.includes(option.value)) {
-						onChange(current.filter((v) => v !== option.value));
-					} else {
-						onChange([...current, option.value]);
-					}
-					setQuery(null);
-					setHighlightedIndex(-1);
-					innerRef.current?.focus();
-				} else {
-					(onValueChange as (v: string) => void)(option.value);
-					closeDropdown();
-				}
-			},
-			[isMulti, value, onValueChange, closeDropdown],
-		);
-
-		const handleClear = useCallback(() => {
-			if (isMulti) {
-				(onValueChange as (v: string[]) => void)([]);
-			} else {
-				(onValueChange as (v: string) => void)('');
-			}
-			innerRef.current?.focus();
-		}, [isMulti, onValueChange]);
-
-		const handleRemoveValue = useCallback(
-			(removeValue: string) => {
-				const current = value as string[];
-				const onChange = onValueChange as (v: string[]) => void;
-				onChange(current.filter((v) => v !== removeValue));
-				innerRef.current?.focus();
-			},
-			[value, onValueChange],
-		);
-
-		const [draggedValue, setDraggedValue] = useState<string | null>(null);
-		const [dragOverValue, setDragOverValue] = useState<string | null>(null);
-		const [dragOverSide, setDragOverSide] = useState<'before' | 'after' | null>(
-			null,
-		);
-
-		const handleDragStart = useCallback(
-			(e: React.DragEvent, chipValue: string) => {
-				setDraggedValue(chipValue);
-				e.dataTransfer.effectAllowed = 'move';
-			},
-			[],
-		);
-
-		const handleDragOver = useCallback(
-			(e: React.DragEvent, chipValue: string) => {
-				e.preventDefault();
-				e.dataTransfer.dropEffect = 'move';
-				const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-				const midpoint = rect.left + rect.width / 2;
-				setDragOverValue(chipValue);
-				setDragOverSide(e.clientX < midpoint ? 'before' : 'after');
-			},
-			[],
-		);
-
-		const handleDrop = useCallback(
-			(e: React.DragEvent) => {
-				e.preventDefault();
-				if (draggedValue && dragOverValue && draggedValue !== dragOverValue) {
-					const current = [...(value as string[])];
-					const fromIndex = current.indexOf(draggedValue);
-					if (fromIndex !== -1) {
-						const item = current.splice(fromIndex, 1)[0];
-						const targetIndex = current.indexOf(dragOverValue);
-						const insertIndex =
-							dragOverSide === 'after' ? targetIndex + 1 : targetIndex;
-						current.splice(insertIndex, 0, item);
-						(onValueChange as (v: string[]) => void)(current);
-					}
-				}
-				setDraggedValue(null);
-				setDragOverValue(null);
-				setDragOverSide(null);
-			},
-			[draggedValue, dragOverValue, dragOverSide, value, onValueChange],
-		);
-
-		const handleDragEnd = useCallback(() => {
-			setDraggedValue(null);
-			setDragOverValue(null);
-			setDragOverSide(null);
-		}, []);
-
-		const handleInputChange = useCallback(
-			(e: React.ChangeEvent<HTMLInputElement>) => {
-				const val = e.target.value;
-				setQuery(val);
-				if (!open) setOpen(true);
-				setHighlightedIndex(0);
-			},
-			[open],
-		);
-
-		const handleClick = useCallback(() => {
-			if (!open) openDropdown();
-		}, [open, openDropdown]);
-
-		const navigateHighlight = useCallback(
-			(direction: 1 | -1) => {
-				setHighlightedIndex((prev) => {
-					const len = filteredOptions.length;
-					if (len === 0) return -1;
-
-					let next = prev + direction;
-					if (next < 0) next = len - 1;
-					if (next >= len) next = 0;
-
-					let attempts = 0;
-					while (filteredOptions[next]?.disabled && attempts < len) {
-						next += direction;
-						if (next < 0) next = len - 1;
-						if (next >= len) next = 0;
-						attempts++;
-					}
-
-					return next;
-				});
-			},
-			[filteredOptions],
-		);
-
-		const handleKeyDown = useCallback(
-			(e: KeyboardEvent<HTMLInputElement>) => {
-				if (e.nativeEvent.isComposing) return;
-
-				switch (e.key) {
-					case 'ArrowDown':
-						e.preventDefault();
-						if (!open) {
-							openDropdown();
-							setHighlightedIndex(0);
-						} else {
-							navigateHighlight(1);
-						}
-						break;
-
-					case 'ArrowUp':
-						e.preventDefault();
-						if (!open) {
-							openDropdown();
-							setHighlightedIndex(filteredOptions.length - 1);
-						} else {
-							navigateHighlight(-1);
-						}
-						break;
-
-					case 'Enter':
-						e.preventDefault();
-						if (
-							open &&
-							highlightedIndex >= 0 &&
-							filteredOptions[highlightedIndex]
-						) {
-							selectOption(filteredOptions[highlightedIndex]);
-						} else if (!open) {
-							openDropdown();
-						}
-						break;
-
-					case 'Backspace':
-						if (isMulti && !query && selectedValues.length > 0) {
-							handleRemoveValue(selectedValues[selectedValues.length - 1]);
-						}
-						break;
-
-					case 'Escape':
-						if (open) {
-							e.preventDefault();
-							closeDropdown();
-						}
-						break;
-
-					case 'Home':
-						if (open) {
-							e.preventDefault();
-							setHighlightedIndex(0);
-						}
-						break;
-
-					case 'End':
-						if (open) {
-							e.preventDefault();
-							setHighlightedIndex(filteredOptions.length - 1);
-						}
-						break;
-
-					case 'Tab':
-						if (open) closeDropdown();
-						break;
-				}
-			},
-			[
-				open,
-				highlightedIndex,
-				filteredOptions,
-				openDropdown,
-				closeDropdown,
-				selectOption,
-				navigateHighlight,
-				isMulti,
-				query,
-				selectedValues,
-				handleRemoveValue,
-			],
-		);
-
-		const highlightedOptionId =
-			highlightedIndex >= 0
-				? `${listboxId}-option-${highlightedIndex}`
-				: undefined;
-
-		const hasValue = isMulti
-			? (value as string[]).length > 0
-			: !!(value as string);
-
-		const inputValue = isMulti
-			? (query ?? '')
-			: open
-				? (query ?? selectedLabel)
-				: selectedLabel;
-
-		const showPlaceholder = isMulti ? selectedValues.length === 0 : !value;
-
-		const sharedInputProps = {
-			ref: mergedRef,
-			id,
-			name,
-			role: 'combobox' as const,
-			value: inputValue,
-			placeholder: showPlaceholder ? placeholder : undefined,
-			disabled,
-			required,
-			autoComplete: 'off' as const,
-			'aria-expanded': open,
-			'aria-controls': listboxId,
-			'aria-activedescendant': highlightedOptionId,
-			'aria-autocomplete': 'list' as const,
-			'aria-haspopup': 'listbox' as const,
-			'aria-required': required || undefined,
-			'aria-invalid': error || undefined,
-			onChange: handleInputChange,
-			onFocus: openDropdown,
-			onClick: handleClick,
-			onKeyDown: handleKeyDown,
-		};
 
 		const inputClasses = cn(
 			styles.input,
 			styles[`size-${size}`],
 			styles[`radius-${radius}`],
-			{
-				[styles.error]: error,
-			},
+			{ [styles.error]: error },
 		);
 
+		const sharedInputProps = {
+			ref: mergedRef,
+			id: combobox.id,
+			name,
+			role: 'combobox' as const,
+			value: combobox.inputValue,
+			placeholder: combobox.showPlaceholder ? placeholder : undefined,
+			disabled,
+			required,
+			autoComplete: 'off' as const,
+			'aria-expanded': combobox.open,
+			'aria-controls': combobox.listboxId,
+			'aria-activedescendant': combobox.highlightedOptionId,
+			'aria-autocomplete': 'list' as const,
+			'aria-haspopup': 'listbox' as const,
+			'aria-required': required || undefined,
+			'aria-invalid': error || undefined,
+			onChange: combobox.handleInputChange,
+			onFocus: combobox.openDropdown,
+			onClick: combobox.handleClick,
+			onKeyDown: combobox.handleKeyDown,
+		};
+
 		const renderAnchor = () => {
-			if (isMulti) {
+			if (combobox.isMulti) {
 				return (
 					<PopoverPrimitive.Anchor asChild>
 						<div
 							className={cn(inputClasses, styles.inputWrapper)}
 							onClick={() => {
-								innerRef.current?.focus();
-								if (!open) openDropdown();
+								combobox.inputRef.current?.focus();
+								if (!combobox.open) combobox.openDropdown();
 							}}
 						>
-							{selectedValues.map((v) => {
+							{combobox.selectedValues.map((v) => {
 								const opt = options.find((o) => o.value === v);
 								if (!opt) return null;
+								const drag = reorder.getDragState(v);
 								return (
 									<Chip
 										key={v}
 										size={chipSizeMap[size]}
+										onMouseDown={(e) => e.preventDefault()}
+										onClick={(e) => e.stopPropagation()}
 										onDismiss={
-											disabled ? undefined : () => handleRemoveValue(v)
+											disabled ? undefined : () => combobox.handleRemoveValue(v)
 										}
 										dismissLabel={clearLabel}
 										disabled={disabled}
 										draggable={!disabled}
-										onDragStart={(e) => handleDragStart(e, v)}
-										onDragOver={(e) => handleDragOver(e, v)}
-										onDrop={handleDrop}
-										onDragEnd={handleDragEnd}
+										onDragStart={(e) => reorder.handleDragStart(e, v)}
+										onDragOver={(e) => reorder.handleDragOver(e, v)}
+										onDrop={reorder.handleDrop}
+										onDragEnd={reorder.handleDragEnd}
 										className={cn({
 											[styles.chipDraggable]: !disabled,
-											[styles.chipDragging]: draggedValue === v,
-											[styles.chipDropBefore]:
-												dragOverValue === v &&
-												draggedValue !== v &&
-												dragOverSide === 'before',
-											[styles.chipDropAfter]:
-												dragOverValue === v &&
-												draggedValue !== v &&
-												dragOverSide === 'after',
+											[styles.chipDragging]: drag.isDragging,
+											[styles.chipDropBefore]: drag.isDropBefore,
+											[styles.chipDropAfter]: drag.isDropAfter,
 										})}
 									>
 										{opt.label}
@@ -489,38 +198,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 			);
 		};
 
-		const renderOptions = () =>
-			filteredOptions.map((option, index) => {
-				const selected = isSelected(option.value);
-				return (
-					<div
-						key={option.value}
-						role="option"
-						id={`${listboxId}-option-${index}`}
-						className={styles.option}
-						data-highlighted={index === highlightedIndex}
-						data-selected={selected}
-						data-disabled={option.disabled || undefined}
-						aria-selected={selected}
-						aria-disabled={option.disabled || undefined}
-						onPointerDown={(e) => e.preventDefault()}
-						onClick={() => selectOption(option)}
-						onPointerMove={() => setHighlightedIndex(index)}
-					>
-						{isMulti && (
-							<CheckIcon
-								className={cn(styles.checkIcon, {
-									[styles.checkIconVisible]: selected,
-								})}
-							/>
-						)}
-						{option.label}
-					</div>
-				);
-			});
-
 		const comboboxElement = (
-			<PopoverPrimitive.Root open={open}>
+			<PopoverPrimitive.Root open={combobox.open}>
 				<div
 					className={cn(
 						styles.root,
@@ -533,10 +212,10 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 					{renderAnchor()}
 
 					<span className={styles.actions}>
-						{hasValue && !disabled && (
+						{combobox.hasValue && !disabled && (
 							<InputAction
 								aria-label={clearLabel}
-								onClick={handleClear}
+								onClick={combobox.handleClear}
 								tabIndex={-1}
 							>
 								<Cross2Icon />
@@ -544,13 +223,17 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 						)}
 						<InputAction
 							aria-label={toggleLabel}
-							onClick={() => (open ? closeDropdown() : openDropdown())}
+							onClick={() =>
+								combobox.open
+									? combobox.closeDropdown()
+									: combobox.openDropdown()
+							}
 							onMouseDown={(e) => e.preventDefault()}
 							tabIndex={-1}
 						>
 							<ChevronDownIcon
 								className={cn(styles.chevron, {
-									[styles.chevronOpen]: open,
+									[styles.chevronOpen]: combobox.open,
 								})}
 							/>
 						</InputAction>
@@ -560,22 +243,32 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 						<PopoverPrimitive.Content
 							className={styles.listbox}
 							role="listbox"
-							id={listboxId}
-							aria-multiselectable={isMulti || undefined}
+							id={combobox.listboxId}
+							aria-multiselectable={combobox.isMulti || undefined}
 							side="bottom"
 							align="start"
 							sideOffset={4}
 							onOpenAutoFocus={(e) => e.preventDefault()}
 							onCloseAutoFocus={(e) => e.preventDefault()}
-							onPointerDownOutside={() => closeDropdown()}
+							onPointerDownOutside={(e) => {
+								const target = e.target as HTMLElement;
+								if (target.closest('.ml-combobox')) {
+									e.preventDefault();
+									return;
+								}
+								combobox.closeDropdown();
+							}}
 						>
-							{filteredOptions.length === 0 ? (
-								<div className={styles.empty} role="status">
-									{emptyMessage}
-								</div>
-							) : (
-								renderOptions()
-							)}
+							<ComboboxListbox
+								options={combobox.filteredOptions}
+								multiple={combobox.isMulti}
+								highlightedIndex={combobox.highlightedIndex}
+								emptyMessage={emptyMessage}
+								listboxId={combobox.listboxId}
+								isSelected={combobox.isSelected}
+								onSelect={combobox.selectOption}
+								onHighlight={combobox.setHighlightedIndex}
+							/>
 						</PopoverPrimitive.Content>
 					</PopoverPrimitive.Portal>
 				</div>
@@ -586,7 +279,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
 		return (
 			<FormField error={errorMessage} className={className}>
-				<Label htmlFor={id} required={required}>
+				<Label htmlFor={combobox.id} required={required}>
 					{label}
 				</Label>
 				{comboboxElement}

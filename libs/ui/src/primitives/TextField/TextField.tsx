@@ -65,9 +65,14 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
 		const inputElement = hasIcon ? (
 			<div
-				className={cn(styles.root, styles[`size-${size}`], {
-					[styles.fullWidth]: fullWidth,
-				})}
+				className={cn(
+					styles.root,
+					styles[`size-${size}`],
+					{
+						[styles.fullWidth]: fullWidth,
+					},
+					className,
+				)}
 			>
 				{iconStart && <span className={styles.iconSlot}>{iconStart}</span>}
 				<input
@@ -90,7 +95,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 				id={id}
 				type={type}
 				required={required}
-				className={cn(inputClasses, !label && className)}
+				className={cn(inputClasses, className)}
 				{...props}
 			/>
 		);
@@ -98,7 +103,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 		if (!label) return inputElement;
 
 		return (
-			<FormField error={errorMessage} className={className}>
+			<FormField error={errorMessage}>
 				<Label htmlFor={id} required={required}>
 					{label}
 				</Label>
