@@ -5,7 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"build": "tsc -p tsconfig.build.json",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
 	},
 	"exports": {
 		"./config": {

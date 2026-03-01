@@ -4,7 +4,8 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
 	},
 	"exports": {
 		"./types": "./src/types.ts",
