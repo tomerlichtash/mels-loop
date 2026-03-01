@@ -6,9 +6,7 @@
 		{ "path": "libs/i18n" },
 		{ "path": "libs/content-pipeline" },
 		{ "path": "libs/ui" },
-		{ "path": "libs/forms" },
 		{ "path": "libs/test-utils" },
-		{ "path": "apps/blog" },
 		{ "path": "apps/web" }
 	]
 }
