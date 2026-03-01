@@ -1,8 +1,12 @@
-.root {
+:root {
 	--ml-figure-margin: var(--ml-space-lg);
 	--ml-figure-caption-font-size: var(--ml-font-size-body);
 	--ml-figure-caption-color: var(--ml-text-subtle-color);
+	--ml-figure-image-radius: var(--ml-radius-md);
+	--ml-figure-caption-gap: var(--ml-space-sm);
+}
 
+.root {
 	margin: var(--ml-figure-margin) 0;
 	text-align: center;
 }
@@ -10,14 +14,14 @@
 .root img {
 	max-width: 100%;
 	height: auto;
-	border-radius: var(--ml-radius-md);
+	border-radius: var(--ml-figure-image-radius);
 }
 
 .caption {
 	font-size: var(--ml-figure-caption-font-size);
 	font-style: italic;
 	color: var(--ml-figure-caption-color);
-	margin-top: var(--ml-space-sm);
+	margin-top: var(--ml-figure-caption-gap);
 }
 
 .caption[data-align='left'] {

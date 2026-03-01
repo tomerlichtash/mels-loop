@@ -1,6 +1,8 @@
 :root {
 	--ml-input-action-color: var(--ml-text-muted-color);
 	--ml-input-action-color-hover: var(--ml-text-color);
+	--ml-input-action-focus-color: var(--ml-color-primary);
+	--ml-input-action-radius: var(--ml-radius-sm);
 }
 
 .root {
@@ -20,7 +22,7 @@
 }
 
 .root:focus-visible {
-	outline: 2px solid var(--ml-color-primary);
+	outline: 2px solid var(--ml-input-action-focus-color);
 	outline-offset: 2px;
-	border-radius: var(--ml-radius-sm);
+	border-radius: var(--ml-input-action-radius);
 }

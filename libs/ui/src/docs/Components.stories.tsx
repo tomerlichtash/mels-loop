@@ -138,7 +138,7 @@ function ToggleGroupDemo() {
 		<ToggleGroup
 			value={value}
 			items={toggleGroupItems}
-			onChange={setValue}
+			onValueChange={setValue}
 			aria-label="Text formatting"
 		/>
 	);

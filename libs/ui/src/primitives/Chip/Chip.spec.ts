@@ -7,6 +7,7 @@ const STORY_ID = 'content-chip--default';
 
 const cases = {
 	size: ['sm', 'md', 'lg'],
+	radius: ['sm', 'md', 'lg', 'pill'],
 	disabled: [true],
 	dismissible: [true, false],
 };

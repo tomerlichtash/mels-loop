@@ -5,6 +5,7 @@
 	--ml-label-line-height: var(--ml-typography-label-line-height);
 	--ml-label-letter-spacing: var(--ml-typography-label-letter-spacing);
 	--ml-label-color: var(--ml-text-color);
+	--ml-label-required-color: var(--ml-color-error);
 }
 
 .root {
@@ -19,5 +20,5 @@
 
 .required::after {
 	content: ' *';
-	color: var(--ml-color-error);
+	color: var(--ml-label-required-color);
 }

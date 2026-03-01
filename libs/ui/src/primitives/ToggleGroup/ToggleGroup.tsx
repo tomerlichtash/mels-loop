@@ -13,7 +13,7 @@ interface ToggleGroupItemProps {
 interface ToggleGroupProps {
 	value: string;
 	items: ToggleGroupItemProps[];
-	onChange?: (value: string) => void;
+	onValueChange?: (value: string) => void;
 	className?: string;
 	'aria-label'?: string;
 }
@@ -23,7 +23,7 @@ export type { ToggleGroupItemProps };
 export function ToggleGroup({
 	value,
 	items,
-	onChange,
+	onValueChange,
 	className,
 	'aria-label': ariaLabel,
 }: ToggleGroupProps) {
@@ -32,7 +32,7 @@ export function ToggleGroup({
 			type="single"
 			value={value}
 			onValueChange={(v) => {
-				if (v) onChange?.(v);
+				if (v) onValueChange?.(v);
 			}}
 			className={cn(styles.root, 'ml-toggle-group', className)}
 			aria-label={ariaLabel}

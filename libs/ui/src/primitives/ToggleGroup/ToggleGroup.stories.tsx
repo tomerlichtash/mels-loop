@@ -21,7 +21,7 @@ function ToggleGroupDemo() {
 				{ value: 'b', label: 'Option B' },
 				{ value: 'c', label: 'Option C' },
 			]}
-			onChange={setValue}
+			onValueChange={setValue}
 			aria-label="Demo toggle"
 		/>
 	);

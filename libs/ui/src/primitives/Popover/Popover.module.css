@@ -1,4 +1,4 @@
-.content {
+:root {
 	--ml-popover-width: 340px;
 	--ml-popover-max-height: 300px;
 	--ml-popover-background: var(--ml-popover-bg);
@@ -6,7 +6,9 @@
 	--ml-popover-border-radius: var(--ml-radius-md);
 	--ml-popover-shadow: var(--ml-shadow);
 	--ml-popover-padding: var(--ml-space-xs);
+}
 
+.content {
 	width: var(--ml-popover-width);
 	background-color: var(--ml-popover-background);
 	border: 1px solid var(--ml-popover-border-color);

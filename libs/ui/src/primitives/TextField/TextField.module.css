@@ -11,6 +11,8 @@
 	--ml-input-border-color-hover: var(--ml-color-primary-muted);
 	--ml-input-border-color-focus: var(--ml-color-primary);
 	--ml-input-icon-size: 1em;
+	--ml-input-text-color: var(--ml-text-color);
+	--ml-input-background-color: var(--ml-background-color);
 	--ml-input-icon-color: var(--ml-text-muted-color);
 }
 
@@ -47,8 +49,8 @@
 	font-family: var(--ml-typography-body-font-family);
 	font-size: var(--ml-input-font-size);
 	line-height: var(--ml-typography-body-line-height);
-	color: var(--ml-text-color);
-	background-color: var(--ml-background-color);
+	color: var(--ml-input-text-color);
+	background-color: var(--ml-input-background-color);
 	border: 1px solid var(--ml-input-border-color);
 	border-radius: var(--ml-input-radius);
 	outline: none;

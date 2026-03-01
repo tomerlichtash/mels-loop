@@ -9,6 +9,8 @@
 	--ml-switch-track-bg-checked: var(--ml-interactive-background-color);
 	--ml-switch-thumb-bg: var(--ml-color-surface);
 	--ml-switch-focus-color: var(--ml-color-primary);
+	--ml-switch-error-color: var(--ml-error-border-color);
+	--ml-switch-thumb-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 	--ml-switch-duration: var(--ml-duration-fast);
 	--ml-switch-gap: var(--ml-space-sm);
 	--ml-switch-label-font-size: var(--ml-font-size-body);
@@ -67,7 +69,7 @@
 	height: var(--ml-switch-thumb-size);
 	border-radius: var(--ml-radius-full);
 	background-color: var(--ml-switch-thumb-bg);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: var(--ml-switch-thumb-shadow);
 	transition: transform var(--ml-switch-duration);
 	transform: translateX(var(--ml-switch-thumb-offset));
 }
@@ -90,6 +92,15 @@
 .disabled .label {
 	opacity: 0.6;
 	cursor: not-allowed;
+}
+
+/* Error */
+.error .track {
+	box-shadow: 0 0 0 1px var(--ml-switch-error-color);
+}
+
+.error .track[data-state='checked'] {
+	--ml-switch-track-bg-checked: var(--ml-switch-error-color);
 }
 
 /* Sizes */

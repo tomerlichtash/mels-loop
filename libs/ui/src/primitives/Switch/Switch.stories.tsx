@@ -17,6 +17,8 @@ const meta: Meta<typeof Switch> = {
 			options: ['sm', 'md', 'lg'],
 		},
 		label: { control: 'text' },
+		error: { control: 'boolean' },
+		errorMessage: { control: 'text' },
 		disabled: { control: 'boolean' },
 		required: { control: 'boolean' },
 	},
@@ -29,6 +31,8 @@ export const Default: Story = {
 	args: {
 		label: 'Enable notifications',
 		size: 'md',
+		error: false,
+		errorMessage: '',
 		disabled: false,
 		required: false,
 	},

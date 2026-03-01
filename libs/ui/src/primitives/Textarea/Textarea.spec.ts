@@ -7,6 +7,7 @@ const STORY_ID = 'input-textarea--default';
 
 const cases = {
 	size: ['sm', 'md', 'lg'],
+	radius: ['none', 'sm', 'md', 'lg'],
 	error: [true],
 	disabled: [true],
 };

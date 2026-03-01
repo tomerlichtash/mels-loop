@@ -8,6 +8,9 @@
 	--ml-textarea-border-color: var(--ml-input-border);
 	--ml-textarea-border-color-hover: var(--ml-color-primary-muted);
 	--ml-textarea-border-color-focus: var(--ml-color-primary);
+	--ml-textarea-text-color: var(--ml-text-color);
+	--ml-textarea-background-color: var(--ml-background-color);
+	--ml-textarea-placeholder-color: var(--ml-input-placeholder);
 }
 
 .root {
@@ -19,8 +22,8 @@
 	font-family: var(--ml-typography-body-font-family);
 	font-size: var(--ml-textarea-font-size);
 	line-height: var(--ml-typography-body-line-height);
-	color: var(--ml-text-color);
-	background-color: var(--ml-background-color);
+	color: var(--ml-textarea-text-color);
+	background-color: var(--ml-textarea-background-color);
 	border: 1px solid var(--ml-textarea-border-color);
 	border-radius: var(--ml-textarea-radius);
 	outline: none;
@@ -31,7 +34,7 @@
 }
 
 .root::placeholder {
-	color: var(--ml-input-placeholder);
+	color: var(--ml-textarea-placeholder-color);
 }
 
 .root:hover:not(:disabled):not(:focus) {
@@ -68,6 +71,23 @@
 	--ml-textarea-padding-horizontal: var(--ml-space-md);
 	--ml-textarea-padding-vertical: var(--ml-space-md);
 	--ml-textarea-min-height: 140px;
+}
+
+/* Radius */
+.radius-none {
+	--ml-textarea-radius: var(--ml-radius-none);
+}
+
+.radius-sm {
+	--ml-textarea-radius: var(--ml-radius-sm);
+}
+
+.radius-md {
+	--ml-textarea-radius: var(--ml-radius-md);
+}
+
+.radius-lg {
+	--ml-textarea-radius: var(--ml-radius-lg);
 }
 
 /* Error state */

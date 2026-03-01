@@ -6,9 +6,11 @@ import { Label } from '../_internal/Label/Label';
 import styles from './TextArea.module.css';
 
 type TextAreaSize = 'sm' | 'md' | 'lg';
+type TextAreaRadius = 'none' | 'sm' | 'md' | 'lg';
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 	size?: TextAreaSize;
+	radius?: TextAreaRadius;
 	label?: string;
 	error?: boolean;
 	errorMessage?: string;
@@ -18,6 +20,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 	function TextArea(
 		{
 			size = 'md',
+			radius = 'md',
 			label,
 			error,
 			errorMessage,
@@ -39,6 +42,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 				className={cn(
 					styles.root,
 					styles[`size-${size}`],
+					styles[`radius-${radius}`],
 					{ [styles.error]: error },
 					'ml-text-area',
 					!label && className,

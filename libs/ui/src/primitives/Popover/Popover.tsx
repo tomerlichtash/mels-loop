@@ -10,6 +10,7 @@ type Side = 'top' | 'bottom' | 'left' | 'right';
 
 interface PopoverProps {
 	open: boolean;
+	onOpenChange?: (open: boolean) => void;
 	trigger: ReactNode;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	triggerRef?: Ref<any>;
@@ -22,6 +23,7 @@ interface PopoverProps {
 
 export function Popover({
 	open,
+	onOpenChange,
 	trigger,
 	triggerRef,
 	children,
@@ -31,7 +33,7 @@ export function Popover({
 	className,
 }: PopoverProps) {
 	return (
-		<RadixPopover.Root open={open}>
+		<RadixPopover.Root open={open} onOpenChange={onOpenChange}>
 			<RadixPopover.Trigger asChild ref={triggerRef}>
 				{trigger}
 			</RadixPopover.Trigger>

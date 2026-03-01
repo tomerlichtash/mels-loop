@@ -5,10 +5,12 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import styles from './Chip.module.css';
 
 type ChipSize = 'sm' | 'md' | 'lg';
+type ChipRadius = 'sm' | 'md' | 'lg' | 'pill';
 
 interface ChipProps extends HTMLAttributes<HTMLSpanElement> {
 	children: ReactNode;
 	size?: ChipSize;
+	radius?: ChipRadius;
 	disabled?: boolean;
 	onDismiss?: () => void;
 	dismissLabel?: string;
@@ -17,6 +19,7 @@ interface ChipProps extends HTMLAttributes<HTMLSpanElement> {
 export function Chip({
 	children,
 	size = 'md',
+	radius = 'pill',
 	disabled,
 	onDismiss,
 	dismissLabel = 'Remove',
@@ -28,6 +31,7 @@ export function Chip({
 			className={cn(
 				styles.root,
 				styles[`size-${size}`],
+				styles[`radius-${radius}`],
 				{ [styles.disabled]: disabled },
 				'ml-chip',
 				className,

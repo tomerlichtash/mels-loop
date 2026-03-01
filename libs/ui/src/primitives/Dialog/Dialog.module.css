@@ -1,6 +1,17 @@
-.overlay {
+:root {
 	--ml-dialog-overlay-background: var(--ml-overlay-background-color);
+	--ml-dialog-width: min(90vw, 640px);
+	--ml-dialog-max-height: 85vh;
+	--ml-dialog-background: var(--ml-surface-background-color);
+	--ml-dialog-border-radius: var(--ml-radius-md);
+	--ml-dialog-shadow: var(--ml-shadow);
+	--ml-dialog-padding: var(--ml-space-md);
+	--ml-dialog-close-color: var(--ml-text-color);
+	--ml-dialog-close-hover-bg: var(--ml-color-surface-muted);
+	--ml-dialog-focus-color: var(--ml-color-primary);
+}
 
+.overlay {
 	position: fixed;
 	inset: 0;
 	background-color: var(--ml-dialog-overlay-background);
@@ -9,13 +20,6 @@
 }
 
 .content {
-	--ml-dialog-width: min(90vw, 640px);
-	--ml-dialog-max-height: 85vh;
-	--ml-dialog-background: var(--ml-surface-background-color);
-	--ml-dialog-border-radius: var(--ml-radius-md);
-	--ml-dialog-shadow: var(--ml-shadow);
-	--ml-dialog-padding: var(--ml-space-md);
-
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -34,14 +38,25 @@
 .close {
 	position: absolute;
 	top: var(--ml-space-sm);
-	right: var(--ml-space-sm);
+	inset-inline-end: var(--ml-space-sm);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	background: none;
 	border: none;
-	font-size: var(--ml-font-size-2xl);
 	cursor: pointer;
-	color: var(--ml-text-color);
-	padding: 0;
-	line-height: var(--ml-line-height-none);
+	color: var(--ml-dialog-close-color);
+	padding: var(--ml-space-xs);
+	border-radius: var(--ml-radius-sm);
+}
+
+.close:hover {
+	background-color: var(--ml-dialog-close-hover-bg);
+}
+
+.close:focus-visible {
+	outline: 2px solid var(--ml-dialog-focus-color);
+	outline-offset: 2px;
 }
 
 .visuallyHidden {

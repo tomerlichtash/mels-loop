@@ -6,6 +6,7 @@
 	--ml-chip-gap: var(--ml-space-xs);
 	--ml-chip-dismiss-color: var(--ml-color-primary-contrast);
 	--ml-chip-dismiss-color-hover: var(--ml-color-primary-contrast);
+	--ml-chip-dismiss-focus-color: var(--ml-color-primary);
 }
 
 .root {
@@ -49,10 +50,27 @@
 	--ml-chip-padding-vertical: var(--ml-space-xs);
 }
 
+/* Radius */
+.radius-sm {
+	--ml-chip-radius: var(--ml-radius-sm);
+}
+
+.radius-md {
+	--ml-chip-radius: var(--ml-radius-md);
+}
+
+.radius-lg {
+	--ml-chip-radius: var(--ml-radius-lg);
+}
+
+.radius-pill {
+	--ml-chip-radius: var(--ml-radius-pill);
+}
+
 /* Disabled */
 .disabled {
 	opacity: 0.6;
-	pointer-events: none;
+	cursor: not-allowed;
 }
 
 /* Dismiss button */
@@ -79,6 +97,6 @@
 }
 
 .dismiss:focus-visible {
-	outline: 2px solid var(--ml-color-primary);
+	outline: 2px solid var(--ml-chip-dismiss-focus-color);
 	outline-offset: 1px;
 }

@@ -1,8 +1,12 @@
+:root {
+	--ml-skeleton-color: var(--ml-border-color);
+}
+
 .media {
 	margin: calc(-1 * var(--ml-card-padding)) calc(-1 * var(--ml-card-padding))
 		var(--ml-card-padding);
 	height: var(--ml-card-media-height, 200px);
-	background-color: var(--ml-border-color);
+	background-color: var(--ml-skeleton-color);
 	animation: shimmer 1.5s infinite;
 }
 
@@ -29,7 +33,7 @@
 .line {
 	height: 0.75rem;
 	border-radius: var(--ml-radius-sm);
-	background-color: var(--ml-border-color);
+	background-color: var(--ml-skeleton-color);
 	animation: shimmer 1.5s infinite;
 }
 

@@ -1,5 +1,12 @@
 :root {
 	--ml-card-media-height: 200px;
+	/* Semi-transparent black scrim — no semantic theme token for image overlays */
+	--ml-card-media-overlay-gradient: linear-gradient(
+		to top,
+		rgba(0, 0, 0, 0.6) 0%,
+		transparent 100%
+	);
+	--ml-card-media-overlay-color: var(--ml-color-primary-contrast);
 }
 
 .root {
@@ -53,6 +60,6 @@
 	display: flex;
 	align-items: flex-end;
 	padding: var(--ml-card-padding);
-	background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
-	color: white;
+	background: var(--ml-card-media-overlay-gradient);
+	color: var(--ml-card-media-overlay-color);
 }

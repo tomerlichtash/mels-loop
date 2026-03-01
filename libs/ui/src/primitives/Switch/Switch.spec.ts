@@ -7,6 +7,7 @@ const STORY_ID = 'input-switch--default';
 
 const cases = {
 	size: ['sm', 'md', 'lg'],
+	error: [true],
 	disabled: [true],
 };
 

@@ -10,6 +10,10 @@ const meta: Meta<typeof Chip> = {
 			control: 'select',
 			options: ['sm', 'md', 'lg'],
 		},
+		radius: {
+			control: 'select',
+			options: ['sm', 'md', 'lg', 'pill'],
+		},
 		disabled: { control: 'boolean' },
 		dismissible: { control: 'boolean' },
 		children: { control: 'text' },
@@ -23,6 +27,7 @@ export const Default: Story = {
 	args: {
 		children: 'Option',
 		size: 'md',
+		radius: 'pill',
 		disabled: false,
 		dismissible: true,
 	},

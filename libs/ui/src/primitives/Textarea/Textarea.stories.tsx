@@ -10,6 +10,10 @@ const meta: Meta<typeof TextArea> = {
 			control: 'select',
 			options: ['sm', 'md', 'lg'],
 		},
+		radius: {
+			control: 'select',
+			options: ['none', 'sm', 'md', 'lg'],
+		},
 		label: { control: 'text' },
 		error: { control: 'boolean' },
 		errorMessage: { control: 'text' },
@@ -28,6 +32,7 @@ export const Default: Story = {
 		label: 'Label',
 		placeholder: 'Enter message...',
 		size: 'md',
+		radius: 'md',
 		error: false,
 		errorMessage: '',
 		disabled: false,

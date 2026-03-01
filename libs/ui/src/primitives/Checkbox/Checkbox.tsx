@@ -47,44 +47,40 @@ export function Checkbox({
 	const autoId = useId();
 	const id = idProp ?? autoId;
 
-	const checkboxElement = (
-		<div
-			className={cn(
-				styles.root,
-				styles[`size-${size}`],
-				{ [styles.error]: error, [styles.disabled]: disabled },
-				'ml-checkbox',
-				className,
-			)}
-		>
-			<RadixCheckbox.Root
-				id={id}
-				checked={checked}
-				defaultChecked={defaultChecked}
-				onCheckedChange={onCheckedChange}
-				disabled={disabled}
-				required={required}
-				name={name}
-				value={value}
-				className={styles.control}
-				aria-label={!label ? ariaLabel : undefined}
+	return (
+		<FormField error={errorMessage}>
+			<div
+				className={cn(
+					styles.root,
+					styles[`size-${size}`],
+					{ [styles.error]: error, [styles.disabled]: disabled },
+					'ml-checkbox',
+					className,
+				)}
 			>
-				<RadixCheckbox.Indicator className={styles.indicator} forceMount>
-					<CheckIcon className={styles.checkIcon} />
-					<MinusIcon className={styles.indeterminateIcon} />
-				</RadixCheckbox.Indicator>
-			</RadixCheckbox.Root>
-			{label && (
-				<Label htmlFor={id} required={required} className={styles.label}>
-					{label}
-				</Label>
-			)}
-		</div>
+				<RadixCheckbox.Root
+					id={id}
+					checked={checked}
+					defaultChecked={defaultChecked}
+					onCheckedChange={onCheckedChange}
+					disabled={disabled}
+					required={required}
+					name={name}
+					value={value}
+					className={styles.control}
+					aria-label={!label ? ariaLabel : undefined}
+				>
+					<RadixCheckbox.Indicator className={styles.indicator} forceMount>
+						<CheckIcon className={styles.checkIcon} />
+						<MinusIcon className={styles.indeterminateIcon} />
+					</RadixCheckbox.Indicator>
+				</RadixCheckbox.Root>
+				{label && (
+					<Label htmlFor={id} required={required} className={styles.label}>
+						{label}
+					</Label>
+				)}
+			</div>
+		</FormField>
 	);
-
-	if (errorMessage) {
-		return <FormField error={errorMessage}>{checkboxElement}</FormField>;
-	}
-
-	return checkboxElement;
 }

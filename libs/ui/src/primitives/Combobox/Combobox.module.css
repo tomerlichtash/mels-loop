@@ -7,6 +7,7 @@
 	--ml-combobox-dropdown-max-height: 240px;
 
 	--ml-combobox-actions-gap: var(--ml-space-xs);
+	--ml-combobox-drop-indicator-color: var(--ml-color-primary);
 }
 
 /* Wrapper */
@@ -31,8 +32,8 @@
 	font-family: var(--ml-typography-body-font-family);
 	font-size: var(--ml-input-font-size);
 	line-height: var(--ml-typography-body-line-height);
-	color: var(--ml-text-color);
-	background-color: var(--ml-background-color);
+	color: var(--ml-input-text-color);
+	background-color: var(--ml-input-background-color);
 	border: 1px solid var(--ml-input-border-color);
 	border-radius: var(--ml-input-radius);
 	outline: none;
@@ -205,8 +206,8 @@
 	top: 0;
 	bottom: 0;
 	width: 2px;
-	background-color: var(--ml-color-primary);
-	border-radius: 1px;
+	background-color: var(--ml-combobox-drop-indicator-color);
+	border-radius: var(--ml-radius-xs);
 }
 
 .chipDropAfter::after {
@@ -216,6 +217,6 @@
 	top: 0;
 	bottom: 0;
 	width: 2px;
-	background-color: var(--ml-color-primary);
-	border-radius: 1px;
+	background-color: var(--ml-combobox-drop-indicator-color);
+	border-radius: var(--ml-radius-xs);
 }

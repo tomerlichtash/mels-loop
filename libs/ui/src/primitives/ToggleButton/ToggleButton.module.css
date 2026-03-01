@@ -4,8 +4,8 @@
 	--ml-toggle-button-padding: 0 var(--ml-space-xs);
 	--ml-toggle-button-color: var(--ml-text-color);
 	--ml-toggle-button-radius: var(--ml-radius-md);
-	--ml-toggle-button-hover-bg: var(--ml-color-surface-deep);
-	--ml-toggle-button-active-bg: var(--ml-color-surface-muted);
+	--ml-toggle-button-hover-bg: var(--ml-color-surface-muted);
+	--ml-toggle-button-active-bg: var(--ml-color-surface-deep);
 }
 
 .root {
