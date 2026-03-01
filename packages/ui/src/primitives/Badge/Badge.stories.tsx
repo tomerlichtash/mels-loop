@@ -7,6 +7,7 @@ const meta: Meta<typeof Badge> = {
 	component: Badge,
 	args: {
 		children: 'Badge',
+		bordered: false,
 	},
 	argTypes: {
 		children: { control: 'text' },
@@ -15,6 +16,7 @@ const meta: Meta<typeof Badge> = {
 			control: 'select',
 			options: ['none', 'sm', 'md', 'lg', 'pill'],
 		},
+		bordered: { control: 'boolean' },
 	},
 };
 

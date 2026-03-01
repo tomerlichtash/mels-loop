@@ -32,8 +32,18 @@ const meta: Meta<typeof Text> = {
 		},
 		color: {
 			control: 'select',
-			options: {
-				none: '',
+			options: [
+				'',
+				'primary',
+				'secondary',
+				'success',
+				'error',
+				'warning',
+				'info',
+				'muted',
+			],
+			mapping: {
+				'': undefined,
 				primary: 'primary',
 				secondary: 'secondary',
 				success: 'success',

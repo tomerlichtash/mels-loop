@@ -26,6 +26,10 @@ const meta: Meta<typeof TextField> = {
 	title: 'Input/TextField',
 	component: TextField,
 	argTypes: {
+		type: {
+			control: 'select',
+			options: ['text', 'email', 'url', 'tel', 'search'],
+		},
 		size: {
 			control: 'select',
 			options: ['sm', 'md', 'lg'],
@@ -62,6 +66,7 @@ export const Default: Story = {
 	args: {
 		label: 'Label',
 		placeholder: 'Enter text...',
+		type: 'text',
 		size: 'md',
 		radius: 'md',
 		error: false,

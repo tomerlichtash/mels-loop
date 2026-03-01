@@ -7,12 +7,14 @@ const meta: Meta<typeof Separator> = {
 	component: Separator,
 	args: {
 		orientation: 'horizontal',
+		decorative: true,
 	},
 	argTypes: {
 		orientation: {
 			control: 'select',
 			options: ['horizontal', 'vertical'],
 		},
+		decorative: { control: 'boolean' },
 	},
 };
 

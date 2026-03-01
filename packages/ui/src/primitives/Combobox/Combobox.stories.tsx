@@ -39,6 +39,8 @@ const meta: Meta<typeof Combobox> = {
 		required: { control: 'boolean' },
 		placeholder: { control: 'text' },
 		emptyMessage: { control: 'text' },
+		clearLabel: { control: 'text' },
+		toggleLabel: { control: 'text' },
 	},
 };
 
@@ -87,6 +89,8 @@ export const Default: Story = {
 		disabled: false,
 		required: false,
 		emptyMessage: 'No results found',
+		clearLabel: '',
+		toggleLabel: '',
 	},
 	render: (args) => <DefaultExample {...args} />,
 };

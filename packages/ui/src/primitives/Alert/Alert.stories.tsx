@@ -9,6 +9,17 @@ const meta: Meta<typeof Alert> = {
 		title: 'Alert title',
 		children: 'This is the alert body with additional context.',
 		status: 'info',
+		radius: 'md',
+	},
+	argTypes: {
+		status: {
+			control: 'select',
+			options: ['success', 'error', 'warning', 'info'],
+		},
+		radius: {
+			control: 'select',
+			options: ['none', 'sm', 'md', 'lg', 'pill'],
+		},
 	},
 };
 

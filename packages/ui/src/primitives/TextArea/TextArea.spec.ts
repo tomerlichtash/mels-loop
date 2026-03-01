@@ -9,6 +9,7 @@ const cases = {
 	size: ['sm', 'md', 'lg'],
 	radius: ['none', 'sm', 'md', 'lg'],
 	error: [true],
+	fullWidth: [true],
 	disabled: [true],
 };
 

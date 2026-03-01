@@ -86,6 +86,7 @@ export const Default: Story = {
 		gap: 'md',
 		align: 'start',
 		justify: 'start',
+		shadow: 'none',
 		wrap: false,
 		items: 3,
 		showBorder: true,

@@ -95,6 +95,11 @@
 	--ml-card-radius: var(--ml-radius-lg);
 }
 
+/* Full width */
+.fullWidth {
+	width: 100%;
+}
+
 /* Direction */
 .direction-vertical {
 	display: flex;

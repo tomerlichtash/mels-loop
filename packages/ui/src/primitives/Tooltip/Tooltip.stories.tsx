@@ -20,11 +20,13 @@ const meta: Meta<typeof Tooltip> = {
 		delayDuration: { control: { type: 'number', min: 0, step: 100 } },
 		paddingHorizontal: {
 			control: 'select',
-			options: { none: '', xs: 'xs', sm: 'sm', md: 'md', lg: 'lg' },
+			options: ['', 'xs', 'sm', 'md', 'lg'],
+			mapping: { '': undefined, xs: 'xs', sm: 'sm', md: 'md', lg: 'lg' },
 		},
 		paddingVertical: {
 			control: 'select',
-			options: { none: '', xs: 'xs', sm: 'sm', md: 'md', lg: 'lg' },
+			options: ['', 'xs', 'sm', 'md', 'lg'],
+			mapping: { '': undefined, xs: 'xs', sm: 'sm', md: 'md', lg: 'lg' },
 		},
 		children: { table: { disable: true } },
 		className: { table: { disable: true } },

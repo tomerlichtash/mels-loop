@@ -17,6 +17,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 	interactive?: boolean;
 	selected?: boolean;
 	disabled?: boolean;
+	fullWidth?: boolean;
 	direction?: CardDirection;
 	href?: string;
 }
@@ -30,6 +31,7 @@ export function Card({
 	interactive,
 	selected,
 	disabled,
+	fullWidth,
 	direction = 'vertical',
 	href,
 	className,
@@ -62,6 +64,7 @@ export function Card({
 					[styles.interactive]: isInteractive,
 					[styles.selected]: selected,
 					[styles.disabled]: disabled,
+					[styles.fullWidth]: fullWidth,
 				},
 				'ml-card',
 				className,

@@ -32,6 +32,8 @@ const meta: Meta<typeof PasswordField> = {
 		required: { control: 'boolean' },
 		placeholder: { control: 'text' },
 		tooltip: { control: 'boolean' },
+		showLabel: { control: 'text' },
+		hideLabel: { control: 'text' },
 		iconStart: {
 			control: 'select',
 			options: iconOptions,
@@ -56,6 +58,8 @@ export const Default: Story = {
 		readOnly: false,
 		required: false,
 		tooltip: false,
+		showLabel: '',
+		hideLabel: '',
 		iconStart: 'lock' as unknown as React.ReactNode,
 	},
 };

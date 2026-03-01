@@ -8,6 +8,7 @@ const meta: Meta<typeof Loader> = {
 	args: {
 		variant: 'spinner',
 		size: 'md',
+		label: '',
 	},
 	argTypes: {
 		variant: {
@@ -20,8 +21,9 @@ const meta: Meta<typeof Loader> = {
 		},
 		color: {
 			control: 'select',
-			options: {
-				inherit: '',
+			options: ['', 'primary', 'secondary', 'surface'],
+			mapping: {
+				'': undefined,
 				primary: 'primary',
 				secondary: 'secondary',
 				surface: 'surface',

@@ -1,8 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import type { ComponentProps } from 'react';
 
 import { Chip } from './Chip';
 
-const meta: Meta<typeof Chip> = {
+type ChipStoryArgs = ComponentProps<typeof Chip> & {
+	dismissible?: boolean;
+};
+
+const meta: Meta<ChipStoryArgs> = {
 	title: 'Content/Chip',
 	component: Chip,
 	argTypes: {
@@ -16,12 +21,13 @@ const meta: Meta<typeof Chip> = {
 		},
 		disabled: { control: 'boolean' },
 		dismissible: { control: 'boolean' },
+		dismissLabel: { control: 'text' },
 		children: { control: 'text' },
 	},
 };
 
 export default meta;
-type Story = StoryObj<typeof Chip>;
+type Story = StoryObj<ChipStoryArgs>;
 
 export const Default: Story = {
 	args: {
@@ -30,6 +36,7 @@ export const Default: Story = {
 		radius: 'pill',
 		disabled: false,
 		dismissible: true,
+		dismissLabel: '',
 	},
 	render: ({ dismissible, ...args }) => (
 		<Chip {...args} onDismiss={dismissible ? () => {} : undefined} />
