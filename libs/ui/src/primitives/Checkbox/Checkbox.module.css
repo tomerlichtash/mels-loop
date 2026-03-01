@@ -1,0 +1,127 @@
+:root {
+	--ml-checkbox-size: 18px;
+	--ml-checkbox-radius: var(--ml-radius-sm);
+	--ml-checkbox-border-color: var(--ml-input-border);
+	--ml-checkbox-border-color-hover: var(--ml-color-primary-muted);
+	--ml-checkbox-checked-bg: var(--ml-interactive-background-color);
+	--ml-checkbox-checked-border: var(--ml-interactive-background-color);
+	--ml-checkbox-checked-color: var(--ml-interactive-text-color);
+	--ml-checkbox-focus-color: var(--ml-color-primary);
+	--ml-checkbox-duration: var(--ml-duration-fast);
+	--ml-checkbox-gap: var(--ml-space-sm);
+	--ml-checkbox-label-font-size: var(--ml-font-size-body);
+}
+
+/* Layout */
+.root {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-checkbox-gap);
+}
+
+/* Control */
+.control {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--ml-checkbox-size);
+	height: var(--ml-checkbox-size);
+	border: 1px solid var(--ml-checkbox-border-color);
+	border-radius: var(--ml-checkbox-radius);
+	background-color: transparent;
+	padding: 0;
+	cursor: pointer;
+	flex-shrink: 0;
+	transition:
+		background-color var(--ml-checkbox-duration),
+		border-color var(--ml-checkbox-duration);
+}
+
+.control:hover:not(:disabled) {
+	border-color: var(--ml-checkbox-border-color-hover);
+}
+
+.control[data-state='checked'],
+.control[data-state='indeterminate'] {
+	background-color: var(--ml-checkbox-checked-bg);
+	border-color: var(--ml-checkbox-checked-border);
+	color: var(--ml-checkbox-checked-color);
+}
+
+.control:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+/* Focus ring */
+.control:focus-visible {
+	outline: 2px solid var(--ml-checkbox-focus-color);
+	outline-offset: 2px;
+}
+
+/* Indicator */
+.indicator {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Icon visibility */
+.checkIcon,
+.indeterminateIcon {
+	opacity: 0;
+	position: absolute;
+}
+
+.control[data-state='checked'] .checkIcon {
+	opacity: 1;
+}
+
+.control[data-state='indeterminate'] .indeterminateIcon {
+	opacity: 1;
+}
+
+/* Label */
+.label {
+	font-size: var(--ml-checkbox-label-font-size);
+	line-height: var(--ml-checkbox-size);
+}
+
+/* Disabled */
+.disabled .label {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+/* Sizes */
+.size-sm {
+	--ml-checkbox-size: 14px;
+	--ml-checkbox-gap: var(--ml-space-xs);
+	--ml-checkbox-label-font-size: var(--ml-font-size-sm);
+}
+
+.size-md {
+	--ml-checkbox-size: 18px;
+	--ml-checkbox-gap: var(--ml-space-sm);
+	--ml-checkbox-label-font-size: var(--ml-font-size-body);
+}
+
+.size-lg {
+	--ml-checkbox-size: 22px;
+	--ml-checkbox-gap: var(--ml-space-sm);
+	--ml-checkbox-label-font-size: var(--ml-font-size-md);
+}
+
+/* Error */
+.error .control {
+	--ml-checkbox-border-color: var(--ml-error-border-color);
+}
+
+.error .control[data-state='checked'],
+.error .control[data-state='indeterminate'] {
+	--ml-checkbox-checked-bg: var(--ml-error-border-color);
+	--ml-checkbox-checked-border: var(--ml-error-border-color);
+}

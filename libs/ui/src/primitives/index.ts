@@ -15,6 +15,8 @@ export {
 	CardMedia,
 	CardSkeleton,
 } from './Card';
+export type { CheckboxProps } from './Checkbox/Checkbox';
+export { Checkbox } from './Checkbox/Checkbox';
 export { Chip } from './Chip/Chip';
 export { Code } from './Code/Code';
 export { CodeBlock } from './CodeBlock/CodeBlock';
@@ -30,6 +32,8 @@ export { Loader } from './Loader/Loader';
 export { PasswordField } from './PasswordField/PasswordField';
 export { Popover } from './Popover';
 export { Separator } from './Separator/Separator';
+export type { SwitchProps } from './Switch/Switch';
+export { Switch } from './Switch/Switch';
 export {
 	Table,
 	TableBody,
