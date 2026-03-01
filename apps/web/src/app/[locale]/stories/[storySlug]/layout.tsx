@@ -2,8 +2,8 @@ import {
 	getArticleMeta,
 	getDocumentMeta,
 	getStoryConfig,
-} from '@mels-loop/content-pipeline/loaders';
-import type { ArticleMeta } from '@mels-loop/content-pipeline/types';
+} from '@mels-loop/content/loaders';
+import type { ArticleMeta } from '@mels-loop/content/types';
 import { dictGet } from '@mels-loop/i18n/dict';
 import type { ReactNode } from 'react';
 

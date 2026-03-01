@@ -17,10 +17,7 @@ import {
 	useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import type {
-	ResolvedSource,
-	SourceType,
-} from '@mels-loop/content-pipeline/types';
+import type { ResolvedSource, SourceType } from '@mels-loop/content/types';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {
 	type ColumnDef,

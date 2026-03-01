@@ -1,4 +1,4 @@
-import { getPage } from '@mels-loop/content-pipeline/loaders';
+import { getPage } from '@mels-loop/content/loaders';
 import { dictGet } from '@mels-loop/i18n/dict';
 
 import { StaticPage } from '@/components/StaticPage/StaticPage';

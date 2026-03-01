@@ -1,4 +1,4 @@
-import type { ResolvedSource } from '@mels-loop/content-pipeline/types';
+import type { ResolvedSource } from '@mels-loop/content/types';
 import Image from 'next/image';
 
 import { SourceBadge } from '@/content';

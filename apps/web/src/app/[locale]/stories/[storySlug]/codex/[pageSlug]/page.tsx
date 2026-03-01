@@ -1,6 +1,6 @@
+import { getStoryConfig } from '@mels-loop/content/loaders';
 import {
 	getContentDir,
-	getStoryConfig,
 	loadMarkdownFile,
 } from '@mels-loop/content-pipeline/loaders';
 import { dictGet } from '@mels-loop/i18n/dict';

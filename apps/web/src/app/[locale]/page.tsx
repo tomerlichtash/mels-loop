@@ -1,7 +1,4 @@
-import {
-	getAllStories,
-	getStoryConfig,
-} from '@mels-loop/content-pipeline/loaders';
+import { getAllStories, getStoryConfig } from '@mels-loop/content/loaders';
 import { Button, Container, Grid, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 

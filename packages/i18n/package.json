@@ -1,0 +1,38 @@
+{
+	"name": "@mels-loop/i18n",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"lint": "eslint ."
+	},
+	"exports": {
+		"./config": {
+			"types": "./dist/config.d.ts",
+			"import": "./dist/config.js"
+		},
+		"./client": {
+			"types": "./dist/client.d.ts",
+			"import": "./dist/client.js"
+		},
+		"./middleware": {
+			"types": "./dist/middleware.d.ts",
+			"import": "./dist/middleware.js"
+		},
+		"./locale-cookie": {
+			"types": "./dist/locale-cookie.d.ts",
+			"import": "./dist/locale-cookie.js"
+		},
+		"./dict": {
+			"types": "./dist/dict.d.ts",
+			"import": "./dist/dict.js"
+		}
+	},
+	"peerDependencies": {
+		"react": "^19.0.0"
+	},
+	"devDependencies": {
+		"@mels-loop/eslint-config": "workspace:*"
+	}
+}

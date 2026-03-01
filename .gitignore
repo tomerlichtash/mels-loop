@@ -6,6 +6,7 @@ node_modules
 .pnp.js
 
 # artifacts
+dist/
 **/*.js.map
 
 # dev env
@@ -54,8 +55,8 @@ storybook-static
 .playwright-mcp
 
 # ui e2e testing
-libs/ui/e2e/test-results/
-libs/ui/playwright-report/
+packages/ui/e2e/test-results/
+packages/ui/playwright-report/
 
 # search index (generated)
 apps/web/public/search-index.*.json

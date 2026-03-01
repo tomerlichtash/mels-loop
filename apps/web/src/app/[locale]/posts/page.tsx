@@ -1,4 +1,4 @@
-import { getAllPosts, getPost } from '@mels-loop/content-pipeline/loaders';
+import { getAllPosts, getPost } from '@mels-loop/content/loaders';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Container, Text } from '@mels-loop/ui/primitives';
 

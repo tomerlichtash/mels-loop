@@ -1,9 +1,6 @@
 'use server';
 
-import {
-	getAnnotation,
-	getGlossaryTerm,
-} from '@mels-loop/content-pipeline/loaders';
+import { getAnnotation, getGlossaryTerm } from '@mels-loop/content/loaders';
 
 import type { Locale } from '@/i18n-init';
 

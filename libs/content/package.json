@@ -1,0 +1,25 @@
+{
+	"name": "@mels-loop/content",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint": "eslint ."
+	},
+	"exports": {
+		"./types": "./src/types.ts",
+		"./loaders": "./src/loaders/index.ts",
+		"./plugins": "./src/plugins/index.ts"
+	},
+	"dependencies": {
+		"@mels-loop/content-pipeline": "workspace:*",
+		"gray-matter": "^4.0.3",
+		"remark-directive": "^4.0.0",
+		"unist-util-visit": "^5.1.0"
+	},
+	"devDependencies": {
+		"@mels-loop/eslint-config": "workspace:*",
+		"@types/hast": "^3.0.4",
+		"@types/mdast": "^4.0.4"
+	}
+}

@@ -1,4 +1,4 @@
-import type { SourceType } from '@mels-loop/content-pipeline/types';
+import type { SourceType } from '@mels-loop/content/types';
 import { Badge } from '@mels-loop/ui/primitives';
 
 import { SOURCE_TYPE_LABELS } from '../source-types';

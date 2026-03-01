@@ -53,5 +53,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ui-e2e-diffs
-          path: libs/ui/e2e/test-results/
+          path: packages/ui/e2e/test-results/
           retention-days: 14

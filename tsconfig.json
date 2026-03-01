@@ -3,9 +3,10 @@
 	"compilerOptions": {},
 	"include": [],
 	"references": [
-		{ "path": "libs/i18n" },
-		{ "path": "libs/content-pipeline" },
-		{ "path": "libs/ui" },
+		{ "path": "packages/i18n" },
+		{ "path": "packages/content-pipeline" },
+		{ "path": "packages/ui" },
+		{ "path": "libs/content" },
 		{ "path": "libs/test-utils" },
 		{ "path": "apps/web" }
 	]

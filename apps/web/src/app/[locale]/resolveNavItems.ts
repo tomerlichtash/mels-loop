@@ -1,7 +1,4 @@
-import {
-	getAllStories,
-	getStoryConfig,
-} from '@mels-loop/content-pipeline/loaders';
+import { getAllStories, getStoryConfig } from '@mels-loop/content/loaders';
 
 import type { Locale } from '@/i18n-init';
 import type { NavItem } from '@/layout';

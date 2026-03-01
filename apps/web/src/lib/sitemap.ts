@@ -1,7 +1,4 @@
-import {
-	getAllStories,
-	getStoryArticles,
-} from '@mels-loop/content-pipeline/loaders';
+import { getAllStories, getStoryArticles } from '@mels-loop/content/loaders';
 
 // Valid values per the sitemap protocol spec
 export type SitemapFreq =

@@ -1,9 +1,7 @@
 'use client';
 
-import type {
-	ProcessedContent,
-	ResolvedSource,
-} from '@mels-loop/content-pipeline/types';
+import type { ResolvedSource } from '@mels-loop/content/types';
+import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
 import {
 	createContext,
 	type ReactNode,

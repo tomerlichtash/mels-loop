@@ -1,0 +1,20 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"noEmit": false,
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
+		"outDir": "dist"
+	},
+	"include": ["src/**/*.ts", "src/**/*.tsx"],
+	"exclude": [
+		"node_modules",
+		"dist",
+		"e2e",
+		"src/**/*.spec.ts",
+		"src/**/*.driver.ts",
+		"src/**/*.stories.tsx",
+		"src/**/*.stories.ts"
+	]
+}
