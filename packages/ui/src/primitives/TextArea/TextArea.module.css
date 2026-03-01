@@ -4,6 +4,8 @@
 	--ml-textarea-padding-vertical: var(--ml-space-sm);
 	--ml-textarea-radius: var(--ml-radius-md);
 	--ml-textarea-min-height: 100px;
+	--ml-textarea-min-width: 20ch;
+	--ml-textarea-width: var(--ml-textarea-min-width);
 	--ml-textarea-duration: var(--ml-duration-fast);
 	--ml-textarea-border-color: var(--ml-input-border);
 	--ml-textarea-border-color-hover: var(--ml-color-primary-muted);
@@ -15,7 +17,8 @@
 
 .root {
 	display: block;
-	width: 100%;
+	width: var(--ml-textarea-width);
+	min-width: var(--ml-textarea-min-width);
 	min-height: var(--ml-textarea-min-height);
 	padding: var(--ml-textarea-padding-vertical)
 		var(--ml-textarea-padding-horizontal);
@@ -57,6 +60,7 @@
 	--ml-textarea-padding-horizontal: var(--ml-space-xs);
 	--ml-textarea-padding-vertical: var(--ml-space-xs);
 	--ml-textarea-min-height: 72px;
+	--ml-textarea-min-width: 16ch;
 }
 
 .size-md {
@@ -64,6 +68,7 @@
 	--ml-textarea-padding-horizontal: var(--ml-space-sm);
 	--ml-textarea-padding-vertical: var(--ml-space-sm);
 	--ml-textarea-min-height: 100px;
+	--ml-textarea-min-width: 20ch;
 }
 
 .size-lg {
@@ -71,6 +76,7 @@
 	--ml-textarea-padding-horizontal: var(--ml-space-md);
 	--ml-textarea-padding-vertical: var(--ml-space-md);
 	--ml-textarea-min-height: 140px;
+	--ml-textarea-min-width: 24ch;
 }
 
 /* Radius */
@@ -97,4 +103,9 @@
 
 .error:focus {
 	--ml-textarea-border-color-focus: var(--ml-error-border-color);
+}
+
+/* Full width */
+.fullWidth {
+	--ml-textarea-width: 100%;
 }

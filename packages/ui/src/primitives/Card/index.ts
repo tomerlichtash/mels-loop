@@ -1,8 +1,16 @@
+export type { CardProps } from './Card';
 export { Card } from './Card';
+export type { CardActionsProps } from './CardActions/CardActions';
 export { CardActions } from './CardActions/CardActions';
+export type { CardBodyProps } from './CardBody/CardBody';
 export { CardBody } from './CardBody/CardBody';
+export type { CardContentProps } from './CardContent/CardContent';
 export { CardContent } from './CardContent/CardContent';
+export type { CardFooterProps } from './CardFooter/CardFooter';
 export { CardFooter } from './CardFooter/CardFooter';
+export type { CardHeaderProps } from './CardHeader/CardHeader';
 export { CardHeader } from './CardHeader/CardHeader';
+export type { CardMediaProps } from './CardMedia/CardMedia';
 export { CardMedia } from './CardMedia/CardMedia';
+export type { CardSkeletonProps } from './CardSkeleton/CardSkeleton';
 export { CardSkeleton } from './CardSkeleton/CardSkeleton';

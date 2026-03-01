@@ -1,6 +1,12 @@
+export type { TableProps } from './Table';
 export { Table } from './Table';
+export type { TableBodyProps } from './TableBody';
 export { TableBody } from './TableBody';
+export type { TableCellProps } from './TableCell';
 export { TableCell } from './TableCell';
+export type { TableHeadProps } from './TableHead';
 export { TableHead } from './TableHead';
+export type { TableHeaderCellProps } from './TableHeaderCell';
 export { TableHeaderCell } from './TableHeaderCell';
+export type { TableRowProps } from './TableRow';
 export { TableRow } from './TableRow';

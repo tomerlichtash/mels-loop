@@ -14,6 +14,7 @@ export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 	label?: string;
 	error?: boolean;
 	errorMessage?: string;
+	fullWidth?: boolean;
 }
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
@@ -24,6 +25,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 			label,
 			error,
 			errorMessage,
+			fullWidth,
 			className,
 			id: idProp,
 			required,
@@ -43,7 +45,10 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 					styles.root,
 					styles[`size-${size}`],
 					styles[`radius-${radius}`],
-					{ [styles.error]: error },
+					{
+						[styles.error]: error,
+						[styles.fullWidth]: fullWidth,
+					},
 					'ml-text-area',
 					className,
 				)}

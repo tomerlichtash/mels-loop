@@ -154,6 +154,7 @@ export function ContactForm() {
 					error={!!errors.message}
 					errorMessage={errors.message?.message}
 					required
+					fullWidth
 					size="lg"
 					{...register('message')}
 				/>
