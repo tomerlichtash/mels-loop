@@ -1,4 +1,4 @@
-import type { SourceType } from '@mels-loop/content/types';
+import type { SourceType } from '@mels-loop/content-loaders/types';
 
 export const SOURCE_TYPE_LABELS: Record<SourceType, string> = {
 	image: 'Image',

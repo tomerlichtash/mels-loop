@@ -1,4 +1,4 @@
-import { getAllGlossarySlugs } from '@mels-loop/content/loaders';
+import { getAllGlossarySlugs } from '@mels-loop/content-loaders/loaders';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
 

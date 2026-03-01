@@ -3,13 +3,13 @@ import fs from 'fs/promises';
 import matter from 'gray-matter';
 import path from 'path';
 
+import { getStoryConfig } from './stories';
 import {
 	type ResolvedSource,
 	resolveSource,
 	type Source,
 	type SourceMessages,
-} from '../types';
-import { getStoryConfig } from './stories';
+} from './types';
 
 export async function getSource(id: string): Promise<Source | null> {
 	const filePath = contentPath('sources', id, 'index.json');

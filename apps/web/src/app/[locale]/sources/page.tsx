@@ -1,5 +1,8 @@
-import { getAllResolvedSources } from '@mels-loop/content/loaders';
-import type { ResolvedSource, SourceType } from '@mels-loop/content/types';
+import { getAllResolvedSources } from '@mels-loop/content-loaders/loaders';
+import type {
+	ResolvedSource,
+	SourceType,
+} from '@mels-loop/content-loaders/types';
 import { getDirection, getLocales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';

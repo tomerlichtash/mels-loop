@@ -6,7 +6,8 @@
 		{ "path": "packages/i18n" },
 		{ "path": "packages/content-pipeline" },
 		{ "path": "packages/ui" },
-		{ "path": "libs/content" },
+		{ "path": "libs/content-loaders" },
+		{ "path": "libs/content-plugins" },
 		{ "path": "libs/test-utils" },
 		{ "path": "apps/web" }
 	]

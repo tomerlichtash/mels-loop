@@ -1,7 +1,6 @@
+import type { ResolvedSource } from '@mels-loop/content-loaders/types';
 import type { Html, Root, Text } from 'mdast';
 import { visit } from 'unist-util-visit';
-
-import type { ResolvedSource } from '../types';
 
 /**
  * Matches `{{sources/id:field}}` or `{{source/id:field}}` template expressions.

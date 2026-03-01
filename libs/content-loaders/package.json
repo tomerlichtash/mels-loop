@@ -1,0 +1,22 @@
+{
+	"name": "@mels-loop/content-loaders",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
+	},
+	"exports": {
+		"./loaders": "./src/index.ts",
+		"./types": "./src/types.ts"
+	},
+	"dependencies": {
+		"@mels-loop/content-pipeline": "workspace:*",
+		"gray-matter": "^4.0.3"
+	},
+	"devDependencies": {
+		"@mels-loop/eslint-config": "workspace:*",
+		"@types/hast": "^3.0.4"
+	}
+}

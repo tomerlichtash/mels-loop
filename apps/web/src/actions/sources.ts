@@ -1,6 +1,6 @@
 'use server';
 
-import { getResolvedSource } from '@mels-loop/content/loaders';
+import { getResolvedSource } from '@mels-loop/content-loaders/loaders';
 
 import type { Locale } from '@/i18n-init';
 

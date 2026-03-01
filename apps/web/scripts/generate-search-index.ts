@@ -20,7 +20,7 @@ import {
 	getStoryArticle,
 	getStoryArticles,
 	getStoryConfig,
-} from '@mels-loop/content/loaders';
+} from '@mels-loop/content-loaders/loaders';
 import { setContentDir } from '@mels-loop/content-pipeline/loaders';
 import { getLocales } from '@mels-loop/i18n/config';
 import { create, insertMultiple, save } from '@orama/orama';

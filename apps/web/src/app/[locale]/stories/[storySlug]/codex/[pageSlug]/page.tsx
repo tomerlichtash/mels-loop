@@ -1,4 +1,4 @@
-import { getStoryConfig } from '@mels-loop/content/loaders';
+import { getStoryConfig } from '@mels-loop/content-loaders/loaders';
 import {
 	getContentDir,
 	loadMarkdownFile,

@@ -1,4 +1,7 @@
-import { getResources, getStoryConfig } from '@mels-loop/content/loaders';
+import {
+	getResources,
+	getStoryConfig,
+} from '@mels-loop/content-loaders/loaders';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';

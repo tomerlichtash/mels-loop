@@ -1,7 +1,6 @@
+import type { ResolvedSource } from '@mels-loop/content-loaders/types';
 import type { Element, Root } from 'hast';
 import { visit } from 'unist-util-visit';
-
-import type { ResolvedSource } from '../types';
 
 const SOURCE_RE = /^sources?\//i;
 

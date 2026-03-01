@@ -1,6 +1,6 @@
 'use client';
 
-import type { ResolvedSource } from '@mels-loop/content/types';
+import type { ResolvedSource } from '@mels-loop/content-loaders/types';
 import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
 import {
 	createContext,

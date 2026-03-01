@@ -17,7 +17,7 @@ import {
 	type Source,
 	type SourceMessages,
 	type StoryConfig,
-} from '../types';
+} from './types';
 
 /** Matches ![alt](sources/id) or ![alt](source/id) */
 const SOURCE_IMAGE_RE = /!\[[^\]]*\]\(sources?\/([^)]+)\)/gi;
