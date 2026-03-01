@@ -11,6 +11,7 @@ export default tseslint.config(
 			'dist/**',
 			'public/**',
 			'storybook-static/**',
+			'coverage/**',
 		],
 	},
 	...tseslint.configs.recommended,
