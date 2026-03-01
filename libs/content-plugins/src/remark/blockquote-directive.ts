@@ -1,4 +1,4 @@
-import type { Root } from 'mdast';
+import type { Paragraph, Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 
 import { splitTextNewlines } from './helpers';
@@ -55,8 +55,7 @@ export function remarkBlockquoteDirective() {
 			if (isVerse) {
 				for (const child of directive.children) {
 					if (child.type !== 'paragraph') continue;
-					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					const para = child as any;
+					const para = child as Paragraph;
 					para.children = splitTextNewlines(para.children);
 				}
 			}

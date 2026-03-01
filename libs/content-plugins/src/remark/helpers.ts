@@ -1,4 +1,4 @@
-import type { Link, Root } from 'mdast';
+import type { Link, PhrasingContent, Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 
 /**
@@ -35,19 +35,19 @@ export function createLinkDetector(pattern: RegExp, linkType: string) {
 }
 
 /**
- * Splits text nodes on newlines, inserting <br /> html nodes between lines.
+ * Splits text nodes on newlines, inserting mdast Break nodes between lines.
  * Non-text children are preserved as-is.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function splitTextNewlines(children: any[]): any[] {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const result: any[] = [];
+export function splitTextNewlines(
+	children: PhrasingContent[],
+): PhrasingContent[] {
+	const result: PhrasingContent[] = [];
 	for (const child of children) {
 		if (child.type === 'text') {
 			const lines = child.value.split('\n');
-			lines.forEach((line: string, i: number) => {
+			lines.forEach((line, i) => {
 				if (i > 0) {
-					result.push({ type: 'html', value: '<br />' });
+					result.push({ type: 'break' });
 				}
 				if (line) {
 					result.push({ type: 'text', value: line });

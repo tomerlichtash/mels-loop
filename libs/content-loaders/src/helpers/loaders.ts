@@ -54,20 +54,18 @@ export async function loadAllLocaleFiles(
 
 	const entries = await fs.readdir(dir, { withFileTypes: true });
 	const dirs = entries.filter((e) => e.isDirectory());
-
-	const result: Record<string, ProcessedContent> = {};
 	const plugins = buildPlugins();
 
-	await Promise.all(
+	const results = await Promise.all(
 		dirs.map(async (d) => {
 			const filePath = path.join(dir, d.name, localeFileName(locale));
-			if (await fileExists(filePath)) {
-				result[d.name] = await loadMarkdownFile(filePath, { plugins });
-			}
+			if (!(await fileExists(filePath))) return null;
+			const content = await loadMarkdownFile(filePath, { plugins });
+			return [d.name, content] as const;
 		}),
 	);
 
-	return result;
+	return Object.fromEntries(results.filter((r) => r !== null));
 }
 
 const FALLBACK_LOCALE = 'en';

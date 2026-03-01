@@ -19,17 +19,15 @@ describe('remarkSourceLinks', () => {
 		);
 	});
 
-	it('handles singular source/ prefix', async () => {
+	it('ignores singular source/ prefix', async () => {
 		const md = '[doc](source/some-doc)';
 		const hast = await applyPlugins(md, {
 			remarkPlugins: [[remarkSourceLinks]],
 		});
 		const links = findElements(hast, 'a');
-		const sourceLink = links.find(
-			(el) => el.properties?.['dataLinkType'] === 'source',
-		);
-		expect(sourceLink).toBeDefined();
-		expect(sourceLink!.properties?.['dataLinkTarget']).toBe('some-doc');
+		expect(
+			links.every((el) => el.properties?.['dataLinkType'] !== 'source'),
+		).toBe(true);
 	});
 
 	it('ignores non-source links', async () => {

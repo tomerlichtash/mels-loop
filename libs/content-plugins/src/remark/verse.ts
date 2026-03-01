@@ -19,7 +19,7 @@ export function remarkVerse(options: VerseOptions = {}) {
 		if (parseMode !== 'verse') return;
 
 		visit(tree, 'paragraph', (node: Paragraph) => {
-			node.children = splitTextNewlines(node.children) as Paragraph['children'];
+			node.children = splitTextNewlines(node.children);
 		});
 	};
 }
