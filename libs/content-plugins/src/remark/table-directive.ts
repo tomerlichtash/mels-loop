@@ -1,17 +1,7 @@
-import type { BlockContent, DefinitionContent, Root } from 'mdast';
+import type { Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 
-interface DirectiveNode {
-	type: 'containerDirective';
-	name: string;
-	attributes?: Record<string, string | null | undefined> | null;
-	children: (BlockContent | DefinitionContent)[];
-	data?: {
-		hName?: string;
-		hProperties?: Record<string, unknown>;
-		[key: string]: unknown;
-	};
-}
+import type { DirectiveNode } from './types';
 
 /**
  * Transforms `:::table{variant=...}` container directives.

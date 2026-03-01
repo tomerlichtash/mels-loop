@@ -1,17 +1,7 @@
 import type { BlockContent, DefinitionContent, Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 
-interface DirectiveNode {
-	type: 'containerDirective';
-	name: string;
-	attributes?: Record<string, string | null | undefined> | null;
-	children: (BlockContent | DefinitionContent)[];
-	data?: {
-		hName?: string;
-		hProperties?: Record<string, unknown>;
-		[key: string]: unknown;
-	};
-}
+import type { DirectiveNode } from './types';
 
 const VALID_RATIOS = new Set(['auto', '1-1', '1-2', '2-1', '1-3', '3-1']);
 

@@ -1,6 +1,8 @@
 import type { Link, Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 
+import { setLinkHProperties } from './helpers';
+
 const ANNOTATION_RE = /^annotations?\//i;
 
 /**
@@ -19,20 +21,13 @@ export function remarkAnnotationLinks() {
 
 			sequence++;
 
-			// Extract annotation ID from URL (e.g., "annotations/mel-kaye-bio" -> "mel-kaye-bio")
 			const target = url.replace(ANNOTATION_RE, '');
 
-			// Set hProperties so they appear as attributes in the hast output
-			const data: Record<string, unknown> =
-				(node.data as Record<string, unknown>) ||
-				((node.data = {}) as unknown as Record<string, unknown>);
-			const hProperties =
-				(data.hProperties as Record<string, unknown>) ||
-				((data.hProperties = {}) as Record<string, unknown>);
-
-			hProperties['data-link-type'] = 'annotation';
-			hProperties['data-link-target'] = target;
-			hProperties['data-sequence'] = String(sequence);
+			setLinkHProperties(node, {
+				'data-link-type': 'annotation',
+				'data-link-target': target,
+				'data-sequence': String(sequence),
+			});
 
 			// If the link text is "^", it's a footnote-style annotation
 			const firstChild = node.children[0];

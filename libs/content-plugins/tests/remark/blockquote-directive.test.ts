@@ -53,6 +53,19 @@ describe('remarkBlockquoteDirective', () => {
 		expect(strongs).toHaveLength(1);
 	});
 
+	it('handles verse mode with non-paragraph children like cite', async () => {
+		const md =
+			':::blockquote{verse}\nVerse line one\nVerse line two\n::cite[Source]\n:::';
+		const hast = await applyPlugins(md, {
+			remarkPlugins: [[remarkDirective], [remarkBlockquoteDirective]],
+		});
+		const cites = findElements(hast, 'cite');
+		expect(cites).toHaveLength(1);
+		expect(textContent(cites[0])).toBe('Source');
+		const brs = findElements(hast, 'br');
+		expect(brs.length).toBeGreaterThanOrEqual(1);
+	});
+
 	it('ignores non-blockquote directives', async () => {
 		const md = ':::cols\nNot a blockquote\n:::';
 		const hast = await applyPlugins(md, {

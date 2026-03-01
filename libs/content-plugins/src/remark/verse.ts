@@ -1,5 +1,7 @@
-import type { Paragraph, Root, Text } from 'mdast';
+import type { Paragraph, Root } from 'mdast';
 import { visit } from 'unist-util-visit';
+
+import { splitTextNewlines } from './helpers';
 
 interface VerseOptions {
 	parseMode?: 'verse' | 'normal';
@@ -17,30 +19,7 @@ export function remarkVerse(options: VerseOptions = {}) {
 		if (parseMode !== 'verse') return;
 
 		visit(tree, 'paragraph', (node: Paragraph) => {
-			const newChildren: Paragraph['children'] = [];
-
-			for (const child of node.children) {
-				if (child.type === 'text') {
-					const text = child as Text;
-					const lines = text.value.split('\n');
-
-					lines.forEach((line, i) => {
-						if (i > 0) {
-							newChildren.push({
-								type: 'html' as unknown as 'text',
-								value: '<br />',
-							} as unknown as Paragraph['children'][number]);
-						}
-						if (line) {
-							newChildren.push({ type: 'text', value: line });
-						}
-					});
-				} else {
-					newChildren.push(child);
-				}
-			}
-
-			node.children = newChildren;
+			node.children = splitTextNewlines(node.children) as Paragraph['children'];
 		});
 	};
 }

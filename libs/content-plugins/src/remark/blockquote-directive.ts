@@ -1,17 +1,8 @@
-import type { BlockContent, DefinitionContent, Root } from 'mdast';
+import type { Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 
-interface DirectiveNode {
-	type: 'containerDirective' | 'leafDirective';
-	name: string;
-	attributes?: Record<string, string | null | undefined> | null;
-	children: (BlockContent | DefinitionContent)[];
-	data?: {
-		hName?: string;
-		hProperties?: Record<string, unknown>;
-		[key: string]: unknown;
-	};
-}
+import { splitTextNewlines } from './helpers';
+import type { DirectiveNode } from './types';
 
 /**
  * Transforms `:::blockquote{verse}` container directives into `<blockquote>`
@@ -62,39 +53,13 @@ export function remarkBlockquoteDirective() {
 
 			// In verse mode, convert newlines to <br> within text nodes
 			if (isVerse) {
-				convertNewlinesToBreaks(directive);
+				for (const child of directive.children) {
+					if (child.type !== 'paragraph') continue;
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
+					const para = child as any;
+					para.children = splitTextNewlines(para.children);
+				}
 			}
 		});
 	};
-}
-
-function convertNewlinesToBreaks(node: DirectiveNode) {
-	for (const child of node.children) {
-		if (child.type !== 'paragraph') continue;
-
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const para = child as any;
-		const newChildren: typeof para.children = [];
-
-		for (const c of para.children) {
-			if (c.type === 'text') {
-				const lines = c.value.split('\n');
-				lines.forEach((line: string, i: number) => {
-					if (i > 0) {
-						newChildren.push({
-							type: 'html',
-							value: '<br />',
-						});
-					}
-					if (line) {
-						newChildren.push({ type: 'text', value: line });
-					}
-				});
-			} else {
-				newChildren.push(c);
-			}
-		}
-
-		para.children = newChildren;
-	}
 }

@@ -1,18 +1,7 @@
 import type { Root } from 'mdast';
 import { visit } from 'unist-util-visit';
 
-interface DirectiveNode {
-	type: 'containerDirective';
-	name: string;
-	attributes?: Record<string, string | null | undefined> | null;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	children: any[];
-	data?: {
-		hName?: string;
-		hProperties?: Record<string, unknown>;
-		[key: string]: unknown;
-	};
-}
+import type { DirectiveNode } from './types';
 
 /**
  * Transforms `:::figure` container directives into `<figure>` elements,
