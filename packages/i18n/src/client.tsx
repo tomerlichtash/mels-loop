@@ -2,6 +2,8 @@
 
 import { createContext, type ReactNode, useCallback, useContext } from 'react';
 
+import { dictGet } from './dict';
+
 type Messages = Record<string, unknown>;
 
 interface I18nContextValue {
@@ -11,15 +13,6 @@ interface I18nContextValue {
 }
 
 const I18nContext = createContext<I18nContextValue | null>(null);
-
-function getNestedValue(obj: Record<string, unknown>, path: string): unknown {
-	return path.split('.').reduce<unknown>((current, key) => {
-		if (current && typeof current === 'object') {
-			return (current as Record<string, unknown>)[key];
-		}
-		return undefined;
-	}, obj);
-}
 
 export function I18nProvider({
 	locale,
@@ -31,11 +24,7 @@ export function I18nProvider({
 	children: ReactNode;
 }) {
 	const t = useCallback(
-		(key: string): string => {
-			const value = getNestedValue(messages, key);
-			if (typeof value === 'string') return value;
-			return key;
-		},
+		(key: string): string => dictGet(messages, key),
 		[messages],
 	);
 
