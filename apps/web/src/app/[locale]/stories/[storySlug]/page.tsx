@@ -3,12 +3,13 @@ import {
 	getCodex,
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
-import { type Locale, locales } from '@mels-loop/i18n/config';
+import { getLocales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Text } from '@mels-loop/ui/primitives';
 
 import { ContentRenderer, StoryPopoverProvider } from '@/content';
 import { getDictionary } from '@/i18n';
+import type { Locale } from '@/i18n-init';
 import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 import styles from './page.module.css';
@@ -20,7 +21,7 @@ interface PageProps {
 export async function generateStaticParams() {
 	const stories = await getAllStories();
 	return stories.flatMap((storySlug) =>
-		locales.map((locale) => ({ locale, storySlug })),
+		getLocales().map((locale) => ({ locale, storySlug })),
 	);
 }
 

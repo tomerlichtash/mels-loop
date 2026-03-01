@@ -1,7 +1,8 @@
 'use client';
 
-import { LOCALE_COOKIE } from './config';
+import { getLocaleCookieName } from './config';
 
 export function setLocaleCookie(locale: string) {
-	document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=31536000; samesite=lax`;
+	const cookieName = getLocaleCookieName();
+	document.cookie = `${cookieName}=${locale}; path=/; max-age=31536000; samesite=lax`;
 }

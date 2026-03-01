@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 
-import type { Locale, ProcessedContent } from '../types';
+import type { ProcessedContent } from '../types';
 import {
 	contentPath,
 	fileExists,
@@ -10,7 +10,7 @@ import {
 
 export async function getPost(
 	slug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ProcessedContent | null> {
 	const filePath = contentPath('posts', slug, localeFileName(locale));
 	if (!(await fileExists(filePath))) return null;

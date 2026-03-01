@@ -1,4 +1,4 @@
-import { locales as localeCodes } from '@mels-loop/i18n/config';
+import { getLocales } from '@mels-loop/i18n/config';
 
 import type { FooterLinkColumn, LocaleOption, NavItem } from '@/layout';
 
@@ -36,7 +36,7 @@ export const footerLinks: FooterLinkColumn[] = [
 	},
 ];
 
-export const localeOptions: LocaleOption[] = localeCodes.map((code) => ({
+export const localeOptions: LocaleOption[] = getLocales().map((code) => ({
 	code,
 	labelKey: `locale.label.${code}`,
 	switchToKey: `locale.switchTo.${code}`,

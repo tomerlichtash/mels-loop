@@ -2,12 +2,10 @@
 
 import { createContext, type ReactNode, useCallback, useContext } from 'react';
 
-import type { Locale } from './config';
-
 type Messages = Record<string, unknown>;
 
 interface I18nContextValue {
-	locale: Locale;
+	locale: string;
 	messages: Messages;
 	t: (key: string) => string;
 }
@@ -28,7 +26,7 @@ export function I18nProvider({
 	messages,
 	children,
 }: {
-	locale: Locale;
+	locale: string;
 	messages: Messages;
 	children: ReactNode;
 }) {

@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-import type { Locale, ProcessedContent } from '../types';
+import type { ProcessedContent } from '../types';
 import {
 	contentPath,
 	fileExists,
@@ -10,7 +10,7 @@ import {
 } from './base';
 
 export async function getAllGlossaryTerms(
-	locale: Locale,
+	locale: string,
 ): Promise<Record<string, ProcessedContent>> {
 	const glossaryDir = contentPath('glossary');
 	if (!(await fileExists(glossaryDir))) return {};
@@ -34,7 +34,7 @@ export async function getAllGlossaryTerms(
 
 export async function getGlossaryTerm(
 	slug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ProcessedContent | null> {
 	const filePath = contentPath('glossary', slug, localeFileName(locale));
 	if (!(await fileExists(filePath))) return null;

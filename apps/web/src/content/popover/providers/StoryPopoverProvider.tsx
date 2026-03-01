@@ -1,10 +1,10 @@
 'use client';
 
-import type { Locale } from '@mels-loop/i18n/config';
 import { type ReactNode, useCallback } from 'react';
 
 import { fetchAnnotation, fetchGlossaryTerm } from '@/actions/annotations';
 import { fetchSourceAction } from '@/actions/sources';
+import type { Locale } from '@/i18n-init';
 
 import { PopoverProvider } from './PopoverProvider';
 

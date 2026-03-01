@@ -2,13 +2,13 @@ import {
 	getAllStories,
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
-import type { Locale } from '@mels-loop/i18n/config';
 import { Button, Container, Grid, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
 import { GlyphShift } from '@/components/GlyphShift/GlyphShift';
 import { StoryCard } from '@/components/StoryCard/StoryCard';
 import { getDictionary } from '@/i18n';
+import type { Locale } from '@/i18n-init';
 
 import styles from './page.module.css';
 

@@ -1,7 +1,9 @@
 'use client';
 
-import type { Locale, StoryConfig } from '@mels-loop/content-pipeline/types';
+import type { StoryConfig } from '@mels-loop/content-pipeline/types';
 import { Card, CardBody, CardHeader, Text } from '@mels-loop/ui/primitives';
+
+import type { Locale } from '@/i18n-init';
 
 import styles from './StoryCard.module.css';
 

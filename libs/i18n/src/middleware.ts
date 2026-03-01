@@ -1,10 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { defaultLocale, isValidLocale, LOCALE_COOKIE, locales } from './config';
+import {
+	getDefaultLocale,
+	getLocaleCookieName,
+	getLocales,
+	isValidLocale,
+} from './config';
 
 export function createLocaleMiddleware() {
 	return function middleware(request: NextRequest) {
 		const { pathname } = request.nextUrl;
+		const locales = getLocales();
+		const defaultLocale = getDefaultLocale();
+		const cookieName = getLocaleCookieName();
 
 		// Skip non-page requests (API, _next, favicon, files with dots)
 		if (
@@ -29,7 +37,7 @@ export function createLocaleMiddleware() {
 			url.pathname = cleanPath;
 
 			const response = NextResponse.redirect(url, 302);
-			response.cookies.set(LOCALE_COOKIE, matchedLocale, {
+			response.cookies.set(cookieName, matchedLocale, {
 				path: '/',
 				maxAge: 31536000,
 				sameSite: 'lax',
@@ -39,11 +47,11 @@ export function createLocaleMiddleware() {
 		}
 
 		// Clean URL: read locale from cookie or detect from headers
-		let locale = request.cookies.get(LOCALE_COOKIE)?.value;
+		let locale = request.cookies.get(cookieName)?.value;
 
 		if (!locale || !isValidLocale(locale)) {
 			const acceptLanguage = request.headers.get('accept-language') || '';
-			locale = acceptLanguage.includes('he') ? 'he' : defaultLocale;
+			locale = locales.find((l) => acceptLanguage.includes(l)) ?? defaultLocale;
 		}
 
 		// Rewrite to the locale-prefixed path internally
@@ -53,8 +61,8 @@ export function createLocaleMiddleware() {
 		const response = NextResponse.rewrite(url);
 
 		// Set cookie for first visit (when no cookie was present)
-		if (!request.cookies.get(LOCALE_COOKIE)?.value) {
-			response.cookies.set(LOCALE_COOKIE, locale, {
+		if (!request.cookies.get(cookieName)?.value) {
+			response.cookies.set(cookieName, locale, {
 				path: '/',
 				maxAge: 31536000,
 				sameSite: 'lax',

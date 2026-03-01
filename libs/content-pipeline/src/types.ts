@@ -1,7 +1,4 @@
-import type { Locale } from '@mels-loop/i18n/config';
 import type { Root as HastRoot } from 'hast';
-
-export type { Locale };
 
 export type SourceType =
 	| 'image'
@@ -85,8 +82,8 @@ export interface ProcessedContent {
 
 export interface StoryConfig {
 	slug: string;
-	title: Record<Locale, string>;
-	abstract: Record<Locale, string>;
+	title: Record<string, string>;
+	abstract: Record<string, string>;
 	featured?: boolean;
 	articles: string[];
 	documents?: string[];

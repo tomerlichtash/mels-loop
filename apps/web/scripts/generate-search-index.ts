@@ -3,6 +3,11 @@
  * Builds per-locale Orama search indexes and writes them to apps/web/public/.
  * Run: pnpm search-index (from apps/web) or pnpm --filter @mels-loop/web search-index
  */
+import { i18nConfig, type Locale } from '../src/i18n-init';
+
+// Ensure i18n config is initialized (side-effect import)
+void i18nConfig;
+
 import { createHash } from 'node:crypto';
 
 import {
@@ -17,7 +22,7 @@ import {
 	getStoryConfig,
 	setContentDir,
 } from '@mels-loop/content-pipeline/loaders';
-import { type Locale, locales } from '@mels-loop/i18n/config';
+import { getLocales } from '@mels-loop/i18n/config';
 import { create, insertMultiple, save } from '@orama/orama';
 import fs from 'fs/promises';
 import path from 'path';
@@ -301,7 +306,7 @@ function createHebrewTokenizer() {
 	};
 }
 
-for (const locale of locales) {
+for (const locale of getLocales() as Locale[]) {
 	const docs = await collectDocs(locale);
 	await fs.mkdir(OUTPUT_DIR, { recursive: true });
 

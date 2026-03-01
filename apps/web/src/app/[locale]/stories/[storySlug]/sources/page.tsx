@@ -7,7 +7,7 @@ import type {
 	ResolvedSource,
 	SourceType,
 } from '@mels-loop/content-pipeline/types';
-import { type Locale, locales } from '@mels-loop/i18n/config';
+import { getLocales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Card, Container, Text } from '@mels-loop/ui/primitives';
 import Image from 'next/image';
@@ -15,6 +15,7 @@ import { notFound } from 'next/navigation';
 
 import { SourceDetail } from '@/content';
 import { getDictionary } from '@/i18n';
+import type { Locale } from '@/i18n-init';
 import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 import styles from './page.module.css';
@@ -26,7 +27,7 @@ interface PageProps {
 export async function generateStaticParams() {
 	const stories = await getAllStories();
 	return stories.flatMap((storySlug) =>
-		locales.map((locale) => ({ locale, storySlug })),
+		getLocales().map((locale) => ({ locale, storySlug })),
 	);
 }
 

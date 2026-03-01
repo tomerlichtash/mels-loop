@@ -1,11 +1,11 @@
 import { getCodex, getStoryConfig } from '@mels-loop/content-pipeline/loaders';
-import type { Locale } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 
 import { ContentRenderer, StoryPopoverProvider } from '@/content';
 import { getDictionary } from '@/i18n';
+import type { Locale } from '@/i18n-init';
 import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 interface PageProps {

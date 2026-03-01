@@ -4,7 +4,6 @@ import path from 'path';
 
 import {
 	type ArticleMeta,
-	type Locale,
 	type ProcessedContent,
 	type ResolvedSource,
 	resolveSource,
@@ -43,7 +42,7 @@ function extractSourceIds(raw: string): string[] {
 	return [...ids];
 }
 
-const FALLBACK_LOCALE: Locale = 'en';
+const FALLBACK_LOCALE = 'en';
 
 /**
  * Loads and resolves sources by ID directly, without going through sources.ts,
@@ -53,7 +52,7 @@ const FALLBACK_LOCALE: Locale = 'en';
  */
 async function loadResolvedSourcesById(
 	ids: string[],
-	locale: Locale,
+	locale: string,
 ): Promise<Record<string, ResolvedSource>> {
 	if (ids.length === 0) return {};
 	const entries = await Promise.all(
@@ -96,7 +95,7 @@ export async function getStoryConfig(slug: string): Promise<StoryConfig> {
 
 export async function getStory(
 	slug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ProcessedContent | null> {
 	const filePath = contentPath('stories', slug, localeFileName(locale));
 	if (!(await fileExists(filePath))) return null;
@@ -112,7 +111,7 @@ export async function getAllStories(): Promise<string[]> {
 export async function getStoryArticle(
 	storySlug: string,
 	articleSlug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ProcessedContent | null> {
 	const filePath = contentPath(
 		'stories',
@@ -142,7 +141,7 @@ export async function getStoryArticles(storySlug: string): Promise<string[]> {
 export async function getAnnotation(
 	storySlug: string,
 	key: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ProcessedContent | null> {
 	const filePath = contentPath(
 		'stories',
@@ -157,7 +156,7 @@ export async function getAnnotation(
 
 export async function getAllAnnotations(
 	storySlug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<Record<string, ProcessedContent>> {
 	const annotationsDir = contentPath('stories', storySlug, 'annotations');
 	if (!(await fileExists(annotationsDir))) return {};
@@ -185,7 +184,7 @@ export async function getAllAnnotations(
 
 export async function getCodex(
 	storySlug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ProcessedContent | null> {
 	const filePath = contentPath(
 		'stories',
@@ -206,7 +205,7 @@ export async function getCodex(
 
 export async function getResources(
 	storySlug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ProcessedContent | null> {
 	const filePath = contentPath(
 		'stories',
@@ -220,7 +219,7 @@ export async function getResources(
 
 export async function getArticleMeta(
 	storySlug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ArticleMeta[]> {
 	const config = await getStoryConfig(storySlug);
 	return readSlugsMetadata(storySlug, 'articles', config.articles, locale);
@@ -228,7 +227,7 @@ export async function getArticleMeta(
 
 export async function getDocumentMeta(
 	storySlug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ArticleMeta[]> {
 	const config = await getStoryConfig(storySlug);
 	return readSlugsMetadata(
@@ -242,7 +241,7 @@ export async function getDocumentMeta(
 export async function getStoryDocument(
 	storySlug: string,
 	docSlug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ProcessedContent | null> {
 	const filePath = contentPath(
 		'stories',
@@ -273,7 +272,7 @@ async function readSlugsMetadata(
 	storySlug: string,
 	folder: string,
 	slugs: string[],
-	locale: Locale,
+	locale: string,
 ): Promise<ArticleMeta[]> {
 	const results: ArticleMeta[] = [];
 	for (const slug of slugs) {

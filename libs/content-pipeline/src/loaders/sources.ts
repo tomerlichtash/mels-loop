@@ -3,7 +3,6 @@ import matter from 'gray-matter';
 import path from 'path';
 
 import {
-	type Locale,
 	type ResolvedSource,
 	resolveSource,
 	type Source,
@@ -21,7 +20,7 @@ export async function getSource(id: string): Promise<Source | null> {
 
 export async function getSourceMessages(
 	id: string,
-	locale: Locale,
+	locale: string,
 ): Promise<SourceMessages | null> {
 	const localePath = contentPath('sources', id, `index.${locale}.json`);
 	if (await fileExists(localePath)) {
@@ -41,7 +40,7 @@ export async function getSourceMessages(
 
 export async function getResolvedSource(
 	id: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ResolvedSource | null> {
 	const [source, messages] = await Promise.all([
 		getSource(id),
@@ -76,7 +75,7 @@ export async function getAllSourceIds(): Promise<string[]> {
 }
 
 export async function getAllResolvedSources(
-	locale: Locale,
+	locale: string,
 ): Promise<ResolvedSource[]> {
 	const sources = await getAllSources();
 	const resolved = await Promise.all(
@@ -102,7 +101,7 @@ async function getSourcesByIds(ids: string[]): Promise<Source[]> {
  */
 export async function getResolvedStorySources(
 	storySlug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ResolvedSource[]> {
 	const config = await getStoryConfig(storySlug);
 	const ids = new Set<string>();

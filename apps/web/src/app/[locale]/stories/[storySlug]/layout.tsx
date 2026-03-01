@@ -4,11 +4,11 @@ import {
 	getStoryConfig,
 } from '@mels-loop/content-pipeline/loaders';
 import type { ArticleMeta } from '@mels-loop/content-pipeline/types';
-import type { Locale } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import type { ReactNode } from 'react';
 
 import { getDictionary } from '@/i18n';
+import type { Locale } from '@/i18n-init';
 
 import { Asides, type AsideSection } from './Asides';
 import { Story } from './Story';

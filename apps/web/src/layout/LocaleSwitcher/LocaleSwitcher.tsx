@@ -26,7 +26,7 @@ export function LocaleSwitcher({ locales }: LocaleSwitcherProps) {
 			className={styles.root}
 			value={locale}
 			items={items}
-			onChange={(code) => {
+			onValueChange={(code) => {
 				setLocaleCookie(code);
 				window.location.reload();
 			}}

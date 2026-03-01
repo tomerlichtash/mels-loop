@@ -5,7 +5,6 @@ import path from 'path';
 import { processMarkdown } from '../markdown/pipeline';
 import type {
 	ContentMetadata,
-	Locale,
 	ProcessedContent,
 	ResolvedSource,
 } from '../types';
@@ -57,6 +56,6 @@ export function contentPath(...segments: string[]): string {
 	return path.join(getContentDir(), ...segments);
 }
 
-export function localeFileName(locale: Locale): string {
+export function localeFileName(locale: string): string {
 	return `index.${locale}.md`;
 }

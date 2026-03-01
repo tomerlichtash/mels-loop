@@ -1,7 +1,8 @@
 'use server';
 
 import { getResolvedSource } from '@mels-loop/content-pipeline/loaders';
-import type { Locale } from '@mels-loop/i18n/config';
+
+import type { Locale } from '@/i18n-init';
 
 export async function fetchSourceAction(id: string, locale: Locale) {
 	return getResolvedSource(id, locale);

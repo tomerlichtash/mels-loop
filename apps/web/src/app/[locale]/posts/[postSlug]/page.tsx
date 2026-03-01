@@ -1,10 +1,11 @@
 import { getAllPosts, getPost } from '@mels-loop/content-pipeline/loaders';
-import { type Locale, locales } from '@mels-loop/i18n/config';
+import { getLocales } from '@mels-loop/i18n/config';
 import { Container, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { ContentRenderer } from '@/content';
+import type { Locale } from '@/i18n-init';
 
 import styles from './page.module.css';
 
@@ -15,7 +16,7 @@ interface PageProps {
 export async function generateStaticParams() {
 	const slugs = await getAllPosts();
 	return slugs.flatMap((postSlug) =>
-		locales.map((locale) => ({ locale, postSlug })),
+		getLocales().map((locale) => ({ locale, postSlug })),
 	);
 }
 

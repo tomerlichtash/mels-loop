@@ -1,4 +1,4 @@
-import type { Locale, ProcessedContent } from '../types';
+import type { ProcessedContent } from '../types';
 import {
 	contentPath,
 	fileExists,
@@ -8,7 +8,7 @@ import {
 
 export async function getPage(
 	slug: string,
-	locale: Locale,
+	locale: string,
 ): Promise<ProcessedContent | null> {
 	const filePath = contentPath('pages', slug, localeFileName(locale));
 	if (!(await fileExists(filePath))) return null;

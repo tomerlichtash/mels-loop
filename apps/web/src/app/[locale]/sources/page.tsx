@@ -3,11 +3,12 @@ import type {
 	ResolvedSource,
 	SourceType,
 } from '@mels-loop/content-pipeline/types';
-import { getDirection, type Locale, locales } from '@mels-loop/i18n/config';
+import { getDirection, getLocales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
 
 import { getDictionary } from '@/i18n';
+import type { Locale } from '@/i18n-init';
 import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 import { SourceFilters } from './SourceFilters';
@@ -18,7 +19,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-	return locales.map((locale) => ({ locale }));
+	return getLocales().map((locale) => ({ locale }));
 }
 
 const TYPE_ORDER: SourceType[] = [

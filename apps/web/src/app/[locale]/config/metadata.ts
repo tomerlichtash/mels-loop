@@ -1,7 +1,7 @@
-import { type Locale } from '@mels-loop/i18n/config';
 import type { Metadata } from 'next';
 
 import { getDictionary } from '@/i18n';
+import type { Locale } from '@/i18n-init';
 
 export async function generateMetadata({
 	params,

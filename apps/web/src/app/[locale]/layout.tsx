@@ -1,4 +1,5 @@
 import '@mels-loop/ui/styles/globals.css';
+import '../../i18n-init';
 import '../../content-init';
 
 import { I18nProvider } from '@mels-loop/i18n/client';
@@ -9,6 +10,7 @@ import type { ReactNode } from 'react';
 
 import { assistant, lekton, robotoSlab } from '@/fonts';
 import { getDictionary } from '@/i18n';
+import type { Locale } from '@/i18n-init';
 import { SearchableLayout } from '@/layout/SearchableLayout/SearchableLayout';
 
 // import { FaviconAnimator } from '@/layout/FaviconAnimator/FaviconAnimator';
@@ -28,9 +30,10 @@ export default async function Layout({
 
 	if (!isValidLocale(locale)) notFound();
 
-	const dir = getDirection(locale);
-	const messages = await getDictionary(locale);
-	const navItems = await resolveNavItems(locale);
+	const validLocale = locale as Locale;
+	const dir = getDirection(validLocale);
+	const messages = await getDictionary(validLocale);
+	const navItems = await resolveNavItems(validLocale);
 
 	return (
 		<html lang={locale} dir={dir} suppressHydrationWarning>

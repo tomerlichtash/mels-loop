@@ -1,3 +1,5 @@
+import './i18n-init';
+
 import { createLocaleMiddleware } from '@mels-loop/i18n/middleware';
 
 export const middleware = createLocaleMiddleware();

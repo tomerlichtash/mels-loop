@@ -1,4 +1,4 @@
-import type { Locale } from '@mels-loop/i18n/config';
+import type { Locale } from '@/i18n-init';
 
 import en from './locales/en.json';
 import he from './locales/he.json';
