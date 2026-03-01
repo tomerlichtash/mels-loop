@@ -166,6 +166,12 @@ importers:
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
+      '@vitest/coverage-v8':
+        specifier: ^4.0.18
+        version: 4.0.18(vitest@4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2))
+      vitest:
+        specifier: ^4.0.18
+        version: 4.0.18(@types/node@25.2.3)(tsx@4.21.0)(yaml@2.8.2)
 
   libs/content-plugins:
     dependencies:

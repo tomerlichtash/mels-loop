@@ -1,18 +1,15 @@
-import { contentPath, fileExists } from '@mels-loop/content-pipeline/loaders';
+import { fileExists } from '@mels-loop/content-pipeline/loaders';
 import fs from 'fs/promises';
 import matter from 'gray-matter';
 import path from 'path';
 
+import { listSubdirs, loadSourceMessages, resolveSource } from './helpers';
+import { paths } from './paths';
 import { getStoryConfig } from './stories';
-import {
-	type ResolvedSource,
-	resolveSource,
-	type Source,
-	type SourceMessages,
-} from './types';
+import type { ResolvedSource, Source, SourceMessages } from './types';
 
 export async function getSource(id: string): Promise<Source | null> {
-	const filePath = contentPath('sources', id, 'index.json');
+	const filePath = paths.sources.data(id);
 	if (!(await fileExists(filePath))) return null;
 	const raw = await fs.readFile(filePath, 'utf-8');
 	return JSON.parse(raw) as Source;
@@ -22,20 +19,7 @@ export async function getSourceMessages(
 	id: string,
 	locale: string,
 ): Promise<SourceMessages | null> {
-	const localePath = contentPath('sources', id, `index.${locale}.json`);
-	if (await fileExists(localePath)) {
-		const raw = await fs.readFile(localePath, 'utf-8');
-		return JSON.parse(raw) as SourceMessages;
-	}
-	// Fall back to English
-	if (locale !== 'en') {
-		const enPath = contentPath('sources', id, 'index.en.json');
-		if (await fileExists(enPath)) {
-			const raw = await fs.readFile(enPath, 'utf-8');
-			return JSON.parse(raw) as SourceMessages;
-		}
-	}
-	return null;
+	return loadSourceMessages(id, locale);
 }
 
 export async function getResolvedSource(
@@ -44,29 +28,23 @@ export async function getResolvedSource(
 ): Promise<ResolvedSource | null> {
 	const [source, messages] = await Promise.all([
 		getSource(id),
-		getSourceMessages(id, locale),
+		loadSourceMessages(id, locale),
 	]);
 	if (!source || !messages) return null;
 	return resolveSource(source, messages);
 }
 
 async function getAllSources(): Promise<Source[]> {
-	const sourcesDir = contentPath('sources');
-	try {
-		const entries = await fs.readdir(sourcesDir, { withFileTypes: true });
-		const dirs = entries.filter((e) => e.isDirectory());
-		const sources = await Promise.all(
-			dirs.map(async (d) => {
-				const filePath = path.join(sourcesDir, d.name, 'index.json');
-				if (!(await fileExists(filePath))) return null;
-				const raw = await fs.readFile(filePath, 'utf-8');
-				return JSON.parse(raw) as Source;
-			}),
-		);
-		return sources.filter((s): s is Source => s !== null);
-	} catch {
-		return [];
-	}
+	const dirs = await listSubdirs(paths.sources.dir());
+	const sources = await Promise.all(
+		dirs.map(async (name) => {
+			const filePath = paths.sources.data(name);
+			if (!(await fileExists(filePath))) return null;
+			const raw = await fs.readFile(filePath, 'utf-8');
+			return JSON.parse(raw) as Source;
+		}),
+	);
+	return sources.filter((s): s is Source => s !== null);
 }
 
 export async function getAllSourceIds(): Promise<string[]> {
@@ -80,7 +58,7 @@ export async function getAllResolvedSources(
 	const sources = await getAllSources();
 	const resolved = await Promise.all(
 		sources.map(async (s) => {
-			const messages = await getSourceMessages(s.id, locale);
+			const messages = await loadSourceMessages(s.id, locale);
 			if (!messages) return null;
 			return resolveSource(s, messages);
 		}),
@@ -113,12 +91,10 @@ export async function getResolvedStorySources(
 
 	// 2. Scan content directories for frontmatter sources
 	const contentDirs = [
-		contentPath('stories', storySlug, 'codex'),
-		...config.articles.map((a) =>
-			contentPath('stories', storySlug, 'articles', a),
-		),
+		paths.stories.codex.dir(storySlug),
+		...config.articles.map((a) => paths.stories.articles.item(storySlug, a)),
 		...(config.documents ?? []).map((d) =>
-			contentPath('stories', storySlug, 'documents', d),
+			paths.stories.documents.item(storySlug, d),
 		),
 	];
 
@@ -150,7 +126,7 @@ export async function getResolvedStorySources(
 	);
 
 	// 3. Scan annotations
-	const annotationsDir = contentPath('stories', storySlug, 'annotations');
+	const annotationsDir = paths.stories.annotations.dir(storySlug);
 	try {
 		const annotDirs = await fs.readdir(annotationsDir, {
 			withFileTypes: true,
@@ -194,7 +170,7 @@ export async function getResolvedStorySources(
 	const sources = await getSourcesByIds([...ids]);
 	const resolved = await Promise.all(
 		sources.map(async (s) => {
-			const messages = await getSourceMessages(s.id, locale);
+			const messages = await loadSourceMessages(s.id, locale);
 			if (!messages) return null;
 			return resolveSource(s, messages);
 		}),

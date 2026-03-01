@@ -46,14 +46,6 @@ export interface ResolvedSource extends Source {
 	description?: string;
 }
 
-/** Merges a source with its locale messages into a display-ready record. */
-export function resolveSource(
-	source: Source,
-	messages: SourceMessages,
-): ResolvedSource {
-	return { ...source, ...messages };
-}
-
 export interface StoryConfig {
 	slug: string;
 	title: Record<string, string>;
