@@ -4,7 +4,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import type { CardAlign } from '../types';
 import styles from './CardFooter.module.css';
 
-interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
 	align?: CardAlign;
 }

@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './List.module.css';
 
-interface ListProps extends HTMLAttributes<
+export interface ListProps extends HTMLAttributes<
 	HTMLUListElement | HTMLOListElement
 > {
 	ordered?: boolean;

@@ -3,7 +3,7 @@ import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 
 import styles from './Figure.module.css';
 
-interface FigureProps extends HTMLAttributes<HTMLElement> {
+export interface FigureProps extends HTMLAttributes<HTMLElement> {
 	children?: ReactNode;
 }
 

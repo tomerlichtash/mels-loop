@@ -8,7 +8,7 @@ type CardPadding = 'none' | 'sm' | 'md' | 'lg';
 type CardVariant = 'outlined' | 'inset';
 type CardDirection = 'vertical' | 'horizontal';
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
 	variant?: CardVariant;
 	radius?: CardRadius;

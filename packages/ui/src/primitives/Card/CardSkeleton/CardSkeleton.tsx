@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react';
 import { Card } from '../Card';
 import styles from './CardSkeleton.module.css';
 
-interface CardSkeletonProps extends ComponentProps<typeof Card> {
+export interface CardSkeletonProps extends ComponentProps<typeof Card> {
 	lines?: number;
 	withMedia?: boolean;
 	withHeader?: boolean;

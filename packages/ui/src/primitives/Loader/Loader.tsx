@@ -7,7 +7,7 @@ type LoaderSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type LoaderColor = 'primary' | 'secondary' | 'surface';
 type LoaderVariant = 'spinner' | 'dots' | 'pulse';
 
-interface LoaderProps extends HTMLAttributes<HTMLSpanElement> {
+export interface LoaderProps extends HTMLAttributes<HTMLSpanElement> {
 	variant?: LoaderVariant;
 	size?: LoaderSize;
 	color?: LoaderColor;

@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './Table.module.css';
 
-interface TableHeadProps extends HTMLAttributes<HTMLTableSectionElement> {
+export interface TableHeadProps extends HTMLAttributes<HTMLTableSectionElement> {
 	children?: ReactNode;
 }
 

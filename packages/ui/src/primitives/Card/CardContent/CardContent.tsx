@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './CardContent.module.css';
 
-interface CardContentProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardContentProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
 }
 

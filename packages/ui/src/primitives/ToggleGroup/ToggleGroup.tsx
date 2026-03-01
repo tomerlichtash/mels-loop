@@ -3,22 +3,20 @@ import cn from 'classnames';
 
 import styles from './ToggleGroup.module.css';
 
-interface ToggleGroupItemProps {
+export interface ToggleGroupItemProps {
 	value: string;
 	label: string;
 	className?: string;
 	'aria-label'?: string;
 }
 
-interface ToggleGroupProps {
+export interface ToggleGroupProps {
 	value: string;
 	items: ToggleGroupItemProps[];
 	onValueChange?: (value: string) => void;
 	className?: string;
 	'aria-label'?: string;
 }
-
-export type { ToggleGroupItemProps };
 
 export function ToggleGroup({
 	value,

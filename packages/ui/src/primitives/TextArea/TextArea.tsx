@@ -8,7 +8,7 @@ import styles from './TextArea.module.css';
 type TextAreaSize = 'sm' | 'md' | 'lg';
 type TextAreaRadius = 'none' | 'sm' | 'md' | 'lg';
 
-interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 	size?: TextAreaSize;
 	radius?: TextAreaRadius;
 	label?: string;
@@ -45,7 +45,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 					styles[`radius-${radius}`],
 					{ [styles.error]: error },
 					'ml-text-area',
-					!label && className,
+					className,
 				)}
 				{...props}
 			/>
@@ -54,7 +54,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 		if (!label) return textareaElement;
 
 		return (
-			<FormField error={errorMessage} className={className}>
+			<FormField error={errorMessage}>
 				<Label htmlFor={id} required={required}>
 					{label}
 				</Label>

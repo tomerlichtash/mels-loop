@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './Blockquote.module.css';
 
-interface BlockquoteProps extends HTMLAttributes<HTMLQuoteElement> {
+export interface BlockquoteProps extends HTMLAttributes<HTMLQuoteElement> {
 	children?: ReactNode;
 }
 

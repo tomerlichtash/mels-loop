@@ -7,7 +7,7 @@ import styles from './Button.module.css';
 
 type ButtonRadius = 'none' | 'sm' | 'md' | 'lg' | 'pill';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode;
 	variant?: 'contained' | 'outlined' | 'text';
 	size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';

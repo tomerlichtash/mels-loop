@@ -5,7 +5,7 @@ import styles from './Badge.module.css';
 
 type BadgeRadius = 'none' | 'sm' | 'md' | 'lg' | 'pill';
 
-interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 	children: ReactNode;
 	color?: string;
 	radius?: BadgeRadius;

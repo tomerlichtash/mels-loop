@@ -3,7 +3,7 @@ import type { ReactNode, TdHTMLAttributes } from 'react';
 
 import styles from './Table.module.css';
 
-interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {
+export interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {
 	children?: ReactNode;
 }
 

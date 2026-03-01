@@ -8,7 +8,7 @@ import styles from './Popover.module.css';
 
 type Side = 'top' | 'bottom' | 'left' | 'right';
 
-interface PopoverProps {
+export interface PopoverProps {
 	open: boolean;
 	onOpenChange?: (open: boolean) => void;
 	trigger: ReactNode;

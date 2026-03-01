@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './Code.module.css';
 
-interface CodeProps extends HTMLAttributes<HTMLElement> {
+export interface CodeProps extends HTMLAttributes<HTMLElement> {
 	children?: ReactNode;
 }
 

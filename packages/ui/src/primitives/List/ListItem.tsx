@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './ListItem.module.css';
 
-interface ListItemProps extends HTMLAttributes<HTMLLIElement> {
+export interface ListItemProps extends HTMLAttributes<HTMLLIElement> {
 	children?: ReactNode;
 }
 

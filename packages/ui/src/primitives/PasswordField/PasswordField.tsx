@@ -11,7 +11,7 @@ import styles from './PasswordField.module.css';
 
 type TextFieldProps = React.ComponentProps<typeof TextField>;
 
-type PasswordFieldProps = Omit<TextFieldProps, 'type' | 'iconEnd'> & {
+export type PasswordFieldProps = Omit<TextFieldProps, 'type' | 'iconEnd'> & {
 	showLabel?: string;
 	hideLabel?: string;
 	tooltip?: boolean;

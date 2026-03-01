@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 
 import styles from './ToggleButton.module.css';
 
-interface ToggleButtonProps {
+export interface ToggleButtonProps {
 	pressed: boolean;
 	onPressedChange?: (pressed: boolean) => void;
 	children: ReactNode;

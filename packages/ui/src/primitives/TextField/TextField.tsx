@@ -13,7 +13,7 @@ import styles from './TextField.module.css';
 type TextFieldSize = 'sm' | 'md' | 'lg';
 type TextFieldRadius = 'none' | 'sm' | 'md' | 'lg';
 
-interface TextFieldProps extends Omit<
+export interface TextFieldProps extends Omit<
 	InputHTMLAttributes<HTMLInputElement>,
 	'size'
 > {

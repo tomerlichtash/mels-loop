@@ -7,7 +7,7 @@ type GridGap = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type GridLayout = 'grid' | 'masonry';
 type GridColumns = 1 | 2 | 3 | 4 | 5 | 6;
 
-interface GridProps extends HTMLAttributes<HTMLDivElement> {
+export interface GridProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
 	columns?: GridColumns;
 	gap?: GridGap;

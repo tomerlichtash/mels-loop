@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './CardMedia.module.css';
 
-interface CardMediaProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardMediaProps extends HTMLAttributes<HTMLDivElement> {
 	src: string;
 	alt?: string;
 	objectFit?: 'cover' | 'contain' | 'fill' | 'none';

@@ -7,7 +7,7 @@ import type { ReactNode } from 'react';
 
 import styles from './Dialog.module.css';
 
-interface DialogProps {
+export interface DialogProps {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
 	title: string;

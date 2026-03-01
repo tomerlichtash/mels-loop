@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import styles from './CodeBlock.module.css';
 
-interface CodeBlockProps extends HTMLAttributes<HTMLPreElement> {
+export interface CodeBlockProps extends HTMLAttributes<HTMLPreElement> {
 	children?: ReactNode;
 }
 

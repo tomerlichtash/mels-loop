@@ -8,7 +8,7 @@ export interface BreadcrumbItem {
 	href?: string;
 }
 
-interface BreadcrumbsProps {
+export interface BreadcrumbsProps {
 	items: BreadcrumbItem[];
 	'aria-label'?: string;
 	className?: string;

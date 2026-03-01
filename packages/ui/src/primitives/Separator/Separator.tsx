@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import styles from './Separator.module.css';
 
-interface SeparatorProps {
+export interface SeparatorProps {
 	orientation?: 'horizontal' | 'vertical';
 	decorative?: boolean;
 	className?: string;

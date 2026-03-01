@@ -9,7 +9,7 @@ type ContainerJustify = 'start' | 'center' | 'end' | 'between' | 'evenly';
 type ContainerDirection = 'row' | 'column';
 type ContainerShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg';
 
-interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
+export interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
 	paddingHorizontal?: ContainerSpacing;
 	paddingVertical?: ContainerSpacing;

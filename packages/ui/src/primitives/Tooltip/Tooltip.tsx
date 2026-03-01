@@ -8,7 +8,7 @@ import styles from './Tooltip.module.css';
 
 type TooltipPadding = 'xs' | 'sm' | 'md' | 'lg';
 
-interface TooltipProps {
+export interface TooltipProps {
 	label: string;
 	children: ReactNode;
 	open?: boolean;

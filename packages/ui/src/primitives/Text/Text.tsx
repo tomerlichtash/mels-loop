@@ -51,7 +51,7 @@ const VARIANT_ELEMENTS: Record<TextVariant, string> = {
 	label: 'label',
 };
 
-interface TextProps extends Omit<HTMLAttributes<HTMLElement>, 'color'> {
+export interface TextProps extends Omit<HTMLAttributes<HTMLElement>, 'color'> {
 	children: ReactNode;
 	variant?: TextVariant;
 	color?: TextColor;

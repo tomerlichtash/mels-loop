@@ -4,7 +4,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import type { CardAlign } from '../types';
 import styles from './CardBody.module.css';
 
-interface CardBodyProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardBodyProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
 	align?: CardAlign;
 	lines?: 1 | 2 | 3 | 4 | 5;

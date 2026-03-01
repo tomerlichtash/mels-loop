@@ -6,7 +6,7 @@ import styles from './Alert.module.css';
 type AlertStatus = 'success' | 'error' | 'warning' | 'info';
 type AlertRadius = 'none' | 'sm' | 'md' | 'lg' | 'pill';
 
-interface AlertProps extends HTMLAttributes<HTMLDivElement> {
+export interface AlertProps extends HTMLAttributes<HTMLDivElement> {
 	children?: ReactNode;
 	status?: AlertStatus;
 	radius?: AlertRadius;
