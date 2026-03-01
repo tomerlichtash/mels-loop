@@ -1,4 +1,5 @@
 import nextPlugin from '@next/eslint-plugin-next';
+
 import react from './react.mjs';
 
 export default [
