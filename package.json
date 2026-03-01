@@ -8,7 +8,7 @@
 		"build": "turbo build",
 		"lint": "turbo lint",
 		"lint:fix": "turbo lint:fix",
-		"test": "turbo test:e2e",
+		"test": "turbo test --log-order grouped",
 		"test:e2e": "turbo test:e2e",
 		"test-storybook": "turbo test-storybook",
 		"test:ui:e2e": "turbo --filter @mels-loop/ui test:e2e",
