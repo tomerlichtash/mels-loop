@@ -11,13 +11,10 @@ const SOURCE_VAR_RE = /\{\{sources?\/([^:}]+):[^}]+\}\}/gi;
  */
 export function extractSourceIds(raw: string): string[] {
 	const ids = new Set<string>();
-	let match: RegExpExecArray | null;
-	SOURCE_IMAGE_RE.lastIndex = 0;
-	while ((match = SOURCE_IMAGE_RE.exec(raw)) !== null) {
+	for (const match of raw.matchAll(SOURCE_IMAGE_RE)) {
 		ids.add(match[1]);
 	}
-	SOURCE_VAR_RE.lastIndex = 0;
-	while ((match = SOURCE_VAR_RE.exec(raw)) !== null) {
+	for (const match of raw.matchAll(SOURCE_VAR_RE)) {
 		ids.add(match[1]);
 	}
 	return [...ids];

@@ -6,6 +6,7 @@ import {
 } from '@mels-loop/content-pipeline/loaders';
 import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
 import fs from 'fs/promises';
+import matter from 'gray-matter';
 import path from 'path';
 
 import { paths } from '../paths';
@@ -19,6 +20,15 @@ export async function listSubdirs(dir: string): Promise<string[]> {
 	if (!(await fileExists(dir))) return [];
 	const entries = await fs.readdir(dir, { withFileTypes: true });
 	return entries.filter((e) => e.isDirectory()).map((e) => e.name);
+}
+
+/**
+ * Reads and parses a JSON file. Returns null if the file does not exist.
+ */
+export async function loadJsonFile<T>(filePath: string): Promise<T | null> {
+	if (!(await fileExists(filePath))) return null;
+	const raw = await fs.readFile(filePath, 'utf-8');
+	return JSON.parse(raw) as T;
 }
 
 /**
@@ -69,17 +79,14 @@ export async function loadSourceMessages(
 	id: string,
 	locale: string,
 ): Promise<SourceMessages | null> {
-	const localePath = paths.sources.messages(id, locale);
-	if (await fileExists(localePath)) {
-		const raw = await fs.readFile(localePath, 'utf-8');
-		return JSON.parse(raw) as SourceMessages;
-	}
+	const result = await loadJsonFile<SourceMessages>(
+		paths.sources.messages(id, locale),
+	);
+	if (result) return result;
 	if (locale !== FALLBACK_LOCALE) {
-		const fallbackPath = paths.sources.messages(id, FALLBACK_LOCALE);
-		if (await fileExists(fallbackPath)) {
-			const raw = await fs.readFile(fallbackPath, 'utf-8');
-			return JSON.parse(raw) as SourceMessages;
-		}
+		return loadJsonFile<SourceMessages>(
+			paths.sources.messages(id, FALLBACK_LOCALE),
+		);
 	}
 	return null;
 }
@@ -95,18 +102,41 @@ export async function loadResolvedSourcesById(
 	if (ids.length === 0) return {};
 	const entries = await Promise.all(
 		ids.map(async (id) => {
-			const basePath = paths.sources.data(id);
-			if (!(await fileExists(basePath))) return null;
-
-			const [baseRaw, messages] = await Promise.all([
-				fs.readFile(basePath, 'utf-8'),
+			const [source, messages] = await Promise.all([
+				loadJsonFile<Source>(paths.sources.data(id)),
 				loadSourceMessages(id, locale),
 			]);
-
-			const source = JSON.parse(baseRaw) as Source;
+			if (!source) return null;
 			const resolved = resolveSource(source, messages ?? { title: id });
 			return [id, resolved] as const;
 		}),
 	);
 	return Object.fromEntries(entries.filter((e) => e !== null));
+}
+
+/**
+ * Collects source IDs from frontmatter "sources" fields in all .md files
+ * within a directory.
+ */
+export async function collectSourceIdsFromDir(dir: string): Promise<string[]> {
+	try {
+		const entries = await fs.readdir(dir, { withFileTypes: true });
+		const mdFiles = entries.filter((e) => e.isFile() && e.name.endsWith('.md'));
+		const ids: string[] = [];
+		await Promise.all(
+			mdFiles.map(async (f) => {
+				try {
+					const raw = await fs.readFile(path.join(dir, f.name), 'utf-8');
+					const { data } = matter(raw);
+					const sources = data.sources as string[] | undefined;
+					if (Array.isArray(sources)) ids.push(...sources);
+				} catch {
+					// ignore unreadable files
+				}
+			}),
+		);
+		return ids;
+	} catch {
+		return [];
+	}
 }

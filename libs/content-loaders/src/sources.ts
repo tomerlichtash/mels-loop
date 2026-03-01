@@ -1,18 +1,18 @@
-import { fileExists } from '@mels-loop/content-pipeline/loaders';
-import fs from 'fs/promises';
-import matter from 'gray-matter';
 import path from 'path';
 
-import { listSubdirs, loadSourceMessages, resolveSource } from './helpers';
+import {
+	collectSourceIdsFromDir,
+	listSubdirs,
+	loadJsonFile,
+	loadSourceMessages,
+	resolveSource,
+} from './helpers';
 import { paths } from './paths';
 import { getStoryConfig } from './stories';
 import type { ResolvedSource, Source, SourceMessages } from './types';
 
 export async function getSource(id: string): Promise<Source | null> {
-	const filePath = paths.sources.data(id);
-	if (!(await fileExists(filePath))) return null;
-	const raw = await fs.readFile(filePath, 'utf-8');
-	return JSON.parse(raw) as Source;
+	return loadJsonFile<Source>(paths.sources.data(id));
 }
 
 export async function getSourceMessages(
@@ -37,12 +37,7 @@ export async function getResolvedSource(
 async function getAllSources(): Promise<Source[]> {
 	const dirs = await listSubdirs(paths.sources.dir());
 	const sources = await Promise.all(
-		dirs.map(async (name) => {
-			const filePath = paths.sources.data(name);
-			if (!(await fileExists(filePath))) return null;
-			const raw = await fs.readFile(filePath, 'utf-8');
-			return JSON.parse(raw) as Source;
-		}),
+		dirs.map((name) => loadJsonFile<Source>(paths.sources.data(name))),
 	);
 	return sources.filter((s): s is Source => s !== null);
 }
@@ -66,11 +61,6 @@ export async function getAllResolvedSources(
 	return resolved.filter((s): s is ResolvedSource => s !== null);
 }
 
-async function getSourcesByIds(ids: string[]): Promise<Source[]> {
-	const results = await Promise.all(ids.map(getSource));
-	return results.filter((s): s is Source => s !== null);
-}
-
 /**
  * Aggregates sources from:
  * 1. story.json "sources" array
@@ -82,14 +72,9 @@ export async function getResolvedStorySources(
 	locale: string,
 ): Promise<ResolvedSource[]> {
 	const config = await getStoryConfig(storySlug);
-	const ids = new Set<string>();
+	const ids = new Set<string>(config.sources ?? []);
 
-	// 1. story.json sources
-	for (const id of config.sources ?? []) {
-		ids.add(id);
-	}
-
-	// 2. Scan content directories for frontmatter sources
+	// Scan content directories for frontmatter sources
 	const contentDirs = [
 		paths.stories.codex.dir(storySlug),
 		...config.articles.map((a) => paths.stories.articles.item(storySlug, a)),
@@ -98,84 +83,31 @@ export async function getResolvedStorySources(
 		),
 	];
 
-	await Promise.all(
-		contentDirs.map(async (dir) => {
-			try {
-				const entries = await fs.readdir(dir, { withFileTypes: true });
-				const mdFiles = entries.filter(
-					(e) => e.isFile() && e.name.endsWith('.md'),
-				);
-				await Promise.all(
-					mdFiles.map(async (f) => {
-						try {
-							const raw = await fs.readFile(path.join(dir, f.name), 'utf-8');
-							const { data } = matter(raw);
-							const sources = data.sources as string[] | undefined;
-							if (Array.isArray(sources)) {
-								for (const id of sources) ids.add(id);
-							}
-						} catch {
-							// ignore unreadable files
-						}
-					}),
-				);
-			} catch {
-				// ignore missing directories
-			}
-		}),
-	);
-
-	// 3. Scan annotations
+	// Scan annotations (one level deeper — subdirs contain .md files)
 	const annotationsDir = paths.stories.annotations.dir(storySlug);
-	try {
-		const annotDirs = await fs.readdir(annotationsDir, {
-			withFileTypes: true,
-		});
-		await Promise.all(
-			annotDirs
-				.filter((e) => e.isDirectory())
-				.map(async (d) => {
-					try {
-						const files = await fs.readdir(path.join(annotationsDir, d.name), {
-							withFileTypes: true,
-						});
-						await Promise.all(
-							files
-								.filter((f) => f.isFile() && f.name.endsWith('.md'))
-								.map(async (f) => {
-									try {
-										const raw = await fs.readFile(
-											path.join(annotationsDir, d.name, f.name),
-											'utf-8',
-										);
-										const { data } = matter(raw);
-										const sources = data.sources as string[] | undefined;
-										if (Array.isArray(sources)) {
-											for (const id of sources) ids.add(id);
-										}
-									} catch {
-										// ignore
-									}
-								}),
-						);
-					} catch {
-						// ignore
-					}
-				}),
-		);
-	} catch {
-		// no annotations directory
+	const annotSubdirs = await listSubdirs(annotationsDir);
+	const allDirs = [
+		...contentDirs,
+		...annotSubdirs.map((d) => path.join(annotationsDir, d)),
+	];
+
+	const batches = await Promise.all(allDirs.map(collectSourceIdsFromDir));
+	for (const batch of batches) {
+		for (const id of batch) ids.add(id);
 	}
 
-	const sources = await getSourcesByIds([...ids]);
-	const resolved = await Promise.all(
-		sources.map(async (s) => {
-			const messages = await loadSourceMessages(s.id, locale);
-			if (!messages) return null;
-			return resolveSource(s, messages);
+	// Resolve sources
+	const sources = await Promise.all(
+		[...ids].map(async (id) => {
+			const [source, messages] = await Promise.all([
+				loadJsonFile<Source>(paths.sources.data(id)),
+				loadSourceMessages(id, locale),
+			]);
+			if (!source || !messages) return null;
+			return resolveSource(source, messages);
 		}),
 	);
-	return resolved
+	return sources
 		.filter((s): s is ResolvedSource => s !== null)
 		.sort(
 			(a, b) => a.type.localeCompare(b.type) || a.title.localeCompare(b.title),
