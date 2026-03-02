@@ -16,6 +16,17 @@ Generic markdown processing pipeline and content loading utilities. Zero domain 
 remarkParse → remarkFrontmatter → remarkGfm → [remarkPlugins] → remarkRehype → rehypeRaw → [rehypePlugins] → HAST
 ```
 
+| Step | What it does |
+|---|---|
+| `remarkParse` | Parses raw markdown text into an MDAST (markdown abstract syntax tree) |
+| `remarkFrontmatter` | Extracts YAML frontmatter blocks so they don't appear in the output |
+| `remarkGfm` | Adds GitHub Flavored Markdown support (tables, strikethrough, autolinks, task lists) |
+| `[remarkPlugins]` | Consumer-supplied remark plugins that transform the MDAST before conversion |
+| `remarkRehype` | Converts the MDAST into a HAST (HTML abstract syntax tree) |
+| `rehypeRaw` | Re-parses any raw HTML embedded in the markdown into proper HAST nodes |
+| `[rehypePlugins]` | Consumer-supplied rehype plugins that transform the HAST after conversion |
+| **HAST** | Final HTML abstract syntax tree, ready for rendering |
+
 The core pipeline handles parsing, frontmatter extraction, and GFM. Everything else is injected:
 
 ```ts
