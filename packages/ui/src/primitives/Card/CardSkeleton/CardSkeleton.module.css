@@ -8,6 +8,15 @@
 	height: var(--ml-card-media-height, 200px);
 	background-color: var(--ml-skeleton-color);
 	animation: shimmer 1.5s infinite;
+	flex-shrink: 0;
+}
+
+.mediaHorizontal {
+	margin-block: calc(-1 * var(--ml-card-padding));
+	margin-inline-start: calc(-1 * var(--ml-card-padding));
+	margin-inline-end: var(--ml-card-padding);
+	height: auto;
+	width: 40%;
 }
 
 /* Mirrors CardHeader layout */

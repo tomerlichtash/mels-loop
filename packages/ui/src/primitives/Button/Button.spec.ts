@@ -15,9 +15,13 @@ testComponent({
 	},
 	getTarget: (page) => new ButtonDriver(page),
 	interactions: {
-		hover: (button) => button.locator.hover({ force: true }),
-		active: async (button) => {
-			await button.locator.dispatchEvent('mousedown');
+		hover: {
+			run: (button) => button.locator.hover({ force: true }),
+		},
+		active: {
+			run: async (button) => {
+				await button.locator.dispatchEvent('mousedown');
+			},
 		},
 	},
 });

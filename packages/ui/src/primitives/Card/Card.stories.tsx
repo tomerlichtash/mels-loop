@@ -15,7 +15,7 @@ import {
 import { Card } from './Card';
 
 type CardStoryArgs = ComponentProps<typeof Card> & {
-	mediaSrc?: string;
+	withMedia?: boolean;
 	mediaOverlayText?: string;
 	headerText?: string;
 	bodyText?: string;
@@ -55,7 +55,7 @@ const meta: Meta<CardStoryArgs> = {
 			control: 'select',
 			options: ['vertical', 'horizontal'],
 		},
-		mediaSrc: { control: 'text' },
+		withMedia: { control: 'boolean' },
 		mediaOverlayText: { control: 'text' },
 		headerText: { control: 'text' },
 		bodyText: { control: 'text' },
@@ -65,7 +65,7 @@ const meta: Meta<CardStoryArgs> = {
 		href: { control: 'text' },
 	},
 	render: ({
-		mediaSrc,
+		withMedia,
 		mediaOverlayText,
 		headerText,
 		bodyText,
@@ -78,7 +78,7 @@ const meta: Meta<CardStoryArgs> = {
 		if (loading) {
 			return (
 				<CardSkeleton
-					withMedia={!!mediaSrc}
+					withMedia={withMedia}
 					withActions={withActions}
 					{...args}
 				/>
@@ -103,9 +103,9 @@ const meta: Meta<CardStoryArgs> = {
 
 		return (
 			<Card orientation={orientation} {...args}>
-				{mediaSrc && (
+				{withMedia && (
 					<CardMedia
-						src={mediaSrc}
+						src="/card-image.png"
 						alt="Card image"
 						horizontal={orientation === 'horizontal'}
 						overlay={mediaOverlayText || undefined}
@@ -135,7 +135,7 @@ export const Default: Story = {
 		selected: false,
 		disabled: false,
 		orientation: 'vertical',
-		mediaSrc: 'https://dummyimage.com/600x200/cccccc/999999&text=Card+Image',
+		withMedia: false,
 		mediaOverlayText: '',
 		headerText: 'Card Title',
 		bodyText:
@@ -155,7 +155,7 @@ const gridArgTypes = {
 	interactive: { table: { disable: true } },
 	selected: { table: { disable: true } },
 	orientation: { table: { disable: true } },
-	mediaSrc: { table: { disable: true } },
+	withMedia: { table: { disable: true } },
 	mediaOverlayText: { table: { disable: true } },
 	headerText: { table: { disable: true } },
 	bodyText: { table: { disable: true } },
@@ -173,10 +173,7 @@ export const CardInGrid: Story = {
 		<Grid gap="md">
 			{Array.from({ length: numOfItems }, (_, i) => (
 				<Card key={i} variant="outlined">
-					<CardMedia
-						src={`https://dummyimage.com/400x200/cccccc/999999&text=Card+${i + 1}`}
-						alt={`Card ${i + 1}`}
-					/>
+					<CardMedia src="/card-image.png" alt={`Card ${i + 1}`} />
 					<CardHeader>{`Card ${i + 1}`}</CardHeader>
 					<CardBody>Sample card content for grid layout.</CardBody>
 				</Card>

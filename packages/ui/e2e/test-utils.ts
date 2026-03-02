@@ -88,7 +88,13 @@ interface TestComponentOptions<T extends ScreenshotTarget> {
 	themes?: readonly Theme[];
 	textDirections?: readonly TextDirection[];
 	clipPadding?: number;
-	interactions?: Record<string, (target: T) => Promise<void>>;
+	interactions?: Record<
+		string,
+		{
+			run: (target: T) => Promise<void>;
+			skip?: (prop: string, value: string | number | boolean) => boolean;
+		}
+	>;
 	extra?: (theme: Theme, textDirection: TextDirection) => void;
 }
 
@@ -137,16 +143,17 @@ export function testComponent<T extends ScreenshotTarget>({
 									});
 
 									if (interactions) {
-										for (const [name, interact] of Object.entries(
+										for (const [name, interaction] of Object.entries(
 											interactions,
 										)) {
+											if (interaction.skip?.(prop, value)) continue;
 											test(`${value} ${name}`, async ({ page }) => {
 												await loadStory(page, storyId, theme, {
 													args: { [prop]: value },
 													textDirection,
 												});
 												const target = getTarget(page);
-												await interact(target);
+												await interaction.run(target);
 												await screenshotTarget(page, target, clipPadding);
 											});
 										}

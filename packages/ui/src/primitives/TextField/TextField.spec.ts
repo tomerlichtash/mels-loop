@@ -15,7 +15,12 @@ testComponent({
 	},
 	getTarget: (page) => new TextFieldDriver(page),
 	interactions: {
-		hover: (field) => field.locator.hover({ force: true }),
-		focus: (field) => field.focus(),
+		hover: {
+			run: (field) => field.locator.hover({ force: true }),
+		},
+		focus: {
+			run: (field) => field.focus(),
+			skip: (prop, value) => prop === 'disabled' && value === true,
+		},
 	},
 });

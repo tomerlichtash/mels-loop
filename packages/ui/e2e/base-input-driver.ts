@@ -11,15 +11,15 @@ export class BaseInputDriver extends BaseDriver {
 		super(page, componentClass);
 	}
 
-	get input() {
+	get inputElement() {
 		return this.locator.locator(this.inputSelector);
 	}
 
 	focus() {
-		return this.input.focus();
+		return this.inputElement.focus();
 	}
 
 	fill(value: string) {
-		return this.input.fill(value);
+		return this.inputElement.fill(value);
 	}
 }

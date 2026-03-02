@@ -24,8 +24,9 @@
 
 /* Horizontal: media fills side of card */
 .horizontal {
-	margin: calc(-1 * var(--ml-card-padding)) var(--ml-card-padding)
-		calc(-1 * var(--ml-card-padding)) calc(-1 * var(--ml-card-padding));
+	margin-block: calc(-1 * var(--ml-card-padding));
+	margin-inline-start: calc(-1 * var(--ml-card-padding));
+	margin-inline-end: var(--ml-card-padding);
 	height: auto;
 	width: 40%;
 }

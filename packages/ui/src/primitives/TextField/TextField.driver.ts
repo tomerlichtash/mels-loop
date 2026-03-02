@@ -5,4 +5,8 @@ export class TextFieldDriver extends BaseInputDriver {
 	constructor(page: Page) {
 		super(page, 'ml-text-field');
 	}
+
+	get inputElement() {
+		return this.locator;
+	}
 }

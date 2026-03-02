@@ -19,15 +19,22 @@ export function CardSkeleton({
 	withFooter,
 	withActions,
 	className,
+	orientation,
 	...cardProps
 }: CardSkeletonProps) {
+	const isHorizontal = orientation === 'horizontal';
 	return (
 		<Card
 			className={cn('ml-card-skeleton', className)}
+			orientation={orientation}
 			aria-hidden="true"
 			{...cardProps}
 		>
-			{withMedia && <div className={styles.media} />}
+			{withMedia && (
+				<div
+					className={cn(styles.media, isHorizontal && styles.mediaHorizontal)}
+				/>
+			)}
 			{withHeader && (
 				<div className={styles.header}>
 					<div className={cn(styles.line, styles.title)} />

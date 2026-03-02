@@ -3,12 +3,12 @@ import { defineConfig } from '@playwright/test';
 const isCI = !!process.env.CI;
 
 export default defineConfig({
-	testDir: './src',
+	testDir: './src/primitives',
 	testMatch: '**/*.spec.ts',
 	fullyParallel: true,
 	retries: isCI ? 2 : 0,
 	snapshotDir: './__snapshots__',
-	snapshotPathTemplate: '{snapshotDir}/{arg}--{projectName}{ext}',
+	snapshotPathTemplate: '{snapshotDir}/{testFileDir}/{arg}--{projectName}{ext}',
 	updateSnapshots: 'none',
 	webServer: {
 		command: 'npx http-server storybook-static -p 6007 -s',

@@ -19,8 +19,13 @@ testComponent({
 	},
 	getTarget: (page) => new PasswordFieldDriver(page),
 	interactions: {
-		hover: (field) => field.locator.hover({ force: true }),
-		focus: (field) => field.focus(),
+		hover: {
+			run: (field) => field.locator.hover({ force: true }),
+		},
+		focus: {
+			run: (field) => field.focus(),
+			skip: (prop, value) => prop === 'disabled' && value === true,
+		},
 	},
 	extra: (theme, textDirection) => {
 		test('toggle visibility', async ({ page }) => {

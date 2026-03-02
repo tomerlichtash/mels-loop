@@ -10,26 +10,31 @@ const combinations: {
 	name: string;
 	args: Record<string, string | number | boolean>;
 }[] = [
+	// layout
 	{
-		name: 'interactive + selected',
-		args: { interactive: true, selected: true },
+		name: 'horizontal media',
+		args: { orientation: 'horizontal', withMedia: true },
 	},
 	{
-		name: 'interactive + disabled',
-		args: { interactive: true, disabled: true },
-	},
-	{
-		name: 'interactive + selected + disabled',
-		args: { interactive: true, selected: true, disabled: true },
-	},
-	{ name: 'href + disabled', args: { href: '#', disabled: true } },
-	{
-		name: 'inset + interactive',
-		args: { variant: 'inset', interactive: true },
-	},
-	{
-		name: 'horizontal + withActions',
+		name: 'horizontal actions',
 		args: { orientation: 'horizontal', withActions: true },
+	},
+	// media
+	{ name: 'inset media', args: { variant: 'inset', withMedia: true } },
+	{
+		name: 'media overlay',
+		args: { withMedia: true, mediaOverlayText: 'Overlay text' },
+	},
+	// state
+	{ name: 'selected interactive', args: { interactive: true, selected: true } },
+	{ name: 'disabled interactive', args: { interactive: true, disabled: true } },
+	{ name: 'disabled link', args: { href: '#', disabled: true } },
+	// loading
+	{ name: 'loading with media', args: { loading: true, withMedia: true } },
+	{ name: 'loading with actions', args: { loading: true, withActions: true } },
+	{
+		name: 'loading horizontal',
+		args: { loading: true, orientation: 'horizontal', withMedia: true },
 	},
 ];
 
@@ -49,7 +54,7 @@ testComponent({
 		bodyText: ['Card body content'],
 		footerText: ['Footer actions'],
 		withActions: [true, false],
-		mediaSrc: ['', 'https://dummyimage.com/400x200/cccccc/999999&text=Test'],
+		withMedia: [true, false],
 		mediaOverlayText: ['Overlay text'],
 		loading: [true, false],
 		href: ['#'],
@@ -93,16 +98,6 @@ testComponent({
 					});
 				});
 			}
-		});
-
-		test('grid', async ({ page }) => {
-			await loadStory(page, 'layout-card--grid', theme, { textDirection });
-			await expect(page).toHaveScreenshot();
-		});
-
-		test('masonry', async ({ page }) => {
-			await loadStory(page, 'layout-card--masonry', theme, { textDirection });
-			await expect(page).toHaveScreenshot();
 		});
 	},
 });
