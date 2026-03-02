@@ -17,7 +17,7 @@ const meta: Meta<ChipStoryArgs> = {
 		},
 		radius: {
 			control: 'select',
-			options: ['sm', 'md', 'lg', 'pill'],
+			options: ['none', 'sm', 'md', 'lg', 'pill'],
 		},
 		disabled: { control: 'boolean' },
 		dismissible: { control: 'boolean' },

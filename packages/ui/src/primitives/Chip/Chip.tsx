@@ -5,7 +5,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import styles from './Chip.module.css';
 
 type ChipSize = 'sm' | 'md' | 'lg';
-type ChipRadius = 'sm' | 'md' | 'lg' | 'pill';
+type ChipRadius = 'none' | 'sm' | 'md' | 'lg' | 'pill';
 
 export interface ChipProps extends HTMLAttributes<HTMLSpanElement> {
 	children: ReactNode;

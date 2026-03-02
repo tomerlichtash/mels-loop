@@ -51,6 +51,10 @@
 }
 
 /* Radius */
+.radius-none {
+	--ml-chip-radius: var(--ml-radius-none);
+}
+
 .radius-sm {
 	--ml-chip-radius: var(--ml-radius-sm);
 }

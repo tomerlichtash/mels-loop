@@ -7,6 +7,7 @@
 		"dev": "next dev --port 3000",
 		"build": "next build",
 		"start": "next start --port 3000",
+		"type-check": "tsc --noEmit",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"test:e2e": "playwright test",

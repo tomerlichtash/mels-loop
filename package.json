@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "turbo dev",
 		"build": "turbo build",
+		"type-check": "turbo type-check",
 		"lint": "turbo lint",
 		"lint:fix": "turbo lint:fix",
 		"test": "turbo test --log-order grouped",
