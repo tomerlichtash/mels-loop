@@ -14,10 +14,7 @@ type Story = StoryObj<typeof Figure>;
 export const Default: Story = {
 	render: () => (
 		<Figure>
-			<img
-				src="https://placehold.co/600x300/e2e8f0/475569?text=Figure+Image"
-				alt="Placeholder"
-			/>
+			<img src="/card-image.png" alt="Placeholder" />
 			<FigureCaption>Fig. 1. A sample figure with caption</FigureCaption>
 		</Figure>
 	),

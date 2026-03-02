@@ -8,7 +8,8 @@ export default defineConfig({
 	fullyParallel: true,
 	retries: isCI ? 2 : 0,
 	snapshotDir: './__snapshots__',
-	snapshotPathTemplate: '{snapshotDir}/{testFileDir}/{arg}--{projectName}{ext}',
+	snapshotPathTemplate:
+		'{snapshotDir}/{testFileDir}/{arg}--{projectName}-{platform}{ext}',
 	updateSnapshots: 'none',
 	webServer: {
 		command: 'npx http-server storybook-static -p 6007 -s',
@@ -44,6 +45,7 @@ export default defineConfig({
 		toHaveScreenshot: {
 			maxDiffPixelRatio: 0.005,
 			animations: 'disabled',
+			timeout: 15_000,
 		},
 	},
 	reporter: isCI ? 'github' : 'html',

@@ -8,10 +8,10 @@ export class PopoverDriver {
 	}
 
 	get content() {
-		return this.page.locator('[data-radix-popover-content]');
+		return this.page.getByRole('dialog');
 	}
 
 	get trigger() {
-		return this.page.locator('button', { hasText: 'Toggle Popover' });
+		return this.page.locator('.ml-button');
 	}
 }

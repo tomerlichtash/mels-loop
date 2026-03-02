@@ -1,9 +1,10 @@
-import { BaseDriver } from '@e2e/base-driver';
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 
-export class FigureDriver extends BaseDriver {
-	constructor(page: Page) {
-		super(page, 'figure');
+export class FigureDriver {
+	readonly locator: Locator;
+
+	constructor(readonly page: Page) {
+		this.locator = page.locator('figure');
 	}
 
 	get caption() {

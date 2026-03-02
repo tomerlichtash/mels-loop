@@ -9,7 +9,8 @@ import styles from './Popover.module.css';
 type Side = 'top' | 'bottom' | 'left' | 'right';
 
 export interface PopoverProps {
-	open: boolean;
+	open?: boolean;
+	defaultOpen?: boolean;
 	onOpenChange?: (open: boolean) => void;
 	trigger: ReactNode;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,6 +24,7 @@ export interface PopoverProps {
 
 export function Popover({
 	open,
+	defaultOpen,
 	onOpenChange,
 	trigger,
 	triggerRef,
@@ -33,13 +35,17 @@ export function Popover({
 	className,
 }: PopoverProps) {
 	return (
-		<RadixPopover.Root open={open} onOpenChange={onOpenChange}>
+		<RadixPopover.Root
+			open={open}
+			defaultOpen={defaultOpen}
+			onOpenChange={onOpenChange}
+		>
 			<RadixPopover.Trigger asChild ref={triggerRef}>
 				{trigger}
 			</RadixPopover.Trigger>
 			<RadixPopover.Portal>
 				<RadixPopover.Content
-					className={cn(styles.content, className)}
+					className={cn(styles.content, 'ml-popover-content', className)}
 					side={side}
 					align={align}
 					sideOffset={sideOffset}
