@@ -4,6 +4,7 @@ import { expect, test } from '@playwright/test';
 import { ChipDriver } from './Chip.driver';
 
 testComponent({
+	name: 'Chip',
 	storyId: 'content-chip--default',
 	cases: {
 		size: ['sm', 'md', 'lg'],

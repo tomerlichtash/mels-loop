@@ -6,6 +6,7 @@ import { BreadcrumbsDriver } from './Breadcrumbs.driver';
 const STORY_ID = 'navigation-breadcrumbs--default';
 
 testComponent({
+	name: 'Breadcrumbs',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test('default', async ({ page }) => {

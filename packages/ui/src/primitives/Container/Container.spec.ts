@@ -1,6 +1,7 @@
 import { testComponent } from '@e2e/test-utils';
 
 testComponent({
+	name: 'Container',
 	storyId: 'layout-container--default',
 	cases: {
 		paddingHorizontal: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],

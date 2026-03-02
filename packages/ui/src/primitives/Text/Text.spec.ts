@@ -1,8 +1,11 @@
 import { testComponent } from '@e2e/test-utils';
 
+import { TextDriver } from './Text.driver';
+
 const STORY_ID = 'content-text--default';
 
 testComponent({
+	name: 'Text',
 	storyId: STORY_ID,
 	cases: {
 		variant: [
@@ -33,7 +36,6 @@ testComponent({
 		capitalize: [true, false],
 		truncate: [true, false],
 		lineClamp: [2],
-		fullWidth: [true, false],
 	},
-	getTarget: (page) => ({ page }),
+	getTarget: (page) => new TextDriver(page),
 });

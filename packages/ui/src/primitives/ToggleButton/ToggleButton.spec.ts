@@ -6,6 +6,7 @@ import { ToggleButtonDriver } from './ToggleButton.driver';
 const STORY_ID = 'action-togglebutton--default';
 
 testComponent({
+	name: 'ToggleButton',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test('unpressed', async ({ page }) => {

@@ -7,8 +7,8 @@ export default defineConfig({
 	testMatch: '**/*.spec.ts',
 	fullyParallel: true,
 	retries: isCI ? 2 : 0,
-	snapshotDir: './e2e/__screenshots__',
-	snapshotPathTemplate: '{snapshotDir}/{testFileDir}/{arg}--{projectName}{ext}',
+	snapshotDir: './__snapshots__',
+	snapshotPathTemplate: '{snapshotDir}/{arg}--{projectName}{ext}',
 	updateSnapshots: 'none',
 	webServer: {
 		command: 'npx http-server storybook-static -p 6007 -s',

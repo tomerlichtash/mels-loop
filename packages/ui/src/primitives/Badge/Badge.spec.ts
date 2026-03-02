@@ -4,6 +4,7 @@ import { expect, test } from '@playwright/test';
 import { BadgeDriver } from './Badge.driver';
 
 testComponent({
+	name: 'Badge',
 	storyId: 'content-badge--default',
 	cases: {
 		radius: ['none', 'sm', 'md', 'lg', 'pill'],

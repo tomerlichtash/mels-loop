@@ -81,6 +81,7 @@ type ScreenshotTarget =
 	  };
 
 interface TestComponentOptions<T extends ScreenshotTarget> {
+	name: string;
 	storyId: string;
 	cases?: Cases;
 	getTarget?: (page: Page) => T;
@@ -108,6 +109,7 @@ async function screenshotTarget<T extends ScreenshotTarget>(
 }
 
 export function testComponent<T extends ScreenshotTarget>({
+	name,
 	storyId,
 	cases,
 	getTarget,
@@ -117,41 +119,45 @@ export function testComponent<T extends ScreenshotTarget>({
 	interactions,
 	extra,
 }: TestComponentOptions<T>) {
-	for (const theme of themes) {
-		for (const textDirection of textDirections) {
-			test.describe(`${theme} ${textDirection}`, () => {
-				if (cases && getTarget) {
-					for (const [prop, values] of Object.entries(cases)) {
-						test.describe(prop, () => {
-							for (const value of values) {
-								test(`${value}`, async ({ page }) => {
-									await loadStory(page, storyId, theme, {
-										args: { [prop]: value },
-										textDirection,
-									});
-									const target = getTarget(page);
-									await screenshotTarget(page, target, clipPadding);
-								});
-
-								if (interactions) {
-									for (const [name, interact] of Object.entries(interactions)) {
-										test(`${value} ${name}`, async ({ page }) => {
-											await loadStory(page, storyId, theme, {
-												args: { [prop]: value },
-												textDirection,
-											});
-											const target = getTarget(page);
-											await interact(target);
-											await screenshotTarget(page, target, clipPadding);
+	test.describe(name, () => {
+		for (const theme of themes) {
+			for (const textDirection of textDirections) {
+				test.describe(`${theme} ${textDirection}`, () => {
+					if (cases && getTarget) {
+						for (const [prop, values] of Object.entries(cases)) {
+							test.describe(prop, () => {
+								for (const value of values) {
+									test(`${value}`, async ({ page }) => {
+										await loadStory(page, storyId, theme, {
+											args: { [prop]: value },
+											textDirection,
 										});
+										const target = getTarget(page);
+										await screenshotTarget(page, target, clipPadding);
+									});
+
+									if (interactions) {
+										for (const [name, interact] of Object.entries(
+											interactions,
+										)) {
+											test(`${value} ${name}`, async ({ page }) => {
+												await loadStory(page, storyId, theme, {
+													args: { [prop]: value },
+													textDirection,
+												});
+												const target = getTarget(page);
+												await interact(target);
+												await screenshotTarget(page, target, clipPadding);
+											});
+										}
 									}
 								}
-							}
-						});
+							});
+						}
 					}
-				}
-				extra?.(theme, textDirection);
-			});
+					extra?.(theme, textDirection);
+				});
+			}
 		}
-	}
+	});
 }

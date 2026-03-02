@@ -6,6 +6,7 @@ import { CodeBlockDriver } from './CodeBlock.driver';
 const STORY_ID = 'content-codeblock--default';
 
 testComponent({
+	name: 'CodeBlock',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test('default', async ({ page }) => {

@@ -6,6 +6,7 @@ import { ToggleGroupDriver } from './ToggleGroup.driver';
 const STORY_ID = 'action-togglegroup--default';
 
 testComponent({
+	name: 'ToggleGroup',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test('initial selection', async ({ page }) => {

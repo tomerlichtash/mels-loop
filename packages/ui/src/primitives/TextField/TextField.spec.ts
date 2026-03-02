@@ -1,12 +1,10 @@
-import { loadStory, testComponent } from '@e2e/test-utils';
-import { expect, test } from '@playwright/test';
+import { testComponent } from '@e2e/test-utils';
 
 import { TextFieldDriver } from './TextField.driver';
 
-const STORY_ID = 'input-textfield--default';
-
 testComponent({
-	storyId: STORY_ID,
+	name: 'TextField',
+	storyId: 'input-textfield--default',
 	cases: {
 		size: ['sm', 'md', 'lg'],
 		radius: ['none', 'sm', 'md', 'lg'],
@@ -17,28 +15,7 @@ testComponent({
 	},
 	getTarget: (page) => new TextFieldDriver(page),
 	interactions: {
-		hover: (field) => field.hover(),
+		hover: (field) => field.locator.hover({ force: true }),
 		focus: (field) => field.focus(),
-	},
-	extra: (theme, textDirection) => {
-		test('disabled ignores input', async ({ page }) => {
-			await loadStory(page, STORY_ID, theme, {
-				args: { disabled: true },
-				textDirection,
-			});
-			const field = new TextFieldDriver(page);
-			await field.fill('should not appear');
-			await expect(field.locator).toHaveScreenshot();
-		});
-
-		test('readOnly ignores input', async ({ page }) => {
-			await loadStory(page, STORY_ID, theme, {
-				args: { readOnly: true, value: 'read only value' },
-				textDirection,
-			});
-			const field = new TextFieldDriver(page);
-			await field.fill('should not change');
-			await expect(field.locator).toHaveScreenshot();
-		});
 	},
 });

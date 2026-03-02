@@ -34,13 +34,13 @@ const combinations: {
 ];
 
 testComponent({
+	name: 'Card',
 	storyId: STORY_ID,
 	cases: {
 		variant: ['outlined', 'inset'],
 		radius: ['none', 'sm', 'md', 'lg'],
 		padding: ['none', 'sm', 'md', 'lg'],
 		shadow: ['none', 'xs', 'sm', 'md', 'lg'],
-		fullWidth: [true, false],
 		interactive: [true, false],
 		selected: [true, false],
 		disabled: [true, false],

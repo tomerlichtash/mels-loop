@@ -4,6 +4,7 @@ import { expect, test } from '@playwright/test';
 import { SwitchDriver } from './Switch.driver';
 
 testComponent({
+	name: 'Switch',
 	storyId: 'input-switch--default',
 	cases: {
 		checked: [true, false],

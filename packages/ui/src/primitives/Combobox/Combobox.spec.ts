@@ -6,6 +6,7 @@ import { ComboboxDriver } from './Combobox.driver';
 const STORY_ID = 'input-combobox--default';
 
 testComponent({
+	name: 'Combobox',
 	storyId: STORY_ID,
 	cases: {
 		size: ['sm', 'md', 'lg'],

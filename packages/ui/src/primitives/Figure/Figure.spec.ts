@@ -6,6 +6,7 @@ import { FigureDriver } from './Figure.driver';
 const STORY_ID = 'content-figure--default';
 
 testComponent({
+	name: 'Figure',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test('default', async ({ page }) => {

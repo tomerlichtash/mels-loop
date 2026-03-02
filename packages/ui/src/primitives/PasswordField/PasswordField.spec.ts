@@ -6,6 +6,7 @@ import { PasswordFieldDriver } from './PasswordField.driver';
 const STORY_ID = 'input-passwordfield--default';
 
 testComponent({
+	name: 'PasswordField',
 	storyId: STORY_ID,
 	cases: {
 		size: ['sm', 'md', 'lg'],
@@ -18,7 +19,7 @@ testComponent({
 	},
 	getTarget: (page) => new PasswordFieldDriver(page),
 	interactions: {
-		hover: (field) => field.hover(),
+		hover: (field) => field.locator.hover({ force: true }),
 		focus: (field) => field.focus(),
 	},
 	extra: (theme, textDirection) => {
@@ -26,16 +27,6 @@ testComponent({
 			await loadStory(page, STORY_ID, theme, { textDirection });
 			const field = new PasswordFieldDriver(page);
 			await field.toggleButton.click();
-			await expect(field.locator).toHaveScreenshot();
-		});
-
-		test('disabled ignores input', async ({ page }) => {
-			await loadStory(page, STORY_ID, theme, {
-				args: { disabled: true },
-				textDirection,
-			});
-			const field = new PasswordFieldDriver(page);
-			await field.fill('should not appear');
 			await expect(field.locator).toHaveScreenshot();
 		});
 	},

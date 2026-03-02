@@ -55,7 +55,7 @@ storybook-static
 .playwright-mcp
 
 # ui e2e testing
-packages/ui/e2e/test-results/
+packages/ui/test-results/
 packages/ui/playwright-report/
 
 # search index (generated)

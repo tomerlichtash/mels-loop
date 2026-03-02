@@ -6,6 +6,7 @@ import { PopoverDriver } from './Popover.driver';
 const STORY_ID = 'overlay-popover--default';
 
 testComponent({
+	name: 'Popover',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test('opened', async ({ page }) => {
