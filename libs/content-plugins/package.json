@@ -4,13 +4,17 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
 		"type-check": "tsc --noEmit",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"test": "vitest run --coverage"
 	},
 	"exports": {
-		".": "./src/index.ts"
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
 	},
 	"dependencies": {
 		"@mels-loop/content-loaders": "workspace:*",

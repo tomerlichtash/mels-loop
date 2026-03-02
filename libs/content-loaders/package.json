@@ -4,14 +4,21 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
 		"type-check": "tsc --noEmit",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"test": "vitest run --coverage"
 	},
 	"exports": {
-		"./loaders": "./src/index.ts",
-		"./types": "./src/types.ts"
+		"./loaders": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./types": {
+			"types": "./dist/types.d.ts",
+			"import": "./dist/types.js"
+		}
 	},
 	"dependencies": {
 		"@mels-loop/content-pipeline": "workspace:*",
