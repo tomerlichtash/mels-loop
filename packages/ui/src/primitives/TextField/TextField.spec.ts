@@ -1,41 +1,44 @@
-import { loadStory, THEMES } from '@e2e/test-utils';
+import { loadStory, testComponent } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
 import { TextFieldDriver } from './TextField.driver';
 
 const STORY_ID = 'input-textfield--default';
 
-const cases = {
-	size: ['sm', 'md', 'lg'],
-	radius: ['none', 'sm', 'md', 'lg'],
-	error: [true],
-	disabled: [true],
-	fullWidth: [true],
-};
-
-for (const theme of THEMES) {
-	test.describe(theme, () => {
-		for (const [prop, values] of Object.entries(cases)) {
-			test.describe(prop, () => {
-				for (const value of values) {
-					test(`${value}`, async ({ page }) => {
-						await loadStory(page, STORY_ID, theme, {
-							args: { [prop]: value },
-						});
-						const input = new TextFieldDriver(page);
-						await expect(input.locator).toHaveScreenshot();
-					});
-
-					test(`${value} focus`, async ({ page }) => {
-						await loadStory(page, STORY_ID, theme, {
-							args: { [prop]: value },
-						});
-						const input = new TextFieldDriver(page);
-						await input.locator.focus();
-						await expect(input.locator).toHaveScreenshot();
-					});
-				}
+testComponent({
+	storyId: STORY_ID,
+	cases: {
+		size: ['sm', 'md', 'lg'],
+		radius: ['none', 'sm', 'md', 'lg'],
+		error: [true, false],
+		disabled: [true, false],
+		fullWidth: [true, false],
+		readOnly: [true, false],
+	},
+	getTarget: (page) => new TextFieldDriver(page),
+	interactions: {
+		hover: (field) => field.hover(),
+		focus: (field) => field.focus(),
+	},
+	extra: (theme, textDirection) => {
+		test('disabled ignores input', async ({ page }) => {
+			await loadStory(page, STORY_ID, theme, {
+				args: { disabled: true },
+				textDirection,
 			});
-		}
-	});
-}
+			const field = new TextFieldDriver(page);
+			await field.fill('should not appear');
+			await expect(field.locator).toHaveScreenshot();
+		});
+
+		test('readOnly ignores input', async ({ page }) => {
+			await loadStory(page, STORY_ID, theme, {
+				args: { readOnly: true, value: 'read only value' },
+				textDirection,
+			});
+			const field = new TextFieldDriver(page);
+			await field.fill('should not change');
+			await expect(field.locator).toHaveScreenshot();
+		});
+	},
+});

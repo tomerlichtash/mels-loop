@@ -1,13 +1,9 @@
-import { BaseDriver } from '@e2e/base-driver';
+import { BaseInputDriver } from '@e2e/base-input-driver';
 import type { Page } from '@playwright/test';
 
-export class PasswordFieldDriver extends BaseDriver {
+export class PasswordFieldDriver extends BaseInputDriver {
 	constructor(page: Page) {
 		super(page, 'ml-password-field');
-	}
-
-	get input() {
-		return this.locator.locator('input');
 	}
 
 	get toggleButton() {

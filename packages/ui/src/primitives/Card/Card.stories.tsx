@@ -51,7 +51,7 @@ const meta: Meta<CardStoryArgs> = {
 		interactive: { control: 'boolean' },
 		selected: { control: 'boolean' },
 		disabled: { control: 'boolean' },
-		direction: {
+		orientation: {
 			control: 'select',
 			options: ['vertical', 'horizontal'],
 		},
@@ -71,7 +71,7 @@ const meta: Meta<CardStoryArgs> = {
 		bodyText,
 		footerText,
 		withActions,
-		direction,
+		orientation,
 		loading,
 		...args
 	}) => {
@@ -102,16 +102,16 @@ const meta: Meta<CardStoryArgs> = {
 		);
 
 		return (
-			<Card direction={direction} {...args}>
+			<Card orientation={orientation} {...args}>
 				{mediaSrc && (
 					<CardMedia
 						src={mediaSrc}
 						alt="Card image"
-						horizontal={direction === 'horizontal'}
+						horizontal={orientation === 'horizontal'}
 						overlay={mediaOverlayText || undefined}
 					/>
 				)}
-				{direction === 'horizontal' ? (
+				{orientation === 'horizontal' ? (
 					<CardContent>{content}</CardContent>
 				) : (
 					content
@@ -134,7 +134,7 @@ export const Default: Story = {
 		interactive: false,
 		selected: false,
 		disabled: false,
-		direction: 'vertical',
+		orientation: 'vertical',
 		mediaSrc: 'https://dummyimage.com/600x200/cccccc/999999&text=Card+Image',
 		mediaOverlayText: '',
 		headerText: 'Card Title',
@@ -154,7 +154,7 @@ const gridArgTypes = {
 	shadow: { table: { disable: true } },
 	interactive: { table: { disable: true } },
 	selected: { table: { disable: true } },
-	direction: { table: { disable: true } },
+	orientation: { table: { disable: true } },
 	mediaSrc: { table: { disable: true } },
 	mediaOverlayText: { table: { disable: true } },
 	headerText: { table: { disable: true } },

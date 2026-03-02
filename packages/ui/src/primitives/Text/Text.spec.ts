@@ -1,39 +1,7 @@
-import { loadStory, THEMES } from '@e2e/test-utils';
+import { loadStory, testComponent } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
 const STORY_ID = 'content-text--default';
-
-const cases = {
-	variant: [
-		'h1',
-		'h2',
-		'h3',
-		'h4',
-		'subtitle1',
-		'subtitle2',
-		'body1',
-		'body2',
-		'caption',
-		'label',
-	],
-	color: [
-		'primary',
-		'secondary',
-		'success',
-		'error',
-		'warning',
-		'info',
-		'muted',
-	],
-	weight: [400, 500, 600, 700],
-	align: ['start', 'center', 'end'],
-	italic: [true],
-	uppercase: [true],
-	capitalize: [true],
-	truncate: [true],
-	lineClamp: [2],
-	fullWidth: [true],
-};
 
 const variants = [
 	'h1',
@@ -46,7 +14,7 @@ const variants = [
 	'body2',
 	'caption',
 	'label',
-] as const;
+];
 const colors = [
 	'primary',
 	'secondary',
@@ -55,35 +23,31 @@ const colors = [
 	'warning',
 	'info',
 	'muted',
-] as const;
-const weights = [400, 500, 600, 700] as const;
-const aligns = ['start', 'center', 'end'] as const;
+];
+const weights = [400, 500, 600, 700];
+const aligns = ['start', 'center', 'end'];
 
 type Combo = { name: string; args: Record<string, string | number | boolean> };
 
 const combinations: Combo[] = [
-	// variant × color
 	...variants.flatMap((variant) =>
 		colors.map((color) => ({
 			name: `${variant} + ${color}`,
 			args: { variant, color },
 		})),
 	),
-	// variant × weight
 	...variants.flatMap((variant) =>
 		weights.map((weight) => ({
 			name: `${variant} + ${weight}`,
 			args: { variant, weight },
 		})),
 	),
-	// variant × align
 	...variants.flatMap((variant) =>
 		aligns.map((align) => ({
 			name: `${variant} + ${align}`,
 			args: { variant, align, fullWidth: true },
 		})),
 	),
-	// style combinations
 	{ name: 'italic + uppercase', args: { italic: true, uppercase: true } },
 	{ name: 'italic + capitalize', args: { italic: true, capitalize: true } },
 	{ name: 'h1 + italic', args: { variant: 'h1', italic: true } },
@@ -122,28 +86,29 @@ const combinations: Combo[] = [
 	},
 ];
 
-for (const theme of THEMES) {
-	test.describe(theme, () => {
-		for (const [prop, values] of Object.entries(cases)) {
-			test.describe(prop, () => {
-				for (const value of values) {
-					test(`${value}`, async ({ page }) => {
-						await loadStory(page, STORY_ID, theme, {
-							args: { [prop]: value },
-						});
-						await expect(page).toHaveScreenshot();
-					});
-				}
-			});
-		}
-
+testComponent({
+	storyId: STORY_ID,
+	cases: {
+		variant: [...variants],
+		color: [...colors],
+		weight: [...weights],
+		align: [...aligns],
+		italic: [true, false],
+		uppercase: [true, false],
+		capitalize: [true, false],
+		truncate: [true, false],
+		lineClamp: [2],
+		fullWidth: [true, false],
+	},
+	getTarget: (page) => ({ page }),
+	extra: (theme, textDirection) => {
 		test.describe('combinations', () => {
 			for (const { name, args } of combinations) {
 				test(name, async ({ page }) => {
-					await loadStory(page, STORY_ID, theme, { args });
+					await loadStory(page, STORY_ID, theme, { args, textDirection });
 					await expect(page).toHaveScreenshot();
 				});
 			}
 		});
-	});
-}
+	},
+});

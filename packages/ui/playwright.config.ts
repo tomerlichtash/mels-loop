@@ -1,14 +1,12 @@
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
 import { defineConfig } from '@playwright/test';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 const isCI = !!process.env.CI;
 
 export default defineConfig({
 	testDir: './src',
 	testMatch: '**/*.spec.ts',
+	fullyParallel: true,
+	retries: isCI ? 2 : 0,
 	snapshotDir: './e2e/__screenshots__',
 	snapshotPathTemplate: '{snapshotDir}/{testFileDir}/{arg}--{projectName}{ext}',
 	updateSnapshots: 'none',
@@ -50,9 +48,10 @@ export default defineConfig({
 	},
 	reporter: isCI ? 'github' : 'html',
 	forbidOnly: isCI,
-	resolve: {
-		alias: {
-			'@e2e': resolve(__dirname, 'e2e'),
-		},
-	},
+	shard: process.env.SHARD
+		? {
+				current: Number(process.env.SHARD),
+				total: Number(process.env.SHARD_TOTAL),
+			}
+		: undefined,
 });

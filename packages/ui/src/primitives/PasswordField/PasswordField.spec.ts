@@ -1,48 +1,42 @@
-import { loadStory, THEMES } from '@e2e/test-utils';
+import { loadStory, testComponent } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
 import { PasswordFieldDriver } from './PasswordField.driver';
 
 const STORY_ID = 'input-passwordfield--default';
 
-const cases = {
-	size: ['sm', 'md', 'lg'],
-	radius: ['none', 'sm', 'md', 'lg'],
-	error: [true],
-	disabled: [true],
-	fullWidth: [true],
-	required: [true],
-	tooltip: [true],
-};
-
-for (const theme of THEMES) {
-	test.describe(theme, () => {
-		for (const [prop, values] of Object.entries(cases)) {
-			test.describe(prop, () => {
-				for (const value of values) {
-					test(`${value}`, async ({ page }) => {
-						await loadStory(page, STORY_ID, theme, {
-							args: { [prop]: value },
-						});
-						const field = new PasswordFieldDriver(page);
-						await expect(field.locator).toHaveScreenshot();
-					});
-				}
-			});
-		}
-
+testComponent({
+	storyId: STORY_ID,
+	cases: {
+		size: ['sm', 'md', 'lg'],
+		radius: ['none', 'sm', 'md', 'lg'],
+		error: [true, false],
+		disabled: [true, false],
+		fullWidth: [true, false],
+		required: [true, false],
+		tooltip: [true, false],
+	},
+	getTarget: (page) => new PasswordFieldDriver(page),
+	interactions: {
+		hover: (field) => field.hover(),
+		focus: (field) => field.focus(),
+	},
+	extra: (theme, textDirection) => {
 		test('toggle visibility', async ({ page }) => {
-			await loadStory(page, STORY_ID, theme);
+			await loadStory(page, STORY_ID, theme, { textDirection });
 			const field = new PasswordFieldDriver(page);
 			await field.toggleButton.click();
 			await expect(field.locator).toHaveScreenshot();
 		});
 
-		test('focus', async ({ page }) => {
-			await loadStory(page, STORY_ID, theme);
+		test('disabled ignores input', async ({ page }) => {
+			await loadStory(page, STORY_ID, theme, {
+				args: { disabled: true },
+				textDirection,
+			});
 			const field = new PasswordFieldDriver(page);
-			await field.input.focus();
+			await field.fill('should not appear');
 			await expect(field.locator).toHaveScreenshot();
 		});
-	});
-}
+	},
+});

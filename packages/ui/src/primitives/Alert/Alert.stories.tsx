@@ -20,6 +20,10 @@ const meta: Meta<typeof Alert> = {
 			control: 'select',
 			options: ['none', 'sm', 'md', 'lg', 'pill'],
 		},
+		align: {
+			control: 'select',
+			options: ['start', 'center', 'end'],
+		},
 	},
 };
 

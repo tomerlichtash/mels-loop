@@ -62,6 +62,19 @@
 	--ml-alert-radius: var(--ml-radius-pill);
 }
 
+/* Align */
+.align-start {
+	text-align: start;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.align-end {
+	text-align: end;
+}
+
 .title {
 	font-weight: var(--ml-alert-title-font-weight);
 	margin-bottom: var(--ml-alert-title-margin-bottom);

@@ -6,7 +6,7 @@ import styles from './Card.module.css';
 type CardRadius = 'none' | 'sm' | 'md' | 'lg';
 type CardPadding = 'none' | 'sm' | 'md' | 'lg';
 type CardVariant = 'outlined' | 'inset';
-type CardDirection = 'vertical' | 'horizontal';
+type CardOrientation = 'vertical' | 'horizontal';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
@@ -18,7 +18,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 	selected?: boolean;
 	disabled?: boolean;
 	fullWidth?: boolean;
-	direction?: CardDirection;
+	orientation?: CardOrientation;
 	href?: string;
 }
 
@@ -32,7 +32,7 @@ export function Card({
 	selected,
 	disabled,
 	fullWidth,
-	direction = 'vertical',
+	orientation = 'vertical',
 	href,
 	className,
 	onClick,
@@ -58,7 +58,7 @@ export function Card({
 				styles[`variant-${variant}`],
 				styles[`radius-${radius}`],
 				styles[`padding-${padding}`],
-				styles[`direction-${direction}`],
+				styles[`orientation-${orientation}`],
 				shadow && styles[`shadow-${shadow}`],
 				{
 					[styles.interactive]: isInteractive,

@@ -1,8 +1,8 @@
-import { BaseDriver } from '@e2e/base-driver';
+import { BaseInputDriver } from '@e2e/base-input-driver';
 import type { Page } from '@playwright/test';
 
-export class TextAreaDriver extends BaseDriver {
+export class TextAreaDriver extends BaseInputDriver {
 	constructor(page: Page) {
-		super(page, 'ml-text-area');
+		super(page, 'ml-text-area', 'textarea');
 	}
 }

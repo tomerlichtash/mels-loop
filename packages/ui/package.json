@@ -13,7 +13,8 @@
 		"test-storybook": "test-storybook",
 		"test-storybook:ci": "test-storybook --url http://127.0.0.1:6006",
 		"test:e2e": "sh scripts/docker-e2e.sh",
-		"test:e2e:update": "sh scripts/docker-e2e.sh --update-snapshots",
+		"test:e2e:update": "sh scripts/docker-e2e.sh --update-snapshots=all",
+		"test:e2e:changed": "sh scripts/test-changed.sh",
 		"test:e2e:ui": "playwright test --config playwright.config.ts --ui",
 		"test:e2e:ui:debug": "playwright test --config playwright.config.ts --ui --debug"
 	},
@@ -55,6 +56,7 @@
 		"@storybook/react-vite": "^8.6.17",
 		"@storybook/test-runner": "^0.22.1",
 		"@vitejs/plugin-react": "^5.1.4",
+		"http-server": "^14.1.1",
 		"postcss-custom-media": "^12.0.0",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",

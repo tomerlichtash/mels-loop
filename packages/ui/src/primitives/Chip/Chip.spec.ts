@@ -1,38 +1,24 @@
-import { loadStory, THEMES } from '@e2e/test-utils';
+import { loadStory, testComponent } from '@e2e/test-utils';
 import { expect, test } from '@playwright/test';
 
 import { ChipDriver } from './Chip.driver';
 
-const STORY_ID = 'content-chip--default';
-
-const cases = {
-	size: ['sm', 'md', 'lg'],
-	radius: ['sm', 'md', 'lg', 'pill'],
-	disabled: [true],
-	dismissible: [true, false],
-};
-
-for (const theme of THEMES) {
-	test.describe(theme, () => {
-		for (const [prop, values] of Object.entries(cases)) {
-			test.describe(prop, () => {
-				for (const value of values) {
-					test(`${value}`, async ({ page }) => {
-						await loadStory(page, STORY_ID, theme, {
-							args: { [prop]: value },
-						});
-						const chip = new ChipDriver(page);
-						await expect(chip.locator).toHaveScreenshot();
-					});
-				}
-			});
-		}
-
+testComponent({
+	storyId: 'content-chip--default',
+	cases: {
+		size: ['sm', 'md', 'lg'],
+		radius: ['sm', 'md', 'lg', 'pill'],
+		disabled: [true, false],
+		dismissible: [true, false],
+	},
+	getTarget: (page) => new ChipDriver(page),
+	extra: (theme, textDirection) => {
 		test('long text', async ({ page }) => {
-			await loadStory(page, STORY_ID, theme, {
+			await loadStory(page, 'content-chip--default', theme, {
 				args: {
 					children: 'This is a very long chip label that should truncate',
 				},
+				textDirection,
 			});
 			await page.locator('#storybook-root').evaluate((el) => {
 				el.style.width = '120px';
@@ -40,5 +26,5 @@ for (const theme of THEMES) {
 			const chip = new ChipDriver(page);
 			await expect(chip.locator).toHaveScreenshot();
 		});
-	});
-}
+	},
+});

@@ -1,7 +1,7 @@
-import { BaseDriver } from '@e2e/base-driver';
+import { BaseInputDriver } from '@e2e/base-input-driver';
 import type { Page } from '@playwright/test';
 
-export class TextFieldDriver extends BaseDriver {
+export class TextFieldDriver extends BaseInputDriver {
 	constructor(page: Page) {
 		super(page, 'ml-text-field');
 	}

@@ -5,11 +5,13 @@ import styles from './Alert.module.css';
 
 type AlertStatus = 'success' | 'error' | 'warning' | 'info';
 type AlertRadius = 'none' | 'sm' | 'md' | 'lg' | 'pill';
+type AlertAlign = 'start' | 'center' | 'end';
 
 export interface AlertProps extends HTMLAttributes<HTMLDivElement> {
 	children?: ReactNode;
 	status?: AlertStatus;
 	radius?: AlertRadius;
+	align?: AlertAlign;
 	title?: string;
 }
 
@@ -17,6 +19,7 @@ export function Alert({
 	children,
 	status = 'info',
 	radius = 'md',
+	align,
 	title,
 	className,
 	...props
@@ -28,6 +31,7 @@ export function Alert({
 				styles.root,
 				styles[status],
 				styles[`radius-${radius}`],
+				align && styles[`align-${align}`],
 				'ml-alert',
 				className,
 			)}

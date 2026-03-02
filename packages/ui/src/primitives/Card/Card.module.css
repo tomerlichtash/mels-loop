@@ -100,13 +100,13 @@
 	width: 100%;
 }
 
-/* Direction */
-.direction-vertical {
+/* Orientation */
+.orientation-vertical {
 	display: flex;
 	flex-direction: column;
 }
 
-.direction-horizontal {
+.orientation-horizontal {
 	display: flex;
 	flex-direction: row;
 }

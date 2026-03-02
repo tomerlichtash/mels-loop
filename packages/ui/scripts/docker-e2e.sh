@@ -5,13 +5,21 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 UI_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 REPO_ROOT="$(cd "$UI_DIR/../.." && pwd)"
 
-PLAYWRIGHT_VERSION=$(node -e "console.log(require('@playwright/test/package.json').version)")
-IMAGE="mcr.microsoft.com/playwright:v${PLAYWRIGHT_VERSION}-noble"
+IMAGE="mels-loop-ui-e2e"
+
+# Build the image if it doesn't exist or Dockerfile changed
+docker build -q -t "${IMAGE}" "${SCRIPT_DIR}"
+
+# Filter out bare "--" separators inserted by pnpm
+ARGS=()
+for arg in "$@"; do
+  [ "$arg" != "--" ] && ARGS+=("$arg")
+done
 
 docker run --rm \
-  --user "$(id -u):$(id -g)" \
-  -e HOME=/tmp \
+  --cpus="$(nproc 2>/dev/null || sysctl -n hw.ncpu)" \
+  -e DOCKER=1 \
   -v "${REPO_ROOT}":/work \
   -w /work/packages/ui \
   "${IMAGE}" \
-  npx playwright test --config playwright.config.ts "$@"
+  "${ARGS[@]}"
