@@ -6,7 +6,7 @@ import { CardDriver } from './Card.driver';
 const STORY_ID = 'layout-card--default';
 const CLIP_PADDING = 20;
 
-const combinations: {
+const presets: {
 	name: string;
 	args: Record<string, string | number | boolean>;
 }[] = [
@@ -25,6 +25,9 @@ const combinations: {
 		name: 'media overlay',
 		args: { withMedia: true, mediaOverlayText: 'Overlay text' },
 	},
+	// content
+	{ name: 'with footer', args: { footerText: 'Footer actions' } },
+	{ name: 'link card', args: { href: '#' } },
 	// state
 	{ name: 'selected interactive', args: { interactive: true, selected: true } },
 	{ name: 'disabled interactive', args: { interactive: true, disabled: true } },
@@ -39,25 +42,23 @@ const combinations: {
 ];
 
 testComponent({
-	name: 'Card',
 	storyId: STORY_ID,
 	cases: {
 		variant: ['outlined', 'inset'],
 		radius: ['none', 'sm', 'md', 'lg'],
 		padding: ['none', 'sm', 'md', 'lg'],
 		shadow: ['none', 'xs', 'sm', 'md', 'lg'],
-		interactive: [true, false],
-		selected: [true, false],
-		disabled: [true, false],
+		interactive: [true],
+		selected: [true],
+		disabled: [true],
 		orientation: ['horizontal'],
-		headerText: ['Card Title'],
-		bodyText: ['Card body content'],
-		footerText: ['Footer actions'],
-		withActions: [true, false],
-		withMedia: [true, false],
-		mediaOverlayText: ['Overlay text'],
-		loading: [true, false],
-		href: ['#'],
+		headerText: [
+			'A very long card title that should wrap onto multiple lines in the header',
+		],
+		bodyText: ['Short.'],
+		withActions: [true],
+		withMedia: [true],
+		loading: [true],
 	},
 	getTarget: (page) => new CardDriver(page),
 	clipPadding: CLIP_PADDING,
@@ -88,8 +89,8 @@ testComponent({
 			});
 		});
 
-		test.describe('combinations', () => {
-			for (const { name, args } of combinations) {
+		test.describe('presets', () => {
+			for (const { name, args } of presets) {
 				test(name, async ({ page }) => {
 					await loadStory(page, STORY_ID, theme, { args, textDirection });
 					const card = new CardDriver(page);

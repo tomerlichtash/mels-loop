@@ -4,14 +4,13 @@ import { expect, test } from '@playwright/test';
 import { CheckboxDriver } from './Checkbox.driver';
 
 testComponent({
-	name: 'Checkbox',
 	storyId: 'input-checkbox--default',
 	cases: {
 		checked: [true, false, 'indeterminate'],
 		size: ['sm', 'md', 'lg'],
-		error: [true, false],
-		disabled: [true, false],
-		required: [true, false],
+		error: [true],
+		disabled: [true],
+		required: [true],
 	},
 	getTarget: (page) => new CheckboxDriver(page),
 	extra: (theme, textDirection) => {

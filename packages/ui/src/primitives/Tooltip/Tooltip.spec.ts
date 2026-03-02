@@ -9,7 +9,6 @@ const TRIGGER_SELECTOR = 'ml-button';
 const sides = ['top', 'right', 'bottom', 'left'];
 
 testComponent({
-	name: 'Tooltip',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test.describe('side', () => {

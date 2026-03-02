@@ -1,7 +1,6 @@
 import { testComponent } from '@e2e/test-utils';
 
 testComponent({
-	name: 'Container',
 	storyId: 'layout-container--default',
 	cases: {
 		paddingHorizontal: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
@@ -10,7 +9,7 @@ testComponent({
 		gap: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
 		align: ['start', 'center', 'end'],
 		justify: ['start', 'center', 'end', 'between', 'evenly'],
-		wrap: [true, false],
+		wrap: [true],
 		shadow: ['none', 'xs', 'sm', 'md', 'lg'],
 	},
 	getTarget: (page) => ({ page }),

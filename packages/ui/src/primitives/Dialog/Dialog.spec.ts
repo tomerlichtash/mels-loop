@@ -6,7 +6,6 @@ import { DialogDriver } from './Dialog.driver';
 const STORY_ID = 'overlay-dialog--default';
 
 testComponent({
-	name: 'Dialog',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test('opened', async ({ page }) => {

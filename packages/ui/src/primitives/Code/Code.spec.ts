@@ -6,7 +6,6 @@ import { CodeDriver } from './Code.driver';
 const STORY_ID = 'content-code--default';
 
 testComponent({
-	name: 'Code',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test('default', async ({ page }) => {

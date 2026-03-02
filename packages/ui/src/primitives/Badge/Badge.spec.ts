@@ -4,12 +4,11 @@ import { expect, test } from '@playwright/test';
 import { BadgeDriver } from './Badge.driver';
 
 testComponent({
-	name: 'Badge',
 	storyId: 'content-badge--default',
 	cases: {
 		radius: ['none', 'sm', 'md', 'lg', 'pill'],
 		color: ['black', 'white', 'red', 'blue', '#1a8a3f', '#e8c542'],
-		bordered: [true, false],
+		bordered: [true],
 	},
 	getTarget: (page) => new BadgeDriver(page),
 	extra: (theme, textDirection) => {

@@ -6,16 +6,15 @@ import { PasswordFieldDriver } from './PasswordField.driver';
 const STORY_ID = 'input-passwordfield--default';
 
 testComponent({
-	name: 'PasswordField',
 	storyId: STORY_ID,
 	cases: {
 		size: ['sm', 'md', 'lg'],
 		radius: ['none', 'sm', 'md', 'lg'],
-		error: [true, false],
-		disabled: [true, false],
-		fullWidth: [true, false],
-		required: [true, false],
-		tooltip: [true, false],
+		error: [true],
+		disabled: [true],
+		fullWidth: [true],
+		required: [true],
+		tooltip: [true],
 	},
 	getTarget: (page) => new PasswordFieldDriver(page),
 	interactions: {

@@ -4,13 +4,12 @@ import { expect, test } from '@playwright/test';
 import { ChipDriver } from './Chip.driver';
 
 testComponent({
-	name: 'Chip',
 	storyId: 'content-chip--default',
 	cases: {
 		size: ['sm', 'md', 'lg'],
 		radius: ['sm', 'md', 'lg', 'pill'],
-		disabled: [true, false],
-		dismissible: [true, false],
+		disabled: [true],
+		dismissible: [true],
 	},
 	getTarget: (page) => new ChipDriver(page),
 	extra: (theme, textDirection) => {

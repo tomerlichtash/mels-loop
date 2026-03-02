@@ -6,7 +6,6 @@ import { TableDriver } from './Table.driver';
 const STORY_ID = 'content-table--default';
 
 testComponent({
-	name: 'Table',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test('default', async ({ page }) => {

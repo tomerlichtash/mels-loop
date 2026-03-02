@@ -6,15 +6,14 @@ import { ComboboxDriver } from './Combobox.driver';
 const STORY_ID = 'input-combobox--default';
 
 testComponent({
-	name: 'Combobox',
 	storyId: STORY_ID,
 	cases: {
 		size: ['sm', 'md', 'lg'],
 		radius: ['none', 'sm', 'md', 'lg'],
-		disabled: [true, false],
-		fullWidth: [true, false],
-		error: [true, false],
-		required: [true, false],
+		disabled: [true],
+		fullWidth: [true],
+		error: [true],
+		required: [true],
 	},
 	getTarget: (page) => new ComboboxDriver(page),
 	extra: (theme, textDirection) => {

@@ -5,7 +5,6 @@ import { TextDriver } from './Text.driver';
 const STORY_ID = 'content-text--default';
 
 testComponent({
-	name: 'Text',
 	storyId: STORY_ID,
 	cases: {
 		variant: [
@@ -31,10 +30,10 @@ testComponent({
 		],
 		weight: [400, 500, 600, 700],
 		align: ['start', 'center', 'end'],
-		italic: [true, false],
-		uppercase: [true, false],
-		capitalize: [true, false],
-		truncate: [true, false],
+		italic: [true],
+		uppercase: [true],
+		capitalize: [true],
+		truncate: [true],
 		lineClamp: [2],
 	},
 	getTarget: (page) => new TextDriver(page),

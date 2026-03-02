@@ -81,7 +81,6 @@ type ScreenshotTarget =
 	  };
 
 interface TestComponentOptions<T extends ScreenshotTarget> {
-	name: string;
 	storyId: string;
 	cases?: Cases;
 	getTarget?: (page: Page) => T;
@@ -114,8 +113,69 @@ async function screenshotTarget<T extends ScreenshotTarget>(
 	}
 }
 
+function describeInteractions<T extends ScreenshotTarget>(
+	value: string | number | boolean,
+	prop: string,
+	storyId: string,
+	theme: Theme,
+	textDirection: TextDirection,
+	getTarget: (page: Page) => T,
+	clipPadding: number | undefined,
+	interactions: NonNullable<TestComponentOptions<T>['interactions']>,
+) {
+	for (const [interactionName, interaction] of Object.entries(interactions)) {
+		if (interaction.skip?.(prop, value)) continue;
+		test(`${value} ${interactionName}`, async ({ page }) => {
+			await loadStory(page, storyId, theme, {
+				args: { [prop]: value },
+				textDirection,
+			});
+			const target = getTarget(page);
+			await interaction.run(target);
+			await screenshotTarget(page, target, clipPadding);
+		});
+	}
+}
+
+function describeCases<T extends ScreenshotTarget>(
+	storyId: string,
+	theme: Theme,
+	textDirection: TextDirection,
+	cases: Cases,
+	getTarget: (page: Page) => T,
+	clipPadding: number | undefined,
+	interactions: TestComponentOptions<T>['interactions'],
+) {
+	for (const [prop, values] of Object.entries(cases)) {
+		test.describe(prop, () => {
+			for (const value of values) {
+				test(`${value}`, async ({ page }) => {
+					await loadStory(page, storyId, theme, {
+						args: { [prop]: value },
+						textDirection,
+					});
+					const target = getTarget(page);
+					await screenshotTarget(page, target, clipPadding);
+				});
+
+				if (interactions) {
+					describeInteractions(
+						value,
+						prop,
+						storyId,
+						theme,
+						textDirection,
+						getTarget,
+						clipPadding,
+						interactions,
+					);
+				}
+			}
+		});
+	}
+}
+
 export function testComponent<T extends ScreenshotTarget>({
-	name,
 	storyId,
 	cases,
 	getTarget,
@@ -125,46 +185,24 @@ export function testComponent<T extends ScreenshotTarget>({
 	interactions,
 	extra,
 }: TestComponentOptions<T>) {
-	test.describe(name, () => {
-		for (const theme of themes) {
+	for (const theme of themes) {
+		test.describe(theme, () => {
 			for (const textDirection of textDirections) {
-				test.describe(`${theme} ${textDirection}`, () => {
+				test.describe(textDirection, () => {
 					if (cases && getTarget) {
-						for (const [prop, values] of Object.entries(cases)) {
-							test.describe(prop, () => {
-								for (const value of values) {
-									test(`${value}`, async ({ page }) => {
-										await loadStory(page, storyId, theme, {
-											args: { [prop]: value },
-											textDirection,
-										});
-										const target = getTarget(page);
-										await screenshotTarget(page, target, clipPadding);
-									});
-
-									if (interactions) {
-										for (const [name, interaction] of Object.entries(
-											interactions,
-										)) {
-											if (interaction.skip?.(prop, value)) continue;
-											test(`${value} ${name}`, async ({ page }) => {
-												await loadStory(page, storyId, theme, {
-													args: { [prop]: value },
-													textDirection,
-												});
-												const target = getTarget(page);
-												await interaction.run(target);
-												await screenshotTarget(page, target, clipPadding);
-											});
-										}
-									}
-								}
-							});
-						}
+						describeCases(
+							storyId,
+							theme,
+							textDirection,
+							cases,
+							getTarget,
+							clipPadding,
+							interactions,
+						);
 					}
 					extra?.(theme, textDirection);
 				});
 			}
-		}
-	});
+		});
+	}
 }

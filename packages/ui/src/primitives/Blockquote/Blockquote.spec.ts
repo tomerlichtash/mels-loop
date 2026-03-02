@@ -6,7 +6,6 @@ import { BlockquoteDriver } from './Blockquote.driver';
 const STORY_ID = 'content-blockquote--default';
 
 testComponent({
-	name: 'Blockquote',
 	storyId: STORY_ID,
 	extra: (theme, textDirection) => {
 		test('default', async ({ page }) => {

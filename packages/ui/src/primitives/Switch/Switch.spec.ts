@@ -4,13 +4,12 @@ import { expect, test } from '@playwright/test';
 import { SwitchDriver } from './Switch.driver';
 
 testComponent({
-	name: 'Switch',
 	storyId: 'input-switch--default',
 	cases: {
-		checked: [true, false],
+		checked: [true],
 		size: ['sm', 'md', 'lg'],
-		error: [true, false],
-		disabled: [true, false],
+		error: [true],
+		disabled: [true],
 	},
 	getTarget: (page) => new SwitchDriver(page),
 	extra: (theme, textDirection) => {
