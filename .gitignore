@@ -57,6 +57,7 @@ storybook-static
 # ui e2e testing
 packages/ui/test-results/
 packages/ui/playwright-report/
+packages/ui/__snapshots__/local/
 
 # search index (generated)
 apps/web/public/search-index.*.json

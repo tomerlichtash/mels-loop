@@ -1,13 +1,14 @@
 import { defineConfig } from '@playwright/test';
 
 const isCI = !!process.env.CI;
+const isDocker = !!process.env.DOCKER;
 
 export default defineConfig({
 	testDir: './src/primitives',
 	testMatch: '**/*.spec.ts',
 	fullyParallel: true,
 	retries: isCI ? 2 : 0,
-	snapshotDir: './__snapshots__',
+	snapshotDir: isDocker ? './__snapshots__' : './__snapshots__/local',
 	snapshotPathTemplate:
 		'{snapshotDir}/{testFileDir}/{arg}--{projectName}-{platform}{ext}',
 	updateSnapshots: 'none',
