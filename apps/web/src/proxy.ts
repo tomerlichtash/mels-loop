@@ -1,8 +1,17 @@
 import './i18n-init';
 
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { getLocaleCookieName } from '@mels-loop/i18n/config';
 import { resolveLocale } from '@mels-loop/i18n/middleware';
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
+
+const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+const requireAuth = process.env.REQUIRE_AUTH === 'true';
+
+const isAuthRoute = createRouteMatcher([
+	'/auth/sign-in(.*)',
+	'/auth/sign-up(.*)',
+]);
 
 const COOKIE_OPTS = {
 	path: '/',
@@ -11,27 +20,7 @@ const COOKIE_OPTS = {
 	httpOnly: false,
 };
 
-function checkBasicAuth(request: NextRequest): NextResponse | null {
-	const password = process.env.SITE_PASSWORD;
-	if (!password) return null;
-
-	const auth = request.headers.get('authorization');
-	if (auth) {
-		const [, encoded] = auth.split(' ');
-		const [, pwd] = atob(encoded).split(':');
-		if (pwd === password) return null;
-	}
-
-	return new NextResponse('Authentication required', {
-		status: 401,
-		headers: { 'WWW-Authenticate': 'Basic realm="Protected"' },
-	});
-}
-
-export function middleware(request: NextRequest) {
-	const authResponse = checkBasicAuth(request);
-	if (authResponse) return authResponse;
-
+function handleI18n(request: NextRequest): NextResponse | null {
 	const cookieName = getLocaleCookieName();
 	const result = resolveLocale({
 		pathname: request.nextUrl.pathname,
@@ -39,9 +28,7 @@ export function middleware(request: NextRequest) {
 		acceptLanguage: request.headers.get('accept-language') ?? undefined,
 	});
 
-	if (result.action === 'skip') {
-		return NextResponse.next();
-	}
+	if (result.action === 'skip') return null;
 
 	if (result.action === 'redirect') {
 		const url = request.nextUrl.clone();
@@ -61,6 +48,20 @@ export function middleware(request: NextRequest) {
 	return response;
 }
 
+export default clerkEnabled
+	? clerkMiddleware(async (auth, request) => {
+			if (isAuthRoute(request)) return;
+
+			if (requireAuth) {
+				await auth.protect();
+			}
+
+			return handleI18n(request) ?? NextResponse.next();
+		})
+	: (request: NextRequest) => handleI18n(request) ?? NextResponse.next();
+
 export const config = {
-	matcher: ['/((?!_next|api|favicon|.*\\..*).*)'],
+	matcher: [
+		'/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+	],
 };

@@ -2,6 +2,7 @@ import '@mels-loop/ui/styles/globals.css';
 import '../../i18n-init';
 import '../../content-init';
 
+import { ClerkProvider } from '@clerk/nextjs';
 import { I18nProvider } from '@mels-loop/i18n/client';
 import { getDirection, isValidLocale } from '@mels-loop/i18n/config';
 import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
@@ -19,6 +20,8 @@ import { resolveNavItems } from './resolveNavItems';
 
 export { generateMetadata } from './config/metadata';
 
+const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
 export default async function Layout({
 	children,
 	params,
@@ -35,7 +38,7 @@ export default async function Layout({
 	const messages = await getDictionary(validLocale);
 	const navItems = await resolveNavItems(validLocale);
 
-	return (
+	const content = (
 		<html lang={locale} dir={dir} suppressHydrationWarning>
 			<head>
 				<link
@@ -66,4 +69,7 @@ export default async function Layout({
 			</body>
 		</html>
 	);
+
+	if (!clerkEnabled) return content;
+	return <ClerkProvider>{content}</ClerkProvider>;
 }

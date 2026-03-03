@@ -1,6 +1,10 @@
 {
 	"$schema": "https://turbo.build/schema.json",
-	"globalPassThroughEnv": ["SITE_PASSWORD"],
+	"globalPassThroughEnv": [
+		"NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+		"CLERK_SECRET_KEY",
+		"REQUIRE_AUTH"
+	],
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
