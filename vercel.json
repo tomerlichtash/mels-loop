@@ -1,6 +1,4 @@
 {
-	"buildCommand": "pnpm turbo build --filter=@mels-loop/web",
-	"outputDirectory": "apps/web/.next",
 	"installCommand": "pnpm install --frozen-lockfile",
 	"framework": "nextjs"
 }
