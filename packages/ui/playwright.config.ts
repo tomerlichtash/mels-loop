@@ -21,6 +21,8 @@ export default defineConfig({
 		baseURL: 'http://localhost:6007',
 		viewport: { width: 1280, height: 720 },
 		actionTimeout: 10_000,
+		screenshot: 'only-on-failure',
+		trace: 'retain-on-failure',
 	},
 	projects: [
 		{
@@ -43,13 +45,13 @@ export default defineConfig({
 		},
 	],
 	expect: {
+		timeout: 10_000,
 		toHaveScreenshot: {
 			maxDiffPixelRatio: 0.005,
 			animations: 'disabled',
-			timeout: 15_000,
 		},
 	},
-	reporter: isCI ? 'github' : 'html',
+	reporter: isDocker ? [['dot'], ['blob']] : [['html', { open: 'on-failure' }]],
 	forbidOnly: isCI,
 	shard: process.env.SHARD
 		? {

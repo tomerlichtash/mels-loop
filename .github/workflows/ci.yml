@@ -68,8 +68,12 @@ jobs:
         run: pnpm build
 
   ui-e2e:
-    name: UI E2E
+    name: UI E2E (${{ matrix.shard }}/${{ strategy.job-total }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
 
     steps:
       - uses: actions/checkout@v4
@@ -88,11 +92,58 @@ jobs:
 
       - name: Run UI E2E tests
         run: pnpm --filter @mels-loop/ui test:e2e
+        env:
+          SHARD: ${{ matrix.shard }}
+          SHARD_TOTAL: ${{ strategy.job-total }}
+
+      - name: Upload shard report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-e2e-report-${{ matrix.shard }}
+          path: packages/ui/blob-report/
+          retention-days: 1
 
       - name: Upload diff artifacts
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ui-e2e-diffs
-          path: packages/ui/e2e/test-results/
+          name: ui-e2e-diffs-${{ matrix.shard }}
+          path: packages/ui/test-results/
+          retention-days: 14
+
+  ui-e2e-report:
+    name: UI E2E Report
+    if: always()
+    needs: ui-e2e
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Download shard reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ui-e2e-report-*
+          path: packages/ui/all-blob-reports
+          merge-multiple: true
+
+      - name: Merge reports
+        run: npx playwright merge-reports --reporter=html packages/ui/all-blob-reports
+        working-directory: packages/ui
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-e2e-report
+          path: packages/ui/playwright-report/
           retention-days: 14
