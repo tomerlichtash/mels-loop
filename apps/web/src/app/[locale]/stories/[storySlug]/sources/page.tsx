@@ -92,7 +92,7 @@ export default async function SourcesPage({ params }: PageProps) {
 						</Text>
 						<div className={styles.cards}>
 							{typeSources.map((source) => (
-								<Card key={source.id} direction="horizontal" padding="sm">
+								<Card key={source.id} orientation="horizontal" padding="sm">
 									{source.type === 'image' && source.url && (
 										<div className={styles.thumbnail}>
 											<Image
