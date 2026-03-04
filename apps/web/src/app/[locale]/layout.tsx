@@ -6,6 +6,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { I18nProvider } from '@mels-loop/i18n/client';
 import { getDirection, isValidLocale } from '@mels-loop/i18n/config';
 import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 
@@ -21,6 +22,7 @@ import { resolveNavItems } from './resolveNavItems';
 export { generateMetadata } from './config/metadata';
 
 const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+const gaId = process.env.NEXT_PUBLIC_ANALYTICS_ID;
 
 export default async function Layout({
 	children,
@@ -56,6 +58,7 @@ export default async function Layout({
 			<body
 				className={`${robotoSlab.variable} ${assistant.variable} ${lekton.variable}`}
 			>
+				{gaId && <GoogleAnalytics gaId={gaId} />}
 				<I18nProvider locale={locale} messages={messages}>
 					<SearchableLayout
 						navItems={navItems}
