@@ -80,27 +80,38 @@
 	--ml-button-height: 68px;
 }
 
+/* Colors */
+.color-primary {
+	--ml-button-accent: var(--ml-color-primary);
+	--ml-button-accent-hover: var(--ml-color-primary-alt);
+	--ml-button-accent-contrast: var(--ml-color-primary-contrast);
+}
+
+.color-secondary {
+	--ml-button-accent: var(--ml-color-secondary);
+	--ml-button-accent-hover: var(--ml-color-secondary-alt);
+	--ml-button-accent-contrast: var(--ml-color-secondary-contrast);
+}
+
 /* Variants */
 .variant-contained {
-	--ml-button-background-color: var(--ml-interactive-background-color);
-	--ml-button-background-color-hover: var(
-		--ml-interactive-background-color-hover
-	);
-	--ml-button-text-color: var(--ml-interactive-text-color);
+	--ml-button-background-color: var(--ml-button-accent);
+	--ml-button-background-color-hover: var(--ml-button-accent-hover);
+	--ml-button-text-color: var(--ml-button-accent-contrast);
 	--ml-button-border-color: transparent;
 }
 
 .variant-outlined {
 	--ml-button-background-color: transparent;
 	--ml-button-background-color-hover: var(--ml-background-color-alt);
-	--ml-button-text-color: var(--ml-interactive-background-color);
-	--ml-button-border-color: var(--ml-interactive-background-color);
+	--ml-button-text-color: var(--ml-button-accent);
+	--ml-button-border-color: var(--ml-button-accent);
 }
 
 .variant-text {
 	--ml-button-background-color: transparent;
 	--ml-button-background-color-hover: var(--ml-background-color-alt);
-	--ml-button-text-color: var(--ml-interactive-background-color);
+	--ml-button-text-color: var(--ml-button-accent);
 	--ml-button-border-color: transparent;
 }
 

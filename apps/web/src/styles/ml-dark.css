@@ -1,0 +1,32 @@
+/*
+ * ---- Mel's Loop Dark Theme ----
+ *
+ * Brand intent + semantic overrides for dark mode.
+ * Signature swap: primary → pink, secondary → blue.
+ */
+
+[data-color-scheme='dark'] {
+	/* ---- Primary swaps to pink (H≈8) ---- */
+	--ml-color-primary: var(--ml-pink);
+	--ml-color-primary-alt: oklch(0.75 0.17 8);
+	--ml-color-primary-subtle: oklch(0.25 0.05 8);
+	--ml-color-primary-deep: oklch(0.55 0.22 8);
+	--ml-color-primary-muted: oklch(0.6 0.06 8);
+	--ml-color-primary-contrast: var(--ml-white);
+	--ml-color-primary-highlight: oklch(0.78 0.22 8);
+
+	/* ---- Secondary swaps to blue (H≈258) ---- */
+	--ml-color-secondary: oklch(0.6 0.145 258);
+	--ml-color-secondary-alt: oklch(0.65 0.13 258);
+	--ml-color-secondary-subtle: oklch(0.23 0.045 258);
+	--ml-color-secondary-deep: oklch(0.45 0.18 258);
+	--ml-color-secondary-muted: oklch(0.55 0.05 258);
+	--ml-color-secondary-highlight: oklch(0.7 0.2 258);
+
+	/* ---- Semantic: Brand-specific overrides ---- */
+	--ml-link-color: var(--ml-pink-light);
+	--ml-gradient-start: var(--ml-indigo);
+	--ml-gradient-mid: var(--ml-purple);
+	--ml-gradient-end: var(--ml-color-primary);
+	--ml-mobile-menu-text: var(--ml-pink-light);
+}

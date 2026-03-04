@@ -1,0 +1,539 @@
+/*
+ * ---- Theme Contract ----
+ *
+ * Auto-generated from palette.css and intent.css.
+ * DO NOT EDIT — run `pnpm generate:contract` to regenerate.
+ *
+ * Registers every overridable color token with @property, providing:
+ *   - Type safety (syntax: '<color>')
+ *   - IDE discoverability and autocomplete
+ *   - Runtime fallbacks via initial-value
+ */
+
+@property --ml-white {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(1 0 0);
+}
+
+@property --ml-cream-100 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.985 0 0);
+}
+
+@property --ml-cream-200 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.955 0 0);
+}
+
+@property --ml-cream-300 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.92 0 0);
+}
+
+@property --ml-gray-100 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.84 0 0);
+}
+
+@property --ml-gray-200 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.72 0 0);
+}
+
+@property --ml-gray-300 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.51 0 0);
+}
+
+@property --ml-gray-400 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.39 0 0);
+}
+
+@property --ml-gray-500 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.25 0 0);
+}
+
+@property --ml-pink {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.6 0.12 180);
+}
+
+@property --ml-pink-light {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.68 0.1 180);
+}
+
+@property --ml-mauve {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.5 0.11 200);
+}
+
+@property --ml-purple {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.45 0.09 210);
+}
+
+@property --ml-indigo {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.4 0.08 220);
+}
+
+@property --ml-blue {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.55 0.15 250);
+}
+
+@property --ml-blue-dark {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.43 0.12 250);
+}
+
+@property --ml-navy {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.33 0.09 250);
+}
+
+@property --ml-navy-deep {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.21 0.07 250);
+}
+
+@property --ml-success {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.639 0.218 143);
+}
+
+@property --ml-success-tint {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.963 0.032 145);
+}
+
+@property --ml-success-dark {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.507 0.156 143);
+}
+
+@property --ml-success-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.266 0.073 143);
+}
+
+@property --ml-success-light {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.871 0.136 154);
+}
+
+@property --ml-error {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.531 0.218 27);
+}
+
+@property --ml-error-tint {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.948 0.023 18);
+}
+
+@property --ml-error-dark {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.444 0.161 27);
+}
+
+@property --ml-error-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.209 0.059 24);
+}
+
+@property --ml-error-light {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.808 0.103 20);
+}
+
+@property --ml-warning {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.681 0.142 76);
+}
+
+@property --ml-warning-tint {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.981 0.024 94);
+}
+
+@property --ml-warning-dark {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.476 0.103 62);
+}
+
+@property --ml-warning-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.253 0.041 73);
+}
+
+@property --ml-warning-light {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.924 0.115 96);
+}
+
+@property --ml-info {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.546 0.215 263);
+}
+
+@property --ml-info-tint {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.953 0.021 262);
+}
+
+@property --ml-info-dark {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.424 0.181 266);
+}
+
+@property --ml-info-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.216 0.045 255);
+}
+
+@property --ml-info-light {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.809 0.096 252);
+}
+
+@property --ml-black-alpha-50 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0 0 0 / 0.5);
+}
+
+@property --ml-color-primary {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.55 0.15 250);
+}
+
+@property --ml-color-primary-alt {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.5 0.13 250);
+}
+
+@property --ml-color-primary-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.955 0.02 250);
+}
+
+@property --ml-color-primary-deep {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.35 0.16 250);
+}
+
+@property --ml-color-primary-muted {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.58 0.05 250);
+}
+
+@property --ml-color-primary-contrast {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(1 0 0);
+}
+
+@property --ml-color-primary-highlight {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.65 0.19 250);
+}
+
+@property --ml-color-secondary {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.6 0.12 180);
+}
+
+@property --ml-color-secondary-alt {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.55 0.1 180);
+}
+
+@property --ml-color-secondary-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.955 0.015 180);
+}
+
+@property --ml-color-secondary-deep {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.4 0.15 180);
+}
+
+@property --ml-color-secondary-muted {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.62 0.04 180);
+}
+
+@property --ml-color-secondary-contrast {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(1 0 0);
+}
+
+@property --ml-color-secondary-highlight {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.68 0.16 180);
+}
+
+@property --ml-color-success {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.639 0.218 143);
+}
+
+@property --ml-color-success-alt {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.507 0.156 143);
+}
+
+@property --ml-color-success-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.963 0.032 145);
+}
+
+@property --ml-color-success-deep {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.4 0.18 143);
+}
+
+@property --ml-color-success-muted {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.65 0.06 143);
+}
+
+@property --ml-color-success-contrast {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(1 0 0);
+}
+
+@property --ml-color-success-highlight {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.871 0.136 154);
+}
+
+@property --ml-color-error {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.531 0.218 27);
+}
+
+@property --ml-color-error-alt {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.444 0.161 27);
+}
+
+@property --ml-color-error-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.948 0.023 18);
+}
+
+@property --ml-color-error-deep {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.35 0.2 27);
+}
+
+@property --ml-color-error-muted {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.58 0.06 27);
+}
+
+@property --ml-color-error-contrast {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(1 0 0);
+}
+
+@property --ml-color-error-highlight {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.808 0.103 20);
+}
+
+@property --ml-color-warning {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.681 0.142 76);
+}
+
+@property --ml-color-warning-alt {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.476 0.103 62);
+}
+
+@property --ml-color-warning-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.981 0.024 94);
+}
+
+@property --ml-color-warning-deep {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.38 0.13 76);
+}
+
+@property --ml-color-warning-muted {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.7 0.05 76);
+}
+
+@property --ml-color-warning-contrast {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(1 0 0);
+}
+
+@property --ml-color-warning-highlight {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.924 0.115 96);
+}
+
+@property --ml-color-info {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.546 0.215 263);
+}
+
+@property --ml-color-info-alt {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.424 0.181 266);
+}
+
+@property --ml-color-info-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.953 0.021 262);
+}
+
+@property --ml-color-info-deep {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.34 0.19 263);
+}
+
+@property --ml-color-info-muted {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.58 0.05 263);
+}
+
+@property --ml-color-info-contrast {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(1 0 0);
+}
+
+@property --ml-color-info-highlight {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.809 0.096 252);
+}
+
+@property --ml-color-surface {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(1 0 0);
+}
+
+@property --ml-color-surface-alt {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.955 0 0);
+}
+
+@property --ml-color-surface-subtle {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.985 0 0);
+}
+
+@property --ml-color-surface-deep {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.92 0 0);
+}
+
+@property --ml-color-surface-muted {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.84 0 0);
+}
+
+@property --ml-color-surface-contrast {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.25 0 0);
+}
+
+@property --ml-color-surface-highlight {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: oklch(0.92 0 0);
+}

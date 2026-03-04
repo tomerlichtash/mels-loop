@@ -5,25 +5,28 @@
  * will automatically pick up the new values without needing their own
  * overrides. Only tokens that need values DIFFERENT from what the intent
  * cascade provides are listed in the semantic section below.
+ *
+ * Brand themes (e.g. ml.css) may further override primary and secondary
+ * intents in dark mode (e.g. swapping primary↔secondary hues).
  */
 
 [data-color-scheme='dark'] {
-	/* ---- Intent: Primary — swaps to pink (H≈8) in dark ---- */
-	--ml-color-primary: var(--ml-pink);
-	--ml-color-primary-alt: oklch(0.75 0.17 8);
-	--ml-color-primary-subtle: oklch(0.25 0.05 8);
-	--ml-color-primary-deep: oklch(0.55 0.22 8);
-	--ml-color-primary-muted: oklch(0.6 0.06 8);
+	/* ---- Intent: Primary — stays blue, lighter for dark (H≈250) ---- */
+	--ml-color-primary: oklch(0.65 0.17 250);
+	--ml-color-primary-alt: oklch(0.7 0.14 250);
+	--ml-color-primary-subtle: oklch(0.25 0.05 250);
+	--ml-color-primary-deep: oklch(0.5 0.2 250);
+	--ml-color-primary-muted: oklch(0.55 0.05 250);
 	--ml-color-primary-contrast: var(--ml-white);
-	--ml-color-primary-highlight: oklch(0.78 0.22 8);
+	--ml-color-primary-highlight: oklch(0.72 0.2 250);
 
-	/* ---- Intent: Secondary — swaps to blue (H≈258) in dark ---- */
-	--ml-color-secondary: oklch(0.6 0.145 258);
-	--ml-color-secondary-alt: oklch(0.65 0.13 258);
-	--ml-color-secondary-subtle: oklch(0.23 0.045 258);
-	--ml-color-secondary-deep: oklch(0.45 0.18 258);
-	--ml-color-secondary-muted: oklch(0.55 0.05 258);
-	--ml-color-secondary-highlight: oklch(0.7 0.2 258);
+	/* ---- Intent: Secondary — teal, lighter for dark (H≈180) ---- */
+	--ml-color-secondary: oklch(0.6 0.1 180);
+	--ml-color-secondary-alt: oklch(0.65 0.08 180);
+	--ml-color-secondary-subtle: oklch(0.22 0.04 180);
+	--ml-color-secondary-deep: oklch(0.42 0.14 180);
+	--ml-color-secondary-muted: oklch(0.5 0.04 180);
+	--ml-color-secondary-highlight: oklch(0.68 0.14 180);
 
 	/* ---- Intent: Success (green, H≈143) ---- */
 	--ml-color-success-alt: var(--ml-success-light);
@@ -70,7 +73,7 @@
 	--ml-heading-subtle-color: var(--ml-cream-200);
 
 	/* Links */
-	--ml-link-color: var(--ml-pink-light);
+	--ml-link-color: var(--ml-color-secondary-highlight);
 	--ml-link-hover-color: var(--ml-color-secondary);
 
 	/* Code */
@@ -89,9 +92,9 @@
 	--ml-annotation-bg: var(--ml-color-secondary);
 
 	/* Gradient */
-	--ml-gradient-start: var(--ml-indigo);
-	--ml-gradient-mid: var(--ml-purple);
-	--ml-gradient-end: var(--ml-color-primary);
+	--ml-gradient-start: var(--ml-color-primary-deep);
+	--ml-gradient-mid: var(--ml-color-primary);
+	--ml-gradient-end: var(--ml-color-primary-highlight);
 
 	/* Form */
 	--ml-input-border: var(--ml-color-primary);
@@ -102,7 +105,7 @@
 
 	/* Menu */
 	--ml-menu-hover-bg: var(--ml-color-primary);
-	--ml-mobile-menu-text: var(--ml-pink-light);
+	--ml-mobile-menu-text: var(--ml-color-secondary-highlight);
 
 	/* Shadow */
 	--ml-shadow:

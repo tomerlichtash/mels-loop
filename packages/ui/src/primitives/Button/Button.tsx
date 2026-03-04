@@ -6,10 +6,12 @@ import { Loader } from '../Loader/Loader';
 import styles from './Button.module.css';
 
 type ButtonRadius = 'none' | 'sm' | 'md' | 'lg' | 'pill';
+type ButtonColor = 'primary' | 'secondary';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode;
 	variant?: 'contained' | 'outlined' | 'text';
+	color?: ButtonColor;
 	size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 	radius?: ButtonRadius;
 	loading?: boolean;
@@ -20,6 +22,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export function Button({
 	children,
 	variant = 'contained',
+	color = 'primary',
 	size = 'md',
 	radius = 'md',
 	loading,
@@ -31,6 +34,7 @@ export function Button({
 }: ButtonProps) {
 	const classes = cn(
 		styles.root,
+		styles[`color-${color}`],
 		styles[`variant-${variant}`],
 		styles[`size-${size}`],
 		styles[`radius-${radius}`],

@@ -1,4 +1,5 @@
-/* Color system (layered — palette → intent → semantic) */
+/* Color system (layered — contract → palette → intent → semantic) */
+@import './color/contract.css';
 @import './color/palette.css';
 @import './color/intent.css';
 @import './color/semantic.css';

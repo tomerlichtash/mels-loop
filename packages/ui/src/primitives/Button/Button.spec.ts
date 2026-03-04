@@ -7,6 +7,7 @@ testComponent({
 	cases: {
 		size: ['xs', 'sm', 'md', 'lg', 'xl'],
 		variant: ['contained', 'outlined', 'text'],
+		color: ['primary', 'secondary'],
 		radius: ['none', 'sm', 'md', 'lg', 'pill'],
 		loading: [true],
 		disabled: [true],

@@ -14,6 +14,10 @@ const meta: Meta<typeof Button> = {
 			control: 'select',
 			options: ['contained', 'outlined', 'text'],
 		},
+		color: {
+			control: 'select',
+			options: ['primary', 'secondary'],
+		},
 		size: {
 			control: 'select',
 			options: ['xs', 'sm', 'md', 'lg', 'xl'],
@@ -41,6 +45,7 @@ export const Default: Story = {};
 
 Default.args = {
 	variant: 'contained',
+	color: 'primary',
 	size: 'md',
 	radius: 'md',
 	loading: false,
