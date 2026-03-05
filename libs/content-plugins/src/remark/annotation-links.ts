@@ -32,7 +32,7 @@ export function remarkAnnotationLinks() {
 			// If the link text is "^", it's a footnote-style annotation
 			const firstChild = node.children[0];
 			if (firstChild?.type === 'text' && firstChild.value === '^') {
-				firstChild.value = String(sequence).padStart(2, '0');
+				firstChild.value = String(sequence);
 			}
 		});
 	};

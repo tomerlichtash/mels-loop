@@ -18,6 +18,7 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 
 	const {
 		opened,
+		side,
 		triggerRef,
 		triggerProps,
 		data: source,
@@ -33,6 +34,7 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 	return (
 		<Popover
 			open={opened}
+			side={side}
 			triggerRef={triggerRef}
 			className={styles.dropdown}
 			trigger={

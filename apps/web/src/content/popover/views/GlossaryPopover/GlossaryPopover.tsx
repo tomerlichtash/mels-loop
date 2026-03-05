@@ -26,7 +26,7 @@ export function GlossaryPopover({
 	const { locale } = useTranslation();
 	const { glossary, loadingKeys, loadGlossaryTerm } = useAnnotations();
 
-	const { opened, triggerRef, triggerProps } = useContentPopover({
+	const { opened, side, triggerRef, triggerProps } = useContentPopover({
 		key: term,
 		data: glossary[term],
 		isLoading: loadingKeys.has(term),
@@ -50,6 +50,7 @@ export function GlossaryPopover({
 	return (
 		<Popover
 			open={opened}
+			side={side}
 			triggerRef={triggerRef}
 			className={styles.dropdown}
 			trigger={

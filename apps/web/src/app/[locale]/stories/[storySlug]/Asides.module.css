@@ -38,12 +38,12 @@
 
 .link {
 	font-size: var(--ml-font-size-body);
-	color: var(--ml-link-color);
+	color: var(--ml-color-primary);
 	text-decoration: none;
 }
 
 .link:hover {
-	color: var(--ml-link-hover-color);
+	color: var(--ml-color-secondary);
 }
 
 .author {

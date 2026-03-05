@@ -1,6 +1,6 @@
 'use client';
 
-import { Loader, Popover } from '@mels-loop/ui/primitives';
+import { IndexMarker, Loader, Popover } from '@mels-loop/ui/primitives';
 import { useMemo } from 'react';
 
 import { ContentRenderer } from '../../../renderer/core/ContentRenderer';
@@ -20,9 +20,10 @@ export function AnnotationPopover({
 	sequence,
 	target,
 }: AnnotationPopoverProps) {
+	const index = Number(sequence);
 	const { annotations, loadingKeys, loadAnnotation } = useAnnotations();
 
-	const { opened, triggerRef, triggerProps } = useContentPopover({
+	const { opened, side, triggerRef, triggerProps } = useContentPopover({
 		key: target,
 		data: annotations[target],
 		isLoading: loadingKeys.has(target),
@@ -42,17 +43,15 @@ export function AnnotationPopover({
 	return (
 		<Popover
 			open={opened}
+			side={side}
 			triggerRef={triggerRef}
 			className={styles.dropdown}
 			trigger={
-				<button
-					type="button"
-					className={styles.trigger}
-					{...triggerProps}
+				<IndexMarker
+					index={index}
 					aria-label={`Annotation ${sequence}`}
-				>
-					{sequence}
-				</button>
+					{...triggerProps}
+				/>
 			}
 		>
 			<NavBar rootLabel={displayLabel} />

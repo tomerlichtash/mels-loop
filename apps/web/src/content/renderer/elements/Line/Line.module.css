@@ -1,6 +1,8 @@
 .root {
 	display: block;
 	position: relative;
+	scroll-margin-top: calc(var(--ml-header-height) + 2px);
+	border-radius: var(--ml-radius-md);
 }
 
 .anchor {
@@ -13,6 +15,24 @@
 	transition: opacity var(--ml-duration-fast);
 	white-space: nowrap;
 	user-select: none;
+}
+
+.root:target {
+	animation: highlight 5s ease-out;
+	background-color: transparent;
+}
+
+@keyframes highlight {
+	0% {
+		background-color: color-mix(
+			in srgb,
+			var(--ml-color-warning-highlight) 40%,
+			transparent
+		);
+	}
+	100% {
+		background-color: transparent;
+	}
 }
 
 .root:hover .anchor {

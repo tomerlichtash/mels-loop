@@ -1,6 +1,8 @@
 'use server';
 
 import {
+	getAllAnnotations,
+	getAllGlossaryTerms,
 	getAnnotation,
 	getGlossaryTerm,
 } from '@mels-loop/content-loaders/loaders';
@@ -15,6 +17,14 @@ export async function fetchAnnotation(
 	return getAnnotation(storySlug, key, locale);
 }
 
+export async function fetchAllAnnotations(storySlug: string, locale: Locale) {
+	return getAllAnnotations(storySlug, locale);
+}
+
 export async function fetchGlossaryTerm(key: string, locale: Locale) {
 	return getGlossaryTerm(key, locale);
+}
+
+export async function fetchAllGlossaryTerms(locale: Locale) {
+	return getAllGlossaryTerms(locale);
 }

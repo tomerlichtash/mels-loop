@@ -1,8 +1,9 @@
 'use client';
 
+import { useTranslation } from '@mels-loop/i18n/client';
 import { useEffect, useId, useRef } from 'react';
 
-import { useAnnotations } from '../providers/PopoverProvider';
+import { useAnnotations, usePopoverOpen } from '../providers/PopoverProvider';
 
 interface UseContentPopoverOptions<T> {
 	key: string;
@@ -14,6 +15,7 @@ interface UseContentPopoverOptions<T> {
 interface UseContentPopoverResult<T> {
 	popoverId: string;
 	opened: boolean;
+	side: 'left' | 'right';
 	triggerRef: React.RefObject<HTMLButtonElement | null>;
 	triggerProps: {
 		ref: React.RefObject<HTMLButtonElement | null>;
@@ -30,28 +32,35 @@ export function useContentPopover<T>({
 	load,
 }: UseContentPopoverOptions<T>): UseContentPopoverResult<T> {
 	const popoverId = useId();
-	const { activePopover, openPopover, registerTrigger } = useAnnotations();
-	const opened = activePopover === popoverId;
+	const { locale } = useTranslation();
+	const { openPopover, registerTrigger } = useAnnotations();
+	const opened = usePopoverOpen(popoverId);
 	const triggerRef = useRef<HTMLButtonElement>(null);
+	const side = locale === 'he' ? 'left' : 'right';
 
 	useEffect(() => {
 		registerTrigger(popoverId, triggerRef.current);
 		return () => registerTrigger(popoverId, null);
 	}, [popoverId, registerTrigger]);
 
-	useEffect(() => {
-		if (opened && !data && !isLoading) {
-			load(key);
-		}
-	}, [opened, data, isLoading, load, key]);
-
 	return {
 		popoverId,
 		opened,
+		side,
 		triggerRef,
 		triggerProps: {
 			ref: triggerRef,
-			onClick: () => openPopover(popoverId),
+			onClick: () => {
+				const cached = !!data;
+				const t0 = performance.now();
+				if (!data && !isLoading) load(key);
+				openPopover(popoverId);
+				requestAnimationFrame(() => {
+					console.debug(
+						`[Popover] ${key} open: ${(performance.now() - t0).toFixed(1)}ms (${cached ? 'cached' : 'fetching'})`,
+					);
+				});
+			},
 		},
 		data,
 		isLoading,

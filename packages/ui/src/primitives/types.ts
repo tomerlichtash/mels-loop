@@ -24,6 +24,7 @@ export type { DialogProps } from './Dialog/Dialog';
 export type { FigureProps } from './Figure/Figure';
 export type { FigureCaptionProps } from './Figure/FigureCaption';
 export type { GridProps } from './Grid/Grid';
+export type { IndexMarkerProps } from './IndexMarker/IndexMarker';
 export type { ListProps } from './List/List';
 export type { ListItemProps } from './List/ListItem';
 export type { LoaderProps } from './Loader/Loader';

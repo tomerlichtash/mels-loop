@@ -61,7 +61,6 @@ export function GlyphShift({
 	);
 
 	const frameRef = useRef<number>(0);
-	const startedRef = useRef(false);
 
 	const tick = useCallback(() => {
 		const ci = charIndices.current;
@@ -98,9 +97,6 @@ export function GlyphShift({
 	}, []);
 
 	useEffect(() => {
-		if (startedRef.current) return;
-		startedRef.current = true;
-
 		let lastTime = 0;
 		let delay = speed;
 		const step = (time: number) => {
@@ -120,7 +116,7 @@ export function GlyphShift({
 
 	if (!text) return null;
 
-	const cellHeight = 1.15; // em — must match CSS
+	const cellHeight = 1.4; // em — must match CSS
 	const totalChars = charIndices.current.length;
 
 	return (
@@ -143,7 +139,7 @@ export function GlyphShift({
 							{strip.map((char, j) => (
 								<span
 									key={j}
-									className={styles.cell}
+									className={`${styles.cell}${j === 0 ? ` ${styles.original}` : ''}`}
 									style={
 										{
 											'--char-index': charPositionMap.current[i],

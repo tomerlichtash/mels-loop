@@ -34,10 +34,12 @@
 }
 
 .heroCtaButton {
+	--ml-button-padding-horizontal: var(--ml-space-xl);
+	--ml-button-padding-vertical: 0.25rem;
+	--ml-button-height: 2.5em;
 	background: linear-gradient(
 		to right,
 		var(--ml-gradient-start),
-		var(--ml-gradient-mid),
 		var(--ml-gradient-end)
 	);
 	color: #fff;

@@ -26,7 +26,6 @@
 	/* ---- Semantic: Brand-specific overrides ---- */
 	--ml-link-color: var(--ml-pink-light);
 	--ml-gradient-start: var(--ml-indigo);
-	--ml-gradient-mid: var(--ml-purple);
 	--ml-gradient-end: var(--ml-color-primary);
 	--ml-mobile-menu-text: var(--ml-pink-light);
 }

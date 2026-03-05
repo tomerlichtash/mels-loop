@@ -92,9 +92,8 @@
 	--ml-annotation-bg: var(--ml-color-secondary);
 
 	/* Gradient */
-	--ml-gradient-start: var(--ml-color-primary-deep);
-	--ml-gradient-mid: var(--ml-color-primary);
-	--ml-gradient-end: var(--ml-color-primary-highlight);
+	--ml-gradient-start: var(--ml-color-secondary);
+	--ml-gradient-end: var(--ml-color-primary);
 
 	/* Form */
 	--ml-input-border: var(--ml-color-primary);

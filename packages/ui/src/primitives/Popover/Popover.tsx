@@ -31,7 +31,7 @@ export function Popover({
 	children,
 	side = 'bottom',
 	align = 'center',
-	sideOffset = 4,
+	sideOffset = 8,
 	className,
 }: PopoverProps) {
 	return (
@@ -46,11 +46,11 @@ export function Popover({
 			<RadixPopover.Portal>
 				<RadixPopover.Content
 					className={cn(styles.content, 'ml-popover-content', className)}
+					data-popover-content
 					side={side}
 					align={align}
 					sideOffset={sideOffset}
 				>
-					<RadixPopover.Arrow className={styles.arrow} />
 					<div className={styles.scrollArea}>{children}</div>
 				</RadixPopover.Content>
 			</RadixPopover.Portal>

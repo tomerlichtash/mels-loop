@@ -1,4 +1,5 @@
 import '@mels-loop/ui/styles/globals.css';
+import '../../styles/layout.css';
 import '../../styles/ml-palette.css';
 import '../../styles/ml-light.css';
 import '../../styles/ml-dark.css';

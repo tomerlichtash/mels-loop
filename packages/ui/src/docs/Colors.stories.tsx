@@ -98,7 +98,6 @@ const textLevels = [
 
 const gradientTokens = [
 	['--ml-gradient-start', 'start'],
-	['--ml-gradient-mid', 'mid'],
 	['--ml-gradient-end', 'end'],
 ];
 
@@ -204,7 +203,7 @@ function ColorsPage() {
 								height: 8,
 								borderRadius: 'var(--ml-radius-pill)',
 								background:
-									'linear-gradient(to right, var(--ml-gradient-start), var(--ml-gradient-mid), var(--ml-gradient-end))',
+									'linear-gradient(to right, var(--ml-gradient-start), var(--ml-gradient-end))',
 							}}
 						/>
 					</div>
@@ -223,7 +222,7 @@ function ColorsPage() {
 								height: 120,
 								borderRadius: 'var(--ml-radius-md)',
 								background:
-									'linear-gradient(135deg, var(--ml-gradient-start), var(--ml-gradient-mid), var(--ml-gradient-end))',
+									'linear-gradient(135deg, var(--ml-gradient-start), var(--ml-gradient-end))',
 							}}
 						/>
 					</div>
@@ -242,7 +241,7 @@ function ColorsPage() {
 								fontSize: 'var(--ml-font-size-3xl)',
 								fontWeight: 'var(--ml-font-weight-bold)',
 								background:
-									'linear-gradient(to right, var(--ml-gradient-start), var(--ml-gradient-mid), var(--ml-gradient-end))',
+									'linear-gradient(to right, var(--ml-gradient-start), var(--ml-gradient-end))',
 								WebkitBackgroundClip: 'text',
 								WebkitTextFillColor: 'transparent',
 								backgroundClip: 'text',

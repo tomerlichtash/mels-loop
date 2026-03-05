@@ -10,7 +10,6 @@
 	background: linear-gradient(
 		to right,
 		var(--ml-gradient-start),
-		var(--ml-gradient-mid),
 		var(--ml-gradient-end)
 	);
 }

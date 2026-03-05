@@ -1,5 +1,5 @@
 .root {
-	display: var(--ml-text-display, inherit);
+	display: var(--ml-text-display, block);
 	margin: 0;
 	font-family: var(--ml-text-font-family);
 	font-size: var(--ml-text-font-size);

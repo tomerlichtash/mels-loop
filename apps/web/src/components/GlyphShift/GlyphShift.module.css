@@ -3,7 +3,8 @@
 	overflow: hidden;
 	position: relative;
 	vertical-align: bottom;
-	height: 1.15em;
+	height: 1.4em;
+	margin-inline: -0.025em;
 }
 
 .strip {
@@ -15,19 +16,25 @@
 
 .cell {
 	display: block;
-	height: 1.15em;
-	line-height: 1.15em;
-	background: var(--ml-gradient-end);
+	height: 1.4em;
+	line-height: 1.4em;
+	background: var(--ml-color-primary);
 	/* background: linear-gradient(90deg, var(--ml-gradient-start), var(--ml-gradient-mid), var(--ml-gradient-end)); */
-	background-size: calc(var(--total-chars) * 100%) 100%;
-	background-position: calc(var(--char-index) / var(--total-chars) * 100%) 0;
+	/* background-size: calc(var(--total-chars) * 100%) 100%; */
+	/* background-position: calc(var(--char-index) / var(--total-chars) * 100%) 0; */
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	letter-spacing: -0.05em;
+	/* letter-spacing: -0.05em; */
 	text-transform: lowercase;
-	font-family: monospace;
+	/* font-family: monospace; */
 	transition-property: opacity;
 	transition-timing-function: ease-in-out;
+}
+
+.cell.original {
+	font-family: inherit;
+	letter-spacing: inherit;
+	text-transform: inherit;
 }
 
 @keyframes gradientShift {

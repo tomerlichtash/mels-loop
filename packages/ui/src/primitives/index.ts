@@ -22,6 +22,7 @@ export { Container } from './Container/Container';
 export { Dialog } from './Dialog';
 export { Figure, FigureCaption } from './Figure';
 export { Grid } from './Grid/Grid';
+export { IndexMarker } from './IndexMarker';
 export { List } from './List/List';
 export { ListItem } from './List/ListItem';
 export { Loader } from './Loader/Loader';

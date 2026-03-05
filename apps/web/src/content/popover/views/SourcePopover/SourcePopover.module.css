@@ -16,7 +16,9 @@
 }
 
 .dropdown {
-	--ml-popover-max-height: 360px;
+	--ml-popover-width: 414px;
+	--ml-popover-max-height: 300px;
+	height: 300px;
 }
 
 .loader {

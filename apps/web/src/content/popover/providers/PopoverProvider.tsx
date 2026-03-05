@@ -11,6 +11,7 @@ import {
 	useMemo,
 	useRef,
 	useState,
+	useSyncExternalStore,
 } from 'react';
 
 export interface NavStackEntry {
@@ -19,7 +20,51 @@ export interface NavStackEntry {
 	label: string;
 }
 
-interface PopoverContextValue {
+// ---- Active popover store (ref-based, no context re-renders) ----
+
+type Listener = () => void;
+
+function createPopoverStore() {
+	let active: string | null = null;
+	const listeners = new Set<Listener>();
+
+	return {
+		getActive: () => active,
+		open: (id: string) => {
+			if (active === id) return;
+			active = id;
+			listeners.forEach((l) => l());
+		},
+		close: () => {
+			active = null;
+			listeners.forEach((l) => l());
+		},
+		subscribe: (listener: Listener) => {
+			listeners.add(listener);
+			return () => listeners.delete(listener);
+		},
+	};
+}
+
+type PopoverStore = ReturnType<typeof createPopoverStore>;
+
+const defaultStore = createPopoverStore();
+
+const PopoverStoreContext = createContext<PopoverStore>(defaultStore);
+
+/** Returns true only when this specific popover is the active one. */
+export function usePopoverOpen(popoverId: string): boolean {
+	const store = useContext(PopoverStoreContext);
+	return useSyncExternalStore(
+		store.subscribe,
+		() => store.getActive() === popoverId,
+		() => false,
+	);
+}
+
+// ---- Data context (annotations, glossary, sources, loading) ----
+
+interface PopoverDataContextValue {
 	annotations: Record<string, ProcessedContent>;
 	glossary: Record<string, ProcessedContent>;
 	sources: Record<string, ResolvedSource>;
@@ -27,7 +72,6 @@ interface PopoverContextValue {
 	loadAnnotation: (key: string) => void;
 	loadGlossaryTerm: (key: string) => void;
 	loadResolvedSource: (id: string) => void;
-	activePopover: string | null;
 	openPopover: (id: string) => void;
 	closePopover: () => void;
 	registerTrigger: (id: string, el: HTMLElement | null) => void;
@@ -36,7 +80,7 @@ interface PopoverContextValue {
 	popNavTo: (index: number) => void;
 }
 
-const PopoverContext = createContext<PopoverContextValue>({
+const PopoverDataContext = createContext<PopoverDataContextValue>({
 	annotations: {},
 	glossary: {},
 	sources: {},
@@ -44,7 +88,6 @@ const PopoverContext = createContext<PopoverContextValue>({
 	loadAnnotation: () => {},
 	loadGlossaryTerm: () => {},
 	loadResolvedSource: () => {},
-	activePopover: null,
 	openPopover: () => {},
 	closePopover: () => {},
 	registerTrigger: () => {},
@@ -53,6 +96,8 @@ const PopoverContext = createContext<PopoverContextValue>({
 	popNavTo: () => {},
 });
 
+// ---- Provider ----
+
 interface PopoverProviderProps {
 	annotations?: Record<string, ProcessedContent>;
 	glossary?: Record<string, ProcessedContent>;
@@ -60,6 +105,8 @@ interface PopoverProviderProps {
 	fetchAnnotation?: (key: string) => Promise<ProcessedContent | null>;
 	fetchGlossary?: (key: string) => Promise<ProcessedContent | null>;
 	fetchResolvedSource?: (id: string) => Promise<ResolvedSource | null>;
+	fetchAllAnnotations?: () => Promise<Record<string, ProcessedContent>>;
+	fetchAllGlossary?: () => Promise<Record<string, ProcessedContent>>;
 	children: ReactNode;
 }
 
@@ -70,6 +117,8 @@ export function PopoverProvider({
 	fetchAnnotation,
 	fetchGlossary,
 	fetchResolvedSource,
+	fetchAllAnnotations,
+	fetchAllGlossary,
 	children,
 }: PopoverProviderProps) {
 	const [annotations, setAnnotations] =
@@ -80,9 +129,11 @@ export function PopoverProvider({
 		Record<string, ResolvedSource>
 	>(initialResolvedSources);
 	const [loadingKeys, setLoadingKeys] = useState<Set<string>>(new Set());
-	const [activePopover, setActivePopover] = useState<string | null>(null);
 	const [navStack, setNavStack] = useState<NavStackEntry[]>([]);
 	const triggersRef = useRef<Map<string, HTMLElement>>(new Map());
+	const prefetchedRef = useRef(false);
+
+	const [store] = useState(createPopoverStore);
 
 	// Always-fresh refs — stable function identities without stale closures
 	const stateRef = useRef({ annotations, glossary, sources, loadingKeys });
@@ -97,33 +148,84 @@ export function PopoverProvider({
 	const fetchResolvedSourceRef = useRef(fetchResolvedSource);
 	fetchResolvedSourceRef.current = fetchResolvedSource;
 
-	const loadAnnotation = useCallback((key: string) => {
-		const { annotations: ann, loadingKeys: lk } = stateRef.current;
-		if (ann[key] || lk.has(key) || !fetchAnnotationRef.current) return;
-		setLoadingKeys((prev) => new Set(prev).add(key));
-		fetchAnnotationRef.current(key).then((content) => {
-			if (content) setAnnotations((prev) => ({ ...prev, [key]: content }));
-			setLoadingKeys((prev) => {
-				const next = new Set(prev);
-				next.delete(key);
-				return next;
-			});
-		});
+	const fetchAllAnnotationsRef = useRef(fetchAllAnnotations);
+	fetchAllAnnotationsRef.current = fetchAllAnnotations;
+
+	const fetchAllGlossaryRef = useRef(fetchAllGlossary);
+	fetchAllGlossaryRef.current = fetchAllGlossary;
+
+	const prefetchAll = useCallback(() => {
+		if (prefetchedRef.current) return;
+		prefetchedRef.current = true;
+
+		console.debug('[PopoverProvider] prefetching all annotations + glossary');
+
+		fetchAllAnnotationsRef
+			.current?.()
+			.then((all) => {
+				console.debug(
+					'[PopoverProvider] prefetched annotations:',
+					Object.keys(all).length,
+				);
+				setAnnotations((prev) => ({ ...all, ...prev }));
+			})
+			.catch((err) =>
+				console.error('[PopoverProvider] prefetch annotations failed:', err),
+			);
+
+		fetchAllGlossaryRef
+			.current?.()
+			.then((all) => {
+				console.debug(
+					'[PopoverProvider] prefetched glossary:',
+					Object.keys(all).length,
+				);
+				setGlossary((prev) => ({ ...all, ...prev }));
+			})
+			.catch((err) =>
+				console.error('[PopoverProvider] prefetch glossary failed:', err),
+			);
 	}, []);
 
-	const loadGlossaryTerm = useCallback((key: string) => {
-		const { glossary: gl, loadingKeys: lk } = stateRef.current;
-		if (gl[key] || lk.has(key) || !fetchGlossaryRef.current) return;
-		setLoadingKeys((prev) => new Set(prev).add(key));
-		fetchGlossaryRef.current(key).then((content) => {
-			if (content) setGlossary((prev) => ({ ...prev, [key]: content }));
-			setLoadingKeys((prev) => {
-				const next = new Set(prev);
-				next.delete(key);
-				return next;
+	const loadAnnotation = useCallback(
+		(key: string) => {
+			const { annotations: ann, loadingKeys: lk } = stateRef.current;
+			if (ann[key] || lk.has(key) || !fetchAnnotationRef.current) return;
+			const t0 = performance.now();
+			setLoadingKeys((prev) => new Set(prev).add(key));
+			fetchAnnotationRef.current(key).then((content) => {
+				console.debug(
+					`[PopoverProvider] fetched annotation "${key}": ${(performance.now() - t0).toFixed(0)}ms`,
+				);
+				if (content) setAnnotations((prev) => ({ ...prev, [key]: content }));
+				setLoadingKeys((prev) => {
+					const next = new Set(prev);
+					next.delete(key);
+					return next;
+				});
+				prefetchAll();
 			});
-		});
-	}, []);
+		},
+		[prefetchAll],
+	);
+
+	const loadGlossaryTerm = useCallback(
+		(key: string) => {
+			const { glossary: gl, loadingKeys: lk } = stateRef.current;
+			if (gl[key] || lk.has(key) || !fetchGlossaryRef.current) return;
+			setLoadingKeys((prev) => new Set(prev).add(key));
+			fetchGlossaryRef.current(key).then((content) => {
+				if (content) setGlossary((prev) => ({ ...prev, [key]: content }));
+				setLoadingKeys((prev) => {
+					const next = new Set(prev);
+					next.delete(key);
+					return next;
+				});
+				prefetchAll();
+			});
+		},
+		[prefetchAll],
+	);
 
 	const loadResolvedSource = useCallback((id: string) => {
 		const { sources: src, loadingKeys: lk } = stateRef.current;
@@ -139,13 +241,16 @@ export function PopoverProvider({
 		});
 	}, []);
 
-	const openPopover = useCallback((id: string) => {
-		setActivePopover((current) => (current === id ? null : id));
-	}, []);
+	const openPopover = useCallback(
+		(id: string) => {
+			store.open(id);
+		},
+		[store],
+	);
 
 	const closePopover = useCallback(() => {
-		setActivePopover(null);
-	}, []);
+		store.close();
+	}, [store]);
 
 	const pushNav = useCallback((entry: NavStackEntry) => {
 		setNavStack((prev) => [...prev, entry]);
@@ -155,9 +260,15 @@ export function PopoverProvider({
 		setNavStack((prev) => prev.slice(0, index + 1));
 	}, []);
 
+	// Reset nav stack when active popover changes
 	useEffect(() => {
-		setNavStack([]);
-	}, [activePopover]);
+		const unsubscribe = store.subscribe(() => {
+			setNavStack([]);
+		});
+		return () => {
+			unsubscribe();
+		};
+	}, [store]);
 
 	const registerTrigger = useCallback((id: string, el: HTMLElement | null) => {
 		if (el) {
@@ -167,21 +278,21 @@ export function PopoverProvider({
 		}
 	}, []);
 
+	// Click-outside and Escape handling
 	useEffect(() => {
-		if (!activePopover) return;
-
 		function handleClick(e: MouseEvent) {
+			if (!store.getActive()) return;
 			const target = e.target as Node;
 			for (const el of triggersRef.current.values()) {
 				if (el.contains(target)) return;
 			}
 			const el = target instanceof Element ? target : target.parentElement;
 			if (el?.closest('[data-popover-content]')) return;
-			setActivePopover(null);
+			store.close();
 		}
 
 		function handleKeyDown(e: KeyboardEvent) {
-			if (e.key === 'Escape') setActivePopover(null);
+			if (e.key === 'Escape') store.close();
 		}
 
 		document.addEventListener('mousedown', handleClick);
@@ -190,9 +301,9 @@ export function PopoverProvider({
 			document.removeEventListener('mousedown', handleClick);
 			document.removeEventListener('keydown', handleKeyDown);
 		};
-	}, [activePopover]);
+	}, [store]);
 
-	const contextValue = useMemo(
+	const dataValue = useMemo(
 		() => ({
 			annotations,
 			glossary,
@@ -201,7 +312,6 @@ export function PopoverProvider({
 			loadAnnotation,
 			loadGlossaryTerm,
 			loadResolvedSource,
-			activePopover,
 			openPopover,
 			closePopover,
 			registerTrigger,
@@ -214,7 +324,6 @@ export function PopoverProvider({
 			glossary,
 			sources,
 			loadingKeys,
-			activePopover,
 			navStack,
 			loadAnnotation,
 			loadGlossaryTerm,
@@ -228,12 +337,14 @@ export function PopoverProvider({
 	);
 
 	return (
-		<PopoverContext.Provider value={contextValue}>
-			{children}
-		</PopoverContext.Provider>
+		<PopoverStoreContext.Provider value={store}>
+			<PopoverDataContext.Provider value={dataValue}>
+				{children}
+			</PopoverDataContext.Provider>
+		</PopoverStoreContext.Provider>
 	);
 }
 
 export function useAnnotations() {
-	return useContext(PopoverContext);
+	return useContext(PopoverDataContext);
 }

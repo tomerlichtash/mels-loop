@@ -1,34 +1,8 @@
-.trigger {
-	display: inline;
-	background: var(--ml-annotation-bg);
-	color: var(--ml-annotation-text);
-	border: none;
-	border-radius: var(--ml-radius-sm);
-	padding: 0 0.2rem;
-	font-size: var(--ml-font-size-xs);
-	font-weight: var(--ml-font-weight-bold);
-	cursor: pointer;
-	vertical-align: super;
-	line-height: var(--ml-line-height-none);
-	margin: 0 1px;
-}
-
-.trigger:hover {
-	opacity: 0.85;
-}
-
-.trigger::before {
-	content: '[';
-	font-weight: var(--ml-font-weight-light);
-}
-
-.trigger::after {
-	content: ']';
-	font-weight: var(--ml-font-weight-light);
-}
-
 .dropdown {
-	--ml-popover-width: 360px;
+	--ml-popover-width: 414px;
+	--ml-popover-max-height: 300px;
+	--ml-popover-padding: var(--ml-space-md);
+	height: 300px;
 }
 
 .loader {
