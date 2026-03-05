@@ -1,18 +1,14 @@
-import { getStoryConfig } from '@mels-loop/content-loaders/loaders';
 import {
 	getContentDir,
 	loadMarkdownFile,
 } from '@mels-loop/content-pipeline/loaders';
-import { dictGet } from '@mels-loop/i18n/dict';
-import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 import fs from 'fs/promises';
 import { notFound } from 'next/navigation';
 import path from 'path';
 
 import { ContentRenderer, StoryPopoverProvider } from '@/content';
-import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
-import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string; pageSlug: string }>;
@@ -37,28 +33,10 @@ export default async function CodexSubPage({ params }: PageProps) {
 		notFound();
 	}
 
-	const [content, config, dict] = await Promise.all([
-		loadMarkdownFile(filePath),
-		getStoryConfig(storySlug),
-		getDictionary(typedLocale),
-	]);
-
-	const storyTitle = config.title[typedLocale];
-	const codexLabel = dictGet(dict, 'nav.codex');
-	const pageTitle =
-		content.metadata.title ||
-		pageSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+	const content = await loadMarkdownFile(filePath);
 
 	return (
 		<Container gap="lg">
-			<Breadcrumbs
-				items={[
-					homeItemFromDict(dict),
-					{ label: storyTitle, href: `/stories/${storySlug}` },
-					{ label: codexLabel, href: `/stories/${storySlug}/codex` },
-					{ label: pageTitle },
-				]}
-			/>
 			{content.metadata.title && (
 				<Text variant="h1">{content.metadata.title}</Text>
 			)}

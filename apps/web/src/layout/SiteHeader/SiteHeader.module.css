@@ -6,6 +6,26 @@
 	z-index: 100;
 	height: var(--ml-header-height);
 	background-color: var(--ml-header-bg);
+	transition: transform var(--ml-duration-normal) ease;
+}
+
+.strip {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 99;
+	opacity: 0;
+	transition: opacity var(--ml-duration-fast) ease;
+}
+
+.stripVisible {
+	opacity: 1;
+	transition-delay: var(--ml-duration-fast);
+}
+
+.hidden {
+	transform: translateY(-100%);
 }
 
 .inner {

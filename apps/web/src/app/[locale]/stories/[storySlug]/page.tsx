@@ -1,18 +1,9 @@
-import {
-	getAllStories,
-	getCodex,
-	getStoryConfig,
-} from '@mels-loop/content-loaders/loaders';
+import { getAllStories, getCodex } from '@mels-loop/content-loaders/loaders';
 import { getLocales } from '@mels-loop/i18n/config';
-import { dictGet } from '@mels-loop/i18n/dict';
-import { Breadcrumbs, Text } from '@mels-loop/ui/primitives';
+import { Text } from '@mels-loop/ui/primitives';
 
 import { ContentRenderer, StoryPopoverProvider } from '@/content';
-import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
-import { homeItemFromDict } from '@/lib/breadcrumbs';
-
-import styles from './page.module.css';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string }>;
@@ -28,36 +19,15 @@ export async function generateStaticParams() {
 export default async function StoryLandingPage({ params }: PageProps) {
 	const { locale, storySlug } = await params;
 	const typedLocale = locale as Locale;
-	const [config, content, dict] = await Promise.all([
-		getStoryConfig(storySlug),
-		getCodex(storySlug, typedLocale),
-		getDictionary(typedLocale),
-	]);
-
-	const storyTitle = content?.metadata.title || config.title[typedLocale];
-	const storySubtitle = content?.metadata.subtitle;
+	const content = await getCodex(storySlug, typedLocale);
 
 	return (
 		<>
-			<Breadcrumbs
-				items={[
-					homeItemFromDict(dict),
-					{
-						label: dictGet(dict, 'stories'),
-						href: '/stories',
-					},
-					{ label: storyTitle },
-				]}
-			/>
-			<div className={styles.header}>
-				<Text variant="h1">{storyTitle}</Text>
-				{storySubtitle && (
-					<Text variant="subtitle2" color="muted">
-						{storySubtitle}
-					</Text>
-				)}
-			</div>
-
+			{content?.metadata.subtitle && (
+				<Text variant="body2" color="muted" italic>
+					{content.metadata.subtitle}
+				</Text>
+			)}
 			{content && (
 				<StoryPopoverProvider storySlug={storySlug} locale={typedLocale}>
 					<ContentRenderer hast={content.hast} />

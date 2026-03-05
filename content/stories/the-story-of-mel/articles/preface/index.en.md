@@ -3,6 +3,8 @@ title: "A Software Legend That Really Happened"
 abstract: "A Preface to The Story of Mel"
 author: "Tomer Lichtash"
 date: Wed Apr 7 2021 13:45 GMT+0300
+image: "https://dummyimage.com/400x300/e8e8e8/666&text=Preface"
+imageCaption: "An introduction to the legendary tale"
 ---
 
 If this is your first encounter with _The Story of Mel_, odds are you will not understand it. There are numerous barriers along the way: Most of the technologies and programming languages featured in the story have either gone extinct, or were relegated to esoteric niches in the software universe; a general understanding of digital computing hardware is required, but this is no longer part of the curriculum of CS students; Familiarity with early computing history can help, but that period is mostly undocumented. Thus, reading _The Story of Mel_ is likely to be an uncomfortable experience, but even so, one can hardly miss the sense of elation out of which the words were born. It is clearly the result of a noble encounter between man, machine and language. The cathartic experience hinges on rather complex technical understanding, but it is clearly the "desired outcome" of reading a story.

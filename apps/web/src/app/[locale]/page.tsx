@@ -48,9 +48,9 @@ export default async function HomePage({ params }: PageProps) {
 				<div className={styles.heroCta}>
 					<Button
 						asChild
-						variant="contained"
-						size="xl"
-						fullWidth
+						variant="outlined"
+						size="lg"
+						// fullWidth
 						className={styles.heroCtaButton}
 					>
 						<Link href="/stories">{hero.cta}</Link>

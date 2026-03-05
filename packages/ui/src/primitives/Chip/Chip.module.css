@@ -1,11 +1,6 @@
 :root {
-	--ml-chip-background: var(--ml-color-primary);
-	--ml-chip-color: var(--ml-color-primary-contrast);
-	--ml-chip-border-color: var(--ml-color-primary);
 	--ml-chip-radius: var(--ml-radius-pill);
 	--ml-chip-gap: var(--ml-space-xs);
-	--ml-chip-dismiss-color: var(--ml-color-primary-contrast);
-	--ml-chip-dismiss-color-hover: var(--ml-color-primary-contrast);
 	--ml-chip-dismiss-focus-color: var(--ml-color-primary);
 }
 
@@ -27,8 +22,26 @@
 
 /* Label */
 .label {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-chip-gap);
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+/* Variants */
+.variant-contained {
+	--ml-chip-background: var(--ml-color-primary);
+	--ml-chip-color: var(--ml-color-primary-contrast);
+	--ml-chip-border-color: var(--ml-color-primary);
+}
+
+.variant-outlined {
+	--ml-chip-background: transparent;
+	--ml-chip-color: var(--ml-color-primary);
+	--ml-chip-border-color: var(--ml-color-primary);
+	--ml-chip-dismiss-color: var(--ml-color-primary);
+	--ml-chip-dismiss-color-hover: var(--ml-color-primary);
 }
 
 /* Sizes */

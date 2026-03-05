@@ -1,4 +1,5 @@
 export type { AlertProps } from './Alert/Alert';
+export type { AvatarProps } from './Avatar/Avatar';
 export type { BadgeProps } from './Badge/Badge';
 export type { BlockquoteProps } from './Blockquote/Blockquote';
 export type {

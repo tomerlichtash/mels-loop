@@ -1,3 +1,4 @@
+import { Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
 import type { AsideSection } from './Asides';
@@ -13,7 +14,7 @@ export function AsideSection({ section, pathname }: AsideSectionProps) {
 
 	return (
 		<div className={styles.section}>
-			<h3 className={styles.sectionTitle}>
+			<Text component="h3" variant="label" className={styles.sectionTitle}>
 				<Link
 					href={section.href}
 					className={[styles.sectionLink, isSectionActive ? styles.active : '']
@@ -23,13 +24,18 @@ export function AsideSection({ section, pathname }: AsideSectionProps) {
 				>
 					{section.label}
 				</Link>
-			</h3>
+			</Text>
 			{section.items.length > 0 && (
 				<ul className={styles.list}>
 					{section.items.map((item) => {
 						const isActive = pathname.endsWith(item.href);
 						return (
-							<li key={item.slug}>
+							<li
+								key={item.slug}
+								className={[styles.item, isActive ? styles.itemActive : '']
+									.filter(Boolean)
+									.join(' ')}
+							>
 								<Link
 									href={item.href}
 									className={[styles.link, isActive ? styles.active : '']

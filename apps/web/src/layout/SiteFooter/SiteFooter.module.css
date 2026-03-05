@@ -3,17 +3,6 @@
 	margin-top: var(--ml-space-3xl);
 }
 
-.root::before {
-	content: '';
-	display: block;
-	height: 4px;
-	background: linear-gradient(
-		to right,
-		var(--ml-gradient-start),
-		var(--ml-gradient-end)
-	);
-}
-
 .inner {
 	max-width: var(--ml-page-max-width);
 	margin: 0 auto;

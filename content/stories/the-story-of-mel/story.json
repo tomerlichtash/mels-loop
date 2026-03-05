@@ -9,8 +9,20 @@
 		"he": "מדריך מקיף לסיפור על מל"
 	},
 	"featured": true,
-	"sections": ["codex", "articles", "documents", "resources", "sources"],
+	"avatar": {
+		"src": "https://mels-loop-media.s3.eu-north-1.amazonaws.com/mel-kaye-profile-picture-1951_aark5e.jpg",
+		"initials": {
+			"en": "MK",
+			"he": "מק"
+		},
+		"alt": {
+			"en": "Photo of Mel Kaye, 1952",
+			"he": "תצלום של מל קיי, 1952"
+		}
+	},
+	"sections": ["articles", "documents", "resources"],
 	"articles": ["preface", "mel-kaye-cv", "mels-hack-the-missing-bits"],
+	"featuredArticles": ["preface"],
 	"documents": ["blackjack-writeup"],
 	"figures": {
 		"auto": true,

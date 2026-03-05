@@ -1,0 +1,22 @@
+.root {
+	/* Break out of parent container to span full viewport width */
+	width: 100vw;
+	margin-left: calc(-50vw + 50%);
+	border-top: 1px solid var(--ml-border-color);
+	border-bottom: 1px solid var(--ml-border-color);
+	background-color: color-mix(
+		in srgb,
+		var(--ml-surface-background-color) 60%,
+		transparent
+	);
+	backdrop-filter: blur(12px);
+	position: sticky;
+	top: 0;
+	z-index: 90;
+}
+
+.inner {
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	padding: var(--ml-space-sm) var(--ml-page-padding-horizontal);
+}

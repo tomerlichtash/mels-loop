@@ -3,12 +3,12 @@ import {
 	getStoryConfig,
 } from '@mels-loop/content-loaders/loaders';
 import { dictGet } from '@mels-loop/i18n/dict';
-import { Breadcrumbs, Card, Container, Text } from '@mels-loop/ui/primitives';
+import { Card, Container, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
+import { BackLink } from '@/components/BackLink';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
-import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string }>;
@@ -28,13 +28,7 @@ export default async function DocumentsListingPage({ params }: PageProps) {
 
 	return (
 		<Container gap="lg">
-			<Breadcrumbs
-				items={[
-					homeItemFromDict(dict),
-					{ label: storyTitle, href: `/stories/${storySlug}` },
-					{ label: documentsLabel },
-				]}
-			/>
+			<BackLink href={`/stories/${storySlug}`}>{storyTitle}</BackLink>
 			<Text variant="h1">
 				{documentsLabel} &mdash; {storyTitle}
 			</Text>

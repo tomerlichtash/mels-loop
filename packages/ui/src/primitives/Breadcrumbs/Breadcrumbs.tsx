@@ -1,5 +1,6 @@
 import { ChevronRightIcon } from '@radix-ui/react-icons';
 import cn from 'classnames';
+import type { ComponentType, ReactNode } from 'react';
 
 import styles from './Breadcrumbs.module.css';
 
@@ -8,18 +9,28 @@ export interface BreadcrumbItem {
 	href?: string;
 }
 
+interface LinkProps {
+	href: string;
+	className?: string;
+	children: ReactNode;
+}
+
 export interface BreadcrumbsProps {
 	items: BreadcrumbItem[];
+	linkComponent?: ComponentType<LinkProps>;
 	'aria-label'?: string;
 	className?: string;
 }
 
 export function Breadcrumbs({
 	items,
+	linkComponent: LinkComponent,
 	'aria-label': ariaLabel = 'Breadcrumb',
 	className,
 }: BreadcrumbsProps) {
 	if (items.length <= 1) return null;
+
+	const Anchor = LinkComponent || 'a';
 
 	return (
 		<nav
@@ -44,9 +55,9 @@ export function Breadcrumbs({
 									{item.label}
 								</span>
 							) : (
-								<a href={item.href} className={styles.link}>
+								<Anchor href={item.href} className={styles.link}>
 									{item.label}
-								</a>
+								</Anchor>
 							)}
 						</li>
 					);

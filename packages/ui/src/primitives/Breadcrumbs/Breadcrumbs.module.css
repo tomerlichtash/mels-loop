@@ -2,9 +2,9 @@
 	--ml-breadcrumbs-font-size: var(--ml-font-size-sm);
 	--ml-breadcrumbs-separator-color: var(--ml-text-muted-color);
 	--ml-breadcrumbs-separator-gap: var(--ml-space-xs);
-	--ml-breadcrumbs-link-color: var(--ml-link-color);
-	--ml-breadcrumbs-link-hover-color: var(--ml-link-hover-color);
-	--ml-breadcrumbs-current-color: var(--ml-text-muted-color);
+	--ml-breadcrumbs-link-color: var(--ml-text-muted-color);
+	--ml-breadcrumbs-link-hover-color: var(--ml-text-color);
+	--ml-breadcrumbs-current-color: var(--ml-text-color);
 }
 
 .root {
@@ -51,4 +51,5 @@
 
 .current {
 	color: var(--ml-breadcrumbs-current-color);
+	font-weight: var(--ml-font-weight-semibold);
 }

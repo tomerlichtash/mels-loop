@@ -49,6 +49,7 @@ export function SiteFooter({ linkColumns }: SiteFooterProps) {
 
 	return (
 		<footer className={styles.root}>
+			<span className="gradient-strip" />
 			<div className={styles.inner}>
 				<div className={styles.columns}>
 					<div className={styles.meta}>

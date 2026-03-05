@@ -2,10 +2,12 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	text-align: center;
 	max-width: 540px;
 	gap: var(--ml-space-md);
-	margin: calc(var(--ml-space-3xl) * 2) auto;
+	margin: 0 auto;
+	min-height: calc(80svh - var(--ml-header-height) - var(--ml-space-xl) * 2);
 }
 
 .heroTitle {
@@ -36,17 +38,13 @@
 .heroCtaButton {
 	--ml-button-padding-horizontal: var(--ml-space-xl);
 	--ml-button-padding-vertical: 0.25rem;
-	--ml-button-height: 2.5em;
-	background: linear-gradient(
+	/* --ml-button-height: 2.5em; */
+	/* background: linear-gradient(
 		to right,
 		var(--ml-gradient-start),
 		var(--ml-gradient-end)
-	);
-	color: #fff;
-}
-
-.heroCtaButton:hover {
-	opacity: 0.9;
+	); */
+	/* color: #fff; */
 }
 
 .storiesHeading {

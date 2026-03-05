@@ -6,6 +6,7 @@ import { ChipDriver } from './Chip.driver';
 testComponent({
 	storyId: 'content-chip--default',
 	cases: {
+		variant: ['contained', 'outlined'],
 		size: ['sm', 'md', 'lg'],
 		radius: ['sm', 'md', 'lg', 'pill'],
 		disabled: [true],

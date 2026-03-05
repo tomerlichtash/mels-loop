@@ -3,6 +3,7 @@ import '../../styles/layout.css';
 import '../../styles/ml-palette.css';
 import '../../styles/ml-light.css';
 import '../../styles/ml-dark.css';
+import '../../styles/utilities.css';
 import '../../i18n-init';
 import '../../content-init';
 

@@ -157,6 +157,10 @@ async function readSlugsMetadata(
 			slug,
 			title: (data.title as string) || slug.replace(/-/g, ' '),
 			author: data.author as string | undefined,
+			abstract: data.abstract as string | undefined,
+			date: data.date as string | undefined,
+			image: data.image as string | undefined,
+			imageCaption: data.imageCaption as string | undefined,
 		});
 	}
 	return results;

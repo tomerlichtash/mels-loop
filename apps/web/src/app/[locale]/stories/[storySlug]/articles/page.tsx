@@ -1,14 +1,20 @@
 import {
-	getStoryArticles,
+	getArticleMeta,
 	getStoryConfig,
 } from '@mels-loop/content-loaders/loaders';
-import { dictGet } from '@mels-loop/i18n/dict';
-import { Breadcrumbs, Card, Container, Text } from '@mels-loop/ui/primitives';
+import {
+	Card,
+	CardBody,
+	CardHeader,
+	CardMedia,
+	Container,
+	Text,
+} from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
-import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
-import { homeItemFromDict } from '@/lib/breadcrumbs';
+
+import styles from './page.module.css';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string }>;
@@ -17,36 +23,58 @@ interface PageProps {
 export default async function ArticlesListingPage({ params }: PageProps) {
 	const { locale, storySlug } = await params;
 	const typedLocale = locale as Locale;
-	const [config, dict] = await Promise.all([
+	const [config, articles] = await Promise.all([
 		getStoryConfig(storySlug),
-		getDictionary(typedLocale),
+		getArticleMeta(storySlug, typedLocale),
 	]);
 
-	const storyTitle = config.title[typedLocale];
-	const articlesLabel = dictGet(dict, 'nav.articles');
+	const featured = new Set(config.featuredArticles ?? []);
 
 	return (
 		<Container gap="lg">
-			<Breadcrumbs
-				items={[
-					homeItemFromDict(dict),
-					{ label: storyTitle, href: `/stories/${storySlug}` },
-					{ label: articlesLabel },
-				]}
-			/>
-			<Text variant="h1">
-				{articlesLabel} &mdash; {storyTitle}
-			</Text>
-			{(await getStoryArticles(storySlug)).map((slug) => (
-				<Card key={slug} variant="outlined" padding="md">
-					<Container direction="row" justify="between">
-						<Text weight={500} component="span" capitalize>
-							{slug.replace(/-/g, ' ')}
-						</Text>
-						<Link href={`/stories/${storySlug}/articles/${slug}`}>Read</Link>
-					</Container>
-				</Card>
-			))}
+			{articles.map((article) => {
+				const isFeatured = featured.has(article.slug);
+				return (
+					<Link
+						key={article.slug}
+						href={`/stories/${storySlug}/articles/${article.slug}`}
+						className={styles.cardLink}
+					>
+						<Card
+							variant="outlined"
+							padding="md"
+							orientation={isFeatured ? 'vertical' : 'horizontal'}
+							className={styles.card}
+						>
+							<CardMedia
+								src={article.image ?? ''}
+								alt={article.title}
+								horizontal={!isFeatured}
+								overlay={article.imageCaption}
+							/>
+							<div className={styles.cardContent}>
+								<CardHeader>
+									<Text variant={isFeatured ? 'h2' : 'h3'}>
+										{article.title}
+									</Text>
+									{article.author && (
+										<Text variant="body2" color="muted">
+											{article.author}
+										</Text>
+									)}
+								</CardHeader>
+								{article.abstract && (
+									<CardBody lines={isFeatured ? 3 : 2}>
+										<Text variant="body2" color="muted">
+											{article.abstract}
+										</Text>
+									</CardBody>
+								)}
+							</div>
+						</Card>
+					</Link>
+				);
+			})}
 		</Container>
 	);
 }

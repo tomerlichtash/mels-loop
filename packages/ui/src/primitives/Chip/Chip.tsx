@@ -6,9 +6,11 @@ import styles from './Chip.module.css';
 
 type ChipSize = 'sm' | 'md' | 'lg';
 type ChipRadius = 'none' | 'sm' | 'md' | 'lg' | 'pill';
+type ChipVariant = 'contained' | 'outlined';
 
 export interface ChipProps extends HTMLAttributes<HTMLSpanElement> {
 	children: ReactNode;
+	variant?: ChipVariant;
 	size?: ChipSize;
 	radius?: ChipRadius;
 	disabled?: boolean;
@@ -18,6 +20,7 @@ export interface ChipProps extends HTMLAttributes<HTMLSpanElement> {
 
 export function Chip({
 	children,
+	variant = 'contained',
 	size = 'md',
 	radius = 'pill',
 	disabled,
@@ -30,6 +33,7 @@ export function Chip({
 		<span
 			className={cn(
 				styles.root,
+				styles[`variant-${variant}`],
 				styles[`size-${size}`],
 				styles[`radius-${radius}`],
 				{ [styles.disabled]: disabled },

@@ -2,14 +2,12 @@ import {
 	getResources,
 	getStoryConfig,
 } from '@mels-loop/content-loaders/loaders';
-import { dictGet } from '@mels-loop/i18n/dict';
-import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 
+import { BackLink } from '@/components/BackLink';
 import { ContentRenderer } from '@/content';
-import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
-import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string }>;
@@ -19,26 +17,18 @@ export default async function ResourcesPage({ params }: PageProps) {
 	const { locale, storySlug } = await params;
 	const typedLocale = locale as Locale;
 
-	const [content, config, dict] = await Promise.all([
-		getResources(storySlug, typedLocale),
+	const [config, content] = await Promise.all([
 		getStoryConfig(storySlug),
-		getDictionary(typedLocale),
+		getResources(storySlug, typedLocale),
 	]);
 
 	if (!content) notFound();
 
 	const storyTitle = config.title[typedLocale];
-	const resourcesLabel = dictGet(dict, 'nav.resources');
 
 	return (
 		<Container gap="lg">
-			<Breadcrumbs
-				items={[
-					homeItemFromDict(dict),
-					{ label: storyTitle, href: `/stories/${storySlug}` },
-					{ label: resourcesLabel },
-				]}
-			/>
+			<BackLink href={`/stories/${storySlug}`}>{storyTitle}</BackLink>
 			{content.metadata.title && (
 				<Text variant="h1">{content.metadata.title}</Text>
 			)}

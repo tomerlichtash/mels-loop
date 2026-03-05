@@ -51,7 +51,13 @@ export interface StoryConfig {
 	title: Record<string, string>;
 	abstract: Record<string, string>;
 	featured?: boolean;
+	avatar?: {
+		src: string;
+		alt: Record<string, string>;
+		initials?: Record<string, string>;
+	};
 	articles: string[];
+	featuredArticles?: string[];
 	documents?: string[];
 	sections: string[];
 	figures?: FigureConfig;
@@ -62,6 +68,10 @@ export interface ArticleMeta {
 	slug: string;
 	title: string;
 	author?: string;
+	abstract?: string;
+	date?: string;
+	image?: string;
+	imageCaption?: string;
 }
 
 export interface GlossaryEntry {

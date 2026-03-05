@@ -1,10 +1,11 @@
-import type { Root as HastRoot } from 'hast';
+import type { Element, Root as HastRoot, RootContent, Text } from 'hast';
 import rehypeRaw from 'rehype-raw';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
+import { visit } from 'unist-util-visit';
 
 import type { MarkdownProcessOptions } from './types';
 
@@ -16,6 +17,35 @@ export type { MarkdownProcessOptions, PluginSpec } from './types';
  */
 function escapeEmailAngles(content: string): string {
 	return content.replace(/<([^>\s]*@[^>\s]*)>/g, '&lt;$1&gt;');
+}
+
+/**
+ * Rehype plugin that unwraps mailto: autolinks into plain text.
+ * GFM autolink literals turn bare emails into <a href="mailto:...">
+ * which we don't want.
+ */
+function rehypeUnwrapMailto() {
+	return (tree: HastRoot) => {
+		visit(tree, (node, index, parent) => {
+			if (
+				node.type === 'element' &&
+				(node as Element).tagName === 'a' &&
+				typeof (node as Element).properties.href === 'string' &&
+				((node as Element).properties.href as string).startsWith('mailto:') &&
+				parent &&
+				typeof index === 'number'
+			) {
+				const el = node as Element;
+				const text: Text = {
+					type: 'text',
+					value:
+						(el.children[0] as Text)?.value ??
+						(el.properties.href as string).replace('mailto:', ''),
+				};
+				(parent.children as RootContent[]).splice(index, 1, text);
+			}
+		});
+	};
 }
 
 /**
@@ -41,7 +71,10 @@ export async function processMarkdown(
 		processor.use(plugin, ...opts);
 	}
 
-	processor.use(remarkRehype, { allowDangerousHtml: true }).use(rehypeRaw);
+	processor
+		.use(remarkRehype, { allowDangerousHtml: true })
+		.use(rehypeRaw)
+		.use(rehypeUnwrapMailto);
 
 	for (const [plugin, ...opts] of options.rehypePlugins ?? []) {
 		processor.use(plugin, ...opts);

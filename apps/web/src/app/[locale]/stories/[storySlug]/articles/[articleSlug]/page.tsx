@@ -2,17 +2,13 @@ import {
 	getAllStories,
 	getStoryArticle,
 	getStoryArticles,
-	getStoryConfig,
 } from '@mels-loop/content-loaders/loaders';
 import { getLocales } from '@mels-loop/i18n/config';
-import { dictGet } from '@mels-loop/i18n/dict';
-import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
+import { Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 
 import { ContentRenderer, StoryPopoverProvider } from '@/content';
-import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
-import { homeItemFromDict } from '@/lib/breadcrumbs';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string; articleSlug: string }>;
@@ -38,30 +34,12 @@ export default async function ArticlePage({ params }: PageProps) {
 	const { locale, storySlug, articleSlug } = await params;
 	const typedLocale = locale as Locale;
 
-	const [content, config, dict] = await Promise.all([
-		getStoryArticle(storySlug, articleSlug, typedLocale),
-		getStoryConfig(storySlug),
-		getDictionary(typedLocale),
-	]);
+	const content = await getStoryArticle(storySlug, articleSlug, typedLocale);
 
 	if (!content) notFound();
 
-	const storyTitle = config.title[typedLocale];
-	const articlesLabel = dictGet(dict, 'nav.articles');
-	const articleTitle =
-		content.metadata.title ||
-		articleSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-
 	return (
 		<Container gap="lg">
-			<Breadcrumbs
-				items={[
-					homeItemFromDict(dict),
-					{ label: storyTitle, href: `/stories/${storySlug}` },
-					{ label: articlesLabel, href: `/stories/${storySlug}/articles` },
-					{ label: articleTitle },
-				]}
-			/>
 			{content.metadata.title && (
 				<Text variant="h1">{content.metadata.title}</Text>
 			)}

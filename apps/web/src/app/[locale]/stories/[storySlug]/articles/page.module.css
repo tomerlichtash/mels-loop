@@ -1,0 +1,25 @@
+.cardLink {
+	display: block;
+	text-decoration: none;
+	align-self: stretch;
+}
+
+.card {
+	min-height: 180px;
+	width: 100%;
+	cursor: pointer;
+	transition:
+		box-shadow var(--ml-duration-fast) ease,
+		border-color var(--ml-duration-fast) ease;
+}
+
+.cardLink:hover .card {
+	box-shadow: var(--ml-shadow-md);
+}
+
+.cardContent {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-width: 0;
+}

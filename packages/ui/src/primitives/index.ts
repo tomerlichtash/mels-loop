@@ -1,4 +1,5 @@
 export { Alert } from './Alert/Alert';
+export { Avatar } from './Avatar/Avatar';
 export { Badge } from './Badge/Badge';
 export { Blockquote } from './Blockquote/Blockquote';
 export { Breadcrumbs } from './Breadcrumbs';
