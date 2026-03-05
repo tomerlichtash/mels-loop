@@ -1,7 +1,7 @@
 .root {
 	/* Break out of parent container to span full viewport width */
 	width: 100vw;
-	margin-left: calc(-50vw + 50%);
+	margin-inline-start: calc(-50vw + 50%);
 	border-top: 1px solid var(--ml-border-color);
 	border-bottom: 1px solid var(--ml-border-color);
 	background-color: color-mix(

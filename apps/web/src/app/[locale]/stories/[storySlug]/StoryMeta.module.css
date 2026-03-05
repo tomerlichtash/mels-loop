@@ -1,6 +1,6 @@
 .root {
 	width: 100vw;
-	margin-left: calc(-50vw + 50%);
+	margin-inline-start: calc(-50vw + 50%);
 	border-bottom: 1px solid var(--ml-border-color);
 }
 
