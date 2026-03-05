@@ -27,7 +27,6 @@ const sectionDictKeys: Record<string, string> = {
 	articles: 'nav.articles',
 	documents: 'nav.documents',
 	codex: 'nav.codex',
-	resources: 'nav.resources',
 	sources: 'nav.sources',
 };
 

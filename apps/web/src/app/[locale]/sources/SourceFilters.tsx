@@ -1,30 +1,18 @@
 'use client';
 
-import {
-	closestCenter,
-	DndContext,
-	type DragEndEvent,
-	KeyboardSensor,
-	MouseSensor,
-	TouchSensor,
-	useSensor,
-	useSensors,
-} from '@dnd-kit/core';
-import {
-	arrayMove,
-	horizontalListSortingStrategy,
-	SortableContext,
-	useSortable,
-} from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
 import type {
 	ResolvedSource,
 	SourceType,
 } from '@mels-loop/content-loaders/types';
+import {
+	ClipboardCopyIcon,
+	Cross2Icon,
+	DotsVerticalIcon,
+	ExternalLinkIcon,
+} from '@radix-ui/react-icons';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {
 	type ColumnDef,
-	type ColumnOrderState,
 	flexRender,
 	getCoreRowModel,
 	getFilteredRowModel,
@@ -33,9 +21,7 @@ import {
 	type SortingState,
 	useReactTable,
 } from '@tanstack/react-table';
-import { useVirtualizer } from '@tanstack/react-virtual';
-import Image from 'next/image';
-import { type CSSProperties, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import styles from './page.module.css';
 
@@ -60,12 +46,7 @@ interface SourceFiltersProps {
 	typeLabels: Record<SourceType, string>;
 	columnLabels: ColumnLabels;
 	dir: 'ltr' | 'rtl';
-}
-
-function parseYear(date: string | undefined): number {
-	if (!date) return 0;
-	const match = date.match(/\d{4}/);
-	return match ? Number(match[0]) : 0;
+	maxHeight?: string;
 }
 
 function createColumns(
@@ -74,40 +55,19 @@ function createColumns(
 ): ColumnDef<ResolvedSource, unknown>[] {
 	return [
 		{
-			id: 'thumb',
-			header: '',
-			size: 48,
-			enableSorting: false,
-			enableGlobalFilter: false,
-			cell: ({ row }) => {
-				const source = row.original;
-				return source.type === 'image' && source.url ? (
-					<Image
-						src={source.url}
-						alt=""
-						width={48}
-						height={48}
-						className={styles.thumbnail}
-					/>
-				) : (
-					<span className={styles.thumbPlaceholder}>
-						{source.type.charAt(0).toUpperCase()}
-					</span>
-				);
-			},
-		},
-		{
 			accessorKey: 'title',
-			header: columnLabels.name,
+			header: columnLabels.source,
+			size: 220,
+			minSize: 120,
 			cell: ({ row }) => (
-				<a href={`/sources/${row.original.id}`} className={styles.nameLink}>
-					{row.original.title}
-				</a>
+				<span className={styles.nameText}>{row.original.title}</span>
 			),
 		},
 		{
-			accessorKey: 'description',
+			id: 'description',
+			accessorFn: (row) => row.summary ?? row.description,
 			header: columnLabels.description,
+			minSize: 120,
 			cell: ({ getValue }) => (
 				<span className={styles.descText}>{(getValue() as string) ?? '—'}</span>
 			),
@@ -115,7 +75,8 @@ function createColumns(
 		{
 			accessorKey: 'type',
 			header: columnLabels.type,
-			size: 90,
+			size: 110,
+			minSize: 60,
 			cell: ({ getValue }) => {
 				const type = getValue() as SourceType;
 				return (
@@ -125,88 +86,119 @@ function createColumns(
 				);
 			},
 		},
-		{
-			accessorKey: 'date',
-			header: columnLabels.date,
-			size: 80,
-			sortingFn: (a, b) =>
-				parseYear(a.original.date) - parseYear(b.original.date),
-			cell: ({ getValue }) => (getValue() as string) ?? '—',
-		},
-		{
-			id: 'source',
-			header: columnLabels.source,
-			size: 64,
-			enableSorting: false,
-			enableGlobalFilter: false,
-			cell: ({ row }) =>
-				row.original.url ? (
-					<a
-						href={row.original.url}
-						className={styles.sourceLink}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						↗
-					</a>
-				) : (
-					'—'
-				),
-		},
 	];
 }
 
-const DEFAULT_COLUMN_IDS = [
-	'thumb',
-	'title',
-	'description',
-	'type',
-	'date',
-	'source',
-];
-
-function DraggableHeader({
+function SortableHeader({
 	header,
 }: {
 	header: Header<ResolvedSource, unknown>;
 }) {
-	const {
-		attributes,
-		listeners,
-		setNodeRef,
-		transform,
-		transition,
-		isDragging,
-	} = useSortable({ id: header.id });
-
-	const thStyle: CSSProperties = {
-		transform: CSS.Translate.toString(transform),
-		transition,
-		opacity: isDragging ? 0.6 : 1,
-		cursor: header.column.getCanSort() ? 'pointer' : 'grab',
-		userSelect: 'none',
-		position: 'relative',
-		zIndex: isDragging ? 1 : 0,
-	};
-
+	const isDesc = header.id === 'description';
 	return (
-		<th
-			ref={setNodeRef}
-			className={
-				header.id === 'no'
-					? styles.thNo
-					: header.id === 'thumb'
-						? styles.thThumb
-						: styles.th
-			}
-			style={thStyle}
+		<div
+			className={styles.th}
+			style={{
+				width: isDesc ? undefined : header.getSize(),
+				flex: isDesc ? '1 1 0%' : undefined,
+				cursor: header.column.getCanSort() ? 'pointer' : 'default',
+				userSelect: 'none',
+			}}
 			onClick={header.column.getToggleSortingHandler()}
-			{...attributes}
-			{...listeners}
 		>
 			{flexRender(header.column.columnDef.header, header.getContext())}
 			{{ asc: ' ↑', desc: ' ↓' }[header.column.getIsSorted() as string] ?? ''}
-		</th>
+		</div>
+	);
+}
+
+function SourceDetail({ source }: { source: ResolvedSource }) {
+	const [copied, setCopied] = useState(false);
+
+	const handleCopyId = (e: React.MouseEvent) => {
+		e.stopPropagation();
+		navigator.clipboard.writeText(source.id);
+		setCopied(true);
+		setTimeout(() => setCopied(false), 1500);
+	};
+
+	return (
+		<div className={styles.detail} onClick={(e) => e.stopPropagation()}>
+			{source.type === 'image' && source.url && (
+				<div className={styles.detailPreview}>
+					<img
+						src={source.url}
+						alt={source.title}
+						className={styles.detailImage}
+					/>
+				</div>
+			)}
+			<div className={styles.detailLeft}>
+				<h4 className={styles.detailTitle}>{source.title}</h4>
+				{source.description && (
+					<p className={styles.detailDesc}>{source.description}</p>
+				)}
+				<div className={styles.detailActions}>
+					<button
+						type="button"
+						className={styles.detailAction}
+						onClick={handleCopyId}
+					>
+						<ClipboardCopyIcon />
+						{copied ? 'Copied!' : 'Copy ID'}
+					</button>
+					{source.url && (
+						<a
+							href={source.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							className={styles.detailAction}
+							onClick={(e) => e.stopPropagation()}
+						>
+							<ExternalLinkIcon />
+							Open source
+						</a>
+					)}
+				</div>
+			</div>
+			<div className={styles.detailRight}>
+				<div className={styles.detailMeta}>
+					{source.author && (
+						<span className={styles.detailField}>
+							<span className={styles.detailLabel}>Author</span>
+							{source.author}
+						</span>
+					)}
+					{source.date && (
+						<span className={styles.detailField}>
+							<span className={styles.detailLabel}>Date</span>
+							{source.date}
+						</span>
+					)}
+					{source.credit && (
+						<span className={styles.detailField}>
+							<span className={styles.detailLabel}>Credit</span>
+							{source.credit}
+						</span>
+					)}
+					{source.license && source.license !== 'unknown' && (
+						<span className={styles.detailField}>
+							<span className={styles.detailLabel}>License</span>
+							{source.license}
+						</span>
+					)}
+				</div>
+				{source.tags && source.tags.length > 0 && (
+					<div className={styles.detailTags}>
+						{source.tags.map((tag) => (
+							<span key={tag} className={styles.detailTag}>
+								{tag}
+							</span>
+						))}
+					</div>
+				)}
+			</div>
+		</div>
 	);
 }
 
@@ -216,13 +208,22 @@ export function SourceFilters({
 	typeLabels,
 	columnLabels,
 	dir,
+	maxHeight,
 }: SourceFiltersProps) {
 	const [activeType, setActiveType] = useState<SourceType | null>(null);
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [globalFilter, setGlobalFilter] = useState('');
-	const [columnOrder, setColumnOrder] =
-		useState<ColumnOrderState>(DEFAULT_COLUMN_IDS);
+	const [expandedId, setExpandedId] = useState<string | null>(null);
 	const viewportRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		if (!expandedId) return;
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') setExpandedId(null);
+		};
+		document.addEventListener('keydown', handleKeyDown);
+		return () => document.removeEventListener('keydown', handleKeyDown);
+	}, [expandedId]);
 
 	const columns = useMemo(
 		() => createColumns(columnLabels, typeLabels),
@@ -241,10 +242,10 @@ export function SourceFilters({
 	const table = useReactTable({
 		data,
 		columns,
-		state: { sorting, globalFilter, columnOrder },
+		state: { sorting, globalFilter },
 		onSortingChange: setSorting,
 		onGlobalFilterChange: setGlobalFilter,
-		onColumnOrderChange: setColumnOrder,
+		enableColumnResizing: false,
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
@@ -252,35 +253,10 @@ export function SourceFilters({
 
 	const { rows } = table.getRowModel();
 
-	const virtualizer = useVirtualizer({
-		count: rows.length,
-		getScrollElement: () => viewportRef.current,
-		estimateSize: () => 52,
-		overscan: 20,
-	});
-
 	const handleFilter = (type: SourceType | null) => {
 		setActiveType(type);
+		setExpandedId(null);
 		viewportRef.current?.scrollTo(0, 0);
-	};
-
-	const sensors = useSensors(
-		useSensor(MouseSensor, { activationConstraint: { distance: 5 } }),
-		useSensor(TouchSensor, {
-			activationConstraint: { delay: 150, tolerance: 5 },
-		}),
-		useSensor(KeyboardSensor),
-	);
-
-	const handleDragEnd = (event: DragEndEvent) => {
-		const { active, over } = event;
-		if (over && active.id !== over.id) {
-			setColumnOrder((prev) => {
-				const oldIndex = prev.indexOf(active.id as string);
-				const newIndex = prev.indexOf(over.id as string);
-				return arrayMove(prev, oldIndex, newIndex);
-			});
-		}
 	};
 
 	return (
@@ -317,6 +293,7 @@ export function SourceFilters({
 						value={globalFilter}
 						onChange={(e) => {
 							setGlobalFilter(e.target.value);
+							setExpandedId(null);
 							viewportRef.current?.scrollTo(0, 0);
 						}}
 					/>
@@ -327,84 +304,97 @@ export function SourceFilters({
 					{rows.length} {rows.length === 1 ? 'result' : 'results'}
 				</p>
 			)}
-			<DndContext
-				sensors={sensors}
-				collisionDetection={closestCenter}
-				onDragEnd={handleDragEnd}
-			>
-				<div className={styles.tableWrap} dir={dir}>
-					<table className={styles.table}>
-						<thead className={styles.thead}>
-							{table.getHeaderGroups().map((headerGroup) => (
-								<tr key={headerGroup.id}>
-									<SortableContext
-										items={columnOrder}
-										strategy={horizontalListSortingStrategy}
+			<div className={styles.tableWrap} dir={dir}>
+				<div className={styles.headerRow}>
+					{table
+						.getHeaderGroups()
+						.map((headerGroup) =>
+							headerGroup.headers.map((header) => (
+								<SortableHeader key={header.id} header={header} />
+							)),
+						)}
+					<div style={{ width: 28, flexShrink: 0 }} />
+				</div>
+				<ScrollArea.Root
+					className={styles.scrollRoot}
+					dir={dir}
+					style={maxHeight ? { height: maxHeight } : undefined}
+				>
+					<ScrollArea.Viewport
+						ref={viewportRef}
+						className={styles.scrollViewport}
+					>
+						<div className={styles.listBody}>
+							{rows.map((row) => {
+								const isExpanded = row.original.id === expandedId;
+								return (
+									<div
+										key={row.id}
+										className={`${styles.row} ${isExpanded ? styles.rowExpanded : ''}`}
 									>
-										{headerGroup.headers.map((header) => (
-											<DraggableHeader key={header.id} header={header} />
-										))}
-									</SortableContext>
-								</tr>
-							))}
-						</thead>
-					</table>
-					<ScrollArea.Root className={styles.scrollRoot} dir={dir}>
-						<ScrollArea.Viewport
-							ref={viewportRef}
-							className={styles.scrollViewport}
-						>
-							<table className={styles.table}>
-								<tbody
-									className={styles.tbody}
-									style={{ height: virtualizer.getTotalSize() }}
-								>
-									{virtualizer.getVirtualItems().map((virtualRow) => {
-										const row = rows[virtualRow.index];
-										return (
-											<tr
-												key={row.id}
-												className={styles.tr}
-												data-index={virtualRow.index}
-												ref={virtualizer.measureElement}
-												style={{
-													transform: `translateY(${virtualRow.start}px)`,
-												}}
-											>
-												{row.getVisibleCells().map((cell) => (
-													<td
+										<div
+											className={styles.rowCells}
+											onClick={() => setExpandedId(row.original.id)}
+										>
+											{row.getVisibleCells().map((cell) => {
+												const isDesc = cell.column.id === 'description';
+												return (
+													<div
 														key={cell.id}
-														className={
-															cell.column.id === 'no'
-																? styles.tdNo
-																: cell.column.id === 'thumb'
-																	? styles.tdThumb
-																	: cell.column.id === 'description'
-																		? styles.tdDesc
-																		: styles.td
+														className={isDesc ? styles.cellDesc : styles.cell}
+														style={
+															isDesc
+																? undefined
+																: {
+																		width: cell.column.getSize(),
+																	}
 														}
 													>
 														{flexRender(
 															cell.column.columnDef.cell,
 															cell.getContext(),
 														)}
-													</td>
-												))}
-											</tr>
-										);
-									})}
-								</tbody>
-							</table>
-						</ScrollArea.Viewport>
-						<ScrollArea.Scrollbar
-							className={styles.scrollbar}
-							orientation="vertical"
-						>
-							<ScrollArea.Thumb className={styles.scrollThumb} />
-						</ScrollArea.Scrollbar>
-					</ScrollArea.Root>
-				</div>
-			</DndContext>
+													</div>
+												);
+											})}
+											{isExpanded ? (
+												<button
+													type="button"
+													className={styles.cellClose}
+													onClick={(e) => {
+														e.stopPropagation();
+														setExpandedId(null);
+													}}
+												>
+													<Cross2Icon />
+												</button>
+											) : (
+												<div className={styles.cellActions}>
+													<DotsVerticalIcon />
+												</div>
+											)}
+										</div>
+										<div
+											className={styles.detailWrap}
+											data-open={isExpanded || undefined}
+										>
+											<div className={styles.detailInner}>
+												<SourceDetail source={row.original} />
+											</div>
+										</div>
+									</div>
+								);
+							})}
+						</div>
+					</ScrollArea.Viewport>
+					<ScrollArea.Scrollbar
+						className={styles.scrollbar}
+						orientation="vertical"
+					>
+						<ScrollArea.Thumb className={styles.scrollThumb} />
+					</ScrollArea.Scrollbar>
+				</ScrollArea.Root>
+			</div>
 		</>
 	);
 }

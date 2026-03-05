@@ -20,7 +20,7 @@
 			"he": "תצלום של מל קיי, 1952"
 		}
 	},
-	"sections": ["articles", "documents", "resources"],
+	"sections": ["articles", "documents"],
 	"articles": ["preface", "mel-kaye-cv", "mels-hack-the-missing-bits"],
 	"featuredArticles": ["preface"],
 	"documents": ["blackjack-writeup"],
@@ -31,6 +31,26 @@
 	"sources": [
 		"mel-kaye-photo-1952",
 		"librascope-lgp-30-manual",
-		"story-of-mel-original-usenet"
+		"story-of-mel-original-usenet",
+		"story-of-mel-jargon-file",
+		"story-of-mel-wikipedia",
+		"story-of-mel-explained-seibel",
+		"story-of-mel-annotated-brunvand",
+		"macho-programmers-drum-memory",
+		"big-iron-second-decade",
+		"tube-time-mel-blackjack-lgp30",
+		"librascope-memories-blog",
+		"vintage-computing-ebasteln",
+		"mel-blackjack-writeup",
+		"mels-code-lgp30",
+		"mel-kaye-foldoc-reference",
+		"lgp-30-manuals-bitsavers",
+		"lgp-30-programming-manual-thelen",
+		"lgp-30-act-iii-program",
+		"lgp-30-technikum29",
+		"rpc-4000-manuals-bitsavers",
+		"vacuum-tube-blackjack-tweet",
+		"less-is-more-fifties",
+		"awesome-computer-history"
 	]
 }

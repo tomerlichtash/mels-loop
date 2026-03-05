@@ -94,6 +94,7 @@ export default async function StorySourcesPage({ params }: PageProps) {
 					typeLabels={typeLabels}
 					columnLabels={columnLabels}
 					dir={getDirection(typedLocale)}
+					maxHeight="650px"
 				/>
 			)}
 		</Container>

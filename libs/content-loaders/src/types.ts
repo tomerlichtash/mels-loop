@@ -37,12 +37,14 @@ export interface Source {
 /** Locale-specific display strings for a source, stored in `index.{locale}.json`. */
 export interface SourceMessages {
 	title: string;
+	summary?: string;
 	description?: string;
 }
 
 /** Source merged with its locale-resolved messages — ready for display. */
 export interface ResolvedSource extends Source {
 	title: string;
+	summary?: string;
 	description?: string;
 }
 
