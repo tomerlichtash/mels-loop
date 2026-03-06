@@ -1,4 +1,4 @@
-import { S3Client } from '@aws-sdk/client-s3';
+import { ListObjectsV2Command, S3Client } from '@aws-sdk/client-s3';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -62,6 +62,42 @@ class S3Proxy implements IS3Proxy {
 		return this._client;
 	}
 }
+
+export interface ListObjectsResult {
+	key: string;
+	size: number;
+}
+
+/**
+ * Lists objects in a bucket with optional prefix. Handles pagination.
+ */
+export const listObjects = async (
+	proxy: IS3Proxy,
+	prefix?: string,
+): Promise<ListObjectsResult[]> => {
+	const objects: ListObjectsResult[] = [];
+	let continuationToken: string | undefined;
+
+	do {
+		const response = await proxy.client.send(
+			new ListObjectsV2Command({
+				Bucket: proxy.bucket,
+				Prefix: prefix,
+				ContinuationToken: continuationToken,
+			}),
+		);
+		for (const obj of response.Contents ?? []) {
+			if (obj.Key) {
+				objects.push({ key: obj.Key, size: obj.Size ?? 0 });
+			}
+		}
+		continuationToken = response.IsTruncated
+			? response.NextContinuationToken
+			: undefined;
+	} while (continuationToken);
+
+	return objects;
+};
 
 export const createS3Proxy = (): IS3Proxy => {
 	return new S3Proxy();

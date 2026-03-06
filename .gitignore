@@ -61,3 +61,7 @@ packages/ui/__snapshots__/local/
 
 # search index (generated)
 apps/web/public/search-index.*.json
+
+# local media (test before S3 upload)
+apps/web/public/media/*
+!apps/web/public/media/.gitkeep

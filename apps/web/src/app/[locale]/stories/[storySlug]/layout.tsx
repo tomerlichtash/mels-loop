@@ -105,6 +105,7 @@ export default async function StorySlugLayout({
 				title={storyTitle}
 				storySlug={storySlug}
 				abstract={storyAbstract}
+				cover={config.cover}
 				avatarSrc={config.avatar?.src}
 				avatarAlt={config.avatar?.alt[typedLocale]}
 				avatarFallback={config.avatar?.initials?.[typedLocale]}

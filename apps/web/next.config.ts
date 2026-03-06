@@ -15,6 +15,18 @@ const nextConfig: NextConfig = {
 		'@mels-loop/i18n',
 		'@mels-loop/content-pipeline',
 	],
+	async rewrites() {
+		return {
+			// fallback rewrites run only when no file matches in public/
+			fallback: [
+				{
+					source: '/media/:path*',
+					destination:
+						'https://mels-loop-media.s3.eu-north-1.amazonaws.com/:path*',
+				},
+			],
+		};
+	},
 	async redirects() {
 		return [
 			{

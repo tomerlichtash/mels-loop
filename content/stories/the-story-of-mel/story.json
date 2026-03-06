@@ -9,6 +9,7 @@
 		"he": "מדריך מקיף לסיפור על מל"
 	},
 	"featured": true,
+	"cover": "/media/story-of-mel-cover-photo.png",
 	"avatar": {
 		"src": "https://mels-loop-media.s3.eu-north-1.amazonaws.com/mel-kaye-profile-picture-1951_aark5e.jpg",
 		"initials": {

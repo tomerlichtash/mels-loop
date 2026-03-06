@@ -3,7 +3,25 @@
 	margin-inline-start: calc(-50vw + 50%);
 }
 
+.hasCover {
+	position: relative;
+	background-image: var(--ml-story-cover);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.hasCover::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: color-mix(in srgb, var(--ml-bg-color) 70%, transparent);
+	pointer-events: none;
+}
+
 .inner {
+	position: relative;
+	z-index: 1;
 	display: flex;
 	align-items: center;
 	gap: var(--ml-space-xl);

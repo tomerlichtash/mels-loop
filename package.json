@@ -15,8 +15,11 @@
 		"test:ui:e2e": "turbo --filter @mels-loop/ui test:e2e",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
-		"s3:upload": "pnpm --filter @mels-loop/scripts s3:upload",
-		"s3:list": "pnpm --filter @mels-loop/scripts s3:list",
+		"media:upload": "pnpm --filter @mels-loop/scripts s3:upload",
+		"media:clone": "pnpm --filter @mels-loop/scripts s3:clone",
+		"media:download": "pnpm --filter @mels-loop/scripts s3:download",
+		"media:delete": "pnpm --filter @mels-loop/scripts s3:delete",
+		"media:list": "pnpm --filter @mels-loop/scripts s3:list",
 		"prepare": "husky"
 	},
 	"lint-staged": {

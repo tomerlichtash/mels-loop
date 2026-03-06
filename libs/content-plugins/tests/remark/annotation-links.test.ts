@@ -18,7 +18,7 @@ describe('remarkAnnotationLinks', () => {
 		expect(annoLink!.properties?.['dataSequence']).toBe('1');
 	});
 
-	it('replaces ^ text with padded sequence number', async () => {
+	it('replaces ^ text with sequence number', async () => {
 		const md = 'Some text [^](annotations/note-1) and [^](annotations/note-2).';
 		const hast = await applyPlugins(md, {
 			remarkPlugins: [[remarkAnnotationLinks]],
@@ -28,8 +28,8 @@ describe('remarkAnnotationLinks', () => {
 			(el) => el.properties?.['dataLinkType'] === 'annotation',
 		);
 		expect(annoLinks).toHaveLength(2);
-		expect(textContent(annoLinks[0])).toBe('01');
-		expect(textContent(annoLinks[1])).toBe('02');
+		expect(textContent(annoLinks[0])).toBe('1');
+		expect(textContent(annoLinks[1])).toBe('2');
 		expect(annoLinks[0].properties?.['dataSequence']).toBe('1');
 		expect(annoLinks[1].properties?.['dataSequence']).toBe('2');
 	});

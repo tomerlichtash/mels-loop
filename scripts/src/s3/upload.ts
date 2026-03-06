@@ -9,16 +9,47 @@ const root = process.cwd();
 
 const USAGE = 'Usage: upload <path> [path ...] [--tags tag1 [tag2...]]';
 
-const fileExists = async (fullPath: string): Promise<boolean> => {
-	try {
-		const stat = await fs.promises.lstat(fullPath);
-		return Boolean(stat?.isFile());
-	} catch {
-		return false;
-	}
-};
+/**
+ * Recursively collects all files under a directory.
+ * Returns objects with absolute path and the S3 key (relative to baseDir).
+ */
+export async function collectFiles(
+	inputPath: string,
+): Promise<{ filePath: string; key: string }[]> {
+	const resolved = path.resolve(root, inputPath);
+	const stat = await fs.promises.lstat(resolved);
 
-const objectExists = async (proxy: IS3Proxy, key: string) => {
+	if (stat.isFile()) {
+		return [
+			{ filePath: resolved, key: encodeURIComponent(path.basename(resolved)) },
+		];
+	}
+
+	if (!stat.isDirectory()) {
+		return [];
+	}
+
+	const results: { filePath: string; key: string }[] = [];
+	const walk = async (dir: string, prefix: string) => {
+		const entries = await fs.promises.readdir(dir, { withFileTypes: true });
+		for (const entry of entries) {
+			const fullPath = path.join(dir, entry.name);
+			const keyPath = prefix
+				? `${prefix}/${encodeURIComponent(entry.name)}`
+				: encodeURIComponent(entry.name);
+			if (entry.isFile()) {
+				results.push({ filePath: fullPath, key: keyPath });
+			} else if (entry.isDirectory()) {
+				await walk(fullPath, keyPath);
+			}
+		}
+	};
+
+	await walk(resolved, '');
+	return results;
+}
+
+export const objectExists = async (proxy: IS3Proxy, key: string) => {
 	try {
 		await proxy.client.send(
 			new HeadObjectCommand({ Bucket: proxy.bucket, Key: key }),
@@ -29,57 +60,71 @@ const objectExists = async (proxy: IS3Proxy, key: string) => {
 	}
 };
 
-const uploadOneFile = async (
+export const uploadOneFile = async (
 	proxy: IS3Proxy,
 	filePath: string,
+	key: string,
 	tags: string[],
 ) => {
-	const basename = path.basename(filePath);
-	const contentType = lookup(basename) || 'application/octet-stream';
-	const key = encodeURIComponent(basename);
+	const contentType =
+		lookup(path.basename(filePath)) || 'application/octet-stream';
 
 	const found = await objectExists(proxy, key);
 	if (found) {
-		throw new Error(`File ${key} already exists in bucket ${proxy.bucket}`);
+		throw new Error(`${key} already exists in bucket ${proxy.bucket}`);
 	}
 
 	const buf = await fs.promises.readFile(filePath);
-	const cmd = new PutObjectCommand({
-		Bucket: proxy.bucket,
-		Key: key,
-		Body: buf,
-		ContentType: contentType,
-		Tagging: tags.length
-			? tags.map((t) => `${encodeURIComponent(t)}=true`).join('&')
-			: undefined,
-	});
-	await proxy.client.send(cmd);
+	await proxy.client.send(
+		new PutObjectCommand({
+			Bucket: proxy.bucket,
+			Key: key,
+			Body: buf,
+			ContentType: contentType,
+			Tagging: tags.length
+				? tags.map((t) => `${encodeURIComponent(t)}=true`).join('&')
+				: undefined,
+		}),
+	);
 	return proxy.getObjectUrl(key);
 };
 
 const uploadFiles = async (paths: string[], tags: string[]) => {
 	const proxy = createS3Proxy();
 
-	// Validate all files exist before uploading
-	const resolved = paths.map((p) => path.resolve(root, p));
+	// Collect all files (expanding directories recursively)
+	const allFiles: { filePath: string; key: string }[] = [];
 	const missing: string[] = [];
-	for (const fullPath of resolved) {
-		if (!(await fileExists(fullPath))) {
-			missing.push(fullPath);
+
+	for (const p of paths) {
+		const resolved = path.resolve(root, p);
+		try {
+			await fs.promises.lstat(resolved);
+			const files = await collectFiles(p);
+			allFiles.push(...files);
+		} catch {
+			missing.push(resolved);
 		}
 	}
+
 	if (missing.length) {
 		for (const m of missing) {
-			console.error(`File not found: ${m}`);
+			console.error(`Not found: ${m}`);
 		}
 		return { uploaded: [] as string[], failed: missing };
 	}
 
-	// Upload in parallel
+	if (allFiles.length === 0) {
+		console.log('No files to upload');
+		return { uploaded: [] as string[], failed: [] as string[] };
+	}
+
+	console.log(`Uploading ${allFiles.length} file(s)`);
+
 	const results = await Promise.allSettled(
-		resolved.map(async (fullPath) => {
-			console.log(`uploading ${fullPath}`);
-			return uploadOneFile(proxy, fullPath, tags);
+		allFiles.map(async ({ filePath, key }) => {
+			console.log(`  ${key}`);
+			return uploadOneFile(proxy, filePath, key, tags);
 		}),
 	);
 
@@ -90,8 +135,8 @@ const uploadFiles = async (paths: string[], tags: string[]) => {
 		if (r.status === 'fulfilled') {
 			uploaded.push(r.value);
 		} else {
-			console.error(`Error uploading ${resolved[i]}:\n`, r.reason);
-			failed.push(resolved[i]);
+			console.error(`Error uploading ${allFiles[i].key}:\n`, r.reason);
+			failed.push(allFiles[i].filePath);
 		}
 	}
 	return { uploaded, failed };
