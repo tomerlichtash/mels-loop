@@ -12,7 +12,9 @@ import { rehypeSourceImages } from './rehype/source-images';
 import { rehypeTableVariants } from './rehype/table-variants';
 import { remarkAnnotationLinks } from './remark/annotation-links';
 import { remarkBlockquoteDirective } from './remark/blockquote-directive';
+import { remarkChatDirective } from './remark/chat-directive';
 import { remarkColsDirective } from './remark/cols-directive';
+import { remarkEmailDirective } from './remark/email-directive';
 import { remarkFigureDirective } from './remark/figure-directive';
 import { remarkFigures } from './remark/figures';
 import { remarkGlossaryLinks } from './remark/glossary-links';
@@ -46,7 +48,9 @@ export const createContentPlugins: PluginBuilder = (context) => {
 			[remarkFigures],
 			[remarkDirective],
 			[remarkBlockquoteDirective],
+			[remarkChatDirective],
 			[remarkColsDirective],
+			[remarkEmailDirective],
 			[remarkFigureDirective],
 			[remarkTableDirective],
 			[remarkVerse, { parseMode: metadata.parse_mode }],

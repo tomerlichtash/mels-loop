@@ -40,6 +40,18 @@
 	border-color: var(--ml-badge-border-color);
 }
 
+/* Variants */
+.variant-outlined {
+	background-color: transparent;
+	color: inherit;
+}
+
+.variant-contained {
+	background-color: var(--ml-color-primary);
+	color: var(--ml-background-color);
+	border-color: transparent;
+}
+
 /* Radius */
 .radius-none {
 	--ml-badge-radius: var(--ml-radius-none);

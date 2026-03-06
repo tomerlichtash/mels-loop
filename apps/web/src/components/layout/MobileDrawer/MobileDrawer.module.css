@@ -9,21 +9,19 @@
 .content {
 	position: fixed;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	bottom: 0;
 	width: 280px;
 	max-width: 80vw;
 	background-color: var(--ml-surface-background-color);
 	z-index: 1000;
 	padding: var(--ml-space-md);
-	animation: slideIn var(--ml-duration-normal) ease;
+	animation: slideInLtr var(--ml-duration-normal) ease;
 	overflow-y: auto;
 }
 
-[dir='rtl'] .content {
-	left: auto;
-	right: 0;
-	animation: slideInRtl var(--ml-duration-normal) ease;
+:global([dir='rtl']) .content {
+	animation-name: slideInRtl;
 }
 
 .header {
@@ -79,7 +77,7 @@
 	}
 }
 
-@keyframes slideIn {
+@keyframes slideInLtr {
 	from {
 		transform: translateX(-100%);
 	}

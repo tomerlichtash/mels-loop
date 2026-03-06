@@ -45,7 +45,12 @@ export function SiteHeader({
 
 		if (Math.abs(delta) < SCROLL_THRESHOLD) return;
 
-		setHidden(delta > 0 && y > 0);
+		const isHidden = delta > 0 && y > 0;
+		setHidden(isHidden);
+		document.documentElement.style.setProperty(
+			'--ml-header-offset',
+			isHidden ? '0px' : 'var(--ml-header-height)',
+		);
 		lastScrollY.current = y;
 	}, []);
 

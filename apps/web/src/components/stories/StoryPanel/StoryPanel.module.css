@@ -11,8 +11,9 @@
 	);
 	backdrop-filter: blur(12px);
 	position: sticky;
-	top: 0;
+	top: var(--ml-header-offset, var(--ml-header-height));
 	z-index: 90;
+	transition: top var(--ml-duration-normal) ease;
 }
 
 .inner {

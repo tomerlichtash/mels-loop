@@ -7,10 +7,15 @@ const meta: Meta<typeof Badge> = {
 	component: Badge,
 	args: {
 		children: 'Badge',
+		variant: 'outlined',
 		bordered: false,
 	},
 	argTypes: {
 		children: { control: 'text' },
+		variant: {
+			control: 'select',
+			options: ['outlined', 'contained'],
+		},
 		color: { control: 'color' },
 		radius: {
 			control: 'select',

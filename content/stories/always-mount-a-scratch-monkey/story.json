@@ -1,0 +1,15 @@
+{
+	"slug": "always-mount-a-scratch-monkey",
+	"title": {
+		"en": "Always Mount a Scratch Monkey",
+		"he": "תמיד להשתמש בקוף חלופי"
+	},
+	"abstract": {
+		"en": "A cautionary tale about the risks of routine maintenance on systems you don't fully understand",
+		"he": "סיפור אזהרה על הסיכונים שבתחזוקה שגרתית של מערכות שלא מבינים עד הסוף"
+	},
+	"featured": false,
+	"sections": [],
+	"articles": [],
+	"sources": ["scratch-monkey-risks-digest"]
+}

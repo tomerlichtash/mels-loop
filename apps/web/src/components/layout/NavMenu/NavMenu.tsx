@@ -2,12 +2,15 @@
 
 import { useTranslation } from '@mels-loop/i18n/client';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import Image from 'next/image';
+import cn from 'classnames';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useCallback, useRef, useState } from 'react';
 
 import type { NavItem } from '../types';
+import { FeaturedStoryCard } from './FeaturedStoryCard';
 import styles from './NavMenu.module.css';
+import { StoryList } from './StoryList';
 
 interface NavMenuProps {
 	navItems: NavItem[];
@@ -16,9 +19,28 @@ interface NavMenuProps {
 export function NavMenu({ navItems }: NavMenuProps) {
 	const { t } = useTranslation();
 	const pathname = usePathname();
+	const [value, setValue] = useState('');
+	const skipAnimation = useRef(false);
+
+	const close = useCallback(() => {
+		skipAnimation.current = true;
+		setValue('');
+	}, []);
+
+	const handleValueChange = useCallback((newValue: string) => {
+		skipAnimation.current = false;
+		setValue(newValue);
+	}, []);
 
 	return (
-		<NavigationMenu.Root className={styles.root}>
+		<NavigationMenu.Root
+			className={cn(styles.root, {
+				[styles.noAnimation]: skipAnimation.current,
+			})}
+			delayDuration={0}
+			value={value}
+			onValueChange={handleValueChange}
+		>
 			<NavigationMenu.List className={styles.list}>
 				{navItems.map((item) => {
 					const isAbsolute =
@@ -26,98 +48,47 @@ export function NavMenu({ navItems }: NavMenuProps) {
 					const href = isAbsolute ? item.href : item.href || '/';
 					const isActive = !isAbsolute && pathname.startsWith(href);
 
+					if (item.hasContent) {
+						const featured = item.stories?.find((s) => s.featured);
+						const others = item.stories?.filter((s) => !s.featured) ?? [];
+
+						return (
+							<NavigationMenu.Item key={item.key}>
+								<NavigationMenu.Trigger className={styles.trigger}>
+									{t(item.key)}
+								</NavigationMenu.Trigger>
+								<NavigationMenu.Content className={styles.content}>
+									<div className={styles.contentPanel}>
+										<FeaturedStoryCard
+											story={featured}
+											fallbackHref={href}
+											onSelect={close}
+										/>
+										<StoryList stories={others} onSelect={close} />
+									</div>
+								</NavigationMenu.Content>
+							</NavigationMenu.Item>
+						);
+					}
+
 					return (
 						<NavigationMenu.Item key={item.key}>
-							{item.hasContent ? (
-								<>
-									<NavigationMenu.Trigger className={styles.trigger}>
+							<NavigationMenu.Link asChild active={isActive}>
+								{isAbsolute ? (
+									<a
+										href={href}
+										className={styles.link}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
 										{t(item.key)}
-									</NavigationMenu.Trigger>
-									<NavigationMenu.Content className={styles.content}>
-										<div className={styles.contentPanel}>
-											{(() => {
-												const featuredStory = item.stories?.find(
-													(s) => s.featured,
-												);
-												const featuredHref = featuredStory
-													? `/stories/${featuredStory.slug}`
-													: href;
-												return (
-													<Link href={featuredHref} className={styles.featured}>
-														{featuredStory?.image && (
-															<Image
-																src={featuredStory.image}
-																alt=""
-																width={200}
-																height={120}
-																className={styles.featuredImage}
-															/>
-														)}
-														<div className={styles.featuredBody}>
-															<span className={styles.contentTitle}>
-																{t('featured.title')}
-															</span>
-															<span className={styles.contentDescription}>
-																{t('featured.subtitle')}
-															</span>
-															<span className={styles.contentCta}>
-																{t('featured.linkPrefix')} &rarr;
-															</span>
-														</div>
-													</Link>
-												);
-											})()}
-											{(() => {
-												const otherStories = item.stories?.filter(
-													(s) => !s.featured,
-												);
-												if (!otherStories || otherStories.length === 0)
-													return null;
-												return (
-													<>
-														<p className={styles.sectionTitle}>
-															{t('nav.moreStories')}
-														</p>
-														<div className={styles.storyList}>
-															{otherStories.map((story) => (
-																<Link
-																	key={story.slug}
-																	href={`/stories/${story.slug}`}
-																	className={styles.storyLink}
-																>
-																	<span className={styles.storyTitle}>
-																		{story.title}
-																	</span>
-																	<span className={styles.storySubtitle}>
-																		{story.abstract}
-																	</span>
-																</Link>
-															))}
-														</div>
-													</>
-												);
-											})()}
-										</div>
-									</NavigationMenu.Content>
-								</>
-							) : (
-								<NavigationMenu.Link asChild active={isActive}>
-									{isAbsolute ? (
-										<a
-											href={href}
-											className={styles.link}
-											target="_blank"
-											rel="noopener noreferrer"
-										>
-											{t(item.key)}
-										</a>
-									) : (
-										<Link href={href} className={styles.link}>
-											{t(item.key)}
-										</Link>
-									)}
-								</NavigationMenu.Link>
-							)}
+									</a>
+								) : (
+									<Link href={href} className={styles.link}>
+										{t(item.key)}
+									</Link>
+								)}
+							</NavigationMenu.Link>
 						</NavigationMenu.Item>
 					);
 				})}
