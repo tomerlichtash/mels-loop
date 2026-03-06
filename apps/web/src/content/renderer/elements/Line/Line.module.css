@@ -1,7 +1,11 @@
 .root {
 	display: block;
 	position: relative;
-	scroll-margin-top: calc(var(--ml-header-height) + 2px);
+	scroll-margin-top: calc(
+		var(--ml-header-offset, var(--ml-header-height)) +
+			var(--ml-story-panel-height, 36px) +
+			var(--ml-story-sections-height, 34px) + 2px
+	);
 	border-radius: var(--ml-radius-md);
 }
 

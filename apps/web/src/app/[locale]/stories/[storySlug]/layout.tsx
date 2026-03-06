@@ -12,11 +12,11 @@ import { Asides, type AsideSection } from '@/components/stories/Asides/Asides';
 import { StoryBreadcrumbs } from '@/components/stories/StoryBreadcrumbs/StoryBreadcrumbs';
 import { StoryHeader } from '@/components/stories/StoryHeader/StoryHeader';
 import { StoryLayout } from '@/components/stories/StoryLayout/StoryLayout';
-import {
-	StoryMeta,
-	type StoryStat,
-} from '@/components/stories/StoryMeta/StoryMeta';
 import { StoryPanel } from '@/components/stories/StoryPanel/StoryPanel';
+import {
+	type StorySection,
+	StorySections,
+} from '@/components/stories/StorySections/StorySections';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 
@@ -109,29 +109,33 @@ export default async function StorySlugLayout({
 				avatarAlt={config.avatar?.alt[typedLocale]}
 				avatarFallback={config.avatar?.initials?.[typedLocale]}
 			/>
-			<StoryMeta
-				storySlug={storySlug}
-				stats={
+			<StorySections
+				sections={
 					[
+						{
+							key: 'codex' as const,
+							label: sectionLabels.codex,
+							href: `/stories/${storySlug}`,
+						},
 						articlesMeta.length > 0 && {
-							icon: 'articles' as const,
+							key: 'articles' as const,
 							label: sectionLabels.articles,
 							count: articlesMeta.length,
 							href: `/stories/${storySlug}/articles`,
 						},
 						documentsMeta.length > 0 && {
-							icon: 'documents' as const,
+							key: 'documents' as const,
 							label: sectionLabels.documents,
 							count: documentsMeta.length,
 							href: `/stories/${storySlug}/documents`,
 						},
 						(config.sources?.length ?? 0) > 0 && {
-							icon: 'sources' as const,
+							key: 'sources' as const,
 							label: sectionLabels.sources,
 							count: config.sources!.length,
 							href: `/stories/${storySlug}/sources`,
 						},
-					].filter(Boolean) as StoryStat[]
+					].filter(Boolean) as StorySection[]
 				}
 			/>
 			<StoryLayout sidebar={<Asides sections={sections} />}>

@@ -23,7 +23,11 @@
 
 .sidebar > * {
 	position: sticky;
-	top: calc(var(--ml-header-height) + var(--ml-space-xl));
+	top: calc(
+		var(--ml-header-offset, var(--ml-header-height)) +
+			var(--ml-story-panel-height, 36px) +
+			var(--ml-story-sections-height, 34px) + var(--ml-space-xl)
+	);
 }
 
 @media (max-width: 1024px) {
