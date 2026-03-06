@@ -1,1 +1,2 @@
+gitleaks protect --staged
 pnpm lint-staged
