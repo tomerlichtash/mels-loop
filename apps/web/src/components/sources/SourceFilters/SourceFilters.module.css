@@ -19,58 +19,10 @@
 	flex-shrink: 0;
 }
 
-.searchInput {
-	padding: 0.3rem 0.7rem;
-	border: 1px solid var(--ml-border-color);
-	border-radius: var(--ml-radius-sm);
-	background: none;
-	font: inherit;
-	font-size: var(--ml-font-size-sm);
-	color: var(--ml-text-color);
-	width: 180px;
-	outline: none;
-	transition: border-color var(--ml-duration-fast) ease;
-}
-
-.searchInput:focus {
-	border-color: var(--ml-text-muted-color);
-}
-
-.searchInput::placeholder {
-	color: var(--ml-text-muted-color);
-}
-
 .resultCount {
 	margin: 0;
 	font-size: var(--ml-font-size-sm);
 	color: var(--ml-text-muted-color);
-}
-
-.filterButton {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.4em;
-	padding: 0.3rem 0.7rem;
-	border: 1px solid var(--ml-border-color);
-	border-radius: var(--ml-radius-sm);
-	background: none;
-	font: inherit;
-	font-size: var(--ml-font-size-sm);
-	color: var(--ml-text-color);
-	cursor: pointer;
-	white-space: nowrap;
-	transition:
-		background-color var(--ml-duration-fast) ease,
-		border-color var(--ml-duration-fast) ease;
-}
-
-.filterButton:hover {
-	background-color: var(--ml-background-color-alt);
-}
-
-.filterButton[data-active] {
-	background-color: var(--ml-popover-topic-bg);
-	border-color: var(--ml-text-muted-color);
 }
 
 .filterCount {
@@ -345,19 +297,6 @@
 	color: var(--ml-text-color);
 	font-size: var(--ml-font-size-body);
 	font-weight: 500;
-}
-
-.typeBadge {
-	display: inline-block;
-	padding: 0.1rem 0.4rem;
-	border-radius: var(--ml-radius-sm);
-	font-size: var(--ml-font-size-xs);
-	font-weight: var(--ml-font-weight-bold);
-	text-transform: uppercase;
-	letter-spacing: 0.04em;
-	background-color: transparent;
-	color: var(--ml-text-muted-color);
-	border: 1px solid var(--ml-border-color);
 }
 
 /* Scroll area */

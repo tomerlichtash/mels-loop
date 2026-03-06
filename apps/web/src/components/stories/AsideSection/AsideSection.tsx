@@ -1,8 +1,8 @@
 import { Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
-import type { AsideSection } from './Asides';
-import styles from './Asides.module.css';
+import type { AsideSection } from '../Asides/Asides';
+import styles from '../Asides/Asides.module.css';
 
 interface AsideSectionProps {
 	section: AsideSection;

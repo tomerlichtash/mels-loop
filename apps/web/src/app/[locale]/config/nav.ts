@@ -1,6 +1,10 @@
 import { getLocales } from '@mels-loop/i18n/config';
 
-import type { FooterLinkColumn, LocaleOption, NavItem } from '@/layout';
+import type {
+	FooterLinkColumn,
+	LocaleOption,
+	NavItem,
+} from '@/components/layout';
 
 export const navItems: NavItem[] = [
 	{ key: 'stories', href: '/stories', hasContent: true },

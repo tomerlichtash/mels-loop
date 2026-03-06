@@ -3,7 +3,7 @@
 import { useSelectedLayoutSegment } from 'next/navigation';
 import type { ReactNode } from 'react';
 
-import styles from './Story.module.css';
+import styles from './StoryLayout.module.css';
 
 const HIDE_SIDEBAR_SEGMENTS = ['sources'];
 
@@ -12,7 +12,7 @@ interface StoryProps {
 	sidebar?: ReactNode;
 }
 
-export function Story({ children, sidebar }: StoryProps) {
+export function StoryLayout({ children, sidebar }: StoryProps) {
 	const segment = useSelectedLayoutSegment();
 	const showSidebar = sidebar && !HIDE_SIDEBAR_SEGMENTS.includes(segment ?? '');
 

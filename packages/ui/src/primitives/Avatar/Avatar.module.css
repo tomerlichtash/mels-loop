@@ -1,4 +1,5 @@
 .root {
+	position: relative;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -49,6 +50,10 @@
 
 .imageLoaded {
 	opacity: 1;
+}
+
+.loader {
+	position: absolute;
 }
 
 .fallback {

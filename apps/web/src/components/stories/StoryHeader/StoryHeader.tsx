@@ -1,7 +1,7 @@
 import { Avatar, Text } from '@mels-loop/ui/primitives';
 
+import { StoryTitle } from '../StoryTitle/StoryTitle';
 import styles from './StoryHeader.module.css';
-import { StoryTitle } from './StoryTitle';
 
 interface StoryHeaderProps {
 	title: string;

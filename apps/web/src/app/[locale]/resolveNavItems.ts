@@ -3,8 +3,8 @@ import {
 	getStoryConfig,
 } from '@mels-loop/content-loaders/loaders';
 
+import type { NavItem } from '@/components/layout';
 import type { Locale } from '@/i18n-init';
-import type { NavItem } from '@/layout';
 
 import { navItems } from './config/nav';
 

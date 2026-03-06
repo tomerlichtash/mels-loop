@@ -4,6 +4,7 @@ import type {
 	ResolvedSource,
 	SourceType,
 } from '@mels-loop/content-loaders/types';
+import { Badge, Button, TextField } from '@mels-loop/ui/primitives';
 import {
 	ClipboardCopyIcon,
 	Cross2Icon,
@@ -21,9 +22,10 @@ import {
 	type SortingState,
 	useReactTable,
 } from '@tanstack/react-table';
+import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import styles from './page.module.css';
+import styles from './SourceFilters.module.css';
 
 interface SourceGroup {
 	type: SourceType;
@@ -80,9 +82,9 @@ function createColumns(
 			cell: ({ getValue }) => {
 				const type = getValue() as SourceType;
 				return (
-					<span className={styles.typeBadge} data-type={type}>
+					<Badge radius="sm" bordered>
 						{typeLabels[type] ?? type}
-					</span>
+					</Badge>
 				);
 			},
 		},
@@ -126,10 +128,13 @@ function SourceDetail({ source }: { source: ResolvedSource }) {
 		<div className={styles.detail} onClick={(e) => e.stopPropagation()}>
 			{source.type === 'image' && source.url && (
 				<div className={styles.detailPreview}>
-					<img
+					<Image
 						src={source.url}
 						alt={source.title}
+						width={120}
+						height={120}
 						className={styles.detailImage}
+						unoptimized
 					/>
 				</div>
 			)}
@@ -263,32 +268,34 @@ export function SourceFilters({
 		<>
 			<div className={styles.toolbar}>
 				<div className={styles.filters}>
-					<button
-						type="button"
-						className={styles.filterButton}
-						data-active={activeType === null || undefined}
+					<Button
+						variant="outlined"
+						size="sm"
+						active={activeType === null}
 						onClick={() => handleFilter(null)}
 					>
 						{allLabel}
-						<span className={styles.filterCount}>{totalCount}</span>
-					</button>
+						<span className={styles.filterCount}>({totalCount})</span>
+					</Button>
 					{groups.map((group) => (
-						<button
+						<Button
 							key={group.type}
-							type="button"
-							className={styles.filterButton}
-							data-active={activeType === group.type || undefined}
+							variant="outlined"
+							size="sm"
+							active={activeType === group.type}
 							onClick={() => handleFilter(group.type)}
 						>
 							{group.label}
-							<span className={styles.filterCount}>{group.sources.length}</span>
-						</button>
+							<span className={styles.filterCount}>
+								({group.sources.length})
+							</span>
+						</Button>
 					))}
 				</div>
 				<div className={styles.toolbarEnd}>
-					<input
+					<TextField
 						type="search"
-						className={styles.searchInput}
+						size="sm"
 						placeholder={columnLabels.searchPlaceholder}
 						value={globalFilter}
 						onChange={(e) => {

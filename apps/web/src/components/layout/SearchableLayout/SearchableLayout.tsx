@@ -2,8 +2,8 @@
 
 import { type ReactNode, useState } from 'react';
 
-import { SearchDialog } from '@/components/SearchDialog/SearchDialog';
-import { useSearchShortcut } from '@/components/SearchDialog/useSearchShortcut';
+import { SearchDialog } from '@/components/search/SearchDialog/SearchDialog';
+import { useSearchShortcut } from '@/components/search/SearchDialog/useSearchShortcut';
 
 import { SiteLayout } from '../SiteLayout/SiteLayout';
 import type { FooterLinkColumn, LocaleOption, NavItem } from '../types';

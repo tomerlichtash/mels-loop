@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import type { ReactNode } from 'react';
 
-import styles from './StoryHeader.module.css';
+import styles from '../StoryHeader/StoryHeader.module.css';
 
 interface StoryTitleProps {
 	href: string;

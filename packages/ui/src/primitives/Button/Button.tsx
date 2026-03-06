@@ -16,6 +16,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	radius?: ButtonRadius;
 	loading?: boolean;
 	fullWidth?: boolean;
+	active?: boolean;
 	asChild?: boolean;
 }
 
@@ -27,6 +28,7 @@ export function Button({
 	radius = 'md',
 	loading,
 	fullWidth,
+	active,
 	asChild,
 	className,
 	disabled,
@@ -38,7 +40,11 @@ export function Button({
 		styles[`variant-${variant}`],
 		styles[`size-${size}`],
 		styles[`radius-${radius}`],
-		{ [styles.loading]: loading, [styles.fullWidth]: fullWidth },
+		{
+			[styles.loading]: loading,
+			[styles.fullWidth]: fullWidth,
+			[styles.active]: active,
+		},
 		'ml-button',
 		className,
 	);

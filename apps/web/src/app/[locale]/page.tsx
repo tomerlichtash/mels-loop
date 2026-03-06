@@ -5,8 +5,8 @@ import {
 import { Button, Container, Grid, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
-import { GlyphShift } from '@/components/GlyphShift/GlyphShift';
-import { StoryCard } from '@/components/StoryCard/StoryCard';
+import { GlyphShift } from '@/components/home/GlyphShift/GlyphShift';
+import { StoryCard } from '@/components/stories/StoryCard/StoryCard';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 

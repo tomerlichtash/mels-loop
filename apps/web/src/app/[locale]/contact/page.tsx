@@ -1,8 +1,8 @@
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Text } from '@mels-loop/ui/primitives';
 
-import { ContactForm } from '@/components/ContactForm/ContactForm';
-import { StaticPage } from '@/components/StaticPage/StaticPage';
+import { ContactForm } from '@/components/forms/ContactForm/ContactForm';
+import { StaticPage } from '@/components/layout/StaticPage/StaticPage';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 import { homeItemFromDict } from '@/lib/breadcrumbs';

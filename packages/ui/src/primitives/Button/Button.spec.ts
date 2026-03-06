@@ -12,6 +12,7 @@ testComponent({
 		loading: [true],
 		disabled: [true],
 		fullWidth: [true],
+		active: [true],
 	},
 	getTarget: (page) => new ButtonDriver(page),
 	interactions: {

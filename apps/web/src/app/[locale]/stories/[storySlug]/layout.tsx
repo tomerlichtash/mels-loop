@@ -8,15 +8,17 @@ import type { ArticleMeta } from '@mels-loop/content-loaders/types';
 import { dictGet } from '@mels-loop/i18n/dict';
 import type { ReactNode } from 'react';
 
+import { Asides, type AsideSection } from '@/components/stories/Asides/Asides';
+import { StoryBreadcrumbs } from '@/components/stories/StoryBreadcrumbs/StoryBreadcrumbs';
+import { StoryHeader } from '@/components/stories/StoryHeader/StoryHeader';
+import { StoryLayout } from '@/components/stories/StoryLayout/StoryLayout';
+import {
+	StoryMeta,
+	type StoryStat,
+} from '@/components/stories/StoryMeta/StoryMeta';
+import { StoryPanel } from '@/components/stories/StoryPanel/StoryPanel';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
-
-import { Asides, type AsideSection } from './Asides';
-import { Story } from './Story';
-import { StoryBreadcrumbs } from './StoryBreadcrumbs';
-import { StoryHeader } from './StoryHeader';
-import { StoryMeta, type StoryStat } from './StoryMeta';
-import { StoryPanel } from './StoryPanel';
 
 interface LayoutProps {
 	children: ReactNode;
@@ -132,7 +134,9 @@ export default async function StorySlugLayout({
 					].filter(Boolean) as StoryStat[]
 				}
 			/>
-			<Story sidebar={<Asides sections={sections} />}>{children}</Story>
+			<StoryLayout sidebar={<Asides sections={sections} />}>
+				{children}
+			</StoryLayout>
 		</>
 	);
 }

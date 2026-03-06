@@ -6,7 +6,6 @@ import { dictGet } from '@mels-loop/i18n/dict';
 import { Card, Container, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
-import { BackLink } from '@/components/BackLink';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 
@@ -28,7 +27,6 @@ export default async function DocumentsListingPage({ params }: PageProps) {
 
 	return (
 		<Container gap="lg">
-			<BackLink href={`/stories/${storySlug}`}>{storyTitle}</BackLink>
 			<Text variant="h1">
 				{documentsLabel} &mdash; {storyTitle}
 			</Text>

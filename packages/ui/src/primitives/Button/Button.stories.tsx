@@ -29,6 +29,7 @@ const meta: Meta<typeof Button> = {
 		loading: { control: 'boolean' },
 		disabled: { control: 'boolean' },
 		fullWidth: { control: 'boolean' },
+		active: { control: 'boolean' },
 		asChild: { control: 'boolean' },
 	},
 	render: ({ children, asChild, ...args }) => (
@@ -52,4 +53,5 @@ Default.args = {
 	asChild: false,
 	fullWidth: false,
 	disabled: false,
+	active: false,
 };

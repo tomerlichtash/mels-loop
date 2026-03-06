@@ -39,11 +39,12 @@ This project is bilingual (English + Hebrew). All CSS must work in both LTR and 
 
 ## Components
 
-Minimal scaffolding for a new component:
-- `Component.tsx` — component implementation
-- `Component.module.css` — styles
-- `Component.stories.tsx` — Storybook story (must include a `Default` export)
-- `Component.spec.ts` — test
+- **Always prefer UI primitives** (`@mels-loop/ui/primitives`) over local implementations — use `Button`, `Badge`, `TextField`, `Loader`, `Avatar`, `Container`, `Card`, `Text`, etc. before writing custom markup or CSS for the same purpose
+- Minimal scaffolding for a new component:
+  - `Component.tsx` — component implementation
+  - `Component.module.css` — styles
+  - `Component.stories.tsx` — Storybook story (must include a `Default` export)
+  - `Component.spec.ts` — test
 
 ## Content
 

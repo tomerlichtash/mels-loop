@@ -136,6 +136,12 @@
 	--ml-button-radius: var(--ml-radius-pill);
 }
 
+/* Active */
+.active {
+	--ml-button-background-color: var(--ml-background-color-alt);
+	--ml-button-border-color: var(--ml-text-muted-color);
+}
+
 /* Full width */
 .fullWidth {
 	width: 100%;

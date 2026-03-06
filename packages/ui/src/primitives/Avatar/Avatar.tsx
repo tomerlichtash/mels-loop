@@ -4,6 +4,7 @@ import * as AvatarPrimitive from '@radix-ui/react-avatar';
 import cn from 'classnames';
 import { type HTMLAttributes, useRef, useState } from 'react';
 
+import { Loader } from '../Loader/Loader';
 import styles from './Avatar.module.css';
 
 type AvatarSize = 'sm' | 'md' | 'lg' | 'xl';
@@ -55,20 +56,32 @@ export function Avatar({
 			{...props}
 		>
 			{src && (
-				<AvatarPrimitive.Image
-					className={cn(styles.image, {
-						[styles.imageLoaded]: loaded || hasLoaded.current,
-					})}
-					src={src}
-					alt={alt}
-					onLoadingStatusChange={(status) => {
-						if (status === 'loaded') handleLoad();
-					}}
-				/>
+				<>
+					<AvatarPrimitive.Image
+						className={cn(styles.image, {
+							[styles.imageLoaded]: loaded || hasLoaded.current,
+						})}
+						src={src}
+						alt={alt}
+						onLoadingStatusChange={(status) => {
+							if (status === 'loaded') handleLoad();
+						}}
+					/>
+					{!loaded && !hasLoaded.current && (
+						<Loader
+							size="sm"
+							color="primary"
+							label="Loading avatar"
+							className={styles.loader}
+						/>
+					)}
+				</>
 			)}
-			<AvatarPrimitive.Fallback className={styles.fallback}>
-				{initials}
-			</AvatarPrimitive.Fallback>
+			{!src && (
+				<AvatarPrimitive.Fallback className={styles.fallback}>
+					{initials}
+				</AvatarPrimitive.Fallback>
+			)}
 		</AvatarPrimitive.Root>
 	);
 }

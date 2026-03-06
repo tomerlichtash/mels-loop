@@ -2,7 +2,7 @@ import { getAllPosts, getPost } from '@mels-loop/content-loaders/loaders';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Container, Text } from '@mels-loop/ui/primitives';
 
-import { PostList } from '@/components/PostList/PostList';
+import { PostList } from '@/components/blog/PostList/PostList';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 

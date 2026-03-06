@@ -7,11 +7,10 @@ import { getDirection, getLocales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
 
+import { SourceFilters } from '@/components/sources/SourceFilters/SourceFilters';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 import { homeItemFromDict } from '@/lib/breadcrumbs';
-
-import { SourceFilters } from './SourceFilters';
 
 interface PageProps {
 	params: Promise<{ locale: string }>;
