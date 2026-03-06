@@ -1,0 +1,21 @@
+{
+	"name": "@mels-loop/scripts",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"s3:upload": "tsx src/s3/upload.ts",
+		"s3:list": "tsx src/s3/list.ts",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.354.0",
+		"dotenv": "^16.3.1",
+		"mime-types": "^2.1.35"
+	},
+	"devDependencies": {
+		"@types/mime-types": "^2.1.1",
+		"tsx": "^4.0.0",
+		"vitest": "^3.0.0"
+	}
+}
