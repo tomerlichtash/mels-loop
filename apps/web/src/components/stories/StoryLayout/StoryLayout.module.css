@@ -4,7 +4,7 @@
 
 .layout {
 	display: grid;
-	grid-template-columns: 1fr 250px;
+	grid-template-columns: 250px 1fr;
 	gap: var(--ml-space-xl);
 	align-items: stretch;
 }
@@ -18,7 +18,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--ml-space-lg);
-	padding-inline-start: var(--ml-space-xl);
+	padding-inline-end: var(--ml-space-xl);
 }
 
 .sidebar > * {

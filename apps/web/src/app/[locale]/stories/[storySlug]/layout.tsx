@@ -1,15 +1,19 @@
 import {
-	getArticleMeta,
-	getCodex,
-	getDocumentMeta,
 	getResolvedStorySources,
 	getStoryConfig,
+	getStoryContents,
+	getStoryMessages,
+	resolveAssetUrl,
+	resolveStoryField,
 } from '@mels-loop/content-loaders/loaders';
-import type { ArticleMeta, SourceType } from '@mels-loop/content-loaders/types';
+import type {
+	ResolvedContentsEntry,
+	SourceType,
+} from '@mels-loop/content-loaders/types';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { type ReactNode, Suspense } from 'react';
 
-import { Asides, type AsideSection } from '@/components/stories/Asides/Asides';
+import { Asides } from '@/components/stories/Asides/Asides';
 import { StoryBreadcrumbs } from '@/components/stories/StoryBreadcrumbs/StoryBreadcrumbs';
 import { StoryHeader } from '@/components/stories/StoryHeader/StoryHeader';
 import { StoryLayout } from '@/components/stories/StoryLayout/StoryLayout';
@@ -28,12 +32,31 @@ interface LayoutProps {
 	params: Promise<{ locale: string; storySlug: string }>;
 }
 
-const sectionDictKeys: Record<string, string> = {
-	articles: 'nav.articles',
-	documents: 'nav.documents',
-	codex: 'nav.codex',
-	sources: 'nav.sources',
-};
+/**
+ * Build slug → title maps for breadcrumb resolution from resolved contents.
+ * Walks the tree and extracts page entries with "section/slug" refs.
+ */
+function buildItemTitles(
+	entries: ResolvedContentsEntry[],
+): Record<string, Record<string, string>> {
+	const result: Record<string, Record<string, string>> = {};
+	for (const entry of entries) {
+		if (entry.type === 'part') {
+			for (const child of entry.children) {
+				if (child.type === 'page' && child.ref.includes('/')) {
+					const [section, slug] = child.ref.split('/');
+					if (!result[section]) result[section] = {};
+					result[section][slug] = child.title;
+				}
+			}
+		} else if (entry.type === 'page' && entry.ref.includes('/')) {
+			const [section, slug] = entry.ref.split('/');
+			if (!result[section]) result[section] = {};
+			result[section][slug] = entry.title;
+		}
+	}
+	return result;
+}
 
 export default async function StorySlugLayout({
 	children,
@@ -42,56 +65,45 @@ export default async function StorySlugLayout({
 	const { locale, storySlug } = await params;
 	const typedLocale = locale as Locale;
 
-	const [config, content, articlesMeta, documentsMeta, sources, dict] =
-		await Promise.all([
-			getStoryConfig(storySlug),
-			getCodex(storySlug, typedLocale),
-			getArticleMeta(storySlug, typedLocale),
-			getDocumentMeta(storySlug, typedLocale),
-			getResolvedStorySources(storySlug, typedLocale),
-			getDictionary(typedLocale),
-		]);
+	const dict = await getDictionary(typedLocale);
 
-	const storyTitle = content?.metadata.title || config.title[typedLocale];
-	const storyAbstract = config.abstract[typedLocale];
-
-	const metaBySection: Record<string, ArticleMeta[]> = {
-		articles: articlesMeta,
-		documents: documentsMeta,
+	const sectionLabels: Record<string, string> = {
+		articles: dictGet(dict, 'nav.articles'),
+		documents: dictGet(dict, 'nav.documents'),
+		codex: dictGet(dict, 'nav.codex'),
+		contents: dictGet(dict, 'nav.contents'),
+		sources: dictGet(dict, 'nav.sources'),
 	};
 
-	// Replace "codex" with the story title as the link back to the main text
-	const sections: AsideSection[] = config.sections.map((section) => ({
-		key: section,
-		label:
-			section === 'codex'
-				? storyTitle
-				: dictGet(dict, sectionDictKeys[section] ?? section),
-		href: `/stories/${storySlug}${section === 'codex' ? '' : `/${section}`}`,
-		items: (metaBySection[section] ?? []).map((item) => ({
-			slug: item.slug,
-			title: item.title,
-			href: `/stories/${storySlug}/${section}/${item.slug}`,
-			author: item.author,
-		})),
-	}));
+	const [config, storyMessages, contents, sources] = await Promise.all([
+		getStoryConfig(storySlug),
+		getStoryMessages(storySlug, typedLocale),
+		getStoryContents(storySlug, typedLocale),
+		getResolvedStorySources(storySlug, typedLocale),
+	]);
+
+	const storyTitle = resolveStoryField(
+		config.meta.title,
+		typedLocale,
+		storyMessages,
+	);
+	const storyAbstract = resolveStoryField(
+		config.meta.abstract,
+		typedLocale,
+		storyMessages,
+	);
+
+	const [coverUrl, avatarSrcUrl] = await Promise.all([
+		config.assets?.cover ? resolveAssetUrl(config.assets.cover) : undefined,
+		config.assets?.avatar?.src
+			? resolveAssetUrl(config.assets.avatar.src)
+			: undefined,
+	]);
 
 	const homeLabel = dictGet(dict, 'nav.home');
 	const storiesLabel = dictGet(dict, 'stories');
 
-	const sectionLabels: Record<string, string> = {};
-	for (const [key, dictKey] of Object.entries(sectionDictKeys)) {
-		sectionLabels[key] = dictGet(dict, dictKey);
-	}
-
-	// Build slug → title maps for breadcrumb resolution
-	const itemTitles: Record<string, Record<string, string>> = {};
-	for (const [section, metas] of Object.entries(metaBySection)) {
-		itemTitles[section] = {};
-		for (const item of metas) {
-			itemTitles[section][item.slug] = item.title;
-		}
-	}
+	const itemTitles = contents ? buildItemTitles(contents) : {};
 
 	const sourceTypeOrder: SourceType[] = [
 		'image',
@@ -123,6 +135,54 @@ export default async function StorySlugLayout({
 				}
 			: undefined;
 
+	const basePath = `/stories/${storySlug}`;
+
+	// Derive dynamic section tabs from contents (articles, documents, etc.)
+	const dynamicSectionCounts = new Map<string, number>();
+	if (contents) {
+		for (const entry of contents) {
+			if (entry.type === 'part') {
+				for (const child of entry.children) {
+					if (child.type === 'page' && child.ref.includes('/')) {
+						const key = child.ref.split('/')[0];
+						dynamicSectionCounts.set(
+							key,
+							(dynamicSectionCounts.get(key) ?? 0) + 1,
+						);
+					}
+				}
+			} else if (entry.type === 'page' && entry.ref.includes('/')) {
+				const key = entry.ref.split('/')[0];
+				dynamicSectionCounts.set(key, (dynamicSectionCounts.get(key) ?? 0) + 1);
+			}
+		}
+	}
+
+	// Fixed tabs: codex. Dynamic tabs from contents. Sources last.
+	const storySections: StorySection[] = [
+		{
+			key: 'codex',
+			label: sectionLabels.codex,
+			href: basePath,
+		},
+		...[...dynamicSectionCounts].map(([key, count]) => ({
+			key,
+			label: sectionLabels[key] ?? key,
+			count,
+			href: `${basePath}/${key}`,
+		})),
+		...(sources.length > 0
+			? [
+					{
+						key: 'sources',
+						label: sectionLabels.sources,
+						count: sources.length,
+						href: `${basePath}/sources`,
+					},
+				]
+			: []),
+	];
+
 	return (
 		<>
 			<StoryPanel>
@@ -139,46 +199,39 @@ export default async function StorySlugLayout({
 				title={storyTitle}
 				storySlug={storySlug}
 				abstract={storyAbstract}
-				cover={config.cover ? resolveMediaUrl(config.cover) : undefined}
-				avatarSrc={
-					config.avatar?.src ? resolveMediaUrl(config.avatar.src) : undefined
+				cover={coverUrl ? resolveMediaUrl(coverUrl) : undefined}
+				avatarSrc={avatarSrcUrl ? resolveMediaUrl(avatarSrcUrl) : undefined}
+				avatarAlt={
+					config.assets?.avatar?.alt
+						? resolveStoryField(
+								config.assets.avatar.alt,
+								typedLocale,
+								storyMessages,
+							)
+						: undefined
 				}
-				avatarAlt={config.avatar?.alt[typedLocale]}
-				avatarFallback={config.avatar?.initials?.[typedLocale]}
+				avatarFallback={
+					config.assets?.avatar?.initials
+						? resolveStoryField(
+								config.assets.avatar.initials,
+								typedLocale,
+								storyMessages,
+							)
+						: undefined
+				}
 			/>
 			<Suspense>
-				<StorySections
-					sections={
-						[
-							{
-								key: 'codex' as const,
-								label: sectionLabels.codex,
-								href: `/stories/${storySlug}`,
-							},
-							articlesMeta.length > 0 && {
-								key: 'articles' as const,
-								label: sectionLabels.articles,
-								count: articlesMeta.length,
-								href: `/stories/${storySlug}/articles`,
-							},
-							documentsMeta.length > 0 && {
-								key: 'documents' as const,
-								label: sectionLabels.documents,
-								count: documentsMeta.length,
-								href: `/stories/${storySlug}/documents`,
-							},
-							(config.sources?.length ?? 0) > 0 && {
-								key: 'sources' as const,
-								label: sectionLabels.sources,
-								count: config.sources!.length,
-								href: `/stories/${storySlug}/sources`,
-							},
-						].filter(Boolean) as StorySection[]
-					}
-					sourceFilters={sourceFilters}
-				/>
+				<StorySections sections={storySections} sourceFilters={sourceFilters} />
 			</Suspense>
-			<StoryLayout sidebar={<Asides sections={sections} />}>
+			<StoryLayout
+				sidebar={
+					<Asides
+						contents={contents ?? []}
+						title={sectionLabels.contents}
+						titleHref={`${basePath}/contents`}
+					/>
+				}
+			>
 				{children}
 			</StoryLayout>
 		</>

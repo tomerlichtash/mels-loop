@@ -1,11 +1,14 @@
 'use client';
 
-import { useSelectedLayoutSegment } from 'next/navigation';
+import { usePathname, useSelectedLayoutSegment } from 'next/navigation';
 import type { ReactNode } from 'react';
 
 import styles from './StoryLayout.module.css';
 
-const HIDE_SIDEBAR_SEGMENTS = ['sources'];
+/** Segments where the sidebar is hidden only on the exact listing page (not child routes). */
+const HIDE_SIDEBAR_LISTING_ONLY = ['sources'];
+/** Segments where the sidebar is always hidden (listing and children). */
+const HIDE_SIDEBAR_ALWAYS = ['contents'];
 
 interface StoryProps {
 	children: ReactNode;
@@ -14,14 +17,24 @@ interface StoryProps {
 
 export function StoryLayout({ children, sidebar }: StoryProps) {
 	const segment = useSelectedLayoutSegment();
-	const showSidebar = sidebar && !HIDE_SIDEBAR_SEGMENTS.includes(segment ?? '');
+	const pathname = usePathname();
+
+	let showSidebar = !!sidebar;
+	if (segment && HIDE_SIDEBAR_ALWAYS.includes(segment)) {
+		showSidebar = false;
+	} else if (segment && HIDE_SIDEBAR_LISTING_ONLY.includes(segment)) {
+		// Hide on listing page (/sources) but show on detail (/sources/[id])
+		const afterSegment = pathname.split(`/${segment}`)[1];
+		const isListingPage = !afterSegment || afterSegment === '/';
+		if (isListingPage) showSidebar = false;
+	}
 
 	return (
 		<div className={styles.root}>
 			{showSidebar ? (
 				<div className={styles.layout}>
-					<main className={styles.content}>{children}</main>
 					<aside className={styles.sidebar}>{sidebar}</aside>
+					<main className={styles.content}>{children}</main>
 				</div>
 			) : (
 				<main>{children}</main>

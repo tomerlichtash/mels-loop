@@ -43,6 +43,8 @@ export const paths = {
 		dir: () => stories(),
 		config: (slug: string) => stories(slug, 'story.json'),
 		file: (slug: string, locale: string) => stories(slug, md(locale)),
+		messages: (slug: string, locale: string) =>
+			stories(slug, 'messages', `${locale}.json`),
 		articles: storySection('articles'),
 		documents: storySection('documents'),
 		annotations: storySection('annotations'),

@@ -1,6 +1,9 @@
 import {
 	getAllStories,
 	getStoryConfig,
+	getStoryMessages,
+	resolveAssetUrl,
+	resolveStoryField,
 } from '@mels-loop/content-loaders/loaders';
 import { dictGet } from '@mels-loop/i18n/dict';
 
@@ -24,13 +27,20 @@ export default async function StoriesPage({ params }: PageProps) {
 		getDictionary(typedLocale),
 	]);
 
-	const stories = await Promise.all(
-		storySlugs.map((slug) => getStoryConfig(slug)),
+	const storiesWithMessages = await Promise.all(
+		storySlugs.map(async (slug) => {
+			const [config, messages] = await Promise.all([
+				getStoryConfig(slug),
+				getStoryMessages(slug, typedLocale),
+			]);
+			const thumbnailUrl = await resolveAssetUrl(
+				config.assets?.thumbnail ?? config.assets?.cover ?? '',
+			);
+			return { config, messages, thumbnailUrl };
+		}),
 	);
 
-	const sorted = stories.sort((a, b) =>
-		a.featured === b.featured ? 0 : a.featured ? -1 : 1,
-	);
+	const sorted = [...storiesWithMessages];
 
 	const title = dictGet(dict, 'stories');
 
@@ -40,17 +50,18 @@ export default async function StoriesPage({ params }: PageProps) {
 			breadcrumbs={[homeItemFromDict(dict), { label: title }]}
 		>
 			<div>
-				{sorted.map((config) => (
+				{sorted.map(({ config, messages, thumbnailUrl }) => (
 					<StoryCard
 						key={config.slug}
-						config={config}
-						locale={typedLocale}
+						slug={config.slug}
+						title={resolveStoryField(config.meta.title, typedLocale, messages)}
+						abstract={resolveStoryField(
+							config.meta.abstract,
+							typedLocale,
+							messages,
+						)}
 						thumbnailUrl={
-							config.thumbnail
-								? resolveMediaUrl(config.thumbnail)
-								: config.cover
-									? resolveMediaUrl(config.cover)
-									: undefined
+							thumbnailUrl ? resolveMediaUrl(thumbnailUrl) : undefined
 						}
 					/>
 				))}

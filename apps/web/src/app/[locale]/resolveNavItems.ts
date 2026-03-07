@@ -1,6 +1,8 @@
 import {
 	getAllStories,
 	getStoryConfig,
+	getStoryMessages,
+	resolveStoryField,
 } from '@mels-loop/content-loaders/loaders';
 
 import type { NavItem } from '@/components/layout';
@@ -10,18 +12,24 @@ import { navItems } from './config/nav';
 
 export async function resolveNavItems(locale: Locale): Promise<NavItem[]> {
 	const slugs = await getAllStories();
-	const configs = await Promise.all(slugs.map((s) => getStoryConfig(s)));
+	const storiesWithMessages = await Promise.all(
+		slugs.map(async (s) => {
+			const [config, messages] = await Promise.all([
+				getStoryConfig(s),
+				getStoryMessages(s, locale),
+			]);
+			return { config, messages };
+		}),
+	);
 
 	return navItems.map((item) => {
 		if (!item.hasContent) return item;
 		return {
 			...item,
-			stories: configs.map((c) => ({
-				slug: c.slug,
-				title: c.title[locale],
-				abstract: c.abstract[locale],
-				featured: c.featured,
-				...(c.featured ? { image: '/assets/featured-story-of-mel.svg' } : {}),
+			stories: storiesWithMessages.map(({ config, messages }) => ({
+				slug: config.slug,
+				title: resolveStoryField(config.meta.title, locale, messages),
+				abstract: resolveStoryField(config.meta.abstract, locale, messages),
 			})),
 		};
 	});

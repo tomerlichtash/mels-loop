@@ -1,0 +1,28 @@
+{
+	"story": {
+		"title": "The Story of Mel",
+		"abstract": "A Comprehensive Guide to The Story of Mel, a Programmer"
+	},
+	"parts": {
+		"preface": "Preface (A Software Legend That Really Happened)",
+		"codex": "The Story of Mel",
+		"articles": "Articles",
+		"appendix": "Appendix",
+		"sources": "Sources"
+	},
+	"titles": {
+		"preface": "Preface"
+	},
+	"authors": {
+		"ednather": "Ed Nather",
+		"tomerlichtash": "Tomer Lichtash",
+		"dfl": "David Frankiel"
+	},
+	"avatar": {
+		"initials": "MK",
+		"alt": "Photo of Mel Kaye, 1952"
+	},
+	"figures": {
+		"template": "Fig. %index%"
+	}
+}

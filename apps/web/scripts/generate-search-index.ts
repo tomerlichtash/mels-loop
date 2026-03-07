@@ -20,6 +20,8 @@ import {
 	getStoryArticle,
 	getStoryArticles,
 	getStoryConfig,
+	getStoryMessages,
+	resolveStoryField,
 } from '@mels-loop/content-loaders/loaders';
 import { setContentDir } from '@mels-loop/content-pipeline/loaders';
 import { getLocales } from '@mels-loop/i18n/config';
@@ -183,15 +185,27 @@ async function collectDocs(locale: Locale): Promise<SearchDoc[]> {
 	// Stories
 	const stories = await getAllStories();
 	for (const storySlug of stories) {
-		const config = await getStoryConfig(storySlug);
-		if (config.title[locale]) {
+		const [config, storyMessages] = await Promise.all([
+			getStoryConfig(storySlug),
+			getStoryMessages(storySlug, locale),
+		]);
+		const storyTitle = resolveStoryField(
+			config.meta.title,
+			locale,
+			storyMessages,
+		);
+		if (storyTitle) {
 			docs.push({
 				type: 'story',
 				subtype: '',
 				slug: storySlug,
 				url: `/stories/${storySlug}`,
-				title: config.title[locale],
-				body: config.abstract?.[locale] ?? '',
+				title: storyTitle,
+				body: resolveStoryField(
+					config.meta.abstract ?? '',
+					locale,
+					storyMessages,
+				),
 				locale,
 			});
 		}

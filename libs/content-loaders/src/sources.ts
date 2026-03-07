@@ -11,6 +11,22 @@ import { paths } from './paths';
 import { getStoryConfig } from './stories';
 import type { ResolvedSource, Source, SourceMessages } from './types';
 
+const SOURCE_REF_PREFIX = 'source:';
+
+/**
+ * Resolve an asset URL that may be a `source:` ref or a direct URL.
+ * - `"source:mel-kaye-photo-1952"` → loads the source and returns its `url`
+ * - `"/media/images/foo.jpg"` → returns as-is
+ */
+export async function resolveAssetUrl(
+	value: string,
+): Promise<string | undefined> {
+	if (!value.startsWith(SOURCE_REF_PREFIX)) return value;
+	const sourceId = value.slice(SOURCE_REF_PREFIX.length);
+	const source = await getSource(sourceId);
+	return source?.url;
+}
+
 export async function getSource(id: string): Promise<Source | null> {
 	return loadJsonFile<Source>(paths.sources.data(id));
 }
@@ -75,12 +91,14 @@ export async function getResolvedStorySources(
 	const ids = new Set<string>(config.sources ?? []);
 
 	// Scan content directories for frontmatter sources
+	const [articleSlugs, documentSlugs] = await Promise.all([
+		listSubdirs(paths.stories.articles.dir(storySlug)),
+		listSubdirs(paths.stories.documents.dir(storySlug)),
+	]);
 	const contentDirs = [
 		paths.stories.codex.dir(storySlug),
-		...config.articles.map((a) => paths.stories.articles.item(storySlug, a)),
-		...(config.documents ?? []).map((d) =>
-			paths.stories.documents.item(storySlug, d),
-		),
+		...articleSlugs.map((a) => paths.stories.articles.item(storySlug, a)),
+		...documentSlugs.map((d) => paths.stories.documents.item(storySlug, d)),
 	];
 
 	// Scan annotations (one level deeper — subdirs contain .md files)

@@ -1,33 +1,32 @@
 {
 	"slug": "the-story-of-mel",
-	"title": {
-		"en": "The Story of Mel",
-		"he": "הסיפור על מל"
+	"meta": {
+		"title": "story.title",
+		"abstract": "story.abstract",
+		"date": "1983-05-21",
+		"license": "public-domain",
+		"tags": [
+			"hacker-folklore",
+			"assembly",
+			"drum-memory",
+			"rpc-4000",
+			"blackjack",
+			"usenet"
+		]
 	},
-	"abstract": {
-		"en": "A Comprehensive Guide to The Story of Mel, a Programmer",
-		"he": "מדריך מקיף לסיפור על מל"
-	},
-	"cover": "/media/images/mel-kaye-portrait-1951.jpg",
-	"featured": true,
-	"avatar": {
-		"src": "/media/images/mel-kaye-portrait-1951.jpg",
-		"initials": {
-			"en": "MK",
-			"he": "מק"
-		},
-		"alt": {
-			"en": "Photo of Mel Kaye, 1952",
-			"he": "תצלום של מל קיי, 1952"
+	"authors": [{ "ref": "ednather", "role": "author" }],
+	"assets": {
+		"cover": "source:hela-kornitzka-ship-manifest",
+		"thumbnail": "source:mel-kaye-photo-1952",
+		"avatar": {
+			"src": "source:mel-kaye-photo-1952",
+			"initials": "avatar.initials",
+			"alt": "avatar.alt"
 		}
 	},
-	"sections": ["articles", "documents"],
-	"articles": ["preface", "mel-kaye-cv", "mels-hack-the-missing-bits"],
-	"featuredArticles": ["preface"],
-	"documents": ["blackjack-writeup"],
 	"figures": {
 		"auto": true,
-		"template": "Fig. %index%"
+		"template": "figures.template"
 	},
 	"sources": [
 		"mel-kaye-photo-1952",
@@ -76,5 +75,41 @@
 		"vacuum-tube-blackjack-tweet",
 		"less-is-more-fifties",
 		"awesome-computer-history"
+	],
+	"contents": [
+		{
+			"type": "part",
+			"ref": "codex",
+			"collapse": true,
+			"author": "authors.ednather",
+			"children": [{ "type": "page", "ref": "codex" }]
+		},
+		{
+			"type": "part",
+			"ref": "articles",
+			"children": [
+				{
+					"type": "page",
+					"ref": "articles/preface",
+					"title": "titles.preface",
+					"author": "authors.tomerlichtash"
+				},
+				{
+					"type": "page",
+					"ref": "articles/mel-kaye-cv",
+					"author": "authors.tomerlichtash"
+				},
+				{
+					"type": "page",
+					"ref": "articles/mels-hack-the-missing-bits",
+					"author": "authors.dfl"
+				}
+			]
+		},
+		{
+			"type": "part",
+			"ref": "appendix",
+			"children": [{ "type": "page", "ref": "documents/blackjack-writeup" }]
+		}
 	]
 }

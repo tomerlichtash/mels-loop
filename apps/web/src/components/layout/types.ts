@@ -8,8 +8,6 @@ export interface NavStoryItem {
 	slug: string;
 	title: string;
 	abstract: string;
-	featured?: boolean;
-	image?: string;
 }
 
 export interface NavItem {

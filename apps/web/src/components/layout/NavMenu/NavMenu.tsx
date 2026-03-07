@@ -8,7 +8,6 @@ import { usePathname } from 'next/navigation';
 import { useCallback, useRef, useState } from 'react';
 
 import type { NavItem } from '../types';
-import { FeaturedStoryCard } from './FeaturedStoryCard';
 import styles from './NavMenu.module.css';
 import { StoryList } from './StoryList';
 
@@ -49,9 +48,6 @@ export function NavMenu({ navItems }: NavMenuProps) {
 					const isActive = !isAbsolute && pathname.startsWith(href);
 
 					if (item.hasContent) {
-						const featured = item.stories?.find((s) => s.featured);
-						const others = item.stories?.filter((s) => !s.featured) ?? [];
-
 						return (
 							<NavigationMenu.Item key={item.key}>
 								<NavigationMenu.Trigger className={styles.trigger}>
@@ -59,12 +55,7 @@ export function NavMenu({ navItems }: NavMenuProps) {
 								</NavigationMenu.Trigger>
 								<NavigationMenu.Content className={styles.content}>
 									<div className={styles.contentPanel}>
-										<FeaturedStoryCard
-											story={featured}
-											fallbackHref={href}
-											onSelect={close}
-										/>
-										<StoryList stories={others} onSelect={close} />
+										<StoryList stories={item.stories ?? []} onSelect={close} />
 									</div>
 								</NavigationMenu.Content>
 							</NavigationMenu.Item>

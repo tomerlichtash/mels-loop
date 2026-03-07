@@ -1,6 +1,9 @@
 import {
 	getAllStories,
 	getStoryConfig,
+	getStoryMessages,
+	resolveAssetUrl,
+	resolveStoryField,
 } from '@mels-loop/content-loaders/loaders';
 import { Button, Container, Grid, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
@@ -22,13 +25,20 @@ export default async function HomePage({ params }: PageProps) {
 	const typedLocale = locale as Locale;
 
 	const storySlugs = await getAllStories();
-	const stories = await Promise.all(
-		storySlugs.map((slug) => getStoryConfig(slug)),
+	const storiesWithMessages = await Promise.all(
+		storySlugs.map(async (slug) => {
+			const [config, messages] = await Promise.all([
+				getStoryConfig(slug),
+				getStoryMessages(slug, typedLocale),
+			]);
+			const thumbnailUrl = await resolveAssetUrl(
+				config.assets?.thumbnail ?? config.assets?.cover ?? '',
+			);
+			return { config, messages, thumbnailUrl };
+		}),
 	);
 
-	const sorted = stories.sort((a, b) =>
-		a.featured === b.featured ? 0 : a.featured ? -1 : 1,
-	);
+	const sorted = [...storiesWithMessages];
 
 	const dict = await getDictionary(typedLocale);
 	const hero = dict.hero as Record<string, string>;
@@ -63,17 +73,22 @@ export default async function HomePage({ params }: PageProps) {
 					{String(dict.stories)}
 				</Text>
 				<Grid columns={3} gap="md">
-					{sorted.map((config) => (
+					{sorted.map(({ config, messages, thumbnailUrl }) => (
 						<StoryCard
 							key={config.slug}
-							config={config}
-							locale={typedLocale}
+							slug={config.slug}
+							title={resolveStoryField(
+								config.meta.title,
+								typedLocale,
+								messages,
+							)}
+							abstract={resolveStoryField(
+								config.meta.abstract,
+								typedLocale,
+								messages,
+							)}
 							thumbnailUrl={
-								config.thumbnail
-									? resolveMediaUrl(config.thumbnail)
-									: config.cover
-										? resolveMediaUrl(config.cover)
-										: undefined
+								thumbnailUrl ? resolveMediaUrl(thumbnailUrl) : undefined
 							}
 						/>
 					))}

@@ -1,13 +1,17 @@
+import { getDocumentMeta } from '@mels-loop/content-loaders/loaders';
 import {
-	getDocumentMeta,
-	getStoryConfig,
-} from '@mels-loop/content-loaders/loaders';
-import { dictGet } from '@mels-loop/i18n/dict';
-import { Card, Container, Text } from '@mels-loop/ui/primitives';
+	Card,
+	CardBody,
+	CardHeader,
+	CardMedia,
+	Container,
+	Text,
+} from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
-import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
+
+import styles from './page.module.css';
 
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string }>;
@@ -16,38 +20,47 @@ interface PageProps {
 export default async function DocumentsListingPage({ params }: PageProps) {
 	const { locale, storySlug } = await params;
 	const typedLocale = locale as Locale;
-	const [config, dict, documentsMeta] = await Promise.all([
-		getStoryConfig(storySlug),
-		getDictionary(typedLocale),
-		getDocumentMeta(storySlug, typedLocale),
-	]);
-
-	const storyTitle = config.title[typedLocale];
-	const documentsLabel = dictGet(dict, 'nav.documents');
+	const documents = await getDocumentMeta(storySlug, typedLocale);
 
 	return (
 		<Container gap="lg">
-			<Text variant="h1">
-				{documentsLabel} &mdash; {storyTitle}
-			</Text>
-			{documentsMeta.map((doc) => (
-				<Card key={doc.slug} variant="outlined" padding="md">
-					<Container direction="row" justify="between">
-						<div>
-							<Text weight={500} component="span">
-								{doc.title}
-							</Text>
-							{doc.author && (
-								<Text variant="body2" color="muted">
-									{doc.author}
-								</Text>
+			{documents.map((doc) => (
+				<Link
+					key={doc.slug}
+					href={`/stories/${storySlug}/documents/${doc.slug}`}
+					className={styles.cardLink}
+				>
+					<Card
+						variant="outlined"
+						padding="md"
+						orientation="horizontal"
+						className={styles.card}
+					>
+						<CardMedia
+							src={doc.image ?? ''}
+							alt={doc.title}
+							horizontal
+							overlay={doc.imageCaption}
+						/>
+						<div className={styles.cardContent}>
+							<CardHeader>
+								<Text variant="h3">{doc.title}</Text>
+								{doc.author && (
+									<Text variant="body2" color="muted">
+										{doc.author}
+									</Text>
+								)}
+							</CardHeader>
+							{doc.abstract && (
+								<CardBody lines={2}>
+									<Text variant="body2" color="muted">
+										{doc.abstract}
+									</Text>
+								</CardBody>
 							)}
 						</div>
-						<Link href={`/stories/${storySlug}/documents/${doc.slug}`}>
-							Read
-						</Link>
-					</Container>
-				</Card>
+					</Card>
+				</Link>
 			))}
 		</Container>
 	);

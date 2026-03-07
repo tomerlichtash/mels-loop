@@ -1,6 +1,5 @@
 'use client';
 
-import type { StoryConfig } from '@mels-loop/content-loaders/types';
 import {
 	Card,
 	CardBody,
@@ -9,34 +8,36 @@ import {
 	Text,
 } from '@mels-loop/ui/primitives';
 
-import type { Locale } from '@/i18n-init';
-
 import styles from './StoryCard.module.css';
 
 interface StoryCardProps {
-	config: StoryConfig;
-	locale: Locale;
+	slug: string;
+	title: string;
+	abstract: string;
 	thumbnailUrl?: string;
 }
 
-export function StoryCard({ config, locale, thumbnailUrl }: StoryCardProps) {
+export function StoryCard({
+	slug,
+	title,
+	abstract,
+	thumbnailUrl,
+}: StoryCardProps) {
 	return (
 		<Card
 			variant="outlined"
 			shadow="lg"
 			padding="md"
 			interactive
-			href={`/stories/${config.slug}`}
+			href={`/stories/${slug}`}
 		>
-			{thumbnailUrl && (
-				<CardMedia src={thumbnailUrl} alt={config.title[locale]} />
-			)}
+			{thumbnailUrl && <CardMedia src={thumbnailUrl} alt={title} />}
 			<CardHeader>
-				<Text className={styles.title}>{config.title[locale]}</Text>
+				<Text className={styles.title}>{title}</Text>
 			</CardHeader>
 			<CardBody>
 				<Text variant="body2" color="muted" component="p">
-					{config.abstract[locale]}
+					{abstract}
 				</Text>
 			</CardBody>
 		</Card>

@@ -1,14 +1,7 @@
 'use client';
 
 import { Button, Text, TextField, ToggleGroup } from '@mels-loop/ui/primitives';
-import {
-	BookmarkIcon,
-	Cross1Icon,
-	DrawingPinIcon,
-	MixerHorizontalIcon,
-	Pencil2Icon,
-	ReaderIcon,
-} from '@radix-ui/react-icons';
+import { Cross1Icon, MixerHorizontalIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import {
 	usePathname,
@@ -16,18 +9,12 @@ import {
 	useSearchParams,
 	useSelectedLayoutSegment,
 } from 'next/navigation';
-import {
-	type ReactNode,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-} from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import styles from './StorySections.module.css';
 
 export interface StorySection {
-	key: 'codex' | 'articles' | 'documents' | 'sources';
+	key: string;
 	label: string;
 	count?: number;
 	href: string;
@@ -42,13 +29,6 @@ export interface SourceFilterConfig {
 	clearLabel: string;
 }
 
-const sectionIcons: Record<string, ReactNode> = {
-	codex: <ReaderIcon className={styles.icon} />,
-	articles: <Pencil2Icon className={styles.icon} />,
-	documents: <BookmarkIcon className={styles.icon} />,
-	sources: <DrawingPinIcon className={styles.icon} />,
-};
-
 interface StorySectionsProps {
 	sections: StorySection[];
 	sourceFilters?: SourceFilterConfig;
@@ -56,6 +36,7 @@ interface StorySectionsProps {
 
 export function StorySections({ sections, sourceFilters }: StorySectionsProps) {
 	const segment = useSelectedLayoutSegment();
+	// Match the URL segment to a tab key; fall back to 'codex' for the story root
 	const activeKey = segment ?? 'codex';
 	const sentinelRef = useRef<HTMLDivElement>(null);
 	const [stuck, setStuck] = useState(false);
@@ -131,7 +112,6 @@ export function StorySections({ sections, sourceFilters }: StorySectionsProps) {
 										.filter(Boolean)
 										.join(' ')}
 								>
-									{sectionIcons[section.key]}
 									<Text variant="caption">{section.label}</Text>
 									{section.count != null && (
 										<Text variant="caption">({section.count})</Text>

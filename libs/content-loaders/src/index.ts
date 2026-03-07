@@ -12,6 +12,7 @@ export {
 	getResolvedStorySources,
 	getSource,
 	getSourceMessages,
+	resolveAssetUrl,
 } from './sources';
 export {
 	getAllAnnotations,
@@ -25,6 +26,9 @@ export {
 	getStoryArticle,
 	getStoryArticles,
 	getStoryConfig,
+	getStoryContents,
 	getStoryDocument,
 	getStoryDocuments,
+	getStoryMessages,
+	resolveStoryField,
 } from './stories';

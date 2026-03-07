@@ -1,0 +1,69 @@
+.root {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-xl);
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+}
+
+.sectionHeader {
+	display: flex;
+	align-items: baseline;
+	gap: var(--ml-space-sm);
+}
+
+.sectionNumber {
+	color: var(--ml-text-muted-color);
+	font-variant-numeric: tabular-nums;
+}
+
+.sectionLink {
+	color: var(--ml-text-color);
+	text-decoration: none;
+	transition: color var(--ml-duration-fast);
+}
+
+.sectionLink:hover {
+	color: var(--ml-color-primary);
+}
+
+.list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	padding-inline-start: var(--ml-space-lg);
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-xs);
+}
+
+.item {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.itemLink {
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-color-primary);
+	text-decoration: none;
+	line-height: var(--ml-line-height-normal);
+}
+
+.itemLink:hover {
+	color: var(--ml-color-secondary);
+}
+
+.author {
+	font-size: var(--ml-font-size-xs);
+	font-style: italic;
+	color: var(--ml-text-muted-color);
+}
+
+.author::before {
+	content: 'by ';
+}
