@@ -1,6 +1,8 @@
 {
 	"siteTitle": "Mel's Loop",
-	"siteSubtitle": "Hacking Folklore",
+	"siteSubtitle": "Legends of hacker folklore",
+	"siteSubtitlePrefix": "Legends of ",
+	"siteSubtitleHighlight": "hacker folklore",
 	"siteLicenseLabel": "cc",
 	"siteLicenseAttrs": "by-sa",
 	"error404": "Page not found",

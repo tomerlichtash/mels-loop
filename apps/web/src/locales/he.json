@@ -1,6 +1,8 @@
 {
 	"siteTitle": "לולאת מל",
-	"siteSubtitle": "מדריך מקיף לסיפור על מל",
+	"siteSubtitle": "אגדות פולקלור ההאקרים",
+	"siteSubtitlePrefix": "אגדות ",
+	"siteSubtitleHighlight": "פולקלור ההאקרים",
 	"siteLicenseLabel": "cc",
 	"siteLicenseAttrs": "by-sa",
 	"error404": "הדף לא נמצא",

@@ -53,7 +53,7 @@
 	--ml-color-surface-alt: var(--ml-gray-400);
 	--ml-color-surface-subtle: var(--ml-gray-500);
 	--ml-color-surface-deep: var(--ml-gray-300);
-	--ml-color-surface-muted: var(--ml-gray-400);
+	--ml-color-surface-muted: var(--ml-gray-300);
 	--ml-color-surface-contrast: var(--ml-cream-200);
 	--ml-color-surface-highlight: var(--ml-gray-300);
 
@@ -105,6 +105,9 @@
 	/* Menu */
 	--ml-menu-hover-bg: var(--ml-color-primary);
 	--ml-mobile-menu-text: var(--ml-color-secondary-highlight);
+
+	/* Border — needs more contrast against dark surfaces */
+	--ml-border-color: var(--ml-gray-200);
 
 	/* Shadow */
 	--ml-shadow:

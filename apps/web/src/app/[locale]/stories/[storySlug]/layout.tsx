@@ -14,6 +14,7 @@ import { dictGet } from '@mels-loop/i18n/dict';
 import { type ReactNode, Suspense } from 'react';
 
 import { Asides } from '@/components/stories/Asides/Asides';
+import { SourcesSummary } from '@/components/stories/SourcesSummary/SourcesSummary';
 import { StoryBreadcrumbs } from '@/components/stories/StoryBreadcrumbs/StoryBreadcrumbs';
 import { StoryHeader } from '@/components/stories/StoryHeader/StoryHeader';
 import { StoryLayout } from '@/components/stories/StoryLayout/StoryLayout';
@@ -224,13 +225,40 @@ export default async function StorySlugLayout({
 				<StorySections sections={storySections} sourceFilters={sourceFilters} />
 			</Suspense>
 			<StoryLayout
-				sidebar={
-					<Asides
-						contents={contents ?? []}
-						title={sectionLabels.contents}
-						titleHref={`${basePath}/contents`}
-					/>
-				}
+				sidebar={(() => {
+					const sourcesSummary =
+						sources.length > 0
+							? sourceTypeOrder
+									.filter((t) => existingTypes.has(t))
+									.map((t) => ({
+										label: dictGet(dict, `sources.${t}`),
+										count: sources.filter((s) => s.type === t).length,
+									}))
+							: [];
+					const hasContents = contents && contents.length > 0;
+					const hasSources = sourcesSummary.length > 0;
+
+					if (!hasContents && !hasSources) return undefined;
+
+					return (
+						<>
+							{hasContents && (
+								<Asides
+									contents={contents}
+									title={sectionLabels.contents}
+									titleHref={`${basePath}/contents`}
+								/>
+							)}
+							{hasSources && (
+								<SourcesSummary
+									label={sectionLabels.sources}
+									items={sourcesSummary}
+									href={`${basePath}/sources`}
+								/>
+							)}
+						</>
+					);
+				})()}
 			>
 				{children}
 			</StoryLayout>
