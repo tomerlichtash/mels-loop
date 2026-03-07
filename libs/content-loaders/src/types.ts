@@ -59,6 +59,7 @@ export interface StoryConfig {
 		initials?: Record<string, string>;
 	};
 	cover?: string;
+	thumbnail?: string;
 	articles: string[];
 	featuredArticles?: string[];
 	documents?: string[];

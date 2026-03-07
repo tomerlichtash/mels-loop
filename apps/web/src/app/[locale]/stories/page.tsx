@@ -9,6 +9,7 @@ import { StoryCard } from '@/components/stories/StoryCard/StoryCard';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 import { homeItemFromDict } from '@/lib/breadcrumbs';
+import { resolveMediaUrl } from '@/lib/media-url';
 
 interface PageProps {
 	params: Promise<{ locale: string }>;
@@ -40,7 +41,18 @@ export default async function StoriesPage({ params }: PageProps) {
 		>
 			<div>
 				{sorted.map((config) => (
-					<StoryCard key={config.slug} config={config} locale={typedLocale} />
+					<StoryCard
+						key={config.slug}
+						config={config}
+						locale={typedLocale}
+						thumbnailUrl={
+							config.thumbnail
+								? resolveMediaUrl(config.thumbnail)
+								: config.cover
+									? resolveMediaUrl(config.cover)
+									: undefined
+						}
+					/>
 				))}
 			</div>
 		</StaticPage>

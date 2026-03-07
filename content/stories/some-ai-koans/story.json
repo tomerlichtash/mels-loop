@@ -1,0 +1,20 @@
+{
+	"slug": "some-ai-koans",
+	"title": {
+		"en": "Some AI Koans",
+		"he": "קואנים לאינטליגנציה מלאכותית"
+	},
+	"abstract": {
+		"en": "Zen-like parables told at the MIT AI Lab about noted hackers, Lisp machines, and the nature of enlightenment",
+		"he": "משלים בסגנון זן שסופרו במעבדת הבינה המלאכותית של MIT על האקרים מפורסמים, מכונות ליספ וטבע ההארה"
+	},
+	"thumbnail": "/media/images/dec-pdp-6.jpg",
+	"featured": false,
+	"sections": [],
+	"articles": [],
+	"sources": [
+		"marvin-minsky-wikipedia",
+		"gerald-sussman-wikipedia",
+		"dec-pdp-6-photo"
+	]
+}

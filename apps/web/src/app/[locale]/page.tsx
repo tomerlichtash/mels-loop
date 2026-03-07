@@ -9,6 +9,7 @@ import { GlyphShift } from '@/components/home/GlyphShift/GlyphShift';
 import { StoryCard } from '@/components/stories/StoryCard/StoryCard';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
+import { resolveMediaUrl } from '@/lib/media-url';
 
 import styles from './page.module.css';
 
@@ -63,7 +64,18 @@ export default async function HomePage({ params }: PageProps) {
 				</Text>
 				<Grid columns={3} gap="md">
 					{sorted.map((config) => (
-						<StoryCard key={config.slug} config={config} locale={typedLocale} />
+						<StoryCard
+							key={config.slug}
+							config={config}
+							locale={typedLocale}
+							thumbnailUrl={
+								config.thumbnail
+									? resolveMediaUrl(config.thumbnail)
+									: config.cover
+										? resolveMediaUrl(config.cover)
+										: undefined
+							}
+						/>
 					))}
 				</Grid>
 			</section>

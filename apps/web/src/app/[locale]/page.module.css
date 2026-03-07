@@ -7,7 +7,7 @@
 	max-width: 540px;
 	gap: var(--ml-space-md);
 	margin: 0 auto;
-	min-height: calc(80svh - var(--ml-header-height) - var(--ml-space-xl) * 2);
+	min-height: calc(50svh - var(--ml-header-height) - var(--ml-space-xl) * 2);
 }
 
 .heroTitle {

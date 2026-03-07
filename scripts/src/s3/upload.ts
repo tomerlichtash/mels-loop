@@ -20,9 +20,9 @@ export async function collectFiles(
 	const stat = await fs.promises.lstat(resolved);
 
 	if (stat.isFile()) {
-		return [
-			{ filePath: resolved, key: encodeURIComponent(path.basename(resolved)) },
-		];
+		const dirName = path.basename(path.dirname(resolved));
+		const fileName = encodeURIComponent(path.basename(resolved));
+		return [{ filePath: resolved, key: `${dirName}/${fileName}` }];
 	}
 
 	if (!stat.isDirectory()) {

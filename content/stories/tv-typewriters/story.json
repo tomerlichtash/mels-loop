@@ -1,0 +1,16 @@
+{
+	"slug": "tv-typewriters",
+	"title": {
+		"en": "TV Typewriters: A Tale of Hackish Ingenuity",
+		"he": "מכונות כתיבה טלוויזיוניות: אגדה על תושיה האקרית"
+	},
+	"abstract": {
+		"en": "Two hackers smuggle a computer terminal into a hospital by convincing a guard it's a 'TV typewriter'",
+		"he": "שני האקרים מבריחים מסוף מחשב לבית חולים כשהם משכנעים שומר שמדובר ב-״מכונת כתיבה טלוויזיונית״"
+	},
+	"thumbnail": "/media/images/adm-3a-terminal.jpg",
+	"featured": false,
+	"sections": [],
+	"articles": [],
+	"sources": ["adm-3a-terminal-photo"]
+}

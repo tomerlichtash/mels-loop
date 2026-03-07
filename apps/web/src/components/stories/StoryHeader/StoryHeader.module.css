@@ -27,7 +27,7 @@
 	gap: var(--ml-space-xl);
 	max-width: var(--ml-page-max-width);
 	margin: 0 auto;
-	padding: var(--ml-space-3xl) var(--ml-page-padding-horizontal);
+	padding: calc(var(--ml-space-3xl) * 2) var(--ml-page-padding-horizontal);
 }
 
 .avatar {
