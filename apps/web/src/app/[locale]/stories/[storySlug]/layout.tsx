@@ -241,14 +241,8 @@ export default async function StorySlugLayout({
 					if (!hasContents && !hasSources) return undefined;
 
 					return (
-						<>
-							{hasContents && (
-								<Asides
-									contents={contents}
-									title={sectionLabels.contents}
-									titleHref={`${basePath}/contents`}
-								/>
-							)}
+						<div>
+							{hasContents && <Asides contents={contents} />}
 							{hasSources && (
 								<SourcesSummary
 									label={sectionLabels.sources}
@@ -256,7 +250,7 @@ export default async function StorySlugLayout({
 									href={`${basePath}/sources`}
 								/>
 							)}
-						</>
+						</div>
 					);
 				})()}
 			>

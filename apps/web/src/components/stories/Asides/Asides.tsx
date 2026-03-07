@@ -14,8 +14,6 @@ import styles from './Asides.module.css';
 
 interface AsidesProps {
 	contents: ResolvedContentsEntry[];
-	title?: string;
-	titleHref?: string;
 }
 
 function EntryLink({
@@ -50,14 +48,13 @@ function EntryLink({
 	);
 }
 
-export function Asides({ contents, title, titleHref }: AsidesProps) {
+export function Asides({ contents }: AsidesProps) {
 	const pathname = usePathname();
 
 	if (contents.length === 0) return null;
 
 	return (
 		<TimelineNav>
-			{title && <TimelineSection label={title} labelHref={titleHref} />}
 			{contents.map((entry) => {
 				if (entry.type === 'part') {
 					if (entry.collapse && entry.href) {

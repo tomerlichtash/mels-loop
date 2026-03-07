@@ -4,6 +4,7 @@
 	border-radius: var(--ml-radius-md);
 	border: 1px solid var(--ml-border-color);
 	padding: 0 var(--ml-space-md) var(--ml-space-sm);
+	margin-block-start: var(--ml-space-lg);
 }
 
 .label {
