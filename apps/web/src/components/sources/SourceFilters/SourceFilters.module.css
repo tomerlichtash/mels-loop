@@ -1,9 +1,23 @@
 .toolbar {
+	width: 100vw;
+	margin-inline-start: calc(-50vw + 50%);
+	box-shadow: inset 0 -1px 0 var(--ml-border-color);
+	background-color: color-mix(
+		in srgb,
+		var(--ml-surface-background-color) 60%,
+		transparent
+	);
+	backdrop-filter: blur(12px);
+}
+
+.toolbarInner {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	justify-content: space-between;
 	gap: var(--ml-space-sm);
-	align-self: stretch;
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	padding: var(--ml-space-xs) var(--ml-page-padding-horizontal);
 }
 
 .filters {
@@ -12,7 +26,7 @@
 	gap: var(--ml-space-xs);
 }
 
-.toolbarEnd {
+.toolbarStart {
 	display: flex;
 	align-items: center;
 	gap: var(--ml-space-xs);
@@ -33,109 +47,160 @@
 /* Table */
 
 .tableWrap {
-	border: 1px solid var(--ml-border-color);
-	border-radius: var(--ml-radius-md);
 	overflow: hidden;
 	align-self: stretch;
 }
 
-.headerRow {
-	display: flex;
+.table {
 	width: 100%;
-	overflow: hidden;
-	background-color: var(--ml-background-color-alt);
-	border-bottom: 1px solid var(--ml-border-color);
+	border-collapse: collapse;
+	table-layout: auto;
+	font-size: var(--ml-font-size-sm);
 }
 
 .th {
-	padding: var(--ml-space-xs) var(--ml-space-lg);
+	padding: var(--ml-space-xs) var(--ml-space-sm);
 	font-weight: var(--ml-font-weight-bold);
 	font-size: var(--ml-font-size-xs);
 	color: var(--ml-text-muted-color);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	flex-shrink: 0;
-}
-
-.listBody {
-	width: 100%;
-	font-size: var(--ml-font-size-sm);
+	text-align: start;
+	border-bottom: 1px solid var(--ml-border-color);
+	cursor: pointer;
 	user-select: none;
 }
 
-.row {
-	width: 100%;
-	cursor: pointer;
+.thActions {
+	width: 28px;
+	border-bottom: 1px solid var(--ml-border-color);
+}
+
+.td {
+	padding: var(--ml-space-sm) var(--ml-space-sm);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 300px;
+}
+
+.tdActions {
+	width: 28px;
+	padding: 0;
+}
+
+.tdDetail {
+	padding: 0;
+}
+
+/* Row groups */
+
+.rowGroup {
 	border-bottom: 1px solid
 		color-mix(in srgb, var(--ml-border-color) 40%, transparent);
 }
 
-.row:hover {
-	background-color: var(--ml-background-color-alt);
-}
-
-.rowExpanded {
+.rowGroupExpanded {
 	background-color: color-mix(
 		in srgb,
 		var(--ml-background-color-alt) 50%,
 		transparent
 	);
 	border-bottom-color: var(--ml-border-color);
-	cursor: text;
 }
 
-.rowExpanded .nameText,
-.rowExpanded .descText {
+.row {
+	cursor: pointer;
+}
+
+.row:hover {
+	background-color: var(--ml-background-color-alt);
+}
+
+.rowGroupExpanded .nameText,
+.rowGroupExpanded .descText {
 	font-weight: var(--ml-font-weight-bold);
 }
 
-.rowCells {
+.detailRow {
+	cursor: auto;
+}
+
+/* Cell content */
+
+.nameText {
+	color: var(--ml-text-color);
+	font-size: var(--ml-font-size-body);
+	font-weight: 500;
+}
+
+.descText {
+	color: var(--ml-text-color);
+	opacity: 0.7;
+	font-size: var(--ml-font-size-body);
+}
+
+.metaText {
+	color: var(--ml-text-muted-color);
+	font-size: var(--ml-font-size-sm);
+}
+
+.cellTags {
 	display: flex;
-	width: 100%;
+	flex-wrap: wrap;
+	gap: 2px;
+}
+
+.cellTag {
+	display: inline-block;
+	padding: 0.1rem 0.4rem;
+	border-radius: var(--ml-radius-sm);
+	font-size: var(--ml-font-size-xs);
+	background-color: var(--ml-background-color-alt);
+	color: var(--ml-text-muted-color);
+	border: 1px solid var(--ml-border-color);
+}
+
+.cellActions {
+	display: flex;
 	align-items: center;
-	overflow: hidden;
-}
-
-.cell {
-	padding: var(--ml-space-sm) var(--ml-space-lg);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	justify-content: center;
+	width: 28px;
 	flex-shrink: 0;
+	color: var(--ml-text-muted-color);
+	opacity: 0;
+	transition: opacity var(--ml-duration-fast) ease;
 }
 
-.cellDesc {
-	padding: var(--ml-space-sm) var(--ml-space-lg);
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	flex: 1;
-	min-width: 0;
+.row:hover .cellActions {
+	opacity: 1;
 }
 
-/* Detail panel – accordion animation */
-
-.detailWrap {
-	display: grid;
-	grid-template-rows: 0fr;
-	transition: grid-template-rows 200ms ease;
+.cellClose {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	flex-shrink: 0;
+	padding: 0;
+	border: none;
+	background: none;
+	color: var(--ml-text-muted-color);
+	cursor: pointer;
+	border-radius: var(--ml-radius-sm);
+	transition: color var(--ml-duration-fast) ease;
 }
 
-.detailWrap[data-open] {
-	grid-template-rows: 1fr;
+.cellClose:hover {
+	color: var(--ml-text-color);
 }
 
-.detailInner {
-	overflow: hidden;
-}
+/* Detail panel */
 
 .detail {
 	position: relative;
-	padding: var(--ml-space-md) var(--ml-space-lg) var(--ml-space-lg);
-	padding-inline-start: var(--ml-space-lg);
+	padding: var(--ml-space-md) var(--ml-space-sm) var(--ml-space-lg);
 	display: flex;
 	gap: var(--ml-space-lg);
 	font-size: var(--ml-font-size-body);
@@ -251,70 +316,16 @@
 	text-decoration: underline;
 }
 
-.cellActions {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 28px;
-	margin-inline-end: var(--ml-space-sm);
-	flex-shrink: 0;
-	color: var(--ml-text-muted-color);
-	opacity: 0;
-	transition: opacity var(--ml-duration-fast) ease;
-}
-
-.row:hover .cellActions {
-	opacity: 1;
-}
-
-.cellClose {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 28px;
-	margin-inline-end: var(--ml-space-sm);
-	flex-shrink: 0;
-	padding: 0;
-	border: none;
-	background: none;
-	color: var(--ml-text-muted-color);
-	cursor: pointer;
-	border-radius: var(--ml-radius-sm);
-	transition: color var(--ml-duration-fast) ease;
-}
-
-.cellClose:hover {
-	color: var(--ml-text-color);
-}
-
-.descText {
-	color: var(--ml-text-color);
-	opacity: 0.7;
-	font-size: var(--ml-font-size-body);
-}
-
-.nameText {
-	color: var(--ml-text-color);
-	font-size: var(--ml-font-size-body);
-	font-weight: 500;
-}
-
 /* Scroll area */
 
 .scrollRoot {
-	height: calc(100vh - 280px);
+	height: 100vh;
 	overflow: hidden;
 }
 
 .scrollViewport {
 	width: 100%;
 	height: 100%;
-}
-
-/* Override Radix ScrollArea inner wrapper that uses display:table,
-   which prevents flex children from being width-constrained */
-.scrollViewport > div {
-	display: block !important;
 }
 
 .scrollbar {

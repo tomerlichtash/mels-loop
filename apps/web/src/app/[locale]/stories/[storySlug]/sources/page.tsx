@@ -10,8 +10,9 @@ import { getDirection, getLocales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Container } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
-import { SourceFilters } from '@/components/sources/SourceFilters/SourceFilters';
+import { SourceCards } from '@/components/sources/SourceCards/SourceCards';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 
@@ -69,33 +70,17 @@ export default async function StorySourcesPage({ params }: PageProps) {
 		sources: groups.get(type)!,
 	}));
 
-	const typeLabels = Object.fromEntries(
-		TYPE_ORDER.map((t) => [t, dictGet(dict, `sources.${t}`)]),
-	) as Record<SourceType, string>;
-
-	const columnLabels = {
-		name: dictGet(dict, 'sources.colName'),
-		description: dictGet(dict, 'sources.colDescription'),
-		type: dictGet(dict, 'sources.colType'),
-		date: dictGet(dict, 'sources.colDate'),
-		source: dictGet(dict, 'sources.colSource'),
-		searchPlaceholder: dictGet(dict, 'sources.searchPlaceholder'),
-	};
-
-	return (
+	return sourceGroups.length === 0 ? (
 		<Container gap="lg">
-			{sourceGroups.length === 0 ? (
-				<p>{dictGet(dict, 'sources.noSources')}</p>
-			) : (
-				<SourceFilters
-					groups={sourceGroups}
-					allLabel={dictGet(dict, 'sources.all')}
-					typeLabels={typeLabels}
-					columnLabels={columnLabels}
-					dir={getDirection(typedLocale)}
-					maxHeight="650px"
-				/>
-			)}
+			<p>{dictGet(dict, 'sources.noSources')}</p>
 		</Container>
+	) : (
+		<Suspense>
+			<SourceCards
+				groups={sourceGroups}
+				locale={locale}
+				dir={getDirection(typedLocale)}
+			/>
+		</Suspense>
 	);
 }

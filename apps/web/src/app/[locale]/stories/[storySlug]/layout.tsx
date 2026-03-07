@@ -2,11 +2,12 @@ import {
 	getArticleMeta,
 	getCodex,
 	getDocumentMeta,
+	getResolvedStorySources,
 	getStoryConfig,
 } from '@mels-loop/content-loaders/loaders';
-import type { ArticleMeta } from '@mels-loop/content-loaders/types';
+import type { ArticleMeta, SourceType } from '@mels-loop/content-loaders/types';
 import { dictGet } from '@mels-loop/i18n/dict';
-import type { ReactNode } from 'react';
+import { type ReactNode, Suspense } from 'react';
 
 import { Asides, type AsideSection } from '@/components/stories/Asides/Asides';
 import { StoryBreadcrumbs } from '@/components/stories/StoryBreadcrumbs/StoryBreadcrumbs';
@@ -14,6 +15,7 @@ import { StoryHeader } from '@/components/stories/StoryHeader/StoryHeader';
 import { StoryLayout } from '@/components/stories/StoryLayout/StoryLayout';
 import { StoryPanel } from '@/components/stories/StoryPanel/StoryPanel';
 import {
+	type SourceFilterConfig,
 	type StorySection,
 	StorySections,
 } from '@/components/stories/StorySections/StorySections';
@@ -40,12 +42,13 @@ export default async function StorySlugLayout({
 	const { locale, storySlug } = await params;
 	const typedLocale = locale as Locale;
 
-	const [config, content, articlesMeta, documentsMeta, dict] =
+	const [config, content, articlesMeta, documentsMeta, sources, dict] =
 		await Promise.all([
 			getStoryConfig(storySlug),
 			getCodex(storySlug, typedLocale),
 			getArticleMeta(storySlug, typedLocale),
 			getDocumentMeta(storySlug, typedLocale),
+			getResolvedStorySources(storySlug, typedLocale),
 			getDictionary(typedLocale),
 		]);
 
@@ -90,6 +93,36 @@ export default async function StorySlugLayout({
 		}
 	}
 
+	const sourceTypeOrder: SourceType[] = [
+		'image',
+		'pdf',
+		'audio',
+		'video',
+		'link',
+		'text',
+		'archive',
+		'other',
+	];
+
+	const existingTypes = new Set(sources.map((s) => s.type));
+
+	const sourceFilters: SourceFilterConfig | undefined =
+		sources.length > 0
+			? {
+					allLabel: dictGet(dict, 'sources.all'),
+					types: sourceTypeOrder
+						.filter((t) => existingTypes.has(t))
+						.map((t) => ({
+							value: t,
+							label: dictGet(dict, `sources.${t}`),
+						})),
+					searchPlaceholder: dictGet(dict, 'sources.filterPlaceholder'),
+					filterLabel: dictGet(dict, 'sources.toggleFilters'),
+					filterByLabel: dictGet(dict, 'sources.filterBy'),
+					clearLabel: dictGet(dict, 'sources.clearFilters'),
+				}
+			: undefined;
+
 	return (
 		<>
 			<StoryPanel>
@@ -113,35 +146,38 @@ export default async function StorySlugLayout({
 				avatarAlt={config.avatar?.alt[typedLocale]}
 				avatarFallback={config.avatar?.initials?.[typedLocale]}
 			/>
-			<StorySections
-				sections={
-					[
-						{
-							key: 'codex' as const,
-							label: sectionLabels.codex,
-							href: `/stories/${storySlug}`,
-						},
-						articlesMeta.length > 0 && {
-							key: 'articles' as const,
-							label: sectionLabels.articles,
-							count: articlesMeta.length,
-							href: `/stories/${storySlug}/articles`,
-						},
-						documentsMeta.length > 0 && {
-							key: 'documents' as const,
-							label: sectionLabels.documents,
-							count: documentsMeta.length,
-							href: `/stories/${storySlug}/documents`,
-						},
-						(config.sources?.length ?? 0) > 0 && {
-							key: 'sources' as const,
-							label: sectionLabels.sources,
-							count: config.sources!.length,
-							href: `/stories/${storySlug}/sources`,
-						},
-					].filter(Boolean) as StorySection[]
-				}
-			/>
+			<Suspense>
+				<StorySections
+					sections={
+						[
+							{
+								key: 'codex' as const,
+								label: sectionLabels.codex,
+								href: `/stories/${storySlug}`,
+							},
+							articlesMeta.length > 0 && {
+								key: 'articles' as const,
+								label: sectionLabels.articles,
+								count: articlesMeta.length,
+								href: `/stories/${storySlug}/articles`,
+							},
+							documentsMeta.length > 0 && {
+								key: 'documents' as const,
+								label: sectionLabels.documents,
+								count: documentsMeta.length,
+								href: `/stories/${storySlug}/documents`,
+							},
+							(config.sources?.length ?? 0) > 0 && {
+								key: 'sources' as const,
+								label: sectionLabels.sources,
+								count: config.sources!.length,
+								href: `/stories/${storySlug}/sources`,
+							},
+						].filter(Boolean) as StorySection[]
+					}
+					sourceFilters={sourceFilters}
+				/>
+			</Suspense>
 			<StoryLayout sidebar={<Asides sections={sections} />}>
 				{children}
 			</StoryLayout>

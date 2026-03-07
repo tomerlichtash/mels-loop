@@ -111,6 +111,8 @@ export default async function GlobalSourcesPage({
 		type: dictGet(dict, 'sources.colType'),
 		date: dictGet(dict, 'sources.colDate'),
 		source: dictGet(dict, 'sources.colSource'),
+		license: dictGet(dict, 'sources.colLicense'),
+		tags: dictGet(dict, 'sources.colTags'),
 		searchPlaceholder: dictGet(dict, 'sources.searchPlaceholder'),
 	};
 

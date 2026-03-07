@@ -1,11 +1,12 @@
 import * as RadixToggleGroup from '@radix-ui/react-toggle-group';
 import cn from 'classnames';
+import type { ReactNode } from 'react';
 
 import styles from './ToggleGroup.module.css';
 
 export interface ToggleGroupItemProps {
 	value: string;
-	label: string;
+	label: ReactNode;
 	className?: string;
 	'aria-label'?: string;
 }

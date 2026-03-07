@@ -1,3 +1,9 @@
+export {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from './Accordion';
 export { Alert } from './Alert/Alert';
 export { Avatar } from './Avatar/Avatar';
 export { Badge } from './Badge/Badge';

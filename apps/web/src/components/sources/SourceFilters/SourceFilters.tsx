@@ -10,6 +10,8 @@ import {
 	Cross2Icon,
 	DotsVerticalIcon,
 	ExternalLinkIcon,
+	RowsIcon,
+	RowSpacingIcon,
 } from '@radix-ui/react-icons';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {
@@ -18,7 +20,6 @@ import {
 	getCoreRowModel,
 	getFilteredRowModel,
 	getSortedRowModel,
-	type Header,
 	type SortingState,
 	useReactTable,
 } from '@tanstack/react-table';
@@ -38,6 +39,8 @@ interface ColumnLabels {
 	description: string;
 	type: string;
 	date: string;
+	license: string;
+	tags: string;
 	source: string;
 	searchPlaceholder: string;
 }
@@ -59,8 +62,6 @@ function createColumns(
 		{
 			accessorKey: 'title',
 			header: columnLabels.source,
-			size: 220,
-			minSize: 120,
 			cell: ({ row }) => (
 				<span className={styles.nameText}>{row.original.title}</span>
 			),
@@ -69,7 +70,6 @@ function createColumns(
 			id: 'description',
 			accessorFn: (row) => row.summary ?? row.description,
 			header: columnLabels.description,
-			minSize: 120,
 			cell: ({ getValue }) => (
 				<span className={styles.descText}>{(getValue() as string) ?? '—'}</span>
 			),
@@ -77,8 +77,6 @@ function createColumns(
 		{
 			accessorKey: 'type',
 			header: columnLabels.type,
-			size: 110,
-			minSize: 60,
 			cell: ({ getValue }) => {
 				const type = getValue() as SourceType;
 				return (
@@ -88,30 +86,45 @@ function createColumns(
 				);
 			},
 		},
+		{
+			accessorKey: 'date',
+			header: columnLabels.date,
+			cell: ({ getValue }) => (
+				<span className={styles.metaText}>{(getValue() as string) ?? '—'}</span>
+			),
+		},
+		{
+			accessorKey: 'license',
+			header: columnLabels.license,
+			cell: ({ getValue }) => {
+				const license = getValue() as string | undefined;
+				return (
+					<span className={styles.metaText}>
+						{license && license !== 'unknown' ? license : '—'}
+					</span>
+				);
+			},
+		},
+		{
+			id: 'tags',
+			accessorFn: (row) => row.tags?.join(', ') ?? '',
+			header: columnLabels.tags,
+			cell: ({ row }) => {
+				const tags = row.original.tags;
+				if (!tags || tags.length === 0)
+					return <span className={styles.metaText}>—</span>;
+				return (
+					<div className={styles.cellTags}>
+						{tags.map((tag) => (
+							<span key={tag} className={styles.cellTag}>
+								{tag}
+							</span>
+						))}
+					</div>
+				);
+			},
+		},
 	];
-}
-
-function SortableHeader({
-	header,
-}: {
-	header: Header<ResolvedSource, unknown>;
-}) {
-	const isDesc = header.id === 'description';
-	return (
-		<div
-			className={styles.th}
-			style={{
-				width: isDesc ? undefined : header.getSize(),
-				flex: isDesc ? '1 1 0%' : undefined,
-				cursor: header.column.getCanSort() ? 'pointer' : 'default',
-				userSelect: 'none',
-			}}
-			onClick={header.column.getToggleSortingHandler()}
-		>
-			{flexRender(header.column.columnDef.header, header.getContext())}
-			{{ asc: ' ↑', desc: ' ↓' }[header.column.getIsSorted() as string] ?? ''}
-		</div>
-	);
 }
 
 function SourceDetail({ source }: { source: ResolvedSource }) {
@@ -218,17 +231,26 @@ export function SourceFilters({
 	const [activeType, setActiveType] = useState<SourceType | null>(null);
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [globalFilter, setGlobalFilter] = useState('');
-	const [expandedId, setExpandedId] = useState<string | null>(null);
+	const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 	const viewportRef = useRef<HTMLDivElement>(null);
 
+	const toggleExpanded = (id: string) => {
+		setExpandedIds((prev) => {
+			const next = new Set(prev);
+			if (next.has(id)) next.delete(id);
+			else next.add(id);
+			return next;
+		});
+	};
+
 	useEffect(() => {
-		if (!expandedId) return;
+		if (expandedIds.size === 0) return;
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') setExpandedId(null);
+			if (e.key === 'Escape') setExpandedIds(new Set());
 		};
 		document.addEventListener('keydown', handleKeyDown);
 		return () => document.removeEventListener('keydown', handleKeyDown);
-	}, [expandedId]);
+	}, [expandedIds]);
 
 	const columns = useMemo(
 		() => createColumns(columnLabels, typeLabels),
@@ -250,7 +272,6 @@ export function SourceFilters({
 		state: { sorting, globalFilter },
 		onSortingChange: setSorting,
 		onGlobalFilterChange: setGlobalFilter,
-		enableColumnResizing: false,
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
@@ -260,50 +281,67 @@ export function SourceFilters({
 
 	const handleFilter = (type: SourceType | null) => {
 		setActiveType(type);
-		setExpandedId(null);
 		viewportRef.current?.scrollTo(0, 0);
+	};
+
+	const expandAll = () => {
+		setExpandedIds(new Set(rows.map((r) => r.original.id)));
+	};
+
+	const collapseAll = () => {
+		setExpandedIds(new Set());
 	};
 
 	return (
 		<>
 			<div className={styles.toolbar}>
-				<div className={styles.filters}>
+				<div className={styles.toolbarInner}>
+					<div className={styles.toolbarStart}>
+						<TextField
+							type="search"
+							size="sm"
+							placeholder={columnLabels.searchPlaceholder}
+							value={globalFilter}
+							onChange={(e) => {
+								setGlobalFilter(e.target.value);
+								setExpandedIds(new Set());
+								viewportRef.current?.scrollTo(0, 0);
+							}}
+						/>
+					</div>
+					<div className={styles.filters}>
+						<Button
+							variant="outlined"
+							size="xs"
+							active={activeType === null}
+							onClick={() => handleFilter(null)}
+						>
+							{allLabel}
+							<span className={styles.filterCount}>({totalCount})</span>
+						</Button>
+						{groups.map((group) => (
+							<Button
+								key={group.type}
+								variant="outlined"
+								size="xs"
+								active={activeType === group.type}
+								onClick={() => handleFilter(group.type)}
+							>
+								{group.label}
+								<span className={styles.filterCount}>
+									({group.sources.length})
+								</span>
+							</Button>
+						))}
+					</div>
 					<Button
 						variant="outlined"
-						size="sm"
-						active={activeType === null}
-						onClick={() => handleFilter(null)}
+						size="xs"
+						onClick={expandedIds.size > 0 ? collapseAll : expandAll}
 					>
-						{allLabel}
-						<span className={styles.filterCount}>({totalCount})</span>
+						{expandedIds.size > 0 ? <RowsIcon /> : <RowSpacingIcon />}
+						{expandedIds.size > 0 ? 'Collapse' : 'Expand'}
 					</Button>
-					{groups.map((group) => (
-						<Button
-							key={group.type}
-							variant="outlined"
-							size="sm"
-							active={activeType === group.type}
-							onClick={() => handleFilter(group.type)}
-						>
-							{group.label}
-							<span className={styles.filterCount}>
-								({group.sources.length})
-							</span>
-						</Button>
-					))}
-				</div>
-				<div className={styles.toolbarEnd}>
-					<TextField
-						type="search"
-						size="sm"
-						placeholder={columnLabels.searchPlaceholder}
-						value={globalFilter}
-						onChange={(e) => {
-							setGlobalFilter(e.target.value);
-							setExpandedId(null);
-							viewportRef.current?.scrollTo(0, 0);
-						}}
-					/>
 				</div>
 			</div>
 			{globalFilter.trim() && (
@@ -312,16 +350,6 @@ export function SourceFilters({
 				</p>
 			)}
 			<div className={styles.tableWrap} dir={dir}>
-				<div className={styles.headerRow}>
-					{table
-						.getHeaderGroups()
-						.map((headerGroup) =>
-							headerGroup.headers.map((header) => (
-								<SortableHeader key={header.id} header={header} />
-							)),
-						)}
-					<div style={{ width: 28, flexShrink: 0 }} />
-				</div>
 				<ScrollArea.Root
 					className={styles.scrollRoot}
 					dir={dir}
@@ -331,68 +359,87 @@ export function SourceFilters({
 						ref={viewportRef}
 						className={styles.scrollViewport}
 					>
-						<div className={styles.listBody}>
+						<table className={styles.table}>
+							<thead>
+								{table.getHeaderGroups().map((headerGroup) => (
+									<tr key={headerGroup.id}>
+										{headerGroup.headers.map((header) => (
+											<th
+												key={header.id}
+												className={styles.th}
+												onClick={header.column.getToggleSortingHandler()}
+											>
+												{flexRender(
+													header.column.columnDef.header,
+													header.getContext(),
+												)}
+												{{
+													asc: ' ↑',
+													desc: ' ↓',
+												}[header.column.getIsSorted() as string] ?? ''}
+											</th>
+										))}
+										<th className={styles.thActions} />
+									</tr>
+								))}
+							</thead>
 							{rows.map((row) => {
-								const isExpanded = row.original.id === expandedId;
+								const isExpanded = expandedIds.has(row.original.id);
 								return (
-									<div
+									<tbody
 										key={row.id}
-										className={`${styles.row} ${isExpanded ? styles.rowExpanded : ''}`}
+										className={[
+											styles.rowGroup,
+											isExpanded && styles.rowGroupExpanded,
+										]
+											.filter(Boolean)
+											.join(' ')}
 									>
-										<div
-											className={styles.rowCells}
-											onClick={() => setExpandedId(row.original.id)}
+										<tr
+											className={styles.row}
+											onClick={() => toggleExpanded(row.original.id)}
 										>
-											{row.getVisibleCells().map((cell) => {
-												const isDesc = cell.column.id === 'description';
-												return (
-													<div
-														key={cell.id}
-														className={isDesc ? styles.cellDesc : styles.cell}
-														style={
-															isDesc
-																? undefined
-																: {
-																		width: cell.column.getSize(),
-																	}
-														}
+											{row.getVisibleCells().map((cell) => (
+												<td key={cell.id} className={styles.td}>
+													{flexRender(
+														cell.column.columnDef.cell,
+														cell.getContext(),
+													)}
+												</td>
+											))}
+											<td className={styles.tdActions}>
+												{isExpanded ? (
+													<button
+														type="button"
+														className={styles.cellClose}
+														onClick={(e) => {
+															e.stopPropagation();
+															toggleExpanded(row.original.id);
+														}}
 													>
-														{flexRender(
-															cell.column.columnDef.cell,
-															cell.getContext(),
-														)}
+														<Cross2Icon />
+													</button>
+												) : (
+													<div className={styles.cellActions}>
+														<DotsVerticalIcon />
 													</div>
-												);
-											})}
-											{isExpanded ? (
-												<button
-													type="button"
-													className={styles.cellClose}
-													onClick={(e) => {
-														e.stopPropagation();
-														setExpandedId(null);
-													}}
+												)}
+											</td>
+										</tr>
+										{isExpanded && (
+											<tr className={styles.detailRow}>
+												<td
+													colSpan={columns.length + 1}
+													className={styles.tdDetail}
 												>
-													<Cross2Icon />
-												</button>
-											) : (
-												<div className={styles.cellActions}>
-													<DotsVerticalIcon />
-												</div>
-											)}
-										</div>
-										<div
-											className={styles.detailWrap}
-											data-open={isExpanded || undefined}
-										>
-											<div className={styles.detailInner}>
-												<SourceDetail source={row.original} />
-											</div>
-										</div>
-									</div>
+													<SourceDetail source={row.original} />
+												</td>
+											</tr>
+										)}
+									</tbody>
 								);
 							})}
-						</div>
+						</table>
 					</ScrollArea.Viewport>
 					<ScrollArea.Scrollbar
 						className={styles.scrollbar}
