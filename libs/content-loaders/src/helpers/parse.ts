@@ -25,5 +25,19 @@ export function resolveSource(
 	source: Source,
 	messages: SourceMessages,
 ): ResolvedSource {
-	return { ...source, ...messages };
+	return {
+		...source,
+		...messages,
+		url: resolveMediaPath(source.url),
+	};
+}
+
+const MEDIA_PREFIX = '/media/';
+
+function resolveMediaPath(url: string): string {
+	if (!url.startsWith(MEDIA_PREFIX)) return url;
+	const bucket = process.env.AWS_BUCKET;
+	const region = process.env.AWS_REGION;
+	if (!bucket || !region) return url;
+	return `https://${bucket}.s3.${region}.amazonaws.com/${url.slice(MEDIA_PREFIX.length)}`;
 }

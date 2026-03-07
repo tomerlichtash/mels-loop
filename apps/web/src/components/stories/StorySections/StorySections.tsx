@@ -45,7 +45,9 @@ export function StorySections({ sections }: StorySectionsProps) {
 						<Link
 							key={section.key}
 							href={section.href}
-							className={`${styles.section} ${isActive ? styles.sectionActive : ''}`}
+							className={[styles.section, isActive && styles.sectionActive]
+								.filter(Boolean)
+								.join(' ')}
 						>
 							{sectionIcons[section.key]}
 							<span className={styles.label}>{section.label}</span>

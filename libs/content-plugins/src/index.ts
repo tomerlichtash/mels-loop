@@ -8,6 +8,7 @@ import remarkDirective from 'remark-directive';
 import { rehypeFigureImages } from './rehype/figure-images';
 import { rehypeFigureIndex } from './rehype/figure-index';
 import { rehypeLines } from './rehype/lines';
+import { rehypeMediaBaseUrl } from './rehype/media-base-url';
 import { rehypeSourceImages } from './rehype/source-images';
 import { rehypeTableVariants } from './rehype/table-variants';
 import { remarkAnnotationLinks } from './remark/annotation-links';
@@ -24,6 +25,13 @@ import { remarkStripComments } from './remark/strip-comments';
 import { remarkTableDirective } from './remark/table-directive';
 import { remarkVerse } from './remark/verse';
 
+function buildMediaBaseUrl(): string {
+	const bucket = process.env.AWS_BUCKET;
+	const region = process.env.AWS_REGION;
+	if (!bucket || !region) return '';
+	return `https://${bucket}.s3.${region}.amazonaws.com/`;
+}
+
 /**
  * Creates the full content plugin configuration for Mel's Loop.
  *
@@ -35,6 +43,7 @@ import { remarkVerse } from './remark/verse';
  */
 export const createContentPlugins: PluginBuilder = (context) => {
 	const { sources, figures: overrideFigures } = context ?? {};
+	const mediaBaseUrl = buildMediaBaseUrl();
 
 	const factory: PluginFactory = (metadata) => {
 		const figureConfig = overrideFigures ?? metadata.figures;
@@ -60,6 +69,9 @@ export const createContentPlugins: PluginBuilder = (context) => {
 			[rehypeTableVariants],
 			[rehypeFigureImages],
 			...(sources ? [[rehypeSourceImages, { sources }] as PluginSpec] : []),
+			...(mediaBaseUrl
+				? [[rehypeMediaBaseUrl, { baseUrl: mediaBaseUrl }] as PluginSpec]
+				: []),
 			[
 				rehypeFigureIndex,
 				{

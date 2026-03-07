@@ -8,7 +8,11 @@ if (!key) {
 	process.exit(1);
 }
 
-const outDir = resolveOutputDir(process.argv[3], process.cwd(), DEFAULT_OUTPUT);
+const outDir = resolveOutputDir(
+	process.argv[3],
+	process.env.INIT_CWD || process.cwd(),
+	DEFAULT_OUTPUT,
+);
 downloadFile(key, outDir)
 	.catch((err) => {
 		console.error(err);

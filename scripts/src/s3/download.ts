@@ -22,7 +22,11 @@ export function resolveOutputDir(
 	cwd: string,
 	defaultDir: string,
 ): string {
-	return arg ? path.resolve(cwd, arg) : defaultDir;
+	if (!arg) return defaultDir;
+	const expanded = arg.startsWith('~/')
+		? path.join(process.env.HOME || '', arg.slice(1))
+		: arg;
+	return path.resolve(cwd, expanded);
 }
 
 export const downloadOne = async (

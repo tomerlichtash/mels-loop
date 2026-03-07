@@ -5,7 +5,7 @@ import path from 'path';
 
 import { createS3Proxy, IS3Proxy } from './client';
 
-const root = process.cwd();
+const root = process.env.INIT_CWD || process.cwd();
 
 const USAGE = 'Usage: upload <path> [path ...] [--tags tag1 [tag2...]]';
 
@@ -29,14 +29,15 @@ export async function collectFiles(
 		return [];
 	}
 
+	// Use the directory name as the S3 key prefix (e.g. "images/", "documents/")
+	const dirName = path.basename(resolved);
+
 	const results: { filePath: string; key: string }[] = [];
 	const walk = async (dir: string, prefix: string) => {
 		const entries = await fs.promises.readdir(dir, { withFileTypes: true });
 		for (const entry of entries) {
 			const fullPath = path.join(dir, entry.name);
-			const keyPath = prefix
-				? `${prefix}/${encodeURIComponent(entry.name)}`
-				: encodeURIComponent(entry.name);
+			const keyPath = `${prefix}/${encodeURIComponent(entry.name)}`;
 			if (entry.isFile()) {
 				results.push({ filePath: fullPath, key: keyPath });
 			} else if (entry.isDirectory()) {
@@ -45,7 +46,7 @@ export async function collectFiles(
 		}
 	};
 
-	await walk(resolved, '');
+	await walk(resolved, dirName);
 	return results;
 }
 

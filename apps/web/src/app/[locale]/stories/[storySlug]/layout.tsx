@@ -19,6 +19,7 @@ import {
 } from '@/components/stories/StorySections/StorySections';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
+import { resolveMediaUrl } from '@/lib/media-url';
 
 interface LayoutProps {
 	children: ReactNode;
@@ -105,8 +106,10 @@ export default async function StorySlugLayout({
 				title={storyTitle}
 				storySlug={storySlug}
 				abstract={storyAbstract}
-				cover={config.cover}
-				avatarSrc={config.avatar?.src}
+				cover={config.cover ? resolveMediaUrl(config.cover) : undefined}
+				avatarSrc={
+					config.avatar?.src ? resolveMediaUrl(config.avatar.src) : undefined
+				}
 				avatarAlt={config.avatar?.alt[typedLocale]}
 				avatarFallback={config.avatar?.initials?.[typedLocale]}
 			/>
