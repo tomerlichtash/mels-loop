@@ -15,6 +15,7 @@
 		]
 	},
 	"authors": [{ "ref": "ednather", "role": "author" }],
+	"featured": true,
 	"assets": {
 		"cover": "source:hela-kornitzka-ship-manifest",
 		"thumbnail": "source:mel-kaye-photo-1952",

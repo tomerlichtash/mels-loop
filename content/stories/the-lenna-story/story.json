@@ -14,7 +14,12 @@
 		"tags": ["image-processing", "standards", "photography", "usc"]
 	},
 	"assets": {
-		"cover": "/media/images/lenna-standard.png"
+		"thumbnail": "source:lenna-standard-image"
 	},
-	"sources": ["lenna-story-website"]
+	"sources": [
+		"lenna-standard-image",
+		"lenna-story-website",
+		"lenna-wikipedia",
+		"lena-forsen-wikipedia"
+	]
 }

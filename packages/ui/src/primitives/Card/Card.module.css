@@ -17,6 +17,7 @@
 	box-shadow: var(--ml-card-shadow);
 	box-sizing: border-box;
 	overflow: hidden;
+	/* transition: border-color var(--ml-card-transition-duration) var(--ml-card-transition-easing); */
 }
 
 /* Variants */
@@ -115,11 +116,10 @@
 .interactive {
 	cursor: pointer;
 	user-select: none;
-	transition:
-		box-shadow var(--ml-card-transition-duration)
-			var(--ml-card-transition-easing),
-		border-color var(--ml-card-transition-duration)
-			var(--ml-card-transition-easing);
+	transition: box-shadow var(--ml-card-transition-duration)
+		var(--ml-card-transition-easing);
+	/* border-color var(--ml-card-transition-duration)
+			var(--ml-card-transition-easing); */
 }
 
 .interactive:hover {

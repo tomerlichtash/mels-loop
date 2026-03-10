@@ -24,13 +24,7 @@ export function StoryCard({
 	thumbnailUrl,
 }: StoryCardProps) {
 	return (
-		<Card
-			variant="outlined"
-			shadow="lg"
-			padding="md"
-			interactive
-			href={`/stories/${slug}`}
-		>
+		<Card variant="outlined" padding="md" interactive href={`/stories/${slug}`}>
 			{thumbnailUrl && <CardMedia src={thumbnailUrl} alt={title} />}
 			<CardHeader>
 				<Text className={styles.title}>{title}</Text>

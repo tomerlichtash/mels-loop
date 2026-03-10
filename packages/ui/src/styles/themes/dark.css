@@ -106,8 +106,8 @@
 	--ml-menu-hover-bg: var(--ml-color-primary);
 	--ml-mobile-menu-text: var(--ml-color-secondary-highlight);
 
-	/* Border — needs more contrast against dark surfaces */
-	--ml-border-color: var(--ml-gray-200);
+	/* Border — visible but not bright against dark surfaces */
+	--ml-border-color: var(--ml-gray-400);
 
 	/* Shadow */
 	--ml-shadow:

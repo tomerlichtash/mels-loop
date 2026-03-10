@@ -32,7 +32,8 @@
 	position: relative;
 	transition:
 		background-color var(--ml-button-duration),
-		color var(--ml-button-duration);
+		color var(--ml-button-duration),
+		border-color var(--ml-button-duration);
 }
 
 .root:disabled {
@@ -42,6 +43,14 @@
 
 .root:hover:not(:disabled) {
 	background-color: var(--ml-button-background-color-hover);
+	color: var(
+		--ml-button-text-color-hover,
+		var(--ml-button-text-color, inherit)
+	);
+	border-color: var(
+		--ml-button-border-color-hover,
+		var(--ml-button-border-color)
+	);
 }
 
 /* Sizes */
@@ -103,9 +112,11 @@
 
 .variant-outlined {
 	--ml-button-background-color: transparent;
-	--ml-button-background-color-hover: var(--ml-background-color-alt);
+	--ml-button-background-color-hover: transparent;
 	--ml-button-text-color: var(--ml-button-accent);
+	--ml-button-text-color-hover: var(--ml-color-secondary);
 	--ml-button-border-color: var(--ml-button-accent);
+	--ml-button-border-color-hover: var(--ml-color-secondary);
 }
 
 .variant-text {

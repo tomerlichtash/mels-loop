@@ -1,13 +1,31 @@
 .hero {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	max-width: 540px;
-	gap: var(--ml-space-md);
+	max-width: 700px;
+	gap: var(--ml-space-sm);
 	margin: 0 auto;
-	min-height: calc(50svh - var(--ml-header-height) - var(--ml-space-xl) * 2);
+	padding-block-start: 0;
+	padding-block-end: var(--ml-space-lg);
+	margin-block-start: calc(-1 * var(--ml-space-xl));
+	min-height: calc(35svh - var(--ml-header-height));
+}
+
+.heroBg {
+	position: absolute;
+	inset: 0;
+	width: 100vw;
+	margin-inline-start: calc(-50vw + 50%);
+	mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+	background: url('/media/homepage/drum-memory-3.png') no-repeat center;
+	background-size: cover;
+	opacity: 0.05;
+	pointer-events: none;
+	z-index: -1;
+	will-change: transform;
 }
 
 .heroTitle {
@@ -19,32 +37,55 @@
 	font-weight: 900;
 }
 
-.heroDescription {
-	margin: 0;
-	font-size: clamp(1.25rem, 2vw, 1.75rem);
-	font-weight: var(--ml-font-weight-light);
-	line-height: 1.35;
-	color: var(--ml-heading-color);
-	letter-spacing: -0.5px;
-}
-
-.heroCta {
-	width: 100%;
+.heroStats {
 	display: flex;
 	justify-content: center;
-	margin-top: var(--ml-space-xl);
+	gap: var(--ml-space-sm);
+	padding: 0.15em var(--ml-space-sm);
+	border: 1px solid var(--ml-border-color);
+	border-radius: var(--ml-radius-sm);
+	background-color: var(--ml-surface-background-color);
+	width: fit-content;
+	margin-inline: auto;
+	font-size: var(--ml-font-size-xs);
 }
 
-.heroCtaButton {
-	--ml-button-padding-horizontal: var(--ml-space-xl);
-	--ml-button-padding-vertical: 0.25rem;
-	/* --ml-button-height: 2.5em; */
-	/* background: linear-gradient(
-		to right,
-		var(--ml-gradient-start),
-		var(--ml-gradient-end)
-	); */
-	/* color: #fff; */
+.heroStat {
+	display: flex;
+	align-items: center;
+	gap: 0.25em;
+}
+
+.heroStat + .heroStat {
+	border-inline-start: 1px solid var(--ml-border-color);
+	padding-inline-start: var(--ml-space-sm);
+}
+
+.heroStatCount {
+	font-weight: var(--ml-font-weight-semibold);
+	color: var(--ml-color-primary);
+	min-width: 2ch;
+	text-align: end;
+	font-variant-numeric: tabular-nums;
+}
+
+.heroStatLabel {
+	color: var(--ml-text-muted-color);
+}
+
+.heroDescription {
+	margin: 0;
+	max-width: 640px;
+	font-size: clamp(1.1rem, 2vw, 1.4rem);
+	font-weight: var(--ml-font-weight-light);
+	line-height: 1.45;
+	color: var(--ml-text-color);
+	letter-spacing: -0.3px;
+}
+
+.featured {
+	width: 100%;
+	margin-bottom: var(--ml-space-2xl);
 }
 
 .storiesHeading {

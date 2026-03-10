@@ -173,6 +173,8 @@ export interface StoryConfig {
 			initials?: string | Record<string, string>;
 		};
 	};
+	/** Whether this story should be featured prominently on the homepage. */
+	featured?: boolean;
 	figures?: FigureConfig;
 	sources?: string[];
 	contents?: ContentsEntry[];

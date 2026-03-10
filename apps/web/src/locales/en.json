@@ -106,8 +106,8 @@
 	"hero": {
 		"title_p1": "Meet the legends of",
 		"title_p2": "hacking folklore",
-		"description": "Explore the stories, people, and culture that shaped the hacker community.",
-		"cta": "Dive In"
+		"description": "The real people and forgotten history behind hacker folklore's greatest tales. We dig through archives, records, and primary sources — to find where the facts end and the myths begin.",
+		"cta": "Start Reading"
 	},
 	"sources": {
 		"all": "All",
@@ -155,6 +155,8 @@
 		}
 	},
 	"stories": "Stories",
+	"moreStories": "More from the Archive",
+	"readStory": "Read Story",
 	"loading": "Loading...",
 	"learnMore": "Learn More",
 	"back": "Back",
