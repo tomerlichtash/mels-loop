@@ -64,6 +64,12 @@ export default async function HomePage({ params }: PageProps) {
 	const dict = await getDictionary(typedLocale);
 	const hero = dict.hero as Record<string, string>;
 
+	/** Picks the singular or plural label for a counter. */
+	const countLabel = (key: 'stories' | 'articles' | 'sources', n: number) => {
+		const forms = (dict.count as Record<string, Record<string, string>>)?.[key];
+		return forms?.[n === 1 ? 'one' : 'other'] ?? key;
+	};
+
 	return (
 		<Container paddingHorizontal="xl" paddingVertical="xl">
 			<section className={styles.hero}>
@@ -71,22 +77,20 @@ export default async function HomePage({ params }: PageProps) {
 				<div className={styles.heroStats}>
 					<span className={styles.heroStat}>
 						<CountUp end={totalStories} className={styles.heroStatCount} />
-						<span className={styles.heroStatLabel}>{String(dict.stories)}</span>
+						<span className={styles.heroStatLabel}>
+							{countLabel('stories', totalStories)}
+						</span>
 					</span>
 					<span className={styles.heroStat}>
 						<CountUp end={totalArticles} className={styles.heroStatCount} />
 						<span className={styles.heroStatLabel}>
-							{String(
-								(dict.nav as Record<string, string>)?.articles ?? 'Articles',
-							)}
+							{countLabel('articles', totalArticles)}
 						</span>
 					</span>
 					<span className={styles.heroStat}>
 						<CountUp end={totalSources} className={styles.heroStatCount} />
 						<span className={styles.heroStatLabel}>
-							{String(
-								(dict.nav as Record<string, string>)?.sources ?? 'Sources',
-							)}
+							{countLabel('sources', totalSources)}
 						</span>
 					</span>
 				</div>

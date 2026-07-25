@@ -155,6 +155,11 @@
 		}
 	},
 	"stories": "Stories",
+	"count": {
+		"stories": { "one": "Story", "other": "Stories" },
+		"articles": { "one": "Article", "other": "Articles" },
+		"sources": { "one": "Source", "other": "Sources" }
+	},
 	"moreStories": "More from the Archive",
 	"readStory": "Read Story",
 	"loading": "Loading...",
