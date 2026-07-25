@@ -1,10 +1,12 @@
 .root {
 	width: 100vw;
 	margin-inline-start: calc(-50vw + 50%);
+	/* Authoritative height — see layout.css. Offsets downstream derive from it. */
+	height: var(--ml-story-sections-height);
 	position: sticky;
 	top: calc(
 		var(--ml-header-offset, var(--ml-header-height)) +
-			var(--ml-story-panel-height, 36px)
+			var(--ml-story-panel-height)
 	);
 	z-index: 89;
 	transition:
