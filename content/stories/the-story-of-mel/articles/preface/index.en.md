@@ -3,7 +3,6 @@ title: "A Software Legend That Really Happened"
 abstract: "A Preface to The Story of Mel"
 author: "Tomer Lichtash"
 date: Wed Apr 7 2021 13:45 GMT+0300
-image: "https://dummyimage.com/400x300/e8e8e8/666&text=Preface"
 imageCaption: "An introduction to the legendary tale"
 ---
 

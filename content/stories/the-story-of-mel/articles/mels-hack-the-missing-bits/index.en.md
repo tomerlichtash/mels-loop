@@ -2,7 +2,6 @@
 title: "Mel's Hack – The Missing Bits"
 author: "(David *)Frenkiel"
 date: Tue Jul 23 2022 01:14:31 GMT+0300
-image: "https://dummyimage.com/400x300/e8e8e8/666&text=The+Hack"
 imageCaption: "When the light went on it nearly blinded me"
 ---
 
