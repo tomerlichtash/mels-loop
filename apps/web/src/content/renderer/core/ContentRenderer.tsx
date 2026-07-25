@@ -49,7 +49,9 @@ function defaultComponents(): ComponentOverrides {
 		h4: (props) => <Text variant="h4" {...props} />,
 		h5: (props) => <Text variant="subtitle1" component="h5" {...props} />,
 		h6: (props) => <Text variant="subtitle2" component="h6" {...props} />,
-		p: (props) => <Text variant="body2" {...props} />,
+		// body1 (1rem), not body2 (0.875rem): this is long-form reading text, and
+		// at 14px the story column ran ~94 characters per line.
+		p: (props) => <Text variant="body1" {...props} />,
 		blockquote: Blockquote,
 		ul: (props) => <List {...props} />,
 		ol: (props) => <List ordered {...props} />,
