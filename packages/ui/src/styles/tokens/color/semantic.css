@@ -24,7 +24,17 @@
 	/* about foreground readability, not surface/intent semantics. */
 	--ml-text-color: var(--ml-color-surface-contrast);
 	--ml-text-subtle-color: var(--ml-gray-300);
-	--ml-text-muted-color: var(--ml-color-surface-muted);
+	/*
+	 * Was var(--ml-color-surface-muted), which breaks the rule stated above:
+	 * in light mode that resolves to --ml-gray-100, a near-white background
+	 * tint. As text on the cream page it measured 1.6:1 — breadcrumbs and the
+	 * table-of-contents author lines were effectively unreadable.
+	 *
+	 * ponytail: muted currently equals subtle because no lighter neutral in the
+	 * scale clears 4.5:1 on this background (gray-200 is oklch 0.72). Add a
+	 * dedicated intermediate neutral if the two levels need to look different.
+	 */
+	--ml-text-muted-color: var(--ml-gray-300);
 
 	/* ---- Headings ---- */
 	--ml-heading-color: var(--ml-color-surface-contrast);

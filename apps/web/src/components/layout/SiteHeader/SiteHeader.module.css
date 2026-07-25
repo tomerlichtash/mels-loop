@@ -70,6 +70,17 @@
 	.logoSubtitle {
 		display: none;
 	}
+
+	/*
+	 * With the drawer trigger, search, locale switcher and theme toggle all
+	 * competing for a 390px bar, flex was shrinking the brand until "MEL'S
+	 * LOOP" broke across two lines. Keep it on one line and let it hold its
+	 * width; the controls on the right have more give.
+	 */
+	.left {
+		flex-shrink: 0;
+		white-space: nowrap;
+	}
 }
 
 .rightDivider {

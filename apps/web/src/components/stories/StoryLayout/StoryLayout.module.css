@@ -35,7 +35,21 @@
 		grid-template-columns: 1fr;
 	}
 
+	/*
+	 * The sidebar precedes the content in the DOM so assistive tech meets the
+	 * table of contents before the prose, which is the conventional order for
+	 * sidebar navigation. Once the grid collapses to one column that same order
+	 * would push the story itself below a full-height contents list — a phone
+	 * reader had to scroll past every entry to reach the first word. Reorder
+	 * visually only; the DOM, and therefore the reading and tab order, is
+	 * unchanged.
+	 */
+	.content {
+		order: 1;
+	}
+
 	.sidebar {
+		order: 2;
 		position: static;
 		padding-top: var(--ml-space-lg);
 		margin-top: var(--ml-space-xl);

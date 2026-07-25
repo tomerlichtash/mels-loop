@@ -39,6 +39,24 @@
 	display: flex;
 	gap: var(--ml-space-xs);
 	overflow-x: auto;
+	scrollbar-width: none;
+	/*
+	 * The tab strip already scrolled, but the trailing tab was simply sliced
+	 * off with nothing to suggest more existed. Fade both edges so the cut is
+	 * legible as "there is more here" — symmetric on purpose, since a
+	 * single-sided fade would sit on the wrong edge in Hebrew.
+	 */
+	mask-image: linear-gradient(
+		to right,
+		transparent 0,
+		black var(--ml-space-md),
+		black calc(100% - var(--ml-space-md)),
+		transparent 100%
+	);
+}
+
+.nav::-webkit-scrollbar {
+	display: none;
 }
 
 .section {
