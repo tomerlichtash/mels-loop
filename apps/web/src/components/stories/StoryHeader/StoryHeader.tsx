@@ -7,7 +7,6 @@ interface StoryHeaderProps {
 	title: string;
 	storySlug: string;
 	abstract?: string;
-	cover?: string;
 	avatarSrc?: string;
 	avatarAlt?: string;
 	avatarFallback?: string;
@@ -17,24 +16,12 @@ export function StoryHeader({
 	title,
 	storySlug,
 	abstract,
-	cover,
 	avatarSrc,
 	avatarAlt,
 	avatarFallback,
 }: StoryHeaderProps) {
-	const rootClassName = cover
-		? `${styles.root} ${styles.hasCover}`
-		: styles.root;
-
 	return (
-		<div
-			className={rootClassName}
-			style={
-				cover
-					? ({ '--ml-story-cover': `url(${cover})` } as React.CSSProperties)
-					: undefined
-			}
-		>
+		<div className={styles.root}>
 			<div className={styles.inner}>
 				{(avatarSrc || avatarFallback) && (
 					<Avatar

@@ -3,33 +3,7 @@
 	margin-inline-start: calc(-50vw + 50%);
 }
 
-.hasCover {
-	position: relative;
-	background-image: var(--ml-story-cover);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
-/*
- * The cover is a texture behind text, not a picture in its own right. At 70%
- * the artwork stayed busy enough to swallow the title and abstract entirely.
- * Keep it heavily washed so ordinary text colours clear contrast in both
- * themes. Deliberately a flat scrim rather than a gradient: CSS gradients have
- * no logical direction keyword, so any left/right fade would run the wrong way
- * in Hebrew.
- */
-.hasCover::after {
-	content: '';
-	position: absolute;
-	inset: 0;
-	background: color-mix(in srgb, var(--ml-bg-color) 90%, transparent);
-	pointer-events: none;
-}
-
 .inner {
-	position: relative;
-	z-index: 1;
 	display: flex;
 	align-items: center;
 	gap: var(--ml-space-xl);
@@ -37,9 +11,8 @@
 	margin: 0 auto;
 	/*
 	 * Was 2x --ml-space-3xl, which made the header 40% of a phone's first
-	 * screen to show a title and one line of subtitle. The cover sits under a
-	 * 90% scrim for legibility, so the height was buying an image that is
-	 * mostly erased anyway. This is a reading site — get to the prose.
+	 * screen to show a title and one line of subtitle. This is a reading site
+	 * — get to the prose.
 	 */
 	padding: var(--ml-space-2xl) var(--ml-page-padding-horizontal);
 }
@@ -51,8 +24,7 @@
 
 /*
  * Side by side, the avatar and the title block cannot both fit on a phone —
- * the heading wrapped across the portrait. Stack them, and drop the huge
- * vertical padding that pushed the tab bar off-screen.
+ * the heading wrapped across the portrait.
  */
 @media (--ml-bp-mobile) {
 	.inner {
@@ -82,17 +54,4 @@
 
 .titleLink {
 	text-decoration: none;
-}
-
-/*
- * Gradient-filled text sets -webkit-text-fill-color: transparent, so the glyphs
- * take the gradient's own colours and no scrim behind them can raise contrast.
- * Over a photographic cover the brand pink dropped well below legible, so fall
- * back to the ordinary heading colour there and keep the gradient for the
- * plain-background case.
- */
-.hasCover .title {
-	background: none;
-	-webkit-text-fill-color: currentColor;
-	color: var(--ml-text-color);
 }

@@ -94,12 +94,18 @@ export default async function StorySlugLayout({
 		storyMessages,
 	);
 
-	const [coverUrl, avatarSrcUrl] = await Promise.all([
-		config.assets?.cover ? resolveAssetUrl(config.assets.cover) : undefined,
-		config.assets?.avatar?.src
-			? resolveAssetUrl(config.assets.avatar.src)
-			: undefined,
-	]);
+	/*
+	 * assets.cover is deliberately not read here. It stays in story.json for
+	 * the homepage featured card, which shows it at full fidelity. Behind the
+	 * story header it was a full-bleed background under a 90% scrim — a
+	 * primary source (the 1907 SS Estonia manifest listing Mel's father and
+	 * grandmother) reduced to unattributed, illegible texture. It is already
+	 * presented properly, with title, author, date and credit, in the sources
+	 * browser.
+	 */
+	const avatarSrcUrl = config.assets?.avatar?.src
+		? await resolveAssetUrl(config.assets.avatar.src)
+		: undefined;
 
 	const homeLabel = dictGet(dict, 'nav.home');
 	const storiesLabel = dictGet(dict, 'stories');
@@ -200,7 +206,6 @@ export default async function StorySlugLayout({
 				title={storyTitle}
 				storySlug={storySlug}
 				abstract={storyAbstract}
-				cover={coverUrl ? resolveMediaUrl(coverUrl) : undefined}
 				avatarSrc={avatarSrcUrl ? resolveMediaUrl(avatarSrcUrl) : undefined}
 				avatarAlt={
 					config.assets?.avatar?.alt
