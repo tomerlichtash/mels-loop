@@ -1,30 +1,12 @@
 'use client';
 
 import { useTranslation } from '@mels-loop/i18n/client';
-import {
-	EnvelopeClosedIcon,
-	GitHubLogoIcon,
-	HeartIcon,
-	InfoCircledIcon,
-	ReaderIcon,
-	TwitterLogoIcon,
-} from '@radix-ui/react-icons';
 
 import type { FooterLink as FooterLinkType, FooterLinkColumn } from '../types';
 import styles from './SiteFooter.module.css';
 
-const iconMap = {
-	github: GitHubLogoIcon,
-	twitter: TwitterLogoIcon,
-	envelope: EnvelopeClosedIcon,
-	info: InfoCircledIcon,
-	reader: ReaderIcon,
-	heart: HeartIcon,
-} as const;
-
 function FooterLink({ link }: { link: FooterLinkType }) {
 	const { t } = useTranslation();
-	const Icon = link.icon ? iconMap[link.icon] : null;
 
 	return (
 		<a
@@ -34,7 +16,6 @@ function FooterLink({ link }: { link: FooterLinkType }) {
 				? { target: '_blank', rel: 'noopener noreferrer' }
 				: {})}
 		>
-			{Icon && <Icon className={styles.linkIcon} />}
 			{t(link.label)}
 		</a>
 	);

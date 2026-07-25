@@ -85,10 +85,6 @@
 	text-decoration: none;
 }
 
-.linkIcon {
-	flex-shrink: 0;
-}
-
 .link:hover {
 	color: var(--ml-link-hover-color);
 }

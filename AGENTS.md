@@ -13,7 +13,7 @@
 | --------------- | --------------------------------------------------- |
 | Framework       | Next.js (latest, App Router)                        |
 | Language        | TypeScript (strict mode)                            |
-| UI Library      | Mantine v8                                          |
+| UI Library      | `@mels-loop/ui` — local primitives built on Radix   |
 | Styling         | CSS Modules + CSS custom properties                 |
 | Markdown        | unified (remark/rehype) + gray-matter               |
 | Fonts           | Google Fonts via next/font (Roboto Slab, Assistant) |
@@ -41,7 +41,7 @@ These principles guide every decision in this codebase. Follow them strictly.
 ### 3. Use the platform and the libraries
 
 - **Use Next.js APIs as documented.** `generateStaticParams`, `generateMetadata`, server components, route handlers. Don't reinvent what the framework provides.
-- **Use Mantine components as documented.** Don't wrap Mantine components in custom wrappers unless absolutely necessary. Use their props, their theming, their hooks.
+- **Reach for `@mels-loop/ui` primitives before writing markup.** `Button`, `Badge`, `Card`, `Text`, `Container`, `Dialog`, `Popover` and the rest already exist. Extend a primitive rather than building a one-off beside it.
 - **Use unified/remark/rehype as documented.** Write plugins that follow the unified plugin conventions. Use `unist-util-visit`, return proper transformer functions.
 - Don't fight the framework. If something feels hard, you're probably doing it wrong.
 
@@ -67,7 +67,7 @@ These principles guide every decision in this codebase. Follow them strictly.
 - **Never use inline styles** unless there is absolutely no other choice. All styling must go through CSS Modules (`.module.css`) or CSS classes in `globals.css`.
 - No utility classes.
 - Keep selectors simple. One class per element is usually enough. Avoid nesting beyond two levels.
-- Design tokens live in `src/styles/tokens.css` as CSS custom properties with `--ml-` prefix.
+- Design tokens live in `packages/ui/src/styles/tokens/` as CSS custom properties with the `--ml-` prefix. App-level brand overrides are in `apps/web/src/styles/`.
 
 ### 7. Content is king
 
@@ -78,7 +78,7 @@ These principles guide every decision in this codebase. Follow them strictly.
 ### 8. Build should be boring
 
 - `pnpm install` then `pnpm dev`. That's it. No environment setup scripts, no Docker requirements for development.
-- No custom webpack config. No build plugins beyond what Next.js and Mantine require (PostCSS preset).
+- No custom webpack config. PostCSS is limited to `postcss-custom-media` plus `@csstools/postcss-global-data`, which supply the `--ml-bp-*` breakpoints.
 - No build-time code generation. No scripts that must run before the app works.
 - If the build takes more than a minute, something is wrong.
 
@@ -143,9 +143,11 @@ src/app/
 
 3. **One remark plugin per concern.** Strip comments, detect annotations, detect glossary links, promote figures, handle verse mode — each is a separate, testable plugin.
 
-4. **Route-based i18n.** `[locale]` segment in App Router. Middleware redirects bare URLs to `/{locale}/...`. UI strings in JSON files, content in locale-specific markdown files.
+4. **Cookie-based i18n over clean URLs.** The `[locale]` segment exists in the App Router, but public URLs carry no locale prefix. `packages/i18n/src/middleware.ts` redirects a prefixed `/he/...` request to the bare path, stores the choice in the `NEXT_LOCALE` cookie, and rewrites internally to `/{locale}/...`. UI strings live in JSON, content in locale-specific markdown.
 
-5. **Mantine for UI, CSS variables for design tokens.** Mantine handles components (Popover, AppShell, Drawer, forms, etc.) and dark/light mode. Our CSS variables (`--ml-*`) handle the design system. They work together, not against each other.
+   Known consequence: one URL serves both languages, so a cookie-less crawler always gets English and `hreflang` cannot be expressed. Revisiting this is tracked as its own piece of work.
+
+5. **Local primitives over a component library.** `packages/ui` holds ~32 primitives built on Radix behaviour with CSS Modules for presentation. Design tokens are `--ml-*` custom properties in a four-layer cascade (palette, intent, semantic, theme). Dark mode is a `[data-color-scheme='dark']` override applied pre-hydration.
 
 6. **Multi-story by default.** Every story is a folder in `content/stories/` with a `story.json`. Adding a story requires zero code changes.
 
@@ -161,7 +163,7 @@ src/app/
 
 ### Follow the implementation plan
 
-- The rewrite follows a phased implementation plan (`IMPLEMENTATION-PLAN.md`). Work through it step by step.
+- `design-log/` holds superseded planning documents from Feb-Mar 2026. **They are not a source of truth** — several describe a design the code has since diverged from. Verify against the code before acting on anything in them.
 - Complete one step fully before moving to the next. Don't jump ahead.
 - After completing each step, verify it works as described in the plan.
 
@@ -174,7 +176,7 @@ src/app/
 
 ### Update the plan as you go
 
-- After implementing a step, update `IMPLEMENTATION-PLAN.md` to mark it as done.
+- Keep this file honest. If you change something it describes, update it in the same commit.
 - If a step turned out differently than planned (different approach, extra files needed, something was unnecessary), update the plan to reflect reality.
 - The plan is a living document, not a contract. Adjust it as you learn.
 
@@ -190,7 +192,7 @@ src/app/
 ### Before writing code
 
 - Read the files you're about to change. Understand context.
-- Check if a Mantine component or a remark plugin already does what you need. Don't build what exists.
+- Check if a `@mels-loop/ui` primitive or an existing remark plugin already does what you need. Don't build what exists.
 - Check both locale variants (en/he) when working on content features.
 
 ### When writing code
@@ -211,7 +213,7 @@ src/app/
 
 ### Testing
 
-- `pnpm test:unit` — Vitest unit tests
+- `pnpm test` — Vitest unit tests across all packages
 - `pnpm test:e2e` — Playwright E2E tests
 - Every remark plugin has a unit test.
 - Run tests before considering work complete.

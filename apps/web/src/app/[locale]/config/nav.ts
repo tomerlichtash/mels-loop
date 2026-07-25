@@ -14,9 +14,9 @@ export const footerLinks: FooterLinkColumn[] = [
 	{
 		titleKey: 'footer.pages',
 		links: [
-			{ label: 'nav.about', href: '/about', icon: 'info' },
-			{ label: 'nav.blog', href: '/posts', icon: 'reader' },
-			{ label: 'nav.contribute', href: '/contribute', icon: 'heart' },
+			{ label: 'nav.about', href: '/about' },
+			{ label: 'nav.blog', href: '/posts' },
+			{ label: 'nav.contribute', href: '/contribute' },
 		],
 	},
 	{
@@ -26,15 +26,13 @@ export const footerLinks: FooterLinkColumn[] = [
 				label: 'menuItems.github',
 				href: 'https://github.com/mels-loop',
 				external: true,
-				icon: 'github',
 			},
 			{
 				label: 'menuItems.twitter',
 				href: 'https://x.com/aboutmelsloop',
 				external: true,
-				icon: 'twitter',
 			},
-			{ label: 'nav.contact', href: '/contact', icon: 'envelope' },
+			{ label: 'nav.contact', href: '/contact' },
 		],
 	},
 ];
