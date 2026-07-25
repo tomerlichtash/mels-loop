@@ -1,4 +1,9 @@
 {
 	"installCommand": "pnpm install --frozen-lockfile",
-	"framework": "nextjs"
+	"framework": "nextjs",
+	"git": {
+		"deploymentEnabled": {
+			"rewrite": false
+		}
+	}
 }
