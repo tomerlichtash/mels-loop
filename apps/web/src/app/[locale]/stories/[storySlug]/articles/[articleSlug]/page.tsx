@@ -58,9 +58,17 @@ export default async function ArticlePage({ params }: PageProps) {
 					{content.metadata.credits}
 				</Text>
 			)}
-			{content.metadata.author && (
+			{(content.metadata.author || content.metadata.date) && (
 				<Text variant="body2" color="muted" uppercase>
-					{content.metadata.author}
+					{content.metadata.author as string}
+					{content.metadata.author && content.metadata.date && ' · '}
+					{content.metadata.date && (
+						<time
+							dateTime={new Date(content.metadata.date as string).toISOString()}
+						>
+							{new Date(content.metadata.date as string).getFullYear()}
+						</time>
+					)}
 				</Text>
 			)}
 			<StoryPopoverProvider storySlug={storySlug} locale={typedLocale}>

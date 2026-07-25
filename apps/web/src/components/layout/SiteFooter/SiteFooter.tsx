@@ -5,6 +5,13 @@ import { useTranslation } from '@mels-loop/i18n/client';
 import type { FooterLink as FooterLinkType, FooterLinkColumn } from '../types';
 import styles from './SiteFooter.module.css';
 
+/**
+ * First year of the project, matching the LICENSE copyright. The footer shows
+ * a range from here to the current year rather than the current year alone,
+ * which read as though the site appeared this year.
+ */
+const SITE_START_YEAR = 2021;
+
 function FooterLink({ link }: { link: FooterLinkType }) {
 	const { t } = useTranslation();
 
@@ -35,7 +42,9 @@ export function SiteFooter({ linkColumns }: SiteFooterProps) {
 				<div className={styles.columns}>
 					<div className={styles.meta}>
 						<p className={styles.copyright}>
-							{new Date().getFullYear()}{' '}
+							{SITE_START_YEAR}
+							{new Date().getFullYear() > SITE_START_YEAR &&
+								`–${new Date().getFullYear()}`}{' '}
 							<span
 								className={styles.license}
 								title={t('siteLicenseAttrs').toUpperCase()}
