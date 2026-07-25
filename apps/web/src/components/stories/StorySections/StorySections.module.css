@@ -12,12 +12,23 @@
 		background-color var(--ml-duration-fast) ease;
 }
 
+/*
+ * The strip sticks correctly — header 48px + StoryPanel 36px, and the offset
+ * maths agree — but at 60% it did not hide the prose scrolling underneath it,
+ * so the story text read straight through the tabs.
+ *
+ * Two causes. The alpha was simply too low, now 92%. And the blur that was
+ * meant to cover the difference never applied: -webkit-backdrop-filter has to
+ * come *before* the unprefixed property or lightningcss (Next's CSS pipeline)
+ * drops it. See vercel/next.js#78302.
+ */
 .stuck {
 	background-color: color-mix(
 		in srgb,
-		var(--ml-surface-background-color) 60%,
+		var(--ml-surface-background-color) 92%,
 		transparent
 	);
+	-webkit-backdrop-filter: blur(12px);
 	backdrop-filter: blur(12px);
 }
 
@@ -73,8 +84,17 @@
 	padding: var(--ml-space-sm) var(--ml-space-md);
 	color: var(--ml-text-muted-color);
 	--ml-text-color-override: inherit;
-	/* Primary navigation for the story — carried at regular weight it read as
-	 * incidental next to the prose it sits above. */
+	/*
+	 * Tab typography lives here and only here. The label used to be wrapped in
+	 * <Text variant="caption">, which set --ml-text-font-size/-weight on its own
+	 * span and silently beat anything set on this anchor — so size and weight
+	 * declared here did nothing at all.
+	 *
+	 * Note weight is a weak lever in this face: Roboto Slab is loaded at
+	 * 300/400/500/700 only, and 500 measures 0.8px wider than 400 across a
+	 * 13-character tab. Size carries the emphasis; weight marks the active tab.
+	 */
+	font-size: var(--ml-font-size-body);
 	font-weight: var(--ml-font-weight-medium);
 	text-decoration: none;
 	white-space: nowrap;
@@ -88,10 +108,17 @@
 	color: var(--ml-text-color);
 }
 
+/* bold, not semibold: 600 is not among the loaded Roboto Slab faces and
+ * silently resolved to 700 anyway. Declare what actually renders. */
 .sectionActive {
 	color: var(--ml-text-color);
-	font-weight: var(--ml-font-weight-semibold);
+	font-weight: var(--ml-font-weight-bold);
 	box-shadow: inset 0 -2px 0 var(--ml-color-primary);
+}
+
+/* The count is supporting detail — keep it lighter than its label. */
+.count {
+	font-weight: var(--ml-font-weight-regular);
 }
 
 .icon {

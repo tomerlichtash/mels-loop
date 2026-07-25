@@ -112,9 +112,9 @@ export function StorySections({ sections, sourceFilters }: StorySectionsProps) {
 										.filter(Boolean)
 										.join(' ')}
 								>
-									<Text variant="caption">{section.label}</Text>
+									{section.label}
 									{section.count != null && (
-										<Text variant="caption">({section.count})</Text>
+										<span className={styles.count}>({section.count})</span>
 									)}
 								</Link>
 							);

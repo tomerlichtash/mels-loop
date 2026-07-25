@@ -2,11 +2,13 @@
 	width: 100vw;
 	margin-inline-start: calc(-50vw + 50%);
 	box-shadow: inset 0 -1px 0 var(--ml-border-color);
+	/* 92%, and -webkit- first: see the note in StorySections.module.css. */
 	background-color: color-mix(
 		in srgb,
-		var(--ml-surface-background-color) 60%,
+		var(--ml-surface-background-color) 92%,
 		transparent
 	);
+	-webkit-backdrop-filter: blur(12px);
 	backdrop-filter: blur(12px);
 }
 

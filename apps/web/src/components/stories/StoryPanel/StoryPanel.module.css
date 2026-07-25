@@ -4,11 +4,15 @@
 	margin-inline-start: calc(-50vw + 50%);
 	border-top: 1px solid var(--ml-border-color);
 	border-bottom: 1px solid var(--ml-border-color);
+	/* 92%, and -webkit- first: see the note in StorySections.module.css — at
+	 * 60% the prose scrolling underneath read straight through this bar, and
+	 * the blur meant to cover it was being dropped by lightningcss. */
 	background-color: color-mix(
 		in srgb,
-		var(--ml-surface-background-color) 60%,
+		var(--ml-surface-background-color) 92%,
 		transparent
 	);
+	-webkit-backdrop-filter: blur(12px);
 	backdrop-filter: blur(12px);
 	position: sticky;
 	top: var(--ml-header-offset, var(--ml-header-height));
