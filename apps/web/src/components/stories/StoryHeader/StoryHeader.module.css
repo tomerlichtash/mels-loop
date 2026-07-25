@@ -11,11 +11,19 @@
 	background-repeat: no-repeat;
 }
 
+/*
+ * The cover is a texture behind text, not a picture in its own right. At 70%
+ * the artwork stayed busy enough to swallow the title and abstract entirely.
+ * Keep it heavily washed so ordinary text colours clear contrast in both
+ * themes. Deliberately a flat scrim rather than a gradient: CSS gradients have
+ * no logical direction keyword, so any left/right fade would run the wrong way
+ * in Hebrew.
+ */
 .hasCover::after {
 	content: '';
 	position: absolute;
 	inset: 0;
-	background: color-mix(in srgb, var(--ml-bg-color) 70%, transparent);
+	background: color-mix(in srgb, var(--ml-bg-color) 90%, transparent);
 	pointer-events: none;
 }
 
@@ -53,4 +61,17 @@
 
 .titleLink {
 	text-decoration: none;
+}
+
+/*
+ * Gradient-filled text sets -webkit-text-fill-color: transparent, so the glyphs
+ * take the gradient's own colours and no scrim behind them can raise contrast.
+ * Over a photographic cover the brand pink dropped well below legible, so fall
+ * back to the ordinary heading colour there and keep the gradient for the
+ * plain-background case.
+ */
+.hasCover .title {
+	background: none;
+	-webkit-text-fill-color: currentColor;
+	color: var(--ml-text-color);
 }

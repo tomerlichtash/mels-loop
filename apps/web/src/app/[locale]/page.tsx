@@ -7,7 +7,6 @@ import {
 } from '@mels-loop/content-loaders/loaders';
 import { Container, Grid, Text } from '@mels-loop/ui/primitives';
 
-import { CountUp } from '@/components/home/CountUp/CountUp';
 import { FeaturedStory } from '@/components/home/FeaturedStory/FeaturedStory';
 import { GlyphShift } from '@/components/home/GlyphShift/GlyphShift';
 import { ParallaxBg } from '@/components/home/ParallaxBg/ParallaxBg';
@@ -46,54 +45,18 @@ export default async function HomePage({ params }: PageProps) {
 	const featured = storiesWithMessages.find((s) => s.config.featured);
 	const rest = storiesWithMessages.filter((s) => !s.config.featured);
 
-	const totalSources = new Set(
-		storiesWithMessages.flatMap((s) => s.config.sources ?? []),
-	).size;
-	const totalArticles = storiesWithMessages.reduce(
-		(n, s) =>
-			n +
-			(s.config.contents?.reduce(
-				(a, e) =>
-					e.type === 'part' && e.ref === 'articles' ? a + e.children.length : a,
-				0,
-			) ?? 0),
-		0,
-	);
-	const totalStories = storiesWithMessages.length;
-
 	const dict = await getDictionary(typedLocale);
 	const hero = dict.hero as Record<string, string>;
-
-	/** Picks the singular or plural label for a counter. */
-	const countLabel = (key: 'stories' | 'articles' | 'sources', n: number) => {
-		const forms = (dict.count as Record<string, Record<string, string>>)?.[key];
-		return forms?.[n === 1 ? 'one' : 'other'] ?? key;
-	};
 
 	return (
 		<Container paddingHorizontal="xl" paddingVertical="xl">
 			<section className={styles.hero}>
 				<ParallaxBg className={styles.heroBg} speed={0.4} />
-				<div className={styles.heroStats}>
-					<span className={styles.heroStat}>
-						<CountUp end={totalStories} className={styles.heroStatCount} />
-						<span className={styles.heroStatLabel}>
-							{countLabel('stories', totalStories)}
-						</span>
-					</span>
-					<span className={styles.heroStat}>
-						<CountUp end={totalArticles} className={styles.heroStatCount} />
-						<span className={styles.heroStatLabel}>
-							{countLabel('articles', totalArticles)}
-						</span>
-					</span>
-					<span className={styles.heroStat}>
-						<CountUp end={totalSources} className={styles.heroStatCount} />
-						<span className={styles.heroStatLabel}>
-							{countLabel('sources', totalSources)}
-						</span>
-					</span>
-				</div>
+				{/*
+				 * Hero counters removed while the site ships a single story —
+				 * "1 Story" advertises the archive's smallness rather than its
+				 * depth. Restore when more stories are unparked.
+				 */}
 				<Text variant="h1" className={styles.heroTitle}>
 					{hero.title_p1}
 					<br />

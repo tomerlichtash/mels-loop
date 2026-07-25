@@ -47,11 +47,8 @@ export function StoryHeader({
 				)}
 				<div className={styles.titleBlock}>
 					<StoryTitle href={`/stories/${storySlug}`}>{title}</StoryTitle>
-					{abstract && (
-						<Text variant="subtitle1" color="muted">
-							{abstract}
-						</Text>
-					)}
+					{/* Not `color="muted"`: over the cover image it was illegible. */}
+					{abstract && <Text variant="subtitle1">{abstract}</Text>}
 				</div>
 			</div>
 		</div>
