@@ -61,14 +61,14 @@ Content is the source of truth; the code serves it. A story is a folder under
 
 ## Working on this
 
-See [AGENTS.md](./AGENTS.md) for architecture, conventions and principles, and
-[CLAUDE.md](./CLAUDE.md) for the short version. Two things worth knowing first:
+[`docs/architecture/`](./docs/architecture/00-index.md) has three chapters —
+content pipeline, styling and tokens, routing and locale. The index maps what
+you are doing to the one worth reading. [AGENTS.md](./AGENTS.md) covers
+conventions and principles; [CLAUDE.md](./CLAUDE.md) is the short version.
 
-- The site is bilingual. All CSS uses logical properties
-  (`margin-inline-start`, never `margin-left`), and any layout change needs
-  checking in both `/` and `/he/`.
-- `design-log/` holds superseded planning documents from early 2026. They are
-  **not** a source of truth — verify against the code before acting on them.
+One thing worth knowing before you touch any layout: the site is bilingual, so
+all CSS uses logical properties (`margin-inline-start`, never `margin-left`),
+and every layout change needs checking in both `/` and `/he/`.
 
 ## License
 

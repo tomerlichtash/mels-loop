@@ -163,7 +163,8 @@ src/app/
 
 ### Follow the implementation plan
 
-- `design-log/` holds superseded planning documents from Feb-Mar 2026. **They are not a source of truth** — several describe a design the code has since diverged from. Verify against the code before acting on anything in them.
+- Architecture notes live in `docs/architecture/`. Start at `00-index.md`, which maps what you are doing to the one chapter worth reading. They point at code rather than restating it, so the code always wins.
+- The former `design-log/` was deleted. It held planning documents from Feb–Mar 2026 that had drifted far enough to instruct readers to install a UI library this project never used. Git has them if you need the history; do not reintroduce them as guidance.
 - Complete one step fully before moving to the next. Don't jump ahead.
 - After completing each step, verify it works as described in the plan.
 
