@@ -1,6 +1,12 @@
 'use client';
 
-import { Button, Text, TextField, ToggleGroup } from '@mels-loop/ui/primitives';
+import {
+	Button,
+	Tabs,
+	Text,
+	TextField,
+	ToggleGroup,
+} from '@mels-loop/ui/primitives';
 import { Cross1Icon, MixerHorizontalIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import {
@@ -101,25 +107,18 @@ export function StorySections({ sections, sourceFilters }: StorySectionsProps) {
 					.join(' ')}
 			>
 				<div className={styles.inner}>
-					<nav className={styles.nav} aria-label="Story sections">
-						{sections.map((section) => {
-							const isActive = section.key === activeKey;
-							return (
-								<Link
-									key={section.key}
-									href={section.href}
-									className={[styles.section, isActive && styles.sectionActive]
-										.filter(Boolean)
-										.join(' ')}
-								>
-									{section.label}
-									{section.count != null && (
-										<span className={styles.count}>({section.count})</span>
-									)}
-								</Link>
-							);
-						})}
-					</nav>
+					<Tabs
+						className={styles.nav}
+						aria-label="Story sections"
+						linkComponent={Link}
+						items={sections.map((section) => ({
+							key: section.key,
+							href: section.href,
+							label: section.label,
+							count: section.count ?? undefined,
+							active: section.key === activeKey,
+						}))}
+					/>
 					{showFilters && (
 						<Button
 							variant={filtersOpen ? 'outlined' : 'text'}

@@ -48,84 +48,14 @@
 	background-color: var(--ml-border-color);
 }
 
-.nav {
-	display: flex;
-	gap: var(--ml-space-xs);
-	overflow-x: auto;
-	scrollbar-width: none;
-}
-
-.nav::-webkit-scrollbar {
-	display: none;
-}
-
 /*
- * Mobile only. The strip fits at desktop widths, so a fade there buys nothing
- * and costs something: the active tab's underline starts at x=0, so the
- * leading edge of the mask was visibly nibbling it. On a phone the strip does
- * overflow, and the fade makes the cut read as "there is more here".
- * Symmetric on purpose — a single-sided fade would sit on the wrong edge in
- * Hebrew, and mask-image has no logical direction keyword.
+ * The tab strip must be allowed to shrink below its content width, or it
+ * pushes the row wider than the viewport instead of scrolling internally.
+ * min-width: 0 is what lets a flex child do that.
  */
-@media (--ml-bp-mobile) {
-	.nav {
-		mask-image: linear-gradient(
-			to right,
-			transparent 0,
-			black var(--ml-space-md),
-			black calc(100% - var(--ml-space-md)),
-			transparent 100%
-		);
-	}
-}
-
-.section {
-	display: inline-flex;
-	align-items: center;
-	gap: var(--ml-space-xs);
-	padding: var(--ml-space-sm) var(--ml-space-md);
-	color: var(--ml-text-muted-color);
-	--ml-text-color-override: inherit;
-	/*
-	 * Tab typography lives here and only here. The label used to be wrapped in
-	 * <Text variant="caption">, which set --ml-text-font-size/-weight on its own
-	 * span and silently beat anything set on this anchor — so size and weight
-	 * declared here did nothing at all.
-	 *
-	 * Note weight is a weak lever in this face: Roboto Slab is loaded at
-	 * 300/400/500/700 only, and 500 measures 0.8px wider than 400 across a
-	 * 13-character tab. Size carries the emphasis; weight marks the active tab.
-	 */
-	font-size: var(--ml-font-size-body);
-	font-weight: var(--ml-font-weight-medium);
-	text-decoration: none;
-	white-space: nowrap;
-	box-shadow: inset 0 -2px 0 transparent;
-	transition:
-		color var(--ml-duration-fast) ease,
-		box-shadow var(--ml-duration-fast) ease;
-}
-
-.section:hover {
-	color: var(--ml-text-color);
-}
-
-/* bold, not semibold: 600 is not among the loaded Roboto Slab faces and
- * silently resolved to 700 anyway. Declare what actually renders. */
-.sectionActive {
-	color: var(--ml-text-color);
-	font-weight: var(--ml-font-weight-bold);
-	box-shadow: inset 0 -2px 0 var(--ml-color-primary);
-}
-
-/* The count is supporting detail — keep it lighter than its label. */
-.count {
-	font-weight: var(--ml-font-weight-regular);
-}
-
-.icon {
-	width: 14px;
-	height: 14px;
+.nav {
+	flex: 1 1 auto;
+	min-width: 0;
 }
 
 .filterByLabel {

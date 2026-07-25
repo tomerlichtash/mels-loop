@@ -94,6 +94,11 @@
 	display: none;
 }
 
+/* Locale and theme are in the drawer on mobile — see SiteHeader.tsx. */
+.desktopControls {
+	display: none;
+}
+
 @media (--ml-bp-mobile) {
 	.rightDivider {
 		display: none;
@@ -103,5 +108,11 @@
 @media (--ml-bp-desktop) {
 	.desktopNav {
 		display: flex;
+	}
+
+	.desktopControls {
+		display: flex;
+		align-items: center;
+		gap: var(--ml-space-lg);
 	}
 }

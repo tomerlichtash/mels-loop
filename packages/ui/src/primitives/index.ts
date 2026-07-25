@@ -45,6 +45,8 @@ export {
 	TableHeaderCell,
 	TableRow,
 } from './Table';
+export type { TabItem } from './Tabs';
+export { Tabs } from './Tabs';
 export { Text } from './Text/Text';
 export { TextArea } from './TextArea/TextArea';
 export { TextField } from './TextField/TextField';

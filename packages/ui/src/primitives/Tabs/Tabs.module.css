@@ -1,0 +1,154 @@
+.wrap {
+	position: relative;
+	min-width: 0;
+}
+
+.root {
+	position: relative;
+	display: flex;
+	/*
+	 * Centred while the row fits; `safe` falls back to start alignment on
+	 * overflow, so the first tab stays reachable instead of being scrolled
+	 * off the leading edge.
+	 */
+	justify-content: safe center;
+	gap: var(--ml-tabs-gap, var(--ml-space-md));
+	min-width: 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scrollbar-width: none;
+}
+
+.root::-webkit-scrollbar {
+	display: none;
+}
+
+/*
+ * Edge fades, applied only to a side that actually has content off-screen —
+ * the data attributes are set from measured tab rectangles. Fading both edges
+ * unconditionally clipped the active tab's underline on a strip that fitted.
+ * -webkit- first: lightningcss drops the unprefixed property otherwise.
+ */
+.root[data-fade-start][data-fade-end] {
+	-webkit-mask-image: linear-gradient(
+		to right,
+		transparent,
+		#000 var(--ml-space-xl),
+		#000 calc(100% - var(--ml-space-xl)),
+		transparent
+	);
+	mask-image: linear-gradient(
+		to right,
+		transparent,
+		#000 var(--ml-space-xl),
+		#000 calc(100% - var(--ml-space-xl)),
+		transparent
+	);
+}
+
+.root[data-fade-start]:not([data-fade-end]) {
+	-webkit-mask-image: linear-gradient(
+		to right,
+		transparent,
+		#000 var(--ml-space-xl)
+	);
+	mask-image: linear-gradient(to right, transparent, #000 var(--ml-space-xl));
+}
+
+.root[data-fade-end]:not([data-fade-start]) {
+	-webkit-mask-image: linear-gradient(
+		to left,
+		transparent,
+		#000 var(--ml-space-xl)
+	);
+	mask-image: linear-gradient(to left, transparent, #000 var(--ml-space-xl));
+}
+
+.tab {
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35em;
+	padding: var(--ml-space-sm) var(--ml-space-md);
+	white-space: nowrap;
+	text-decoration: none;
+	font-size: var(--ml-tabs-font-size, var(--ml-font-size-body));
+	font-weight: var(--ml-font-weight-medium);
+	color: var(--ml-text-muted-color);
+	transition: color var(--ml-duration-fast) ease;
+}
+
+.tab:hover {
+	color: var(--ml-text-color);
+}
+
+/*
+ * Colour only — deliberately no weight change. A heavier active tab is wider,
+ * which reflows the whole row on every navigation. The sliding indicator marks
+ * the active tab instead.
+ */
+.tabActive {
+	color: var(--ml-text-color);
+}
+
+.count {
+	font-weight: var(--ml-font-weight-regular);
+}
+
+/* One element that slides between tabs — a per-tab border cannot animate
+ * between positions. */
+.indicator {
+	position: absolute;
+	bottom: 0;
+	inset-inline-start: 0;
+	width: 0;
+	height: 2px;
+	background-color: var(--ml-color-primary);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.indicatorAnimated {
+	transition:
+		inset-inline-start var(--ml-duration-normal) ease,
+		width var(--ml-duration-normal) ease;
+}
+
+.chevron {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	padding: 0 var(--ml-space-2xs);
+	border: none;
+	background-color: var(--ml-surface-background-color);
+	color: var(--ml-text-muted-color);
+	cursor: pointer;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--ml-duration-fast) ease;
+}
+
+.chevronVisible {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.chevron:hover {
+	color: var(--ml-text-color);
+}
+
+.chevronStart {
+	inset-inline-start: 0;
+}
+
+.chevronEnd {
+	inset-inline-end: 0;
+}
+
+.chevronGlyph {
+	font-size: var(--ml-font-size-md);
+	line-height: 1;
+}

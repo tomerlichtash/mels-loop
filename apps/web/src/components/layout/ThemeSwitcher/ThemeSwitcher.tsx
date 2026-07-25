@@ -2,7 +2,9 @@
 
 import { useColorScheme } from '@mels-loop/ui/color-scheme';
 import { ToggleButton } from '@mels-loop/ui/primitives';
-import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
+// SSR entry: RSC-safe, no React Context, and it tree-shakes to the two icons
+// used here rather than pulling the whole set.
+import { MoonIcon, SunIcon } from '@phosphor-icons/react/ssr';
 
 import styles from './ThemeSwitcher.module.css';
 
@@ -21,7 +23,9 @@ export function ThemeSwitcher({ 'aria-label': ariaLabel }: ThemeSwitcherProps) {
 			className={styles.root}
 			aria-label={ariaLabel}
 		>
-			<span className={styles.icon}>{isDark ? <SunIcon /> : <MoonIcon />}</span>
+			<span className={styles.icon}>
+				{isDark ? <SunIcon weight="fill" /> : <MoonIcon weight="fill" />}
+			</span>
 		</ToggleButton>
 	);
 }

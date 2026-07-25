@@ -46,6 +46,7 @@ export function SiteLayout({
 				opened={drawerOpened}
 				onClose={() => setDrawerOpened(false)}
 				navItems={navItems}
+				locales={locales}
 			/>
 
 			{searchSlot}

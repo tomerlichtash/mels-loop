@@ -4,16 +4,24 @@ import { useTranslation } from '@mels-loop/i18n/client';
 import * as Dialog from '@radix-ui/react-dialog';
 import Link from 'next/link';
 
-import type { NavItem } from '../types';
+import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
+import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
+import type { LocaleOption, NavItem } from '../types';
 import styles from './MobileDrawer.module.css';
 
 interface MobileDrawerProps {
 	opened: boolean;
 	onClose: () => void;
 	navItems: NavItem[];
+	locales: LocaleOption[];
 }
 
-export function MobileDrawer({ opened, onClose, navItems }: MobileDrawerProps) {
+export function MobileDrawer({
+	opened,
+	onClose,
+	navItems,
+	locales,
+}: MobileDrawerProps) {
 	const { t } = useTranslation();
 
 	return (
@@ -62,6 +70,12 @@ export function MobileDrawer({ opened, onClose, navItems }: MobileDrawerProps) {
 							);
 						})}
 					</nav>
+					{/* Locale and theme live here rather than in the header bar, which
+					 * has no room for them at phone widths. */}
+					<div className={styles.controls}>
+						<LocaleSwitcher locales={locales} />
+						<ThemeSwitcher aria-label={t('theme.toggle')} />
+					</div>
 				</Dialog.Content>
 			</Dialog.Portal>
 		</Dialog.Root>

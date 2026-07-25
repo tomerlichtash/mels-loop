@@ -101,3 +101,13 @@
 		display: none;
 	}
 }
+
+/* Locale and theme, moved out of the header bar — see MobileDrawer.tsx. */
+.controls {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-lg);
+	margin-top: auto;
+	padding-top: var(--ml-space-lg);
+	border-top: 1px solid var(--ml-border-color);
+}

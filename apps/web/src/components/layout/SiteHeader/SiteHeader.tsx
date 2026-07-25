@@ -64,7 +64,6 @@ export function SiteHeader({
 			<header className={`${styles.root} ${hidden ? styles.hidden : ''}`}>
 				<div className={styles.inner}>
 					<div className={styles.left}>
-						<BurgerButton onClick={onMenuClick} />
 						<Logo isHome={isHome} siteTitle={t('siteTitle')} />
 						<Separator orientation="vertical" className={styles.logoDivider} />
 						<span className={styles.logoSubtitle}>{t('siteSubtitle')}</span>
@@ -81,10 +80,20 @@ export function SiteHeader({
 								label={t('search.open')}
 							/>
 						)}
-						<LocaleSwitcher locales={locales} />
-						<Tooltip label={themeLabel}>
-							<ThemeSwitcher aria-label={themeLabel} />
-						</Tooltip>
+						{/*
+						 * Locale and theme move into the drawer on mobile. Brand plus five
+						 * controls does not fit a 390px bar — that crowding is what was
+						 * breaking "MEL'S LOOP" across two lines.
+						 */}
+						<div className={styles.desktopControls}>
+							<LocaleSwitcher locales={locales} />
+							<Tooltip label={themeLabel}>
+								<ThemeSwitcher aria-label={themeLabel} />
+							</Tooltip>
+						</div>
+						{/* Last in the row, so the brand keeps the leading edge at every
+						 * width and the trigger sits with the other actions. */}
+						<BurgerButton onClick={onMenuClick} />
 					</div>
 				</div>
 			</header>
