@@ -2,6 +2,7 @@ name: CI
 
 on:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   lint-and-format:
@@ -67,8 +68,14 @@ jobs:
       - name: Build all packages
         run: pnpm build
 
+  # PAUSED on PRs. These are visual-regression screenshot tests, and no
+  # baseline snapshots are committed (git ls-files packages/ui/__snapshots__
+  # returns 0) while playwright.config.ts sets updateSnapshots: 'none' — so
+  # every toHaveScreenshot() fails on a missing baseline and the job can
+  # never pass. Run manually via the Actions tab once baselines exist.
   ui-e2e:
     name: UI E2E (${{ matrix.shard }}/${{ strategy.job-total }})
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -114,7 +121,7 @@ jobs:
 
   ui-e2e-report:
     name: UI E2E Report
-    if: always()
+    if: always() && github.event_name == 'workflow_dispatch'
     needs: ui-e2e
     runs-on: ubuntu-latest
 

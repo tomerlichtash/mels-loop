@@ -5,3 +5,4 @@ dist
 public
 pnpm-lock.yaml
 *.md
+next-env.d.ts

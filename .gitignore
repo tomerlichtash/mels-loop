@@ -65,3 +65,6 @@ apps/web/public/search-index.*.json
 # local media (test before S3 upload)
 apps/web/public/media/*
 !apps/web/public/media/.gitkeep
+# Next.js generates this on every build; prettier rewrites its quote style,
+# producing endless churn. Regenerated automatically — no need to track it.
+next-env.d.ts
