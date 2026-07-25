@@ -9,7 +9,11 @@ import '../../content-init';
 
 import { ClerkProvider } from '@clerk/nextjs';
 import { I18nProvider } from '@mels-loop/i18n/client';
-import { getDirection, isValidLocale } from '@mels-loop/i18n/config';
+import {
+	getDirection,
+	getLocales,
+	isValidLocale,
+} from '@mels-loop/i18n/config';
 import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { notFound } from 'next/navigation';
@@ -25,6 +29,15 @@ import { footerLinks, localeOptions } from './config/nav';
 import { resolveNavItems } from './resolveNavItems';
 
 export { generateMetadata } from './config/metadata';
+
+/**
+ * Enumerating the locales here lets every child route prerender without
+ * declaring its own params. Without it the whole tree is rendered per
+ * request, re-reading markdown off disk on every hit.
+ */
+export function generateStaticParams() {
+	return getLocales().map((locale) => ({ locale }));
+}
 
 const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 const gaId = process.env.NEXT_PUBLIC_ANALYTICS_ID;

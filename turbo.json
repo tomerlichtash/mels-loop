@@ -8,7 +8,12 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": [".next/**", "!.next/cache/**", "dist/**"]
+			"outputs": [
+				".next/**",
+				"!.next/cache/**",
+				"dist/**",
+				"public/search-index.*.json"
+			]
 		},
 		"dev": {
 			"cache": false,
@@ -34,10 +39,6 @@
 		},
 		"test-storybook": {
 			"cache": false
-		},
-		"search-index": {
-			"dependsOn": ["^build"],
-			"outputs": ["public/search-index.*.json"]
 		},
 		"build-storybook": {
 			"dependsOn": ["^build"],
