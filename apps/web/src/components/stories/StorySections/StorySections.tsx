@@ -7,7 +7,7 @@ import {
 	TextField,
 	ToggleGroup,
 } from '@mels-loop/ui/primitives';
-import { Cross1Icon, MixerHorizontalIcon } from '@radix-ui/react-icons';
+import { SlidersHorizontalIcon, XIcon } from '@phosphor-icons/react/ssr';
 import Link from 'next/link';
 import {
 	usePathname,
@@ -133,8 +133,8 @@ export function StorySections({ sections, sourceFilters }: StorySectionsProps) {
 							aria-label={sourceFilters.filterLabel}
 							aria-expanded={filtersOpen}
 						>
-							<MixerHorizontalIcon className={styles.filterIconDefault} />
-							<Cross1Icon className={styles.filterIconClose} />
+							<SlidersHorizontalIcon className={styles.filterIconDefault} />
+							<XIcon className={styles.filterIconClose} />
 						</Button>
 					)}
 				</div>

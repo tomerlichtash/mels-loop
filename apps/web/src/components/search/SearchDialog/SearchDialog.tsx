@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslation } from '@mels-loop/i18n/client';
+import { CloseButton } from '@mels-loop/ui/primitives';
 import {
 	type AnyOrama,
 	create,
@@ -9,15 +10,15 @@ import {
 	type Result,
 	search,
 } from '@orama/orama';
-import * as Dialog from '@radix-ui/react-dialog';
 import {
 	FileIcon,
 	FileTextIcon,
 	ImageIcon,
-	Link2Icon,
-	SpeakerLoudIcon,
+	LinkIcon,
+	SpeakerHighIcon,
 	VideoIcon,
-} from '@radix-ui/react-icons';
+} from '@phosphor-icons/react/ssr';
+import * as Dialog from '@radix-ui/react-dialog';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -66,9 +67,9 @@ const SOURCE_ICONS: Record<
 	image: ImageIcon,
 	pdf: FileTextIcon,
 	text: FileTextIcon,
-	audio: SpeakerLoudIcon,
+	audio: SpeakerHighIcon,
 	video: VideoIcon,
-	link: Link2Icon,
+	link: LinkIcon,
 	archive: FileIcon,
 	other: FileIcon,
 };
@@ -281,14 +282,10 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
 							onChange={handleInputChange}
 							placeholder={t('search.placeholder')}
 						/>
-						<button
-							type="button"
-							className={styles.escBadge}
+						<CloseButton
 							onClick={() => onOpenChange(false)}
 							aria-label={t('search.close')}
-						>
-							ESC
-						</button>
+						/>
 					</div>
 
 					<div className={styles.results}>

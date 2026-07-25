@@ -91,8 +91,31 @@
 	color: var(--ml-text-color);
 }
 
+/*
+ * A badge rather than parenthesised text: the count is metadata about the tab,
+ * not part of its name, and "(46)" read as though it belonged to the label.
+ */
 .count {
-	font-weight: var(--ml-font-weight-regular);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 1.5em;
+	padding: 0.1em 0.4em;
+	border-radius: var(--ml-radius-full);
+	background-color: var(--ml-color-surface-subtle);
+	font-size: 0.8em;
+	font-weight: var(--ml-font-weight-medium);
+	line-height: 1.4;
+	color: var(--ml-text-muted-color);
+}
+
+.tabActive .count {
+	background-color: color-mix(
+		in srgb,
+		var(--ml-color-primary) 15%,
+		transparent
+	);
+	color: var(--ml-color-primary);
 }
 
 /* One element that slides between tabs — a per-tab border cannot animate

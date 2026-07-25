@@ -1,8 +1,8 @@
 import {
-	EyeOpenIcon,
-	LockClosedIcon,
+	EyeIcon,
+	LockIcon,
 	MagnifyingGlassIcon,
-} from '@radix-ui/react-icons';
+} from '@phosphor-icons/react/ssr';
 import type { Meta, StoryObj } from '@storybook/react';
 import { type CSSProperties, useState } from 'react';
 
@@ -127,7 +127,7 @@ function ToggleButtonDemo() {
 			onPressedChange={setPressed}
 			aria-label="Toggle preview"
 		>
-			<EyeOpenIcon />
+			<EyeIcon />
 		</ToggleButton>
 	);
 }
@@ -242,7 +242,7 @@ export const Default: Story = {
 				<PasswordField
 					size="sm"
 					placeholder="Enter password..."
-					iconStart={<LockClosedIcon />}
+					iconStart={<LockIcon />}
 				/>
 			</Section>
 

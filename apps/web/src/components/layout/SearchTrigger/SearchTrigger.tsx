@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import { MagnifyingGlassIcon } from '@phosphor-icons/react/ssr';
 import { useEffect, useState } from 'react';
 
 import styles from './SearchTrigger.module.css';
@@ -26,7 +26,7 @@ export function SearchTrigger({
 			onClick={onClick}
 			aria-label={label}
 		>
-			<MagnifyingGlassIcon className={styles.icon} width={14} height={14} />
+			<MagnifyingGlassIcon className={styles.icon} size={14} />
 			<span className={styles.placeholder}>{placeholder}</span>
 			<span className={styles.kbd}>
 				<kbd>{isMac ? '\u2318' : 'Ctrl'}</kbd>

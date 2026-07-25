@@ -15,5 +15,5 @@
 	top: var(--ml-header-height);
 	max-width: var(--ml-page-max-width);
 	margin: 0 auto;
-	padding: 0 var(--ml-page-padding-horizontal);
+	padding: 0 var(--ml-content-padding-horizontal);
 }

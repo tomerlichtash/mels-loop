@@ -174,7 +174,7 @@ export function Tabs({
 					>
 						<span>{item.label}</span>
 						{item.count != null && (
-							<span className={styles.count}>({item.count})</span>
+							<span className={styles.count}>{item.count}</span>
 						)}
 					</Anchor>
 				))}

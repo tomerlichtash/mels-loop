@@ -1,7 +1,7 @@
 'use client';
 
+import { XIcon } from '@phosphor-icons/react/ssr';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { Cross2Icon } from '@radix-ui/react-icons';
 import cn from 'classnames';
 import type { ReactNode } from 'react';
 
@@ -36,7 +36,7 @@ export function Dialog({
 						{title}
 					</RadixDialog.Title>
 					<RadixDialog.Close className={styles.close} aria-label={closeLabel}>
-						<Cross2Icon />
+						<XIcon />
 					</RadixDialog.Close>
 					{children}
 				</RadixDialog.Content>

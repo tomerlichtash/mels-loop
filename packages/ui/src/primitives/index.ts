@@ -22,6 +22,7 @@ export {
 } from './Card';
 export { Checkbox } from './Checkbox/Checkbox';
 export { Chip } from './Chip/Chip';
+export { CloseButton } from './CloseButton';
 export { Code } from './Code/Code';
 export { CodeBlock } from './CodeBlock/CodeBlock';
 export { Combobox } from './Combobox/Combobox';

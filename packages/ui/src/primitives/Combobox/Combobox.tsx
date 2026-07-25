@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronDownIcon, Cross2Icon } from '@radix-ui/react-icons';
+import { CaretDownIcon, XIcon } from '@phosphor-icons/react/ssr';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import cn from 'classnames';
 import { forwardRef, useCallback } from 'react';
@@ -218,7 +218,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 								onClick={combobox.handleClear}
 								tabIndex={-1}
 							>
-								<Cross2Icon />
+								<XIcon />
 							</InputAction>
 						)}
 						<InputAction
@@ -231,7 +231,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 							onMouseDown={(e) => e.preventDefault()}
 							tabIndex={-1}
 						>
-							<ChevronDownIcon
+							<CaretDownIcon
 								className={cn(styles.chevron, {
 									[styles.chevronOpen]: combobox.open,
 								})}

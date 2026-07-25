@@ -3,25 +3,52 @@
 	inset: 0;
 	background-color: var(--ml-overlay-background-color);
 	z-index: 999;
+}
+
+/*
+ * Keyed to Radix's data-state rather than applied unconditionally. Radix keeps
+ * the element mounted while a closing animation runs, so without a
+ * [data-state='closed'] rule the drawer vanished instantly on close instead of
+ * sliding back out.
+ */
+.overlay[data-state='open'] {
 	animation: fadeIn var(--ml-duration-normal) ease;
+}
+
+.overlay[data-state='closed'] {
+	animation: fadeOut var(--ml-duration-normal) ease;
 }
 
 .content {
 	position: fixed;
 	top: 0;
-	inset-inline-start: 0;
+	inset-inline-end: 0;
 	bottom: 0;
 	width: 280px;
 	max-width: 80vw;
 	background-color: var(--ml-surface-background-color);
 	z-index: 1000;
 	padding: var(--ml-space-md);
-	animation: slideInLtr var(--ml-duration-normal) ease;
+	/* Slides in from the trailing edge, matching the trigger's position in
+	 * the header. Keyframes are physical because transform has no logical
+	 * axis, so the RTL override below flips the direction. */
 	overflow-y: auto;
 }
 
-:global([dir='rtl']) .content {
-	animation-name: slideInRtl;
+.content[data-state='open'] {
+	animation: slideInEnd var(--ml-duration-normal) ease;
+}
+
+.content[data-state='closed'] {
+	animation: slideOutEnd var(--ml-duration-normal) ease;
+}
+
+:global([dir='rtl']) .content[data-state='open'] {
+	animation-name: slideInEndRtl;
+}
+
+:global([dir='rtl']) .content[data-state='closed'] {
+	animation-name: slideOutEndRtl;
 }
 
 .header {
@@ -77,18 +104,18 @@
 	}
 }
 
-@keyframes slideInLtr {
+@keyframes slideInEnd {
 	from {
-		transform: translateX(-100%);
+		transform: translateX(100%);
 	}
 	to {
 		transform: translateX(0);
 	}
 }
 
-@keyframes slideInRtl {
+@keyframes slideInEndRtl {
 	from {
-		transform: translateX(100%);
+		transform: translateX(-100%);
 	}
 	to {
 		transform: translateX(0);
@@ -110,4 +137,31 @@
 	margin-top: auto;
 	padding-top: var(--ml-space-lg);
 	border-top: 1px solid var(--ml-border-color);
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes slideOutEnd {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes slideOutEndRtl {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-100%);
+	}
 }

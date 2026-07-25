@@ -88,8 +88,10 @@ export default async function StorySlugLayout({
 		typedLocale,
 		storyMessages,
 	);
+	/* The story page wants a short standfirst; the homepage card keeps the
+	 * fuller `abstract`. Falls back to abstract when no subtitle is set. */
 	const storyAbstract = resolveStoryField(
-		config.meta.abstract,
+		config.meta.subtitle ?? config.meta.abstract,
 		typedLocale,
 		storyMessages,
 	);

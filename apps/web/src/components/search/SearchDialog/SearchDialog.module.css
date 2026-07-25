@@ -235,3 +235,44 @@
 		opacity: 1;
 	}
 }
+
+/*
+ * The footer is only keyboard hints plus a result count, and the hints are
+ * meaningless on a touch device. Hiding just the hints left an empty bar
+ * holding its own padding, so the whole footer goes.
+ */
+@media (--ml-bp-mobile) {
+	.footer {
+		display: none;
+	}
+}
+
+/* ESC label on desktop, X on touch — same button either way. */
+.escIcon {
+	display: none;
+}
+
+@media (--ml-bp-mobile) {
+	.escLabel {
+		display: none;
+	}
+
+	.escIcon {
+		display: block;
+	}
+
+	/*
+	 * The dialog is centred with left:50% + translateX(-50%), so its margin has
+	 * to come from the width, not from inset — overriding inset-inline fights
+	 * the transform and throws it off screen.
+	 */
+	.dialog {
+		top: 10vh;
+		width: calc(100vw - 2 * var(--ml-space-lg));
+		max-height: 80vh;
+	}
+
+	.inputWrap {
+		padding: var(--ml-space-md);
+	}
+}

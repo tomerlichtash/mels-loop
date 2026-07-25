@@ -3,7 +3,15 @@
 :root {
 	--ml-content-max-width: 800px;
 	--ml-page-max-width: 1100px;
+	/*
+	 * Two gutters, because chrome and prose want different things. The chrome
+	 * bars — header, story panel, tab strip — are dense rows of controls that
+	 * benefit from reaching closer to the edge. Body text does not: it needs
+	 * margin to sit comfortably. They are equal on desktop and diverge on a
+	 * phone, where the difference actually matters.
+	 */
 	--ml-page-padding-horizontal: var(--ml-space-xl);
+	--ml-content-padding-horizontal: var(--ml-space-xl);
 
 	/*
 	 * Heights of the three stacked chrome bars. These are authoritative: each
@@ -19,4 +27,16 @@
 	--ml-header-height: 48px;
 	--ml-story-panel-height: 36px;
 	--ml-story-sections-height: 38px;
+}
+
+/*
+ * A phone has far less width to spare, and --ml-space-xl on both sides was
+ * eating a visible slice of a 390px screen. The chrome tightens; the content
+ * area keeps a larger gutter so prose is not pressed against the edge.
+ */
+@media (--ml-bp-mobile) {
+	:root {
+		--ml-page-padding-horizontal: var(--ml-space-sm);
+		--ml-content-padding-horizontal: var(--ml-space-lg);
+	}
 }

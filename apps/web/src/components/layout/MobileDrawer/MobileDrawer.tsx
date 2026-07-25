@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslation } from '@mels-loop/i18n/client';
+import { CloseButton } from '@mels-loop/ui/primitives';
 import * as Dialog from '@radix-ui/react-dialog';
 import Link from 'next/link';
 
@@ -33,11 +34,8 @@ export function MobileDrawer({
 						<Dialog.Title className={styles.title}>
 							{t('siteTitle')}
 						</Dialog.Title>
-						<Dialog.Close
-							className={styles.close}
-							aria-label={t('nav.closeMenu')}
-						>
-							&times;
+						<Dialog.Close asChild>
+							<CloseButton aria-label={t('nav.closeMenu')} />
 						</Dialog.Close>
 					</div>
 					<nav className={styles.nav}>

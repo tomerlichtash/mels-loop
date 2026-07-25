@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from '@radix-ui/react-icons';
+import { CaretRightIcon } from '@phosphor-icons/react/ssr';
 import cn from 'classnames';
 import type { ComponentType, ReactNode } from 'react';
 
@@ -44,7 +44,7 @@ export function Breadcrumbs({
 						<li key={index} className={styles.item}>
 							{index > 0 && (
 								<span className={styles.separator} aria-hidden>
-									<ChevronRightIcon />
+									<CaretRightIcon />
 								</span>
 							)}
 							{isLast || !item.href ? (

@@ -3,6 +3,7 @@
 	"meta": {
 		"title": "story.title",
 		"abstract": "story.abstract",
+		"subtitle": "story.subtitle",
 		"date": "1983-05-21",
 		"license": "public-domain",
 		"tags": [

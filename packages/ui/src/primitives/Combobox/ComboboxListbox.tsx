@@ -1,4 +1,4 @@
-import { CheckIcon } from '@radix-ui/react-icons';
+import { CheckIcon } from '@phosphor-icons/react/ssr';
 import cn from 'classnames';
 
 import type { ComboboxOption } from './Combobox';

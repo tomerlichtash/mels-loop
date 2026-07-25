@@ -40,7 +40,8 @@
 	justify-content: space-between;
 	max-width: var(--ml-page-max-width);
 	margin: 0 auto;
-	padding-inline: var(--ml-page-padding-horizontal);
+	/* Identity, not chrome — aligns with the story text below it. */
+	padding-inline: var(--ml-content-padding-horizontal);
 }
 
 .divider {
@@ -98,7 +99,8 @@
 	gap: var(--ml-space-sm);
 	max-width: var(--ml-page-max-width);
 	margin: 0 auto;
-	padding-inline: var(--ml-page-padding-horizontal);
+	/* Identity, not chrome — aligns with the story text below it. */
+	padding-inline: var(--ml-content-padding-horizontal);
 	padding-block: var(--ml-space-xs);
 }
 

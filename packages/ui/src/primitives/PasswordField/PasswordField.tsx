@@ -1,6 +1,6 @@
 'use client';
 
-import { EyeClosedIcon, EyeOpenIcon } from '@radix-ui/react-icons';
+import { EyeIcon, EyeSlashIcon } from '@phosphor-icons/react/ssr';
 import cn from 'classnames';
 import { forwardRef, useState } from 'react';
 
@@ -40,7 +40,7 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
 					onPointerLeave={() => setHovered(false)}
 					className={styles.toggle}
 				>
-					{visible ? <EyeClosedIcon /> : <EyeOpenIcon />}
+					{visible ? <EyeSlashIcon /> : <EyeIcon />}
 				</InputAction>
 			</Tooltip>
 		) : (
@@ -49,7 +49,7 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
 				onClick={() => setVisible((v) => !v)}
 				className={styles.toggle}
 			>
-				{visible ? <EyeClosedIcon /> : <EyeOpenIcon />}
+				{visible ? <EyeSlashIcon /> : <EyeIcon />}
 			</InputAction>
 		);
 

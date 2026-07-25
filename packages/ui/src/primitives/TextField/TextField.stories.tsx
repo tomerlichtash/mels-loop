@@ -1,10 +1,10 @@
 import {
-	Cross2Icon,
-	EnvelopeClosedIcon,
-	LockClosedIcon,
+	EnvelopeSimpleIcon,
+	LockIcon,
 	MagnifyingGlassIcon,
-	PersonIcon,
-} from '@radix-ui/react-icons';
+	UserIcon,
+	XIcon,
+} from '@phosphor-icons/react/ssr';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
@@ -14,10 +14,10 @@ import { TextField } from './TextField';
 const iconMap: Record<string, React.ReactNode> = {
 	none: undefined,
 	search: <MagnifyingGlassIcon />,
-	person: <PersonIcon />,
-	envelope: <EnvelopeClosedIcon />,
-	lock: <LockClosedIcon />,
-	close: <Cross2Icon />,
+	person: <UserIcon />,
+	envelope: <EnvelopeSimpleIcon />,
+	lock: <LockIcon />,
+	close: <XIcon />,
 };
 
 const iconOptions = Object.keys(iconMap);
@@ -90,7 +90,7 @@ function ClearableExample() {
 			iconEnd={
 				value ? (
 					<InputAction aria-label="Clear" onClick={() => setValue('')}>
-						<Cross2Icon />
+						<XIcon />
 					</InputAction>
 				) : undefined
 			}

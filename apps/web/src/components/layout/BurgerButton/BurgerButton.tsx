@@ -1,5 +1,5 @@
 import { useTranslation } from '@mels-loop/i18n/client';
-import { HamburgerMenuIcon } from '@radix-ui/react-icons';
+import { ListIcon } from '@phosphor-icons/react/ssr';
 
 import styles from './BurgerButton.module.css';
 
@@ -16,7 +16,7 @@ export function BurgerButton({ onClick }: BurgerButtonProps) {
 			onClick={onClick}
 			aria-label={t('nav.toggleMenu')}
 		>
-			<HamburgerMenuIcon width={20} height={20} />
+			<ListIcon size={20} />
 		</button>
 	);
 }

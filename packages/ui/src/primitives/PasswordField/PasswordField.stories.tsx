@@ -1,12 +1,12 @@
-import { LockClosedIcon, PersonIcon } from '@radix-ui/react-icons';
+import { LockIcon, UserIcon } from '@phosphor-icons/react/ssr';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { PasswordField } from './PasswordField';
 
 const iconMap: Record<string, React.ReactNode> = {
 	none: undefined,
-	lock: <LockClosedIcon />,
-	person: <PersonIcon />,
+	lock: <LockIcon />,
+	person: <UserIcon />,
 };
 
 const iconOptions = Object.keys(iconMap);

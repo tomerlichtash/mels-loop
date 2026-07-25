@@ -1,4 +1,4 @@
-import { Cross2Icon } from '@radix-ui/react-icons';
+import { XIcon } from '@phosphor-icons/react/ssr';
 import cn from 'classnames';
 import type { HTMLAttributes, ReactNode } from 'react';
 
@@ -51,7 +51,7 @@ export function Chip({
 					onClick={onDismiss}
 					tabIndex={-1}
 				>
-					<Cross2Icon />
+					<XIcon />
 				</button>
 			)}
 		</span>

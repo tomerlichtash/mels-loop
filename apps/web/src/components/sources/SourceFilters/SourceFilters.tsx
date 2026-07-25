@@ -6,13 +6,12 @@ import type {
 } from '@mels-loop/content-loaders/types';
 import { Badge, Button, TextField } from '@mels-loop/ui/primitives';
 import {
-	ClipboardCopyIcon,
-	Cross2Icon,
-	DotsVerticalIcon,
-	ExternalLinkIcon,
+	ArrowSquareOutIcon,
+	CopyIcon,
+	DotsThreeVerticalIcon,
 	RowsIcon,
-	RowSpacingIcon,
-} from '@radix-ui/react-icons';
+	XIcon,
+} from '@phosphor-icons/react/ssr';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {
 	type ColumnDef,
@@ -162,7 +161,7 @@ function SourceDetail({ source }: { source: ResolvedSource }) {
 						className={styles.detailAction}
 						onClick={handleCopyId}
 					>
-						<ClipboardCopyIcon />
+						<CopyIcon />
 						{copied ? 'Copied!' : 'Copy ID'}
 					</button>
 					{source.url && (
@@ -173,7 +172,7 @@ function SourceDetail({ source }: { source: ResolvedSource }) {
 							className={styles.detailAction}
 							onClick={(e) => e.stopPropagation()}
 						>
-							<ExternalLinkIcon />
+							<ArrowSquareOutIcon />
 							Open source
 						</a>
 					)}
@@ -339,7 +338,7 @@ export function SourceFilters({
 						size="xs"
 						onClick={expandedIds.size > 0 ? collapseAll : expandAll}
 					>
-						{expandedIds.size > 0 ? <RowsIcon /> : <RowSpacingIcon />}
+						{expandedIds.size > 0 ? <RowsIcon /> : <RowsIcon />}
 						{expandedIds.size > 0 ? 'Collapse' : 'Expand'}
 					</Button>
 				</div>
@@ -417,11 +416,11 @@ export function SourceFilters({
 															toggleExpanded(row.original.id);
 														}}
 													>
-														<Cross2Icon />
+														<XIcon />
 													</button>
 												) : (
 													<div className={styles.cellActions}>
-														<DotsVerticalIcon />
+														<DotsThreeVerticalIcon />
 													</div>
 												)}
 											</td>

@@ -1,6 +1,6 @@
 import { Avatar, Text } from '@mels-loop/ui/primitives';
 
-import { StoryTitle } from '../StoryTitle/StoryTitle';
+import { StoryIdentityLink } from '../StoryTitle/StoryTitle';
 import styles from './StoryHeader.module.css';
 
 interface StoryHeaderProps {
@@ -23,20 +23,23 @@ export function StoryHeader({
 	return (
 		<div className={styles.root}>
 			<div className={styles.inner}>
-				{(avatarSrc || avatarFallback) && (
-					<Avatar
-						src={avatarSrc}
-						alt={avatarAlt}
-						fallback={avatarFallback}
-						size="xl"
-						className={styles.avatar}
-					/>
-				)}
-				<div className={styles.titleBlock}>
-					<StoryTitle href={`/stories/${storySlug}`}>{title}</StoryTitle>
-					{/* Not `color="muted"`: over the cover image it was illegible. */}
-					{abstract && <Text variant="subtitle1">{abstract}</Text>}
-				</div>
+				<StoryIdentityLink href={`/stories/${storySlug}`}>
+					{(avatarSrc || avatarFallback) && (
+						<Avatar
+							src={avatarSrc}
+							alt={avatarAlt}
+							fallback={avatarFallback}
+							size="xl"
+							className={styles.avatar}
+						/>
+					)}
+					<div className={styles.titleBlock}>
+						<Text variant="h1" className={styles.title}>
+							{title}
+						</Text>
+						{abstract && <Text variant="subtitle1">{abstract}</Text>}
+					</div>
+				</StoryIdentityLink>
 			</div>
 		</div>
 	);

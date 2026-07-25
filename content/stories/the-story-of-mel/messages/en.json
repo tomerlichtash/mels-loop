@@ -1,7 +1,8 @@
 {
 	"story": {
 		"title": "The Story of Mel",
-		"abstract": "A Comprehensive Guide to The Story of Mel, a Programmer"
+		"abstract": "A Comprehensive Guide to The Story of Mel, a Programmer",
+		"subtitle": "A Real Programmer"
 	},
 	"parts": {
 		"preface": "Preface (A Software Legend That Really Happened)",

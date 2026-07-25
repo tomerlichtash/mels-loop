@@ -1,7 +1,7 @@
 'use client';
 
+import { CheckIcon, MinusIcon } from '@phosphor-icons/react/ssr';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
-import { CheckIcon, MinusIcon } from '@radix-ui/react-icons';
 import cn from 'classnames';
 import { useId } from 'react';
 

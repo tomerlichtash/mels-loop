@@ -2,11 +2,11 @@
 
 import { Chip } from '@mels-loop/ui/primitives';
 import {
-	BookmarkIcon,
-	Cross2Icon,
-	DrawingPinIcon,
-	Pencil2Icon,
-} from '@radix-ui/react-icons';
+	BookmarkSimpleIcon,
+	PencilSimpleIcon,
+	PushPinIcon,
+	XIcon,
+} from '@phosphor-icons/react/ssr';
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
 
@@ -20,9 +20,9 @@ export interface StoryStat {
 }
 
 const statIcons = {
-	articles: Pencil2Icon,
-	documents: BookmarkIcon,
-	sources: DrawingPinIcon,
+	articles: PencilSimpleIcon,
+	documents: BookmarkSimpleIcon,
+	sources: PushPinIcon,
 };
 
 interface StoryMetaProps {
@@ -63,7 +63,7 @@ export function StoryMeta({ stats, storySlug }: StoryMetaProps) {
 						className={styles.close}
 						aria-label="Clear selection"
 					>
-						<Cross2Icon />
+						<XIcon />
 					</Link>
 				)}
 			</div>

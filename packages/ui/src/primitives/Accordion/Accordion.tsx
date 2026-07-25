@@ -1,5 +1,5 @@
+import { CaretDownIcon } from '@phosphor-icons/react/ssr';
 import * as RadixAccordion from '@radix-ui/react-accordion';
-import { ChevronDownIcon } from '@radix-ui/react-icons';
 import cn from 'classnames';
 import { forwardRef, type ReactNode } from 'react';
 
@@ -79,7 +79,7 @@ export const AccordionTrigger = forwardRef<
 			ref={ref}
 			className={cn(styles.trigger, 'ml-accordion-trigger', className)}
 		>
-			<ChevronDownIcon className={styles.chevron} aria-hidden />
+			<CaretDownIcon className={styles.chevron} aria-hidden />
 			{children}
 		</RadixAccordion.Trigger>
 	</RadixAccordion.Header>

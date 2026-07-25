@@ -14,7 +14,8 @@
 	 * screen to show a title and one line of subtitle. This is a reading site
 	 * — get to the prose.
 	 */
-	padding: var(--ml-space-2xl) var(--ml-page-padding-horizontal);
+	/* Identity, not chrome — aligns with the story text below it. */
+	padding: var(--ml-space-2xl) var(--ml-content-padding-horizontal);
 }
 
 .avatar {
@@ -22,16 +23,23 @@
 	flex-shrink: 0;
 }
 
-/*
- * Side by side, the avatar and the title block cannot both fit on a phone —
- * the heading wrapped across the portrait.
- */
 @media (--ml-bp-mobile) {
 	.inner {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: var(--ml-space-sm);
 		padding-block: var(--ml-space-lg);
+	}
+
+	/*
+	 * Beside the title rather than stacked above it: stacking cost a whole
+	 * avatar's height before the reader reached the story name. Shrinking the
+	 * portrait is what makes the row fit at 390px.
+	 */
+	.identity {
+		gap: var(--ml-space-md);
+	}
+
+	.avatar {
+		width: 56px;
+		height: 56px;
 	}
 }
 

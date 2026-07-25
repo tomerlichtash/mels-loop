@@ -18,7 +18,7 @@ import {
 	CardMedia,
 	Grid,
 } from '@mels-loop/ui/primitives';
-import { ClipboardCopyIcon, ExternalLinkIcon } from '@radix-ui/react-icons';
+import { ArrowSquareOutIcon, CopyIcon } from '@phosphor-icons/react/ssr';
 import { useSearchParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
 
@@ -76,7 +76,7 @@ function SourceCard({
 			)}
 			<CardActions align="start">
 				<Button variant="text" size="xs" onClick={handleCopyId}>
-					<ClipboardCopyIcon />
+					<CopyIcon />
 					{copied ? 'Copied!' : 'Copy ID'}
 				</Button>
 				{source.url && (
@@ -86,7 +86,7 @@ function SourceCard({
 						rel="noopener noreferrer"
 						className={styles.action}
 					>
-						<ExternalLinkIcon />
+						<ArrowSquareOutIcon />
 						Open source
 					</a>
 				)}
