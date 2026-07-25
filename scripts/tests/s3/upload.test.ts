@@ -98,13 +98,16 @@ describe('collectFiles', () => {
 		await fs.promises.rm(tmpDir, { recursive: true });
 	});
 
+	// Keys are prefixed with the containing directory name, so uploading
+	// `public/media/images` lands under `images/` in the bucket. The temp
+	// directory stands in for that prefix here.
 	it('collects a single file', async () => {
 		const file = path.join(tmpDir, 'photo.jpg');
 		await fs.promises.writeFile(file, 'data');
 
 		const result = await collectFiles(file);
 		expect(result).toHaveLength(1);
-		expect(result[0].key).toBe('photo.jpg');
+		expect(result[0].key).toBe(`${path.basename(tmpDir)}/photo.jpg`);
 		expect(result[0].filePath).toBe(file);
 	});
 
@@ -112,9 +115,10 @@ describe('collectFiles', () => {
 		await fs.promises.writeFile(path.join(tmpDir, 'a.jpg'), 'data');
 		await fs.promises.writeFile(path.join(tmpDir, 'b.png'), 'data');
 
+		const prefix = path.basename(tmpDir);
 		const result = await collectFiles(tmpDir);
 		const keys = result.map((r) => r.key).sort();
-		expect(keys).toEqual(['a.jpg', 'b.png']);
+		expect(keys).toEqual([`${prefix}/a.jpg`, `${prefix}/b.png`]);
 	});
 
 	it('collects files from nested subdirectories', async () => {
@@ -123,9 +127,10 @@ describe('collectFiles', () => {
 		await fs.promises.writeFile(path.join(tmpDir, 'root.jpg'), 'data');
 		await fs.promises.writeFile(path.join(sub, 'nested.png'), 'data');
 
+		const prefix = path.basename(tmpDir);
 		const result = await collectFiles(tmpDir);
 		const keys = result.map((r) => r.key).sort();
-		expect(keys).toEqual(['root.jpg', 'sub/nested.png']);
+		expect(keys).toEqual([`${prefix}/root.jpg`, `${prefix}/sub/nested.png`]);
 	});
 
 	it('returns empty array for empty directory', async () => {

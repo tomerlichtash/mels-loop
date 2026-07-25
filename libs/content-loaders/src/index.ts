@@ -3,6 +3,7 @@ export {
 	getAllGlossaryTerms,
 	getGlossaryTerm,
 } from './glossary';
+export { mediaBaseUrl } from './helpers/parse';
 export { getPage } from './pages';
 export { getAllPosts, getPost } from './posts';
 export {

@@ -1,6 +1,80 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { extractSourceIds, resolveSource } from '../src/helpers/parse';
+import {
+	extractSourceIds,
+	mediaBaseUrl,
+	resolveMediaPath,
+	resolveSource,
+} from '../src/helpers/parse';
+
+describe('mediaBaseUrl', () => {
+	const original = { ...process.env };
+
+	beforeEach(() => {
+		delete process.env.AWS_BUCKET;
+		delete process.env.AWS_REGION;
+	});
+
+	afterEach(() => {
+		process.env = { ...original };
+	});
+
+	it('builds the S3 base URL when both env vars are set', () => {
+		process.env.AWS_BUCKET = 'mels-loop-media';
+		process.env.AWS_REGION = 'eu-north-1';
+		expect(mediaBaseUrl()).toBe(
+			'https://mels-loop-media.s3.eu-north-1.amazonaws.com/',
+		);
+	});
+
+	it('returns empty string when the bucket is missing', () => {
+		process.env.AWS_REGION = 'eu-north-1';
+		expect(mediaBaseUrl()).toBe('');
+	});
+
+	it('returns empty string when the region is missing', () => {
+		process.env.AWS_BUCKET = 'mels-loop-media';
+		expect(mediaBaseUrl()).toBe('');
+	});
+
+	it('returns empty string when both are missing', () => {
+		expect(mediaBaseUrl()).toBe('');
+	});
+});
+
+describe('resolveMediaPath', () => {
+	const original = { ...process.env };
+
+	beforeEach(() => {
+		process.env.AWS_BUCKET = 'mels-loop-media';
+		process.env.AWS_REGION = 'eu-north-1';
+	});
+
+	afterEach(() => {
+		process.env = { ...original };
+	});
+
+	it('rewrites a /media/ path to the external URL', () => {
+		expect(resolveMediaPath('/media/images/mel.jpg')).toBe(
+			'https://mels-loop-media.s3.eu-north-1.amazonaws.com/images/mel.jpg',
+		);
+	});
+
+	it('leaves non-/media/ URLs untouched', () => {
+		expect(resolveMediaPath('https://example.com/photo.jpg')).toBe(
+			'https://example.com/photo.jpg',
+		);
+		expect(resolveMediaPath('/assets/logo.svg')).toBe('/assets/logo.svg');
+	});
+
+	it('leaves /media/ paths relative when the env vars are unset', () => {
+		delete process.env.AWS_BUCKET;
+		delete process.env.AWS_REGION;
+		expect(resolveMediaPath('/media/images/mel.jpg')).toBe(
+			'/media/images/mel.jpg',
+		);
+	});
+});
 
 describe('extractSourceIds', () => {
 	it('returns empty array for markdown with no source references', () => {

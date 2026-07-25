@@ -1,3 +1,4 @@
+import { mediaBaseUrl as buildMediaBaseUrl } from '@mels-loop/content-loaders/loaders';
 import type {
 	PluginBuilder,
 	PluginFactory,
@@ -24,13 +25,6 @@ import { remarkSourceVars } from './remark/source-vars';
 import { remarkStripComments } from './remark/strip-comments';
 import { remarkTableDirective } from './remark/table-directive';
 import { remarkVerse } from './remark/verse';
-
-function buildMediaBaseUrl(): string {
-	const bucket = process.env.AWS_BUCKET;
-	const region = process.env.AWS_REGION;
-	if (!bucket || !region) return '';
-	return `https://${bucket}.s3.${region}.amazonaws.com/`;
-}
 
 /**
  * Creates the full content plugin configuration for Mel's Loop.

@@ -32,12 +32,26 @@ export function resolveSource(
 	};
 }
 
-const MEDIA_PREFIX = '/media/';
+export const MEDIA_PREFIX = '/media/';
 
-function resolveMediaPath(url: string): string {
-	if (!url.startsWith(MEDIA_PREFIX)) return url;
+/**
+ * The external base URL that `/media/` paths resolve to, derived from the S3
+ * env vars. Returns '' when either is unset, which callers treat as "leave
+ * media paths relative".
+ *
+ * Single source of truth: `rehypeMediaBaseUrl` is configured from this too.
+ */
+export function mediaBaseUrl(): string {
 	const bucket = process.env.AWS_BUCKET;
 	const region = process.env.AWS_REGION;
-	if (!bucket || !region) return url;
-	return `https://${bucket}.s3.${region}.amazonaws.com/${url.slice(MEDIA_PREFIX.length)}`;
+	if (!bucket || !region) return '';
+	return `https://${bucket}.s3.${region}.amazonaws.com/`;
+}
+
+/** Rewrites a single `/media/...` path to its external URL, if configured. */
+export function resolveMediaPath(url: string): string {
+	if (!url.startsWith(MEDIA_PREFIX)) return url;
+	const baseUrl = mediaBaseUrl();
+	if (!baseUrl) return url;
+	return baseUrl + url.slice(MEDIA_PREFIX.length);
 }
