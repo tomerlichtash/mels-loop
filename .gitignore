@@ -40,6 +40,10 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+# ...but the documented template is meant to be committed. It is matched by
+# the *.env.* pattern above, so it needs an explicit exception.
+!.env.example
 .vercel
 
 test-results/
