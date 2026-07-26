@@ -3,7 +3,7 @@
 :root {
 	/* Font Families */
 	--ml-font-latin: 'Roboto Slab', serif;
-	--ml-font-hebrew: 'Assistant', sans-serif;
+	--ml-font-hebrew: 'Heebo', sans-serif;
 	--ml-font-mono:
 		ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
 		'DejaVu Sans Mono', monospace;

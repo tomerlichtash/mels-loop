@@ -1,36 +1,13 @@
+/*
+ * Measure and leading are declared at :root in layout.css, so the article
+ * header can share the measure and so a running experiment can drive both
+ * from above. The fallbacks keep this sheet self-contained wherever that
+ * stylesheet is absent.
+ */
 .root {
-	/*
-	 * Measure — the line length, in characters.
-	 *
-	 * Articles were running 95-100 characters a line in a 754px column, against
-	 * the 60-75 that continuous reading wants. Past roughly 75 the return sweep
-	 * gets unreliable: the eye has to travel so far back that it lands on the
-	 * wrong line, and the reader loses their place in a way that reads as the
-	 * text being tiring rather than the column being wide.
-	 *
-	 * In ch, so it tracks the font rather than a pixel guess, and set here at
-	 * the same size the paragraphs render at (body1).
-	 *
-	 * 67, not 75: ch is the width of "0", which in Roboto Slab is wider than
-	 * the average lowercase letter, so the unit under-counts by roughly a
-	 * sixth. This lands the median in the mid-70s of real characters — the top
-	 * of the comfortable band, which suits justified text, since more words per
-	 * line give the browser more places to absorb the slack.
-	 *
-	 * Declared in layout.css so the article header can share it; the fallback
-	 * keeps the renderer self-contained wherever that sheet is absent.
-	 */
-	--ml-prose-measure: 67ch;
-	/*
-	 * Looser than the 1.5 used elsewhere. A slab serif at this size carries
-	 * more ink per line than the UI text --ml-line-height-body was set for, and
-	 * open leading is what stops a long paragraph reading as a block.
-	 */
-	--ml-prose-line-height: 1.65;
-
 	max-width: var(--ml-prose-measure, 67ch);
 	font-size: var(--ml-font-size-md);
-	line-height: var(--ml-prose-line-height);
+	line-height: var(--ml-prose-line-height, 1.65);
 	/*
 	 * The same colour paragraphs render at, not a subtler one.
 	 *
@@ -64,7 +41,7 @@
 .root p {
 	/* Text's body1 variant sets its own line-height, so inheriting from .root
 	 * does not reach the paragraphs. */
-	line-height: var(--ml-prose-line-height);
+	line-height: var(--ml-prose-line-height, 1.65);
 	margin-bottom: var(--ml-space-md);
 	/*
 	 * Justified, with hyphenation.
@@ -224,7 +201,7 @@
  * inside it — the same reason the prose line-height has to be set here too.
  */
 .root blockquote[data-type='quote'] p {
-	font-weight: var(--ml-font-weight-medium);
+	font-weight: var(--ml-quote-font-weight, var(--ml-font-weight-medium));
 }
 
 /*
@@ -277,9 +254,9 @@
  * sentence, which it is not.
  *
  * Smaller and quieter. Deliberately not a change of typeface: that would read
- * as a clear separation in English, where the prose is Roboto Slab and the
- * interface face is Assistant, and as nothing at all in Hebrew, which is set
- * in Assistant throughout. Size and colour say the same thing in both.
+ * as a clear separation in English, where the prose is Roboto Slab, and as
+ * nothing at all in Hebrew, which is set in Heebo throughout. Size and colour
+ * say the same thing in both.
  */
 .root [data-type='smallprint'] {
 	font-size: var(--ml-font-size-sm);

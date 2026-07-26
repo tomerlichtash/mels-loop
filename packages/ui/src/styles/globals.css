@@ -15,7 +15,7 @@ body {
 }
 
 [dir='rtl'] body {
-	font-family: var(--font-assistant, var(--ml-font-hebrew));
+	font-family: var(--font-hebrew, var(--ml-font-hebrew));
 }
 
 a {

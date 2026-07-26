@@ -7,6 +7,6 @@
 }
 
 .he {
-	font-family: var(--font-assistant, var(--ml-font-hebrew));
+	font-family: var(--font-hebrew, var(--ml-font-hebrew));
 	font-size: var(--ml-font-size-md);
 }

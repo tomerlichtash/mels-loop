@@ -7,16 +7,21 @@
  * It is a token rather than a constant because the two languages are set in
  * different typefaces and the same number does not buy the same emphasis.
  * English prose is Roboto Slab, a slab serif whose Medium thickens the stems
- * visibly. Hebrew is Assistant, where Medium is barely separable from Regular
- * at reading size — the weight was being applied correctly and simply could
- * not be seen, leaving colour and the dotted underline to do all the work.
+ * visibly. Hebrew is Heebo, where 500 runs only ~1.5% wider than the body
+ * against 600's ~3.3% — the weight was being applied correctly and simply
+ * could not be seen, leaving colour and the dotted underline to do all the
+ * work. This was worse still under Assistant, which Heebo replaced.
  */
 :root {
 	--ml-term-font-weight: var(--ml-font-weight-medium);
+	--ml-quote-font-weight: var(--ml-font-weight-medium);
 }
 
 :lang(he) {
 	--ml-term-font-weight: var(--ml-font-weight-semibold);
+	/* Same reasoning as the term weight: at 500 a quoted paragraph was not
+	 * separable from the prose discussing it. */
+	--ml-quote-font-weight: var(--ml-font-weight-semibold);
 }
 
 :root {
@@ -29,6 +34,36 @@
 	 * margin to sit comfortably. They are equal on desktop and diverge on a
 	 * phone, where the difference actually matters.
 	 */
+	/*
+	 * ---- Prose ----
+	 *
+	 * Measure — the line length, in characters.
+	 *
+	 * Articles were running 95-100 characters a line in a 754px column, against
+	 * the 60-75 that continuous reading wants. Past roughly 75 the return sweep
+	 * gets unreliable: the eye has to travel so far back that it lands on the
+	 * wrong line, and the reader loses their place in a way that reads as the
+	 * text being tiring rather than the column being wide.
+	 *
+	 * In ch, so it tracks the font rather than a pixel guess. 67, not 75: ch is
+	 * the width of "0", which in Roboto Slab is wider than the average
+	 * lowercase letter, so the unit under-counts by roughly a sixth. This lands
+	 * the median in the mid-70s of real characters — the top of the comfortable
+	 * band, which suits justified text, since more words per line give the
+	 * browser more places to absorb the slack.
+	 *
+	 * Both live here rather than on the prose container so the article header
+	 * can share the measure, and so one place governs the setting of the whole
+	 * page.
+	 */
+	--ml-prose-measure: 67ch;
+	/*
+	 * Looser than the 1.5 used elsewhere. A slab serif at this size carries
+	 * more ink per line than the UI text --ml-line-height-body was set for, and
+	 * open leading is what stops a long paragraph reading as a block.
+	 */
+	--ml-prose-line-height: 1.65;
+
 	--ml-page-padding-horizontal: var(--ml-space-xl);
 	--ml-content-padding-horizontal: var(--ml-space-xl);
 
@@ -75,13 +110,6 @@
 	 * the normal case now. Cheap, and correct on the platforms that differ.
 	 */
 	--ml-viewport-width: calc(100vw - var(--ml-scrollbar-width));
-
-	/*
-	 * Prose measure — line length in characters. Lives here rather than on the
-	 * renderer so an article's header can align to the column it introduces.
-	 * See ContentRenderer.module.css for why it is 62 and not 72.
-	 */
-	--ml-prose-measure: 67ch;
 }
 
 /*
