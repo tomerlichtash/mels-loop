@@ -12,7 +12,12 @@
 		"license": "public-domain",
 		"tags": ["hacker-folklore", "mit", "hardware", "pdp-10"]
 	},
-	"authors": [{ "ref": "guysteele", "role": "author" }],
+	"authors": [
+		{
+			"ref": "guysteele",
+			"role": "author"
+		}
+	],
 	"assets": {
 		"cover": "/media/images/magic-switch-front.jpg"
 	},
@@ -22,5 +27,18 @@
 		"magic-switch-its-issue",
 		"magic-switch-photo-1",
 		"magic-switch-photo-2"
+	],
+	"contents": [
+		{
+			"type": "part",
+			"ref": "codex",
+			"collapse": true,
+			"children": [
+				{
+					"type": "page",
+					"ref": "codex"
+				}
+			]
+		}
 	]
 }

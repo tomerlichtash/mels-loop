@@ -22,5 +22,18 @@
 		"scratch-monkey-jargon-file",
 		"toronto-dead-monkey-project",
 		"scratch-monkey-edp"
+	],
+	"contents": [
+		{
+			"type": "part",
+			"ref": "codex",
+			"collapse": true,
+			"children": [
+				{
+					"type": "page",
+					"ref": "codex"
+				}
+			]
+		}
 	]
 }

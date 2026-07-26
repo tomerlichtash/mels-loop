@@ -19,5 +19,18 @@
 		"marvin-minsky-wikipedia",
 		"gerald-sussman-wikipedia",
 		"dec-pdp-6-photo"
+	],
+	"contents": [
+		{
+			"type": "part",
+			"ref": "codex",
+			"collapse": true,
+			"children": [
+				{
+					"type": "page",
+					"ref": "codex"
+				}
+			]
+		}
 	]
 }

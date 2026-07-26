@@ -16,7 +16,7 @@ A year later, I told this story to yet another hacker, David Moon as I recall. H
 
 The computer promptly crashed.
 
-This time we ran for Richard Greenblatt, a long-time MIT hacker, who was close at hand. He had never noticed the switch before, either. He inspected it, concluded it was useless, got some diagonal cutters and [_dike_](https://www.catb.org/jargon/html/D/dike.html)d it out. We then revived the computer and it has run fine ever since.
+This time we ran for Richard Greenblatt, a long-time MIT hacker, who was close at hand. He had never noticed the switch before, either. He inspected it, concluded it was useless, got some diagonal cutters and [_diked_](https://www.catb.org/jargon/html/D/dike.html) it out. We then revived the computer and it has run fine ever since.
 
 We still don't know how the switch crashed the machine. There is a theory that some circuit near the ground pin was marginal, and flipping the switch changed the electrical capacitance enough to upset the circuit as millionth-of-a-second pulses went through it. But we'll never know for sure; all we can really say is that the switch was [_magic_](https://www.catb.org/jargon/html/M/magic.html).
 
