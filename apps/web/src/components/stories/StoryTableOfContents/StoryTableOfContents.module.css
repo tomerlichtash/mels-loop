@@ -28,7 +28,7 @@
 }
 
 .sectionLink:hover {
-	color: var(--ml-color-primary);
+	color: var(--ml-link-color);
 }
 
 .list {
@@ -49,7 +49,7 @@
 
 .itemLink {
 	font-size: var(--ml-font-size-sm);
-	color: var(--ml-color-primary);
+	color: var(--ml-link-color);
 	text-decoration: none;
 	line-height: var(--ml-line-height-normal);
 }

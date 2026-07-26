@@ -63,7 +63,14 @@
 	--ml-color-surface: oklch(0.27 0.004 107);
 	--ml-color-surface-alt: var(--ml-gray-400);
 	--ml-color-surface-subtle: oklch(0.27 0.004 107);
-	--ml-color-surface-deep: var(--ml-gray-300);
+	/*
+	 * deep and muted have to differ: hover reads the first, a selected state
+	 * reads the second. Both resolved to gray-300 here, so in the locale
+	 * toggle a hovered half and the selected half were the same fill and the
+	 * control stopped saying which language was on — the same fault the light
+	 * theme had, one token along.
+	 */
+	--ml-color-surface-deep: var(--ml-gray-400);
 	--ml-color-surface-muted: var(--ml-gray-300);
 	--ml-color-surface-contrast: var(--ml-cream-200);
 	--ml-color-surface-highlight: var(--ml-gray-300);
@@ -107,7 +114,9 @@
 	/* Links */
 	/* Matches the interactive pair, as in light. */
 	--ml-link-color: var(--ml-color-primary);
-	--ml-link-hover-color: var(--ml-term-highlight);
+	/* Lighter than the resting link, for the reason given in semantic.css:
+	 * hover moves away from the page, which on a dark one means up. */
+	--ml-link-hover-color: oklch(0.78 0.13 350);
 
 	/* Code */
 	/* The previous site used #666560 here; gray-300 is its lightness. */
@@ -118,7 +127,13 @@
 	--ml-code-border: var(--ml-gray-300);
 
 	/* Popover */
-	--ml-popover-bg: var(--ml-color-surface);
+	/*
+	 * The same depth as the header and footer. On --ml-color-surface it was
+	 * level with the page it floats over, so the panel had only its shadow to
+	 * separate it from the prose behind — and in dark a shadow against a dark
+	 * background does almost nothing.
+	 */
+	--ml-popover-bg: var(--ml-color-surface-sunken);
 	--ml-popover-topic-bg: var(--ml-color-primary);
 	--ml-popover-topic-text: var(--ml-cream-200);
 	--ml-popover-icon: var(--ml-cream-200);
@@ -155,8 +170,9 @@
 	 * The step is 1.12:1 against the page, the same separation light gets from
 	 * its cream — enough to read as a band without becoming a black stripe.
 	 */
-	--ml-header-bg: oklch(0.235 0.004 107);
-	--ml-footer-bg: oklch(0.235 0.004 107);
+	--ml-color-surface-sunken: oklch(0.235 0.004 107);
+	--ml-header-bg: var(--ml-color-surface-sunken);
+	--ml-footer-bg: var(--ml-color-surface-sunken);
 
 	/* Border — visible but not bright against dark surfaces */
 	--ml-border-color: var(--ml-gray-400);

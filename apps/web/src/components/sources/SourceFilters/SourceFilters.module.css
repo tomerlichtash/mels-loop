@@ -303,7 +303,7 @@
 	display: inline-flex;
 	align-items: center;
 	gap: var(--ml-space-xs);
-	color: var(--ml-color-primary);
+	color: var(--ml-link-color);
 	text-decoration: none;
 	font-size: var(--ml-font-size-sm);
 	background: none;

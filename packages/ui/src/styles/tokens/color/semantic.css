@@ -47,8 +47,31 @@
 	 * These pointed at the secondary instead, so a paragraph could carry a pink
 	 * link and a blue term side by side with nothing to say why they differed.
 	 */
+	/*
+	 * Interactive text — every word a reader can act on: links, glossary
+	 * terms, annotation markers, a card's call to action.
+	 *
+	 * Use this, never --ml-color-primary, for text. The two happen to resolve
+	 * to the same blue in light, which hid a split for a long time: components
+	 * were divided between the two tokens and agreed by coincidence. In dark
+	 * they are different pinks, and the same page showed terms in one and
+	 * links in another.
+	 *
+	 * --ml-color-primary stays the brand intent, for fills and accents.
+	 */
 	--ml-link-color: var(--ml-color-primary);
-	--ml-link-hover-color: var(--ml-term-highlight);
+	/*
+	 * Hover moves away from the page — darker here, lighter in dark mode — so
+	 * acting on a word gains it presence.
+	 *
+	 * It used to be --ml-term-highlight, which is a mid-tone built to be a
+	 * *fill* behind an open term. As text it has to contrast with the page
+	 * instead, and one mid-tone cannot do that against both a cream page and a
+	 * near-black one: hovering dropped a link from 4.74:1 to 3.92:1 in light
+	 * and from 5.78:1 to 3.69:1 in dark. The hue stays, so hover still
+	 * previews the colour a term takes when its popover opens.
+	 */
+	--ml-link-hover-color: oklch(0.5 0.13 350);
 
 	/* ---- Border ---- */
 	--ml-border-color: var(--ml-color-surface-muted);
@@ -72,7 +95,15 @@
 	 * button, and it should not drift when the primary colour changes.
 	 */
 	--ml-term-highlight: #bd5e92;
-	--ml-term-highlight-text: var(--ml-color-surface);
+	/*
+	 * Reads against the highlight, not against the page.
+	 *
+	 * It was --ml-color-surface, which is cream in light and near-black in
+	 * dark — so the same pink fill carried light text in one theme and dark
+	 * text in the other, and the dark pairing came out at 3.69:1. The fill is
+	 * one colour in both themes, so its text should be too.
+	 */
+	--ml-term-highlight-text: var(--ml-white);
 
 	/* ---- Scrollbar ---- */
 	/*

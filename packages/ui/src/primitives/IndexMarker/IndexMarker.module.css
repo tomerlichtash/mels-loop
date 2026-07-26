@@ -1,7 +1,7 @@
 .root {
 	display: inline;
 	background: none;
-	color: var(--ml-color-primary);
+	color: var(--ml-link-color);
 	border: none;
 	border-radius: var(--ml-radius-sm);
 	padding: 0 0.2rem;
@@ -26,6 +26,10 @@
 @media (hover: hover) {
 	.root:hover {
 		color: var(--ml-term-highlight);
+		/* Same rule as a glossary term: it opens in place, so the underline is
+		 * the hover state rather than a permanent mark. */
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
 	}
 }
 

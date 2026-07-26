@@ -30,7 +30,9 @@
  * heading kept the primary colour long after the tap and read as a link. */
 @media (hover: hover) {
 	.trigger:hover {
-		color: var(--ml-color-primary);
+		/* The interactive-text colour, like every other thing a reader can act
+		 * on — not the brand intent, which is for fills. */
+		color: var(--ml-link-color);
 	}
 }
 

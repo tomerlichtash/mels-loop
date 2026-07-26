@@ -22,7 +22,7 @@
 }
 
 .label:hover {
-	color: var(--ml-color-primary);
+	color: var(--ml-link-color);
 }
 
 .chevron {

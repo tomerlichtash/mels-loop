@@ -9,7 +9,7 @@
 	background: none;
 	border: none;
 	padding: 0;
-	color: var(--ml-color-primary);
+	color: var(--ml-link-color);
 	cursor: pointer;
 	font: inherit;
 	font-weight: var(--ml-term-font-weight);

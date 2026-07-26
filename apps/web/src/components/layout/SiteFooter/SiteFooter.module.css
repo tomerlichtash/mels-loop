@@ -122,4 +122,6 @@
 
 .link:hover {
 	color: var(--ml-link-hover-color);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
 }
