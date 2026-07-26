@@ -9,7 +9,7 @@ imageCaption: "A Real Programmer (1931-2018)"
 :::cols{ratio=1-2}
 ![{{sources/mel-kaye-photo-1952:description}}](sources/mel-kaye-photo-1952)
 
-Mel Kaye (Melvin Kornitzky) was a software engineer, employed at Librascope and at Royal McBee in New York and Los Angeles between the years 1956-1960. Among other programs, he developed a Blackjack game for two models of first-generation digital computers – the LGP-30 and the RPC-4000. His Blackjack game was highly regarded by fellow engineers and c omputer science students. Mel also conceived the ingenious hack described in The Story of Mel by Ed Nather, which was published on the internet in 1983. Ed Nather’s story won Mel world fame in the hacking community and is regarded as a seminal epic in hacking folklore.
+Mel Kaye (Melvin Kornitzky) was a software engineer, employed at Librascope and at Royal McBee in New York and Los Angeles between the years 1956-1960. Among other programs, he developed a Blackjack game for two models of first-generation digital computers – the LGP-30 and the RPC-4000. His Blackjack game was highly regarded by fellow engineers and computer science students. Mel also conceived the ingenious hack described in The Story of Mel by Ed Nather, which was published on the internet in 1983. Ed Nather’s story won Mel world fame in the hacking community and is regarded as a seminal epic in hacker folklore.
 :::
 
 ::::cols{ratio=2-1}
@@ -104,7 +104,7 @@ Along with Rita’s naturalization application, the expanding Kaye family applie
 
 ## Final Words
 
-Mel never sought (or even acknowledged) his glory in the hacking culture. In fact, only one person managed to track him down and extract a few words out of him. Anthony Cuozzo, a computer programmer and hacking folklore buf who grew to admire the character portrayed in The Story of Mel. Following a clue he uncovered during his search for Mel, he wrote an email to `rimel3@roadrunner.com` (possibly an acronym for Rita and Mel), hoping it would reach the legendary engineer. Our research in the Mel’s Loop project supports Cuozzo’s hunch.
+Mel never sought (or even acknowledged) his glory in the hacking culture. In fact, only one person managed to track him down and extract a few words out of him. Anthony Cuozzo, a computer programmer and hacker folklore buff who grew to admire the character portrayed in The Story of Mel. Following a clue he uncovered during his search for Mel, he wrote an email to `rimel3@roadrunner.com` (possibly an acronym for Rita and Mel), hoping it would reach the legendary engineer. Our research in the Mel’s Loop project supports Cuozzo’s hunch.
 
 Thus wrote Anthony Cuozzo on April 2012:
 
@@ -136,12 +136,3 @@ Mel Kaye
 :::
 
 Upon receiving the reply, Cuozzo tried to continue the correspondence, but Mel fell silent. There are probably more chapters in this story. The research continues.
-
-## Recommended Reading
-
-Find more information about **The Story of Mel** in these articles:
-
-- [**The Story of Mel** (annotated version in Mel's Loop homepage)](/)
-- [**Preface to the Story of Mel: A Software Legend That Really Happened**](/docs/the-story-of-mel/pages/preface)
-- [**Mel's Hack – The Missing Bits**](/docs/the-story-of-mel/pages/mels-hack-the-missing-bits)
-- [The Story of Mel – Wikipedia](https://en.wikipedia.org/wiki/The_Story_of_Mel)
