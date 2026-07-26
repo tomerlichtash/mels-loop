@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
 		'@mels-loop/i18n',
 		'@mels-loop/content-pipeline',
 	],
+	experimental: {
+		/*
+		 * @phosphor-icons/react's entry re-exports ~1500 icons. Production
+		 * tree-shakes that away, but in dev the whole barrel is compiled the
+		 * first time a route imports from it, which stalls the first
+		 * navigation for a long time. This rewrites barrel imports to direct
+		 * module paths so only the icons actually used are compiled.
+		 */
+		optimizePackageImports: ['@phosphor-icons/react'],
+	},
 	async rewrites() {
 		return {
 			// fallback rewrites run only when no file matches in public/

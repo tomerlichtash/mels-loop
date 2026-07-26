@@ -18,6 +18,20 @@
 	padding: var(--ml-space-2xl) var(--ml-content-padding-horizontal);
 }
 
+/*
+ * The link wrapping avatar + title + subtitle. It carries the row layout,
+ * because .inner also holds whatever else the header renders beside it.
+ */
+.identity {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-xl);
+	flex: 1;
+	min-width: 0;
+	text-decoration: none;
+	color: inherit;
+}
+
 .avatar {
 	border: 2px solid var(--ml-border-color);
 	flex-shrink: 0;
@@ -57,7 +71,8 @@
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
-	margin-bottom: var(--ml-space-sm);
+	/* em, so it stays proportional as the title scales down on a phone. */
+	margin-bottom: 0.2em;
 }
 
 .titleLink {

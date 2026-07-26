@@ -37,7 +37,9 @@ export function Breadcrumbs({
 			className={cn(styles.root, 'ml-breadcrumbs', className)}
 			aria-label={ariaLabel}
 		>
-			<ol className={styles.list}>
+			{/* role="list" is not redundant: Safari drops list semantics from a list
+			    styled list-style:none, taking the item count with it. */}
+			<ol className={styles.list} role="list">
 				{items.map((item, index) => {
 					const isLast = index === items.length - 1;
 					return (

@@ -64,18 +64,26 @@ export function Tabs({
 	const Anchor = LinkComponent || 'a';
 	const activeKey = items.find((i) => i.active)?.key;
 
+	/*
+	 * Writes are guarded on change. This runs from a scroll handler and a
+	 * ResizeObserver, and an unconditional style write on every event turns
+	 * into read/write layout thrashing.
+	 */
 	const positionIndicator = useCallback(() => {
 		const nav = navRef.current;
 		const indicator = indicatorRef.current;
 		if (!nav || !indicator) return;
 		const active = nav.querySelector('[aria-current="page"]');
 		if (!(active instanceof HTMLElement)) {
-			indicator.style.opacity = '0';
+			if (indicator.style.opacity !== '0') indicator.style.opacity = '0';
 			return;
 		}
-		indicator.style.opacity = '1';
-		indicator.style.insetInlineStart = `${active.offsetLeft}px`;
-		indicator.style.width = `${active.offsetWidth}px`;
+		const start = `${active.offsetLeft}px`;
+		const width = `${active.offsetWidth}px`;
+		if (indicator.style.opacity !== '1') indicator.style.opacity = '1';
+		if (indicator.style.insetInlineStart !== start)
+			indicator.style.insetInlineStart = start;
+		if (indicator.style.width !== width) indicator.style.width = width;
 	}, []);
 
 	useLayoutEffect(() => {
@@ -89,14 +97,21 @@ export function Tabs({
 		return () => cancelAnimationFrame(frame);
 	}, []);
 
+	/*
+	 * Scrolls the strip only — deliberately not scrollIntoView, which also
+	 * scrolls every ancestor scroll container including the document. This
+	 * strip sits inside a sticky bar whose stuck state is driven by an
+	 * IntersectionObserver, so a page scroll here feeds back into a re-render.
+	 * Skipped entirely when the row already fits.
+	 */
 	useEffect(() => {
 		const nav = navRef.current;
-		const active = nav?.querySelector('[aria-current="page"]');
-		active?.scrollIntoView({
-			inline: 'center',
-			block: 'nearest',
-			behavior: 'smooth',
-		});
+		if (!nav || nav.scrollWidth <= nav.clientWidth) return;
+		const active = nav.querySelector('[aria-current="page"]');
+		if (!(active instanceof HTMLElement)) return;
+		const target =
+			active.offsetLeft - (nav.clientWidth - active.offsetWidth) / 2;
+		nav.scrollTo({ left: target, behavior: 'smooth' });
 	}, [activeKey]);
 
 	/* Which side overflows is derived from the tab rectangles rather than
@@ -124,12 +139,24 @@ export function Tabs({
 			);
 			positionIndicator();
 		};
+		/* Coalesced to one measurement per frame. Smooth scrolling fires scroll
+		 * events continuously, and each one reads layout. */
+		let frame = 0;
+		const schedule = () => {
+			if (frame) return;
+			frame = requestAnimationFrame(() => {
+				frame = 0;
+				update();
+			});
+		};
+
 		update();
-		nav.addEventListener('scroll', update, { passive: true });
-		const observer = new ResizeObserver(update);
+		nav.addEventListener('scroll', schedule, { passive: true });
+		const observer = new ResizeObserver(schedule);
 		observer.observe(nav);
 		return () => {
-			nav.removeEventListener('scroll', update);
+			if (frame) cancelAnimationFrame(frame);
+			nav.removeEventListener('scroll', schedule);
 			observer.disconnect();
 		};
 	}, [items, positionIndicator]);

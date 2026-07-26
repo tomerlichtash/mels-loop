@@ -22,9 +22,15 @@
 	--ml-font-size-body: 0.875rem;
 	--ml-font-size-md: 1rem;
 	--ml-font-size-lg: 1.125rem;
-	--ml-font-size-xl: 1.25rem;
-	--ml-font-size-2xl: 1.5rem;
-	--ml-font-size-3xl: 2rem;
+	/*
+	 * The display steps are fluid: a fixed 2rem heading that reads well on a
+	 * desktop is oversized on a 390px phone, where it eats the screen and
+	 * wraps awkwardly. Body and the smaller steps stay fixed — fluid body text
+	 * mostly makes lines harder to hold, not easier.
+	 */
+	--ml-font-size-xl: clamp(1.125rem, 1rem + 0.6vw, 1.25rem);
+	--ml-font-size-2xl: clamp(1.25rem, 1rem + 1.2vw, 1.5rem);
+	--ml-font-size-3xl: clamp(1.5rem, 1.1rem + 2vw, 2rem);
 
 	/* Line Height Scale */
 	--ml-line-height-none: 1;

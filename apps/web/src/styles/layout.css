@@ -38,5 +38,12 @@
 	:root {
 		--ml-page-padding-horizontal: var(--ml-space-sm);
 		--ml-content-padding-horizontal: var(--ml-space-lg);
+		/*
+		 * Taller than desktop because the tabs grow to a 44px touch target
+		 * (WCAG 2.5.5) plus the 1px divider. This token is authoritative — the
+		 * sticky offsets below the strip are derived from it, so it has to
+		 * track the real height at every breakpoint.
+		 */
+		--ml-story-sections-height: 46px;
 	}
 }

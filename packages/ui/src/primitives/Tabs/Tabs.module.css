@@ -175,3 +175,14 @@
 	font-size: var(--ml-font-size-md);
 	line-height: 1;
 }
+
+/*
+ * WCAG 2.5.5 asks for 44px touch targets. The desktop tab is ~36px, which is
+ * fine for a pointer and undersized for a thumb. Height rather than padding so
+ * the label stays optically centred.
+ */
+@media (--ml-bp-mobile) {
+	.tab {
+		min-height: var(--ml-tabs-touch-target, 44px);
+	}
+}

@@ -2,6 +2,7 @@
 	--ml-breadcrumbs-font-size: var(--ml-font-size-sm);
 	--ml-breadcrumbs-separator-color: var(--ml-text-muted-color);
 	--ml-breadcrumbs-separator-gap: var(--ml-space-xs);
+	--ml-breadcrumbs-separator-size: 0.9em;
 	--ml-breadcrumbs-link-color: var(--ml-text-muted-color);
 	--ml-breadcrumbs-link-hover-color: var(--ml-text-color);
 	--ml-breadcrumbs-current-color: var(--ml-text-color);
@@ -33,6 +34,17 @@
 	color: var(--ml-breadcrumbs-separator-color);
 	user-select: none;
 	line-height: 1;
+}
+
+/*
+ * An inline SVG sits on the text baseline, so the chevron rode low against the
+ * labels even with the wrapper centred. display:block takes it off the
+ * baseline; the flex centring on .separator then actually applies to it.
+ */
+.separator svg {
+	display: block;
+	width: var(--ml-breadcrumbs-separator-size);
+	height: var(--ml-breadcrumbs-separator-size);
 }
 
 :dir(rtl) .separator {
