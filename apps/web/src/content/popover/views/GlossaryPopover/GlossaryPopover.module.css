@@ -66,7 +66,16 @@
 .dropdown {
 	--ml-popover-width: 414px;
 	--ml-popover-max-height: 300px;
-	--ml-popover-padding: 0;
+	/*
+	 * 0px, not 0: the panel composes this into a calc() for the scroller's
+	 * padding, and a unitless zero there is a number rather than a length —
+	 * the whole expression becomes invalid and the declaration is dropped.
+	 *
+	 * Zero because this view pads its own blocks instead. The header, body and
+	 * source each carry their own padding, which is what puts space between
+	 * them; a padded scroller would sit outside all three and add to it.
+	 */
+	--ml-popover-padding: 0px;
 }
 
 @media (--ml-bp-desktop) {
@@ -82,9 +91,6 @@
  */
 .header {
 	padding: var(--ml-space-lg) var(--ml-space-lg) 0;
-	padding-inline-end: calc(
-		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
-	);
 }
 
 /* The category chip. */
@@ -131,20 +137,12 @@
 	display: flex;
 	justify-content: center;
 	padding: var(--ml-space-lg);
-	/* Clear of the scrollbar, which is drawn over the content at this edge. */
-	padding-inline-end: calc(
-		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
-	);
 }
 
 .body {
 	/* Size comes from the panel — see --ml-popover-font-size. */
 	line-height: var(--ml-line-height-body);
 	padding: var(--ml-space-lg);
-	/* Clear of the scrollbar, which is drawn over the content at this edge. */
-	padding-inline-end: calc(
-		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
-	);
 }
 
 .source {
@@ -152,9 +150,6 @@
 	font-size: var(--ml-font-size-sm);
 	color: var(--ml-text-muted-color);
 	padding: 0 var(--ml-space-lg) var(--ml-space-lg);
-	padding-inline-end: calc(
-		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
-	);
 }
 
 .sourceLabel {

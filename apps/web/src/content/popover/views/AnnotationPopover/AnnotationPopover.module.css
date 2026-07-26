@@ -10,35 +10,10 @@
 	}
 }
 
+/* Padding comes from the scroller — see --ml-popover-padding above. */
 .loader {
 	display: flex;
 	justify-content: center;
-	padding: var(--ml-space-lg);
-	/* Clear of the scrollbar, which is drawn over the content at this edge. */
-	padding-inline-end: calc(
-		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
-	);
-}
-
-/* Matches the glossary sheet — same chip, same reading size. */
-.header {
-	margin-bottom: var(--ml-space-sm);
-}
-
-.kicker {
-	display: inline-block;
-	margin: 0;
-	padding: 0.15em 0.6em;
-	border-radius: var(--ml-radius-sm);
-	background-color: color-mix(
-		in srgb,
-		var(--ml-term-highlight) 12%,
-		transparent
-	);
-	color: var(--ml-term-highlight);
-	font-size: var(--ml-font-size-sm);
-	font-weight: var(--ml-font-weight-semibold);
-	font-variant-numeric: tabular-nums;
 }
 
 .body {

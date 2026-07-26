@@ -42,6 +42,8 @@
 .dropdown {
 	--ml-popover-width: 414px;
 	--ml-popover-max-height: 300px;
+	/* Matches the annotation panel — the two open from the same kind of mark. */
+	--ml-popover-padding: var(--ml-space-lg);
 }
 
 @media (--ml-bp-desktop) {
@@ -50,14 +52,10 @@
 	}
 }
 
+/* Padding comes from the scroller — see --ml-popover-padding above. */
 .loader {
 	display: flex;
 	justify-content: center;
-	padding: var(--ml-space-lg);
-	/* Clear of the scrollbar, which is drawn over the content at this edge. */
-	padding-inline-end: calc(
-		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
-	);
 }
 
 /* Open: the fill is the indicator, so the rule underneath it is noise. */

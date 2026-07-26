@@ -162,7 +162,23 @@
 	min-height: 0;
 }
 
+/*
+ * The panel's padding, on the desktop scroller — the counterpart to
+ * .sheetViewport below.
+ *
+ * This rule was empty, so --ml-popover-padding reached nothing on desktop and
+ * views that set it got a panel with content flush to all four edges. Views
+ * that instead pad their own blocks (the glossary, which sets the token to 0)
+ * are unaffected: 0px in, 0px out.
+ *
+ * The end edge carries the scrollbar gutter as well, since the track is drawn
+ * over the content there rather than beside it.
+ */
 .scrollViewport {
+	padding: var(--ml-popover-padding);
+	padding-inline-end: calc(
+		var(--ml-popover-padding) + var(--ml-popover-scrollbar-gutter, 0px)
+	);
 }
 
 /* ---- Mobile bottom sheet ---- */

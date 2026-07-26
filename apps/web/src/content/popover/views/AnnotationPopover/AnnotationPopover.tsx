@@ -63,16 +63,12 @@ export function AnnotationPopover({
 			}
 		>
 			{/*
-			 * Chip only, no display title. Annotations carry no title in their
-			 * frontmatter — deriving one from the English slug would put an
-			 * untranslated heading on the Hebrew sheet, which is the bug just
-			 * fixed for glossary terms. The number is the annotation's name.
+			 * No heading of any kind. Annotations carry no title in their
+			 * frontmatter, so the chip here could only restate the number on the
+			 * marker the reader just clicked — which told them nothing and pushed
+			 * the note itself down the panel. Once they navigate inward the
+			 * toolbar's trail names where they are; at the root it stays empty.
 			 */}
-			<div className={styles.header}>
-				<p className={styles.kicker}>
-					{t('content.annotationLabel')} {String(index).padStart(2, '0')}
-				</p>
-			</div>
 			{!displayContent ? (
 				<div className={styles.loader}>
 					<Loader size="md" />
