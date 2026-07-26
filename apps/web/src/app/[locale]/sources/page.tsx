@@ -7,6 +7,7 @@ import { getDirection, getLocales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
 
+import { BreadcrumbBar } from '@/components/layout/BreadcrumbBar/BreadcrumbBar';
 import { SourceFilters } from '@/components/sources/SourceFilters/SourceFilters';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
@@ -119,20 +120,26 @@ export default async function GlobalSourcesPage({
 	};
 
 	return (
-		<Container gap="lg">
-			<Breadcrumbs items={[homeItemFromDict(dict), { label: sourcesLabel }]} />
-			<Text variant="h1">{sourcesLabel}</Text>
-			{sourceGroups.length === 0 ? (
-				<p>{dictGet(dict, 'sources.noSources')}</p>
-			) : (
-				<SourceFilters
-					groups={sourceGroups}
-					allLabel={dictGet(dict, 'sources.all')}
-					typeLabels={typeLabels}
-					columnLabels={columnLabels}
-					dir={getDirection(typedLocale)}
+		<>
+			<BreadcrumbBar>
+				<Breadcrumbs
+					items={[homeItemFromDict(dict), { label: sourcesLabel }]}
 				/>
-			)}
-		</Container>
+			</BreadcrumbBar>
+			<Container gap="lg">
+				<Text variant="h1">{sourcesLabel}</Text>
+				{sourceGroups.length === 0 ? (
+					<p>{dictGet(dict, 'sources.noSources')}</p>
+				) : (
+					<SourceFilters
+						groups={sourceGroups}
+						allLabel={dictGet(dict, 'sources.all')}
+						typeLabels={typeLabels}
+						columnLabels={columnLabels}
+						dir={getDirection(typedLocale)}
+					/>
+				)}
+			</Container>
+		</>
 	);
 }

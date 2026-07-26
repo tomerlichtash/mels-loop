@@ -9,6 +9,8 @@ import type { ReactNode } from 'react';
 
 import { ContentRenderer } from '@/content';
 
+import { BreadcrumbBar } from '../BreadcrumbBar/BreadcrumbBar';
+
 interface StaticPageProps {
 	title: string;
 	breadcrumbs: BreadcrumbItem[];
@@ -23,13 +25,19 @@ export function StaticPage({
 	children,
 }: StaticPageProps) {
 	return (
-		<Container>
-			<Container gap="lg">
+		<>
+			{/* In the bar under the header, where every trail on the site sits —
+			    not in the content column. */}
+			<BreadcrumbBar>
 				<Breadcrumbs items={breadcrumbs} />
-				<Text variant="h1">{title}</Text>
-				{content && <ContentRenderer hast={content.hast} />}
-				{children}
+			</BreadcrumbBar>
+			<Container>
+				<Container gap="lg">
+					<Text variant="h1">{title}</Text>
+					{content && <ContentRenderer hast={content.hast} />}
+					{children}
+				</Container>
 			</Container>
-		</Container>
+		</>
 	);
 }

@@ -79,7 +79,7 @@
 	 * height now means changing its token, and everything downstream follows.
 	 */
 	--ml-header-height: 48px;
-	--ml-story-panel-height: 36px;
+	--ml-breadcrumb-bar-height: 36px;
 	--ml-story-sections-height: 38px;
 
 	/*

@@ -3,7 +3,7 @@
 	position: relative;
 	scroll-margin-top: calc(
 		var(--ml-header-offset, var(--ml-header-height)) +
-			var(--ml-story-panel-height) + var(--ml-story-sections-height) + 2px
+			var(--ml-breadcrumb-bar-height) + var(--ml-story-sections-height) + 2px
 	);
 	border-radius: var(--ml-radius-md);
 }

@@ -4,7 +4,7 @@
 	position: sticky;
 	top: calc(
 		var(--ml-header-offset, var(--ml-header-height)) +
-			var(--ml-story-panel-height)
+			var(--ml-breadcrumb-bar-height)
 	);
 	z-index: 89;
 	transition:
@@ -13,7 +13,7 @@
 }
 
 /*
- * The strip sticks correctly — header 48px + StoryPanel 36px, and the offset
+ * The strip sticks correctly — header 48px + BreadcrumbBar 36px, and the offset
  * maths agree — but at 60% it did not hide the prose scrolling underneath it,
  * so the story text read straight through the tabs.
  *

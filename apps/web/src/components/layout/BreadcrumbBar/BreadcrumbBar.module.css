@@ -15,11 +15,18 @@
 	-webkit-backdrop-filter: blur(12px);
 	backdrop-filter: blur(12px);
 	/* Authoritative height — see layout.css. Offsets downstream derive from it. */
-	height: var(--ml-story-panel-height);
+	height: var(--ml-breadcrumb-bar-height);
 	position: sticky;
 	top: var(--ml-header-offset, var(--ml-header-height));
 	z-index: 90;
 	transition: top var(--ml-duration-normal) ease;
+	/*
+	 * The bar owns the space beneath it, so every page gets the same gap
+	 * whatever follows. It used to come from StoryHeader's own top padding,
+	 * which meant story pages breathed and every other page — the sources
+	 * browser, a source's page, the glossary — began flush against the bar.
+	 */
+	margin-bottom: var(--ml-space-2xl);
 }
 
 /*

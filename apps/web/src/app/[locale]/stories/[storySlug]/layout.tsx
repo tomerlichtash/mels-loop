@@ -10,11 +10,11 @@ import type { ResolvedContentsEntry } from '@mels-loop/content-loaders/types';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { type ReactNode, Suspense } from 'react';
 
+import { BreadcrumbBar } from '@/components/layout/BreadcrumbBar/BreadcrumbBar';
 import { Asides } from '@/components/stories/Asides/Asides';
 import { StoryBreadcrumbs } from '@/components/stories/StoryBreadcrumbs/StoryBreadcrumbs';
 import { StoryHeader } from '@/components/stories/StoryHeader/StoryHeader';
 import { StoryLayout } from '@/components/stories/StoryLayout/StoryLayout';
-import { StoryPanel } from '@/components/stories/StoryPanel/StoryPanel';
 import {
 	type SourceFilterConfig,
 	type StorySection,
@@ -215,7 +215,7 @@ export default async function StorySlugLayout({
 
 	return (
 		<>
-			<StoryPanel>
+			<BreadcrumbBar>
 				<StoryBreadcrumbs
 					homeLabel={homeLabel}
 					storiesLabel={storiesLabel}
@@ -224,7 +224,7 @@ export default async function StorySlugLayout({
 					sectionLabels={sectionLabels}
 					itemTitles={itemTitles}
 				/>
-			</StoryPanel>
+			</BreadcrumbBar>
 			<StoryHeader
 				title={storyTitle}
 				storySlug={storySlug}

@@ -7,6 +7,7 @@ import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 
+import { BreadcrumbBar } from '@/components/layout/BreadcrumbBar/BreadcrumbBar';
 import { ContentRenderer } from '@/content';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
@@ -37,8 +38,8 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 		termSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
 	return (
-		<Container>
-			<Container gap="lg">
+		<>
+			<BreadcrumbBar>
 				<Breadcrumbs
 					items={[
 						homeItemFromDict(dict),
@@ -49,27 +50,31 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 						{ label: displayName },
 					]}
 				/>
-				<Text variant="h1">{displayName}</Text>
-				<ContentRenderer hast={content.hast} />
-				{content.metadata.source_name && (
-					<div>
-						<Text variant="body2" color="muted" component="span">
-							Source:{' '}
-							{content.metadata.source_url ? (
-								<a
-									href={content.metadata.source_url}
-									target="_blank"
-									className={styles.sourceLink}
-								>
-									{content.metadata.source_name}
-								</a>
-							) : (
-								content.metadata.source_name
-							)}
-						</Text>
-					</div>
-				)}
+			</BreadcrumbBar>
+			<Container>
+				<Container gap="lg">
+					<Text variant="h1">{displayName}</Text>
+					<ContentRenderer hast={content.hast} />
+					{content.metadata.source_name && (
+						<div>
+							<Text variant="body2" color="muted" component="span">
+								Source:{' '}
+								{content.metadata.source_url ? (
+									<a
+										href={content.metadata.source_url}
+										target="_blank"
+										className={styles.sourceLink}
+									>
+										{content.metadata.source_name}
+									</a>
+								) : (
+									content.metadata.source_name
+								)}
+							</Text>
+						</div>
+					)}
+				</Container>
 			</Container>
-		</Container>
+		</>
 	);
 }

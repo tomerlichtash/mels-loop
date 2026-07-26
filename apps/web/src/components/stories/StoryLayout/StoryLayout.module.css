@@ -36,7 +36,7 @@
 	position: sticky;
 	top: calc(
 		var(--ml-header-offset, var(--ml-header-height)) +
-			var(--ml-story-panel-height) + var(--ml-story-sections-height) +
+			var(--ml-breadcrumb-bar-height) + var(--ml-story-sections-height) +
 			var(--ml-space-xl)
 	);
 }

@@ -14,8 +14,9 @@
 	 * screen to show a title and one line of subtitle. This is a reading site
 	 * — get to the prose.
 	 */
-	/* Identity, not chrome — aligns with the story text below it. */
-	padding: var(--ml-space-2xl) var(--ml-content-padding-horizontal);
+	/* Identity, not chrome — aligns with the story text below it. The space
+	 * above now comes from the breadcrumb bar, which supplies it site-wide. */
+	padding: 0 var(--ml-content-padding-horizontal) var(--ml-space-2xl);
 }
 
 /*
