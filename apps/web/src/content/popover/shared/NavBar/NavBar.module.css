@@ -1,12 +1,16 @@
 /*
- * A quiet path, not a headline. It sits above the entry title, so it has to
- * read as chrome — small, muted, and clearly subordinate to the term below it.
+ * A quiet path, not a headline. It lives in the panel's toolbar, so it has to
+ * read as chrome — small, muted, and clearly subordinate to the term below.
+ *
+ * No bottom margin any more: it used to sit inside the scrolling body, above
+ * the title, and needed to hold itself off it. In the toolbar the strip's own
+ * padding does that, and a margin only pushed the trail off centre in a row
+ * it now shares with the close control.
  */
 .root {
 	display: flex;
 	align-items: center;
-	gap: var(--ml-space-xs);
-	margin-bottom: var(--ml-space-xs);
+	gap: var(--ml-space-sm);
 	font-size: var(--ml-font-size-sm);
 	color: var(--ml-text-muted-color);
 }
@@ -36,6 +40,7 @@
 .trail {
 	display: flex;
 	align-items: center;
+	gap: var(--ml-space-xs);
 	flex-wrap: wrap;
 	list-style: none;
 	margin: 0;
@@ -47,14 +52,16 @@
  * The separator is drawn between items rather than after each, so the trail
  * never ends on a dangling chevron pointing at the title.
  */
+/*
+ * One glyph for both directions. U+203A is bidi-mirrored, so the browser draws
+ * it reversed in a right-to-left run on its own; the :dir(rtl) override that
+ * used to swap in U+2039 mirrored it a second time and pointed the trail back
+ * the way it came. Same fix as the breadcrumbs.
+ */
 .crumbItem + .crumbItem::before {
 	content: '\203A';
 	margin: 0 var(--ml-space-xs);
 	color: var(--ml-text-muted-color);
-}
-
-:dir(rtl) .crumbItem + .crumbItem::before {
-	content: '\2039';
 }
 
 .crumb {

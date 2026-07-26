@@ -38,6 +38,7 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 			onOpenChange={(next) => {
 				if (!next) closePopover();
 			}}
+			toolbar={<NavBar rootLabel={String(displayLabel)} />}
 			title={id}
 			side={side}
 			triggerRef={triggerRef}
@@ -53,7 +54,6 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 				</button>
 			}
 		>
-			<NavBar rootLabel={String(displayLabel)} />
 			{!source ? (
 				<div className={styles.loader}>
 					<Loader size="md" />

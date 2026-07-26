@@ -5,8 +5,28 @@
 	--ml-popover-border-color: var(--ml-border-color);
 	--ml-popover-border-radius: var(--ml-radius-sm);
 	--ml-popover-shadow: var(--ml-shadow);
-	--ml-popover-padding: var(--ml-space-xs);
+	--ml-popover-padding: var(--ml-space-md);
+	/*
+	 * One step below the article, not two. The panel is an aside on a word in
+	 * a sentence, read in a 340px column, so it should not compete with the
+	 * prose it explains — but sm is the size of captions and labels, and a
+	 * paragraph set at it reads as fine print.
+	 */
+	--ml-popover-font-size: var(--ml-font-size-body);
 	--ml-popover-arrow-size: 8px;
+	/*
+	 * How much room the scrollbar takes at the end edge. The track is drawn
+	 * over the content there, so a section padded equally on both sides runs
+	 * its last words under the thumb. Views add this to their own padding.
+	 *
+	 * A width to add, not a finished padding: --ml-popover-padding is 0 in
+	 * some views, and a calc that folded it in produced calc(0 + 8px + …),
+	 * which is invalid — unitless zero is a number, not a length — so the
+	 * declaration was dropped and the padding computed to nothing at all.
+	 */
+	--ml-popover-scrollbar-gutter: calc(
+		var(--ml-scroll-area-size, 8px) + 2 * var(--ml-scroll-area-gap, 4px)
+	);
 }
 
 .content {
@@ -22,6 +42,12 @@
 	max-width: calc(100vw - 2 * var(--ml-space-lg));
 	background-color: var(--ml-popover-background);
 	border-radius: var(--ml-popover-border-radius);
+	font-size: var(--ml-popover-font-size);
+	/* Prose rendered inside the panel matches the panel, not the article:
+	 * smaller, and ragged rather than justified — see ContentRenderer. */
+	--ml-prose-font-size: var(--ml-popover-font-size);
+	--ml-prose-text-align: start;
+	--ml-prose-hyphens: manual;
 	/*
 	 * Shadow alone, no border. A border runs continuously along the panel edge,
 	 * including across the point where the arrow attaches — so it drew a line
@@ -30,32 +56,71 @@
 	 */
 	box-shadow: var(--ml-popover-shadow);
 	z-index: 1000;
+	/*
+	 * Toolbar, then everything else: the strip holds its height and the
+	 * scrolling region takes what is left.
+	 *
+	 * Not overflow: hidden — the arrow is a sibling drawn outside these
+	 * bounds, and clipping the panel clipped the tip off with it. The scroll
+	 * region does its own clipping, so there is nothing here to contain.
+	 */
+	display: flex;
+	flex-direction: column;
 }
 
 /*
- * Floats over the panel's top corner rather than taking a row of its own: the
- * content below is prose with its own top padding, and a dedicated header strip
- * would push every definition down by a line to hold one 24px control.
+ * ---- Toolbar ----
+ *
+ * A fixed strip at the top of the panel: the trail on one side, the close
+ * control on the other, and the scrolling content beneath it.
+ *
+ * Both used to sit elsewhere. The close was absolutely positioned over the
+ * content, so it overlapped whatever scrolled under it and had to be nudged
+ * clear of the scrollbar by hand. The trail lived inside the scrolling body,
+ * which meant that navigating from one term to another — the one time the
+ * trail matters — scrolled the way back out of view.
  */
+.toolbar {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-sm);
+	flex: 0 0 auto;
+	/*
+	 * Its own padding, not --ml-popover-padding: that token is 0 in some views,
+	 * which left the trail jammed against the panel's edge.
+	 *
+	 * Symmetric — the trail sits as far from the start edge as the close
+	 * control does from the end. Both are controls with their own hit areas,
+	 * so they want less room than the prose below, which is indented further.
+	 */
+	padding: var(--ml-space-sm);
+	border-bottom: 1px solid var(--ml-border-color);
+}
+
+/*
+ * Takes the room the close control does not, so a long trail truncates
+ * rather than pushing the control off the edge.
+ *
+ * In the sheet this sits beside a centred drag handle, so it must not claim
+ * the row's whole width when it is empty — hence the empty:hidden.
+ */
+.toolbarSlot {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.toolbarSlot:empty {
+	display: none;
+}
+
 .close {
-	position: absolute;
+	flex: 0 0 auto;
 	/*
-	 * Level with the panel's first row — the trail when the reader has
-	 * navigated, the category chip otherwise. Both start at the content's top
-	 * padding, so matching it lines the control up with whatever is there
-	 * instead of floating above both.
+	 * Always at the end, whether or not there is a trail beside it. The slot
+	 * collapses when empty, and without this the close became the row's only
+	 * child and sat against the start edge.
 	 */
-	top: var(--ml-space-md);
-	/*
-	 * Clear of the scrollbar. The track is laid over the content at the end
-	 * edge, so a control tucked into that corner sat underneath the thumb on
-	 * any entry long enough to scroll — which is most of them.
-	 */
-	inset-inline-end: calc(
-		var(--ml-scroll-area-size, 8px) + 2 * var(--ml-scroll-area-gap, 4px) +
-			var(--ml-space-xs)
-	);
-	z-index: 1;
+	margin-inline-start: auto;
 }
 
 /*
@@ -94,10 +159,10 @@
 
 .scrollArea {
 	max-height: var(--ml-popover-max-height);
+	min-height: 0;
 }
 
 .scrollViewport {
-	padding: var(--ml-popover-padding);
 }
 
 /* ---- Mobile bottom sheet ---- */

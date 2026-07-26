@@ -61,6 +61,7 @@ export function GlossaryPopover({
 			onOpenChange={(next) => {
 				if (!next) closePopover();
 			}}
+			toolbar={<NavBar rootLabel={originalLabel} />}
 			title={originalLabel}
 			side={side}
 			triggerRef={triggerRef}
@@ -77,7 +78,6 @@ export function GlossaryPopover({
 			}
 		>
 			<div className={styles.header}>
-				<NavBar rootLabel={originalLabel} />
 				<p className={styles.kicker}>{t('content.glossaryLabel')}</p>
 				<p className={styles.headerTitle}>{displayLabel}</p>
 				{locale === 'he' && displayTerm && (

@@ -1,7 +1,7 @@
 .dropdown {
 	--ml-popover-width: 414px;
 	--ml-popover-max-height: 300px;
-	--ml-popover-padding: var(--ml-space-md);
+	--ml-popover-padding: var(--ml-space-lg);
 }
 
 @media (--ml-bp-desktop) {
@@ -13,7 +13,11 @@
 .loader {
 	display: flex;
 	justify-content: center;
-	padding: var(--ml-space-md);
+	padding: var(--ml-space-lg);
+	/* Clear of the scrollbar, which is drawn over the content at this edge. */
+	padding-inline-end: calc(
+		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
+	);
 }
 
 /* Matches the glossary sheet — same chip, same reading size. */
@@ -38,7 +42,7 @@
 }
 
 .body {
-	font-size: var(--ml-font-size-body);
+	/* Size comes from the panel — see --ml-popover-font-size. */
 	line-height: var(--ml-line-height-body);
 }
 

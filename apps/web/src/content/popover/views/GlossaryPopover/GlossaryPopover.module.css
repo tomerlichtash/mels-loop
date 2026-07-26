@@ -3,7 +3,7 @@
 	background: none;
 	border: none;
 	padding: 0;
-	color: var(--ml-color-primary);
+	color: var(--ml-link-color);
 	cursor: pointer;
 	font: inherit;
 	/* Padding and the matching negative margin are present in every state, so
@@ -16,13 +16,25 @@
 	box-decoration-break: clone;
 	font-weight: var(--ml-term-font-weight);
 	/*
-	 * Dotted, the long-standing convention for a term carrying a definition —
-	 * what a browser draws under <abbr title>.
+	 * Its own line-height rather than the prose's.
 	 *
-	 * Weight alone was doing this job and it was not enough: 500 against 400 is
-	 * a slim difference at this size, leaving colour as effectively the only
-	 * cue that a word is interactive (WCAG 1.4.1). Drawn at partial strength so
-	 * it hints rather than competing with the prose.
+	 * The highlight is painted on the trigger's inline box, so at the article's
+	 * 1.65 the box stood well above and below the word it marks — a tall block
+	 * in the middle of a sentence. 1.5 keeps it close to the letters without
+	 * clipping the descenders.
+	 */
+	line-height: 1.25;
+	/*
+	 * Dotted at rest, solid on hover.
+	 *
+	 * The dotted rule is the long-standing convention for a word carrying a
+	 * definition — what a browser draws under <abbr title> — and it is the
+	 * term's affordance, not decoration: colour and a half-step of weight are
+	 * too little on their own (WCAG 1.4.1). Drawn at partial strength so it
+	 * hints rather than competing with the prose.
+	 *
+	 * A link, by contrast, is underlined solid and always: it takes you
+	 * somewhere, where a term opens in place.
 	 */
 	text-decoration: underline;
 	text-decoration-style: dotted;
@@ -43,6 +55,9 @@
 @media (hover: hover) {
 	.trigger:hover {
 		color: var(--ml-term-highlight);
+		/* The hint firms up: same rule, solid and at full strength. */
+		text-decoration-style: solid;
+		text-decoration-color: currentColor;
 		/* Full strength on hover, so the hint firms up under the pointer. */
 		text-decoration-color: currentColor;
 	}
@@ -66,7 +81,10 @@
  * section label rather than a title.
  */
 .header {
-	padding: var(--ml-space-md) var(--ml-space-md) 0;
+	padding: var(--ml-space-lg) var(--ml-space-lg) 0;
+	padding-inline-end: calc(
+		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
+	);
 }
 
 /* The category chip. */
@@ -112,20 +130,31 @@
 .loader {
 	display: flex;
 	justify-content: center;
-	padding: var(--ml-space-md);
+	padding: var(--ml-space-lg);
+	/* Clear of the scrollbar, which is drawn over the content at this edge. */
+	padding-inline-end: calc(
+		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
+	);
 }
 
 .body {
-	font-size: var(--ml-font-size-body);
+	/* Size comes from the panel — see --ml-popover-font-size. */
 	line-height: var(--ml-line-height-body);
-	padding: var(--ml-space-md);
+	padding: var(--ml-space-lg);
+	/* Clear of the scrollbar, which is drawn over the content at this edge. */
+	padding-inline-end: calc(
+		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
+	);
 }
 
 .source {
 	margin: var(--ml-space-xs) 0 0;
 	font-size: var(--ml-font-size-sm);
 	color: var(--ml-text-muted-color);
-	padding: 0 var(--ml-space-md) var(--ml-space-md);
+	padding: 0 var(--ml-space-lg) var(--ml-space-lg);
+	padding-inline-end: calc(
+		var(--ml-space-lg) + var(--ml-popover-scrollbar-gutter, 0px)
+	);
 }
 
 .sourceLabel {

@@ -49,6 +49,7 @@ export function AnnotationPopover({
 			onOpenChange={(next) => {
 				if (!next) closePopover();
 			}}
+			toolbar={<NavBar rootLabel={displayLabel} />}
 			title={`Annotation ${sequence}`}
 			side={side}
 			triggerRef={triggerRef}
@@ -68,7 +69,6 @@ export function AnnotationPopover({
 			 * fixed for glossary terms. The number is the annotation's name.
 			 */}
 			<div className={styles.header}>
-				<NavBar rootLabel={displayLabel} />
 				<p className={styles.kicker}>
 					{t('content.annotationLabel')} {String(index).padStart(2, '0')}
 				</p>

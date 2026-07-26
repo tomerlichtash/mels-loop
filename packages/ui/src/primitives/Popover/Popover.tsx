@@ -44,6 +44,15 @@ export interface PopoverProps {
 	 * Ignored by the anchored popover, which is named by its trigger.
 	 */
 	title?: string;
+	/**
+	 * Rendered in the panel's toolbar, beside the close control — a trail, a
+	 * back button, anything that acts on the panel rather than living in it.
+	 *
+	 * The toolbar is always present, even when this is empty, because the
+	 * close control lives there. It sits above the scrolling region, so it
+	 * stays put while the content moves under it.
+	 */
+	toolbar?: ReactNode;
 	closeLabel?: string;
 	className?: string;
 }
@@ -72,6 +81,7 @@ export function Popover({
 	sideOffset = 8,
 	collisionPadding = 8,
 	title,
+	toolbar,
 	closeLabel = 'Close',
 	className,
 }: PopoverProps) {
@@ -216,6 +226,9 @@ export function Popover({
 							onPointerCancel={onDragEnd}
 						>
 							<span className={styles.sheetHandle} aria-hidden="true" />
+							{/* The same slot the anchored panel gives its toolbar, so a
+							    trail follows the reader onto a phone too. */}
+							<div className={styles.toolbarSlot}>{toolbar}</div>
 							<RadixDialog.Close asChild>
 								<CloseButton
 									size="sm"
@@ -256,18 +269,25 @@ export function Popover({
 					collisionPadding={collisionPadding}
 				>
 					{/*
-					 * The anchored popover had no dismiss control at all — only
-					 * the mobile sheet did. Clicking away worked, but nothing on
-					 * screen said so, and there was no target for a reader who
-					 * expected one.
+					 * The panel's toolbar: always present, above the scrolling
+					 * region so it holds while the content moves under it.
+					 *
+					 * The close control used to float over the content, absolutely
+					 * positioned, which meant it overlapped whatever happened to
+					 * scroll beneath it and the trail sat somewhere else entirely —
+					 * inside the scrolling body, so navigating between terms
+					 * scrolled the way back out of sight.
 					 */}
-					<RadixPopover.Close asChild>
-						<CloseButton
-							size="sm"
-							aria-label={closeLabel}
-							className={styles.close}
-						/>
-					</RadixPopover.Close>
+					<div className={styles.toolbar}>
+						<div className={styles.toolbarSlot}>{toolbar}</div>
+						<RadixPopover.Close asChild>
+							<CloseButton
+								size="sm"
+								aria-label={closeLabel}
+								className={styles.close}
+							/>
+						</RadixPopover.Close>
+					</div>
 					<ScrollArea
 						type="auto"
 						className={styles.scrollArea}

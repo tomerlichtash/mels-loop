@@ -6,7 +6,12 @@
  */
 .root {
 	max-width: var(--ml-prose-measure, 67ch);
-	font-size: var(--ml-font-size-md);
+	/*
+	 * Overridable, so prose rendered inside a narrow container can be set
+	 * smaller than prose in an article column — see the popovers, which read
+	 * at 340px wide.
+	 */
+	font-size: var(--ml-prose-font-size, var(--ml-font-size-md));
 	line-height: var(--ml-prose-line-height, 1.65);
 	/*
 	 * The same colour paragraphs render at, not a subtler one.
@@ -39,8 +44,10 @@
 }
 
 .root p {
-	/* Text's body1 variant sets its own line-height, so inheriting from .root
-	 * does not reach the paragraphs. */
+	/* Text's body1 variant sets its own size and line-height, so inheriting
+	 * from .root does not reach the paragraphs — both have to be restated
+	 * here, and both read the overridable prose tokens. */
+	font-size: var(--ml-prose-font-size, var(--ml-font-size-md));
 	line-height: var(--ml-prose-line-height, 1.65);
 	margin-bottom: var(--ml-space-md);
 	/*
@@ -51,9 +58,13 @@
 	 * opens rivers of white running down the column. Hyphenation gives it
 	 * somewhere else to put the slack. It needs a language to work from, which
 	 * comes from the lang attribute on <html>.
+	 *
+	 * Overridable, because justification needs width: in a 340px popover there
+	 * are too few words per line for the browser to distribute the slack, and
+	 * it opens rivers instead of an even edge.
 	 */
-	text-align: justify;
-	hyphens: auto;
+	text-align: var(--ml-prose-text-align, justify);
+	hyphens: var(--ml-prose-hyphens, auto);
 }
 
 /*
