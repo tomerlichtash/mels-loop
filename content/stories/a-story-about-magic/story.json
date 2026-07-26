@@ -19,14 +19,20 @@
 		}
 	],
 	"assets": {
-		"cover": "/media/images/magic-switch-front.jpg"
+		"cover": "/media/images/magic-switch-front.jpg",
+		"avatar": {
+			"src": "source:guy-steele-photo-2015",
+			"alt": "avatar.alt",
+			"initials": "avatar.initials"
+		}
 	},
 	"sources": [
 		"magic-story-jargon-file",
 		"guy-steele-wikipedia",
 		"magic-switch-its-issue",
 		"magic-switch-photo-1",
-		"magic-switch-photo-2"
+		"magic-switch-photo-2",
+		"guy-steele-photo-2015"
 	],
 	"contents": [
 		{
