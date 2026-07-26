@@ -29,7 +29,9 @@
 }
 
 .heroTitle {
+	text-transform: uppercase;
 	font-size: clamp(2rem, 1.35rem + 2.8vw, 3.5rem);
+	font-weight: 100;
 }
 
 .heroTitleHighlight {

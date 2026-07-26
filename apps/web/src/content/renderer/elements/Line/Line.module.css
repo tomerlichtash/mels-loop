@@ -15,9 +15,9 @@
 	color: var(--ml-text-muted-color);
 	text-decoration: none;
 	opacity: 0;
-	transition: opacity var(--ml-duration-fast);
 	white-space: nowrap;
 	user-select: none;
+	font-weight: 300;
 }
 
 .root:target {

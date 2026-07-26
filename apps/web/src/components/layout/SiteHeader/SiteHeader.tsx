@@ -2,7 +2,7 @@
 
 import { useTranslation } from '@mels-loop/i18n/client';
 import { useColorScheme } from '@mels-loop/ui/color-scheme';
-import { Separator, Tooltip } from '@mels-loop/ui/primitives';
+import { Tooltip } from '@mels-loop/ui/primitives';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -62,8 +62,7 @@ export function SiteHeader({
 				<div className={styles.inner}>
 					<div className={styles.left}>
 						<Logo isHome={isHome} siteTitle={t('siteTitle')} />
-						<Separator orientation="vertical" className={styles.logoDivider} />
-						<span className={styles.logoSubtitle}>{t('siteSubtitle')}</span>
+						{/* <span className={styles.logoSubtitle}>{t('siteSubtitle')}</span> */}
 					</div>
 
 					<div className={styles.right}>
