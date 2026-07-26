@@ -48,10 +48,21 @@
 	--ml-color-info-subtle: var(--ml-info-subtle);
 	--ml-color-info-highlight: oklch(0.75 0.16 263);
 
-	/* ---- Intent: Surface ---- */
-	--ml-color-surface: var(--ml-gray-500);
+	/*
+	 * ---- Intent: Surface ----
+	 *
+	 * A few points above gray-500, the near-black this used to sit at.
+	 * Raising the floor lowers every contrast ratio on the page at once,
+	 * which is the point — see the note on --ml-text-color below. It also
+	 * closes the gap to the chrome, which floated conspicuously lighter
+	 * than the page it sat on.
+	 *
+	 * Surface and surface-subtle move together so panels stay level with
+	 * the page rather than sinking below it.
+	 */
+	--ml-color-surface: oklch(0.27 0.004 107);
 	--ml-color-surface-alt: var(--ml-gray-400);
-	--ml-color-surface-subtle: var(--ml-gray-500);
+	--ml-color-surface-subtle: oklch(0.27 0.004 107);
 	--ml-color-surface-deep: var(--ml-gray-300);
 	--ml-color-surface-muted: var(--ml-gray-300);
 	--ml-color-surface-contrast: var(--ml-cream-200);
@@ -63,13 +74,34 @@
 	 * cascade would give them.
 	 */
 
-	/* Text — subtle/muted use specific grays, not surface variants */
-	--ml-text-color: var(--ml-cream-200);
+	/*
+	 * ---- Text ----
+	 *
+	 * Dimmer than the light theme's text is dark, deliberately.
+	 *
+	 * Light on dark halates: the glyphs bloom into the background, and the
+	 * brighter they are the more they smear — worst for astigmatic readers,
+	 * who are most of them. Dark on light does not do this, so the two
+	 * themes do not want the same contrast. Body text was cream-200 at 95%
+	 * lightness, giving 14:1 against the old background; the comfortable
+	 * band for dark-mode prose is nearer 10-12:1.
+	 *
+	 * Only the lightness channel moves. Hue and chroma are untouched, so the
+	 * theme keeps its warmth and simply stops glaring.
+	 */
+	--ml-text-color: oklch(0.87 0.012 94);
 	--ml-text-subtle-color: var(--ml-gray-200);
 	--ml-text-muted-color: var(--ml-gray-200);
 
-	/* Headings */
-	--ml-heading-color: var(--ml-cream-100);
+	/*
+	 * ---- Headings ----
+	 *
+	 * Below the old cream-100, which at 98.8% lightness was effectively white
+	 * and *brighter* than the body — so headings bloomed hardest of anything
+	 * on the page. In dark mode hierarchy is better carried by size and
+	 * weight than by pushing lightness past the text it introduces.
+	 */
+	--ml-heading-color: oklch(0.91 0.01 90);
 	--ml-heading-subtle-color: var(--ml-cream-200);
 
 	/* Links */
