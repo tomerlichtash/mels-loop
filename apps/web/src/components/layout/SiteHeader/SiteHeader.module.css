@@ -67,9 +67,16 @@
 
 .logoSubtitle {
 	font-size: var(--ml-font-size-md);
-	font-weight: var(--ml-font-weight-regular);
+	/*
+	 * Light, against the logo's medium — the subtitle is a gloss on the name,
+	 * not a second name. Weight and lower case already separate the two, which
+	 * is why there is no longer an opacity here as well: at 0.6 the line came
+	 * out at 4.1:1 in light and 3.5:1 in dark, under the 4.5:1 floor in both,
+	 * and thin strokes read worse than a ratio suggests. Fading text that is
+	 * already distinguished only makes it hard to read.
+	 */
+	font-weight: var(--ml-font-weight-light);
 	color: var(--ml-text-color);
-	opacity: 0.6;
 	letter-spacing: 0;
 	text-transform: lowercase;
 }

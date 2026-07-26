@@ -25,7 +25,14 @@
 
 	/* ---- Semantic: Brand-specific overrides ---- */
 	--ml-link-color: var(--ml-pink-light);
-	--ml-gradient-start: var(--ml-indigo);
+	/*
+	 * The same gradient, and the same problem at the other end: --ml-indigo
+	 * against the dark background is 1.8:1, which is not a colour so much as a
+	 * rumour. Lifted until it matches the pink end — 5.1:1 against 5.3:1 — so
+	 * the title reads evenly across its width rather than fading out at one
+	 * side. Hue and chroma are --ml-indigo's; only lightness moves.
+	 */
+	--ml-gradient-start: oklch(0.68 0.078 287);
 	--ml-gradient-end: var(--ml-color-primary);
 	--ml-mobile-menu-text: var(--ml-pink-light);
 }

@@ -142,6 +142,22 @@
 	--ml-menu-hover-bg: var(--ml-color-primary);
 	--ml-mobile-menu-text: var(--ml-color-secondary-highlight);
 
+	/*
+	 * ---- Chrome ----
+	 *
+	 * A step below the page rather than above it. surface-alt, which this used
+	 * to take, is lighter than the page in dark — so the header and footer
+	 * floated over content that should sit on top of them, and worse, that
+	 * value is identical to --ml-border-color, which left the header's
+	 * dividers and the search field's border drawn in the colour underneath
+	 * them.
+	 *
+	 * The step is 1.12:1 against the page, the same separation light gets from
+	 * its cream — enough to read as a band without becoming a black stripe.
+	 */
+	--ml-header-bg: oklch(0.235 0.004 107);
+	--ml-footer-bg: oklch(0.235 0.004 107);
+
 	/* Border — visible but not bright against dark surfaces */
 	--ml-border-color: var(--ml-gray-400);
 

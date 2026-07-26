@@ -96,6 +96,13 @@
 	--ml-gradient-end: var(--ml-color-primary);
 
 	/* ---- Header ---- */
+	/*
+	 * Recessed relative to the page: the chrome sits under the content, not
+	 * above it. In light that is surface-alt, a step down from the page's
+	 * near-white. Dark overrides it with a step *down* too — see dark.css —
+	 * because it previously used this same token and came out lighter than the
+	 * page, which inverted the relationship between the two themes.
+	 */
 	--ml-header-bg: var(--ml-color-surface-alt);
 	--ml-header-item-hover: var(--ml-color-surface-deep);
 	--ml-header-item-active: var(--ml-color-surface-muted);
