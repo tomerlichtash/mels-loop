@@ -32,7 +32,6 @@ export function SiteLayout({
 			<SiteHeader
 				onMenuClick={() => setDrawerOpened(true)}
 				onSearchClick={onSearchClick}
-				navItems={navItems}
 				locales={locales}
 			/>
 

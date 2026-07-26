@@ -1,3 +1,79 @@
+/*
+ * ---- Header controls ----
+ *
+ * One size, one shape, one hover, no fills and no borders.
+ *
+ * The five controls in this bar had been styled one at a time and agreed on
+ * nothing: three heights, four font sizes across five controls, a border on
+ * one of them, fills on two for unrelated reasons — a selected state on the
+ * locale and a current-page state on the nav link — and the locale pair did
+ * not even match itself, EN at 12px beside a Hebrew glyph at 16.
+ *
+ * Read together they looked like a collection rather than a set, and the
+ * heaviest thing in the header was a navigation link.
+ *
+ * The rule now: every control is a ghost at --ml-header-control-height, and
+ * nothing is bordered. Two exceptions, both earning it: hover needs a hit area
+ * to appear on, and the locale pair keeps a filled selected half — it is a
+ * segmented control, and which language you are reading has to be legible at a
+ * glance. Weight alone there read as a quirk of the font rather than a
+ * selection.
+ */
+.root {
+	--ml-header-control-height: 32px;
+	--ml-header-control-font-size: var(--ml-font-size-sm);
+
+	/* The locale pair and the theme toggle read these through the primitives'
+	 * own tokens. */
+	--ml-toggle-group-item-height: var(--ml-header-control-height);
+	--ml-toggle-group-item-font-size: var(--ml-header-control-font-size);
+	--ml-toggle-group-hover-bg: var(--ml-header-item-hover);
+	--ml-toggle-button-height: var(--ml-header-control-height);
+	--ml-toggle-button-hover-bg: var(--ml-header-item-hover);
+	/*
+	 * The locale pair is one control: a border around the group, its halves
+	 * square and flush inside it, and the selected half filled — which is the
+	 * one fill in this bar that carries meaning rather than emphasis.
+	 */
+	--ml-toggle-group-gap: 0px;
+	--ml-toggle-group-item-radius: 0;
+	/*
+	 * A step stronger than hover, which is the fill every other control in the
+	 * bar uses. The two were the same token — surface-deep and
+	 * --ml-header-item-hover both resolve to the same value — so hovering the
+	 * unselected half made it indistinguishable from the selected one, and the
+	 * control stopped saying which language you were reading.
+	 */
+	--ml-toggle-group-active-bg: var(--ml-color-surface-muted);
+}
+
+/*
+ * Each control its own bordered box, in two groups.
+ *
+ * Fusing them into one bordered strip with hairlines between the segments
+ * went too far: the locale pair stopped reading as a single segmented control
+ * and became two more buttons in a row of buttons. The border belongs around
+ * each control — including the locale pair as a whole, which is one control
+ * with two halves — and the space between them is a gap.
+ *
+ * The wider gap here separates the two kinds of control: what configures the
+ * site from what acts on it.
+ */
+.cluster {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-space-md);
+}
+
+.settings {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-space-xs);
+	/* A step back from the search beside them: a setting is something you
+	 * change occasionally, not something the bar is inviting you to do. */
+	color: var(--ml-text-muted-color);
+}
+
 .root {
 	position: fixed;
 	top: 0;
@@ -55,7 +131,7 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: var(--ml-space-lg);
+	gap: var(--ml-space-sm);
 }
 
 .logoDivider {
@@ -106,10 +182,6 @@
 	background-color: var(--ml-border-color);
 }
 
-.desktopNav {
-	display: none;
-}
-
 /* Locale and theme are in the drawer on mobile — see SiteHeader.tsx. */
 .desktopControls {
 	display: none;
@@ -131,10 +203,6 @@
 }
 
 @media (--ml-bp-desktop) {
-	.desktopNav {
-		display: flex;
-	}
-
 	.desktopControls {
 		display: flex;
 		align-items: center;

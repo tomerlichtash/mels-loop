@@ -9,10 +9,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { BurgerButton } from '../BurgerButton/BurgerButton';
 import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
 import { Logo } from '../Logo/Logo';
-import { NavMenu } from '../NavMenu/NavMenu';
 import { SearchTrigger } from '../SearchTrigger/SearchTrigger';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
-import type { LocaleOption, NavItem } from '../types';
+import type { LocaleOption } from '../types';
 import styles from './SiteHeader.module.css';
 
 const SCROLL_THRESHOLD = 10;
@@ -20,14 +19,12 @@ const SCROLL_THRESHOLD = 10;
 interface SiteHeaderProps {
 	onMenuClick: () => void;
 	onSearchClick?: () => void;
-	navItems: NavItem[];
 	locales: LocaleOption[];
 }
 
 export function SiteHeader({
 	onMenuClick,
 	onSearchClick,
-	navItems,
 	locales,
 }: SiteHeaderProps) {
 	const { t } = useTranslation();
@@ -71,28 +68,35 @@ export function SiteHeader({
 
 					<div className={styles.right}>
 						{/*
-						 * Locale and theme move into the drawer on mobile. Brand plus five
-						 * controls does not fit a 390px bar — that crowding is what was
-						 * breaking "MEL'S LOOP" across two lines. The theme toggle stays
-						 * inside this group for that reason, even though it now leads the
-						 * row on desktop.
+						 * The whole group moves into the drawer on mobile. Brand plus
+						 * this many controls does not fit a 390px bar — that crowding is
+						 * what was breaking "MEL'S LOOP" across two lines.
 						 */}
-						<div className={styles.desktopControls}>
-							<Tooltip label={themeLabel}>
-								<ThemeSwitcher aria-label={themeLabel} />
-							</Tooltip>
-							<LocaleSwitcher locales={locales} />
+						{/*
+						 * One bordered group, divided into segments, rather than five
+						 * separate controls at arm's length from each other. The border
+						 * is what makes them read as a set; the rules inside it are what
+						 * keep theme, language and search legible as three distinct
+						 * things.
+						 */}
+						<div className={styles.cluster}>
+							{/* Configuration: how the site is presented. These two hold a
+							    setting; they sit together and stay quiet. */}
+							<div className={styles.settings}>
+								<Tooltip label={themeLabel}>
+									<ThemeSwitcher aria-label={themeLabel} />
+								</Tooltip>
+								<LocaleSwitcher locales={locales} />
+							</div>
+							{/* An action: it does something rather than holding a state,
+							    so it stands apart and carries full strength. */}
+							{onSearchClick && (
+								<SearchTrigger
+									onClick={onSearchClick}
+									label={t('search.open')}
+								/>
+							)}
 						</div>
-						{onSearchClick && (
-							<SearchTrigger
-								onClick={onSearchClick}
-								placeholder={t('search.triggerPlaceholder')}
-								label={t('search.open')}
-							/>
-						)}
-						<nav className={styles.desktopNav}>
-							<NavMenu navItems={navItems} />
-						</nav>
 						{/* Last in the row, so the brand keeps the leading edge at every
 						 * width and the trigger sits with the other actions. */}
 						<BurgerButton onClick={onMenuClick} />

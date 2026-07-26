@@ -4,15 +4,10 @@ import styles from './SearchTrigger.module.css';
 
 interface SearchTriggerProps {
 	onClick: () => void;
-	placeholder: string;
 	label: string;
 }
 
-export function SearchTrigger({
-	onClick,
-	placeholder,
-	label,
-}: SearchTriggerProps) {
+export function SearchTrigger({ onClick, label }: SearchTriggerProps) {
 	return (
 		<button
 			type="button"
@@ -21,7 +16,6 @@ export function SearchTrigger({
 			aria-label={label}
 		>
 			<MagnifyingGlassIcon className={styles.icon} size={14} />
-			<span className={styles.placeholder}>{placeholder}</span>
 		</button>
 	);
 }

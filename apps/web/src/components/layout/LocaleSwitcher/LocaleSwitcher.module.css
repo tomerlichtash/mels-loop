@@ -1,12 +1,26 @@
+/*
+ * One control, two halves. The border goes round the pair, not round each
+ * half, so it never reads as two adjacent buttons.
+ *
+ * LTR because EN always precedes ע, whichever way the page runs — a segmented
+ * control's order is part of its identity, not of the text direction.
+ */
 .root {
 	direction: ltr;
+	height: var(--ml-header-control-height, 32px);
+	border: 1px solid var(--ml-border-color);
+	border-radius: var(--ml-radius-md);
+	overflow: hidden;
 }
 
 .en {
 	font-family: var(--font-roboto-slab, var(--ml-font-latin));
 }
 
+/*
+ * Same size as its Latin twin. It carried --ml-font-size-md against the
+ * group's sm, so the two halves of one control were 16px and 12px.
+ */
 .he {
 	font-family: var(--font-hebrew, var(--ml-font-hebrew));
-	font-size: var(--ml-font-size-md);
 }

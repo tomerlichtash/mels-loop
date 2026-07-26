@@ -1,6 +1,10 @@
+/* Its own box, like the search trigger beside it. */
 .root {
 	--ml-toggle-button-hover-bg: var(--ml-header-item-hover);
 	--ml-toggle-button-active-bg: transparent;
+
+	border: 1px solid var(--ml-border-color);
+	border-radius: var(--ml-radius-md);
 }
 
 .icon {

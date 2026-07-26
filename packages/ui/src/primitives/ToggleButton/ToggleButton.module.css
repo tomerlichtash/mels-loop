@@ -29,3 +29,14 @@
 .root[data-state='on'] {
 	background-color: var(--ml-toggle-button-active-bg);
 }
+
+/*
+ * Hover has to beat the pressed state, and specificity alone does not give it
+ * that: .root:hover and .root[data-state='on'] are both 0-2-0, so the one
+ * written later wins. A toggle whose active background is transparent — the
+ * theme switcher, where "on" means dark rather than selected — therefore lost
+ * its hover entirely once it was on, in exactly one of the two themes.
+ */
+.root[data-state='on']:hover {
+	background-color: var(--ml-toggle-button-hover-bg);
+}

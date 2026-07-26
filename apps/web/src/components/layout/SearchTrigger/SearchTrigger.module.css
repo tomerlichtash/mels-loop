@@ -1,65 +1,30 @@
+/*
+ * An icon button, like the theme toggle beside it.
+ *
+ * It used to carry the word "Search" and a border, which framed it as an
+ * input among buttons — a field you could type into, which it never was. The
+ * label lives in aria-label and the tooltip; the magnifier says the rest.
+ */
 .root {
-	display: flex;
+	display: inline-flex;
 	align-items: center;
-	gap: var(--ml-space-sm);
-	height: 32px;
-	padding: 0 var(--ml-space-sm);
+	justify-content: center;
+	min-width: var(--ml-header-control-height, 32px);
+	height: var(--ml-header-control-height, 32px);
+	padding: 0 var(--ml-space-xs);
 	background: none;
 	border: 1px solid var(--ml-border-color);
 	border-radius: var(--ml-radius-md);
 	cursor: pointer;
-	color: var(--ml-text-dimmed);
-	font-family: inherit;
-	font-size: var(--ml-font-size-sm);
-	white-space: nowrap;
+	color: var(--ml-text-color);
 }
 
 .root:hover {
-	border-color: var(--ml-text-dimmed);
-	color: var(--ml-text-color);
+	background-color: var(--ml-header-item-hover);
 }
 
 .icon {
 	flex-shrink: 0;
-}
-
-.placeholder {
-	display: none;
-}
-
-@media (--ml-bp-desktop) {
-	.placeholder {
-		display: inline;
-	}
-}
-
-/*
- * On a phone the trigger collapses to just the magnifier — the placeholder text
- * and shortcut hint were claiming width the brand needs, and the icon alone is
- * unambiguous. aria-label still carries the full description. No keyboard, no
- * shortcut hint either.
- *
- * The border goes with them: it framed a search *field*, and around a bare icon
- * it read as an empty input rather than a button, out of step with the drawer
- * toggle beside it.
- */
-@media (--ml-bp-mobile) {
-	.root {
-		border-color: transparent;
-	}
-
-	.placeholder {
-		display: none;
-	}
-
-	/*
-	 * 14px is sized for sitting beside the placeholder text. Alone it reads as
-	 * a much smaller control than the drawer toggle next to it, which draws its
-	 * glyph at 20. CSS beats the width/height attributes Phosphor sets from its
-	 * size prop, so the desktop size stays as it is.
-	 */
-	.icon {
-		width: 20px;
-		height: 20px;
-	}
+	width: 16px;
+	height: 16px;
 }
