@@ -6,6 +6,7 @@ import {
 	resolveStoryField,
 } from '@mels-loop/content-loaders/loaders';
 import { dictGet } from '@mels-loop/i18n/dict';
+import { Grid } from '@mels-loop/ui/primitives';
 
 import { StaticPage } from '@/components/layout/StaticPage/StaticPage';
 import { StoryCard } from '@/components/stories/StoryCard/StoryCard';
@@ -49,7 +50,9 @@ export default async function StoriesPage({ params }: PageProps) {
 			title={title}
 			breadcrumbs={[homeItemFromDict(dict), { label: title }]}
 		>
-			<div>
+			{/* The same grid the homepage lists stories in — these were stacked in
+			    a bare div, one card per full-width row. */}
+			<Grid columns={3} gap="md">
 				{sorted.map(({ config, messages, thumbnailUrl }) => (
 					<StoryCard
 						key={config.slug}
@@ -65,7 +68,7 @@ export default async function StoriesPage({ params }: PageProps) {
 						}
 					/>
 				))}
-			</div>
+			</Grid>
 		</StaticPage>
 	);
 }
