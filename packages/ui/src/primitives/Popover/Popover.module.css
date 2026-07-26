@@ -21,10 +21,54 @@
 	 */
 	max-width: calc(100vw - 2 * var(--ml-space-lg));
 	background-color: var(--ml-popover-background);
-	border: 1px solid var(--ml-popover-border-color);
 	border-radius: var(--ml-popover-border-radius);
+	/*
+	 * Shadow alone, no border. A border runs continuously along the panel edge,
+	 * including across the point where the arrow attaches — so it drew a line
+	 * separating the arrow from the panel it belongs to. The shadow defines the
+	 * panel just as well and leaves the join clean.
+	 */
 	box-shadow: var(--ml-popover-shadow);
 	z-index: 1000;
+}
+
+/*
+ * Floats over the panel's top corner rather than taking a row of its own: the
+ * content below is prose with its own top padding, and a dedicated header strip
+ * would push every definition down by a line to hold one 24px control.
+ */
+.close {
+	position: absolute;
+	/*
+	 * Level with the panel's first row — the trail when the reader has
+	 * navigated, the category chip otherwise. Both start at the content's top
+	 * padding, so matching it lines the control up with whatever is there
+	 * instead of floating above both.
+	 */
+	top: var(--ml-space-md);
+	/*
+	 * Clear of the scrollbar. The track is laid over the content at the end
+	 * edge, so a control tucked into that corner sat underneath the thumb on
+	 * any entry long enough to scroll — which is most of them.
+	 */
+	inset-inline-end: calc(
+		var(--ml-scroll-area-size, 8px) + 2 * var(--ml-scroll-area-gap, 4px) +
+			var(--ml-space-xs)
+	);
+	z-index: 1;
+}
+
+/*
+ * Radix moves focus to the panel when it opens, and the browser draws its
+ * default ring around it — a blue rectangle around a container that is not
+ * itself a control.
+ *
+ * :not(:focus-visible), not a blanket outline:none. Focus arriving from a
+ * click is not focus-visible and needs no ring; focus arriving from the
+ * keyboard is, and keeps one. The controls inside are unaffected either way.
+ */
+.content:focus:not(:focus-visible) {
+	outline: none;
 }
 
 /*
@@ -38,10 +82,14 @@
  * follows the rendered shape, so the outline traces the two visible edges and
  * lines up with the 1px border around the panel.
  */
+/*
+ * Fill only. The previous outline was two stacked drop-shadows standing in for
+ * a border, which cannot work: a drop-shadow is a blurred copy of the shape,
+ * not a stroke, so at any radius it renders a soft grey halo around the
+ * triangle rather than a 1px edge.
+ */
 .arrow {
 	fill: var(--ml-popover-background);
-	filter: drop-shadow(0 0 0.5px var(--ml-popover-border-color))
-		drop-shadow(0 0 0.5px var(--ml-popover-border-color));
 }
 
 .scrollArea {

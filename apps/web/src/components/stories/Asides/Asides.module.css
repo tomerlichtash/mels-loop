@@ -1,14 +1,136 @@
+/*
+ * One list, one alignment, one hover.
+ *
+ * The gutter is on every row, not only the current one: it holds the rule that
+ * marks the current page, so the text edge is identical whichever row is
+ * active. Marking the active row by adding padding or a filled box — what the
+ * timeline did — shifted its text away from every other row's, which read as a
+ * layout bug on each navigation.
+ */
+.root {
+	--ml-aside-gutter: var(--ml-space-md);
+	--ml-aside-rule-width: 2px;
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-lg);
+}
+
+.group {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-xs);
+}
+
+/*
+ * Subordinate to the entries it labels: smaller and muted, where the timeline's
+ * header was full-strength semibold and competed with the titles beneath it.
+ * Carries the same gutter so it aligns with the rows.
+ */
+.groupLabel {
+	margin: 0;
+	padding-inline-start: calc(
+		var(--ml-aside-gutter) + var(--ml-aside-rule-width)
+	);
+	font-size: var(--ml-font-size-sm);
+	font-weight: var(--ml-font-weight-semibold);
+	text-transform: uppercase;
+	letter-spacing: var(--ml-letter-spacing-wide);
+	color: var(--ml-text-muted-color);
+}
+
+/*
+ * Gap between rows, not more padding inside them. Each row is up to three
+ * lines — title, aside copy, byline — and at the previous spacing the byline of
+ * one ran into the title of the next, so the list read as one block of text
+ * rather than as separate entries. Space between the rows is what separates
+ * them; padding inside would only make each row taller.
+ */
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
 .link {
 	display: flex;
 	flex-direction: column;
-	font-size: var(--ml-font-size-sm);
+	gap: 2px;
+	padding-block: var(--ml-space-xs);
+	padding-inline-start: var(--ml-aside-gutter);
+	/* Transparent until active, so turning the mark on never moves the text. */
+	border-inline-start: var(--ml-aside-rule-width) solid transparent;
 	color: var(--ml-text-color);
 	text-decoration: none;
-	line-height: var(--ml-line-height-normal);
 }
 
-.active {
-	color: var(--ml-text-color);
+/*
+ * Colour alone on hover. The timeline also grew its dot, which is motion in the
+ * corner of the eye while the reader is reading something else.
+ */
+@media (hover: hover) {
+	.link:hover .title {
+		color: var(--ml-link-hover-color);
+	}
+}
+
+.linkActive {
+	border-inline-start-color: var(--ml-color-secondary);
+	cursor: default;
+}
+
+.linkActive .title {
 	font-weight: var(--ml-font-weight-semibold);
-	pointer-events: none;
+}
+
+.title {
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-snug);
+	transition: color var(--ml-duration-fast) ease;
+}
+
+/*
+ * Sits between the title and the byline, so a row without one simply loses a
+ * line instead of leaving a gap — the articles with no aside copy stay two
+ * lines and nothing goes ragged.
+ *
+ * Full text colour, not --ml-text-subtle-color. That token and
+ * --ml-text-muted-color both resolve to gray-300 (see the note in
+ * semantic.css: no lighter neutral in the scale clears 4.5:1 on this
+ * background), so using one for the subtitle and the other for the byline made
+ * two different kinds of line identical. They now separate by colour: the
+ * subtitle says what the piece is and reads as content, the byline is
+ * metadata and recedes.
+ */
+.subtitle {
+	font-size: var(--ml-font-size-sm);
+	line-height: var(--ml-line-height-snug);
+	color: var(--ml-text-color);
+}
+
+.author {
+	font-size: var(--ml-font-size-sm);
+	line-height: var(--ml-line-height-snug);
+	color: var(--ml-text-muted-color);
+}
+
+/*
+ * Stacked under the prose, the row gutter would sit on top of the page gutter
+ * and inset every title ~18px further in than the paragraph above it. Pulling
+ * the block back by exactly that much lines the titles up with the text they
+ * relate to, and puts the active rule out in the page margin where it reads as
+ * a marker rather than an indent.
+ *
+ * Mobile only: in the sidebar the aside owns its own column and has nothing to
+ * align against.
+ */
+@media (--ml-bp-mobile) {
+	.root {
+		margin-inline-start: calc(
+			-1 * (var(--ml-aside-gutter) + var(--ml-aside-rule-width))
+		);
+	}
 }

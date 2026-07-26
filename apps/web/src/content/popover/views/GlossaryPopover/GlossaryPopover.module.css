@@ -6,11 +6,46 @@
 	color: var(--ml-color-primary);
 	cursor: pointer;
 	font: inherit;
+	/* Padding and the matching negative margin are present in every state, so
+	 * switching the highlight on cannot shift the line; box-decoration-break
+	 * keeps the shape intact when a term wraps across lines. */
+	padding-inline: 0.12em;
+	margin-inline: -0.12em;
+	border-radius: var(--ml-radius-sm);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
 	font-weight: var(--ml-font-weight-medium);
+	/*
+	 * Dotted, the long-standing convention for a term carrying a definition —
+	 * what a browser draws under <abbr title>.
+	 *
+	 * Weight alone was doing this job and it was not enough: 500 against 400 is
+	 * a slim difference at this size, leaving colour as effectively the only
+	 * cue that a word is interactive (WCAG 1.4.1). Drawn at partial strength so
+	 * it hints rather than competing with the prose.
+	 */
+	text-decoration: underline;
+	text-decoration-style: dotted;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-color: color-mix(in srgb, currentColor 50%, transparent);
 }
 
-.trigger:hover {
-	color: var(--ml-color-secondary);
+/*
+ * Hover previews the open state: the same --ml-term-highlight the term takes
+ * when its popover is showing. Three different lighter colours were in use
+ * here — secondary, secondary, link-hover — none of which had any relationship
+ * to the colour the term actually turns when you act on it.
+ *
+ * Guarded, because a tap on a touch screen leaves the element in :hover and the
+ * term would stay marked long after its sheet had closed.
+ */
+@media (hover: hover) {
+	.trigger:hover {
+		color: var(--ml-term-highlight);
+		/* Full strength on hover, so the hint firms up under the pointer. */
+		text-decoration-color: currentColor;
+	}
 }
 
 .dropdown {
@@ -92,20 +127,9 @@
 	color: var(--ml-link-color);
 }
 
-/*
- * The term whose popover is open. Padding and the matching negative margin are
- * present in both states so switching the highlight on cannot shift the line;
- * box-decoration-break keeps the shape intact when a term wraps across lines.
- */
-.trigger {
-	padding-inline: 0.12em;
-	margin-inline: -0.12em;
-	border-radius: var(--ml-radius-sm);
-	-webkit-box-decoration-break: clone;
-	box-decoration-break: clone;
-}
-
+/* Open: the fill is the indicator, so the rule underneath it is noise. */
 .trigger[data-state='open'] {
 	background-color: var(--ml-term-highlight);
 	color: var(--ml-term-highlight-text);
+	text-decoration: none;
 }

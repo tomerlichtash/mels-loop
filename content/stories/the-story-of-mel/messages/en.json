@@ -12,7 +12,12 @@
 		"sources": "Sources"
 	},
 	"titles": {
-		"preface": "Preface"
+		"mels-hack-the-missing-bits": "The Missing Bits"
+	},
+	"subtitles": {
+		"preface": "A Preface to The Story of Mel",
+		"mel-kaye-cv": "The Life and Work of Mel Kaye (1931-2018)",
+		"mels-hack-the-missing-bits": "A Closer Reading of Mel's Hack"
 	},
 	"authors": {
 		"ednather": "Ed Nather",

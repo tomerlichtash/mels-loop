@@ -53,9 +53,7 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 				</button>
 			}
 		>
-			<NavBar
-				rootLabel={typeof displayLabel === 'string' ? displayLabel : id}
-			/>
+			<NavBar rootLabel={String(displayLabel)} />
 			{!source ? (
 				<div className={styles.loader}>
 					<Loader size="md" />

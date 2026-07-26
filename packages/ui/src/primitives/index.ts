@@ -52,7 +52,6 @@ export { Tabs } from './Tabs';
 export { Text } from './Text/Text';
 export { TextArea } from './TextArea/TextArea';
 export { TextField } from './TextField/TextField';
-export { TimelineItem, TimelineNav, TimelineSection } from './TimelineNav';
 export { ToggleButton } from './ToggleButton';
 export { ToggleGroup } from './ToggleGroup';
 export { Tooltip } from './Tooltip/Tooltip';

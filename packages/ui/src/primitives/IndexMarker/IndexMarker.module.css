@@ -18,8 +18,15 @@
 	letter-spacing: 0;
 }
 
-.root:hover {
-	color: var(--ml-color-secondary);
+/*
+ * Hover previews the open state — the same colour the marker's digits take
+ * when its popover is showing. Guarded because a tap leaves a touch device in
+ * :hover, and the marker would stay marked after its sheet had closed.
+ */
+@media (hover: hover) {
+	.root:hover {
+		color: var(--ml-term-highlight);
+	}
 }
 
 .root::before {

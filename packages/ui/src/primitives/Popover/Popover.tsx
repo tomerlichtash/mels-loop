@@ -255,6 +255,19 @@ export function Popover({
 					sideOffset={sideOffset}
 					collisionPadding={collisionPadding}
 				>
+					{/*
+					 * The anchored popover had no dismiss control at all — only
+					 * the mobile sheet did. Clicking away worked, but nothing on
+					 * screen said so, and there was no target for a reader who
+					 * expected one.
+					 */}
+					<RadixPopover.Close asChild>
+						<CloseButton
+							size="sm"
+							aria-label={closeLabel}
+							className={styles.close}
+						/>
+					</RadixPopover.Close>
 					<ScrollArea
 						type="auto"
 						className={styles.scrollArea}

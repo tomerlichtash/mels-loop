@@ -68,11 +68,11 @@ export function AnnotationPopover({
 			 * fixed for glossary terms. The number is the annotation's name.
 			 */}
 			<div className={styles.header}>
+				<NavBar rootLabel={displayLabel} />
 				<p className={styles.kicker}>
 					{t('content.annotationLabel')} {String(index).padStart(2, '0')}
 				</p>
 			</div>
-			<NavBar rootLabel={displayLabel} />
 			{!displayContent ? (
 				<div className={styles.loader}>
 					<Loader size="md" />

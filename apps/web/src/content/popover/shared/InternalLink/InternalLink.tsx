@@ -1,19 +1,12 @@
 'use client';
 
+import { useTranslation } from '@mels-loop/i18n/client';
 import Link from 'next/link';
-import { isValidElement, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { useAnnotations } from '../../providers/PopoverProvider';
+import { nodeText, termLabel } from '../term-label';
 import styles from './InternalLink.module.css';
-
-function extractText(node: ReactNode): string {
-	if (typeof node === 'string') return node;
-	if (typeof node === 'number') return String(node);
-	if (Array.isArray(node)) return node.map(extractText).join('');
-	if (isValidElement<{ children?: ReactNode }>(node))
-		return extractText(node.props.children);
-	return '';
-}
 
 interface InternalLinkProps {
 	href?: string;
@@ -33,10 +26,16 @@ export function InternalLink({
 	...props
 }: InternalLinkProps) {
 	const { pushNav } = useAnnotations();
+	const { locale } = useTranslation();
 
 	if (linkType === 'glossary' && linkTarget) {
-		const text = extractText(children);
-		const label = text || linkTarget.replace(/-/g, ' ');
+		/*
+		 * The canonical term, not the words in the sentence. The prose is
+		 * inflected to fit — a link reading "…a compiler for this" pushed
+		 * `compiler` onto the trail, lowercase and mid-sentence, and that string
+		 * then titled the whole entry.
+		 */
+		const label = termLabel(linkTarget, nodeText(children), locale);
 		return (
 			<button
 				type="button"

@@ -59,6 +59,15 @@ export interface PartEntry {
 	children: ContentsEntry[];
 	/** When true, render the part title as a direct link (no nested children). */
 	collapse?: boolean;
+	/**
+	 * Whether this part belongs in the story's aside. Defaults to true.
+	 *
+	 * The aside exists to show the main text and the writing that surrounds it.
+	 * Parts that are reference material rather than reading — an appendix, a
+	 * document dump — already have their own tab, and repeating them here says
+	 * nothing about how they relate to the story.
+	 */
+	aside?: boolean;
 	/** Message key for part author (e.g. "authors.preface"), resolved from story messages. */
 	author?: string;
 }
@@ -69,6 +78,16 @@ export interface PageEntry {
 	figure?: boolean;
 	/** Override display title (message key, e.g. "titles.preface"). When set, used instead of the page's frontmatter title. */
 	title?: string;
+	/**
+	 * A line for the aside, as a message key (e.g. "subtitles.preface").
+	 *
+	 * Lives here rather than in the page's frontmatter so navigation copy stays
+	 * out of the article: the page's own abstract is a standfirst written for a
+	 * full-width column, and what orients a reader in a narrow list of links is
+	 * a different sentence. Optional — a row without one simply has one line
+	 * fewer.
+	 */
+	subtitle?: string;
 	/** Message key for page author, resolved from story messages. */
 	author?: string;
 }
@@ -98,6 +117,8 @@ export interface ResolvedPartEntry {
 	title: string;
 	children: ResolvedContentsEntry[];
 	collapse?: boolean;
+	/** Whether this part belongs in the story's aside. Defaults to true. */
+	aside?: boolean;
 	author?: string;
 	/** When collapsed, the href of the single child. */
 	href?: string;
@@ -108,6 +129,8 @@ export interface ResolvedPageEntry {
 	ref: string;
 	title: string;
 	href: string;
+	/** Resolved aside line. See PageEntry.subtitle. */
+	subtitle?: string;
 	author?: string;
 }
 

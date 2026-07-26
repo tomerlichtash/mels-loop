@@ -129,6 +129,7 @@ async function resolveEntry(
 				title,
 				children,
 				...(entry.collapse && { collapse: true }),
+				...(entry.aside === false && { aside: false }),
 				...(author && { author }),
 			};
 			if (entry.collapse && children.length === 1) {
@@ -155,11 +156,15 @@ async function resolveEntry(
 			const pageAuthor = entry.author
 				? resolveStoryField(entry.author, locale, messages)
 				: undefined;
+			const subtitle = entry.subtitle
+				? resolveStoryField(entry.subtitle, locale, messages)
+				: undefined;
 			return {
 				type: 'page',
 				ref: entry.ref,
 				title,
 				href,
+				...(subtitle && { subtitle }),
 				...(pageAuthor && { author: pageAuthor }),
 			};
 		}

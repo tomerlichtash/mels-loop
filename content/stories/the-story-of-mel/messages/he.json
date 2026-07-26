@@ -12,7 +12,12 @@
 		"sources": "מקורות"
 	},
 	"titles": {
-		"preface": "הקדמה"
+		"mels-hack-the-missing-bits": "הביטים הנעדרים"
+	},
+	"subtitles": {
+		"preface": "מבוא לסיפור על מל",
+		"mel-kaye-cv": "חייו ועבודתו של מל קיי (1931-2018)",
+		"mels-hack-the-missing-bits": "קריאה מדוקדקת בהאק של מל"
 	},
 	"authors": {
 		"ednather": "אד נאת׳ר",

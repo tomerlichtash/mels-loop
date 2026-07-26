@@ -15,7 +15,12 @@
 			"usenet"
 		]
 	},
-	"authors": [{ "ref": "ednather", "role": "author" }],
+	"authors": [
+		{
+			"ref": "ednather",
+			"role": "author"
+		}
+	],
 	"featured": true,
 	"assets": {
 		"cover": "source:hela-kornitzka-ship-manifest",
@@ -84,7 +89,12 @@
 			"ref": "codex",
 			"collapse": true,
 			"author": "authors.ednather",
-			"children": [{ "type": "page", "ref": "codex" }]
+			"children": [
+				{
+					"type": "page",
+					"ref": "codex"
+				}
+			]
 		},
 		{
 			"type": "part",
@@ -93,17 +103,20 @@
 				{
 					"type": "page",
 					"ref": "articles/preface",
-					"title": "titles.preface",
+					"subtitle": "subtitles.preface",
 					"author": "authors.tomerlichtash"
 				},
 				{
 					"type": "page",
 					"ref": "articles/mel-kaye-cv",
+					"subtitle": "subtitles.mel-kaye-cv",
 					"author": "authors.tomerlichtash"
 				},
 				{
 					"type": "page",
 					"ref": "articles/mels-hack-the-missing-bits",
+					"subtitle": "subtitles.mels-hack-the-missing-bits",
+					"title": "titles.mels-hack-the-missing-bits",
 					"author": "authors.dfl"
 				}
 			]
@@ -111,7 +124,13 @@
 		{
 			"type": "part",
 			"ref": "appendix",
-			"children": [{ "type": "page", "ref": "documents/blackjack-writeup" }]
+			"aside": false,
+			"children": [
+				{
+					"type": "page",
+					"ref": "documents/blackjack-writeup"
+				}
+			]
 		}
 	]
 }

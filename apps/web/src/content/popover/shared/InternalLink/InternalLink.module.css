@@ -1,16 +1,28 @@
+/*
+ * A glossary term inside a popover is the same thing as one in the prose, and
+ * now looks it. This used --ml-link-color, which resolves to the pink
+ * secondary, so following a term into its entry changed what that term looked
+ * like — the word "compiler" was blue in the story and pink in the panel.
+ */
 .trigger {
 	display: inline;
 	background: none;
 	border: none;
 	padding: 0;
-	color: var(--ml-link-color);
+	color: var(--ml-color-primary);
 	cursor: pointer;
 	font: inherit;
+	font-weight: var(--ml-font-weight-medium);
 	text-decoration: underline;
 	text-decoration-style: dotted;
-	text-underline-offset: 2px;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-color: color-mix(in srgb, currentColor 50%, transparent);
 }
 
-.trigger:hover {
-	color: var(--ml-link-hover-color);
+@media (hover: hover) {
+	.trigger:hover {
+		color: var(--ml-term-highlight);
+		text-decoration-color: currentColor;
+	}
 }
