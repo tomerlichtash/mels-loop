@@ -36,6 +36,7 @@ export { ListItem } from './List/ListItem';
 export { Loader } from './Loader/Loader';
 export { PasswordField } from './PasswordField/PasswordField';
 export { Popover } from './Popover';
+export { ScrollArea } from './ScrollArea/ScrollArea';
 export { Separator } from './Separator/Separator';
 export { Switch } from './Switch/Switch';
 export {

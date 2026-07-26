@@ -77,6 +77,9 @@
 	--ml-link-hover-color: var(--ml-color-secondary);
 
 	/* Code */
+	/* The previous site used #666560 here; gray-300 is its lightness. */
+	--ml-scrollbar-thumb-color: var(--ml-gray-300);
+
 	--ml-code-bg: var(--ml-color-surface-alt);
 	--ml-code-text: var(--ml-cream-200);
 	--ml-code-border: var(--ml-gray-300);

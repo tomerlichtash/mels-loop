@@ -77,6 +77,7 @@
 		"figure": "תרשים",
 		"figureAbbr": "תרשים",
 		"glossaryLabel": "מילון מונחים",
+		"annotationLabel": "הערה",
 		"sourceLabel": "מקור",
 		"sourcesLabel": "מקורות",
 		"copied": "הקישור העותק!"
@@ -156,9 +157,18 @@
 	},
 	"stories": "סיפורים",
 	"count": {
-		"stories": { "one": "סיפור", "other": "סיפורים" },
-		"articles": { "one": "מאמר", "other": "מאמרים" },
-		"sources": { "one": "מקור", "other": "מקורות" }
+		"stories": {
+			"one": "סיפור",
+			"other": "סיפורים"
+		},
+		"articles": {
+			"one": "מאמר",
+			"other": "מאמרים"
+		},
+		"sources": {
+			"one": "מקור",
+			"other": "מקורות"
+		}
 	},
 	"moreStories": "עוד מהארכיון",
 	"readStory": "קראו את הסיפור",

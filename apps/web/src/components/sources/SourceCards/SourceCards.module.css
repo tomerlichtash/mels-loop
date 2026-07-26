@@ -50,8 +50,8 @@
  */
 @media (--ml-bp-mobile) {
 	.accordion {
-		width: 100vw;
-		margin-inline-start: calc(-50vw + 50%);
+		width: var(--ml-viewport-width);
+		margin-inline-start: calc(-0.5 * var(--ml-viewport-width) + 50%);
 		padding-inline: var(--ml-content-padding-horizontal);
 	}
 }

@@ -1,7 +1,7 @@
 .root {
 	/* Break out of parent container to span full viewport width */
-	width: 100vw;
-	margin-inline-start: calc(-50vw + 50%);
+	width: var(--ml-viewport-width);
+	margin-inline-start: calc(-0.5 * var(--ml-viewport-width) + 50%);
 	border-top: 1px solid var(--ml-border-color);
 	border-bottom: 1px solid var(--ml-border-color);
 	/* 92%, and -webkit- first: see the note in StorySections.module.css — at

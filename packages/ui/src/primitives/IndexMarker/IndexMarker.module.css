@@ -35,3 +35,24 @@
 	margin-left: 0.1em;
 	opacity: 0.75;
 }
+
+/*
+ * The marker whose popover is open. Same signal as a highlighted glossary
+ * term, so the reader learns one meaning for "this is what you are reading
+ * about".
+ *
+ * The fill goes on the number alone, inside the brackets. Filling the whole
+ * button swallowed the brackets into the block and left them misshapen against
+ * its rounded corners — they read as part of the chip rather than as the
+ * punctuation they are. The brackets stay in the prose colour and hold their
+ * place; only the digits light up.
+ *
+ * No padding on the fill. Padding would push the brackets outward and reflow
+ * the line; cancelling it with a negative margin instead slid the fill out
+ * over the brackets and buried them. The digits carry the colour on their own.
+ */
+.root[data-state='open'] .label {
+	border-radius: var(--ml-radius-sm);
+	background-color: var(--ml-term-highlight);
+	color: var(--ml-term-highlight-text);
+}

@@ -26,8 +26,29 @@ a:hover {
 	color: var(--ml-link-hover-color);
 }
 
-/* Scrollbar styling */
-:root {
-	scrollbar-color: var(--ml-border-color) transparent;
-	scrollbar-width: thin;
+/*
+ * ---- Scrollbar ----
+ *
+ * On a pointer device the native scrollbar is hidden and PageScrollbar draws an
+ * overlay one instead. Native offers only two shapes, and neither is what this
+ * needs: a classic scrollbar is always visible but reserves a column and pushes
+ * the page in, while an overlay scrollbar floats but fades out when idle. A
+ * drawn bar can float *and* stay.
+ *
+ * The document still scrolls natively — the bar is painted over it, not a
+ * scroll container wrapped around it. That keeps the mobile address bar
+ * collapsing, scroll restoration, hash anchors and every window.scrollY reader
+ * working, all of which moving the scroller into a div would have broken.
+ *
+ * Touch keeps its own scrollbar: it already floats, and already shows itself
+ * while scrolling.
+ */
+@media (pointer: fine) {
+	:root {
+		scrollbar-width: none;
+	}
+
+	::-webkit-scrollbar {
+		display: none;
+	}
 }

@@ -17,8 +17,8 @@
 .heroBg {
 	position: absolute;
 	inset: 0;
-	width: 100vw;
-	margin-inline-start: calc(-50vw + 50%);
+	width: var(--ml-viewport-width);
+	margin-inline-start: calc(-0.5 * var(--ml-viewport-width) + 50%);
 	mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 	background: url('/media/homepage/drum-memory-3.png') no-repeat center;
 	background-size: cover;

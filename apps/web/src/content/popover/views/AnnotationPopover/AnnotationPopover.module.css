@@ -2,7 +2,12 @@
 	--ml-popover-width: 414px;
 	--ml-popover-max-height: 300px;
 	--ml-popover-padding: var(--ml-space-md);
-	height: 300px;
+}
+
+@media (--ml-bp-desktop) {
+	.dropdown {
+		height: 300px;
+	}
 }
 
 .loader {
@@ -11,14 +16,43 @@
 	padding: var(--ml-space-md);
 }
 
-.body {
+/* Matches the glossary sheet — same chip, same reading size. */
+.header {
+	margin-bottom: var(--ml-space-sm);
+}
+
+.kicker {
+	display: inline-block;
+	margin: 0;
+	padding: 0.15em 0.6em;
+	border-radius: var(--ml-radius-sm);
+	background-color: color-mix(
+		in srgb,
+		var(--ml-term-highlight) 12%,
+		transparent
+	);
+	color: var(--ml-term-highlight);
 	font-size: var(--ml-font-size-sm);
-	line-height: var(--ml-line-height-snug);
+	font-weight: var(--ml-font-weight-semibold);
+	font-variant-numeric: tabular-nums;
+}
+
+.body {
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-body);
 }
 
 .source {
 	margin: var(--ml-space-xs) 0 0;
 	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-muted-color);
+}
+
+.sourceLabel {
+	color: var(--ml-text-color);
+}
+
+.sourceAuthor {
 	color: var(--ml-text-muted-color);
 }
 

@@ -27,6 +27,35 @@
 	--ml-header-height: 48px;
 	--ml-story-panel-height: 36px;
 	--ml-story-sections-height: 38px;
+
+	/*
+	 * Width of the page's own scrollbar, written by ScrollbarWidthScript.
+	 *
+	 * DELIBERATELY KEPT even though it now measures 0 almost everywhere:
+	 * PageScrollbar hides the native bar on pointer devices, and touch
+	 * platforms overlay theirs. It stays as insurance for any platform that
+	 * still reserves a column — without it the full-bleed breakouts below go
+	 * back to being wider than the client box, which put the story panel and
+	 * tab strip under the scrollbar and the page into horizontal overflow.
+	 * Measuring 0 is the expected result, not evidence that it is unused.
+	 */
+	--ml-scrollbar-width: 0px;
+
+	/*
+	 * The viewport MINUS that scrollbar — what a full-bleed element should
+	 * actually span.
+	 *
+	 * 100vw is the viewport INCLUDING the scrollbar, so wherever one reserves a
+	 * column every breakout is too wide: the story panel and tab strip ran
+	 * under the scrollbar and put the page into horizontal overflow. Fixed
+	 * elements do not have the problem, because inset-inline: 0 resolves
+	 * against the client box — which is why the site header stayed correct
+	 * while the sticky bars did not.
+	 *
+	 * Resolves to plain 100vw whenever the scrollbar takes no space, which is
+	 * the normal case now. Cheap, and correct on the platforms that differ.
+	 */
+	--ml-viewport-width: calc(100vw - var(--ml-scrollbar-width));
 }
 
 /*

@@ -1,13 +1,9 @@
 .root {
-	--ml-blockquote-border-color: var(--ml-border-color);
-	--ml-blockquote-border-width: 3px;
 	--ml-blockquote-text-color: var(--ml-text-subtle-color);
 	--ml-blockquote-padding-horizontal: var(--ml-space-md);
 	--ml-blockquote-margin-vertical: var(--ml-space-md);
 
 	padding: 0 var(--ml-blockquote-padding-horizontal);
-	border-inline-start: var(--ml-blockquote-border-width) solid
-		var(--ml-blockquote-border-color);
 	color: var(--ml-blockquote-text-color);
 	margin: var(--ml-blockquote-margin-vertical) 0;
 }

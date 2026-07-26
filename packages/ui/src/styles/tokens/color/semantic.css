@@ -59,6 +59,28 @@
 	--ml-popover-icon: var(--ml-gray-200);
 	--ml-popover-icon-hover: var(--ml-color-surface-contrast);
 
+	/*
+	 * The term whose popover is open, and the chip naming its category. Its own
+	 * token rather than a reuse of --ml-color-primary: the highlight marks "you
+	 * are reading about this word", which is a different job from a link or a
+	 * button, and it should not drift when the primary colour changes.
+	 */
+	--ml-term-highlight: #bd5e92;
+	--ml-term-highlight-text: var(--ml-color-surface);
+
+	/* ---- Scrollbar ---- */
+	/*
+	 * Themed apart from --ml-border-color, as it was on the previous site. A
+	 * thumb the same shade as the border vanishes against the edge of the
+	 * bordered panel it is scrolling.
+	 *
+	 * cream-300 is the previous site's scrollbar colour (#E6E3D8) at the same
+	 * lightness. That hex carried a little warmth; this palette is deliberately
+	 * zero-chroma throughout, so the neutral of equal lightness is used rather
+	 * than reintroducing a one-off tint.
+	 */
+	--ml-scrollbar-thumb-color: var(--ml-cream-300);
+
 	/* ---- Annotation ---- */
 	--ml-annotation-text: var(--ml-color-primary-contrast);
 	--ml-annotation-bg: var(--ml-color-secondary-deep);

@@ -12,6 +12,14 @@
 .content {
 	position: relative;
 	width: var(--ml-popover-width);
+	/*
+	 * Viewport width, not --radix-popper-available-width. That variable
+	 * measures the room left from the anchor on the chosen side, so a trigger
+	 * near an edge starved the popover to ~190px. Capping against the viewport
+	 * instead lets it keep a usable width, and Radix's collision shifting
+	 * slides it back into view.
+	 */
+	max-width: calc(100vw - 2 * var(--ml-space-lg));
 	background-color: var(--ml-popover-background);
 	border: 1px solid var(--ml-popover-border-color);
 	border-radius: var(--ml-popover-border-radius);
@@ -19,98 +27,167 @@
 	z-index: 1000;
 }
 
-/* Arrow border (outer triangle) */
-.content::before {
-	content: '';
-	position: absolute;
-	border-style: solid;
-	border-color: transparent;
-}
-
-/* Arrow fill (inner triangle, covers the border's inside) */
-.content::after {
-	content: '';
-	position: absolute;
-	border-style: solid;
-	border-color: transparent;
-}
-
-/* Bottom side: arrow points up */
-.content[data-side='bottom']::before,
-.content[data-side='bottom']::after {
-	left: 50%;
-	bottom: 100%;
-	border-width: 0 var(--ml-popover-arrow-size) var(--ml-popover-arrow-size);
-}
-
-.content[data-side='bottom']::before {
-	transform: translateX(-50%);
-	border-bottom-color: var(--ml-popover-border-color);
-}
-
-.content[data-side='bottom']::after {
-	transform: translateX(-50%) translateY(1px);
-	border-bottom-color: var(--ml-popover-background);
-}
-
-/* Top side: arrow points down */
-.content[data-side='top']::before,
-.content[data-side='top']::after {
-	left: 50%;
-	top: 100%;
-	border-width: var(--ml-popover-arrow-size) var(--ml-popover-arrow-size) 0;
-}
-
-.content[data-side='top']::before {
-	transform: translateX(-50%);
-	border-top-color: var(--ml-popover-border-color);
-}
-
-.content[data-side='top']::after {
-	transform: translateX(-50%) translateY(-1px);
-	border-top-color: var(--ml-popover-background);
-}
-
-/* Right side: arrow points left */
-.content[data-side='right']::before,
-.content[data-side='right']::after {
-	top: 50%;
-	right: 100%;
-	border-width: var(--ml-popover-arrow-size) var(--ml-popover-arrow-size)
-		var(--ml-popover-arrow-size) 0;
-}
-
-.content[data-side='right']::before {
-	transform: translateY(-50%);
-	border-right-color: var(--ml-popover-border-color);
-}
-
-.content[data-side='right']::after {
-	transform: translateY(-50%) translateX(1px);
-	border-right-color: var(--ml-popover-background);
-}
-
-/* Left side: arrow points right */
-.content[data-side='left']::before,
-.content[data-side='left']::after {
-	top: 50%;
-	left: 100%;
-	border-width: var(--ml-popover-arrow-size) 0 var(--ml-popover-arrow-size)
-		var(--ml-popover-arrow-size);
-}
-
-.content[data-side='left']::before {
-	transform: translateY(-50%);
-	border-left-color: var(--ml-popover-border-color);
-}
-
-.content[data-side='left']::after {
-	transform: translateY(-50%) translateX(-1px);
-	border-left-color: var(--ml-popover-background);
+/*
+ * Radix draws and positions the arrow. The previous version was two CSS
+ * triangles pinned at 50% of the content box, which is the middle of the
+ * popover rather than the anchor — correct only while nothing moved. As soon
+ * as Radix shifted the panel to keep it on screen, the arrow stayed behind and
+ * pointed at empty space.
+ *
+ * drop-shadow rather than a border: the arrow is an SVG polygon, and a shadow
+ * follows the rendered shape, so the outline traces the two visible edges and
+ * lines up with the 1px border around the panel.
+ */
+.arrow {
+	fill: var(--ml-popover-background);
+	filter: drop-shadow(0 0 0.5px var(--ml-popover-border-color))
+		drop-shadow(0 0 0.5px var(--ml-popover-border-color));
 }
 
 .scrollArea {
 	max-height: var(--ml-popover-max-height);
-	overflow-y: auto;
+}
+
+.scrollViewport {
 	padding: var(--ml-popover-padding);
+}
+
+/* ---- Mobile bottom sheet ---- */
+
+.sheetOverlay {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	/* No dim. The element remains so an outside tap still closes the sheet. */
+	background-color: transparent;
+}
+
+/*
+ * Anchored to the bottom edge and full width — the sheet has no relationship
+ * to the word that opened it, which is the point: on a phone there is no room
+ * beside that word.
+ *
+ * Height is capped rather than fixed so a one-line glossary entry stays short
+ * instead of leaving a tall empty panel. dvh, not vh, so the mobile browser's
+ * collapsing address bar does not push the bottom of the sheet out of reach.
+ */
+.sheet {
+	position: fixed;
+	inset-inline: 0;
+	bottom: 0;
+	z-index: 1001;
+	display: flex;
+	flex-direction: column;
+	/*
+	 * One height for every sheet, whatever is inside it. A sheet that resized
+	 * to its content made the panel jump between terms — a one-line definition
+	 * and a long one opened to visibly different shapes from the same gesture.
+	 * Fixed height, scrolled inside. dvh, not vh, so a collapsing address bar
+	 * cannot push the bottom of the sheet out of reach.
+	 */
+	height: var(--ml-popover-sheet-height, 55dvh);
+	transform: translateY(var(--ml-popover-sheet-drag, 0px));
+	background-color: var(--ml-popover-background);
+	border-top: 1px solid var(--ml-popover-border-color);
+	border-start-start-radius: var(--ml-radius-lg);
+	border-start-end-radius: var(--ml-radius-lg);
+	box-shadow: var(--ml-popover-shadow);
+	animation: sheetUp var(--ml-duration-normal) ease;
+	/* Springs back when a drag ends short of the threshold. */
+	transition: transform var(--ml-duration-fast) ease;
+}
+
+/* Follows the finger exactly while held — no easing, and no entry animation
+ * fighting the transform. */
+.sheetDragging {
+	animation: none;
+	transition: none;
+}
+
+/*
+ * transition: none while leaving. The spring-back transition and the exit
+ * animation both drive `transform`, so on close they tweened the same property
+ * against each other and the sheet — and the close button riding on it —
+ * stuttered. The animation owns the exit.
+ */
+.sheet[data-state='closed'] {
+	animation: sheetUp var(--ml-duration-fast) ease reverse;
+	transition: none;
+}
+
+/*
+ * A header, not just a grabber row: handle, close control, and a rule beneath.
+ *
+ * The rule is what makes the scroll legible. Without it the content simply
+ * stopped somewhere near the top of the sheet with nothing to stop *at*, so a
+ * half-scrolled paragraph read as clipped rather than as scrolled under an
+ * edge. It also fixes the close button to a defined band instead of leaving it
+ * floating over the text.
+ */
+.sheetBar {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--ml-space-md) var(--ml-space-md) var(--ml-space-sm);
+	flex-shrink: 0;
+	border-bottom: 1px solid var(--ml-border-color);
+	/* The browser must not claim the gesture for scrolling or pull-to-refresh;
+	 * this row is the drag surface. */
+	touch-action: none;
+	cursor: grab;
+}
+
+.sheetBar:active {
+	cursor: grabbing;
+}
+
+.sheetHandle {
+	width: 36px;
+	height: 4px;
+	border-radius: 999px;
+	background-color: var(--ml-border-color);
+}
+
+.sheetClose {
+	position: absolute;
+	inset-inline-end: var(--ml-space-md);
+}
+
+/* Scrolls itself, so the page behind it does not. */
+.sheetScroll {
+	flex: 1;
+	min-height: 0;
+	overscroll-behavior: contain;
+}
+
+/*
+ * Real padding, not just the safe-area inset. The last element — a source
+ * link, the end of a definition — sat flush against the bottom edge with
+ * nothing under it.
+ */
+.sheetViewport {
+	padding: var(--ml-popover-padding) var(--ml-popover-padding)
+		calc(var(--ml-space-lg) + env(safe-area-inset-bottom, 0px));
+}
+
+.visuallyHidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+@keyframes sheetUp {
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0);
+	}
 }

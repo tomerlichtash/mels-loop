@@ -14,7 +14,8 @@ interface SourcePopoverProps {
 }
 
 export function SourcePopover({ id, label }: SourcePopoverProps) {
-	const { sources, loadingKeys, loadResolvedSource } = useAnnotations();
+	const { sources, loadingKeys, loadResolvedSource, closePopover } =
+		useAnnotations();
 
 	const {
 		opened,
@@ -34,6 +35,10 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 	return (
 		<Popover
 			open={opened}
+			onOpenChange={(next) => {
+				if (!next) closePopover();
+			}}
+			title={id}
 			side={side}
 			triggerRef={triggerRef}
 			className={styles.dropdown}

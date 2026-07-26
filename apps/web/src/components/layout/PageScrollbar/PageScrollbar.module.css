@@ -1,0 +1,64 @@
+/*
+ * Floats over the page rather than reserving a column, so nothing has to shrink
+ * to make room for it — which was the whole problem with the native
+ * always-visible bar.
+ *
+ * Only on pointer devices. Touch platforms already draw a floating scrollbar
+ * during a scroll and hide it after, which is the right behaviour there, and a
+ * permanent bar would just sit in the way of a swipe.
+ */
+.track {
+	display: none;
+}
+
+@media (pointer: fine) {
+	.track {
+		position: fixed;
+		inset-block: 0;
+		inset-inline-end: 0;
+		display: block;
+		width: calc(
+			var(--ml-scroll-area-size, 8px) + 2 * var(--ml-scroll-area-gap, 4px)
+		);
+		/*
+		 * Above the sticky chrome — the header, story panel and tab strip all sit
+		 * below 100 — but under dialogs and popovers, which own the screen while
+		 * they are open.
+		 */
+		z-index: 200;
+		/* The track is only a rail; clicks belong to the page beneath it. */
+		pointer-events: none;
+	}
+
+	.track[data-visible='false'] {
+		visibility: hidden;
+	}
+
+	.thumb {
+		width: var(--ml-scroll-area-size, 8px);
+		margin-inline: var(--ml-scroll-area-gap, 4px);
+		background-color: var(--ml-scrollbar-thumb-color);
+		/* Square, matching the ScrollArea primitive. */
+		border-radius: 0;
+		pointer-events: auto;
+		cursor: pointer;
+		/* Positioned by transform rather than top, so scrolling never triggers
+		 * layout — only the compositor moves it. */
+		will-change: transform;
+	}
+
+	/*
+	 * An 8px-wide thumb is far below the minimum pointer target. The
+	 * pseudo-element widens what can be grabbed without widening what is drawn.
+	 * See WCAG 2.5.5.
+	 */
+	.thumb::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 44px;
+		height: 100%;
+	}
+}

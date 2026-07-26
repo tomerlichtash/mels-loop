@@ -19,6 +19,8 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 
+import { PageScrollbar } from '@/components/layout/PageScrollbar/PageScrollbar';
+import { ScrollbarWidthScript } from '@/components/layout/ScrollbarWidthScript/ScrollbarWidthScript';
 import { SearchableLayout } from '@/components/layout/SearchableLayout/SearchableLayout';
 import { assistant, lekton, robotoSlab } from '@/fonts';
 import { getDictionary } from '@/i18n';
@@ -72,11 +74,13 @@ export default async function Layout({
 					media="(prefers-color-scheme: dark)"
 				/>
 				<ColorSchemeScript />
+				<ScrollbarWidthScript />
 			</head>
 			<body
 				className={`${robotoSlab.variable} ${assistant.variable} ${lekton.variable}`}
 			>
 				{gaId && <GoogleAnalytics gaId={gaId} />}
+				<PageScrollbar />
 				<I18nProvider locale={locale} messages={messages}>
 					<SearchableLayout
 						navItems={navItems}

@@ -6,9 +6,7 @@
 	color: var(--ml-color-primary);
 	cursor: pointer;
 	font: inherit;
-	text-decoration: underline;
-	text-decoration-style: dotted;
-	text-underline-offset: 2px;
+	font-weight: var(--ml-font-weight-medium);
 }
 
 .trigger:hover {
@@ -19,21 +17,45 @@
 	--ml-popover-width: 414px;
 	--ml-popover-max-height: 300px;
 	--ml-popover-padding: 0;
-	height: 300px;
 }
 
+@media (--ml-bp-desktop) {
+	.dropdown {
+		height: 300px;
+	}
+}
+
+/*
+ * Kicker, then the term at display size — the term is what the reader came for,
+ * so it leads. The previous header set it at body size in caps, which read as a
+ * section label rather than a title.
+ */
 .header {
-	background-color: var(--ml-popover-topic-bg);
-	color: var(--ml-popover-topic-text);
-	border-bottom: 1px solid var(--ml-border-color);
-	padding: var(--ml-space-md);
+	padding: var(--ml-space-md) var(--ml-space-md) 0;
+}
+
+/* The category chip. */
+.kicker {
+	display: inline-block;
+	margin: 0 0 var(--ml-space-md);
+	padding: 0.15em 0.6em;
+	border-radius: var(--ml-radius-sm);
+	background-color: color-mix(
+		in srgb,
+		var(--ml-term-highlight) 12%,
+		transparent
+	);
+	color: var(--ml-term-highlight);
+	font-size: var(--ml-font-size-sm);
+	font-weight: var(--ml-font-weight-semibold);
 }
 
 .headerTitle {
 	margin: 0;
 	font-weight: var(--ml-font-weight-bold);
-	font-size: var(--ml-font-size-body);
-	text-transform: uppercase;
+	font-size: var(--ml-font-size-2xl);
+	line-height: var(--ml-line-height-tight);
+	color: var(--ml-text-color);
 }
 
 .headerSub {
@@ -49,8 +71,8 @@
 }
 
 .body {
-	font-size: var(--ml-font-size-sm);
-	line-height: var(--ml-line-height-snug);
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-body);
 	padding: var(--ml-space-md);
 }
 
@@ -61,7 +83,29 @@
 	padding: 0 var(--ml-space-md) var(--ml-space-md);
 }
 
+.sourceLabel {
+	color: var(--ml-text-color);
+}
+
 .sourceLink {
 	font-size: var(--ml-font-size-sm);
 	color: var(--ml-link-color);
+}
+
+/*
+ * The term whose popover is open. Padding and the matching negative margin are
+ * present in both states so switching the highlight on cannot shift the line;
+ * box-decoration-break keeps the shape intact when a term wraps across lines.
+ */
+.trigger {
+	padding-inline: 0.12em;
+	margin-inline: -0.12em;
+	border-radius: var(--ml-radius-sm);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+.trigger[data-state='open'] {
+	background-color: var(--ml-term-highlight);
+	color: var(--ml-term-highlight-text);
 }

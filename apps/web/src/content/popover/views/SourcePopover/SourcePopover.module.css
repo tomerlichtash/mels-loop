@@ -18,11 +18,34 @@
 .dropdown {
 	--ml-popover-width: 414px;
 	--ml-popover-max-height: 300px;
-	height: 300px;
+}
+
+@media (--ml-bp-desktop) {
+	.dropdown {
+		height: 300px;
+	}
 }
 
 .loader {
 	display: flex;
 	justify-content: center;
 	padding: var(--ml-space-md);
+}
+
+/*
+ * The term whose popover is open. Padding and the matching negative margin are
+ * present in both states so switching the highlight on cannot shift the line;
+ * box-decoration-break keeps the shape intact when a term wraps across lines.
+ */
+.trigger {
+	padding-inline: 0.12em;
+	margin-inline: -0.12em;
+	border-radius: var(--ml-radius-sm);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+.trigger[data-state='open'] {
+	background-color: var(--ml-term-highlight);
+	color: var(--ml-term-highlight-text);
 }
