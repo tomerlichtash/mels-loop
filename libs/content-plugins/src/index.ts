@@ -21,6 +21,7 @@ import { remarkEmailDirective } from './remark/email-directive';
 import { remarkFigureDirective } from './remark/figure-directive';
 import { remarkFigures } from './remark/figures';
 import { remarkGlossaryLinks } from './remark/glossary-links';
+import { remarkSmallprintDirective } from './remark/smallprint-directive';
 import { remarkSourceLinks } from './remark/source-links';
 import { interpolateSourceVars, remarkSourceVars } from './remark/source-vars';
 import { remarkStripComments } from './remark/strip-comments';
@@ -56,6 +57,7 @@ export const createContentPlugins: PluginBuilder = (context) => {
 			[remarkColsDirective],
 			[remarkEmailDirective],
 			[remarkFigureDirective],
+			[remarkSmallprintDirective],
 			[remarkTableDirective],
 			[remarkVerse, { parseMode: metadata.parse_mode }],
 		];

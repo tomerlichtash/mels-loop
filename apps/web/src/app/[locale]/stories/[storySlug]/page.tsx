@@ -1,6 +1,5 @@
 import { getAllStories, getCodex } from '@mels-loop/content-loaders/loaders';
 import { getLocales } from '@mels-loop/i18n/config';
-import { Text } from '@mels-loop/ui/primitives';
 
 import { ContentRenderer, StoryPopoverProvider } from '@/content';
 import type { Locale } from '@/i18n-init';
@@ -23,11 +22,10 @@ export default async function StoryLandingPage({ params }: PageProps) {
 
 	return (
 		<>
-			{content?.metadata.subtitle && (
-				<Text variant="body2" color="muted" italic>
-					{content.metadata.subtitle}
-				</Text>
-			)}
+			{/* A publication note belongs in the body, marked :::smallprint —
+			    it is part of the document, not a property of the template. The
+			    Hebrew codex used to carry one in frontmatter and the English
+			    the same sentence as prose, so the two rendered differently. */}
 			{content && (
 				<StoryPopoverProvider storySlug={storySlug} locale={typedLocale}>
 					<ContentRenderer hast={content.hast} />

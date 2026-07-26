@@ -266,3 +266,34 @@
 .root div:first-child > figure {
 	margin-top: 0;
 }
+
+/*
+ * :::smallprint — the lines around a text that are not the text.
+ *
+ * On the Mel codex it is the publication note that introduces the poem: where
+ * it was posted, by whom, on what date. It has to sit in the body, because
+ * that is where it belongs in the document and it ends in a colon pointing at
+ * the first line — but set like the body it reads as the poem's opening
+ * sentence, which it is not.
+ *
+ * Smaller and quieter. Deliberately not a change of typeface: that would read
+ * as a clear separation in English, where the prose is Roboto Slab and the
+ * interface face is Assistant, and as nothing at all in Hebrew, which is set
+ * in Assistant throughout. Size and colour say the same thing in both.
+ */
+.root [data-type='smallprint'] {
+	font-size: var(--ml-font-size-sm);
+	line-height: var(--ml-line-height-snug);
+	color: var(--ml-text-muted-color);
+	margin-bottom: var(--ml-space-lg);
+}
+
+.root [data-type='smallprint'] p {
+	margin: 0;
+	font-size: inherit;
+	line-height: inherit;
+	/* Never justified: it is one or two lines, and stretching them to a flush
+	 * edge opens rivers in text that is already small. */
+	text-align: start;
+	hyphens: manual;
+}
