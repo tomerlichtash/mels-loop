@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation';
 
 import { ContentRenderer, StoryPopoverProvider } from '@/content';
 import type { Locale } from '@/i18n-init';
+import { formatArticleDate } from '@/lib/format-date';
 
 import styles from './article.module.css';
 
@@ -67,7 +68,10 @@ export default async function ArticlePage({ params }: PageProps) {
 									content.metadata.date as string,
 								).toISOString()}
 							>
-								{new Date(content.metadata.date as string).getFullYear()}
+								{formatArticleDate(
+									content.metadata.date as string,
+									typedLocale,
+								)}
 							</time>
 						)}
 						{content.metadata.credits && (
