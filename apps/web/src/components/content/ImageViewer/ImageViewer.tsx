@@ -31,7 +31,13 @@ function provenance(el: HTMLImageElement): string | undefined {
 		/* Stored as a slug — "public-domain" reads as a filename otherwise. */
 		el.dataset.sourceLicense?.replace(/-/g, ' '),
 	].filter(Boolean);
-	return parts.length ? parts.join(' · ') : undefined;
+	/*
+	 * Deduplicated: for an institutional record the author and the credit are
+	 * often the same body — the Ellis Island Foundation both holds the ship
+	 * manifest and is credited for it — and the line came out naming it twice.
+	 */
+	const unique = [...new Set(parts)];
+	return unique.length ? unique.join(' · ') : undefined;
 }
 
 function toSlide(el: HTMLImageElement, sourceLabel: string): ViewerSlide {

@@ -141,10 +141,13 @@
 		"colDescription": "תיאור",
 		"colType": "סוג",
 		"colDate": "תאריך",
+		"colAuthor": "מחבר",
+		"colCredit": "קרדיט",
 		"colLicense": "רישיון",
 		"colTags": "תגיות",
 		"colSource": "מקור",
-		"searchPlaceholder": "חיפוש מקורות..."
+		"searchPlaceholder": "חיפוש מקורות...",
+		"transcription": "לקריאת התעתיק"
 	},
 	"search": {
 		"title": "חיפוש",

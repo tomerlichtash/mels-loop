@@ -1,6 +1,6 @@
 {
 	"siteTitle": "Mel's Loop",
-	"siteSubtitle": "Legends of hacker folklore",
+	"siteSubtitle": "Legends of Hacker Folklore",
 	"siteSubtitlePrefix": "Legends of ",
 	"siteSubtitleHighlight": "hacker folklore",
 	"siteLicenseLabel": "cc",
@@ -141,10 +141,13 @@
 		"colDescription": "Description",
 		"colType": "Type",
 		"colDate": "Date",
+		"colAuthor": "Author",
+		"colCredit": "Credit",
 		"colLicense": "License",
 		"colTags": "Tags",
 		"colSource": "Source",
-		"searchPlaceholder": "Search sources..."
+		"searchPlaceholder": "Search sources...",
+		"transcription": "Read the transcription"
 	},
 	"search": {
 		"title": "Search",
