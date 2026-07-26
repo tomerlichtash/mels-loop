@@ -3,11 +3,13 @@
 import {
 	Card,
 	CardBody,
+	CardFooter,
 	CardHeader,
 	CardMedia,
 	Text,
 } from '@mels-loop/ui/primitives';
 
+import { type Stat, StoryStats } from '../StoryStats/StoryStats';
 import styles from './StoryCard.module.css';
 
 interface StoryCardProps {
@@ -15,6 +17,8 @@ interface StoryCardProps {
 	title: string;
 	abstract: string;
 	thumbnailUrl?: string;
+	/** How much there is to read, and how much it rests on. */
+	stats?: Stat[];
 }
 
 export function StoryCard({
@@ -22,6 +26,7 @@ export function StoryCard({
 	title,
 	abstract,
 	thumbnailUrl,
+	stats,
 }: StoryCardProps) {
 	return (
 		<Card variant="outlined" padding="md" interactive href={`/stories/${slug}`}>
@@ -34,6 +39,11 @@ export function StoryCard({
 					{abstract}
 				</Text>
 			</CardBody>
+			{stats && stats.length > 0 && (
+				<CardFooter>
+					<StoryStats stats={stats} />
+				</CardFooter>
+			)}
 		</Card>
 	);
 }

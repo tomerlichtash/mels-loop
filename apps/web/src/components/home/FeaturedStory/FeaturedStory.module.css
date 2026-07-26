@@ -27,22 +27,12 @@
 	outline-offset: 2px;
 }
 
+/* No positioning context needed: the stats it used to anchor now sit in the
+   content column, with the rest of the text. */
 .cover {
-	position: relative;
 	min-height: 280px;
 	background-size: cover;
 	background-position: center;
-}
-
-.overlay {
-	position: absolute;
-	inset: 0;
-	display: flex;
-	align-items: flex-end;
-	gap: var(--ml-space-md);
-	padding: var(--ml-space-lg);
-	background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 50%);
-	color: #fff;
 }
 
 .content {
@@ -61,17 +51,6 @@
 .abstract {
 	color: var(--ml-text-muted-color);
 	line-height: var(--ml-line-height-relaxed);
-}
-
-.stat {
-	display: flex;
-	align-items: center;
-	gap: 0.3em;
-	font-size: var(--ml-font-size-sm);
-}
-
-.statCount {
-	font-weight: var(--ml-font-weight-semibold);
 }
 
 .cta {

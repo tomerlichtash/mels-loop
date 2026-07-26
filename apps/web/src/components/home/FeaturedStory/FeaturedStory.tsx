@@ -3,6 +3,7 @@
 import { Button, Text } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 
+import { type Stat, StoryStats } from '../../stories/StoryStats/StoryStats';
 import styles from './FeaturedStory.module.css';
 
 interface FeaturedStoryProps {
@@ -10,7 +11,7 @@ interface FeaturedStoryProps {
 	title: string;
 	abstract: string;
 	coverUrl?: string;
-	stats?: { label: string; count: number }[];
+	stats?: Stat[];
 	cta: string;
 }
 
@@ -28,18 +29,7 @@ export function FeaturedStory({
 				<div
 					className={styles.cover}
 					style={{ backgroundImage: `url(${coverUrl})` }}
-				>
-					{stats && stats.length > 0 && (
-						<div className={styles.overlay}>
-							{stats.map((stat) => (
-								<span key={stat.label} className={styles.stat}>
-									<span className={styles.statCount}>{stat.count}</span>
-									{stat.label}
-								</span>
-							))}
-						</div>
-					)}
-				</div>
+				/>
 			)}
 			<div className={styles.content}>
 				<Text variant="h2" className={styles.title}>
@@ -48,6 +38,13 @@ export function FeaturedStory({
 				<Text variant="body1" className={styles.abstract}>
 					{abstract}
 				</Text>
+				{/*
+				 * Under the abstract, where the cards below put theirs. These sat
+				 * over the cover image, which meant a scrim darkening the picture to
+				 * keep them legible and the counts landing across its subject — and
+				 * the same two numbers appearing in two different places on one page.
+				 */}
+				{stats && <StoryStats stats={stats} />}
 				<div className={styles.cta}>
 					<Button variant="outlined" size="sm" tabIndex={-1}>
 						{cta}

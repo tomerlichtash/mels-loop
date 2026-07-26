@@ -5,6 +5,7 @@ import {
 	resolveAssetUrl,
 	resolveStoryField,
 } from '@mels-loop/content-loaders/loaders';
+import type { StoryConfig } from '@mels-loop/content-loaders/types';
 import { Container, Grid, Text } from '@mels-loop/ui/primitives';
 
 import { FeaturedStory } from '@/components/home/FeaturedStory/FeaturedStory';
@@ -18,6 +19,35 @@ import styles from './page.module.css';
 
 interface PageProps {
 	params: Promise<{ locale: string }>;
+}
+
+/**
+ * The counts a story's card carries: how much there is to read, and how much
+ * it rests on.
+ *
+ * Zero-count entries are dropped. A story with no articles part would
+ * otherwise advertise "0 Articles", which describes a gap rather than the
+ * story — and the parked stories that just came in are all single-part.
+ */
+function storyStats(
+	config: StoryConfig,
+	nav: Record<string, string> | undefined,
+): { label: string; count: number }[] {
+	const articles = (config.contents ?? [])
+		.filter((entry) => entry.type === 'part' && entry.ref === 'articles')
+		.reduce(
+			(total, entry) =>
+				entry.type === 'part' ? total + entry.children.length : total,
+			0,
+		);
+
+	return [
+		{ label: String(nav?.articles ?? 'Articles'), count: articles },
+		{
+			label: String(nav?.sources ?? 'Sources'),
+			count: config.sources?.length ?? 0,
+		},
+	].filter((stat) => stat.count > 0);
 }
 
 export default async function HomePage({ params }: PageProps) {
@@ -80,38 +110,10 @@ export default async function HomePage({ params }: PageProps) {
 						coverUrl={
 							featured.coverUrl ? resolveMediaUrl(featured.coverUrl) : undefined
 						}
-						stats={[
-							...(featured.config.contents
-								? [
-										{
-											label: String(
-												(dict.nav as Record<string, string>)?.articles ??
-													'Articles',
-											),
-											count: featured.config.contents
-												.filter(
-													(e) => e.type === 'part' && e.ref === 'articles',
-												)
-												.reduce(
-													(n, e) =>
-														e.type === 'part' ? n + e.children.length : n,
-													0,
-												),
-										},
-									]
-								: []),
-							...(featured.config.sources
-								? [
-										{
-											label: String(
-												(dict.nav as Record<string, string>)?.sources ??
-													'Sources',
-											),
-											count: featured.config.sources.length,
-										},
-									]
-								: []),
-						]}
+						stats={storyStats(
+							featured.config,
+							dict.nav as Record<string, string>,
+						)}
 						cta={String(dict.readStory)}
 					/>
 				</section>
@@ -139,6 +141,7 @@ export default async function HomePage({ params }: PageProps) {
 								thumbnailUrl={
 									thumbnailUrl ? resolveMediaUrl(thumbnailUrl) : undefined
 								}
+								stats={storyStats(config, dict.nav as Record<string, string>)}
 							/>
 						))}
 					</Grid>

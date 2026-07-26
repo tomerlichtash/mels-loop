@@ -42,9 +42,17 @@ export function SiteFooter({ linkColumns }: SiteFooterProps) {
 				<div className={styles.columns}>
 					<div className={styles.meta}>
 						<p className={styles.copyright}>
-							{SITE_START_YEAR}
-							{new Date().getFullYear() > SITE_START_YEAR &&
-								`–${new Date().getFullYear()}`}{' '}
+							{/*
+							 * One isolated left-to-right run, not two numbers with a dash
+							 * between them. Digits are weak in the bidi algorithm and the
+							 * en-dash is neutral, so on the Hebrew page the range resolved
+							 * to the paragraph's direction and read 2026–2021.
+							 */}
+							<bdi dir="ltr">
+								{SITE_START_YEAR}
+								{new Date().getFullYear() > SITE_START_YEAR &&
+									`–${new Date().getFullYear()}`}
+							</bdi>{' '}
 							<span
 								className={styles.license}
 								title={t('siteLicenseAttrs').toUpperCase()}
