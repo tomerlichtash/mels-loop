@@ -10,6 +10,8 @@ import { notFound } from 'next/navigation';
 import { ContentRenderer, StoryPopoverProvider } from '@/content';
 import type { Locale } from '@/i18n-init';
 
+import styles from './article.module.css';
+
 interface PageProps {
 	params: Promise<{ locale: string; storySlug: string; articleSlug: string }>;
 }
@@ -40,37 +42,40 @@ export default async function ArticlePage({ params }: PageProps) {
 
 	return (
 		<Container gap="lg">
-			{content.metadata.title && (
-				<Text variant="h1">{content.metadata.title}</Text>
-			)}
-			{content.metadata.abstract && (
-				<Text variant="subtitle2" color="muted" italic>
-					{content.metadata.abstract}
-				</Text>
-			)}
-			{content.metadata.moto && (
-				<Text variant="body2" color="muted" italic>
-					{content.metadata.moto}
-				</Text>
-			)}
-			{content.metadata.credits && (
-				<Text variant="caption" color="muted">
-					{content.metadata.credits}
-				</Text>
-			)}
-			{(content.metadata.author || content.metadata.date) && (
-				<Text variant="body2" color="muted" uppercase>
-					{content.metadata.author as string}
-					{content.metadata.author && content.metadata.date && ' · '}
-					{content.metadata.date && (
-						<time
-							dateTime={new Date(content.metadata.date as string).toISOString()}
-						>
-							{new Date(content.metadata.date as string).getFullYear()}
-						</time>
-					)}
-				</Text>
-			)}
+			<header className={styles.header}>
+				{content.metadata.title && (
+					<Text variant="h1" className={styles.title}>
+						{content.metadata.title}
+					</Text>
+				)}
+				{content.metadata.abstract && (
+					<p className={styles.standfirst}>{content.metadata.abstract}</p>
+				)}
+				{content.metadata.moto && (
+					<p className={styles.moto}>{content.metadata.moto}</p>
+				)}
+				{(content.metadata.author ||
+					content.metadata.date ||
+					content.metadata.credits) && (
+					<p className={styles.meta}>
+						{content.metadata.author && (
+							<span>{content.metadata.author as string}</span>
+						)}
+						{content.metadata.date && (
+							<time
+								dateTime={new Date(
+									content.metadata.date as string,
+								).toISOString()}
+							>
+								{new Date(content.metadata.date as string).getFullYear()}
+							</time>
+						)}
+						{content.metadata.credits && (
+							<span className={styles.credits}>{content.metadata.credits}</span>
+						)}
+					</p>
+				)}
+			</header>
 			<StoryPopoverProvider storySlug={storySlug} locale={typedLocale}>
 				<ContentRenderer hast={content.hast} />
 			</StoryPopoverProvider>

@@ -1,0 +1,34 @@
+/*
+ * An attribution, not a line of the quotation. Set on its own line beneath the
+ * quote, smaller and quieter, opened by an em dash the way a printed citation
+ * is — so it reads as "who said this" rather than as more of what they said.
+ */
+.root {
+	display: block;
+	margin-top: var(--ml-space-sm);
+	font-size: var(--ml-font-size-sm);
+	font-style: normal;
+	color: var(--ml-text-muted-color);
+}
+
+.root::before {
+	content: '\2014\00A0';
+}
+
+/* Inherits the citation's quiet colour rather than the link blue: it is an
+ * attribution first, and colouring it as a link would pull more attention than
+ * the quotation above it. The underline still says it goes somewhere. */
+.link {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+
+@media (hover: hover) {
+	.link:hover {
+		color: var(--ml-term-highlight);
+		text-decoration-color: currentColor;
+	}
+}

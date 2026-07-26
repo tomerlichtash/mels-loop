@@ -1,23 +1,49 @@
+/*
+ * Inline code, matched to the code block it is the small sibling of.
+ *
+ * It carried no background at all — only a border — while the block was a
+ * filled panel, so the same monospace content looked like two unrelated things
+ * depending on whether it stood alone. It now takes the block's fill and keeps
+ * its border: inline, surrounded by prose, the outline is what holds the chip's
+ * edge against text pressing in on both sides — a block has whitespace to do
+ * that for it.
+ *
+ * The radius was --ml-radius-md, the value a full block uses. At the size of
+ * two or three characters that curve eats the corners; sm reads as a rounded
+ * chip rather than a lozenge.
+ *
+ * Padding in em rather than a space token, so it stays proportional to the
+ * code's own size. It had none vertically, which cropped the fill to the text
+ * box and left the background looking like a printing error. Kept tight
+ * horizontally — with a border adding a pixel on each side, generous side
+ * padding makes a two-character chip balloon out of the line it sits in.
+ */
 .root {
 	--ml-code-font-family: var(--ml-font-mono);
 	--ml-code-font-size: var(--ml-font-size-sm);
 	--ml-code-font-weight: var(--ml-font-weight-medium);
-	--ml-code-radius: var(--ml-radius-md);
+	--ml-code-radius: var(--ml-radius-sm);
+	--ml-code-background-color: var(--ml-code-bg);
 	--ml-code-border-color: var(--ml-code-border);
 	--ml-code-text-color: var(--ml-code-text);
-	--ml-code-padding: 0 var(--ml-space-xs);
+	--ml-code-padding: 0.15em 0.25em;
 
 	font-family: var(--ml-code-font-family);
 	font-size: var(--ml-code-font-size);
 	font-weight: var(--ml-code-font-weight);
 	border-radius: var(--ml-code-radius);
+	background-color: var(--ml-code-background-color);
 	border: 1px solid var(--ml-code-border-color);
 	padding: var(--ml-code-padding);
 	color: var(--ml-code-text-color);
+	/* Keeps the fill whole when a run of code wraps across two lines. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
 }
 
 /* reset when Code appears inside a CodeBlock (pre) */
 pre .root {
+	background-color: transparent;
 	border: none;
 	padding: 0;
 	font-size: inherit;

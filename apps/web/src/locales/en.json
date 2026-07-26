@@ -82,6 +82,14 @@
 		"sourcesLabel": "Sources",
 		"copied": "Copied!"
 	},
+	"imageViewer": {
+		"close": "Close",
+		"zoomIn": "Zoom in",
+		"zoomOut": "Zoom out",
+		"previous": "Previous image",
+		"next": "Next image",
+		"sourceDetails": "Source details"
+	},
 	"footer": {
 		"pages": "Pages",
 		"links": "Links"

@@ -1,8 +1,20 @@
+/*
+ * A solid underline, which is what separates a link from a glossary term now
+ * that both are the interactive colour. The prose uses the rule style to say
+ * what kind of interaction a word offers: solid goes somewhere, dotted has a
+ * definition, dashed points at a source.
+ */
 .link {
 	color: var(--ml-link-color);
-	text-decoration: none;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
 }
 
-.link:hover {
-	color: var(--ml-link-hover-color);
+@media (hover: hover) {
+	.link:hover {
+		color: var(--ml-link-hover-color);
+		text-decoration-color: currentColor;
+	}
 }

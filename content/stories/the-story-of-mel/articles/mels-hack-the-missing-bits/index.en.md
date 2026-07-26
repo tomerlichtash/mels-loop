@@ -108,7 +108,7 @@ Not only did I gloss over this crucial step for 30 years – I also ignored the 
 
 After recovering from this blow to my computer ego, I took the basic step required to understand Mel's hack: looking up the RPC-4000 manual. It didn't take much browsing to hit a figure that dispelled all my doubts.
 
-![RPC 4000 Instruction format](/media/images/rpc-4000-instruction.png)
+![RPC 4000 Instruction format](sources/rpc-4000-instruction-format)
 
 Quite simply, the hack, as described in **Ed Nather**'s account, is impossible on the RPC-4000. The opcode `(C)` field, supposedly modified by the overflow, is in the least significant bits of the instruction. In the terms used above:
 
@@ -150,11 +150,11 @@ There's another possible scenario, even more compatible with the story and in li
 
 - Opcode `23 (10111)` was the machine's _conditional_ `JUMP` instruction, called `TBC` (**T**ransfer on **B**ranch **C**ontrol). This opcode transferred control to the address in the `(A)` field, _If_ an internal switch called the `Branch Control Unit (BCU)` was on. If it was off, the next instruction address would default to the `(N)` field.
 
-![RPC-4000 TBC instruction](/media/images/rpc-4000-transfer-branch-control.png)
+![RPC-4000 TBC instruction](sources/rpc-4000-transfer-branch-control)
 
 - What could switch the `BCU` on? According to the manual - either when a successful comparison had just been made, or - more relevant to our story - following _an overflow_.
 
-![Source: RPC-4000 manual](/media/images/rpc-4000-branch-control.png)
+![Source: RPC-4000 manual](sources/rpc-4000-branch-control-unit)
 
 Simply put, conditional branching (e.g. `if..else` or looping until an index reaches a limit) on the RPC-4000 was implemented with two steps:
 

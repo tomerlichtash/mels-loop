@@ -41,8 +41,14 @@
 	--ml-heading-subtle-color: var(--ml-gray-300);
 
 	/* ---- Links ---- */
-	--ml-link-color: var(--ml-color-secondary);
-	--ml-link-hover-color: var(--ml-color-secondary-alt);
+	/*
+	 * The same pair the glossary terms and annotation markers use, because a
+	 * link is the same kind of thing: interactive text in the middle of prose.
+	 * These pointed at the secondary instead, so a paragraph could carry a pink
+	 * link and a blue term side by side with nothing to say why they differed.
+	 */
+	--ml-link-color: var(--ml-color-primary);
+	--ml-link-hover-color: var(--ml-term-highlight);
 
 	/* ---- Border ---- */
 	--ml-border-color: var(--ml-color-surface-muted);

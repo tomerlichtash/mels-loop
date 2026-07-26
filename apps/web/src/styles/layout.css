@@ -56,6 +56,13 @@
 	 * the normal case now. Cheap, and correct on the platforms that differ.
 	 */
 	--ml-viewport-width: calc(100vw - var(--ml-scrollbar-width));
+
+	/*
+	 * Prose measure — line length in characters. Lives here rather than on the
+	 * renderer so an article's header can align to the column it introduces.
+	 * See ContentRenderer.module.css for why it is 62 and not 72.
+	 */
+	--ml-prose-measure: 67ch;
 }
 
 /*

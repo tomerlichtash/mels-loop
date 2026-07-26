@@ -73,8 +73,9 @@
 	--ml-heading-subtle-color: var(--ml-cream-200);
 
 	/* Links */
-	--ml-link-color: var(--ml-color-secondary-highlight);
-	--ml-link-hover-color: var(--ml-color-secondary);
+	/* Matches the interactive pair, as in light. */
+	--ml-link-color: var(--ml-color-primary);
+	--ml-link-hover-color: var(--ml-term-highlight);
 
 	/* Code */
 	/* The previous site used #666560 here; gray-300 is its lightness. */

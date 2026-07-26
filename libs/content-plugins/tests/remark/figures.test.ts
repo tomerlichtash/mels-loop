@@ -61,6 +61,29 @@ describe('remarkFigures', () => {
 		expect(figures).toHaveLength(1);
 	});
 
+	/*
+	 * Hebrew writes gershayim as a double quote — ארה"ב — and uses it around
+	 * nicknames where English uses inverted commas, so captions carrying one
+	 * are ordinary prose here, not an edge case.
+	 */
+	it('keeps a caption intact when the alt text contains a double quote', async () => {
+		const md =
+			'![שמותיהם של מל והרמן קיי בבחירות לנשיאות ארה"ב, 1952](/image.png)';
+		const hast = await applyPlugins(md, {
+			remarkPlugins: [[remarkFigures]],
+		});
+		const imgs = findElements(hast, 'img');
+		expect(imgs).toHaveLength(1);
+		expect(imgs[0].properties?.['alt']).toBe(
+			'שמותיהם של מל והרמן קיי בבחירות לנשיאות ארה"ב, 1952',
+		);
+		/* The words after the quote used to be parsed as attribute names. */
+		expect(Object.keys(imgs[0].properties ?? {})).toEqual(['src', 'alt']);
+		expect(textContent(findElements(hast, 'figcaption')[0])).toBe(
+			'שמותיהם של מל והרמן קיי בבחירות לנשיאות ארה"ב, 1952',
+		);
+	});
+
 	it('handles title with no equals sign', async () => {
 		const md = '![caption](/image.png "just-a-string")';
 		const hast = await applyPlugins(md, {

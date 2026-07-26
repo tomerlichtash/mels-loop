@@ -21,7 +21,6 @@
 	--ml-color-secondary-highlight: oklch(0.75 0.22 8);
 
 	/* ---- Semantic: Brand-specific overrides ---- */
-	--ml-link-hover-color: var(--ml-mauve);
 	--ml-popover-topic-text: var(--ml-mauve);
 	--ml-annotation-bg: var(--ml-mauve);
 	--ml-gradient-end: var(--ml-indigo);

@@ -30,6 +30,11 @@ export function Image({ src, alt = '', width, height, ...props }: ImageProps) {
 
 	return (
 		<NextImage
+			/*
+			 * The hook ImageViewer listens for. Every image in the prose is
+			 * openable, and the page's images together form one gallery.
+			 */
+			data-zoomable=""
 			src={src}
 			alt={alt}
 			width={width || 720}

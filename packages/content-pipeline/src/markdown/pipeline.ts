@@ -60,7 +60,10 @@ export async function processMarkdown(
 	content: string,
 	options: MarkdownProcessOptions = {},
 ): Promise<HastRoot> {
-	const sanitized = escapeEmailAngles(content);
+	const sanitized = (options.preprocess ?? []).reduce(
+		(text, transform) => transform(text),
+		escapeEmailAngles(content),
+	);
 
 	const processor = unified()
 		.use(remarkParse)

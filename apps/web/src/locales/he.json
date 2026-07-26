@@ -82,6 +82,14 @@
 		"sourcesLabel": "מקורות",
 		"copied": "הקישור העותק!"
 	},
+	"imageViewer": {
+		"close": "סגירה",
+		"zoomIn": "התקרבות",
+		"zoomOut": "התרחקות",
+		"previous": "התמונה הקודמת",
+		"next": "התמונה הבאה",
+		"sourceDetails": "פרטי המקור"
+	},
 	"footer": {
 		"pages": "עמודים",
 		"links": "קישורים"

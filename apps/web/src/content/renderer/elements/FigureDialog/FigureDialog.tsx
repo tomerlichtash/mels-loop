@@ -22,10 +22,15 @@ export function FigureDialog({ children, ...props }: FigureDialogProps) {
 		if (!img) return;
 		setSourceId(img.getAttribute('data-source-id'));
 
-		const handleClick = () => setDialogOpen(true);
-		img.addEventListener('click', handleClick);
-		img.style.cursor = 'pointer';
-		return () => img.removeEventListener('click', handleClick);
+		/*
+		 * No click handler here any more. ImageViewer listens for clicks on any
+		 * zoomable image and opens the page's gallery; binding a second handler
+		 * to source-backed images would have opened this dialog *and* the
+		 * lightbox from the one click.
+		 *
+		 * The source id is still read, so the dialog remains available to
+		 * anything that opens it deliberately.
+		 */
 	}, []);
 
 	useEffect(() => {

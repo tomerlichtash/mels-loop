@@ -1,8 +1,11 @@
 import type { ResolvedSource } from '@mels-loop/content-loaders/types';
 import { describe, expect, it } from 'vitest';
 
-import { remarkSourceVars } from '../../src/remark/source-vars';
-import { applyPlugins, textContent } from '../test-helpers';
+import {
+	interpolateSourceVars,
+	remarkSourceVars,
+} from '../../src/remark/source-vars';
+import { applyPlugins, findElements, textContent } from '../test-helpers';
 
 const sources: Record<string, ResolvedSource> = {
 	'mel-photo': {
@@ -69,6 +72,34 @@ describe('remarkSourceVars', () => {
 		});
 		const text = textContent(hast);
 		expect(text).toContain('No templates here.');
+	});
+
+	/*
+	 * A figure's caption is authored as the image's alt text, which is a
+	 * property of the image node rather than a text node — so visiting text
+	 * alone left the raw expression to be copied into the figcaption.
+	 */
+	it('replaces variables in an image alt and title', async () => {
+		const md =
+			'![{{sources/mel-photo:title}}](/i.png "{{sources/mel-photo:author}}")';
+		const hast = await applyPlugins(md, {
+			remarkPlugins: [[remarkSourceVars, { sources }]],
+		});
+		const img = findElements(hast, 'img')[0];
+		expect(img.properties?.['alt']).toBe('Mel Kaye at work');
+		expect(img.properties?.['title']).toBe('Joe Haldeman');
+	});
+
+	/*
+	 * VAR_RE carries /g, and `test` advances lastIndex on a match. Guarding each
+	 * call with it meant the next string was searched from wherever the last one
+	 * stopped, so expressions were skipped depending on what preceded them.
+	 */
+	it('expands every expression regardless of how many preceded it', () => {
+		const line = 'By {{sources/mel-photo:author}}';
+		for (let i = 0; i < 5; i++) {
+			expect(interpolateSourceVars(line, sources)).toBe('By Joe Haldeman');
+		}
 	});
 
 	it('is a no-op when sources map is empty', async () => {

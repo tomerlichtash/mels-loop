@@ -10,7 +10,18 @@
 	--ml-code-block-margin-bottom: var(--ml-space-md);
 }
 
+/*
+ * text-align is set, not inherited.
+ *
+ * A code block inside a <figure> was picking up the figure's centring, and
+ * centring preformatted text destroys it: every line is centred on its own
+ * width, so lines of different lengths shift by different amounts and the
+ * columns stop lining up. The ASCII diagrams in the articles — binary operands
+ * set above an MSB/LSB ruler — drifted out of register even though the spacing
+ * in the markdown was exact.
+ */
 .root {
+	text-align: start;
 	background-color: var(--ml-code-block-background-color);
 	color: var(--ml-code-block-text-color);
 	border-radius: var(--ml-code-block-radius);

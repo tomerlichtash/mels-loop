@@ -19,6 +19,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 
+import { ImageViewer } from '@/components/content/ImageViewer/ImageViewer';
 import { PageScrollbar } from '@/components/layout/PageScrollbar/PageScrollbar';
 import { ScrollbarWidthScript } from '@/components/layout/ScrollbarWidthScript/ScrollbarWidthScript';
 import { SearchableLayout } from '@/components/layout/SearchableLayout/SearchableLayout';
@@ -82,6 +83,9 @@ export default async function Layout({
 				{gaId && <GoogleAnalytics gaId={gaId} />}
 				<PageScrollbar />
 				<I18nProvider locale={locale} messages={messages}>
+					{/* One per page: it builds a gallery from every zoomable image
+					    on the page at the moment one is clicked. */}
+					<ImageViewer />
 					<SearchableLayout
 						navItems={navItems}
 						footerLinks={footerLinks}

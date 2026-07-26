@@ -23,6 +23,7 @@ import { useMemo } from 'react';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 
 import { AnnotationAwareLink } from '../elements/AnnotationAwareLink/AnnotationAwareLink';
+import { Cite } from '../elements/Cite/Cite';
 import { ContentLayout } from '../elements/ContentLayout/ContentLayout';
 import { FigureDialog } from '../elements/FigureDialog/FigureDialog';
 import { Image } from '../elements/Image/Image';
@@ -53,6 +54,7 @@ function defaultComponents(): ComponentOverrides {
 		// at 14px the story column ran ~94 characters per line.
 		p: (props) => <Text variant="body1" {...props} />,
 		blockquote: Blockquote,
+		cite: Cite,
 		ul: (props) => <List {...props} />,
 		ol: (props) => <List ordered {...props} />,
 		li: ListItem,

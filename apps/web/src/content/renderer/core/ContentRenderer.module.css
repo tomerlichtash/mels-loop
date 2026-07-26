@@ -1,16 +1,96 @@
 .root {
-	font-size: var(--ml-font-size-body);
-	line-height: var(--ml-line-height-body);
-	color: var(--ml-text-subtle-color);
-	margin: 0 auto;
+	/*
+	 * Measure — the line length, in characters.
+	 *
+	 * Articles were running 95-100 characters a line in a 754px column, against
+	 * the 60-75 that continuous reading wants. Past roughly 75 the return sweep
+	 * gets unreliable: the eye has to travel so far back that it lands on the
+	 * wrong line, and the reader loses their place in a way that reads as the
+	 * text being tiring rather than the column being wide.
+	 *
+	 * In ch, so it tracks the font rather than a pixel guess, and set here at
+	 * the same size the paragraphs render at (body1).
+	 *
+	 * 67, not 75: ch is the width of "0", which in Roboto Slab is wider than
+	 * the average lowercase letter, so the unit under-counts by roughly a
+	 * sixth. This lands the median in the mid-70s of real characters — the top
+	 * of the comfortable band, which suits justified text, since more words per
+	 * line give the browser more places to absorb the slack.
+	 *
+	 * Declared in layout.css so the article header can share it; the fallback
+	 * keeps the renderer self-contained wherever that sheet is absent.
+	 */
+	--ml-prose-measure: 67ch;
+	/*
+	 * Looser than the 1.5 used elsewhere. A slab serif at this size carries
+	 * more ink per line than the UI text --ml-line-height-body was set for, and
+	 * open leading is what stops a long paragraph reading as a block.
+	 */
+	--ml-prose-line-height: 1.65;
+
+	max-width: var(--ml-prose-measure, 67ch);
+	font-size: var(--ml-font-size-md);
+	line-height: var(--ml-prose-line-height);
+	/*
+	 * The same colour paragraphs render at, not a subtler one.
+	 *
+	 * Paragraphs come through Text's body1 variant, which sets --ml-text-color
+	 * itself, so this base only ever reached everything that is *not* a
+	 * paragraph — list items, table cells. Those came out visibly greyer than
+	 * the prose around them, which read as list text being somehow lesser
+	 * rather than as a deliberate choice.
+	 */
+	color: var(--ml-text-color);
+	/*
+	 * Start-aligned, not centred. The heading, byline and story chrome above it
+	 * all begin at the column's start edge; centring the measure inside the
+	 * column would step the prose in from everything it belongs with.
+	 */
+	margin: 0;
+}
+
+/*
+ * List items are prose too, so they justify with the paragraphs.
+ *
+ * Safe for short entries: only lines that wrap are justified — a line that
+ * ends the block is left ragged — so a one-line item is untouched and a
+ * wrapping one lines up with the text around it.
+ */
+.root li {
+	text-align: justify;
+	hyphens: auto;
 }
 
 .root p {
+	/* Text's body1 variant sets its own line-height, so inheriting from .root
+	 * does not reach the paragraphs. */
+	line-height: var(--ml-prose-line-height);
 	margin-bottom: var(--ml-space-md);
+	/*
+	 * Justified, with hyphenation.
+	 *
+	 * The two go together: justifying without hyphens forces the browser to
+	 * absorb every leftover pixel into the word spaces, which at this measure
+	 * opens rivers of white running down the column. Hyphenation gives it
+	 * somewhere else to put the slack. It needs a language to work from, which
+	 * comes from the lang attribute on <html>.
+	 */
+	text-align: justify;
+	hyphens: auto;
 }
 
+/*
+ * Semibold, not bold.
+ *
+ * Roboto Slab is a slab serif — its stems are heavy before any weight is added
+ * — and this prose leans on emphasis: one article carries sixteen runs of it.
+ * At 700 those set as hard black blocks that spot the column and pull the eye
+ * off the sentence. 600 still reads as emphasis against a 400 body; going to
+ * 500 or below would leave <strong> looking the same as the text around it,
+ * which throws away the distinction rather than softening it.
+ */
 .root strong {
-	font-weight: var(--ml-font-weight-bold);
+	font-weight: var(--ml-font-weight-semibold);
 }
 
 .root em {
@@ -83,4 +163,90 @@
 	border-radius: var(--ml-radius-md);
 	font-family: var(--ml-font-family-mono);
 	font-size: var(--ml-font-size-sm);
+}
+
+/*
+ * Section rhythm. The renderer set no heading margins at all, so an h2 sat as
+ * close to the paragraph above it as to the one below and sections did not
+ * read as sections.
+ *
+ * Asymmetric on purpose: a heading belongs to the text beneath it, so the
+ * space above is what separates one section from the last, and the space below
+ * is only enough to keep the heading off its own first line.
+ */
+.root h2,
+.root h3,
+.root h4 {
+	margin-bottom: var(--ml-space-sm);
+}
+
+.root h2 {
+	margin-top: var(--ml-space-2xl);
+}
+
+.root h3,
+.root h4 {
+	margin-top: var(--ml-space-xl);
+}
+
+/* Nothing above the first heading to separate it from. */
+.root > h2:first-child,
+.root > h3:first-child,
+.root > h4:first-child {
+	margin-top: 0;
+}
+
+/*
+ * A quotation, which is a different thing from an indented line.
+ *
+ * The generic blockquote is plain indentation — used in the story for lines
+ * that are simply set in from the margin. A `:::blockquote{verse}` directive
+ * marks something else: words being quoted from elsewhere, with an attribution
+ * naming where they came from. Without a marker of its own it read as an
+ * arbitrarily indented paragraph, which is what made it look unfinished.
+ *
+ * A rule on the start edge and full-strength text, so the quoted voice reads
+ * as at least as present as the prose discussing it, not as an aside.
+ */
+.root blockquote[data-type='quote'] {
+	margin-block: var(--ml-space-xl);
+	padding-inline-start: var(--ml-space-lg);
+	border-inline-start: 2px solid var(--ml-border-color);
+	color: var(--ml-text-color);
+}
+
+/*
+ * Medium, so the quoted voice carries a little more weight than the prose
+ * discussing it without needing a different size or colour to say so.
+ *
+ * On the paragraph, not the blockquote: Text's body1 variant sets its own
+ * font-weight, so a weight declared on the container never reaches the text
+ * inside it — the same reason the prose line-height has to be set here too.
+ */
+.root blockquote[data-type='quote'] p {
+	font-weight: var(--ml-font-weight-medium);
+}
+
+/*
+ * Bold rather than the semibold used in running prose. Emphasis has to clear
+ * the quote's own 500 to register, and 600 against 500 is too close to read as
+ * deliberate.
+ */
+.root blockquote[data-type='quote'] strong {
+	font-weight: var(--ml-font-weight-bold);
+}
+
+/*
+ * Verse is never justified. Its line breaks are the author's, so there is no
+ * ragged edge to even out — justifying would stretch the spaces inside lines
+ * that were already exactly as long as they were meant to be. Hyphenation goes
+ * with it, for the same reason.
+ */
+.root blockquote p {
+	text-align: start;
+	hyphens: manual;
+}
+
+.root blockquote[data-parse-mode='verse'] p {
+	line-height: var(--ml-line-height-snug);
 }

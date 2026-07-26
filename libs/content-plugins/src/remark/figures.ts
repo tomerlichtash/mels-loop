@@ -8,6 +8,25 @@ const FIGURE_ATTR_KEYS = new Set([
 	'max-height',
 ]);
 
+/**
+ * This plugin builds its output as a raw HTML string, so every value taken
+ * from the document has to be escaped on the way in.
+ *
+ * Hebrew uses the double quote as gershayim — ארה"ב, and around nicknames the
+ * way English uses inverted commas — so alt text carrying one closed the
+ * attribute early and the rest of the caption was reparsed as attribute names.
+ * Three words of a caption became three empty attributes, React logged
+ * "Invalid attribute name" for each and the alt text was truncated at the
+ * quote.
+ */
+function escapeHtml(value: string): string {
+	return value
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;');
+}
+
 function parseFigureAttrs(title: string | null | undefined): string {
 	if (!title) return '';
 	const attrs: string[] = [];
@@ -16,7 +35,7 @@ function parseFigureAttrs(title: string | null | undefined): string {
 		if (eq < 0) continue;
 		const key = pair.slice(0, eq).toLowerCase();
 		if (!FIGURE_ATTR_KEYS.has(key)) continue;
-		attrs.push(`data-${key}="${pair.slice(eq + 1)}"`);
+		attrs.push(`data-${key}="${escapeHtml(pair.slice(eq + 1))}"`);
 	}
 	return attrs.length ? ' ' + attrs.join(' ') : '';
 }
@@ -41,7 +60,7 @@ export function remarkFigures() {
 			// Replace paragraph with figure HTML
 			const figureHtml = {
 				type: 'html' as const,
-				value: `<figure${parseFigureAttrs(image.title)}><img src="${image.url}" alt="${image.alt || ''}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`,
+				value: `<figure${parseFigureAttrs(image.title)}><img src="${escapeHtml(image.url)}" alt="${escapeHtml(image.alt || '')}" />${caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ''}</figure>`,
 			};
 
 			parent.children[index] = figureHtml;

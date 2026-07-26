@@ -1,4 +1,5 @@
 import { mediaBaseUrl as buildMediaBaseUrl } from '@mels-loop/content-loaders/loaders';
+import type { ResolvedSource } from '@mels-loop/content-loaders/types';
 import type {
 	PluginBuilder,
 	PluginFactory,
@@ -21,7 +22,7 @@ import { remarkFigureDirective } from './remark/figure-directive';
 import { remarkFigures } from './remark/figures';
 import { remarkGlossaryLinks } from './remark/glossary-links';
 import { remarkSourceLinks } from './remark/source-links';
-import { remarkSourceVars } from './remark/source-vars';
+import { interpolateSourceVars, remarkSourceVars } from './remark/source-vars';
 import { remarkStripComments } from './remark/strip-comments';
 import { remarkTableDirective } from './remark/table-directive';
 import { remarkVerse } from './remark/verse';
@@ -77,7 +78,26 @@ export const createContentPlugins: PluginBuilder = (context) => {
 			[rehypeLines],
 		];
 
-		return { remarkPlugins, rehypePlugins };
+		/*
+		 * Source expressions are expanded before parsing, not by a plugin: the
+		 * directive syntax extension destroys them during the parse itself.
+		 */
+		const preprocess = sources
+			? [
+					(raw: string) =>
+						/*
+						 * The context types sources loosely. The plugin path never
+						 * surfaced that because plugin options are untyped, so the cast
+						 * lands here, at the one place the value is used directly.
+						 */
+						interpolateSourceVars(
+							raw,
+							sources as Record<string, ResolvedSource>,
+						),
+				]
+			: undefined;
+
+		return { remarkPlugins, rehypePlugins, ...(preprocess && { preprocess }) };
 	};
 
 	return factory;
