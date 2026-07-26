@@ -153,6 +153,12 @@ export interface StoryConfig {
 		title: string | Record<string, string>;
 		/** Message key (e.g. "story.abstract") or inline translations. */
 		abstract: string | Record<string, string>;
+		/**
+		 * Shown under the title on the story page. Falls back to `abstract`.
+		 * Separate because the story page wants a short standfirst while the
+		 * homepage card wants a fuller description.
+		 */
+		subtitle?: string | Record<string, string>;
 		/** Publication date of the original work (ISO 8601, e.g. "1983-05-21"). */
 		date?: string;
 		/** License for the story content. */

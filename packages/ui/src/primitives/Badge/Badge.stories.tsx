@@ -14,7 +14,7 @@ const meta: Meta<typeof Badge> = {
 		children: { control: 'text' },
 		variant: {
 			control: 'select',
-			options: ['outlined', 'contained'],
+			options: ['outlined', 'contained', 'count'],
 		},
 		color: { control: 'color' },
 		radius: {

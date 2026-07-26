@@ -11,6 +11,7 @@ import {
 	useState,
 } from 'react';
 
+import { Badge } from '../Badge/Badge';
 import styles from './Tabs.module.css';
 
 export interface TabItem {
@@ -59,6 +60,7 @@ export function Tabs({
 	const navRef = useRef<HTMLElement>(null);
 	const indicatorRef = useRef<HTMLSpanElement>(null);
 	const [fade, setFade] = useState({ start: false, end: false });
+	const [overflowing, setOverflowing] = useState(false);
 	const [animate, setAnimate] = useState(false);
 
 	const Anchor = LinkComponent || 'a';
@@ -102,17 +104,30 @@ export function Tabs({
 	 * scrolls every ancestor scroll container including the document. This
 	 * strip sits inside a sticky bar whose stuck state is driven by an
 	 * IntersectionObserver, so a page scroll here feeds back into a re-render.
-	 * Skipped entirely when the row already fits.
+	 *
+	 * Depends on `overflowing` as well as the active tab. On mount the strip
+	 * has not laid out yet — widths are provisional until fonts settle — so
+	 * scrollWidth still equals clientWidth and an effect keyed only on the
+	 * active tab bails out and never retries. Re-running once the observer
+	 * reports real overflow is what makes the active tab visible on load.
+	 *
+	 * Instant on the first pass: animating a scroll the reader never asked
+	 * for, before the page has even settled, reads as a glitch.
 	 */
+	const hasScrolled = useRef(false);
 	useEffect(() => {
 		const nav = navRef.current;
-		if (!nav || nav.scrollWidth <= nav.clientWidth) return;
+		if (!nav || !overflowing) return;
 		const active = nav.querySelector('[aria-current="page"]');
 		if (!(active instanceof HTMLElement)) return;
 		const target =
 			active.offsetLeft - (nav.clientWidth - active.offsetWidth) / 2;
-		nav.scrollTo({ left: target, behavior: 'smooth' });
-	}, [activeKey]);
+		nav.scrollTo({
+			left: target,
+			behavior: hasScrolled.current ? 'smooth' : 'auto',
+		});
+		hasScrolled.current = true;
+	}, [activeKey, overflowing]);
 
 	/* Which side overflows is derived from the tab rectangles rather than
 	 * scrollLeft, whose sign and origin differ across browsers in RTL. */
@@ -125,6 +140,7 @@ export function Tabs({
 			const first = tabs[0]?.getBoundingClientRect();
 			const last = tabs[tabs.length - 1]?.getBoundingClientRect();
 			if (!first || !last) return;
+			setOverflowing(nav.scrollWidth - nav.clientWidth > 1);
 			const rtl = getComputedStyle(nav).direction === 'rtl';
 			setFade(
 				rtl
@@ -171,19 +187,17 @@ export function Tabs({
 
 	return (
 		<div className={cn(styles.wrap, 'ml-tabs', className)}>
-			<button
-				type="button"
-				className={cn(
-					styles.chevron,
-					styles.chevronStart,
-					fade.start && styles.chevronVisible,
-				)}
-				onClick={() => nudge(-1)}
-				aria-hidden="true"
-				tabIndex={-1}
-			>
-				<span className={styles.chevronGlyph}>‹</span>
-			</button>
+			{overflowing && (
+				<button
+					type="button"
+					className={cn(styles.chevron, fade.start && styles.chevronEnabled)}
+					onClick={() => nudge(-1)}
+					aria-hidden="true"
+					tabIndex={-1}
+				>
+					<span className={styles.chevronGlyph}>‹</span>
+				</button>
+			)}
 
 			<nav
 				ref={navRef}
@@ -200,9 +214,7 @@ export function Tabs({
 						aria-current={item.active ? 'page' : undefined}
 					>
 						<span>{item.label}</span>
-						{item.count != null && (
-							<span className={styles.count}>{item.count}</span>
-						)}
+						{item.count != null && <Badge variant="count">{item.count}</Badge>}
 					</Anchor>
 				))}
 				<span
@@ -212,19 +224,17 @@ export function Tabs({
 				/>
 			</nav>
 
-			<button
-				type="button"
-				className={cn(
-					styles.chevron,
-					styles.chevronEnd,
-					fade.end && styles.chevronVisible,
-				)}
-				onClick={() => nudge(1)}
-				aria-hidden="true"
-				tabIndex={-1}
-			>
-				<span className={styles.chevronGlyph}>›</span>
-			</button>
+			{overflowing && (
+				<button
+					type="button"
+					className={cn(styles.chevron, fade.end && styles.chevronEnabled)}
+					onClick={() => nudge(1)}
+					aria-hidden="true"
+					tabIndex={-1}
+				>
+					<span className={styles.chevronGlyph}>›</span>
+				</button>
+			)}
 		</div>
 	);
 }

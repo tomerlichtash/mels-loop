@@ -6,15 +6,11 @@ import {
 	resolveAssetUrl,
 	resolveStoryField,
 } from '@mels-loop/content-loaders/loaders';
-import type {
-	ResolvedContentsEntry,
-	SourceType,
-} from '@mels-loop/content-loaders/types';
+import type { ResolvedContentsEntry } from '@mels-loop/content-loaders/types';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { type ReactNode, Suspense } from 'react';
 
 import { Asides } from '@/components/stories/Asides/Asides';
-import { SourcesSummary } from '@/components/stories/SourcesSummary/SourcesSummary';
 import { StoryBreadcrumbs } from '@/components/stories/StoryBreadcrumbs/StoryBreadcrumbs';
 import { StoryHeader } from '@/components/stories/StoryHeader/StoryHeader';
 import { StoryLayout } from '@/components/stories/StoryLayout/StoryLayout';
@@ -114,32 +110,10 @@ export default async function StorySlugLayout({
 
 	const itemTitles = contents ? buildItemTitles(contents) : {};
 
-	const sourceTypeOrder: SourceType[] = [
-		'image',
-		'pdf',
-		'audio',
-		'video',
-		'link',
-		'text',
-		'archive',
-		'other',
-	];
-
-	const existingTypes = new Set(sources.map((s) => s.type));
-
 	const sourceFilters: SourceFilterConfig | undefined =
 		sources.length > 0
 			? {
-					allLabel: dictGet(dict, 'sources.all'),
-					types: sourceTypeOrder
-						.filter((t) => existingTypes.has(t))
-						.map((t) => ({
-							value: t,
-							label: dictGet(dict, `sources.${t}`),
-						})),
 					searchPlaceholder: dictGet(dict, 'sources.filterPlaceholder'),
-					filterLabel: dictGet(dict, 'sources.toggleFilters'),
-					filterByLabel: dictGet(dict, 'sources.filterBy'),
 					clearLabel: dictGet(dict, 'sources.clearFilters'),
 				}
 			: undefined;
@@ -232,34 +206,11 @@ export default async function StorySlugLayout({
 				<StorySections sections={storySections} sourceFilters={sourceFilters} />
 			</Suspense>
 			<StoryLayout
-				sidebar={(() => {
-					const sourcesSummary =
-						sources.length > 0
-							? sourceTypeOrder
-									.filter((t) => existingTypes.has(t))
-									.map((t) => ({
-										label: dictGet(dict, `sources.${t}`),
-										count: sources.filter((s) => s.type === t).length,
-									}))
-							: [];
-					const hasContents = contents && contents.length > 0;
-					const hasSources = sourcesSummary.length > 0;
-
-					if (!hasContents && !hasSources) return undefined;
-
-					return (
-						<div>
-							{hasContents && <Asides contents={contents} />}
-							{hasSources && (
-								<SourcesSummary
-									label={sectionLabels.sources}
-									items={sourcesSummary}
-									href={`${basePath}/sources`}
-								/>
-							)}
-						</div>
-					);
-				})()}
+				sidebar={
+					contents && contents.length > 0 ? (
+						<Asides contents={contents} />
+					) : undefined
+				}
 			>
 				{children}
 			</StoryLayout>

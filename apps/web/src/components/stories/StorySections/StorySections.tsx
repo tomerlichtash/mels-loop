@@ -1,13 +1,6 @@
 'use client';
 
-import {
-	Button,
-	Tabs,
-	Text,
-	TextField,
-	ToggleGroup,
-} from '@mels-loop/ui/primitives';
-import { SlidersHorizontalIcon, XIcon } from '@phosphor-icons/react/ssr';
+import { Button, Tabs, TextField } from '@mels-loop/ui/primitives';
 import Link from 'next/link';
 import {
 	usePathname,
@@ -27,11 +20,7 @@ export interface StorySection {
 }
 
 export interface SourceFilterConfig {
-	allLabel: string;
-	types: { value: string; label: string }[];
 	searchPlaceholder: string;
-	filterLabel: string;
-	filterByLabel: string;
 	clearLabel: string;
 }
 
@@ -46,7 +35,6 @@ export function StorySections({ sections, sourceFilters }: StorySectionsProps) {
 	const activeKey = segment ?? 'codex';
 	const sentinelRef = useRef<HTMLDivElement>(null);
 	const [stuck, setStuck] = useState(false);
-	const [filtersOpen, setFiltersOpen] = useState(false);
 
 	const router = useRouter();
 	const pathname = usePathname();
@@ -85,19 +73,6 @@ export function StorySections({ sections, sourceFilters }: StorySectionsProps) {
 
 	if (sections.length === 0) return null;
 
-	const toggleItems = sourceFilters
-		? [
-				{
-					value: 'all',
-					label: <Text variant="caption">{sourceFilters.allLabel}</Text>,
-				},
-				...sourceFilters.types.map((t) => ({
-					...t,
-					label: <Text variant="caption">{t.label}</Text>,
-				})),
-			]
-		: [];
-
 	return (
 		<>
 			<div ref={sentinelRef} className={styles.sentinel} />
@@ -119,43 +94,14 @@ export function StorySections({ sections, sourceFilters }: StorySectionsProps) {
 							active: section.key === activeKey,
 						}))}
 					/>
-					{showFilters && (
-						<Button
-							variant={filtersOpen ? 'outlined' : 'text'}
-							size="xs"
-							className={[
-								styles.filterToggle,
-								filtersOpen && styles.filterToggleOpen,
-							]
-								.filter(Boolean)
-								.join(' ')}
-							onClick={() => setFiltersOpen((v) => !v)}
-							aria-label={sourceFilters.filterLabel}
-							aria-expanded={filtersOpen}
-						>
-							<SlidersHorizontalIcon className={styles.filterIconDefault} />
-							<XIcon className={styles.filterIconClose} />
-						</Button>
-					)}
 				</div>
 				<div className={styles.divider} />
-				{showFilters && filtersOpen && (
-					<div className={styles.filterPanel}>
+				{showFilters && (
+					<div>
 						<div className={styles.filterPanelInner}>
-							<Text variant="caption" className={styles.filterByLabel}>
-								{sourceFilters.filterByLabel}
-							</Text>
-							<ToggleGroup
-								value={activeType}
-								items={toggleItems}
-								onValueChange={(v) =>
-									updateParams({ type: v === 'all' ? null : v })
-								}
-								aria-label={sourceFilters.filterByLabel}
-							/>
 							<TextField
 								type="search"
-								size="sm"
+								size="md"
 								placeholder={sourceFilters.searchPlaceholder}
 								value={search}
 								onChange={(e) => updateParams({ q: e.target.value })}

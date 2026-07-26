@@ -55,6 +55,12 @@
 		width: 56px;
 		height: 56px;
 	}
+
+	/* Title and subtitle read as one block beside the avatar at this size —
+	 * the gap only separated them. */
+	.title {
+		margin-bottom: 0;
+	}
 }
 
 .titleBlock {

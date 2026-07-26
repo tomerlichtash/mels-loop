@@ -9,18 +9,16 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-	Button,
+	Badge,
 	Card,
-	CardActions,
 	CardBody,
 	CardContent,
 	CardHeader,
 	CardMedia,
 	Grid,
 } from '@mels-loop/ui/primitives';
-import { ArrowSquareOutIcon, CopyIcon } from '@phosphor-icons/react/ssr';
 import { useSearchParams } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import styles from './SourceCards.module.css';
 
@@ -43,14 +41,6 @@ function SourceCard({
 	source: ResolvedSource;
 	locale: string;
 }) {
-	const [copied, setCopied] = useState(false);
-
-	const handleCopyId = () => {
-		navigator.clipboard.writeText(source.id);
-		setCopied(true);
-		setTimeout(() => setCopied(false), 1500);
-	};
-
 	const hasImage = source.type === 'image' && source.url;
 	const description = source.description || source.summary;
 
@@ -74,23 +64,6 @@ function SourceCard({
 					</span>
 				</CardContent>
 			)}
-			<CardActions align="start">
-				<Button variant="text" size="xs" onClick={handleCopyId}>
-					<CopyIcon />
-					{copied ? 'Copied!' : 'Copy ID'}
-				</Button>
-				{source.url && (
-					<a
-						href={source.url}
-						target="_blank"
-						rel="noopener noreferrer"
-						className={styles.action}
-					>
-						<ArrowSquareOutIcon />
-						Open source
-					</a>
-				)}
-			</CardActions>
 		</Card>
 	);
 }
@@ -138,15 +111,13 @@ export function SourceCards({ groups, locale, dir }: SourceCardsProps) {
 					{filteredCount} {filteredCount === 1 ? 'result' : 'results'}
 				</p>
 			)}
-			<div dir={dir}>
+			<div dir={dir} className={styles.accordion}>
 				<Accordion type="multiple" defaultValue={[]}>
 					{filteredGroups.map((group) => (
 						<AccordionItem key={group.type} value={group.type}>
 							<AccordionTrigger>
 								{group.label}
-								<span className={styles.groupCount}>
-									({group.sources.length})
-								</span>
+								<Badge variant="count">{group.sources.length}</Badge>
 							</AccordionTrigger>
 							<AccordionContent>
 								<Grid columns={3} gap="md">

@@ -7,7 +7,7 @@ testComponent({
 	storyId: 'content-badge--default',
 	cases: {
 		radius: ['none', 'sm', 'md', 'lg', 'pill'],
-		variant: ['outlined', 'contained'],
+		variant: ['outlined', 'contained', 'count'],
 		color: ['black', 'white', 'red', 'blue', '#1a8a3f', '#e8c542'],
 		bordered: [true],
 	},

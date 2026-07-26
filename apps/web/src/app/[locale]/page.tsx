@@ -8,7 +8,6 @@ import {
 import { Container, Grid, Text } from '@mels-loop/ui/primitives';
 
 import { FeaturedStory } from '@/components/home/FeaturedStory/FeaturedStory';
-import { GlyphShift } from '@/components/home/GlyphShift/GlyphShift';
 import { ParallaxBg } from '@/components/home/ParallaxBg/ParallaxBg';
 import { StoryCard } from '@/components/stories/StoryCard/StoryCard';
 import { getDictionary } from '@/i18n';
@@ -49,7 +48,7 @@ export default async function HomePage({ params }: PageProps) {
 	const hero = dict.hero as Record<string, string>;
 
 	return (
-		<Container paddingHorizontal="xl" paddingVertical="xl">
+		<Container paddingHorizontal="none" paddingVertical="xl">
 			<section className={styles.hero}>
 				<ParallaxBg className={styles.heroBg} speed={0.4} />
 				{/*
@@ -60,11 +59,7 @@ export default async function HomePage({ params }: PageProps) {
 				<Text variant="h1" className={styles.heroTitle}>
 					{hero.title_p1}
 					<br />
-					<GlyphShift
-						text={hero.title_p2}
-						className={styles.heroTitleHighlight}
-						speed={5000}
-					/>
+					<span className={styles.heroTitleHighlight}>{hero.title_p2}</span>
 				</Text>
 				<p className={styles.heroDescription}>{hero.description}</p>
 			</section>

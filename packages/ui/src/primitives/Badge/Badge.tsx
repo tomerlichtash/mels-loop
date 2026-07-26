@@ -4,7 +4,7 @@ import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import styles from './Badge.module.css';
 
 type BadgeRadius = 'none' | 'sm' | 'md' | 'lg' | 'pill';
-type BadgeVariant = 'outlined' | 'contained';
+type BadgeVariant = 'outlined' | 'contained' | 'count';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 	children: ReactNode;

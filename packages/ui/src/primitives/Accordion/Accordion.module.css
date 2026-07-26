@@ -26,8 +26,12 @@
 	gap: var(--ml-space-sm);
 }
 
-.trigger:hover {
-	color: var(--ml-color-primary);
+/* Guarded: on a touch screen a tap leaves the trigger stuck in :hover, so the
+ * heading kept the primary colour long after the tap and read as a link. */
+@media (hover: hover) {
+	.trigger:hover {
+		color: var(--ml-color-primary);
+	}
 }
 
 .chevron {

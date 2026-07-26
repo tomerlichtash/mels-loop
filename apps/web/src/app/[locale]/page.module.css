@@ -29,7 +29,7 @@
 }
 
 .heroTitle {
-	font-size: clamp(2.4rem, 5.5vw, 3.5rem);
+	font-size: clamp(2rem, 1.35rem + 2.8vw, 3.5rem);
 }
 
 .heroTitleHighlight {
@@ -40,8 +40,8 @@
 .heroDescription {
 	margin: 0;
 	max-width: 640px;
-	font-size: clamp(1.1rem, 2vw, 1.4rem);
-	font-weight: var(--ml-font-weight-light);
+	font-size: clamp(1rem, 0.9rem + 0.5vw, 1.4rem);
+	font-weight: var(--ml-font-weight-regular);
 	line-height: 1.45;
 	color: var(--ml-text-color);
 	letter-spacing: -0.3px;

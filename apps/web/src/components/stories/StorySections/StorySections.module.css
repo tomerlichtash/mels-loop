@@ -1,8 +1,6 @@
 .root {
 	width: 100vw;
 	margin-inline-start: calc(-50vw + 50%);
-	/* Authoritative height — see layout.css. Offsets downstream derive from it. */
-	height: var(--ml-story-sections-height);
 	position: sticky;
 	top: calc(
 		var(--ml-header-offset, var(--ml-header-height)) +
@@ -27,17 +25,26 @@
 .stuck {
 	background-color: color-mix(
 		in srgb,
-		var(--ml-surface-background-color) 92%,
+		var(--ml-background-color) 92%,
 		transparent
 	);
 	-webkit-backdrop-filter: blur(12px);
 	backdrop-filter: blur(12px);
 }
 
+/*
+ * The authoritative height (see layout.css) lives on the tab row, not on .root.
+ * On the sources tab .root also holds the filter panel, and pinning .root to a
+ * tab-row height made the panel overflow its own container — page content then
+ * flowed underneath it and the first source group was hidden. Minus the divider
+ * so .root still totals --ml-story-sections-height on tabs without a panel,
+ * which is what the anchor and sidebar offsets downstream assume.
+ */
 .inner {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	height: calc(var(--ml-story-sections-height) - 1px);
 	max-width: var(--ml-page-max-width);
 	margin: 0 auto;
 	/* Identity, not chrome — aligns with the story text below it. */
@@ -59,40 +66,6 @@
 	min-width: 0;
 }
 
-.filterByLabel {
-	margin: 0;
-	color: var(--ml-text-muted-color);
-	white-space: nowrap;
-}
-
-.filterToggle {
-	flex-shrink: 0;
-}
-
-.filterIconClose {
-	display: none;
-}
-
-.filterToggleOpen .filterIconDefault {
-	display: block;
-}
-
-.filterToggleOpen .filterIconClose {
-	display: none;
-}
-
-.filterToggleOpen:hover .filterIconDefault {
-	display: none;
-}
-
-.filterToggleOpen:hover .filterIconClose {
-	display: block;
-}
-
-.filterPanel {
-	box-shadow: inset 0 -1px 0 var(--ml-border-color);
-}
-
 .filterPanelInner {
 	display: flex;
 	align-items: center;
@@ -101,15 +74,27 @@
 	margin: 0 auto;
 	/* Identity, not chrome — aligns with the story text below it. */
 	padding-inline: var(--ml-content-padding-horizontal);
-	padding-block: var(--ml-space-xs);
+	padding-block: var(--ml-space-sm);
 }
 
+/* Fills the row. The auto start-margin and 300px cap existed to hold this off
+ * the type toggle beside it; with the toggle gone they only left dead space. */
 .filterSearch {
-	margin-inline-start: auto;
 	flex: 1;
-	max-width: 300px;
 }
 
 .sentinel {
 	height: 0;
+}
+
+/*
+ * Full-bleed on a phone. The strip scrolls, so a gutter beside it is width the
+ * tabs could have used — and unlike the story header this row has no text to
+ * align with the prose below. The chevrons' 44px slots sit at each end, so the
+ * first and last tabs are still not flush against the screen edge.
+ */
+@media (--ml-bp-mobile) {
+	.inner {
+		padding-inline: 0;
+	}
 }

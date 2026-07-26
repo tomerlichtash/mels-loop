@@ -44,6 +44,9 @@
 @media (max-width: 1024px) {
 	.layout {
 		grid-template-columns: 1fr;
+		/* Stacked, this is the space above the sidebar's rule; it has to match
+		 * the sidebar's own padding-top or the rule sits off-centre. */
+		row-gap: var(--ml-space-lg);
 	}
 
 	/*
@@ -60,12 +63,36 @@
 		grid-row: 1;
 	}
 
+	/*
+	 * The final paragraph's bottom margin stacked on top of the row gap and put
+	 * ~16px more space above the rule than below it. It belongs to the block
+	 * inside the renderer wrapper, not to .content's own child, hence the extra
+	 * level. Cancelling it at the source rather than offsetting the sidebar,
+	 * which would only hold for pages ending in this particular block.
+	 */
+	.content > * > :last-child {
+		margin-block-end: 0;
+	}
+
+	/*
+	 * The start padding is the gutter between the two desktop columns. Stacked
+	 * there is no column beside it, so it only indented the panel to a width
+	 * narrower than the prose it belongs to.
+	 */
 	.sidebar {
 		grid-column: 1;
 		grid-row: 2;
 		position: static;
+		padding-inline-start: 0;
+		/*
+		 * A rule, not a gap. Stacked, the contents list needs to read as a
+		 * separate thing from the prose that ends above it — a border does that
+		 * in 1px, where the previous 56px of margin and padding did it by
+		 * pushing the two apart. Symmetric 1rem so the line is not glued to
+		 * either side.
+		 */
+		border-top: 1px solid var(--ml-border-color);
 		padding-top: var(--ml-space-lg);
-		margin-top: var(--ml-space-xl);
 	}
 
 	.sidebar > * {

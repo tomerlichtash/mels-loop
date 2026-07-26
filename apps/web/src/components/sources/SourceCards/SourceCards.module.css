@@ -4,12 +4,6 @@
 	color: var(--ml-text-muted-color);
 }
 
-.groupCount {
-	font-weight: var(--ml-font-weight-normal);
-	color: var(--ml-text-muted-color);
-	margin-inline-start: var(--ml-space-xs);
-}
-
 /* Card content */
 
 .cardTitle {
@@ -49,21 +43,15 @@
 	color: var(--ml-text-muted-color);
 }
 
-.action {
-	display: inline-flex;
-	align-items: center;
-	gap: var(--ml-space-xs);
-	color: var(--ml-color-primary);
-	text-decoration: none;
-	font-size: var(--ml-font-size-sm);
-	background: none;
-	border: none;
-	font: inherit;
-	cursor: pointer;
-	padding: 0;
-	transition: color var(--ml-duration-fast) ease;
-}
-
-.action:hover {
-	text-decoration: underline;
+/*
+ * Full-bleed on a phone so the group dividers run to the screen edge, with the
+ * page gutter re-applied inside — the rows keep their alignment with the prose,
+ * only the rules and hit areas widen.
+ */
+@media (--ml-bp-mobile) {
+	.accordion {
+		width: 100vw;
+		margin-inline-start: calc(-50vw + 50%);
+		padding-inline: var(--ml-content-padding-horizontal);
+	}
 }

@@ -1,4 +1,3 @@
-import { CaretRightIcon } from '@phosphor-icons/react/ssr';
 import cn from 'classnames';
 import type { ComponentType, ReactNode } from 'react';
 
@@ -44,11 +43,7 @@ export function Breadcrumbs({
 					const isLast = index === items.length - 1;
 					return (
 						<li key={index} className={styles.item}>
-							{index > 0 && (
-								<span className={styles.separator} aria-hidden>
-									<CaretRightIcon />
-								</span>
-							)}
+							{index > 0 && <span className={styles.separator} aria-hidden />}
 							{isLast || !item.href ? (
 								<span
 									className={styles.current}

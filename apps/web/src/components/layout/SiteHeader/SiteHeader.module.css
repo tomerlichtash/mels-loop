@@ -26,6 +26,13 @@
 	transform: translateY(-100%);
 }
 
+/*
+ * Asymmetric gutters, deliberately. The start holds the wordmark — text, which
+ * wants to line up with the prose below it, so it gets the content gutter. The
+ * end holds icon buttons whose own padding already supplies visual margin; the
+ * tighter page gutter keeps their 44px tap targets from being pushed inward.
+ * On desktop the two tokens are equal, so this only takes effect on a phone.
+ */
 .inner {
 	display: flex;
 	align-items: center;
@@ -33,7 +40,9 @@
 	height: 100%;
 	max-width: var(--ml-page-max-width);
 	margin: 0 auto;
-	padding: 0 var(--ml-page-padding-horizontal);
+	padding-block: 0;
+	padding-inline-start: var(--ml-content-padding-horizontal);
+	padding-inline-end: var(--ml-page-padding-horizontal);
 }
 
 .left {
@@ -102,6 +111,15 @@
 @media (--ml-bp-mobile) {
 	.rightDivider {
 		display: none;
+	}
+
+	/*
+	 * The desktop gap separates labelled controls; here it is two bare icons
+	 * that read as one group, and 24px between them left the pair looking
+	 * unrelated with the divider gone.
+	 */
+	.right {
+		gap: var(--ml-space-xs);
 	}
 }
 

@@ -122,6 +122,24 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
 	const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 	const resultRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
+	/*
+	 * The full placeholder names what is searchable, which is worth saying but
+	 * does not fit a phone — it overflowed the field by ~50px and truncated
+	 * mid-word. Falls back to the short form the header trigger already uses
+	 * rather than adding a second string for translators to keep in sync.
+	 *
+	 * Starts false so the server render and the first client render agree; the
+	 * effect only ever runs on the client. Matches --ml-bp-mobile.
+	 */
+	const [narrow, setNarrow] = useState(false);
+	useEffect(() => {
+		const mq = window.matchMedia('(max-width: 767px)');
+		const update = () => setNarrow(mq.matches);
+		update();
+		mq.addEventListener('change', update);
+		return () => mq.removeEventListener('change', update);
+	}, []);
+
 	// Load search indexes with IndexedDB cache-first strategy
 	useEffect(() => {
 		if (!open || lightDbRef.current) return;
@@ -280,7 +298,9 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
 							type="text"
 							value={query}
 							onChange={handleInputChange}
-							placeholder={t('search.placeholder')}
+							placeholder={t(
+								narrow ? 'search.triggerPlaceholder' : 'search.placeholder',
+							)}
 						/>
 						<CloseButton
 							onClick={() => onOpenChange(false)}

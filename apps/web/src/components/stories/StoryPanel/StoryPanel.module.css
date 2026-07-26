@@ -9,7 +9,7 @@
 	 * the blur meant to cover it was being dropped by lightningcss. */
 	background-color: color-mix(
 		in srgb,
-		var(--ml-surface-background-color) 92%,
+		var(--ml-background-color) 92%,
 		transparent
 	);
 	-webkit-backdrop-filter: blur(12px);
@@ -22,8 +22,16 @@
 	transition: top var(--ml-duration-normal) ease;
 }
 
+/*
+ * Start gutter matches the content, as in the site header — the breadcrumb
+ * trail is text and lines up with the prose below it. The end stays on the
+ * page gutter, since nothing there needs to align. On desktop the two tokens
+ * are equal, so this only takes effect on a phone.
+ */
 .inner {
 	max-width: var(--ml-page-max-width);
 	margin: 0 auto;
-	padding: var(--ml-space-sm) var(--ml-page-padding-horizontal);
+	padding-block: var(--ml-space-sm);
+	padding-inline-start: var(--ml-content-padding-horizontal);
+	padding-inline-end: var(--ml-page-padding-horizontal);
 }

@@ -55,7 +55,6 @@ export function SiteFooter({ linkColumns }: SiteFooterProps) {
 							<br />
 							<span className={styles.subtitle}>{t('siteSubtitle')}</span>
 						</p>
-						<p className={styles.description}>{t('menuDescriptions.about')}</p>
 					</div>
 
 					{linkColumns?.map((col) => (

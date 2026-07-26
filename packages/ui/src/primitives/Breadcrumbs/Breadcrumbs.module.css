@@ -2,7 +2,7 @@
 	--ml-breadcrumbs-font-size: var(--ml-font-size-sm);
 	--ml-breadcrumbs-separator-color: var(--ml-text-muted-color);
 	--ml-breadcrumbs-separator-gap: var(--ml-space-xs);
-	--ml-breadcrumbs-separator-size: 0.9em;
+	--ml-breadcrumbs-separator-size: 1.15em;
 	--ml-breadcrumbs-link-color: var(--ml-text-muted-color);
 	--ml-breadcrumbs-link-hover-color: var(--ml-text-color);
 	--ml-breadcrumbs-current-color: var(--ml-text-color);
@@ -27,28 +27,35 @@
 	align-items: center;
 }
 
+/*
+ * A text glyph rather than an icon, because alignment then comes for free.
+ * align-items:center centres *boxes*, and a glyph is not centred inside its
+ * own line box — there is descender space below it and ascender space above,
+ * so an icon centred on that box always reads high against the labels. CSS
+ * exposes no "centre on the rendered glyphs" alignment. A character shares the
+ * labels' font metrics and baseline, so it simply sits where they sit.
+ *
+ * Sized above 1em because › is drawn small within its em box.
+ */
 .separator {
-	display: inline-flex;
-	align-items: center;
 	margin: 0 var(--ml-breadcrumbs-separator-gap);
+	font-size: var(--ml-breadcrumbs-separator-size);
+	line-height: 1;
 	color: var(--ml-breadcrumbs-separator-color);
 	user-select: none;
-	line-height: 1;
+	flex-shrink: 0;
 }
 
 /*
- * An inline SVG sits on the text baseline, so the chevron rode low against the
- * labels even with the wrapper centred. display:block takes it off the
- * baseline; the flex centring on .separator then actually applies to it.
+ * The glyph itself, so direction selects a real mirrored character rather
+ * than flipping one with a transform.
  */
-.separator svg {
-	display: block;
-	width: var(--ml-breadcrumbs-separator-size);
-	height: var(--ml-breadcrumbs-separator-size);
+.separator::before {
+	content: '\203A'; /* › */
 }
 
-:dir(rtl) .separator {
-	transform: scaleX(-1);
+:dir(rtl) .separator::before {
+	content: '\2039'; /* ‹ */
 }
 
 .link {

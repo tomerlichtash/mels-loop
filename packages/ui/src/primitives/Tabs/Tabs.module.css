@@ -1,10 +1,18 @@
+/*
+ * Chevrons are flex siblings of the strip, not overlaid on it. Overlaid, a tap
+ * near the edge was ambiguous — chevron or the tab beneath — and neither had a
+ * dependable target. In flow each owns its own area and nothing is covered.
+ */
 .wrap {
 	position: relative;
+	display: flex;
+	align-items: stretch;
 	min-width: 0;
 }
 
 .root {
 	position: relative;
+	flex: 1 1 auto;
 	display: flex;
 	/*
 	 * Centred while the row fits; `safe` falls back to start alignment on
@@ -68,7 +76,7 @@
 	flex: 0 0 auto;
 	display: inline-flex;
 	align-items: center;
-	gap: 0.35em;
+	gap: 0.4em;
 	padding: var(--ml-space-sm) var(--ml-space-md);
 	white-space: nowrap;
 	text-decoration: none;
@@ -94,30 +102,15 @@
 /*
  * A badge rather than parenthesised text: the count is metadata about the tab,
  * not part of its name, and "(46)" read as though it belonged to the label.
+ *
+ * The fill is mixed from currentColor rather than a surface token, so it works
+ * on any strip background and in both themes, and deepens on the active tab
+ * for free. --ml-color-surface-subtle was tried first and is invisible here:
+ * it resolves to cream-100 at 98.8% lightness, against a near-white bar.
+ *
+ * A fixed circle rather than a pill that hugs its digits: the latter changes
+ * width per tab and reads as inconsistent across the strip.
  */
-.count {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 1.5em;
-	padding: 0.1em 0.4em;
-	border-radius: var(--ml-radius-full);
-	background-color: var(--ml-color-surface-subtle);
-	font-size: 0.8em;
-	font-weight: var(--ml-font-weight-medium);
-	line-height: 1.4;
-	color: var(--ml-text-muted-color);
-}
-
-.tabActive .count {
-	background-color: color-mix(
-		in srgb,
-		var(--ml-color-primary) 15%,
-		transparent
-	);
-	color: var(--ml-color-primary);
-}
-
 /* One element that slides between tabs — a per-tab border cannot animate
  * between positions. */
 .indicator {
@@ -138,37 +131,51 @@
 }
 
 .chevron {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	z-index: 1;
+	/* 44px: WCAG 2.5.5, and it no longer costs anything since the chevron has
+	 * its own slot instead of sitting on top of a tab. */
+	flex: 0 0 auto;
+	min-width: 44px;
 	display: flex;
 	align-items: center;
-	padding: 0 var(--ml-space-2xs);
+	justify-content: center;
+	padding: 0;
 	border: none;
-	background-color: var(--ml-surface-background-color);
+	background: none;
 	color: var(--ml-text-muted-color);
 	cursor: pointer;
+	/*
+	 * Invisible, not removed. The slot has to stay reserved: taking it out of
+	 * flow would resize the row the moment you scrolled to either end, and the
+	 * tabs would jump under your finger. A greyed-out ghost would be noise —
+	 * there is nothing to reveal on that side, so there is nothing to say.
+	 */
+	visibility: hidden;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity var(--ml-duration-fast) ease;
+	/*
+	 * visibility is not interpolable, so it would snap. Delaying it by the
+	 * fade duration makes it flip *after* the opacity finishes, so hiding
+	 * reads as a fade rather than a disappearance. Showing reverses the delay
+	 * to zero below, so it becomes visible before fading in.
+	 */
+	transition:
+		opacity var(--ml-duration-fast) ease,
+		visibility 0s linear var(--ml-duration-fast);
 }
 
-.chevronVisible {
+/* Rendered whenever the strip overflows so its slot never appears mid-scroll
+ * and shifts the row; shown only on the side that still has content to reveal. */
+.chevronEnabled {
+	visibility: visible;
 	opacity: 1;
 	pointer-events: auto;
+	transition:
+		opacity var(--ml-duration-fast) ease,
+		visibility 0s linear 0s;
 }
 
 .chevron:hover {
 	color: var(--ml-text-color);
-}
-
-.chevronStart {
-	inset-inline-start: 0;
-}
-
-.chevronEnd {
-	inset-inline-end: 0;
 }
 
 .chevronGlyph {
