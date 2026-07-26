@@ -29,8 +29,7 @@ import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 
 // import { FaviconAnimator } from '@/components/layout/FaviconAnimator/FaviconAnimator';
-import { footerLinks, localeOptions } from './config/nav';
-import { resolveNavItems } from './resolveNavItems';
+import { footerLinks, localeOptions, navItems } from './config/nav';
 
 export { generateMetadata } from './config/metadata';
 
@@ -60,7 +59,6 @@ export default async function Layout({
 	const validLocale = locale as Locale;
 	const dir = getDirection(validLocale);
 	const messages = await getDictionary(validLocale);
-	const navItems = await resolveNavItems(validLocale);
 
 	const content = (
 		<html lang={locale} dir={dir} suppressHydrationWarning>

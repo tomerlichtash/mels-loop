@@ -14,5 +14,4 @@ export type {
 	FooterLinkColumn,
 	LocaleOption,
 	NavItem,
-	NavStoryItem,
 } from './types';

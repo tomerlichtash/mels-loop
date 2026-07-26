@@ -6,9 +6,7 @@ import type {
 	NavItem,
 } from '@/components/layout';
 
-export const navItems: NavItem[] = [
-	{ key: 'stories', href: '/stories', hasContent: true },
-];
+export const navItems: NavItem[] = [{ key: 'stories', href: '/stories' }];
 
 export const footerLinks: FooterLinkColumn[] = [
 	{

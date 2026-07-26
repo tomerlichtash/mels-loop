@@ -4,17 +4,9 @@ export interface LocaleOption {
 	switchToKey: string;
 }
 
-export interface NavStoryItem {
-	slug: string;
-	title: string;
-	abstract: string;
-}
-
 export interface NavItem {
 	key: string;
 	href: string;
-	hasContent?: boolean;
-	stories?: NavStoryItem[];
 }
 
 export interface FooterLink {
