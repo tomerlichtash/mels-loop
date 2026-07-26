@@ -84,3 +84,12 @@
 .titleLink {
 	text-decoration: none;
 }
+
+/*
+ * On the story's own page the identity still renders as a link, to keep the
+ * element type stable across navigation, but it should not behave like one.
+ */
+.identityCurrent {
+	cursor: default;
+	pointer-events: none;
+}

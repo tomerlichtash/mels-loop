@@ -70,9 +70,19 @@ export function SiteHeader({
 					</div>
 
 					<div className={styles.right}>
-						<nav className={styles.desktopNav}>
-							<NavMenu navItems={navItems} />
-						</nav>
+						{/*
+						 * Locale and theme move into the drawer on mobile. Brand plus five
+						 * controls does not fit a 390px bar — that crowding is what was
+						 * breaking "MEL'S LOOP" across two lines. The theme toggle stays
+						 * inside this group for that reason, even though it now leads the
+						 * row on desktop.
+						 */}
+						<div className={styles.desktopControls}>
+							<Tooltip label={themeLabel}>
+								<ThemeSwitcher aria-label={themeLabel} />
+							</Tooltip>
+							<LocaleSwitcher locales={locales} />
+						</div>
 						{onSearchClick && (
 							<SearchTrigger
 								onClick={onSearchClick}
@@ -80,17 +90,9 @@ export function SiteHeader({
 								label={t('search.open')}
 							/>
 						)}
-						{/*
-						 * Locale and theme move into the drawer on mobile. Brand plus five
-						 * controls does not fit a 390px bar — that crowding is what was
-						 * breaking "MEL'S LOOP" across two lines.
-						 */}
-						<div className={styles.desktopControls}>
-							<LocaleSwitcher locales={locales} />
-							<Tooltip label={themeLabel}>
-								<ThemeSwitcher aria-label={themeLabel} />
-							</Tooltip>
-						</div>
+						<nav className={styles.desktopNav}>
+							<NavMenu navItems={navItems} />
+						</nav>
 						{/* Last in the row, so the brand keeps the leading edge at every
 						 * width and the trigger sits with the other actions. */}
 						<BurgerButton onClick={onMenuClick} />
