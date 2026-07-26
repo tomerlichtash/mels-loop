@@ -146,6 +146,18 @@
 
 /* ── Trigger chevron ──────────────────────────── */
 
+/*
+ * Two borders and a rotation, so which borders they are has to be physical.
+ *
+ * This drew the corner with border-inline-end, which is the right edge in
+ * English and the left edge in Hebrew — but the rotation that turns that
+ * corner into a chevron is a fixed 45deg either way. In Hebrew the shape came
+ * out rotated a quarter turn, pointing across the header instead of down at
+ * the panel it opens.
+ *
+ * It should not mirror in any case: it says "this opens downwards", which is
+ * true in both languages.
+ */
 .trigger::after {
 	content: '';
 	display: inline-block;
@@ -153,7 +165,7 @@
 	height: 8px;
 	margin-inline-start: 6px;
 	border-bottom: 2px solid currentColor;
-	border-inline-end: 2px solid currentColor;
+	border-right: 2px solid currentColor;
 	transform: rotate(45deg) translateY(-2px);
 	transition: transform var(--ml-duration-slow) ease;
 }
@@ -259,7 +271,10 @@
 	height: 10px;
 	background-color: var(--ml-surface-background-color);
 	border-top: 1px solid var(--ml-border-color);
-	border-inline-start: 1px solid var(--ml-border-color);
+	/* Physical, for the same reason as the trigger chevron above: these two
+	 * edges are rotated 45deg to form the point, so a logical edge that swaps
+	 * sides in Hebrew put the outline on the arrow's hidden faces. */
+	border-left: 1px solid var(--ml-border-color);
 	transform: rotate(45deg);
 }
 

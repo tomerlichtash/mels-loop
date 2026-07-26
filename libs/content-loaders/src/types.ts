@@ -7,6 +7,8 @@ import type { Root as HastRoot } from 'hast';
 export type SourceType =
 	| 'image'
 	| 'pdf'
+	/* A written record we hold a transcription of, not merely a link to. */
+	| 'document'
 	| 'audio'
 	| 'video'
 	| 'link'
@@ -35,6 +37,12 @@ export interface Source {
 	credit?: string;
 	license?: SourceLicense;
 	tags?: string[];
+	/**
+	 * A page on this site that reproduces the record — a transcription of a
+	 * scanned document, say. `url` still points at the archival original; this
+	 * is where a reader can actually read the thing.
+	 */
+	page?: string;
 }
 
 /** Locale-specific display strings for a source, stored in `index.{locale}.json`. */
@@ -64,10 +72,19 @@ export interface PartEntry {
 	 *
 	 * The aside exists to show the main text and the writing that surrounds it.
 	 * Parts that are reference material rather than reading — an appendix, a
-	 * document dump — already have their own tab, and repeating them here says
-	 * nothing about how they relate to the story.
+	 * document dump — are reached from the sources instead, and listing them
+	 * here says nothing about how they relate to the story.
 	 */
 	aside?: boolean;
+	/**
+	 * Whether this part gets a tab of its own. Defaults to true.
+	 *
+	 * A part can hold real content and still not deserve a place in the story's
+	 * top-level navigation. Mel's Blackjack writeup is a source we happen to
+	 * hold a transcription of; it belongs among the sources, not in a tab of
+	 * one beside The Story and Articles.
+	 */
+	tab?: boolean;
 	/** Message key for part author (e.g. "authors.preface"), resolved from story messages. */
 	author?: string;
 }
@@ -119,6 +136,8 @@ export interface ResolvedPartEntry {
 	collapse?: boolean;
 	/** Whether this part belongs in the story's aside. Defaults to true. */
 	aside?: boolean;
+	/** Whether this part gets a tab of its own. Defaults to true. */
+	tab?: boolean;
 	author?: string;
 	/** When collapsed, the href of the single child. */
 	href?: string;
@@ -206,6 +225,11 @@ export interface StoryConfig {
 	featured?: boolean;
 	figures?: FigureConfig;
 	sources?: string[];
+	/**
+	 * A handful of source IDs worth putting in front of a reader, shown in the
+	 * story's aside. The full set runs to dozens; this is the editor's pick.
+	 */
+	featuredSources?: string[];
 	contents?: ContentsEntry[];
 }
 

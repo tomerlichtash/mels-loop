@@ -6,7 +6,7 @@
 	},
 	"parts": {
 		"preface": "הקדמה",
-		"codex": "השיר",
+		"codex": "הסיפור על מל",
 		"articles": "מאמרים",
 		"appendix": "נספח",
 		"sources": "מקורות"
@@ -20,7 +20,7 @@
 		"mels-hack-the-missing-bits": "קריאה מדוקדקת בהאק של מל"
 	},
 	"authors": {
-		"ednather": "אד נאת׳ר",
+		"ednather": "אד ניית׳ר",
 		"tomerlichtash": "תומר ליכטש",
 		"dfl": "דוד פרנקל"
 	},
@@ -29,6 +29,6 @@
 		"alt": "תצלום של מל קיי, 1952"
 	},
 	"figures": {
-		"template": "איור %index%"
+		"template": "%index%"
 	}
 }

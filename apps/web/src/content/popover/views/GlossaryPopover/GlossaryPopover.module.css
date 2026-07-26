@@ -14,7 +14,7 @@
 	border-radius: var(--ml-radius-sm);
 	-webkit-box-decoration-break: clone;
 	box-decoration-break: clone;
-	font-weight: var(--ml-font-weight-medium);
+	font-weight: var(--ml-term-font-weight);
 	/*
 	 * Dotted, the long-standing convention for a term carrying a definition —
 	 * what a browser draws under <abbr title>.
@@ -93,10 +93,20 @@
 	color: var(--ml-text-color);
 }
 
+/*
+ * The English term, under the Hebrew one.
+ *
+ * It is the other half of the entry's name rather than a note about it, so it
+ * is set close to the title's weight and only a step down in size — at the
+ * body's small size in muted grey it read as a caption someone had attached,
+ * and a reader scanning for the English word had to hunt for it.
+ */
 .headerSub {
-	margin: 0;
-	font-size: var(--ml-font-size-sm);
-	color: var(--ml-text-muted-color);
+	margin: var(--ml-space-xs) 0 0;
+	font-size: var(--ml-font-size-lg);
+	font-weight: var(--ml-font-weight-semibold);
+	line-height: var(--ml-line-height-snug);
+	color: var(--ml-text-color);
 }
 
 .loader {

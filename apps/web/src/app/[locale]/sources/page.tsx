@@ -22,6 +22,7 @@ export async function generateStaticParams() {
 }
 
 const TYPE_ORDER: SourceType[] = [
+	'document',
 	'image',
 	'pdf',
 	'audio',
@@ -45,6 +46,7 @@ function groupByType(
 }
 
 const MOCK_TYPES: SourceType[] = [
+	'document',
 	'image',
 	'pdf',
 	'link',

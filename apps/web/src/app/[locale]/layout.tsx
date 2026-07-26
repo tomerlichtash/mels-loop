@@ -15,6 +15,7 @@ import {
 	isValidLocale,
 } from '@mels-loop/i18n/config';
 import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
+import { DirectionProvider } from '@mels-loop/ui/direction';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
@@ -82,19 +83,25 @@ export default async function Layout({
 			>
 				{gaId && <GoogleAnalytics gaId={gaId} />}
 				<PageScrollbar />
-				<I18nProvider locale={locale} messages={messages}>
-					{/* One per page: it builds a gallery from every zoomable image
-					    on the page at the moment one is clicked. */}
-					<ImageViewer />
-					<SearchableLayout
-						navItems={navItems}
-						footerLinks={footerLinks}
-						locales={localeOptions}
-					>
-						{/* <FaviconAnimator /> */}
-						{children}
-					</SearchableLayout>
-				</I18nProvider>
+				{/* Radix reads the direction from context, not from the document,
+				    and defaults to ltr — including for content it portals out of
+				    the tree. Without this a popover or menu on a Hebrew page laid
+				    itself out left-to-right. */}
+				<DirectionProvider dir={dir}>
+					<I18nProvider locale={locale} messages={messages}>
+						{/* One per page: it builds a gallery from every zoomable image
+						    on the page at the moment one is clicked. */}
+						<ImageViewer />
+						<SearchableLayout
+							navItems={navItems}
+							footerLinks={footerLinks}
+							locales={localeOptions}
+						>
+							{/* <FaviconAnimator /> */}
+							{children}
+						</SearchableLayout>
+					</I18nProvider>
+				</DirectionProvider>
 			</body>
 		</html>
 	);

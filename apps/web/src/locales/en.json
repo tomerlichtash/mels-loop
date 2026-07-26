@@ -17,7 +17,7 @@
 		"contact": "Contact",
 		"contribute": "Contribute",
 		"articles": "Articles",
-		"codex": "Full Text",
+		"codex": "The Story",
 		"sources": "Sources",
 		"contents": "Table of Contents",
 		"moreStories": "More stories",
@@ -120,6 +120,9 @@
 	},
 	"sources": {
 		"all": "All",
+		"selected": "Selected sources",
+		"viewAll": "All sources",
+		"document": "Document",
 		"image": "Image",
 		"pdf": "PDF",
 		"audio": "Audio",

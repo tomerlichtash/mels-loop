@@ -130,6 +130,7 @@ async function resolveEntry(
 				children,
 				...(entry.collapse && { collapse: true }),
 				...(entry.aside === false && { aside: false }),
+				...(entry.tab === false && { tab: false }),
 				...(author && { author }),
 			};
 			if (entry.collapse && children.length === 1) {

@@ -1,15 +1,15 @@
 'use client';
 
-import type { ResolvedContentsEntry } from '@mels-loop/content-loaders/types';
+import type {
+	ResolvedContentsEntry,
+	SourceType,
+} from '@mels-loop/content-loaders/types';
 import cn from 'classnames';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { SOURCE_TYPE_ICONS } from '../../../content/sources/source-types';
 import styles from './Asides.module.css';
-
-interface AsidesProps {
-	contents: ResolvedContentsEntry[];
-}
 
 interface Row {
 	href: string;
@@ -17,6 +17,26 @@ interface Row {
 	/** Aside-specific line, authored in the contents rather than the article. */
 	subtitle?: string;
 	author?: string;
+}
+
+/**
+ * A short editor's pick of sources, closing with a way through to the rest.
+ *
+ * The full set runs to dozens and lives in its own tab; what belongs beside the
+ * prose is a handful worth opening. Rendered as another group in this list
+ * rather than as a component of its own, so it inherits the same alignment,
+ * hover and active mark as everything above it.
+ */
+interface SourcesGroup {
+	label: string;
+	rows: (Row & { type: SourceType })[];
+	moreHref: string;
+	moreLabel: string;
+}
+
+interface AsidesProps {
+	contents: ResolvedContentsEntry[];
+	sources?: SourcesGroup;
 }
 
 interface Group {
@@ -90,11 +110,11 @@ function toGroups(contents: ResolvedContentsEntry[]): Group[] {
  * page is marked by a rule in the gutter rather than a filled, padded box — so
  * nothing shifts as the reader moves between pages.
  */
-export function Asides({ contents }: AsidesProps) {
+export function Asides({ contents, sources }: AsidesProps) {
 	const pathname = usePathname();
 	const groups = toGroups(contents);
 
-	if (groups.length === 0) return null;
+	if (groups.length === 0 && !sources) return null;
 
 	return (
 		<nav className={styles.root}>
@@ -125,6 +145,33 @@ export function Asides({ contents }: AsidesProps) {
 					</ul>
 				</div>
 			))}
+
+			{sources && sources.rows.length > 0 && (
+				<div className={styles.group}>
+					<p className={styles.groupLabel}>{sources.label}</p>
+					<ul className={styles.list}>
+						{sources.rows.map((row) => {
+							const Icon = SOURCE_TYPE_ICONS[row.type];
+							return (
+								<li key={row.href}>
+									<Link href={row.href} className={styles.link}>
+										<span className={styles.title}>
+											<Icon className={styles.typeIcon} aria-hidden="true" />
+											{row.title}
+										</span>
+										{row.subtitle && (
+											<span className={styles.subtitle}>{row.subtitle}</span>
+										)}
+									</Link>
+								</li>
+							);
+						})}
+					</ul>
+					<Link href={sources.moreHref} className={styles.more}>
+						{sources.moreLabel}
+					</Link>
+				</div>
+			)}
 		</nav>
 	);
 }

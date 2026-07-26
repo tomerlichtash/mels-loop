@@ -47,15 +47,16 @@
 }
 
 /*
- * The glyph itself, so direction selects a real mirrored character rather
- * than flipping one with a transform.
+ * One glyph, both directions. U+203A is bidi-mirrored, so the browser draws it
+ * reversed inside a right-to-left run without being asked.
+ *
+ * There used to be a `:dir(rtl)` rule swapping in U+2039 as well. That mirrored
+ * character was then mirrored again by the bidi algorithm, which turned it back
+ * into ›, and the Hebrew breadcrumbs pointed the wrong way — the one direction
+ * the override existed to fix.
  */
 .separator::before {
-	content: '\203A'; /* › */
-}
-
-:dir(rtl) .separator::before {
-	content: '\2039'; /* ‹ */
+	content: '\203A'; /* › — drawn as ‹ in a right-to-left run */
 }
 
 .link {

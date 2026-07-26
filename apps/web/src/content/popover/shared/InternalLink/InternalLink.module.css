@@ -12,7 +12,7 @@
 	color: var(--ml-color-primary);
 	cursor: pointer;
 	font: inherit;
-	font-weight: var(--ml-font-weight-medium);
+	font-weight: var(--ml-term-font-weight);
 	text-decoration: underline;
 	text-decoration-style: dotted;
 	text-decoration-thickness: 1px;

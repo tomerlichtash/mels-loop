@@ -28,6 +28,7 @@ export async function generateStaticParams() {
 }
 
 const TYPE_ORDER: SourceType[] = [
+	'document',
 	'image',
 	'pdf',
 	'audio',

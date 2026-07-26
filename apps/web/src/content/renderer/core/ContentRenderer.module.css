@@ -250,3 +250,19 @@
 .root blockquote[data-parse-mode='verse'] p {
 	line-height: var(--ml-line-height-snug);
 }
+
+/*
+ * A figure that opens its block has nothing above it to be separated from, and
+ * the space only pushes it out of line with whatever sits beside it — in a
+ * two-column block the picture started lower than the first line of the text
+ * it belonged to.
+ *
+ * The test is on the wrapper, not the figure. Every figure is rendered inside
+ * a div of its own so the lightbox has something to bind to, which makes the
+ * figure the first child of that div every single time — a rule on the figure
+ * itself would strip the margin from every image in the article, including the
+ * ones in mid-paragraph that need it.
+ */
+.root div:first-child > figure {
+	margin-top: 0;
+}

@@ -125,6 +125,7 @@
 			"type": "part",
 			"ref": "appendix",
 			"aside": false,
+			"tab": false,
 			"children": [
 				{
 					"type": "page",
@@ -132,5 +133,10 @@
 				}
 			]
 		}
+	],
+	"featuredSources": [
+		"mel-blackjack-writeup",
+		"story-of-mel-original-usenet",
+		"hela-kornitzka-ship-manifest"
 	]
 }

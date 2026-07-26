@@ -81,8 +81,18 @@ export function GlossaryPopover({
 				<p className={styles.kicker}>{t('content.glossaryLabel')}</p>
 				<p className={styles.headerTitle}>{displayLabel}</p>
 				{locale === 'he' && displayTerm && (
-					<p className={styles.headerSub} dir="ltr">
-						{titleCase(displayTerm)}
+					/*
+					 * The isolation belongs on the text, not on the paragraph.
+					 *
+					 * dir="ltr" on the <p> made its start edge the left one, so the
+					 * English term sat against the far side of the panel while the
+					 * Hebrew title above it ran to the right. <bdi> keeps the Latin
+					 * run ordered left-to-right and sealed off from its neighbours,
+					 * which is the whole reason the attribute was there, and leaves
+					 * the paragraph aligned with everything else in the header.
+					 */
+					<p className={styles.headerSub}>
+						<bdi dir="ltr">{titleCase(displayTerm)}</bdi>
 					</p>
 				)}
 			</div>

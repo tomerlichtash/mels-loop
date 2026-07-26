@@ -113,10 +113,21 @@
  */
 /* One element that slides between tabs — a per-tab border cannot animate
  * between positions. */
+/*
+ * Physical `left` rather than inset-inline-start, the one place in this
+ * stylesheet that departs from the logical-property rule.
+ *
+ * The underline is not laid out; it is pinned to a position measured in
+ * script, and the only measurement available for a tab's position — offsetLeft
+ * — is a distance from the left in either writing direction. Pairing it with
+ * an inset that flips meaning put the Hebrew underline under the wrong tab.
+ * Nothing here needs mirroring: the tabs themselves already mirror, and the
+ * underline follows whichever one is active.
+ */
 .indicator {
 	position: absolute;
 	bottom: 0;
-	inset-inline-start: 0;
+	left: 0;
 	width: 0;
 	height: 2px;
 	background-color: var(--ml-color-primary);
@@ -126,7 +137,7 @@
 
 .indicatorAnimated {
 	transition:
-		inset-inline-start var(--ml-duration-normal) ease,
+		left var(--ml-duration-normal) ease,
 		width var(--ml-duration-normal) ease;
 }
 

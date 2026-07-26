@@ -108,7 +108,16 @@ export default async function StorySlugLayout({
 	const homeLabel = dictGet(dict, 'nav.home');
 	const storiesLabel = dictGet(dict, 'stories');
 
-	const itemTitles = contents ? buildItemTitles(contents) : {};
+	/*
+	 * Sources are not in the contents tree, so the breadcrumb for one had
+	 * nothing to look up and fell back to prettifying its slug — a Hebrew page
+	 * showed "Story Of Mel Original Usenet" above the record's real title.
+	 * Their titles are already resolved for this locale here.
+	 */
+	const itemTitles = {
+		...(contents ? buildItemTitles(contents) : {}),
+		sources: Object.fromEntries(sources.map((s) => [s.id, s.title])),
+	};
 
 	const sourceFilters: SourceFilterConfig | undefined =
 		sources.length > 0
@@ -120,11 +129,49 @@ export default async function StorySlugLayout({
 
 	const basePath = `/stories/${storySlug}`;
 
+	/*
+	 * The editor's pick shown in the aside, in the order story.json lists it.
+	 * A record we hold a transcription of links to that page rather than to its
+	 * catalogue entry — the reader wants to read the thing, not read about it.
+	 */
+	const picked = (config.featuredSources ?? [])
+		.map((id) => sources.find((source) => source.id === id))
+		.filter((source): source is (typeof sources)[number] => source != null);
+
+	const featuredSources = picked.length
+		? {
+				label: dictGet(dict, 'sources.selected'),
+				moreHref: `${basePath}/sources`,
+				moreLabel: dictGet(dict, 'sources.viewAll'),
+				/*
+				 * Title alone, with the type glyph.
+				 *
+				 * The summary is what the sources table is for; here it turned three
+				 * short entries into a wall of text beside the article. The credit
+				 * went for a different reason: a source's author lives in its
+				 * locale-independent index.json, so there is only ever the Latin
+				 * form of the name, and "Ed Nather" sat under a Hebrew title with
+				 * no Hebrew spelling to fall back to. A date line went the same way
+				 * — where the year matters to the record it is already part of its
+				 * title, as in the 1907 SS Estonia manifest.
+				 */
+				rows: picked.map((source) => ({
+					href: source.page ?? `${basePath}/sources/${source.id}`,
+					title: source.title,
+					type: source.type,
+				})),
+			}
+		: undefined;
+
 	// Derive dynamic section tabs from contents (articles, documents, etc.)
 	const dynamicSectionCounts = new Map<string, number>();
 	if (contents) {
 		for (const entry of contents) {
 			if (entry.type === 'part') {
+				/* A part can hold content and still not warrant a tab — see
+				 * PartEntry.tab. The appendix holds one document, which is a
+				 * source we happen to have transcribed. */
+				if (entry.tab === false) continue;
 				for (const child of entry.children) {
 					if (child.type === 'page' && child.ref.includes('/')) {
 						const key = child.ref.split('/')[0];
@@ -208,7 +255,7 @@ export default async function StorySlugLayout({
 			<StoryLayout
 				sidebar={
 					contents && contents.length > 0 ? (
-						<Asides contents={contents} />
+						<Asides contents={contents} sources={featuredSources} />
 					) : undefined
 				}
 			>

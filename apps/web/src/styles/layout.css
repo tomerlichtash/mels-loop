@@ -1,5 +1,24 @@
 /* ---- Layout ---- */
 
+/*
+ * How heavily a glossary term or annotation is set against the prose it sits
+ * in.
+ *
+ * It is a token rather than a constant because the two languages are set in
+ * different typefaces and the same number does not buy the same emphasis.
+ * English prose is Roboto Slab, a slab serif whose Medium thickens the stems
+ * visibly. Hebrew is Assistant, where Medium is barely separable from Regular
+ * at reading size — the weight was being applied correctly and simply could
+ * not be seen, leaving colour and the dotted underline to do all the work.
+ */
+:root {
+	--ml-term-font-weight: var(--ml-font-weight-medium);
+}
+
+:lang(he) {
+	--ml-term-font-weight: var(--ml-font-weight-semibold);
+}
+
 :root {
 	--ml-content-max-width: 800px;
 	--ml-page-max-width: 1100px;

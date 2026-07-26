@@ -80,11 +80,19 @@ export function Tabs({
 			if (indicator.style.opacity !== '0') indicator.style.opacity = '0';
 			return;
 		}
+		/*
+		 * Physical `left`, deliberately, against the project's logical-property
+		 * rule — see the note on .indicator in the stylesheet. offsetLeft is a
+		 * distance from the left whatever the writing direction, and this pins
+		 * an overlay onto a measured position rather than laying anything out,
+		 * so the measurement and the property have to agree on which edge they
+		 * mean. Feeding offsetLeft to inset-inline-start put the Hebrew
+		 * underline under the wrong tab.
+		 */
 		const start = `${active.offsetLeft}px`;
 		const width = `${active.offsetWidth}px`;
 		if (indicator.style.opacity !== '1') indicator.style.opacity = '1';
-		if (indicator.style.insetInlineStart !== start)
-			indicator.style.insetInlineStart = start;
+		if (indicator.style.left !== start) indicator.style.left = start;
 		if (indicator.style.width !== width) indicator.style.width = width;
 	}, []);
 
@@ -120,10 +128,21 @@ export function Tabs({
 		if (!nav || !overflowing) return;
 		const active = nav.querySelector('[aria-current="page"]');
 		if (!(active instanceof HTMLElement)) return;
-		const target =
-			active.offsetLeft - (nav.clientWidth - active.offsetWidth) / 2;
-		nav.scrollTo({
-			left: target,
+		/*
+		 * Centred by scrolling the measured gap between the two centres, rather
+		 * than by computing an absolute scrollLeft. scrollLeft's origin and
+		 * sign in RTL differ between engines — the reason the overflow check
+		 * below reads rectangles too — while scrollBy takes a plain physical
+		 * delta and needs no direction branch.
+		 */
+		const navRect = nav.getBoundingClientRect();
+		const activeRect = active.getBoundingClientRect();
+		const delta =
+			activeRect.left +
+			activeRect.width / 2 -
+			(navRect.left + navRect.width / 2);
+		nav.scrollBy({
+			left: delta,
 			behavior: hasScrolled.current ? 'smooth' : 'auto',
 		});
 		hasScrolled.current = true;
