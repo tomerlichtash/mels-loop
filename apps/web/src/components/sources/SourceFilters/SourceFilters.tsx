@@ -164,9 +164,15 @@ function SourceDetail({ source }: { source: ResolvedSource }) {
 						<CopyIcon />
 						{copied ? 'Copied!' : 'Copy ID'}
 					</button>
-					{source.url && (
+					{/*
+					 * originUrl first, and nothing at all for an image without one:
+					 * url holds the copy we host, so this opened a bare file on S3
+					 * with no title, no credit and no way back.
+					 */}
+					{(source.originUrl ??
+						(source.type !== 'image' ? source.url : null)) && (
 						<a
-							href={source.url}
+							href={source.originUrl ?? source.url}
 							target="_blank"
 							rel="noopener noreferrer"
 							className={styles.detailAction}

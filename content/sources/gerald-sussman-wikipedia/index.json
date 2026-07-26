@@ -3,6 +3,6 @@
 	"type": "link",
 	"url": "https://en.wikipedia.org/wiki/Gerald_Jay_Sussman",
 	"date": "",
-	"license": "CC-BY-SA",
+	"license": "cc-by-sa",
 	"tags": ["wikipedia", "mit", "ai", "scheme", "sicp"]
 }

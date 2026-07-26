@@ -20,6 +20,7 @@ export type License =
 	| 'public-domain'
 	| 'cc-by'
 	| 'cc-by-sa'
+	| 'cc-by-nc-sa'
 	| 'fair-use'
 	| 'all-rights-reserved'
 	| 'unknown';
@@ -43,6 +44,16 @@ export interface Source {
 	 * is where a reader can actually read the thing.
 	 */
 	page?: string;
+	/**
+	 * Where the record came from: the Commons file page, the forum thread, the
+	 * archive listing.
+	 *
+	 * `url` cannot carry this for an image, because there it holds the copy we
+	 * host — so "open source" on a photograph led to a bare file on S3, and the
+	 * real provenance had nowhere to go but the end of the description, where
+	 * two sources had already put a raw link.
+	 */
+	originUrl?: string;
 }
 
 /** Locale-specific display strings for a source, stored in `index.{locale}.json`. */

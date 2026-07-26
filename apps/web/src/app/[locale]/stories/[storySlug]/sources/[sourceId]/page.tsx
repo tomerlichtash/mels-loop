@@ -52,9 +52,14 @@ export default async function SourceDetailPage({ params }: PageProps) {
 					{source.date}
 				</Text>
 			)}
-			{source.url && (
+			{/* originUrl for an image — url is the copy we host, not the origin. */}
+			{(source.originUrl ?? (source.type !== 'image' ? source.url : null)) && (
 				<Text component="p">
-					<a href={source.url} target="_blank" rel="noopener noreferrer">
+					<a
+						href={source.originUrl ?? source.url}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						{dictGet(dict, 'sources.openSource')}
 					</a>
 				</Text>

@@ -7,6 +7,7 @@ const LICENSE_LABELS: Record<string, string> = {
 	'public-domain': 'Public Domain',
 	'cc-by': 'CC BY',
 	'cc-by-sa': 'CC BY-SA',
+	'cc-by-nc-sa': 'CC BY-NC-SA',
 	'fair-use': 'Fair Use',
 	'all-rights-reserved': 'All Rights Reserved',
 	unknown: 'Unknown',
@@ -114,11 +115,17 @@ export function SourceMeta({
 				</a>
 			)}
 
-			{/* An image is opened by clicking it; everything else needs a way
-			    through to the original. */}
-			{source.url && source.type !== 'image' && (
+			{/*
+			 * Where the record came from.
+			 *
+			 * originUrl when the record has one — for an image it is the only
+			 * external link there can be, since url holds the copy we host and
+			 * would open a bare file on S3. Otherwise url, which for a link-type
+			 * source is already the thing itself.
+			 */}
+			{(source.originUrl ?? (source.type !== 'image' ? source.url : null)) && (
 				<a
-					href={source.url}
+					href={source.originUrl ?? source.url}
 					className={styles.metaLink}
 					target="_blank"
 					rel="noopener noreferrer"
