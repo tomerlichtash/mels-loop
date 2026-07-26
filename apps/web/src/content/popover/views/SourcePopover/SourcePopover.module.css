@@ -1,0 +1,28 @@
+.trigger {
+	display: inline;
+	background: none;
+	border: none;
+	padding: 0;
+	color: var(--ml-link-color);
+	cursor: pointer;
+	font: inherit;
+	text-decoration: underline;
+	text-decoration-style: dashed;
+	text-underline-offset: 2px;
+}
+
+.trigger:hover {
+	color: var(--ml-link-hover-color);
+}
+
+.dropdown {
+	--ml-popover-width: 414px;
+	--ml-popover-max-height: 300px;
+	height: 300px;
+}
+
+.loader {
+	display: flex;
+	justify-content: center;
+	padding: var(--ml-space-md);
+}

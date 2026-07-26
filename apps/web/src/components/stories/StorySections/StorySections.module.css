@@ -1,0 +1,115 @@
+.root {
+	width: 100vw;
+	margin-inline-start: calc(-50vw + 50%);
+	/* Authoritative height — see layout.css. Offsets downstream derive from it. */
+	height: var(--ml-story-sections-height);
+	position: sticky;
+	top: calc(
+		var(--ml-header-offset, var(--ml-header-height)) +
+			var(--ml-story-panel-height)
+	);
+	z-index: 89;
+	transition:
+		top var(--ml-duration-normal) ease,
+		background-color var(--ml-duration-fast) ease;
+}
+
+/*
+ * The strip sticks correctly — header 48px + StoryPanel 36px, and the offset
+ * maths agree — but at 60% it did not hide the prose scrolling underneath it,
+ * so the story text read straight through the tabs.
+ *
+ * Two causes. The alpha was simply too low, now 92%. And the blur that was
+ * meant to cover the difference never applied: -webkit-backdrop-filter has to
+ * come *before* the unprefixed property or lightningcss (Next's CSS pipeline)
+ * drops it. See vercel/next.js#78302.
+ */
+.stuck {
+	background-color: color-mix(
+		in srgb,
+		var(--ml-surface-background-color) 92%,
+		transparent
+	);
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+}
+
+.inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	/* Identity, not chrome — aligns with the story text below it. */
+	padding-inline: var(--ml-content-padding-horizontal);
+}
+
+.divider {
+	height: 1px;
+	background-color: var(--ml-border-color);
+}
+
+/*
+ * The tab strip must be allowed to shrink below its content width, or it
+ * pushes the row wider than the viewport instead of scrolling internally.
+ * min-width: 0 is what lets a flex child do that.
+ */
+.nav {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.filterByLabel {
+	margin: 0;
+	color: var(--ml-text-muted-color);
+	white-space: nowrap;
+}
+
+.filterToggle {
+	flex-shrink: 0;
+}
+
+.filterIconClose {
+	display: none;
+}
+
+.filterToggleOpen .filterIconDefault {
+	display: block;
+}
+
+.filterToggleOpen .filterIconClose {
+	display: none;
+}
+
+.filterToggleOpen:hover .filterIconDefault {
+	display: none;
+}
+
+.filterToggleOpen:hover .filterIconClose {
+	display: block;
+}
+
+.filterPanel {
+	box-shadow: inset 0 -1px 0 var(--ml-border-color);
+}
+
+.filterPanelInner {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-sm);
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	/* Identity, not chrome — aligns with the story text below it. */
+	padding-inline: var(--ml-content-padding-horizontal);
+	padding-block: var(--ml-space-xs);
+}
+
+.filterSearch {
+	margin-inline-start: auto;
+	flex: 1;
+	max-width: 300px;
+}
+
+.sentinel {
+	height: 0;
+}

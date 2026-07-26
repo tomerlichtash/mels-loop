@@ -1,0 +1,160 @@
+:root {
+	--ml-container-padding-horizontal: 0;
+	--ml-container-padding-vertical: 0;
+	--ml-container-gap: 0;
+	--ml-container-shadow: none;
+}
+
+.root {
+	display: flex;
+	width: 100%;
+	box-sizing: border-box;
+	padding: var(--ml-container-padding-vertical)
+		var(--ml-container-padding-horizontal);
+	gap: var(--ml-container-gap);
+	box-shadow: var(--ml-container-shadow);
+}
+
+/* Padding Horizontal */
+.paddingHorizontal-none {
+	--ml-container-padding-horizontal: 0;
+}
+
+.paddingHorizontal-xs {
+	--ml-container-padding-horizontal: var(--ml-space-xs);
+}
+
+.paddingHorizontal-sm {
+	--ml-container-padding-horizontal: var(--ml-space-sm);
+}
+
+.paddingHorizontal-md {
+	--ml-container-padding-horizontal: var(--ml-space-md);
+}
+
+.paddingHorizontal-lg {
+	--ml-container-padding-horizontal: var(--ml-space-lg);
+}
+
+.paddingHorizontal-xl {
+	--ml-container-padding-horizontal: var(--ml-space-xl);
+}
+
+/* Padding Vertical */
+.paddingVertical-none {
+	--ml-container-padding-vertical: 0;
+}
+
+.paddingVertical-xs {
+	--ml-container-padding-vertical: var(--ml-space-xs);
+}
+
+.paddingVertical-sm {
+	--ml-container-padding-vertical: var(--ml-space-sm);
+}
+
+.paddingVertical-md {
+	--ml-container-padding-vertical: var(--ml-space-md);
+}
+
+.paddingVertical-lg {
+	--ml-container-padding-vertical: var(--ml-space-lg);
+}
+
+.paddingVertical-xl {
+	--ml-container-padding-vertical: var(--ml-space-xl);
+}
+
+/* Direction */
+.direction-column {
+	flex-direction: column;
+}
+
+.direction-row {
+	flex-direction: row;
+}
+
+/* Gap */
+.gap-none {
+	--ml-container-gap: 0;
+}
+
+.gap-xs {
+	--ml-container-gap: var(--ml-space-xs);
+}
+
+.gap-sm {
+	--ml-container-gap: var(--ml-space-sm);
+}
+
+.gap-md {
+	--ml-container-gap: var(--ml-space-md);
+}
+
+.gap-lg {
+	--ml-container-gap: var(--ml-space-lg);
+}
+
+.gap-xl {
+	--ml-container-gap: var(--ml-space-xl);
+}
+
+/* Align (cross-axis) */
+.align-start {
+	align-items: flex-start;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.align-end {
+	align-items: flex-end;
+}
+
+/* Justify (main-axis) */
+.justify-start {
+	justify-content: flex-start;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.justify-end {
+	justify-content: flex-end;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.justify-evenly {
+	justify-content: space-evenly;
+}
+
+/* Shadow */
+.shadow-none {
+	box-shadow: none;
+}
+
+.shadow-xs {
+	--ml-container-shadow: var(--ml-shadow-xs);
+}
+
+.shadow-sm {
+	--ml-container-shadow: var(--ml-shadow-sm);
+}
+
+.shadow-md {
+	--ml-container-shadow: var(--ml-shadow-md);
+}
+
+.shadow-lg {
+	--ml-container-shadow: var(--ml-shadow-lg);
+}
+
+/* Wrap */
+.wrap {
+	flex-wrap: wrap;
+}

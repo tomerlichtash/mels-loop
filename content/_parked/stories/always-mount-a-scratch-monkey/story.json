@@ -1,0 +1,26 @@
+{
+	"slug": "always-mount-a-scratch-monkey",
+	"meta": {
+		"title": {
+			"en": "Always Mount a Scratch Monkey",
+			"he": "תמיד להשתמש בקוף חלופי"
+		},
+		"abstract": {
+			"en": "A cautionary tale about the risks of routine maintenance on systems you don't fully understand",
+			"he": "סיפור אזהרה על הסיכונים שבתחזוקה שגרתית של מערכות שלא מבינים עד הסוף"
+		},
+		"date": "1991-12-06",
+		"license": "public-domain",
+		"tags": ["hacker-folklore", "risks-digest", "mainframe", "cautionary-tale"]
+	},
+	"assets": {
+		"thumbnail": "/media/images/tartan-labs-logo.jpg"
+	},
+	"sources": [
+		"scratch-monkey-risks-digest",
+		"tartan-labs-wikipedia",
+		"scratch-monkey-jargon-file",
+		"toronto-dead-monkey-project",
+		"scratch-monkey-edp"
+	]
+}

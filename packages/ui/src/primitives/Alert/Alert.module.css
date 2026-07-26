@@ -1,0 +1,85 @@
+:root {
+	--ml-alert-padding: var(--ml-space-md);
+	--ml-alert-radius: var(--ml-radius-md);
+	--ml-alert-title-font-weight: var(--ml-font-weight-bold);
+	--ml-alert-title-margin-bottom: var(--ml-space-xs);
+	--ml-alert-body-font-size: var(--ml-font-size-body);
+	--ml-alert-background-color: var(--ml-info-background-color);
+	--ml-alert-border-color: var(--ml-info-border-color);
+	--ml-alert-text-color: var(--ml-info-text-color);
+}
+
+.root {
+	padding: var(--ml-alert-padding);
+	border-radius: var(--ml-alert-radius);
+	border: 1px solid var(--ml-alert-border-color);
+	background-color: var(--ml-alert-background-color);
+	color: var(--ml-alert-text-color);
+}
+
+.success {
+	--ml-alert-background-color: var(--ml-success-background-color);
+	--ml-alert-border-color: var(--ml-success-border-color);
+	--ml-alert-text-color: var(--ml-success-text-color);
+}
+
+.error {
+	--ml-alert-background-color: var(--ml-error-background-color);
+	--ml-alert-border-color: var(--ml-error-border-color);
+	--ml-alert-text-color: var(--ml-error-text-color);
+}
+
+.warning {
+	--ml-alert-background-color: var(--ml-warning-background-color);
+	--ml-alert-border-color: var(--ml-warning-border-color);
+	--ml-alert-text-color: var(--ml-warning-text-color);
+}
+
+.info {
+	--ml-alert-background-color: var(--ml-info-background-color);
+	--ml-alert-border-color: var(--ml-info-border-color);
+	--ml-alert-text-color: var(--ml-info-text-color);
+}
+
+/* Radius */
+.radius-none {
+	--ml-alert-radius: var(--ml-radius-none);
+}
+
+.radius-sm {
+	--ml-alert-radius: var(--ml-radius-sm);
+}
+
+.radius-md {
+	--ml-alert-radius: var(--ml-radius-md);
+}
+
+.radius-lg {
+	--ml-alert-radius: var(--ml-radius-lg);
+}
+
+.radius-pill {
+	--ml-alert-radius: var(--ml-radius-pill);
+}
+
+/* Align */
+.align-start {
+	text-align: start;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.align-end {
+	text-align: end;
+}
+
+.title {
+	font-weight: var(--ml-alert-title-font-weight);
+	margin-bottom: var(--ml-alert-title-margin-bottom);
+}
+
+.body {
+	font-size: var(--ml-alert-body-font-size);
+}

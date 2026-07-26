@@ -1,0 +1,126 @@
+/* ---- Typography ---- */
+
+:root {
+	/* Font Families */
+	--ml-font-latin: 'Roboto Slab', serif;
+	--ml-font-hebrew: 'Assistant', sans-serif;
+	--ml-font-mono:
+		ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
+		'DejaVu Sans Mono', monospace;
+
+	/* Font Weights */
+	--ml-font-weight-light: 300;
+	--ml-font-weight-regular: 400;
+	--ml-font-weight-medium: 500;
+	--ml-font-weight-semibold: 600;
+	--ml-font-weight-bold: 700;
+
+	/* Font Size Scale */
+	--ml-font-size-2xs: 0.6rem;
+	--ml-font-size-xs: 0.7rem;
+	--ml-font-size-sm: 0.75rem;
+	--ml-font-size-body: 0.875rem;
+	--ml-font-size-md: 1rem;
+	--ml-font-size-lg: 1.125rem;
+	/*
+	 * The display steps are fluid: a fixed 2rem heading that reads well on a
+	 * desktop is oversized on a 390px phone, where it eats the screen and
+	 * wraps awkwardly. Body and the smaller steps stay fixed — fluid body text
+	 * mostly makes lines harder to hold, not easier.
+	 */
+	--ml-font-size-xl: clamp(1.125rem, 1rem + 0.6vw, 1.25rem);
+	--ml-font-size-2xl: clamp(1.25rem, 1rem + 1.2vw, 1.5rem);
+	--ml-font-size-3xl: clamp(1.5rem, 1.1rem + 2vw, 2rem);
+
+	/* Line Height Scale */
+	--ml-line-height-none: 1;
+	--ml-line-height-tight: 1.3;
+	--ml-line-height-snug: 1.4;
+	--ml-line-height-body: 1.5;
+	--ml-line-height-relaxed: 1.55;
+
+	/* Letter Spacing */
+	--ml-letter-spacing-tight: 0.5px;
+	--ml-letter-spacing-wide: 1px;
+
+	/* ---- Typography Variants ---- */
+
+	/* Headings */
+	--ml-typography-h1-font-family: var(--ml-font-latin);
+	--ml-typography-h1-font-size: var(--ml-font-size-3xl);
+	--ml-typography-h1-font-weight: var(--ml-font-weight-bold);
+	--ml-typography-h1-line-height: var(--ml-line-height-tight);
+	--ml-typography-h1-letter-spacing: normal;
+
+	--ml-typography-h2-font-family: var(--ml-font-latin);
+	--ml-typography-h2-font-size: var(--ml-font-size-2xl);
+	--ml-typography-h2-font-weight: var(--ml-font-weight-bold);
+	--ml-typography-h2-line-height: var(--ml-line-height-tight);
+	--ml-typography-h2-letter-spacing: normal;
+
+	--ml-typography-h3-font-family: var(--ml-font-latin);
+	--ml-typography-h3-font-size: var(--ml-font-size-xl);
+	--ml-typography-h3-font-weight: var(--ml-font-weight-semibold);
+	--ml-typography-h3-line-height: var(--ml-line-height-snug);
+	--ml-typography-h3-letter-spacing: normal;
+
+	--ml-typography-h4-font-family: var(--ml-font-latin);
+	--ml-typography-h4-font-size: var(--ml-font-size-lg);
+	--ml-typography-h4-font-weight: var(--ml-font-weight-semibold);
+	--ml-typography-h4-line-height: var(--ml-line-height-snug);
+	--ml-typography-h4-letter-spacing: normal;
+
+	/* Subtitles */
+	--ml-typography-subtitle1-font-family: var(--ml-font-latin);
+	--ml-typography-subtitle1-font-size: var(--ml-font-size-md);
+	--ml-typography-subtitle1-font-weight: var(--ml-font-weight-medium);
+	--ml-typography-subtitle1-line-height: var(--ml-line-height-snug);
+	--ml-typography-subtitle1-letter-spacing: normal;
+
+	--ml-typography-subtitle2-font-family: var(--ml-font-latin);
+	--ml-typography-subtitle2-font-size: var(--ml-font-size-body);
+	--ml-typography-subtitle2-font-weight: var(--ml-font-weight-medium);
+	--ml-typography-subtitle2-line-height: var(--ml-line-height-snug);
+	--ml-typography-subtitle2-letter-spacing: normal;
+
+	/* Body */
+	--ml-typography-body1-font-family: var(--ml-font-latin);
+	--ml-typography-body1-font-size: var(--ml-font-size-md);
+	--ml-typography-body1-font-weight: var(--ml-font-weight-regular);
+	--ml-typography-body1-line-height: var(--ml-line-height-body);
+	--ml-typography-body1-letter-spacing: normal;
+
+	--ml-typography-body2-font-family: var(--ml-font-latin);
+	--ml-typography-body2-font-size: var(--ml-font-size-body);
+	--ml-typography-body2-font-weight: var(--ml-font-weight-regular);
+	--ml-typography-body2-line-height: var(--ml-line-height-body);
+	--ml-typography-body2-letter-spacing: normal;
+
+	/* Caption */
+	--ml-typography-caption-font-family: var(--ml-font-latin);
+	--ml-typography-caption-font-size: var(--ml-font-size-sm);
+	--ml-typography-caption-font-weight: var(--ml-font-weight-regular);
+	--ml-typography-caption-line-height: var(--ml-line-height-snug);
+	--ml-typography-caption-letter-spacing: normal;
+
+	/* Label (buttons, badges, form labels) */
+	--ml-typography-label-font-family: var(--ml-font-latin);
+	--ml-typography-label-font-size: var(--ml-font-size-body);
+	--ml-typography-label-font-weight: var(--ml-font-weight-regular);
+	--ml-typography-label-line-height: var(--ml-line-height-none);
+	--ml-typography-label-letter-spacing: normal;
+}
+
+/* RTL: override font-family for all variants */
+[dir='rtl'] {
+	--ml-typography-h1-font-family: var(--ml-font-hebrew);
+	--ml-typography-h2-font-family: var(--ml-font-hebrew);
+	--ml-typography-h3-font-family: var(--ml-font-hebrew);
+	--ml-typography-h4-font-family: var(--ml-font-hebrew);
+	--ml-typography-subtitle1-font-family: var(--ml-font-hebrew);
+	--ml-typography-subtitle2-font-family: var(--ml-font-hebrew);
+	--ml-typography-body1-font-family: var(--ml-font-hebrew);
+	--ml-typography-body2-font-family: var(--ml-font-hebrew);
+	--ml-typography-caption-font-family: var(--ml-font-hebrew);
+	--ml-typography-label-font-family: var(--ml-font-hebrew);
+}

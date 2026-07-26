@@ -1,0 +1,84 @@
+:root {
+	--ml-skeleton-color: var(--ml-border-color);
+}
+
+.media {
+	margin: calc(-1 * var(--ml-card-padding)) calc(-1 * var(--ml-card-padding))
+		var(--ml-card-padding);
+	height: var(--ml-card-media-height, 200px);
+	background-color: var(--ml-skeleton-color);
+	animation: shimmer 1.5s infinite;
+	flex-shrink: 0;
+}
+
+.mediaHorizontal {
+	margin-block: calc(-1 * var(--ml-card-padding));
+	margin-inline-start: calc(-1 * var(--ml-card-padding));
+	margin-inline-end: var(--ml-card-padding);
+	height: auto;
+	width: 40%;
+}
+
+/* Mirrors CardHeader layout */
+.header {
+	margin: calc(-1 * var(--ml-card-padding)) calc(-1 * var(--ml-card-padding)) 0;
+	padding: var(--ml-card-padding);
+	padding-bottom: var(--ml-space-sm);
+}
+
+.title {
+	height: 1rem;
+	width: 50%;
+}
+
+/* Mirrors CardBody layout */
+.body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+	padding: var(--ml-space-sm) 0;
+}
+
+.line {
+	height: 0.75rem;
+	border-radius: var(--ml-radius-sm);
+	background-color: var(--ml-skeleton-color);
+	animation: shimmer 1.5s infinite;
+}
+
+/* Mirrors CardFooter layout */
+.footer {
+	margin: 0 calc(-1 * var(--ml-card-padding)) calc(-1 * var(--ml-card-padding));
+	padding: var(--ml-space-sm) var(--ml-card-padding);
+}
+
+.footerLine {
+	height: 0.625rem;
+	width: 40%;
+}
+
+.actions {
+	margin: 0 calc(-1 * var(--ml-card-padding)) calc(-1 * var(--ml-card-padding));
+	padding: var(--ml-space-sm) var(--ml-card-padding);
+	display: flex;
+	justify-content: flex-end;
+	gap: var(--ml-space-sm);
+}
+
+.button {
+	width: 4rem;
+	height: 2rem;
+	border-radius: var(--ml-radius-md);
+}
+
+@keyframes shimmer {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.4;
+	}
+	100% {
+		opacity: 1;
+	}
+}

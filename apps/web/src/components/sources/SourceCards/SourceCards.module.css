@@ -1,0 +1,69 @@
+.resultCount {
+	margin: 0;
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-muted-color);
+}
+
+.groupCount {
+	font-weight: var(--ml-font-weight-normal);
+	color: var(--ml-text-muted-color);
+	margin-inline-start: var(--ml-space-xs);
+}
+
+/* Card content */
+
+.cardTitle {
+	margin: 0;
+	font-size: var(--ml-font-size-body);
+	font-weight: var(--ml-font-weight-semibold);
+	color: var(--ml-text-color);
+	line-height: var(--ml-line-height-tight);
+}
+
+.cardDesc {
+	margin: 0;
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-color);
+	line-height: var(--ml-line-height-normal);
+	opacity: 0.85;
+}
+
+.cardMeta {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.metaItem {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-xs);
+	font-size: var(--ml-font-size-xs);
+	color: var(--ml-text-color);
+}
+
+.metaLabel {
+	font-weight: var(--ml-font-weight-bold);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--ml-text-muted-color);
+}
+
+.action {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-space-xs);
+	color: var(--ml-color-primary);
+	text-decoration: none;
+	font-size: var(--ml-font-size-sm);
+	background: none;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	padding: 0;
+	transition: color var(--ml-duration-fast) ease;
+}
+
+.action:hover {
+	text-decoration: underline;
+}

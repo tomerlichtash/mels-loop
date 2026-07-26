@@ -1,0 +1,48 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"globalPassThroughEnv": [
+		"NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+		"CLERK_SECRET_KEY",
+		"REQUIRE_AUTH"
+	],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": [
+				".next/**",
+				"!.next/cache/**",
+				"dist/**",
+				"public/search-index.*.json"
+			]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		},
+		"type-check": {
+			"dependsOn": ["^build"]
+		},
+		"lint": {
+			"dependsOn": ["^build"]
+		},
+		"lint:fix": {
+			"dependsOn": ["^build"],
+			"cache": false
+		},
+		"test": {
+			"dependsOn": ["^build"],
+			"cache": false
+		},
+		"test:e2e": {
+			"dependsOn": ["^build"],
+			"cache": false
+		},
+		"test-storybook": {
+			"cache": false
+		},
+		"build-storybook": {
+			"dependsOn": ["^build"],
+			"outputs": ["storybook-static/**"]
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"slug": "the-500-mile-email",
+	"meta": {
+		"title": {
+			"en": "The Case of the 500-Mile Email",
+			"he": "המקרה של המייל שלא עבר 500 מייל"
+		},
+		"abstract": {
+			"en": "A statistics department can't send email farther than 500 miles — and the explanation involves the speed of light",
+			"he": "מחלקת סטטיסטיקה לא מצליחה לשלוח מייל מעבר ל-500 מייל — וההסבר קשור למהירות האור"
+		},
+		"date": "2002-11-24",
+		"license": "public-domain",
+		"tags": ["hacker-folklore", "email", "networking", "debugging", "sendmail"]
+	},
+	"authors": [{ "ref": "treybehr", "role": "author" }],
+	"assets": {
+		"cover": "/media/images/500-mile-terminal.png"
+	},
+	"sources": []
+}

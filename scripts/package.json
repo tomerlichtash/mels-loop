@@ -1,16 +1,26 @@
 {
-  "name": "mels-loop-scripts",
-  "version": "1.0.0",
-  "description": "Scripts for Mel's Loop",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "dfl",
-  "license": "MIT",
-  "dependencies": {
-    "@aws-sdk/client-s3": "^3.354.0",
-    "dotenv": "^16.3.1",
+	"name": "@mels-loop/scripts",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"s3:upload": "tsx src/s3/upload.ts",
+		"s3:clone": "tsx src/s3/clone.ts",
+		"s3:download": "tsx src/s3/download-file.ts",
+		"s3:delete": "tsx src/s3/delete.ts",
+		"s3:list": "tsx src/s3/list.ts",
+		"test": "vitest run --coverage"
+	},
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.354.0",
+		"dotenv": "^16.3.1",
 		"mime-types": "^2.1.35"
-  }
+	},
+	"devDependencies": {
+		"@types/mime-types": "^2.1.1",
+		"aws-sdk-client-mock": "^4.0.0",
+		"@vitest/coverage-v8": "^3.0.0",
+		"tsx": "^4.0.0",
+		"vitest": "^3.0.0"
+	}
 }

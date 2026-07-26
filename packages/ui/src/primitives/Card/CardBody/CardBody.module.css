@@ -1,0 +1,67 @@
+:root {
+	--ml-card-body-font-family: var(--ml-typography-body2-font-family);
+	--ml-card-body-font-size: var(--ml-typography-body2-font-size);
+	--ml-card-body-font-weight: var(--ml-typography-body2-font-weight);
+	--ml-card-body-line-height: var(--ml-typography-body2-line-height);
+	--ml-card-body-letter-spacing: var(--ml-typography-body2-letter-spacing);
+}
+
+.root {
+	padding: var(--ml-space-sm) 0;
+	font-family: var(--ml-card-body-font-family);
+	font-size: var(--ml-card-body-font-size);
+	font-weight: var(--ml-card-body-font-weight);
+	line-height: var(--ml-card-body-line-height);
+	letter-spacing: var(--ml-card-body-letter-spacing);
+}
+
+.root:first-child {
+	padding-top: 0;
+}
+
+.root:last-child {
+	padding-bottom: 0;
+}
+
+.align-start {
+	text-align: start;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.align-end {
+	text-align: end;
+}
+
+/* Line clamp */
+.lines-1,
+.lines-2,
+.lines-3,
+.lines-4,
+.lines-5 {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.lines-1 {
+	-webkit-line-clamp: 1;
+}
+
+.lines-2 {
+	-webkit-line-clamp: 2;
+}
+
+.lines-3 {
+	-webkit-line-clamp: 3;
+}
+
+.lines-4 {
+	-webkit-line-clamp: 4;
+}
+
+.lines-5 {
+	-webkit-line-clamp: 5;
+}

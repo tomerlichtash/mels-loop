@@ -1,0 +1,14 @@
+.link {
+	display: flex;
+	flex-direction: column;
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-color);
+	text-decoration: none;
+	line-height: var(--ml-line-height-normal);
+}
+
+.active {
+	color: var(--ml-text-color);
+	font-weight: var(--ml-font-weight-semibold);
+	pointer-events: none;
+}

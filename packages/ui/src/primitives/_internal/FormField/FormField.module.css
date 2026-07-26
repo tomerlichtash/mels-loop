@@ -1,0 +1,17 @@
+:root {
+	--ml-form-field-gap: var(--ml-space-sm);
+	--ml-form-field-error-font-size: var(--ml-font-size-sm);
+	--ml-form-field-error-color: var(--ml-error-text-color);
+}
+
+.root {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-form-field-gap);
+	width: 100%;
+}
+
+.error {
+	font-size: var(--ml-form-field-error-font-size);
+	color: var(--ml-form-field-error-color);
+}

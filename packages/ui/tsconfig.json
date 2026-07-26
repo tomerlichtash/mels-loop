@@ -1,0 +1,10 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"incremental": false,
+		"paths": {
+			"@e2e/*": ["./e2e/*"]
+		}
+	},
+	"include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "e2e/**/*.ts"]
+}

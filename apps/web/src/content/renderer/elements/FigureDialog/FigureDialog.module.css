@@ -1,0 +1,5 @@
+.loader {
+	display: flex;
+	justify-content: center;
+	padding: var(--ml-space-md);
+}

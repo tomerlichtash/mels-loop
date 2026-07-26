@@ -1,0 +1,74 @@
+.root {
+	margin-top: var(--ml-space-xl);
+}
+
+/*
+ * Prose leads, contents follow. The section tabs above are the primary
+ * navigation, so this sidebar is supplementary — the reading column earns the
+ * leading position. Column placement is explicit because the sidebar comes
+ * first in the DOM (see the media query below for why). Logical: in Hebrew the
+ * grid flips, so the sidebar sits on the left without any RTL override.
+ */
+.layout {
+	display: grid;
+	grid-template-columns: 1fr 250px;
+	gap: var(--ml-space-xl);
+	align-items: stretch;
+}
+
+.content {
+	min-width: 0;
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.sidebar {
+	position: relative;
+	grid-column: 2;
+	grid-row: 1;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-lg);
+	padding-inline-start: var(--ml-space-xl);
+}
+
+.sidebar > * {
+	position: sticky;
+	top: calc(
+		var(--ml-header-offset, var(--ml-header-height)) +
+			var(--ml-story-panel-height) + var(--ml-story-sections-height) +
+			var(--ml-space-xl)
+	);
+}
+
+@media (max-width: 1024px) {
+	.layout {
+		grid-template-columns: 1fr;
+	}
+
+	/*
+	 * The sidebar precedes the content in the DOM so assistive tech meets the
+	 * table of contents before the prose, which is the conventional order for
+	 * sidebar navigation. Once the grid collapses to one column that same order
+	 * would push the story itself below a full-height contents list — a phone
+	 * reader had to scroll past every entry to reach the first word. Reorder
+	 * visually only; the DOM, and therefore the reading and tab order, is
+	 * unchanged.
+	 */
+	.content {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.sidebar {
+		grid-column: 1;
+		grid-row: 2;
+		position: static;
+		padding-top: var(--ml-space-lg);
+		margin-top: var(--ml-space-xl);
+	}
+
+	.sidebar > * {
+		position: static;
+	}
+}

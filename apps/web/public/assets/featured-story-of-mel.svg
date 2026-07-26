@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" width="120" height="160">
+  <rect width="120" height="160" fill="#2a2a3d"/>
+  <g transform="translate(60,55)">
+    <circle r="22" fill="none" stroke="#8b8ba3" stroke-width="1.5"/>
+    <circle r="16" fill="none" stroke="#8b8ba3" stroke-width="1"/>
+    <circle r="3" fill="#8b8ba3"/>
+    <line x1="-10" y1="10" x2="10" y2="-10" stroke="#8b8ba3" stroke-width="1" opacity="0.5"/>
+    <line x1="-10" y1="-10" x2="10" y2="10" stroke="#8b8ba3" stroke-width="1" opacity="0.5"/>
+  </g>
+  <text x="60" y="100" text-anchor="middle" fill="#c4c4d4" font-family="serif" font-size="11" font-weight="700">The Story</text>
+  <text x="60" y="115" text-anchor="middle" fill="#c4c4d4" font-family="serif" font-size="11" font-weight="700">of Mel</text>
+  <text x="60" y="138" text-anchor="middle" fill="#8b8ba3" font-family="sans-serif" font-size="8">40th Anniversary</text>
+</svg>

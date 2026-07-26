@@ -1,0 +1,29 @@
+{
+	"story": {
+		"title": "הסיפור על מל",
+		"abstract": "מדריך מקיף לסיפור על מל",
+		"subtitle": "מתכנת אמיתי"
+	},
+	"parts": {
+		"preface": "הקדמה",
+		"codex": "השיר",
+		"articles": "מאמרים",
+		"appendix": "נספח",
+		"sources": "מקורות"
+	},
+	"titles": {
+		"preface": "הקדמה"
+	},
+	"authors": {
+		"ednather": "אד נאת׳ר",
+		"tomerlichtash": "תומר ליכטש",
+		"dfl": "דוד פרנקל"
+	},
+	"avatar": {
+		"initials": "מק",
+		"alt": "תצלום של מל קיי, 1952"
+	},
+	"figures": {
+		"template": "איור %index%"
+	}
+}

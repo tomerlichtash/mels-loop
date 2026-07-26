@@ -1,0 +1,123 @@
+/*
+ * ---- Semantic Colors (Light) ----
+ *
+ * Layer 3 of the color system. Component-consumable tokens.
+ *
+ * These are the only color tokens that components should reference.
+ * They draw from the intent layer (layer 2) wherever possible.
+ *
+ * Tokens that reference palette directly are neutral shades
+ * with no clean intent mapping (gray-200, gray-300).
+ *
+ * Dark theme overrides are in themes/dark.css.
+ */
+
+:root {
+	/* ---- Backgrounds ---- */
+	--ml-background-color: var(--ml-color-surface-subtle);
+	--ml-background-color-alt: var(--ml-color-surface-alt);
+	--ml-surface-background-color: var(--ml-color-surface);
+
+	/* ---- Text ---- */
+	/* Three emphasis levels for body text. */
+	/* These reference palette neutrals directly — text emphasis is */
+	/* about foreground readability, not surface/intent semantics. */
+	--ml-text-color: var(--ml-color-surface-contrast);
+	--ml-text-subtle-color: var(--ml-gray-300);
+	/*
+	 * Was var(--ml-color-surface-muted), which breaks the rule stated above:
+	 * in light mode that resolves to --ml-gray-100, a near-white background
+	 * tint. As text on the cream page it measured 1.6:1 — breadcrumbs and the
+	 * table-of-contents author lines were effectively unreadable.
+	 *
+	 * ponytail: muted currently equals subtle because no lighter neutral in the
+	 * scale clears 4.5:1 on this background (gray-200 is oklch 0.72). Add a
+	 * dedicated intermediate neutral if the two levels need to look different.
+	 */
+	--ml-text-muted-color: var(--ml-gray-300);
+
+	/* ---- Headings ---- */
+	--ml-heading-color: var(--ml-color-surface-contrast);
+	--ml-heading-subtle-color: var(--ml-gray-300);
+
+	/* ---- Links ---- */
+	--ml-link-color: var(--ml-color-secondary);
+	--ml-link-hover-color: var(--ml-color-secondary-alt);
+
+	/* ---- Border ---- */
+	--ml-border-color: var(--ml-color-surface-muted);
+
+	/* ---- Code ---- */
+	--ml-code-bg: var(--ml-color-surface-deep);
+	--ml-code-text: var(--ml-color-surface-contrast);
+	--ml-code-border: var(--ml-color-surface-muted);
+
+	/* ---- Popover / Dialog ---- */
+	--ml-popover-bg: var(--ml-color-surface-subtle);
+	--ml-popover-topic-bg: var(--ml-color-surface-alt);
+	--ml-popover-topic-text: var(--ml-color-secondary-alt);
+	--ml-popover-icon: var(--ml-gray-200);
+	--ml-popover-icon-hover: var(--ml-color-surface-contrast);
+
+	/* ---- Annotation ---- */
+	--ml-annotation-text: var(--ml-color-primary-contrast);
+	--ml-annotation-bg: var(--ml-color-secondary-deep);
+
+	/* ---- Gradient ---- */
+	--ml-gradient-start: var(--ml-color-secondary);
+	--ml-gradient-end: var(--ml-color-primary);
+
+	/* ---- Header ---- */
+	--ml-header-bg: var(--ml-color-surface-alt);
+	--ml-header-item-hover: var(--ml-color-surface-deep);
+	--ml-header-item-active: var(--ml-color-surface-muted);
+
+	/* ---- Footer ---- */
+	--ml-footer-bg: var(--ml-color-surface-alt);
+
+	/* ---- Form ---- */
+	--ml-input-border: var(--ml-color-surface-muted);
+	--ml-input-border-focus: var(--ml-color-secondary);
+	--ml-input-placeholder: var(--ml-gray-200);
+	--ml-submit-bg: var(--ml-color-secondary);
+	--ml-submit-bg-hover: var(--ml-color-secondary-alt);
+	--ml-submit-text: var(--ml-color-surface-subtle);
+
+	/* ---- Menu ---- */
+	--ml-menu-hover-bg: var(--ml-color-surface-deep);
+	--ml-mobile-menu-bg: var(--ml-gray-400);
+	--ml-mobile-menu-text: var(--ml-color-secondary-highlight);
+	--ml-mobile-menu-subtitle: var(--ml-color-primary-contrast);
+	--ml-mobile-menu-hover-bg: var(--ml-color-surface-contrast);
+	--ml-mobile-menu-border: var(--ml-gray-300);
+	--ml-mobile-menu-section-title: var(--ml-gray-200);
+
+	/* ---- Interactive ---- */
+	/* Primary action surfaces (buttons, clickable cards). */
+	--ml-interactive-background-color: var(--ml-color-primary);
+	--ml-interactive-background-color-hover: var(--ml-color-primary-alt);
+	--ml-interactive-text-color: var(--ml-color-primary-contrast);
+
+	/* ---- Status — success ---- */
+	--ml-success-background-color: var(--ml-color-success-subtle);
+	--ml-success-text-color: var(--ml-color-success-alt);
+	--ml-success-border-color: var(--ml-color-success);
+
+	/* ---- Status — error ---- */
+	--ml-error-background-color: var(--ml-color-error-subtle);
+	--ml-error-text-color: var(--ml-color-error-alt);
+	--ml-error-border-color: var(--ml-color-error);
+
+	/* ---- Status — warning ---- */
+	--ml-warning-background-color: var(--ml-color-warning-subtle);
+	--ml-warning-text-color: var(--ml-color-warning-alt);
+	--ml-warning-border-color: var(--ml-color-warning);
+
+	/* ---- Status — info ---- */
+	--ml-info-background-color: var(--ml-color-info-subtle);
+	--ml-info-text-color: var(--ml-color-info-alt);
+	--ml-info-border-color: var(--ml-color-info);
+
+	/* ---- Overlay ---- */
+	--ml-overlay-background-color: var(--ml-black-alpha-50);
+}

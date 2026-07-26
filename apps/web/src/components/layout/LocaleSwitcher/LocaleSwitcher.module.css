@@ -1,0 +1,12 @@
+.root {
+	direction: ltr;
+}
+
+.en {
+	font-family: var(--font-roboto-slab, var(--ml-font-latin));
+}
+
+.he {
+	font-family: var(--font-assistant, var(--ml-font-hebrew));
+	font-size: var(--ml-font-size-md);
+}

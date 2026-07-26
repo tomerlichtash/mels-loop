@@ -1,0 +1,57 @@
+.hero {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	max-width: 700px;
+	gap: var(--ml-space-sm);
+	margin: 0 auto;
+	padding-block-start: 0;
+	padding-block-end: var(--ml-space-lg);
+	margin-block-start: calc(-1 * var(--ml-space-xl));
+	min-height: calc(35svh - var(--ml-header-height));
+}
+
+.heroBg {
+	position: absolute;
+	inset: 0;
+	width: 100vw;
+	margin-inline-start: calc(-50vw + 50%);
+	mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+	background: url('/media/homepage/drum-memory-3.png') no-repeat center;
+	background-size: cover;
+	opacity: 0.05;
+	pointer-events: none;
+	z-index: -1;
+	will-change: transform;
+}
+
+.heroTitle {
+	font-size: clamp(2.4rem, 5.5vw, 3.5rem);
+}
+
+.heroTitleHighlight {
+	font-family: var(--font-roboto-mono), monospace;
+	font-weight: 900;
+}
+
+.heroDescription {
+	margin: 0;
+	max-width: 640px;
+	font-size: clamp(1.1rem, 2vw, 1.4rem);
+	font-weight: var(--ml-font-weight-light);
+	line-height: 1.45;
+	color: var(--ml-text-color);
+	letter-spacing: -0.3px;
+}
+
+.featured {
+	width: 100%;
+	margin-bottom: var(--ml-space-2xl);
+}
+
+.storiesHeading {
+	margin-bottom: var(--ml-space-md);
+}

@@ -1,0 +1,18 @@
+.root {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--ml-text-color);
+}
+
+@media (--ml-bp-desktop) {
+	.root {
+		display: none;
+	}
+}

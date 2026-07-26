@@ -1,0 +1,118 @@
+.root {
+	position: fixed;
+	top: 0;
+	inset-inline: 0;
+	z-index: 100;
+	height: var(--ml-header-height);
+	background-color: var(--ml-header-bg);
+	transition: transform var(--ml-duration-normal) ease;
+}
+
+.strip {
+	position: fixed;
+	top: 0;
+	inset-inline: 0;
+	z-index: 99;
+	opacity: 0;
+	transition: opacity var(--ml-duration-fast) ease;
+}
+
+.stripVisible {
+	opacity: 1;
+	transition-delay: var(--ml-duration-fast);
+}
+
+.hidden {
+	transform: translateY(-100%);
+}
+
+.inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	padding: 0 var(--ml-page-padding-horizontal);
+}
+
+.left {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-sm);
+}
+
+.right {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: var(--ml-space-lg);
+}
+
+.logoDivider {
+	width: 1px;
+	align-self: stretch;
+	margin-block: var(--ml-space-xs);
+	background-color: var(--ml-border-color);
+}
+
+.logoSubtitle {
+	font-size: var(--ml-font-size-md);
+	font-weight: var(--ml-font-weight-regular);
+	color: var(--ml-text-color);
+	opacity: 0.6;
+	letter-spacing: 0;
+	text-transform: lowercase;
+}
+
+@media (--ml-bp-mobile) {
+	.logoDivider,
+	.logoSubtitle {
+		display: none;
+	}
+
+	/*
+	 * With the drawer trigger, search, locale switcher and theme toggle all
+	 * competing for a 390px bar, flex was shrinking the brand until "MEL'S
+	 * LOOP" broke across two lines. Keep it on one line and let it hold its
+	 * width; the controls on the right have more give.
+	 */
+	.left {
+		flex-shrink: 0;
+		white-space: nowrap;
+	}
+}
+
+.rightDivider {
+	width: 1px;
+	align-self: stretch;
+	margin-block: var(--ml-space-xs);
+	background-color: var(--ml-border-color);
+}
+
+.desktopNav {
+	display: none;
+}
+
+/* Locale and theme are in the drawer on mobile — see SiteHeader.tsx. */
+.desktopControls {
+	display: none;
+}
+
+@media (--ml-bp-mobile) {
+	.rightDivider {
+		display: none;
+	}
+}
+
+@media (--ml-bp-desktop) {
+	.desktopNav {
+		display: flex;
+	}
+
+	.desktopControls {
+		display: flex;
+		align-items: center;
+		gap: var(--ml-space-lg);
+	}
+}

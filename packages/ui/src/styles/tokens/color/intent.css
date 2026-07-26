@@ -1,0 +1,110 @@
+/*
+ * ---- Intent Colors ----
+ *
+ * Layer 2 of the color system. Theme-level color intents.
+ *
+ * Intents are the bridge between raw palette values and component tokens.
+ * Any component can reference these — they are not tied to a specific
+ * component or use case.
+ *
+ * Intents:
+ *   primary    — main action / accent
+ *   secondary  — supporting accent
+ *   success    — positive / confirmation (green)
+ *   error      — destructive / error (red)
+ *   warning    — caution / attention (amber)
+ *   info       — informational / neutral (blue)
+ *   surface    — neutral backgrounds and containers
+ *
+ * Each intent provides 7 variants that describe the color relationship,
+ * not the use case — components decide how to apply them:
+ *
+ *   subtle  →  muted  →  (main)  →  alt  →  deep
+ *   ──────────────────────────────────────────────
+ *   lightest                           strongest
+ *
+ *   + contrast   — readable foreground on any of the above
+ *   + highlight  — high-visibility, draws attention
+ *
+ * In oklch terms, variants share the same hue (H) and differ in
+ * lightness (L) and chroma (C):
+ *
+ *   subtle    — high L, very low C  (background tints)
+ *   muted     — similar L, low C    (faded, de-emphasized)
+ *   (main)    — the standard color
+ *   alt       — shifted L, similar C (general alternative)
+ *   deep      — low L, high C       (intense, saturated)
+ *   contrast  — max L, zero C       (readable foreground)
+ *   highlight — high L, high C      (bright, attention-grabbing)
+ *
+ * Dark theme overrides are in themes/dark.css. The variant meanings
+ * stay the same — only the L/C values adjust for dark backgrounds.
+ *
+ * Brand themes (e.g. ml.css) override primary and secondary with
+ * their own hues and chroma values.
+ */
+
+:root {
+	/* ---- Primary (generic blue, H≈250) ---- */
+	--ml-color-primary: var(--ml-blue);
+	--ml-color-primary-alt: oklch(0.5 0.13 250);
+	--ml-color-primary-subtle: oklch(0.955 0.02 250);
+	--ml-color-primary-deep: oklch(0.35 0.16 250);
+	--ml-color-primary-muted: oklch(0.58 0.05 250);
+	--ml-color-primary-contrast: var(--ml-white);
+	--ml-color-primary-highlight: oklch(0.65 0.19 250);
+
+	/* ---- Secondary (teal accent, H≈180) ---- */
+	--ml-color-secondary: var(--ml-pink);
+	--ml-color-secondary-alt: oklch(0.55 0.1 180);
+	--ml-color-secondary-subtle: oklch(0.955 0.015 180);
+	--ml-color-secondary-deep: oklch(0.4 0.15 180);
+	--ml-color-secondary-muted: oklch(0.62 0.04 180);
+	--ml-color-secondary-contrast: var(--ml-white);
+	--ml-color-secondary-highlight: oklch(0.68 0.16 180);
+
+	/* ---- Success (green, H≈143) ---- */
+	--ml-color-success: var(--ml-success);
+	--ml-color-success-alt: var(--ml-success-dark);
+	--ml-color-success-subtle: var(--ml-success-tint);
+	--ml-color-success-deep: oklch(0.4 0.18 143);
+	--ml-color-success-muted: oklch(0.65 0.06 143);
+	--ml-color-success-contrast: var(--ml-white);
+	--ml-color-success-highlight: var(--ml-success-light);
+
+	/* ---- Error (red, H≈27) ---- */
+	--ml-color-error: var(--ml-error);
+	--ml-color-error-alt: var(--ml-error-dark);
+	--ml-color-error-subtle: var(--ml-error-tint);
+	--ml-color-error-deep: oklch(0.35 0.2 27);
+	--ml-color-error-muted: oklch(0.58 0.06 27);
+	--ml-color-error-contrast: var(--ml-white);
+	--ml-color-error-highlight: var(--ml-error-light);
+
+	/* ---- Warning (amber, H≈76) ---- */
+	--ml-color-warning: var(--ml-warning);
+	--ml-color-warning-alt: var(--ml-warning-dark);
+	--ml-color-warning-subtle: var(--ml-warning-tint);
+	--ml-color-warning-deep: oklch(0.38 0.13 76);
+	--ml-color-warning-muted: oklch(0.7 0.05 76);
+	--ml-color-warning-contrast: var(--ml-white);
+	--ml-color-warning-highlight: var(--ml-warning-light);
+
+	/* ---- Info (blue, H≈263) ---- */
+	--ml-color-info: var(--ml-info);
+	--ml-color-info-alt: var(--ml-info-dark);
+	--ml-color-info-subtle: var(--ml-info-tint);
+	--ml-color-info-deep: oklch(0.34 0.19 263);
+	--ml-color-info-muted: oklch(0.58 0.05 263);
+	--ml-color-info-contrast: var(--ml-white);
+	--ml-color-info-highlight: var(--ml-info-light);
+
+	/* ---- Surface (neutral, references palette) ---- */
+	--ml-color-surface: var(--ml-white);
+	--ml-color-surface-alt: var(--ml-cream-200);
+	--ml-color-surface-subtle: var(--ml-cream-100);
+	--ml-color-surface-deep: var(--ml-cream-300);
+	--ml-color-surface-muted: var(--ml-gray-100);
+	--ml-color-surface-contrast: var(--ml-gray-500);
+	--ml-color-surface-highlight: var(--ml-cream-300);
+}

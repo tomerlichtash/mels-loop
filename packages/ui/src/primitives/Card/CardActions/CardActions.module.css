@@ -1,0 +1,20 @@
+.root {
+	margin: 0 calc(-1 * var(--ml-card-padding)) calc(-1 * var(--ml-card-padding));
+	padding: var(--ml-space-sm) var(--ml-card-padding);
+	border-top: 1px solid transparent;
+	display: flex;
+	gap: var(--ml-space-sm);
+	align-items: center;
+}
+
+.align-start {
+	justify-content: flex-start;
+}
+
+.align-center {
+	justify-content: center;
+}
+
+.align-end {
+	justify-content: flex-end;
+}

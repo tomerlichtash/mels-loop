@@ -1,0 +1,49 @@
+/* ---- Layout ---- */
+
+:root {
+	--ml-content-max-width: 800px;
+	--ml-page-max-width: 1100px;
+	/*
+	 * Two gutters, because chrome and prose want different things. The chrome
+	 * bars — header, story panel, tab strip — are dense rows of controls that
+	 * benefit from reaching closer to the edge. Body text does not: it needs
+	 * margin to sit comfortably. They are equal on desktop and diverge on a
+	 * phone, where the difference actually matters.
+	 */
+	--ml-page-padding-horizontal: var(--ml-space-xl);
+	--ml-content-padding-horizontal: var(--ml-space-xl);
+
+	/*
+	 * Heights of the three stacked chrome bars. These are authoritative: each
+	 * bar sets its height from its token, and every sticky offset and
+	 * scroll-margin that has to clear them is calculated from the same tokens.
+	 *
+	 * They used to be descriptive — read in four places, written nowhere, with
+	 * hardcoded fallbacks. The fallbacks had already drifted: the story section
+	 * strip measured 38px against a 34px fallback, so the sidebar's sticky top
+	 * and the deep-link scroll-margin were both 4px out. Changing a bar's
+	 * height now means changing its token, and everything downstream follows.
+	 */
+	--ml-header-height: 48px;
+	--ml-story-panel-height: 36px;
+	--ml-story-sections-height: 38px;
+}
+
+/*
+ * A phone has far less width to spare, and --ml-space-xl on both sides was
+ * eating a visible slice of a 390px screen. The chrome tightens; the content
+ * area keeps a larger gutter so prose is not pressed against the edge.
+ */
+@media (--ml-bp-mobile) {
+	:root {
+		--ml-page-padding-horizontal: var(--ml-space-sm);
+		--ml-content-padding-horizontal: var(--ml-space-lg);
+		/*
+		 * Taller than desktop because the tabs grow to a 44px touch target
+		 * (WCAG 2.5.5) plus the 1px divider. This token is authoritative — the
+		 * sticky offsets below the strip are derived from it, so it has to
+		 * track the real height at every breakpoint.
+		 */
+		--ml-story-sections-height: 46px;
+	}
+}

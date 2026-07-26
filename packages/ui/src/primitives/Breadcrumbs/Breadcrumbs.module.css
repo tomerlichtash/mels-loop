@@ -1,0 +1,67 @@
+:root {
+	--ml-breadcrumbs-font-size: var(--ml-font-size-sm);
+	--ml-breadcrumbs-separator-color: var(--ml-text-muted-color);
+	--ml-breadcrumbs-separator-gap: var(--ml-space-xs);
+	--ml-breadcrumbs-separator-size: 0.9em;
+	--ml-breadcrumbs-link-color: var(--ml-text-muted-color);
+	--ml-breadcrumbs-link-hover-color: var(--ml-text-color);
+	--ml-breadcrumbs-current-color: var(--ml-text-color);
+}
+
+.root {
+}
+
+.list {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: var(--ml-breadcrumbs-font-size);
+}
+
+.item {
+	display: flex;
+	align-items: center;
+}
+
+.separator {
+	display: inline-flex;
+	align-items: center;
+	margin: 0 var(--ml-breadcrumbs-separator-gap);
+	color: var(--ml-breadcrumbs-separator-color);
+	user-select: none;
+	line-height: 1;
+}
+
+/*
+ * An inline SVG sits on the text baseline, so the chevron rode low against the
+ * labels even with the wrapper centred. display:block takes it off the
+ * baseline; the flex centring on .separator then actually applies to it.
+ */
+.separator svg {
+	display: block;
+	width: var(--ml-breadcrumbs-separator-size);
+	height: var(--ml-breadcrumbs-separator-size);
+}
+
+:dir(rtl) .separator {
+	transform: scaleX(-1);
+}
+
+.link {
+	color: var(--ml-breadcrumbs-link-color);
+	text-decoration: none;
+}
+
+.link:hover {
+	color: var(--ml-breadcrumbs-link-hover-color);
+	text-decoration: underline;
+}
+
+.current {
+	color: var(--ml-breadcrumbs-current-color);
+	font-weight: var(--ml-font-weight-semibold);
+}

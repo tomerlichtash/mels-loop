@@ -1,0 +1,116 @@
+/* ---- Dark Theme Overrides ---- */
+
+/*
+ * Intent overrides come first — semantic tokens that reference intents
+ * will automatically pick up the new values without needing their own
+ * overrides. Only tokens that need values DIFFERENT from what the intent
+ * cascade provides are listed in the semantic section below.
+ *
+ * Brand themes (e.g. ml.css) may further override primary and secondary
+ * intents in dark mode (e.g. swapping primary↔secondary hues).
+ */
+
+[data-color-scheme='dark'] {
+	/* ---- Intent: Primary — stays blue, lighter for dark (H≈250) ---- */
+	--ml-color-primary: oklch(0.65 0.17 250);
+	--ml-color-primary-alt: oklch(0.7 0.14 250);
+	--ml-color-primary-subtle: oklch(0.25 0.05 250);
+	--ml-color-primary-deep: oklch(0.5 0.2 250);
+	--ml-color-primary-muted: oklch(0.55 0.05 250);
+	--ml-color-primary-contrast: var(--ml-white);
+	--ml-color-primary-highlight: oklch(0.72 0.2 250);
+
+	/* ---- Intent: Secondary — teal, lighter for dark (H≈180) ---- */
+	--ml-color-secondary: oklch(0.6 0.1 180);
+	--ml-color-secondary-alt: oklch(0.65 0.08 180);
+	--ml-color-secondary-subtle: oklch(0.22 0.04 180);
+	--ml-color-secondary-deep: oklch(0.42 0.14 180);
+	--ml-color-secondary-muted: oklch(0.5 0.04 180);
+	--ml-color-secondary-highlight: oklch(0.68 0.14 180);
+
+	/* ---- Intent: Success (green, H≈143) ---- */
+	--ml-color-success-alt: var(--ml-success-light);
+	--ml-color-success-subtle: var(--ml-success-subtle);
+	--ml-color-success-highlight: oklch(0.8 0.18 143);
+
+	/* ---- Intent: Error (red, H≈27) ---- */
+	--ml-color-error-alt: var(--ml-error-light);
+	--ml-color-error-subtle: var(--ml-error-subtle);
+	--ml-color-error-highlight: oklch(0.75 0.16 27);
+
+	/* ---- Intent: Warning (amber, H≈76) ---- */
+	--ml-color-warning-alt: var(--ml-warning-light);
+	--ml-color-warning-subtle: var(--ml-warning-subtle);
+	--ml-color-warning-highlight: oklch(0.85 0.14 76);
+
+	/* ---- Intent: Info (blue, H≈263) ---- */
+	--ml-color-info-alt: var(--ml-info-light);
+	--ml-color-info-subtle: var(--ml-info-subtle);
+	--ml-color-info-highlight: oklch(0.75 0.16 263);
+
+	/* ---- Intent: Surface ---- */
+	--ml-color-surface: var(--ml-gray-500);
+	--ml-color-surface-alt: var(--ml-gray-400);
+	--ml-color-surface-subtle: var(--ml-gray-500);
+	--ml-color-surface-deep: var(--ml-gray-300);
+	--ml-color-surface-muted: var(--ml-gray-300);
+	--ml-color-surface-contrast: var(--ml-cream-200);
+	--ml-color-surface-highlight: var(--ml-gray-300);
+
+	/*
+	 * ---- Semantic overrides ----
+	 * Only tokens whose dark values differ from what intent
+	 * cascade would give them.
+	 */
+
+	/* Text — subtle/muted use specific grays, not surface variants */
+	--ml-text-color: var(--ml-cream-200);
+	--ml-text-subtle-color: var(--ml-gray-200);
+	--ml-text-muted-color: var(--ml-gray-200);
+
+	/* Headings */
+	--ml-heading-color: var(--ml-cream-100);
+	--ml-heading-subtle-color: var(--ml-cream-200);
+
+	/* Links */
+	--ml-link-color: var(--ml-color-secondary-highlight);
+	--ml-link-hover-color: var(--ml-color-secondary);
+
+	/* Code */
+	--ml-code-bg: var(--ml-color-surface-alt);
+	--ml-code-text: var(--ml-cream-200);
+	--ml-code-border: var(--ml-gray-300);
+
+	/* Popover */
+	--ml-popover-bg: var(--ml-color-surface);
+	--ml-popover-topic-bg: var(--ml-color-primary);
+	--ml-popover-topic-text: var(--ml-cream-200);
+	--ml-popover-icon: var(--ml-cream-200);
+	--ml-popover-icon-hover: var(--ml-color-surface);
+
+	/* Annotation */
+	--ml-annotation-bg: var(--ml-color-secondary);
+
+	/* Gradient */
+	--ml-gradient-start: var(--ml-color-secondary);
+	--ml-gradient-end: var(--ml-color-primary);
+
+	/* Form */
+	--ml-input-border: var(--ml-color-primary);
+	--ml-input-placeholder: var(--ml-gray-200);
+	--ml-submit-bg: var(--ml-color-primary);
+	--ml-submit-bg-hover: var(--ml-color-secondary-alt);
+	--ml-submit-text: var(--ml-color-surface-subtle);
+
+	/* Menu */
+	--ml-menu-hover-bg: var(--ml-color-primary);
+	--ml-mobile-menu-text: var(--ml-color-secondary-highlight);
+
+	/* Border — visible but not bright against dark surfaces */
+	--ml-border-color: var(--ml-gray-400);
+
+	/* Shadow */
+	--ml-shadow:
+		hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+		hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+}

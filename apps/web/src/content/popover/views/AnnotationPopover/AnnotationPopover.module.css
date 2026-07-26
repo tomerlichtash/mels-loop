@@ -1,0 +1,28 @@
+.dropdown {
+	--ml-popover-width: 414px;
+	--ml-popover-max-height: 300px;
+	--ml-popover-padding: var(--ml-space-md);
+	height: 300px;
+}
+
+.loader {
+	display: flex;
+	justify-content: center;
+	padding: var(--ml-space-md);
+}
+
+.body {
+	font-size: var(--ml-font-size-sm);
+	line-height: var(--ml-line-height-snug);
+}
+
+.source {
+	margin: var(--ml-space-xs) 0 0;
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-muted-color);
+}
+
+.sourceLink {
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-link-color);
+}

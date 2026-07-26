@@ -1,0 +1,33 @@
+@import './tokens/index.css';
+@import './themes/dark.css';
+@import './reset.css';
+
+/* ---- Base styles ---- */
+
+body {
+	background-color: var(--ml-background-color);
+	color: var(--ml-text-color);
+	font-family: var(--font-roboto-slab, var(--ml-font-latin));
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-body);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[dir='rtl'] body {
+	font-family: var(--font-assistant, var(--ml-font-hebrew));
+}
+
+a {
+	color: var(--ml-link-color);
+	text-decoration: none;
+}
+a:hover {
+	color: var(--ml-link-hover-color);
+}
+
+/* Scrollbar styling */
+:root {
+	scrollbar-color: var(--ml-border-color) transparent;
+	scrollbar-width: thin;
+}

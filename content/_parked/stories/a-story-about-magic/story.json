@@ -1,0 +1,26 @@
+{
+	"slug": "a-story-about-magic",
+	"meta": {
+		"title": {
+			"en": "A Story About 'Magic'",
+			"he": "סיפור על ״קסם״"
+		},
+		"abstract": {
+			"en": "A mysterious switch labeled 'magic' and 'more magic' that shouldn't do anything — but crashes the computer every time",
+			"he": "מתג מסתורי עם הכיתוב ״קסם״ ו-״יותר קסם״ שלא אמור לעשות כלום — אבל מרסק את המחשב בכל פעם"
+		},
+		"license": "public-domain",
+		"tags": ["hacker-folklore", "mit", "hardware", "pdp-10"]
+	},
+	"authors": [{ "ref": "guysteele", "role": "author" }],
+	"assets": {
+		"cover": "/media/images/magic-switch-front.jpg"
+	},
+	"sources": [
+		"magic-story-jargon-file",
+		"guy-steele-wikipedia",
+		"magic-switch-its-issue",
+		"magic-switch-photo-1",
+		"magic-switch-photo-2"
+	]
+}

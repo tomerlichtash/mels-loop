@@ -1,0 +1,86 @@
+.root {
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-body);
+	color: var(--ml-text-subtle-color);
+	margin: 0 auto;
+}
+
+.root p {
+	margin-bottom: var(--ml-space-md);
+}
+
+.root strong {
+	font-weight: var(--ml-font-weight-bold);
+}
+
+.root em {
+	font-style: italic;
+}
+
+/* Email header (dl[data-type="email-header"]) */
+.root dl[data-type='email-header'] {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 0 var(--ml-space-md);
+	margin-bottom: var(--ml-space-lg);
+	padding: var(--ml-space-md);
+	background-color: var(--ml-color-surface-subtle);
+	/* border-radius: var(--ml-radius-md); */
+	font-family: var(--ml-font-family-mono);
+	font-size: var(--ml-font-size-sm);
+	line-height: var(--ml-line-height-relaxed);
+	border: 1px solid var(--ml-border-color);
+}
+
+.root dl[data-type='email-header'] dt {
+	font-weight: var(--ml-font-weight-bold);
+	color: var(--ml-text-color);
+	text-transform: uppercase;
+}
+
+.root dl[data-type='email-header'] dd {
+	margin: 0;
+	color: var(--ml-text-subtle-color);
+}
+
+/* Chat (div[data-type="chat"]) */
+.root div[data-type='chat'] {
+	display: flex;
+	flex-direction: column;
+	/* gap: var(--ml-space-xs); */
+	margin-bottom: var(--ml-space-md);
+	padding: var(--ml-space-md);
+	background-color: var(--ml-color-surface-subtle);
+	border-radius: var(--ml-radius-md);
+}
+
+.root [data-chat-message] {
+	display: flex;
+	gap: var(--ml-space-sm);
+	line-height: var(--ml-line-height-snug);
+}
+
+.root [data-chat-sender] {
+	font-weight: var(--ml-font-weight-bold);
+	color: var(--ml-color-secondary);
+	white-space: nowrap;
+	text-transform: uppercase;
+}
+
+.root [data-chat-sender]::after {
+	content: ':';
+}
+
+.root [data-chat-text] {
+	color: var(--ml-text-color);
+}
+
+/* Email body (div[data-type="email-body"]) */
+.root div[data-type='email-body'] {
+	padding: var(--ml-space-md) var(--ml-space-lg);
+	border-inline-start: 3px solid var(--ml-border-color);
+	background-color: var(--ml-color-surface-subtle);
+	border-radius: var(--ml-radius-md);
+	font-family: var(--ml-font-family-mono);
+	font-size: var(--ml-font-size-sm);
+}

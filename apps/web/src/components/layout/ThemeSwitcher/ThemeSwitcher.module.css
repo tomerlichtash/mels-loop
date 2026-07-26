@@ -1,0 +1,14 @@
+.root {
+	--ml-toggle-button-hover-bg: var(--ml-header-item-hover);
+	--ml-toggle-button-active-bg: transparent;
+}
+
+.icon {
+	display: inline-flex;
+	line-height: 0;
+}
+
+.icon svg {
+	width: var(--ml-font-size-body);
+	height: var(--ml-font-size-body);
+}

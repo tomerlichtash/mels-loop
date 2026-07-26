@@ -6,6 +6,7 @@ node_modules
 .pnp.js
 
 # artifacts
+dist/
 **/*.js.map
 
 # dev env
@@ -13,7 +14,7 @@ node_modules
 *.tsbuildinfo
 
 # testing
-/coverage
+coverage/
 
 # next.js
 /.next/
@@ -39,9 +40,35 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+# ...but the documented template is meant to be committed. It is matched by
+# the *.env.* pattern above, so it needs an explicit exception.
+!.env.example
 .vercel
 
 test-results/
 results.xml
 unit-tests.xml
 temp/
+
+.turbo
+.next
+
+storybook-static
+
+.playwright-mcp
+
+# ui e2e testing
+packages/ui/test-results/
+packages/ui/playwright-report/
+packages/ui/__snapshots__/local/
+
+# search index (generated)
+apps/web/public/search-index.*.json
+
+# local media (test before S3 upload)
+apps/web/public/media/*
+!apps/web/public/media/.gitkeep
+# Next.js generates this on every build; prettier rewrites its quote style,
+# producing endless churn. Regenerated automatically — no need to track it.
+next-env.d.ts

@@ -1,0 +1,16 @@
+.trigger {
+	display: inline;
+	background: none;
+	border: none;
+	padding: 0;
+	color: var(--ml-link-color);
+	cursor: pointer;
+	font: inherit;
+	text-decoration: underline;
+	text-decoration-style: dotted;
+	text-underline-offset: 2px;
+}
+
+.trigger:hover {
+	color: var(--ml-link-hover-color);
+}
