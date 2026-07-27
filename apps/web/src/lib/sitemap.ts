@@ -1,4 +1,5 @@
 import {
+	getAllGlossarySlugs,
 	getAllStories,
 	getStoryArticles,
 } from '@mels-loop/content-loaders/loaders';
@@ -37,6 +38,7 @@ export async function buildSitemapEntries(
 	});
 
 	const stories = await getAllStories();
+	const glossaryKeys = await getAllGlossarySlugs();
 	// Fetch all story articles in parallel
 	const articlesByStory = await Promise.all(stories.map(getStoryArticles));
 
@@ -47,14 +49,25 @@ export async function buildSitemapEntries(
 		...['about', 'contact', 'contribute'].map((p) =>
 			entry(`/${p}`, 'monthly', 0.5),
 		),
-		// Global sources browser
-		entry('/sources', 'monthly', 0.6),
+		/*
+		 * The glossary, which the sitemap had never listed — 33 term pages that
+		 * are exactly the kind of thing people arrive on from a search.
+		 */
+		entry('/glossary', 'monthly', 0.7),
+		...glossaryKeys.map((key) => entry(`/glossary/${key}`, 'monthly', 0.6)),
+		/*
+		 * No sources entries. /sources and /stories/<slug>/sources are not
+		 * served while the area is redesigned, and a sitemap is a list of pages
+		 * worth crawling — advertising a 404 is worse than omitting it.
+		 *
+		 * Posts are omitted too. Their routes still answer, so existing links
+		 * keep working, but they are unlisted rather than promoted.
+		 */
 		// Story pages and their sub-pages
 		...stories.flatMap((storySlug, i) => [
 			entry(`/stories/${storySlug}`, 'weekly', 0.9),
 			entry(`/stories/${storySlug}/codex`, 'monthly', 0.7),
 			entry(`/stories/${storySlug}/resources`, 'monthly', 0.6),
-			entry(`/stories/${storySlug}/sources`, 'monthly', 0.6),
 			...articlesByStory[i].map((a) =>
 				entry(`/stories/${storySlug}/articles/${a}`, 'monthly', 0.8),
 			),
