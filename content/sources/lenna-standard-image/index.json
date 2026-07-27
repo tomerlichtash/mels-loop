@@ -1,9 +1,0 @@
-{
-	"id": "lenna-standard-image",
-	"type": "image",
-	"url": "/media/images/lenna-standard.png",
-	"author": "Dwight Hooker / Playboy",
-	"date": "1972-11",
-	"license": "fair-use",
-	"tags": ["lenna", "image-processing", "test-image", "playboy", "photography"]
-}

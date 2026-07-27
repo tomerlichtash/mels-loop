@@ -1,8 +1,0 @@
-{
-	"id": "lenna-wikipedia",
-	"type": "link",
-	"url": "https://en.wikipedia.org/wiki/Lenna",
-	"author": "Wikipedia contributors",
-	"license": "cc-by-sa",
-	"tags": ["lenna", "image-processing", "wikipedia", "photography"]
-}
