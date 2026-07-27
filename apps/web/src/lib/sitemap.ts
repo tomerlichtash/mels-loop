@@ -1,5 +1,4 @@
 import {
-	getAllGlossarySlugs,
 	getAllStories,
 	getStoryArticles,
 } from '@mels-loop/content-loaders/loaders';
@@ -38,7 +37,6 @@ export async function buildSitemapEntries(
 	});
 
 	const stories = await getAllStories();
-	const glossaryKeys = await getAllGlossarySlugs();
 	// Fetch all story articles in parallel
 	const articlesByStory = await Promise.all(stories.map(getStoryArticles));
 
@@ -50,11 +48,11 @@ export async function buildSitemapEntries(
 			entry(`/${p}`, 'monthly', 0.5),
 		),
 		/*
-		 * The glossary, which the sitemap had never listed — 33 term pages that
-		 * are exactly the kind of thing people arrive on from a search.
+		 * No glossary entries. robots.txt disallows /glossary while its
+		 * presentation is unfinished, and listing pages in a sitemap that
+		 * crawlers are told not to fetch is a contradiction. The two come back
+		 * together.
 		 */
-		entry('/glossary', 'monthly', 0.7),
-		...glossaryKeys.map((key) => entry(`/glossary/${key}`, 'monthly', 0.6)),
 		/*
 		 * No sources entries. /sources and /stories/<slug>/sources are not
 		 * served while the area is redesigned, and a sitemap is a list of pages
