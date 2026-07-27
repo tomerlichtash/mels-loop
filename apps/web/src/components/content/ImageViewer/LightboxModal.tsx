@@ -2,6 +2,8 @@
 
 import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/captions.css';
+/* Last, so it overrides the two above. */
+import './LightboxModal.module.css';
 
 import {
 	CaretLeftIcon,
