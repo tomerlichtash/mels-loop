@@ -1,8 +1,4 @@
-import {
-	EyeIcon,
-	LockIcon,
-	MagnifyingGlassIcon,
-} from '@phosphor-icons/react/ssr';
+import { EyeIcon, MagnifyingGlassIcon } from '@phosphor-icons/react/ssr';
 import type { Meta, StoryObj } from '@storybook/react';
 import { type CSSProperties, useState } from 'react';
 
@@ -12,16 +8,11 @@ import { Blockquote } from '../primitives/Blockquote/Blockquote';
 import { Breadcrumbs } from '../primitives/Breadcrumbs';
 import { Button } from '../primitives/Button/Button';
 import { Card, CardBody, CardHeader } from '../primitives/Card';
-import { Checkbox, type CheckboxProps } from '../primitives/Checkbox/Checkbox';
-import { Chip } from '../primitives/Chip/Chip';
 import { Code } from '../primitives/Code/Code';
 import { CodeBlock } from '../primitives/CodeBlock/CodeBlock';
-import { Combobox, type ComboboxOption } from '../primitives/Combobox/Combobox';
 import { Dialog } from '../primitives/Dialog';
 import { Loader } from '../primitives/Loader/Loader';
-import { PasswordField } from '../primitives/PasswordField/PasswordField';
 import { Separator } from '../primitives/Separator/Separator';
-import { Switch, type SwitchProps } from '../primitives/Switch/Switch';
 import {
 	Table,
 	TableBody,
@@ -73,13 +64,6 @@ const gridStyle: CSSProperties = {
 
 // --- Mock data ---
 
-const comboboxOptions: ComboboxOption[] = [
-	{ value: 'react', label: 'React' },
-	{ value: 'vue', label: 'Vue' },
-	{ value: 'angular', label: 'Angular' },
-	{ value: 'svelte', label: 'Svelte' },
-];
-
 const breadcrumbItems = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Components', href: '/components' },
@@ -93,31 +77,6 @@ const toggleGroupItems = [
 ];
 
 // --- Stateful wrappers ---
-
-function CheckboxDemo(
-	props: Omit<CheckboxProps, 'checked' | 'onCheckedChange'>,
-) {
-	const [checked, setChecked] = useState<boolean | 'indeterminate'>(false);
-	return <Checkbox {...props} checked={checked} onCheckedChange={setChecked} />;
-}
-
-function SwitchDemo(props: Omit<SwitchProps, 'checked' | 'onCheckedChange'>) {
-	const [checked, setChecked] = useState(false);
-	return <Switch {...props} checked={checked} onCheckedChange={setChecked} />;
-}
-
-function ComboboxDemo() {
-	const [value, setValue] = useState('');
-	return (
-		<Combobox
-			options={comboboxOptions}
-			value={value}
-			onValueChange={setValue}
-			placeholder="Select framework..."
-			size="sm"
-		/>
-	);
-}
 
 function ToggleButtonDemo() {
 	const [pressed, setPressed] = useState(false);
@@ -238,33 +197,6 @@ export const Default: Story = {
 				<TextArea size="sm" placeholder="Write something..." rows={2} />
 			</Section>
 
-			<Section title="PasswordField">
-				<PasswordField
-					size="sm"
-					placeholder="Enter password..."
-					iconStart={<LockIcon />}
-				/>
-			</Section>
-
-			<Section title="Combobox">
-				<ComboboxDemo />
-			</Section>
-
-			<Section title="Checkbox">
-				<div style={rowStyle}>
-					<CheckboxDemo label="Default" />
-					<CheckboxDemo label="Disabled" disabled />
-					<Checkbox checked="indeterminate" label="Indeterminate" />
-				</div>
-			</Section>
-
-			<Section title="Switch">
-				<div style={rowStyle}>
-					<SwitchDemo label="Default" />
-					<SwitchDemo label="Disabled" disabled />
-				</div>
-			</Section>
-
 			<Section title="Typography">
 				<div
 					style={{
@@ -321,15 +253,6 @@ export const Default: Story = {
 					<Badge>Default</Badge>
 					<Badge bordered>Bordered</Badge>
 					<Badge radius="sm">Square</Badge>
-				</div>
-			</Section>
-
-			<Section title="Chip">
-				<div style={rowStyle}>
-					<Chip size="sm">Small</Chip>
-					<Chip>Medium</Chip>
-					<Chip onDismiss={() => {}}>Dismissible</Chip>
-					<Chip disabled>Disabled</Chip>
 				</div>
 			</Section>
 

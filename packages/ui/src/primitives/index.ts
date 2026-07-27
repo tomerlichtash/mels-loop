@@ -1,9 +1,3 @@
-export {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
-} from './Accordion';
 export { Alert } from './Alert/Alert';
 export { Avatar } from './Avatar/Avatar';
 export { Badge } from './Badge/Badge';
@@ -20,12 +14,9 @@ export {
 	CardMedia,
 	CardSkeleton,
 } from './Card';
-export { Checkbox } from './Checkbox/Checkbox';
-export { Chip } from './Chip/Chip';
 export { CloseButton } from './CloseButton';
 export { Code } from './Code/Code';
 export { CodeBlock } from './CodeBlock/CodeBlock';
-export { Combobox } from './Combobox/Combobox';
 export { Container } from './Container/Container';
 export { Dialog } from './Dialog';
 export { Figure, FigureCaption } from './Figure';
@@ -34,11 +25,9 @@ export { IndexMarker } from './IndexMarker';
 export { List } from './List/List';
 export { ListItem } from './List/ListItem';
 export { Loader } from './Loader/Loader';
-export { PasswordField } from './PasswordField/PasswordField';
 export { Popover } from './Popover';
 export { ScrollArea } from './ScrollArea/ScrollArea';
 export { Separator } from './Separator/Separator';
-export { Switch } from './Switch/Switch';
 export {
 	Table,
 	TableBody,
