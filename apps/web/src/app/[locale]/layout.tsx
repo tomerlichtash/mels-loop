@@ -7,7 +7,6 @@ import '../../styles/utilities.css';
 import '../../i18n-init';
 import '../../content-init';
 
-import { ClerkProvider } from '@clerk/nextjs';
 import { I18nProvider } from '@mels-loop/i18n/client';
 import {
 	getDirection,
@@ -62,7 +61,6 @@ const TypographyLab =
 			)
 		: () => null;
 
-const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 const gaId = process.env.NEXT_PUBLIC_ANALYTICS_ID;
 
 export default async function Layout({
@@ -128,6 +126,5 @@ export default async function Layout({
 		</html>
 	);
 
-	if (!clerkEnabled) return content;
-	return <ClerkProvider>{content}</ClerkProvider>;
+	return content;
 }
