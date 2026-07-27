@@ -11,9 +11,6 @@ importers:
       '@mels-loop/eslint-config':
         specifier: workspace:*
         version: link:libs/eslint-config
-      '@playwright/test':
-        specifier: ^1.51.1
-        version: 1.58.2
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
@@ -7168,6 +7165,7 @@ snapshots:
   '@playwright/test@1.58.2':
     dependencies:
       playwright: 1.58.2
+    optional: true
 
   '@radix-ui/number@1.1.1': {}
 

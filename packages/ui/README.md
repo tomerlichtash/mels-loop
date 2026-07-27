@@ -35,8 +35,6 @@ pnpm lint               # eslint
 pnpm lint:fix           # eslint --fix
 pnpm storybook          # dev server on port 6006
 pnpm build-storybook    # static Storybook build
-pnpm test:e2e           # Playwright visual regression (Docker)
-pnpm test:e2e:update    # update visual snapshots
 ```
 
 ## Build

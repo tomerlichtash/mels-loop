@@ -38,7 +38,6 @@ documents how it degrades when unset.
 | `pnpm dev`         | Dev server                                      |
 | `pnpm build`       | Production build (also builds the search index) |
 | `pnpm test`        | Vitest unit tests across all packages           |
-| `pnpm test:e2e`    | Playwright end-to-end tests                     |
 | `pnpm type-check`  | `tsc --noEmit` everywhere                       |
 | `pnpm lint`        | ESLint                                          |
 | `pnpm format`      | Prettier                                        |

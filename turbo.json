@@ -1,19 +1,9 @@
 {
 	"$schema": "https://turbo.build/schema.json",
-	"globalPassThroughEnv": [
-		"NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
-		"CLERK_SECRET_KEY",
-		"REQUIRE_AUTH"
-	],
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": [
-				".next/**",
-				"!.next/cache/**",
-				"dist/**",
-				"public/search-index.*.json"
-			]
+			"outputs": [".next/**", "!.next/cache/**", "dist/**"]
 		},
 		"dev": {
 			"cache": false,
@@ -30,10 +20,6 @@
 			"cache": false
 		},
 		"test": {
-			"dependsOn": ["^build"],
-			"cache": false
-		},
-		"test:e2e": {
 			"dependsOn": ["^build"],
 			"cache": false
 		},
