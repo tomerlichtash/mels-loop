@@ -39,6 +39,21 @@ const nextConfig: NextConfig = {
 	},
 	async redirects() {
 		return [
+			/*
+			 * The archive holds one story, so it is the front page. A homepage
+			 * that introduces an archive of one is a lobby with a single door.
+			 *
+			 * A redirect rather than a rewrite: the story keeps one canonical
+			 * URL, which is also the one the old site's /docs paths already
+			 * redirect to. Delete this entry when a second story lands and the
+			 * homepage — hero, featured card, archive grid, all still here —
+			 * has something to introduce.
+			 */
+			{
+				source: '/',
+				destination: '/stories/the-story-of-mel',
+				permanent: false,
+			},
 			{
 				source: '/docs/the-story-of-mel/pages/:pageId',
 				destination: '/stories/the-story-of-mel/articles/:pageId',
