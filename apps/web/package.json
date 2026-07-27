@@ -20,7 +20,6 @@
 		"@dnd-kit/sortable": "^10.0.0",
 		"@dnd-kit/utilities": "^3.2.2",
 		"@hookform/resolvers": "^5.2.2",
-		"@marsidev/react-turnstile": "^1.4.2",
 		"@mels-loop/content-loaders": "workspace:*",
 		"@mels-loop/content-pipeline": "workspace:*",
 		"@mels-loop/content-plugins": "workspace:*",

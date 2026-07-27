@@ -19,3 +19,16 @@
 	justify-content: space-between;
 	width: 100%;
 }
+
+/*
+ * The honeypot. Off-screen rather than display:none — some bots skip anything
+ * hidden outright, and the point is to look fillable.
+ */
+.honeypot {
+	position: absolute;
+	inset-inline-start: -9999px;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	pointer-events: none;
+}

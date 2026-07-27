@@ -1,9 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
 import { useTranslation } from '@mels-loop/i18n/client';
-import { useColorScheme } from '@mels-loop/ui/color-scheme';
 import {
 	Alert,
 	Button,
@@ -12,7 +10,7 @@ import {
 	TextArea,
 	TextField,
 } from '@mels-loop/ui/primitives';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -22,23 +20,26 @@ interface FormValues {
 	name: string;
 	email: string;
 	message: string;
+	/* The honeypot. Named for what a bot expects to see, not for what it is. */
+	website: string;
 }
 
 export function ContactForm() {
 	const { t } = useTranslation();
-	const { colorScheme } = useColorScheme();
 	const [status, setStatus] = useState<
 		'idle' | 'sending' | 'success' | 'error'
 	>('idle');
-	const [turnstileError, setCaptchaError] = useState(false);
-	const turnstileRef = useRef<TurnstileInstance>(null);
-
-	const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
 
 	const contactSchema = z.object({
 		name: z.string().trim().min(1, t('contact.invalidName')),
 		email: z.email(t('contact.invalidEmail')),
 		message: z.string().trim().min(1, t('contact.invalidMessage')),
+		/*
+		 * Unconstrained on purpose. Rejecting a filled honeypot here would tell
+		 * the bot which field caught it; the server decides instead, and answers
+		 * as though the message sent.
+		 */
+		website: z.string(),
 	});
 
 	const {
@@ -48,48 +49,13 @@ export function ContactForm() {
 		reset,
 	} = useForm<FormValues>({
 		resolver: zodResolver(contactSchema),
-		defaultValues: { name: '', email: '', message: '' },
+		defaultValues: { name: '', email: '', message: '', website: '' },
 	});
 
 	async function onSubmit(values: FormValues) {
-		setCaptchaError(false);
 		setStatus('sending');
 
 		try {
-			if (siteKey) {
-				turnstileRef.current?.execute();
-
-				// Wait for token from onSuccess callback
-				const token = await new Promise<string>((resolve, reject) => {
-					const timeout = setTimeout(
-						() => reject(new Error('Turnstile timeout')),
-						10000,
-					);
-					const check = () => {
-						const t = turnstileRef.current?.getResponse();
-						if (t) {
-							clearTimeout(timeout);
-							resolve(t);
-						} else {
-							setTimeout(check, 100);
-						}
-					};
-					check();
-				});
-
-				const captchaRes = await fetch('/api/turnstile', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ token }),
-				});
-				const captchaData = await captchaRes.json();
-				if (!captchaData.success) {
-					setStatus('error');
-					turnstileRef.current?.reset();
-					return;
-				}
-			}
-
 			const res = await fetch('/api/contact', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -98,13 +64,11 @@ export function ContactForm() {
 			if (res.ok) {
 				setStatus('success');
 				reset();
-				turnstileRef.current?.reset();
 			} else {
 				setStatus('error');
 			}
 		} catch {
 			setStatus('error');
-			setCaptchaError(true);
 		}
 	}
 
@@ -158,11 +122,20 @@ export function ContactForm() {
 					size="lg"
 					{...register('message')}
 				/>
-				{turnstileError && (
-					<Text variant="body2" color="error" component="span">
-						{t('contact.captchaTooltip')}
-					</Text>
-				)}
+				{/*
+				 * The honeypot: hidden from sight, from the tab order and from
+				 * assistive technology, so no person meets it. A bot filling every
+				 * field it finds trips it, and the server discards the message
+				 * while answering as though it sent.
+				 */}
+				<input
+					type="text"
+					className={styles.honeypot}
+					tabIndex={-1}
+					autoComplete="off"
+					aria-hidden="true"
+					{...register('website')}
+				/>
 				<div className={styles.actions}>
 					<Button
 						type="submit"
@@ -171,17 +144,6 @@ export function ContactForm() {
 					>
 						{status === 'sending' ? t('contact.sending') : t('contact.send')}
 					</Button>
-					{siteKey && (
-						<Turnstile
-							ref={turnstileRef}
-							siteKey={siteKey}
-							options={{
-								theme: colorScheme as 'light' | 'dark',
-								appearance: 'always',
-							}}
-							onError={() => setCaptchaError(true)}
-						/>
-					)}
 				</div>
 			</Container>
 		</form>

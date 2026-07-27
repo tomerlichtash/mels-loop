@@ -70,8 +70,7 @@
 		"successMessage": "הודעתך נשלחה בהצלחה!",
 		"failMessage": "אירעה שגיאה :(",
 		"send": "שליחה",
-		"sending": "שולח...",
-		"captchaTooltip": "לא לשכוח לאמת שאינך רובוט/ית"
+		"sending": "שולח..."
 	},
 	"content": {
 		"figure": "תרשים",

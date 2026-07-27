@@ -70,8 +70,7 @@
 		"successMessage": "Your message was sent successfully!",
 		"failMessage": "Some error occurred and your message was not sent :(",
 		"send": "Send",
-		"sending": "Sending...",
-		"captchaTooltip": "Please validate you're not a robot"
+		"sending": "Sending..."
 	},
 	"content": {
 		"figure": "Figure",
