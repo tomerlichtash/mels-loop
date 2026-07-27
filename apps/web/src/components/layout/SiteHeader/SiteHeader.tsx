@@ -9,7 +9,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { BurgerButton } from '../BurgerButton/BurgerButton';
 import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
 import { Logo } from '../Logo/Logo';
-import { SearchTrigger } from '../SearchTrigger/SearchTrigger';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 import type { LocaleOption } from '../types';
 import styles from './SiteHeader.module.css';
@@ -18,15 +17,10 @@ const SCROLL_THRESHOLD = 10;
 
 interface SiteHeaderProps {
 	onMenuClick: () => void;
-	onSearchClick?: () => void;
 	locales: LocaleOption[];
 }
 
-export function SiteHeader({
-	onMenuClick,
-	onSearchClick,
-	locales,
-}: SiteHeaderProps) {
+export function SiteHeader({ onMenuClick, locales }: SiteHeaderProps) {
 	const { t } = useTranslation();
 	const { colorScheme } = useColorScheme();
 	const pathname = usePathname();
@@ -72,32 +66,23 @@ export function SiteHeader({
 						 * what was breaking "MEL'S LOOP" across two lines.
 						 */}
 						{/*
-						 * One bordered group, divided into segments, rather than five
-						 * separate controls at arm's length from each other. The border
-						 * is what makes them read as a set; the rules inside it are what
-						 * keep theme, language and search legible as three distinct
-						 * things.
+						 * One bordered group rather than controls at arm's length from
+						 * each other. The border is what makes them read as a set.
+						 *
+						 * Search stood outside this pair as the one control that acted
+						 * rather than held a setting; with it gone the group is theme and
+						 * language, which are the same kind of thing.
 						 */}
 						<div className={styles.cluster}>
-							{/* Configuration: how the site is presented. These two hold a
-							    setting; they sit together and stay quiet. */}
 							<div className={styles.settings}>
 								<Tooltip label={themeLabel}>
 									<ThemeSwitcher aria-label={themeLabel} />
 								</Tooltip>
 								<LocaleSwitcher locales={locales} />
 							</div>
-							{/* An action: it does something rather than holding a state,
-							    so it stands apart and carries full strength. */}
-							{onSearchClick && (
-								<SearchTrigger
-									onClick={onSearchClick}
-									label={t('search.open')}
-								/>
-							)}
 						</div>
 						{/* Last in the row, so the brand keeps the leading edge at every
-						 * width and the trigger sits with the other actions. */}
+						 * width. */}
 						<BurgerButton onClick={onMenuClick} />
 					</div>
 				</div>
