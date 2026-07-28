@@ -257,7 +257,7 @@
 	position: relative;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	gap: var(--ml-space-sm);
 	padding: var(--ml-space-md) var(--ml-space-md) var(--ml-space-sm);
 	flex-shrink: 0;
 	border-bottom: 1px solid var(--ml-border-color);
@@ -271,16 +271,32 @@
 	cursor: grabbing;
 }
 
+/*
+ * Centred over the row rather than laid out in it. As a flex item beside a
+ * history trail it was pushed to the start edge, and it is a drag affordance
+ * for the whole bar rather than something in a sequence with the trail.
+ */
 .sheetHandle {
+	position: absolute;
+	inset-inline: 0;
+	top: var(--ml-space-sm);
+	margin-inline: auto;
 	width: 36px;
 	height: 4px;
 	border-radius: 999px;
 	background-color: var(--ml-border-color);
 }
 
+/*
+ * In flow, so it reserves its own space.
+ *
+ * Absolutely positioned at inset-inline-end it took none, and the history
+ * trail ran underneath it — worse in Hebrew, where the end edge is the left
+ * one and the trail starts there.
+ */
 .sheetClose {
-	position: absolute;
-	inset-inline-end: var(--ml-space-md);
+	flex-shrink: 0;
+	margin-inline-start: auto;
 }
 
 /* Scrolls itself, so the page behind it does not. */

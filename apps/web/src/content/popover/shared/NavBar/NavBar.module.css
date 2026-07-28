@@ -37,6 +37,18 @@
 	}
 }
 
+/*
+ * The arrow is a graphic, not a character.
+ *
+ * U+203A in the trail below is bidi-mirrored, so the browser turns it around
+ * on its own — which is why there is no override for it. An SVG gets no such
+ * treatment: it pointed left in both directions, which in a right-to-left
+ * panel is forward rather than back.
+ */
+:dir(rtl) .back svg {
+	transform: scaleX(-1);
+}
+
 .trail {
 	display: flex;
 	align-items: center;
