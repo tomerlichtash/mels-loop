@@ -82,12 +82,27 @@
 }
 
 .navLink {
-	display: block;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
 	padding: var(--ml-space-sm) var(--ml-space-xs);
 	color: var(--ml-text-color);
 	text-decoration: none;
-	font-size: var(--ml-font-size-body);
 	border-bottom: 1px solid var(--ml-border-color);
+}
+
+.navLabel {
+	font-size: var(--ml-font-size-body);
+}
+
+/*
+ * The byline. Muted and a step down, so a list of article titles stays a list
+ * of titles — the author is there to tell two entries apart, not to compete
+ * with them.
+ */
+.navAuthor {
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-muted-color);
 }
 
 .navLink:hover {
@@ -130,13 +145,16 @@
 }
 
 /* Locale and theme, moved out of the header bar — see MobileDrawer.tsx. */
+/*
+ * Above the links now, so the rule and spacing sit under it rather than over
+ * it — margin-top: auto used to push this to the foot of the panel.
+ */
 .controls {
 	display: flex;
 	align-items: center;
 	gap: var(--ml-space-lg);
-	margin-top: auto;
-	padding-top: var(--ml-space-lg);
-	border-top: 1px solid var(--ml-border-color);
+	padding-bottom: var(--ml-space-lg);
+	border-bottom: 1px solid var(--ml-border-color);
 }
 
 @keyframes fadeOut {

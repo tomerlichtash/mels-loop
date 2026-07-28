@@ -6,12 +6,38 @@ import type {
 	NavItem,
 } from '@/components/layout';
 
-/*
- * Empty while the archive holds one story, which is the site's front page —
- * a "Stories" link would lead to an index of the page you are already on.
- * The stories index still exists and comes back with the second story.
+/**
+ * The whole site is one story, so the drawer navigates *within* it.
+ *
+ * It lists the articles by name rather than offering an "Articles" link. The
+ * tab strip already does that, and a drawer that repeats the tabs is a second
+ * copy of the same three choices — on a phone, where the drawer is the only
+ * navigation, the useful thing is the destination itself.
+ *
+ * No "Stories" entry: it would lead to an index of the page you are already
+ * on. It returns with the second story, along with the homepage.
+ *
+ * The slug is a parameter rather than a constant so this survives the archive
+ * growing — but the shape will not. With two stories, per-article entries stop
+ * making sense here and this goes back to being a list of stories.
  */
-export const navItems: NavItem[] = [];
+export function buildNavItems(
+	storySlug: string,
+	articles: { slug: string; title: string; author?: string }[],
+): NavItem[] {
+	const story = `/stories/${storySlug}`;
+	return [
+		...articles.map((article) => ({
+			key: `article:${article.slug}`,
+			href: `${story}/articles/${article.slug}`,
+			label: article.title,
+			author: article.author,
+		})),
+		{ key: 'nav.resources', href: `${story}/resources` },
+		{ key: 'nav.about', href: '/about' },
+		{ key: 'nav.contact', href: '/contact' },
+	];
+}
 
 export const footerLinks: FooterLinkColumn[] = [
 	{

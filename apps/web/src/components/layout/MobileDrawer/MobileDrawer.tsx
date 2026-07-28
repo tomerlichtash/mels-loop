@@ -38,6 +38,13 @@ export function MobileDrawer({
 							<CloseButton aria-label={t('nav.closeMenu')} />
 						</Dialog.Close>
 					</div>
+					{/* Above the links rather than below them: locale and theme are
+					 * the reason a reader opens this on a phone as often as
+					 * navigation is, and the list of articles grows. */}
+					<div className={styles.controls}>
+						<LocaleSwitcher locales={locales} />
+						<ThemeSwitcher aria-label={t('theme.toggle')} />
+					</div>
 					<nav className={styles.nav}>
 						{navItems.map((item) => {
 							const isAbsolute =
@@ -54,7 +61,12 @@ export function MobileDrawer({
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									{t(item.key)}
+									<span className={styles.navLabel}>
+										{item.label ?? t(item.key)}
+									</span>
+									{item.author && (
+										<span className={styles.navAuthor}>{item.author}</span>
+									)}
 								</a>
 							) : (
 								<Link
@@ -63,17 +75,16 @@ export function MobileDrawer({
 									className={styles.navLink}
 									onClick={onClose}
 								>
-									{t(item.key)}
+									<span className={styles.navLabel}>
+										{item.label ?? t(item.key)}
+									</span>
+									{item.author && (
+										<span className={styles.navAuthor}>{item.author}</span>
+									)}
 								</Link>
 							);
 						})}
 					</nav>
-					{/* Locale and theme live here rather than in the header bar, which
-					 * has no room for them at phone widths. */}
-					<div className={styles.controls}>
-						<LocaleSwitcher locales={locales} />
-						<ThemeSwitcher aria-label={t('theme.toggle')} />
-					</div>
 				</Dialog.Content>
 			</Dialog.Portal>
 		</Dialog.Root>

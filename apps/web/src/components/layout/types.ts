@@ -5,8 +5,18 @@ export interface LocaleOption {
 }
 
 export interface NavItem {
+	/** Dictionary key, used when `label` is absent. */
 	key: string;
 	href: string;
+	/**
+	 * An already-resolved, already-localised label.
+	 *
+	 * Article titles come from the content rather than the dictionary, so they
+	 * arrive translated and have no key to look up.
+	 */
+	label?: string;
+	/** Byline, shown under the label. Articles have one; site pages do not. */
+	author?: string;
 }
 
 export interface FooterLink {

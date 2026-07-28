@@ -7,6 +7,10 @@ import '../../styles/utilities.css';
 import '../../i18n-init';
 import '../../content-init';
 
+import {
+	getAllStories,
+	getStoryContents,
+} from '@mels-loop/content-loaders/loaders';
 import { I18nProvider } from '@mels-loop/i18n/client';
 import {
 	getDirection,
@@ -27,7 +31,7 @@ import { hebrew, lekton, robotoSlab } from '@/fonts';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 
-import { footerLinks, localeOptions, navItems } from './config/nav';
+import { buildNavItems, footerLinks, localeOptions } from './config/nav';
 
 export { generateMetadata } from './config/metadata';
 
@@ -56,6 +60,33 @@ export default async function Layout({
 	const validLocale = locale as Locale;
 	const dir = getDirection(validLocale);
 	const messages = await getDictionary(validLocale);
+
+	/*
+	 * The drawer lists the story's articles by name, so its items are content
+	 * rather than configuration and have to be resolved here — the titles are
+	 * already localised and have no dictionary key.
+	 *
+	 * getAllStories()[0] rather than a hardcoded slug: the archive holds one
+	 * story, and this asks which one instead of asserting it.
+	 */
+	const [storySlug] = await getAllStories();
+	const contents = await getStoryContents(storySlug, validLocale);
+	const articles = (contents ?? []).flatMap((entry) =>
+		entry.type === 'part'
+			? entry.children.flatMap((child) =>
+					child.type === 'page' && child.ref.startsWith('articles/')
+						? [
+								{
+									slug: child.ref.split('/')[1],
+									title: child.title,
+									author: child.author,
+								},
+							]
+						: [],
+				)
+			: [],
+	);
+	const navItems = buildNavItems(storySlug, articles);
 
 	const content = (
 		<html lang={locale} dir={dir} suppressHydrationWarning>
