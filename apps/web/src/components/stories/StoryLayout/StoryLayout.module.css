@@ -50,6 +50,19 @@
 	}
 
 	/*
+	 * The column governs the width here, not the prose.
+	 *
+	 * ContentRenderer caps itself at --ml-prose-measure, which is right beside
+	 * a 250px sidebar and wrong without one: the column stretched to the full
+	 * container while the text stayed at its measure, leaving ~350px of dead
+	 * space after it. Releasing the token lets the text fill the column it was
+	 * given, and keeps the decision about width in the layout that makes it.
+	 */
+	.content {
+		--ml-prose-measure: none;
+	}
+
+	/*
 	 * The sidebar precedes the content in the DOM so assistive tech meets the
 	 * table of contents before the prose, which is the conventional order for
 	 * sidebar navigation. Once the grid collapses to one column that same order
