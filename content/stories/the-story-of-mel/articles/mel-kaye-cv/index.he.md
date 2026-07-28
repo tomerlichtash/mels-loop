@@ -6,7 +6,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 ---
 
 :::cols{ratio=1-2}
-![מל קיי, 1952](sources/mel-kaye-photo-1952)
+![{{sources/mel-kaye-photo-1952:description}}](sources/mel-kaye-photo-1952)
 
 מל קיי (מלוין קורניצקי, 14 בינואר 1931 – 20 באפריל 2018) היה מהנדס תוכנה בחברת Librascope ובחברת Royal McBee בניו יורק ובלוס אנג׳לס בשנים 1956-1960. בין היתר, פיתח משחק בלאק ג׳ק למחשבי דור ראשון מסוג LGP-30 ו-RPC-4000, שהפך למוכר ומוערך בקרב אנשי מקצוע וסטודנטים למחשבים. הוא גם היה מי שהגה את ההאק האגדי מ"הסיפור על מל" מאת אד ניית׳ר, שפורסם באינטרנט בשנת 1983 והקנה לו תהילת עולם בקרב קהילת ההאקינג העולמית, כאפוס הגדול של פולקלור ההאקרים.
 :::
@@ -105,12 +105,13 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 
 וכך כתב אנתוני קוזו באפריל 2012:
 
-:::blockquote{verse}
-Anthony Cuozzo <acuozzo@\*\*\*.\*\*\*\*\*\*\*\*.\*\*\*>
-Tue, Apr 17, 2012 at 10:59 AM
+:::email-header
+From: Anthony Cuozzo (acuozzo@\*\*\*.\*\*\*\*\*\*\*\*.\*\*\*)
+Date: Tue, Apr 17, 2012 at 10:59 AM
 To: rimel3@roadrunner.com
-\---
+:::
 
+:::email-body
 Hello Mel,
 Did you once work for Librascope Inc. or Royal McBee?
 Thanks,
@@ -120,12 +121,13 @@ Anthony
 
 בתוך שעה, השיב מל:
 
-:::blockquote{verse}
-Mel Kaye <rimel3@roadrunner.com>
-Tue, Apr 17, 2012 at 12:01 PM
-To: acuozzo@\*\*\*.\*\*\*\*\*\*\*\*.\*\*\*>
-\---
+:::email-header
+From: Mel Kaye (rimel3@roadrunner.com)
+Date: Tue, Apr 17, 2012 at 12:01 PM
+To: acuozzo@\*\*\*.\*\*\*\*\*\*\*\*.\*\*\*
+:::
 
+:::email-body
 Yes, I did, many, many years ago I worked for both of them.
 I believe I worked for Royal McBee first.
 Mel Kaye

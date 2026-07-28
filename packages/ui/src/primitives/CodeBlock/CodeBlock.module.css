@@ -20,7 +20,17 @@
  * set above an MSB/LSB ruler — drifted out of register even though the spacing
  * in the markdown was exact.
  */
+/*
+ * Code reads left to right in every language.
+ *
+ * Without this the block inherits the page's direction, so on the Hebrew
+ * pages `text-align: start` resolved to the right and the whole thing flipped:
+ * the binary operands and their MSB/LSB ruler lost register, and a quoted
+ * email's headers ran to the wrong edge. Neither is Hebrew content — it is
+ * preformatted Latin text that happens to sit in a Hebrew article.
+ */
 .root {
+	direction: ltr;
 	text-align: start;
 	background-color: var(--ml-code-block-background-color);
 	color: var(--ml-code-block-text-color);

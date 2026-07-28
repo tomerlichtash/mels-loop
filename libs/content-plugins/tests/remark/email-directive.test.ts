@@ -30,6 +30,16 @@ describe('remarkEmailDirective', () => {
 			expect(textContent(dds[1])).toBe('Bob');
 		});
 
+		it('keeps a colon inside a value — a time must not split the field', async () => {
+			const md =
+				':::email-header\nFrom: Alice\nDate: Tue, Apr 17, 2012 at 10:59 AM\nTo: Bob\n:::';
+			const hast = await applyPlugins(md, { remarkPlugins: [...plugins] });
+			const dts = findElements(hast, 'dt');
+			const dds = findElements(hast, 'dd');
+			expect(dts.map(textContent)).toEqual(['From:', 'Date:', 'To:']);
+			expect(textContent(dds[1])).toBe('Tue, Apr 17, 2012 at 10:59 AM');
+		});
+
 		it('handles Re: field correctly', async () => {
 			const md = ':::email-header\nRe: Always Mount a Scratch Monkey\n:::';
 			const hast = await applyPlugins(md, { remarkPlugins: [...plugins] });

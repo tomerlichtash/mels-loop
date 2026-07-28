@@ -85,8 +85,16 @@
 	font-style: italic;
 }
 
-/* Email header (dl[data-type="email-header"]) */
+/*
+ * Email header (dl[data-type="email-header"])
+ *
+ * direction: ltr because the correspondence is in English wherever it is
+ * quoted. Left to inherit, the Hebrew article flipped the label/value columns
+ * and pushed "To: rimel3@roadrunner.com" to the wrong edge — the address is a
+ * Latin run in an RTL paragraph, which is exactly the case bidi reorders.
+ */
 .root dl[data-type='email-header'] {
+	direction: ltr;
 	display: grid;
 	grid-template-columns: auto 1fr;
 	gap: 0 var(--ml-space-md);
@@ -143,8 +151,17 @@
 	color: var(--ml-text-color);
 }
 
-/* Email body (div[data-type="email-body"]) */
+/* Email body (div[data-type="email-body"]) — LTR for the same reason as the
+ * header above. */
 .root div[data-type='email-body'] {
+	direction: ltr;
+	/*
+	 * Line breaks are the author's. An email is written in short lines —
+	 * greeting, question, sign-off — and reflowing them into a paragraph loses
+	 * the shape of the message. pre-line keeps the newlines and still wraps
+	 * anything too long for the column.
+	 */
+	white-space: pre-line;
 	padding: var(--ml-space-md) var(--ml-space-lg);
 	border-inline-start: 3px solid var(--ml-border-color);
 	background-color: var(--ml-color-surface-subtle);

@@ -53,6 +53,17 @@ function flattenInlines(children: PhrasingContent[]): string {
 		} else if (inline.type === 'link') {
 			const url = inline.url.replace(/^mailto:/, '');
 			buf += url;
+		} else if (inline.type === 'textDirective') {
+			/*
+			 * `:name` is remark-directive's inline syntax, so a time writes
+			 * itself as one: "10:59" parses as text "10", a textDirective named
+			 * "59", then " AM". Dropping the node dropped the minutes — a Date
+			 * of "Tue, Apr 17, 2012 at 10:59 AM" rendered as "at 10 AM".
+			 *
+			 * Nothing in an email header is ever a real directive, so the
+			 * literal text is reconstructed from the name it was parsed as.
+			 */
+			buf += `:${inline.name}${flattenInlines(inline.children)}`;
 		}
 	}
 	return buf;
@@ -68,9 +79,13 @@ function transformEmailHeader(directive: DirectiveNode) {
 	}
 	const fullText = chunks.join('\n');
 
-	// Split into fields. A new field starts when a line begins with
-	// a word followed by a colon (e.g. "Date:", "From:", "Re:").
-	// This handles cases where newlines are stripped by the parser.
+	/*
+	 * Split into fields. A new field starts where a *line* begins with a word
+	 * followed by a colon — "Date:", "From:", "Re:".
+	 *
+	 * The line anchor is what keeps a value containing a colon intact: a Date
+	 * of "Tue, Apr 17, 2012 at 10:59 AM" must not split at the clock.
+	 */
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const dlChildren: any[] = [];
 	const fieldPattern = /(?:^|\n)(\w[\w\s-]*?):\s*/g;
