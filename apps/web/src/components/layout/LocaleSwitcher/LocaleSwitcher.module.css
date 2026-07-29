@@ -14,7 +14,7 @@
 }
 
 .en {
-	font-family: var(--font-roboto-slab, var(--ml-font-latin));
+	font-family: var(--ml-font-latin);
 }
 
 /*
@@ -22,5 +22,5 @@
  * group's sm, so the two halves of one control were 16px and 12px.
  */
 .he {
-	font-family: var(--font-hebrew, var(--ml-font-hebrew));
+	font-family: var(--ml-font-hebrew);
 }
