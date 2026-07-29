@@ -21,11 +21,21 @@
 			var(--ml-scroll-area-size, 8px) + 2 * var(--ml-scroll-area-gap, 4px)
 		);
 		/*
-		 * Above the sticky chrome — the header, story panel and tab strip all sit
-		 * below 100 — but under dialogs and popovers, which own the screen while
-		 * they are open.
+		 * Under the site header, over everything else.
+		 *
+		 * The thumb's grab target is 44px wide (see .thumb::before), which
+		 * reaches about 18px past this track and into the page. At 200 — above
+		 * the header's 100 — that strip covered the burger button at narrow
+		 * widths, where the burger sits close to the edge: elementFromPoint at
+		 * its centre returned the thumb, so the only navigation on a phone
+		 * could not be clicked at all.
+		 *
+		 * 95 keeps the thumb above the breadcrumb bar (90) and the tab strip
+		 * (89), so it stays visible while those are stuck to the top, and lets
+		 * the header take the clicks in its own row. Still under dialogs and
+		 * popovers, which own the screen while open.
 		 */
-		z-index: 200;
+		z-index: 95;
 		/* The track is only a rail; clicks belong to the page beneath it. */
 		pointer-events: none;
 	}
