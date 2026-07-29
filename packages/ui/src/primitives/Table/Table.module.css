@@ -7,7 +7,7 @@
 	--ml-table-header-font-weight: var(--ml-font-weight-medium);
 	--ml-table-header-background-color: var(--ml-background-color-alt);
 	--ml-table-stripe-background-color: var(--ml-background-color-alt);
-	--ml-table-font-family-mono: var(--ml-font-family-mono);
+	--ml-table-font-family-mono: var(--ml-font-mono);
 }
 
 .root {
