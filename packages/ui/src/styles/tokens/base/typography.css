@@ -1,19 +1,30 @@
 /* ---- Typography ---- */
 
 :root {
-	/* Font Families */
-	--ml-font-latin: 'Roboto Slab', serif;
-	--ml-font-hebrew: 'Heebo', sans-serif;
 	/*
-	 * Lekton first, then the system stack. next/font self-hosts it — see
-	 * apps/web/src/fonts.ts — and it was being downloaded on every page while
-	 * nothing referenced it, because the token pointed at the system mono
-	 * instead. Named rather than read from --font-lekton so the package still
-	 * resolves outside the app, in Storybook.
+	 * ---- Font families ----
+	 *
+	 * Each reads next/font's variable first, then names the face literally,
+	 * then a generic.
+	 *
+	 * The variable is what matters: next/font serves each face from our own
+	 * origin *and* generates a metric-matched fallback beside it, so
+	 * --font-roboto-slab resolves to "Roboto Slab", "Roboto Slab Fallback".
+	 * Naming the family literally — which is what these tokens used to do —
+	 * skips that fallback, so text reflowed from a generic serif to the real
+	 * face on load rather than swapping between two faces of the same metrics.
+	 *
+	 * The literal name is kept as the var()'s fallback so the package still
+	 * resolves where next/font is absent, which is Storybook.
+	 *
+	 * apps/web/src/fonts.ts owns the other half of this: change a variable
+	 * name there and it must change here.
 	 */
+	--ml-font-latin: var(--font-roboto-slab, 'Roboto Slab'), serif;
+	--ml-font-hebrew: var(--font-hebrew, 'Heebo'), sans-serif;
 	--ml-font-mono:
-		'Lekton', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
-		'DejaVu Sans Mono', monospace;
+		var(--font-lekton, 'Lekton'), ui-monospace, 'Cascadia Code',
+		'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
 	/* Font Weights */
 	--ml-font-weight-light: 300;

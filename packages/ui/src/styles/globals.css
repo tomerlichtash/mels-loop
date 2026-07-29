@@ -7,7 +7,7 @@
 body {
 	background-color: var(--ml-background-color);
 	color: var(--ml-text-color);
-	font-family: var(--font-roboto-slab, var(--ml-font-latin));
+	font-family: var(--ml-font-latin);
 	font-size: var(--ml-font-size-body);
 	line-height: var(--ml-line-height-body);
 	-webkit-font-smoothing: antialiased;
@@ -15,7 +15,7 @@ body {
 }
 
 [dir='rtl'] body {
-	font-family: var(--font-hebrew, var(--ml-font-hebrew));
+	font-family: var(--ml-font-hebrew);
 }
 
 a {

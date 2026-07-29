@@ -89,7 +89,19 @@ export default async function Layout({
 	const navItems = buildNavItems(storySlug, articles);
 
 	const content = (
-		<html lang={locale} dir={dir} suppressHydrationWarning>
+		/*
+		 * The font variables belong on <html>, not <body>: the design tokens
+		 * that read them are declared at :root, and custom properties inherit
+		 * downwards only. Set on <body> they were invisible to :root, so every
+		 * token fell through to its literal-name fallback and lost next/font's
+		 * metric-matched fallback face with it.
+		 */
+		<html
+			lang={locale}
+			dir={dir}
+			className={`${robotoSlab.variable} ${hebrew.variable} ${lekton.variable}`}
+			suppressHydrationWarning
+		>
 			<head>
 				<link
 					rel="icon"
@@ -104,9 +116,7 @@ export default async function Layout({
 				<ColorSchemeScript />
 				<ScrollbarWidthScript />
 			</head>
-			<body
-				className={`${robotoSlab.variable} ${hebrew.variable} ${lekton.variable}`}
-			>
+			<body>
 				{gaId && <GoogleAnalytics gaId={gaId} />}
 				<PageScrollbar />
 				{/* Radix reads the direction from context, not from the document,
