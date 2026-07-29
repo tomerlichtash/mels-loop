@@ -4,23 +4,31 @@ import { visit } from 'unist-util-visit';
 import type { DirectiveNode } from './types';
 
 /**
- * Email directives for presenting email-style content.
+ * Email directives for presenting quoted correspondence.
  *
- * `:::email-header` — Transforms into a definition list (`<dl>`) for
- * email metadata (Date, From, To, Subject, etc.).
+ * A quoted email is one thing, so it is authored as one: `::::email` wraps the
+ * header and body in a `<figure>`, which makes it a figure of the article like
+ * any photograph — numbered alongside them, and captioned by a `<figcaption>`
+ * that describes the message rather than being the last line of it.
  *
+ *   ::::email
  *   :::email-header
- *   Date: Wednesday, 3 September 1986  16:46-EDT
  *   From: Art Evans \<Evans@TL-20B.ARPA\>
+ *   Date: Wednesday, 3 September 1986  16:46-EDT
  *   To: Risks@CSL.SRI.COM
- *   Re: Always Mount a Scratch Monkey
  *   :::
- *
- * `:::email-body` — Wraps content in a styled container for email body text.
  *
  *   :::email-body
  *   In another forum that I follow...
  *   :::
+ *
+ *   ::cite[Art Evans to RISKS, 1986]
+ *   ::::
+ *
+ * The parts still work on their own — `:::email-header` is a definition list
+ * of the metadata, `:::email-body` a container for the message — but outside
+ * an `::::email` they are two unrelated blocks, which is what they looked
+ * like.
  */
 export function remarkEmailDirective() {
 	return (tree: Root) => {
@@ -29,7 +37,9 @@ export function remarkEmailDirective() {
 			const directive = node as DirectiveNode;
 			if (typeof index !== 'number' || !parent) return;
 
-			if (directive.name === 'email-header') {
+			if (directive.name === 'email') {
+				transformEmail(directive);
+			} else if (directive.name === 'email-header') {
 				transformEmailHeader(directive);
 			} else if (directive.name === 'email-body') {
 				directive.data = {
@@ -39,6 +49,27 @@ export function remarkEmailDirective() {
 			}
 		});
 	};
+}
+
+/**
+ * The wrapper: a `<figure>`, and its `::cite` becomes the `<figcaption>`.
+ *
+ * remarkBlockquoteDirective maps every `::cite` to a `<cite>`, and runs before
+ * this does — correct for an attribution inside a quotation, wrong for one
+ * describing a figure. Only a direct child is promoted, so a `::cite` deeper
+ * inside the message keeps its usual meaning.
+ */
+function transformEmail(directive: DirectiveNode) {
+	directive.data = {
+		hName: 'figure',
+		hProperties: { 'data-type': 'email' },
+	};
+
+	for (const child of directive.children) {
+		if (child.type === 'leafDirective' && child.name === 'cite') {
+			(child as DirectiveNode).data = { hName: 'figcaption' };
+		}
+	}
 }
 
 /**
