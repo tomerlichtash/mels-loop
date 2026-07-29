@@ -98,25 +98,37 @@
 	display: grid;
 	grid-template-columns: auto 1fr;
 	gap: 0 var(--ml-space-md);
-	margin-bottom: var(--ml-space-lg);
+	margin: 0;
 	padding: var(--ml-space-md);
 	background-color: var(--ml-color-surface-subtle);
-	/* border-radius: var(--ml-radius-md); */
-	font-family: var(--ml-font-family-mono);
+	font-family: var(--ml-font-mono);
 	font-size: var(--ml-font-size-sm);
 	line-height: var(--ml-line-height-relaxed);
 	border: 1px solid var(--ml-border-color);
+	border-radius: var(--ml-radius-md) var(--ml-radius-md) 0 0;
 }
 
+/*
+ * The labels are the form, not the content — FROM, DATE, TO say nothing a
+ * reader came for. They recede so the addresses and the message beside them
+ * carry the full text colour, which is where the eye should land. Bold and
+ * uppercase still hold the column; only the weight of colour changes.
+ */
 .root dl[data-type='email-header'] dt {
 	font-weight: var(--ml-font-weight-bold);
-	color: var(--ml-text-color);
+	color: var(--ml-text-subtle-color);
 	text-transform: uppercase;
 }
 
+/*
+ * The values carry the message's own facts — who wrote, when, to whom — so
+ * they read at the same size and colour as the message below, and darker than
+ * the labels naming them.
+ */
 .root dl[data-type='email-header'] dd {
 	margin: 0;
-	color: var(--ml-text-subtle-color);
+	font-size: var(--ml-font-size-body);
+	color: var(--ml-text-color);
 }
 
 /* Chat (div[data-type="chat"]) */
@@ -162,12 +174,68 @@
 	 * anything too long for the column.
 	 */
 	white-space: pre-line;
-	padding: var(--ml-space-md) var(--ml-space-lg);
-	border-inline-start: 3px solid var(--ml-border-color);
-	background-color: var(--ml-color-surface-subtle);
-	border-radius: var(--ml-radius-md);
-	font-family: var(--ml-font-family-mono);
+	margin: 0;
+	padding: var(--ml-space-md);
+	font-family: var(--ml-font-mono);
 	font-size: var(--ml-font-size-sm);
+	border: 1px solid var(--ml-border-color);
+	border-radius: 0 0 var(--ml-radius-md) var(--ml-radius-md);
+}
+
+/*
+ * The message's paragraphs come through Text's body1 variant, which sets its
+ * own family, size and leading — so the box's monospace stopped at the
+ * container and the text inside it was still prose. The same trap as the
+ * font-size note further up this file.
+ *
+ * Justification goes with it: an email is written in short deliberate lines,
+ * and stretching them to a flush edge is the opposite of quoting it faithfully.
+ */
+.root div[data-type='email-body'] p {
+	font-family: var(--ml-font-mono);
+	/*
+	 * A step up from the header's labels. Lekton is a light face and sets
+	 * thin at 12px, which read as grey rather than as text — the message is
+	 * the thing being quoted and should be as readable as the prose around it.
+	 */
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-relaxed);
+	color: var(--ml-text-color);
+	text-align: start;
+	hyphens: manual;
+}
+
+/*
+ * The message's last paragraph carries the prose bottom margin, which stacked
+ * on the box's own padding and left the space beneath the sign-off twice what
+ * sits above the greeting.
+ */
+.root div[data-type='email-body'] > :last-child {
+	margin-bottom: 0;
+}
+
+/*
+ * A quoted email, as one object.
+ *
+ * The header and the message used to be two separately bordered blocks with a
+ * gap between them, which read as two unrelated notes rather than as one
+ * piece of correspondence. They are now a single box: the header is its
+ * masthead, the message is the sheet below it, and the seam between them is
+ * one shared line rather than two adjacent borders.
+ */
+.root figure[data-type='email'] {
+	margin: 0 0 var(--ml-space-lg);
+	/*
+	 * The Figure primitive centres its contents, which suits an image narrower
+	 * than the column and ruins a block of text: the headers and the message
+	 * were centred inside their own box. Only the caption keeps the figure's
+	 * own alignment, which it sets for itself.
+	 */
+	text-align: start;
+}
+
+.root figure[data-type='email'] dl[data-type='email-header'] {
+	border-bottom: none;
 }
 
 /*
