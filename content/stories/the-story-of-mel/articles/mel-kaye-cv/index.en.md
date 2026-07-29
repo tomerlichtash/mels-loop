@@ -108,6 +108,7 @@ Mel never sought (or even acknowledged) his glory in the hacking culture. In fac
 
 Thus wrote Anthony Cuozzo on April 2012:
 
+::::email
 :::email-header
 From: Anthony Cuozzo (acuozzo@\*\*\*.\*\*\*\*\*\*\*\*.\*\*\*)
 Date: Tue, Apr 17, 2012 at 10:59 AM
@@ -119,11 +120,14 @@ Hello Mel,
 Did you once work for Librascope Inc. or Royal McBee?
 Thanks,
 Anthony
-::cite[Anthony Cuozzo's email to Mel Kaye, 2012]
 :::
+
+::cite[Anthony Cuozzo's email to Mel Kaye, 2012]
+::::
 
 Within an hour, Mel replied:
 
+::::email
 :::email-header
 From: Mel Kaye (rimel3@roadrunner.com)
 Date: Tue, Apr 17, 2012 at 12:01 PM
@@ -134,7 +138,9 @@ To: acuozzo@\*\*\*.\*\*\*\*\*\*\*\*.\*\*\*
 Yes, I did, many, many years ago I worked for both of them.
 I believe I worked for Royal McBee first.
 Mel Kaye
-::cite[Mel's final email]
 :::
+
+::cite[Mel's final email]
+::::
 
 Upon receiving the reply, Cuozzo tried to continue the correspondence, but Mel fell silent. There are probably more chapters in this story. The research continues.

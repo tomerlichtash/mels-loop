@@ -8,6 +8,45 @@ import { applyPlugins, findElements, textContent } from '../test-helpers';
 describe('remarkEmailDirective', () => {
 	const plugins: PluginSpec[] = [[remarkDirective], [remarkEmailDirective]];
 
+	describe('email', () => {
+		const md = [
+			'::::email',
+			':::email-header',
+			'From: Alice',
+			':::',
+			'',
+			':::email-body',
+			'Hello',
+			':::',
+			'',
+			'::cite[Alice to Bob, 1986]',
+			'::::',
+		].join('\n');
+
+		it('wraps the header and body in a figure', async () => {
+			const hast = await applyPlugins(md, { remarkPlugins: [...plugins] });
+			const figures = findElements(hast, 'figure');
+			expect(figures).toHaveLength(1);
+			expect(figures[0].properties?.['dataType']).toBe('email');
+			// both parts live inside it, rather than as loose siblings
+			expect(findElements(figures[0], 'dl')).toHaveLength(1);
+			expect(
+				findElements(figures[0], 'div').filter(
+					(d) => d.properties?.['dataType'] === 'email-body',
+				),
+			).toHaveLength(1);
+		});
+
+		it('promotes the citation to the figure caption', async () => {
+			const hast = await applyPlugins(md, { remarkPlugins: [...plugins] });
+			const captions = findElements(hast, 'figcaption');
+			expect(captions).toHaveLength(1);
+			expect(textContent(captions[0])).toBe('Alice to Bob, 1986');
+			// and it is no longer a <cite>, which is what a quotation would use
+			expect(findElements(hast, 'cite')).toHaveLength(0);
+		});
+	});
+
 	describe('email-header', () => {
 		it('converts :::email-header to a definition list', async () => {
 			const md = ':::email-header\nFrom: Alice\nTo: Bob\n:::';

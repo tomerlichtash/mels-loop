@@ -105,6 +105,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 
 וכך כתב אנתוני קוזו באפריל 2012:
 
+::::email
 :::email-header
 From: Anthony Cuozzo (acuozzo@\*\*\*.\*\*\*\*\*\*\*\*.\*\*\*)
 Date: Tue, Apr 17, 2012 at 10:59 AM
@@ -116,11 +117,14 @@ Hello Mel,
 Did you once work for Librascope Inc. or Royal McBee?
 Thanks,
 Anthony
-::cite[האימייל של אנתוני קוזו למל קיי, 2012.]
 :::
+
+::cite[האימייל של אנתוני קוזו למל קיי, 2012.]
+::::
 
 בתוך שעה, השיב מל:
 
+::::email
 :::email-header
 From: Mel Kaye (rimel3@roadrunner.com)
 Date: Tue, Apr 17, 2012 at 12:01 PM
@@ -131,7 +135,9 @@ To: acuozzo@\*\*\*.\*\*\*\*\*\*\*\*.\*\*\*
 Yes, I did, many, many years ago I worked for both of them.
 I believe I worked for Royal McBee first.
 Mel Kaye
-::cite[האימייל האחרון של מל]
 :::
+
+::cite[האימייל האחרון של מל]
+::::
 
 עם קבלת תשובתו של מייל ניסה קוזו להמשיך את ההתכתבות, אך קולו של מל נדם, והשתיקה נמשכת. זו, למעשה, היתה המילה האחרונה של מל.
