@@ -133,12 +133,6 @@
 	color: var(--ml-text-color);
 }
 
-.loader {
-	display: flex;
-	justify-content: center;
-	padding: var(--ml-space-lg);
-}
-
 .body {
 	/* Size comes from the panel — see --ml-popover-font-size. */
 	line-height: var(--ml-line-height-body);

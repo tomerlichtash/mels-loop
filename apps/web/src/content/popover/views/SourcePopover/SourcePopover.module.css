@@ -53,11 +53,6 @@
 }
 
 /* Padding comes from the scroller — see --ml-popover-padding above. */
-.loader {
-	display: flex;
-	justify-content: center;
-}
-
 /* Open: the fill is the indicator, so the rule underneath it is noise. */
 .trigger[data-state='open'] {
 	background-color: var(--ml-term-highlight);

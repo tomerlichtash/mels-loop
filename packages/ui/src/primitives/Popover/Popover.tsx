@@ -15,6 +15,7 @@ import {
 } from 'react';
 
 import { CloseButton } from '../CloseButton/CloseButton';
+import { Loader } from '../Loader/Loader';
 import { ScrollArea } from '../ScrollArea/ScrollArea';
 import styles from './Popover.module.css';
 
@@ -53,6 +54,21 @@ export interface PopoverProps {
 	 * stays put while the content moves under it.
 	 */
 	toolbar?: ReactNode;
+	/**
+	 * Replaces the whole panel body with a centred loader.
+	 *
+	 * The panel, not the content slot. Views used to render their own spinner
+	 * as `children`, which left their heading above it — so a term the reader
+	 * had just clicked was titled and framed while its definition was still in
+	 * flight, and the panel then resized underneath the finished text. One
+	 * indicator for the whole panel reads as "this is loading" rather than "this
+	 * has loaded, apart from the part you wanted".
+	 *
+	 * The toolbar stays. It is empty on a first open, so nothing shows there
+	 * anyway; once the reader has navigated inward it holds the trail and the
+	 * back control, and taking those away mid-navigation would strand them.
+	 */
+	loading?: boolean;
 	closeLabel?: string;
 	className?: string;
 }
@@ -82,6 +98,7 @@ export function Popover({
 	collisionPadding = 8,
 	title,
 	toolbar,
+	loading = false,
 	closeLabel = 'Close',
 	className,
 }: PopoverProps) {
@@ -191,6 +208,13 @@ export function Popover({
 		[onOpenChange],
 	);
 
+	/* Stands in for the scrolling body on both variants, so it is written once. */
+	const loadingBody = (
+		<div className={styles.loading}>
+			<Loader size="md" />
+		</div>
+	);
+
 	if (isMobile) {
 		return (
 			<RadixDialog.Root
@@ -237,13 +261,17 @@ export function Popover({
 								/>
 							</RadixDialog.Close>
 						</div>
-						<ScrollArea
-							type="auto"
-							className={styles.sheetScroll}
-							viewportClassName={styles.sheetViewport}
-						>
-							{children}
-						</ScrollArea>
+						{loading ? (
+							loadingBody
+						) : (
+							<ScrollArea
+								type="auto"
+								className={styles.sheetScroll}
+								viewportClassName={styles.sheetViewport}
+							>
+								{children}
+							</ScrollArea>
+						)}
 					</RadixDialog.Content>
 				</RadixDialog.Portal>
 			</RadixDialog.Root>
@@ -288,13 +316,17 @@ export function Popover({
 							/>
 						</RadixPopover.Close>
 					</div>
-					<ScrollArea
-						type="auto"
-						className={styles.scrollArea}
-						viewportClassName={styles.scrollViewport}
-					>
-						{children}
-					</ScrollArea>
+					{loading ? (
+						loadingBody
+					) : (
+						<ScrollArea
+							type="auto"
+							className={styles.scrollArea}
+							viewportClassName={styles.scrollViewport}
+						>
+							{children}
+						</ScrollArea>
+					)}
 					<RadixPopover.Arrow className={styles.arrow} width={14} height={7} />
 				</RadixPopover.Content>
 			</RadixPopover.Portal>

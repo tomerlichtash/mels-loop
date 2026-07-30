@@ -1,6 +1,6 @@
 'use client';
 
-import { Loader, Popover } from '@mels-loop/ui/primitives';
+import { Popover } from '@mels-loop/ui/primitives';
 
 import { SourceDetail } from '../../../sources/SourceDetail/SourceDetail';
 import { useContentPopover } from '../../hooks/useContentPopover';
@@ -39,6 +39,7 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 				if (!next) closePopover();
 			}}
 			toolbar={<NavBar rootLabel={String(displayLabel)} />}
+			loading={!source}
 			title={id}
 			side={side}
 			triggerRef={triggerRef}
@@ -54,13 +55,8 @@ export function SourcePopover({ id, label }: SourcePopoverProps) {
 				</button>
 			}
 		>
-			{!source ? (
-				<div className={styles.loader}>
-					<Loader size="md" />
-				</div>
-			) : (
-				<SourceDetail source={source} />
-			)}
+			{/* The panel renders its own loader while this is null — see `loading`. */}
+			{source && <SourceDetail source={source} />}
 		</Popover>
 	);
 }
