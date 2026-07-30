@@ -17,6 +17,35 @@ const LightboxModal = dynamic(() => import('./LightboxModal'), { ssr: false });
 const ZOOMABLE = 'img[data-zoomable]';
 
 /**
+ * Width the lightbox asks the image optimiser for.
+ *
+ * Must be one of next/image's configured widths — an unlisted value is
+ * rejected with a 400, not rounded to the nearest. 1920 is in the default
+ * deviceSizes and sits above the 2000px ceiling the masters are stored at, so
+ * it is the most the optimiser can actually produce for them.
+ */
+const LIGHTBOX_WIDTH = 1920;
+
+/**
+ * The article's derivative, re-requested at lightbox size.
+ *
+ * Slides used to carry `currentSrc` straight from the page, which meant the
+ * lightbox displayed the same file the column did — 750px — and the zoom
+ * plugin magnified those pixels rather than revealing any. On an archive whose
+ * images are census forms, punch printouts and coding sheets, zooming into a
+ * primary source showed nothing that reading the caption had not.
+ *
+ * Only the width parameter changes, so the optimiser treats it as a separate
+ * derivative and caches it as one. Anything that is not an optimiser URL — an
+ * SVG, an unoptimised remote host — has no `w=` to rewrite and is returned
+ * untouched.
+ */
+function lightboxSrc(src: string): string {
+	if (!src.includes('/_next/image')) return src;
+	return src.replace(/([?&]w=)\d+/, `$1${LIGHTBOX_WIDTH}`);
+}
+
+/**
  * Provenance for an image drawn from the source registry.
  *
  * rehypeSourceImages already writes the author, credit and licence onto the
@@ -52,7 +81,7 @@ function toSlide(el: HTMLImageElement): ViewerSlide {
 	const credit = provenance(el);
 
 	return {
-		src: el.currentSrc || el.src,
+		src: lightboxSrc(el.currentSrc || el.src),
 		alt: el.alt || '',
 		title: caption,
 		/*
