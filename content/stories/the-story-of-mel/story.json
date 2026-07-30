@@ -26,7 +26,7 @@
 		"cover": "source:mel-kaye-photo-1952",
 		"thumbnail": "source:mel-kaye-photo-1952",
 		"avatar": {
-			"src": "source:mel-kaye-photo-1952",
+			"src": "/media/v2/images/mel-kaye-1952-avatar.jpg",
 			"initials": "avatar.initials",
 			"alt": "avatar.alt"
 		}

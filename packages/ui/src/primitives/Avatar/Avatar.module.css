@@ -52,6 +52,34 @@
 	opacity: 1;
 }
 
+/*
+ * Wrapper for a caller-supplied image element — see the `image` prop.
+ *
+ * The element inside is the app's, not ours, so it is shaped by descendant
+ * selector rather than by a class we would have to graft onto it.
+ */
+.imageSlot {
+	display: block;
+	width: 100%;
+	height: 100%;
+	/* Carries the circle down to the image. Without it the chain stops here —
+	 * the root is round, this wrapper is not, and `inherit` on the image below
+	 * resolves against this rather than the root. */
+	border-radius: inherit;
+}
+
+/*
+ * next/image sets width and height as HTML attributes rather than inline
+ * styles, and those are presentational hints — any author rule outranks them,
+ * so this needs no !important to fill the circle.
+ */
+.imageSlot img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: inherit;
+}
+
 .loader {
 	position: absolute;
 }
