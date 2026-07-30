@@ -1,0 +1,113 @@
+:root {
+	--ml-badge-font-size: var(--ml-font-size-xs);
+	--ml-badge-font-weight: var(--ml-font-weight-bold);
+	--ml-badge-letter-spacing: var(--ml-letter-spacing-tight);
+	--ml-badge-line-height: var(--ml-line-height-snug);
+	--ml-badge-radius: var(--ml-radius-pill);
+	--ml-badge-padding-horizontal: var(--ml-space-sm);
+	--ml-badge-padding-vertical: var(--ml-space-xs);
+	--ml-badge-border-color: var(--ml-border-color);
+}
+
+.root {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: var(--ml-badge-font-size);
+	font-weight: var(--ml-badge-font-weight);
+	text-transform: uppercase;
+	letter-spacing: var(--ml-badge-letter-spacing);
+	line-height: var(--ml-badge-line-height);
+	padding: var(--ml-badge-padding-vertical) var(--ml-badge-padding-horizontal);
+	border-radius: var(--ml-badge-radius);
+	border: 1px solid var(--ml-badge-border-color);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+}
+
+/* Colored */
+.colored {
+	background-color: var(--ml-badge-background-color);
+	color: oklch(
+		from var(--ml-badge-background-color) clamp(0, (0.5 - l) * 1000, 1) 0 0
+	);
+	border-color: transparent;
+}
+
+/* Bordered */
+.bordered {
+	border-color: var(--ml-badge-border-color);
+}
+
+/* Variants */
+.variant-outlined {
+	background-color: transparent;
+	color: inherit;
+}
+
+.variant-contained {
+	background-color: var(--ml-color-primary);
+	color: var(--ml-background-color);
+	border-color: transparent;
+}
+
+/*
+ * A notification-style numeric counter beside a label — a tab, an accordion
+ * heading. Sized in em and tinted from currentColor, so it inherits scale and
+ * colour from whatever it sits next to instead of needing a variant per
+ * context. Cancels the label treatment the base carries (uppercase, tracking,
+ * visible border), since none of it applies to a number.
+ */
+.variant-count {
+	--ml-badge-font-size: 0.7em;
+	--ml-badge-font-weight: var(--ml-font-weight-semibold);
+	--ml-badge-letter-spacing: normal;
+	--ml-badge-line-height: 1.5;
+	--ml-badge-padding-vertical: 0;
+	/*
+	 * min-width rather than width, plus a small horizontal padding.
+	 *
+	 * One and two digits stay perfectly circular because min-width dominates —
+	 * their content plus padding still measures under 1.8em. Three digits
+	 * exceed it and the box grows into a stadium with room to breathe, rather
+	 * than three glyphs pressed against the rim of a fixed circle. A fixed
+	 * width would clip or spill there instead.
+	 *
+	 * The inherited --ml-radius-pill is a length (999px), not --ml-radius-full:
+	 * that token is 50%, and 50% on a wider-than-tall box gives an ellipse,
+	 * which reads as a mistake. A stadium reads as deliberate.
+	 */
+	--ml-badge-padding-horizontal: 0.2em;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 1.8em;
+	height: 1.8em;
+	text-transform: none;
+	border: none;
+	color: color-mix(in srgb, currentColor 65%, transparent);
+	background-color: color-mix(in srgb, currentColor 12%, transparent);
+	font-variant-numeric: tabular-nums;
+}
+
+/* Radius */
+.radius-none {
+	--ml-badge-radius: var(--ml-radius-none);
+}
+
+.radius-sm {
+	--ml-badge-radius: var(--ml-radius-sm);
+}
+
+.radius-md {
+	--ml-badge-radius: var(--ml-radius-md);
+}
+
+.radius-lg {
+	--ml-badge-radius: var(--ml-radius-lg);
+}
+
+.radius-pill {
+	--ml-badge-radius: var(--ml-radius-pill);
+}

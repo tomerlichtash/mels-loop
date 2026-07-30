@@ -1,0 +1,29 @@
+/*
+ * ---- Mel's Loop Brand Palette ----
+ *
+ * Overrides the generic UI palette with warm cream neutrals
+ * and the ML brand gradient (blue → purple → pink).
+ */
+
+:root {
+	/* ---- Warm neutrals ---- */
+	--ml-cream-100: oklch(0.988 0.003 85);
+	--ml-cream-200: oklch(0.951 0.015 94);
+	--ml-cream-300: oklch(0.915 0.015 94);
+	--ml-gray-100: oklch(0.836 0.013 92);
+	--ml-gray-200: oklch(0.718 0.012 95);
+	--ml-gray-300: oklch(0.506 0.008 98);
+	--ml-gray-400: oklch(0.384 0.007 118);
+	--ml-gray-500: oklch(0.243 0.004 107);
+
+	/* ---- Brand colors ---- */
+	--ml-pink: oklch(0.708 0.187 8);
+	--ml-pink-light: oklch(0.729 0.163 350);
+	--ml-mauve: oklch(0.611 0.136 348);
+	--ml-purple: oklch(0.495 0.091 308);
+	--ml-indigo: oklch(0.435 0.078 287);
+	--ml-blue: oklch(0.551 0.145 258);
+	--ml-blue-dark: oklch(0.432 0.111 259);
+	--ml-navy: oklch(0.332 0.082 259);
+	--ml-navy-deep: oklch(0.212 0.075 257);
+}

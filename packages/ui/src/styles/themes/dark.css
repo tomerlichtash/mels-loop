@@ -1,0 +1,184 @@
+/* ---- Dark Theme Overrides ---- */
+
+/*
+ * Intent overrides come first — semantic tokens that reference intents
+ * will automatically pick up the new values without needing their own
+ * overrides. Only tokens that need values DIFFERENT from what the intent
+ * cascade provides are listed in the semantic section below.
+ *
+ * Brand themes (e.g. ml.css) may further override primary and secondary
+ * intents in dark mode (e.g. swapping primary↔secondary hues).
+ */
+
+[data-color-scheme='dark'] {
+	/* ---- Intent: Primary — stays blue, lighter for dark (H≈250) ---- */
+	--ml-color-primary: oklch(0.65 0.17 250);
+	--ml-color-primary-alt: oklch(0.7 0.14 250);
+	--ml-color-primary-subtle: oklch(0.25 0.05 250);
+	--ml-color-primary-deep: oklch(0.5 0.2 250);
+	--ml-color-primary-muted: oklch(0.55 0.05 250);
+	--ml-color-primary-contrast: var(--ml-white);
+	--ml-color-primary-highlight: oklch(0.72 0.2 250);
+
+	/* ---- Intent: Secondary — teal, lighter for dark (H≈180) ---- */
+	--ml-color-secondary: oklch(0.6 0.1 180);
+	--ml-color-secondary-alt: oklch(0.65 0.08 180);
+	--ml-color-secondary-subtle: oklch(0.22 0.04 180);
+	--ml-color-secondary-deep: oklch(0.42 0.14 180);
+	--ml-color-secondary-muted: oklch(0.5 0.04 180);
+	--ml-color-secondary-highlight: oklch(0.68 0.14 180);
+
+	/* ---- Intent: Success (green, H≈143) ---- */
+	--ml-color-success-alt: var(--ml-success-light);
+	--ml-color-success-subtle: var(--ml-success-subtle);
+	--ml-color-success-highlight: oklch(0.8 0.18 143);
+
+	/* ---- Intent: Error (red, H≈27) ---- */
+	--ml-color-error-alt: var(--ml-error-light);
+	--ml-color-error-subtle: var(--ml-error-subtle);
+	--ml-color-error-highlight: oklch(0.75 0.16 27);
+
+	/* ---- Intent: Warning (amber, H≈76) ---- */
+	--ml-color-warning-alt: var(--ml-warning-light);
+	--ml-color-warning-subtle: var(--ml-warning-subtle);
+	--ml-color-warning-highlight: oklch(0.85 0.14 76);
+
+	/* ---- Intent: Info (blue, H≈263) ---- */
+	--ml-color-info-alt: var(--ml-info-light);
+	--ml-color-info-subtle: var(--ml-info-subtle);
+	--ml-color-info-highlight: oklch(0.75 0.16 263);
+
+	/*
+	 * ---- Intent: Surface ----
+	 *
+	 * A few points above gray-500, the near-black this used to sit at.
+	 * Raising the floor lowers every contrast ratio on the page at once,
+	 * which is the point — see the note on --ml-text-color below. It also
+	 * closes the gap to the chrome, which floated conspicuously lighter
+	 * than the page it sat on.
+	 *
+	 * Surface and surface-subtle move together so panels stay level with
+	 * the page rather than sinking below it.
+	 */
+	--ml-color-surface: oklch(0.27 0.004 107);
+	--ml-color-surface-alt: var(--ml-gray-400);
+	--ml-color-surface-subtle: oklch(0.27 0.004 107);
+	/*
+	 * deep and muted have to differ: hover reads the first, a selected state
+	 * reads the second. Both resolved to gray-300 here, so in the locale
+	 * toggle a hovered half and the selected half were the same fill and the
+	 * control stopped saying which language was on — the same fault the light
+	 * theme had, one token along.
+	 */
+	--ml-color-surface-deep: var(--ml-gray-400);
+	--ml-color-surface-muted: var(--ml-gray-300);
+	--ml-color-surface-contrast: var(--ml-cream-200);
+	--ml-color-surface-highlight: var(--ml-gray-300);
+
+	/*
+	 * ---- Semantic overrides ----
+	 * Only tokens whose dark values differ from what intent
+	 * cascade would give them.
+	 */
+
+	/*
+	 * ---- Text ----
+	 *
+	 * Dimmer than the light theme's text is dark, deliberately.
+	 *
+	 * Light on dark halates: the glyphs bloom into the background, and the
+	 * brighter they are the more they smear — worst for astigmatic readers,
+	 * who are most of them. Dark on light does not do this, so the two
+	 * themes do not want the same contrast. Body text was cream-200 at 95%
+	 * lightness, giving 14:1 against the old background; the comfortable
+	 * band for dark-mode prose is nearer 10-12:1.
+	 *
+	 * Only the lightness channel moves. Hue and chroma are untouched, so the
+	 * theme keeps its warmth and simply stops glaring.
+	 */
+	--ml-text-color: oklch(0.87 0.012 94);
+	--ml-text-subtle-color: var(--ml-gray-200);
+	--ml-text-muted-color: var(--ml-gray-200);
+
+	/*
+	 * ---- Headings ----
+	 *
+	 * Below the old cream-100, which at 98.8% lightness was effectively white
+	 * and *brighter* than the body — so headings bloomed hardest of anything
+	 * on the page. In dark mode hierarchy is better carried by size and
+	 * weight than by pushing lightness past the text it introduces.
+	 */
+	--ml-heading-color: oklch(0.91 0.01 90);
+	--ml-heading-subtle-color: var(--ml-cream-200);
+
+	/* Links */
+	/* Matches the interactive pair, as in light. */
+	--ml-link-color: var(--ml-color-primary);
+	/* Lighter than the resting link, for the reason given in semantic.css:
+	 * hover moves away from the page, which on a dark one means up. */
+	--ml-link-hover-color: oklch(0.78 0.13 350);
+
+	/* Code */
+	/* The previous site used #666560 here; gray-300 is its lightness. */
+	--ml-scrollbar-thumb-color: var(--ml-gray-300);
+
+	--ml-code-bg: var(--ml-color-surface-alt);
+	--ml-code-text: var(--ml-cream-200);
+	--ml-code-border: var(--ml-gray-300);
+
+	/* Popover */
+	/*
+	 * The same depth as the header and footer. On --ml-color-surface it was
+	 * level with the page it floats over, so the panel had only its shadow to
+	 * separate it from the prose behind — and in dark a shadow against a dark
+	 * background does almost nothing.
+	 */
+	--ml-popover-bg: var(--ml-color-surface-sunken);
+	--ml-popover-topic-bg: var(--ml-color-primary);
+	--ml-popover-topic-text: var(--ml-cream-200);
+	--ml-popover-icon: var(--ml-cream-200);
+	--ml-popover-icon-hover: var(--ml-color-surface);
+
+	/* Annotation */
+	--ml-annotation-bg: var(--ml-color-secondary);
+
+	/* Gradient */
+	--ml-gradient-start: var(--ml-color-secondary);
+	--ml-gradient-end: var(--ml-color-primary);
+
+	/* Form */
+	--ml-input-border: var(--ml-color-primary);
+	--ml-input-placeholder: var(--ml-gray-200);
+	--ml-submit-bg: var(--ml-color-primary);
+	--ml-submit-bg-hover: var(--ml-color-secondary-alt);
+	--ml-submit-text: var(--ml-color-surface-subtle);
+
+	/* Menu */
+	--ml-menu-hover-bg: var(--ml-color-primary);
+	--ml-mobile-menu-text: var(--ml-color-secondary-highlight);
+
+	/*
+	 * ---- Chrome ----
+	 *
+	 * A step below the page rather than above it. surface-alt, which this used
+	 * to take, is lighter than the page in dark — so the header and footer
+	 * floated over content that should sit on top of them, and worse, that
+	 * value is identical to --ml-border-color, which left the header's
+	 * dividers and the search field's border drawn in the colour underneath
+	 * them.
+	 *
+	 * The step is 1.12:1 against the page, the same separation light gets from
+	 * its cream — enough to read as a band without becoming a black stripe.
+	 */
+	--ml-color-surface-sunken: oklch(0.235 0.004 107);
+	--ml-header-bg: var(--ml-color-surface-sunken);
+	--ml-footer-bg: var(--ml-color-surface-sunken);
+
+	/* Border — visible but not bright against dark surfaces */
+	--ml-border-color: var(--ml-gray-400);
+
+	/* Shadow */
+	--ml-shadow:
+		hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+		hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+}

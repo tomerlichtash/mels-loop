@@ -1,0 +1,93 @@
+/*
+ * A quiet path, not a headline. It lives in the panel's toolbar, so it has to
+ * read as chrome — small, muted, and clearly subordinate to the term below.
+ *
+ * No bottom margin any more: it used to sit inside the scrolling body, above
+ * the title, and needed to hold itself off it. In the toolbar the strip's own
+ * padding does that, and a margin only pushed the trail off centre in a row
+ * it now shares with the close control.
+ */
+.root {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-sm);
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-muted-color);
+}
+
+.back {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	border: none;
+	border-radius: var(--ml-radius-sm);
+	background-color: color-mix(in srgb, currentColor 10%, transparent);
+	color: inherit;
+	cursor: pointer;
+	transition: color var(--ml-duration-fast) ease;
+}
+
+@media (hover: hover) {
+	.back:hover {
+		color: var(--ml-term-highlight);
+	}
+}
+
+/*
+ * The arrow is a graphic, not a character.
+ *
+ * U+203A in the trail below is bidi-mirrored, so the browser turns it around
+ * on its own — which is why there is no override for it. An SVG gets no such
+ * treatment: it pointed left in both directions, which in a right-to-left
+ * panel is forward rather than back.
+ */
+:dir(rtl) .back svg {
+	transform: scaleX(-1);
+}
+
+.trail {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-xs);
+	flex-wrap: wrap;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	min-width: 0;
+}
+
+/*
+ * The separator is drawn between items rather than after each, so the trail
+ * never ends on a dangling chevron pointing at the title.
+ */
+/*
+ * One glyph for both directions. U+203A is bidi-mirrored, so the browser draws
+ * it reversed in a right-to-left run on its own; the :dir(rtl) override that
+ * used to swap in U+2039 mirrored it a second time and pointed the trail back
+ * the way it came. Same fix as the breadcrumbs.
+ */
+.crumbItem + .crumbItem::before {
+	content: '\203A';
+	margin: 0 var(--ml-space-xs);
+	color: var(--ml-text-muted-color);
+}
+
+.crumb {
+	padding: 0;
+	border: none;
+	background: none;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+	transition: color var(--ml-duration-fast) ease;
+}
+
+@media (hover: hover) {
+	.crumb:hover {
+		color: var(--ml-term-highlight);
+	}
+}

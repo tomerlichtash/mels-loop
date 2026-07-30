@@ -1,0 +1,207 @@
+/*
+ * ---- Header controls ----
+ *
+ * One size, one shape, one hover, no fills and no borders.
+ *
+ * The five controls in this bar had been styled one at a time and agreed on
+ * nothing: three heights, four font sizes across five controls, a border on
+ * one of them, fills on two for unrelated reasons — a selected state on the
+ * locale and a current-page state on the nav link — and the locale pair did
+ * not even match itself, EN at 12px beside a Hebrew glyph at 16.
+ *
+ * Read together they looked like a collection rather than a set, and the
+ * heaviest thing in the header was a navigation link.
+ *
+ * The rule now: every control is a ghost at --ml-header-control-height, and
+ * nothing is bordered. Two exceptions, both earning it: hover needs a hit area
+ * to appear on, and the locale pair keeps a filled selected half — it is a
+ * segmented control, and which language you are reading has to be legible at a
+ * glance. Weight alone there read as a quirk of the font rather than a
+ * selection.
+ */
+.root {
+	--ml-header-control-height: 32px;
+	--ml-header-control-font-size: var(--ml-font-size-sm);
+
+	/* The locale pair and the theme toggle read these through the primitives'
+	 * own tokens. */
+	--ml-toggle-group-item-height: var(--ml-header-control-height);
+	--ml-toggle-group-item-font-size: var(--ml-header-control-font-size);
+	--ml-toggle-group-hover-bg: var(--ml-header-item-hover);
+	--ml-toggle-button-height: var(--ml-header-control-height);
+	--ml-toggle-button-hover-bg: var(--ml-header-item-hover);
+	/*
+	 * The locale pair is one control: a border around the group, its halves
+	 * square and flush inside it, and the selected half filled — which is the
+	 * one fill in this bar that carries meaning rather than emphasis.
+	 */
+	--ml-toggle-group-gap: 0px;
+	--ml-toggle-group-item-radius: 0;
+	/*
+	 * A step stronger than hover, which is the fill every other control in the
+	 * bar uses. The two were the same token — surface-deep and
+	 * --ml-header-item-hover both resolve to the same value — so hovering the
+	 * unselected half made it indistinguishable from the selected one, and the
+	 * control stopped saying which language you were reading.
+	 */
+	--ml-toggle-group-active-bg: var(--ml-color-surface-muted);
+}
+
+/*
+ * Each control its own bordered box, in two groups.
+ *
+ * Fusing them into one bordered strip with hairlines between the segments
+ * went too far: the locale pair stopped reading as a single segmented control
+ * and became two more buttons in a row of buttons. The border belongs around
+ * each control — including the locale pair as a whole, which is one control
+ * with two halves — and the space between them is a gap.
+ *
+ * The wider gap here separates the two kinds of control: what configures the
+ * site from what acts on it.
+ */
+.cluster {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-space-md);
+}
+
+.settings {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-space-xs);
+	/* A step back from the search beside them: a setting is something you
+	 * change occasionally, not something the bar is inviting you to do. */
+	color: var(--ml-text-muted-color);
+}
+
+.root {
+	position: fixed;
+	top: 0;
+	inset-inline: 0;
+	z-index: 100;
+	height: var(--ml-header-height);
+	background-color: var(--ml-header-bg);
+	transition: transform var(--ml-duration-normal) ease;
+}
+
+.strip {
+	position: fixed;
+	top: 0;
+	inset-inline: 0;
+	z-index: 99;
+	opacity: 0;
+	transition: opacity var(--ml-duration-fast) ease;
+}
+
+.stripVisible {
+	opacity: 1;
+	transition-delay: var(--ml-duration-fast);
+}
+
+.hidden {
+	transform: translateY(-100%);
+}
+
+/*
+ * Asymmetric gutters, deliberately. The start holds the wordmark — text, which
+ * wants to line up with the prose below it, so it gets the content gutter. The
+ * end holds icon buttons whose own padding already supplies visual margin; the
+ * tighter page gutter keeps their 44px tap targets from being pushed inward.
+ * On desktop the two tokens are equal, so this only takes effect on a phone.
+ */
+.inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	padding-block: 0;
+	padding-inline-start: var(--ml-content-padding-horizontal);
+	padding-inline-end: var(--ml-page-padding-horizontal);
+}
+
+.left {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-sm);
+}
+
+.right {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: var(--ml-space-sm);
+}
+
+.logoDivider {
+	width: 1px;
+	align-self: stretch;
+	margin-block: var(--ml-space-xs);
+	background-color: var(--ml-border-color);
+}
+
+.logoSubtitle {
+	font-size: var(--ml-font-size-md);
+	/*
+	 * Light, against the logo's medium — the subtitle is a gloss on the name,
+	 * not a second name. Weight and lower case already separate the two, which
+	 * is why there is no longer an opacity here as well: at 0.6 the line came
+	 * out at 4.1:1 in light and 3.5:1 in dark, under the 4.5:1 floor in both,
+	 * and thin strokes read worse than a ratio suggests. Fading text that is
+	 * already distinguished only makes it hard to read.
+	 */
+	font-weight: var(--ml-font-weight-light);
+	color: var(--ml-text-color);
+	letter-spacing: 0;
+	text-transform: lowercase;
+}
+
+@media (--ml-bp-mobile) {
+	.logoDivider,
+	.logoSubtitle {
+		display: none;
+	}
+
+	/*
+	 * With the drawer trigger, search, locale switcher and theme toggle all
+	 * competing for a 390px bar, flex was shrinking the brand until "MEL'S
+	 * LOOP" broke across two lines. Keep it on one line and let it hold its
+	 * width; the controls on the right have more give.
+	 */
+	.left {
+		flex-shrink: 0;
+		white-space: nowrap;
+	}
+}
+
+.rightDivider {
+	width: 1px;
+	align-self: stretch;
+	margin-block: var(--ml-space-xs);
+	background-color: var(--ml-border-color);
+}
+
+@media (--ml-bp-mobile) {
+	.rightDivider {
+		display: none;
+	}
+
+	/*
+	 * Theme and language are in the drawer at this width, and showing them
+	 * twice is what crowded the bar into breaking "MEL'S LOOP" over two lines.
+	 * The burger is the only control left here.
+	 */
+	.cluster {
+		display: none;
+	}
+
+	/*
+	 * The desktop gap separates labelled controls; here it is two bare icons
+	 * that read as one group, and 24px between them left the pair looking
+	 * unrelated with the divider gone.
+	 */
+	.right {
+		gap: var(--ml-space-xs);
+	}
+}

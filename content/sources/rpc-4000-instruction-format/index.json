@@ -1,0 +1,10 @@
+{
+	"id": "rpc-4000-instruction-format",
+	"type": "image",
+	"url": "/media/v2/images/rpc-4000-instruction.png",
+	"author": "Royal McBee Corporation",
+	"date": "1963",
+	"credit": "RPC-4000 Reference Manual",
+	"license": "fair-use",
+	"tags": ["rpc-4000", "royal-mcbee", "instruction-format"]
+}

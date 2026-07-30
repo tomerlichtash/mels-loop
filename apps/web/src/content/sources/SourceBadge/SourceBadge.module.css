@@ -1,0 +1,23 @@
+.badge[data-source-type='document'] {
+	--ml-badge-background-color: var(--ml-color-warning-subtle);
+}
+
+.badge[data-source-type='image'] {
+	--ml-badge-background-color: var(--ml-color-secondary-subtle);
+}
+
+.badge[data-source-type='pdf'] {
+	--ml-badge-background-color: var(--ml-color-error-subtle);
+}
+
+.badge[data-source-type='audio'] {
+	--ml-badge-background-color: var(--ml-color-primary-subtle);
+}
+
+.badge[data-source-type='video'] {
+	--ml-badge-background-color: var(--ml-color-info-subtle);
+}
+
+.badge[data-source-type='link'] {
+	--ml-badge-background-color: var(--ml-color-success-subtle);
+}

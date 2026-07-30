@@ -1,0 +1,10 @@
+.root {
+	max-width: 100%;
+	height: auto;
+	/*
+	 * Every image in the prose opens in the lightbox, and nothing else says so
+	 * — no overlay, no icon, no change of border. The cursor is the only cue a
+	 * reader gets that the picture is worth clicking.
+	 */
+	cursor: zoom-in;
+}

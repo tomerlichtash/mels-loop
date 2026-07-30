@@ -1,0 +1,74 @@
+/*
+ * Floats over the page rather than reserving a column, so nothing has to shrink
+ * to make room for it — which was the whole problem with the native
+ * always-visible bar.
+ *
+ * Only on pointer devices. Touch platforms already draw a floating scrollbar
+ * during a scroll and hide it after, which is the right behaviour there, and a
+ * permanent bar would just sit in the way of a swipe.
+ */
+.track {
+	display: none;
+}
+
+@media (pointer: fine) {
+	.track {
+		position: fixed;
+		inset-block: 0;
+		inset-inline-end: 0;
+		display: block;
+		width: calc(
+			var(--ml-scroll-area-size, 8px) + 2 * var(--ml-scroll-area-gap, 4px)
+		);
+		/*
+		 * Under the site header, over everything else.
+		 *
+		 * The thumb's grab target is 44px wide (see .thumb::before), which
+		 * reaches about 18px past this track and into the page. At 200 — above
+		 * the header's 100 — that strip covered the burger button at narrow
+		 * widths, where the burger sits close to the edge: elementFromPoint at
+		 * its centre returned the thumb, so the only navigation on a phone
+		 * could not be clicked at all.
+		 *
+		 * 95 keeps the thumb above the breadcrumb bar (90) and the tab strip
+		 * (89), so it stays visible while those are stuck to the top, and lets
+		 * the header take the clicks in its own row. Still under dialogs and
+		 * popovers, which own the screen while open.
+		 */
+		z-index: 95;
+		/* The track is only a rail; clicks belong to the page beneath it. */
+		pointer-events: none;
+	}
+
+	.track[data-visible='false'] {
+		visibility: hidden;
+	}
+
+	.thumb {
+		width: var(--ml-scroll-area-size, 8px);
+		margin-inline: var(--ml-scroll-area-gap, 4px);
+		background-color: var(--ml-scrollbar-thumb-color);
+		/* Square, matching the ScrollArea primitive. */
+		border-radius: 0;
+		pointer-events: auto;
+		cursor: pointer;
+		/* Positioned by transform rather than top, so scrolling never triggers
+		 * layout — only the compositor moves it. */
+		will-change: transform;
+	}
+
+	/*
+	 * An 8px-wide thumb is far below the minimum pointer target. The
+	 * pseudo-element widens what can be grabbed without widening what is drawn.
+	 * See WCAG 2.5.5.
+	 */
+	.thumb::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 44px;
+		height: 100%;
+	}
+}

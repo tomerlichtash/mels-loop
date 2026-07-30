@@ -1,0 +1,19 @@
+.root {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.main {
+	flex: 1;
+	/* padding: var(--ml-space-md); */
+	/* padding-top: calc(var(--ml-header-height) + var(--ml-space-md)); */
+}
+
+.content {
+	position: relative;
+	top: var(--ml-header-height);
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	padding: 0 var(--ml-content-padding-horizontal);
+}

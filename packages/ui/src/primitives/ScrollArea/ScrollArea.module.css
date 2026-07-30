@@ -1,0 +1,106 @@
+:root {
+	--ml-scroll-area-size: 8px;
+	/*
+	 * Space between the thumb and the edge of the panel it scrolls.
+	 *
+	 * Kept small on purpose. Radix overlays the scrollbar rather than reserving
+	 * a column for it, so the whole track sits on top of the text — at 12px a
+	 * side the track spanned 32px and the prose ran underneath the thumb. At
+	 * 4px the track is 16px wide, which fits inside the content gutter the
+	 * popovers already have, so the thumb lands in empty margin instead.
+	 */
+	--ml-scroll-area-gap: 4px;
+}
+
+.root {
+	overflow: hidden;
+	max-height: var(--ml-scroll-area-max-height, none);
+}
+
+/*
+ * height, not just max-height. A root constrained by `max-height` passes that
+ * down through inherit, but one constrained as a flex item — the mobile sheet —
+ * has max-height `none`, so the viewport grew to its content and the overflow
+ * was simply clipped with no way to scroll to it.
+ */
+.viewport {
+	width: 100%;
+	height: 100%;
+	max-height: inherit;
+}
+
+/*
+ * Radix wraps viewport children in a div set to `display: table` so it can
+ * measure content width. A table shrink-wraps, so any flex or block child that
+ * expects to fill the width collapses to its content instead.
+ */
+.viewport > div {
+	display: block !important;
+}
+
+/*
+ * Ported from the previous site's scrollbar: a thin square thumb on an
+ * unfilled track, rather than the rounded pill this first used. Square reads
+ * as part of the panel's edge instead of as a floating control, which is what
+ * suits a bordered box.
+ *
+ * The track stays transparent — a tinted track draws attention to the chrome
+ * rather than to the fact that there is more to read.
+ */
+.scrollbar {
+	display: flex;
+	/*
+	 * content-box so the gap is added around the thumb rather than eating into
+	 * it — with border-box the 8px track would be entirely padding and the
+	 * thumb would collapse to nothing. The padded area is still part of the
+	 * scrollbar, so it doubles as grabbable space.
+	 */
+	box-sizing: content-box;
+	background-color: transparent;
+	/* A control, not text: a drag here must not select the prose behind it or
+	 * scroll the page on touch. */
+	user-select: none;
+	touch-action: none;
+	cursor: pointer;
+	/* Above the panel's own content, so the thumb is never overlapped by a
+	 * positioned child of the scrolling area. */
+	z-index: 2;
+	transition: background-color 160ms ease-out;
+}
+
+.scrollbar[data-orientation='vertical'] {
+	width: var(--ml-scroll-area-size);
+	padding-inline: var(--ml-scroll-area-gap);
+}
+
+.scrollbar[data-orientation='horizontal'] {
+	height: var(--ml-scroll-area-size);
+	padding-block: var(--ml-scroll-area-gap);
+	flex-direction: column;
+}
+
+.thumb {
+	position: relative;
+	flex: 1;
+	border-radius: 0;
+	background-color: var(--ml-scrollbar-thumb-color);
+}
+
+/*
+ * An 8px thumb is far below the minimum pointer target, and it cannot simply
+ * be drawn wider without turning a hairline scrollbar into a slab. The
+ * pseudo-element enlarges the hit area without changing what is painted.
+ * Carried over from the previous site, which used the same 44px figure.
+ * See WCAG 2.5.5.
+ */
+.thumb::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	min-width: 44px;
+	min-height: 44px;
+}

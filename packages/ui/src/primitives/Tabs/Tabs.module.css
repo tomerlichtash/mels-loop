@@ -1,0 +1,206 @@
+/*
+ * Chevrons are flex siblings of the strip, not overlaid on it. Overlaid, a tap
+ * near the edge was ambiguous — chevron or the tab beneath — and neither had a
+ * dependable target. In flow each owns its own area and nothing is covered.
+ */
+.wrap {
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	min-width: 0;
+}
+
+.root {
+	position: relative;
+	flex: 1 1 auto;
+	display: flex;
+	/*
+	 * Centred while the row fits; `safe` falls back to start alignment on
+	 * overflow, so the first tab stays reachable instead of being scrolled
+	 * off the leading edge.
+	 */
+	justify-content: safe center;
+	gap: var(--ml-tabs-gap, var(--ml-space-md));
+	min-width: 0;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scrollbar-width: none;
+}
+
+.root::-webkit-scrollbar {
+	display: none;
+}
+
+/*
+ * Edge fades, applied only to a side that actually has content off-screen —
+ * the data attributes are set from measured tab rectangles. Fading both edges
+ * unconditionally clipped the active tab's underline on a strip that fitted.
+ * -webkit- first: lightningcss drops the unprefixed property otherwise.
+ */
+.root[data-fade-start][data-fade-end] {
+	-webkit-mask-image: linear-gradient(
+		to right,
+		transparent,
+		#000 var(--ml-space-xl),
+		#000 calc(100% - var(--ml-space-xl)),
+		transparent
+	);
+	mask-image: linear-gradient(
+		to right,
+		transparent,
+		#000 var(--ml-space-xl),
+		#000 calc(100% - var(--ml-space-xl)),
+		transparent
+	);
+}
+
+.root[data-fade-start]:not([data-fade-end]) {
+	-webkit-mask-image: linear-gradient(
+		to right,
+		transparent,
+		#000 var(--ml-space-xl)
+	);
+	mask-image: linear-gradient(to right, transparent, #000 var(--ml-space-xl));
+}
+
+.root[data-fade-end]:not([data-fade-start]) {
+	-webkit-mask-image: linear-gradient(
+		to left,
+		transparent,
+		#000 var(--ml-space-xl)
+	);
+	mask-image: linear-gradient(to left, transparent, #000 var(--ml-space-xl));
+}
+
+.tab {
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: var(--ml-space-sm) var(--ml-space-md);
+	white-space: nowrap;
+	text-decoration: none;
+	font-size: var(--ml-tabs-font-size, var(--ml-font-size-body));
+	font-weight: var(--ml-font-weight-medium);
+	color: var(--ml-text-muted-color);
+	transition: color var(--ml-duration-fast) ease;
+}
+
+.tab:hover {
+	color: var(--ml-text-color);
+}
+
+/*
+ * Colour only — deliberately no weight change. A heavier active tab is wider,
+ * which reflows the whole row on every navigation. The sliding indicator marks
+ * the active tab instead.
+ */
+.tabActive {
+	color: var(--ml-text-color);
+}
+
+/*
+ * A badge rather than parenthesised text: the count is metadata about the tab,
+ * not part of its name, and "(46)" read as though it belonged to the label.
+ *
+ * The fill is mixed from currentColor rather than a surface token, so it works
+ * on any strip background and in both themes, and deepens on the active tab
+ * for free. --ml-color-surface-subtle was tried first and is invisible here:
+ * it resolves to cream-100 at 98.8% lightness, against a near-white bar.
+ *
+ * A fixed circle rather than a pill that hugs its digits: the latter changes
+ * width per tab and reads as inconsistent across the strip.
+ */
+/* One element that slides between tabs — a per-tab border cannot animate
+ * between positions. */
+/*
+ * Physical `left` rather than inset-inline-start, the one place in this
+ * stylesheet that departs from the logical-property rule.
+ *
+ * The underline is not laid out; it is pinned to a position measured in
+ * script, and the only measurement available for a tab's position — offsetLeft
+ * — is a distance from the left in either writing direction. Pairing it with
+ * an inset that flips meaning put the Hebrew underline under the wrong tab.
+ * Nothing here needs mirroring: the tabs themselves already mirror, and the
+ * underline follows whichever one is active.
+ */
+.indicator {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background-color: var(--ml-color-primary);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.indicatorAnimated {
+	transition:
+		left var(--ml-duration-normal) ease,
+		width var(--ml-duration-normal) ease;
+}
+
+.chevron {
+	/* 44px: WCAG 2.5.5, and it no longer costs anything since the chevron has
+	 * its own slot instead of sitting on top of a tab. */
+	flex: 0 0 auto;
+	min-width: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border: none;
+	background: none;
+	color: var(--ml-text-muted-color);
+	cursor: pointer;
+	/*
+	 * Invisible, not removed. The slot has to stay reserved: taking it out of
+	 * flow would resize the row the moment you scrolled to either end, and the
+	 * tabs would jump under your finger. A greyed-out ghost would be noise —
+	 * there is nothing to reveal on that side, so there is nothing to say.
+	 */
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	/*
+	 * visibility is not interpolable, so it would snap. Delaying it by the
+	 * fade duration makes it flip *after* the opacity finishes, so hiding
+	 * reads as a fade rather than a disappearance. Showing reverses the delay
+	 * to zero below, so it becomes visible before fading in.
+	 */
+	transition:
+		opacity var(--ml-duration-fast) ease,
+		visibility 0s linear var(--ml-duration-fast);
+}
+
+/* Rendered whenever the strip overflows so its slot never appears mid-scroll
+ * and shifts the row; shown only on the side that still has content to reveal. */
+.chevronEnabled {
+	visibility: visible;
+	opacity: 1;
+	pointer-events: auto;
+	transition:
+		opacity var(--ml-duration-fast) ease,
+		visibility 0s linear 0s;
+}
+
+.chevron:hover {
+	color: var(--ml-text-color);
+}
+
+.chevronGlyph {
+	font-size: var(--ml-font-size-md);
+	line-height: 1;
+}
+
+/*
+ * WCAG 2.5.5 asks for 44px touch targets. The desktop tab is ~36px, which is
+ * fine for a pointer and undersized for a thumb. Height rather than padding so
+ * the label stays optically centred.
+ */
+@media (--ml-bp-mobile) {
+	.tab {
+		min-height: var(--ml-tabs-touch-target, 44px);
+	}
+}

@@ -1,0 +1,61 @@
+.trigger {
+	display: inline;
+	background: none;
+	border: none;
+	padding: 0;
+	color: var(--ml-link-color);
+	cursor: pointer;
+	font: inherit;
+	/* Padding and the matching negative margin are present in every state, so
+	 * switching the highlight on cannot shift the line; box-decoration-break
+	 * keeps the shape intact when a term wraps across lines. */
+	padding-inline: 0.12em;
+	margin-inline: -0.12em;
+	border-radius: var(--ml-radius-sm);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	/* Dashed rather than the glossary's dotted: a pointer to a source, not a
+	 * term with a definition. */
+	text-decoration: underline;
+	text-decoration-style: dashed;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-color: color-mix(in srgb, currentColor 50%, transparent);
+}
+
+/*
+ * Hover previews the open state: the same --ml-term-highlight the term takes
+ * when its popover is showing. Three different lighter colours were in use
+ * here — secondary, secondary, link-hover — none of which had any relationship
+ * to the colour the term actually turns when you act on it.
+ *
+ * Guarded, because a tap on a touch screen leaves the element in :hover and the
+ * term would stay marked long after its sheet had closed.
+ */
+@media (hover: hover) {
+	.trigger:hover {
+		color: var(--ml-term-highlight);
+		text-decoration-color: currentColor;
+	}
+}
+
+.dropdown {
+	--ml-popover-width: 414px;
+	--ml-popover-max-height: 300px;
+	/* Matches the annotation panel — the two open from the same kind of mark. */
+	--ml-popover-padding: var(--ml-space-lg);
+}
+
+@media (--ml-bp-desktop) {
+	.dropdown {
+		height: 300px;
+	}
+}
+
+/* Padding comes from the scroller — see --ml-popover-padding above. */
+/* Open: the fill is the indicator, so the rule underneath it is noise. */
+.trigger[data-state='open'] {
+	background-color: var(--ml-term-highlight);
+	color: var(--ml-term-highlight-text);
+	text-decoration: none;
+}

@@ -1,0 +1,5 @@
+.root {
+	--ml-list-item-margin-bottom: var(--ml-space-xs);
+
+	margin-bottom: var(--ml-list-item-margin-bottom);
+}

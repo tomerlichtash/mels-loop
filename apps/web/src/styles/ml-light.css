@@ -1,0 +1,39 @@
+/*
+ * ---- Mel's Loop Light Theme ----
+ *
+ * Brand intent + semantic overrides for light mode.
+ * Primary = blue (H≈258), Secondary = pink (H≈8).
+ */
+
+:root {
+	/* ---- Primary (blue, H≈258) ---- */
+	--ml-color-primary-alt: oklch(0.5 0.13 258);
+	--ml-color-primary-subtle: oklch(0.955 0.02 258);
+	--ml-color-primary-deep: oklch(0.35 0.16 258);
+	--ml-color-primary-muted: oklch(0.58 0.05 258);
+	--ml-color-primary-highlight: oklch(0.65 0.19 258);
+
+	/* ---- Secondary (pink, H≈8) ---- */
+	--ml-color-secondary-alt: oklch(0.658 0.17 8);
+	--ml-color-secondary-subtle: oklch(0.955 0.025 8);
+	--ml-color-secondary-deep: oklch(0.45 0.2 8);
+	--ml-color-secondary-muted: oklch(0.72 0.06 8);
+	--ml-color-secondary-highlight: oklch(0.75 0.22 8);
+
+	/* ---- Semantic: Brand-specific overrides ---- */
+	--ml-popover-topic-text: var(--ml-mauve);
+	--ml-annotation-bg: var(--ml-mauve);
+	/*
+	 * The story title's gradient, pink → indigo.
+	 *
+	 * Both ends have to be legible against the page they sit on, and the two
+	 * themes were sharing one pair of colours in opposite order — so whichever
+	 * end carried --ml-pink fell off the page. Here it was the start, at
+	 * 2.7:1 against the cream background, under even the 3:1 that large text
+	 * is allowed. Same hue and chroma as --ml-pink, taken down in lightness
+	 * until it reads: 5.2:1, against the indigo end's 7.9:1.
+	 */
+	--ml-gradient-start: oklch(0.55 0.187 8);
+	--ml-gradient-end: var(--ml-indigo);
+	--ml-mobile-menu-text: var(--ml-pink-light);
+}

@@ -1,0 +1,36 @@
+.dropdown {
+	--ml-popover-width: 414px;
+	--ml-popover-max-height: 300px;
+	--ml-popover-padding: var(--ml-space-lg);
+}
+
+@media (--ml-bp-desktop) {
+	.dropdown {
+		height: 300px;
+	}
+}
+
+/* Padding comes from the scroller — see --ml-popover-padding above. */
+.body {
+	/* Size comes from the panel — see --ml-popover-font-size. */
+	line-height: var(--ml-line-height-body);
+}
+
+.source {
+	margin: var(--ml-space-xs) 0 0;
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-muted-color);
+}
+
+.sourceLabel {
+	color: var(--ml-text-color);
+}
+
+.sourceAuthor {
+	color: var(--ml-text-muted-color);
+}
+
+.sourceLink {
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-link-color);
+}

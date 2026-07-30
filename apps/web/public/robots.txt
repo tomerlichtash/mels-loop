@@ -1,0 +1,19 @@
+# *
+User-agent: *
+Allow: /
+
+# The glossary is readable but its presentation is not finished and the term
+# pages are thin. Kept out of the index until there is something worth landing
+# on — reverse this together with the sitemap entries, which are omitted for
+# the same reason.
+Disallow: /glossary
+
+# Unlinked while the blog is rethought. The routes still answer so existing
+# links keep working, but they are not promoted.
+Disallow: /posts
+
+# Host
+Host: https://melsloop.com
+
+# Sitemaps
+Sitemap: https://melsloop.com/sitemap.xml

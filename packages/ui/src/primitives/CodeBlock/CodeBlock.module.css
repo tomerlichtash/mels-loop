@@ -1,0 +1,45 @@
+:root {
+	--ml-code-block-background-color: var(--ml-code-bg);
+	--ml-code-block-text-color: var(--ml-code-text);
+	--ml-code-block-font-family: var(--ml-font-mono);
+	--ml-code-block-font-size: var(--ml-font-size-sm);
+	--ml-code-block-line-height: var(--ml-line-height-body);
+	--ml-code-block-radius: var(--ml-radius-md);
+	--ml-code-block-padding-vertical: var(--ml-space-sm);
+	--ml-code-block-padding-horizontal: var(--ml-space-md);
+	--ml-code-block-margin-bottom: var(--ml-space-md);
+}
+
+/*
+ * text-align is set, not inherited.
+ *
+ * A code block inside a <figure> was picking up the figure's centring, and
+ * centring preformatted text destroys it: every line is centred on its own
+ * width, so lines of different lengths shift by different amounts and the
+ * columns stop lining up. The ASCII diagrams in the articles — binary operands
+ * set above an MSB/LSB ruler — drifted out of register even though the spacing
+ * in the markdown was exact.
+ */
+/*
+ * Code reads left to right in every language.
+ *
+ * Without this the block inherits the page's direction, so on the Hebrew
+ * pages `text-align: start` resolved to the right and the whole thing flipped:
+ * the binary operands and their MSB/LSB ruler lost register, and a quoted
+ * email's headers ran to the wrong edge. Neither is Hebrew content — it is
+ * preformatted Latin text that happens to sit in a Hebrew article.
+ */
+.root {
+	direction: ltr;
+	text-align: start;
+	background-color: var(--ml-code-block-background-color);
+	color: var(--ml-code-block-text-color);
+	border-radius: var(--ml-code-block-radius);
+	padding: var(--ml-code-block-padding-vertical)
+		var(--ml-code-block-padding-horizontal);
+	margin-bottom: var(--ml-code-block-margin-bottom);
+	overflow-x: auto;
+	font-family: var(--ml-code-block-font-family);
+	font-size: var(--ml-code-block-font-size);
+	line-height: var(--ml-code-block-line-height);
+}

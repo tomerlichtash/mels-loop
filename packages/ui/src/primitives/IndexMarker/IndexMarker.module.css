@@ -1,0 +1,69 @@
+.root {
+	display: inline;
+	background: none;
+	color: var(--ml-link-color);
+	border: none;
+	border-radius: var(--ml-radius-sm);
+	padding: 0 0.2rem;
+	font-family: var(--ml-typography-body2-font-family);
+	font-size: var(--ml-font-size-xs);
+	font-weight: var(--ml-font-weight-bold);
+	line-height: var(--ml-typography-body2-line-height);
+	cursor: pointer;
+	vertical-align: super;
+	margin: 0 1px;
+}
+
+.label {
+	letter-spacing: 0;
+}
+
+/*
+ * Hover previews the open state — the same colour the marker's digits take
+ * when its popover is showing. Guarded because a tap leaves a touch device in
+ * :hover, and the marker would stay marked after its sheet had closed.
+ */
+@media (hover: hover) {
+	.root:hover {
+		color: var(--ml-term-highlight);
+		/* Same rule as a glossary term: it opens in place, so the underline is
+		 * the hover state rather than a permanent mark. */
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+}
+
+.root::before {
+	content: '[';
+	font-weight: var(--ml-font-weight-light);
+	margin-right: 0.1em;
+	opacity: 0.75;
+}
+
+.root::after {
+	content: ']';
+	font-weight: var(--ml-font-weight-light);
+	margin-left: 0.1em;
+	opacity: 0.75;
+}
+
+/*
+ * The marker whose popover is open. Same signal as a highlighted glossary
+ * term, so the reader learns one meaning for "this is what you are reading
+ * about".
+ *
+ * The fill goes on the number alone, inside the brackets. Filling the whole
+ * button swallowed the brackets into the block and left them misshapen against
+ * its rounded corners — they read as part of the chip rather than as the
+ * punctuation they are. The brackets stay in the prose colour and hold their
+ * place; only the digits light up.
+ *
+ * No padding on the fill. Padding would push the brackets outward and reflow
+ * the line; cancelling it with a negative margin instead slid the fill out
+ * over the brackets and buried them. The digits carry the colour on their own.
+ */
+.root[data-state='open'] .label {
+	border-radius: var(--ml-radius-sm);
+	background-color: var(--ml-term-highlight);
+	color: var(--ml-term-highlight-text);
+}

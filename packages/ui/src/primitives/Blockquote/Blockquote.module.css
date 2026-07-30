@@ -1,0 +1,9 @@
+.root {
+	--ml-blockquote-text-color: var(--ml-text-subtle-color);
+	--ml-blockquote-padding-horizontal: var(--ml-space-md);
+	--ml-blockquote-margin-vertical: var(--ml-space-md);
+
+	padding: 0 var(--ml-blockquote-padding-horizontal);
+	color: var(--ml-blockquote-text-color);
+	margin: var(--ml-blockquote-margin-vertical) 0;
+}

@@ -1,0 +1,88 @@
+/*
+ * The article's identity block.
+ *
+ * These lines used to be siblings of the article body in one flex column with
+ * a single uniform gap, so the title, standfirst, motto, credits, byline and
+ * the prose itself were all spaced identically. Nothing grouped, and the
+ * header read as a scattered stack of facts rather than as the thing that
+ * introduces the piece.
+ *
+ * Now it is one block, tight inside and clearly separated from the body.
+ *
+ * Full column width, deliberately not capped to the prose measure. A measure
+ * exists to keep the eye's return sweep reliable over many consecutive lines,
+ * which is a property of running text, not of a title, a standfirst or a
+ * byline. Capping it also cut the rule beneath the byline short of the column,
+ * so what should read as a divider read as a stub.
+ */
+.header {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+	/* The Container aligns its children to the start rather than stretching
+	 * them, so without this the header shrinks to the width of its longest
+	 * line and the rule stops wherever the title happens to wrap. */
+	width: 100%;
+}
+
+.title {
+	margin: 0;
+}
+
+/*
+ * A standfirst, set larger than the body and in the same upright roman.
+ *
+ * It was italic, and the byline beneath it was uppercase with wide tracking,
+ * so three consecutive lines each announced themselves a different way —
+ * display bold, then italic, then small caps — and none of it said anything
+ * about which mattered more. Size and colour carry the hierarchy instead, and
+ * italic is left to the motto, where it means "this is a quotation".
+ */
+.standfirst {
+	margin: 0;
+	font-size: var(--ml-font-size-lg);
+	line-height: var(--ml-line-height-snug);
+	color: var(--ml-text-subtle-color);
+}
+
+.moto {
+	margin: 0;
+	font-style: italic;
+	color: var(--ml-text-muted-color);
+}
+
+/*
+ * Byline, date and credits on one line, below a rule. They are provenance
+ * rather than part of the title, and the rule is what marks the end of the
+ * header without adding another typeface to it.
+ */
+.meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--ml-space-xs) var(--ml-space-sm);
+	margin-top: var(--ml-space-xs);
+	padding-top: var(--ml-space-sm);
+	border-top: 1px solid var(--ml-border-color);
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-muted-color);
+}
+
+/*
+ * The separator is drawn between items, not written into the byline.
+ *
+ * It used to be the literal string " · " concatenated into the author line, so
+ * it was part of that text — read aloud with the name, and spaced by whatever
+ * the surrounding string happened to have rather than by the layout. As a
+ * pseudo-element the flex gap sets the space before it and an equal margin
+ * sets the space after, so it sits centred between the two items it divides.
+ */
+.meta > * + *::before {
+	content: '\00B7';
+	margin-inline-end: var(--ml-space-sm);
+	color: var(--ml-text-muted-color);
+}
+
+.credits {
+	color: var(--ml-text-muted-color);
+}

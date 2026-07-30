@@ -1,0 +1,34 @@
+{
+	"story": {
+		"title": "The Story of Mel",
+		"abstract": "A Comprehensive Guide to The Story of Mel, a Programmer",
+		"subtitle": "A Real Programmer"
+	},
+	"parts": {
+		"preface": "Preface (A Software Legend That Really Happened)",
+		"codex": "The Story of Mel",
+		"articles": "Articles",
+		"appendix": "Appendix",
+		"sources": "Sources"
+	},
+	"titles": {
+		"mels-hack-the-missing-bits": "The Missing Bits"
+	},
+	"subtitles": {
+		"preface": "A Preface to The Story of Mel",
+		"mel-kaye-cv": "The Life and Work of Mel Kaye (1931-2018)",
+		"mels-hack-the-missing-bits": "A Closer Reading of Mel's Hack"
+	},
+	"authors": {
+		"ednather": "Ed Nather",
+		"tomerlichtash": "Tomer Lichtash",
+		"dfl": "David Frenkiel"
+	},
+	"avatar": {
+		"initials": "MK",
+		"alt": "Photo of Mel Kaye, 1952"
+	},
+	"figures": {
+		"template": "Fig. %index%"
+	}
+}

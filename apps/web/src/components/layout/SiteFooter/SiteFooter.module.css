@@ -1,0 +1,127 @@
+.root {
+	background-color: var(--ml-footer-bg);
+	margin-top: var(--ml-space-3xl);
+}
+
+/*
+ * Content gutter, not page gutter. The two are the same on desktop and diverge
+ * only on a phone, where the page gutter is tighter than the prose — which left
+ * the footer text sitting outside the column everything above it aligns to.
+ */
+.inner {
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	padding: var(--ml-space-3xl) var(--ml-content-padding-horizontal);
+}
+
+.columns {
+	display: grid;
+	grid-template-columns: 3fr 1fr 1fr;
+	gap: var(--ml-space-xl);
+}
+
+@media (--ml-bp-mobile) {
+	/* 4rem of dead space before the footer text on a 390px screen — nearly a
+	 * fifth of the viewport spent on a gap. */
+	.inner {
+		padding-block: var(--ml-space-xl);
+	}
+
+	.columns {
+		grid-template-columns: 1fr 1fr;
+		gap: var(--ml-space-lg);
+	}
+
+	/*
+	 * Links first, sign-off last. Stacked, the brand block led the footer, so
+	 * the reader met a copyright year before any navigation. `order` moves it
+	 * visually while leaving the DOM alone, so assistive tech and the desktop
+	 * layout — where the brand column belongs on the left — are unaffected.
+	 *
+	 * Centred and ruled off because at the foot of the column it is no longer a
+	 * heading with content under it; it is the end of the page, and it needs to
+	 * read as separate from the link lists rather than as a third list.
+	 *
+	 * Full row: the two link lists are short enough to share one.
+	 */
+	.meta {
+		grid-column: 1 / -1;
+		order: 1;
+		align-items: center;
+		text-align: center;
+		border-top: 1px solid var(--ml-border-color);
+		padding-top: var(--ml-space-lg);
+	}
+}
+
+.meta {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-xs);
+}
+
+/*
+ * A sign-off, not a heading. At bold 700 in full-strength text colour this was
+ * the loudest thing in the footer — heavier than the column titles it now sits
+ * below, and heavier than every link. The tracking stays: the line is uppercase,
+ * and capitals set solid read cramped.
+ */
+.copyright {
+	margin: 0;
+	font-weight: var(--ml-font-weight-regular);
+	font-size: var(--ml-font-size-body);
+	color: var(--ml-text-muted-color);
+	text-transform: uppercase;
+	letter-spacing: var(--ml-letter-spacing-wide);
+}
+
+.license {
+	cursor: help;
+}
+
+/* The same line as the site header's subtitle, so the same weight. */
+.subtitle {
+	text-transform: none;
+	letter-spacing: 0;
+	font-weight: var(--ml-font-weight-light);
+}
+
+.linkCol {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+}
+
+.colTitle {
+	margin: 0;
+	font-weight: var(--ml-font-weight-semibold);
+	font-size: var(--ml-font-size-sm);
+	text-transform: uppercase;
+	letter-spacing: var(--ml-letter-spacing-tight);
+}
+
+.linkList {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-xs);
+}
+
+.link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: var(--ml-font-size-body);
+	/* The link token, not the raw brand colour — the scope at the top of this
+	 * file tunes it for the footer's surface. */
+	color: var(--ml-link-color);
+	text-decoration: none;
+}
+
+.link:hover {
+	color: var(--ml-link-hover-color);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}

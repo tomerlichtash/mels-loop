@@ -1,0 +1,163 @@
+.trigger {
+	display: inline;
+	background: none;
+	border: none;
+	padding: 0;
+	color: var(--ml-link-color);
+	cursor: pointer;
+	font: inherit;
+	/* Padding and the matching negative margin are present in every state, so
+	 * switching the highlight on cannot shift the line; box-decoration-break
+	 * keeps the shape intact when a term wraps across lines. */
+	padding-inline: 0.12em;
+	margin-inline: -0.12em;
+	border-radius: var(--ml-radius-sm);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	font-weight: var(--ml-term-font-weight);
+	/*
+	 * Its own line-height rather than the prose's.
+	 *
+	 * The highlight is painted on the trigger's inline box, so at the article's
+	 * 1.65 the box stood well above and below the word it marks — a tall block
+	 * in the middle of a sentence. 1.5 keeps it close to the letters without
+	 * clipping the descenders.
+	 */
+	line-height: 1.25;
+	/*
+	 * Dotted at rest, solid on hover.
+	 *
+	 * The dotted rule is the long-standing convention for a word carrying a
+	 * definition — what a browser draws under <abbr title> — and it is the
+	 * term's affordance, not decoration: colour and a half-step of weight are
+	 * too little on their own (WCAG 1.4.1). Drawn at partial strength so it
+	 * hints rather than competing with the prose.
+	 *
+	 * A link, by contrast, is underlined solid and always: it takes you
+	 * somewhere, where a term opens in place.
+	 */
+	text-decoration: underline;
+	text-decoration-style: dotted;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-color: color-mix(in srgb, currentColor 50%, transparent);
+}
+
+/*
+ * Hover previews the open state: the same --ml-term-highlight the term takes
+ * when its popover is showing. Three different lighter colours were in use
+ * here — secondary, secondary, link-hover — none of which had any relationship
+ * to the colour the term actually turns when you act on it.
+ *
+ * Guarded, because a tap on a touch screen leaves the element in :hover and the
+ * term would stay marked long after its sheet had closed.
+ */
+@media (hover: hover) {
+	.trigger:hover {
+		color: var(--ml-term-highlight);
+		/* The hint firms up: same rule, solid and at full strength. */
+		text-decoration-style: solid;
+		text-decoration-color: currentColor;
+		/* Full strength on hover, so the hint firms up under the pointer. */
+		text-decoration-color: currentColor;
+	}
+}
+
+.dropdown {
+	--ml-popover-width: 414px;
+	--ml-popover-max-height: 300px;
+	/*
+	 * 0px, not 0: the panel composes this into a calc() for the scroller's
+	 * padding, and a unitless zero there is a number rather than a length —
+	 * the whole expression becomes invalid and the declaration is dropped.
+	 *
+	 * Zero because this view pads its own blocks instead. The header, body and
+	 * source each carry their own padding, which is what puts space between
+	 * them; a padded scroller would sit outside all three and add to it.
+	 */
+	--ml-popover-padding: 0px;
+}
+
+@media (--ml-bp-desktop) {
+	.dropdown {
+		height: 300px;
+	}
+}
+
+/*
+ * Kicker, then the term at display size — the term is what the reader came for,
+ * so it leads. The previous header set it at body size in caps, which read as a
+ * section label rather than a title.
+ */
+.header {
+	padding: var(--ml-space-lg) var(--ml-space-lg) 0;
+}
+
+/* The category chip. */
+.kicker {
+	display: inline-block;
+	margin: 0 0 var(--ml-space-md);
+	padding: 0.15em 0.6em;
+	border-radius: var(--ml-radius-sm);
+	background-color: color-mix(
+		in srgb,
+		var(--ml-term-highlight) 12%,
+		transparent
+	);
+	color: var(--ml-term-highlight);
+	font-size: var(--ml-font-size-sm);
+	font-weight: var(--ml-font-weight-semibold);
+}
+
+.headerTitle {
+	margin: 0;
+	font-weight: var(--ml-font-weight-bold);
+	font-size: var(--ml-font-size-2xl);
+	line-height: var(--ml-line-height-tight);
+	color: var(--ml-text-color);
+}
+
+/*
+ * The English term, under the Hebrew one.
+ *
+ * It is the other half of the entry's name rather than a note about it, so it
+ * is set close to the title's weight and only a step down in size — at the
+ * body's small size in muted grey it read as a caption someone had attached,
+ * and a reader scanning for the English word had to hunt for it.
+ */
+.headerSub {
+	margin: var(--ml-space-xs) 0 0;
+	font-size: var(--ml-font-size-lg);
+	font-weight: var(--ml-font-weight-semibold);
+	line-height: var(--ml-line-height-snug);
+	color: var(--ml-text-color);
+}
+
+.body {
+	/* Size comes from the panel — see --ml-popover-font-size. */
+	line-height: var(--ml-line-height-body);
+	padding: var(--ml-space-lg);
+}
+
+.source {
+	margin: var(--ml-space-xs) 0 0;
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-muted-color);
+	padding: 0 var(--ml-space-lg) var(--ml-space-lg);
+}
+
+.sourceLabel {
+	color: var(--ml-text-color);
+}
+
+.sourceLink {
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-link-color);
+}
+
+/* Open: the fill is the indicator, so the rule underneath it is noise. */
+.trigger[data-state='open'] {
+	background-color: var(--ml-term-highlight);
+	color: var(--ml-term-highlight-text);
+	text-decoration: none;
+}

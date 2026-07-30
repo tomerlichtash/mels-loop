@@ -1,0 +1,372 @@
+/*
+ * Measure and leading are declared at :root in layout.css, so the article
+ * header can share the measure and so a running experiment can drive both
+ * from above. The fallbacks keep this sheet self-contained wherever that
+ * stylesheet is absent.
+ */
+.root {
+	max-width: var(--ml-prose-measure, 67ch);
+	/*
+	 * Overridable, so prose rendered inside a narrow container can be set
+	 * smaller than prose in an article column — see the popovers, which read
+	 * at 340px wide.
+	 */
+	font-size: var(--ml-prose-font-size, var(--ml-font-size-md));
+	line-height: var(--ml-prose-line-height, 1.65);
+	/*
+	 * The same colour paragraphs render at, not a subtler one.
+	 *
+	 * Paragraphs come through Text's body1 variant, which sets --ml-text-color
+	 * itself, so this base only ever reached everything that is *not* a
+	 * paragraph — list items, table cells. Those came out visibly greyer than
+	 * the prose around them, which read as list text being somehow lesser
+	 * rather than as a deliberate choice.
+	 */
+	color: var(--ml-text-color);
+	/*
+	 * Start-aligned, not centred. The heading, byline and story chrome above it
+	 * all begin at the column's start edge; centring the measure inside the
+	 * column would step the prose in from everything it belongs with.
+	 */
+	margin: 0;
+}
+
+/*
+ * List items are prose too, so they justify with the paragraphs.
+ *
+ * Safe for short entries: only lines that wrap are justified — a line that
+ * ends the block is left ragged — so a one-line item is untouched and a
+ * wrapping one lines up with the text around it.
+ */
+.root li {
+	text-align: justify;
+	hyphens: auto;
+}
+
+.root p {
+	/* Text's body1 variant sets its own size and line-height, so inheriting
+	 * from .root does not reach the paragraphs — both have to be restated
+	 * here, and both read the overridable prose tokens. */
+	font-size: var(--ml-prose-font-size, var(--ml-font-size-md));
+	line-height: var(--ml-prose-line-height, 1.65);
+	margin-bottom: var(--ml-space-md);
+	/*
+	 * Justified, with hyphenation.
+	 *
+	 * The two go together: justifying without hyphens forces the browser to
+	 * absorb every leftover pixel into the word spaces, which at this measure
+	 * opens rivers of white running down the column. Hyphenation gives it
+	 * somewhere else to put the slack. It needs a language to work from, which
+	 * comes from the lang attribute on <html>.
+	 *
+	 * Overridable, because justification needs width: in a 340px popover there
+	 * are too few words per line for the browser to distribute the slack, and
+	 * it opens rivers instead of an even edge.
+	 */
+	text-align: var(--ml-prose-text-align, justify);
+	hyphens: var(--ml-prose-hyphens, auto);
+}
+
+/*
+ * Semibold, not bold.
+ *
+ * Roboto Slab is a slab serif — its stems are heavy before any weight is added
+ * — and this prose leans on emphasis: one article carries sixteen runs of it.
+ * At 700 those set as hard black blocks that spot the column and pull the eye
+ * off the sentence. 600 still reads as emphasis against a 400 body; going to
+ * 500 or below would leave <strong> looking the same as the text around it,
+ * which throws away the distinction rather than softening it.
+ */
+.root strong {
+	font-weight: var(--ml-font-weight-semibold);
+}
+
+.root em {
+	font-style: italic;
+}
+
+/*
+ * Email header (dl[data-type="email-header"])
+ *
+ * direction: ltr because the correspondence is in English wherever it is
+ * quoted. Left to inherit, the Hebrew article flipped the label/value columns
+ * and pushed "To: rimel3@roadrunner.com" to the wrong edge — the address is a
+ * Latin run in an RTL paragraph, which is exactly the case bidi reorders.
+ */
+.root dl[data-type='email-header'] {
+	direction: ltr;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 0 var(--ml-space-md);
+	margin: 0;
+	padding: var(--ml-space-md);
+	background-color: var(--ml-color-surface-subtle);
+	font-family: var(--ml-font-mono);
+	font-size: var(--ml-font-size-sm);
+	line-height: var(--ml-line-height-relaxed);
+	border: 1px solid var(--ml-border-color);
+	border-radius: var(--ml-radius-md) var(--ml-radius-md) 0 0;
+}
+
+/*
+ * The labels are the form, not the content — FROM, DATE, TO say nothing a
+ * reader came for. They recede so the addresses and the message beside them
+ * carry the full text colour, which is where the eye should land. Bold and
+ * uppercase still hold the column; only the weight of colour changes.
+ */
+.root dl[data-type='email-header'] dt {
+	font-weight: var(--ml-font-weight-bold);
+	color: var(--ml-text-subtle-color);
+	text-transform: uppercase;
+}
+
+/*
+ * The values carry the message's own facts — who wrote, when, to whom — so
+ * they read at the same size and colour as the message below, and darker than
+ * the labels naming them.
+ */
+.root dl[data-type='email-header'] dd {
+	margin: 0;
+	font-size: var(--ml-font-size-body);
+	color: var(--ml-text-color);
+}
+
+/* Chat (div[data-type="chat"]) */
+.root div[data-type='chat'] {
+	display: flex;
+	flex-direction: column;
+	/* gap: var(--ml-space-xs); */
+	margin-bottom: var(--ml-space-md);
+	padding: var(--ml-space-md);
+	background-color: var(--ml-color-surface-subtle);
+	border-radius: var(--ml-radius-md);
+}
+
+.root [data-chat-message] {
+	display: flex;
+	gap: var(--ml-space-sm);
+	line-height: var(--ml-line-height-snug);
+}
+
+.root [data-chat-sender] {
+	font-weight: var(--ml-font-weight-bold);
+	color: var(--ml-color-secondary);
+	white-space: nowrap;
+	text-transform: uppercase;
+}
+
+.root [data-chat-sender]::after {
+	content: ':';
+}
+
+.root [data-chat-text] {
+	color: var(--ml-text-color);
+}
+
+/* Email body (div[data-type="email-body"]) — LTR for the same reason as the
+ * header above. */
+.root div[data-type='email-body'] {
+	direction: ltr;
+	/*
+	 * Line breaks are the author's. An email is written in short lines —
+	 * greeting, question, sign-off — and reflowing them into a paragraph loses
+	 * the shape of the message. pre-line keeps the newlines and still wraps
+	 * anything too long for the column.
+	 */
+	white-space: pre-line;
+	margin: 0;
+	padding: var(--ml-space-md);
+	font-family: var(--ml-font-mono);
+	font-size: var(--ml-font-size-sm);
+	border: 1px solid var(--ml-border-color);
+	border-radius: 0 0 var(--ml-radius-md) var(--ml-radius-md);
+}
+
+/*
+ * The message's paragraphs come through Text's body1 variant, which sets its
+ * own family, size and leading — so the box's monospace stopped at the
+ * container and the text inside it was still prose. The same trap as the
+ * font-size note further up this file.
+ *
+ * Justification goes with it: an email is written in short deliberate lines,
+ * and stretching them to a flush edge is the opposite of quoting it faithfully.
+ */
+.root div[data-type='email-body'] p {
+	font-family: var(--ml-font-mono);
+	/*
+	 * A step up from the header's labels. Lekton is a light face and sets
+	 * thin at 12px, which read as grey rather than as text — the message is
+	 * the thing being quoted and should be as readable as the prose around it.
+	 */
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-relaxed);
+	color: var(--ml-text-color);
+	text-align: start;
+	hyphens: manual;
+}
+
+/*
+ * The message's last paragraph carries the prose bottom margin, which stacked
+ * on the box's own padding and left the space beneath the sign-off twice what
+ * sits above the greeting.
+ */
+.root div[data-type='email-body'] > :last-child {
+	margin-bottom: 0;
+}
+
+/*
+ * A quoted email, as one object.
+ *
+ * The header and the message used to be two separately bordered blocks with a
+ * gap between them, which read as two unrelated notes rather than as one
+ * piece of correspondence. They are now a single box: the header is its
+ * masthead, the message is the sheet below it, and the seam between them is
+ * one shared line rather than two adjacent borders.
+ */
+.root figure[data-type='email'] {
+	margin: 0 0 var(--ml-space-lg);
+	/*
+	 * The Figure primitive centres its contents, which suits an image narrower
+	 * than the column and ruins a block of text: the headers and the message
+	 * were centred inside their own box. Only the caption keeps the figure's
+	 * own alignment, which it sets for itself.
+	 */
+	text-align: start;
+}
+
+.root figure[data-type='email'] dl[data-type='email-header'] {
+	border-bottom: none;
+}
+
+/*
+ * Section rhythm. The renderer set no heading margins at all, so an h2 sat as
+ * close to the paragraph above it as to the one below and sections did not
+ * read as sections.
+ *
+ * Asymmetric on purpose: a heading belongs to the text beneath it, so the
+ * space above is what separates one section from the last, and the space below
+ * is only enough to keep the heading off its own first line.
+ */
+.root h2,
+.root h3,
+.root h4 {
+	margin-bottom: var(--ml-space-sm);
+}
+
+.root h2 {
+	margin-top: var(--ml-space-2xl);
+}
+
+.root h3,
+.root h4 {
+	margin-top: var(--ml-space-xl);
+}
+
+/* Nothing above the first heading to separate it from. */
+.root > h2:first-child,
+.root > h3:first-child,
+.root > h4:first-child {
+	margin-top: 0;
+}
+
+/*
+ * A quotation, which is a different thing from an indented line.
+ *
+ * The generic blockquote is plain indentation — used in the story for lines
+ * that are simply set in from the margin. A `:::blockquote{verse}` directive
+ * marks something else: words being quoted from elsewhere, with an attribution
+ * naming where they came from. Without a marker of its own it read as an
+ * arbitrarily indented paragraph, which is what made it look unfinished.
+ *
+ * A rule on the start edge and full-strength text, so the quoted voice reads
+ * as at least as present as the prose discussing it, not as an aside.
+ */
+.root blockquote[data-type='quote'] {
+	margin-block: var(--ml-space-xl);
+	padding-inline-start: var(--ml-space-lg);
+	border-inline-start: 2px solid var(--ml-border-color);
+	color: var(--ml-text-color);
+}
+
+/*
+ * Medium, so the quoted voice carries a little more weight than the prose
+ * discussing it without needing a different size or colour to say so.
+ *
+ * On the paragraph, not the blockquote: Text's body1 variant sets its own
+ * font-weight, so a weight declared on the container never reaches the text
+ * inside it — the same reason the prose line-height has to be set here too.
+ */
+.root blockquote[data-type='quote'] p {
+	font-weight: var(--ml-quote-font-weight, var(--ml-font-weight-medium));
+}
+
+/*
+ * Bold rather than the semibold used in running prose. Emphasis has to clear
+ * the quote's own 500 to register, and 600 against 500 is too close to read as
+ * deliberate.
+ */
+.root blockquote[data-type='quote'] strong {
+	font-weight: var(--ml-font-weight-bold);
+}
+
+/*
+ * Verse is never justified. Its line breaks are the author's, so there is no
+ * ragged edge to even out — justifying would stretch the spaces inside lines
+ * that were already exactly as long as they were meant to be. Hyphenation goes
+ * with it, for the same reason.
+ */
+.root blockquote p {
+	text-align: start;
+	hyphens: manual;
+}
+
+.root blockquote[data-parse-mode='verse'] p {
+	line-height: var(--ml-line-height-snug);
+}
+
+/*
+ * A figure that opens its block has nothing above it to be separated from, and
+ * the space only pushes it out of line with whatever sits beside it — in a
+ * two-column block the picture started lower than the first line of the text
+ * it belonged to.
+ *
+ * The test is on the wrapper, not the figure. Every figure is rendered inside
+ * a div of its own so the lightbox has something to bind to, which makes the
+ * figure the first child of that div every single time — a rule on the figure
+ * itself would strip the margin from every image in the article, including the
+ * ones in mid-paragraph that need it.
+ */
+.root div:first-child > figure {
+	margin-top: 0;
+}
+
+/*
+ * :::smallprint — the lines around a text that are not the text.
+ *
+ * On the Mel codex it is the publication note that introduces the poem: where
+ * it was posted, by whom, on what date. It has to sit in the body, because
+ * that is where it belongs in the document and it ends in a colon pointing at
+ * the first line — but set like the body it reads as the poem's opening
+ * sentence, which it is not.
+ *
+ * Smaller and quieter. Deliberately not a change of typeface: that would read
+ * as a clear separation in English, where the prose is Roboto Slab, and as
+ * nothing at all in Hebrew, which is set in Heebo throughout. Size and colour
+ * say the same thing in both.
+ */
+.root [data-type='smallprint'] {
+	font-size: var(--ml-font-size-sm);
+	line-height: var(--ml-line-height-snug);
+	color: var(--ml-text-muted-color);
+	margin-bottom: var(--ml-space-lg);
+}
+
+.root [data-type='smallprint'] p {
+	margin: 0;
+	font-size: inherit;
+	line-height: inherit;
+	/* Never justified: it is one or two lines, and stretching them to a flush
+	 * edge opens rivers in text that is already small. */
+	text-align: start;
+	hyphens: manual;
+}

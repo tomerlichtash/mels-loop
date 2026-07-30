@@ -1,0 +1,142 @@
+{
+	"slug": "the-story-of-mel",
+	"meta": {
+		"title": "story.title",
+		"abstract": "story.abstract",
+		"subtitle": "story.subtitle",
+		"date": "1983-05-21",
+		"license": "public-domain",
+		"tags": [
+			"hacker-folklore",
+			"assembly",
+			"drum-memory",
+			"rpc-4000",
+			"blackjack",
+			"usenet"
+		]
+	},
+	"authors": [
+		{
+			"ref": "ednather",
+			"role": "author"
+		}
+	],
+	"featured": true,
+	"assets": {
+		"cover": "source:mel-kaye-photo-1952",
+		"thumbnail": "source:mel-kaye-photo-1952",
+		"avatar": {
+			"src": "/media/v2/images/mel-kaye-1952-avatar.jpg",
+			"initials": "avatar.initials",
+			"alt": "avatar.alt"
+		}
+	},
+	"figures": {
+		"auto": true,
+		"template": "figures.template"
+	},
+	"sources": [
+		"mel-kaye-photo-1952",
+		"mel-kaye-grave",
+		"mel-and-rita-kaye-grave",
+		"rita-kaye-grave",
+		"mel-rita-marriage-record",
+		"ucla-yearbook-1951",
+		"ucla-yearbook-1952",
+		"voters-index-1952",
+		"hela-kornitzka-ship-manifest",
+		"herman-esther-kaye-graves",
+		"rita-kaye-naturalization",
+		"herman-kaye-naturalization",
+		"librazette-jul-1956-meeting",
+		"librazette-aug-1956-employees",
+		"librazette-jul-1961-libravets",
+		"tucson-daily-aug-1945",
+		"lgp-30-hex-punch-print",
+		"lgp-30-alphanumeric-printout",
+		"lgp-30-polynomial-eval-1959",
+		"lgp-30-floating-point-example",
+		"mel-kaye-blackjack-writeup",
+		"rpc-4000-instruction-format",
+		"rpc-4000-transfer-branch-control",
+		"rpc-4000-branch-control-unit",
+		"librascope-lgp-30-manual",
+		"story-of-mel-original-usenet",
+		"story-of-mel-jargon-file",
+		"story-of-mel-wikipedia",
+		"story-of-mel-explained-seibel",
+		"story-of-mel-annotated-brunvand",
+		"macho-programmers-drum-memory",
+		"big-iron-second-decade",
+		"tube-time-mel-blackjack-lgp30",
+		"librascope-memories-blog",
+		"vintage-computing-ebasteln",
+		"mel-blackjack-writeup",
+		"mels-code-lgp30",
+		"mel-kaye-foldoc-reference",
+		"lgp-30-manuals-bitsavers",
+		"lgp-30-programming-manual-thelen",
+		"lgp-30-act-iii-program",
+		"lgp-30-technikum29",
+		"rpc-4000-manuals-bitsavers",
+		"vacuum-tube-blackjack-tweet",
+		"less-is-more-fifties",
+		"awesome-computer-history"
+	],
+	"contents": [
+		{
+			"type": "part",
+			"ref": "codex",
+			"collapse": true,
+			"author": "authors.ednather",
+			"children": [
+				{
+					"type": "page",
+					"ref": "codex"
+				}
+			]
+		},
+		{
+			"type": "part",
+			"ref": "articles",
+			"children": [
+				{
+					"type": "page",
+					"ref": "articles/preface",
+					"subtitle": "subtitles.preface",
+					"author": "authors.tomerlichtash"
+				},
+				{
+					"type": "page",
+					"ref": "articles/mel-kaye-cv",
+					"subtitle": "subtitles.mel-kaye-cv",
+					"author": "authors.tomerlichtash"
+				},
+				{
+					"type": "page",
+					"ref": "articles/mels-hack-the-missing-bits",
+					"subtitle": "subtitles.mels-hack-the-missing-bits",
+					"title": "titles.mels-hack-the-missing-bits",
+					"author": "authors.dfl"
+				}
+			]
+		},
+		{
+			"type": "part",
+			"ref": "appendix",
+			"aside": false,
+			"tab": false,
+			"children": [
+				{
+					"type": "page",
+					"ref": "documents/blackjack-writeup"
+				}
+			]
+		}
+	],
+	"featuredSources": [
+		"mel-blackjack-writeup",
+		"story-of-mel-original-usenet",
+		"hela-kornitzka-ship-manifest"
+	]
+}

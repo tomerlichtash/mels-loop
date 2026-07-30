@@ -1,0 +1,21 @@
+/*
+ * Overrides for the lightbox's own stylesheet, which this module imports just
+ * above it — so these rules land after the library's and win without needing
+ * extra specificity.
+ */
+
+/*
+ * The library sets the slide title to a single nowrap line with hidden
+ * overflow, which silently cut our captions: they are whole sentences carrying
+ * a figure number and often a source note, so on a 390px screen barely a
+ * quarter of "Fig. 1. Portrait of Mel Kaye taken at Librascope in 1952
+ * (Enhanced and colorized with AI)" survived, with no ellipsis to admit it.
+ *
+ * Wrapping instead. The caption is the same text the reader saw under the
+ * figure on the page, and it should read the same here.
+ */
+:global(.yarl__slide_title) {
+	white-space: normal;
+	overflow: visible;
+	text-wrap: pretty;
+}

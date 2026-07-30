@@ -1,0 +1,7 @@
+.root {
+	--ml-list-margin-bottom: var(--ml-space-md);
+	--ml-list-padding-start: var(--ml-space-lg);
+
+	margin-bottom: var(--ml-list-margin-bottom);
+	padding-inline-start: var(--ml-list-padding-start);
+}

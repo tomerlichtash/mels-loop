@@ -1,0 +1,198 @@
+{
+	"siteTitle": "לולאת מל",
+	"siteSubtitle": "המדריך המקיף לסיפור על מל",
+	"siteLicenseLabel": "cc",
+	"siteLicenseAttrs": "by-sa",
+	"error404": "הדף לא נמצא",
+	"errorGeneral": "שגיאה",
+	"nav": {
+		"home": "שער",
+		"about": "אודות",
+		"blog": "בלוג",
+		"resources": "מקורות",
+		"glossary": "מילון מונחים",
+		"documents": "מסמכים",
+		"contact": "יצירת קשר",
+		"contribute": "תרומה והשתתפות",
+		"articles": "מאמרים",
+		"codex": "הסיפור",
+		"sources": "מקורות",
+		"contents": "תוכן עניינים",
+		"moreStories": "סיפורים נוספים",
+		"toggleMenu": "פתיחת תפריט",
+		"closeMenu": "סגירת תפריט"
+	},
+	"menu": {
+		"articles": "מאמרים",
+		"info": "מידע נוסף",
+		"contact": "יצירת קשר"
+	},
+	"menuItems": {
+		"preface": "מבוא",
+		"melKayeBio": "מל קיי – קורות חיים",
+		"melsHack": "לולאת מל – הביטים הנעדרים",
+		"about": "אודות",
+		"blog": "בלוג",
+		"resources": "מקורות",
+		"contribute": "השתתפות",
+		"contact": "יצירת קשר",
+		"twitter": "טוויטר",
+		"github": "גיטהאב"
+	},
+	"menuDescriptions": {
+		"about": "לולאת מל הוא מדריך לאפוס הפולקלור ההאקרים ״הסיפור על מל״. באתר זה נרכז את הסיפורים, המקורות, החומרים והדמויות אשר סובבים את ״הסיפור על מל״, כמו גם חומרים אחרים הנוגעים לפולקלור ההאקרים.",
+		"blog": "חדשות ועדכונים",
+		"resources": "מידע נוסף ברשת על הסיפור על מל",
+		"contribute": "כיצד להשתתף או לתרום לפרויקט",
+		"contact": "כתבו אלינו!",
+		"twitter": "עקבו אחרינו ב-@aboutmelsloop",
+		"github": "קוד המקור של הפרויקט"
+	},
+	"contact": {
+		"pageTitle": "צרו קשר",
+		"pageSubtitle": "נשמח לשמוע ממך בכל עניין!",
+		"pageText": "קהילת ההאקינג של לולאת מל אט אט גדלה ונשמח לשמוע ממך רעיונות, הצעות, מחשבות ופידבקים. יש להשתמש בטופס כדי ליצור עמנו קשר, ונחזור אליך דרך אימייל. ניתן גם לכתוב לנו ישירות דרך האימייל about@melsloop.com.",
+		"formTitle": "טופס יצירת קשר",
+		"formSubtitle": "יש למלא את הטופס, בכל עניין, ונחזור אליך בהקדם האפשרי.",
+		"labelName": "שם מלא",
+		"labelEmail": "אימייל",
+		"labelMessage": "הודעה",
+		"placeholderName": "יש להזין שם מלא כאן",
+		"placeholderEmail": "יש להזין כתובת מייל תקינה כאן",
+		"placeholderMessage": "יש לכתוב את הודעתך כאן",
+		"successBackHome": "בחזרה לעמוד הראשי",
+		"failReportProblem": "דיווח על בעיה",
+		"invalidName": "השם לא יכול להיות ריק",
+		"invalidEmail": "כתובת המייל חייבת להיות תקינה",
+		"invalidMessage": "ההודעה לא יכולה להיות ריקה",
+		"successMessage": "הודעתך נשלחה בהצלחה!",
+		"failMessage": "אירעה שגיאה :(",
+		"send": "שליחה",
+		"sending": "שולח..."
+	},
+	"content": {
+		"figure": "תרשים",
+		"figureAbbr": "תרשים",
+		"glossaryLabel": "מילון מונחים",
+		"annotationLabel": "הערה",
+		"sourceLabel": "מקור",
+		"sourcesLabel": "מקורות",
+		"copied": "הקישור העותק!"
+	},
+	"imageViewer": {
+		"close": "סגירה",
+		"zoomIn": "התקרבות",
+		"zoomOut": "התרחקות",
+		"previous": "התמונה הקודמת",
+		"next": "התמונה הבאה",
+		"sourceDetails": "פרטי המקור"
+	},
+	"footer": {
+		"pages": "עמודים",
+		"links": "קישורים"
+	},
+	"locale": {
+		"group": "החלפת שפה",
+		"label": {
+			"en": "EN",
+			"he": "ע"
+		},
+		"switchTo": {
+			"en": "מעבר לאנגלית",
+			"he": "מעבר לעברית"
+		}
+	},
+	"theme": {
+		"toggle": "החלפת צבע אתר",
+		"switchTo": {
+			"dark": "מעבר למצב כהה",
+			"light": "מעבר למצב בהיר"
+		}
+	},
+	"hero": {
+		"title_p1": "אגדות וסיפורי עם מתוך",
+		"title_p2": "פולקלור ההאקרים",
+		"description": "אנחנו נוברים בארכיונים ובמקורות ממעמקי הרשת כדי לגלות איפה העובדות נגמרות והמיתוסים מתחילים. בוא להכיר את האנשים ואת וההיסטוריה הנשכחת מאחורי הסיפורים הגדולים של פולקלור ההאקרים.",
+		"cta": "התחילו לקרוא"
+	},
+	"sources": {
+		"all": "הכל",
+		"selected": "מקורות נבחרים",
+		"viewAll": "לכל המקורות",
+		"document": "מסמך",
+		"image": "תמונה",
+		"pdf": "PDF",
+		"audio": "אודיו",
+		"video": "וידאו",
+		"link": "קישור",
+		"text": "טקסט",
+		"archive": "ארכיון",
+		"other": "אחר",
+		"openSource": "פתיחת מקור",
+		"toggleFilters": "החלפת מסננים",
+		"filterPlaceholder": "סינון מקורות...",
+		"filterBy": "סינון לפי",
+		"clearFilters": "ניקוי",
+		"noSources": "אין מקורות עדיין",
+		"colName": "שם",
+		"colDescription": "תיאור",
+		"colType": "סוג",
+		"colDate": "תאריך",
+		"colAuthor": "מחבר",
+		"colCredit": "קרדיט",
+		"colLicense": "רישיון",
+		"colTags": "תגיות",
+		"colSource": "מקור",
+		"searchPlaceholder": "חיפוש מקורות...",
+		"transcription": "לקריאת התעתיק"
+	},
+	"search": {
+		"title": "חיפוש",
+		"placeholder": "חיפוש מאמרים, מילון מונחים, מקורות...",
+		"triggerPlaceholder": "חיפוש...",
+		"open": "פתיחת חיפוש",
+		"close": "סגירת חיפוש",
+		"navigate": "ניווט",
+		"openHint": "פתיחה",
+		"closeHint": "סגירה",
+		"noResults": "לא נמצאו תוצאות",
+		"resultsFound": "תוצאות נמצאו",
+		"categories": {
+			"article": "מאמרים",
+			"glossary": "מילון מונחים",
+			"post": "פוסטים",
+			"page": "עמודים",
+			"source": "מקורות",
+			"story": "סיפורים"
+		}
+	},
+	"stories": "סיפורים",
+	"count": {
+		"stories": {
+			"one": "סיפור",
+			"other": "סיפורים"
+		},
+		"articles": {
+			"one": "מאמר",
+			"other": "מאמרים"
+		},
+		"sources": {
+			"one": "מקור",
+			"other": "מקורות"
+		}
+	},
+	"moreStories": "עוד סיפורים",
+	"readStory": "לסיפור המלא",
+	"loading": "טוען...",
+	"learnMore": "עוד",
+	"back": "חזרה לבלוג",
+	"featured": {
+		"date": "21 במאי 2023",
+		"title": "40 שנה לסיפור על מל",
+		"subtitle": "דמות בדיונית או אדם אמיתי? מאמר ביוגרפי חדש סוקר את זהותו של מל קיי, ההאקר האגדי, בן למשפחה של מהגרים שהפך לאגדת תוכנה",
+		"linkPrefix": "למאמר המלא",
+		"linkText": "מל קיי – קורות חיים",
+		"imageAlt": "דיוקנו של מל קיי, 1952",
+		"badge": "מומלץ"
+	}
+}

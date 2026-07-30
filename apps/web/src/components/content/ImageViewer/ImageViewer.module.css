@@ -1,0 +1,22 @@
+/* Credit line and source link beneath the slide. */
+.caption {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--ml-space-xs) var(--ml-space-sm);
+	justify-content: center;
+}
+
+.sourceLink {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-color: color-mix(in srgb, currentColor 50%, transparent);
+}
+
+@media (hover: hover) {
+	.sourceLink:hover {
+		text-decoration-color: currentColor;
+	}
+}

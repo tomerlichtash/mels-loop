@@ -1,0 +1,96 @@
+.root {
+	width: var(--ml-viewport-width);
+	margin-inline-start: calc(-0.5 * var(--ml-viewport-width) + 50%);
+}
+
+.inner {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-xl);
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	/*
+	 * Was 2x --ml-space-3xl, which made the header 40% of a phone's first
+	 * screen to show a title and one line of subtitle. This is a reading site
+	 * — get to the prose.
+	 */
+	/* Identity, not chrome — aligns with the story text below it. The space
+	 * above now comes from the breadcrumb bar, which supplies it site-wide. */
+	padding: 0 var(--ml-content-padding-horizontal) var(--ml-space-2xl);
+}
+
+/*
+ * The link wrapping avatar + title + subtitle. It carries the row layout,
+ * because .inner also holds whatever else the header renders beside it.
+ */
+.identity {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-xl);
+	flex: 1;
+	min-width: 0;
+	text-decoration: none;
+	color: inherit;
+}
+
+.avatar {
+	border: 2px solid var(--ml-border-color);
+	flex-shrink: 0;
+}
+
+@media (--ml-bp-mobile) {
+	.inner {
+		padding-block: var(--ml-space-lg);
+	}
+
+	/*
+	 * Beside the title rather than stacked above it: stacking cost a whole
+	 * avatar's height before the reader reached the story name. Shrinking the
+	 * portrait is what makes the row fit at 390px.
+	 */
+	.identity {
+		gap: var(--ml-space-md);
+	}
+
+	.avatar {
+		width: 56px;
+		height: 56px;
+	}
+
+	/* Title and subtitle read as one block beside the avatar at this size —
+	 * the gap only separated them. */
+	.title {
+		margin-bottom: 0;
+	}
+}
+
+.titleBlock {
+	flex: 1;
+}
+
+.title {
+	letter-spacing: -0.03em;
+	background: linear-gradient(
+		to right,
+		var(--ml-gradient-start),
+		var(--ml-gradient-end)
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	/* em, so it stays proportional as the title scales down on a phone. */
+	margin-bottom: 0.2em;
+}
+
+.titleLink {
+	text-decoration: none;
+}
+
+/*
+ * On the story's own page the identity still renders as a link, to keep the
+ * element type stable across navigation, but it should not behave like one.
+ */
+.identityCurrent {
+	cursor: default;
+	pointer-events: none;
+}

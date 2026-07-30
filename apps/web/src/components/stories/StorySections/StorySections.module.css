@@ -1,0 +1,100 @@
+.root {
+	width: var(--ml-viewport-width);
+	margin-inline-start: calc(-0.5 * var(--ml-viewport-width) + 50%);
+	position: sticky;
+	top: calc(
+		var(--ml-header-offset, var(--ml-header-height)) +
+			var(--ml-breadcrumb-bar-height)
+	);
+	z-index: 89;
+	transition:
+		top var(--ml-duration-normal) ease,
+		background-color var(--ml-duration-fast) ease;
+}
+
+/*
+ * The strip sticks correctly — header 48px + BreadcrumbBar 36px, and the offset
+ * maths agree — but at 60% it did not hide the prose scrolling underneath it,
+ * so the story text read straight through the tabs.
+ *
+ * Two causes. The alpha was simply too low, now 92%. And the blur that was
+ * meant to cover the difference never applied: -webkit-backdrop-filter has to
+ * come *before* the unprefixed property or lightningcss (Next's CSS pipeline)
+ * drops it. See vercel/next.js#78302.
+ */
+.stuck {
+	background-color: color-mix(
+		in srgb,
+		var(--ml-background-color) 92%,
+		transparent
+	);
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+}
+
+/*
+ * The authoritative height (see layout.css) lives on the tab row, not on .root.
+ * On the sources tab .root also holds the filter panel, and pinning .root to a
+ * tab-row height made the panel overflow its own container — page content then
+ * flowed underneath it and the first source group was hidden. Minus the divider
+ * so .root still totals --ml-story-sections-height on tabs without a panel,
+ * which is what the anchor and sidebar offsets downstream assume.
+ */
+.inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: calc(var(--ml-story-sections-height) - 1px);
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	/* Identity, not chrome — aligns with the story text below it. */
+	padding-inline: var(--ml-content-padding-horizontal);
+}
+
+.divider {
+	height: 1px;
+	background-color: var(--ml-border-color);
+}
+
+/*
+ * The tab strip must be allowed to shrink below its content width, or it
+ * pushes the row wider than the viewport instead of scrolling internally.
+ * min-width: 0 is what lets a flex child do that.
+ */
+.nav {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.filterPanelInner {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-sm);
+	max-width: var(--ml-page-max-width);
+	margin: 0 auto;
+	/* Identity, not chrome — aligns with the story text below it. */
+	padding-inline: var(--ml-content-padding-horizontal);
+	padding-block: var(--ml-space-sm);
+}
+
+/* Fills the row. The auto start-margin and 300px cap existed to hold this off
+ * the type toggle beside it; with the toggle gone they only left dead space. */
+.filterSearch {
+	flex: 1;
+}
+
+.sentinel {
+	height: 0;
+}
+
+/*
+ * Full-bleed on a phone. The strip scrolls, so a gutter beside it is width the
+ * tabs could have used — and unlike the story header this row has no text to
+ * align with the prose below. The chevrons' 44px slots sit at each end, so the
+ * first and last tabs are still not flush against the screen edge.
+ */
+@media (--ml-bp-mobile) {
+	.inner {
+		padding-inline: 0;
+	}
+}

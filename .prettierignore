@@ -1,5 +1,8 @@
-.next
-.vscode
-coverage
 node_modules
-*.st.css
+.next
+out
+dist
+public
+pnpm-lock.yaml
+*.md
+next-env.d.ts

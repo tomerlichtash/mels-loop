@@ -1,0 +1,11 @@
+/* ---- Utilities ---- */
+
+.gradient-strip {
+	display: block;
+	height: 4px;
+	background: linear-gradient(
+		to right,
+		var(--ml-gradient-start),
+		var(--ml-gradient-end)
+	);
+}

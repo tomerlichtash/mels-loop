@@ -1,0 +1,75 @@
+:root {
+	--ml-breadcrumbs-font-size: var(--ml-font-size-sm);
+	--ml-breadcrumbs-separator-color: var(--ml-text-muted-color);
+	--ml-breadcrumbs-separator-gap: var(--ml-space-xs);
+	--ml-breadcrumbs-separator-size: 1.15em;
+	--ml-breadcrumbs-link-color: var(--ml-text-muted-color);
+	--ml-breadcrumbs-link-hover-color: var(--ml-text-color);
+	--ml-breadcrumbs-current-color: var(--ml-text-color);
+}
+
+.root {
+}
+
+.list {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: var(--ml-breadcrumbs-font-size);
+}
+
+.item {
+	display: flex;
+	align-items: center;
+}
+
+/*
+ * A text glyph rather than an icon, because alignment then comes for free.
+ * align-items:center centres *boxes*, and a glyph is not centred inside its
+ * own line box — there is descender space below it and ascender space above,
+ * so an icon centred on that box always reads high against the labels. CSS
+ * exposes no "centre on the rendered glyphs" alignment. A character shares the
+ * labels' font metrics and baseline, so it simply sits where they sit.
+ *
+ * Sized above 1em because › is drawn small within its em box.
+ */
+.separator {
+	margin: 0 var(--ml-breadcrumbs-separator-gap);
+	font-size: var(--ml-breadcrumbs-separator-size);
+	line-height: 1;
+	color: var(--ml-breadcrumbs-separator-color);
+	user-select: none;
+	flex-shrink: 0;
+}
+
+/*
+ * One glyph, both directions. U+203A is bidi-mirrored, so the browser draws it
+ * reversed inside a right-to-left run without being asked.
+ *
+ * There used to be a `:dir(rtl)` rule swapping in U+2039 as well. That mirrored
+ * character was then mirrored again by the bidi algorithm, which turned it back
+ * into ›, and the Hebrew breadcrumbs pointed the wrong way — the one direction
+ * the override existed to fix.
+ */
+.separator::before {
+	content: '\203A'; /* › — drawn as ‹ in a right-to-left run */
+}
+
+.link {
+	color: var(--ml-breadcrumbs-link-color);
+	text-decoration: none;
+}
+
+.link:hover {
+	color: var(--ml-breadcrumbs-link-hover-color);
+	text-decoration: underline;
+}
+
+.current {
+	color: var(--ml-breadcrumbs-current-color);
+	font-weight: var(--ml-font-weight-semibold);
+}
