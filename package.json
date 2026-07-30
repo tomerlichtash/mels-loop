@@ -14,7 +14,6 @@
 		"lint:fix": "turbo lint:fix",
 		"test": "turbo test --log-order grouped",
 		"test-storybook": "turbo test-storybook",
-		"test:ui:e2e": "turbo --filter @mels-loop/ui test:e2e",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"media:upload": "pnpm --filter @mels-loop/scripts s3:upload",
