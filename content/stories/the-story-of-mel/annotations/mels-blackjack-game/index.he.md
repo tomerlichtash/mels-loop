@@ -1,6 +1,6 @@
 ---
 source_name: מדריך תוכנה לבלאקג׳ק
-source_url: /he/docs/blackjack-writeup
+source_url: /he/stories/the-story-of-mel/documents/blackjack-writeup
 source_author: מל קיי
 ---
 
