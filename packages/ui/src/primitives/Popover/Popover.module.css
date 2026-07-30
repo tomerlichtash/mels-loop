@@ -181,6 +181,23 @@
 	);
 }
 
+/*
+ * The panel while its content is in flight — see the `loading` prop.
+ *
+ * One rule for both variants. In the sheet, whose height is fixed, flex: 1
+ * takes everything the bar leaves; in the anchored panel, whose height is its
+ * content, the min-height gives the loader a panel to sit in the middle of
+ * rather than a strip barely taller than the spinner.
+ */
+.loading {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	min-height: 120px;
+	padding: var(--ml-space-lg);
+}
+
 /* ---- Mobile bottom sheet ---- */
 
 .sheetOverlay {

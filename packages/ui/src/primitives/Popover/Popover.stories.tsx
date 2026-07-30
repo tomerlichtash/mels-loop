@@ -57,3 +57,8 @@ export const Left: Story = {
 export const Top: Story = {
 	args: { side: 'top' },
 };
+
+/* Content still in flight: one indicator for the panel, no heading above it. */
+export const Loading: Story = {
+	args: { loading: true, defaultOpen: true },
+};

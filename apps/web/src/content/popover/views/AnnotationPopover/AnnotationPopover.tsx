@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslation } from '@mels-loop/i18n/client';
-import { IndexMarker, Loader, Popover } from '@mels-loop/ui/primitives';
+import { IndexMarker, Popover } from '@mels-loop/ui/primitives';
 import { useMemo } from 'react';
 
 import { ContentRenderer } from '../../../renderer/core/ContentRenderer';
@@ -50,6 +50,7 @@ export function AnnotationPopover({
 				if (!next) closePopover();
 			}}
 			toolbar={<NavBar rootLabel={displayLabel} />}
+			loading={!displayContent}
 			title={`Annotation ${sequence}`}
 			side={side}
 			triggerRef={triggerRef}
@@ -69,11 +70,8 @@ export function AnnotationPopover({
 			 * the note itself down the panel. Once they navigate inward the
 			 * toolbar's trail names where they are; at the root it stays empty.
 			 */}
-			{!displayContent ? (
-				<div className={styles.loader}>
-					<Loader size="md" />
-				</div>
-			) : (
+			{/* The panel renders its own loader while this is null — see `loading`. */}
+			{displayContent && (
 				<>
 					<ContentRenderer
 						hast={displayContent.hast}

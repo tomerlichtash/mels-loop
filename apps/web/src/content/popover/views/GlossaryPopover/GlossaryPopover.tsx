@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslation } from '@mels-loop/i18n/client';
-import { Loader, Popover } from '@mels-loop/ui/primitives';
+import { Popover } from '@mels-loop/ui/primitives';
 import { useMemo } from 'react';
 
 import { ContentRenderer } from '../../../renderer/core/ContentRenderer';
@@ -62,6 +62,7 @@ export function GlossaryPopover({
 				if (!next) closePopover();
 			}}
 			toolbar={<NavBar rootLabel={originalLabel} />}
+			loading={!displayContent}
 			title={originalLabel}
 			side={side}
 			triggerRef={triggerRef}
@@ -96,11 +97,8 @@ export function GlossaryPopover({
 					</p>
 				)}
 			</div>
-			{!displayContent ? (
-				<div className={styles.loader}>
-					<Loader size="md" />
-				</div>
-			) : (
+			{/* The panel renders its own loader while this is null — see `loading`. */}
+			{displayContent && (
 				<>
 					<ContentRenderer
 						hast={displayContent.hast}

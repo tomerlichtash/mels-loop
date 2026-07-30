@@ -11,11 +11,6 @@
 }
 
 /* Padding comes from the scroller — see --ml-popover-padding above. */
-.loader {
-	display: flex;
-	justify-content: center;
-}
-
 .body {
 	/* Size comes from the panel — see --ml-popover-font-size. */
 	line-height: var(--ml-line-height-body);
