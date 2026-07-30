@@ -1,6 +1,11 @@
 name: CI
 
 on:
+  # The trunk is what deploys, so it is what has to be verified. Without this
+  # every check only ever ran on a PR head — a merge could produce a `main`
+  # nobody tested, and that `main` goes straight to production.
+  push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
