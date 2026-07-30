@@ -70,7 +70,7 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 
 ![Preface to Mel's Blackjack game](sources/mel-kaye-blackjack-writeup)
 
-[Full text here](/en/docs/the-story-of-mel/pages/blackjack-writeup)
+[Full text here](/stories/the-story-of-mel/documents/blackjack-writeup)
 
 ## Origins: Coast to Coast Migration
 

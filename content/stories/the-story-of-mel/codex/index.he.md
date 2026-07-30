@@ -68,7 +68,7 @@ parse_mode: "verse"
 זו היתה שאלה שמעולם לא שאלנו.
 
 העבודה של מל היתה לשכתב
-את תוכנת הבלאק ג'ק[^](annotations/mels-blackjack-game) עבור ה-[4000-RPC](rpc-4000).
+את תוכנת הבלאק ג'ק[^](annotations/mels-blackjack-game) עבור ה-[4000-RPC](glossary/rpc-4000).
 (מי בכלל ידע אז מה זה [פּוֹרְט](glossary/port)?)
 [מִיעוּן הכְּתוֹבוֹת](glossary/addressing-scheme)[^](annotations/instruction1) במחשב החדש
 היה מסוג אחד-ועוד-אחד

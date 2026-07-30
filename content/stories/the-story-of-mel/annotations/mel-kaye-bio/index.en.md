@@ -1,5 +1,5 @@
 ---
-source_url: /docs/the-story-of-mel/pages/mel-kaye-cv
+source_url: /stories/the-story-of-mel/articles/mel-kaye-cv
 source_name: Mel Kaye - CV
 ---
 

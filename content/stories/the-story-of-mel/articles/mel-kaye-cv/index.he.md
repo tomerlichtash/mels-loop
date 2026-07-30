@@ -67,7 +67,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 
 ![מתוך המבוא שכתב מל למשחק הבלק ג׳ק](sources/mel-kaye-blackjack-writeup)
 
-[לטקסט המלא](/he/docs/the-story-of-mel/pages/blackjack-writeup)
+[לטקסט המלא](/he/stories/the-story-of-mel/documents/blackjack-writeup)
 
 ## שורשים: הגירה מחוף לחוף
 
