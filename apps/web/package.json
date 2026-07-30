@@ -39,7 +39,6 @@
 	"devDependencies": {
 		"@csstools/postcss-global-data": "^4.0.0",
 		"@mels-loop/eslint-config": "workspace:*",
-		"@mels-loop/test-utils": "workspace:*",
 		"postcss-custom-media": "^12.0.0"
 	}
 }
