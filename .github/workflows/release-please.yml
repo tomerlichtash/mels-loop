@@ -1,0 +1,53 @@
+name: Release
+
+# Maintains a single open "release PR" that bumps the version and rewrites
+# CHANGELOG.md from the conventional commits since the last release. Merging
+# that PR is what cuts a release: it tags vX.Y.Z, publishes a GitHub Release,
+# and — via the promote job below — moves production.
+#
+# Production follows the `production` branch, not `main`. So a merge to `main`
+# ships nothing on its own; only a release does.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  promote:
+    # Only when a Release PR was merged — not on ordinary pushes to main.
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # The full history, or the fast-forward check below has nothing to
+          # compare against.
+          fetch-depth: 0
+
+      - name: Fast-forward production to the release commit
+        # No event data is interpolated here — only refs this workflow controls.
+        run: |
+          set -euo pipefail
+          git push origin HEAD:production
+        # A non-fast-forward push fails, and that failure is the point: it means
+        # something reached `production` without going through a release, and
+        # the right response is to look rather than to force it.
