@@ -10,13 +10,13 @@
 		"lint:fix": "eslint . --fix",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"test-storybook": "test-storybook",
-		"test-storybook:ci": "test-storybook --url http://127.0.0.1:6006",
 		"test": "vitest run",
 		"generate:contract": "tsx scripts/generate-contract.ts",
 		"check:contract": "tsx scripts/generate-contract.ts --check",
 		"validate-theme": "tsx scripts/validate-theme.ts",
-		"generate:styleguide": "tsx scripts/generate-styleguide-pdf.ts"
+		"generate:styleguide": "tsx scripts/generate-styleguide-pdf.ts",
+		"test:e2e": "bash scripts/test-e2e.sh",
+		"test:e2e:watch": "test-storybook"
 	},
 	"exports": {
 		"./styles/globals.css": "./dist/styles/globals.css",

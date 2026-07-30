@@ -23,12 +23,12 @@
 			"dependsOn": ["^build"],
 			"cache": false
 		},
-		"test-storybook": {
-			"cache": false
-		},
 		"build-storybook": {
 			"dependsOn": ["^build"],
 			"outputs": ["storybook-static/**"]
+		},
+		"test:e2e": {
+			"cache": false
 		}
 	}
 }

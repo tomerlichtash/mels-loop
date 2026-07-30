@@ -72,3 +72,36 @@ jobs:
 
       - name: Build all packages
         run: pnpm build
+
+  # Every story, mounted in a real browser. It catches what a type-check cannot:
+  # a component that throws on render, an import that resolves at build time and
+  # not at runtime, a token a story reaches for that no longer exists.
+  #
+  # `pnpm test` is vitest, and vitest only picks up scripts/**/*.spec.ts — so
+  # before this job nothing rendered a component anywhere in CI.
+  component-tests:
+    name: Component Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.13.0
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Chromium only. The runner mounts stories rather than exercising browser
+      # differences, so a second engine would triple the install for no signal.
+      - name: Install Chromium
+        run: pnpm --filter @mels-loop/ui exec playwright install --with-deps chromium
+
+      # The same command a developer runs. Building, serving and waiting live in
+      # scripts/test-e2e.sh rather than in this file, so what gates a PR and what
+      # you run locally cannot drift apart.
+      - name: Run the story suite
+        run: pnpm test:e2e
