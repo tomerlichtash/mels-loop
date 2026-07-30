@@ -8,4 +8,4 @@ date: Wed Apr 7 2021 13:45 GMT+0300
 
 לצד התרגום הוספנו כ-50 הערות שוליים המבארות את הסיפור על חלקיו הטכניים וההיסטוריים השונים, לצד [מאמר מבוא, המצורף כאן באתר במלואו](/he/docs/preface).
 
-![](/media/images/mel-loop-hebrew-edition.jpg)
+![](/media/v2/images/mel-loop-hebrew-edition.jpg)
