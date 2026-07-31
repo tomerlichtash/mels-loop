@@ -122,6 +122,27 @@ export async function POST(request: NextRequest) {
 		const toEmail = process.env.CONTACT_TO_EMAIL || 'about@melsloop.com';
 		const fromEmail = process.env.CONTACT_FROM_EMAIL || 'noreply@melsloop.com';
 
+		/*
+		 * The same check the visitor's address gets, applied to our own
+		 * configuration — which until now was trusted blindly.
+		 *
+		 * A Postmark server token was once pasted into CONTACT_FROM_EMAIL. The
+		 * request went out with `From: Mel's Loop <a-guid-here>`, Postmark
+		 * rejected it and echoed the offending value back, and the error path
+		 * below wrote that response to the logs. A secret in any of these
+		 * variables leaves the same way. Failing here means there is nothing to
+		 * echo.
+		 */
+		if (!EMAIL_PATTERN.test(fromEmail) || !EMAIL_PATTERN.test(toEmail)) {
+			console.error(
+				'Contact form misconfigured: CONTACT_FROM_EMAIL or CONTACT_TO_EMAIL is not an email address',
+			);
+			return NextResponse.json(
+				{ error: 'Email service not configured' },
+				{ status: 500 },
+			);
+		}
+
 		if (!token) {
 			/*
 			 * Local development without credentials logs instead of sending, so
@@ -173,7 +194,18 @@ export async function POST(request: NextRequest) {
 			return NextResponse.json({ success: true });
 		}
 
-		console.error('Postmark error:', response.status, data);
+		/*
+		 * The code and message, not the response object. Postmark echoes the
+		 * offending input back in its errors — an invalid From address is
+		 * quoted verbatim — so logging the whole thing means logging whatever
+		 * was misconfigured, secrets included.
+		 */
+		console.error(
+			'Postmark error:',
+			response.status,
+			data?.ErrorCode,
+			data?.Message,
+		);
 		return NextResponse.json({ error: 'Failed to send' }, { status: 500 });
 	} catch (error) {
 		console.error('Contact form error:', error);
