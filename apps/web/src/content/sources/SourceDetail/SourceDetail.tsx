@@ -55,12 +55,9 @@ export function SourceDetail({ source }: SourceDetailProps) {
 					</>
 				)}
 			</dl>
-			{/*
-			 * No link out. The catalogue pages this pointed at are hidden for
-			 * now, and a "View source →" that 404s is worse than none. The
-			 * metadata above still names author, credit and licence, which is
-			 * what attribution requires.
-			 */}
+			<a href={`/sources/${source.id}`} className={styles.openLink}>
+				{source.type === 'image' ? 'View full image' : 'View source'} →
+			</a>
 		</div>
 	);
 }

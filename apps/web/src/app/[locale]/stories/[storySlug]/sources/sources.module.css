@@ -1,0 +1,5 @@
+.fullWidth {
+	width: var(--ml-viewport-width);
+	margin-inline-start: calc(-0.5 * var(--ml-viewport-width) + 50%);
+	padding: 0 var(--ml-page-padding-horizontal);
+}

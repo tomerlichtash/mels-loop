@@ -16,6 +16,15 @@ export type SourceType =
 	| 'archive'
 	| 'other';
 
+/**
+ * Evidentiary standing: an artifact of the events, or commentary after.
+ * A reproduction inherits the standing of what it reproduces — a scan of
+ * the naturalization papers is primary because the papers are; a photo of
+ * a gravestone is primary because the stone is; prose about events is
+ * secondary regardless of age.
+ */
+export type Standing = 'primary' | 'secondary';
+
 export type License =
 	| 'public-domain'
 	| 'cc-by'
@@ -32,6 +41,7 @@ export type SourceLicense = License;
 export interface Source {
 	id: string;
 	type: SourceType;
+	standing: Standing;
 	url: string;
 	author?: string;
 	date?: string;

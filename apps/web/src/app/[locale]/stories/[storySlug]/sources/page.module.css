@@ -1,0 +1,30 @@
+.group {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+}
+
+.groupHeading {
+	text-transform: capitalize;
+}
+
+.cards {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+}
+
+.thumbnail {
+	flex-shrink: 0;
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+	border-radius: var(--ml-radius-sm);
+	background-color: var(--ml-background-color-alt);
+}
+
+.thumbnailImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}

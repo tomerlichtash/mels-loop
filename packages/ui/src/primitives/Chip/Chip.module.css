@@ -1,0 +1,119 @@
+:root {
+	--ml-chip-radius: var(--ml-radius-pill);
+	--ml-chip-gap: var(--ml-space-xs);
+	--ml-chip-dismiss-focus-color: var(--ml-color-primary);
+}
+
+.root {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-chip-gap);
+	padding: var(--ml-chip-padding-vertical) var(--ml-chip-padding-horizontal);
+	font-family: var(--ml-typography-body-font-family);
+	font-size: var(--ml-chip-font-size);
+	line-height: 1;
+	color: var(--ml-chip-color);
+	background-color: var(--ml-chip-background);
+	border: 1px solid var(--ml-chip-border-color);
+	border-radius: var(--ml-chip-radius);
+	white-space: nowrap;
+	max-width: 100%;
+}
+
+/* Label */
+.label {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ml-chip-gap);
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Variants */
+.variant-contained {
+	--ml-chip-background: var(--ml-color-primary);
+	--ml-chip-color: var(--ml-color-primary-contrast);
+	--ml-chip-border-color: var(--ml-color-primary);
+}
+
+.variant-outlined {
+	--ml-chip-background: transparent;
+	--ml-chip-color: var(--ml-color-primary);
+	--ml-chip-border-color: var(--ml-color-primary);
+	--ml-chip-dismiss-color: var(--ml-color-primary);
+	--ml-chip-dismiss-color-hover: var(--ml-color-primary);
+}
+
+/* Sizes */
+.size-sm {
+	--ml-chip-font-size: var(--ml-font-size-xs);
+	--ml-chip-padding-horizontal: var(--ml-space-xs);
+	--ml-chip-padding-vertical: 2px;
+}
+
+.size-md {
+	--ml-chip-font-size: var(--ml-font-size-sm);
+	--ml-chip-padding-horizontal: var(--ml-space-sm);
+	--ml-chip-padding-vertical: var(--ml-space-xs);
+}
+
+.size-lg {
+	--ml-chip-font-size: var(--ml-font-size-body);
+	--ml-chip-padding-horizontal: var(--ml-space-md);
+	--ml-chip-padding-vertical: var(--ml-space-xs);
+}
+
+/* Radius */
+.radius-none {
+	--ml-chip-radius: var(--ml-radius-none);
+}
+
+.radius-sm {
+	--ml-chip-radius: var(--ml-radius-sm);
+}
+
+.radius-md {
+	--ml-chip-radius: var(--ml-radius-md);
+}
+
+.radius-lg {
+	--ml-chip-radius: var(--ml-radius-lg);
+}
+
+.radius-pill {
+	--ml-chip-radius: var(--ml-radius-pill);
+}
+
+/* Disabled */
+.disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+/* Dismiss button */
+.dismiss {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	padding: 0;
+	border: none;
+	background: none;
+	color: var(--ml-chip-dismiss-color);
+	cursor: pointer;
+	line-height: 1;
+	border-radius: var(--ml-radius-sm);
+}
+
+.dismiss svg {
+	transform: scale(0.8);
+}
+
+.dismiss:hover {
+	color: var(--ml-chip-dismiss-color-hover);
+}
+
+.dismiss:focus-visible {
+	outline: 2px solid var(--ml-chip-dismiss-focus-color);
+	outline-offset: 1px;
+}
