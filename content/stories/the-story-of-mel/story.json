@@ -15,10 +15,35 @@
 			"usenet"
 		]
 	},
-	"authors": [
+	"entities": [
 		{
-			"ref": "ednather",
+			"ref": "mel-kaye",
+			"role": "subject"
+		},
+		{
+			"ref": "ed-nather",
 			"role": "author"
+		},
+		{
+			"ref": "lewis-w-imm",
+			"role": "subject",
+			"as": "aliases.big-boss"
+		},
+		{
+			"ref": "librascope",
+			"role": "subject"
+		},
+		{
+			"ref": "royal-mcbee",
+			"role": "subject"
+		},
+		{
+			"ref": "lgp-30",
+			"role": "subject"
+		},
+		{
+			"ref": "rpc-4000",
+			"role": "subject"
 		}
 	],
 	"featured": true,

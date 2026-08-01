@@ -1,0 +1,20 @@
+{
+	"id": "librascope",
+	"kind": "organisation",
+	"dates": {
+		"start": "1937"
+	},
+	"related": [
+		{
+			"ref": "royal-mcbee",
+			"relation": "business partner"
+		}
+	],
+	"sources": [
+		"librazette-jul-1956-meeting",
+		"librazette-aug-1956-employees",
+		"librazette-jul-1961-libravets",
+		"librascope-memories-blog",
+		"librascope-lgp-30-manual"
+	]
+}

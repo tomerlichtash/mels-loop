@@ -1,0 +1,11 @@
+{
+	"id": "l-stanley-crandall",
+	"kind": "person",
+	"related": [
+		{
+			"ref": "royal-mcbee",
+			"relation": "president of Royal Precision, its joint venture"
+		}
+	],
+	"sources": []
+}

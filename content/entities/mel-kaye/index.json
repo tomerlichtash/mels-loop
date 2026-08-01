@@ -1,0 +1,31 @@
+{
+	"id": "mel-kaye",
+	"kind": "person",
+	"portrait": "mel-kaye-photo-1952",
+	"dates": {
+		"start": "1931",
+		"end": "2018"
+	},
+	"related": [
+		{
+			"ref": "librascope",
+			"relation": "worked at"
+		},
+		{
+			"ref": "royal-mcbee",
+			"relation": "worked at"
+		}
+	],
+	"sources": [
+		"mel-kaye-photo-1952",
+		"ucla-yearbook-1951",
+		"ucla-yearbook-1952",
+		"voters-index-1952",
+		"mel-rita-marriage-record",
+		"librazette-aug-1956-employees",
+		"mel-blackjack-writeup",
+		"mel-kaye-foldoc-reference",
+		"mel-kaye-grave",
+		"mel-and-rita-kaye-grave"
+	]
+}

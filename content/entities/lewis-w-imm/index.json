@@ -1,0 +1,12 @@
+{
+	"id": "lewis-w-imm",
+	"kind": "person",
+	"portrait": "lewis-w-imm-portrait",
+	"related": [
+		{
+			"ref": "librascope",
+			"relation": "president"
+		}
+	],
+	"sources": ["lewis-w-imm-portrait"]
+}

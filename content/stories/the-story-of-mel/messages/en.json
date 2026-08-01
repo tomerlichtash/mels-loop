@@ -30,5 +30,8 @@
 	},
 	"figures": {
 		"template": "Fig. %index%"
+	},
+	"aliases": {
+		"big-boss": "The Big Boss"
 	}
 }

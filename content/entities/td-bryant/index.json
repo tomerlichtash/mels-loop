@@ -1,0 +1,12 @@
+{
+	"id": "td-bryant",
+	"kind": "person",
+	"portrait": "td-bryant-portrait",
+	"related": [
+		{
+			"ref": "royal-mcbee",
+			"relation": "Glendale branch manager"
+		}
+	],
+	"sources": ["td-bryant-portrait"]
+}

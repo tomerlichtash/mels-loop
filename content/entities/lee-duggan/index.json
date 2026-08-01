@@ -1,0 +1,11 @@
+{
+	"id": "lee-duggan",
+	"kind": "person",
+	"related": [
+		{
+			"ref": "librascope",
+			"relation": "plant photographer"
+		}
+	],
+	"sources": []
+}

@@ -1,0 +1,12 @@
+{
+	"id": "jack-behr",
+	"kind": "person",
+	"portrait": "jack-behr-portrait",
+	"related": [
+		{
+			"ref": "royal-mcbee",
+			"relation": "application engineer"
+		}
+	],
+	"sources": ["jack-behr-portrait"]
+}
