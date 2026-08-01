@@ -13,14 +13,10 @@ import { notFound } from 'next/navigation';
 import { type ReactNode, Suspense } from 'react';
 
 import { BreadcrumbBar } from '@/components/layout/BreadcrumbBar/BreadcrumbBar';
-import { Asides } from '@/components/stories/Asides/Asides';
+import { Asides, type StoryPerson } from '@/components/stories/Asides/Asides';
 import { StoryBreadcrumbs } from '@/components/stories/StoryBreadcrumbs/StoryBreadcrumbs';
 import { StoryHeader } from '@/components/stories/StoryHeader/StoryHeader';
 import { StoryLayout } from '@/components/stories/StoryLayout/StoryLayout';
-import {
-	StoryPeople,
-	type StoryPerson,
-} from '@/components/stories/StoryPeople/StoryPeople';
 import {
 	type StorySection,
 	StorySections,
@@ -149,43 +145,6 @@ export default async function StorySlugLayout({
 	const basePath = `/stories/${storySlug}`;
 
 	/*
-	 * The editor's pick shown in the aside, in the order story.json lists it.
-	 * A record we hold a transcription of links to that page rather than to its
-	 * catalogue entry — the reader wants to read the thing, not read about it.
-	 */
-	const picked = (config.featuredSources ?? [])
-		.map((id) => sources.find((source) => source.id === id))
-		.filter((source): source is (typeof sources)[number] => source != null);
-
-	const featuredSources = picked.length
-		? {
-				label: dictGet(dict, 'sources.selected'),
-				moreHref: `${basePath}/sources`,
-				moreLabel: dictGet(dict, 'sources.viewAll'),
-				/*
-				 * Title alone, with the type glyph.
-				 *
-				 * The summary is what the sources table is for; here it turned three
-				 * short entries into a wall of text beside the article. The credit
-				 * went for a different reason: a source's author lives in its
-				 * locale-independent index.json, so there is only ever the Latin
-				 * form of the name, and "Ed Nather" sat under a Hebrew title with
-				 * no Hebrew spelling to fall back to. A date line went the same way
-				 * — where the year matters to the record it is already part of its
-				 * title, as in the 1907 SS Estonia manifest.
-				 */
-				rows: picked.map((source) => ({
-					/* Always the record page — it embeds the transcription where
-					 * one exists, so linking the bare document route again would
-					 * just duplicate content under a second URL. */
-					href: `/sources/${source.id}`,
-					title: source.title,
-					type: source.type,
-				})),
-			}
-		: undefined;
-
-	/*
 	 * The story's people: person-kind involvement edges, resolved to names
 	 * and portraits. The alias wins over the role — this text's name for
 	 * someone ("The Big Boss") says more here than "Subject" does.
@@ -252,8 +211,11 @@ export default async function StorySlugLayout({
 		...(involved.length > 0 || (config.entities?.length ?? 0) > 0
 			? [
 					{
+						/* The tab is the whole cast — organisations and machines
+						 * included — while the sidebar's People group is persons
+						 * only. Same word on both confused the counts apart. */
 						key: 'people',
-						label: sectionLabels.people,
+						label: dictGet(dict, 'nav.cast'),
 						count: config.entities?.length ?? 0,
 						href: `${basePath}/people`,
 					},
@@ -312,13 +274,10 @@ export default async function StorySlugLayout({
 			<StoryLayout
 				sidebar={
 					contents && contents.length > 0 ? (
-						<>
-							<StoryPeople
-								label={dictGet(dict, 'nav.people')}
-								people={involved}
-							/>
-							<Asides contents={contents} sources={featuredSources} />
-						</>
+						<Asides
+							contents={contents}
+							people={{ label: dictGet(dict, 'nav.people'), people: involved }}
+						/>
 					) : undefined
 				}
 			>
