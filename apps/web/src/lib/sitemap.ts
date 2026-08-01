@@ -54,18 +54,17 @@ export async function buildSitemapEntries(
 		 * together.
 		 */
 		/*
-		 * No sources entries. /sources and /stories/<slug>/sources are not
-		 * served while the area is redesigned, and a sitemap is a list of pages
-		 * worth crawling — advertising a 404 is worse than omitting it.
-		 *
-		 * Posts are omitted too. Their routes still answer, so existing links
+		 * Posts are omitted. Their routes still answer, so existing links
 		 * keep working, but they are unlisted rather than promoted.
 		 */
+		// Global sources browser
+		entry('/sources', 'monthly', 0.6),
 		// Story pages and their sub-pages
 		...stories.flatMap((storySlug, i) => [
 			entry(`/stories/${storySlug}`, 'weekly', 0.9),
 			entry(`/stories/${storySlug}/codex`, 'monthly', 0.7),
 			entry(`/stories/${storySlug}/resources`, 'monthly', 0.6),
+			entry(`/stories/${storySlug}/sources`, 'monthly', 0.6),
 			...articlesByStory[i].map((a) =>
 				entry(`/stories/${storySlug}/articles/${a}`, 'monthly', 0.8),
 			),

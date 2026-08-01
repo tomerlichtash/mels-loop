@@ -1,6 +1,9 @@
 import type { ResolvedSource } from '@mels-loop/content-loaders/types';
 import Image from 'next/image';
 
+import { formatSourceDate } from '@/lib/format-date';
+import { isImageUrl } from '@/lib/source-media';
+
 import styles from './page.module.css';
 
 const LICENSE_LABELS: Record<string, string> = {
@@ -22,6 +25,14 @@ export interface SourceLabels {
 	transcription: string;
 }
 
+interface SourceMetaProps {
+	source: ResolvedSource;
+	labels: SourceLabels;
+	locale: string;
+	/** When the transcription is embedded in the page, the rail drops its link. */
+	transcriptEmbedded?: boolean;
+}
+
 /**
  * The record itself: the picture, and the archive's account of it.
  *
@@ -30,10 +41,26 @@ export interface SourceLabels {
  * rather than as a document. The catalogue data now sits in the rail (see
  * SourceMeta) and this column holds the record and what it is, in that order.
  */
-export function SourceMedia({ source }: { source: ResolvedSource }) {
+export function SourceMedia({
+	source,
+	openLabel,
+}: {
+	source: ResolvedSource;
+	openLabel: string;
+}) {
+	/*
+	 * The record itself, where we cannot show it inline. A document or PDF
+	 * lives at its archival URL (often plain http, so an embed would be
+	 * blocked as mixed content); the media slot holds the way through to it
+	 * instead of sitting empty.
+	 */
+	const hostedImage = isImageUrl(source.url);
+	const externalUrl =
+		source.originUrl ?? (hostedImage ? undefined : source.url);
+
 	return (
 		<div className={styles.media}>
-			{source.type === 'image' && source.url && (
+			{hostedImage && (
 				<figure className={styles.figure}>
 					{/*
 					 * Opens in the lightbox, which is mounted for every page and binds
@@ -59,6 +86,16 @@ export function SourceMedia({ source }: { source: ResolvedSource }) {
 					/>
 				</figure>
 			)}
+			{externalUrl && (
+				<a
+					href={externalUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					className={styles.mediaLink}
+				>
+					{openLabel} ↗
+				</a>
+			)}
 			{source.description && (
 				<p className={styles.description}>{source.description}</p>
 			)}
@@ -76,14 +113,16 @@ export function SourceMedia({ source }: { source: ResolvedSource }) {
 export function SourceMeta({
 	source,
 	labels,
-}: {
-	source: ResolvedSource;
-	labels: SourceLabels;
-}) {
+	locale,
+	transcriptEmbedded,
+}: SourceMetaProps) {
 	const rows: [string, string][] = (
 		[
 			[labels.author, source.author],
-			[labels.date, source.date],
+			[
+				labels.date,
+				source.date ? formatSourceDate(source.date, locale) : undefined,
+			],
 			[labels.credit, source.credit],
 			[
 				labels.license,
@@ -109,7 +148,7 @@ export function SourceMeta({
 
 			{/* Where the archive holds a transcription that is the thing to read,
 			    and the record's own page had no way through to it. */}
-			{source.page && (
+			{source.page && !transcriptEmbedded && (
 				<a href={source.page} className={styles.metaLink}>
 					{labels.transcription}
 				</a>
@@ -123,7 +162,7 @@ export function SourceMeta({
 			 * would open a bare file on S3. Otherwise url, which for a link-type
 			 * source is already the thing itself.
 			 */}
-			{(source.originUrl ?? (source.type !== 'image' ? source.url : null)) && (
+			{(source.originUrl ?? (isImageUrl(source.url) ? null : source.url)) && (
 				<a
 					href={source.originUrl ?? source.url}
 					className={styles.metaLink}

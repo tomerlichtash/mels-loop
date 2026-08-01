@@ -2,17 +2,13 @@ import {
 	getAllStories,
 	getResolvedStorySources,
 } from '@mels-loop/content-loaders/loaders';
-import type {
-	ResolvedSource,
-	SourceType,
-} from '@mels-loop/content-loaders/types';
-import { getDirection, getLocales } from '@mels-loop/i18n/config';
-import { dictGet } from '@mels-loop/i18n/dict';
+import { getLocales } from '@mels-loop/i18n/config';
 import { Container } from '@mels-loop/ui/primitives';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-import { SourceCards } from '@/components/sources/SourceCards/SourceCards';
+import { SourceFilters } from '@/components/sources/SourceFilters/SourceFilters';
+import { buildSourceTableProps } from '@/components/sources/table-props';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 
@@ -27,30 +23,8 @@ export async function generateStaticParams() {
 	);
 }
 
-const TYPE_ORDER: SourceType[] = [
-	'document',
-	'image',
-	'pdf',
-	'audio',
-	'video',
-	'link',
-	'text',
-	'archive',
-	'other',
-];
-
-function groupByType(
-	sources: ResolvedSource[],
-): Map<SourceType, ResolvedSource[]> {
-	const groups = new Map<SourceType, ResolvedSource[]>();
-	for (const source of sources) {
-		const group = groups.get(source.type) ?? [];
-		group.push(source);
-		groups.set(source.type, group);
-	}
-	return groups;
-}
-
+/* The same table as the global browser, pre-scoped to this story's records —
+ * one component, two routes. */
 export default async function StorySourcesPage({ params }: PageProps) {
 	const { locale, storySlug } = await params;
 	const typedLocale = locale as Locale;
@@ -62,26 +36,16 @@ export default async function StorySourcesPage({ params }: PageProps) {
 
 	if (sources.length === 0) notFound();
 
-	const groups = groupByType(sources);
-	const orderedTypes = TYPE_ORDER.filter((t) => groups.has(t));
+	const tableProps = buildSourceTableProps(sources, dict, typedLocale);
 
-	const sourceGroups = orderedTypes.map((type) => ({
-		type,
-		label: dictGet(dict, `sources.${type}`),
-		sources: groups.get(type)!,
-	}));
-
-	return sourceGroups.length === 0 ? (
+	return (
 		<Container gap="lg">
-			<p>{dictGet(dict, 'sources.noSources')}</p>
+			{/* Suspense because the filters read useSearchParams — the URL
+			 * carries the filter state, and static prerender needs the
+			 * boundary. */}
+			<Suspense>
+				<SourceFilters {...tableProps} />
+			</Suspense>
 		</Container>
-	) : (
-		<Suspense>
-			<SourceCards
-				groups={sourceGroups}
-				locale={locale}
-				dir={getDirection(typedLocale)}
-			/>
-		</Suspense>
 	);
 }

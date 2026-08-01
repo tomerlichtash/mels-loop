@@ -3,8 +3,10 @@
 	--ml-listbox-option-padding-vertical: var(--ml-space-xs);
 	--ml-listbox-option-border-radius: var(--ml-radius-sm);
 	--ml-listbox-option-color: var(--ml-text-color);
+	/* Neutral hover, like a table row — the mid-blue primary-muted put dark
+	 * text on a blue background and read the same as selection. */
 	--ml-listbox-option-color-highlighted: var(--ml-text-color);
-	--ml-listbox-option-background-highlighted: var(--ml-color-primary-muted);
+	--ml-listbox-option-background-highlighted: var(--ml-background-color-alt);
 	--ml-listbox-option-color-selected: var(--ml-color-primary-contrast);
 	--ml-listbox-option-background-selected: var(--ml-color-primary);
 	--ml-listbox-option-color-disabled: var(--ml-text-muted-color);
@@ -47,15 +49,16 @@
 	pointer-events: none;
 }
 
-/* Multi-select: selected options use checkmark instead of primary background */
+/* Multi-select: the checkmark plus primary text marks selection — no
+ * background of its own, so hover (neutral bg) stays the only bg change. */
 .option[data-multi='true'][data-selected='true'] {
 	background-color: transparent;
-	color: var(--ml-listbox-option-color);
+	color: var(--ml-color-primary);
 }
 
 .option[data-multi='true'][data-selected='true'][data-highlighted='true'] {
 	background-color: var(--ml-listbox-option-background-highlighted);
-	color: var(--ml-listbox-option-color-highlighted);
+	color: var(--ml-color-primary);
 }
 
 /* Check icon */

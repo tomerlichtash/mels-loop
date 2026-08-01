@@ -4,13 +4,11 @@ import type {
 	ResolvedSource,
 	SourceType,
 } from '@mels-loop/content-loaders/types';
-import { Badge, Button, TextField } from '@mels-loop/ui/primitives';
+import { Combobox, TextField, Tooltip } from '@mels-loop/ui/primitives';
 import {
-	ArrowSquareOutIcon,
-	CopyIcon,
-	DotsThreeVerticalIcon,
-	RowsIcon,
-	XIcon,
+	ArrowsInSimpleIcon,
+	ArrowsOutSimpleIcon,
+	EyeIcon,
 } from '@phosphor-icons/react/ssr';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {
@@ -23,7 +21,11 @@ import {
 	useReactTable,
 } from '@tanstack/react-table';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
+
+import { formatSourceDate } from '@/lib/format-date';
+import { isImageUrl } from '@/lib/source-media';
 
 import styles from './SourceFilters.module.css';
 
@@ -34,19 +36,29 @@ interface SourceGroup {
 }
 
 interface ColumnLabels {
-	name: string;
-	description: string;
 	type: string;
+	filterByType: string;
+	standing: string;
 	date: string;
+	year: string;
 	license: string;
-	tags: string;
 	source: string;
+	author: string;
+	credit: string;
+	clear: string;
+	toggle: string;
+	empty: string;
 	searchPlaceholder: string;
+	viewRecord: string;
+	expand: string;
+	collapse: string;
+	resultsOne: string;
+	resultsMany: string;
 }
 
 interface SourceFiltersProps {
 	groups: SourceGroup[];
-	allLabel: string;
+	locale: string;
 	typeLabels: Record<SourceType, string>;
 	columnLabels: ColumnLabels;
 	dir: 'ltr' | 'rtl';
@@ -62,16 +74,23 @@ function createColumns(
 			accessorKey: 'title',
 			header: columnLabels.source,
 			cell: ({ row }) => (
-				<span className={styles.nameText}>{row.original.title}</span>
+				/* title attribute, not a tooltip: the cell truncates with an
+				 * ellipsis and hover shows the full text natively. */
+				<span className={styles.nameText} title={row.original.title}>
+					{row.original.title}
+				</span>
 			),
 		},
 		{
-			id: 'description',
-			accessorFn: (row) => row.summary ?? row.description,
-			header: columnLabels.description,
-			cell: ({ getValue }) => (
-				<span className={styles.descText}>{(getValue() as string) ?? '—'}</span>
-			),
+			accessorKey: 'date',
+			header: columnLabels.year,
+			/* Every date in the archive leads with its year — the full date,
+			 * localized, stays in the expanded entry. */
+			cell: ({ getValue }) => {
+				const value = getValue() as string | undefined;
+				const year = value?.match(/^\d{4}/)?.[0];
+				return <span className={styles.metaText}>{year ?? '—'}</span>;
+			},
 		},
 		{
 			accessorKey: 'type',
@@ -79,165 +98,163 @@ function createColumns(
 			cell: ({ getValue }) => {
 				const type = getValue() as SourceType;
 				return (
-					<Badge radius="sm" bordered>
-						{typeLabels[type] ?? type}
-					</Badge>
-				);
-			},
-		},
-		{
-			accessorKey: 'date',
-			header: columnLabels.date,
-			cell: ({ getValue }) => (
-				<span className={styles.metaText}>{(getValue() as string) ?? '—'}</span>
-			),
-		},
-		{
-			accessorKey: 'license',
-			header: columnLabels.license,
-			cell: ({ getValue }) => {
-				const license = getValue() as string | undefined;
-				return (
-					<span className={styles.metaText}>
-						{license && license !== 'unknown' ? license : '—'}
-					</span>
-				);
-			},
-		},
-		{
-			id: 'tags',
-			accessorFn: (row) => row.tags?.join(', ') ?? '',
-			header: columnLabels.tags,
-			cell: ({ row }) => {
-				const tags = row.original.tags;
-				if (!tags || tags.length === 0)
-					return <span className={styles.metaText}>—</span>;
-				return (
-					<div className={styles.cellTags}>
-						{tags.map((tag) => (
-							<span key={tag} className={styles.cellTag}>
-								{tag}
-							</span>
-						))}
-					</div>
+					<span className={styles.metaText}>{typeLabels[type] ?? type}</span>
 				);
 			},
 		},
 	];
 }
 
-function SourceDetail({ source }: { source: ResolvedSource }) {
-	const [copied, setCopied] = useState(false);
-
-	const handleCopyId = (e: React.MouseEvent) => {
-		e.stopPropagation();
-		navigator.clipboard.writeText(source.id);
-		setCopied(true);
-		setTimeout(() => setCopied(false), 1500);
-	};
-
+function SourceDetail({
+	source,
+	labels,
+	locale,
+}: {
+	source: ResolvedSource;
+	labels: ColumnLabels;
+	locale: string;
+}) {
+	/* No catalogue data → no meta rail. An empty bordered column beside the
+	 * description (the bitsavers manuals, say) reads as a rendering bug. */
+	const hasMeta = Boolean(
+		source.author ||
+		source.date ||
+		source.credit ||
+		(source.license && source.license !== 'unknown'),
+	);
 	return (
-		<div className={styles.detail} onClick={(e) => e.stopPropagation()}>
-			{source.type === 'image' && source.url && (
-				<div className={styles.detailPreview}>
-					<Image
-						src={source.url}
-						alt={source.title}
-						width={120}
-						height={120}
-						className={styles.detailImage}
-						unoptimized
-					/>
-				</div>
-			)}
-			<div className={styles.detailLeft}>
-				<h4 className={styles.detailTitle}>{source.title}</h4>
-				{source.description && (
-					<p className={styles.detailDesc}>{source.description}</p>
-				)}
-				<div className={styles.detailActions}>
-					<button
-						type="button"
-						className={styles.detailAction}
-						onClick={handleCopyId}
-					>
-						<CopyIcon />
-						{copied ? 'Copied!' : 'Copy ID'}
-					</button>
-					{/*
-					 * originUrl first, and nothing at all for an image without one:
-					 * url holds the copy we host, so this opened a bare file on S3
-					 * with no title, no credit and no way back.
-					 */}
-					{(source.originUrl ??
-						(source.type !== 'image' ? source.url : null)) && (
-						<a
-							href={source.originUrl ?? source.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							className={styles.detailAction}
-							onClick={(e) => e.stopPropagation()}
-						>
-							<ArrowSquareOutIcon />
-							Open source
-						</a>
+		<div className={styles.detail}>
+			<div className={styles.detailBody}>
+				<div className={styles.detailLeft}>
+					{source.description && (
+						<p className={styles.detailDesc}>{source.description}</p>
 					)}
 				</div>
+				{isImageUrl(source.url) && (
+					<div className={styles.detailPreview}>
+						{/* data-zoomable hands the image to the page's lightbox; the
+						 * data-source attributes give the slide its credit line and
+						 * its way through to the record. */}
+						<Image
+							src={source.url}
+							alt={source.title}
+							width={120}
+							height={120}
+							className={styles.detailImage}
+							unoptimized
+							data-zoomable=""
+							data-source-id={source.id}
+							{...(source.author && { 'data-source-author': source.author })}
+							{...(source.credit && { 'data-source-credit': source.credit })}
+							{...(source.license && {
+								'data-source-license': source.license,
+							})}
+						/>
+					</div>
+				)}
 			</div>
-			<div className={styles.detailRight}>
+			{hasMeta && (
 				<div className={styles.detailMeta}>
-					{source.author && (
+					{source.credit && (
 						<span className={styles.detailField}>
-							<span className={styles.detailLabel}>Author</span>
-							{source.author}
+							<span className={styles.detailLabel}>{labels.source}</span>
+							{source.credit}
 						</span>
 					)}
 					{source.date && (
 						<span className={styles.detailField}>
-							<span className={styles.detailLabel}>Date</span>
-							{source.date}
+							<span className={styles.detailLabel}>{labels.date}</span>
+							{formatSourceDate(source.date, locale)}
 						</span>
 					)}
-					{source.credit && (
+					{source.author && (
 						<span className={styles.detailField}>
-							<span className={styles.detailLabel}>Credit</span>
-							{source.credit}
+							<span className={styles.detailLabel}>{labels.author}</span>
+							{source.author}
 						</span>
 					)}
 					{source.license && source.license !== 'unknown' && (
 						<span className={styles.detailField}>
-							<span className={styles.detailLabel}>License</span>
+							<span className={styles.detailLabel}>{labels.license}</span>
 							{source.license}
 						</span>
 					)}
 				</div>
-				{source.tags && source.tags.length > 0 && (
-					<div className={styles.detailTags}>
-						{source.tags.map((tag) => (
-							<span key={tag} className={styles.detailTag}>
-								{tag}
-							</span>
-						))}
-					</div>
-				)}
-			</div>
+			)}
 		</div>
 	);
 }
 
+/** Parses a comma-separated URL param against a set of known values. */
+function fromParam<T extends string>(
+	value: string | null,
+	known: (v: string) => v is T,
+): Set<T> {
+	return new Set((value?.split(',') ?? []).filter(known));
+}
+
 export function SourceFilters({
 	groups,
-	allLabel,
+	locale,
 	typeLabels,
 	columnLabels,
 	dir,
 	maxHeight,
 }: SourceFiltersProps) {
-	const [activeType, setActiveType] = useState<SourceType | null>(null);
+	const searchParams = useSearchParams();
+	/* Filters live in the URL too, so a filtered view can be linked. State is
+	 * seeded from the params once; after that the URL follows the state. */
+	const [activeTypes, setActiveTypes] = useState<Set<SourceType>>(() =>
+		fromParam(
+			searchParams.get('type'),
+			(v): v is SourceType => v in typeLabels,
+		),
+	);
 	const [sorting, setSorting] = useState<SortingState>([]);
-	const [globalFilter, setGlobalFilter] = useState('');
+	const [globalFilter, setGlobalFilter] = useState(
+		() => searchParams.get('q') ?? '',
+	);
 	const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 	const viewportRef = useRef<HTMLDivElement>(null);
+	const scrollRootRef = useRef<HTMLDivElement>(null);
+
+	/*
+	 * The box's height is "viewport minus everything above it", and what is
+	 * above it differs per route (h1 on /sources, tab strip on a story) and
+	 * per locale. Estimating that with CSS constants kept drifting, so the
+	 * real offset is measured once and handed to the CSS calc as a variable.
+	 */
+	useEffect(() => {
+		const el = scrollRootRef.current;
+		if (!el) return;
+		const measure = () => {
+			const top = el.getBoundingClientRect().top + window.scrollY;
+			el.style.setProperty('--table-top', `${top}px`);
+		};
+		measure();
+		window.addEventListener('resize', measure);
+		document.fonts?.ready.then(measure);
+		return () => window.removeEventListener('resize', measure);
+	}, []);
+
+	useEffect(() => {
+		const params = new URLSearchParams(window.location.search);
+		for (const [key, value] of [
+			['type', [...activeTypes].join(',')],
+			['q', globalFilter.trim()],
+		] as const) {
+			if (value) params.set(key, value);
+			else params.delete(key);
+		}
+		const qs = params.toString();
+		/* replaceState, not router.replace: purely client-side state, no server
+		 * round trip, no scroll reset, no history spam while typing. */
+		window.history.replaceState(
+			null,
+			'',
+			qs ? `?${qs}` : window.location.pathname,
+		);
+	}, [activeTypes, globalFilter]);
 
 	const toggleExpanded = (id: string) => {
 		setExpandedIds((prev) => {
@@ -262,14 +279,12 @@ export function SourceFilters({
 		[columnLabels, typeLabels],
 	);
 
-	const totalCount = groups.reduce((sum, g) => sum + g.sources.length, 0);
-
 	const data = useMemo(() => {
-		if (!activeType) return groups.flatMap((g) => g.sources);
-		return groups
-			.filter((g) => g.type === activeType)
-			.flatMap((g) => g.sources);
-	}, [groups, activeType]);
+		const byType = activeTypes.size
+			? groups.filter((g) => activeTypes.has(g.type))
+			: groups;
+		return byType.flatMap((g) => g.sources);
+	}, [groups, activeTypes]);
 
 	const table = useReactTable({
 		data,
@@ -284,11 +299,6 @@ export function SourceFilters({
 
 	const { rows } = table.getRowModel();
 
-	const handleFilter = (type: SourceType | null) => {
-		setActiveType(type);
-		viewportRef.current?.scrollTo(0, 0);
-	};
-
 	const expandAll = () => {
 		setExpandedIds(new Set(rows.map((r) => r.original.id)));
 	};
@@ -298,64 +308,52 @@ export function SourceFilters({
 	};
 
 	return (
-		<>
-			<div className={styles.toolbar}>
-				<div className={styles.toolbarInner}>
-					<div className={styles.toolbarStart}>
-						<TextField
-							type="search"
-							size="sm"
-							placeholder={columnLabels.searchPlaceholder}
-							value={globalFilter}
-							onChange={(e) => {
-								setGlobalFilter(e.target.value);
-								setExpandedIds(new Set());
-								viewportRef.current?.scrollTo(0, 0);
-							}}
-						/>
-					</div>
-					<div className={styles.filters}>
-						<Button
-							variant="outlined"
-							size="xs"
-							active={activeType === null}
-							onClick={() => handleFilter(null)}
-						>
-							{allLabel}
-							<span className={styles.filterCount}>({totalCount})</span>
-						</Button>
-						{groups.map((group) => (
-							<Button
-								key={group.type}
-								variant="outlined"
-								size="xs"
-								active={activeType === group.type}
-								onClick={() => handleFilter(group.type)}
-							>
-								{group.label}
-								<span className={styles.filterCount}>
-									({group.sources.length})
-								</span>
-							</Button>
-						))}
-					</div>
-					<Button
-						variant="outlined"
-						size="xs"
-						onClick={expandedIds.size > 0 ? collapseAll : expandAll}
-					>
-						{expandedIds.size > 0 ? <RowsIcon /> : <RowsIcon />}
-						{expandedIds.size > 0 ? 'Collapse' : 'Expand'}
-					</Button>
+		/*
+		 * Filters live in a rail beside the table, not in a toolbar above it —
+		 * multi-select chips grow the field vertically, and in a toolbar that
+		 * growth shoved the table down the page. In a rail it costs nothing.
+		 */
+		<div className={styles.layout}>
+			<aside className={styles.rail}>
+				<div className={styles.railInner}>
+					<TextField
+						type="search"
+						size="sm"
+						fullWidth
+						placeholder={columnLabels.searchPlaceholder}
+						value={globalFilter}
+						onChange={(e) => {
+							setGlobalFilter(e.target.value);
+							setExpandedIds(new Set());
+							viewportRef.current?.scrollTo(0, 0);
+						}}
+					/>
+					{/* Dropdown filters: pick one or several values, the selection
+					 * renders as dismissible chips inside the field. No "All"
+					 * entry — an empty selection already means everything. */}
+					<Combobox
+						multiple
+						size="sm"
+						fullWidth
+						options={groups.map((group) => ({
+							value: group.type,
+							label: `${group.label} (${group.sources.length})`,
+						}))}
+						value={[...activeTypes]}
+						onValueChange={(next) => {
+							setActiveTypes(new Set(next as SourceType[]));
+							viewportRef.current?.scrollTo(0, 0);
+						}}
+						placeholder={columnLabels.filterByType}
+						clearLabel={columnLabels.clear}
+						toggleLabel={columnLabels.toggle}
+						emptyMessage={columnLabels.empty}
+					/>
 				</div>
-			</div>
-			{globalFilter.trim() && (
-				<p className={styles.resultCount}>
-					{rows.length} {rows.length === 1 ? 'result' : 'results'}
-				</p>
-			)}
+			</aside>
 			<div className={styles.tableWrap} dir={dir}>
 				<ScrollArea.Root
+					ref={scrollRootRef}
 					className={styles.scrollRoot}
 					dir={dir}
 					style={maxHeight ? { height: maxHeight } : undefined}
@@ -384,7 +382,36 @@ export function SourceFilters({
 												}[header.column.getIsSorted() as string] ?? ''}
 											</th>
 										))}
-										<th className={styles.thActions} />
+										<th className={styles.thActions}>
+											{/* Acts on every row below it, so it lives above them —
+											 * beside the search field it read as an input action. */}
+											<Tooltip
+												label={
+													expandedIds.size > 0
+														? columnLabels.collapse
+														: columnLabels.expand
+												}
+											>
+												<button
+													type="button"
+													className={styles.headerToggle}
+													onClick={
+														expandedIds.size > 0 ? collapseAll : expandAll
+													}
+													aria-label={
+														expandedIds.size > 0
+															? columnLabels.collapse
+															: columnLabels.expand
+													}
+												>
+													{expandedIds.size > 0 ? (
+														<ArrowsInSimpleIcon />
+													) : (
+														<ArrowsOutSimpleIcon />
+													)}
+												</button>
+											</Tooltip>
+										</th>
 									</tr>
 								))}
 							</thead>
@@ -413,22 +440,18 @@ export function SourceFilters({
 												</td>
 											))}
 											<td className={styles.tdActions}>
-												{isExpanded ? (
-													<button
-														type="button"
-														className={styles.cellClose}
-														onClick={(e) => {
-															e.stopPropagation();
-															toggleExpanded(row.original.id);
-														}}
+												{/* Floats over the row's end, out of the table layout —
+												 * its presence never changes column widths. */}
+												<Tooltip label={columnLabels.viewRecord}>
+													<a
+														href={`/sources/${row.original.id}`}
+														className={styles.rowEye}
+														aria-label={columnLabels.viewRecord}
+														onClick={(e) => e.stopPropagation()}
 													>
-														<XIcon />
-													</button>
-												) : (
-													<div className={styles.cellActions}>
-														<DotsThreeVerticalIcon />
-													</div>
-												)}
+														<EyeIcon />
+													</a>
+												</Tooltip>
 											</td>
 										</tr>
 										{isExpanded && (
@@ -437,7 +460,11 @@ export function SourceFilters({
 													colSpan={columns.length + 1}
 													className={styles.tdDetail}
 												>
-													<SourceDetail source={row.original} />
+													<SourceDetail
+														source={row.original}
+														labels={columnLabels}
+														locale={locale}
+													/>
 												</td>
 											</tr>
 										)}
@@ -445,6 +472,15 @@ export function SourceFilters({
 								);
 							})}
 						</table>
+
+						<p className={styles.resultCount}>
+							{rows.length === 1
+								? columnLabels.resultsOne
+								: columnLabels.resultsMany.replace(
+										'{count}',
+										String(rows.length),
+									)}
+						</p>
 					</ScrollArea.Viewport>
 					<ScrollArea.Scrollbar
 						className={styles.scrollbar}
@@ -454,6 +490,6 @@ export function SourceFilters({
 					</ScrollArea.Scrollbar>
 				</ScrollArea.Root>
 			</div>
-		</>
+		</div>
 	);
 }

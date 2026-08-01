@@ -17,6 +17,23 @@ const AUTHORING_TIME_ZONE = 'Asia/Jerusalem';
  * two locales should differ in order here, not in punctuation, or the same
  * date looks like two different kinds of value across the language switch.
  */
+/**
+ * A source record's fuzzy date — a year, a year-month, or a full day — in the
+ * reader's order. Same convention as article dates: slashes in both locales,
+ * month first in English, day first in Hebrew. A bare year needs no order and
+ * anything unparseable is shown as written.
+ */
+export function formatSourceDate(value: string, locale: string): string {
+	const match = /^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?$/.exec(value.trim());
+	if (!match) return value;
+	const [, year, month, day] = match;
+	if (!month) return year;
+	if (!day) return `${month}/${year}`;
+	return locale === 'he'
+		? `${day}/${month}/${year}`
+		: `${month}/${day}/${year}`;
+}
+
 export function formatArticleDate(value: string, locale: string): string {
 	const date = new Date(value);
 	if (Number.isNaN(date.getTime())) return '';

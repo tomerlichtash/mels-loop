@@ -144,7 +144,18 @@
 		"colTags": "תגיות",
 		"colSource": "מקור",
 		"searchPlaceholder": "חיפוש מקורות...",
-		"transcription": "לקריאת התעתיק"
+		"transcription": "לקריאת התעתיק",
+		"colStanding": "מעמד",
+		"primary": "ראשוני",
+		"secondary": "משני",
+		"viewRecord": "לצפייה ברשומה",
+		"expand": "הרחבה",
+		"collapse": "צמצום",
+		"resultsOne": "תוצאה אחת",
+		"resultsMany": "{count} תוצאות",
+		"standingHelp": "ראשוני — שריד מן האירועים עצמם; משני — כתיבה עליהם, לאחר מעשה.",
+		"colYear": "בקירוב",
+		"filterByType": "סינון לפי סוג"
 	},
 	"search": {
 		"title": "חיפוש",

@@ -3,7 +3,7 @@
 import { CaretDownIcon, XIcon } from '@phosphor-icons/react/ssr';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import cn from 'classnames';
-import { forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback, useRef } from 'react';
 
 import { FormField } from '../_internal/FormField/FormField';
 import { InputAction } from '../_internal/InputAction/InputAction';
@@ -113,6 +113,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 			[ref, combobox.inputRef],
 		);
 
+		const rootRef = useRef<HTMLDivElement>(null);
+
 		const inputClasses = cn(
 			styles.input,
 			styles[`size-${size}`],
@@ -201,6 +203,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 		const comboboxElement = (
 			<PopoverPrimitive.Root open={combobox.open}>
 				<div
+					ref={rootRef}
 					className={cn(
 						styles.root,
 						styles[`size-${size}`],
@@ -252,7 +255,20 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 							onCloseAutoFocus={(e) => e.preventDefault()}
 							onPointerDownOutside={(e) => {
 								const target = e.target as HTMLElement;
-								if (target.closest('.ml-combobox')) {
+								/* Only this combobox's own field keeps the dropdown open —
+								 * matching any '.ml-combobox' kept it open while the
+								 * pointer went to a sibling combobox. */
+								if (rootRef.current?.contains(target)) {
+									e.preventDefault();
+									return;
+								}
+								combobox.closeDropdown();
+							}}
+							onFocusOutside={(e) => {
+								/* Same rule for keyboard focus — tabbing into a sibling
+								 * combobox must close this one too. */
+								const target = e.target as HTMLElement;
+								if (rootRef.current?.contains(target)) {
 									e.preventDefault();
 									return;
 								}

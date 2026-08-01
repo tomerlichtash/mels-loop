@@ -1,5 +1,10 @@
+'use client';
+
 import type { ResolvedSource } from '@mels-loop/content-loaders/types';
+import { useTranslation } from '@mels-loop/i18n/client';
 import Image from 'next/image';
+
+import { isImageUrl } from '@/lib/source-media';
 
 import { SourceBadge } from '../SourceBadge/SourceBadge';
 import styles from './SourceDetail.module.css';
@@ -9,13 +14,14 @@ interface SourceDetailProps {
 }
 
 export function SourceDetail({ source }: SourceDetailProps) {
+	const { t } = useTranslation();
 	return (
 		<div className={styles.content}>
 			<div className={styles.header}>
 				<SourceBadge type={source.type} />
 				<p className={styles.title}>{source.title}</p>
 			</div>
-			{source.type === 'image' && source.url && (
+			{isImageUrl(source.url) && (
 				<div className={styles.imageWrap}>
 					<Image
 						src={source.url}
@@ -32,31 +38,31 @@ export function SourceDetail({ source }: SourceDetailProps) {
 			<dl className={styles.meta}>
 				{source.author && (
 					<>
-						<dt>Author</dt>
+						<dt>{t('sources.colAuthor')}</dt>
 						<dd>{source.author}</dd>
 					</>
 				)}
 				{source.date && (
 					<>
-						<dt>Date</dt>
+						<dt>{t('sources.colDate')}</dt>
 						<dd>{source.date}</dd>
 					</>
 				)}
 				{source.credit && (
 					<>
-						<dt>Credit</dt>
+						<dt>{t('sources.colCredit')}</dt>
 						<dd>{source.credit}</dd>
 					</>
 				)}
 				{source.license && (
 					<>
-						<dt>License</dt>
+						<dt>{t('sources.colLicense')}</dt>
 						<dd>{source.license}</dd>
 					</>
 				)}
 			</dl>
 			<a href={`/sources/${source.id}`} className={styles.openLink}>
-				{source.type === 'image' ? 'View full image' : 'View source'} →
+				{t('sources.viewRecord')} →
 			</a>
 		</div>
 	);

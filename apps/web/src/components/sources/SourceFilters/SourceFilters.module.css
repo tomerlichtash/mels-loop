@@ -1,49 +1,72 @@
-.toolbar {
-	width: var(--ml-viewport-width);
-	margin-inline-start: calc(-0.5 * var(--ml-viewport-width) + 50%);
-	box-shadow: inset 0 -1px 0 var(--ml-border-color);
-	/* 92%, and -webkit- first: see the note in StorySections.module.css. */
-	background-color: color-mix(
-		in srgb,
-		var(--ml-surface-background-color) 92%,
-		transparent
+/*
+ * Table with a filter rail at the inline end, matching the site's other
+ * asides. Placement is explicit so the rail can move above the table on
+ * narrow viewports without touching DOM order. Logical throughout — in
+ * Hebrew the grid flips on its own.
+ */
+.layout {
+	display: grid;
+	grid-template-columns: 1fr 250px;
+	gap: var(--ml-space-xl);
+	align-items: start;
+	align-self: stretch;
+}
+
+.tableWrap {
+	grid-column: 1;
+	grid-row: 1;
+	min-width: 0;
+}
+
+.rail {
+	grid-column: 2;
+	grid-row: 1;
+	/* Full column height, or the sticky inner block has no room to travel —
+	 * the grid's align-items: start would collapse this track to its content. */
+	align-self: stretch;
+}
+
+/* Sticks clear of the header and breadcrumb bar, like PageLayout's rail. */
+.railInner {
+	position: sticky;
+	top: calc(
+		var(--ml-header-offset, var(--ml-header-height)) +
+			var(--ml-breadcrumb-bar-height) + var(--ml-space-xl)
 	);
-	-webkit-backdrop-filter: blur(12px);
-	backdrop-filter: blur(12px);
-}
-
-.toolbarInner {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	flex-direction: column;
 	gap: var(--ml-space-sm);
-	max-width: var(--ml-page-max-width);
-	margin: 0 auto;
-	padding: var(--ml-space-xs) var(--ml-page-padding-horizontal);
 }
 
-.filters {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--ml-space-xs);
+@media (max-width: 1024px) {
+	.layout {
+		grid-template-columns: 1fr;
+		row-gap: var(--ml-space-lg);
+	}
+
+	/* Filters first on narrow viewports — below the table they are invisible. */
+	.rail {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.tableWrap {
+		grid-row: 2;
+	}
+
+	.railInner {
+		position: static;
+	}
 }
 
-.toolbarStart {
-	display: flex;
-	align-items: center;
-	gap: var(--ml-space-xs);
-	flex-shrink: 0;
-}
-
+/* Sits at the end of the table, inside the scroll box — reaching the bottom
+ * answers "how many did I just scroll through". */
 .resultCount {
 	margin: 0;
+	padding: var(--ml-space-sm);
 	font-size: var(--ml-font-size-sm);
 	color: var(--ml-text-muted-color);
-}
-
-.filterCount {
-	font-size: var(--ml-font-size-xs);
-	color: var(--ml-text-muted-color);
+	text-align: center;
 }
 
 /* Table */
@@ -60,6 +83,22 @@
 	font-size: var(--ml-font-size-sm);
 }
 
+/*
+ * Sticky against the ScrollArea viewport. An opaque background, because rows
+ * scroll underneath; the hairline is an inset shadow, not a border — with
+ * border-collapse, a sticky th's border stays with the scrolled content.
+ */
+.th,
+.thActions {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	/* The page's own background, not the surface white — the header must be
+	 * opaque (rows scroll underneath it) but should not read as a bar. */
+	background-color: var(--ml-background-color);
+	box-shadow: inset 0 -1px 0 var(--ml-border-color);
+}
+
 .th {
 	padding: var(--ml-space-xs) var(--ml-space-sm);
 	font-weight: var(--ml-font-weight-bold);
@@ -69,14 +108,31 @@
 	letter-spacing: 0.04em;
 	white-space: nowrap;
 	text-align: start;
-	border-bottom: 1px solid var(--ml-border-color);
 	cursor: pointer;
 	user-select: none;
 }
 
 .thActions {
 	width: 28px;
-	border-bottom: 1px solid var(--ml-border-color);
+}
+
+/* The expand/collapse-all control, sized to its cell. Inherits the header's
+ * muted color; full color on hover like the row icons. */
+.headerToggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	border: none;
+	background: none;
+	color: var(--ml-text-muted-color);
+	cursor: pointer;
+}
+
+.headerToggle:hover {
+	color: var(--ml-text-color);
 }
 
 .td {
@@ -88,8 +144,11 @@
 }
 
 .tdActions {
+	position: relative;
 	width: 28px;
 	padding: 0;
+	/* Breathing room between the action icons and the scrollbar. */
+	padding-inline-end: var(--ml-space-sm);
 }
 
 .tdDetail {
@@ -104,25 +163,33 @@
 }
 
 .rowGroupExpanded {
+	border-bottom-color: var(--ml-border-color);
+}
+
+/* The clicked row darkens fully; the panel it opened keeps the lighter wash
+ * it always had, so the pair reads as one group with a clear header. */
+.rowGroupExpanded .row {
+	background-color: var(--ml-background-color-alt);
+}
+
+.rowGroupExpanded .detailRow {
 	background-color: color-mix(
 		in srgb,
 		var(--ml-background-color-alt) 50%,
 		transparent
 	);
-	border-bottom-color: var(--ml-border-color);
 }
 
 .row {
 	cursor: pointer;
+	/* The row is a click target; a double-click should expand it, not
+	 * highlight the title. The expanded detail panel keeps selection — that
+	 * text is for reading and copying. */
+	user-select: none;
 }
 
 .row:hover {
 	background-color: var(--ml-background-color-alt);
-}
-
-.rowGroupExpanded .nameText,
-.rowGroupExpanded .descText {
-	font-weight: var(--ml-font-weight-bold);
 }
 
 .detailRow {
@@ -134,13 +201,12 @@
 .nameText {
 	color: var(--ml-text-color);
 	font-size: var(--ml-font-size-body);
-	font-weight: 500;
-}
-
-.descText {
-	color: var(--ml-text-color);
-	opacity: 0.7;
-	font-size: var(--ml-font-size-body);
+	/* Truncate long titles; the title attribute shows the full text on hover. */
+	display: block;
+	max-width: 48ch;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .metaText {
@@ -148,53 +214,34 @@
 	font-size: var(--ml-font-size-sm);
 }
 
-.cellTags {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 2px;
-}
-
-.cellTag {
-	display: inline-block;
-	padding: 0.1rem 0.4rem;
-	border-radius: var(--ml-radius-sm);
-	font-size: var(--ml-font-size-xs);
-	background-color: var(--ml-background-color-alt);
-	color: var(--ml-text-muted-color);
-	border: 1px solid var(--ml-border-color);
-}
-
-.cellActions {
+/*
+ * The eye floats over the row's end, absolutely positioned just before the
+ * actions cell — never in the table flow, so it cannot move a column. Shown
+ * on row hover and on keyboard focus.
+ */
+.rowEye {
+	position: absolute;
+	inset-inline-end: 100%;
+	top: 50%;
+	transform: translateY(-50%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 28px;
-	flex-shrink: 0;
+	height: 28px;
 	color: var(--ml-text-muted-color);
 	opacity: 0;
-	transition: opacity var(--ml-duration-fast) ease;
 }
 
-.row:hover .cellActions {
+/* Visible on hover, on keyboard focus, and for the whole time the row is
+ * expanded — an open entry keeps its way out to the record in sight. */
+.row:hover .rowEye,
+.rowEye:focus-visible,
+.rowGroupExpanded .rowEye {
 	opacity: 1;
 }
 
-.cellClose {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 28px;
-	flex-shrink: 0;
-	padding: 0;
-	border: none;
-	background: none;
-	color: var(--ml-text-muted-color);
-	cursor: pointer;
-	border-radius: var(--ml-radius-sm);
-	transition: color var(--ml-duration-fast) ease;
-}
-
-.cellClose:hover {
+.rowEye:hover {
 	color: var(--ml-text-color);
 }
 
@@ -202,18 +249,52 @@
 
 .detail {
 	position: relative;
-	padding: var(--ml-space-md) var(--ml-space-sm) var(--ml-space-lg);
+	/*
+	 * The colspan trick: with table-layout auto, a colspan cell's content
+	 * takes part in the column-width algorithm — expanding a row reflowed
+	 * every column above it. width: 0 removes the panel from that
+	 * calculation; min-width: 100% stretches it back over the full table.
+	 */
+	width: 0;
+	min-width: 100%;
+	padding: var(--ml-space-md) var(--ml-space-lg);
 	display: flex;
-	gap: var(--ml-space-lg);
+	flex-direction: column;
+	gap: var(--ml-space-md);
 	font-size: var(--ml-font-size-body);
 	line-height: var(--ml-line-height-normal);
 	cursor: auto;
 	user-select: text;
 }
 
+/* Image 60, text 40 — in the archive the record IS the picture; the
+ * description annotates it. */
+.detailBody {
+	display: flex;
+	gap: var(--ml-space-lg);
+}
+
+/* Stacked on a phone: text, image, then the meta as its own block under a
+ * rule instead of a squeezed side column. */
+@media (--ml-bp-mobile) {
+	.detailBody {
+		flex-direction: column;
+	}
+
+	.detailMeta {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	/* Two-per-row here; a start border on a row-opening field reads wrong. */
+	.detailMeta > * + * {
+		border-inline-start: none;
+		padding-inline-start: 0;
+	}
+}
+
 .detailPreview {
-	flex-shrink: 0;
-	width: 120px;
+	flex: 6;
+	min-width: 0;
 }
 
 .detailImage {
@@ -222,31 +303,15 @@
 	border-radius: var(--ml-radius-sm);
 	object-fit: cover;
 	display: block;
+	cursor: zoom-in;
 }
 
 .detailLeft {
-	flex: 1;
+	flex: 4;
 	min-width: 0;
 	display: flex;
 	flex-direction: column;
 	gap: var(--ml-space-sm);
-}
-
-.detailRight {
-	flex: 1;
-	min-width: 0;
-	display: flex;
-	flex-direction: column;
-	gap: var(--ml-space-sm);
-	border-inline-start: 1px solid var(--ml-border-color);
-	padding-inline-start: var(--ml-space-lg);
-}
-
-.detailTitle {
-	margin: 0;
-	font-size: var(--ml-font-size-body);
-	font-weight: var(--ml-font-weight-bold);
-	color: var(--ml-text-color);
 }
 
 .detailDesc {
@@ -257,77 +322,83 @@
 	opacity: 0.85;
 }
 
+/* Lekton, four columns under the content — the catalogue entry reads as
+ * record data, not prose. A rule above separates it from the description. */
 .detailMeta {
-	display: flex;
-	flex-direction: column;
-	gap: var(--ml-space-xs);
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: var(--ml-space-sm) var(--ml-space-lg);
+	font-family: var(--ml-font-mono);
+	border-top: 1px solid
+		color-mix(in srgb, var(--ml-border-color) 40%, transparent);
+	padding-top: var(--ml-space-md);
 }
 
+/* Vertical rules between the columns — one row on desktop, so every field
+ * after the first gets a start border. */
+.detailMeta > * + * {
+	border-inline-start: 1px solid
+		color-mix(in srgb, var(--ml-border-color) 40%, transparent);
+	padding-inline-start: var(--ml-space-lg);
+}
+
+/* Caption above, value below — long values (archive credits, license names)
+ * wrap in their own line instead of fighting the caption for width. The
+ * caption is the smaller of the two: it labels, the value informs. */
 .detailField {
 	display: flex;
-	align-items: center;
-	gap: var(--ml-space-xs);
-	font-size: var(--ml-font-size-xs);
+	flex-direction: column;
+	gap: 2px;
+	font-size: var(--ml-font-size-sm);
 	color: var(--ml-text-color);
 }
 
 .detailLabel {
+	/* 2xs, not xs — xs is a hair under the value's sm, and uppercase eats
+	 * that difference optically. */
+	font-size: var(--ml-font-size-2xs);
 	font-weight: var(--ml-font-weight-bold);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	color: var(--ml-text-muted-color);
 }
 
-.detailTags {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--ml-space-xs);
-}
-
-.detailTag {
-	display: inline-block;
-	padding: 0.1rem 0.4rem;
-	border-radius: var(--ml-radius-sm);
-	font-size: var(--ml-font-size-xs);
-	background-color: var(--ml-background-color-alt);
-	color: var(--ml-text-muted-color);
-	border: 1px solid var(--ml-border-color);
-}
-
-.detailActions {
-	display: flex;
-	gap: var(--ml-space-sm);
-}
-
-.detailAction {
-	display: inline-flex;
-	align-items: center;
-	gap: var(--ml-space-xs);
-	color: var(--ml-link-color);
-	text-decoration: none;
-	font-size: var(--ml-font-size-sm);
-	background: none;
-	border: none;
-	font: inherit;
-	cursor: pointer;
-	padding: 0;
-	transition: color var(--ml-duration-fast) ease;
-}
-
-.detailAction:hover {
-	text-decoration: underline;
-}
-
 /* Scroll area */
 
+/*
+ * The table scrolls inside this box (Radix ScrollArea); the page itself
+ * should not scroll. Sized so everything adds up to exactly one viewport:
+ * masthead + breadcrumb/tabs + the title block above the grid + this box +
+ * the footer's top margin + its 4px gradient strip. The strip peeking at the
+ * fold is the deliberate signal that there is a footer below the table.
+ * dvh, not vh — mobile browser chrome collapses and 100vh overshoots there.
+ */
 .scrollRoot {
-	height: 100vh;
+	/*
+	 * --table-top is the box's measured distance from the top of the page,
+	 * set by the component — no estimated constants. What remains reserved
+	 * below: the footer's top margin and its 4px gradient strip, peeking at
+	 * the fold as the signal that the page continues.
+	 */
+	height: calc(100dvh - var(--table-top, 16rem) - var(--ml-space-3xl) - 4px);
+	min-height: 20rem;
 	overflow: hidden;
 }
 
 .scrollViewport {
 	width: 100%;
 	height: 100%;
+}
+
+/*
+ * Radix wraps the viewport's content in an inline-styled `display: table`
+ * div, and sticky positioning does not work inside a table-display ancestor —
+ * the sticky header cells silently scroll away with everything else. Forcing
+ * the wrapper back to block is the documented workaround
+ * (radix-ui/primitives#926); !important because the style is inline.
+ */
+.scrollViewport > div {
+	display: block !important;
 }
 
 .scrollbar {

@@ -113,3 +113,22 @@
 .metaLink:hover {
 	text-decoration: underline;
 }
+
+/* The way through to a record we cannot show inline — a document or PDF at
+ * its archival URL. Bordered like a figure so the media slot reads as
+ * holding the record, not as a bare text link. */
+.mediaLink {
+	display: inline-block;
+	padding-block: var(--ml-space-sm);
+	padding-inline: var(--ml-space-md);
+	border: 1px solid var(--ml-border-color);
+	border-radius: var(--ml-radius-md);
+	font-size: var(--ml-font-size-body);
+	color: var(--ml-link-color);
+	text-decoration: none;
+	align-self: flex-start;
+}
+
+.mediaLink:hover {
+	text-decoration: underline;
+}
