@@ -71,6 +71,7 @@ export default async function StorySlugLayout({
 
 	const sectionLabels: Record<string, string> = {
 		articles: dictGet(dict, 'nav.articles'),
+		people: dictGet(dict, 'nav.people'),
 		documents: dictGet(dict, 'nav.documents'),
 		codex: dictGet(dict, 'nav.codex'),
 		contents: dictGet(dict, 'nav.contents'),
@@ -248,6 +249,16 @@ export default async function StorySlugLayout({
 			count,
 			href: `${basePath}/${key}`,
 		})),
+		...(involved.length > 0 || (config.entities?.length ?? 0) > 0
+			? [
+					{
+						key: 'people',
+						label: sectionLabels.people,
+						count: config.entities?.length ?? 0,
+						href: `${basePath}/people`,
+					},
+				]
+			: []),
 		...(sources.length > 0
 			? [
 					{

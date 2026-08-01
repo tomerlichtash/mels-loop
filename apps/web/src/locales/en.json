@@ -226,6 +226,14 @@
 			"translator": "Translator",
 			"contributor": "Contributor",
 			"illustrator": "Illustrator"
+		},
+		"viewPerson": "View person",
+		"kinds": {
+			"person": "People",
+			"organisation": "Organisations",
+			"machine": "Machines",
+			"object": "Objects",
+			"place": "Places"
 		}
 	}
 }

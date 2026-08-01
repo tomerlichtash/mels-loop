@@ -8,6 +8,7 @@ import {
 	fetchAnnotation,
 	fetchGlossaryTerm,
 } from '@/actions/annotations';
+import { fetchEntityCard } from '@/actions/entities';
 import { fetchSourceAction } from '@/actions/sources';
 import type { Locale } from '@/i18n-init';
 
@@ -49,6 +50,11 @@ export function StoryPopoverProvider({
 		[locale],
 	);
 
+	const fetchEntityFn = useCallback(
+		(id: string) => fetchEntityCard(id, locale),
+		[locale],
+	);
+
 	return (
 		<PopoverProvider
 			fetchAnnotation={fetchAnnotationFn}
@@ -56,6 +62,7 @@ export function StoryPopoverProvider({
 			fetchGlossary={fetchGlossaryFn}
 			fetchAllGlossary={fetchAllGlossaryFn}
 			fetchResolvedSource={fetchSourceFn}
+			fetchResolvedEntity={fetchEntityFn}
 		>
 			{children}
 		</PopoverProvider>

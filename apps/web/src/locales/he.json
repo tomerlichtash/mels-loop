@@ -226,6 +226,14 @@
 			"translator": "מתרגם",
 			"contributor": "תורם",
 			"illustrator": "מאייר"
+		},
+		"viewPerson": "לעמוד האישי",
+		"kinds": {
+			"person": "אנשים",
+			"organisation": "ארגונים",
+			"machine": "מכונות",
+			"object": "עצמים",
+			"place": "מקומות"
 		}
 	}
 }

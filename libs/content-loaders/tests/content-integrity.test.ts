@@ -145,6 +145,37 @@ describe('entities', () => {
 		}
 	});
 
+	it('every authored entity door resolves — entity: links and mentions:', async () => {
+		const entityIds = new Set(await subdirs(entitiesDir));
+		for (const slug of await subdirs(storiesDir)) {
+			async function walk(dir: string): Promise<void> {
+				const dirents = await fs.readdir(dir, { withFileTypes: true });
+				await Promise.all(
+					dirents.map(async (e) => {
+						const full = path.join(dir, e.name);
+						if (e.isDirectory()) return walk(full);
+						if (!e.name.endsWith('.md')) return;
+						const raw = await fs.readFile(full, 'utf-8');
+						for (const match of raw.matchAll(/\]\(entity:([\w-]+)\)/g)) {
+							expect(
+								entityIds.has(match[1]),
+								`${path.relative(contentDir, full)}: entity ref "${match[1]}" resolves to nothing`,
+							).toBe(true);
+						}
+						const { data } = matter(raw);
+						for (const id of (data.mentions as string[] | undefined) ?? []) {
+							expect(
+								entityIds.has(id),
+								`${path.relative(contentDir, full)}: mention "${id}" resolves to nothing`,
+							).toBe(true);
+						}
+					}),
+				);
+			}
+			await walk(path.join(storiesDir, slug));
+		}
+	});
+
 	it('every entity ref resolves — cited sources, portrait, related edges', async () => {
 		const entityIds = new Set(await subdirs(entitiesDir));
 		for (const dir of await subdirs(entitiesDir)) {
@@ -186,11 +217,31 @@ describe('story citations', () => {
 			};
 
 			const entityIds = new Set(await subdirs(entitiesDir));
+			const storyMessages = (await readJson(
+				path.join(storiesDir, slug, 'messages', 'en.json'),
+			)) as Record<string, unknown>;
 			for (const edge of config.entities ?? []) {
 				expect(
 					entityIds.has(edge.ref),
 					`${slug}: involvement edge refs unknown entity "${edge.ref}"`,
 				).toBe(true);
+				if (edge.as) {
+					/* The alias is a message key — dangling keys render as raw
+					 * key text in the aside. */
+					const resolved = edge.as
+						.split('.')
+						.reduce<unknown>(
+							(acc, part) =>
+								acc && typeof acc === 'object'
+									? (acc as Record<string, unknown>)[part]
+									: undefined,
+							storyMessages,
+						);
+					expect(
+						typeof resolved,
+						`${slug}: alias key "${edge.as}" missing from story messages`,
+					).toBe('string');
+				}
 			}
 
 			for (const id of config.sources ?? []) {

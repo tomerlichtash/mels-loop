@@ -18,6 +18,7 @@ import { remarkBlockquoteDirective } from './remark/blockquote-directive';
 import { remarkChatDirective } from './remark/chat-directive';
 import { remarkColsDirective } from './remark/cols-directive';
 import { remarkEmailDirective } from './remark/email-directive';
+import { remarkEntityLinks } from './remark/entity-links';
 import { remarkFigureDirective } from './remark/figure-directive';
 import { remarkFigures } from './remark/figures';
 import { remarkGlossaryLinks } from './remark/glossary-links';
@@ -50,6 +51,7 @@ export const createContentPlugins: PluginBuilder = (context) => {
 			[remarkAnnotationLinks],
 			[remarkGlossaryLinks],
 			[remarkSourceLinks],
+			[remarkEntityLinks],
 			[remarkFigures],
 			[remarkDirective],
 			[remarkBlockquoteDirective],

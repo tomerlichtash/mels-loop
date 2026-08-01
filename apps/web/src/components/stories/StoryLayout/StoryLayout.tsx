@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
 import styles from './StoryLayout.module.css';
 
 /** Segments where the sidebar is hidden only on the exact listing page (not child routes). */
-const HIDE_SIDEBAR_LISTING_ONLY = ['sources'];
+const HIDE_SIDEBAR_LISTING_ONLY = ['sources', 'people'];
 /** Segments where the sidebar is always hidden (listing and children). */
 const HIDE_SIDEBAR_ALWAYS = ['contents'];
 
