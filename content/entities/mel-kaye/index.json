@@ -3,8 +3,8 @@
 	"kind": "person",
 	"portrait": "mel-kaye-photo-1952",
 	"dates": {
-		"start": "1931",
-		"end": "2018"
+		"start": "1931-01-14",
+		"end": "2018-04-20"
 	},
 	"related": [
 		{
@@ -16,6 +16,7 @@
 			"relation": "worked at"
 		}
 	],
+	"articles": ["the-story-of-mel/mel-kaye-cv"],
 	"sources": [
 		"mel-kaye-photo-1952",
 		"ucla-yearbook-1951",
