@@ -1,3 +1,14 @@
+export type { AboutEntity } from './entities';
+export {
+	getAboutMap,
+	getAllEntities,
+	getAllResolvedEntities,
+	getEntitiesCiting,
+	getEntity,
+	getEntityBio,
+	getEntityMessages,
+	getResolvedEntity,
+} from './entities';
 export {
 	getAllGlossarySlugs,
 	getAllGlossaryTerms,

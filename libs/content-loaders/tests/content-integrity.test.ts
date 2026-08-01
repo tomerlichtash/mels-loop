@@ -13,11 +13,12 @@ import path from 'path';
 import url from 'url';
 import { beforeAll, describe, expect, it } from 'vitest';
 
-import { parseSource } from '../src/schema';
+import { parseEntity, parseSource } from '../src/schema';
 
 const here = path.dirname(url.fileURLToPath(import.meta.url));
 const contentDir = path.resolve(here, '../../../content');
 const sourcesDir = path.join(contentDir, 'sources');
+const entitiesDir = path.join(contentDir, 'entities');
 const storiesDir = path.join(contentDir, 'stories');
 
 const SOURCE_REF_PREFIX = 'source:';
@@ -131,6 +132,47 @@ describe('source records', () => {
 	});
 });
 
+describe('entities', () => {
+	it('every entity is valid, id matches its directory, and has English messages', async () => {
+		for (const dir of await subdirs(entitiesDir)) {
+			const dataPath = path.join(entitiesDir, dir, 'index.json');
+			const entity = parseEntity(await readJson(dataPath), dataPath);
+			expect(entity.id, `id vs directory in ${dataPath}`).toBe(dir);
+			await expect(
+				fs.access(path.join(entitiesDir, dir, 'index.en.json')),
+				`missing index.en.json for ${dir}`,
+			).resolves.toBeUndefined();
+		}
+	});
+
+	it('every entity ref resolves — cited sources, portrait, related edges', async () => {
+		const entityIds = new Set(await subdirs(entitiesDir));
+		for (const dir of await subdirs(entitiesDir)) {
+			const dataPath = path.join(entitiesDir, dir, 'index.json');
+			const entity = parseEntity(await readJson(dataPath), dataPath);
+			for (const id of entity.sources) {
+				expect(sourceIds.has(id), `${dir}: unknown source "${id}"`).toBe(true);
+			}
+			if (entity.portrait) {
+				expect(
+					sourceIds.has(entity.portrait),
+					`${dir}: portrait refs unknown source "${entity.portrait}"`,
+				).toBe(true);
+				expect(
+					entity.sources.includes(entity.portrait),
+					`${dir}: portrait "${entity.portrait}" is not among its cited sources`,
+				).toBe(true);
+			}
+			for (const edge of entity.related ?? []) {
+				expect(
+					entityIds.has(edge.ref),
+					`${dir}: related refs unknown entity "${edge.ref}"`,
+				).toBe(true);
+			}
+		}
+	});
+});
+
 describe('story citations', () => {
 	it('every cited source id resolves to a record', async () => {
 		for (const slug of await subdirs(storiesDir)) {
@@ -140,7 +182,16 @@ describe('story citations', () => {
 				sources?: string[];
 				featuredSources?: string[];
 				assets?: Record<string, unknown>;
+				entities?: { ref: string; role: string; as?: string }[];
 			};
+
+			const entityIds = new Set(await subdirs(entitiesDir));
+			for (const edge of config.entities ?? []) {
+				expect(
+					entityIds.has(edge.ref),
+					`${slug}: involvement edge refs unknown entity "${edge.ref}"`,
+				).toBe(true);
+			}
 
 			for (const id of config.sources ?? []) {
 				expect(sourceIds.has(id), `${slug}: unknown source "${id}"`).toBe(true);
