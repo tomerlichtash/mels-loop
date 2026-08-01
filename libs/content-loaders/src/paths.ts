@@ -53,9 +53,5 @@ export const paths = {
 			file: (story: string, locale: string) =>
 				stories(story, 'codex', md(locale)),
 		},
-		resources: {
-			file: (story: string, locale: string) =>
-				stories(story, 'resources', md(locale)),
-		},
 	},
 };

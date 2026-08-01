@@ -51,7 +51,7 @@ export async function getResolvedSource(
 	return resolveSource(source, messages);
 }
 
-async function getAllSources(): Promise<Source[]> {
+export async function getAllSources(): Promise<Source[]> {
 	const dirs = await listSubdirs(paths.sources.dir());
 	const sources = await Promise.all(dirs.map((name) => loadSourceData(name)));
 	return sources.filter((s): s is Source => s !== null);

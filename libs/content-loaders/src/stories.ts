@@ -329,13 +329,6 @@ export async function getCodex(
 	return loadWithSourceContext(filePath, storySlug, locale);
 }
 
-export async function getResources(
-	storySlug: string,
-	locale: string,
-): Promise<ProcessedContent | null> {
-	return loadLocaleFile(paths.stories.resources.file(storySlug, locale));
-}
-
 export async function getArticleMeta(
 	storySlug: string,
 	locale: string,

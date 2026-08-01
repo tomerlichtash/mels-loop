@@ -9,6 +9,7 @@ export { getAllPosts, getPost } from './posts';
 export {
 	getAllResolvedSources,
 	getAllSourceIds,
+	getAllSources,
 	getResolvedSource,
 	getResolvedStorySources,
 	getSource,
@@ -22,7 +23,6 @@ export {
 	getArticleMeta,
 	getCodex,
 	getDocumentMeta,
-	getResources,
 	getStory,
 	getStoryArticle,
 	getStoryArticles,

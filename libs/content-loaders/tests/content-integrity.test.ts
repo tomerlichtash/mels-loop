@@ -90,6 +90,26 @@ describe('source records', () => {
 		}
 	});
 
+	it('a transcription is claimed by at most one record', async () => {
+		/* Two records claiming the same page would serve the same content
+		 * under two canonical records — the duplication the blackjack merge
+		 * existed to end. The claiming record's page embeds the transcript
+		 * and the document route redirects to it; that only works when the
+		 * claim is unique. */
+		const claims = new Map<string, string>();
+		for (const dir of await subdirs(sourcesDir)) {
+			const dataPath = path.join(sourcesDir, dir, 'index.json');
+			const source = parseSource(await readJson(dataPath), dataPath);
+			if (!source.page) continue;
+			const holder = claims.get(source.page);
+			expect(
+				holder,
+				`"${source.page}" claimed by both ${holder} and ${dir}`,
+			).toBeUndefined();
+			claims.set(source.page, dir);
+		}
+	});
+
 	it("every record's page ref resolves to real content", async () => {
 		for (const dir of await subdirs(sourcesDir)) {
 			const dataPath = path.join(sourcesDir, dir, 'index.json');

@@ -61,7 +61,19 @@ const nextConfig: NextConfig = {
 			},
 			{
 				source: '/docs/the-story-of-mel/resources',
-				destination: '/stories/the-story-of-mel/resources',
+				destination: '/stories/the-story-of-mel/sources',
+				permanent: true,
+			},
+			/* The Resources tab folded into the sources table once every entry
+			 * on it had become a catalogued record. */
+			{
+				source: '/:locale(en|he)/stories/:storySlug/resources',
+				destination: '/:locale/stories/:storySlug/sources',
+				permanent: true,
+			},
+			{
+				source: '/stories/:storySlug/resources',
+				destination: '/stories/:storySlug/sources',
 				permanent: true,
 			},
 		];

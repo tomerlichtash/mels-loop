@@ -63,7 +63,6 @@ export async function buildSitemapEntries(
 		...stories.flatMap((storySlug, i) => [
 			entry(`/stories/${storySlug}`, 'weekly', 0.9),
 			entry(`/stories/${storySlug}/codex`, 'monthly', 0.7),
-			entry(`/stories/${storySlug}/resources`, 'monthly', 0.6),
 			entry(`/stories/${storySlug}/sources`, 'monthly', 0.6),
 			...articlesByStory[i].map((a) =>
 				entry(`/stories/${storySlug}/articles/${a}`, 'monthly', 0.8),

@@ -1,6 +1,5 @@
 import {
 	getResolvedStorySources,
-	getResources,
 	getStoryConfig,
 	getStoryContents,
 	getStoryMessages,
@@ -70,7 +69,6 @@ export default async function StorySlugLayout({
 		documents: dictGet(dict, 'nav.documents'),
 		codex: dictGet(dict, 'nav.codex'),
 		contents: dictGet(dict, 'nav.contents'),
-		resources: dictGet(dict, 'nav.resources'),
 		sources: dictGet(dict, 'nav.sources'),
 	};
 
@@ -81,16 +79,12 @@ export default async function StorySlugLayout({
 	 * for a typo, a stale link, or a story that has been parked. Crawlers read
 	 * a 500 as "come back later" and keep the URL; 404 is the honest answer.
 	 */
-	const [config, storyMessages, contents, sources, resources] =
-		await Promise.all([
-			getStoryConfig(storySlug),
-			getStoryMessages(storySlug, typedLocale),
-			getStoryContents(storySlug, typedLocale),
-			getResolvedStorySources(storySlug, typedLocale),
-			/* Only to know whether the tab has anywhere to go — a story without a
-			 * resources file should not advertise one. */
-			getResources(storySlug, typedLocale),
-		]).catch(notFound);
+	const [config, storyMessages, contents, sources] = await Promise.all([
+		getStoryConfig(storySlug),
+		getStoryMessages(storySlug, typedLocale),
+		getStoryContents(storySlug, typedLocale),
+		getResolvedStorySources(storySlug, typedLocale),
+	]).catch(notFound);
 
 	const storyTitle = resolveStoryField(
 		config.meta.title,
@@ -160,9 +154,10 @@ export default async function StorySlugLayout({
 				 * title, as in the 1907 SS Estonia manifest.
 				 */
 				rows: picked.map((source) => ({
-					/* The record's one detail page is global — the story-scoped
-					 * detail route was cut for being a weaker duplicate of it. */
-					href: source.page ?? `/sources/${source.id}`,
+					/* Always the record page — it embeds the transcription where
+					 * one exists, so linking the bare document route again would
+					 * just duplicate content under a second URL. */
+					href: `/sources/${source.id}`,
 					title: source.title,
 					type: source.type,
 				})),
@@ -214,20 +209,6 @@ export default async function StorySlugLayout({
 						label: sectionLabels.sources,
 						count: sources.length,
 						href: `${basePath}/sources`,
-					},
-				]
-			: []),
-		/*
-		 * Further reading: the Jargon File, Wikipedia, guides and discussions.
-		 * It is curated content that had no tab, so nothing on the site linked
-		 * to it — only the sitemap did.
-		 */
-		...(resources
-			? [
-					{
-						key: 'resources',
-						label: sectionLabels.resources,
-						href: `${basePath}/resources`,
 					},
 				]
 			: []),
