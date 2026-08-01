@@ -76,6 +76,39 @@ describe('source records', () => {
 			).resolves.toBeUndefined();
 		}
 	});
+
+	it('a record with a presentation image points it at an actual image', async () => {
+		for (const dir of await subdirs(sourcesDir)) {
+			const dataPath = path.join(sourcesDir, dir, 'index.json');
+			const source = parseSource(await readJson(dataPath), dataPath);
+			if (source.image) {
+				expect(
+					/\.(jpe?g|png|webp|gif|avif)$/i.test(source.image),
+					`${dir}: image "${source.image}" is not an image URL`,
+				).toBe(true);
+			}
+		}
+	});
+
+	it("every record's page ref resolves to real content", async () => {
+		for (const dir of await subdirs(sourcesDir)) {
+			const dataPath = path.join(sourcesDir, dir, 'index.json');
+			const source = parseSource(await readJson(dataPath), dataPath);
+			if (!source.page) continue;
+			const match = /^\/stories\/([^/]+)\/documents\/([^/]+)$/.exec(
+				source.page,
+			);
+			expect(match, `${dir}: unrecognised page ref "${source.page}"`).not.toBe(
+				null,
+			);
+			if (match) {
+				await expect(
+					fs.access(path.join(storiesDir, match[1], 'documents', match[2])),
+					`${dir}: page ref "${source.page}" has no content directory`,
+				).resolves.toBeUndefined();
+			}
+		}
+	});
 });
 
 describe('story citations', () => {
