@@ -1,0 +1,22 @@
+.cardLink {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+}
+
+.cardLink:hover {
+	text-decoration: none;
+}
+
+.cardName {
+	margin: 0;
+	font-size: var(--ml-font-size-lg);
+	font-weight: var(--ml-font-weight-bold);
+	color: var(--ml-text-color);
+}
+
+.cardRole {
+	margin: 0;
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-muted-color);
+}

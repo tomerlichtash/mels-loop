@@ -354,6 +354,15 @@
 	color: var(--ml-text-color);
 }
 
+.aboutLink {
+	color: var(--ml-link-color);
+	text-decoration: none;
+}
+
+.aboutLink:hover {
+	text-decoration: underline;
+}
+
 .detailLabel {
 	/* 2xs, not xs — xs is a hair under the value's sm, and uppercase eats
 	 * that difference optically. */

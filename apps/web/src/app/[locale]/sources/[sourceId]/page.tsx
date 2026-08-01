@@ -1,5 +1,6 @@
 import {
 	getAllSourceIds,
+	getEntitiesCiting,
 	getResolvedSource,
 	getStoryDocument,
 } from '@mels-loop/content-loaders/loaders';
@@ -52,6 +53,7 @@ export default async function SourceDetailPage({ params }: PageProps) {
 
 	if (!source) notFound();
 
+	const about = await getEntitiesCiting(sourceId, typedLocale);
 	const ref = transcriptRef(source.page);
 	const transcript = ref
 		? await getStoryDocument(ref.storySlug, ref.docSlug, typedLocale)
@@ -81,11 +83,13 @@ export default async function SourceDetailPage({ params }: PageProps) {
 					sidebar={
 						<SourceMeta
 							source={source}
+							about={about}
 							typeLabel={dictGet(dict, `sources.${source.type}`)}
 							locale={typedLocale}
 							transcriptEmbedded={Boolean(transcript)}
 							labels={{
 								type: dictGet(dict, 'sources.colType'),
+								about: dictGet(dict, 'sources.about'),
 								author: dictGet(dict, 'sources.colAuthor'),
 								date: dictGet(dict, 'sources.colDate'),
 								source: dictGet(dict, 'sources.colSource'),

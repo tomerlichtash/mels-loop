@@ -33,7 +33,12 @@ export function StoryLayout({ children, sidebar }: StoryProps) {
 		<div className={styles.root}>
 			{showSidebar ? (
 				<div className={styles.layout}>
-					<aside className={styles.sidebar}>{sidebar}</aside>
+					<aside className={styles.sidebar}>
+						{/* One sticky container, however many blocks the sidebar
+						 * holds — per-child sticky broke the moment a second block
+						 * (the people strip) joined the aside. */}
+						<div className={styles.sidebarInner}>{sidebar}</div>
+					</aside>
 					<main className={styles.content}>{children}</main>
 				</div>
 			) : (

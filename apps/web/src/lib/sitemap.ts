@@ -1,4 +1,5 @@
 import {
+	getAllResolvedEntities,
 	getAllStories,
 	getStoryArticles,
 } from '@mels-loop/content-loaders/loaders';
@@ -39,6 +40,9 @@ export async function buildSitemapEntries(
 	const stories = await getAllStories();
 	// Fetch all story articles in parallel
 	const articlesByStory = await Promise.all(stories.map(getStoryArticles));
+	const people = (await getAllResolvedEntities('en', 'person')).map(
+		(person) => person.id,
+	);
 
 	return [
 		// Homepage
@@ -57,8 +61,10 @@ export async function buildSitemapEntries(
 		 * Posts are omitted. Their routes still answer, so existing links
 		 * keep working, but they are unlisted rather than promoted.
 		 */
-		// Global sources browser
+		// Global sources browser and the people index
 		entry('/sources', 'monthly', 0.6),
+		entry('/people', 'monthly', 0.6),
+		...people.map((id) => entry(`/people/${id}`, 'monthly', 0.7)),
 		// Story pages and their sub-pages
 		...stories.flatMap((storySlug, i) => [
 			entry(`/stories/${storySlug}`, 'weekly', 0.9),

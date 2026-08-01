@@ -1,5 +1,6 @@
 'use client';
 
+import type { AboutEntity } from '@mels-loop/content-loaders/loaders';
 import type {
 	ResolvedSource,
 	SourceType,
@@ -41,6 +42,7 @@ interface ColumnLabels {
 	type: string;
 	filterByType: string;
 	standing: string;
+	about: string;
 	date: string;
 	year: string;
 	license: string;
@@ -60,6 +62,8 @@ interface ColumnLabels {
 
 interface SourceFiltersProps {
 	groups: SourceGroup[];
+	/** source id → citing entities; the derived "about" relation. */
+	aboutBySource?: Record<string, AboutEntity[]>;
 	locale: string;
 	typeLabels: Record<SourceType, string>;
 	columnLabels: ColumnLabels;
@@ -161,16 +165,20 @@ function SourceDetail({
 	source,
 	labels,
 	locale,
+	about,
 }: {
 	source: ResolvedSource;
 	labels: ColumnLabels;
 	locale: string;
+	about?: AboutEntity[];
 }) {
 	/* No catalogue data → no meta rail. An empty bordered column beside the
 	 * description (the bitsavers manuals, say) reads as a rendering bug. */
 	/* The bibliographic essentials only — license and repository stay on
 	 * the record page, where the full catalogue entry lives. */
-	const hasMeta = Boolean(source.source || source.author || source.date);
+	const hasMeta = Boolean(
+		source.source || source.author || source.date || about?.length,
+	);
 	return (
 		<div className={styles.detail}>
 			<div className={styles.detailBody}>
@@ -212,6 +220,28 @@ function SourceDetail({
 							{source.author}
 						</span>
 					)}
+					{about && about.length > 0 && (
+						<span className={styles.detailField}>
+							<span className={styles.detailLabel}>{labels.about}</span>
+							<span>
+								{about.map((entity, i) => (
+									<span key={entity.id}>
+										{i > 0 && ' · '}
+										{entity.kind === 'person' ? (
+											<a
+												href={`/people/${entity.id}`}
+												className={styles.aboutLink}
+											>
+												{entity.name}
+											</a>
+										) : (
+											entity.name
+										)}
+									</span>
+								))}
+							</span>
+						</span>
+					)}
 					{source.date && (
 						<span className={styles.detailField}>
 							<span className={styles.detailLabel}>{labels.date}</span>
@@ -240,6 +270,7 @@ function fromParam<T extends string>(
 
 export function SourceFilters({
 	groups,
+	aboutBySource,
 	locale,
 	typeLabels,
 	columnLabels,
@@ -470,6 +501,7 @@ export function SourceFilters({
 														source={row.original}
 														labels={columnLabels}
 														locale={locale}
+														about={aboutBySource?.[row.original.id]}
 													/>
 												</td>
 											</tr>

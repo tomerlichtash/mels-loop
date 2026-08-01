@@ -111,3 +111,27 @@
 	flex-direction: column;
 	gap: var(--ml-space-md);
 }
+
+/* The derived "about" relation, leading the rail. */
+.aboutBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	font-family: var(--ml-font-mono);
+}
+
+.aboutNames {
+	margin: 0;
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-snug);
+	color: var(--ml-text-color);
+}
+
+.aboutLink {
+	color: var(--ml-link-color);
+	text-decoration: none;
+}
+
+.aboutLink:hover {
+	text-decoration: underline;
+}

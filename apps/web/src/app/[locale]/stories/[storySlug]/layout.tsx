@@ -1,4 +1,5 @@
 import {
+	getResolvedEntity,
 	getResolvedStorySources,
 	getStoryConfig,
 	getStoryContents,
@@ -16,6 +17,10 @@ import { Asides } from '@/components/stories/Asides/Asides';
 import { StoryBreadcrumbs } from '@/components/stories/StoryBreadcrumbs/StoryBreadcrumbs';
 import { StoryHeader } from '@/components/stories/StoryHeader/StoryHeader';
 import { StoryLayout } from '@/components/stories/StoryLayout/StoryLayout';
+import {
+	StoryPeople,
+	type StoryPerson,
+} from '@/components/stories/StoryPeople/StoryPeople';
 import {
 	type StorySection,
 	StorySections,
@@ -108,9 +113,24 @@ export default async function StorySlugLayout({
 	 * presented properly, with title, author, date and credit, in the sources
 	 * browser.
 	 */
-	const avatarSrcUrl = config.assets?.avatar?.src
+	/*
+	 * Explicit avatar first — SOM keeps a dedicated crop framed for the
+	 * circle. Absent that, the first person-kind `subject`'s portrait: the
+	 * avatar is the protagonist's face, and the model now says whose.
+	 */
+	let avatarSrcUrl = config.assets?.avatar?.src
 		? await resolveAssetUrl(config.assets.avatar.src)
 		: undefined;
+	if (!avatarSrcUrl) {
+		for (const edge of config.entities ?? []) {
+			if (edge.role !== 'subject') continue;
+			const entity = await getResolvedEntity(edge.ref, typedLocale);
+			if (entity?.kind === 'person' && entity.portrait) {
+				avatarSrcUrl = await resolveAssetUrl(`source:${entity.portrait}`);
+				break;
+			}
+		}
+	}
 
 	const homeLabel = dictGet(dict, 'nav.home');
 
@@ -163,6 +183,32 @@ export default async function StorySlugLayout({
 				})),
 			}
 		: undefined;
+
+	/*
+	 * The story's people: person-kind involvement edges, resolved to names
+	 * and portraits. The alias wins over the role — this text's name for
+	 * someone ("The Big Boss") says more here than "Subject" does.
+	 */
+	const involved = (
+		await Promise.all(
+			(config.entities ?? []).map(async (edge) => {
+				const entity = await getResolvedEntity(edge.ref, typedLocale);
+				if (!entity || entity.kind !== 'person') return null;
+				const avatarUrl = entity.portrait
+					? await resolveAssetUrl(`source:${entity.portrait}`)
+					: undefined;
+				const person: StoryPerson = {
+					href: `/people/${entity.id}`,
+					name: entity.name,
+					subtitle: edge.as
+						? dictGet(storyMessages ?? {}, edge.as)
+						: dictGet(dict, `people.roles.${edge.role}`),
+					...(avatarUrl ? { avatarUrl: resolveMediaUrl(avatarUrl) } : {}),
+				};
+				return person;
+			}),
+		)
+	).filter((person) => person !== null);
 
 	// Derive dynamic section tabs from contents (articles, documents, etc.)
 	const dynamicSectionCounts = new Map<string, number>();
@@ -255,7 +301,13 @@ export default async function StorySlugLayout({
 			<StoryLayout
 				sidebar={
 					contents && contents.length > 0 ? (
-						<Asides contents={contents} sources={featuredSources} />
+						<>
+							<StoryPeople
+								label={dictGet(dict, 'nav.people')}
+								people={involved}
+							/>
+							<Asides contents={contents} sources={featuredSources} />
+						</>
 					) : undefined
 				}
 			>

@@ -1,4 +1,5 @@
 import {
+	getAboutMap,
 	getAllStories,
 	getResolvedStorySources,
 } from '@mels-loop/content-loaders/loaders';
@@ -37,6 +38,7 @@ export default async function StorySourcesPage({ params }: PageProps) {
 	if (sources.length === 0) notFound();
 
 	const tableProps = buildSourceTableProps(sources, dict, typedLocale);
+	const aboutBySource = await getAboutMap(typedLocale);
 
 	return (
 		<Container gap="lg">
@@ -44,7 +46,7 @@ export default async function StorySourcesPage({ params }: PageProps) {
 			 * carries the filter state, and static prerender needs the
 			 * boundary. */}
 			<Suspense>
-				<SourceFilters {...tableProps} />
+				<SourceFilters {...tableProps} aboutBySource={aboutBySource} />
 			</Suspense>
 		</Container>
 	);

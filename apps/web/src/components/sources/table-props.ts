@@ -61,6 +61,7 @@ export function buildSourceTableProps(
 			source: dictGet(dict, 'sources.colSource'),
 			license: dictGet(dict, 'sources.colLicense'),
 			author: dictGet(dict, 'sources.colAuthor'),
+			about: dictGet(dict, 'sources.about'),
 			repository: dictGet(dict, 'sources.colRepository'),
 			clear: dictGet(dict, 'sources.clearFilters'),
 			toggle: dictGet(dict, 'sources.toggleFilters'),
