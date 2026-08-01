@@ -4,7 +4,8 @@
 	"standing": "secondary",
 	"url": "http://tubetime.us/index.php/2014/06/14/mel-blackjack-and-the-lgp-30/",
 	"date": "2014-06-14",
-	"source": "Tube Time",
+	"author": "eric",
+	"repository": "TubeTime",
 	"license": "unknown",
 	"tags": ["guide", "blackjack", "lgp-30"]
 }

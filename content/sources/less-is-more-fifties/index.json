@@ -2,10 +2,12 @@
 	"id": "less-is-more-fifties",
 	"type": "pdf",
 	"standing": "secondary",
-	"url": "https://hal.univ-lille.fr/hal-01345592v3/document",
+	"url": "/media/v2/documents/less-is-more-in-the-fifties.pdf",
 	"date": "2015",
 	"author": "Liesbeth de Mol, Maarten Bullynck, Edgar G. Daylight",
 	"source": "IEEE Annals of the History of Computing",
+	"repository": "HAL",
+	"repositoryUrl": "https://hal.univ-lille.fr/hal-01345592v3/document",
 	"license": "unknown",
 	"tags": ["history", "computing", "1950s", "minimalism", "academic"]
 }

@@ -60,7 +60,6 @@
 		"rpc-4000-transfer-branch-control",
 		"rpc-4000-branch-control-unit",
 		"librascope-lgp-30-manual",
-		"story-of-mel-original-usenet",
 		"story-of-mel-jargon-file",
 		"story-of-mel-wikipedia",
 		"story-of-mel-explained-seibel",
@@ -131,9 +130,5 @@
 			]
 		}
 	],
-	"featuredSources": [
-		"mel-blackjack-writeup",
-		"story-of-mel-original-usenet",
-		"hela-kornitzka-ship-manifest"
-	]
+	"featuredSources": ["mel-blackjack-writeup", "hela-kornitzka-ship-manifest"]
 }
