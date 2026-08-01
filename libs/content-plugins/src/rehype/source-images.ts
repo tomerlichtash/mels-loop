@@ -13,7 +13,7 @@ interface Options {
  * Runs after rehypeFigureImages so it catches both regular markdown images
  * and images produced from inside <figure> HTML blocks.
  *
- * Also copies source metadata (author, credit, license) onto the element as
+ * Also copies source metadata (author, repository, license) onto the element as
  * data-* attributes for downstream use.
  */
 export function rehypeSourceImages({ sources }: Options) {
@@ -35,7 +35,9 @@ export function rehypeSourceImages({ sources }: Options) {
 				src: source.url,
 				'data-source-id': id,
 				...(source.author ? { 'data-source-author': source.author } : {}),
-				...(source.credit ? { 'data-source-credit': source.credit } : {}),
+				...(source.repository
+					? { 'data-source-repository': source.repository }
+					: {}),
 				...(source.license ? { 'data-source-license': source.license } : {}),
 			};
 		});

@@ -12,7 +12,7 @@ const sources: Record<string, ResolvedSource> = {
 		url: 'https://cdn.example.com/mel.jpg',
 		title: 'Mel Kaye photo',
 		author: 'Joe Haldeman',
-		credit: 'MIT Archives',
+		repository: 'MIT Archives',
 		license: 'fair-use',
 	},
 };
@@ -36,7 +36,7 @@ describe('rehypeSourceImages', () => {
 		const imgs = findElements(hast, 'img');
 		expect(imgs[0].properties?.['data-source-id']).toBe('mel-photo');
 		expect(imgs[0].properties?.['data-source-author']).toBe('Joe Haldeman');
-		expect(imgs[0].properties?.['data-source-credit']).toBe('MIT Archives');
+		expect(imgs[0].properties?.['data-source-repository']).toBe('MIT Archives');
 		expect(imgs[0].properties?.['data-source-license']).toBe('fair-use');
 	});
 
@@ -80,7 +80,7 @@ describe('rehypeSourceImages', () => {
 		expect(imgs[0].properties?.src).toBe('https://example.com');
 		expect(imgs[0].properties?.['data-source-id']).toBe('bare-source');
 		expect(imgs[0].properties?.['data-source-author']).toBeUndefined();
-		expect(imgs[0].properties?.['data-source-credit']).toBeUndefined();
+		expect(imgs[0].properties?.['data-source-repository']).toBeUndefined();
 		expect(imgs[0].properties?.['data-source-license']).toBeUndefined();
 	});
 

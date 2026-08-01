@@ -36,6 +36,7 @@ interface SourceGroup {
 }
 
 interface ColumnLabels {
+	title: string;
 	type: string;
 	filterByType: string;
 	standing: string;
@@ -44,7 +45,7 @@ interface ColumnLabels {
 	license: string;
 	source: string;
 	author: string;
-	credit: string;
+	repository: string;
 	clear: string;
 	toggle: string;
 	empty: string;
@@ -72,13 +73,20 @@ function createColumns(
 	return [
 		{
 			accessorKey: 'title',
-			header: columnLabels.source,
+			header: columnLabels.title,
 			cell: ({ row }) => (
 				/* title attribute, not a tooltip: the cell truncates with an
 				 * ellipsis and hover shows the full text natively. */
 				<span className={styles.nameText} title={row.original.title}>
 					{row.original.title}
 				</span>
+			),
+		},
+		{
+			accessorKey: 'author',
+			header: columnLabels.author,
+			cell: ({ getValue }) => (
+				<span className={styles.metaText}>{(getValue() as string) ?? '—'}</span>
 			),
 		},
 		{
@@ -117,9 +125,10 @@ function SourceDetail({
 	/* No catalogue data → no meta rail. An empty bordered column beside the
 	 * description (the bitsavers manuals, say) reads as a rendering bug. */
 	const hasMeta = Boolean(
+		source.source ||
 		source.author ||
 		source.date ||
-		source.credit ||
+		source.repository ||
 		(source.license && source.license !== 'unknown'),
 	);
 	return (
@@ -145,7 +154,9 @@ function SourceDetail({
 							data-zoomable=""
 							data-source-id={source.id}
 							{...(source.author && { 'data-source-author': source.author })}
-							{...(source.credit && { 'data-source-credit': source.credit })}
+							{...(source.repository && {
+								'data-source-repository': source.repository,
+							})}
 							{...(source.license && {
 								'data-source-license': source.license,
 							})}
@@ -155,10 +166,10 @@ function SourceDetail({
 			</div>
 			{hasMeta && (
 				<div className={styles.detailMeta}>
-					{source.credit && (
+					{source.source && (
 						<span className={styles.detailField}>
 							<span className={styles.detailLabel}>{labels.source}</span>
-							{source.credit}
+							{source.source}
 						</span>
 					)}
 					{source.date && (
@@ -171,6 +182,12 @@ function SourceDetail({
 						<span className={styles.detailField}>
 							<span className={styles.detailLabel}>{labels.author}</span>
 							{source.author}
+						</span>
+					)}
+					{source.repository && (
+						<span className={styles.detailField}>
+							<span className={styles.detailLabel}>{labels.repository}</span>
+							{source.repository}
 						</span>
 					)}
 					{source.license && source.license !== 'unknown' && (

@@ -48,10 +48,16 @@ export function SourceDetail({ source }: SourceDetailProps) {
 						<dd>{source.date}</dd>
 					</>
 				)}
-				{source.credit && (
+				{source.source && (
 					<>
-						<dt>{t('sources.colCredit')}</dt>
-						<dd>{source.credit}</dd>
+						<dt>{t('sources.colSource')}</dt>
+						<dd>{source.source}</dd>
+					</>
+				)}
+				{source.repository && (
+					<>
+						<dt>{t('sources.colRepository')}</dt>
+						<dd>{source.repository}</dd>
 					</>
 				)}
 				{source.license && (

@@ -155,7 +155,9 @@
 		"resultsMany": "{count} results",
 		"standingHelp": "Primary — an artifact of the events themselves; secondary — writing about them, after.",
 		"colYear": "Circa",
-		"filterByType": "Filter by type"
+		"filterByType": "Filter by type",
+		"colTitle": "Title",
+		"colRepository": "Repository"
 	},
 	"search": {
 		"title": "Search",

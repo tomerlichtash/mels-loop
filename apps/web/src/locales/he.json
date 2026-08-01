@@ -155,7 +155,9 @@
 		"resultsMany": "{count} תוצאות",
 		"standingHelp": "ראשוני — שריד מן האירועים עצמם; משני — כתיבה עליהם, לאחר מעשה.",
 		"colYear": "בקירוב",
-		"filterByType": "סינון לפי סוג"
+		"filterByType": "סינון לפי סוג",
+		"colTitle": "כותרת",
+		"colRepository": "מאגר"
 	},
 	"search": {
 		"title": "חיפוש",

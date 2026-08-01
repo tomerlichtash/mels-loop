@@ -52,6 +52,7 @@ export function buildSourceTableProps(
 			TYPE_ORDER.map((t) => [t, dictGet(dict, `sources.${t}`)]),
 		) as Record<SourceType, string>,
 		columnLabels: {
+			title: dictGet(dict, 'sources.colTitle'),
 			type: dictGet(dict, 'sources.colType'),
 			filterByType: dictGet(dict, 'sources.filterByType'),
 			standing: dictGet(dict, 'sources.colStanding'),
@@ -60,7 +61,7 @@ export function buildSourceTableProps(
 			source: dictGet(dict, 'sources.colSource'),
 			license: dictGet(dict, 'sources.colLicense'),
 			author: dictGet(dict, 'sources.colAuthor'),
-			credit: dictGet(dict, 'sources.colCredit'),
+			repository: dictGet(dict, 'sources.colRepository'),
 			clear: dictGet(dict, 'sources.clearFilters'),
 			toggle: dictGet(dict, 'sources.toggleFilters'),
 			empty: dictGet(dict, 'sources.noSources'),

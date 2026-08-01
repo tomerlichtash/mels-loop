@@ -45,7 +45,11 @@ export interface Source {
 	url: string;
 	author?: string;
 	date?: string;
-	credit?: string;
+	/** Bibliographic container — the publication or collection the artifact
+	 *  appeared in: Librazette, a yearbook, a Usenet group. */
+	source?: string;
+	/** Where we found the copy — provider or holder; may die tomorrow. */
+	repository?: string;
 	license?: SourceLicense;
 	tags?: string[];
 	/**
@@ -55,15 +59,15 @@ export interface Source {
 	 */
 	page?: string;
 	/**
-	 * Where the record came from: the Commons file page, the forum thread, the
-	 * archive listing.
+	 * The copy's locator at its repository: the Commons file page, the forum
+	 * thread, the archive listing.
 	 *
 	 * `url` cannot carry this for an image, because there it holds the copy we
 	 * host — so "open source" on a photograph led to a bare file on S3, and the
 	 * real provenance had nowhere to go but the end of the description, where
 	 * two sources had already put a raw link.
 	 */
-	originUrl?: string;
+	repositoryUrl?: string;
 }
 
 /** Locale-specific display strings for a source, stored in `index.{locale}.json`. */

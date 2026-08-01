@@ -48,7 +48,7 @@ function lightboxSrc(src: string): string {
 /**
  * Provenance for an image drawn from the source registry.
  *
- * rehypeSourceImages already writes the author, credit and licence onto the
+ * rehypeSourceImages already writes the author, repository and licence onto the
  * element, so the viewer can show where a picture came from without fetching
  * anything — which matters here, because the dialog this replaced was the only
  * place that information appeared once an image was opened.
@@ -56,7 +56,7 @@ function lightboxSrc(src: string): string {
 function provenance(el: HTMLImageElement): string | undefined {
 	const parts = [
 		el.dataset.sourceAuthor,
-		el.dataset.sourceCredit,
+		el.dataset.sourceRepository,
 		/* Stored as a slug — "public-domain" reads as a filename otherwise. */
 		el.dataset.sourceLicense?.replace(/-/g, ' '),
 	].filter(Boolean);

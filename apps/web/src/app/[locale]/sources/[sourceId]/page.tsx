@@ -90,9 +90,8 @@ export default async function SourceDetailPage({ params }: PageProps) {
 							labels={{
 								author: dictGet(dict, 'sources.colAuthor'),
 								date: dictGet(dict, 'sources.colDate'),
-								/* "Source" — where the record came from; "credit" was
-								 * the accounting term, not the archival one. */
-								credit: dictGet(dict, 'sources.colSource'),
+								source: dictGet(dict, 'sources.colSource'),
+								repository: dictGet(dict, 'sources.colRepository'),
 								license: dictGet(dict, 'sources.colLicense'),
 								openSource: dictGet(dict, 'sources.openSource'),
 								transcription: dictGet(dict, 'sources.transcription'),

@@ -19,7 +19,8 @@ const LICENSE_LABELS: Record<string, string> = {
 export interface SourceLabels {
 	author: string;
 	date: string;
-	credit: string;
+	source: string;
+	repository: string;
 	license: string;
 	openSource: string;
 	transcription: string;
@@ -56,7 +57,7 @@ export function SourceMedia({
 	 */
 	const hostedImage = isImageUrl(source.url);
 	const externalUrl =
-		source.originUrl ?? (hostedImage ? undefined : source.url);
+		source.repositoryUrl ?? (hostedImage ? undefined : source.url);
 
 	return (
 		<div className={styles.media}>
@@ -81,7 +82,9 @@ export function SourceMedia({
 						className={styles.image}
 						data-zoomable=""
 						{...(source.author && { 'data-source-author': source.author })}
-						{...(source.credit && { 'data-source-credit': source.credit })}
+						{...(source.repository && {
+							'data-source-repository': source.repository,
+						})}
 						{...(source.license && { 'data-source-license': source.license })}
 					/>
 				</figure>
@@ -118,12 +121,13 @@ export function SourceMeta({
 }: SourceMetaProps) {
 	const rows: [string, string][] = (
 		[
-			[labels.author, source.author],
+			[labels.source, source.source],
 			[
 				labels.date,
 				source.date ? formatSourceDate(source.date, locale) : undefined,
 			],
-			[labels.credit, source.credit],
+			[labels.author, source.author],
+			[labels.repository, source.repository],
 			[
 				labels.license,
 				source.license
@@ -157,14 +161,15 @@ export function SourceMeta({
 			{/*
 			 * Where the record came from.
 			 *
-			 * originUrl when the record has one — for an image it is the only
+			 * repositoryUrl when the record has one — for an image it is the only
 			 * external link there can be, since url holds the copy we host and
 			 * would open a bare file on S3. Otherwise url, which for a link-type
 			 * source is already the thing itself.
 			 */}
-			{(source.originUrl ?? (isImageUrl(source.url) ? null : source.url)) && (
+			{(source.repositoryUrl ??
+				(isImageUrl(source.url) ? null : source.url)) && (
 				<a
-					href={source.originUrl ?? source.url}
+					href={source.repositoryUrl ?? source.url}
 					className={styles.metaLink}
 					target="_blank"
 					rel="noopener noreferrer"

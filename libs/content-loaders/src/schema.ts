@@ -37,11 +37,12 @@ export const sourceSchema = z.strictObject({
 	url: z.string().min(1),
 	author: z.string().optional(),
 	date: z.string().optional(),
-	credit: z.string().optional(),
+	source: z.string().optional(),
+	repository: z.string().optional(),
 	license: license.optional(),
 	tags: z.array(z.string()).optional(),
 	page: z.string().optional(),
-	originUrl: z.string().optional(),
+	repositoryUrl: z.string().optional(),
 }) satisfies z.ZodType<Source>;
 
 /** Parses a source record, failing the build with the file path on error. */
