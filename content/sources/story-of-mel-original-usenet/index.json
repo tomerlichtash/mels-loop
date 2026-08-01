@@ -3,8 +3,10 @@
 	"type": "link",
 	"standing": "primary",
 	"url": "https://groups.google.com/g/net.jokes/c/AKMV8DWXS3I",
-	"author": "Ed Nather",
 	"date": "1983-05-21",
+	"author": "Ed Nather",
+	"source": "net.jokes (Usenet)",
+	"repository": "Google Groups",
 	"license": "unknown",
 	"tags": ["usenet", "ed-nather", "original", "net.folklore"]
 }

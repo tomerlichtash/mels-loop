@@ -3,6 +3,8 @@
 	"type": "link",
 	"standing": "primary",
 	"url": "https://theworld.com/~reinhold/comp-hist/actiiisample.html",
+	"date": "1961",
+	"author": "Arnold G. Reinhold",
 	"license": "unknown",
 	"tags": ["lgp-30", "act-iii", "programming", "code-sample"]
 }

@@ -3,9 +3,9 @@
 	"type": "image",
 	"standing": "primary",
 	"url": "/media/v2/images/tucson-daily-aug-1945.png",
-	"author": "Tucson Daily Citizen",
 	"date": "1945-08-08",
-	"credit": "Newspapers.com",
+	"source": "Tucson Daily Citizen",
+	"repository": "Newspapers.com",
 	"license": "fair-use",
 	"tags": ["shirley-kaye", "newspaper"]
 }

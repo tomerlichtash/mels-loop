@@ -3,9 +3,9 @@
 	"type": "image",
 	"standing": "primary",
 	"url": "/media/v2/images/librazette-jul-1956-meeting.png",
-	"author": "Librascope Corporation",
 	"date": "1956-07",
-	"credit": "Librascope Memories",
+	"source": "Librazette",
+	"repository": "Librascope Memories",
 	"license": "fair-use",
 	"tags": ["librascope", "librazette", "mel-kaye", "lgp-30"]
 }

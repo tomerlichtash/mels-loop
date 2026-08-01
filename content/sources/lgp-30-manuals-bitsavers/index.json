@@ -3,6 +3,7 @@
 	"type": "link",
 	"standing": "primary",
 	"url": "http://www.bitsavers.org/pdf/royalPrecision/LGP-30/",
+	"repository": "bitsavers",
 	"license": "unknown",
 	"tags": ["lgp-30", "manuals", "bitsavers", "archive"]
 }

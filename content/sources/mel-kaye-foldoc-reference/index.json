@@ -3,7 +3,10 @@
 	"type": "link",
 	"standing": "secondary",
 	"url": "http://foldoc.org/pub/misc/MelKaye.txt",
+	"date": "1994-06-11",
 	"author": "Bill von Hagen",
+	"source": "alt.folklore.computers (Usenet)",
+	"repository": "FOLDOC",
 	"license": "unknown",
 	"tags": ["mel-kaye", "reference", "foldoc"]
 }

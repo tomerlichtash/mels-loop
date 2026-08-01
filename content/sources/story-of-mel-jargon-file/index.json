@@ -3,6 +3,7 @@
 	"type": "link",
 	"standing": "primary",
 	"url": "http://www.catb.org/jargon/html/story-of-mel.html",
+	"source": "The Jargon File",
 	"license": "unknown",
 	"tags": ["jargon-file", "story-of-mel", "reference"]
 }
