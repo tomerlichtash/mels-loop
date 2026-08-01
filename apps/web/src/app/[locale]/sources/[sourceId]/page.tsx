@@ -72,46 +72,51 @@ export default async function SourceDetailPage({ params }: PageProps) {
 			</BreadcrumbBar>
 			<Container gap="lg">
 				{/* The title spans the column and the rail both — it names the whole
-				    page, not just the reading column under it. */}
+				    page, not just the reading column under it. The type sits in the
+				    rail with the rest of the catalogue data. */}
 				<div className={styles.identity}>
-					{/* What kind of record this is, above its name — the type is a
-					    qualifier on the title, not a property listed under it. */}
-					<p className={styles.eyebrow}>
-						{dictGet(dict, `sources.${source.type}`)}
-					</p>
 					<Text variant="h1">{source.title}</Text>
 				</div>
 				<PageLayout
 					sidebar={
 						<SourceMeta
 							source={source}
+							typeLabel={dictGet(dict, `sources.${source.type}`)}
 							locale={typedLocale}
 							transcriptEmbedded={Boolean(transcript)}
 							labels={{
+								type: dictGet(dict, 'sources.colType'),
 								author: dictGet(dict, 'sources.colAuthor'),
 								date: dictGet(dict, 'sources.colDate'),
 								source: dictGet(dict, 'sources.colSource'),
 								repository: dictGet(dict, 'sources.colRepository'),
 								license: dictGet(dict, 'sources.colLicense'),
 								openSource: dictGet(dict, 'sources.openSource'),
+								openDocument: dictGet(dict, 'sources.openDocument'),
 								transcription: dictGet(dict, 'sources.transcription'),
 							}}
 						/>
 					}
 				>
-					<SourceMedia
-						source={source}
-						openLabel={dictGet(dict, 'sources.openSource')}
-					/>
+					<SourceMedia source={source} />
 					{transcript && ref && (
-						/* The transcription is the record's readable form — part of
-						 * the content column, under the media it transcribes. */
-						<StoryPopoverProvider
-							storySlug={ref.storySlug}
-							locale={typedLocale}
-						>
-							<ContentRenderer hast={transcript.hast} />
-						</StoryPopoverProvider>
+						/* The archive's own contribution, and it says so: this is not
+						 * the artifact but our transcription of it — a reading text
+						 * that may grow footnotes. */
+						<section className={styles.transcript}>
+							<Text variant="h3" component="h2">
+								{dictGet(dict, 'sources.transcriptHeading')}
+							</Text>
+							<Text variant="body2" color="muted" italic>
+								{dictGet(dict, 'sources.transcriptNote')}
+							</Text>
+							<StoryPopoverProvider
+								storySlug={ref.storySlug}
+								locale={typedLocale}
+							>
+								<ContentRenderer hast={transcript.hast} />
+							</StoryPopoverProvider>
+						</section>
 					)}
 				</PageLayout>
 			</Container>

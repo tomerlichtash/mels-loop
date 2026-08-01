@@ -157,7 +157,10 @@
 		"colYear": "בקירוב",
 		"filterByType": "סינון לפי סוג",
 		"colTitle": "כותרת",
-		"colRepository": "מאגר"
+		"colRepository": "מאגר",
+		"transcriptHeading": "התעתיק של לולאת מל",
+		"transcriptNote": "תעתיק שהוכן על ידי לולאת מל מן המסמך המקורי.",
+		"openDocument": "פתיחת המסמך (PDF)"
 	},
 	"search": {
 		"title": "חיפוש",

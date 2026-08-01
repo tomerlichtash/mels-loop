@@ -157,7 +157,10 @@
 		"colYear": "Circa",
 		"filterByType": "Filter by type",
 		"colTitle": "Title",
-		"colRepository": "Repository"
+		"colRepository": "Repository",
+		"transcriptHeading": "Transcription",
+		"transcriptNote": "Transcribed by Mel's Loop from the original document.",
+		"openDocument": "Open the document (PDF)"
 	},
 	"search": {
 		"title": "Search",

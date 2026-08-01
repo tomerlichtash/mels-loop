@@ -24,7 +24,8 @@ export async function resolveAssetUrl(
 	if (!value.startsWith(SOURCE_REF_PREFIX)) return value;
 	const sourceId = value.slice(SOURCE_REF_PREFIX.length);
 	const source = await getSource(sourceId);
-	return source?.url;
+	/* Asset refs feed <Image> — the depiction, where the record has one. */
+	return source?.image ?? source?.url;
 }
 
 export async function getSource(id: string): Promise<Source | null> {

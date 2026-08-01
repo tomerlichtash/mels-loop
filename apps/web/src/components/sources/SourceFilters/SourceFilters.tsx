@@ -8,7 +8,7 @@ import { Combobox, TextField, Tooltip } from '@mels-loop/ui/primitives';
 import {
 	ArrowsInSimpleIcon,
 	ArrowsOutSimpleIcon,
-	EyeIcon,
+	ArrowSquareOutIcon,
 } from '@phosphor-icons/react/ssr';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {
@@ -22,8 +22,9 @@ import {
 } from '@tanstack/react-table';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { SOURCE_TYPE_ICONS } from '@/content/sources/source-types';
 import { formatSourceDate } from '@/lib/format-date';
 import { isImageUrl } from '@/lib/source-media';
 
@@ -69,18 +70,35 @@ interface SourceFiltersProps {
 function createColumns(
 	columnLabels: ColumnLabels,
 	typeLabels: Record<SourceType, string>,
+	anyExpanded: boolean,
+	onToggleAll: () => void,
 ): ColumnDef<ResolvedSource, unknown>[] {
 	return [
 		{
 			accessorKey: 'title',
-			header: columnLabels.title,
-			cell: ({ row }) => (
-				/* title attribute, not a tooltip: the cell truncates with an
-				 * ellipsis and hover shows the full text natively. */
-				<span className={styles.nameText} title={row.original.title}>
-					{row.original.title}
-				</span>
-			),
+			header: columnLabels.source,
+			/* The type glyph is baked into the title cell — it says
+			 * scan-vs-post-vs-manual before the reader gets to the words, and
+			 * the tooltip keeps the word. No column of its own. */
+			cell: ({ row }) => {
+				const type = row.original.type;
+				const Icon = SOURCE_TYPE_ICONS[type];
+				const label = typeLabels[type] ?? type;
+				return (
+					<span className={styles.titleCell}>
+						<Tooltip label={label}>
+							<span className={styles.typeIcon} aria-label={label}>
+								<Icon />
+							</span>
+						</Tooltip>
+						{/* title attribute, not a tooltip: the cell truncates with
+						 * an ellipsis and hover shows the full text natively. */}
+						<span className={styles.nameText} title={row.original.title}>
+							{row.original.title}
+						</span>
+					</span>
+				);
+			},
 		},
 		{
 			accessorKey: 'author',
@@ -91,7 +109,7 @@ function createColumns(
 		},
 		{
 			accessorKey: 'date',
-			header: columnLabels.year,
+			header: columnLabels.date,
 			/* Every date in the archive leads with its year — the full date,
 			 * localized, stays in the expanded entry. */
 			cell: ({ getValue }) => {
@@ -101,14 +119,40 @@ function createColumns(
 			},
 		},
 		{
-			accessorKey: 'type',
-			header: columnLabels.type,
-			cell: ({ getValue }) => {
-				const type = getValue() as SourceType;
-				return (
-					<span className={styles.metaText}>{typeLabels[type] ?? type}</span>
-				);
-			},
+			id: 'view',
+			/* The view column's header was empty — free real estate for the
+			 * expand/collapse-all control, costing the table nothing. */
+			header: () => (
+				<Tooltip
+					label={anyExpanded ? columnLabels.collapse : columnLabels.expand}
+				>
+					<button
+						type="button"
+						className={styles.headerToggle}
+						onClick={onToggleAll}
+						aria-label={
+							anyExpanded ? columnLabels.collapse : columnLabels.expand
+						}
+					>
+						{anyExpanded ? <ArrowsInSimpleIcon /> : <ArrowsOutSimpleIcon />}
+					</button>
+				</Tooltip>
+			),
+			enableSorting: false,
+			/* Always visible, part of the row — the hover-revealed floating eye
+			 * was easy to miss and flaky to hit. */
+			cell: ({ row }) => (
+				<Tooltip label={columnLabels.viewRecord}>
+					<a
+						href={`/sources/${row.original.id}`}
+						className={styles.rowLink}
+						aria-label={columnLabels.viewRecord}
+						onClick={(e) => e.stopPropagation()}
+					>
+						<ArrowSquareOutIcon />
+					</a>
+				</Tooltip>
+			),
 		},
 	];
 }
@@ -124,13 +168,9 @@ function SourceDetail({
 }) {
 	/* No catalogue data → no meta rail. An empty bordered column beside the
 	 * description (the bitsavers manuals, say) reads as a rendering bug. */
-	const hasMeta = Boolean(
-		source.source ||
-		source.author ||
-		source.date ||
-		source.repository ||
-		(source.license && source.license !== 'unknown'),
-	);
+	/* The bibliographic essentials only — license and repository stay on
+	 * the record page, where the full catalogue entry lives. */
+	const hasMeta = Boolean(source.source || source.author || source.date);
 	return (
 		<div className={styles.detail}>
 			<div className={styles.detailBody}>
@@ -139,13 +179,13 @@ function SourceDetail({
 						<p className={styles.detailDesc}>{source.description}</p>
 					)}
 				</div>
-				{isImageUrl(source.url) && (
+				{(source.image ?? (isImageUrl(source.url) ? source.url : null)) && (
 					<div className={styles.detailPreview}>
 						{/* data-zoomable hands the image to the page's lightbox; the
 						 * data-source attributes give the slide its credit line and
 						 * its way through to the record. */}
 						<Image
-							src={source.url}
+							src={source.image ?? source.url}
 							alt={source.title}
 							width={120}
 							height={120}
@@ -166,10 +206,10 @@ function SourceDetail({
 			</div>
 			{hasMeta && (
 				<div className={styles.detailMeta}>
-					{source.source && (
+					{source.author && (
 						<span className={styles.detailField}>
-							<span className={styles.detailLabel}>{labels.source}</span>
-							{source.source}
+							<span className={styles.detailLabel}>{labels.author}</span>
+							{source.author}
 						</span>
 					)}
 					{source.date && (
@@ -178,22 +218,10 @@ function SourceDetail({
 							{formatSourceDate(source.date, locale)}
 						</span>
 					)}
-					{source.author && (
+					{source.source && (
 						<span className={styles.detailField}>
-							<span className={styles.detailLabel}>{labels.author}</span>
-							{source.author}
-						</span>
-					)}
-					{source.repository && (
-						<span className={styles.detailField}>
-							<span className={styles.detailLabel}>{labels.repository}</span>
-							{source.repository}
-						</span>
-					)}
-					{source.license && source.license !== 'unknown' && (
-						<span className={styles.detailField}>
-							<span className={styles.detailLabel}>{labels.license}</span>
-							{source.license}
+							<span className={styles.detailLabel}>{labels.source}</span>
+							{source.source}
 						</span>
 					)}
 				</div>
@@ -291,9 +319,21 @@ export function SourceFilters({
 		return () => document.removeEventListener('keydown', handleKeyDown);
 	}, [expandedIds]);
 
+	const anyExpanded = expandedIds.size > 0;
+	/* Stable across renders and reads the rows through a ref — a handler
+	 * captured inside the memoized column defs must not act on the row set
+	 * of whichever render happened to build it. */
+	const rowsRef = useRef<{ original: ResolvedSource }[]>([]);
+	const toggleAll = useCallback(() => {
+		setExpandedIds((prev) =>
+			prev.size > 0
+				? new Set()
+				: new Set(rowsRef.current.map((r) => r.original.id)),
+		);
+	}, []);
 	const columns = useMemo(
-		() => createColumns(columnLabels, typeLabels),
-		[columnLabels, typeLabels],
+		() => createColumns(columnLabels, typeLabels, anyExpanded, toggleAll),
+		[columnLabels, typeLabels, anyExpanded, toggleAll],
 	);
 
 	const data = useMemo(() => {
@@ -315,14 +355,7 @@ export function SourceFilters({
 	});
 
 	const { rows } = table.getRowModel();
-
-	const expandAll = () => {
-		setExpandedIds(new Set(rows.map((r) => r.original.id)));
-	};
-
-	const collapseAll = () => {
-		setExpandedIds(new Set());
-	};
+	rowsRef.current = rows;
 
 	return (
 		/*
@@ -399,36 +432,6 @@ export function SourceFilters({
 												}[header.column.getIsSorted() as string] ?? ''}
 											</th>
 										))}
-										<th className={styles.thActions}>
-											{/* Acts on every row below it, so it lives above them —
-											 * beside the search field it read as an input action. */}
-											<Tooltip
-												label={
-													expandedIds.size > 0
-														? columnLabels.collapse
-														: columnLabels.expand
-												}
-											>
-												<button
-													type="button"
-													className={styles.headerToggle}
-													onClick={
-														expandedIds.size > 0 ? collapseAll : expandAll
-													}
-													aria-label={
-														expandedIds.size > 0
-															? columnLabels.collapse
-															: columnLabels.expand
-													}
-												>
-													{expandedIds.size > 0 ? (
-														<ArrowsInSimpleIcon />
-													) : (
-														<ArrowsOutSimpleIcon />
-													)}
-												</button>
-											</Tooltip>
-										</th>
 									</tr>
 								))}
 							</thead>
@@ -456,25 +459,11 @@ export function SourceFilters({
 													)}
 												</td>
 											))}
-											<td className={styles.tdActions}>
-												{/* Floats over the row's end, out of the table layout —
-												 * its presence never changes column widths. */}
-												<Tooltip label={columnLabels.viewRecord}>
-													<a
-														href={`/sources/${row.original.id}`}
-														className={styles.rowEye}
-														aria-label={columnLabels.viewRecord}
-														onClick={(e) => e.stopPropagation()}
-													>
-														<EyeIcon />
-													</a>
-												</Tooltip>
-											</td>
 										</tr>
 										{isExpanded && (
 											<tr className={styles.detailRow}>
 												<td
-													colSpan={columns.length + 1}
+													colSpan={columns.length}
 													className={styles.tdDetail}
 												>
 													<SourceDetail

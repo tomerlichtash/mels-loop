@@ -35,6 +35,7 @@ export const sourceSchema = z.strictObject({
 	type: sourceType,
 	standing,
 	url: z.string().min(1),
+	image: z.string().optional(),
 	author: z.string().optional(),
 	date: z.string().optional(),
 	source: z.string().optional(),

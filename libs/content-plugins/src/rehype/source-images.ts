@@ -32,7 +32,9 @@ export function rehypeSourceImages({ sources }: Options) {
 
 			node.properties = {
 				...node.properties,
-				src: source.url,
+				/* The presentation image where the record has one — the copy
+				 * itself may be a PDF. */
+				src: source.image ?? source.url,
 				'data-source-id': id,
 				...(source.author ? { 'data-source-author': source.author } : {}),
 				...(source.repository

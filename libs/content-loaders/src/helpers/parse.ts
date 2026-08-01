@@ -29,6 +29,7 @@ export function resolveSource(
 		...source,
 		...messages,
 		url: resolveMediaPath(source.url),
+		...(source.image ? { image: resolveMediaPath(source.image) } : {}),
 	};
 }
 

@@ -17,18 +17,22 @@ const LICENSE_LABELS: Record<string, string> = {
 };
 
 export interface SourceLabels {
+	type: string;
 	author: string;
 	date: string;
 	source: string;
 	repository: string;
 	license: string;
 	openSource: string;
+	openDocument: string;
 	transcription: string;
 }
 
 interface SourceMetaProps {
 	source: ResolvedSource;
 	labels: SourceLabels;
+	/** The localized name of the record's type. */
+	typeLabel: string;
 	locale: string;
 	/** When the transcription is embedded in the page, the rail drops its link. */
 	transcriptEmbedded?: boolean;
@@ -42,26 +46,15 @@ interface SourceMetaProps {
  * rather than as a document. The catalogue data now sits in the rail (see
  * SourceMeta) and this column holds the record and what it is, in that order.
  */
-export function SourceMedia({
-	source,
-	openLabel,
-}: {
-	source: ResolvedSource;
-	openLabel: string;
-}) {
-	/*
-	 * The record itself, where we cannot show it inline. A document or PDF
-	 * lives at its archival URL (often plain http, so an embed would be
-	 * blocked as mixed content); the media slot holds the way through to it
-	 * instead of sitting empty.
-	 */
-	const hostedImage = isImageUrl(source.url);
-	const externalUrl =
-		source.repositoryUrl ?? (hostedImage ? undefined : source.url);
+export function SourceMedia({ source }: { source: ResolvedSource }) {
+	/* No link out of this column — the rail is the record's action area, and
+	 * a second "open source" here read as a sales CTA. */
+	const figureSrc =
+		source.image ?? (isImageUrl(source.url) ? source.url : undefined);
 
 	return (
 		<div className={styles.media}>
-			{hostedImage && (
+			{figureSrc && (
 				<figure className={styles.figure}>
 					{/*
 					 * Opens in the lightbox, which is mounted for every page and binds
@@ -75,7 +68,7 @@ export function SourceMedia({
 					 * picture is open.
 					 */}
 					<Image
-						src={source.url}
+						src={figureSrc}
 						alt={source.title}
 						width={1200}
 						height={800}
@@ -88,16 +81,6 @@ export function SourceMedia({
 						{...(source.license && { 'data-source-license': source.license })}
 					/>
 				</figure>
-			)}
-			{externalUrl && (
-				<a
-					href={externalUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-					className={styles.mediaLink}
-				>
-					{openLabel} ↗
-				</a>
 			)}
 			{source.description && (
 				<p className={styles.description}>{source.description}</p>
@@ -116,11 +99,13 @@ export function SourceMedia({
 export function SourceMeta({
 	source,
 	labels,
+	typeLabel,
 	locale,
 	transcriptEmbedded,
 }: SourceMetaProps) {
 	const rows: [string, string][] = (
 		[
+			[labels.type, typeLabel],
 			[labels.source, source.source],
 			[
 				labels.date,
@@ -148,6 +133,19 @@ export function SourceMeta({
 						</div>
 					))}
 				</dl>
+			)}
+
+			{/* A document we serve ourselves — the reader opens our copy, not a
+			    mortal external link. */}
+			{source.url.startsWith('/media/') && !isImageUrl(source.url) && (
+				<a
+					href={source.url}
+					className={styles.metaLink}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					{labels.openDocument}
+				</a>
 			)}
 
 			{/* Where the archive holds a transcription that is the thing to read,

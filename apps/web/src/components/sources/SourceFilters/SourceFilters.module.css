@@ -72,6 +72,7 @@
 /* Table */
 
 .tableWrap {
+	position: relative;
 	overflow: hidden;
 	align-self: stretch;
 }
@@ -79,8 +80,27 @@
 .table {
 	width: 100%;
 	border-collapse: collapse;
-	table-layout: auto;
+	/* Fixed, so the 60/20/20 split below holds regardless of content. */
+	table-layout: fixed;
 	font-size: var(--ml-font-size-sm);
+}
+
+/* Title takes the room; a year needs six characters, and the view link one
+ * icon. */
+.th:nth-child(1) {
+	width: 65%;
+}
+
+.th:nth-child(2) {
+	width: 20%;
+}
+
+.th:nth-child(3) {
+	width: 10%;
+}
+
+.th:nth-child(4) {
+	width: 5%;
 }
 
 /*
@@ -88,8 +108,7 @@
  * scroll underneath; the hairline is an inset shadow, not a border — with
  * border-collapse, a sticky th's border stays with the scrolled content.
  */
-.th,
-.thActions {
+.th {
 	position: sticky;
 	top: 0;
 	z-index: 1;
@@ -112,43 +131,12 @@
 	user-select: none;
 }
 
-.thActions {
-	width: 28px;
-}
-
-/* The expand/collapse-all control, sized to its cell. Inherits the header's
- * muted color; full color on hover like the row icons. */
-.headerToggle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 28px;
-	height: 28px;
-	padding: 0;
-	border: none;
-	background: none;
-	color: var(--ml-text-muted-color);
-	cursor: pointer;
-}
-
-.headerToggle:hover {
-	color: var(--ml-text-color);
-}
-
 .td {
 	padding: var(--ml-space-sm) var(--ml-space-sm);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	max-width: 300px;
-}
-
-.tdActions {
-	position: relative;
-	width: 28px;
-	padding: 0;
-	/* Breathing room between the action icons and the scrollbar. */
-	padding-inline-end: var(--ml-space-sm);
 }
 
 .tdDetail {
@@ -201,12 +189,27 @@
 .nameText {
 	color: var(--ml-text-color);
 	font-size: var(--ml-font-size-body);
-	/* Truncate long titles; the title attribute shows the full text on hover. */
+	/* Truncate to the cell (the 60% column decides); the title attribute
+	 * shows the full text on hover. */
 	display: block;
-	max-width: 48ch;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+.titleCell {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-sm);
+	min-width: 0;
+}
+
+.typeIcon {
+	display: inline-flex;
+	align-items: center;
+	color: var(--ml-text-muted-color);
+	font-size: var(--ml-font-size-md);
+	cursor: default;
 }
 
 .metaText {
@@ -214,34 +217,32 @@
 	font-size: var(--ml-font-size-sm);
 }
 
-/*
- * The eye floats over the row's end, absolutely positioned just before the
- * actions cell — never in the table flow, so it cannot move a column. Shown
- * on row hover and on keyboard focus.
- */
-.rowEye {
-	position: absolute;
-	inset-inline-end: 100%;
-	top: 50%;
-	transform: translateY(-50%);
+/* The expand/collapse-all control, in the view column's header. */
+.headerToggle {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 28px;
 	height: 28px;
+	padding: 0;
+	border: none;
+	background: none;
 	color: var(--ml-text-muted-color);
-	opacity: 0;
+	cursor: pointer;
 }
 
-/* Visible on hover, on keyboard focus, and for the whole time the row is
- * expanded — an open entry keeps its way out to the record in sight. */
-.row:hover .rowEye,
-.rowEye:focus-visible,
-.rowGroupExpanded .rowEye {
-	opacity: 1;
+.headerToggle:hover {
+	color: var(--ml-text-color);
 }
 
-.rowEye:hover {
+/* The row's way through to the record — always on, muted until hovered. */
+.rowLink {
+	display: inline-flex;
+	align-items: center;
+	color: var(--ml-text-muted-color);
+}
+
+.rowLink:hover {
 	color: var(--ml-text-color);
 }
 
@@ -326,7 +327,7 @@
  * record data, not prose. A rule above separates it from the description. */
 .detailMeta {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 	gap: var(--ml-space-sm) var(--ml-space-lg);
 	font-family: var(--ml-font-mono);
 	border-top: 1px solid

@@ -43,6 +43,13 @@ export interface Source {
 	type: SourceType;
 	standing: Standing;
 	url: string;
+	/**
+	 * A depiction for presentation — a photograph of (part of) the artifact,
+	 * used in article figures and previews. The record's actual copy stays in
+	 * `url`; the same move as `Entity.portrait`: the picture of the thing is
+	 * not the thing.
+	 */
+	image?: string;
 	author?: string;
 	date?: string;
 	/** Bibliographic container — the publication or collection the artifact
