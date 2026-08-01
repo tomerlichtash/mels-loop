@@ -39,7 +39,19 @@ export async function fetchEntityCard(
 		name: entity.name,
 		...(entity.role ? { role: entity.role } : {}),
 		...(entity.summary ? { summary: entity.summary } : {}),
-		...(entity.dates ? { dates: entity.dates } : {}),
+		/* Years only — the card is a glance; the person page has the full
+		 * dates. Entity dates are fuzzy strings that always lead with the
+		 * year when one is known. */
+		...(entity.dates
+			? {
+					dates: {
+						...(entity.dates.start
+							? { start: entity.dates.start.slice(0, 4) }
+							: {}),
+						...(entity.dates.end ? { end: entity.dates.end.slice(0, 4) } : {}),
+					},
+				}
+			: {}),
 		...(portraitUrl ? { avatarUrl: resolveMediaUrl(portraitUrl) } : {}),
 		hasPage: entity.kind === 'person',
 	};

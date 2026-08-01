@@ -235,13 +235,19 @@ export interface Entity {
 	/** Entity↔entity edges: mel-kaye→librascope "worked at". Structure and
 	 *  derivation only — edges render no labels in v1. */
 	related?: { ref: string; relation: string }[];
+	/** Articles about this entity, as "storySlug/articleSlug" refs —
+	 *  mel-kaye → "the-story-of-mel/mel-kaye-cv". Authored, like every
+	 *  entity edge. */
+	articles?: string[];
 	tags?: string[];
 }
 
 /** Locale display strings for an entity, stored in `index.{locale}.json`. */
 export interface EntityMessages {
 	name: string;
-	/** One-line role/occupation: "Programmer, Librascope". */
+	/** The name the records carry, when it differs: "Melvin Kornitzky". */
+	fullName?: string;
+	/** One-line role/occupation: "Application Engineer, Librascope". */
 	role?: string;
 	summary?: string;
 	description?: string;
@@ -250,6 +256,7 @@ export interface EntityMessages {
 /** Entity merged with its locale-resolved messages — ready for display. */
 export interface ResolvedEntity extends Entity {
 	name: string;
+	fullName?: string;
 	role?: string;
 	summary?: string;
 	description?: string;

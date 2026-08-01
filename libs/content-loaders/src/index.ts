@@ -1,4 +1,4 @@
-export type { AboutEntity } from './entities';
+export type { AboutEntity, InvolvingStory } from './entities';
 export {
 	getAboutMap,
 	getAllEntities,
@@ -8,6 +8,7 @@ export {
 	getEntityBio,
 	getEntityMessages,
 	getResolvedEntity,
+	getStoriesInvolving,
 } from './entities';
 export {
 	getAllGlossarySlugs,

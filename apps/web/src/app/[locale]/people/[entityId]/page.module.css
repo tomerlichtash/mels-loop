@@ -13,6 +13,9 @@
 .portrait {
 	margin: 0;
 	max-width: 320px;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-xs);
 }
 
 .portraitImage {
@@ -20,6 +23,20 @@
 	height: auto;
 	border-radius: var(--ml-radius-md);
 	display: block;
+	cursor: zoom-in;
+}
+
+.portraitCaption {
+	font-size: var(--ml-font-size-xs);
+	color: var(--ml-text-muted-color);
+}
+
+/* Collapsed under 1024px — the grid is one column (see PageLayout), and the
+ * portrait fills it edge to edge like everything else. */
+@media (max-width: 1024px) {
+	.portrait {
+		max-width: 100%;
+	}
 }
 
 .summary {
@@ -57,6 +74,7 @@
 }
 
 .metaLabel {
+	margin: 0;
 	font-size: var(--ml-font-size-xs);
 	font-weight: var(--ml-font-weight-bold);
 	text-transform: uppercase;
@@ -95,4 +113,11 @@
 
 .citedLink:hover {
 	text-decoration: underline;
+}
+
+/* The person's part in that story — the alias or role, under its title. */
+.storyPart {
+	margin: 0;
+	font-size: var(--ml-font-size-xs);
+	color: var(--ml-text-muted-color);
 }

@@ -3,6 +3,12 @@ import type { ProcessedContent } from '@mels-loop/content-pipeline/types';
 import { listSubdirs, loadJsonFile, loadLocaleFile } from './helpers';
 import { paths } from './paths';
 import { parseEntity } from './schema';
+import {
+	getAllStories,
+	getStoryConfig,
+	getStoryMessages,
+	resolveStoryField,
+} from './stories';
 import type {
 	Entity,
 	EntityKind,
@@ -95,6 +101,40 @@ export async function getEntitiesCiting(
 ): Promise<ResolvedEntity[]> {
 	const all = await getAllResolvedEntities(locale);
 	return all.filter((e) => e.sources.includes(sourceId));
+}
+
+/** A story an entity is involved in, resolved for linking from its page. */
+export interface InvolvingStory {
+	slug: string;
+	title: string;
+	role: string;
+	/** Story-messages key for the entity's in-story alias, when one is set. */
+	as?: string;
+}
+
+/**
+ * Which stories involve a given entity — inverting the involvement edges
+ * authored in each story.json. Derived, never authored.
+ */
+export async function getStoriesInvolving(
+	entityId: string,
+	locale: string,
+): Promise<InvolvingStory[]> {
+	const slugs = await getAllStories();
+	const involving: InvolvingStory[] = [];
+	for (const slug of slugs) {
+		const config = await getStoryConfig(slug);
+		const edge = (config.entities ?? []).find((e) => e.ref === entityId);
+		if (!edge) continue;
+		const messages = await getStoryMessages(slug, locale);
+		involving.push({
+			slug,
+			title: resolveStoryField(config.meta.title, locale, messages),
+			role: edge.role,
+			...(edge.as ? { as: edge.as } : {}),
+		});
+	}
+	return involving;
 }
 
 /** A serialisable slice of an entity, for "about" rows on record surfaces. */

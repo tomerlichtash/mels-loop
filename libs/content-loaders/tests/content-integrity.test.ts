@@ -200,6 +200,16 @@ describe('entities', () => {
 					`${dir}: related refs unknown entity "${edge.ref}"`,
 				).toBe(true);
 			}
+			for (const ref of entity.articles ?? []) {
+				const [storySlug, articleSlug] = ref.split('/');
+				const articleDirs = await subdirs(
+					path.join(storiesDir, storySlug, 'articles'),
+				);
+				expect(
+					articleDirs.includes(articleSlug),
+					`${dir}: article ref "${ref}" resolves to no article`,
+				).toBe(true);
+			}
 		}
 	});
 });

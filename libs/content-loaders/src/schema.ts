@@ -71,6 +71,7 @@ export const entitySchema = z.strictObject({
 			z.strictObject({ ref: z.string().min(1), relation: z.string().min(1) }),
 		)
 		.optional(),
+	articles: z.array(z.string().regex(/^[^/]+\/[^/]+$/)).optional(),
 	tags: z.array(z.string()).optional(),
 }) satisfies z.ZodType<Entity>;
 

@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 
 import styles from './Asides.module.css';
 
-interface Row {
+export interface AsideRow {
 	href: string;
 	title: string;
 	/** Aside-specific line, authored in the contents rather than the article. */
@@ -38,7 +38,50 @@ interface AsidesProps {
 interface Group {
 	key: string;
 	label: string;
-	rows: Row[];
+	rows: AsideRow[];
+}
+
+/**
+ * One labelled aside group — the list itself, importable on its own so other
+ * rails (a person's record, say) show articles exactly as the story sidebar
+ * does: same label, gutter, gaps, hover and active mark.
+ */
+export function AsideList({
+	label,
+	rows,
+}: {
+	label: string;
+	rows: AsideRow[];
+}) {
+	const pathname = usePathname();
+
+	return (
+		<div className={styles.group}>
+			<p className={styles.groupLabel}>{label}</p>
+			<ul className={styles.list}>
+				{rows.map((row) => {
+					const isActive = pathname.endsWith(row.href);
+					return (
+						<li key={row.href}>
+							<Link
+								href={row.href}
+								className={cn(styles.link, isActive && styles.linkActive)}
+								aria-current={isActive ? 'page' : undefined}
+							>
+								<span className={styles.title}>{row.title}</span>
+								{row.subtitle && (
+									<span className={styles.subtitle}>{row.subtitle}</span>
+								)}
+								{row.author && (
+									<span className={styles.author}>{row.author}</span>
+								)}
+							</Link>
+						</li>
+					);
+				})}
+			</ul>
+		</div>
+	);
 }
 
 /**
@@ -86,7 +129,6 @@ function toGroups(contents: ResolvedContentsEntry[]): Group[] {
  * moves between pages.
  */
 export function Asides({ contents, people }: AsidesProps) {
-	const pathname = usePathname();
 	const groups = toGroups(contents);
 
 	if (groups.length === 0 && !people) return null;
@@ -94,31 +136,7 @@ export function Asides({ contents, people }: AsidesProps) {
 	return (
 		<nav className={styles.root}>
 			{groups.map((group) => (
-				<div key={group.key} className={styles.group}>
-					<p className={styles.groupLabel}>{group.label}</p>
-					<ul className={styles.list}>
-						{group.rows.map((row) => {
-							const isActive = pathname.endsWith(row.href);
-							return (
-								<li key={row.href}>
-									<Link
-										href={row.href}
-										className={cn(styles.link, isActive && styles.linkActive)}
-										aria-current={isActive ? 'page' : undefined}
-									>
-										<span className={styles.title}>{row.title}</span>
-										{row.subtitle && (
-											<span className={styles.subtitle}>{row.subtitle}</span>
-										)}
-										{row.author && (
-											<span className={styles.author}>{row.author}</span>
-										)}
-									</Link>
-								</li>
-							);
-						})}
-					</ul>
-				</div>
+				<AsideList key={group.key} label={group.label} rows={group.rows} />
 			))}
 
 			{people && people.people.length > 0 && (
