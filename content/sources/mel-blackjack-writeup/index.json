@@ -1,10 +1,19 @@
 {
 	"id": "mel-blackjack-writeup",
 	"type": "document",
-	"url": "http://bitsavers.trailing-edge.com/pdf/royalPrecision/RPC-4000/programWriteups/W1-01.0_Blackjack_Game.pdf",
+	"standing": "primary",
+	"url": "/media/v2/images/mel-kaye-blackjack-writeup.jpg",
 	"page": "/stories/the-story-of-mel/documents/blackjack-writeup",
 	"date": "1960",
 	"author": "Mel Kaye",
-	"license": "unknown",
-	"tags": ["mel-kaye", "blackjack", "rpc-4000", "program-writeup"]
+	"license": "fair-use",
+	"tags": [
+		"mel-kaye",
+		"blackjack",
+		"rpc-4000",
+		"program-writeup",
+		"royal-mcbee"
+	],
+	"originUrl": "http://bitsavers.trailing-edge.com/pdf/royalPrecision/RPC-4000/programWriteups/W1-01.0_Blackjack_Game.pdf",
+	"credit": "Bill Breiner Archive"
 }

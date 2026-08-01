@@ -1,6 +1,7 @@
 {
 	"id": "less-is-more-fifties",
 	"type": "pdf",
+	"standing": "secondary",
 	"url": "https://hal.univ-lille.fr/hal-01345592v3/document",
 	"license": "unknown",
 	"tags": ["history", "computing", "1950s", "minimalism", "academic"]

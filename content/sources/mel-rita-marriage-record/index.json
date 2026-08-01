@@ -1,6 +1,7 @@
 {
 	"id": "mel-rita-marriage-record",
 	"type": "image",
+	"standing": "primary",
 	"url": "/media/v2/images/mel-rita-marriage-record.png",
 	"author": "NYC City Clerk",
 	"date": "1953",

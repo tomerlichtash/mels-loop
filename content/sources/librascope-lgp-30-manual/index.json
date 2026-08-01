@@ -1,6 +1,7 @@
 {
 	"id": "librascope-lgp-30-manual",
 	"type": "pdf",
+	"standing": "primary",
 	"url": "https://archive.org/download/lgp-30-programming-manual/lgp30-programming-manual.pdf",
 	"author": "Librascope Division, General Precision Equipment Corporation",
 	"date": "1956",

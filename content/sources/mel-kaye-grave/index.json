@@ -1,6 +1,7 @@
 {
 	"id": "mel-kaye-grave",
 	"type": "image",
+	"standing": "primary",
 	"url": "/media/v2/images/mel-kaye-grave.jpg",
 	"author": "Mel's Loop",
 	"date": "2022",

@@ -1,6 +1,7 @@
 {
 	"id": "ucla-yearbook-1952",
 	"type": "image",
+	"standing": "primary",
 	"url": "/media/v2/images/ucla-yearbook-1952.jpg",
 	"author": "UCLA",
 	"date": "1952",

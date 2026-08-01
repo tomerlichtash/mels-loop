@@ -1,6 +1,7 @@
 {
 	"id": "librascope-memories-blog",
 	"type": "link",
+	"standing": "secondary",
 	"url": "https://librascopememories.blogspot.com/",
 	"license": "unknown",
 	"tags": ["archive", "librascope", "history", "blog"]

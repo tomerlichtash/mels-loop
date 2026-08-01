@@ -1,6 +1,7 @@
 {
 	"id": "lgp-30-technikum29",
 	"type": "link",
+	"standing": "secondary",
 	"url": "https://technikum29.de/en/computer/lgp30",
 	"license": "unknown",
 	"tags": ["lgp-30", "museum", "technikum29"]

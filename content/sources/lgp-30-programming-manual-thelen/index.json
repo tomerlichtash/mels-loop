@@ -1,6 +1,7 @@
 {
 	"id": "lgp-30-programming-manual-thelen",
 	"type": "link",
+	"standing": "primary",
 	"url": "http://ed-thelen.org/comp-hist/lgp-30-man.html",
 	"author": "Ed Thelen",
 	"license": "unknown",

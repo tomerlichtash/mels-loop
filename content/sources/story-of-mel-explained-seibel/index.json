@@ -1,6 +1,7 @@
 {
 	"id": "story-of-mel-explained-seibel",
 	"type": "link",
+	"standing": "secondary",
 	"url": "https://jamesseibel.com/the-story-of-mel/",
 	"author": "James Seibel",
 	"license": "unknown",

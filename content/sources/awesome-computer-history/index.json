@@ -1,6 +1,7 @@
 {
 	"id": "awesome-computer-history",
 	"type": "link",
+	"standing": "secondary",
 	"url": "https://github.com/watson/awesome-computer-history",
 	"license": "unknown",
 	"tags": ["history", "computing", "github", "curated-list"]
