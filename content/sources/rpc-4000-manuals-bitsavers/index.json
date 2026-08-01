@@ -1,7 +1,9 @@
 {
 	"id": "rpc-4000-manuals-bitsavers",
 	"type": "link",
+	"standing": "primary",
 	"url": "http://www.bitsavers.org/pdf/royalPrecision/RPC-4000/",
+	"repository": "bitsavers",
 	"license": "unknown",
 	"tags": ["rpc-4000", "manuals", "bitsavers", "archive"]
 }

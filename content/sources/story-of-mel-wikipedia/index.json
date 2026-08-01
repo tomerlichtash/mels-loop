@@ -1,7 +1,10 @@
 {
 	"id": "story-of-mel-wikipedia",
 	"type": "link",
+	"standing": "secondary",
 	"url": "https://en.wikipedia.org/wiki/The_Story_of_Mel",
+	"author": "Wikipedia",
+	"source": "Wikipedia",
 	"license": "unknown",
 	"tags": ["wikipedia", "story-of-mel", "reference"]
 }

@@ -68,7 +68,7 @@ A few handwritten code fragments, probably in his own handwriting, survived from
 
 ![Illustrative Example for Floating Point Interpretive System, June 1959, Signed by MK](sources/lgp-30-floating-point-example)
 
-![Preface to Mel's Blackjack game](sources/mel-kaye-blackjack-writeup)
+![Preface to Mel's Blackjack game](sources/mel-blackjack-writeup)
 
 [Full text here](/stories/the-story-of-mel/documents/blackjack-writeup)
 

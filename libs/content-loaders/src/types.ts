@@ -16,6 +16,15 @@ export type SourceType =
 	| 'archive'
 	| 'other';
 
+/**
+ * Evidentiary standing: an artifact of the events, or commentary after.
+ * A reproduction inherits the standing of what it reproduces — a scan of
+ * the naturalization papers is primary because the papers are; a photo of
+ * a gravestone is primary because the stone is; prose about events is
+ * secondary regardless of age.
+ */
+export type Standing = 'primary' | 'secondary';
+
 export type License =
 	| 'public-domain'
 	| 'cc-by'
@@ -32,10 +41,22 @@ export type SourceLicense = License;
 export interface Source {
 	id: string;
 	type: SourceType;
+	standing: Standing;
 	url: string;
+	/**
+	 * A depiction for presentation — a photograph of (part of) the artifact,
+	 * used in article figures and previews. The record's actual copy stays in
+	 * `url`; the same move as `Entity.portrait`: the picture of the thing is
+	 * not the thing.
+	 */
+	image?: string;
 	author?: string;
 	date?: string;
-	credit?: string;
+	/** Bibliographic container — the publication or collection the artifact
+	 *  appeared in: Librazette, a yearbook, a Usenet group. */
+	source?: string;
+	/** Where we found the copy — provider or holder; may die tomorrow. */
+	repository?: string;
 	license?: SourceLicense;
 	tags?: string[];
 	/**
@@ -45,15 +66,15 @@ export interface Source {
 	 */
 	page?: string;
 	/**
-	 * Where the record came from: the Commons file page, the forum thread, the
-	 * archive listing.
+	 * The copy's locator at its repository: the Commons file page, the forum
+	 * thread, the archive listing.
 	 *
 	 * `url` cannot carry this for an image, because there it holds the copy we
 	 * host — so "open source" on a photograph led to a bare file on S3, and the
 	 * real provenance had nowhere to go but the end of the description, where
 	 * two sources had already put a raw link.
 	 */
-	originUrl?: string;
+	repositoryUrl?: string;
 }
 
 /** Locale-specific display strings for a source, stored in `index.{locale}.json`. */

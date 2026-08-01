@@ -65,7 +65,7 @@ date: Tue May 21 2023 01:00:00 GMT+0300
 
 ![Illustrative Example for Floating Point Interpretive System, יוני 1959, חתום בידי מ׳ קיי](sources/lgp-30-floating-point-example)
 
-![מתוך המבוא שכתב מל למשחק הבלק ג׳ק](sources/mel-kaye-blackjack-writeup)
+![מתוך המבוא שכתב מל למשחק הבלק ג׳ק](sources/mel-blackjack-writeup)
 
 [לטקסט המלא](/he/stories/the-story-of-mel/documents/blackjack-writeup)
 

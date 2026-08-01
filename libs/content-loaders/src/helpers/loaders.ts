@@ -10,6 +10,7 @@ import matter from 'gray-matter';
 import path from 'path';
 
 import { paths } from '../paths';
+import { parseSource } from '../schema';
 import type { ResolvedSource, Source, SourceMessages } from '../types';
 import { resolveSource } from './parse';
 
@@ -29,6 +30,17 @@ export async function loadJsonFile<T>(filePath: string): Promise<T | null> {
 	if (!(await fileExists(filePath))) return null;
 	const raw = await fs.readFile(filePath, 'utf-8');
 	return JSON.parse(raw) as T;
+}
+
+/**
+ * Loads and validates a source record. Returns null if the file does not
+ * exist; throws (failing the build) if it exists but is invalid.
+ */
+export async function loadSourceData(id: string): Promise<Source | null> {
+	const filePath = paths.sources.data(id);
+	const raw = await loadJsonFile<unknown>(filePath);
+	if (raw === null) return null;
+	return parseSource(raw, filePath);
 }
 
 /**
@@ -101,7 +113,7 @@ export async function loadResolvedSourcesById(
 	const entries = await Promise.all(
 		ids.map(async (id) => {
 			const [source, messages] = await Promise.all([
-				loadJsonFile<Source>(paths.sources.data(id)),
+				loadSourceData(id),
 				loadSourceMessages(id, locale),
 			]);
 			if (!source) return null;

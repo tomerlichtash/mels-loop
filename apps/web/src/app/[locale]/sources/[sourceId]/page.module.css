@@ -1,0 +1,113 @@
+/*
+ * Title and its eyebrow read as one block, so the gap between them is theirs
+ * rather than the Container's.
+ */
+.identity {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-xs);
+}
+
+/* ---- The record ---- */
+
+.media {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-md);
+}
+
+.figure {
+	margin: 0;
+	overflow: hidden;
+	border-radius: var(--ml-radius-md);
+	border: 1px solid var(--ml-border-color);
+}
+
+.image {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	/* The only cue that the picture opens, so it is worth having. */
+	cursor: zoom-in;
+}
+
+/*
+ * The archive's account of the record, directly under it — the caption to the
+ * thing above, which is why it is prose at reading size rather than the muted
+ * small print it was when it sat in a stack with the metadata.
+ */
+.description {
+	margin: 0;
+	max-width: var(--ml-prose-measure, 67ch);
+	font-size: var(--ml-font-size-md);
+	line-height: var(--ml-prose-line-height, 1.65);
+	color: var(--ml-text-color);
+}
+
+/* ---- The catalogue entry, in the rail ---- */
+
+.meta {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-md);
+}
+
+/* Lekton, matching the table's expanded card — the catalogue entry reads
+ * as record data, not prose, on both surfaces. */
+.metaList {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+	font-family: var(--ml-font-mono);
+}
+
+/*
+ * Label above value, not beside it. The rail is 250px and the values are
+ * proper nouns — "Pierce Brothers Valley Oaks-Griffin Memorial Park" — so a
+ * two-column list spent half its width on the labels and wrapped everything
+ * else to four lines.
+ */
+.metaRow {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.metaLabel {
+	/* Same style as the expanded card, one size up — a page rail can afford
+	 * more than a table row. */
+	font-size: var(--ml-font-size-xs);
+	font-weight: var(--ml-font-weight-bold);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--ml-text-muted-color);
+}
+
+.metaValue {
+	margin: 0;
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-snug);
+	color: var(--ml-text-color);
+}
+
+.metaLink {
+	font-size: var(--ml-font-size-body);
+	color: var(--ml-link-color);
+	text-decoration: none;
+	align-self: flex-start;
+}
+
+.metaLink:hover {
+	text-decoration: underline;
+}
+
+/* Our transcription, set apart from the artifact above it. */
+.transcript {
+	border-top: 1px solid var(--ml-border-color);
+	padding-top: var(--ml-space-lg);
+	margin-top: var(--ml-space-lg);
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-md);
+}

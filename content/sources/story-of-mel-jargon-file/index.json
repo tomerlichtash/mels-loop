@@ -1,7 +1,11 @@
 {
 	"id": "story-of-mel-jargon-file",
 	"type": "link",
+	"standing": "primary",
 	"url": "http://www.catb.org/jargon/html/story-of-mel.html",
+	"date": "1983-05-21",
+	"author": "Ed Nather",
+	"source": "The Jargon File",
 	"license": "unknown",
 	"tags": ["jargon-file", "story-of-mel", "reference"]
 }

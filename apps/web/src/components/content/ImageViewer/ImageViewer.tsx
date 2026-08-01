@@ -48,7 +48,7 @@ function lightboxSrc(src: string): string {
 /**
  * Provenance for an image drawn from the source registry.
  *
- * rehypeSourceImages already writes the author, credit and licence onto the
+ * rehypeSourceImages already writes the author, repository and licence onto the
  * element, so the viewer can show where a picture came from without fetching
  * anything — which matters here, because the dialog this replaced was the only
  * place that information appeared once an image was opened.
@@ -56,7 +56,7 @@ function lightboxSrc(src: string): string {
 function provenance(el: HTMLImageElement): string | undefined {
 	const parts = [
 		el.dataset.sourceAuthor,
-		el.dataset.sourceCredit,
+		el.dataset.sourceRepository,
 		/* Stored as a slug — "public-domain" reads as a filename otherwise. */
 		el.dataset.sourceLicense?.replace(/-/g, ' '),
 	].filter(Boolean);
@@ -69,7 +69,7 @@ function provenance(el: HTMLImageElement): string | undefined {
 	return unique.length ? unique.join(' · ') : undefined;
 }
 
-function toSlide(el: HTMLImageElement): ViewerSlide {
+function toSlide(el: HTMLImageElement, sourceLabel: string): ViewerSlide {
 	/* The figure's caption where there is one, so what sits under the slide is
 	 * what the reader saw under the image on the page. */
 	const caption =
@@ -85,16 +85,29 @@ function toSlide(el: HTMLImageElement): ViewerSlide {
 		alt: el.alt || '',
 		title: caption,
 		/*
-		 * Provenance, without a way through to the archive record.
+		 * Provenance, and a way through to the full archive record.
 		 *
-		 * The credit line stays — several of these images are CC BY-SA or
-		 * CC BY-NC-SA and attribution is a condition of showing them at all.
-		 * The "source details" link is gone with the source pages it pointed
-		 * at; it returns when they do.
+		 * The record used to sit behind a toggle inside the lightbox, which put a
+		 * panel and a button over the picture and collided with the paging arrow.
+		 * A line of credit and a link is enough here: the whole record already
+		 * has a page of its own, laid out for reading.
 		 */
-		description: credit ? (
-			<span className={styles.caption}>{credit}</span>
-		) : undefined,
+		description:
+			sourceId || credit ? (
+				<span className={styles.caption}>
+					{credit}
+					{sourceId && (
+						<a
+							href={`/sources/${sourceId}`}
+							className={styles.sourceLink}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{sourceLabel}
+						</a>
+					)}
+				</span>
+			) : undefined,
 		sourceId,
 	};
 }
@@ -121,6 +134,10 @@ export function ImageViewer() {
 	/* Focus returns here on close, so keyboard users are not dropped at the top
 	 * of the document. */
 	const opener = useRef<HTMLElement | null>(null);
+	/* Read inside a listener that is bound once, so it is held in a ref rather
+	 * than captured from the render that installed it. */
+	const sourceLabel = useRef('');
+	sourceLabel.current = t('imageViewer.sourceDetails');
 
 	useEffect(() => {
 		function handleClick(event: MouseEvent) {
@@ -130,7 +147,7 @@ export function ImageViewer() {
 
 			opener.current = target;
 			const all = [...document.querySelectorAll<HTMLImageElement>(ZOOMABLE)];
-			setSlides(all.map(toSlide));
+			setSlides(all.map((img) => toSlide(img, sourceLabel.current)));
 			setIndex(Math.max(0, all.indexOf(target)));
 			setOpen(true);
 		}

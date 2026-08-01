@@ -1,0 +1,80 @@
+:root {
+	--ml-listbox-option-padding-horizontal: var(--ml-space-sm);
+	--ml-listbox-option-padding-vertical: var(--ml-space-xs);
+	--ml-listbox-option-border-radius: var(--ml-radius-sm);
+	--ml-listbox-option-color: var(--ml-text-color);
+	/* Neutral hover, like a table row — the mid-blue primary-muted put dark
+	 * text on a blue background and read the same as selection. */
+	--ml-listbox-option-color-highlighted: var(--ml-text-color);
+	--ml-listbox-option-background-highlighted: var(--ml-background-color-alt);
+	--ml-listbox-option-color-selected: var(--ml-color-primary-contrast);
+	--ml-listbox-option-background-selected: var(--ml-color-primary);
+	--ml-listbox-option-color-disabled: var(--ml-text-muted-color);
+
+	--ml-listbox-empty-padding: var(--ml-space-md);
+	--ml-listbox-empty-color: var(--ml-text-muted-color);
+}
+
+/* Option */
+.option {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-xs);
+	padding: var(--ml-listbox-option-padding-vertical)
+		var(--ml-listbox-option-padding-horizontal);
+	border-radius: var(--ml-listbox-option-border-radius);
+	color: var(--ml-listbox-option-color);
+	font-size: var(--ml-input-font-size);
+	cursor: pointer;
+	user-select: none;
+}
+
+.option[data-highlighted='true'] {
+	background-color: var(--ml-listbox-option-background-highlighted);
+	color: var(--ml-listbox-option-color-highlighted);
+}
+
+.option[data-selected='true'] {
+	background-color: var(--ml-listbox-option-background-selected);
+	color: var(--ml-listbox-option-color-selected);
+}
+
+.option[data-selected='true'][data-highlighted='true'] {
+	background-color: var(--ml-listbox-option-background-selected);
+	color: var(--ml-listbox-option-color-selected);
+}
+
+.option[data-disabled='true'] {
+	color: var(--ml-listbox-option-color-disabled);
+	pointer-events: none;
+}
+
+/* Multi-select: the checkmark plus primary text marks selection — no
+ * background of its own, so hover (neutral bg) stays the only bg change. */
+.option[data-multi='true'][data-selected='true'] {
+	background-color: transparent;
+	color: var(--ml-color-primary);
+}
+
+.option[data-multi='true'][data-selected='true'][data-highlighted='true'] {
+	background-color: var(--ml-listbox-option-background-highlighted);
+	color: var(--ml-color-primary);
+}
+
+/* Check icon */
+.checkIcon {
+	flex-shrink: 0;
+	visibility: hidden;
+}
+
+.checkIconVisible {
+	visibility: visible;
+}
+
+/* Empty state */
+.empty {
+	padding: var(--ml-listbox-empty-padding);
+	color: var(--ml-listbox-empty-color);
+	text-align: center;
+	font-size: var(--ml-input-font-size);
+}

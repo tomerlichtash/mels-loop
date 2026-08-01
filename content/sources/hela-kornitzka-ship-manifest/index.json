@@ -1,10 +1,10 @@
 {
 	"id": "hela-kornitzka-ship-manifest",
 	"type": "image",
+	"standing": "primary",
 	"url": "/media/v2/images/hela-kornitzka-ship-manifest.jpg",
-	"author": "Ellis Island Foundation",
 	"date": "1907",
-	"credit": "Ellis Island Foundation",
+	"repository": "Ellis Island Foundation",
 	"license": "public-domain",
 	"tags": ["kornitzka", "immigration", "ellis-island"]
 }

@@ -1,6 +1,7 @@
 {
 	"id": "vintage-computing-ebasteln",
 	"type": "link",
+	"standing": "secondary",
 	"url": "http://www.e-basteln.de/computing/",
 	"license": "unknown",
 	"tags": ["archive", "vintage", "computing", "history"]

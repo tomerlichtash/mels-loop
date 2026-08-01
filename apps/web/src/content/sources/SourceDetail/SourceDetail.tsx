@@ -1,5 +1,10 @@
+'use client';
+
 import type { ResolvedSource } from '@mels-loop/content-loaders/types';
+import { useTranslation } from '@mels-loop/i18n/client';
 import Image from 'next/image';
+
+import { isImageUrl } from '@/lib/source-media';
 
 import { SourceBadge } from '../SourceBadge/SourceBadge';
 import styles from './SourceDetail.module.css';
@@ -9,13 +14,14 @@ interface SourceDetailProps {
 }
 
 export function SourceDetail({ source }: SourceDetailProps) {
+	const { t } = useTranslation();
 	return (
 		<div className={styles.content}>
 			<div className={styles.header}>
 				<SourceBadge type={source.type} />
 				<p className={styles.title}>{source.title}</p>
 			</div>
-			{source.type === 'image' && source.url && (
+			{isImageUrl(source.url) && (
 				<div className={styles.imageWrap}>
 					<Image
 						src={source.url}
@@ -32,35 +38,38 @@ export function SourceDetail({ source }: SourceDetailProps) {
 			<dl className={styles.meta}>
 				{source.author && (
 					<>
-						<dt>Author</dt>
+						<dt>{t('sources.colAuthor')}</dt>
 						<dd>{source.author}</dd>
 					</>
 				)}
 				{source.date && (
 					<>
-						<dt>Date</dt>
+						<dt>{t('sources.colDate')}</dt>
 						<dd>{source.date}</dd>
 					</>
 				)}
-				{source.credit && (
+				{source.source && (
 					<>
-						<dt>Credit</dt>
-						<dd>{source.credit}</dd>
+						<dt>{t('sources.colSource')}</dt>
+						<dd>{source.source}</dd>
+					</>
+				)}
+				{source.repository && (
+					<>
+						<dt>{t('sources.colRepository')}</dt>
+						<dd>{source.repository}</dd>
 					</>
 				)}
 				{source.license && (
 					<>
-						<dt>License</dt>
+						<dt>{t('sources.colLicense')}</dt>
 						<dd>{source.license}</dd>
 					</>
 				)}
 			</dl>
-			{/*
-			 * No link out. The catalogue pages this pointed at are hidden for
-			 * now, and a "View source →" that 404s is worse than none. The
-			 * metadata above still names author, credit and licence, which is
-			 * what attribution requires.
-			 */}
+			<a href={`/sources/${source.id}`} className={styles.openLink}>
+				{t('sources.viewRecord')} →
+			</a>
 		</div>
 	);
 }

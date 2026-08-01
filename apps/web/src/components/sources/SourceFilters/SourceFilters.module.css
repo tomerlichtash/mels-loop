@@ -1,0 +1,436 @@
+/*
+ * Table with a filter rail at the inline end, matching the site's other
+ * asides. Placement is explicit so the rail can move above the table on
+ * narrow viewports without touching DOM order. Logical throughout — in
+ * Hebrew the grid flips on its own.
+ */
+.layout {
+	display: grid;
+	grid-template-columns: 1fr 250px;
+	gap: var(--ml-space-xl);
+	align-items: start;
+	align-self: stretch;
+}
+
+.tableWrap {
+	grid-column: 1;
+	grid-row: 1;
+	min-width: 0;
+}
+
+.rail {
+	grid-column: 2;
+	grid-row: 1;
+	/* Full column height, or the sticky inner block has no room to travel —
+	 * the grid's align-items: start would collapse this track to its content. */
+	align-self: stretch;
+}
+
+/* Sticks clear of the header and breadcrumb bar, like PageLayout's rail. */
+.railInner {
+	position: sticky;
+	top: calc(
+		var(--ml-header-offset, var(--ml-header-height)) +
+			var(--ml-breadcrumb-bar-height) + var(--ml-space-xl)
+	);
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+}
+
+@media (max-width: 1024px) {
+	.layout {
+		grid-template-columns: 1fr;
+		row-gap: var(--ml-space-lg);
+	}
+
+	/* Filters first on narrow viewports — below the table they are invisible. */
+	.rail {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.tableWrap {
+		grid-row: 2;
+	}
+
+	.railInner {
+		position: static;
+	}
+}
+
+/* Sits at the end of the table, inside the scroll box — reaching the bottom
+ * answers "how many did I just scroll through". */
+.resultCount {
+	margin: 0;
+	padding: var(--ml-space-sm);
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-muted-color);
+	text-align: center;
+}
+
+/* Table */
+
+.tableWrap {
+	position: relative;
+	overflow: hidden;
+	align-self: stretch;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	/* Fixed, so the 60/20/20 split below holds regardless of content. */
+	table-layout: fixed;
+	font-size: var(--ml-font-size-sm);
+}
+
+/* Title takes the room; a year needs six characters, and the view link one
+ * icon. */
+.th:nth-child(1) {
+	width: 65%;
+}
+
+.th:nth-child(2) {
+	width: 20%;
+}
+
+.th:nth-child(3) {
+	width: 10%;
+}
+
+.th:nth-child(4) {
+	width: 5%;
+}
+
+/*
+ * Sticky against the ScrollArea viewport. An opaque background, because rows
+ * scroll underneath; the hairline is an inset shadow, not a border — with
+ * border-collapse, a sticky th's border stays with the scrolled content.
+ */
+.th {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	/* The page's own background, not the surface white — the header must be
+	 * opaque (rows scroll underneath it) but should not read as a bar. */
+	background-color: var(--ml-background-color);
+	box-shadow: inset 0 -1px 0 var(--ml-border-color);
+}
+
+.th {
+	padding: var(--ml-space-xs) var(--ml-space-sm);
+	font-weight: var(--ml-font-weight-bold);
+	font-size: var(--ml-font-size-xs);
+	color: var(--ml-text-muted-color);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	white-space: nowrap;
+	text-align: start;
+	cursor: pointer;
+	user-select: none;
+}
+
+.td {
+	padding: var(--ml-space-sm) var(--ml-space-sm);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 300px;
+}
+
+.tdDetail {
+	padding: 0;
+}
+
+/* Row groups */
+
+.rowGroup {
+	border-bottom: 1px solid
+		color-mix(in srgb, var(--ml-border-color) 40%, transparent);
+}
+
+.rowGroupExpanded {
+	border-bottom-color: var(--ml-border-color);
+}
+
+/* The clicked row darkens fully; the panel it opened keeps the lighter wash
+ * it always had, so the pair reads as one group with a clear header. */
+.rowGroupExpanded .row {
+	background-color: var(--ml-background-color-alt);
+}
+
+.rowGroupExpanded .detailRow {
+	background-color: color-mix(
+		in srgb,
+		var(--ml-background-color-alt) 50%,
+		transparent
+	);
+}
+
+.row {
+	cursor: pointer;
+	/* The row is a click target; a double-click should expand it, not
+	 * highlight the title. The expanded detail panel keeps selection — that
+	 * text is for reading and copying. */
+	user-select: none;
+}
+
+.row:hover {
+	background-color: var(--ml-background-color-alt);
+}
+
+.detailRow {
+	cursor: auto;
+}
+
+/* Cell content */
+
+.nameText {
+	color: var(--ml-text-color);
+	font-size: var(--ml-font-size-body);
+	/* Truncate to the cell (the 60% column decides); the title attribute
+	 * shows the full text on hover. */
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.titleCell {
+	display: flex;
+	align-items: center;
+	gap: var(--ml-space-sm);
+	min-width: 0;
+}
+
+.typeIcon {
+	display: inline-flex;
+	align-items: center;
+	color: var(--ml-text-muted-color);
+	font-size: var(--ml-font-size-md);
+	cursor: default;
+}
+
+.metaText {
+	color: var(--ml-text-muted-color);
+	font-size: var(--ml-font-size-sm);
+}
+
+/* The expand/collapse-all control, in the view column's header. */
+.headerToggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	border: none;
+	background: none;
+	color: var(--ml-text-muted-color);
+	cursor: pointer;
+}
+
+.headerToggle:hover {
+	color: var(--ml-text-color);
+}
+
+/* The row's way through to the record — always on, muted until hovered. */
+.rowLink {
+	display: inline-flex;
+	align-items: center;
+	color: var(--ml-text-muted-color);
+}
+
+.rowLink:hover {
+	color: var(--ml-text-color);
+}
+
+/* Detail panel */
+
+.detail {
+	position: relative;
+	/*
+	 * The colspan trick: with table-layout auto, a colspan cell's content
+	 * takes part in the column-width algorithm — expanding a row reflowed
+	 * every column above it. width: 0 removes the panel from that
+	 * calculation; min-width: 100% stretches it back over the full table.
+	 */
+	width: 0;
+	min-width: 100%;
+	padding: var(--ml-space-md) var(--ml-space-lg);
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-md);
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-normal);
+	cursor: auto;
+	user-select: text;
+}
+
+/* Image 60, text 40 — in the archive the record IS the picture; the
+ * description annotates it. */
+.detailBody {
+	display: flex;
+	gap: var(--ml-space-lg);
+}
+
+/* Stacked on a phone: text, image, then the meta as its own block under a
+ * rule instead of a squeezed side column. */
+@media (--ml-bp-mobile) {
+	.detailBody {
+		flex-direction: column;
+	}
+
+	.detailMeta {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	/* Two-per-row here; a start border on a row-opening field reads wrong. */
+	.detailMeta > * + * {
+		border-inline-start: none;
+		padding-inline-start: 0;
+	}
+}
+
+.detailPreview {
+	flex: 6;
+	min-width: 0;
+}
+
+.detailImage {
+	width: 100%;
+	height: auto;
+	border-radius: var(--ml-radius-sm);
+	object-fit: cover;
+	display: block;
+	cursor: zoom-in;
+}
+
+.detailLeft {
+	flex: 4;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+}
+
+.detailDesc {
+	margin: 0;
+	white-space: normal;
+	line-height: var(--ml-line-height-normal);
+	color: var(--ml-text-color);
+	opacity: 0.85;
+}
+
+/* Lekton, four columns under the content — the catalogue entry reads as
+ * record data, not prose. A rule above separates it from the description. */
+.detailMeta {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--ml-space-sm) var(--ml-space-lg);
+	font-family: var(--ml-font-mono);
+	border-top: 1px solid
+		color-mix(in srgb, var(--ml-border-color) 40%, transparent);
+	padding-top: var(--ml-space-md);
+}
+
+/* Vertical rules between the columns — one row on desktop, so every field
+ * after the first gets a start border. */
+.detailMeta > * + * {
+	border-inline-start: 1px solid
+		color-mix(in srgb, var(--ml-border-color) 40%, transparent);
+	padding-inline-start: var(--ml-space-lg);
+}
+
+/* Caption above, value below — long values (archive credits, license names)
+ * wrap in their own line instead of fighting the caption for width. The
+ * caption is the smaller of the two: it labels, the value informs. */
+.detailField {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-text-color);
+}
+
+.detailLabel {
+	/* 2xs, not xs — xs is a hair under the value's sm, and uppercase eats
+	 * that difference optically. */
+	font-size: var(--ml-font-size-2xs);
+	font-weight: var(--ml-font-weight-bold);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--ml-text-muted-color);
+}
+
+/* Scroll area */
+
+/*
+ * The table scrolls inside this box (Radix ScrollArea); the page itself
+ * should not scroll. Sized so everything adds up to exactly one viewport:
+ * masthead + breadcrumb/tabs + the title block above the grid + this box +
+ * the footer's top margin + its 4px gradient strip. The strip peeking at the
+ * fold is the deliberate signal that there is a footer below the table.
+ * dvh, not vh — mobile browser chrome collapses and 100vh overshoots there.
+ */
+.scrollRoot {
+	/*
+	 * --table-top is the box's measured distance from the top of the page,
+	 * set by the component — no estimated constants. What remains reserved
+	 * below: the footer's top margin and its 4px gradient strip, peeking at
+	 * the fold as the signal that the page continues.
+	 */
+	height: calc(100dvh - var(--table-top, 16rem) - var(--ml-space-3xl) - 4px);
+	min-height: 20rem;
+	overflow: hidden;
+}
+
+.scrollViewport {
+	width: 100%;
+	height: 100%;
+}
+
+/*
+ * Radix wraps the viewport's content in an inline-styled `display: table`
+ * div, and sticky positioning does not work inside a table-display ancestor —
+ * the sticky header cells silently scroll away with everything else. Forcing
+ * the wrapper back to block is the documented workaround
+ * (radix-ui/primitives#926); !important because the style is inline.
+ */
+.scrollViewport > div {
+	display: block !important;
+}
+
+.scrollbar {
+	display: flex;
+	user-select: none;
+	touch-action: none;
+	padding: 2px;
+	width: 8px;
+	background-color: transparent;
+	transition: background-color var(--ml-duration-fast) ease;
+}
+
+.scrollbar:hover {
+	background-color: var(--ml-background-color-alt);
+}
+
+.scrollThumb {
+	position: relative;
+	flex: 1;
+	border-radius: 4px;
+	background-color: var(--ml-border-color);
+}
+
+.scrollThumb::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	min-width: 20px;
+	height: 100%;
+	min-height: 20px;
+}

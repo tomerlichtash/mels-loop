@@ -1,10 +1,11 @@
 {
 	"id": "mel-kaye-photo-1952",
 	"type": "image",
+	"standing": "primary",
 	"url": "/media/v2/images/mel-kaye-restored-colorize.jpg",
-	"author": "Mel's Loop",
 	"date": "1952",
-	"credit": "Librascope Archives",
+	"author": "Mel's Loop",
+	"source": "UCLA Yearbook",
 	"license": "unknown",
 	"tags": ["mel-kaye", "librascope", "portrait"]
 }

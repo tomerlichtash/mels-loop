@@ -4,7 +4,7 @@ import { visit } from 'unist-util-visit';
 
 /**
  * Matches `{{sources/id:field}}` or `{{source/id:field}}` template expressions.
- * Accessible fields: title, description, author, date, credit, license, url, type.
+ * Accessible fields: title, description, author, date, source, repository, license, url, type.
  */
 const VAR_RE = /\{\{sources?\/([^:}]+):([^}]+)\}\}/g;
 

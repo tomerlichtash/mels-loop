@@ -1,7 +1,11 @@
 {
 	"id": "big-iron-second-decade",
 	"type": "link",
+	"standing": "secondary",
 	"url": "https://hackernoon.com/https-medium-com-it-explained-for-normal-people-big-iron-6aee4e32ed51",
+	"date": "2018-03-19",
+	"author": "Adam Zachary Wasserman",
+	"source": "HackerNoon",
 	"license": "unknown",
 	"tags": ["guide", "history", "programming", "hackernoon"]
 }

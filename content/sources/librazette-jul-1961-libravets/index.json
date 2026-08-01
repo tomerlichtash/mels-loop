@@ -1,10 +1,12 @@
 {
 	"id": "librazette-jul-1961-libravets",
 	"type": "image",
+	"standing": "primary",
 	"url": "/media/v2/images/librazette-jul-1961-libravets.png",
-	"author": "Librascope Corporation",
 	"date": "1961-07",
-	"credit": "Librascope Memories",
+	"author": "Librazette",
+	"source": "Librazette",
+	"repository": "Librascope Memories",
 	"license": "fair-use",
 	"tags": ["librascope", "librazette"]
 }

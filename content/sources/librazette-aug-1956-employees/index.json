@@ -1,10 +1,12 @@
 {
 	"id": "librazette-aug-1956-employees",
 	"type": "image",
+	"standing": "primary",
 	"url": "/media/v2/images/librazette-aug-1956-employees.png",
-	"author": "Librascope Corporation",
 	"date": "1956-08",
-	"credit": "Librascope Memories",
+	"author": "Librazette",
+	"source": "Librazette",
+	"repository": "Librascope Memories",
 	"license": "fair-use",
 	"tags": ["librascope", "librazette", "mel-kaye"]
 }

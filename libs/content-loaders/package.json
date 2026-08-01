@@ -22,7 +22,8 @@
 	},
 	"dependencies": {
 		"@mels-loop/content-pipeline": "workspace:*",
-		"gray-matter": "^4.0.3"
+		"gray-matter": "^4.0.3",
+		"zod": "^4.3.6"
 	},
 	"devDependencies": {
 		"@mels-loop/eslint-config": "workspace:*",

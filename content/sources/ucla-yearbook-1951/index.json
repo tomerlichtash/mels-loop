@@ -1,10 +1,11 @@
 {
 	"id": "ucla-yearbook-1951",
 	"type": "image",
+	"standing": "primary",
 	"url": "/media/v2/images/ucla-yearbook-1951.jpg",
-	"author": "UCLA",
 	"date": "1951",
-	"credit": "Ancestry.com",
+	"source": "UCLA Yearbook",
+	"repository": "Ancestry.com",
 	"license": "public-domain",
 	"tags": ["mel-kaye", "ucla", "yearbook"]
 }

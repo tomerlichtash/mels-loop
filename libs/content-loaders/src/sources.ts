@@ -3,7 +3,7 @@ import path from 'path';
 import {
 	collectSourceIdsFromDir,
 	listSubdirs,
-	loadJsonFile,
+	loadSourceData,
 	loadSourceMessages,
 	resolveSource,
 } from './helpers';
@@ -24,11 +24,12 @@ export async function resolveAssetUrl(
 	if (!value.startsWith(SOURCE_REF_PREFIX)) return value;
 	const sourceId = value.slice(SOURCE_REF_PREFIX.length);
 	const source = await getSource(sourceId);
-	return source?.url;
+	/* Asset refs feed <Image> — the depiction, where the record has one. */
+	return source?.image ?? source?.url;
 }
 
 export async function getSource(id: string): Promise<Source | null> {
-	return loadJsonFile<Source>(paths.sources.data(id));
+	return loadSourceData(id);
 }
 
 export async function getSourceMessages(
@@ -50,11 +51,9 @@ export async function getResolvedSource(
 	return resolveSource(source, messages);
 }
 
-async function getAllSources(): Promise<Source[]> {
+export async function getAllSources(): Promise<Source[]> {
 	const dirs = await listSubdirs(paths.sources.dir());
-	const sources = await Promise.all(
-		dirs.map((name) => loadJsonFile<Source>(paths.sources.data(name))),
-	);
+	const sources = await Promise.all(dirs.map((name) => loadSourceData(name)));
 	return sources.filter((s): s is Source => s !== null);
 }
 
@@ -118,7 +117,7 @@ export async function getResolvedStorySources(
 	const sources = await Promise.all(
 		[...ids].map(async (id) => {
 			const [source, messages] = await Promise.all([
-				loadJsonFile<Source>(paths.sources.data(id)),
+				loadSourceData(id),
 				loadSourceMessages(id, locale),
 			]);
 			if (!source || !messages) return null;

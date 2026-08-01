@@ -1,10 +1,11 @@
 {
 	"id": "lgp-30-hex-punch-print",
 	"type": "image",
+	"standing": "primary",
 	"url": "/media/v2/images/lgp-30-hex-punch-print.jpg",
 	"author": "Mel Kaye",
 	"date": "1956-10",
-	"credit": "Bill Breiner Archive",
+	"repository": "Bill Breiner Archive",
 	"license": "fair-use",
 	"tags": ["mel-kaye", "lgp-30", "code-sheet", "librascope"]
 }
