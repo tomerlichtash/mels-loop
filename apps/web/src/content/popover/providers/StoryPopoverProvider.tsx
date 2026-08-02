@@ -15,7 +15,12 @@ import type { Locale } from '@/i18n-init';
 import { PopoverProvider } from './PopoverProvider';
 
 interface StoryPopoverProviderProps {
-	storySlug: string;
+	/**
+	 * Annotations are story-scoped, so their fetchers need a story. Content
+	 * outside any story — an entity's bio, say — omits this and simply has
+	 * no annotations; glossary, source and entity popovers all still work.
+	 */
+	storySlug?: string;
 	locale: Locale;
 	children: ReactNode;
 }
@@ -26,12 +31,16 @@ export function StoryPopoverProvider({
 	children,
 }: StoryPopoverProviderProps) {
 	const fetchAnnotationFn = useCallback(
-		(key: string) => fetchAnnotation(storySlug, key, locale),
+		(key: string) =>
+			storySlug
+				? fetchAnnotation(storySlug, key, locale)
+				: Promise.resolve(null),
 		[storySlug, locale],
 	);
 
 	const fetchAllAnnotationsFn = useCallback(
-		() => fetchAllAnnotations(storySlug, locale),
+		() =>
+			storySlug ? fetchAllAnnotations(storySlug, locale) : Promise.resolve({}),
 		[storySlug, locale],
 	);
 

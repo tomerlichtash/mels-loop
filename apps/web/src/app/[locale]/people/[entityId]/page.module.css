@@ -31,6 +31,12 @@
 	color: var(--ml-text-muted-color);
 }
 
+/* The credit line, under the caption — metadata, so it recedes further. */
+.portraitAuthor {
+	display: block;
+	margin-top: 2px;
+}
+
 /* Collapsed under 1024px — the grid is one column (see PageLayout), and the
  * portrait fills it edge to edge like everything else. */
 @media (max-width: 1024px) {

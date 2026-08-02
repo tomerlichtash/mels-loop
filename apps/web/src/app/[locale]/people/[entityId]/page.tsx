@@ -18,7 +18,7 @@ import { ImageViewer } from '@/components/content/ImageViewer/ImageViewer';
 import { BreadcrumbBar } from '@/components/layout/BreadcrumbBar/BreadcrumbBar';
 import { PageLayout } from '@/components/layout/PageLayout/PageLayout';
 import { AsideList, type AsideRow } from '@/components/stories/Asides/Asides';
-import { ContentRenderer } from '@/content';
+import { ContentRenderer, StoryPopoverProvider } from '@/content';
 import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n-init';
 import { homeItemFromDict } from '@/lib/breadcrumbs';
@@ -176,6 +176,11 @@ export default async function PersonPage({ params }: PageProps) {
 											 * field the articles caption this image with, so one
 											 * photograph reads identically wherever it appears. */}
 											{portraitRecord.description ?? portraitRecord.title}
+											{portraitRecord.author && (
+												<span className={styles.portraitAuthor}>
+													{portraitRecord.author}
+												</span>
+											)}
 										</figcaption>
 									)}
 								</figure>
@@ -263,7 +268,13 @@ export default async function PersonPage({ params }: PageProps) {
 					{entity.description && (
 						<p className={styles.description}>{entity.description}</p>
 					)}
-					{bio && <ContentRenderer hast={bio.hast} />}
+					{bio && (
+						/* No storySlug — a bio belongs to no story, so it has no
+						 * annotations; entity mentions and glossary terms still open. */
+						<StoryPopoverProvider locale={typedLocale}>
+							<ContentRenderer hast={bio.hast} />
+						</StoryPopoverProvider>
+					)}
 					<ImageViewer />
 				</PageLayout>
 			</Container>

@@ -4,7 +4,7 @@ import { useTranslation } from '@mels-loop/i18n/client';
 import { Avatar, Popover } from '@mels-loop/ui/primitives';
 import { UserIcon } from '@phosphor-icons/react/ssr';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useContentPopover } from '../../hooks/useContentPopover';
 import { useAnnotations } from '../../providers/PopoverProvider';
@@ -17,6 +17,7 @@ interface EntityPopoverProps {
 }
 
 const HOVER_OPEN_DELAY_MS = 250;
+const HOVER_CLOSE_DELAY_MS = 500;
 
 /**
  * An entity mention — an authored [Name](entity:id) marker wrapping the
@@ -47,8 +48,7 @@ export function EntityPopover({ id, label }: EntityPopoverProps) {
 	});
 
 	/* Hover opens the card (after a beat, so sweeps across the text don't
-	 * pop cards); closing stays with the shared outside-click and Escape
-	 * handling. Touch falls through to the click path. */
+	 * pop cards); Touch falls through to the click path. */
 	const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const hoverProps = {
 		onMouseEnter: () => {
@@ -62,6 +62,47 @@ export function EntityPopover({ id, label }: EntityPopoverProps) {
 			if (hoverTimer.current) clearTimeout(hoverTimer.current);
 		},
 	};
+
+	/*
+	 * A hovercard closes the way it opened: the pointer wandering off — the
+	 * trigger and the card both — starts a grace timer; wandering back cancels
+	 * it. Watched at the document level because the card is a portal, not a
+	 * child of the trigger. Hover-capable devices only; on touch the shared
+	 * outside-tap and Escape handling remain the way out.
+	 */
+	const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+	useEffect(() => {
+		if (!opened) return;
+		if (!window.matchMedia('(hover: hover)').matches) return;
+
+		const isInside = (target: EventTarget | null) => {
+			if (!(target instanceof Node)) return false;
+			if (triggerRef.current?.contains(target)) return true;
+			return [...document.querySelectorAll('[data-popover-content]')].some(
+				(el) => el.contains(target),
+			);
+		};
+
+		const onMouseOver = (event: MouseEvent) => {
+			if (isInside(event.target)) {
+				if (closeTimer.current) {
+					clearTimeout(closeTimer.current);
+					closeTimer.current = null;
+				}
+			} else if (!closeTimer.current) {
+				closeTimer.current = setTimeout(closePopover, HOVER_CLOSE_DELAY_MS);
+			}
+		};
+
+		document.addEventListener('mouseover', onMouseOver);
+		return () => {
+			document.removeEventListener('mouseover', onMouseOver);
+			if (closeTimer.current) {
+				clearTimeout(closeTimer.current);
+				closeTimer.current = null;
+			}
+		};
+	}, [opened, closePopover, triggerRef]);
 
 	const displayLabel = label ?? id;
 
