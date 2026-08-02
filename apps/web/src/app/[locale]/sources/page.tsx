@@ -1,7 +1,4 @@
-import {
-	getAboutMap,
-	getAllResolvedSources,
-} from '@mels-loop/content-loaders/loaders';
+import { getAllResolvedSources } from '@mels-loop/content-loaders/loaders';
 import { getLocales } from '@mels-loop/i18n/config';
 import { dictGet } from '@mels-loop/i18n/dict';
 import { Breadcrumbs, Container, Text } from '@mels-loop/ui/primitives';
@@ -33,7 +30,6 @@ export default async function GlobalSourcesPage({ params }: PageProps) {
 
 	const sourcesLabel = dictGet(dict, 'nav.sources');
 	const tableProps = buildSourceTableProps(sources, dict, typedLocale);
-	const aboutBySource = await getAboutMap(typedLocale);
 
 	return (
 		<>
@@ -51,7 +47,7 @@ export default async function GlobalSourcesPage({ params }: PageProps) {
 					 * carries the filter state, and static prerender needs the
 					 * boundary. */
 					<Suspense>
-						<SourceFilters {...tableProps} aboutBySource={aboutBySource} />
+						<SourceFilters {...tableProps} />
 					</Suspense>
 				)}
 			</Container>
