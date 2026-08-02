@@ -48,7 +48,10 @@ export function EntityPopover({ id, label }: EntityPopoverProps) {
 	});
 
 	/* Hover opens the card (after a beat, so sweeps across the text don't
-	 * pop cards); Touch falls through to the click path. */
+	 * pop cards); touch falls through to the click path. Hover-open is the
+	 * entity mention's affordance alone, by design — glossary, annotation
+	 * and source popovers are reference lookups the reader asks for with a
+	 * click, not identities the prose offers in passing. */
 	const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const hoverProps = {
 		onMouseEnter: () => {
@@ -62,6 +65,15 @@ export function EntityPopover({ id, label }: EntityPopoverProps) {
 			if (hoverTimer.current) clearTimeout(hoverTimer.current);
 		},
 	};
+
+	/* The open timer must not outlive the trigger — fired after unmount it
+	 * would open a popover for an element that is gone. */
+	useEffect(
+		() => () => {
+			if (hoverTimer.current) clearTimeout(hoverTimer.current);
+		},
+		[],
+	);
 
 	/*
 	 * A hovercard closes the way it opened: the pointer wandering off — the
@@ -83,20 +95,35 @@ export function EntityPopover({ id, label }: EntityPopoverProps) {
 			);
 		};
 
+		const startClose = () => {
+			if (!closeTimer.current) {
+				closeTimer.current = setTimeout(closePopover, HOVER_CLOSE_DELAY_MS);
+			}
+		};
+
 		const onMouseOver = (event: MouseEvent) => {
 			if (isInside(event.target)) {
 				if (closeTimer.current) {
 					clearTimeout(closeTimer.current);
 					closeTimer.current = null;
 				}
-			} else if (!closeTimer.current) {
-				closeTimer.current = setTimeout(closePopover, HOVER_CLOSE_DELAY_MS);
+			} else {
+				startClose();
 			}
 		};
 
+		/* Leaving the window entirely fires no mouseover — the pointer is on
+		 * browser chrome or another app, and the card would sit open. */
+		const onDocumentLeave = () => startClose();
+
 		document.addEventListener('mouseover', onMouseOver);
+		document.documentElement.addEventListener('mouseleave', onDocumentLeave);
 		return () => {
 			document.removeEventListener('mouseover', onMouseOver);
+			document.documentElement.removeEventListener(
+				'mouseleave',
+				onDocumentLeave,
+			);
 			if (closeTimer.current) {
 				clearTimeout(closeTimer.current);
 				closeTimer.current = null;
@@ -162,7 +189,12 @@ export function EntityPopover({ id, label }: EntityPopoverProps) {
 							{card.role && <p className={styles.role}>{card.role}</p>}
 							{(card.dates?.start || card.dates?.end) && (
 								<p className={styles.dates}>
-									{[card.dates.start, card.dates.end].filter(Boolean).join('–')}
+									{/* Pinned LTR: bidi flips a year range in Hebrew. */}
+									<span dir="ltr">
+										{[card.dates.start, card.dates.end]
+											.filter(Boolean)
+											.join('–')}
+									</span>
 								</p>
 							)}
 						</div>

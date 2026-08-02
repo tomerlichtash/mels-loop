@@ -88,7 +88,14 @@ export async function getEntityBio(
 	id: string,
 	locale: string,
 ): Promise<ProcessedContent | null> {
-	return loadLocaleFile(paths.entities.bio(id, locale));
+	return (
+		(await loadLocaleFile(paths.entities.bio(id, locale))) ??
+		/* English is the archive's fallback voice, as in the messages loaders —
+		 * an untranslated bio reads in English rather than vanishing. */
+		(locale === FALLBACK_LOCALE
+			? null
+			: loadLocaleFile(paths.entities.bio(id, FALLBACK_LOCALE)))
+	);
 }
 
 /**
@@ -142,25 +149,4 @@ export interface AboutEntity {
 	id: string;
 	name: string;
 	kind: EntityKind;
-}
-
-/**
- * The full inversion in one pass: source id → the entities citing it.
- * A plain object, so it can cross the server/client boundary.
- */
-export async function getAboutMap(
-	locale: string,
-): Promise<Record<string, AboutEntity[]>> {
-	const all = await getAllResolvedEntities(locale);
-	const map: Record<string, AboutEntity[]> = {};
-	for (const entity of all) {
-		for (const sourceId of entity.sources) {
-			(map[sourceId] ??= []).push({
-				id: entity.id,
-				name: entity.name,
-				kind: entity.kind,
-			});
-		}
-	}
-	return map;
 }

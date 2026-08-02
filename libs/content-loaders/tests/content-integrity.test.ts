@@ -147,7 +147,12 @@ describe('entities', () => {
 
 	it('every authored entity door resolves — entity: links and mentions:', async () => {
 		const entityIds = new Set(await subdirs(entitiesDir));
-		for (const slug of await subdirs(storiesDir)) {
+		/* Entity bios author entity: mentions too — Bratton's bio links Imm —
+		 * so the walk covers both trees. */
+		for (const root of [
+			...(await subdirs(storiesDir)).map((slug) => path.join(storiesDir, slug)),
+			entitiesDir,
+		]) {
 			async function walk(dir: string): Promise<void> {
 				const dirents = await fs.readdir(dir, { withFileTypes: true });
 				await Promise.all(
@@ -172,7 +177,7 @@ describe('entities', () => {
 					}),
 				);
 			}
-			await walk(path.join(storiesDir, slug));
+			await walk(root);
 		}
 	});
 

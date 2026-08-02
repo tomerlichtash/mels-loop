@@ -1,6 +1,5 @@
 export type { AboutEntity, InvolvingStory } from './entities';
 export {
-	getAboutMap,
 	getAllEntities,
 	getAllResolvedEntities,
 	getEntitiesCiting,
