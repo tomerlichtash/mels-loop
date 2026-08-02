@@ -16,12 +16,25 @@
 .plain {
 	min-width: 0;
 	grid-column: 1;
+	/* Spans both rail rows, so the lead block above the sidebar costs the
+	 * content column nothing. */
+	grid-row: 1 / span 2;
+}
+
+/*
+ * The rail's opening block, a grid item of its own so the collapsed layout
+ * can put it before the content — identity first, reading second, reference
+ * lists last.
+ */
+.lead {
+	grid-column: 2;
 	grid-row: 1;
+	padding-inline-start: var(--ml-space-xl);
 }
 
 .sidebar {
 	grid-column: 2;
-	grid-row: 1;
+	grid-row: 2;
 	display: flex;
 	flex-direction: column;
 	gap: var(--ml-space-lg);
@@ -52,9 +65,19 @@
 	 * the page longer. The start padding is the desktop column gutter and has
 	 * nothing to align to here.
 	 */
+	.lead {
+		grid-column: 1;
+		grid-row: 1;
+		padding-inline-start: 0;
+	}
+
+	.content {
+		grid-row: 2;
+	}
+
 	.sidebar {
 		grid-column: 1;
-		grid-row: 2;
+		grid-row: 3;
 		padding-inline-start: 0;
 		border-top: 1px solid var(--ml-border-color);
 		padding-top: var(--ml-space-lg);

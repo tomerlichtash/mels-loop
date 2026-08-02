@@ -5,7 +5,7 @@ parse_mode: "verse"
 ---
 
 :::smallprint
-This was posted to Usenet by its author, Ed Nather <nather@astro.as.utexas.edu>, on May 21, 1983:
+This was posted to Usenet by its author, [Ed Nather](entity:ed-nather) <nather@astro.as.utexas.edu>, on May 21, 1983:
 :::
 
 A recent article devoted to the _macho_ side of programming[^](annotations/recent-article)
@@ -30,7 +30,7 @@ grow up in ignorance of this glorious past,
 I feel duty-bound to describe,
 as best I can through the generation gap,
 how a [Real Programmer](glossary/real-programmer) wrote code.
-I'll call him Mel,
+I'll call him [Mel](entity:mel-kaye),
 because that was his name.[^](annotations/mel-kaye-bio)
 
 I first met Mel when I went to work for Royal McBee Computer Corp.,[^](annotations/the-timeline-of-royal-mcbee)
@@ -154,7 +154,7 @@ and that it impinged on his personal integrity as a programmer,
 which it did,
 so he refused to do it.
 The Head Salesman talked to Mel,
-as did the Big Boss and, at the boss's urging,
+as did the [Big Boss](entity:lewis-w-imm) and, at the boss's urging,
 a few Fellow Programmers.
 Mel finally gave in and wrote the code,
 but he got the [test](glossary/test-terminating-condition) backwards,

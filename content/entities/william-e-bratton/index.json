@@ -1,0 +1,15 @@
+{
+	"id": "william-e-bratton",
+	"kind": "person",
+	"portrait": "william-e-bratton-portrait",
+	"dates": {
+		"start": "1919"
+	},
+	"related": [
+		{
+			"ref": "librascope",
+			"relation": "president from 1960"
+		}
+	],
+	"sources": ["william-e-bratton-portrait", "librazette-sep-1960-imm-resigns"]
+}

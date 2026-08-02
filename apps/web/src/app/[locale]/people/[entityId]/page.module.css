@@ -1,0 +1,129 @@
+.identity {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-xs);
+}
+
+.role {
+	margin: 0;
+	font-size: var(--ml-font-size-md);
+	color: var(--ml-text-muted-color);
+}
+
+.portrait {
+	margin: 0;
+	max-width: 320px;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-xs);
+}
+
+.portraitImage {
+	width: 100%;
+	height: auto;
+	border-radius: var(--ml-radius-md);
+	display: block;
+	cursor: zoom-in;
+}
+
+.portraitCaption {
+	font-size: var(--ml-font-size-xs);
+	color: var(--ml-text-muted-color);
+}
+
+/* The credit line, under the caption — metadata, so it recedes further. */
+.portraitAuthor {
+	display: block;
+	margin-top: 2px;
+}
+
+/* Collapsed under 1024px — the grid is one column (see PageLayout), and the
+ * portrait fills it edge to edge like everything else. */
+@media (max-width: 1024px) {
+	.portrait {
+		max-width: 100%;
+	}
+}
+
+.summary {
+	margin: 0;
+	font-size: var(--ml-font-size-lg);
+	line-height: var(--ml-line-height-normal);
+	color: var(--ml-text-color);
+}
+
+.description {
+	margin: 0;
+	line-height: var(--ml-line-height-normal);
+	color: var(--ml-text-color);
+}
+
+/* The rail — same Lekton catalogue voice as the record pages. */
+.meta {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-md);
+}
+
+.metaList {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+	font-family: var(--ml-font-mono);
+}
+
+.metaRow {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.metaLabel {
+	margin: 0;
+	font-size: var(--ml-font-size-xs);
+	font-weight: var(--ml-font-weight-bold);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--ml-text-muted-color);
+	font-family: var(--ml-font-mono);
+}
+
+.metaValue {
+	margin: 0;
+	font-size: var(--ml-font-size-body);
+	line-height: var(--ml-line-height-snug);
+	color: var(--ml-text-color);
+}
+
+.cited {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-sm);
+}
+
+.citedList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-xs);
+}
+
+.citedLink {
+	font-size: var(--ml-font-size-sm);
+	color: var(--ml-link-color);
+	text-decoration: none;
+}
+
+.citedLink:hover {
+	text-decoration: underline;
+}
+
+/* The person's part in that story — the alias or role, under its title. */
+.storyPart {
+	margin: 0;
+	font-size: var(--ml-font-size-xs);
+	color: var(--ml-text-muted-color);
+}

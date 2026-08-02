@@ -1,0 +1,11 @@
+{
+	"id": "royal-mcbee",
+	"kind": "organisation",
+	"related": [
+		{
+			"ref": "librascope",
+			"relation": "business partner"
+		}
+	],
+	"sources": ["rpc-4000-manuals-bitsavers", "mel-blackjack-writeup"]
+}

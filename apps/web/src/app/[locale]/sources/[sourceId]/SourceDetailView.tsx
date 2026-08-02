@@ -1,3 +1,4 @@
+import type { AboutEntity } from '@mels-loop/content-loaders/loaders';
 import type { ResolvedSource } from '@mels-loop/content-loaders/types';
 import Image from 'next/image';
 
@@ -18,6 +19,7 @@ const LICENSE_LABELS: Record<string, string> = {
 
 export interface SourceLabels {
 	type: string;
+	about: string;
 	author: string;
 	date: string;
 	source: string;
@@ -31,6 +33,8 @@ export interface SourceLabels {
 interface SourceMetaProps {
 	source: ResolvedSource;
 	labels: SourceLabels;
+	/** Entities citing this record — the derived "about" relation. */
+	about?: AboutEntity[];
 	/** The localized name of the record's type. */
 	typeLabel: string;
 	locale: string;
@@ -99,6 +103,7 @@ export function SourceMedia({ source }: { source: ResolvedSource }) {
 export function SourceMeta({
 	source,
 	labels,
+	about,
 	typeLabel,
 	locale,
 	transcriptEmbedded,
@@ -124,6 +129,25 @@ export function SourceMeta({
 
 	return (
 		<div className={styles.meta}>
+			{about && about.length > 0 && (
+				<div className={styles.aboutBlock}>
+					<p className={styles.metaLabel}>{labels.about}</p>
+					<p className={styles.aboutNames}>
+						{about.map((entity, i) => (
+							<span key={entity.id}>
+								{i > 0 && ' · '}
+								{entity.kind === 'person' ? (
+									<a href={`/people/${entity.id}`} className={styles.aboutLink}>
+										{entity.name}
+									</a>
+								) : (
+									entity.name
+								)}
+							</span>
+						))}
+					</p>
+				</div>
+			)}
 			{rows.length > 0 && (
 				<dl className={styles.metaList}>
 					{rows.map(([label, value]) => (

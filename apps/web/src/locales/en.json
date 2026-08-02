@@ -20,7 +20,9 @@
 		"contents": "Table of Contents",
 		"moreStories": "More stories",
 		"toggleMenu": "Toggle navigation",
-		"closeMenu": "Close navigation"
+		"closeMenu": "Close navigation",
+		"people": "People",
+		"cast": "Cast"
 	},
 	"menu": {
 		"articles": "Articles",
@@ -160,7 +162,8 @@
 		"colRepository": "Repository",
 		"transcriptHeading": "Transcription",
 		"transcriptNote": "Transcribed by Mel's Loop from the original document.",
-		"openDocument": "Open the document (PDF)"
+		"openDocument": "Open the document (PDF)",
+		"about": "About"
 	},
 	"search": {
 		"title": "Search",
@@ -210,5 +213,28 @@
 		"linkText": "Mel Kaye – CV",
 		"imageAlt": "Photo of Mel Kaye, 1952",
 		"badge": "Featured"
+	},
+	"people": {
+		"born": "Born",
+		"died": "Died",
+		"stories": "Stories",
+		"cited": "Cited records",
+		"roles": {
+			"subject": "Subject",
+			"author": "Author",
+			"custodian": "Custodian",
+			"editor": "Editor",
+			"translator": "Translator",
+			"contributor": "Contributor",
+			"illustrator": "Illustrator"
+		},
+		"viewPerson": "View person",
+		"kinds": {
+			"person": "People",
+			"organisation": "Organisations",
+			"machine": "Machines",
+			"object": "Objects",
+			"place": "Places"
+		}
 	}
 }

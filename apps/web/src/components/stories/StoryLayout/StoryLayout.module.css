@@ -32,13 +32,16 @@
 	padding-inline-start: var(--ml-space-xl);
 }
 
-.sidebar > * {
+.sidebarInner {
 	position: sticky;
 	top: calc(
 		var(--ml-header-offset, var(--ml-header-height)) +
 			var(--ml-breadcrumb-bar-height) + var(--ml-story-sections-height) +
 			var(--ml-space-xl)
 	);
+	display: flex;
+	flex-direction: column;
+	gap: var(--ml-space-lg);
 }
 
 @media (max-width: 1024px) {
@@ -108,7 +111,7 @@
 		padding-top: var(--ml-space-lg);
 	}
 
-	.sidebar > * {
+	.sidebarInner {
 		position: static;
 	}
 }

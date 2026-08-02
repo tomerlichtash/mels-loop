@@ -1,0 +1,10 @@
+{
+	"id": "ed-nather",
+	"kind": "person",
+	"portrait": "ed-nather-portrait",
+	"dates": {
+		"start": "1926",
+		"end": "2014"
+	},
+	"sources": ["ed-nather-portrait", "story-of-mel-jargon-file"]
+}

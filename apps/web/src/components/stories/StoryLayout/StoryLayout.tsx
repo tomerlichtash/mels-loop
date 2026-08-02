@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
 import styles from './StoryLayout.module.css';
 
 /** Segments where the sidebar is hidden only on the exact listing page (not child routes). */
-const HIDE_SIDEBAR_LISTING_ONLY = ['sources'];
+const HIDE_SIDEBAR_LISTING_ONLY = ['sources', 'people'];
 /** Segments where the sidebar is always hidden (listing and children). */
 const HIDE_SIDEBAR_ALWAYS = ['contents'];
 
@@ -33,7 +33,12 @@ export function StoryLayout({ children, sidebar }: StoryProps) {
 		<div className={styles.root}>
 			{showSidebar ? (
 				<div className={styles.layout}>
-					<aside className={styles.sidebar}>{sidebar}</aside>
+					<aside className={styles.sidebar}>
+						{/* One sticky container, however many blocks the sidebar
+						 * holds — per-child sticky broke the moment a second block
+						 * (the people strip) joined the aside. */}
+						<div className={styles.sidebarInner}>{sidebar}</div>
+					</aside>
 					<main className={styles.content}>{children}</main>
 				</div>
 			) : (

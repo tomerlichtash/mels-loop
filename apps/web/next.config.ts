@@ -2,6 +2,10 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
 	poweredByHeader: false,
+	/* Debug logging stays for development; production keeps errors only. */
+	compiler: {
+		removeConsole: { exclude: ['error'] },
+	},
 	images: {
 		remotePatterns: [
 			{

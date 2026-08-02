@@ -1,0 +1,20 @@
+{
+	"id": "rpc-4000",
+	"kind": "machine",
+	"dates": {
+		"start": "1960"
+	},
+	"related": [
+		{
+			"ref": "royal-mcbee",
+			"relation": "made by"
+		}
+	],
+	"sources": [
+		"rpc-4000-manuals-bitsavers",
+		"rpc-4000-instruction-format",
+		"rpc-4000-transfer-branch-control",
+		"rpc-4000-branch-control-unit",
+		"mel-blackjack-writeup"
+	]
+}
