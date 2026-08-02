@@ -2,11 +2,19 @@
 	"id": "lewis-w-imm",
 	"kind": "person",
 	"portrait": "lewis-w-imm-portrait",
+	"dates": {
+		"start": "1905",
+		"end": "1992-01-22"
+	},
 	"related": [
 		{
 			"ref": "librascope",
 			"relation": "president"
 		}
 	],
-	"sources": ["lewis-w-imm-portrait"]
+	"sources": [
+		"lewis-w-imm-portrait",
+		"librazette-sep-1960-imm-resigns",
+		"librazette-jan-1992-imm-passing"
+	]
 }
