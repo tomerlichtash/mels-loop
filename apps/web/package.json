@@ -28,6 +28,7 @@
 		"@radix-ui/react-scroll-area": "^1.2.10",
 		"@tanstack/react-table": "^8.21.3",
 		"@tanstack/react-virtual": "^3.13.18",
+		"@vercel/analytics": "^2.0.1",
 		"classnames": "^2.5.1",
 		"hast-util-to-jsx-runtime": "^2.3.6",
 		"next": "^16.1.6",
