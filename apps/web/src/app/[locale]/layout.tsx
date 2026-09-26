@@ -20,6 +20,7 @@ import {
 import { ColorSchemeScript } from '@mels-loop/ui/color-scheme';
 import { DirectionProvider } from '@mels-loop/ui/direction';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 
@@ -137,6 +138,7 @@ export default async function Layout({
 						</SiteLayout>
 					</I18nProvider>
 				</DirectionProvider>
+				<Analytics />
 			</body>
 		</html>
 	);
