@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/tomerlichtash/mels-loop/compare/v2.1.0...v2.1.1) (2026-09-26)
+
+
+### Bug Fixes
+
+* **web:** cache optimised images for 31 days ([#389](https://github.com/tomerlichtash/mels-loop/issues/389)) ([ee62588](https://github.com/tomerlichtash/mels-loop/commit/ee6258853fd07f384e7ac93bdda54d67459324ff))
+
 ## [2.1.0](https://github.com/tomerlichtash/mels-loop/compare/v2.0.0...v2.1.0) (2026-08-01)
 
 
