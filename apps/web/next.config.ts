@@ -3,6 +3,13 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
 	poweredByHeader: false,
 	images: {
+		/*
+		 * The /media masters come from S3 with no Cache-Control, so without
+		 * this the optimiser falls back to a 4h TTL and re-transforms (and
+		 * bills) every variant six times a day. Masters under /media/v2 are
+		 * never replaced in place — a changed image gets a new path.
+		 */
+		minimumCacheTTL: 2678400, // 31 days
 		remotePatterns: [
 			{
 				protocol: 'https',
