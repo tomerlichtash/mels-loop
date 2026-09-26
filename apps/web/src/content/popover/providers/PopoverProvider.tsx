@@ -14,6 +14,8 @@ import {
 	useSyncExternalStore,
 } from 'react';
 
+import type { EntityCard } from '@/actions/entities';
+
 export interface NavStackEntry {
 	type: 'glossary' | 'annotation' | 'source';
 	key: string;
@@ -68,10 +70,12 @@ interface PopoverDataContextValue {
 	annotations: Record<string, ProcessedContent>;
 	glossary: Record<string, ProcessedContent>;
 	sources: Record<string, ResolvedSource>;
+	entities: Record<string, EntityCard>;
 	loadingKeys: Set<string>;
 	loadAnnotation: (key: string) => void;
 	loadGlossaryTerm: (key: string) => void;
 	loadResolvedSource: (id: string) => void;
+	loadResolvedEntity: (id: string) => void;
 	openPopover: (id: string) => void;
 	closePopover: () => void;
 	registerTrigger: (id: string, el: HTMLElement | null) => void;
@@ -84,10 +88,12 @@ const PopoverDataContext = createContext<PopoverDataContextValue>({
 	annotations: {},
 	glossary: {},
 	sources: {},
+	entities: {},
 	loadingKeys: new Set(),
 	loadAnnotation: () => {},
 	loadGlossaryTerm: () => {},
 	loadResolvedSource: () => {},
+	loadResolvedEntity: () => {},
 	openPopover: () => {},
 	closePopover: () => {},
 	registerTrigger: () => {},
@@ -105,6 +111,7 @@ interface PopoverProviderProps {
 	fetchAnnotation?: (key: string) => Promise<ProcessedContent | null>;
 	fetchGlossary?: (key: string) => Promise<ProcessedContent | null>;
 	fetchResolvedSource?: (id: string) => Promise<ResolvedSource | null>;
+	fetchResolvedEntity?: (id: string) => Promise<EntityCard | null>;
 	fetchAllAnnotations?: () => Promise<Record<string, ProcessedContent>>;
 	fetchAllGlossary?: () => Promise<Record<string, ProcessedContent>>;
 	children: ReactNode;
@@ -117,6 +124,7 @@ export function PopoverProvider({
 	fetchAnnotation,
 	fetchGlossary,
 	fetchResolvedSource,
+	fetchResolvedEntity,
 	fetchAllAnnotations,
 	fetchAllGlossary,
 	children,
@@ -128,6 +136,7 @@ export function PopoverProvider({
 	const [sources, setResolvedSources] = useState<
 		Record<string, ResolvedSource>
 	>(initialResolvedSources);
+	const [entities, setEntities] = useState<Record<string, EntityCard>>({});
 	const [loadingKeys, setLoadingKeys] = useState<Set<string>>(new Set());
 	const [navStack, setNavStack] = useState<NavStackEntry[]>([]);
 	const triggersRef = useRef<Map<string, HTMLElement>>(new Map());
@@ -136,8 +145,14 @@ export function PopoverProvider({
 	const [store] = useState(createPopoverStore);
 
 	// Always-fresh refs — stable function identities without stale closures
-	const stateRef = useRef({ annotations, glossary, sources, loadingKeys });
-	stateRef.current = { annotations, glossary, sources, loadingKeys };
+	const stateRef = useRef({
+		annotations,
+		glossary,
+		sources,
+		entities,
+		loadingKeys,
+	});
+	stateRef.current = { annotations, glossary, sources, entities, loadingKeys };
 
 	const fetchAnnotationRef = useRef(fetchAnnotation);
 	fetchAnnotationRef.current = fetchAnnotation;
@@ -146,7 +161,9 @@ export function PopoverProvider({
 	fetchGlossaryRef.current = fetchGlossary;
 
 	const fetchResolvedSourceRef = useRef(fetchResolvedSource);
+	const fetchResolvedEntityRef = useRef(fetchResolvedEntity);
 	fetchResolvedSourceRef.current = fetchResolvedSource;
+	fetchResolvedEntityRef.current = fetchResolvedEntity;
 
 	const fetchAllAnnotationsRef = useRef(fetchAllAnnotations);
 	fetchAllAnnotationsRef.current = fetchAllAnnotations;
@@ -226,6 +243,21 @@ export function PopoverProvider({
 		},
 		[prefetchAll],
 	);
+
+	const loadResolvedEntity = useCallback((id: string) => {
+		const { entities: ent, loadingKeys: lk } = stateRef.current;
+		if (ent[id] || lk.has(`entity:${id}`) || !fetchResolvedEntityRef.current)
+			return;
+		setLoadingKeys((prev) => new Set(prev).add(`entity:${id}`));
+		fetchResolvedEntityRef.current(id).then((card) => {
+			if (card) setEntities((prev) => ({ ...prev, [id]: card }));
+			setLoadingKeys((prev) => {
+				const next = new Set(prev);
+				next.delete(`entity:${id}`);
+				return next;
+			});
+		});
+	}, []);
 
 	const loadResolvedSource = useCallback((id: string) => {
 		const { sources: src, loadingKeys: lk } = stateRef.current;
@@ -308,10 +340,12 @@ export function PopoverProvider({
 			annotations,
 			glossary,
 			sources,
+			entities,
 			loadingKeys,
 			loadAnnotation,
 			loadGlossaryTerm,
 			loadResolvedSource,
+			loadResolvedEntity,
 			openPopover,
 			closePopover,
 			registerTrigger,
@@ -323,11 +357,13 @@ export function PopoverProvider({
 			annotations,
 			glossary,
 			sources,
+			entities,
 			loadingKeys,
 			navStack,
 			loadAnnotation,
 			loadGlossaryTerm,
 			loadResolvedSource,
+			loadResolvedEntity,
 			openPopover,
 			closePopover,
 			registerTrigger,

@@ -93,23 +93,27 @@
 }
 
 /*
- * Kept out of the text flow rather than set inline, so a title that wraps to a
- * second line keeps that line under the first word instead of under the glyph.
- * Nudged down by a fraction so it sits on the text's optical centre rather than
- * on its cap line.
+ * A person row is the same .link — same gutter, gap, hover and active
+ * mechanics — laid out as a row so the avatar sits beside the text.
  */
-.typeIcon {
-	flex: 0 0 auto;
-	width: 1em;
-	height: 1em;
-	margin-top: 0.15em;
-	color: var(--ml-text-muted-color);
+.personLink {
+	flex-direction: row;
+	align-items: center;
+	gap: var(--ml-space-sm);
 }
 
-.title:has(.typeIcon) {
+.personText {
 	display: flex;
-	align-items: flex-start;
-	gap: 0.45em;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+}
+
+.avatarImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
 }
 
 /*
@@ -135,39 +139,6 @@
 	font-size: var(--ml-font-size-sm);
 	line-height: var(--ml-line-height-snug);
 	color: var(--ml-text-muted-color);
-}
-
-/*
- * The way out of a short list into the full set.
- *
- * Carries the same gutter as the rows above it so it sits on their text edge,
- * but reads as a link rather than as one more entry — it goes somewhere else.
- * The chevron is the same glyph the tab strip uses for its scroll controls.
- * U+203A is bidi-mirrored, so the browser turns it round in a right-to-left
- * run on its own — an explicit scaleX(-1) here flipped it a second time and
- * pointed it back into the text.
- */
-.more {
-	margin-top: var(--ml-space-xs);
-	padding-inline-start: calc(
-		var(--ml-aside-gutter) + var(--ml-aside-rule-width)
-	);
-	font-size: var(--ml-font-size-sm);
-	color: var(--ml-link-color);
-	text-decoration: none;
-}
-
-.more::after {
-	content: '\203A';
-	margin-inline-start: 0.35em;
-	display: inline-block;
-}
-
-@media (hover: hover) {
-	.more:hover {
-		color: var(--ml-link-hover-color);
-		text-decoration: underline;
-	}
 }
 
 /*

@@ -13,11 +13,12 @@ import path from 'path';
 import url from 'url';
 import { beforeAll, describe, expect, it } from 'vitest';
 
-import { parseSource } from '../src/schema';
+import { parseEntity, parseSource } from '../src/schema';
 
 const here = path.dirname(url.fileURLToPath(import.meta.url));
 const contentDir = path.resolve(here, '../../../content');
 const sourcesDir = path.join(contentDir, 'sources');
+const entitiesDir = path.join(contentDir, 'entities');
 const storiesDir = path.join(contentDir, 'stories');
 
 const SOURCE_REF_PREFIX = 'source:';
@@ -131,6 +132,93 @@ describe('source records', () => {
 	});
 });
 
+describe('entities', () => {
+	it('every entity is valid, id matches its directory, and has English messages', async () => {
+		for (const dir of await subdirs(entitiesDir)) {
+			const dataPath = path.join(entitiesDir, dir, 'index.json');
+			const entity = parseEntity(await readJson(dataPath), dataPath);
+			expect(entity.id, `id vs directory in ${dataPath}`).toBe(dir);
+			await expect(
+				fs.access(path.join(entitiesDir, dir, 'index.en.json')),
+				`missing index.en.json for ${dir}`,
+			).resolves.toBeUndefined();
+		}
+	});
+
+	it('every authored entity door resolves — entity: links and mentions:', async () => {
+		const entityIds = new Set(await subdirs(entitiesDir));
+		/* Entity bios author entity: mentions too — Bratton's bio links Imm —
+		 * so the walk covers both trees. */
+		for (const root of [
+			...(await subdirs(storiesDir)).map((slug) => path.join(storiesDir, slug)),
+			entitiesDir,
+		]) {
+			async function walk(dir: string): Promise<void> {
+				const dirents = await fs.readdir(dir, { withFileTypes: true });
+				await Promise.all(
+					dirents.map(async (e) => {
+						const full = path.join(dir, e.name);
+						if (e.isDirectory()) return walk(full);
+						if (!e.name.endsWith('.md')) return;
+						const raw = await fs.readFile(full, 'utf-8');
+						for (const match of raw.matchAll(/\]\(entity:([\w-]+)\)/g)) {
+							expect(
+								entityIds.has(match[1]),
+								`${path.relative(contentDir, full)}: entity ref "${match[1]}" resolves to nothing`,
+							).toBe(true);
+						}
+						const { data } = matter(raw);
+						for (const id of (data.mentions as string[] | undefined) ?? []) {
+							expect(
+								entityIds.has(id),
+								`${path.relative(contentDir, full)}: mention "${id}" resolves to nothing`,
+							).toBe(true);
+						}
+					}),
+				);
+			}
+			await walk(root);
+		}
+	});
+
+	it('every entity ref resolves — cited sources, portrait, related edges', async () => {
+		const entityIds = new Set(await subdirs(entitiesDir));
+		for (const dir of await subdirs(entitiesDir)) {
+			const dataPath = path.join(entitiesDir, dir, 'index.json');
+			const entity = parseEntity(await readJson(dataPath), dataPath);
+			for (const id of entity.sources) {
+				expect(sourceIds.has(id), `${dir}: unknown source "${id}"`).toBe(true);
+			}
+			if (entity.portrait) {
+				expect(
+					sourceIds.has(entity.portrait),
+					`${dir}: portrait refs unknown source "${entity.portrait}"`,
+				).toBe(true);
+				expect(
+					entity.sources.includes(entity.portrait),
+					`${dir}: portrait "${entity.portrait}" is not among its cited sources`,
+				).toBe(true);
+			}
+			for (const edge of entity.related ?? []) {
+				expect(
+					entityIds.has(edge.ref),
+					`${dir}: related refs unknown entity "${edge.ref}"`,
+				).toBe(true);
+			}
+			for (const ref of entity.articles ?? []) {
+				const [storySlug, articleSlug] = ref.split('/');
+				const articleDirs = await subdirs(
+					path.join(storiesDir, storySlug, 'articles'),
+				);
+				expect(
+					articleDirs.includes(articleSlug),
+					`${dir}: article ref "${ref}" resolves to no article`,
+				).toBe(true);
+			}
+		}
+	});
+});
+
 describe('story citations', () => {
 	it('every cited source id resolves to a record', async () => {
 		for (const slug of await subdirs(storiesDir)) {
@@ -140,7 +228,36 @@ describe('story citations', () => {
 				sources?: string[];
 				featuredSources?: string[];
 				assets?: Record<string, unknown>;
+				entities?: { ref: string; role: string; as?: string }[];
 			};
+
+			const entityIds = new Set(await subdirs(entitiesDir));
+			const storyMessages = (await readJson(
+				path.join(storiesDir, slug, 'messages', 'en.json'),
+			)) as Record<string, unknown>;
+			for (const edge of config.entities ?? []) {
+				expect(
+					entityIds.has(edge.ref),
+					`${slug}: involvement edge refs unknown entity "${edge.ref}"`,
+				).toBe(true);
+				if (edge.as) {
+					/* The alias is a message key — dangling keys render as raw
+					 * key text in the aside. */
+					const resolved = edge.as
+						.split('.')
+						.reduce<unknown>(
+							(acc, part) =>
+								acc && typeof acc === 'object'
+									? (acc as Record<string, unknown>)[part]
+									: undefined,
+							storyMessages,
+						);
+					expect(
+						typeof resolved,
+						`${slug}: alias key "${edge.as}" missing from story messages`,
+					).toBe('string');
+				}
+			}
 
 			for (const id of config.sources ?? []) {
 				expect(sourceIds.has(id), `${slug}: unknown source "${id}"`).toBe(true);

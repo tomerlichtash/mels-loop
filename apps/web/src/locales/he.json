@@ -20,7 +20,9 @@
 		"contents": "תוכן עניינים",
 		"moreStories": "סיפורים נוספים",
 		"toggleMenu": "פתיחת תפריט",
-		"closeMenu": "סגירת תפריט"
+		"closeMenu": "סגירת תפריט",
+		"people": "אנשים",
+		"cast": "משתתפים"
 	},
 	"menu": {
 		"articles": "מאמרים",
@@ -160,7 +162,8 @@
 		"colRepository": "מאגר",
 		"transcriptHeading": "התעתיק של לולאת מל",
 		"transcriptNote": "תעתיק שהוכן על ידי לולאת מל מן המסמך המקורי.",
-		"openDocument": "פתיחת המסמך (PDF)"
+		"openDocument": "פתיחת המסמך (PDF)",
+		"about": "אודות"
 	},
 	"search": {
 		"title": "חיפוש",
@@ -210,5 +213,28 @@
 		"linkText": "מל קיי – קורות חיים",
 		"imageAlt": "דיוקנו של מל קיי, 1952",
 		"badge": "מומלץ"
+	},
+	"people": {
+		"born": "נולד",
+		"died": "נפטר",
+		"stories": "סיפורים",
+		"cited": "רשומות מצוטטות",
+		"roles": {
+			"subject": "נושא הסיפור",
+			"author": "מחבר",
+			"custodian": "משמר",
+			"editor": "עורך",
+			"translator": "מתרגם",
+			"contributor": "תורם",
+			"illustrator": "מאייר"
+		},
+		"viewPerson": "לעמוד האישי",
+		"kinds": {
+			"person": "אנשים",
+			"organisation": "ארגונים",
+			"machine": "מכונות",
+			"object": "עצמים",
+			"place": "מקומות"
+		}
 	}
 }

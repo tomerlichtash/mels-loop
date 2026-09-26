@@ -1,0 +1,12 @@
+{
+	"id": "re-hastings",
+	"kind": "person",
+	"portrait": "re-hastings-portrait",
+	"related": [
+		{
+			"ref": "royal-mcbee",
+			"relation": "Burbank branch VP and manager"
+		}
+	],
+	"sources": ["re-hastings-portrait"]
+}

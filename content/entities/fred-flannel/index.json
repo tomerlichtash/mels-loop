@@ -1,0 +1,12 @@
+{
+	"id": "fred-flannel",
+	"kind": "person",
+	"portrait": "fred-flannel-portrait",
+	"related": [
+		{
+			"ref": "royal-mcbee",
+			"relation": "class instructor and assistant sales manager"
+		}
+	],
+	"sources": ["fred-flannel-portrait"]
+}

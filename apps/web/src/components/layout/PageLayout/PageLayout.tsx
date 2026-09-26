@@ -6,6 +6,12 @@ interface PageLayoutProps {
 	children: ReactNode;
 	/** Rendered in a sticky rail beside the content. Omitted, the content runs full width. */
 	sidebar?: ReactNode;
+	/**
+	 * The rail's opening block — a portrait, key dates — that leads the page
+	 * when the grid collapses: identity first, then the content, then the
+	 * rest of the rail. On desktop it sits at the top of the rail.
+	 */
+	sidebarLead?: ReactNode;
 }
 
 /**
@@ -20,15 +26,20 @@ interface PageLayoutProps {
  * A server component, deliberately: there is no state here, and the story
  * variant is a client component only because it reads the router.
  */
-export function PageLayout({ children, sidebar }: PageLayoutProps) {
-	if (!sidebar) {
+export function PageLayout({
+	children,
+	sidebar,
+	sidebarLead,
+}: PageLayoutProps) {
+	if (!sidebar && !sidebarLead) {
 		return <main className={styles.plain}>{children}</main>;
 	}
 
 	return (
 		<div className={styles.layout}>
 			<main className={styles.content}>{children}</main>
-			<aside className={styles.sidebar}>{sidebar}</aside>
+			{sidebarLead && <div className={styles.lead}>{sidebarLead}</div>}
+			{sidebar && <aside className={styles.sidebar}>{sidebar}</aside>}
 		</div>
 	);
 }

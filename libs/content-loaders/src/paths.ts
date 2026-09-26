@@ -5,6 +5,7 @@ import {
 
 const md = (locale: string) => localeFileName(locale);
 
+const entities = (...s: string[]) => contentPath('entities', ...s);
 const glossary = (...s: string[]) => contentPath('glossary', ...s);
 const pages = (...s: string[]) => contentPath('pages', ...s);
 const posts = (...s: string[]) => contentPath('posts', ...s);
@@ -22,6 +23,13 @@ function storySection(name: string) {
 }
 
 export const paths = {
+	entities: {
+		dir: () => entities(),
+		data: (id: string) => entities(id, 'index.json'),
+		messages: (id: string, locale: string) =>
+			entities(id, `index.${locale}.json`),
+		bio: (id: string, locale: string) => entities(id, md(locale)),
+	},
 	glossary: {
 		dir: () => glossary(),
 		file: (slug: string, locale: string) => glossary(slug, md(locale)),

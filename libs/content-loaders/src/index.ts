@@ -1,3 +1,14 @@
+export type { AboutEntity, InvolvingStory } from './entities';
+export {
+	getAllEntities,
+	getAllResolvedEntities,
+	getEntitiesCiting,
+	getEntity,
+	getEntityBio,
+	getEntityMessages,
+	getResolvedEntity,
+	getStoriesInvolving,
+} from './entities';
 export {
 	getAllGlossarySlugs,
 	getAllGlossaryTerms,

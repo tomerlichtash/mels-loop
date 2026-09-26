@@ -33,7 +33,8 @@ export function buildNavItems(
 			label: article.title,
 			author: article.author,
 		})),
-		{ key: 'nav.resources', href: `${story}/resources` },
+		{ key: 'nav.sources', href: `${story}/sources` },
+		{ key: 'nav.people', href: '/people' },
 		{ key: 'nav.about', href: '/about' },
 		{ key: 'nav.contact', href: '/contact' },
 	];

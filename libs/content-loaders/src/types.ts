@@ -205,19 +205,87 @@ export type ResolvedContentsEntry =
 	| ResolvedSourceEntry
 	| ResolvedGeneratedEntry;
 
+// --- Entity model ---
+
+export type EntityKind =
+	| 'person'
+	| 'object'
+	| 'machine'
+	| 'organisation'
+	| 'place';
+
+/**
+ * A thing the archive is about — one type with a kind discriminator, split
+ * into separate types only when a second kind needs different behaviour.
+ * Entities assert knowledge (dates, relationships) backed by their research
+ * as a whole; records evidence. See ARCHIVE-MODEL.md.
+ */
+export interface Entity {
+	id: string;
+	kind: EntityKind;
+	/** Source ids this entity cites. Cites, never owns — a source can be
+	 *  cited by many entities. */
+	sources: string[];
+	/** Source id of the depiction used wherever this entity needs a face —
+	 *  avatar, card, cover. */
+	portrait?: string;
+	/** Kind gives the labels: born/died, introduced/retired,
+	 *  founded/dissolved. Fuzzy strings OK ("1952"). */
+	dates?: { start?: string; end?: string };
+	/** Entity↔entity edges: mel-kaye→librascope "worked at". Structure and
+	 *  derivation only — edges render no labels in v1. */
+	related?: { ref: string; relation: string }[];
+	/** Articles about this entity, as "storySlug/articleSlug" refs —
+	 *  mel-kaye → "the-story-of-mel/mel-kaye-cv". Authored, like every
+	 *  entity edge. */
+	articles?: string[];
+	tags?: string[];
+}
+
+/** Locale display strings for an entity, stored in `index.{locale}.json`. */
+export interface EntityMessages {
+	name: string;
+	/** The name the records carry, when it differs: "Melvin Kornitzky". */
+	fullName?: string;
+	/** One-line role/occupation: "Application Engineer, Librascope". */
+	role?: string;
+	summary?: string;
+	description?: string;
+}
+
+/** Entity merged with its locale-resolved messages — ready for display. */
+export interface ResolvedEntity extends Entity {
+	name: string;
+	fullName?: string;
+	role?: string;
+	summary?: string;
+	description?: string;
+}
+
 // --- Story config ---
 
-export type AuthorRole =
+export type EntityRole =
+	| 'subject'
 	| 'author'
+	| 'custodian'
 	| 'editor'
 	| 'translator'
 	| 'contributor'
 	| 'illustrator';
 
-export interface StoryAuthor {
-	/** Key into the story messages `authors` map (e.g. "ednather"). */
+/**
+ * An involvement edge: this entity belongs to this story's life. Editorial —
+ * membership comes from roles, not from the text; referenced-ness (the text
+ * mentions the entity) is derived from annotation `mentions:` instead.
+ */
+export interface StoryEntityRef {
+	/** Entity id. */
 	ref: string;
-	role: AuthorRole;
+	role: EntityRole;
+	/** Story-scoped alias, as a message key into story messages — how this
+	 *  entity is called *in this text* ("The Big Boss"), when that differs
+	 *  from the entity's real name. */
+	as?: string;
 }
 
 export interface StoryConfig {
@@ -240,8 +308,9 @@ export interface StoryConfig {
 		/** Freeform tags for categorization/search. */
 		tags?: string[];
 	};
-	/** Story-level authors with roles. Names resolved from messages. */
-	authors?: StoryAuthor[];
+	/** Involvement edges — who and what belongs to this story's life, with
+	 *  roles. Names resolve from each entity's own messages. */
+	entities?: StoryEntityRef[];
 	assets?: {
 		cover?: string;
 		thumbnail?: string;

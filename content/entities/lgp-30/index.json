@@ -1,0 +1,23 @@
+{
+	"id": "lgp-30",
+	"kind": "machine",
+	"dates": {
+		"start": "1956"
+	},
+	"related": [
+		{
+			"ref": "librascope",
+			"relation": "made by"
+		}
+	],
+	"sources": [
+		"librascope-lgp-30-manual",
+		"lgp-30-manuals-bitsavers",
+		"lgp-30-hex-punch-print",
+		"lgp-30-alphanumeric-printout",
+		"lgp-30-floating-point-example",
+		"lgp-30-polynomial-eval-1959",
+		"lgp-30-act-iii-program",
+		"lgp-30-technikum29"
+	]
+}

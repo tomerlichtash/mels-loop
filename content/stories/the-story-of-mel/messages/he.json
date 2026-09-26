@@ -30,5 +30,8 @@
 	},
 	"figures": {
 		"template": "%index%"
+	},
+	"aliases": {
+		"big-boss": "הבוס הגדול"
 	}
 }

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 import { AnnotationPopover } from '../../../popover/views/AnnotationPopover/AnnotationPopover';
+import { EntityPopover } from '../../../popover/views/EntityPopover/EntityPopover';
 import { GlossaryPopover } from '../../../popover/views/GlossaryPopover/GlossaryPopover';
 import { SourcePopover } from '../../../popover/views/SourcePopover/SourcePopover';
 import styles from './AnnotationAwareLink.module.css';
@@ -39,6 +40,10 @@ export function AnnotationAwareLink({
 
 	if (linkType === 'source' && linkTarget) {
 		return <SourcePopover id={linkTarget} label={children} />;
+	}
+
+	if (linkType === 'entity' && linkTarget) {
+		return <EntityPopover id={linkTarget} label={children} />;
 	}
 
 	if (!href) {

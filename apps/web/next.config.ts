@@ -2,6 +2,10 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
 	poweredByHeader: false,
+	/* Debug logging stays for development; production keeps errors only. */
+	compiler: {
+		removeConsole: { exclude: ['error'] },
+	},
 	images: {
 		/*
 		 * The /media masters come from S3 with no Cache-Control, so without
